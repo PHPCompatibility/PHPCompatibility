@@ -249,15 +249,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         $data  = array($function);
         $error = 'The use of function %s() is ';
 
-
-        if ($this->error === true) {
-            $type   = 'Found';
-            $error .= 'forbidden';
-        } else {
-            $type   = 'Discouraged';
-            $error .= 'discouraged';
-        }
-
         if ($pattern === null) {
             $pattern = $function;
         }
@@ -271,10 +262,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                 } else {
                     $error .= 'discouraged';
                 }
-                $error .=  'in PHP version ' . $version . ' and ';
+                $error .=  ' in PHP version ' . $version . ' and ';
             }
         }
-        $error .= substr($error, strlen($error) - 5);
+        $error = substr($error, 0, strlen($error) - 5);
 
         if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
             $type  .= 'WithAlternative';
