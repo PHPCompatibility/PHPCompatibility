@@ -246,8 +246,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
      */
     protected function addError($phpcsFile, $stackPtr, $function, $pattern=null)
     {
-        $data  = array($function);
-        $error = 'The use of function %s() is ';
+        $error = 'The use of function ' . $function . ' is ';
 
         if ($pattern === null) {
             $pattern = $function;
