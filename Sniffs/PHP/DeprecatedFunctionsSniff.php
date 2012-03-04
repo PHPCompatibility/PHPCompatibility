@@ -268,15 +268,13 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         $error = substr($error, 0, strlen($error) - 5);
 
         if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
-            $type  .= 'WithAlternative';
-            $data[] = $this->forbiddenFunctions[$pattern]['alternative'];
             $error .= '; use %s() instead';
         }
 
         if ($this->error === true) {
-            $phpcsFile->addError($error, $stackPtr, $type, $data);
+            $phpcsFile->addError($error, $stackPtr);
         } else {
-            $phpcsFile->addWarning($error, $stackPtr, $type, $data);
+            $phpcsFile->addWarning($error, $stackPtr);
         }
 
     }//end addError()
