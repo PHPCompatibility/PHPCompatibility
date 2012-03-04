@@ -268,7 +268,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         $error = substr($error, 0, strlen($error) - 5);
 
         if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
-            $error .= '; use %s() instead';
+            $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
         }
 
         if ($this->error === true) {
