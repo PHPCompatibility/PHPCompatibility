@@ -77,7 +77,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff i
                     break;
             }
             if ($gotError === true) {
-                $error = 'Using a variable argument on break or continue is not forbidden since PHP 5.4';
+                $error = 'Using a variable argument on break or continue is forbidden since PHP 5.4';
                 $phpcsFile->addError($error, $stackPtr);
             }
         }
