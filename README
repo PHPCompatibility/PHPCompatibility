@@ -12,3 +12,7 @@ Installation
 * Use the coding standard with `phpcs --standard=PHPCompatibility`.
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
+
+License
+-------
+This code is released under the GNU Lesser General Public License (LGPL). For more information, visit http://www.gnu.org/copyleft/lesser.html
