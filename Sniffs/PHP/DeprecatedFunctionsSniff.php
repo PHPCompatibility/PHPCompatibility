@@ -2,7 +2,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff.
  *
- * PHP version 5.4
+ * PHP version 5.5
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -16,7 +16,7 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
+ * @version   1.1.0
  * @copyright 2012 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
@@ -34,136 +34,201 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                                         'call_user_method' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'call_user_func'
                                         ),
                                         'call_user_method_array' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'call_user_func_array'
                                         ),
                                         'define_syslog_variables' => array(
                                             '5.3' => false,
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => null
                                         ),
                                         'dl' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => null
                                         ),
                                         'ereg' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_match'
                                         ),
                                         'ereg_replace' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_replace'
                                         ),
                                         'eregi' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_match'
                                         ),
                                         'eregi_replace' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_replace'
                                         ),
                                         'import_request_variables' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => null
                                         ),
                                         'mcrypt_generic_end' => array(
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'mcrypt_generic_deinit'
                                         ),
                                         'mysql_db_query' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'mysql_select_db and mysql_query'
                                         ),
                                         'mysql_escape_string' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'mysql_real_escape_string'
                                         ),
                                         'mysql_list_dbs' => array(
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => null
                                         ),
                                         'mysqli_bind_param' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_bind_param'
                                         ),
                                         'mysqli_bind_result' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_bind_result'
                                         ),
                                         'mysqli_client_encoding' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_charachter_set_name'
                                         ),
                                         'mysqli_fetch' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_fetch'
                                         ),
                                         'mysqli_param_count' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_param_count'
                                         ),
                                         'mysqli_get_metadata' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_result_metadata'
                                         ),
                                         'mysqli_send_long_data' => array(
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'mysqli_stmt_send_long_data'
                                         ),
                                         'magic_quotes_runtime' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => null
                                         ),
                                         'session_register' => array(
                                             '5.3' => false,
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'use $_SESSION'
                                         ),
                                         'session_unregister' => array(
                                             '5.3' => false,
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'use $_SESSION'
                                         ),
                                         'session_is_registered' => array(
                                             '5.3' => false,
                                             '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => 'use $_SESSION'
                                         ),
                                         'set_magic_quotes_runtime' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => null
                                         ),
                                         'set_socket_blocking' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'stream_set_blocking'
                                         ),
                                         'split' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_split'
                                         ),
                                         'spliti' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
                                             'alternative' => 'preg_split'
                                         ),
                                         'sql_regcase' => array(
                                             '5.3' => false,
                                             '5.4' => false,
+                                            '5.5' => false,
+                                            'alternative' => null
+                                        ),
+                                        'php_logo_guid' => array(
+                                            '5.5' => true,
+                                            'alternative' => null
+                                        ),
+                                        'php_egg_logo_guid' => array(
+                                            '5.5' => true,
+                                            'alternative' => null
+                                        ),
+                                        'php_real_logo_guid' => array(
+                                            '5.5' => true,
+                                            'alternative' => null
+                                        ),
+                                        'zend_logo_guid' => array(
+                                            '5.5' => true,
+                                            'alternative' => null
+                                        ),
+                                        'datefmt_set_timezone_id' => array(
+                                            '5.5' => false,
+                                            'alternative' => 'datefmt_set_timezone'
+                                        ),
+                                        'mcrypt_ecb' => array(
+                                            '5.5' => false,
+                                            'alternative' => null
+                                        ),
+                                        'mcrypt_cbc' => array(
+                                            '5.5' => false,
+                                            'alternative' => null
+                                        ),
+                                        'mcrypt_cfb' => array(
+                                            '5.5' => false,
+                                            'alternative' => null
+                                        ),
+                                        'mcrypt_ofb' => array(
+                                            '5.5' => false,
                                             'alternative' => null
                                         ),
                                     );
