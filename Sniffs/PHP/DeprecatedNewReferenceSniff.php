@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
      *
      * @var bool
      */
-    protected $error = falsetrue;
+    protected $error = false;
 
 
     /**
