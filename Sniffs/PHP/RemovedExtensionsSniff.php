@@ -36,6 +36,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/activescript'
         ),
         'cpdf' => array(
@@ -44,6 +45,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/pdflib'
         ),
         'dbase' => array(
@@ -52,6 +54,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'dbx' => array(
@@ -60,6 +63,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/dbx'
         ),
         'dio' => array(
@@ -68,6 +72,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/dio'
         ),
         'fam' => array(
@@ -76,6 +81,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'fbsql' => array(
@@ -84,6 +90,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'fdf' => array(
@@ -92,6 +99,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/fdf'
         ),
         'filepro' => array(
@@ -100,6 +108,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'hw_api' => array(
@@ -108,6 +117,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'ingres' => array(
@@ -116,6 +126,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/ingres'
         ),
         'ircg' => array(
@@ -124,6 +135,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'mcve' => array(
@@ -132,6 +144,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/mvce'
         ),
         'mhash' => array(
@@ -140,6 +153,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'hash'
         ),
         'ming' => array(
@@ -148,6 +162,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/ming'
         ),
         'mnogosearch' => array(
@@ -156,6 +171,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'msql' => array(
@@ -164,7 +180,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
+        ),
+        'mysql' => array(
+                '5.0' => 0,
+                '5.1' => 0,
+                '5.2' => 0,
+                '5.3' => 0,
+                '5.4' => 0,
+                '5.5' => -1,
+                'alternative' => 'mysqli',
         ),
         'ncurses' => array(
                 '5.0' => 1,
@@ -172,6 +198,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/ncurses'
         ),
         'oracle' => array(
@@ -180,6 +207,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'oci8 or pdo_oci'
         ),
         'ovrimos' => array(
@@ -188,6 +216,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'pfpro' => array(
@@ -196,6 +225,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'sqlite' => array(
@@ -204,6 +234,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 1,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
         'sybase' => array(
@@ -212,6 +243,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'sybase_ct'
         ),
         'w32api' => array(
@@ -220,6 +252,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 0,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => 'pecl/ffi'
         ),
         'yp' => array(
@@ -228,6 +261,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.2' => 1,
                 '5.3' => 0,
                 '5.4' => 0,
+                '5.5' => 0,
                 'alternative' => null
         ),
     );

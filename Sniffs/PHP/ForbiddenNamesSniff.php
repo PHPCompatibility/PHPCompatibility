@@ -57,6 +57,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         'endwhile' => 'all',
         'extends' => 'all',
         'final' => '5.0',
+        'finally' => '5.5',
         'for' => 'all',
         'foreach' => 'all',
         'function' => 'all',
