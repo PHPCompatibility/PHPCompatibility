@@ -183,7 +183,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.5' => 0,
                 'alternative' => null
         ),
-        'mysql' => array(
+        'mysql_' => array(
                 '5.0' => 0,
                 '5.1' => 0,
                 '5.2' => 0,
