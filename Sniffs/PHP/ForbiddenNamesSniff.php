@@ -155,7 +155,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
 
     }//end process()
 
-        /**
+    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
@@ -168,16 +168,18 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
-        $stackPtr = $phpcsFile->findNext(T_STRING, $stackPtr, null, null, 'define');
-        if ($stackPtr === false) {
+        // Look for any define/defined token (both T_STRING ones, blame Tokenizer)
+        if ($tokens[$stackPtr]['content'] != 'define' && $tokens[$stackPtr]['content'] != 'defined') {
             return;
         }
 
+        // Look for the end of the define/defined
         $closingParenthesis = $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr);
         if ($closingParenthesis === false) {
             return;
         }
 
+        // Look for define name between current position and end of define/defined
         $defineContent = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, $closingParenthesis);
         if ($defineContent === false) {
             return;
