@@ -132,7 +132,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                 // positives to not identifying a pass-by-reference call at all.
                 // The blacklist may not yet be complete.
                 switch ($tokens[$tokenBefore]['code']) {
+                case T_LNUMBER:
                 case T_VARIABLE:
+                case T_CLOSE_SQUARE_BRACKET:
                 case T_CLOSE_PARENTHESIS:
                     // In these cases T_BITWISE_AND represents
                     // the bitwise and operator.
