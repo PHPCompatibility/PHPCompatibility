@@ -167,8 +167,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                                         ),
                                         'set_magic_quotes_runtime' => array(
                                             '5.3' => false,
-                                            '5.4' => false,
-                                            '5.5' => false,
+                                            '5.4' => true,
+                                            '5.5' => true,
                                             'alternative' => null
                                         ),
                                         'set_socket_blocking' => array(
