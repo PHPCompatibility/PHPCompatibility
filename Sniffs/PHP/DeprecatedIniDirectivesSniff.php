@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
     protected $deprecatedIniDirectives = array(
         'define_syslog_variables' => array(
             '5.3' => false,
-	        '5.4' => true
+            '5.4' => true
         ),
         'register_globals' => array(
             '5.3' => false,

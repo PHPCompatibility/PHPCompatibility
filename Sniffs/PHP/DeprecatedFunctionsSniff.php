@@ -119,7 +119,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                                         'mysqli_client_encoding' => array(
                                             '5.4' => true,
                                             '5.5' => true,
-                                            'alternative' => 'mysqli_charachter_set_name'
+                                            'alternative' => 'mysqli_character_set_name'
                                         ),
                                         'mysqli_fetch' => array(
                                             '5.4' => true,
@@ -151,19 +151,19 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                                             '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
-                                            'alternative' => 'use $_SESSION'
+                                            'alternative' => '$_SESSION'
                                         ),
                                         'session_unregister' => array(
                                             '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
-                                            'alternative' => 'use $_SESSION'
+                                            'alternative' => '$_SESSION'
                                         ),
                                         'session_is_registered' => array(
                                             '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
-                                            'alternative' => 'use $_SESSION'
+                                            'alternative' => '$_SESSION'
                                         ),
                                         'set_magic_quotes_runtime' => array(
                                             '5.3' => false,
