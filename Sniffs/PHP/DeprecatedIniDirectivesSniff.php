@@ -40,10 +40,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
             '5.3' => false,
             '5.4' => true
         ),
-        'safe_mode' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
         'magic_quotes_gpc' => array(
             '5.3' => false,
             '5.4' => true
@@ -159,9 +155,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
             } else {
                 $error .= " deprecated";
             }
-            $error .= " in PHP " . $version . " and ";
+            $error .= " in PHP " . $version . " and";
         }
-        $error = substr($error, 0, strlen($error) - 5) . ".";
+        $error = substr($error, 0, strlen($error) - 4) . ".";
 
         $phpcsFile->addWarning($error, $stackPtr);
 

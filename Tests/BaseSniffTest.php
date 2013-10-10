@@ -47,7 +47,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      */
     public function sniffFile($filename)
     {
-        $filename = realpath(dirname(__FILE__)) . '/Tests/' . $filename;
+        $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
         try {
             self::$phpcs->processFile($filename);
         } catch (Exception $e) {
