@@ -60,13 +60,23 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sni
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        if ($tokens[$stackPtr]['type'] == 'T_VARIABLE'
-            && in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated)
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+            )
         ) {
-            $error = 'The use of long predefined variables has been deprecated in 5.3 and removed in 5.4';
-            $phpcsFile->addWarning($error, $stackPtr);
+            $tokens = $phpcsFile->getTokens();
+    
+            if ($tokens[$stackPtr]['type'] == 'T_VARIABLE'
+                && in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated)
+            ) {
+                $error = 'The use of long predefined variables has been deprecated in 5.3 and removed in 5.4';
+                $phpcsFile->addWarning($error, $stackPtr);
+            }
         }
     }
 }

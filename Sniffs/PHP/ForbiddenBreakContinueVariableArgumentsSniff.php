@@ -56,29 +56,39 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff i
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
-        for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
-            $gotError = false;
-            if ($tokens[$curToken]['type'] == 'T_STRING') {
-                // If the next non-whitespace token after the string
-                // is an opening parenthesis then it's a function call.
-                $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
-                if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-                    continue;
-                } else {
-                    $gotError = true;
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+            )
+        ) {
+            $tokens = $phpcsFile->getTokens();
+            $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
+            for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
+                $gotError = false;
+                if ($tokens[$curToken]['type'] == 'T_STRING') {
+                    // If the next non-whitespace token after the string
+                    // is an opening parenthesis then it's a function call.
+                    $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
+                    if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
+                        continue;
+                    } else {
+                        $gotError = true;
+                    }
                 }
-            }
-            switch ($tokens[$curToken]['type']) {
-                case 'T_VARIABLE':
-                case 'T_FUNCTION':
-                    $gotError = true;
-                    break;
-            }
-            if ($gotError === true) {
-                $error = 'Using a variable argument on break or continue is forbidden since PHP 5.4';
-                $phpcsFile->addError($error, $stackPtr);
+                switch ($tokens[$curToken]['type']) {
+                    case 'T_VARIABLE':
+                    case 'T_FUNCTION':
+                        $gotError = true;
+                        break;
+                }
+                if ($gotError === true) {
+                    $error = 'Using a variable argument on break or continue is forbidden since PHP 5.4';
+                    $phpcsFile->addError($error, $stackPtr);
+                }
             }
         }
     }//end process()

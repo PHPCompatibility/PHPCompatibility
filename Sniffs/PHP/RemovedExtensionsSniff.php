@@ -147,15 +147,6 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 '5.5' => 0,
                 'alternative' => 'pecl/mvce'
         ),
-        'mhash' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                'alternative' => 'hash'
-        ),
         'ming' => array(
                 '5.0' => 1,
                 '5.1' => 1,
@@ -325,24 +316,39 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
 
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos($tokens[$stackPtr]['content'], $extension) === 0) {
-                $error = "Extension '" . $extension . "' is ";
+                $error = '';
                 foreach ($versionList as $version => $status) {
                     if ($version != 'alternative') {
-                        switch ($status) {
-                            case -1:
-                                $error .= 'deprecated since PHP ' . $version . ' and ';
-                                break;
-                            case 0:
-                                $error .= 'removed since PHP ' . $version . ' and ';
-                                break 2;
+                        if ($status == -1 || $status == 0) {
+                            if (
+                                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                                ||
+                                (
+                                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                                    &&
+                                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                                )
+                            ) {
+                                switch ($status) {
+                                    case -1:
+                                        $error .= 'deprecated since PHP ' . $version . ' and ';
+                                        break;
+                                    case 0:
+                                        $error .= 'removed since PHP ' . $version . ' and ';
+                                        break 2;
+                                }
+                            }
                         }
                     }
                 }
-                $error = substr($error, 0, strlen($error) - 5);
-                if (!is_null($versionList['alternative'])) {
-                    $error .= ' - use ' . $versionList['alternative'] . ' instead.';
+                if (strlen($error) > 0) {
+                    $error = "Extension '" . $extension . "' is " . $error;
+                    $error = substr($error, 0, strlen($error) - 5);
+                    if (!is_null($versionList['alternative'])) {
+                        $error .= ' - use ' . $versionList['alternative'] . ' instead.';
+                    }
+                    $phpcsFile->addError($error, $stackPtr);
                 }
-                $phpcsFile->addError($error, $stackPtr);
             }
         }
 

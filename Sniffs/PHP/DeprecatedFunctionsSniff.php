@@ -311,34 +311,47 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
      */
     protected function addError($phpcsFile, $stackPtr, $function, $pattern=null)
     {
-        $error = 'The use of function ' . $function . ' is ';
-
         if ($pattern === null) {
             $pattern = $function;
         }
 
+        $error = '';
+        
         $this->error = false;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
-            if ($version != 'alternative') {
-                if ($forbidden === true) {
-                    $this->error = true;
-                    $error .= 'forbidden';
-                } else {
-                    $error .= 'discouraged';
+            if (
+                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                ||
+                (
+                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                    &&
+                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                )
+            ) {
+                if ($version != 'alternative') {
+                    if ($forbidden === true) {
+                        $this->error = true;
+                        $error .= 'forbidden';
+                    } else {
+                        $error .= 'discouraged';
+                    }
+                    $error .=  ' in PHP version ' . $version . ' and ';
                 }
-                $error .=  ' in PHP version ' . $version . ' and ';
             }
         }
-        $error = substr($error, 0, strlen($error) - 5);
-
-        if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
-            $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
-        }
-
-        if ($this->error === true) {
-            $phpcsFile->addError($error, $stackPtr);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr);
+        if (strlen($error) > 0) {
+            $error = 'The use of function ' . $function . ' is ' . $error;
+            $error = substr($error, 0, strlen($error) - 5);
+    
+            if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
+                $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
+            }
+    
+            if ($this->error === true) {
+                $phpcsFile->addError($error, $stackPtr);
+            } else {
+                $phpcsFile->addWarning($error, $stackPtr);
+            }
         }
 
     }//end addError()

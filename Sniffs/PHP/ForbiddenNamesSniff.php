@@ -150,8 +150,18 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         if (in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->invalidNames)) === false) {
             return;
         }
-        $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
-        $phpcsFile->addError($error, $stackPtr);
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])]) >= 0
+            )
+        ) {
+            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
+            $phpcsFile->addError($error, $stackPtr);
+        }
 
     }//end process()
 

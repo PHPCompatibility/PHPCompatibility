@@ -56,10 +56,20 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        if ($tokens[$stackPtr - 1]['type'] == 'T_BITWISE_AND' || $tokens[$stackPtr - 2]['type'] == 'T_BITWISE_AND') {
-            $error = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
-            $phpcsFile->addError($error, $stackPtr);
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.3') >= 0
+            )
+        ) {
+            $tokens = $phpcsFile->getTokens();
+            if ($tokens[$stackPtr - 1]['type'] == 'T_BITWISE_AND' || $tokens[$stackPtr - 2]['type'] == 'T_BITWISE_AND') {
+                $error = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
+                $phpcsFile->addError($error, $stackPtr);
+            }
         }
 
     }//end process()

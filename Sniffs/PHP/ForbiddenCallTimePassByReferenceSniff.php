@@ -60,95 +60,104 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Skip tokens that are the names of functions or classes
-        // within their definitions. For example: function myFunction...
-        // "myFunction" is T_STRING but we should skip because it is not a
-        // function or method *call*.
-        $functionName = $stackPtr;
-        $findTokens   = array_merge(
-            PHP_CodeSniffer_Tokens::$emptyTokens,
-            array(T_BITWISE_AND)
-        );
-
-        $functionKeyword = $phpcsFile->findPrevious(
-            $findTokens,
-            ($stackPtr - 1),
-            null,
-            true
-        );
-
-        if ($tokens[$functionKeyword]['code'] === T_FUNCTION
-            || $tokens[$functionKeyword]['code'] === T_CLASS
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+            )
         ) {
-            return;
-        }
-
-        // If the next non-whitespace token after the function or method call
-        // is not an opening parenthesis then it cant really be a *call*.
-        $openBracket = $phpcsFile->findNext(
-            PHP_CodeSniffer_Tokens::$emptyTokens,
-            ($functionName + 1),
-            null,
-            true
-        );
-
-        if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-            return;
-        }
-
-        $closeBracket = $tokens[$openBracket]['parenthesis_closer'];
-
-        $nextSeparator = $openBracket;
-        while (($nextSeparator = $phpcsFile->findNext(T_VARIABLE, ($nextSeparator + 1), $closeBracket)) !== false) {
-            // Make sure the variable belongs directly to this function call
-            // and is not inside a nested function call or array.
-            $brackets    = $tokens[$nextSeparator]['nested_parenthesis'];
-            $lastBracket = array_pop($brackets);
-            if ($lastBracket !== $closeBracket) {
-                continue;
-            }
-
-            // Checking this: $value = my_function(...[*]$arg...).
-            $tokenBefore = $phpcsFile->findPrevious(
+            $tokens = $phpcsFile->getTokens();
+    
+            // Skip tokens that are the names of functions or classes
+            // within their definitions. For example: function myFunction...
+            // "myFunction" is T_STRING but we should skip because it is not a
+            // function or method *call*.
+            $functionName = $stackPtr;
+            $findTokens   = array_merge(
                 PHP_CodeSniffer_Tokens::$emptyTokens,
-                ($nextSeparator - 1),
+                array(T_BITWISE_AND)
+            );
+    
+            $functionKeyword = $phpcsFile->findPrevious(
+                $findTokens,
+                ($stackPtr - 1),
                 null,
                 true
             );
-
-            if ($tokens[$tokenBefore]['code'] === T_BITWISE_AND) {
-                // Checking this: $value = my_function(...[*]&$arg...).
+    
+            if ($tokens[$functionKeyword]['code'] === T_FUNCTION
+                || $tokens[$functionKeyword]['code'] === T_CLASS
+            ) {
+                return;
+            }
+    
+            // If the next non-whitespace token after the function or method call
+            // is not an opening parenthesis then it cant really be a *call*.
+            $openBracket = $phpcsFile->findNext(
+                PHP_CodeSniffer_Tokens::$emptyTokens,
+                ($functionName + 1),
+                null,
+                true
+            );
+    
+            if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
+                return;
+            }
+    
+            $closeBracket = $tokens[$openBracket]['parenthesis_closer'];
+    
+            $nextSeparator = $openBracket;
+            while (($nextSeparator = $phpcsFile->findNext(T_VARIABLE, ($nextSeparator + 1), $closeBracket)) !== false) {
+                // Make sure the variable belongs directly to this function call
+                // and is not inside a nested function call or array.
+                $brackets    = $tokens[$nextSeparator]['nested_parenthesis'];
+                $lastBracket = array_pop($brackets);
+                if ($lastBracket !== $closeBracket) {
+                    continue;
+                }
+    
+                // Checking this: $value = my_function(...[*]$arg...).
                 $tokenBefore = $phpcsFile->findPrevious(
                     PHP_CodeSniffer_Tokens::$emptyTokens,
-                    ($tokenBefore - 1),
+                    ($nextSeparator - 1),
                     null,
                     true
                 );
-
-                // We have to exclude all uses of T_BITWISE_AND that are not
-                // references. We use a blacklist approach as we prefer false
-                // positives to not identifying a pass-by-reference call at all.
-                // The blacklist may not yet be complete.
-                switch ($tokens[$tokenBefore]['code']) {
-                case T_LNUMBER:
-                case T_VARIABLE:
-                case T_CLOSE_SQUARE_BRACKET:
-                case T_CLOSE_PARENTHESIS:
-                    // In these cases T_BITWISE_AND represents
-                    // the bitwise and operator.
-                    continue;
-
-                default:
-                    // T_BITWISE_AND represents a pass-by-reference.
-                    $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
-                    $phpcsFile->addError($error, $tokenBefore, 'NotAllowed');
-                    break;
-                }
-            }//end if
-        }//end while
-
+    
+                if ($tokens[$tokenBefore]['code'] === T_BITWISE_AND) {
+                    // Checking this: $value = my_function(...[*]&$arg...).
+                    $tokenBefore = $phpcsFile->findPrevious(
+                        PHP_CodeSniffer_Tokens::$emptyTokens,
+                        ($tokenBefore - 1),
+                        null,
+                        true
+                    );
+    
+                    // We have to exclude all uses of T_BITWISE_AND that are not
+                    // references. We use a blacklist approach as we prefer false
+                    // positives to not identifying a pass-by-reference call at all.
+                    // The blacklist may not yet be complete.
+                    switch ($tokens[$tokenBefore]['code']) {
+                    case T_LNUMBER:
+                    case T_VARIABLE:
+                    case T_CLOSE_SQUARE_BRACKET:
+                    case T_CLOSE_PARENTHESIS:
+                        // In these cases T_BITWISE_AND represents
+                        // the bitwise and operator.
+                        continue;
+    
+                    default:
+                        // T_BITWISE_AND represents a pass-by-reference.
+                        $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
+                        $phpcsFile->addError($error, $tokenBefore, 'NotAllowed');
+                        break;
+                    }
+                }//end if
+            }//end while
+        }
     }//end process()
 
 

@@ -59,29 +59,39 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff implements PHP_Code
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $functionToken = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
-        if ($functionToken === false) {
-            return;
-        }
-        $nameToken = $phpcsFile->findNext(T_STRING, $functionToken);
-        if (in_array($tokens[$nameToken]['content'], $this->magicMethods) === false) {
-            return;
-        }
-        $scopeToken = $phpcsFile->findPrevious(array(T_PUBLIC, T_PROTECTED, T_PRIVATE), $nameToken, $stackPtr);
-        if ($scopeToken === false) {
-            return;
-        }
-        if ($tokens[$scopeToken]['type'] != 'T_PUBLIC') {
-            $error = "Magic methods must be public (since PHP 5.3) !";
-            $phpcsFile->addError($error, $stackPtr);
-        }
-        $staticToken = $phpcsFile->findPrevious(T_STATIC, $scopeToken, $scopeToken - 2);
-        if ($staticToken === false) {
-            return;
-        } else {
-            $error = "Magic methods can not be static (since PHP 5.3) !";
-            $phpcsFile->addError($error, $stackPtr);
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.3') >= 0
+            )
+        ) {
+            $tokens = $phpcsFile->getTokens();
+            $functionToken = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
+            if ($functionToken === false) {
+                return;
+            }
+            $nameToken = $phpcsFile->findNext(T_STRING, $functionToken);
+            if (in_array($tokens[$nameToken]['content'], $this->magicMethods) === false) {
+                return;
+            }
+            $scopeToken = $phpcsFile->findPrevious(array(T_PUBLIC, T_PROTECTED, T_PRIVATE), $nameToken, $stackPtr);
+            if ($scopeToken === false) {
+                return;
+            }
+            if ($tokens[$scopeToken]['type'] != 'T_PUBLIC') {
+                $error = "Magic methods must be public (since PHP 5.3) !";
+                $phpcsFile->addError($error, $stackPtr);
+            }
+            $staticToken = $phpcsFile->findPrevious(T_STATIC, $scopeToken, $scopeToken - 2);
+            if ($staticToken === false) {
+                return;
+            } else {
+                $error = "Magic methods can not be static (since PHP 5.3) !";
+                $phpcsFile->addError($error, $stackPtr);
+            }
         }
 
     }//end process()
