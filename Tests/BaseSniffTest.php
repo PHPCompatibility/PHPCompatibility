@@ -78,18 +78,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     {
         $errors = $this->gatherErrors($file);
 
-        if (count($errors) === 0) {
-            return $this->assertContains(
-                $expectedMessage, '',
-                "Expected error message '$expectedMessage' not found."
-            );
-        }
-
         if (!isset($errors[$lineNumber])) {
-            return $this->assertContains(
-                $expectedMessage, '',
-                "Expected error message '$expectedMessage' on line number $lineNumber not found."
-            );
+            throw new Exception("Expected error '$expectedMessage' on line number $lineNumber, but none found.");
         }
 
         $foundExpectedMessage = false;
@@ -119,18 +109,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     {
         $warnings = $this->gatherWarnings($file);
 
-        if (count($warnings) === 0) {
-            return $this->assertContains(
-                $expectedMessage, '',
-                "Expected warning message '$expectedMessage' not found."
-            );
-        }
-
         if (!isset($warnings[$lineNumber])) {
-            return $this->assertContains(
-                $expectedMessage, '',
-                "Expected warning message '$expectedMessage' on line number $lineNumber not found."
-            );
+            throw new Exception("Expected warning '$expectedMessage' on line number $lineNumber, but none found.");
         }
 
         $foundExpectedMessage = false;
@@ -208,6 +188,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             'errors'   => $this->gatherErrors($file),
             'warnings' => $this->gatherWarnings($file),
         );
+
+        return $violations;
     }
 
     /**
