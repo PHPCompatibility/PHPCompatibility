@@ -147,19 +147,35 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
         if (in_array(str_replace("'", "", $tokens[$iniToken]['content']), array_keys($this->deprecatedIniDirectives)) === false) {
             return;
         }
-        $error = "INI directive " . $tokens[$iniToken]['content'] . " is";
+        
+        $error = '';
+        
         foreach ($this->deprecatedIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
         {
-            if ($forbidden === true) {
-                $error .= " forbidden";
-            } else {
-                $error .= " deprecated";
+            if (
+                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                ||
+                (
+                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                    &&
+                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                )
+            ) {
+                if ($forbidden === true) {
+                    $error .= " forbidden";
+                } else {
+                    $error .= " deprecated";
+                }
+                $error .= " in PHP " . $version . " and";
             }
-            $error .= " in PHP " . $version . " and";
         }
-        $error = substr($error, 0, strlen($error) - 4) . ".";
+        
+        if (strlen($error) > 0) {
+            $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
+            $error = substr($error, 0, strlen($error) - 4) . ".";
 
-        $phpcsFile->addWarning($error, $stackPtr);
+            $phpcsFile->addWarning($error, $stackPtr);
+        }
 
     }//end process()
 

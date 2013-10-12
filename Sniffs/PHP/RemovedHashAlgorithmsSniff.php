@@ -68,26 +68,36 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        if (in_array($tokens[$stackPtr]['content'], $this->algoFunctions) === true) {
-            $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-            if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-                return;
+        if (
+            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            ||
+            (
+                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                &&
+                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+            )
+        ) {
+            $tokens = $phpcsFile->getTokens();
+            if (in_array($tokens[$stackPtr]['content'], $this->algoFunctions) === true) {
+                $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+                if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
+                    return;
+                }
+                $firstParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($openBracket + 1), null, true);
+                /**
+                 * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
+                 */
+                $algo = strtolower($tokens[$firstParam]['content']);
+                $algo = substr($algo, 1, strlen($algo) - 2);
+                switch ($algo) {
+                    case 'salsa10':
+                    case 'salsa20':
+                        $error = 'The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4';
+                        $phpcsFile->addError($error, $stackPtr);
+                        break;
+                }
+    
             }
-            $firstParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($openBracket + 1), null, true);
-            /**
-             * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
-             */
-            $algo = strtolower($tokens[$firstParam]['content']);
-            $algo = substr($algo, 1, strlen($algo) - 2);
-            switch ($algo) {
-                case 'salsa10':
-                case 'salsa20':
-                    $error = 'The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4';
-                    $phpcsFile->addError($error, $stackPtr);
-                    break;
-            }
-
         }
 
 
