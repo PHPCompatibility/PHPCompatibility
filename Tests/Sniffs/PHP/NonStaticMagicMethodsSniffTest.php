@@ -41,7 +41,9 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
      */
     public function testCorrectImplementation()
     {
-        $this->assertNoViolation($this->_sniffFile, 3);
+        $this->assertNoViolation($this->_sniffFile, 5);
+        $this->assertNoViolation($this->_sniffFile, 14);
+        $this->assertNoViolation($this->_sniffFile, 15);
     }
 
     /**
@@ -127,6 +129,17 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
     public function testClassWithPrivateStaticMagicMethodAndWhitespace()
     {
         $this->assertError($this->_sniffFile, 83, "Magic methods must be public and cannot be static (since PHP 5.3)");
+    }
+
+    /**
+     * testCorrectInterface
+     *
+     * @return void
+     */
+    public function testCorrectInterface()
+    {
+        $this->assertNoViolation($this->_sniffFile, 89);
+        $this->assertNoViolation($this->_sniffFile, 98);
     }
 
     /**

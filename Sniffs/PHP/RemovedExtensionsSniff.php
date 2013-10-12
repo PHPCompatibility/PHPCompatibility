@@ -314,7 +314,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
         }
 
         foreach ($this->removedExtensions as $extension => $versionList) {
-            if (strpos($tokens[$stackPtr]['content'], $extension) === 0) {
+            if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
                 $error = '';
                 foreach ($versionList as $version => $status) {
                     if ($version != 'alternative') {
