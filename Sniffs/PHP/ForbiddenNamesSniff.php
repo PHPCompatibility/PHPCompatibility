@@ -94,7 +94,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
 
     protected $targetedTokens = array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -104,7 +103,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
     {
         return $this->targetedTokens;
     }//end register()
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -198,8 +196,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
             //$parenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr);
         }
     }//end process()
-
-
 
 }//end class
 

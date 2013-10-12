@@ -32,7 +32,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
      */
     protected $error = false;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -43,7 +42,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
         return array(T_NEW);
 
     }//end register()
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -73,6 +71,5 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
         }
 
     }//end process()
-
 
 }//end class

@@ -147,9 +147,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
         if (in_array(str_replace("'", "", $tokens[$iniToken]['content']), array_keys($this->deprecatedIniDirectives)) === false) {
             return;
         }
-        
+
         $error = '';
-        
+
         foreach ($this->deprecatedIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
         {
             if (
@@ -169,7 +169,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
                 $error .= " in PHP " . $version . " and";
             }
         }
-        
+
         if (strlen($error) > 0) {
             $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
@@ -178,6 +178,5 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
         }
 
     }//end process()
-
 
 }//end class

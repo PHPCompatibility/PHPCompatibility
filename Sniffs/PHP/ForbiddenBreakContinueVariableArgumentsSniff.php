@@ -32,7 +32,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff i
      */
     protected $error = true;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -43,7 +42,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff i
         return array(T_BREAK, T_CONTINUE);
 
     }//end register()
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -92,6 +90,5 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff i
             }
         }
     }//end process()
-
 
 }//end class

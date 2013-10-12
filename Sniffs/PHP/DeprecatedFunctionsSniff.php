@@ -233,14 +233,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                                         ),
                                     );
 
-
     /**
      * If true, an error will be thrown; otherwise a warning.
      *
      * @var bool
      */
     public $error = false;
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -297,7 +295,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
 
     }//end process()
 
-
     /**
      * Generates the error or wanrning for this sniff.
      *
@@ -316,7 +313,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         }
 
         $error = '';
-        
+
         $this->error = false;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
             if (
@@ -342,11 +339,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         if (strlen($error) > 0) {
             $error = 'The use of function ' . $function . ' is ' . $error;
             $error = substr($error, 0, strlen($error) - 5);
-    
+
             if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
                 $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
             }
-    
+
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {

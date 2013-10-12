@@ -268,7 +268,6 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
 
     }//end register()
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -353,6 +352,5 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
         }
 
     }//end process()
-
 
 }//end class
