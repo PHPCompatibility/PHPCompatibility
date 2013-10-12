@@ -193,7 +193,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
                 $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $key . "' (since version " . $value . ")";
                 $phpcsFile->addError($error, $stackPtr);
             }
-            //$parenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr);
         }
     }//end process()
 
