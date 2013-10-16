@@ -44,26 +44,51 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 9);
     }
 
+    /**
+     * testCallTimeNormal
+     *
+     * @return void
+     */
     public function testCallTimeNormal()
     {
         $this->assertNoViolation($this->_sniffFile, 14);
     }
 
+    /**
+     * testCallTimePassByReferenceSingleParam
+     *
+     * @return void
+     */
     public function testCallTimePassByReferenceSingleParam()
     {
         $this->assertError($this->_sniffFile, 15, 'Using a call-time pass-by-reference is prohibited since php 5.4');
     }
 
+    /**
+     * testCallTimePassByReferenceMultiParam
+     *
+     * @return void
+     */
     public function testCallTimePassByReferenceMultiParam()
     {
         $this->assertError($this->_sniffFile, 19, 'Using a call-time pass-by-reference is prohibited since php 5.4');
     }
 
+    /**
+     * testCallTimePassByReferenceNested
+     *
+     * @return void
+     */
     public function testCallTimePassByReferenceNested()
     {
         $this->assertError($this->_sniffFile, 22, 'Using a call-time pass-by-reference is prohibited since php 5.4');
     }
 
+    /**
+     * testBitwiseOperationsAsParameter
+     *
+     * @return void
+     */
     public function testBitwiseOperationsAsParameter()
     {
         $this->assertNoViolation($this->_sniffFile, 24);
@@ -73,10 +98,26 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 28);
     }
 
+    /**
+     * testCallTimePassByReferenceWithWhiteSpace
+     *
+     * @return void
+     */
     public function testCallTimePassByReferenceWithWhiteSpace()
     {
         $this->assertError($this->_sniffFile, 29, 'Using a call-time pass-by-reference is prohibited since php 5.4');
     }
 
+    /**
+     * testSettingTestVersion
+     *
+     * @return void
+     */
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/call_time_pass_by_reference.php', '5.2');
+
+        $this->assertNoViolation($file, 29);
+    }
 }
 

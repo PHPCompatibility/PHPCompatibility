@@ -60,10 +60,15 @@ $invalidNames = array(
     'var' => 'all',
     'while' => 'all',
     'xor' => 'all',
+    '__CLASS__' => 'all',
+    '__DIR__' => '5.3',
+    '__FILE__' => 'all',
+    '__FUNCTION__' => 'all',
+    '__METHOD__' => 'all',
+    '__NAMESPACE__' => '5.3',
 );
 
-echo "<?php\n";
-echo "// This file is invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
+echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
 
 $tests = array(
     'namespace' => function($name) { return "namespace $name;\n"; },
@@ -76,18 +81,19 @@ $tests = array(
     'trait' => function($name) { return "trait $name {}\n"; },
     'function-declare' => function($name) { return "function $name() { };\n"; },
     'const' => function($name) { return "const $name = 1;\n"; },
+    'define' => function($name) { return "define('$name', 1);\n"; },
 );
 
 $path = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'forbidden-names';
 
 foreach ($tests as $name => $callback) {
     $filename = $path . DIRECTORY_SEPARATOR . $name . ".php";
+    echo "Creating file '$filename'\n";
     file_put_contents($filename, "<?php\n" . $callback('Baz'));
 }
 
 foreach (array_keys($invalidNames) as $name) {
     foreach ($tests as $testname => $callback) {
-        echo "Creating file '$filename'\n";
         $filename = $path . DIRECTORY_SEPARATOR . $testname . ".php";
         file_put_contents($filename, $callback($name), FILE_APPEND);
     }

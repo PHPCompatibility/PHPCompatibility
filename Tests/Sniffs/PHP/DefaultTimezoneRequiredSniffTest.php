@@ -32,4 +32,16 @@ class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
 
         ini_set('date.timezone', $timezone);
     }
+
+    /**
+     * Test setting the testVersion in the PHPCS object
+     *
+     * @return void
+     */
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/timezone.php', '5.3');
+
+        $this->assertNoViolation($file, 1);
+    }
 }

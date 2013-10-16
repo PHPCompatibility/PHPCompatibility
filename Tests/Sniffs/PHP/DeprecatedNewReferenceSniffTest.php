@@ -30,4 +30,18 @@ class DeprecatedNewReferenceSniffTest extends BaseSniffTest
 
         $this->assertError($file, 10, 'Assigning the return value of new by reference is deprecated in PHP 5.3');
     }
+
+    /**
+     * testSettingTestVersion
+     *
+     * @return void
+     */
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_new_reference.php', '5.2');
+
+        $this->assertNoViolation($file, 8);
+        $this->assertNoViolation($file, 9);
+        $this->assertNoViolation($file, 10);
+    }
 }

@@ -469,5 +469,17 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
 
         $this->assertWarning($file, 40, 'The use of function mcrypt_ofb is discouraged in PHP version 5.5');
     }
+
+    /**
+     * Test when setting the testVersion
+     *
+     * @return void
+     */
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.3');
+
+        $this->assertNoViolation($file, 19);
+    }
 }
 

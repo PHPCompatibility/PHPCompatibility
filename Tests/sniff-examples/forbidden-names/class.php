@@ -51,3 +51,9 @@ class use{}
 class var{}
 class while{}
 class xor{}
+class __CLASS__{}
+class __DIR__{}
+class __FILE__{}
+class __FUNCTION__{}
+class __METHOD__{}
+class __NAMESPACE__{}

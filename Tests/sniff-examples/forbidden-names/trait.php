@@ -51,3 +51,9 @@ trait use {}
 trait var {}
 trait while {}
 trait xor {}
+trait __CLASS__ {}
+trait __DIR__ {}
+trait __FILE__ {}
+trait __FUNCTION__ {}
+trait __METHOD__ {}
+trait __NAMESPACE__ {}

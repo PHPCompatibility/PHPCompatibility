@@ -95,5 +95,12 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 58);
         $this->assertNoViolation($this->_sniffFile, 62);
     }
+
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/forbidden_break_continue_variable_argument.php', '5.3');
+
+        $this->assertNoViolation($file);
+    }
 }
 

@@ -51,3 +51,9 @@ class Foobar { use use }
 class Foobar { use var }
 class Foobar { use while }
 class Foobar { use xor }
+class Foobar { use __CLASS__ }
+class Foobar { use __DIR__ }
+class Foobar { use __FILE__ }
+class Foobar { use __FUNCTION__ }
+class Foobar { use __METHOD__ }
+class Foobar { use __NAMESPACE__ }

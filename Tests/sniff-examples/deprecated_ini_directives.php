@@ -53,3 +53,6 @@ $a = ini_get('safe_mode_allowed_env_vars');
 
 ini_set('safe_mode_protected_env_vars', 1);
 $a = ini_get('safe_mode_protected_env_vars');
+
+ini_set('session.save_handler', 1);
+$a = ini_get('session.save_handler');

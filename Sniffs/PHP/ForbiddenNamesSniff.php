@@ -83,6 +83,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         'var' => 'all',
         'while' => 'all',
         'xor' => 'all',
+        '__class__' => 'all',
+        '__dir__' => '5.3',
+        '__file__' => 'all',
+        '__function__' => 'all',
+        '__method__' => 'all',
+        '__namespace__' => '5.3',
     );
 
     /**
@@ -92,6 +98,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     protected $error = true;
 
+    /**
+     * targetedTokens
+     *
+     * @var array
+     */
     protected $targetedTokens = array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
 
     /**
@@ -116,7 +127,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $stackPtr = $phpcsFile->findNext($this->targetedTokens, $stackPtr);
+
         /**
          * We distinguish between the class, function and namespace names or the define statements
          */
@@ -143,6 +154,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         if (in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->invalidNames)) === false) {
             return;
         }
+
         if (
             !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
             ||
@@ -189,7 +201,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         }
 
         foreach ($this->invalidNames as $key => $value) {
-            if (substr(strtolower($tokens[$defineContent]['content']), 1, strlen($tokens[$defineContent]['content']) - 2) == $key) {
+            if (substr(strtolower($tokens[$defineContent]['content']), 1, -1) == $key) {
                 $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $key . "' (since version " . $value . ")";
                 $phpcsFile->addError($error, $stackPtr);
             }

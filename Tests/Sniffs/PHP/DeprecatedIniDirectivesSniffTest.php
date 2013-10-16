@@ -248,4 +248,24 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, 54, "INI directive 'safe_mode_protected_env_vars' is deprecated in PHP 5.3 and forbidden in PHP 5.4");
         $this->assertWarning($file, 55, "INI directive 'safe_mode_protected_env_vars' is deprecated in PHP 5.3 and forbidden in PHP 5.4");
     }
+
+    /**
+     * Test valid directive
+     *
+     * @return void
+     */
+    public function testValidDirective()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php');
+
+        $this->assertNoViolation($file, 57);
+        $this->assertNoViolation($file, 58);
+    }
+
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.3');
+
+        $this->assertWarning($file, 54, "INI directive 'safe_mode_protected_env_vars' is deprecated in PHP 5.3");
+    }
 }

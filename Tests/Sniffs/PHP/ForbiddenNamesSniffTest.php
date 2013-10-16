@@ -31,8 +31,10 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      *
      * @dataProvider usecaseProvider
      */
-    public function testNamespace($usecase)
+    public function testForbiddenNames($usecase)
     {
+        // These use cases were generated using the PHP script 
+        // `generate-forbidden-names-test-files` in sniff-examples
         $filename = "sniff-examples/forbidden-names/$usecase.php";
         $file = $this->sniffFile($filename);
 
@@ -40,6 +42,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
         $lineCount = count(file($file->getFilename()));
 
+        // Each line of the use case files (starting at line 3) exhibits an 
+        // error.
         for ($i = 3; $i < $lineCount; $i++) {
             $this->assertError($file, $i, "Function name, class name, namespace name or constant name can not be reserved keyword");
         }
@@ -63,6 +67,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('trait'),
             array('function-declare'),
             array('const'),
+            array('define'),
         );
     }
 
@@ -76,5 +81,17 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         $file = $this->sniffFile("sniff-examples/forbidden_names_correct_usage.php");
 
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * Test setting test version option
+     *
+     * @return void
+     */
+    public function testSettingTestVersion()
+    {
+        $file = $this->sniffFile("sniff-examples/forbidden-names/namespace.php", "5.2");
+
+        $this->assertNoViolation($file, 8);
     }
 }

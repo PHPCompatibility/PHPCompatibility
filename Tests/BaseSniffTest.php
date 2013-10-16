@@ -40,18 +40,34 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tear down after each test
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        // Reset any settingsStandard (targetPhpVersion)
+        self::$phpcs->cli->settingsStandard = array();
+    }
+
+    /**
      * Sniff a file and return resulting file object
      *
      * @param string $filename Filename to sniff
+     * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object
      * @return PHP_CodeSniffer_File File object
      */
-    public function sniffFile($filename)
+    public function sniffFile($filename, $targetPhpVersion=null)
     {
+        if (null !== $targetPhpVersion) {
+            self::$phpcs->cli->settingsStandard['testVersion'] = $targetPhpVersion;
+        }
+
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
         try {
             self::$phpcs->processFile($filename);
         } catch (Exception $e) {
-            $this->fail('An unexpected exception has been caught: '.$e->getMessage());
+            $this->fail('An unexpected exception has been caught: ' . $e->getMessage());
         }
 
         $files = self::$phpcs->getFiles();

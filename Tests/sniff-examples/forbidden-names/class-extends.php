@@ -51,3 +51,9 @@ class Foobar extends use {}
 class Foobar extends var {}
 class Foobar extends while {}
 class Foobar extends xor {}
+class Foobar extends __CLASS__ {}
+class Foobar extends __DIR__ {}
+class Foobar extends __FILE__ {}
+class Foobar extends __FUNCTION__ {}
+class Foobar extends __METHOD__ {}
+class Foobar extends __NAMESPACE__ {}

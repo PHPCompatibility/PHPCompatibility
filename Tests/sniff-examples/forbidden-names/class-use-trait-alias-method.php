@@ -51,3 +51,9 @@ class Foobar { use BazTrait { oldfunction as use } }
 class Foobar { use BazTrait { oldfunction as var } }
 class Foobar { use BazTrait { oldfunction as while } }
 class Foobar { use BazTrait { oldfunction as xor } }
+class Foobar { use BazTrait { oldfunction as __CLASS__ } }
+class Foobar { use BazTrait { oldfunction as __DIR__ } }
+class Foobar { use BazTrait { oldfunction as __FILE__ } }
+class Foobar { use BazTrait { oldfunction as __FUNCTION__ } }
+class Foobar { use BazTrait { oldfunction as __METHOD__ } }
+class Foobar { use BazTrait { oldfunction as __NAMESPACE__ } }
