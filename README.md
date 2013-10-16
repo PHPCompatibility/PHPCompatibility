@@ -26,40 +26,32 @@ on the sniffs, the following installation steps are required.
    This can be done with composer by adding the following into
    `~/.composer/composer.json`:
 
-```
-{
-    "require": {
-        "phpunit/phpunit": "3.7.*",
-        "squizlabs/php_codesniffer": "dev-master",
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/wimg/PHP_CodeSniffer.git"
-        }
-    ]
-}
-```
+    {
+        "require": {
+            "phpunit/phpunit": "3.7.*",
+            "squizlabs/php_codesniffer": "dev-master",
+        },
+        "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/wimg/PHP_CodeSniffer.git"
+            }
+        ]
+    }
 
 2. Run the following command to compose in the versions indicated in the above
    global composer.json file:
 
-```
-$ composer.phar global install
-```
+        $ composer.phar global install
 
 3. Update your system `$PATH` to include the globally composed files:
 
-```
-$ export PATH=~/.composer/vendor/bin:$PATH
-```
+        $ export PATH=~/.composer/vendor/bin:$PATH
 
 4. Be sure that the `PHPCompatibility` directory is symlinked into
    `PHP_Codesniffer`'s standards directory:
 
-```
-$ ln -s /path/to/PHPCompatibility ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
-```
+        $ ln -s /path/to/PHPCompatibility ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
 
 5. Verify standard is available with `phpcs -i`. The output should include
    `PHPCompatibility`
