@@ -26,18 +26,18 @@ on the sniffs, the following installation steps are required.
    This can be done with composer by adding the following into
    `~/.composer/composer.json`:
 
-    {
-        "require": {
-            "phpunit/phpunit": "3.7.*",
-            "squizlabs/php_codesniffer": "dev-master",
-        },
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/wimg/PHP_CodeSniffer.git"
-            }
-        ]
-    }
+        {
+            "require": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "dev-master",
+            },
+            "repositories": [
+                {
+                    "type": "vcs",
+                    "url": "https://github.com/wimg/PHP_CodeSniffer.git"
+                }
+            ]
+        }
 
 2. Run the following command to compose in the versions indicated in the above
    global composer.json file:
