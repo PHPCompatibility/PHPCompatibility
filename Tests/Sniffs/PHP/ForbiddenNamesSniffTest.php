@@ -78,6 +78,9 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testCorrectUsageOfKeywords()
     {
+        if (ini_get('date.timezone') == false) {
+            ini_set('date.timezone', 'America/Chicago');
+        }
         $file = $this->sniffFile("sniff-examples/forbidden_names_correct_usage.php");
 
         $this->assertNoViolation($file);
