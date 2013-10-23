@@ -59,13 +59,27 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
     );
 
     /**
+     * targetedStringTokens
+     *
+     * @var array
+     */
+    protected $targetedStringTokens = array(
+        'callable' => '5.4',
+        'insteadof' => '5.4',
+        'trait' => '5.4',
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        return array_keys($this->targetedTokens);
+        return array_merge(
+            array(T_STRING),
+            array_keys($this->targetedTokens)
+        );
     }//end register()
 
     /**
@@ -80,6 +94,20 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+        $isString = false;
+
+        // For string tokens we only care if the string is a reserved word used 
+        // as a function. This only happens in older versions of PHP where the 
+        // token doesn't exist yet for that keyword.
+        if ($tokens[$stackPtr]['code'] == T_STRING
+            && (!in_array($tokens[$stackPtr]['content'], array_keys($this->targetedStringTokens)))
+        ) {
+            return;
+        }
+
+        if ($tokens[$stackPtr]['code'] == T_STRING) {
+            $isString = true;
+        }
 
         // Make sure this is a function call.
         $next = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
@@ -107,11 +135,17 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
                 }
             }
 
+            $content = $tokens[$stackPtr]['content'];
             $tokenCode = $tokens[$stackPtr]['code'];
+            if ($isString) {
+                $tokenName = $this->targetedStringTokens[$content];
+            } else {
+                $tokenName = $this->targetedTokens[$tokenCode];
+            }
             $error = sprintf(
                 "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)",
-                $tokens[$stackPtr]['content'],
-                $this->targetedTokens[$tokenCode],
+                $content,
+                $tokenName,
                 $tokens[$stackPtr]['type']
             );
 

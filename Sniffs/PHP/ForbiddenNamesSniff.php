@@ -183,6 +183,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
+        // Special case for 5.3 where we want to find usage of traits, but 
+        // trait is not a token.
+        if ($tokens[$stackPtr]['content'] == 'trait') {
+            return $this->processNonString($phpcsFile, $stackPtr, $tokens);
+        }
+
         // Look for any define/defined token (both T_STRING ones, blame Tokenizer)
         if ($tokens[$stackPtr]['content'] != 'define' && $tokens[$stackPtr]['content'] != 'defined') {
             return;
