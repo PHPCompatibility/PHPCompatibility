@@ -93,7 +93,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile("sniff-examples/forbidden-names/namespace.php", "5.2");
+        $file = $this->sniffFile("sniff-examples/forbidden-names/class.php", "5.2");
 
         $this->assertNoViolation($file, 8);
     }
