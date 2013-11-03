@@ -60,19 +60,19 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff implements PHP_Code
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if (
-            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
             ||
             (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.3') >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.3') >= 0
             )
         ) {
             $tokens = $phpcsFile->getTokens();
 
             // Find all the functions in this class or interface
 
-            // Use the scope closer to limit the sniffing within the scope of 
+            // Use the scope closer to limit the sniffing within the scope of
             // this class or interface
             $classScopeCloser = (isset($tokens[$stackPtr]['scope_closer']))
                 ? $tokens[$stackPtr]['scope_closer']
@@ -82,9 +82,9 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff implements PHP_Code
 
             while ($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) {
 
-                // Get the scope closer for this function in order to know how 
+                // Get the scope closer for this function in order to know how
                 // to advance to the next function.
-                // If no body of function (e.g. for interfaces), there is 
+                // If no body of function (e.g. for interfaces), there is
                 // no closing curly brace; advance the pointer differently
                 $scopeCloser = isset($tokens[$functionToken]['scope_closer'])
                     ? $tokens[$functionToken]['scope_closer']

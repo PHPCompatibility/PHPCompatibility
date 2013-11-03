@@ -96,8 +96,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
         $tokens = $phpcsFile->getTokens();
         $isString = false;
 
-        // For string tokens we only care if the string is a reserved word used 
-        // as a function. This only happens in older versions of PHP where the 
+        // For string tokens we only care if the string is a reserved word used
+        // as a function. This only happens in older versions of PHP where the
         // token doesn't exist yet for that keyword.
         if ($tokens[$stackPtr]['code'] == T_STRING
             && (!in_array($tokens[$stackPtr]['content'], array_keys($this->targetedStringTokens)))
@@ -114,7 +114,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
         if ($next === false) {
             // Not a function call.
             return;
-        }   
+        }
 
         if ($tokens[$next]['code'] == T_OPEN_PARENTHESIS) {
             $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
@@ -124,7 +124,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
                 return;
             }
 
-            // For the word catch, it is valid to have an open parenthesis 
+            // For the word catch, it is valid to have an open parenthesis
             // after it, but only if it is preceded by a right curly brace
             if ($tokens[$stackPtr]['code'] == T_CATCH) {
                 if ($prev !== false) {
@@ -138,19 +138,29 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
             $content = $tokens[$stackPtr]['content'];
             $tokenCode = $tokens[$stackPtr]['code'];
             if ($isString) {
-                $tokenName = $this->targetedStringTokens[$content];
+                $version = $this->targetedStringTokens[$content];
             } else {
-                $tokenName = $this->targetedTokens[$tokenCode];
+                $version = $this->targetedTokens[$tokenCode];
             }
-            $error = sprintf(
-                "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)",
-                $content,
-                $tokenName,
-                $tokens[$stackPtr]['type']
-            );
 
-            $phpcsFile->addError($error, $stackPtr);
-        }   
+            if (
+                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
+                ||
+                (
+                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
+                    &&
+                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
+                )
+            ) {
+                $error = sprintf(
+                    "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)",
+                    $content,
+                    $version,
+                    $tokens[$stackPtr]['type']
+                );
+                $phpcsFile->addError($error, $stackPtr);
+            }
+        }
     }//end process()
 
 }//end class

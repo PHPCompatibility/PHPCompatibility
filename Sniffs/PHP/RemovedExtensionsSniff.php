@@ -320,12 +320,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                     if ($version != 'alternative') {
                         if ($status == -1 || $status == 0) {
                             if (
-                                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                                 ||
                                 (
-                                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                                     &&
-                                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
                                 )
                             ) {
                                 switch ($status) {

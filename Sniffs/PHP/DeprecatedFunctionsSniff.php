@@ -317,12 +317,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
         $this->error = false;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
             if (
-                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 ||
                 (
-                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                     &&
-                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
                 )
             ) {
                 if ($version != 'alternative') {

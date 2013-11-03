@@ -49,7 +49,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                         'T_NAMESPACE' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '"namespace" keyword' 
+                                            'description' => '"namespace" keyword'
                                         ),
                                         'T_NS_C' => array(
                                             '5.2' => false,
@@ -108,7 +108,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
         return $tokens;
 
     }//end register()
-    
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -144,13 +144,13 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
         }
 
         $error = '';
-        
+
         $this->error = false;
         foreach ($this->newKeywords[$pattern] as $version => $present) {
             if (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) <= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
             ) {
                 if ($present === false) {
                     $this->error = true;
@@ -160,7 +160,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
         }
         if (strlen($error) > 0) {
             $error = $this->newKeywords[$keywordName]['description'] . ' is ' . $error;
-    
+
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {

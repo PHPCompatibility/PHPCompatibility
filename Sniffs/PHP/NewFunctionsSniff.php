@@ -243,7 +243,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
                                             '5.1' => false,
                                             '5.2' => true
                                         ),
-                                        
+
                                         'array_replace' => array(
                                             '5.2' => false,
                                             '5.3' => true
@@ -544,7 +544,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
                                             '5.2' => false,
                                             '5.3' => true
                                         ),
-                                        
+
                                         'hex2bin' => array(
                                             '5.3' => false,
                                             '5.4' => true
@@ -645,7 +645,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
                                             '5.3' => false,
                                             '5.4' => true
                                         ),
-                                        
+
                                         'array_column' => array(
                                             '5.4' => false,
                                             '5.5' => true
@@ -1082,7 +1082,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
                                             '5.4' => false,
                                             '5.5' => true
                                         ),
-                                        
+
                                     );
 
 
@@ -1168,13 +1168,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
         }
 
         $error = '';
-        
+
         $this->error = false;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $present) {
             if (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) <= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
             ) {
                 if ($present === false) {
                     $this->error = true;
@@ -1184,7 +1184,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
         }
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' is ' . $error;
-    
+
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {

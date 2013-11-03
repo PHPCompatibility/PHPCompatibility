@@ -69,12 +69,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if (
-            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
             ||
             (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
             )
         ) {
             $tokens = $phpcsFile->getTokens();
@@ -100,7 +100,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
                         $phpcsFile->addError($error, $stackPtr);
                         break;
                 }
-    
+
             }
         }
 

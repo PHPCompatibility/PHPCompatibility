@@ -6,11 +6,10 @@ This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffe
 Installation
 ------------
 
-* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.3 or later is required).
-  If pear installs PHP_CodeSniffer 1.2.x, use `pear install PHP_CodeSniffer-alpha`
+* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.47 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
-* You can specify which PHP version you want to test against by specifying `-t testVersion=5.5` - note that this requires a PHP_CodeSniffer change that is pending right now: https://github.com/squizlabs/PHP_CodeSniffer/pull/159
+* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5` - note that this requires a PHP_CodeSniffer change that is pending right now: https://github.com/squizlabs/PHP_CodeSniffer/pull/167
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
@@ -21,7 +20,7 @@ on the sniffs, the following installation steps are required.
 
 1. Install special version of `PHP_CodeSniffer`
    [https://github.com/wimg/PHP_CodeSniffer]. This includes an update from pull
-   request 159 as listed above.
+   request 167 as listed above.
 
    This can be done with composer by adding the following into
    `~/.composer/composer.json`:

@@ -61,16 +61,16 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sni
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if (
-            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
             ||
             (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], '5.4') >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
             )
         ) {
             $tokens = $phpcsFile->getTokens();
-    
+
             if ($tokens[$stackPtr]['type'] == 'T_VARIABLE'
                 && in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated)
             ) {

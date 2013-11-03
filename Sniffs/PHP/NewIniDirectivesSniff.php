@@ -70,7 +70,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
             '5.2' => false,
             '5.3' => true,
         ),
-        
+
         'cli.pager' => array(
             '5.3' => false,
             '5.4' => true,
@@ -127,7 +127,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
             '5.3' => false,
             '5.4' => true,
         ),
-        
+
         'intl.use_exceptions' => array(
             '5.4' => false,
             '5.5' => true,
@@ -136,7 +136,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
             '5.4' => false,
             '5.5' => true,
         ),
-        
+
     );
 
     /**
@@ -184,24 +184,22 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
         if (in_array(str_replace("'", "", $tokens[$iniToken]['content']), array_keys($this->newIniDirectives)) === false) {
             return;
         }
-        
+
         $error = '';
-        
+
         foreach ($this->newIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
         {
             if (
-                (
-                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
-                    &&
-                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) < 0
-                )
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
+                &&
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
             ) {
                 if ($forbidden === true) {
                     $error .= " not available before version " . $version;
                 }
             }
         }
-        
+
         if (strlen($error) > 0) {
             $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
 

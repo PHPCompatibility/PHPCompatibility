@@ -153,12 +153,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
         foreach ($this->deprecatedIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
         {
             if (
-                !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 ||
                 (
-                    isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                     &&
-                    version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) >= 0
+                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
                 )
             ) {
                 if ($forbidden === true) {

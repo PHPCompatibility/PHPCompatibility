@@ -47,7 +47,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
                                             '5.1' => false,
                                             '5.2' => true
                                         ),
-                                        
+
 
                                         'DateInterval' => array(
                                             '5.2' => false,
@@ -187,7 +187,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
                                             '5.4' => false,
                                             '5.5' => true
                                         ),
-                                        
+
                                     );
 
 
@@ -209,7 +209,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
         return array(T_NEW);
 
     }//end register()
-    
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -243,7 +243,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
             $this->addError($phpcsFile, $stackPtr, $className);
         }
 
-        
+
 
     }//end process()
 
@@ -266,13 +266,13 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
         }
 
         $error = '';
-        
+
         $this->error = false;
         foreach ($this->newClasses[$pattern] as $version => $present) {
             if (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $version) <= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
             ) {
                 if ($present === false) {
                     $this->error = true;
@@ -282,7 +282,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
         }
         if (strlen($error) > 0) {
             $error = 'The built-in class ' . $className . ' is ' . $error;
-    
+
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {

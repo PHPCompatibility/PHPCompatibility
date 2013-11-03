@@ -156,12 +156,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         }
 
         if (
-            !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
             ||
             (
-                isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
+                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare($phpcsFile->phpcs->cli->settingsStandard['testVersion'], $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])]) >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])]) >= 0
             )
         ) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
@@ -183,7 +183,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
-        // Special case for 5.3 where we want to find usage of traits, but 
+        // Special case for 5.3 where we want to find usage of traits, but
         // trait is not a token.
         if ($tokens[$stackPtr]['content'] == 'trait') {
             return $this->processNonString($phpcsFile, $stackPtr, $tokens);
