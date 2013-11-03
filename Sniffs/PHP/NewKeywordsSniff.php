@@ -150,7 +150,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
             if (
                 !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) <= 0
             ) {
                 if ($present === false) {
                     $this->error = true;
