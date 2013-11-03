@@ -1,0 +1,100 @@
+#!/usr/bin/env php
+<?php
+/**
+ * This script is used to generate the test specimens for the forbidden-names 
+ * test case.
+ *
+ * @package PHPCompatibility
+ */
+
+// This array is pulled from the ForbiddenNamesSniff.php
+$invalidNames = array(
+    'abstract' => '5.0',
+    'and' => 'all',
+    'array' => 'all',
+    'as' => 'all',
+    'break' => 'all',
+    'callable' => '5.4',
+    'case' => 'all',
+    'catch' => '5.0',
+    'class' => 'all',
+    'clone' => '5.0',
+    'const' => 'all',
+    'continue' => 'all',
+    'declare' => 'all',
+    'default' => 'all',
+    'do' => 'all',
+    'else' => 'all',
+    'elseif' => 'all',
+    'enddeclare' => 'all',
+    'endfor' => 'all',
+    'endforeach' => 'all',
+    'endif' => 'all',
+    'endswitch' => 'all',
+    'endwhile' => 'all',
+    'extends' => 'all',
+    'final' => '5.0',
+    'finally' => '5.5',
+    'for' => 'all',
+    'foreach' => 'all',
+    'function' => 'all',
+    'global' => 'all',
+    'goto' => '5.3',
+    'if' => 'all',
+    'implements' => '5.0',
+    'interface' => '5.0',
+    'instanceof' => '5.0',
+    'insteadof' => '5.4',
+    'namespace' => '5.3',
+    'new' => 'all',
+    'or' => 'all',
+    'private' => '5.0',
+    'protected' => '5.0',
+    'public' => '5.0',
+    'static' => 'all',
+    'switch' => 'all',
+    'throw' => '5.0',
+    'trait' => '5.4',
+    'try' => '5.0',
+    'use' => 'all',
+    'var' => 'all',
+    'while' => 'all',
+    'xor' => 'all',
+    '__CLASS__' => 'all',
+    '__DIR__' => '5.3',
+    '__FILE__' => 'all',
+    '__FUNCTION__' => 'all',
+    '__METHOD__' => 'all',
+    '__NAMESPACE__' => '5.3',
+);
+
+echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
+
+$tests = array(
+    'namespace' => function($name) { return "namespace $name;\n"; },
+    'use' => function($name) { return "use $name;\n"; },
+    'use-as' => function($name) { return "use Foobar as $name;\n"; },
+    'class' => function($name) { return "class $name{}\n"; },
+    'class-extends' => function($name) { return "class Foobar extends $name {}\n"; },
+    'class-use-trait' => function($name) { return "class Foobar { use $name }\n"; },
+    'class-use-trait-alias-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as $name } }\n"; },
+    'trait' => function($name) { return "trait $name {}\n"; },
+    'function-declare' => function($name) { return "function $name() { };\n"; },
+    'const' => function($name) { return "const $name = 1;\n"; },
+    'define' => function($name) { return "define('$name', 1);\n"; },
+);
+
+$path = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'forbidden-names';
+
+foreach ($tests as $name => $callback) {
+    $filename = $path . DIRECTORY_SEPARATOR . $name . ".php";
+    echo "Creating file '$filename'\n";
+    file_put_contents($filename, "<?php\n" . $callback('Baz'));
+}
+
+foreach (array_keys($invalidNames) as $name) {
+    foreach ($tests as $testname => $callback) {
+        $filename = $path . DIRECTORY_SEPARATOR . $testname . ".php";
+        file_put_contents($filename, $callback($name), FILE_APPEND);
+    }
+}

@@ -83,12 +83,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         'var' => 'all',
         'while' => 'all',
         'xor' => 'all',
-        '__CLASS__' => 'all',
-        '__DIR__' => '5.3',
-        '__FILE__' => 'all',
-        '__FUNCTION__' => 'all',
-        '__METHOD__' => 'all',
-        '__NAMESPACE__' => '5.3'
+        '__class__' => 'all',
+        '__dir__' => '5.3',
+        '__file__' => 'all',
+        '__function__' => 'all',
+        '__method__' => 'all',
+        '__namespace__' => '5.3',
     );
 
     /**
@@ -98,6 +98,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     protected $error = true;
 
+    /**
+     * targetedTokens
+     *
+     * @var array
+     */
+    protected $targetedTokens = array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -106,10 +112,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     public function register()
     {
-        return array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST);
-
+        return $this->targetedTokens;
     }//end register()
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -123,7 +127,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $stackPtr = $phpcsFile->findNext(array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING), $stackPtr);
+
         /**
          * We distinguish between the class, function and namespace names or the define statements
          */
@@ -150,6 +154,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         if (in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->invalidNames)) === false) {
             return;
         }
+
         if (
             !isset($phpcsFile->phpcs->cli->settingsStandard['testVersion'])
             ||
@@ -178,6 +183,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
      */
     public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
+        // Special case for 5.3 where we want to find usage of traits, but 
+        // trait is not a token.
+        if ($tokens[$stackPtr]['content'] == 'trait') {
+            return $this->processNonString($phpcsFile, $stackPtr, $tokens);
+        }
+
         // Look for any define/defined token (both T_STRING ones, blame Tokenizer)
         if ($tokens[$stackPtr]['content'] != 'define' && $tokens[$stackPtr]['content'] != 'defined') {
             return;
@@ -196,14 +207,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
         }
 
         foreach ($this->invalidNames as $key => $value) {
-            if (substr(strtolower($tokens[$defineContent]['content']), 1, strlen($tokens[$defineContent]['content']) - 2) == $key) {
+            if (substr(strtolower($tokens[$defineContent]['content']), 1, -1) == $key) {
                 $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $key . "' (since version " . $value . ")";
                 $phpcsFile->addError($error, $stackPtr);
             }
         }
     }//end process()
-
-
 
 }//end class
 

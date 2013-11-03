@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff.
  *
- * Discourages the use of assigning the return value of new by reference
+ * Discourages the use of deprecated and removed hash algorithms
  *
  * PHP version 5.4
  *
@@ -33,7 +33,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
     protected $error = true;
 
     /**
-     * List of funtions using the algorithm as parameter (always the first parameter)
+     * List of functions using the algorithm as parameter (always the first parameter)
      *
      * @var array
      */
@@ -78,12 +78,16 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
             )
         ) {
             $tokens = $phpcsFile->getTokens();
+
             if (in_array($tokens[$stackPtr]['content'], $this->algoFunctions) === true) {
                 $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+
                 if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
                     return;
                 }
+
                 $firstParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($openBracket + 1), null, true);
+
                 /**
                  * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
                  */

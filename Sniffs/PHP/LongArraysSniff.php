@@ -74,7 +74,10 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sni
             if ($tokens[$stackPtr]['type'] == 'T_VARIABLE'
                 && in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated)
             ) {
-                $error = 'The use of long predefined variables has been deprecated in 5.3 and removed in 5.4';
+                $error = sprintf(
+                    "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '%s'",
+                    $tokens[$stackPtr]['content']
+                );
                 $phpcsFile->addWarning($error, $stackPtr);
             }
         }

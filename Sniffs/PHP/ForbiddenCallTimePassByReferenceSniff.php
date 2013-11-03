@@ -36,7 +36,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
      */
     protected $error = true;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -47,7 +46,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
         return array(T_STRING);
 
     }//end register()
-
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -70,7 +68,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
             )
         ) {
             $tokens = $phpcsFile->getTokens();
-    
+
             // Skip tokens that are the names of functions or classes
             // within their definitions. For example: function myFunction...
             // "myFunction" is T_STRING but we should skip because it is not a
@@ -80,20 +78,20 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                 PHP_CodeSniffer_Tokens::$emptyTokens,
                 array(T_BITWISE_AND)
             );
-    
+
             $functionKeyword = $phpcsFile->findPrevious(
                 $findTokens,
                 ($stackPtr - 1),
                 null,
                 true
             );
-    
+
             if ($tokens[$functionKeyword]['code'] === T_FUNCTION
                 || $tokens[$functionKeyword]['code'] === T_CLASS
             ) {
                 return;
             }
-    
+
             // If the next non-whitespace token after the function or method call
             // is not an opening parenthesis then it cant really be a *call*.
             $openBracket = $phpcsFile->findNext(
@@ -102,13 +100,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                 null,
                 true
             );
-    
+
             if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
                 return;
             }
-    
+
             $closeBracket = $tokens[$openBracket]['parenthesis_closer'];
-    
+
             $nextSeparator = $openBracket;
             while (($nextSeparator = $phpcsFile->findNext(T_VARIABLE, ($nextSeparator + 1), $closeBracket)) !== false) {
                 // Make sure the variable belongs directly to this function call
@@ -118,7 +116,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                 if ($lastBracket !== $closeBracket) {
                     continue;
                 }
-    
+
                 // Checking this: $value = my_function(...[*]$arg...).
                 $tokenBefore = $phpcsFile->findPrevious(
                     PHP_CodeSniffer_Tokens::$emptyTokens,
@@ -126,7 +124,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                     null,
                     true
                 );
-    
+
                 if ($tokens[$tokenBefore]['code'] === T_BITWISE_AND) {
                     // Checking this: $value = my_function(...[*]&$arg...).
                     $tokenBefore = $phpcsFile->findPrevious(
@@ -135,7 +133,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                         null,
                         true
                     );
-    
+
                     // We have to exclude all uses of T_BITWISE_AND that are not
                     // references. We use a blacklist approach as we prefer false
                     // positives to not identifying a pass-by-reference call at all.
@@ -148,7 +146,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
                         // In these cases T_BITWISE_AND represents
                         // the bitwise and operator.
                         continue;
-    
+
                     default:
                         // T_BITWISE_AND represents a pass-by-reference.
                         $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
@@ -159,6 +157,5 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
             }//end while
         }
     }//end process()
-
 
 }//end class
