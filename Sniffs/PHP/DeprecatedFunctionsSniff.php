@@ -258,6 +258,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
                 T_OBJECT_OPERATOR,
                 T_FUNCTION,
                 T_CONST,
+                T_USE,
+                T_NS_SEPARATOR,
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
