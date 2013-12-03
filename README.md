@@ -9,7 +9,7 @@ Installation
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.47 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
-* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5` - note that this requires a PHP_CodeSniffer change that is pending right now: https://github.com/squizlabs/PHP_CodeSniffer/pull/167
+* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5` - note that this requires PHP_CodeSniffer from the Github master branch. This feature will be in the next official PHP_CodeSniffer release.
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
@@ -18,9 +18,8 @@ Running the Sniff Tests
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests
 on the sniffs, the following installation steps are required.
 
-1. Install special version of `PHP_CodeSniffer`
-   [https://github.com/wimg/PHP_CodeSniffer]. This includes an update from pull
-   request 167 as listed above.
+1. Install the master branch of `PHP_CodeSniffer`
+   [https://github.com/squizlabs/PHP_CodeSniffer.git].
 
    This can be done with composer by adding the following into
    `~/.composer/composer.json`:
@@ -33,7 +32,7 @@ on the sniffs, the following installation steps are required.
             "repositories": [
                 {
                     "type": "vcs",
-                    "url": "https://github.com/wimg/PHP_CodeSniffer.git"
+                    "url": "https://github.com/squizlabs/PHP_CodeSniffer.git"
                 }
             ]
         }
