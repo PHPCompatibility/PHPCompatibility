@@ -35,6 +35,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             self::$phpcs = new PHP_CodeSniffer();
         }
 
+        PHP_CodeSniffer::setConfigData('testVersion', null);
+
         self::$phpcs->process(array(), 'PHPCompatibility');
         self::$phpcs->setIgnorePatterns(array());
     }
@@ -60,26 +62,18 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     public function sniffFile($filename, $targetPhpVersion=null)
     {
         if (null !== $targetPhpVersion) {
-            self::$phpcs->cli->settingsStandard['testVersion'] = $targetPhpVersion;
+            PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion);
         }
 
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
         try {
-            self::$phpcs->processFile($filename);
+            $phpcsFile = self::$phpcs->processFile($filename);
         } catch (Exception $e) {
             $this->fail('An unexpected exception has been caught: ' . $e->getMessage());
+            return false;
         }
 
-        $files = self::$phpcs->getFiles();
-        if (empty($files) === true) {
-            // File was skipped for some reason.
-            echo "Skipped: $testFile\n";
-            $this->markTestSkipped();
-        }
-
-        $file = array_pop($files);
-
-        return $file;
+        return $phpcsFile;
     }
 
     /**
