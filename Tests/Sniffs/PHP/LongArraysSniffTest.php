@@ -103,4 +103,18 @@ class LongArraysSniffTest extends BaseSniffTest
     {
         $this->assertWarning($this->_sniffFile, 9, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_POST_FILES'");
     }
+
+    /**
+     * Test when sniffing for a testVersion config param
+     *
+     * @return void
+     */
+    public function testSpecificVersionTest()
+    {
+        $file = $this->sniffFile('sniff-examples/long_arrays.php', '5.2');
+        $this->assertNoViolation($file, 3);
+
+        $file = $this->sniffFile('sniff-examples/long_arrays.php', '5.3');
+        $this->assertWarning($file, 3, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_POST_VARS'");
+    }
 }
