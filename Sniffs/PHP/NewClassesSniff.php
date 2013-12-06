@@ -48,7 +48,6 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff implements PHP_CodeSniffer_Sni
                                             '5.2' => true
                                         ),
 
-
                                         'DateInterval' => array(
                                             '5.2' => false,
                                             '5.3' => true

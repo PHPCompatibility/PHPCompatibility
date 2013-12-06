@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
     protected $newIniDirectives = array(
         'allow_url_include' => array(
             '5.1' => false,
-	        '5.2' => true
+            '5.2' => true
         ),
         'pcre.backtrack_limit' => array(
             '5.1' => false,
@@ -181,27 +181,28 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
             return;
         }
         $iniToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
-        if (in_array(str_replace("'", "", $tokens[$iniToken]['content']), array_keys($this->newIniDirectives)) === false) {
+
+        $filteredToken = str_replace(array('"', "'"), array("", ""), $tokens[$iniToken]['content']);
+        if (in_array($filteredToken, array_keys($this->newIniDirectives)) === false) {
             return;
         }
 
         $error = '';
 
-        foreach ($this->newIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
-        {
+        foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
             if (
                 !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) <= 0
             ) {
-                if ($forbidden === true) {
+                if ($present === true) {
                     $error .= " not available before version " . $version;
                 }
             }
         }
 
         if (strlen($error) > 0) {
-            $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
+            $error = "INI directive '" . $filteredToken . "' is" . $error;
 
             $phpcsFile->addWarning($error, $stackPtr);
         }

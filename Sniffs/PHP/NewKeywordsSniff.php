@@ -36,11 +36,6 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                             '5.3' => true,
                                             'description' => '__DIR__ magic constant'
                                         ),
-                                        'T_FINALLY' => array(
-                                            '5.4' => false,
-                                            '5.5' => true,
-                                            'description' => '"finally" keyword (in exception handling)'
-                                        ),
                                         'T_INSTEADOF' => array(
                                             '5.3' => false,
                                             '5.4' => true,
@@ -61,6 +56,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                             '5.3' => true,
                                             'description' => 'the \ operator (for namespaces)'
                                         ),
+                                        'T_USE' => array(
+                                            '5.2' => false,
+                                            '5.3' => true,
+                                            'description' => '"use" keyword (for traits/namespaces)'
+                                        ),
                                         'T_TRAIT' => array(
                                             '5.3' => false,
                                             '5.4' => true,
@@ -71,15 +71,15 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                             '5.4' => true,
                                             'description' => '__TRAIT__ magic constant'
                                         ),
-                                        'T_USE' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => '"use" keyword (for traits/namespaces)'
-                                        ),
                                         'T_YIELD' => array(
                                             '5.4' => false,
                                             '5.5' => true,
                                             'description' => '"yield" keyword (for generators)'
+                                        ),
+                                        'T_FINALLY' => array(
+                                            '5.4' => false,
+                                            '5.5' => true,
+                                            'description' => '"finally" keyword (in exception handling)'
                                         ),
                                     );
 
