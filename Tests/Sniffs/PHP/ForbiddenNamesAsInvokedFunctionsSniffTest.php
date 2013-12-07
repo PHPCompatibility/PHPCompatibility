@@ -214,4 +214,16 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
     {
         $this->assertError($this->_sniffFile, 23, "'try' is a reserved keyword introduced in PHP version 5.0 and cannot be invoked as a function");
     }
+
+    /**
+     * Verify that checking for a specific version works
+     *
+     * @return void
+     */
+    public function testGotoInPreviousVersion()
+    {
+        $this->_sniffFile = $this->sniffFile('sniff-examples/forbidden_names_function_invocation.php', '5.2');
+
+        $this->assertNoViolation($this->_sniffFile, 12);
+    }
 }

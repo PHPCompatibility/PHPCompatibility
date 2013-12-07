@@ -66,7 +66,7 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sni
             (
                 !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
                 &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
+                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.3') >= 0
             )
         ) {
             $tokens = $phpcsFile->getTokens();
