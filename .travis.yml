@@ -6,10 +6,13 @@ php:
   - 5.5
 
 before_script:
+  - wget http://getcomposer.org/composer.phar
+  - php composer.phar install
   - phpenv rehash
 
 install:
   composer install
 
 script:
+  - ls .vendor
   - phpunit --configuration phpunit.xml
