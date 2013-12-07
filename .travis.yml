@@ -12,5 +12,7 @@ install:
   composer install
 
 script:
-  - ls -al vendor
+  - mkdir vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
+  - mv * vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
+  - cd vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
   - phpunit --configuration phpunit.xml
