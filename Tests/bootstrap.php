@@ -11,7 +11,7 @@ if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
 
 $vendorDir = __DIR__ . '/../vendor';
 
-if (!@include($vendorDir . '/.composer/autoload.php')) {
+if (!@include($vendorDir . '/autoload.php')) {
     die("You must set up the project dependencies, run the following commands:
 wget http://getcomposer.org/composer.phar
 php composer.phar install
