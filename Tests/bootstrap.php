@@ -12,6 +12,7 @@ if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
 
 defined('TRAVIS_CI_TEST') || define('TRAVIS_CI_TEST', 0);
 
+echo TRAVIS_CI_TEST;
 if (TRAVIS_CI_TEST == 1) {
     $vendorDir = __DIR__ . '/../../../../../';
     if (!@include($vendorDir . '/autoload.php')) {
@@ -20,6 +21,7 @@ if (TRAVIS_CI_TEST == 1) {
     php composer.phar install
     ");
     }
+    die('ok');
 }
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
