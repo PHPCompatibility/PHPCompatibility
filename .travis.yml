@@ -12,5 +12,5 @@ install:
   composer install
 
 script:
-  - ls -al
+  - ls -al vendor
   - phpunit --configuration phpunit.xml
