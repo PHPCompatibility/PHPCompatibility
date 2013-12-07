@@ -36,7 +36,9 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
-        $this->assertError($file, 15, "\"insteadof\" keyword (for traits) is not present in PHP version 5.3 or earlier");
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            $this->assertError($file, 15, "\"insteadof\" keyword (for traits) is not present in PHP version 5.3 or earlier");
+        }
     }
 
     /**
@@ -84,7 +86,9 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
-        $this->assertError($file, 26, "\"trait\" keyword is not present in PHP version 5.3 or earlier");
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            $this->assertError($file, 26, "\"trait\" keyword is not present in PHP version 5.3 or earlier");
+        }
     }
 
     /**
@@ -96,7 +100,9 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
-        $this->assertError($file, 28, "__TRAIT__ magic constant is not present in PHP version 5.3 or earlier");
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            $this->assertError($file, 28, "__TRAIT__ magic constant is not present in PHP version 5.3 or earlier");
+        }
     }
 
     /**
@@ -118,7 +124,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
      */
     public function testYield()
     {
-        // Note: cannot test this when running PHP version 5.4 because the 
+        // Note: cannot test this when running PHP version 5.4 because the
         // token doesn't register with phpcs
         //$file = $this->sniffFile('sniff-examples/new_keywords.php', '5.4');
 
@@ -132,7 +138,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
      */
     public function testFinally()
     {
-        // Note: cannot test this when running PHP version 5.4 because the 
+        // Note: cannot test this when running PHP version 5.4 because the
         // token doesn't register with phpcs
         //$file = $this->sniffFile('sniff-examples/new_keywords.php', '5.4');
 
