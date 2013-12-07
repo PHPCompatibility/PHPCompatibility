@@ -35,7 +35,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             self::$phpcs = new PHP_CodeSniffer();
         }
 
-        PHP_CodeSniffer::setConfigData('testVersion', null);
+        PHP_CodeSniffer::setConfigData('testVersion', null, true);
 
         self::$phpcs->process(array(), 'PHPCompatibility');
         self::$phpcs->setIgnorePatterns(array());
@@ -62,7 +62,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     public function sniffFile($filename, $targetPhpVersion=null)
     {
         if (null !== $targetPhpVersion) {
-            PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion);
+            PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
