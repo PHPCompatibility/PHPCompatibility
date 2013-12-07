@@ -15,5 +15,5 @@ script:
   - mkdir vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
   - mv * vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
   - cd vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
-  - export TRAVIS_CI_TEST = 1
+  - export TRAVIS_CI_TEST=1
   - phpunit --configuration phpunit.xml
