@@ -5,18 +5,18 @@
     "php" : ">=5.1.2",
     "ext-tokenizer" : "*",
     "squizlabs/php_codesniffer" : "dev-master",
-    "simplyadmire/composer-plugins" : ">=@dev"
+    "simplyadmire/composer-plugins" : "@dev"
   },
   "authors" : [ {
     "name" : "Wim Godden",
     "role" : "lead"
   } ],
-  "keywords" : [ "compatibility", "phpcs", "standards" ],
   "support" : {
     "issues" : "https://github.com/wimg/PHPCompatibility/issues",
     "source" : "https://github.com/wimg/PHPCompatibility"
   },
-  "type" : "library",
+  "keywords" : [ "compatibility", "phpcs", "standards" ],
   "license" : "LGPL",
+  "type" : "library",
   "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
 }
