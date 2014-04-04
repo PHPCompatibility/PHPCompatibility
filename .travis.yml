@@ -13,4 +13,8 @@ install:
 
 script:
   - ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
-  - phpunit --configuration phpunit.xml
+  - mkdir -p build/logs
+  - phpunit --configuration phpunit-travis.xml
+
+after_script:
+  - php vendor/bin/coveralls

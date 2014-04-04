@@ -6,5 +6,6 @@
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
+    <log type="coverage-clover" target="build/logs/clover.xml"/>
 </phpunit>
 
