@@ -7,10 +7,10 @@ php:
 
 before_script:
   - phpenv rehash
-  - composer self-update
 
 install:
-  composer install
+  - composer self-update
+  - composer install
 
 script:
   - ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
