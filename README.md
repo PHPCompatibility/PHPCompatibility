@@ -8,7 +8,7 @@ This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffe
 Installation
 ------------
 
-* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.47 or later is required for full support, notices may be thrown on older versions).
+* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
 * You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
