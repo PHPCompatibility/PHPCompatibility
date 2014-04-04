@@ -11,7 +11,7 @@ Installation
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.47 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
-* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5` - note that this requires PHP_CodeSniffer from the Github master branch. This feature will be in the next official PHP_CodeSniffer release.
+* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
