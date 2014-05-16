@@ -117,7 +117,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff implemen
         }
 
         if ($tokens[$next]['code'] == T_OPEN_PARENTHESIS) {
-            $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+            $prev = $phpcsFile->findPrevious(array(T_WHITESPACE, T_COMMENT), ($stackPtr - 1), null, true);
 
             // This sniff isn't concerned about function declaration
             if ($tokens[$prev]['code'] == T_FUNCTION) {
