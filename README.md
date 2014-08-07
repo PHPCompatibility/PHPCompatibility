@@ -8,13 +8,29 @@ PHP Compatibility Coding Standard for PHP_CodeSniffer
 
 This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
 
-Installation
-------------
+Installation (method 1)
+-----------------------
 
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
 * You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
+
+Installation in Composer project (method 2)
+-------------------------------------------
+
+* Add the following lines to the `require-dev` section of your composer.json file.
+
+```json
+"require-dev": {
+   "squizlabs/php_codesniffer": "*",
+   "wimg/php-compatibility": "dev-master"
+},
+
+```
+* Run `composer update` to install both phpcs and PHPCompatibility coding standard.
+* Use the coding standard with `./vendor/bin/phpcs --standard=PHPCompatibility`
+
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
