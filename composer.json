@@ -4,8 +4,7 @@
   "require" : {
     "php" : ">=5.1.2",
     "ext-tokenizer" : "*",
-    "squizlabs/php_codesniffer" : ">=1.5.1,<2.0",
-    "simplyadmire/composer-plugins" : "@dev"
+    "squizlabs/php_codesniffer" : ">=1.5.1,<2.0"
   },
   "require-dev": {
     "satooshi/php-coveralls": "dev-master"
