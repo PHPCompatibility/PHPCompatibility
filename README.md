@@ -24,7 +24,8 @@ Installation in Composer project (method 2)
 ```json
 "require-dev": {
    "squizlabs/php_codesniffer": "*",
-   "wimg/php-compatibility": "dev-master"
+   "wimg/php-compatibility": "dev-master",
+   "simplyadmire/composer-plugins" : "@dev"
 },
 
 ```
