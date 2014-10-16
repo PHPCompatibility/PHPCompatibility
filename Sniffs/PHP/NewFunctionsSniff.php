@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $forbiddenFunctions = array(
+    public $forbiddenFunctions = array(
                                         'array_fill_keys' => array(
                                             '5.1' => false,
                                             '5.2' => true
