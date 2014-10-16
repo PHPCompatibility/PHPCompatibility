@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends Generic_Sniff
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $forbiddenFunctions = array(
+    public $forbiddenFunctions = array(
                                         'call_user_method' => array(
                                             '5.3' => false,
                                             '5.4' => false,
