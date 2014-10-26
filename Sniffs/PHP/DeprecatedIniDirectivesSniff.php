@@ -100,6 +100,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
             '5.3' => false,
             '5.4' => true
         ),
+        'always_populate_raw_post_data' => array(
+            '5.6' => false
+        )
     );
 
     /**
@@ -166,7 +169,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
                 } else {
                     $error .= " deprecated";
                 }
-                $error .= " in PHP " . $version . " and";
+                $error .= " from PHP " . $version . " and";
             }
         }
 
