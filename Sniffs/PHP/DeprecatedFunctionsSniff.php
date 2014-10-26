@@ -384,6 +384,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSn
         $error = '';
 
         $this->error = false;
+        $previousVersionStatus = null;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
             if (
                 is_null(PHP_CodeSniffer::getConfigData('testVersion'))
@@ -395,13 +396,15 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSn
                 )
             ) {
                 if ($version != 'alternative') {
-                    if ($forbidden === true) {
-                        $this->error = true;
-                        $error .= 'forbidden';
-                    } else {
-                        $error .= 'discouraged';
+                    if ($previousVersionStatus !== $forbidden) {
+                        if ($forbidden === true) {
+                            $this->error = true;
+                            $error .= 'forbidden';
+                        } else {
+                            $error .= 'discouraged';
+                        }
+                        $error .=  ' from PHP version ' . $version . ' and ';
                     }
-                    $error .=  ' in PHP version ' . $version . ' and ';
                 }
             }
         }
