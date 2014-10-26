@@ -37,10 +37,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
         if (method_exists('PHP_CodeSniffer_CLI', 'setCommandLineValues')) { // For PHPCS 2.x
-            $this->fail('Yes we have the right function');
-            self::$phpcs->cli->setCommandLineValues('showProgress', false);
+            self::$phpcs->cli->setCommandLineValues(array('showProgress' => false));
         }
-        $this->fail(print_r(self::$phpcs->cli->getCommandLineValues()));
 
         self::$phpcs->process(array(), 'PHPCompatibility');
         self::$phpcs->setIgnorePatterns(array());
