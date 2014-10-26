@@ -19,7 +19,7 @@
  * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_ForbiddenFunctionsSniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff implements PHP_CodeSniffer_Sniff
 {
 
     /**
@@ -1094,6 +1094,27 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends Generic_Sniffs_PHP_F
     public $error = false;
 
 
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register()
+    {
+        // Everyone has had a chance to figure out what forbidden functions
+        // they want to check for, so now we can cache out the list.
+        $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
+    
+        if ($this->patternMatch === true) {
+            foreach ($this->forbiddenFunctionNames as $i => $name) {
+                $this->forbiddenFunctionNames[$i] = '/'.$name.'/i';
+            }
+        }
+    
+        return array(T_STRING);
+    
+    }//end register()
+    
     /**
      * Processes this test, when one of its tokens is encountered.
      *
