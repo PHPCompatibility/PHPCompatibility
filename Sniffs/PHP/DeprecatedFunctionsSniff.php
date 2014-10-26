@@ -23,6 +23,13 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSn
 {
 
     /**
+     * If true, forbidden functions will be considered regular expressions.
+     *
+     * @var bool
+     */
+    protected $patternMatch = false;
+    
+    /**
      * A list of forbidden functions with their alternatives.
      *
      * The array lists : version number with 0 (deprecated) or 1 (forbidden) and an alternative function.

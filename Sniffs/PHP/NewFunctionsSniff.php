@@ -23,6 +23,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff implements PHP_CodeSniffer_S
 {
 
     /**
+     * If true, forbidden functions will be considered regular expressions.
+     *
+     * @var bool
+     */
+    protected $patternMatch = false;
+    
+    /**
      * A list of new functions, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
