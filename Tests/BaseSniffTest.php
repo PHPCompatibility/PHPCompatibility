@@ -36,6 +36,9 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         }
 
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
+        if (function_exists(self::$phpcs->setCommandLineValues)) { // For PHPCS 2.x
+            self::$phpcs->setCommandLineValues('showProgress', false);
+        }
 
         self::$phpcs->process(array(), 'PHPCompatibility');
         self::$phpcs->setIgnorePatterns(array());
