@@ -75,4 +75,4 @@ ini_set('mbstring.http_output', 'a');
 $a = ini_get('mbstring.http_output');
 
 ini_set('mbstring.internal_encoding', 'a');
-$a = ini_get('mbstring.internal_encouding');
+$a = ini_get('mbstring.internal_encoding');
