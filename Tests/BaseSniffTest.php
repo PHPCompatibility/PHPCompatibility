@@ -37,6 +37,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
         if (method_exists('PHP_CodeSniffer_CLI', 'setCommandLineValues')) { // For PHPCS 2.x
+            die('die baby die for Travis');
             self::$phpcs->cli->setCommandLineValues('showProgress', false);
         }
 
