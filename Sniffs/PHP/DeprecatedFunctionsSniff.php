@@ -397,6 +397,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSn
             ) {
                 if ($version != 'alternative') {
                     if ($previousVersionStatus !== $forbidden) {
+                        $previousVersionStatus = $forbidden;
                         if ($forbidden === true) {
                             $this->error = true;
                             $error .= 'forbidden';
