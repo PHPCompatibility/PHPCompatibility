@@ -102,7 +102,25 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
         ),
         'always_populate_raw_post_data' => array(
             '5.6' => false
-        )
+        ),
+        'iconv.input_encoding' => array(
+            '5.6' => false
+        ),
+        'iconv.output_encoding' => array(
+            '5.6' => false
+        ),
+        'iconv.internal_encoding' => array(
+            '5.6' => false
+        ),
+        'mbstring.http_input' => array(
+            '5.6' => false
+        ),
+        'mbstring.http_output' => array(
+            '5.6' => false
+        ),
+        'mbstring.internal_encoding' => array(
+            '5.6' => false
+        ),
     );
 
     /**
