@@ -1,5 +1,9 @@
 language: php
 
+env:
+  - PHPCS_VERSION=">=1.5.1,<2.0"
+  - PHPCS_VERSION=">=2.0"
+
 php:
   - 5.3
   - 5.4
@@ -12,6 +16,7 @@ before_script:
 
 install:
   - composer self-update
+  - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - composer install
 
 script:
