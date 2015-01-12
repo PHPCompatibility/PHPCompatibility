@@ -49,7 +49,7 @@ on the sniffs, the following installation steps are required.
         {
             "require": {
                 "phpunit/phpunit": "3.7.*",
-                "squizlabs/php_codesniffer": "dev-master"
+                "squizlabs/php_codesniffer": ">=1.5.1,<2.0"
             }
         }
 
