@@ -2,7 +2,7 @@ language: php
 
 env:
   - PHPCS_VERSION=">=1.5.1,<2.0"
-  - PHPCS_VERSION="2.0.*@RC"
+  - PHPCS_VERSION="2.2.0"
 
 php:
   - 5.3
