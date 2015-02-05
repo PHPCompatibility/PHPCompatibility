@@ -85,6 +85,16 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
     }
 
     /**
+     * testCallTimePassByReferenceGlobal
+     *
+     * @return void
+     */
+    public function testCallTimePassByReferenceGlobal()
+    {
+        $this->assertError($this->_sniffFile, 44, 'Using a call-time pass-by-reference is prohibited since php 5.4');
+    }
+
+    /**
      * testBitwiseOperationsAsParameter
      *
      * @return void
@@ -96,6 +106,8 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 26);
         $this->assertNoViolation($this->_sniffFile, 27);
         $this->assertNoViolation($this->_sniffFile, 28);
+        $this->assertNoViolation($this->_sniffFile, 40);
+        $this->assertNoViolation($this->_sniffFile, 41);
     }
 
     /**
