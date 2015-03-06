@@ -31,10 +31,20 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
      * @var array(string => array(string => int|string|null))
      */
     protected $newKeywords = array(
+                                        'T_CALLABLE' => array(
+                                            '5.3' => false,
+                                            '5.4' => true,
+                                            'description' => '"callable" keyword'
+                                        ),
                                         'T_DIR' => array(
                                             '5.2' => false,
                                             '5.3' => true,
                                             'description' => '__DIR__ magic constant'
+                                        ),
+                                        'T_GOTO' => array(
+                                            '5.2' => false,
+                                            '5.3' => true,
+                                            'description' => '"goto" keyword'
                                         ),
                                         'T_INSTEADOF' => array(
                                             '5.3' => false,
@@ -55,6 +65,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                             '5.2' => false,
                                             '5.3' => true,
                                             'description' => 'the \ operator (for namespaces)'
+                                        ),
+                                        'T_STATIC' => array(
+                                            '5.2' => false,
+                                            '5.3' => true,
+                                            'description' => '"static" keyword'
                                         ),
                                         'T_USE' => array(
                                             '5.2' => false,
