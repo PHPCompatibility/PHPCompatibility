@@ -29,7 +29,7 @@ Installation in Composer project (method 2)
 },
 
 ```
-* Run `composer update` to install both phpcs and PHPCompatibility coding standard.
+* Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.
 * Use the coding standard with `./vendor/bin/phpcs --standard=PHPCompatibility`
 
 
