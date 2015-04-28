@@ -4,7 +4,7 @@
   "require" : {
     "php" : ">=5.1.2",
     "ext-tokenizer" : "*",
-    "squizlabs/php_codesniffer" : ">=1.5.1,<=2.3"
+    "squizlabs/php_codesniffer" : ">=1.5.1,<2.4"
   },
   "require-dev": {
     "satooshi/php-coveralls": "dev-master"
