@@ -37,10 +37,10 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
         if (method_exists('PHP_CodeSniffer_CLI', 'setCommandLineValues')) { // For PHPCS 2.x
-            self::$phpcs->cli->setCommandLineValues(array('-p'));
+            self::$phpcs->cli->setCommandLineValues(array('-p', '--colors'));
         }
 
-        self::$phpcs->process(array(), 'PHPCompatibility');
+        self::$phpcs->process(array(), __DIR__ . '/../');
         self::$phpcs->setIgnorePatterns(array());
     }
 
