@@ -28,9 +28,11 @@ Installation in Composer project (method 2)
    "simplyadmire/composer-plugins" : "@dev"
 },
 "autoload-dev": {
-   "psr-4": "PHPCompatibility\\": [
-      "vendor/wimg/php-compatibility"
-   ]
+   "psr-4": {
+      "PHPCompatibility\\": [
+         "vendor/wimg/php-compatibility"
+      ]
+   }
 },
 
 ```
