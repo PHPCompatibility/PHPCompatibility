@@ -22,7 +22,7 @@
  * @author    Ben Selby <bselby@plus.net>
  * @copyright 2012 Ben Selby
  */
-class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
 {
     /**
      * Array of HTTP_*_VARS that are now deprecated
@@ -60,15 +60,7 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff implements PHP_CodeSniffer_Sni
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.3') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.3')) {
             $tokens = $phpcsFile->getTokens();
 
             if ($tokens[$stackPtr]['type'] == 'T_VARIABLE'

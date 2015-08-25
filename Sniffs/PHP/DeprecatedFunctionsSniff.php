@@ -19,7 +19,7 @@
  * @version   1.1.0
  * @copyright 2014 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -386,15 +386,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff implements PHP_CodeSn
         $this->error = false;
         $previousVersionStatus = null;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
-            if (
-                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                ||
-                (
-                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                    &&
-                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
-                )
-            ) {
+            if ($this->supportsAbove($version)) {
                 if ($version != 'alternative') {
                     if ($previousVersionStatus !== $forbidden) {
                         $previousVersionStatus = $forbidden;

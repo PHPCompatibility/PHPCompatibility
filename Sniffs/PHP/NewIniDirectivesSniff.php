@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_Sniff
 {
     /**
      * A list of new INI directives
@@ -190,11 +190,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff implements PHP_CodeSniff
         $error = '';
 
         foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) <= 0
-            ) {
+            if ($this->supportsBelow($version)) {
                 if ($present === true) {
                     $error .= " not available before version " . $version;
                 }

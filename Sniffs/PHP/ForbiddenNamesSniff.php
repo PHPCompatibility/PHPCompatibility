@@ -22,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -155,15 +155,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff implements PHP_CodeSniffer
             return;
         }
 
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])]) >= 0
-            )
-        ) {
+        if ($this->supportsAbove($this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
             $phpcsFile->addError($error, $stackPtr);
         }

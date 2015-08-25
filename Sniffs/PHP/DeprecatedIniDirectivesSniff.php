@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompatibility_Sniff
 {
     /**
      * A list of deprecated INI directives
@@ -173,15 +173,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff implements PHP_Co
 
         foreach ($this->deprecatedIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
         {
-            if (
-                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                ||
-                (
-                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                    &&
-                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
-                )
-            ) {
+            if ($this->supportsAbove($version)) {
                 if ($forbidden === true) {
                     $error .= " forbidden";
                 } else {

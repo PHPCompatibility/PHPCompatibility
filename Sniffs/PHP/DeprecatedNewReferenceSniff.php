@@ -22,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -54,15 +54,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff implements PHP_Cod
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.3') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.3')) {
             $tokens = $phpcsFile->getTokens();
             if ($tokens[$stackPtr - 1]['type'] == 'T_BITWISE_AND' || $tokens[$stackPtr - 2]['type'] == 'T_BITWISE_AND') {
                 $error = 'Assigning the return value of new by reference is deprecated in PHP 5.3';

@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DefaultTimeZoneRequiredSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_DefaultTimeZoneRequiredSniff extends PHPCompatibility_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -45,15 +45,7 @@ class PHPCompatibility_Sniffs_PHP_DefaultTimeZoneRequiredSniff implements PHP_Co
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.4')) {
             if (ini_get('date.timezone') == false) {
                 $error = 'Default timezone is required since PHP 5.4';
                 $phpcsFile->addError($error, $stackPtr);
