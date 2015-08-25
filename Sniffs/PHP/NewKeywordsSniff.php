@@ -137,7 +137,13 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
+
+        // Skip attempts to use keywords as functions - these will be reported by
+        // FrobiddenNamesAsInvokedFunctionsSniff, but will result in false-positives
+        // when targetting lower versions of PHP where the name was not reserved.
+        if ($tokens[$stackPtr + 1]['type'] != 'T_OPEN_PARENTHESIS') {
+            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
+        }
     }//end process()
 
 
