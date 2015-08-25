@@ -66,11 +66,6 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
                                             '5.3' => true,
                                             'description' => 'the \ operator (for namespaces)'
                                         ),
-                                        'T_STATIC' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => '"static" keyword'
-                                        ),
                                         'T_USE' => array(
                                             '5.2' => false,
                                             '5.3' => true,
