@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -59,15 +59,7 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff implements PHP_Code
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.3') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.3')) {
             $tokens = $phpcsFile->getTokens();
 
             // Find all the functions in this class or interface

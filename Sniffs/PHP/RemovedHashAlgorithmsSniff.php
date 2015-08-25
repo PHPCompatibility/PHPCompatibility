@@ -22,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -68,15 +68,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff implements PHP_Code
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.4')) {
             $tokens = $phpcsFile->getTokens();
 
             if (in_array($tokens[$stackPtr]['content'], $this->algoFunctions) === true) {

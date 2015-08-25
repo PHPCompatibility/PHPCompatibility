@@ -19,7 +19,7 @@
  * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -147,11 +147,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
 
         $this->error = false;
         foreach ($this->newKeywords[$pattern] as $version => $present) {
-            if (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) <= 0
-            ) {
+            if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $this->error = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';

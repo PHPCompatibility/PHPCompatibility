@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -319,15 +319,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff implements PHP_CodeSnif
                 foreach ($versionList as $version => $status) {
                     if ($version != 'alternative') {
                         if ($status == -1 || $status == 0) {
-                            if (
-                                is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                                ||
-                                (
-                                    !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                                    &&
-                                    version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $version) >= 0
-                                )
-                            ) {
+                            if ($this->supportsAbove($version)) {
                                 switch ($status) {
                                     case -1:
                                         $error .= 'deprecated since PHP ' . $version . ' and ';

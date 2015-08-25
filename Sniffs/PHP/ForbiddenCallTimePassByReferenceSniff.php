@@ -26,7 +26,7 @@
  * @copyright 2009 Florian Grandel
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implements PHP_CodeSniffer_Sniff
+class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends PHPCompatibility_Sniff
 {
 
     /**
@@ -58,15 +58,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff implemen
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), '5.4') >= 0
-            )
-        ) {
+        if ($this->supportsAbove('5.4')) {
             $tokens = $phpcsFile->getTokens();
 
             // Skip tokens that are the names of functions or classes
