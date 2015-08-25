@@ -138,6 +138,9 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
     {
         $tokens = $phpcsFile->getTokens();
 
+        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+
         // Skip attempts to use keywords as functions or class names - the former
         // will be reported by FrobiddenNamesAsInvokedFunctionsSniff, whilst the
         // latter doesn't yet have an appropriate sniff.
@@ -145,9 +148,9 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff implements PHP_CodeSniffer_Sn
         // of PHP where the name was not reserved, unless we explicitly check for
         // them.
         if (
-            $tokens[$stackPtr + 1]['type'] != 'T_OPEN_PARENTHESIS'
+            $tokens[$nextToken]['type'] != 'T_OPEN_PARENTHESIS'
             &&
-            $tokens[$stackPtr - 1]['type'] != 'T_CLASS'
+            $tokens[$prevToken]['type'] != 'T_CLASS'
         ) {
             $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
         }
