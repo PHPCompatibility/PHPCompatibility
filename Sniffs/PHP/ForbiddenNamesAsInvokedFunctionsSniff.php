@@ -47,7 +47,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         T_GOTO => '5.3',
         T_IMPLEMENTS => '5.0',
         T_INTERFACE => '5.0',
-        T_INSTANCEOF => '5.4',
+        T_INSTANCEOF => '5.0',
         T_INSTEADOF => '5.4',
         T_NAMESPACE => '5.3',
         T_PRIVATE => '5.0',

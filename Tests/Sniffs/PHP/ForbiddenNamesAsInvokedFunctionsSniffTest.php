@@ -132,7 +132,7 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      */
     public function testInstanceOf()
     {
-        $this->assertError($this->_sniffFile, 15, "'instanceof' is a reserved keyword introduced in PHP version 5.4 and cannot be invoked as a function");
+        $this->assertError($this->_sniffFile, 15, "'instanceof' is a reserved keyword introduced in PHP version 5.0 and cannot be invoked as a function");
     }
 
     /**
