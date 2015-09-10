@@ -86,11 +86,11 @@ preg_replace('/\/e/e', $Replace, $Source);
 ///////////// Untestable - should not generate an error.
 
 $Regex = "/anything/";
-X_REGEX_Xe = "/anything/";
-function GetRegex() {
+define("X_REGEX_Xe", "/anything/");
+function XRegeXe() {
     return "/anything/";
 }
 
 preg_replace($Regex, $Replace, $Source);
-preg_replace(GetRegex(), $Replace, $Source);
+preg_replace(XRegeXe(), $Replace, $Source);
 preg_replace(X_REGEX_Xe, $Replace, $Source);
