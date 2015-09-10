@@ -80,6 +80,25 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Causes phpunit to skip the test if we are running on a PHP version older than
+     * the one specified.  Should be called at the start of any test that will fail
+     * if running on an older version of PHP, e.g. in situations where the sniff
+     * relies on the parser generating tokens that are not available in that version.
+     *
+     * @param string $version
+     * @return bool
+     */
+    public function requiresPHPVersion($version)
+    {
+        if (version_compare(PHP_VERSION, $version, "<")) {
+            $this->markTestSkipped("Test cannot be run on PHP < " . $version);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Assert a PHPCS error on a particular line number
      *
      * @param PHP_CodeSniffer_File $file Codesniffer file object
