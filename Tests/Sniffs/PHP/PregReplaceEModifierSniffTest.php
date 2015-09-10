@@ -48,6 +48,9 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 17);
         $this->assertNoViolation($this->_sniffFile, 18);
         $this->assertNoViolation($this->_sniffFile, 21);
+        $this->assertNoViolation($this->_sniffFile, 24);
+        $this->assertNoViolation($this->_sniffFile, 39);
+        $this->assertNoViolation($this->_sniffFile, 45);
     }
 
     /**
@@ -59,13 +62,16 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
     {
         $error = "preg_replace() - /e modifier is deprecated in PHP 5.5";
 
-        $this->assertError($this->_sniffFile, 26, $error);
-        $this->assertError($this->_sniffFile, 27, $error);
-        $this->assertError($this->_sniffFile, 30, $error);
-        $this->assertError($this->_sniffFile, 31, $error);
-        $this->assertError($this->_sniffFile, 34, $error);
-        $this->assertError($this->_sniffFile, 35, $error);
-        $this->assertError($this->_sniffFile, 36, $error);
+        $this->assertError($this->_sniffFile, 50, $error);
+        $this->assertError($this->_sniffFile, 51, $error);
+        $this->assertError($this->_sniffFile, 54, $error);
+        $this->assertError($this->_sniffFile, 55, $error);
+        $this->assertError($this->_sniffFile, 58, $error);
+        $this->assertError($this->_sniffFile, 59, $error);
+        $this->assertError($this->_sniffFile, 60, $error);
+        $this->assertError($this->_sniffFile, 63, $error);
+        $this->assertError($this->_sniffFile, 78, $error);
+        $this->assertError($this->_sniffFile, 84, $error);
     }
 
     /**
@@ -75,9 +81,9 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      */
     public function testUntestablePregReplace()
     {
-        $this->assertNoViolation($this->_sniffFile, 46);
-        $this->assertNoViolation($this->_sniffFile, 47);
-        $this->assertNoViolation($this->_sniffFile, 48);
+        $this->assertNoViolation($this->_sniffFile, 94);
+        $this->assertNoViolation($this->_sniffFile, 95);
+        $this->assertNoViolation($this->_sniffFile, 96);
     }
 
 }

@@ -72,7 +72,14 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
                 /**
                  * Regex is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
                  */
-                $regex = $tokens[$firstParam]['content'];
+                $regex = "";
+                while (isset($tokens[$firstParam]) && $tokens[$firstParam]['code'] != T_COMMA) {
+                    if ($tokens[$firstParam]['code'] == T_CONSTANT_ENCAPSED_STRING) {
+                        $regex .= $tokens[$firstParam]['content'];
+                    }
+                    $firstParam++;
+                }
+
                 $regex = substr($regex, 1, -1);
 
                 $regexFirstChar = substr($regex, 0, 1);
