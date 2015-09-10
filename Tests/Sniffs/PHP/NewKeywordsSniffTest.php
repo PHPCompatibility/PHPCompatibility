@@ -30,12 +30,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test insteadof
      *
+     * @requires PHP 5.4
      * @return void
      */
     public function testInsteadOf()
     {
-        $this->requiresPHPVersion("5.4");
-
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
         $this->assertError($file, 15, "\"insteadof\" keyword (for traits) is not present in PHP version 5.3 or earlier");
@@ -80,12 +79,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test trait keyword
      *
+     * @requires PHP 5.4
      * @return void
      */
     public function testTraitKeyword()
     {
-        $this->requiresPHPVersion("5.4");
-
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
         $this->assertError($file, 26, "\"trait\" keyword is not present in PHP version 5.3 or earlier");
@@ -94,12 +92,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test trait magic constant
      *
+     * @requires PHP 5.4
      * @return void
      */
     public function testTraitConstant()
     {
-        $this->requiresPHPVersion("5.4");
-
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
         $this->assertError($file, 28, "__TRAIT__ magic constant is not present in PHP version 5.3 or earlier");
@@ -120,12 +117,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test yield
      *
+     * @requires PHP 5.5
      * @return void
      */
     public function testYield()
     {
-        $this->requiresPHPVersion("5.5");
-
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.4');
 
         $this->assertError($file, 35, "\"yield\" keyword (for generators) is not present in PHP version 5.4 or earlier");
@@ -134,12 +130,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testFinally
      *
+     * @requires PHP 5.5
      * @return void
      */
     public function testFinally()
     {
-        $this->requiresPHPVersion("5.5");
-
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.4');
 
         $this->assertError($file, 9, "\"finally\" keyword (in exception handling) is not present in PHP version 5.4 or earlier");
