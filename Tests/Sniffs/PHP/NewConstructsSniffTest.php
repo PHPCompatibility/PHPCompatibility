@@ -25,7 +25,7 @@ class NewConstructsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.5');
 
-        $this->assertError($file, 3, "the power operator (**) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 3, "power operator (**) is not present in PHP version 5.5 or earlier");
     }
 
     /**
@@ -38,7 +38,7 @@ class NewConstructsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.5');
 
-        $this->assertError($file, 4, "the power assignment operator (**=) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 4, "power assignment operator (**=) is not present in PHP version 5.5 or earlier");
     }
 
 }
