@@ -21,8 +21,6 @@ namespace Foobar;
 
 $namespace = __NAMESPACE__;
 
-$foobar = new \Foobar();
-
 trait FoobarTrait {
     public function foobar() {
         $name = __TRAIT__;

@@ -31,6 +31,11 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      * @var array(string => array(string => int|string|null))
      */
     protected $newConstructs = array(
+                                        'T_NS_SEPARATOR' => array(
+                                            '5.2' => false,
+                                            '5.3' => true,
+                                            'description' => 'the \ operator (for namespaces)'
+                                        ),
                                         'T_POW' => array(
                                             '5.5' => false,
                                             '5.6' => true,

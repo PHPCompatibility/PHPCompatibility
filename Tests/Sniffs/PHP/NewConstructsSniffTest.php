@@ -16,6 +16,18 @@
 class NewConstructsSniffTest extends BaseSniffTest
 {
     /**
+     * testNamespaceSeparator
+     *
+     * @return void
+     */
+    public function testNamespaceSeparator()
+    {
+        $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.2');
+
+        $this->assertError($file, 3, "the \ operator (for namespaces) is not present in PHP version 5.2 or earlier");
+    }
+
+    /**
      * testPow
      *
      * @requires PHP 5.6
@@ -25,7 +37,7 @@ class NewConstructsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.5');
 
-        $this->assertError($file, 3, "power operator (**) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 5, "power operator (**) is not present in PHP version 5.5 or earlier");
     }
 
     /**
@@ -38,7 +50,7 @@ class NewConstructsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.5');
 
-        $this->assertError($file, 4, "power assignment operator (**=) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 6, "power assignment operator (**=) is not present in PHP version 5.5 or earlier");
     }
 
 }

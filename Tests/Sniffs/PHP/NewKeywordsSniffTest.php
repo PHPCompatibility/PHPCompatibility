@@ -65,18 +65,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testNamespaceSeparator
-     *
-     * @return void
-     */
-    public function testNamespaceSeparator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
-
-        $this->assertError($file, 24, "the \ operator (for namespaces) is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
      * Test trait keyword
      *
      * @requires PHP 5.4
@@ -86,7 +74,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
-        $this->assertError($file, 26, "\"trait\" keyword is not present in PHP version 5.3 or earlier");
+        $this->assertError($file, 24, "\"trait\" keyword is not present in PHP version 5.3 or earlier");
     }
 
     /**
@@ -99,7 +87,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.3');
 
-        $this->assertError($file, 28, "__TRAIT__ magic constant is not present in PHP version 5.3 or earlier");
+        $this->assertError($file, 26, "__TRAIT__ magic constant is not present in PHP version 5.3 or earlier");
     }
 
     /**
@@ -124,7 +112,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.4');
 
-        $this->assertError($file, 35, "\"yield\" keyword (for generators) is not present in PHP version 5.4 or earlier");
+        $this->assertError($file, 33, "\"yield\" keyword (for generators) is not present in PHP version 5.4 or earlier");
     }
 
     /**

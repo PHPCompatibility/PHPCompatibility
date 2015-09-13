@@ -61,11 +61,6 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                                             '5.3' => true,
                                             'description' => '__NAMESPACE__ magic constant'
                                         ),
-                                        'T_NS_SEPARATOR' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => 'the \ operator (for namespaces)'
-                                        ),
                                         'T_USE' => array(
                                             '5.2' => false,
                                             '5.3' => true,
