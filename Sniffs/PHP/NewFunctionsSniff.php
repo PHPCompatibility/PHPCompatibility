@@ -37,7 +37,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $forbiddenFunctions = array(
+    public $forbiddenFunctions = array(
                                         'array_fill_keys' => array(
                                             '5.1' => false,
                                             '5.2' => true
