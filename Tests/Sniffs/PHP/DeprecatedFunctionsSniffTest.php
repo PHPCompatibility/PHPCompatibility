@@ -471,6 +471,594 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
     }
 
     /**
+     * Test ocibindbyname
+     *
+     * @return void
+     */
+    public function testOcibindbyname()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 41, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicancel
+     *
+     * @return void
+     */
+    public function testOcicancel()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 42, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicloselob
+     *
+     * @return void
+     */
+    public function testOcicloselob()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 43, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollappend
+     *
+     * @return void
+     */
+    public function testOcicollappend()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 44, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollassign
+     *
+     * @return void
+     */
+    public function testOcicollassign()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 45, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollassignelem
+     *
+     * @return void
+     */
+    public function testOcicollassignelem()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 46, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollgetelem
+     *
+     * @return void
+     */
+    public function testOcicollgetelem()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 47, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollmax
+     *
+     * @return void
+     */
+    public function testOcicollmax()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 48, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicollsize
+     *
+     * @return void
+     */
+    public function testOcicollsize()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 49, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolltrim
+     *
+     * @return void
+     */
+    public function testOcicolltrim()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 50, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumnisnull
+     *
+     * @return void
+     */
+    public function testOcicolumnisnull()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 51, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumnname
+     *
+     * @return void
+     */
+    public function testOcicolumnname()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 52, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumnprecision
+     *
+     * @return void
+     */
+    public function testOcicolumnprecision()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 53, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumnscale
+     *
+     * @return void
+     */
+    public function testOcicolumnscale()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 54, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumnsize
+     *
+     * @return void
+     */
+    public function testOcicolumnsize()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 55, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumntype
+     *
+     * @return void
+     */
+    public function testOcicolumntype()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 56, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicolumntyperaw
+     *
+     * @return void
+     */
+    public function testOcicolumntyperaw()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 57, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocicommit
+     *
+     * @return void
+     */
+    public function testOcicommit()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 58, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocidefinebyname
+     *
+     * @return void
+     */
+    public function testOcidefinebyname()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 59, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocierror
+     *
+     * @return void
+     */
+    public function testOcierror()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 60, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociexecute
+     *
+     * @return void
+     */
+    public function testOciexecute()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 61, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifetch
+     *
+     * @return void
+     */
+    public function testOcifetch()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 62, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifetchinto
+     *
+     * @return void
+     */
+    public function testOcifetchinto()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 63, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifetchstatement
+     *
+     * @return void
+     */
+    public function testOcifetchstatement()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 64, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifreecollection
+     *
+     * @return void
+     */
+    public function testOcifreecollection()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 65, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifreecursor
+     *
+     * @return void
+     */
+    public function testOcifreecursor()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 66, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifreedesc
+     *
+     * @return void
+     */
+    public function testOcifreedesc()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 67, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocifreestatement
+     *
+     * @return void
+     */
+    public function testOcifreestatement()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 68, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociinternaldebug
+     *
+     * @return void
+     */
+    public function testOciinternaldebug()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 69, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociloadlob
+     *
+     * @return void
+     */
+    public function testOciloadlob()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 70, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocilogoff
+     *
+     * @return void
+     */
+    public function testOcilogoff()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 71, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocilogon
+     *
+     * @return void
+     */
+    public function testOcilogon()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 72, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocinewcollection
+     *
+     * @return void
+     */
+    public function testOcinewcollection()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 73, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocinewcursor
+     *
+     * @return void
+     */
+    public function testOcinewcursor()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 74, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocinewdescriptor
+     *
+     * @return void
+     */
+    public function testOcinewdescriptor()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 75, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocinlogon
+     *
+     * @return void
+     */
+    public function testOcinlogon()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 76, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocinumcols
+     *
+     * @return void
+     */
+    public function testOcinumcols()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 77, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociparse
+     *
+     * @return void
+     */
+    public function testOciparse()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 78, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociplogon
+     *
+     * @return void
+     */
+    public function testOciplogon()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 79, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociresult
+     *
+     * @return void
+     */
+    public function testOciresult()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 80, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocirollback
+     *
+     * @return void
+     */
+    public function testOcirollback()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 81, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocirowcount
+     *
+     * @return void
+     */
+    public function testOcirowcount()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 82, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocisavelob
+     *
+     * @return void
+     */
+    public function testOcisavelob()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 83, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocisavelobfile
+     *
+     * @return void
+     */
+    public function testOcisavelobfile()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 84, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociserverversion
+     *
+     * @return void
+     */
+    public function testOciserverversion()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 85, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocisetprefetch
+     *
+     * @return void
+     */
+    public function testOcisetprefetch()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 86, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ocistatementtype
+     *
+     * @return void
+     */
+    public function testOcistatementtype()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 87, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociwritelobtofile
+     *
+     * @return void
+     */
+    public function testOciwritelobtofile()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 88, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
+     * Test ociwritetemporarylob
+     *
+     * @return void
+     */
+    public function testOciwritetemporarylob()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+
+        $this->assertWarning($file, 89, 'The use of function mcrypt_ofb is discouraged from PHP version 5.4');
+    }
+
+    /**
      * Test when setting the testVersion
      *
      * @return void
