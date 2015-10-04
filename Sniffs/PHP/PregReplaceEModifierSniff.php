@@ -84,12 +84,13 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
 
                 $regexFirstChar = substr($regex, 0, 1);
                 $regexEndPos = strrpos($regex, $regexFirstChar);
-
-                $modifiers = substr($regex, $regexEndPos + 1);
-
-                if (strpos($modifiers, "e") !== false) {
-                    $error = 'preg_replace() - /e modifier is deprecated in PHP 5.5';
-                    $phpcsFile->addError($error, $stackPtr);
+                if($regexEndPos !== false) {
+                    $modifiers = substr($regex, $regexEndPos + 1);
+    
+                    if (strpos($modifiers, "e") !== false) {
+                        $error = 'preg_replace() - /e modifier is deprecated in PHP 5.5';
+                        $phpcsFile->addError($error, $stackPtr);
+                    }
                 }
             }
         }
