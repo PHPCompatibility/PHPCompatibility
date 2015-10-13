@@ -94,3 +94,10 @@ function XRegeXe() {
 preg_replace($Regex, $Replace, $Source);
 preg_replace(XRegeXe(), $Replace, $Source);
 preg_replace(X_REGEX_Xe, $Replace, $Source);
+
+// Using bracket delimiters
+preg_replace('{\d}e', $Replace, $Source); //bad
+preg_replace('{\d{2}}e', $Replace, $Source); //bad
+preg_replace('{\d{2}e}', $Replace, $Source); //good
+preg_replace('\d{2}e', $Replace, $Source); // good
+preg_replace('{^fopen(.*?): }', $Replace, $Source); //good - monolog example
