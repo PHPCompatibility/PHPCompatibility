@@ -20,5 +20,10 @@
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "license" : "LGPL",
   "type" : "phpcodesniffer-standard",
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
+  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
+  "autoload": {
+    "psr-4": {
+      "PHPCompatibility\\":""
+    }
+  }
 }
