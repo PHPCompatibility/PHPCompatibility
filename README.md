@@ -27,6 +27,13 @@ Installation in Composer project (method 2)
    "wimg/php-compatibility": "dev-master",
    "simplyadmire/composer-plugins" : "@dev"
 },
+"autoload-dev": {
+   "psr-4": {
+      "PHPCompatibility\\": [
+         "vendor/wimg/php-compatibility"
+      ]
+   }
+},
 
 ```
 * Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.
