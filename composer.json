@@ -4,26 +4,26 @@
   "require" : {
     "php" : ">=5.1.2",
     "ext-tokenizer" : "*",
-    "squizlabs/php_codesniffer" : ">=1.5.1,<=2.3.2"
+    "squizlabs/php_codesniffer" : ">=1.5.1,<2.4"
   },
-  "require-dev": {
-    "satooshi/php-coveralls": "dev-master"
+  "require-dev" : {
+    "satooshi/php-coveralls" : "dev-master"
+  },
+  "license" : "LGPL",
+  "keywords" : [ "compatibility", "phpcs", "standards" ],
+  "autoload" : {
+    "psr-4" : {
+      "PHPCompatibility\\" : ""
+    }
+  },
+  "type" : "phpcodesniffer-standard",
+  "support" : {
+    "issues" : "https://github.com/wimg/PHPCompatibility/issues",
+    "source" : "https://github.com/wimg/PHPCompatibility"
   },
   "authors" : [ {
     "name" : "Wim Godden",
     "role" : "lead"
   } ],
-  "support" : {
-    "issues" : "https://github.com/wimg/PHPCompatibility/issues",
-    "source" : "https://github.com/wimg/PHPCompatibility"
-  },
-  "keywords" : [ "compatibility", "phpcs", "standards" ],
-  "license" : "LGPL",
-  "type" : "phpcodesniffer-standard",
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
-  "autoload": {
-    "psr-4": {
-      "PHPCompatibility\\":""
-    }
-  }
+  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
 }
