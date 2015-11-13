@@ -86,4 +86,18 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 96);
     }
 
+    /**
+     * @throws Exception
+     */
+    public function testUsingBracketDelimitersPregReplace()
+    {
+        $error = "preg_replace() - /e modifier is deprecated in PHP 5.5";
+
+        $this->assertError($this->_sniffFile, 99, $error);
+        $this->assertError($this->_sniffFile, 100, $error);
+        $this->assertNoViolation($this->_sniffFile, 101);
+        $this->assertNoViolation($this->_sniffFile, 102);
+        $this->assertNoViolation($this->_sniffFile, 103);
+    }
+
 }
