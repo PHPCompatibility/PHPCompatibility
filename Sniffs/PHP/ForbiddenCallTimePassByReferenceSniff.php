@@ -103,10 +103,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
             while (($nextSeparator = $phpcsFile->findNext(T_VARIABLE, ($nextSeparator + 1), $closeBracket)) !== false) {
                 // Make sure the variable belongs directly to this function call
                 // and is not inside a nested function call or array.
-                $brackets    = $tokens[$nextSeparator]['nested_parenthesis'];
-                $lastBracket = array_pop($brackets);
-                if ($lastBracket !== $closeBracket) {
-                    continue;
+                if (isset($tokens[$nextSeparator]['nested_parenthesis'])) {
+                    $brackets    = $tokens[$nextSeparator]['nested_parenthesis'];
+                    $lastBracket = array_pop($brackets);
+                    if ($lastBracket !== $closeBracket) {
+                        continue;
+                    }
                 }
 
                 // Checking this: $value = my_function(...[*]$arg...).
