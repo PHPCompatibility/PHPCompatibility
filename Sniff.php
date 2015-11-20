@@ -22,16 +22,17 @@
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 {
 
+    private function getTestVersion()
+    {
+        return PHP_CodeSniffer::getConfigData('testVersion');
+    }
+
     public function supportsAbove($phpVersion)
     {
-        if (
-            is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            ||
-            (
-                !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-                &&
-                version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $phpVersion) >= 0
-            )
+        $testVersion = $this->getTestVersion();
+
+        if (is_null($testVersion)
+            || version_compare($testVersion, $phpVersion) >= 0
         ) {
             return true;
         } else {
@@ -41,10 +42,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
     public function supportsBelow($phpVersion)
     {
-        if (
-            !is_null(PHP_CodeSniffer::getConfigData('testVersion'))
-            &&
-            version_compare(PHP_CodeSniffer::getConfigData('testVersion'), $phpVersion) <= 0
+        $testVersion = $this->getTestVersion();
+
+        if (!is_null($testVersion)
+            && version_compare($testVersion, $phpVersion) <= 0
         ) {
             return true;
         } else {
