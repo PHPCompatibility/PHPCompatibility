@@ -38,8 +38,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $testVersion = $this->getTestVersion();
 
         if (is_null($testVersion)
-            || (!is_null($testVersion)
-                && version_compare($testVersion, $phpVersion) >= 0)
+            || version_compare($testVersion, $phpVersion) >= 0
         ) {
             return true;
         } else {
