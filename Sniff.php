@@ -24,13 +24,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
     private function getTestVersion()
     {
-        static $testVersion;
-
-        if (!isset($testVersion)) {
-            $testVersion = PHP_CodeSniffer::getConfigData('testVersion');
-        }
-
-        return $testVersion;
+        return PHP_CodeSniffer::getConfigData('testVersion');
     }
 
     public function supportsAbove($phpVersion)
