@@ -51,7 +51,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $testVersion = PHP_CodeSniffer::getConfigData('testVersion');
             $testVersion = trim($testVersion);
 
-            $arrTestVersions = null;
+            $arrTestVersions = array(null, null);
             if (preg_match('/^\d+\.\d+$/', $testVersion)) {
                 $arrTestVersions = array($testVersion, $testVersion);
             }
