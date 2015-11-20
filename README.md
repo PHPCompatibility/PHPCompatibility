@@ -15,6 +15,8 @@ Installation (method 1)
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
 * You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
+* You can also specify a range of PHP versions that your code needs to support.  In this situation, compatibility issues that affect any of the PHP versions in that range will be reported:
+`--runtime-set testVersion 5.3-5.5`
 
 Installation in Composer project (method 2)
 -------------------------------------------
