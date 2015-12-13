@@ -204,7 +204,11 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
      */
     public function testMysql()
     {
-        $this->assertError($this->_sniffFile, 38, "Extension 'mysql_' is deprecated since PHP 5.5");
+        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.4');
+        $this->assertNoViolation($file, 38);
+        
+        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.5');
+        $this->assertWarning($this->_sniffFile, 38, "Extension 'mysql_' is deprecated since PHP 5.5");
     }
 
     /**

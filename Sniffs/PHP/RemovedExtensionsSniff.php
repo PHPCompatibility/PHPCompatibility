@@ -316,6 +316,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
                 $error = '';
+                $isErrored = false;
                 foreach ($versionList as $version => $status) {
                     if ($version != 'alternative') {
                         if ($status == -1 || $status == 0) {
@@ -325,6 +326,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
                                         $error .= 'deprecated since PHP ' . $version . ' and ';
                                         break;
                                     case 0:
+                                        $isErrored = true;
                                         $error .= 'removed since PHP ' . $version . ' and ';
                                         break 2;
                                 }
@@ -338,7 +340,11 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
                     if (!is_null($versionList['alternative'])) {
                         $error .= ' - use ' . $versionList['alternative'] . ' instead.';
                     }
-                    $phpcsFile->addError($error, $stackPtr);
+                    if ($isErrored === true) {
+                        $phpcsFile->addError($error, $stackPtr);
+                    } else {
+                        $phpcsFile->addWarning($error, $stackPtr);
+                    }
                 }
             }
         }
