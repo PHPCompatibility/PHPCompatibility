@@ -4,10 +4,10 @@
   "require" : {
     "php" : ">=5.1.2",
     "ext-tokenizer" : "*",
-    "squizlabs/php_codesniffer" : ">=1.5.1,~2.0"
+    "squizlabs/php_codesniffer" : "~2.0"
   },
   "require-dev" : {
-    "satooshi/php-coveralls" : "dev-master"
+    "satooshi/php-coveralls" : "~1.0"
   },
   "license" : "LGPL",
   "keywords" : [ "compatibility", "phpcs", "standards" ],

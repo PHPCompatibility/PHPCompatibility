@@ -3,10 +3,10 @@ sudo: false
 language: php
 
 env:
-  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERION="~1.0"
-  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERION="dev-master"
-  - PHPCS_VERSION=">=2.0" COVERALLS_VERION="~1.0"
-  - PHPCS_VERSION=">=2.0" COVERALLS_VERION="dev-master"
+  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
+  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+  - PHPCS_VERSION=">=2.0" COVERALLS_VERSION="~1.0"
+  - PHPCS_VERSION=">=2.0" COVERALLS_VERSION="dev-master"
 
 php:
   - 5.3
@@ -33,8 +33,8 @@ before_script:
 
 install:
   - composer self-update
-  - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}
+  - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - composer install
 
 script:
