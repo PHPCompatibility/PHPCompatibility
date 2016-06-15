@@ -7,7 +7,7 @@ env:
     - PHPCS_VERSION=">=1.5.1,~2.0"
   matrix:
     - COVERALLS_VERSION="~1.0"
-    - COVERALLS_VERSION="~dev-master"
+    - COVERALLS_VERSION="dev-master"
 
 php:
   - 5.3
