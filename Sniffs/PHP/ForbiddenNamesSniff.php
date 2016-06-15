@@ -112,7 +112,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      */
     public function register()
     {
-        return $this->targetedTokens;
+        $tokens = $this->targetedTokens;
+        if (defined('T_ANON_CLASS')) {
+            $tokens[] = constant('T_ANON_CLASS');
+        }
+        return $tokens;
     }//end register()
 
     /**
