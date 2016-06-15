@@ -103,7 +103,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      *
      * @var array
      */
-    protected $targetedTokens = array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
+    protected $targetedTokens = array(T_ANON_CLASS, T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
 
     /**
      * Returns an array of tokens this test wants to listen for.
