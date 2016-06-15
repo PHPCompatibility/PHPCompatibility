@@ -3,8 +3,10 @@ sudo: false
 language: php
 
 env:
-  - PHPCS_VERSION=">=1.5.1,<2.0"
-  - PHPCS_VERSION=">=2.0"
+  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERION="~1.0"
+  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERION="dev-master"
+  - PHPCS_VERSION=">=2.0" COVERALLS_VERION="~1.0"
+  - PHPCS_VERSION=">=2.0" COVERALLS_VERION="dev-master"
 
 php:
   - 5.3
@@ -14,17 +16,17 @@ php:
   - 7.0
 
 matrix:
-  include:
+  exclude:
     - php: 5.3
-      env: COVERALLS_VERSION="~1.0"
+      env: COVERALLS_VERSION="dev-master"
     - php: 5.4
-      env: COVERALLS_VERSION="~1.0"
+      env: COVERALLS_VERSION="dev-master"
     - php: 5.5
-      env: COVERALLS_VERSION="dev-master"
+      env: COVERALLS_VERSION="~1.0"
     - php: 5.6
-      env: COVERALLS_VERSION="dev-master"
+      env: COVERALLS_VERSION="~1.0"
     - php: 7.0
-      env: COVERALLS_VERSION="dev-master"
+      env: COVERALLS_VERSION="~1.0"
 
 before_script:
   - phpenv rehash
