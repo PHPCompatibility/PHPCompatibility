@@ -7,7 +7,7 @@
     "squizlabs/php_codesniffer" : "~2.0"
   },
   "require-dev" : {
-    "satooshi/php-coveralls" : "~1.0"
+    "satooshi/php-coveralls" : "dev-master"
   },
   "license" : "LGPL",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
