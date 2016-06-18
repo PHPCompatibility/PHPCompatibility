@@ -57,12 +57,14 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff 
             
             $defaultToken = $stackPtr;
             $defaultCount = 0;
-            while ($defaultToken = $phpcsFile->findNext(T_DEFAULT, $defaultToken + 1, $tokens[$stackPtr]['scope_closer'])) {
-                $defaultCount++;
-            }
-            
-            if ($defaultCount > 1) {
-                $phpcsFile->addError('Switch statements can not have multiple default blocks since PHP 7.0', $stackPtr);
+            if (isset($tokens[$stackPtr]['scope_closer'])) {
+                while ($defaultToken = $phpcsFile->findNext(T_DEFAULT, $defaultToken + 1, $tokens[$stackPtr]['scope_closer'])) {
+                    $defaultCount++;
+                }
+                
+                if ($defaultCount > 1) {
+                    $phpcsFile->addError('Switch statements can not have multiple default blocks since PHP 7.0', $stackPtr);
+                }
             }
         }
     }//end process()

@@ -2,12 +2,9 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewFunctionsSniff.
  *
- * PHP version 5.5
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
  */
 
 /**
@@ -16,8 +13,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
- * @copyright 2013 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sniff
 {
@@ -1089,7 +1084,94 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
                                             '5.4' => false,
                                             '5.5' => true
                                         ),
-
+                                        'Closure::call' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'random_bytes' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'random_int' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'error_clear_last' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'Generator::getReturn' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'gmp_random_seed' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'intdiv' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'preg_replace_callback_array' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'gc_mem_caches' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'get_resources' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'posix_setrlimit' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ReflectionParameter::getType' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        '' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ReflectionParameter::hasType' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ReflectionFunctionAbstract::getReturnType' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ReflectionFunctionAbstract::hasReturnType' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ZipArchive::setCompressionIndex' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'ZipArchive::setCompressionName' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'inflate_add' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'deflate_add' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'inflate_init' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
+                                        'deflate_init' => array(
+                                            '5.6' => false,
+                                            '7.0' => true
+                                        ),
                                     );
 
 
