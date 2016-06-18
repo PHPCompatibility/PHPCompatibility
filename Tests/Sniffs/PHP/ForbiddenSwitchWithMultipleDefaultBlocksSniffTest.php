@@ -13,7 +13,7 @@
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenParenthesisAroundFunctionParametersSniffTest extends BaseSniffTest
+class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
 {
     /**
      * testSettingTestVersion
