@@ -29,3 +29,17 @@ catch
 try {} catch(Exception $e) {}
 try {
 } catch (Exception $e) {}
+bool();
+int();
+float();
+string();
+NULL();
+null();
+TRUE();
+true();
+FALSE();
+false();
+resource();
+object();
+mixed();
+numeric();

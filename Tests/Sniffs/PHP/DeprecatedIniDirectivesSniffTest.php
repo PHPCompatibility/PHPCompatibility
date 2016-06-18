@@ -263,18 +263,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     }
 
     /**
-     * Test always_populate_raw_post_data
-     *
-     * @return void
-     */
-    public function testAlwaysPopulateRawPostData()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php');
-    
-        $this->assertWarning($file, 60, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6");
-    }
-
-    /**
      * Test iconv.input_encoding setting
      *
      * @return void
@@ -353,6 +341,57 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, 78, "INI directive 'mbstring.internal_encoding' is deprecated from PHP 5.6");
     }
     
+    /**
+     * Test always_populate_raw_post_data setting
+     *
+     * @return void
+     */
+    public function testAlwaysPopulateRawPostData()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.5');
+        $this->assertNoViolation($file, 80);
+        $this->assertNoViolation($file, 81);
+
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.6');
+        $this->assertWarning($file, 80, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6");
+        $this->assertWarning($file, 81, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6");
+    
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
+        $this->assertError($file, 80, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+        $this->assertError($file, 81, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+    }
+
+    /**
+     * Test asp_tags setting
+     *
+     * @return void
+     */
+    public function testAsptags()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.6');
+        $this->assertNoViolation($file, 83);
+        $this->assertNoViolation($file, 84);
+    
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
+        $this->assertError($file, 83, "INI directive 'asp_tags' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+        $this->assertError($file, 84, "INI directive 'asp_tags' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+    }
+    
+    /**
+     * Test xsl.security_prefs  setting
+     *
+     * @return void
+     */
+    public function testXslSecurityPrefs()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.6');
+        $this->assertNoViolation($file, 86);
+        $this->assertNoViolation($file, 87);
+    
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
+        $this->assertError($file, 86, "INI directive 'xsl.security_prefs' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+        $this->assertError($file, 87, "INI directive 'xsl.security_prefs' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+    }
     
     
     public function testSettingTestVersion()

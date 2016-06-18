@@ -57,3 +57,14 @@ class Foobar extends __FILE__ {}
 class Foobar extends __FUNCTION__ {}
 class Foobar extends __METHOD__ {}
 class Foobar extends __NAMESPACE__ {}
+class Foobar extends bool {}
+class Foobar extends int {}
+class Foobar extends float {}
+class Foobar extends string {}
+class Foobar extends null {}
+class Foobar extends true {}
+class Foobar extends false {}
+class Foobar extends resource {}
+class Foobar extends object {}
+class Foobar extends mixed {}
+class Foobar extends numeric {}

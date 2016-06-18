@@ -35,7 +35,7 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
     }
 
     /**
-     * Test declare parameter by reference
+     * TestAbstract
      *
      * @return void
      */
@@ -93,6 +93,7 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      */
     public function testFinally()
     {
+        $this->assertError($this->_sniffFile, 11, "'finally' is a reserved keyword introduced in PHP version 5.5 and cannot be invoked as a function");
     }
 
     /**
@@ -215,6 +216,119 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
         $this->assertError($this->_sniffFile, 23, "'try' is a reserved keyword introduced in PHP version 5.0 and cannot be invoked as a function");
     }
 
+    /**
+     * testBool
+     *
+     * @return void
+     */
+    public function testBool()
+    {
+        $this->assertError($this->_sniffFile, 32, "'bool' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+
+    /**
+     * testInt
+     *
+     * @return void
+     */
+    public function testInt()
+    {
+        $this->assertError($this->_sniffFile, 33, "'int' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testFloat
+     *
+     * @return void
+     */
+    public function testFloat()
+    {
+        $this->assertError($this->_sniffFile, 34, "'float' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testString
+     *
+     * @return void
+     */
+    public function testString()
+    {
+        $this->assertError($this->_sniffFile, 35, "'string' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testNull
+     *
+     * @return void
+     */
+    public function testNull()
+    {
+        $this->assertError($this->_sniffFile, 36, "'null' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+        $this->assertError($this->_sniffFile, 37, "'null' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testTrue
+     *
+     * @return void
+     */
+    public function testTrue()
+    {
+        $this->assertError($this->_sniffFile, 38, "'true' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+        $this->assertError($this->_sniffFile, 39, "'true' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testFalse
+     *
+     * @return void
+     */
+    public function testFalse()
+    {
+        $this->assertError($this->_sniffFile, 40, "'false' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+        $this->assertError($this->_sniffFile, 41, "'false' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testResource
+     *
+     * @return void
+     */
+    public function testResource()
+    {
+        $this->assertError($this->_sniffFile, 42, "'resource' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testObject
+     *
+     * @return void
+     */
+    public function testObject()
+    {
+        $this->assertError($this->_sniffFile, 43, "'object' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
+    /**
+     * testMixed
+     *
+     * @return void
+     */
+    public function testMixed()
+    {
+        $this->assertError($this->_sniffFile, 44, "'mixed' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+
+    /**
+     * testNumberic
+     *
+     * @return void
+     */
+    public function testNumeric()
+    {
+        $this->assertError($this->_sniffFile, 45, "'numeric' is a reserved keyword introduced in PHP version 7.0 and cannot be invoked as a function");
+    }
+    
     /**
      * Verify that checking for a specific version works
      *

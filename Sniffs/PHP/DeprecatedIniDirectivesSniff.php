@@ -121,6 +121,16 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         'mbstring.internal_encoding' => array(
             '5.6' => false
         ),
+        'always_populate_raw_post_data' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'asp_tags' => array(
+            '7.0' => true
+        ),
+        'xsl.security_prefs' => array(
+            '7.0' => true
+        )
     );
 
     /**

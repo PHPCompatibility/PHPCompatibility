@@ -2,12 +2,11 @@
 /**
  * PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff.
  *
- * PHP version 5.6
+ * PHP version 7.0
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2014 Cu.be Solutions bvba
  */
 
 /**
@@ -16,8 +15,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.1.0
- * @copyright 2014 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_Sniff
 {
@@ -43,6 +40,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'call_user_func'
                                         ),
                                         'call_user_method_array' => array(
@@ -50,6 +48,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'call_user_func_array'
                                         ),
                                         'define_syslog_variables' => array(
@@ -94,6 +93,34 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.6' => false,
                                             'alternative' => 'preg_replace'
                                         ),
+                                        'imagepsbbox' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepsencodefont' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepsextendfont' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepsfreefont' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepsloadfont' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepsslantfont' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
+                                        'imagepstext' => array(
+                                            '7.0' => true,
+                                            'alternative' => null
+                                        ),
                                         'import_request_variables' => array(
                                             '5.4' => true,
                                             '5.5' => true,
@@ -104,6 +131,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'mcrypt_generic_deinit'
                                         ),
                                         'mysql_db_query' => array(
@@ -173,6 +201,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'session_register' => array(
@@ -198,9 +227,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                         ),
                                         'set_magic_quotes_runtime' => array(
                                             '5.3' => false,
-                                            '5.4' => true,
-                                            '5.5' => true,
-                                            '5.6' => true,
+                                            '5.4' => false,
+                                            '5.5' => false,
+                                            '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'set_socket_blocking' => array(
@@ -208,6 +238,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'stream_set_blocking'
                                         ),
                                         'split' => array(
@@ -254,26 +285,31 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                         'datefmt_set_timezone_id' => array(
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'datefmt_set_timezone'
                                         ),
                                         'mcrypt_ecb' => array(
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'mcrypt_cbc' => array(
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'mcrypt_cfb' => array(
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'mcrypt_ofb' => array(
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'ocibindbyname' => array(

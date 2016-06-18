@@ -22,9 +22,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testCallUserMethod()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 3, 'The use of function call_user_method is discouraged from PHP version 5.3; use call_user_func instead');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 3, 'The use of function call_user_method is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use call_user_func instead');
     }
 
     /**
@@ -34,9 +36,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testCallUserMethodArray()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 4, 'The use of function call_user_method_array is discouraged from PHP version 5.3; use call_user_func_array instead');
+
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 4, 'The use of function call_user_method_array is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use call_user_func_array instead');
     }
 
     /**
@@ -129,9 +133,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMcryptGenericEnd()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 12, 'The use of function mcrypt_generic_end is discouraged from PHP version 5.4; use mcrypt_generic_deinit instead');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 12, 'The use of function mcrypt_generic_end is discouraged from PHP version 5.4 and forbidden from PHP version 7.0; use mcrypt_generic_deinit instead');
     }
 
     /**
@@ -261,9 +267,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMagicQuotesRuntime()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 23, 'The use of function magic_quotes_runtime is discouraged from PHP version 5.3');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 23, 'The use of function magic_quotes_runtime is discouraged from PHP version 5.3 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -309,9 +317,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testSetMagicQuotesRuntime()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 27, 'The use of function set_magic_quotes_runtime is discouraged from PHP version 5.3 and forbidden from PHP version 5.4');
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
+        $this->assertWarning($file, 27, 'The use of function set_magic_quotes_runtime is discouraged from PHP version 5.3');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 27, 'The use of function set_magic_quotes_runtime is discouraged from PHP version 5.3 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -321,9 +331,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testSetSocketBlocking()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 28, 'The use of function set_socket_blocking is discouraged from PHP version 5.3; use stream_set_blocking instead');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 28, 'The use of function set_socket_blocking is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use stream_set_blocking instead');
     }
 
     /**
@@ -417,9 +429,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testDateFmtSetTimezone()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 36, 'The use of function datefmt_set_timezone_id is discouraged from PHP version 5.5; use datefmt_set_timezone instead');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 36, 'The use of function datefmt_set_timezone_id is discouraged from PHP version 5.5 and forbidden from PHP version 7.0; use datefmt_set_timezone instead');
     }
 
     /**
@@ -429,9 +443,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMcryptEcb()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 37, 'The use of function mcrypt_ecb is discouraged from PHP version 5.5');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 37, 'The use of function mcrypt_ecb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -441,9 +457,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMcryptCbc()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 38, 'The use of function mcrypt_cbc is discouraged from PHP version 5.5');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 38, 'The use of function mcrypt_cbc is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -453,9 +471,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMcryptCfb()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 39, 'The use of function mcrypt_cfb is discouraged from PHP version 5.5');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 39, 'The use of function mcrypt_cfb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -465,9 +485,11 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testMcryptOfb()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
         $this->assertWarning($file, 40, 'The use of function mcrypt_ofb is discouraged from PHP version 5.5');
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 40, 'The use of function mcrypt_ofb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
     }
 
     /**
@@ -1056,6 +1078,32 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
 
         $this->assertWarning($file, 89, 'The use of function ociwritetemporarylob is discouraged from PHP version 5.4; use OCI-Lob::writeTemporary instead');
+    }
+
+    /**
+     * GD Type 1 PostScript functions
+     *
+     * @return void
+     */
+    public function testGDType1()
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
+        $this->assertNoViolation($file, 90);
+        $this->assertNoViolation($file, 91);
+        $this->assertNoViolation($file, 92);
+        $this->assertNoViolation($file, 93);
+        $this->assertNoViolation($file, 94);
+        $this->assertNoViolation($file, 95);
+        $this->assertNoViolation($file, 96);
+        
+        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
+        $this->assertError($file, 90, 'The use of function imagepsbbox is forbidden from PHP version 7.0');
+        $this->assertError($file, 91, 'The use of function imagepsencodefont is forbidden from PHP version 7.0');
+        $this->assertError($file, 92, 'The use of function imagepsextendfont is forbidden from PHP version 7.0');
+        $this->assertError($file, 93, 'The use of function imagepsfreefont is forbidden from PHP version 7.0');
+        $this->assertError($file, 94, 'The use of function imagepsloadfont is forbidden from PHP version 7.0');
+        $this->assertError($file, 95, 'The use of function imagepsslantfont is forbidden from PHP version 7.0');
+        $this->assertError($file, 96, 'The use of function imagepstext is forbidden from PHP version 7.0');
     }
 
     /**

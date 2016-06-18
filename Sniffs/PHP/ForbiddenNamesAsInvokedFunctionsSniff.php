@@ -56,6 +56,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         T_THROW => '5.0',
         T_TRAIT => '5.4',
         T_TRY => '5.0',
+        T_NULL => '7.0',
+        T_TRUE => '7.0',
+        T_FALSE => '7.0'
     );
 
     /**
@@ -67,6 +70,14 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         'callable' => '5.4',
         'insteadof' => '5.4',
         'trait' => '5.4',
+        'bool' => '7.0',
+        'int' => '7.0',
+        'float' => '7.0',
+        'string' => '7.0',
+        'resource' => '7.0',
+        'object' => '7.0',
+        'mixed' => '7.0',
+        'numeric' => '7.0'
     );
 
     /**
@@ -146,7 +157,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
             if ($this->supportsAbove($version)) {
                 $error = sprintf(
                     "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)",
-                    $content,
+                    strtolower($content),
                     $version,
                     $tokens[$stackPtr]['type']
                 );
