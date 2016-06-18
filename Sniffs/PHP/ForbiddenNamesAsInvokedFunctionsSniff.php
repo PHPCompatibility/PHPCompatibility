@@ -77,7 +77,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         'resource' => '7.0',
         'object' => '7.0',
         'mixed' => '7.0',
-        'numeric' => '7.0'
+        'numeric' => '7.0',
+        'finally' => '5.5'
     );
 
     /**
