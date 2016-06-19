@@ -64,7 +64,11 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
      */
     public function register()
     {
-        return array(T_RETURN_TYPE);
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+            return array(T_RETURN_TYPE);
+        } else {
+            return array();
+        }
     }//end register()
 
 
