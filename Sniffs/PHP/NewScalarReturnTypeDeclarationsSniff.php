@@ -1,60 +1,50 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff.
- *
- * PHP version 5.5
+ * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff.
+ * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
- * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends PHPCompatibility_Sniff
 {
 
     /**
-     * A list of new language constructs, not present in older versions.
+     * A list of new types
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newConstructs = array(
-                                        'T_NS_SEPARATOR' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => 'the \ operator (for namespaces)'
-                                        ),
-                                        'T_POW' => array(
-                                            '5.5' => false,
-                                            '5.6' => true,
-                                            'description' => 'power operator (**)'
-                                        ),
-                                        'T_POW_EQUAL' => array(
-                                            '5.5' => false,
-                                            '5.6' => true,
-                                            'description' => 'power assignment operator (**=)'
-                                        ),
-                                        'T_SPACESHIP' => array(
+    protected $newTypes = array (
+                                        'int' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'spaceship operator (<=>)'
+                                            'description' => 'int return type'
                                         ),
-                                        'T_COALESCE' => array(
+                                        'float' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'null coalescing operator (??)'
+                                            'description' => 'float return type'
+                                        ),
+                                        'bool' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                            'description' => 'bool return type'
+                                        ),
+                                        'string' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                            'description' => 'string return type'
                                         ),
                                     );
 
@@ -74,14 +64,7 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      */
     public function register()
     {
-        $tokens = array();
-        foreach ($this->newConstructs as $token => $versions) {
-            if (defined($token)) {
-                $tokens[] = constant($token);
-            }
-        }
-        return $tokens;
-
+        return array(T_RETURN_TYPE);
     }//end register()
 
 
@@ -97,30 +80,34 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
+
+        if (in_array($tokens[$stackPtr]['content'], array_keys($this->newTypes))) {
+            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+        }
     }//end process()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Generates the error or wanrning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
-     * @param string               $function  The name of the function.
+     * @param string               $typeName  The type.
+     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $keywordName, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $typeName, $pattern=null)
     {
         if ($pattern === null) {
-            $pattern = $keywordName;
+            $pattern = $typeName;
         }
 
         $error = '';
 
         $this->error = false;
-        foreach ($this->newConstructs[$pattern] as $version => $present) {
+        foreach ($this->newTypes[$pattern] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $this->error = true;
@@ -129,7 +116,7 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
             }
         }
         if (strlen($error) > 0) {
-            $error = $this->newConstructs[$keywordName]['description'] . ' is ' . $error;
+            $error = $this->newTypes[$typeName]['description'] . ' is ' . $error;
 
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
