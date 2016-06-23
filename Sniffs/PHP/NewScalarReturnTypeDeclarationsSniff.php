@@ -84,7 +84,6 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-
         if (in_array($tokens[$stackPtr]['content'], array_keys($this->newTypes))) {
             $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
         }
