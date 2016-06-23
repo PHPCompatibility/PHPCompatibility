@@ -33,13 +33,9 @@ ming();
 
 mnogosearch();
 
-mssql_bind();
-
 msql();
 
 mysql_connect();
-
-ereg();
 
 ncurses();
 
@@ -62,3 +58,8 @@ mnogosearch;
 function pfpro() {}
 $ok = new Sybase();
 $someObject->ming();
+
+mssql_bind();
+
+ereg();
+

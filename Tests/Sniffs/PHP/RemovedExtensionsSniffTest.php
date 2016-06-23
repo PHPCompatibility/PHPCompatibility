@@ -292,6 +292,26 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     }
 
     /**
+     * testErege
+     *
+     * @return void
+     */
+    public function testEreg()
+    {
+        $this->assertError($this->_sniffFile, 64, "Extension 'ereg' is removed since PHP 7.0");
+    }
+    
+    /**
+     * testMssql
+     *
+     * @return void
+     */
+    public function testMssql()
+    {
+        $this->assertError($this->_sniffFile, 62, "Extension 'mssql' is removed since PHP 7.0");
+    }
+    
+    /**
      * testNotAFunctionCall
      *
      * @return void
