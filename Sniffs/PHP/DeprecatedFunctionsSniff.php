@@ -127,6 +127,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.6' => false,
                                             'alternative' => null
                                         ),
+                                        'ldap_sort' => array(
+                                            '7.0' => false,
+                                        ),
                                         'mcrypt_generic_end' => array(
                                             '5.4' => false,
                                             '5.5' => false,
