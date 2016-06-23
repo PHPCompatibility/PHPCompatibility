@@ -31,21 +31,6 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
                                             '7.0' => true,
                                             'description' => 'Spaceship operator'
                                         ),
-                                        'float' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                            'description' => 'float return type'
-                                        ),
-                                        'bool' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                            'description' => 'bool return type'
-                                        ),
-                                        'string' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                            'description' => 'string return type'
-                                        ),
                                     );
 
 
@@ -64,7 +49,13 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
      */
     public function register()
     {
-        return array(T_RETURN_TYPE);
+        $tokens = array();
+        foreach ($this->newOperators as $token => $versions) {
+            if (defined($token)) {
+                $tokens[] = constant($token);
+            }
+        }
+        return $tokens;
     }//end register()
 
 
@@ -80,9 +71,22 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-
-        if (in_array($tokens[$stackPtr]['content'], array_keys($this->newTypes))) {
-            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+        
+        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        
+        // Skip attempts to use keywords as functions or class names - the former
+        // will be reported by FrobiddenNamesAsInvokedFunctionsSniff, whilst the
+        // latter doesn't yet have an appropriate sniff.
+        // Either type will result in false-positives when targetting lower versions
+        // of PHP where the name was not reserved, unless we explicitly check for
+        // them.
+        if (
+            $tokens[$nextToken]['type'] != 'T_OPEN_PARENTHESIS'
+            &&
+            $tokens[$prevToken]['type'] != 'T_CLASS'
+        ) {
+            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
         }
     }//end process()
 
@@ -98,16 +102,16 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $operatorName, $pattern=null)
     {
         if ($pattern === null) {
-            $pattern = $typeName;
+            $pattern = $operatorName;
         }
-
+        
         $error = '';
 
         $this->error = false;
-        foreach ($this->newTypes[$pattern] as $version => $present) {
+        foreach ($this->newOperators[$pattern] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $this->error = true;
@@ -116,7 +120,7 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
             }
         }
         if (strlen($error) > 0) {
-            $error = $this->newTypes[$typeName]['description'] . ' is ' . $error;
+            $error = $this->newOperators[$operatorName]['description'] . ' is ' . $error;
 
             if ($this->error === true) {
                 $phpcsFile->addError($error, $stackPtr);
@@ -124,7 +128,6 @@ class PHPCompatibility_Sniffs_PHP_NewOperatorsSniff extends PHPCompatibility_Sni
                 $phpcsFile->addWarning($error, $stackPtr);
             }
         }
-
     }//end addError()
 
 }//end class

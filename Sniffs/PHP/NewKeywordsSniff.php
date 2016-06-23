@@ -184,7 +184,6 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                 $phpcsFile->addWarning($error, $stackPtr);
             }
         }
-
     }//end addError()
 
 }//end class
