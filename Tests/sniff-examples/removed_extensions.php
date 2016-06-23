@@ -33,9 +33,13 @@ ming();
 
 mnogosearch();
 
+mssql_bind();
+
 msql();
 
 mysql_connect();
+
+ereg();
 
 ncurses();
 
