@@ -1089,7 +1089,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
     
-        $this->assertWarning($file, 97, 'The use of function ldap_sort is forbidden from PHP version 7.0');
+        $this->assertWarning($file, 97, 'The use of function ldap_sort is discouraged from PHP version 7.0');
     }
     
     /**
