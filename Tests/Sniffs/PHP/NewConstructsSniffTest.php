@@ -66,9 +66,6 @@ class NewConstructsSniffTest extends BaseSniffTest
      */
     public function testSpaceship()
     {
-        $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.6');
-        $this->assertError($file, 12, "spaceship operator (<=>) is not present in PHP version 5.6 or earlier");
-        
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '7.0');
         $this->assertNoViolation($file, 12);
     }
@@ -80,10 +77,6 @@ class NewConstructsSniffTest extends BaseSniffTest
      */
     public function testCoalescing()
     {
-        $file = $this->sniffFile('sniff-examples/new_constructs.php', '5.6');
-        $this->assertError($file, 8, "null coalescing operator (??) is not present in PHP version 5.6 or earlier");
-        $this->assertError($file, 10, "null coalescing operator (??) is not present in PHP version 5.6 or earlier");
-        
         $file = $this->sniffFile('sniff-examples/new_constructs.php', '7.0');
         $this->assertNoViolation($file, 8);
         $this->assertNoViolation($file, 10);
