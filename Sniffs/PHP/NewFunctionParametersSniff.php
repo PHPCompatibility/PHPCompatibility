@@ -41,6 +41,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                                 '7.0' => true
                                             ),
                                         ),
+                                        'unserialize' => array(
+                                            1 => array(
+                                                'name' => 'options',
+                                                '5.6' => false,
+                                                '7.0' => true
+                                            ),
+                                        ),
                                     );
 
 

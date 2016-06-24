@@ -25,8 +25,21 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
         $this->assertError($file, 3, "The function dirname does not have a parameter depth in PHP version 5.6 or earlier");
 
-        // Verify that sniff doesn't throw an error in version 5.2
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
         $this->assertNoViolation($file, 3);
+    }
+    
+    /**
+     * Test unserialize() options parameter
+     *
+     * @return void
+     */
+    public function testUnserializeOptions()
+    {
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
+        $this->assertError($file, 5, "The function unserialize does not have a parameter options in PHP version 5.6 or earlier");
+    
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
+        $this->assertNoViolation($file, 5);
     }
 }
