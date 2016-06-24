@@ -30,7 +30,7 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
         if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
             return array(T_NEW);
         } else {
-            return false;
+            return array();
         }
     }//end register()
 
