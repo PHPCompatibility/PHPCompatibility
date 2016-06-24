@@ -95,7 +95,11 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
                     $modifiers = substr($regex, $regexEndPos + 1);
 
                     if (strpos($modifiers, "e") !== false) {
-                        $error = 'preg_replace() - /e modifier is deprecated in PHP 5.5';
+                        if ($this->supportsAbove('7.0')) {
+                            $error = 'preg_replace() - /e modifier is forbidden in PHP 7.0';
+                        } else {
+                            $error = 'preg_replace() - /e modifier is deprecated in PHP 5.5';
+                        }
                         $phpcsFile->addError($error, $stackPtr);
                     }
                 }
