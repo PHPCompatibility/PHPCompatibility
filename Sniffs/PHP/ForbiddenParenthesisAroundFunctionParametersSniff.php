@@ -96,8 +96,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenParenthesisAroundFunctionParametersSn
             $nextSeparator = $openBracket;
             while (($nextComma = $phpcsFile->findNext(T_COMMA, ($nextSeparator + 1), $closeBracket)) !== false) {
                 // Find every argument along the way, check if there are parenthesis around them
-                
-                if ($tokens[$nextSeparator + 1]['code'] == T_OPEN_PARENTHESIS && $tokens[$nextComma - 1]['code'] == T_CLOSE_PARENTHESIS) {
+
+                if ($tokens[$nextSeparator + 1]['type'] == 'T_OPEN_PARENTHESIS' && $tokens[$nextComma - 1]['type'] == 'T_CLOSE_PARENTHESIS' && $tokens[$nextSeparator + 3]['type'] != 'T_BITWISE_AND' && $tokens[$nextSeparator + 4]['type'] != 'T_BITWISE_AND' && $tokens[$nextSeparator + 5]['type'] != 'T_BITWISE_AND') {
                     $error = 'Parentheses around function parameters throws warning in PHP 7.0';
                     $phpcsFile->addWarning($error, $nextSeparator + 1);
                 }
@@ -105,12 +105,14 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenParenthesisAroundFunctionParametersSn
                 $nextSeparator = $nextComma;
             }//end while
             
-            $nextOpen = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $nextSeparator + 1, $closeBracket);
-            if ($nextOpen !== false) {
-                if ($tokens[$nextOpen]['code'] == T_OPEN_PARENTHESIS && $tokens[$closeBracket - 1]['code'] == T_CLOSE_PARENTHESIS) {
-                    $error = 'Parentheses around function parameters throws warning in PHP 7.0';
-                    $phpcsFile->addWarning($error, $nextSeparator + 1);
-                }
+            if ($tokens[$nextSeparator + 1]['type'] == 'T_WHITESPACE') {
+                $nextSeparator++;
+            }
+            
+            $nextOpen = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $nextSeparator + 1, $nextSeparator + 3);
+            if ($nextOpen !== false && $nextOpen <= $nextSeparator + 1 && $tokens[$nextSeparator + 3]['type'] != 'T_BITWISE_AND' && $tokens[$nextSeparator + 4]['type'] != 'T_BITWISE_AND' && $tokens[$nextSeparator + 5]['type'] != 'T_BITWISE_AND') {
+                $error = 'Parentheses around function parameters throws warning in PHP 7.0';
+                $phpcsFile->addWarning($error, $nextSeparator + 1);
             }
         }
     }//end process()

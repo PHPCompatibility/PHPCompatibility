@@ -42,4 +42,18 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
         $this->assertNoViolation($file, 5);
     }
+
+    /**
+     * Test session_start() options parameter
+     *
+     * @return void
+     */
+    public function testSessionStartOptions()
+    {
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
+        $this->assertError($file, 7, "The function session_start does not have a parameter options in PHP version 5.6 or earlier");
+    
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
+        $this->assertNoViolation($file, 7);
+    }
 }

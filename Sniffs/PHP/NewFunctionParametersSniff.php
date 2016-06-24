@@ -48,6 +48,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                                 '7.0' => true
                                             ),
                                         ),
+                                        'session_start' => array(
+                                            0 => array(
+                                                'name' => 'options',
+                                                '5.6' => false,
+                                                '7.0' => true
+                                            )
+                                        )
                                     );
 
 
