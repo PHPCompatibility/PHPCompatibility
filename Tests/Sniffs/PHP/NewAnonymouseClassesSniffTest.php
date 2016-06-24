@@ -22,10 +22,12 @@ class NewAnonymousClassesSniffTest extends BaseSniffTest
      */
     public function testAnonymousClasses()
     {
-        $file = $this->sniffFile('sniff-examples/new_anonymous_classes.php', '5.6');
-        $this->assertError($file, 4, "Anonymous classes are not supported in PHP 5.6 or earlier");
-
-        $file = $this->sniffFile('sniff-examples/new_anonymous_classes.php', '7.0');
-        $this->assertNoViolation($file, 4);
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+            $file = $this->sniffFile('sniff-examples/new_anonymous_classes.php', '5.6');
+            $this->assertError($file, 4, "Anonymous classes are not supported in PHP 5.6 or earlier");
+    
+            $file = $this->sniffFile('sniff-examples/new_anonymous_classes.php', '7.0');
+            $this->assertNoViolation($file, 4);
+        }
     }
 }
