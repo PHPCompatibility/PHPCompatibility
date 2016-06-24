@@ -1182,6 +1182,12 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      */
     public $error = false;
 
+    /**
+     * 
+     * @var unknown
+     */
+    private $forbiddenFunctionNames;
+    
 
     /**
      * Returns an array of tokens this test wants to listen for.
