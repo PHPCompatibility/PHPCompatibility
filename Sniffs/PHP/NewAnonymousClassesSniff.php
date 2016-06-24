@@ -27,7 +27,11 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
      */
     public function register()
     {
-        return array(T_NEW);
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+            return array(T_NEW);
+        } else {
+            return false;
+        }
     }//end register()
 
 
@@ -43,7 +47,6 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        
         $whitespace = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, $stackPtr + 2);
         $class = $phpcsFile->findNext(T_ANON_CLASS, $stackPtr + 2, $stackPtr + 3);
         if ($whitespace == false || $class == false) {
@@ -55,7 +58,6 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
         } else {
             $phpcsFile->addError('Anonymous classes are not supported in PHP 5.6 or earlier', $stackPtr);
         }
-
     }//end process()
 
 

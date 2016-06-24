@@ -25,7 +25,11 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
      */
     public function register()
     {
-        return array(T_OPEN_USE_GROUP);
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+            return array(T_OPEN_USE_GROUP);
+        } else {
+            return array();
+        }
     }//end register()
 
 
