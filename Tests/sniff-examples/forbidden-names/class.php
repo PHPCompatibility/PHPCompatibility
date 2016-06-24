@@ -32,7 +32,6 @@ class function{}
 class global{}
 class goto{}
 class if{}
-class implements{}
 class interface{}
 class instanceof{}
 class insteadof{}

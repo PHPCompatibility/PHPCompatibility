@@ -170,6 +170,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
+        if (isset($tokens[$stackPtr - 2]) && $tokens[$stackPtr - 2]['type'] == 'T_NEW' && $tokens[$stackPtr - 1]['type'] == 'T_WHITESPACE' && $tokens[$stackPtr]['type'] == 'T_ANON_CLASS') {
+            return;
+        }
+        
         if ($this->supportsAbove($this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
             $phpcsFile->addError($error, $stackPtr);
