@@ -39,14 +39,24 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
         $className = $tokens[$classNamePos]['content'];
 
         $nextFunc = $stackPtr;
+        $newConstructorFound = false;
+        $oldConstructorFound = false;
         while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
             $funcNamePos = $phpcsFile->findNext(T_STRING, $nextFunc);
+            
+            if ($tokens[$funcNamePos]['content'] === '__construct') {
+                $newConstructorFound = true;
+            }
 
             if ($this->supportsAbove('7.0')) {
                 if ($funcNamePos !== false && $tokens[$funcNamePos]['content'] === $className) {
-                    $phpcsFile->addError('Deprecated PHP4 style constructor are not supported since PHP7', $funcNamePos);
+                    $oldConstructorFound = true;
                 }
             }
+        }
+        
+        if ($newConstructorFound === false && $oldConstructorFound === true) {
+            $phpcsFile->addError('Deprecated PHP4 style constructor are not supported since PHP7', $funcNamePos);
         }
     }
 }
