@@ -121,6 +121,16 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         'mbstring.internal_encoding' => array(
             '5.6' => false
         ),
+        'always_populate_raw_post_data' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'asp_tags' => array(
+            '7.0' => true
+        ),
+        'xsl.security_prefs' => array(
+            '7.0' => true
+        )
     );
 
     /**
@@ -146,6 +156,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+        
+        $isError = false;
 
         $ignore = array(
                    T_DOUBLE_COLON,
@@ -175,8 +187,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         {
             if ($this->supportsAbove($version)) {
                 if ($forbidden === true) {
+                    $isError = true;
                     $error .= " forbidden";
                 } else {
+                    $isError = false;
                     $error .= " deprecated";
                 }
                 $error .= " from PHP " . $version . " and";
@@ -187,7 +201,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
 
-            $phpcsFile->addWarning($error, $stackPtr);
+            if ($isError === true) {
+                $phpcsFile->addError($error, $stackPtr);
+            } else {
+                $phpcsFile->addWarning($error, $stackPtr);
+            }
         }
 
     }//end process()

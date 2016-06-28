@@ -89,6 +89,17 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         '__function__' => 'all',
         '__method__' => 'all',
         '__namespace__' => '5.3',
+        'bool' => '7.0',
+        'int' => '7.0',
+        'float' => '7.0',
+        'string' => '7.0',
+        'null' => '7.0',
+        'true' => '7.0',
+        'false' => '7.0',
+        'resource' => '7.0',
+        'object' => '7.0',
+        'mixed' => '7.0',
+        'numeric' => '7.0'
     );
 
     /**
@@ -159,6 +170,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
+        if (isset($tokens[$stackPtr - 2]) && $tokens[$stackPtr - 2]['type'] == 'T_NEW' && $tokens[$stackPtr - 1]['type'] == 'T_WHITESPACE' && $tokens[$stackPtr]['type'] == 'T_ANON_CLASS') {
+            return;
+        }
+        
         if ($this->supportsAbove($this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
             $phpcsFile->addError($error, $stackPtr);
@@ -211,5 +226,3 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     }//end process()
 
 }//end class
-
-?>

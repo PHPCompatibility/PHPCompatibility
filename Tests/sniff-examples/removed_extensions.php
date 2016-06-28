@@ -58,3 +58,8 @@ mnogosearch;
 function pfpro() {}
 $ok = new Sybase();
 $someObject->ming();
+
+mssql_bind();
+
+ereg();
+

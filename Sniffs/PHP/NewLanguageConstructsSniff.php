@@ -46,6 +46,16 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
                                             '5.6' => true,
                                             'description' => 'power assignment operator (**=)'
                                         ),
+                                        'T_SPACESHIP' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                            'description' => 'spaceship operator (<=>)'
+                                        ),
+                                        'T_COALESCE' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                            'description' => 'null coalescing operator (??)'
+                                        ),
                                     );
 
 

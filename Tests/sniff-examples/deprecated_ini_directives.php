@@ -76,3 +76,12 @@ $a = ini_get('mbstring.http_output');
 
 ini_set('mbstring.internal_encoding', 'a');
 $a = ini_get('mbstring.internal_encoding');
+
+ini_set('always_populate_raw_post_data', 1);
+$a = ini_get('always_populate_raw_post_data');
+
+ini_set('asp_tags', 1);
+$a = ini_get('asp_tags');
+
+ini_set('xsl.security_prefs', 1);
+$a = ini_get('xsl.security_prefs');
