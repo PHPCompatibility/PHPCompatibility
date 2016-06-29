@@ -42,18 +42,4 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '7.0');
         $this->assertError($file, 5, "The function gmmktime does not have a parameter is_dst in PHP version 7.0 or later");
     }
-
-    /**
-     * Test session_start() options parameter
-     *
-     * @return void
-     */
-    public function testSessionStartOptions()
-    {
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 7, "The function session_start does not have a parameter options in PHP version 5.6 or earlier");
-    
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 7);
-    }
 }
