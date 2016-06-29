@@ -9,7 +9,8 @@ PHP Compatibility Coding Standard for PHP_CodeSniffer
 This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
 
 
-Thanks to [![WPEngine](https://cu.be/img/wpengine.png = 200x)](http://wpengine.com) 
+Thanks to WPEngine for their support on the PHP 7.0 sniffs !
+[![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) 
 
 
 Installation (method 1)
