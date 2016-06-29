@@ -128,4 +128,18 @@ class NewKeywordsSniffTest extends BaseSniffTest
         $this->assertError($file, 9, "\"finally\" keyword (in exception handling) is not present in PHP version 5.4 or earlier");
     }
 
+    /**
+     * testNowdoc
+     *
+     * @requires PHP 5.3
+     * @return void
+     */
+    public function testNowdoc()
+    {
+        $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
+    
+        $this->assertError($file, 37, "nowdoc functionality is not present in PHP version 5.2 or earlier");
+        $this->assertError($file, 41, "nowdoc functionality is not present in PHP version 5.2 or earlier");
+    }
+    
 }
