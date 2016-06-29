@@ -64,7 +64,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                                         'T_USE' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '"use" keyword (for traits/namespaces)'
+                                            'description' => '"use" keyword (for traits/namespaces/anonymous functions)'
                                         ),
                                         'T_TRAIT' => array(
                                             '5.3' => false,

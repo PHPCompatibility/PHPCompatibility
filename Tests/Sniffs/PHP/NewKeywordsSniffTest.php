@@ -99,7 +99,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
 
-        $this->assertError($file, 14, "\"use\" keyword (for traits/namespaces) is not present in PHP version 5.2 or earlier");
+        $this->assertError($file, 14, "\"use\" keyword (for traits/namespaces/anonymous functions) is not present in PHP version 5.2 or earlier");
     }
 
     /**
