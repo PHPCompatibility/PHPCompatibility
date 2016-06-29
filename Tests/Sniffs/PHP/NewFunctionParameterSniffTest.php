@@ -24,9 +24,15 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
         $this->assertError($file, 3, "The function dirname does not have a parameter depth in PHP version 5.6 or earlier");
+        $this->assertNoViolation($file, 5);
+        $this->assertNoViolation($file, 7);
+        $this->assertError($file, 9, "The function dirname does not have a parameter depth in PHP version 5.6 or earlier");
 
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
         $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, 5);
+        $this->assertNoViolation($file, 7);
+        $this->assertNoViolation($file, 9);
     }
     
     /**
@@ -37,10 +43,10 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     public function testUnserializeOptions()
     {
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 5, "The function unserialize does not have a parameter options in PHP version 5.6 or earlier");
+        $this->assertError($file, 11, "The function unserialize does not have a parameter options in PHP version 5.6 or earlier");
     
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 5);
+        $this->assertNoViolation($file, 11);
     }
 
     /**
@@ -51,9 +57,9 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     public function testSessionStartOptions()
     {
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 7, "The function session_start does not have a parameter options in PHP version 5.6 or earlier");
+        $this->assertError($file, 13, "The function session_start does not have a parameter options in PHP version 5.6 or earlier");
     
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 7);
+        $this->assertNoViolation($file, 13);
     }
 }
