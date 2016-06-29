@@ -61,5 +61,6 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     
         $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
         $this->assertNoViolation($file, 13);
+        
     }
 }
