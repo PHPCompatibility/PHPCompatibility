@@ -63,4 +63,20 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, 13);
         
     }
+    
+    /**
+     * Test strstr() before_needle parameter
+     *
+     * @return void
+     */
+    public function testStrstrBeforeNeedleOptions()
+    {
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.2');
+        $this->assertError($file, 15, "The function strstr does not have a parameter before_needle in PHP version 5.2 or earlier");
+    
+        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.3');
+        $this->assertNoViolation($file, 15);
+    
+    }
+    
 }

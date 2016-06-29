@@ -54,6 +54,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                                 '5.6' => false,
                                                 '7.0' => true
                                             )
+                                        ),
+                                        'strstr' => array(
+                                            2 => array(
+                                                'name' => 'before_needle',
+                                                '5.2' => false,
+                                                '5.3' => true
+                                            )
                                         )
                                     );
 
