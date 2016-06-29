@@ -14,7 +14,7 @@ Thank you
 ---------
 Thanks to all contributors for their valuable contributions.
  
-Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for their support on the PHP 7.0 sniffs !
+Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
 Installation (method 1)
@@ -22,10 +22,7 @@ Installation (method 1)
 
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 or later is required for full support, notices may be thrown on older versions).
 * Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
-* Use the coding standard with `phpcs --standard=PHPCompatibility`
-* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
-* You can also specify a range of PHP versions that your code needs to support.  In this situation, compatibility issues that affect any of the PHP versions in that range will be reported:
-`--runtime-set testVersion 5.3-5.5`
+
 
 Installation in Composer project (method 2)
 -------------------------------------------
@@ -43,6 +40,13 @@ Installation in Composer project (method 2)
 * Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.
 * Use the coding standard with `./vendor/bin/phpcs --standard=PHPCompatibility`
 
+
+Using the compatibility sniffs
+------------------------------
+* Use the coding standard with `phpcs --standard=PHPCompatibility`
+* You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
+* You can also specify a range of PHP versions that your code needs to support.  In this situation, compatibility issues that affect any of the PHP versions in that range will be reported:
+`--runtime-set testVersion 5.3-5.5`
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
