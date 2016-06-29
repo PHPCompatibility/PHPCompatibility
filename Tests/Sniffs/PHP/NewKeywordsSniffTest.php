@@ -142,4 +142,17 @@ class NewKeywordsSniffTest extends BaseSniffTest
         $this->assertError($file, 41, "nowdoc functionality is not present in PHP version 5.2 or earlier");
     }
     
+    /**
+     * testConst
+     *
+     * @requires PHP 5.3
+     * @return void
+     */
+    public function testConst()
+    {
+        $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
+    
+        $this->assertError($file, 43, "\"const\" keyword is not present in PHP version 5.2 or earlier");
+    }
+    
 }

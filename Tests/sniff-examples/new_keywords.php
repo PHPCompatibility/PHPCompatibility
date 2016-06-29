@@ -39,3 +39,5 @@ Example of string
 spanning multiple lines
 using nowdoc syntax.
 EOD;
+
+const TEST = 'Hello';

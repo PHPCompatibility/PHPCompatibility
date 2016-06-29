@@ -31,6 +31,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      * @var array(string => array(string => int|string|null))
      */
     protected $newKeywords = array(
+                                        'T_CONST' => array(
+                                            '5.2' => false,
+                                            '5.3' => true,
+                                            'description' => '"const" keyword'
+                                        ),
                                         'T_CALLABLE' => array(
                                             '5.3' => false,
                                             '5.4' => true,
