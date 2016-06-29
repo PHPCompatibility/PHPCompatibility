@@ -12,7 +12,8 @@ It will allow you to analyse your code for compatibility with higher and lower v
 
 Thank you
 ---------
-Thanks to all contributors for their valuable contributions. 
+Thanks to all contributors for their valuable contributions.
+ 
 Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for their support on the PHP 7.0 sniffs !
 
 
