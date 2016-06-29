@@ -154,5 +154,4 @@ class NewKeywordsSniffTest extends BaseSniffTest
     
         $this->assertError($file, 43, "\"const\" keyword is not present in PHP version 5.2 or earlier");
     }
-    
 }

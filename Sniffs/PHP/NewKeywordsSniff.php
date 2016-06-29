@@ -31,6 +31,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      * @var array(string => array(string => int|string|null))
      */
     protected $newKeywords = array(
+                                        'T_HALT_COMPILER' => array(
+                                            '5.0' => false,
+                                            '5.1' => true,
+                                            'description' => '"__halt_compiler" keyword'
+                                        ),
                                         'T_CONST' => array(
                                             '5.2' => false,
                                             '5.3' => true,

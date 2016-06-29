@@ -41,3 +41,9 @@ using nowdoc syntax.
 EOD;
 
 const TEST = 'Hello';
+
+__halt_compiler();
+
+bla();
+const ok = 'a';
+
