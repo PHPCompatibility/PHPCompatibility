@@ -7,10 +7,13 @@ PHP Compatibility Coding Standard for PHP_CodeSniffer
 [![License](https://poser.pugx.org/wimg/php-compatibility/license.png)](https://packagist.org/packages/wimg/php-compatibility)
 
 This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
+It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
 
 
-Thanks to WPEngine for their support on the PHP 7.0 sniffs !
-[![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) 
+Thank you
+---------
+Thanks to all contributors for their valuable contributions. 
+Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for their support on the PHP 7.0 sniffs !
 
 
 Installation (method 1)
