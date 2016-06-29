@@ -130,6 +130,9 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
             $nextComma = $stackPtr + 1;
             $cnt = 0;
             while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
+                if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
+                    continue;
+                }
                 if (isset($this->newFunctionParameters[$function][$cnt])) {
                     $this->addError($phpcsFile, $nextComma, $function, $cnt);
                 }
