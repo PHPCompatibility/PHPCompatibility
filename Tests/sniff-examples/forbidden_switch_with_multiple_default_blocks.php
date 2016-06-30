@@ -28,3 +28,18 @@ switch ($something) {
     default:
         break;
 }
+
+
+switch ($foo) {
+    case 'a':
+        switch ($bar) {
+            case 'b':
+                echo 'b';
+                break;
+            default:
+                echo 'x';
+        }
+        break;
+    default:
+        echo "x\n";
+}

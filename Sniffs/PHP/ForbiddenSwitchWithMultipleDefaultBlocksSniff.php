@@ -58,8 +58,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff 
             $defaultToken = $stackPtr;
             $defaultCount = 0;
             if (isset($tokens[$stackPtr]['scope_closer'])) {
-                while ($defaultToken = $phpcsFile->findNext(T_DEFAULT, $defaultToken + 1, $tokens[$stackPtr]['scope_closer'])) {
-                    $defaultCount++;
+                while ($defaultToken = $phpcsFile->findNext(array(T_DEFAULT, T_SWITCH), $defaultToken + 1, $tokens[$stackPtr]['scope_closer'])) {
+                    if ($tokens[$defaultToken]['type'] == 'T_SWITCH') {
+                        $defaultToken = $tokens[$defaultToken]['scope_closer'];
+                    } else {
+                        $defaultCount++;
+                    }
                 }
                 
                 if ($defaultCount > 1) {
