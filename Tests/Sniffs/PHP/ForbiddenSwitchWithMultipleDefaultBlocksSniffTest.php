@@ -26,11 +26,13 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, 3);
         $this->assertNoViolation($file, 14);
         $this->assertNoViolation($file, 23);
+        $this->assertNoViolation($file, 43);
         
         $file = $this->sniffFile('sniff-examples/forbidden_switch_with_multiple_default_blocks.php', '7.0');
         $this->assertError($file, 3, 'Switch statements can not have multiple default blocks since PHP 7.0');
         $this->assertNoViolation($file, 14);
         $this->assertNoViolation($file, 23);
+        $this->assertNoViolation($file, 43);
     }
 }
 
