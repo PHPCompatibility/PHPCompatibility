@@ -118,10 +118,32 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         
         if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
             $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
+            $openParenthesis = $tokens[$closeParenthesis]['parenthesis_opener'];
+
+            $nextItem = $phpcsFile->findNext(array(), $openParenthesis + 1, $closeParenthesis, true);
+            if (isset($tokens[$nextItem]['nested_parenthesis'])) {
+                $parenthesisCount = count($tokens[$nextItem]['nested_parenthesis']);
+            } else {
+                $parenthesisCount = 0;
+            }
 
             $nextComma = $stackPtr + 1;
             $cnt = 0;
             while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
+                if (
+                    $tokens[$nextComma]['type'] == 'T_COMMA'
+                    &&
+                    isset($tokens[$nextComma]['nested_parenthesis'])
+                    &&
+                    count($tokens[$nextComma]['nested_parenthesis']) != $parenthesisCount
+                ) {
+                    continue;
+                }
+                
+                if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
+                    continue;
+                }
+                
                 if (isset($this->removedFunctionParameters[$function][$cnt])) {
                     $this->addError($phpcsFile, $nextComma, $function, $cnt);
                 }

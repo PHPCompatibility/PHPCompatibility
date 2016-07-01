@@ -24,9 +24,27 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '5.0');
         $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, 8);
+        $this->assertNoViolation($file, 9);
+        $this->assertNoViolation($file, 10);
+        $this->assertNoViolation($file, 11);
+        $this->assertNoViolation($file, 12);
+        $this->assertNoViolation($file, 13);
+        $this->assertNoViolation($file, 14);
+        $this->assertNoViolation($file, 15);
+        $this->assertNoViolation($file, 17);
         
         $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '7.0');
         $this->assertError($file, 3, "The function mktime does not have a parameter is_dst in PHP version 7.0 or later");
+        $this->assertNoViolation($file, 8);
+        $this->assertNoViolation($file, 9);
+        $this->assertNoViolation($file, 10);
+        $this->assertNoViolation($file, 11);
+        $this->assertNoViolation($file, 12);
+        $this->assertNoViolation($file, 13);
+        $this->assertNoViolation($file, 14);
+        $this->assertNoViolation($file, 15);
+        $this->assertNoViolation($file, 17);
     }
     
     /**
