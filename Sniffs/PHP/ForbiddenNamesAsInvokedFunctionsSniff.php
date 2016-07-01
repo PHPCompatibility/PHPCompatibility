@@ -53,7 +53,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         T_PRIVATE => '5.0',
         T_PROTECTED => '5.0',
         T_PUBLIC => '5.0',
-        T_THROW => '5.0',
         T_TRAIT => '5.4',
         T_TRY => '5.0',
         T_NULL => '7.0',

@@ -187,16 +187,6 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testThrow
-     *
-     * @return void
-     */
-    public function testThrow()
-    {
-        $this->assertError($this->_sniffFile, 21, "'throw' is a reserved keyword introduced in PHP version 5.0 and cannot be invoked as a function");
-    }
-
-    /**
      * testTrait
      *
      * @return void
