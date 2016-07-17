@@ -31,9 +31,11 @@ class NewClassesSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/new_classes.php', '5.1');
         $this->assertError($file, 3, "The built-in class DateTime is not present in PHP version 5.1 or earlier");
+        $this->assertError($file, 43, "The built-in class DateTime is not present in PHP version 5.1 or earlier");
 
         $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
         $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, 43);
     }
 
     /**

@@ -233,6 +233,8 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
                     &&
                     $tokens[$stackPtr + 4]['type'] == 'T_OPEN_PARENTHESIS'
                 )
+                ||
+                $tokens[$stackPtr + 3]['type'] == 'T_SEMICOLON'
             )
         ) {
             $className = $tokens[$stackPtr + 2]['content'];

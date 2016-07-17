@@ -39,3 +39,5 @@ $test = new IntlRuleBasedBreakIterator();
 $test = new IntlCodePointBreakIterator();
 
 $okay = new StdClass();
+
+$test = new DateTime;
