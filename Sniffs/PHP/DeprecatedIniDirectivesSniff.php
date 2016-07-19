@@ -187,7 +187,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         {
             if ($this->supportsAbove($version)) {
                 if ($forbidden === true) {
-                    $isError = true;
+                    $isError = ($function != 'ini_get') ?: false;
                     $error .= " forbidden";
                 } else {
                     $isError = false;
