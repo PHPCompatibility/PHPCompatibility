@@ -28,7 +28,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 3, "INI directive 'define_syslog_variables' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 4, "INI directive 'define_syslog_variables' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 4, "INI directive 'define_syslog_variables' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -44,7 +44,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 6, "INI directive 'register_globals' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 7, "INI directive 'register_globals' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 7, "INI directive 'register_globals' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -60,7 +60,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 9, "INI directive 'register_long_arrays' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 10, "INI directive 'register_long_arrays' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 10, "INI directive 'register_long_arrays' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -76,7 +76,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 12, "INI directive 'magic_quotes_gpc' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 13, "INI directive 'magic_quotes_gpc' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 13, "INI directive 'magic_quotes_gpc' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -92,7 +92,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 15, "INI directive 'magic_quotes_runtime' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 16, "INI directive 'magic_quotes_runtime' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 16, "INI directive 'magic_quotes_runtime' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -108,7 +108,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 18, "INI directive 'magic_quotes_sybase' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 19, "INI directive 'magic_quotes_sybase' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 19, "INI directive 'magic_quotes_sybase' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -124,7 +124,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 21, "INI directive 'allow_call_time_pass_reference' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 22, "INI directive 'allow_call_time_pass_reference' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 22, "INI directive 'allow_call_time_pass_reference' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -140,7 +140,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 24, "INI directive 'highlight.bg' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 25, "INI directive 'highlight.bg' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 25, "INI directive 'highlight.bg' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -156,7 +156,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 27, "INI directive 'session.bug_compat_42' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 28, "INI directive 'session.bug_compat_42' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 28, "INI directive 'session.bug_compat_42' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -172,7 +172,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 30, "INI directive 'session.bug_compat_warn' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 31, "INI directive 'session.bug_compat_warn' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 31, "INI directive 'session.bug_compat_warn' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -188,7 +188,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 33, "INI directive 'y2k_compliance' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 34, "INI directive 'y2k_compliance' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 34, "INI directive 'y2k_compliance' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -204,7 +204,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 36, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 37, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 37, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -220,7 +220,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 39, "INI directive 'safe_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 40, "INI directive 'safe_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 40, "INI directive 'safe_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -236,7 +236,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 42, "INI directive 'safe_mode_gid' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 43, "INI directive 'safe_mode_gid' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 43, "INI directive 'safe_mode_gid' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -252,7 +252,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 45, "INI directive 'safe_mode_include_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 46, "INI directive 'safe_mode_include_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 46, "INI directive 'safe_mode_include_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -268,7 +268,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 48, "INI directive 'safe_mode_exec_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 49, "INI directive 'safe_mode_exec_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 49, "INI directive 'safe_mode_exec_dir' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -284,7 +284,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 51, "INI directive 'safe_mode_allowed_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 52, "INI directive 'safe_mode_allowed_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 52, "INI directive 'safe_mode_allowed_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -300,7 +300,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
         $this->assertError($file, 54, "INI directive 'safe_mode_protected_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertError($file, 55, "INI directive 'safe_mode_protected_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertWarning($file, 55, "INI directive 'safe_mode_protected_env_vars' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
     }
 
     /**
@@ -429,7 +429,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
         $this->assertError($file, 80, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
-        $this->assertError($file, 81, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
+        $this->assertWarning($file, 81, "INI directive 'always_populate_raw_post_data' is deprecated from PHP 5.6 and forbidden from PHP 7.0");
     }
 
     /**
@@ -445,7 +445,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
         $this->assertError($file, 83, "INI directive 'asp_tags' is forbidden from PHP 7.0");
-        $this->assertError($file, 84, "INI directive 'asp_tags' is forbidden from PHP 7.0");
+        $this->assertWarning($file, 84, "INI directive 'asp_tags' is forbidden from PHP 7.0");
     }
     
     /**
@@ -461,7 +461,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '7.0');
         $this->assertError($file, 86, "INI directive 'xsl.security_prefs' is forbidden from PHP 7.0");
-        $this->assertError($file, 87, "INI directive 'xsl.security_prefs' is forbidden from PHP 7.0");
+        $this->assertWarning($file, 87, "INI directive 'xsl.security_prefs' is forbidden from PHP 7.0");
     }
     
     
