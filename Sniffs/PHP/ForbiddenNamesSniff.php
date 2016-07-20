@@ -103,6 +103,17 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     );
 
     /**
+     * A list of keywords that can follow use statements.
+     * Mentions since which version it's not allowed
+     *
+     * @var array(string => string)
+     */
+    protected $validUseNames = array(
+        'const' => '5.6',
+        'function' => '5.6',
+    );
+
+    /**
      * If true, an error will be thrown; otherwise a warning.
      *
      * @var bool
@@ -167,6 +178,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     public function processNonString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
         if (in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->invalidNames)) === false) {
+            return;
+        }
+
+        //  PHP 5.6 allows for use const and use function
+        if ($tokens[$stackPtr]['type'] == 'T_USE' && in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->validUseNames)) && $this->supportsAbove($this->validUseNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
             return;
         }
 
