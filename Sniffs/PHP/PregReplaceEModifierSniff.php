@@ -82,6 +82,9 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
 
                 $doublesSeparators = array(
                     '{' => '}',
+                    '[' => ']',
+                    '(' => ')',
+                    '<' => '>',
                 );
 
                 $regex = substr($regex, 1, -1);
