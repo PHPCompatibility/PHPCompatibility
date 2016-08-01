@@ -30,6 +30,16 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
     public $error = false;
 
     /**
+     * Functions to check for.
+     *
+     * @var array
+     */
+    protected $functions = array(
+        'preg_replace' => true,
+        'preg_filter'  => true,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -53,7 +63,10 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
         if ($this->supportsAbove('5.5')) {
             $tokens = $phpcsFile->getTokens();
 
-            if ($tokens[$stackPtr]['content'] == "preg_replace") {
+            if ( isset($this->functions[$tokens[$stackPtr]['content']]) === false ) {
+                return;
+            } else {
+
                 $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
                 if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
@@ -82,6 +95,9 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
 
                 $doublesSeparators = array(
                     '{' => '}',
+                    '[' => ']',
+                    '(' => ')',
+                    '<' => '>',
                 );
 
                 $regex = substr($regex, 1, -1);
