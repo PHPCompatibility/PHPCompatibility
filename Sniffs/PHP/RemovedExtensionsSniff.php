@@ -22,6 +22,22 @@
  */
 class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibility_Sniff
 {
+    /**
+     * A list of functions to whitelist, if any.
+     *
+     * This is intended for projects using functions which start with the same
+     * prefix as one of the removed extensions.
+     *
+     * This property can be set from the ruleset, like so:
+     * <rule ref="PHPCompatibility.PHP.RemovedExtensions">
+     *   <properties>
+     *     <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function" />
+     *   </properties>
+     * </rule>
+     *
+     * @var array
+     */
+    public $functionWhitelist;
 
     /**
      * A list of removed extensions with their alternative, if any
@@ -378,6 +394,11 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             return;
         }
 
+        if($this->isWhiteListed(strtolower($tokens[$stackPtr]['content'])) === true){
+            // Function is whitelisted.
+            return;
+        }
+
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
                 $error = '';
@@ -419,5 +440,36 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         }
 
     }//end process()
+
+    /**
+     * Is the current function being checked whitelisted ?
+     *
+     * Parsing the list late as it may be provided as a property, but also inline.
+     *
+     * @param string $content Content of the current token.
+     *
+     * @return bool
+     */
+    protected function isWhiteListed($content) {
+        if (isset($this->functionWhitelist) === false) {
+            return false;
+        }
+
+        if (is_string($this->functionWhitelist) === true) {
+            if (strpos($this->functionWhitelist, ',') !== false) {
+                $this->functionWhitelist = explode(',', $this->functionWhitelist);
+            } else {
+                $this->functionWhitelist = (array) $this->functionWhitelist;
+            }
+        }
+
+        if (is_array($this->functionWhitelist) === true) {
+            $this->functionWhitelist = array_map('strtolower',$this->functionWhitelist);
+            return in_array($content, $this->functionWhitelist, true);
+        }
+
+        return false;
+
+    }//end isWhiteListed()
 
 }//end class

@@ -51,6 +51,50 @@ Using the compatibility sniffs
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
+Using a custom ruleset
+------------------------------
+Alternatively, you can add PHPCompatibility to a custom PHPCS ruleset.
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="Custom ruleset">
+	<description>My rules for PHP_CodeSniffer</description>
+
+	<!-- Run against the PHPCompatibility ruleset -->
+	<rule ref="PHPCompatibility" />
+	
+	<!-- Run against a second ruleset -->
+	<rule ref="PSR2" />
+
+</ruleset>
+```
+
+You can also set the `testVersion` from within the ruleset:
+```xml
+	<arg name="testVersion" value="5.3-5.5"/>
+```
+
+Other advanced options, such as changing the message type or severity, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
+
+
+##### PHPCompatibility specific options
+
+At this moment, there is one sniff which has a property which can be set via the ruleset. More custom properties may become available in the future.
+
+The `PHPCompatibility.PHP.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
+This might clash with userland function using the same function prefix.
+
+To whitelist userland functions, you can pass a comma-delimited list of function names to the sniff.
+```xml
+	<!-- Whitelist the mysql_to_rfc3339() and mysql_another_function() functions. -->
+	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
+		<properties>
+			<property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function" />
+		</properties>
+	</rule>
+```
+
+
 Running the Sniff Tests
 -----------------------
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests

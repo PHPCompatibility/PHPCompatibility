@@ -63,3 +63,5 @@ mssql_bind();
 
 ereg();
 
+// @codingStandardsChangeSetting PHPCompatibility.PHP.RemovedExtensions functionWhitelist mysql_to_rfc3339
+mysql_to_rfc3339();
