@@ -209,6 +209,9 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
         
         $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.5');
         $this->assertWarning($file, 38, "Extension 'mysql_' is deprecated since PHP 5.5");
+
+        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '7.0');
+        $this->assertError($file, 38, "Extension 'mysql_' is deprecated since PHP 5.5 and removed since PHP 7.0");
     }
 
     /**
@@ -292,13 +295,17 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testErege
+     * testEreg
      *
      * @return void
      */
     public function testEreg()
     {
-        $this->assertError($this->_sniffFile, 64, "Extension 'ereg' is removed since PHP 7.0");
+        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.2');
+        $this->assertNoViolation($file, 64);
+
+        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '7.0');
+        $this->assertError($file, 64, "Extension 'ereg' is removed since PHP 7.0");
     }
     
     /**
