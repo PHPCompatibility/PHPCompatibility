@@ -109,8 +109,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      * @var array(string => string)
      */
     protected $validUseNames = array(
-        'const' => '5.6',
-        'function' => '5.6',
+        'const',
+        'function',
     );
 
     /**
@@ -182,14 +182,17 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         }
 
         //  PHP 5.6 allows for use const and use function
-        if ($tokens[$stackPtr]['type'] == 'T_USE' && in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->validUseNames)) && $this->supportsAbove($this->validUseNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
+        if ($this->supportsAbove('5.6')
+            && $tokens[$stackPtr]['type'] == 'T_USE'
+            && in_array(strtolower($tokens[$stackPtr + 2]['content']), $this->validUseNames)
+        ) {
             return;
         }
 
         if (isset($tokens[$stackPtr - 2]) && $tokens[$stackPtr - 2]['type'] == 'T_NEW' && $tokens[$stackPtr - 1]['type'] == 'T_WHITESPACE' && $tokens[$stackPtr]['type'] == 'T_ANON_CLASS') {
             return;
         }
-        
+
         if ($this->supportsAbove($this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
             $phpcsFile->addError($error, $stackPtr);
