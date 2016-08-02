@@ -19,4 +19,3 @@ php composer.phar install
 }
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
-
