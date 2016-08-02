@@ -34,7 +34,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      *
      * @var array(string => array(string => int|string|null))
      */
-    public $forbiddenFunctions = array(
+    protected $forbiddenFunctions = array(
                                         'call_user_method' => array(
                                             '5.3' => false,
                                             '5.4' => false,
@@ -613,13 +613,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                     );
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    public $error = false;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -717,7 +710,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
 
         $error = '';
 
-        $this->error = false;
+        $isError = false;
         $previousVersionStatus = null;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
             if ($this->supportsAbove($version)) {
@@ -725,7 +718,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                     if ($previousVersionStatus !== $forbidden) {
                         $previousVersionStatus = $forbidden;
                         if ($forbidden === true) {
-                            $this->error = true;
+                            $isError = true;
                             $error .= 'forbidden';
                         } else {
                             $error .= 'discouraged';
@@ -743,7 +736,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                 $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
             }
 
-            if ($this->error === true) {
+            if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {
                 $phpcsFile->addWarning($error, $stackPtr);

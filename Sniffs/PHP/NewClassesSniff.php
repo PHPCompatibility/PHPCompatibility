@@ -191,14 +191,6 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
 
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    protected $error = false;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -268,11 +260,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
 
         $error = '';
 
-        $this->error = false;
+        $isError = false;
         foreach ($this->newClasses[$pattern] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $this->error = true;
+                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -280,7 +272,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
         if (strlen($error) > 0) {
             $error = 'The built-in class ' . $className . ' is ' . $error;
 
-            if ($this->error === true) {
+            if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {
                 $phpcsFile->addWarning($error, $stackPtr);

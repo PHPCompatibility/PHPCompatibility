@@ -22,13 +22,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPComp
 {
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    protected $error = true;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
