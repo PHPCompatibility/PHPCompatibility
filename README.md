@@ -33,7 +33,8 @@ Installation in Composer project (method 2)
 "require-dev": {
    "squizlabs/php_codesniffer": "*",
    "wimg/php-compatibility": "dev-master",
-   "simplyadmire/composer-plugins" : "@dev"
+   "simplyadmire/composer-plugins" : "@dev",
+   "prefer-stable" : true
 },
 
 ```
