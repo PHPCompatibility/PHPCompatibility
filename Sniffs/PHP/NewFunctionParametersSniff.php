@@ -33,7 +33,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
      *
      * @var array
      */
-    public $newFunctionParameters = array(
+    protected $newFunctionParameters = array(
                                         'dirname' => array(
                                             1 => array(
                                                 'name' => 'depth',
@@ -65,13 +65,6 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                     );
 
 
-    /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    public $error = false;
-    
     /**
      * 
      * @var array
@@ -165,11 +158,11 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
     {
         $error = '';
 
-        $this->error = false;
+        $isError = false;
         foreach ($this->newFunctionParameters[$function][$parameterLocation] as $version => $present) {
             if ($version != 'name' && $this->supportsBelow($version)) {
                 if ($present === false) {
-                    $this->error = true;
+                    $isError = true;
                     $error .= 'in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -178,7 +171,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' does not have a parameter ' . $this->newFunctionParameters[$function][$parameterLocation]['name'] . ' ' . $error;
 
-            if ($this->error === true) {
+            if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {
                 $phpcsFile->addWarning($error, $stackPtr);

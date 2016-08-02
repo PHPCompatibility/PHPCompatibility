@@ -33,7 +33,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      *
      * @var array
      */
-    public $removedFunctionParameters = array(
+    protected $removedFunctionParameters = array(
                                         'mktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
@@ -50,13 +50,6 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                                     );
 
 
-    /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    public $error = false;
-    
     /**
      * 
      * @var array
@@ -169,11 +162,11 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     {
         $error = '';
 
-        $this->error = false;
+        $isError = false;
         foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $present) {
             if ($version != 'name' && $this->supportsAbove($version)) {
                 if ($present === false) {
-                    $this->error = true;
+                    $isError = true;
                     $error .= 'in PHP version ' . $version . ' or later';
                 }
             }
@@ -182,7 +175,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' does not have a parameter ' . $this->removedFunctionParameters[$function][$parameterLocation]['name'] . ' ' . $error;
 
-            if ($this->error === true) {
+            if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {
                 $phpcsFile->addWarning($error, $stackPtr);

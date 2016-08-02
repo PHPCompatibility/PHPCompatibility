@@ -26,13 +26,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompati
 {
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    protected $error = false;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array

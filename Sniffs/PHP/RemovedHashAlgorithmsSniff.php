@@ -26,13 +26,6 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
 {
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    protected $error = true;
-
-    /**
      * List of functions using the algorithm as parameter (always the first parameter)
      *
      * @var array

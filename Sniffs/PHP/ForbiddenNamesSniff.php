@@ -114,13 +114,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     );
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    protected $error = true;
-
-    /**
      * targetedTokens
      *
      * @var array

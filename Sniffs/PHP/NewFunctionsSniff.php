@@ -32,7 +32,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      *
      * @var array(string => array(string => int|string|null))
      */
-    public $forbiddenFunctions = array(
+    protected $forbiddenFunctions = array(
                                         'array_fill_keys' => array(
                                             '5.1' => false,
                                             '5.2' => true
@@ -1176,13 +1176,6 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
 
     /**
-     * If true, an error will be thrown; otherwise a warning.
-     *
-     * @var bool
-     */
-    public $error = false;
-
-    /**
      * 
      * @var unknown
      */
@@ -1285,11 +1278,11 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
         $error = '';
 
-        $this->error = false;
+        $isError = false;
         foreach ($this->forbiddenFunctions[$pattern] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $this->error = true;
+                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -1297,7 +1290,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' is ' . $error;
 
-            if ($this->error === true) {
+            if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
             } else {
                 $phpcsFile->addWarning($error, $stackPtr);
