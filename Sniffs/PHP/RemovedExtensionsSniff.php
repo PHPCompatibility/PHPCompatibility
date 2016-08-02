@@ -382,13 +382,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
                 $error = '';
                 $isErrored = false;
+                $isDeprecated = false;
                 foreach ($versionList as $version => $status) {
                     if ($version != 'alternative') {
                         if ($status == -1 || $status == 0) {
                             if ($this->supportsAbove($version)) {
                                 switch ($status) {
                                     case -1:
-                                        $error .= 'deprecated since PHP ' . $version . ' and ';
+                                        if($isDeprecated === false ) {
+                                            $error .= 'deprecated since PHP ' . $version . ' and ';
+                                            $isDeprecated = true;
+                                        }
                                         break;
                                     case 0:
                                         $isErrored = true;
