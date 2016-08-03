@@ -41,38 +41,43 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     private function getTestVersion()
     {
         /**
-         * var $testVersion will hold an array containing min/max version of PHP
+         * var $arrTestVersions will hold an array containing min/max version of PHP
          *   that we are checking against (see above).  If only a single version
          *   number is specified, then this is used as both the min and max.
          */
-        static $arrTestVersions;
+        static $arrTestVersions = array();
 
-        if (!isset($testVersion)) {
-            $testVersion = PHP_CodeSniffer::getConfigData('testVersion');
-            $testVersion = trim($testVersion);
+        $testVersion = trim(PHP_CodeSniffer::getConfigData('testVersion'));
 
-            $arrTestVersions = array(null, null);
+        if (!isset($arrTestVersions[$testVersion]) && !empty($testVersion)) {
+
+            $arrTestVersions[$testVersion] = array(null, null);
             if (preg_match('/^\d+\.\d+$/', $testVersion)) {
-                $arrTestVersions = array($testVersion, $testVersion);
+                $arrTestVersions[$testVersion] = array($testVersion, $testVersion);
             }
             elseif (preg_match('/^(\d+\.\d+)\s*-\s*(\d+\.\d+)$/', $testVersion,
                                $matches))
             {
-                if (version_compare($matches[1], $matches[2], ">")) {
+                if (version_compare($matches[1], $matches[2], '>')) {
                     trigger_error("Invalid range in testVersion setting: '"
                                   . $testVersion . "'", E_USER_WARNING);
                 }
                 else {
-                    $arrTestVersions = array($matches[1], $matches[2]);
+                    $arrTestVersions[$testVersion] = array($matches[1], $matches[2]);
                 }
             }
-            elseif (!$testVersion == "") {
+            elseif (!$testVersion == '') {
                 trigger_error("Invalid testVersion setting: '" . $testVersion
                               . "'", E_USER_WARNING);
             }
         }
 
-        return $arrTestVersions;
+        if (isset($arrTestVersions[$testVersion])) {
+            return $arrTestVersions[$testVersion];
+        }
+        else {
+			return array(null, null);
+        }
     }
 
     public function supportsAbove($phpVersion)

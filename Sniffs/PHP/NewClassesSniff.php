@@ -237,17 +237,16 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
         }
 
 
-
     }//end process()
 
 
     /**
-     * Generates the error or wanrning for this sniff.
+     * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
-     * @param string               $function  The name of the function.
+     * @param string               $className The name of the class.
      * @param string               $pattern   The pattern used for the match.
      *
      * @return void

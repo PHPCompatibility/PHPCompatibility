@@ -3,7 +3,7 @@
  * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
  *
  * Discourages use of superglobals as parameters for functions.
- * 
+ *
  * PHP version 5.4
  *
  * @category   PHP
@@ -39,7 +39,7 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff implements PH
 
     /**
      * Processes the test.
-     * 
+     *
      * @param PHP_CodeSniffer_file $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
      *
@@ -65,7 +65,7 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff implements PH
                     $phpcsFile->addError("Parameter shadowing super global ($variable) causes fatal error since PHP 5.4", $i);
                 }
             }
-            
+
         }
     }
 }

@@ -25,7 +25,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
     {
         return array(T_STRING);
     }//end register()
-    
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -51,7 +51,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
             // Not a call to a PHP function.
             return;
         }
-        
+
         if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
             $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
             if ($tokens[$closeParenthesis + 1]['type'] == 'T_OPEN_SQUARE_BRACKET') {

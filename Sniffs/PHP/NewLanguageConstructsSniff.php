@@ -96,10 +96,11 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
     /**
      * Generates the error or warning for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
+     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
+     * @param int                  $stackPtr    The position of the function
+     *                                          in the token array.
+     * @param string               $keywordName The name of the keyword.
+     * @param string               $pattern     The pattern used for the match.
      *
      * @return void
      */

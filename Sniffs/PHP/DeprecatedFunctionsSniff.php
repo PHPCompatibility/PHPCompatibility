@@ -25,7 +25,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      * @var bool
      */
     protected $patternMatch = false;
-    
+
     /**
      * A list of forbidden functions with their alternatives.
      *
@@ -622,18 +622,18 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
-    
+
         if ($this->patternMatch === true) {
             foreach ($this->forbiddenFunctionNames as $i => $name) {
                 $this->forbiddenFunctionNames[$i] = '/'.$name.'/i';
             }
         }
-    
+
         return array(T_STRING);
-    
+
     }//end register()
-    
-    
+
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -692,7 +692,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
     }//end process()
 
     /**
-     * Generates the error or wanrning for this sniff.
+     * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the forbidden function

@@ -71,14 +71,9 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Get function name.
-        $methodName = $phpcsFile->getDeclarationName($stackPtr);
-        
         // Get all parameters from method signature.
-        $paramNames = array();
-        foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {
+        $paramNames = $phpcsFile->getMethodParameters($stackPtr);
+        foreach ($paramNames as $param) {
             if (in_array($param['type_hint'], array_keys($this->newTypes))) {
                 $this->addError($phpcsFile, $stackPtr, $param['type_hint']);
             }
@@ -87,7 +82,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
 
 
     /**
-     * Generates the error or wanrning for this sniff.
+     * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the function

@@ -47,7 +47,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff 
     {
         if ($this->supportsAbove('7.0')) {
             $tokens = $phpcsFile->getTokens();
-            
+
             $defaultToken = $stackPtr;
             $defaultCount = 0;
             if (isset($tokens[$stackPtr]['scope_closer'])) {
@@ -58,7 +58,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff 
                         $defaultCount++;
                     }
                 }
-                
+
                 if ($defaultCount > 1) {
                     $phpcsFile->addError('Switch statements can not have multiple default blocks since PHP 7.0', $stackPtr);
                 }

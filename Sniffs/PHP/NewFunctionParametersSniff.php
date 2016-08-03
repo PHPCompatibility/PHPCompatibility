@@ -23,7 +23,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
      * @var bool
      */
     protected $patternMatch = false;
-    
+
     /**
      * A list of new functions, not present in older versions.
      *
@@ -66,7 +66,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     * 
+     *
      * @var array
      */
     private $newFunctionParametersNames;
@@ -82,16 +82,16 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->newFunctionParametersNames = array_keys($this->newFunctionParameters);
-    
+
         if ($this->patternMatch === true) {
             foreach ($this->newFunctionParametersNames as $i => $name) {
                 $this->newFunctionParametersNames[$i] = '/'.$name.'/i';
             }
         }
-    
+
         return array(T_STRING);
     }//end register()
-    
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -123,7 +123,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         if (in_array($function, $this->newFunctionParametersNames) === false) {
             return;
         }
-        
+
         if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
             $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
 
@@ -138,19 +138,19 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                 }
                 $cnt++;
             }
-            
+
         }
     }//end process()
 
 
     /**
-     * Generates the error or wanrning for this sniff.
+     * Generates the error or warning for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param string               $pattern   The pattern used for the match.
+     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
+     * @param int                  $stackPtr          The position of the function
+     *                                                in the token array.
+     * @param string               $function          The name of the function.
+     * @param int                  $parameterLocation The parameter position within the function call.
      *
      * @return void
      */
@@ -167,7 +167,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                 }
             }
         }
-        
+
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' does not have a parameter ' . $this->newFunctionParameters[$function][$parameterLocation]['name'] . ' ' . $error;
 

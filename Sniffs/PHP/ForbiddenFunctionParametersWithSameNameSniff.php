@@ -53,15 +53,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
                 return;
             }
 
-            // Get function name.
-            $methodName = $phpcsFile->getDeclarationName($stackPtr);
-            
             // Get all parameters from method signature.
             $paramNames = array();
             foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {
                 $paramNames[] = strtolower($param['name']);
             }
-            
+
             if (count($paramNames) != count(array_unique($paramNames))) {
                 $phpcsFile->addError('Functions can not have multiple parameters with the same name since PHP 7.0', $stackPtr);
             }

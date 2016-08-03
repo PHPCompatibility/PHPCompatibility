@@ -49,14 +49,14 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
 
             $open = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, false);
             $close = $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr, null, false);
-            
+
             $error = true;
             for ($cnt = $open + 1; $cnt < $close; $cnt++) {
                 if ($tokens[$cnt]['type'] != 'T_WHITESPACE' && $tokens[$cnt]['type'] != 'T_COMMA') {
                     $error = false;
                 }
             }
-            
+
             if ($open !== false && $close !== false) {
                 if (
                     $close - $open == 1
