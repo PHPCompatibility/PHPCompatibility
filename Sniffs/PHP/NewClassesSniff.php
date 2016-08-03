@@ -197,7 +197,10 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
      */
     public function register()
     {
-        return array(T_NEW);
+        return array(
+                T_NEW,
+                T_CLASS,
+               );
 
     }//end register()
 
@@ -213,9 +216,15 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens    = $phpcsFile->getTokens();
+        $className = '';
+
         if (
-            $tokens[$stackPtr + 2]['type'] == 'T_STRING'
+            (
+                $tokens[$stackPtr]['type'] === 'T_NEW'
+                &&
+                $tokens[$stackPtr + 2]['type'] == 'T_STRING'
+            )
             &&
             (
                 $tokens[$stackPtr + 3]['type'] == 'T_OPEN_PARENTHESIS'
@@ -230,11 +239,22 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
             )
         ) {
             $className = $tokens[$stackPtr + 2]['content'];
-            if (array_key_exists($className, $this->newClasses) === false) {
-                return;
-            }
-            $this->addError($phpcsFile, $stackPtr, $className);
         }
+        else if ($tokens[$stackPtr]['type'] === 'T_CLASS') {
+            $extends = $phpcsFile->findExtendedClassName($stackPtr);
+            if ($extends !== false) {
+                $className = $extends;
+            }
+        }
+
+		if ($className === '') {
+			return;
+		}
+
+        if (array_key_exists($className, $this->newClasses) === false) {
+            return;
+        }
+        $this->addError($phpcsFile, $stackPtr, $className);
 
 
     }//end process()
