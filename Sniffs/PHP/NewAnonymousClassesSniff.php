@@ -51,7 +51,7 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
         if ($whitespace === false || $class === false) {
             return;
         }
-        
+
         if ($this->supportsAbove('7.0')) {
             return;
         } else {

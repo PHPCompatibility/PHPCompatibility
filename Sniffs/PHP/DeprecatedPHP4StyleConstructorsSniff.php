@@ -45,7 +45,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
         $oldConstructorPos   = false;
         while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
             $funcNamePos = $phpcsFile->findNext(T_STRING, $nextFunc);
-            
+
             if ($tokens[$funcNamePos]['content'] === '__construct') {
                 $newConstructorFound = true;
             }
@@ -57,7 +57,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
                 }
             }
         }
-        
+
         if ($newConstructorFound === false && $oldConstructorFound === true) {
             $phpcsFile->addError('Deprecated PHP4 style constructor are not supported since PHP7', $oldConstructorPos);
         }

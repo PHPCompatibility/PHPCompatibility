@@ -45,36 +45,36 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        
+
         $ignore = array(
             T_DOUBLE_COLON,
             T_OBJECT_OPERATOR,
             T_FUNCTION,
             T_CONST,
         );
-        
+
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
             // Not a call to a PHP function.
             return;
         }
-        
+
         $function = strtolower($tokens[$stackPtr]['content']);
-        
+
         if ($function === 'define') {
             $openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, null, null, true);
             if ($openParenthesis === false) {
                 return;
             }
-            
+
             $comma = $phpcsFile->findNext(T_COMMA, $openParenthesis, $tokens[$openParenthesis]['parenthesis_closer']);
-            
+
             if ($comma === false) {
                 return;
             }
 
             $array = $phpcsFile->findNext(array(T_ARRAY, T_OPEN_SHORT_ARRAY), $comma, $tokens[$openParenthesis]['parenthesis_closer']);
-            
+
             if ($array !== false) {
                 if ($this->supportsAbove('7.0')) {
                     return;

@@ -23,7 +23,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      * @var bool
      */
     protected $patternMatch = false;
-    
+
     /**
      * A list of Removed function parameters, not present in older versions.
      *
@@ -51,7 +51,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
 
     /**
-     * 
+     *
      * @var array
      */
     private $removedFunctionParametersNames;
@@ -67,16 +67,16 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->removedFunctionParametersNames = array_keys($this->removedFunctionParameters);
-    
+
         if ($this->patternMatch === true) {
             foreach ($this->removedFunctionParametersNames as $i => $name) {
                 $this->removedFunctionParametersNames[$i] = '/'.$name.'/i';
             }
         }
-    
+
         return array(T_STRING);
     }//end register()
-    
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -108,7 +108,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         if (in_array($function, $this->removedFunctionParametersNames) === false) {
             return;
         }
-        
+
         if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
             $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
             $openParenthesis = $tokens[$closeParenthesis]['parenthesis_opener'];
@@ -132,17 +132,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                 ) {
                     continue;
                 }
-                
+
                 if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
                     continue;
                 }
-                
+
                 if (isset($this->removedFunctionParameters[$function][$cnt])) {
                     $this->addError($phpcsFile, $nextComma, $function, $cnt);
                 }
                 $cnt++;
             }
-            
+
         }
     }//end process()
 
@@ -171,7 +171,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                 }
             }
         }
-        
+
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' does not have a parameter ' . $this->removedFunctionParameters[$function][$parameterLocation]['name'] . ' ' . $error;
 

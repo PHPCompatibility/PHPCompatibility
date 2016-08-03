@@ -23,7 +23,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      * @var bool
      */
     protected $patternMatch = false;
-    
+
     /**
      * A list of new functions, not present in older versions.
      *
@@ -1180,7 +1180,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      * @var array
      */
     private $forbiddenFunctionNames;
-    
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -1192,17 +1192,17 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
-    
+
         if ($this->patternMatch === true) {
             foreach ($this->forbiddenFunctionNames as $i => $name) {
                 $this->forbiddenFunctionNames[$i] = '/'.$name.'/i';
             }
         }
-    
+
         return array(T_STRING);
-    
+
     }//end register()
-    
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *

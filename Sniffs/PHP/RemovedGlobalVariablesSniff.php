@@ -57,7 +57,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        
+
         foreach ($this->removedGlobalVariables as $variable => $versionList) {
             if (strtolower($tokens[$stackPtr]['content']) == '$' . strtolower($variable)) {
                 $error = '';

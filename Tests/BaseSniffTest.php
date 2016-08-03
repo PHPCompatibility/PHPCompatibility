@@ -8,7 +8,7 @@
 /**
  * BaseSniffTest
  *
- * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and 
+ * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
  * warnings
  *
  * @uses PHPUnit_Framework_TestCase
@@ -78,7 +78,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         return $phpcsFile;
     }
-    
+
     /**
      * Assert a PHPCS error on a particular line number
      *
@@ -156,7 +156,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         if ($lineNumber == 0) {
             $allMessages = $errors + $warnings;
-            // TODO: Update the fail message to give the tester some 
+            // TODO: Update the fail message to give the tester some
             // indication of what the errors or warnings were
             return $this->assertEmpty($allMessages, 'Failed asserting no violations in file');
         }
@@ -186,7 +186,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
     /**
      * Show violations in file by line number
-     * 
+     *
      * This is useful for debugging sniffs on a file
      *
      * @param PHP_CodeSniffer_File $file Codesniffer file object
