@@ -1176,8 +1176,8 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
 
     /**
-     * 
-     * @var unknown
+     *
+     * @var array
      */
     private $forbiddenFunctionNames;
     
@@ -1236,7 +1236,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
             $count   = 0;
             $pattern = preg_replace(
                     $this->forbiddenFunctionNames,
-                    $this->forbiddenFunctionsNames,
+                    $this->forbiddenFunctionNames,
                     $function,
                     1,
                     $count

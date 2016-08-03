@@ -17,6 +17,7 @@
  * @author    Koen Eelen <koen.eelen@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff {
+
     public function register()
     {
         return array(T_CLASS);
@@ -41,6 +42,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
         $nextFunc = $stackPtr;
         $newConstructorFound = false;
         $oldConstructorFound = false;
+        $oldConstructorPos   = false;
         while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
             $funcNamePos = $phpcsFile->findNext(T_STRING, $nextFunc);
             
@@ -51,12 +53,13 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
             if ($this->supportsAbove('7.0')) {
                 if ($funcNamePos !== false && $tokens[$funcNamePos]['content'] === $className) {
                     $oldConstructorFound = true;
+                    $oldConstructorPos   = $funcNamePos;
                 }
             }
         }
         
         if ($newConstructorFound === false && $oldConstructorFound === true) {
-            $phpcsFile->addError('Deprecated PHP4 style constructor are not supported since PHP7', $funcNamePos);
+            $phpcsFile->addError('Deprecated PHP4 style constructor are not supported since PHP7', $oldConstructorPos);
         }
     }
 }

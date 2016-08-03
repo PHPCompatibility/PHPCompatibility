@@ -53,9 +53,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
                 return;
             }
 
-            // Get function name.
-            $methodName = $phpcsFile->getDeclarationName($stackPtr);
-            
             // Get all parameters from method signature.
             $paramNames = array();
             foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {

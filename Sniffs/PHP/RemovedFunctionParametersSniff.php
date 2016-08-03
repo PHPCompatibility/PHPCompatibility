@@ -150,11 +150,11 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     /**
      * Generates the error or wanrning for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param string               $pattern   The pattern used for the match.
+     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
+     * @param int                  $stackPtr          The position of the function
+     *                                                in the token array.
+     * @param string               $function          The name of the function.
+     * @param int                  $parameterLocation The parameter position within the function call.
      *
      * @return void
      */
