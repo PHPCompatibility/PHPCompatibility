@@ -108,4 +108,64 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
     }//end supportsBelow()
 
+    /**
+     * Returns the name(s) of the interface(s) that the specified class implements.
+     *
+     * Returns FALSE on error or if there are no implemented interface names.
+     *
+     * {@internal Duplicate of same method as introduced in PHPCS 2.7.
+     * Once the minimum supported PHPCS version for this sniff library goes beyond
+     * that, this method can be removed and call to it replaced with
+     * `$phpcsFile->findImplementedInterfaceNames($stackPtr)` calls.}}
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the class token.
+     *
+     * @return array|false
+     */
+    public function findImplementedInterfaceNames($phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_CLASS) {
+            return false;
+        }
+
+        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
+            return false;
+        }
+
+        $classOpenerIndex = $tokens[$stackPtr]['scope_opener'];
+        $implementsIndex  = $phpcsFile->findNext(T_IMPLEMENTS, $stackPtr, $classOpenerIndex);
+        if ($implementsIndex === false) {
+            return false;
+        }
+
+        $find = array(
+                 T_NS_SEPARATOR,
+                 T_STRING,
+                 T_WHITESPACE,
+                 T_COMMA,
+                );
+
+        $end  = $phpcsFile->findNext($find, ($implementsIndex + 1), ($classOpenerIndex + 1), true);
+        $name = $phpcsFile->getTokensAsString(($implementsIndex + 1), ($end - $implementsIndex - 1));
+        $name = trim($name);
+
+        if ($name === '') {
+            return false;
+        } else {
+            $names = explode(',', $name);
+            $names = array_map('trim', $names);
+            return $names;
+        }
+
+    }//end findImplementedInterfaceNames()
+
+
 }//end class
