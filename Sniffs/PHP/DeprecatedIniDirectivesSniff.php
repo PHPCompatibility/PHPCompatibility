@@ -28,7 +28,74 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
      * @var array(string)
      */
     protected $deprecatedIniDirectives = array(
-        'define_syslog_variables' => array(
+        'fbsql.batchSize' => array(
+            '5.0' => false,
+            '5.1' => true,
+            'alternative' => 'fbsql.batchsize',
+        ),
+
+        'ifx.allow_persistent' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.blobinfile' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.byteasvarchar' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.charasvarchar' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.default_host' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.default_password' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.default_user' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.max_links' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.max_persistent' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.nullformat' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+        'ifx.textasvarchar' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.1' => true
+        ),
+
+        'zend.ze1_compatibility_mode' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+
+		'define_syslog_variables' => array(
             '5.3' => false,
             '5.4' => true
         ),
@@ -99,6 +166,14 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         'safe_mode_protected_env_vars' => array(
             '5.3' => false,
             '5.4' => true
+        ),
+        'detect_unicode' => array(
+            '5.4' => true,
+            'alternative' => 'zend.detect_unicode',
+        ),
+        'mbstring.script_encoding' => array(
+            '5.4' => true,
+            'alternative' => 'zend.script_encoding',
         ),
         'always_populate_raw_post_data' => array(
             '5.6' => false
