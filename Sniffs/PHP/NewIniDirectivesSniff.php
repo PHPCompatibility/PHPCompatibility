@@ -180,9 +180,9 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         if ($function != 'ini_get' && $function != 'ini_set') {
             return;
         }
-        $iniToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
 
-        $filteredToken = str_replace(array('"', "'"), array("", ""), $tokens[$iniToken]['content']);
+        $iniToken      = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
+        $filteredToken = trim($tokens[$iniToken]['content'], '\'"');
         if (in_array($filteredToken, array_keys($this->newIniDirectives)) === false) {
             return;
         }

@@ -176,14 +176,16 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         if ($function != 'ini_get' && $function != 'ini_set') {
             return;
         }
-        $iniToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
-        if (in_array(str_replace("'", "", $tokens[$iniToken]['content']), array_keys($this->deprecatedIniDirectives)) === false) {
+
+        $iniToken      = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
+        $filteredToken = trim($tokens[$iniToken]['content'], '\'"');
+        if (in_array($filteredToken, array_keys($this->deprecatedIniDirectives)) === false) {
             return;
         }
 
         $error = '';
 
-        foreach ($this->deprecatedIniDirectives[str_replace("'", "", $tokens[$iniToken]['content'])] as $version => $forbidden)
+        foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $forbidden)
         {
             if ($this->supportsAbove($version)) {
                 if ($forbidden === true) {
@@ -198,7 +200,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         }
 
         if (strlen($error) > 0) {
-            $error = "INI directive " . $tokens[$iniToken]['content'] . " is" . $error;
+            $error = "INI directive '" . $filteredToken . "' is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
 
             if ($isError === true) {
