@@ -190,15 +190,20 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         $error = '';
 
         foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === true) {
-                    $error .= " not available before version " . $version;
-                }
-            }
+			if ($version !== 'alternative') {
+	            if ($this->supportsBelow($version)) {
+	                if ($present === true) {
+	                    $error .= " not available before version " . $version;
+	                }
+	            }
+			}
         }
 
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
+            if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
+				$error .= 'This directive was previously called ' . $this->newIniDirectives[$filteredToken]['alternative'] . '.';
+			}
 
             $phpcsFile->addWarning($error, $stackPtr);
         }

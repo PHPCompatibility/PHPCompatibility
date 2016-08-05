@@ -187,21 +187,26 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
 
         foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $forbidden)
         {
-            if ($this->supportsAbove($version)) {
-                if ($forbidden === true) {
-                    $isError = ($function != 'ini_get') ?: false;
-                    $error .= " forbidden";
-                } else {
-                    $isError = false;
-                    $error .= " deprecated";
-                }
-                $error .= " from PHP " . $version . " and";
-            }
+			if ($version !== 'alternative') {
+	            if ($this->supportsAbove($version)) {
+	                if ($forbidden === true) {
+	                    $isError = ($function != 'ini_get') ?: false;
+	                    $error .= " forbidden";
+	                } else {
+	                    $isError = false;
+	                    $error .= " deprecated";
+	                }
+	                $error .= " from PHP " . $version . " and";
+	            }
+			}
         }
 
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
+            if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
+				$error .= 'Use ' . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . ' instead.';
+			}
 
             if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
