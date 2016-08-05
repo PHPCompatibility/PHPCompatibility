@@ -258,7 +258,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
             if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
-                $error .= 'Use ' . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . ' instead.';
+                $error .= ". Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
             }
 
             if ($isError === true) {

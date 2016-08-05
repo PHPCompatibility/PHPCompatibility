@@ -527,7 +527,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
-                $error .= 'This directive was previously called ' . $this->newIniDirectives[$filteredToken]['alternative'] . '.';
+                $error .= ". This directive was previously called '" . $this->newIniDirectives[$filteredToken]['alternative'] . "'.";
             }
 
             $phpcsFile->addWarning($error, $stackPtr);
