@@ -179,7 +179,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
 
         $iniToken      = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
         $filteredToken = trim($tokens[$iniToken]['content'], '\'"');
-        if (in_array($filteredToken, array_keys($this->deprecatedIniDirectives)) === false) {
+        if (isset($this->deprecatedIniDirectives[$filteredToken]) === false) {
             return;
         }
 
