@@ -165,11 +165,13 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.1'   => false,
             '5.1.2' => true,
         ),
+
         'gd.jpeg_ignore_warning' => array(
             '5.0'   => false,
             '5.1'   => false,
             '5.1.3' => true,
         ),
+
         'fbsql.show_timestamp_decimals' => array(
             '5.0'   => false,
             '5.1'   => false,
@@ -210,48 +212,36 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.1' => false,
             '5.2' => true
         ),
+
         'cgi.check_shebang_line' => array(
             '5.1' => false,
             '5.2' => false,
             '5.2.1' => true
         ),
-		'max_input_nesting_level' => array(
+
+        'max_input_nesting_level' => array(
             '5.1' => false,
             '5.2' => false,
             '5.2.3' => true
         ),
+
         'mysqli.allow_local_infile' => array(
             '5.1'   => false,
             '5.2'   => false,
             '5.2.4' => true,
         ),
+
         'max_file_uploads' => array(
             '5.1'    => false,
             '5.2'    => false,
             '5.2.12' => true,
         ),
 
-        'user_ini.filename' => array(
-            '5.2' => false,
-            '5.3' => true,
-        ),
-        'user_ini.cache_ttl' => array(
+        'cgi.discard_path' => array(
             '5.2' => false,
             '5.3' => true,
         ),
         'exit_on_timeout' => array(
-            '5.2' => false,
-            '5.3' => true,
-        ),
-        'mbstring.http_output_conv_mimetype' => array(
-            '5.2' => false,
-            '5.3' => true,
-        ),
-        'request_order' => array(
-            '5.2' => false,
-            '5.3' => true,
-        ),
-        'cgi.discard_path' => array(
             '5.2' => false,
             '5.3' => true,
         ),
@@ -271,15 +261,19 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.2' => false,
             '5.3' => true,
         ),
+        'mbstring.http_output_conv_mimetype' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'mysqli.allow_persistent' => array(
             '5.2' => false,
             '5.3' => true,
         ),
-        'mysqli.max_persistent' => array(
+        'mysqli.cache_size' => array(
             '5.2' => false,
             '5.3' => true,
         ),
-        'mysqli.cache_size' => array(
+        'mysqli.max_persistent' => array(
             '5.2' => false,
             '5.3' => true,
         ),
@@ -303,6 +297,18 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.2' => false,
             '5.3' => true,
         ),
+        'request_order' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'user_ini.cache_ttl' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'user_ini.filename' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'zend.enable_gc' => array(
             '5.2' => false,
             '5.3' => true,
@@ -313,11 +319,13 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.3' => false,
             '5.3.7' => true,
         ),
+
         'max_input_vars' => array(
             '5.2'   => false,
             '5.3'   => false,
             '5.3.9' => true,
         ),
+
         'sqlite3.extension_dir' => array(
             '5.2'    => false,
             '5.3'    => false,
@@ -336,15 +344,23 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.multibyte' => array(
+        'enable_post_data_reading' => array(
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.script_encoding' => array(
+        'mysqlnd.mempool_default_size' => array(
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.signal_check' => array(
+        'mysqlnd.net_cmd_buffer_size' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'mysqlnd.net_read_timeout' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'phar.cache_list' => array(
             '5.3' => false,
             '5.4' => true,
         ),
@@ -372,10 +388,6 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.3' => false,
             '5.4' => true,
         ),
-        'enable_post_data_reading' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
         'windows_show_crt_warning' => array(
             '5.3' => false,
             '5.4' => true,
@@ -385,23 +397,19 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.4'         => true,
             'alternative' => 'detect_unicode',
         ),
+        'zend.multibyte' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'zend.script_encoding' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'zend.signal_check' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
         'mysqlnd.log_mask' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.mempool_default_size' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.net_cmd_buffer_size' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.net_read_timeout' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'phar.cache_list' => array(
             '5.3' => false,
             '5.4' => true,
         ),
@@ -507,20 +515,20 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         $error = '';
 
         foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-			if ($version !== 'alternative') {
-	            if ($this->supportsBelow($version)) {
-	                if ($present === true) {
-	                    $error .= " not available before version " . $version;
-	                }
-	            }
-			}
+            if ($version !== 'alternative') {
+                if ($this->supportsBelow($version)) {
+                    if ($present === true) {
+                        $error .= " not available before version " . $version;
+                    }
+                }
+            }
         }
 
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
-				$error .= 'This directive was previously called ' . $this->newIniDirectives[$filteredToken]['alternative'] . '.';
-			}
+                $error .= 'This directive was previously called ' . $this->newIniDirectives[$filteredToken]['alternative'] . '.';
+            }
 
             $phpcsFile->addWarning($error, $stackPtr);
         }

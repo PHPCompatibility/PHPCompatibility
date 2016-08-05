@@ -23,70 +23,50 @@
 class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompatibility_Sniff
 {
     /**
-     * A list of deprecated INI directives
+     * A list of deprecated INI directives.
+     *
+     * version => false means the directive was deprecated in that version.
+     * version => true means it was removed in that version.
      *
      * @var array(string)
      */
     protected $deprecatedIniDirectives = array(
         'fbsql.batchSize' => array(
-            '5.0' => false,
             '5.1' => true,
             'alternative' => 'fbsql.batchsize',
         ),
 
         'ifx.allow_persistent' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.blobinfile' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.byteasvarchar' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.charasvarchar' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.default_host' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.default_password' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.default_user' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.max_links' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.max_persistent' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.nullformat' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
         'ifx.textasvarchar' => array(
-            '5.1'   => false,
-            '5.2'   => false,
             '5.2.1' => true
         ),
 
@@ -95,15 +75,19 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             '5.3' => true,
         ),
 
-		'define_syslog_variables' => array(
+        'allow_call_time_pass_reference' => array(
             '5.3' => false,
             '5.4' => true
         ),
-        'register_globals' => array(
+        'define_syslog_variables' => array(
             '5.3' => false,
             '5.4' => true
         ),
-        'register_long_arrays' => array(
+        'detect_unicode' => array(
+            '5.4'         => true,
+            'alternative' => 'zend.detect_unicode',
+        ),
+        'highlight.bg' => array(
             '5.3' => false,
             '5.4' => true
         ),
@@ -119,11 +103,39 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             '5.3' => false,
             '5.4' => true
         ),
-        'allow_call_time_pass_reference' => array(
+        'mbstring.script_encoding' => array(
+            '5.4'         => true,
+            'alternative' => 'zend.script_encoding',
+        ),
+        'register_globals' => array(
             '5.3' => false,
             '5.4' => true
         ),
-        'highlight.bg' => array(
+        'register_long_arrays' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode_allowed_env_vars' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode_exec_dir' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode_gid' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode_include_dir' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+        'safe_mode_protected_env_vars' => array(
             '5.3' => false,
             '5.4' => true
         ),
@@ -140,43 +152,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             '5.4' => true
         ),
         'zend.ze1_compatibility_mode' => array(
-            '5.3' => false,
             '5.4' => true
         ),
-        'safe_mode' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'safe_mode_gid' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'safe_mode_include_dir' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'safe_mode_exec_dir' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'safe_mode_allowed_env_vars' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'safe_mode_protected_env_vars' => array(
-            '5.3' => false,
-            '5.4' => true
-        ),
-        'detect_unicode' => array(
-            '5.4' => true,
-            'alternative' => 'zend.detect_unicode',
-        ),
-        'mbstring.script_encoding' => array(
-            '5.4' => true,
-            'alternative' => 'zend.script_encoding',
-        ),
+
         'always_populate_raw_post_data' => array(
-            '5.6' => false
+            '5.6' => false,
+            '7.0' => true
         ),
         'iconv.input_encoding' => array(
             '5.6' => false
@@ -196,10 +177,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         'mbstring.internal_encoding' => array(
             '5.6' => false
         ),
-        'always_populate_raw_post_data' => array(
-            '5.6' => false,
-            '7.0' => true
-        ),
+
         'asp_tags' => array(
             '7.0' => true
         ),
@@ -262,26 +240,26 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
 
         foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $forbidden)
         {
-			if ($version !== 'alternative') {
-	            if ($this->supportsAbove($version)) {
-	                if ($forbidden === true) {
-	                    $isError = ($function != 'ini_get') ?: false;
-	                    $error .= " forbidden";
-	                } else {
-	                    $isError = false;
-	                    $error .= " deprecated";
-	                }
-	                $error .= " from PHP " . $version . " and";
-	            }
-			}
+            if ($version !== 'alternative') {
+                if ($this->supportsAbove($version)) {
+                    if ($forbidden === true) {
+                        $isError = ($function != 'ini_get') ?: false;
+                        $error .= " forbidden";
+                    } else {
+                        $isError = false;
+                        $error .= " deprecated";
+                    }
+                    $error .= " from PHP " . $version . " and";
+                }
+            }
         }
 
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
             if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
-				$error .= 'Use ' . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . ' instead.';
-			}
+                $error .= 'Use ' . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . ' instead.';
+            }
 
             if ($isError === true) {
                 $phpcsFile->addError($error, $stackPtr);
