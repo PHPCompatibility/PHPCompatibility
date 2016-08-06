@@ -199,12 +199,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function testZendZe1CompatibilityMode()
     {
         $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.3');
-        $this->assertWarning($file, 36, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3");
-        $this->assertWarning($file, 37, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3");
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', '5.4');
-        $this->assertError($file, 36, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
-        $this->assertWarning($file, 37, "INI directive 'zend.ze1_compatibility_mode' is deprecated from PHP 5.3 and forbidden from PHP 5.4");
+        $this->assertError($file, 36, "INI directive 'zend.ze1_compatibility_mode' is forbidden from PHP 5.3");
+        $this->assertWarning($file, 37, "INI directive 'zend.ze1_compatibility_mode' is forbidden from PHP 5.3");
     }
 
     /**
@@ -471,4 +467,72 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
         $this->assertWarning($file, 54, "INI directive 'safe_mode_protected_env_vars' is deprecated from PHP 5.3");
     }
+
+    /**
+     * testDeprecatedWithAlternative
+     *
+     * @dataProvider dataDeprecatedWithAlternative
+     *
+     * @return void
+     */
+    public function testDeprecatedWithAlternative($iniName, $deprecatedIn, $alternative, $lines, $okVersion)
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+		}
+
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', $deprecatedIn);
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is forbidden from PHP {$deprecatedIn}. Use '{$alternative}' instead.");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is forbidden from PHP {$deprecatedIn}. Use '{$alternative}' instead.");
+    }
+    
+    public function dataDeprecatedWithAlternative() {
+		return array(
+		    array('fbsql.batchSize', '5.1', 'fbsql.batchsize', array(89, 90), '5.0'),
+		    array('detect_unicode', '5.4', 'zend.detect_unicode', array(125, 126), '5.3'),
+		    array('mbstring.script_encoding', '5.4', 'zend.script_encoding', array(128, 129), '5.3'),
+		);
+	}
+
+    /**
+     * testDeprecatedDirectives
+     *
+     * @dataProvider dataDeprecatedDirectives
+     *
+     * @return void
+     */
+    public function testDeprecatedDirectives($iniName, $deprecatedIn, $lines, $okVersion, $errorVersion = null)
+    {
+        $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+		}
+
+		if (isset($errorVersion)){
+            $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', $errorVersion);
+		}
+		else {
+            $file = $this->sniffFile('sniff-examples/deprecated_ini_directives.php', $deprecatedIn);
+		}
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is forbidden from PHP {$deprecatedIn}.");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is forbidden from PHP {$deprecatedIn}.");
+    }
+
+    public function dataDeprecatedDirectives() {
+		return array(
+            array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.1', '5.3'),
+            array('ifx.blobinfile', '5.2.1', array(95, 96), '5.1', '5.3'),
+            array('ifx.byteasvarchar', '5.2.1', array(98, 99), '5.1', '5.3'),
+            array('ifx.charasvarchar', '5.2.1', array(101, 102), '5.1', '5.3'),
+            array('ifx.default_host', '5.2.1', array(104, 105), '5.1', '5.3'),
+            array('ifx.default_password', '5.2.1', array(107, 108), '5.1', '5.3'),
+            array('ifx.default_user', '5.2.1', array(110, 111), '5.1', '5.3'),
+            array('ifx.max_links', '5.2.1', array(113, 114), '5.1', '5.3'),
+            array('ifx.max_persistent', '5.2.1', array(116, 117), '5.1', '5.3'),
+            array('ifx.nullformat', '5.2.1', array(119, 120), '5.1', '5.3'),
+            array('ifx.textasvarchar', '5.2.1', array(122, 123), '5.1', '5.3'),
+		);
+	}
+
 }

@@ -71,7 +71,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
 
         'zend.ze1_compatibility_mode' => array(
-            '5.2' => false,
             '5.3' => true,
         ),
 
@@ -149,9 +148,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
         'y2k_compliance' => array(
             '5.3' => false,
-            '5.4' => true
-        ),
-        'zend.ze1_compatibility_mode' => array(
             '5.4' => true
         ),
 
@@ -258,7 +254,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             $error = "INI directive '" . $filteredToken . "' is" . $error;
             $error = substr($error, 0, strlen($error) - 4) . ".";
             if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
-                $error .= ". Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
+                $error .= " Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
             }
 
             if ($isError === true) {
