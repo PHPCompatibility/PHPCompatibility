@@ -28,9 +28,177 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
      * @var array(string)
      */
     protected $newIniDirectives = array(
+        'auto_globals_jit' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'com.code_page' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'date.default_latitude' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'date.default_longitude' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'date.sunrise_zenith' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'date.sunset_zenith' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'ibase.default_charset' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'ibase.default_db' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mail.force_extra_parameters' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mime_magic.debug' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.max_links' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.default_port' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.default_socket' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.default_host' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.default_user' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'mysqli.default_pw' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'report_zend_debug' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'session.hash_bits_per_character' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'session.hash_function' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'soap.wsdl_cache_dir' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'soap.wsdl_cache_enabled' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'soap.wsdl_cache_ttl' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'sqlite.assoc_case' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'tidy.clean_output' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'tidy.default_config' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'zend.ze1_compatibility_mode' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+
+        'date.timezone' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'detect_unicode' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'fbsql.batchsize' => array(
+            '5.0'         => false,
+            '5.1'         => true,
+            'alternative' => 'fbsql.batchSize',
+        ),
+        'realpath_cache_size' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'realpath_cache_ttl' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+
+        'mbstring.strict_detection' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.2' => true,
+        ),
+        'mssql.charset' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.2' => true,
+        ),
+
+        'gd.jpeg_ignore_warning' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.3' => true,
+        ),
+
+        'fbsql.show_timestamp_decimals' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.5' => true,
+        ),
+        'soap.wsdl_cache' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.5' => true,
+        ),
+        'soap.wsdl_cache_limit' => array(
+            '5.0'   => false,
+            '5.1'   => false,
+            '5.1.5' => true,
+        ),
+
         'allow_url_include' => array(
             '5.1' => false,
             '5.2' => true
+        ),
+        'filter.default' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'filter.default_flags' => array(
+            '5.1' => false,
+            '5.2' => true,
         ),
         'pcre.backtrack_limit' => array(
             '5.1' => false,
@@ -44,17 +212,32 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.1' => false,
             '5.2' => true
         ),
+
+        'cgi.check_shebang_line' => array(
+            '5.1' => false,
+            '5.2' => false,
+            '5.2.1' => true
+        ),
+
         'max_input_nesting_level' => array(
             '5.1' => false,
             '5.2' => false,
-            '5.2.2' => true
+            '5.2.3' => true
         ),
 
-        'user_ini.filename' => array(
-            '5.2' => false,
-            '5.3' => true,
+        'mysqli.allow_local_infile' => array(
+            '5.1'   => false,
+            '5.2'   => false,
+            '5.2.4' => true,
         ),
-        'user_ini.cache_ttl' => array(
+
+        'max_file_uploads' => array(
+            '5.1'    => false,
+            '5.2'    => false,
+            '5.2.12' => true,
+        ),
+
+        'cgi.discard_path' => array(
             '5.2' => false,
             '5.3' => true,
         ),
@@ -62,13 +245,91 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.2' => false,
             '5.3' => true,
         ),
+        'intl.default_locale' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'intl.error_level' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mail.add_x_header' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mail.log' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'mbstring.http_output_conv_mimetype' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqli.allow_persistent' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqli.cache_size' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqli.max_persistent' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqlnd.collect_memory_statistics' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqlnd.collect_statistics' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqlnd.debug' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'mysqlnd.net_read_buffer_size' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'odbc.default_cursortype' => array(
             '5.2' => false,
             '5.3' => true,
         ),
         'request_order' => array(
             '5.2' => false,
             '5.3' => true,
+        ),
+        'user_ini.cache_ttl' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'user_ini.filename' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'zend.enable_gc' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+
+        'curl.cainfo' => array(
+            '5.2' => false,
+            '5.3' => false,
+            '5.3.7' => true,
+        ),
+
+        'max_input_vars' => array(
+            '5.2'   => false,
+            '5.3'   => false,
+            '5.3.9' => true,
+        ),
+
+        'sqlite3.extension_dir' => array(
+            '5.2'    => false,
+            '5.3'    => false,
+            '5.3.11' => true,
         ),
 
         'cli.pager' => array(
@@ -83,19 +344,23 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.3' => false,
             '5.4' => true,
         ),
-        'max_input_vars' => array(
+        'enable_post_data_reading' => array(
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.multibyte' => array(
+        'mysqlnd.mempool_default_size' => array(
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.script_encoding' => array(
+        'mysqlnd.net_cmd_buffer_size' => array(
             '5.3' => false,
             '5.4' => true,
         ),
-        'zend.signal_check' => array(
+        'mysqlnd.net_read_timeout' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'phar.cache_list' => array(
             '5.3' => false,
             '5.4' => true,
         ),
@@ -119,11 +384,32 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.3' => false,
             '5.4' => true,
         ),
-        'enable_post_data_reading' => array(
+        'session.upload_progress.prefix' => array(
             '5.3' => false,
             '5.4' => true,
         ),
         'windows_show_crt_warning' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'zend.detect_unicode' => array(
+            '5.3'         => false,
+            '5.4'         => true,
+            'alternative' => 'detect_unicode',
+        ),
+        'zend.multibyte' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'zend.script_encoding' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'zend.signal_check' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'mysqlnd.log_mask' => array(
             '5.3' => false,
             '5.4' => true,
         ),
@@ -136,7 +422,46 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.4' => false,
             '5.5' => true,
         ),
+        'mysqlnd.trace_alloc' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'sys_temp_dir' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'xsl.security_prefs' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
 
+        'session.use_strict_mode' => array(
+            '5.4'   => false,
+            '5.5'   => false,
+            '5.5.2' => true,
+        ),
+
+        'mysqli.rollback_on_cached_plink' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
+
+        'assert.exception' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'pcre.jit' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'session.lazy_write' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'zend.assertions' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
     );
 
     /**
@@ -180,25 +505,30 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         if ($function != 'ini_get' && $function != 'ini_set') {
             return;
         }
-        $iniToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
 
-        $filteredToken = str_replace(array('"', "'"), array("", ""), $tokens[$iniToken]['content']);
-        if (in_array($filteredToken, array_keys($this->newIniDirectives)) === false) {
+        $iniToken      = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
+        $filteredToken = trim($tokens[$iniToken]['content'], '\'"');
+        if (isset($this->newIniDirectives[$filteredToken]) === false) {
             return;
         }
 
         $error = '';
 
         foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === true) {
-                    $error .= " not available before version " . $version;
+            if ($version !== 'alternative') {
+                if ($this->supportsBelow($version)) {
+                    if ($present === true) {
+                        $error .= " not available before version " . $version;
+                    }
                 }
             }
         }
 
         if (strlen($error) > 0) {
             $error = "INI directive '" . $filteredToken . "' is" . $error;
+            if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
+                $error .= ". This directive was previously called '" . $this->newIniDirectives[$filteredToken]['alternative'] . "'.";
+            }
 
             $phpcsFile->addWarning($error, $stackPtr);
         }
