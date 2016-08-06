@@ -194,11 +194,11 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
         'filter.default' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
         'filter.default_flags' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
         'pcre.backtrack_limit' => array(
             '5.1' => false,
@@ -245,11 +245,11 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.2' => false,
             '5.3' => true,
         ),
-        'intl.error_level' => array(
+        'intl.default_locale' => array(
             '5.2' => false,
             '5.3' => true,
         ),
-        'intl.use_exceptions' => array(
+        'intl.error_level' => array(
             '5.2' => false,
             '5.3' => true,
         ),
