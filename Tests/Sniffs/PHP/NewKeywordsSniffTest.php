@@ -137,21 +137,39 @@ class NewKeywordsSniffTest extends BaseSniffTest
     public function testNowdoc()
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
-    
+
         $this->assertError($file, 37, "nowdoc functionality is not present in PHP version 5.2 or earlier");
         $this->assertError($file, 41, "nowdoc functionality is not present in PHP version 5.2 or earlier");
     }
-    
+
     /**
      * testConst
      *
-     * @requires PHP 5.3
+     * @requires PHP 5.3 if used outside class context
      * @return void
      */
     public function testConst()
     {
         $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
-    
+
         $this->assertError($file, 43, "\"const\" keyword is not present in PHP version 5.2 or earlier");
+        $this->assertNoViolation($file, 46);
+        $this->assertNoViolation($file, 47);
+    }
+
+    /**
+     * testHaltCompiler
+     *
+     * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler will be halted...
+     * So testing that any violations created *after* the compiler is halted will not be reported.
+     *
+     * @requires PHP 5.1
+     * @return void
+     */
+    public function testHaltCompiler()
+    {
+        $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
+
+        $this->assertNoViolation($file, 53);
     }
 }

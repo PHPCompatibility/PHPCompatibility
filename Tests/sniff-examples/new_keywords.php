@@ -42,6 +42,11 @@ EOD;
 
 const TEST = 'Hello';
 
+class testing {
+    const TEST = 'Hello';
+    const ok = 'a';
+}
+
 __halt_compiler();
 
 bla();
