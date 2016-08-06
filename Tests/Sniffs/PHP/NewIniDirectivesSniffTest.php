@@ -375,12 +375,12 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $warningVersion);
         foreach($lines as $line) {
             $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version $fromVersion");
-		}
+        }
 
         $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $okVersion);
         foreach( $lines as $line ) {
             $this->assertNoViolation($file, $line);
-		}
+        }
     }
 
     public function dataNewIniDirectives() {
@@ -416,25 +416,25 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('detect_unicode', '5.1', array(164, 165), '5.0', '5.2'),
             array('realpath_cache_size', '5.1', array(170, 171), '5.0', '5.2'),
             array('realpath_cache_ttl', '5.1', array(173, 174), '5.0', '5.2'),
-            
+
             array('mbstring.strict_detection', '5.1.2', array(176, 177), '5.1', '5.2'),
             array('mssql.charset', '5.1.2', array(179, 180), '5.1', '5.2'),
-            
+
             array('gd.jpeg_ignore_warning', '5.1.3', array(182, 183), '5.1', '5.2'),
-            
+
             array('fbsql.show_timestamp_decimals', '5.1.5', array(185, 186), '5.1', '5.2'),
             array('soap.wsdl_cache', '5.1.5', array(188, 189), '5.1', '5.2'),
             array('soap.wsdl_cache_limit', '5.1.5', array(191, 192), '5.1', '5.2'),
-            
+
             array('filter.default', '5.2', array(194, 195), '5.1', '5.3'),
             array('filter.default_flags', '5.2', array(197, 198), '5.1', '5.3'),
-            
+
             array('cgi.check_shebang_line', '5.2.1', array(200, 201), '5.2', '5.3'),
 
             array('mysqli.allow_local_infile', '5.2.4', array(203, 204), '5.2', '5.3'),
 
             array('max_file_uploads', '5.2.12', array(206, 207), '5.2', '5.3'),
-            
+
             array('cgi.discard_path', '5.3', array(209, 210), '5.2', '5.4'),
             array('intl.default_locale', '5.3', array(212, 213), '5.2', '5.4'),
             array('intl.error_level', '5.3', array(215, 216), '5.2', '5.4'),
@@ -449,7 +449,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('mysqlnd.net_read_buffer_size', '5.3', array(242, 243), '5.2', '5.4'),
             array('odbc.default_cursortype', '5.3', array(245, 246), '5.2', '5.4'),
             array('zend.enable_gc', '5.3', array(248, 249), '5.2', '5.4'),
-            
+
             array('curl.cainfo', '5.3.7', array(251, 252), '5.3', '5.4'),
 
             array('sqlite3.extension_dir', '5.3.11', array(254, 255), '5.3', '5.4'),
@@ -464,7 +464,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('mysqlnd.trace_alloc', '5.5', array(278, 279), '5.4', '5.6'),
             array('sys_temp_dir', '5.5', array(281, 282), '5.4', '5.6'),
             array('xsl.security_prefs', '5.5', array(284, 285), '5.4', '5.6'),
-            
+
             array('session.use_strict_mode', '5.5.2', array(287, 288), '5.5', '5.6'),
 
             array('mysqli.rollback_on_cached_plink', '5.6', array(290, 291), '5.5', '7.0'),
@@ -475,7 +475,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('zend.assertions', '7.0', array(302, 303), '5.6', '7.1'),
 
         );
-	}
+    }
 
 
     /**
@@ -490,12 +490,12 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $warningVersion);
         foreach($lines as $line) {
             $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version $fromVersion");
-		}
+        }
 
         $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $okVersion);
         foreach($lines as $line) {
             $this->assertNoViolation($file, $line);
-		}
+        }
     }
 
     public function dataNewIniDirectivesWithAlternative() {
@@ -503,6 +503,6 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('fbsql.batchsize', '5.1', 'fbsql.batchSize', array(167, 168), '5.0', '5.2'),
             array('zend.detect_unicode', '5.4', 'detect_unicode', array(260, 261), '5.3', '5.5'),
         );
-	}
+    }
 
 }
