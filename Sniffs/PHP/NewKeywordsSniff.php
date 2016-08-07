@@ -28,6 +28,9 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
      *
+     * If you add a condition, make sure to add the appropriate logic for it as well as
+     * this will not resolve itself automatically.
+     *
      * @var array(string => array(string => int|string|null))
      */
     protected $newKeywords = array(
@@ -39,7 +42,8 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                                         'T_CONST' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '"const" keyword'
+                                            'description' => '"const" keyword',
+                                            'condition' => 'T_CLASS', // Keyword is only new when not in class context.
                                         ),
                                         'T_CALLABLE' => array(
                                             '5.3' => false,
@@ -154,6 +158,21 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
             &&
             $tokens[$prevToken]['type'] != 'T_CLASS'
         ) {
+            // Skip based on special conditions.
+            if (
+                isset($this->newKeywords[$tokens[$stackPtr]['type']]['condition'])
+                &&
+                (empty($tokens[$stackPtr]['conditions']) === false
+                &&
+                is_array($tokens[$stackPtr]['conditions']))
+            ) {
+                foreach ($tokens[$stackPtr]['conditions'] as $condPtr => $condType) {
+                    if ($condType === constant($this->newKeywords[$tokens[$stackPtr]['type']]['condition'])) {
+                        return;
+                    }
+                }
+            }
+
             $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
         }
     }//end process()
@@ -180,6 +199,10 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
 
         $isError = false;
         foreach ($this->newKeywords[$pattern] as $version => $present) {
+            if (in_array($version, array('condition', 'description'), true)) {
+                continue;
+            }
+
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;
