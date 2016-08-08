@@ -15,49 +15,86 @@
  */
 class RemovedFunctionParameterSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/removed_function_parameter.php';
+
     /**
-     * Test mktime() is_dst parameter
+     * testRemovedParameter
+     *
+     * @dataProvider dataRemovedParameter
+     *
+     * @param string $functionName  Function name.
+     * @param string $parameterName Parameter name.
+     * @param string $removedIn     The PHP version in which the parameter was removed.
+     * @param array  $lines         The line numbers in the test file which apply to this class.
+     * @param string $okVersion     A PHP version in which the parameter was ok to be used.
      *
      * @return void
      */
-    public function testMktimeIsdst()
+    public function testRemovedParameter($functionName, $parameterName, $removedIn, $lines, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '5.0');
-        $this->assertNoViolation($file, 3);
-        $this->assertNoViolation($file, 8);
-        $this->assertNoViolation($file, 9);
-        $this->assertNoViolation($file, 10);
-        $this->assertNoViolation($file, 11);
-        $this->assertNoViolation($file, 12);
-        $this->assertNoViolation($file, 13);
-        $this->assertNoViolation($file, 14);
-        $this->assertNoViolation($file, 15);
-        $this->assertNoViolation($file, 17);
-        
-        $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '7.0');
-        $this->assertError($file, 3, "The function mktime does not have a parameter is_dst in PHP version 7.0 or later");
-        $this->assertNoViolation($file, 8);
-        $this->assertNoViolation($file, 9);
-        $this->assertNoViolation($file, 10);
-        $this->assertNoViolation($file, 11);
-        $this->assertNoViolation($file, 12);
-        $this->assertNoViolation($file, 13);
-        $this->assertNoViolation($file, 14);
-        $this->assertNoViolation($file, 15);
-        $this->assertNoViolation($file, 17);
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The function {$functionName} does not have a parameter {$parameterName} in PHP version {$removedIn} or later");
+        }
     }
-    
+
     /**
-     * Test gmmktime() is_dst parameter
+     * Data provider.
+     *
+     * @see testRemovedParameter()
+     *
+     * @return array
+     */
+    public function dataRemovedParameter()
+    {
+        return array(
+            array('mktime', 'is_dst', '7.0', array(3), '5.6'),
+            array('gmmktime', 'is_dst', '7.0', array(5), '5.6'),
+        );
+    }
+
+
+    /**
+     * testValidParameter
+     *
+     * @dataProvider dataValidParameter
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testGmmktimeIsdst()
+    public function testValidParameter($line)
     {
-        $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '5.6');
-        $this->assertNoViolation($file, 5);
-    
-        $file = $this->sniffFile('sniff-examples/removed_function_parameter.php', '7.0');
-        $this->assertError($file, 5, "The function gmmktime does not have a parameter is_dst in PHP version 7.0 or later");
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
     }
+
+    /**
+     * Data provider.
+     *
+     * @see testValidParameter()
+     *
+     * @return array
+     */
+    public function dataValidParameter()
+    {
+        return array(
+            array(8),
+            array(9),
+            array(10),
+            array(11),
+            array(12),
+            array(13),
+            array(14),
+            array(15),
+            array(17),
+        );
+    }
+
 }

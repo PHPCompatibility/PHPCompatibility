@@ -1,13 +1,13 @@
 <?php
 /**
- * New types test file
+ * New type declarations test file
  *
  * @package PHPCompatibility
  */
 
 
 /**
- * New types test file
+ * New type declarations test file
  *
  * @uses BaseSniffTest
  * @package PHPCompatibility
@@ -15,24 +15,43 @@
  */
 class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/new_scalar_type_declarations.php';
+
     /**
-     * testSettingTestVersion
+     * testScalarTypeDeclaration
+     *
+     * @dataProvider dataScalarTypeDeclaration
+     *
+     * @param string $type The scalar type.
+     * @param int    $line The line number.
      *
      * @return void
      */
-    public function testSettingTestVersion()
+    public function testScalarTypeDeclaration($type, $line)
     {
-        $file = $this->sniffFile('sniff-examples/new_scalar_type_declarations.php', '5.6');
-        $this->assertError($file, 3, 'bool type is not present in PHP version 5.6 or earlier');
-        $this->assertError($file, 5, 'int type is not present in PHP version 5.6 or earlier');
-        $this->assertError($file, 7, 'float type is not present in PHP version 5.6 or earlier');
-        $this->assertError($file, 9, 'string type is not present in PHP version 5.6 or earlier');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $this->assertError($file, $line, $type . ' type is not present in PHP version 5.6 or earlier');
 
-        $file = $this->sniffFile('sniff-examples/new_scalar_type_declarations.php', '7.0');
-        $this->assertNoViolation($file, 3);
-        $this->assertNoViolation($file, 5);
-        $this->assertNoViolation($file, 7);
-        $this->assertNoViolation($file, 9);
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
+
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testScalarTypeDeclaration()
+     *
+     * @return array
+     */
+    public function dataScalarTypeDeclaration()
+    {
+        return array(
+            array('bool', 3),
+            array('int', 5),
+            array('float', 7),
+            array('string', 9),
+        );
     }
 }
 

@@ -23,16 +23,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
     protected $_sniffFile;
 
     /**
-     * setUp
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
      * testNonDeprecatedPregReplace
      *
      * @return void

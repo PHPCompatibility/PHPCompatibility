@@ -15,141 +15,54 @@
  */
 class NewInterfacesSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/new_interfaces.php';
+
     /**
-     * setUp
+     * testNewInterface
+     *
+     * @dataProvider dataNewInterface
+     *
+     * @param string $interfaceName     Interface name.
+     * @param string $lastVersionBefore The PHP version just *before* the class was introduced.
+     * @param array  $lines             The line numbers in the test file which apply to this class.
+     * @param string $okVersion         A PHP version in which the class was ok to be used.
      *
      * @return void
      */
-    public function setUp()
+    public function testNewInterface($interfaceName, $lastVersionBefore, $lines, $okVersion)
     {
-        parent::setUp();
+        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The built-in interface {$interfaceName} is not present in PHP version {$lastVersionBefore} or earlier");
+        }
 
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
-     * Test Countable interface
+     * Data provider.
      *
-     * @return void
-     */
-    public function testCountable()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 3, 'The built-in interface Countable is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 3);
-    }
-
-    /**
-     * Test OuterIterator interface
+     * @see testNewInterface()
      *
-     * @return void
+     * @return array
      */
-    public function testOuterIterator()
+    public function dataNewInterface()
     {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 4, 'The built-in interface OuterIterator is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 4);
-    }
-
-    /**
-     * Test RecursiveIterator interface
-     *
-     * @return void
-     */
-    public function testRecursiveIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 5, 'The built-in interface RecursiveIterator is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 5);
-    }
-
-    /**
-     * Test SeekableIterator interface
-     *
-     * @return void
-     */
-    public function testSeekableIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 6, 'The built-in interface SeekableIterator is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 6);
-    }
-
-    /**
-     * Test Serializable interface
-     *
-     * @return void
-     */
-    public function testSerializable()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 7, 'The built-in interface Serializable is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 7);
-    }
-
-    /**
-     * Test SplObserver interface
-     *
-     * @return void
-     */
-    public function testSplObserver()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 11, 'The built-in interface SplObserver is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 11);
-    }
-
-    /**
-     * Test SplSubject interface
-     *
-     * @return void
-     */
-    public function testSplSubject()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 12, 'The built-in interface SplSubject is not present in PHP version 5.0 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 12);
-    }
-
-    /**
-     * Test JsonSerializable interface
-     *
-     * @return void
-     */
-    public function testJsonSerializable()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.3');
-        $this->assertError($file, 13, 'The built-in interface JsonSerializable is not present in PHP version 5.3 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 13);
-    }
-
-    /**
-     * Test SessionHandlerInterface interface
-     *
-     * @return void
-     */
-    public function testSessionHandlerInterface()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.3');
-        $this->assertError($file, 14, 'The built-in interface SessionHandlerInterface is not present in PHP version 5.3 or earlier');
-
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.5');
-        $this->assertNoViolation($file, 14);
+        return array(
+            array('Countable', '5.0', array(3, 17), '5.5'),
+            array('OuterIterator', '5.0', array(4), '5.5'),
+            array('RecursiveIterator', '5.0', array(5), '5.5'),
+            array('SeekableIterator', '5.0', array(6), '5.5'),
+            array('Serializable', '5.0', array(7), '5.5'),
+            array('SplObserver', '5.0', array(11), '5.5'),
+            array('SplSubject', '5.0', array(12, 17), '5.5'),
+            array('JsonSerializable', '5.3', array(13, 17), '5.5'),
+            array('SessionHandlerInterface', '5.3', array(14), '5.5'),
+        );
     }
 
     /**
@@ -165,19 +78,6 @@ class NewInterfacesSniffTest extends BaseSniffTest
     }
 
     /**
-     * Test multiple interfaces
-     *
-     * @return void
-     */
-    public function testMultipleInterfaces()
-    {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 16, 'The built-in interface SplSubject is not present in PHP version 5.0 or earlier');
-        $this->assertError($file, 16, 'The built-in interface JsonSerializable is not present in PHP version 5.3 or earlier');
-        $this->assertError($file, 16, 'The built-in interface Countable is not present in PHP version 5.0 or earlier');
-    }
-
-    /**
      * Test interfaces in different cases.
      *
      * @return void
@@ -185,8 +85,8 @@ class NewInterfacesSniffTest extends BaseSniffTest
     public function testCaseInsensitive()
     {
         $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
-        $this->assertError($file, 18, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
-        $this->assertError($file, 19, 'The built-in interface countable is not present in PHP version 5.0 or earlier');
+        $this->assertError($file, 20, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
+        $this->assertError($file, 21, 'The built-in interface countable is not present in PHP version 5.0 or earlier');
     }
 
 }

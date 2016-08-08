@@ -29,10 +29,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
     /**
      * A list of forbidden functions with their alternatives.
      *
-     * The array lists : version number with 0 (deprecated) or 1 (forbidden) and an alternative function.
-     * If no alternative exists, it is NULL. IE, the function should just not be used.
+     * The array lists : version number with false (deprecated) or true (forbidden) and an alternative function.
+     * If no alternative exists, it is NULL, i.e, the function should just not be used.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string|null))
      */
     protected $forbiddenFunctions = array(
                                         'call_user_method' => array(
@@ -70,6 +70,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_match'
                                         ),
                                         'ereg_replace' => array(
@@ -77,6 +78,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_replace'
                                         ),
                                         'eregi' => array(
@@ -84,6 +86,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_match'
                                         ),
                                         'eregi_replace' => array(
@@ -91,6 +94,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_replace'
                                         ),
                                         'imagepsbbox' => array(
@@ -122,9 +126,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             'alternative' => null
                                         ),
                                         'import_request_variables' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
-                                            '5.5' => true,
-                                            '5.6' => false,
                                             'alternative' => null
                                         ),
                                         'ldap_sort' => array(
@@ -143,58 +146,68 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
-                                            'alternative' => 'mysql_select_db and mysql_query'
+                                            '7.0' => true,
+                                            'alternative' => 'mysqli_select_db and mysqli_query'
                                         ),
                                         'mysql_escape_string' => array(
                                             '5.3' => false,
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
-                                            'alternative' => 'mysql_real_escape_string'
+                                            '7.0' => true,
+                                            'alternative' => 'mysqli_real_escape_string'
                                         ),
                                         'mysql_list_dbs' => array(
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'mysqli_bind_param' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_stmt_bind_param'
                                         ),
                                         'mysqli_bind_result' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_stmt_bind_result'
                                         ),
                                         'mysqli_client_encoding' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_character_set_name'
                                         ),
                                         'mysqli_fetch' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_stmt_fetch'
                                         ),
                                         'mysqli_param_count' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_stmt_param_count'
                                         ),
                                         'mysqli_get_metadata' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
                                             'alternative' => 'mysqli_stmt_result_metadata'
                                         ),
                                         'mysqli_send_long_data' => array(
+                                            '5.3' => false,
                                             '5.4' => true,
                                             '5.5' => true,
                                             '5.6' => true,
@@ -250,6 +263,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_split'
                                         ),
                                         'spliti' => array(
@@ -257,6 +271,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => 'preg_split'
                                         ),
                                         'sql_regcase' => array(
@@ -264,6 +279,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.4' => false,
                                             '5.5' => false,
                                             '5.6' => false,
+                                            '7.0' => true,
                                             'alternative' => null
                                         ),
                                         'php_logo_guid' => array(

@@ -15,68 +15,80 @@
  */
 class NewFunctionParameterSniffTest extends BaseSniffTest
 {
-    /**
-     * Test dirname() depth parameter
-     *
-     * @return void
-     */
-    public function testDirnameDepth()
-    {
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 3, "The function dirname does not have a parameter depth in PHP version 5.6 or earlier");
-        $this->assertNoViolation($file, 5);
-        $this->assertNoViolation($file, 7);
-        $this->assertError($file, 9, "The function dirname does not have a parameter depth in PHP version 5.6 or earlier");
 
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 3);
-        $this->assertNoViolation($file, 5);
-        $this->assertNoViolation($file, 7);
-        $this->assertNoViolation($file, 9);
-    }
-    
+    const TEST_FILE = 'sniff-examples/new_function_parameter.php';
+
     /**
-     * Test unserialize() options parameter
+     * testInvalidParameter
+     *
+     * @dataProvider dataInvalidParameter
+     *
+     * @param string $functionName      Function name.
+     * @param string $parameterName     Parameter name.
+     * @param string $lastVersionBefore The PHP version just *before* the parameter was introduced.
+     * @param array  $lines             The line numbers in the test file which apply to this class.
+     * @param string $okVersion         A PHP version in which the parameter was ok to be used.
      *
      * @return void
      */
-    public function testUnserializeOptions()
+    public function testInvalidParameter($functionName, $parameterName, $lastVersionBefore, $lines, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 11, "The function unserialize does not have a parameter options in PHP version 5.6 or earlier");
-    
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 11);
+        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The function {$functionName} does not have a parameter {$parameterName} in PHP version {$lastVersionBefore} or earlier");
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
-     * Test session_start() options parameter
+     * Data provider.
      *
-     * @return void
+     * @see testInvalidParameter()
+     *
+     * @return array
      */
-    public function testSessionStartOptions()
+    public function dataInvalidParameter()
     {
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.6');
-        $this->assertError($file, 13, "The function session_start does not have a parameter options in PHP version 5.6 or earlier");
-    
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '7.0');
-        $this->assertNoViolation($file, 13);
-        
+        return array(
+            array('dirname', 'depth', '5.6', array(3, 9), '7.0'),
+            array('unserialize', 'options', '5.6', array(11), '7.0'),
+            array('session_start', 'options', '5.6', array(13), '7.0'),
+            array('strstr', 'before_needle', '5.2', array(15), '5.3'),
+        );
     }
-    
+
+
     /**
-     * Test strstr() before_needle parameter
+     * testValidParameter
+     *
+     * @dataProvider dataValidParameter
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testStrstrBeforeNeedleOptions()
+    public function testValidParameter($line)
     {
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.2');
-        $this->assertError($file, 15, "The function strstr does not have a parameter before_needle in PHP version 5.2 or earlier");
-    
-        $file = $this->sniffFile('sniff-examples/new_function_parameter.php', '5.3');
-        $this->assertNoViolation($file, 15);
-    
+        $file = $this->sniffFile(self::TEST_FILE);
+        $this->assertNoViolation($file, $line);
     }
-    
+
+    /**
+     * Data provider.
+     *
+     * @see testValidParameter()
+     *
+     * @return array
+     */
+    public function dataValidParameter()
+    {
+        return array(
+            array(5),
+            array(7),
+        );
+    }
 }

@@ -59,6 +59,7 @@ function pfpro() {}
 $ok = new Sybase();
 $someObject->ming();
 
+// More removed extensions:
 mssql_bind();
 
 ereg();

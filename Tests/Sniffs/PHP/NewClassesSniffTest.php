@@ -15,459 +15,82 @@
  */
 class NewClassesSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/new_classes.php';
+
     /**
-     * Sniffed file
+     * testNewClass
      *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * Test http post vars
+     * @dataProvider dataNewClass
      *
-     * @return void
-     */
-    public function testDateTime()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.1');
-        $this->assertError($file, 3, "The built-in class DateTime is not present in PHP version 5.1 or earlier");
-        $this->assertError($file, 43, "The built-in class DateTime is not present in PHP version 5.1 or earlier");
-        $this->assertError($file, 45, "The built-in class DateTime is not present in PHP version 5.1 or earlier");
-
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertNoViolation($file, 3);
-        $this->assertNoViolation($file, 43);
-        $this->assertNoViolation($file, 45);
-    }
-
-    /**
-     * Test date time zone
+     * @param string $className         Class name.
+     * @param string $lastVersionBefore The PHP version just *before* the class was introduced.
+     * @param array  $lines             The line numbers in the test file which apply to this class.
+     * @param string $okVersion         A PHP version in which the class was ok to be used.
      *
      * @return void
      */
-    public function testDateTimeZone()
+    public function testNewClass($className, $lastVersionBefore, $lines, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.1');
-        $this->assertError($file, 4, "The built-in class DateTimeZone is not present in PHP version 5.1 or earlier");
-        $this->assertError($file, 46, "The built-in class DateTimeZone is not present in PHP version 5.1 or earlier");
+        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The built-in class {$className} is not present in PHP version {$lastVersionBefore} or earlier");
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
-     * Test RegexIterator
+     * Data provider.
      *
-     * @return void
+     * @see testNewClass()
+     *
+     * @return array
      */
-    public function testRegexIterator()
+    public function dataNewClass()
     {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.1');
-        $this->assertError($file, 5, "The built-in class RegexIterator is not present in PHP version 5.1 or earlier");
-        $this->assertError($file, 47, "The built-in class RegexIterator is not present in PHP version 5.1 or earlier");
+        return array(
+            array('DateTime', '5.1', array(3, 43, 45), '5.2'),
+            array('DateTimeZone', '5.1', array(4, 46), '5.2'),
+            array('RegexIterator', '5.1', array(5, 47), '5.2'),
+            array('RecursiveRegexIterator', '5.1', array(6, 48), '5.2'),
+            array('DateInterval', '5.2', array(7, 49), '5.3'),
+            array('DatePeriod', '5.2', array(8, 50), '5.3'),
+            array('Phar', '5.2', array(9, 51), '5.3'),
+            array('PharData', '5.2', array(10, 52), '5.3'),
+            array('PharException', '5.2', array(11, 53), '5.3'),
+            array('PharFileInfo', '5.2', array(12, 54), '5.3'),
+            array('FilesystemIterator', '5.2', array(13, 55), '5.3'),
+            array('GlobIterator', '5.2', array(14, 56), '5.3'),
+            array('MultipleIterator', '5.2', array(15, 57), '5.3'),
+            array('RecursiveTreeIterator', '5.2', array(16, 58), '5.3'),
+            array('SplDoublyLinkedList', '5.2', array(17, 59), '5.3'),
+            array('SplFixedArray', '5.2', array(18, 60), '5.3'),
+            array('SplHeap', '5.2', array(19, 61), '5.3'),
+            array('SplMaxHeap', '5.2', array(20, 62), '5.3'),
+            array('SplMinHeap', '5.2', array(21, 63), '5.3'),
+            array('SplPriorityQueue', '5.2', array(22, 64), '5.3'),
+            array('SplQueue', '5.2', array(23, 65), '5.3'),
+            array('SplStack', '5.2', array(24, 66), '5.3'),
+            array('CallbackFilterIterator', '5.3', array(25, 67), '5.4'),
+            array('RecursiveCallbackFilterIterator', '5.3', array(26, 68), '5.4'),
+            array('ReflectionZendExtension', '5.3', array(27, 69), '5.4'),
+            array('JsonSerializable', '5.3', array(28), '5.4'),
+            array('SessionHandler', '5.3', array(29, 71), '5.4'),
+            array('SNMP', '5.3', array(30, 72), '5.4'),
+            array('Transliterator', '5.3', array(31, 73), '5.4'),
+            array('CURLFile', '5.4', array(32, 74), '5.5'),
+            array('DateTimeImmutable', '5.4', array(33, 75), '5.5'),
+            array('IntlCalendar', '5.4', array(34, 76), '5.5'),
+            array('IntlGregorianCalendar', '5.4', array(35, 77), '5.5'),
+            array('IntlTimeZone', '5.4', array(36, 78), '5.5'),
+            array('IntlBreakIterator', '5.4', array(37, 79), '5.5'),
+            array('IntlRuleBasedBreakIterator', '5.4', array(38, 80), '5.5'),
+            array('IntlCodePointBreakIterator', '5.4', array(39, 81), '5.5'),
+        );
     }
 
-    /**
-     * Test RecursiveRegexIterator
-     *
-     * @return void
-     */
-    public function testRecursiveRegexIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.1');
-        $this->assertError($file, 6, "The built-in class RecursiveRegexIterator is not present in PHP version 5.1 or earlier");
-        $this->assertError($file, 48, "The built-in class RecursiveRegexIterator is not present in PHP version 5.1 or earlier");
-    }
-
-    /**
-     * Test DateInterval
-     *
-     * @return void
-     */
-    public function testDateInterval()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 7, "The built-in class DateInterval is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 49, "The built-in class DateInterval is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test DatePeriod
-     *
-     * @return void
-     */
-    public function testDatePeriod()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 8, "The built-in class DatePeriod is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 50, "The built-in class DatePeriod is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test Phar
-     *
-     * @return void
-     */
-    public function testPhar()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 9, "The built-in class Phar is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 51, "The built-in class Phar is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test PharData
-     *
-     * @return void
-     */
-    public function testPharData()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 10, "The built-in class PharData is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 52, "The built-in class PharData is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test PharException
-     *
-     * @return void
-     */
-    public function testPharException()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 11, "The built-in class PharException is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 53, "The built-in class PharException is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test PharFileInfo
-     *
-     * @return void
-     */
-    public function testPharFileInfo()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 12, "The built-in class PharFileInfo is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 54, "The built-in class PharFileInfo is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test FilesystemIterator
-     *
-     * @return void
-     */
-    public function testFilesystemIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 13, "The built-in class FilesystemIterator is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 55, "The built-in class FilesystemIterator is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test GlobIterator
-     *
-     * @return void
-     */
-    public function testGlobIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 14, "The built-in class GlobIterator is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 56, "The built-in class GlobIterator is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test MultipleIterator
-     *
-     * @return void
-     */
-    public function testMultipleIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 15, "The built-in class MultipleIterator is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 57, "The built-in class MultipleIterator is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test RecursiveTreeIterator
-     *
-     * @return void
-     */
-    public function testRecursiveTreeIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 16, "The built-in class RecursiveTreeIterator is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 58, "The built-in class RecursiveTreeIterator is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplDoublyLinkedList
-     *
-     * @return void
-     */
-    public function testSplDoubleLinkedList()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 17, "The built-in class SplDoublyLinkedList is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 59, "The built-in class SplDoublyLinkedList is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplFixedArray
-     *
-     * @return void
-     */
-    public function testSplFixedArray()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 18, "The built-in class SplFixedArray is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 60, "The built-in class SplFixedArray is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplHeap
-     *
-     * @return void
-     */
-    public function testSplHeap()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 19, "The built-in class SplHeap is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 61, "The built-in class SplHeap is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplMaxHeap
-     *
-     * @return void
-     */
-    public function testSplMaxHeap()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 20, "The built-in class SplMaxHeap is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 62, "The built-in class SplMaxHeap is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplMinHeap
-     *
-     * @return void
-     */
-    public function testSplMinHeap()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 21, "The built-in class SplMinHeap is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 63, "The built-in class SplMinHeap is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplPriorityQueue
-     *
-     * @return void
-     */
-    public function testSplPriorityQueue()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 22, "The built-in class SplPriorityQueue is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 64, "The built-in class SplPriorityQueue is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplQueue
-     *
-     * @return void
-     */
-    public function testSplQueue()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 23, "The built-in class SplQueue is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 65, "The built-in class SplQueue is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test SplStack
-     *
-     * @return void
-     */
-    public function testSplStack()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.2');
-        $this->assertError($file, 24, "The built-in class SplStack is not present in PHP version 5.2 or earlier");
-        $this->assertError($file, 66, "The built-in class SplStack is not present in PHP version 5.2 or earlier");
-    }
-
-    /**
-     * Test CallbackFilterIterator
-     *
-     * @return void
-     */
-    public function testCallbackFilterIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 25, "The built-in class CallbackFilterIterator is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 67, "The built-in class CallbackFilterIterator is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test RecursiveCallbackFilterIterator
-     *
-     * @return void
-     */
-    public function testRecursiveCallbackFilterIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 26, "The built-in class RecursiveCallbackFilterIterator is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 68, "The built-in class RecursiveCallbackFilterIterator is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test ReflectionZendExtension
-     *
-     * @return void
-     */
-    public function testReflectionZendExtension()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 27, "The built-in class ReflectionZendExtension is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 69, "The built-in class ReflectionZendExtension is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test JsonSerializable
-     *
-     * @return void
-     */
-    public function testJsonSerializable()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 28, "The built-in class JsonSerializable is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test SessionHandler
-     *
-     * @return void
-     */
-    public function testSessionHandler()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 29, "The built-in class SessionHandler is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 71, "The built-in class SessionHandler is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test SNMP
-     *
-     * @return void
-     */
-    public function testSNMP()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 30, "The built-in class SNMP is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 72, "The built-in class SNMP is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test Transliterator
-     *
-     * @return void
-     */
-    public function testTransliterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.3');
-        $this->assertError($file, 31, "The built-in class Transliterator is not present in PHP version 5.3 or earlier");
-        $this->assertError($file, 73, "The built-in class Transliterator is not present in PHP version 5.3 or earlier");
-    }
-
-    /**
-     * Test CURLFile
-     *
-     * @return void
-     */
-    public function testCURLFile()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 32, "The built-in class CURLFile is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 74, "The built-in class CURLFile is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test DateTimeImmutable
-     *
-     * @return void
-     */
-    public function testDateTimeImmutable()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 33, "The built-in class DateTimeImmutable is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 75, "The built-in class DateTimeImmutable is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test 
-     *
-     * @return void
-     */
-    public function testIntlCalendar()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 34, "The built-in class IntlCalendar is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 76, "The built-in class IntlCalendar is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test IntlGregorianCalendar
-     *
-     * @return void
-     */
-    public function testIntlGregorianCalendar()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 35, "The built-in class IntlGregorianCalendar is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 77, "The built-in class IntlGregorianCalendar is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test IntlTimeZone
-     *
-     * @return void
-     */
-    public function testIntlTimeZone()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 36, "The built-in class IntlTimeZone is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 78, "The built-in class IntlTimeZone is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test IntlBreakIterator
-     *
-     * @return void
-     */
-    public function testIntlBreakIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 37, "The built-in class IntlBreakIterator is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 79, "The built-in class IntlBreakIterator is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test IntlRuleBasedBreakIterator
-     *
-     * @return void
-     */
-    public function testIntlRuleBasedBreakIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 38, "The built-in class IntlRuleBasedBreakIterator is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 80, "The built-in class IntlRuleBasedBreakIterator is not present in PHP version 5.4 or earlier");
-    }
-
-    /**
-     * Test IntlCodePointBreakIterator
-     *
-     * @return void
-     */
-    public function testIntlCodePointBreakIterator()
-    {
-        $file = $this->sniffFile('sniff-examples/new_classes.php', '5.4');
-        $this->assertError($file, 39, "The built-in class IntlCodePointBreakIterator is not present in PHP version 5.4 or earlier");
-        $this->assertError($file, 81, "The built-in class IntlCodePointBreakIterator is not present in PHP version 5.4 or earlier");
-    }
 }
