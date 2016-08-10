@@ -109,41 +109,21 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
             return;
         }
 
-        if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
-            $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
-            $openParenthesis = $tokens[$closeParenthesis]['parenthesis_opener'];
-
-            $nextItem = $phpcsFile->findNext(array(), $openParenthesis + 1, $closeParenthesis, true);
-            if (isset($tokens[$nextItem]['nested_parenthesis'])) {
-                $parenthesisCount = count($tokens[$nextItem]['nested_parenthesis']);
-            } else {
-                $parenthesisCount = 0;
-            }
-
-            $nextComma = $stackPtr + 1;
-            $cnt = 0;
-            while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
-                if (
-                    $tokens[$nextComma]['type'] == 'T_COMMA'
-                    &&
-                    isset($tokens[$nextComma]['nested_parenthesis'])
-                    &&
-                    count($tokens[$nextComma]['nested_parenthesis']) != $parenthesisCount
-                ) {
-                    continue;
-                }
-
-                if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
-                    continue;
-                }
-
-                if (isset($this->removedFunctionParameters[$function][$cnt])) {
-                    $this->addError($phpcsFile, $nextComma, $function, $cnt);
-                }
-                $cnt++;
-            }
-
+        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        if ($parameterCount === 0) {
+            return;
         }
+
+        // If the parameter count returned > 0, we know there will be valid open parenthesis.
+        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $parameterOffsetFound = $parameterCount - 1;
+
+        foreach($this->removedFunctionParameters[$function] as $offset => $parameterDetails) {
+            if ($offset <= $parameterOffsetFound) {
+                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+            }
+        }
+
     }//end process()
 
 

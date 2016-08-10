@@ -124,22 +124,21 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
             return;
         }
 
-        if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
-            $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
-
-            $nextComma = $stackPtr + 1;
-            $cnt = 0;
-            while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
-                if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
-                    continue;
-                }
-                if (isset($this->newFunctionParameters[$function][$cnt])) {
-                    $this->addError($phpcsFile, $nextComma, $function, $cnt);
-                }
-                $cnt++;
-            }
-
+        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        if ($parameterCount === 0) {
+            return;
         }
+
+        // If the parameter count returned > 0, we know there will be valid open parenthesis.
+        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $parameterOffsetFound = $parameterCount - 1;
+
+        foreach($this->newFunctionParameters[$function] as $offset => $parameterDetails) {
+            if ($offset <= $parameterOffsetFound) {
+                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+            }
+        }
+
     }//end process()
 
 

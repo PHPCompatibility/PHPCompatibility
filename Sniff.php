@@ -168,4 +168,111 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     }//end findImplementedInterfaceNames()
 
 
+    /**
+     * Checks if a function call has parameters.
+     *
+     * Expects to be passed the T_STRING stack pointer for the function call.
+     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
+     *
+     * @link https://github.com/wimg/PHPCompatibility/issues/120
+     * @link https://github.com/wimg/PHPCompatibility/issues/152
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function call token.
+     *
+     * @return bool
+     */
+    public function doesFunctionCallHaveParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_STRING) {
+            return false;
+        }
+
+        // Next non-empty token should be the open parenthesis.
+        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
+            return false;
+        }
+
+        if (isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
+            return false;
+        }
+
+        $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
+        $nextNonEmpty     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $openParenthesis + 1, $closeParenthesis + 1, true);
+
+        if ($nextNonEmpty === $closeParenthesis) {
+            // No parameters.
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Count the number of parameters a function call has been passed.
+     *
+     * Expects to be passed the T_STRING stack pointer for the function call.
+     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
+     *
+     * @link https://github.com/wimg/PHPCompatibility/issues/111
+     * @link https://github.com/wimg/PHPCompatibility/issues/114
+     * @link https://github.com/wimg/PHPCompatibility/issues/151
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function call token.
+     *
+     * @return int
+     */
+    public function getFunctionCallParameterCount(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if ($this->doesFunctionCallHaveParameters($phpcsFile, $stackPtr) === false) {
+            return 0;
+        }
+
+        // Ok, we know we have a T_STRING with parameters and valid open & close parenthesis.
+        $tokens = $phpcsFile->getTokens();
+
+        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
+
+        // Which nesting level is the one we are interested in ?
+        $nestedParenthesisCount = 1;
+        if (isset($tokens[$openParenthesis]['nested_parenthesis'])) {
+            $nestedParenthesisCount = count($tokens[$openParenthesis]['nested_parenthesis']) + 1;
+        }
+
+        $nextComma = $openParenthesis;
+        $cnt = 0;
+        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
+            // Ignore comma's at a lower nesting level.
+            if (
+                $tokens[$nextComma]['type'] == 'T_COMMA'
+                &&
+                isset($tokens[$nextComma]['nested_parenthesis'])
+                &&
+                count($tokens[$nextComma]['nested_parenthesis']) != $nestedParenthesisCount
+            ) {
+                continue;
+            }
+
+            // Ignore closing parenthesis if not 'ours'.
+            if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
+                continue;
+            }
+
+            $cnt++;
+        }
+
+        return $cnt;
+    }
+
 }//end class
