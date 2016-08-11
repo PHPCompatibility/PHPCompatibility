@@ -54,8 +54,8 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
     public function dataRemovedParameter()
     {
         return array(
-            array('mktime', 'is_dst', '7.0', array(3), '5.6'),
-            array('gmmktime', 'is_dst', '7.0', array(5), '5.6'),
+            array('mktime', 'is_dst', '7.0', array(8), '5.6'),
+            array('gmmktime', 'is_dst', '7.0', array(9), '5.6'),
         );
     }
 
@@ -85,15 +85,8 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
     public function dataValidParameter()
     {
         return array(
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
-            array(17),
+            array(4),
+            array(5),
         );
     }
 
