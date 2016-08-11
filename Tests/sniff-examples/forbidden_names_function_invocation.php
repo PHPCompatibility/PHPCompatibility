@@ -18,7 +18,7 @@ namespace();
 private();
 protected();
 public();
-throw();
+// Removed: throw(); see #118
 trait();
 try();
 
@@ -29,6 +29,8 @@ catch
 try {} catch(Exception $e) {}
 try {
 } catch (Exception $e) {}
+
+// New reserved keywords introduced in PHP 7.0.
 bool();
 int();
 float();

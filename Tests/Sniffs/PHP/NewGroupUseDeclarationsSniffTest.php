@@ -15,33 +15,84 @@
  */
 class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/new_group_use_declarations.php';
+
+    protected function setUp()
+    {
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
+            $this->markTestSkipped();
+        }
+        else {
+            parent::setUp();
+        }
+    }
+
     /**
-     * Test use group declaration
+     * testGroupUseDeclaration
+     *
+     * @dataProvider dataGroupUseDeclaration
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testUseGroupDeclaration()
+    public function testGroupUseDeclaration($line)
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
-            $file = $this->sniffFile('sniff-examples/new_group_use_declarations.php', '5.6');
-            $this->assertNoViolation($file, 4);
-            $this->assertNoViolation($file, 5);
-            $this->assertNoViolation($file, 6);
-            $this->assertNoViolation($file, 8);
-            $this->assertNoViolation($file, 9);
-            $this->assertNoViolation($file, 10);
-            $this->assertError($file, 13, "Group use declarations are not allowed in PHP 5.6 or earlier");
-            $this->assertError($file, 14, "Group use declarations are not allowed in PHP 5.6 or earlier");
-    
-            $file = $this->sniffFile('sniff-examples/new_group_use_declarations.php', '7.0');
-            $this->assertNoViolation($file, 4);
-            $this->assertNoViolation($file, 5);
-            $this->assertNoViolation($file, 6);
-            $this->assertNoViolation($file, 8);
-            $this->assertNoViolation($file, 9);
-            $this->assertNoViolation($file, 10);
-            $this->assertNoViolation($file, 13);
-            $this->assertNoViolation($file, 14);
-        }
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $this->assertError($file, $line, 'Group use declarations are not allowed in PHP 5.6 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testGroupUseDeclaration()
+     *
+     * @return array
+     */
+    public function dataGroupUseDeclaration()
+    {
+        return array(
+            array(13),
+            array(14),
+        );
+    }
+
+
+    /**
+     * testValidUseDeclaration
+     *
+     * @dataProvider dataValidUseDeclaration
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testValidUseDeclaration($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testValidUseDeclaration()
+     *
+     * @return array
+     */
+    public function dataValidUseDeclaration()
+    {
+        return array(
+            array(4),
+            array(5),
+            array(6),
+            array(8),
+            array(9),
+            array(10),
+        );
     }
 }

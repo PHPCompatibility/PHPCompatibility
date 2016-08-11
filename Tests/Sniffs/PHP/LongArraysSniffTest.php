@@ -15,106 +15,53 @@
  */
 class LongArraysSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/long_arrays.php';
+
     /**
-     * Sniffed file
+     * testLongVariable
      *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * setUp
+     * @dataProvider dataLongVariable
      *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->_sniffFile = $this->sniffFile('sniff-examples/long_arrays.php');
-    }
-
-    /**
-     * Test http post vars
+     * @param string $longVariable Variable name.
+     * @param array  $lines        The line numbers in the test file which apply to this variable.
+     * @param string $deprecatedIn The PHP version in which the variable became deprecated.
+     * @param string $removedIn    The PHP version in which the variable was removed.
+     * @param string $okVersion    A PHP version in which the variable was still ok to be used.
      *
      * @return void
      */
-    public function testHttpPostVars()
+    public function testLongVariable($longVariable, $lines, $deprecatedIn, $removedIn, $okVersion)
     {
-        $this->assertWarning($this->_sniffFile, 3, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_POST_VARS'");
+        $file = $this->sniffFile(self::TEST_FILE);
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn} and removed in {$removedIn}; Found '{$longVariable}'");
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
-     * testHttpGetVars
+     * Data provider.
      *
-     * @return void
+     * @see testLongVariable()
+     *
+     * @return array
      */
-    public function testHttpGetVars()
+    public function dataLongVariable()
     {
-        $this->assertWarning($this->_sniffFile, 4, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_GET_VARS'");
+        return array(
+            array('$HTTP_POST_VARS', array(3), '5.3', '5.4', '5.2'),
+            array('$HTTP_GET_VARS', array(4), '5.3', '5.4', '5.2'),
+            array('$HTTP_ENV_VARS', array(5), '5.3', '5.4', '5.2'),
+            array('$HTTP_SERVER_VARS', array(6), '5.3', '5.4', '5.2'),
+            array('$HTTP_COOKIE_VARS', array(7), '5.3', '5.4', '5.2'),
+            array('$HTTP_SESSION_VARS', array(8), '5.3', '5.4', '5.2'),
+            array('$HTTP_POST_FILES', array(9), '5.3', '5.4', '5.2'),
+        );
     }
 
-    /**
-     * testHttpEnvVars
-     *
-     * @return void
-     */
-    public function testHttpEnvVars()
-    {
-        $this->assertWarning($this->_sniffFile, 5, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_ENV_VARS'");
-    }
-
-    /**
-     * testHttpServerVars
-     *
-     * @return void
-     */
-    public function testHttpServerVars()
-    {
-        $this->assertWarning($this->_sniffFile, 6, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_SERVER_VARS'");
-    }
-
-    /**
-     * testHttpCookieVars
-     *
-     * @return void
-     */
-    public function testHttpCookieVars()
-    {
-        $this->assertWarning($this->_sniffFile, 7, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_COOKIE_VARS'");
-    }
-
-    /**
-     * testHttpCookieVars
-     *
-     * @return void
-     */
-    public function testHttpSessionVars()
-    {
-        $this->assertWarning($this->_sniffFile, 8, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_SESSION_VARS'");
-    }
-
-    /**
-     * testHttpPostFiles
-     *
-     * @return void
-     */
-    public function testHttpPostFiles()
-    {
-        $this->assertWarning($this->_sniffFile, 9, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_POST_FILES'");
-    }
-
-    /**
-     * Test when sniffing for a testVersion config param
-     *
-     * @return void
-     */
-    public function testSpecificVersionTest()
-    {
-        $file = $this->sniffFile('sniff-examples/long_arrays.php', '5.2');
-        $this->assertNoViolation($file, 3);
-
-        $file = $this->sniffFile('sniff-examples/long_arrays.php', '5.3');
-        $this->assertWarning($file, 3, "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '\$HTTP_POST_VARS'");
-    }
 }

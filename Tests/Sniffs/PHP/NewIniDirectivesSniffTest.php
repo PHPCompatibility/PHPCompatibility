@@ -15,6 +15,9 @@
  */
 class NewIniDirectivesSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/new_ini_directives.php';
+
     /**
      * Test functions that shouldnt be flagged by this sniff
      *
@@ -22,344 +25,11 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
      */
     public function testFunctionThatShouldntBeFlagged()
     {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
+        $file = $this->sniffFile(self::TEST_FILE, '5.1');
 
         $this->assertNoViolation($file, 3);
         $this->assertNoViolation($file, 4);
         $this->assertNoViolation($file, 5);
-    }
-
-    /**
-     * Test allow_url_include
-     *
-     * @return void
-     */
-    public function testAllowUrlInclude()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
-
-        $this->assertWarning($file, 7, "INI directive 'allow_url_include' is not available before version 5.2");
-        $this->assertWarning($file, 8, "INI directive 'allow_url_include' is not available before version 5.2");
-
-        // Line 9 tests using double quotes
-        $this->assertWarning($file, 9, "INI directive 'allow_url_include' is not available before version 5.2");
-    }
-
-    /**
-     * testPcreBacktracLimit
-     *
-     * @return void
-     */
-    public function testPcreBacktrackLimit()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
-
-        $this->assertWarning($file, 11, "INI directive 'pcre.backtrack_limit' is not available before version 5.2");
-        $this->assertWarning($file, 12, "INI directive 'pcre.backtrack_limit' is not available before version 5.2");
-    }
-
-    /**
-     * testPcreRecursionLimit
-     *
-     * @return void
-     */
-    public function testPcreRecursionLimit()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
-
-        $this->assertWarning($file, 14, "INI directive 'pcre.recursion_limit' is not available before version 5.2");
-        $this->assertWarning($file, 15, "INI directive 'pcre.recursion_limit' is not available before version 5.2");
-    }
-
-    /**
-     * testSessionCookieHttpOnly
-     *
-     * @return void
-     */
-    public function testSessionCookieHttpOnly()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
-
-        $this->assertWarning($file, 17, "INI directive 'session.cookie_httponly' is not available before version 5.2");
-        $this->assertWarning($file, 18, "INI directive 'session.cookie_httponly' is not available before version 5.2");
-    }
-
-    /**
-     * testMaxInputNestingLevel
-     *
-     * @return void
-     */
-    public function testMaxInputNestingLevel()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.1');
-
-        $this->assertWarning($file, 20, "INI directive 'max_input_nesting_level' is not available before version 5.2.3");
-        $this->assertWarning($file, 21, "INI directive 'max_input_nesting_level' is not available before version 5.2.3");
-
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 20, "INI directive 'max_input_nesting_level' is not available before version 5.2.3");
-        $this->assertWarning($file, 21, "INI directive 'max_input_nesting_level' is not available before version 5.2.3");
-    }
-
-    /**
-     * testUserIniFilename
-     *
-     * @return void
-     */
-    public function testUserIniFilename()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 23, "INI directive 'user_ini.filename' is not available before version 5.3");
-        $this->assertWarning($file, 24, "INI directive 'user_ini.filename' is not available before version 5.3");
-    }
-
-    /**
-     * testUserInitCacheTtl
-     *
-     * @return void
-     */
-    public function testUserInitCacheTtl()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 26, "INI directive 'user_ini.cache_ttl' is not available before version 5.3");
-        $this->assertWarning($file, 27, "INI directive 'user_ini.cache_ttl' is not available before version 5.3");
-    }
-
-    /**
-     * testExitOnTimeout
-     *
-     * @return void
-     */
-    public function testExitOnTimeout()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 29, "INI directive 'exit_on_timeout' is not available before version 5.3");
-        $this->assertWarning($file, 30, "INI directive 'exit_on_timeout' is not available before version 5.3");
-    }
-
-    /**
-     * testMbstringHttpOutputConvMimetype
-     *
-     * @return void
-     */
-    public function testMbstringHttpOutputConvMimetype()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 32, "INI directive 'mbstring.http_output_conv_mimetype' is not available before version 5.3");
-        $this->assertWarning($file, 33, "INI directive 'mbstring.http_output_conv_mimetype' is not available before version 5.3");
-    }
-
-    /**
-     * testRequestOrder
-     *
-     * @return void
-     */
-    public function testRequestOrder()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 35, "INI directive 'request_order' is not available before version 5.3");
-        $this->assertWarning($file, 36, "INI directive 'request_order' is not available before version 5.3");
-    }
-
-    /**
-     * testCliPager
-     *
-     * @return void
-     */
-    public function testCliPager()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 38, "INI directive 'cli.pager' is not available before version 5.4");
-        $this->assertWarning($file, 39, "INI directive 'cli.pager' is not available before version 5.4");
-    }
-
-    /**
-     * testCliPrompt
-     *
-     * @return void
-     */
-    public function testCliPrompt()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 41, "INI directive 'cli.prompt' is not available before version 5.4");
-        $this->assertWarning($file, 42, "INI directive 'cli.prompt' is not available before version 5.4");
-    }
-
-    /**
-     * testCliServerColor
-     *
-     * @return void
-     */
-    public function testCliServerColor()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 44, "INI directive 'cli_server.color' is not available before version 5.4");
-        $this->assertWarning($file, 45, "INI directive 'cli_server.color' is not available before version 5.4");
-    }
-
-    /**
-     * testMaxInputVars
-     *
-     * @return void
-     */
-    public function testMaxInputVars()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.2');
-
-        $this->assertWarning($file, 47, "INI directive 'max_input_vars' is not available before version 5.3.9");
-        $this->assertWarning($file, 48, "INI directive 'max_input_vars' is not available before version 5.3.9");
-    }
-
-    /**
-     * testZendMultibyte
-     *
-     * @return void
-     */
-    public function testZendMultibyte()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 50, "INI directive 'zend.multibyte' is not available before version 5.4");
-        $this->assertWarning($file, 51, "INI directive 'zend.multibyte' is not available before version 5.4");
-    }
-
-    /**
-     * testZendScriptEncoding
-     *
-     * @return void
-     */
-    public function testZendScriptEncoding()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 53, "INI directive 'zend.script_encoding' is not available before version 5.4");
-        $this->assertWarning($file, 54, "INI directive 'zend.script_encoding' is not available before version 5.4");
-    }
-
-    /**
-     * testZendSignalCheck
-     *
-     * @return void
-     */
-    public function testZendSignalCheck()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 56, "INI directive 'zend.signal_check' is not available before version 5.4");
-        $this->assertWarning($file, 57, "INI directive 'zend.signal_check' is not available before version 5.4");
-    }
-
-    /**
-     * testSessionUploadProgressEnabled
-     *
-     * @return void
-     */
-    public function testSessionUploadProgressEnabled()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 59, "INI directive 'session.upload_progress.enabled' is not available before version 5.4");
-        $this->assertWarning($file, 60, "INI directive 'session.upload_progress.enabled' is not available before version 5.4");
-    }
-
-    /**
-     * testSessionUploadProgressCleanup
-     *
-     * @return void
-     */
-    public function testSessionUploadProgressCleanup()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 62, "INI directive 'session.upload_progress.cleanup' is not available before version 5.4");
-        $this->assertWarning($file, 63, "INI directive 'session.upload_progress.cleanup' is not available before version 5.4");
-    }
-
-    /**
-     * testSessionUploadProgressName
-     *
-     * @return void
-     */
-    public function testSessionUploadProgressName()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 65, "INI directive 'session.upload_progress.name' is not available before version 5.4");
-        $this->assertWarning($file, 66, "INI directive 'session.upload_progress.name' is not available before version 5.4");
-    }
-
-    /**
-     * testSessionUploadProgressFreq
-     *
-     * @return void
-     */
-    public function testSessionUploadProgressFreq()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 68, "INI directive 'session.upload_progress.freq' is not available before version 5.4");
-        $this->assertWarning($file, 69, "INI directive 'session.upload_progress.freq' is not available before version 5.4");
-    }
-
-    /**
-     * testEnablePostDataReading
-     *
-     * @return void
-     */
-    public function testEnablePostDataReading()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 71, "INI directive 'enable_post_data_reading' is not available before version 5.4");
-        $this->assertWarning($file, 72, "INI directive 'enable_post_data_reading' is not available before version 5.4");
-    }
-
-    /**
-     * testWindowsShowCrtWarning
-     *
-     * @return void
-     */
-    public function testWindowsShowCrtWarning()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.3');
-
-        $this->assertWarning($file, 74, "INI directive 'windows_show_crt_warning' is not available before version 5.4");
-        $this->assertWarning($file, 75, "INI directive 'windows_show_crt_warning' is not available before version 5.4");
-    }
-
-    /**
-     * testIntlUseExceptions
-     *
-     * @return void
-     */
-    public function testIntlUseExceptions()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.4');
-
-        $this->assertWarning($file, 77, "INI directive 'intl.use_exceptions' is not available before version 5.5");
-        $this->assertWarning($file, 78, "INI directive 'intl.use_exceptions' is not available before version 5.5");
-    }
-
-    /**
-     * testMysqlndSha256ServerPublicKey
-     *
-     * @return void
-     */
-    public function testMysqlndSha256ServerPublicKey()
-    {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', '5.4');
-
-        $this->assertWarning($file, 80, "INI directive 'mysqlnd.sha256_server_public_key' is not available before version 5.5");
-        $this->assertWarning($file, 81, "INI directive 'mysqlnd.sha256_server_public_key' is not available before version 5.5");
     }
 
 
@@ -368,22 +38,36 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
      *
      * @dataProvider dataNewIniDirectives
      *
+     * @param string $iniName        Name of the ini directive.
+     * @param string $fromVersion    The PHP version in which the ini directive was introduced.
+     * @param array  $lines          The line numbers in the test file which apply to this ini directive.
+     * @param string $warningVersion A PHP version in which the ini directive was not yet present.
+     * @param string $okVersion      A PHP version in which the ini directive was valid.
+     *
      * @return void
      */
     public function testNewIniDirectives($iniName, $fromVersion, $lines, $warningVersion, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $warningVersion);
+        $file = $this->sniffFile(self::TEST_FILE, $warningVersion);
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version $fromVersion");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version {$fromVersion}");
         }
 
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $okVersion);
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach( $lines as $line ) {
             $this->assertNoViolation($file, $line);
         }
     }
 
-    public function dataNewIniDirectives() {
+    /**
+     * Data provider.
+     *
+     * @see testNewIniDirectives()
+     *
+     * @return array
+     */
+    public function dataNewIniDirectives()
+    {
         return array(
             array('auto_globals_jit', '5.0', array(83, 84), '4.4', '5.1'),
             array('com.code_page', '5.0', array(86, 87), '4.4', '5.1'),
@@ -426,15 +110,26 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('soap.wsdl_cache', '5.1.5', array(188, 189), '5.1', '5.2'),
             array('soap.wsdl_cache_limit', '5.1.5', array(191, 192), '5.1', '5.2'),
 
+            array('allow_url_include', '5.2', array(7, 8, 9), '5.1', '5.3'),
+            array('pcre.backtrack_limit', '5.2', array(11, 12), '5.1', '5.3'),
+            array('pcre.recursion_limit', '5.2', array(14, 15), '5.1', '5.3'),
+            array('session.cookie_httponly', '5.2', array(17, 18), '5.1', '5.3'),
             array('filter.default', '5.2', array(194, 195), '5.1', '5.3'),
             array('filter.default_flags', '5.2', array(197, 198), '5.1', '5.3'),
 
             array('cgi.check_shebang_line', '5.2.1', array(200, 201), '5.2', '5.3'),
 
+            array('max_input_nesting_level', '5.2.3', array(20, 21), '5.2', '5.3'),
+
             array('mysqli.allow_local_infile', '5.2.4', array(203, 204), '5.2', '5.3'),
 
             array('max_file_uploads', '5.2.12', array(206, 207), '5.2', '5.3'),
 
+            array('user_ini.filename', '5.3', array(23, 24), '5.2', '5.4'),
+            array('user_ini.cache_ttl', '5.3', array(26, 27), '5.2', '5.4'),
+            array('exit_on_timeout', '5.3', array(29, 30), '5.2', '5.4'),
+            array('mbstring.http_output_conv_mimetype', '5.3', array(32, 33), '5.2', '5.4'),
+            array('request_order', '5.3', array(35, 36), '5.2', '5.4'),
             array('cgi.discard_path', '5.3', array(209, 210), '5.2', '5.4'),
             array('intl.default_locale', '5.3', array(212, 213), '5.2', '5.4'),
             array('intl.error_level', '5.3', array(215, 216), '5.2', '5.4'),
@@ -452,8 +147,22 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
             array('curl.cainfo', '5.3.7', array(251, 252), '5.3', '5.4'),
 
+            array('max_input_vars', '5.3.9', array(47, 48), '5.3', '5.4'),
+
             array('sqlite3.extension_dir', '5.3.11', array(254, 255), '5.3', '5.4'),
 
+            array('cli.pager', '5.4', array(38, 39), '5.3', '5.5'),
+            array('cli.prompt', '5.4', array(41, 42), '5.3', '5.5'),
+            array('cli_server.color', '5.4', array(44, 45), '5.3', '5.5'),
+            array('zend.multibyte', '5.4', array(50, 51), '5.3', '5.5'),
+            array('zend.script_encoding', '5.4', array(53, 54), '5.3', '5.5'),
+            array('zend.signal_check', '5.4', array(56, 57), '5.3', '5.5'),
+            array('session.upload_progress.enabled', '5.4', array(59, 60), '5.3', '5.5'),
+            array('session.upload_progress.cleanup', '5.4', array(62, 63), '5.3', '5.5'),
+            array('session.upload_progress.name', '5.4', array(65, 66), '5.3', '5.5'),
+            array('session.upload_progress.freq', '5.4', array(68, 69), '5.3', '5.5'),
+            array('enable_post_data_reading', '5.4', array(71, 72), '5.3', '5.5'),
+            array('windows_show_crt_warning', '5.4', array(74, 75), '5.3', '5.5'),
             array('session.upload_progress.prefix', '5.4', array(257, 258), '5.3', '5.5'),
             array('mysqlnd.log_mask', '5.4', array(263, 264), '5.3', '5.5'),
             array('mysqlnd.mempool_default_size', '5.4', array(266, 267), '5.3', '5.5'),
@@ -461,6 +170,8 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('mysqlnd.net_read_timeout', '5.4', array(272, 273), '5.3', '5.5'),
             array('phar.cache_list', '5.4', array(275, 276), '5.3', '5.5'),
 
+            array('intl.use_exceptions', '5.5', array(77, 78), '5.4', '5.6'),
+            array('mysqlnd.sha256_server_public_key', '5.5', array(80, 81), '5.4', '5.6'),
             array('mysqlnd.trace_alloc', '5.5', array(278, 279), '5.4', '5.6'),
             array('sys_temp_dir', '5.5', array(281, 282), '5.4', '5.6'),
             array('xsl.security_prefs', '5.5', array(284, 285), '5.4', '5.6'),
@@ -483,22 +194,37 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
      *
      * @dataProvider dataNewIniDirectivesWithAlternative
      *
+     * @param string $iniName        Name of the ini directive.
+     * @param string $fromVersion    The PHP version in which the ini directive was introduced.
+     * @param string $alternative    An alternative ini directive.
+     * @param array  $lines          The line numbers in the test file which apply to this ini directive.
+     * @param string $warningVersion A PHP version in which the ini directive was not yet present.
+     * @param string $okVersion      A PHP version in which the ini directive was valid.
+     *
      * @return void
      */
     public function testNewIniDirectivesWithAlternative($iniName, $fromVersion, $alternative, $lines, $warningVersion, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $warningVersion);
+        $file = $this->sniffFile(self::TEST_FILE, $warningVersion);
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version $fromVersion");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is not available before version {$fromVersion}. This directive was previously called '{$alternative}'.");
         }
 
-        $file = $this->sniffFile('sniff-examples/new_ini_directives.php', $okVersion);
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }
 
-    public function dataNewIniDirectivesWithAlternative() {
+    /**
+     * Data provider.
+     *
+     * @see testNewIniDirectivesWithAlternative()
+     *
+     * @return array
+     */
+    public function dataNewIniDirectivesWithAlternative()
+    {
         return array(
             array('fbsql.batchsize', '5.1', 'fbsql.batchSize', array(167, 168), '5.0', '5.2'),
             array('zend.detect_unicode', '5.4', 'detect_unicode', array(260, 261), '5.3', '5.5'),

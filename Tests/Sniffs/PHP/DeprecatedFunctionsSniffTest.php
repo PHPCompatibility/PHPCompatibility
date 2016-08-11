@@ -15,1119 +15,364 @@
  */
 class DeprecatedFunctionsSniffTest extends BaseSniffTest
 {
-    /**
-     * Test call user method
-     *
-     * @return void
-     */
-    public function testCallUserMethod()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 3, 'The use of function call_user_method is discouraged from PHP version 5.3; use call_user_func instead');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 3, 'The use of function call_user_method is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use call_user_func instead');
-    }
-
-    /**
-     * Test call user method array
-     *
-     * @return void
-     */
-    public function testCallUserMethodArray()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 4, 'The use of function call_user_method_array is discouraged from PHP version 5.3; use call_user_func_array instead');
-
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 4, 'The use of function call_user_method_array is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use call_user_func_array instead');
-    }
-
-    /**
-     * Test define syslog variables
-     *
-     * @return void
-     */
-    public function testDefineSyslogVariables()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-        $this->assertError($file, 5, 'The use of');
-    }
-
-    /**
-     * Test dl
-     *
-     * @return void
-     */
-    public function testDl()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 6, 'The use of function dl is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test ereg
-     *
-     * @return void
-     */
-    public function testEreg()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 7, 'The use of function ereg is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test ereg_replace
-     *
-     * @return void
-     */
-    public function testEregReplace()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 8, 'The use of function ereg_replace is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test eregi
-     *
-     * @return void
-     */
-    public function testEregi()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 9, 'The use of function eregi is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test eregi_replace
-     *
-     * @return void
-     */
-    public function testEregiReplace()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 10, 'The use of function eregi_replace is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test import_request_variables
-     *
-     * @return void
-     */
-    public function testImportRequestVariables()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 11, 'The use of function import_request_variables is forbidden from PHP version 5.4');
-    }
-
-    /**
-     * Test mcrypt_generic_end
-     *
-     * @return void
-     */
-    public function testMcryptGenericEnd()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 12, 'The use of function mcrypt_generic_end is discouraged from PHP version 5.4; use mcrypt_generic_deinit instead');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 12, 'The use of function mcrypt_generic_end is discouraged from PHP version 5.4 and forbidden from PHP version 7.0; use mcrypt_generic_deinit instead');
-    }
-
-    /**
-     * Test mysql_db_query
-     *
-     * @return void
-     */
-    public function testMysqlDbQuery()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 13, 'The use of function mysql_db_query is discouraged from PHP version 5.3; use mysql_select_db and mysql_query instead');
-    }
-
-    /**
-     * Test mysql_escape_string
-     *
-     * @return void
-     */
-    public function testMysqlEscapeString()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 14, 'The use of function mysql_escape_string is discouraged from PHP version 5.3; use mysql_real_escape_string instead');
-    }
-
-    /**
-     * Test mysql_list_dbs
-     *
-     * @return void
-     */
-    public function testMysqlListDbs()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 15, 'The use of function mysql_list_dbs is discouraged from PHP version 5.4');
-    }
-
-    /**
-     * Test mysqli_bind_param
-     *
-     * @return void
-     */
-    public function testMysqliBindParam()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 16, 'The use of function mysqli_bind_param is forbidden from PHP version 5.4; use mysqli_stmt_bind_param instead');
-    }
-
-    /**
-     * Test mysqli_bind_result
-     *
-     * @return void
-     */
-    public function testMysqliBindResult()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 17, 'The use of function mysqli_bind_result is forbidden from PHP version 5.4; use mysqli_stmt_bind_result instead');
-    }
-
-    /**
-     * Test mysqli_client_encoding
-     *
-     * @return void
-     */
-    public function testMysqliClientEncoding()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 18, 'The use of function mysqli_client_encoding is forbidden from PHP version 5.4; use mysqli_character_set_name instead');
-    }
-
-    /**
-     * Test mysqli_fetch
-     *
-     * @return void
-     */
-    public function testMysqliFetch()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 19, 'The use of function mysqli_fetch is forbidden from PHP version 5.4; use mysqli_stmt_fetch instead');
-    }
-
-    /**
-     * Test mysqli_param_count
-     *
-     * @return void
-     */
-    public function testMysqliParamCount()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 20, 'The use of function mysqli_param_count is forbidden from PHP version 5.4; use mysqli_stmt_param_count instead');
-    }
-
-    /**
-     * Test mysqli_get_metadata
-     *
-     * @return void
-     */
-    public function testMysqliGetMetadata()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 21, 'The use of function mysqli_get_metadata is forbidden from PHP version 5.4; use mysqli_stmt_result_metadata instead');
-    }
-
-    /**
-     * Test mysqli_send_long_data
-     *
-     * @return void
-     */
-    public function testMysqliSendLongData()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 22, 'The use of function mysqli_send_long_data is forbidden from PHP version 5.4; use mysqli_stmt_send_long_data instead');
-    }
-
-    /**
-     * Test magic_quotes_runtime
-     *
-     * @return void
-     */
-    public function testMagicQuotesRuntime()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 23, 'The use of function magic_quotes_runtime is discouraged from PHP version 5.3');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 23, 'The use of function magic_quotes_runtime is discouraged from PHP version 5.3 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test session_register
-     *
-     * @return void
-     */
-    public function testSessionRegister()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 24, 'The use of function session_register is discouraged from PHP version 5.3 and forbidden from PHP version 5.4; use $_SESSION instead');
-    }
-
-    /**
-     * Test session_unregister
-     *
-     * @return void
-     */
-    public function testSessionUnregister()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 25, 'The use of function session_unregister is discouraged from PHP version 5.3 and forbidden from PHP version 5.4; use $_SESSION instead');
-    }
-
-    /**
-     * Test session_is_registered
-     *
-     * @return void
-     */
-    public function testSessionIsRegistered()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 26, 'The use of function session_is_registered is discouraged from PHP version 5.3 and forbidden from PHP version 5.4; use $_SESSION instead');
-    }
-
-    /**
-     * Test set_magic_quotes_runtime
-     *
-     * @return void
-     */
-    public function testSetMagicQuotesRuntime()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 27, 'The use of function set_magic_quotes_runtime is discouraged from PHP version 5.3');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 27, 'The use of function set_magic_quotes_runtime is discouraged from PHP version 5.3 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test set_socket_blocking
-     *
-     * @return void
-     */
-    public function testSetSocketBlocking()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 28, 'The use of function set_socket_blocking is discouraged from PHP version 5.3; use stream_set_blocking instead');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 28, 'The use of function set_socket_blocking is discouraged from PHP version 5.3 and forbidden from PHP version 7.0; use stream_set_blocking instead');
-    }
-
-    /**
-     * Test split
-     *
-     * @return void
-     */
-    public function testSplit()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 29, 'The use of function split is discouraged from PHP version 5.3; use preg_split instead');
-    }
-
-    /**
-     * Test spliti
-     *
-     * @return void
-     */
-    public function testSpliti()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 30, 'The use of function spliti is discouraged from PHP version 5.3; use preg_split instead');
-    }
-
-    /**
-     * Test sql_regcase
-     *
-     * @return void
-     */
-    public function testSqlRegcase()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 31, 'The use of function sql_regcase is discouraged from PHP version 5.3');
-    }
-
-    /**
-     * Test php_logo_guid
-     *
-     * @return void
-     */
-    public function testPhpLogoGuid()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 32, 'The use of function php_logo_guid is forbidden from PHP version 5.5');
-    }
-
-    /**
-     * Test php_egg_logo_guid
-     *
-     * @return void
-     */
-    public function testPhpEggLogoGuid()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 33, 'The use of function php_egg_logo_guid is forbidden from PHP version 5.5');
-    }
-
-    /**
-     * Test php_real_logo_guid
-     *
-     * @return void
-     */
-    public function testPhpRealLogoGuid()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 34, 'The use of function php_real_logo_guid is forbidden from PHP version 5.5');
-    }
-
-    /**
-     * Test zend_logo_guid
-     *
-     * @return void
-     */
-    public function testZendLogoGuid()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertError($file, 35, 'The use of function zend_logo_guid is forbidden from PHP version 5.5');
-    }
-
-    /**
-     * Test datefmt_set_timezone_id
-     *
-     * @return void
-     */
-    public function testDateFmtSetTimezone()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 36, 'The use of function datefmt_set_timezone_id is discouraged from PHP version 5.5; use datefmt_set_timezone instead');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 36, 'The use of function datefmt_set_timezone_id is discouraged from PHP version 5.5 and forbidden from PHP version 7.0; use datefmt_set_timezone instead');
-    }
-
-    /**
-     * Test mcrypt_ecb
-     *
-     * @return void
-     */
-    public function testMcryptEcb()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 37, 'The use of function mcrypt_ecb is discouraged from PHP version 5.5');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 37, 'The use of function mcrypt_ecb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test mcrypt_cbc
-     *
-     * @return void
-     */
-    public function testMcryptCbc()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 38, 'The use of function mcrypt_cbc is discouraged from PHP version 5.5');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 38, 'The use of function mcrypt_cbc is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test mcrypt_cfb
-     *
-     * @return void
-     */
-    public function testMcryptCfb()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 39, 'The use of function mcrypt_cfb is discouraged from PHP version 5.5');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 39, 'The use of function mcrypt_cfb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test mcrypt_ofb
-     *
-     * @return void
-     */
-    public function testMcryptOfb()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertWarning($file, 40, 'The use of function mcrypt_ofb is discouraged from PHP version 5.5');
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 40, 'The use of function mcrypt_ofb is discouraged from PHP version 5.5 and forbidden from PHP version 7.0');
-    }
-
-    /**
-     * Test ocibindbyname
-     *
-     * @return void
-     */
-    public function testOcibindbyname()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 41, 'The use of function ocibindbyname is discouraged from PHP version 5.4; use oci_bind_by_name instead');
-    }
-
-    /**
-     * Test ocicancel
-     *
-     * @return void
-     */
-    public function testOcicancel()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 42, 'The use of function ocicancel is discouraged from PHP version 5.4; use oci_cancel instead');
-    }
-
-    /**
-     * Test ocicloselob
-     *
-     * @return void
-     */
-    public function testOcicloselob()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 43, 'The use of function ocicloselob is discouraged from PHP version 5.4; use OCI-Lob::close instead');
-    }
-
-    /**
-     * Test ocicollappend
-     *
-     * @return void
-     */
-    public function testOcicollappend()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 44, 'The use of function ocicollappend is discouraged from PHP version 5.4; use OCI-Collection::append instead');
-    }
-
-    /**
-     * Test ocicollassign
-     *
-     * @return void
-     */
-    public function testOcicollassign()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 45, 'The use of function ocicollassign is discouraged from PHP version 5.4; use OCI-Collection::assign instead');
-    }
-
-    /**
-     * Test ocicollassignelem
-     *
-     * @return void
-     */
-    public function testOcicollassignelem()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 46, 'The use of function ocicollassignelem is discouraged from PHP version 5.4; use OCI-Collection::assignElem instead');
-    }
-
-    /**
-     * Test ocicollgetelem
-     *
-     * @return void
-     */
-    public function testOcicollgetelem()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 47, 'The use of function ocicollgetelem is discouraged from PHP version 5.4; use OCI-Collection::getElem instead');
-    }
-
-    /**
-     * Test ocicollmax
-     *
-     * @return void
-     */
-    public function testOcicollmax()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 48, 'The use of function ocicollmax is discouraged from PHP version 5.4; use OCI-Collection::max instead');
-    }
-
-    /**
-     * Test ocicollsize
-     *
-     * @return void
-     */
-    public function testOcicollsize()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 49, 'The use of function ocicollsize is discouraged from PHP version 5.4; use OCI-Collection::size instead');
-    }
-
-    /**
-     * Test ocicolltrim
-     *
-     * @return void
-     */
-    public function testOcicolltrim()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 50, 'The use of function ocicolltrim is discouraged from PHP version 5.4; use OCI-Collection::trim instead');
-    }
-
-    /**
-     * Test ocicolumnisnull
-     *
-     * @return void
-     */
-    public function testOcicolumnisnull()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 51, 'The use of function ocicolumnisnull is discouraged from PHP version 5.4; use oci_field_is_null instead');
-    }
-
-    /**
-     * Test ocicolumnname
-     *
-     * @return void
-     */
-    public function testOcicolumnname()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 52, 'The use of function ocicolumnname is discouraged from PHP version 5.4; use oci_field_name instead');
-    }
-
-    /**
-     * Test ocicolumnprecision
-     *
-     * @return void
-     */
-    public function testOcicolumnprecision()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 53, 'The use of function ocicolumnprecision is discouraged from PHP version 5.4; use oci_field_precision instead');
-    }
-
-    /**
-     * Test ocicolumnscale
-     *
-     * @return void
-     */
-    public function testOcicolumnscale()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 54, 'The use of function ocicolumnscale is discouraged from PHP version 5.4; use oci_field_scale instead');
-    }
-
-    /**
-     * Test ocicolumnsize
-     *
-     * @return void
-     */
-    public function testOcicolumnsize()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 55, 'The use of function ocicolumnsize is discouraged from PHP version 5.4; use oci_field_size instead');
-    }
-
-    /**
-     * Test ocicolumntype
-     *
-     * @return void
-     */
-    public function testOcicolumntype()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 56, 'The use of function ocicolumntype is discouraged from PHP version 5.4; use oci_field_type instead');
-    }
-
-    /**
-     * Test ocicolumntyperaw
-     *
-     * @return void
-     */
-    public function testOcicolumntyperaw()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 57, 'The use of function ocicolumntyperaw is discouraged from PHP version 5.4; use oci_field_type_raw instead');
-    }
-
-    /**
-     * Test ocicommit
-     *
-     * @return void
-     */
-    public function testOcicommit()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 58, 'The use of function ocicommit is discouraged from PHP version 5.4; use oci_commit instead');
-    }
-
-    /**
-     * Test ocidefinebyname
-     *
-     * @return void
-     */
-    public function testOcidefinebyname()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 59, 'The use of function ocidefinebyname is discouraged from PHP version 5.4; use oci_define_by_name instead');
-    }
-
-    /**
-     * Test ocierror
-     *
-     * @return void
-     */
-    public function testOcierror()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 60, 'The use of function ocierror is discouraged from PHP version 5.4; use oci_error instead');
-    }
-
-    /**
-     * Test ociexecute
-     *
-     * @return void
-     */
-    public function testOciexecute()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 61, 'The use of function ociexecute is discouraged from PHP version 5.4; use oci_execute instead');
-    }
-
-    /**
-     * Test ocifetch
-     *
-     * @return void
-     */
-    public function testOcifetch()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 62, 'The use of function ocifetch is discouraged from PHP version 5.4; use oci_fetch instead');
-    }
-
-    /**
-     * Test ocifetchinto
-     *
-     * @return void
-     */
-    public function testOcifetchinto()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 63, 'The use of function ocifetchinto is discouraged from PHP version 5.4');
-    }
-
-    /**
-     * Test ocifetchstatement
-     *
-     * @return void
-     */
-    public function testOcifetchstatement()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 64, 'The use of function ocifetchstatement is discouraged from PHP version 5.4; use oci_fetch_all instead');
-    }
-
-    /**
-     * Test ocifreecollection
-     *
-     * @return void
-     */
-    public function testOcifreecollection()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 65, 'The use of function ocifreecollection is discouraged from PHP version 5.4; use OCI-Collection::free instead');
-    }
-
-    /**
-     * Test ocifreecursor
-     *
-     * @return void
-     */
-    public function testOcifreecursor()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 66, 'The use of function ocifreecursor is discouraged from PHP version 5.4; use oci_free_statement instead');
-    }
-
-    /**
-     * Test ocifreedesc
-     *
-     * @return void
-     */
-    public function testOcifreedesc()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 67, 'The use of function ocifreedesc is discouraged from PHP version 5.4; use OCI-Lob::free instead');
-    }
-
-    /**
-     * Test ocifreestatement
-     *
-     * @return void
-     */
-    public function testOcifreestatement()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 68, 'The use of function ocifreestatement is discouraged from PHP version 5.4; use oci_free_statement instead');
-    }
-
-    /**
-     * Test ociinternaldebug
-     *
-     * @return void
-     */
-    public function testOciinternaldebug()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 69, 'The use of function ociinternaldebug is discouraged from PHP version 5.4; use oci_internal_debug instead');
-    }
-
-    /**
-     * Test ociloadlob
-     *
-     * @return void
-     */
-    public function testOciloadlob()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 70, 'The use of function ociloadlob is discouraged from PHP version 5.4; use OCI-Lob::load instead');
-    }
-
-    /**
-     * Test ocilogoff
-     *
-     * @return void
-     */
-    public function testOcilogoff()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 71, 'The use of function ocilogoff is discouraged from PHP version 5.4; use oci_close instead');
-    }
-
-    /**
-     * Test ocilogon
-     *
-     * @return void
-     */
-    public function testOcilogon()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 72, 'The use of function ocilogon is discouraged from PHP version 5.4; use oci_connect instead');
-    }
-
-    /**
-     * Test ocinewcollection
-     *
-     * @return void
-     */
-    public function testOcinewcollection()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 73, 'The use of function ocinewcollection is discouraged from PHP version 5.4; use oci_new_collection instead');
-    }
-
-    /**
-     * Test ocinewcursor
-     *
-     * @return void
-     */
-    public function testOcinewcursor()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 74, 'The use of function ocinewcursor is discouraged from PHP version 5.4; use oci_new_cursor instead');
-    }
-
-    /**
-     * Test ocinewdescriptor
-     *
-     * @return void
-     */
-    public function testOcinewdescriptor()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 75, 'The use of function ocinewdescriptor is discouraged from PHP version 5.4; use oci_new_descriptor instead');
-    }
-
-    /**
-     * Test ocinlogon
-     *
-     * @return void
-     */
-    public function testOcinlogon()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 76, 'The use of function ocinlogon is discouraged from PHP version 5.4; use oci_new_connect instead');
-    }
-
-    /**
-     * Test ocinumcols
-     *
-     * @return void
-     */
-    public function testOcinumcols()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 77, 'The use of function ocinumcols is discouraged from PHP version 5.4; use oci_num_fields instead');
-    }
-
-    /**
-     * Test ociparse
-     *
-     * @return void
-     */
-    public function testOciparse()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
 
-        $this->assertWarning($file, 78, 'The use of function ociparse is discouraged from PHP version 5.4; use oci_parse instead');
-    }
-
-    /**
-     * Test ociplogon
-     *
-     * @return void
-     */
-    public function testOciplogon()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 79, 'The use of function ociplogon is discouraged from PHP version 5.4; use oci_pconnect instead');
-    }
-
-    /**
-     * Test ociresult
-     *
-     * @return void
-     */
-    public function testOciresult()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 80, 'The use of function ociresult is discouraged from PHP version 5.4; use oci_result instead');
-    }
-
-    /**
-     * Test ocirollback
-     *
-     * @return void
-     */
-    public function testOcirollback()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+    const TEST_FILE = 'sniff-examples/deprecated_functions.php';
 
-        $this->assertWarning($file, 81, 'The use of function ocirollback is discouraged from PHP version 5.4; use oci_rollback instead');
-    }
 
     /**
-     * Test ocirowcount
+     * testDeprecatedFunction
      *
-     * @return void
-     */
-    public function testOcirowcount()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 82, 'The use of function ocirowcount is discouraged from PHP version 5.4; use oci_num_rows instead');
-    }
-
-    /**
-     * Test ocisavelob
+     * @dataProvider dataDeprecatedFunction
      *
-     * @return void
-     */
-    public function testOcisavelob()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 83, 'The use of function ocisavelob is discouraged from PHP version 5.4; use OCI-Lob::save instead');
-    }
-
-    /**
-     * Test ocisavelobfile
+     * @param string $functionName      Name of the function.
+     * @param string $deprecatedIn      The PHP version in which the function was deprecated.
+     * @param array  $lines             The line numbers in the test file which apply to this function.
+     * @param string $okVersion         A PHP version in which the function was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
      *
-     * @return void
+     * return void
      */
-    public function testOcisavelobfile()
+    public function testDeprecatedFunction($functionName, $deprecatedIn, $lines, $okVersion, $deprecatedVersion = null)
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
 
-        $this->assertWarning($file, 84, 'The use of function ocisavelobfile is discouraged from PHP version 5.4; use OCI-Lob::import instead');
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}");
+        }
     }
 
     /**
-     * Test ociserverversion
-     *
-     * @return void
-     */
-    public function testOciserverversion()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 85, 'The use of function ociserverversion is discouraged from PHP version 5.4; use oci_server_version instead');
+     * Data provider.
+     *
+     * @see testDeprecatedFunction()
+     *
+     * @return array
+     */
+    public function dataDeprecatedFunction()
+    {
+        return array(
+            array('dl', '5.3', array(6), '5.2'),
+            array('ocifetchinto', '5.4', array(63), '5.3'),
+            array('ldap_sort', '7.0', array(97), '5.6'),
+        );
     }
-
-    /**
-     * Test ocisetprefetch
-     *
-     * @return void
-     */
-    public function testOcisetprefetch()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
 
-        $this->assertWarning($file, 86, 'The use of function ocisetprefetch is discouraged from PHP version 5.4; use oci_set_prefetch instead');
-    }
 
     /**
-     * Test ocistatementtype
+     * testDeprecatedFunctionWithAlternative
      *
-     * @return void
-     */
-    public function testOcistatementtype()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 87, 'The use of function ocistatementtype is discouraged from PHP version 5.4; use oci_statement_type instead');
-    }
-
-    /**
-     * Test ociwritelobtofile
+     * @dataProvider dataDeprecatedFunctionWithAlternative
      *
-     * @return void
-     */
-    public function testOciwritelobtofile()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-
-        $this->assertWarning($file, 88, 'The use of function ociwritelobtofile is discouraged from PHP version 5.4; use OCI-Lob::export instead');
-    }
-
-    /**
-     * Test ociwritetemporarylob
+     * @param string $functionName      Name of the function.
+     * @param string $deprecatedIn      The PHP version in which the function was deprecated.
+     * @param string $alternative       An alternative function.
+     * @param array  $lines             The line numbers in the test file which apply to this function.
+     * @param string $okVersion         A PHP version in which the function was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
      *
-     * @return void
+     * return void
      */
-    public function testOciwritetemporarylob()
+    public function testDeprecatedFunctionWithAlternative($functionName, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
 
-        $this->assertWarning($file, 89, 'The use of function ociwritetemporarylob is discouraged from PHP version 5.4; use OCI-Lob::writeTemporary instead');
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}; use {$alternative} instead");
+        }
     }
 
     /**
-     * Test ldap_sort
+     * Data provider.
      *
-     * @return void
-     */
-    public function testLdapSort()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php');
-    
-        $this->assertWarning($file, 97, 'The use of function ldap_sort is discouraged from PHP version 7.0');
-    }
-    
-    /**
-     * GD Type 1 PostScript functions
+     * @see testDeprecatedFunctionWithAlternative()
      *
-     * @return void
+     * @return array
      */
-    public function testGDType1()
+    public function dataDeprecatedFunctionWithAlternative()
     {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.6');
-        $this->assertNoViolation($file, 90);
-        $this->assertNoViolation($file, 91);
-        $this->assertNoViolation($file, 92);
-        $this->assertNoViolation($file, 93);
-        $this->assertNoViolation($file, 94);
-        $this->assertNoViolation($file, 95);
-        $this->assertNoViolation($file, 96);
-        
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '7.0');
-        $this->assertError($file, 90, 'The use of function imagepsbbox is forbidden from PHP version 7.0');
-        $this->assertError($file, 91, 'The use of function imagepsencodefont is forbidden from PHP version 7.0');
-        $this->assertError($file, 92, 'The use of function imagepsextendfont is forbidden from PHP version 7.0');
-        $this->assertError($file, 93, 'The use of function imagepsfreefont is forbidden from PHP version 7.0');
-        $this->assertError($file, 94, 'The use of function imagepsloadfont is forbidden from PHP version 7.0');
-        $this->assertError($file, 95, 'The use of function imagepsslantfont is forbidden from PHP version 7.0');
-        $this->assertError($file, 96, 'The use of function imagepstext is forbidden from PHP version 7.0');
+        return array(
+            array('ocibindbyname', '5.4', 'oci_bind_by_name', array(41), '5.3'),
+            array('ocicancel', '5.4', 'oci_cancel', array(42), '5.3'),
+            array('ocicloselob', '5.4', 'OCI-Lob::close', array(43), '5.3'),
+            array('ocicollappend', '5.4', 'OCI-Collection::append', array(44), '5.3'),
+            array('ocicollassign', '5.4', 'OCI-Collection::assign', array(45), '5.3'),
+            array('ocicollassignelem', '5.4', 'OCI-Collection::assignElem', array(46), '5.3'),
+            array('ocicollgetelem', '5.4', 'OCI-Collection::getElem', array(47), '5.3'),
+            array('ocicollmax', '5.4', 'OCI-Collection::max', array(48), '5.3'),
+            array('ocicollsize', '5.4', 'OCI-Collection::size', array(49), '5.3'),
+            array('ocicolltrim', '5.4', 'OCI-Collection::trim', array(50), '5.3'),
+            array('ocicolumnisnull', '5.4', 'oci_field_is_null', array(51), '5.3'),
+            array('ocicolumnname', '5.4', 'oci_field_name', array(52), '5.3'),
+            array('ocicolumnprecision', '5.4', 'oci_field_precision', array(53), '5.3'),
+            array('ocicolumnscale', '5.4', 'oci_field_scale', array(54), '5.3'),
+            array('ocicolumnsize', '5.4', 'oci_field_size', array(55), '5.3'),
+            array('ocicolumntype', '5.4', 'oci_field_type', array(56), '5.3'),
+            array('ocicolumntyperaw', '5.4', 'oci_field_type_raw', array(57), '5.3'),
+            array('ocicommit', '5.4', 'oci_commit', array(58), '5.3'),
+            array('ocidefinebyname', '5.4', 'oci_define_by_name', array(59), '5.3'),
+            array('ocierror', '5.4', 'oci_error', array(60), '5.3'),
+            array('ociexecute', '5.4', 'oci_execute', array(61), '5.3'),
+            array('ocifetch', '5.4', 'oci_fetch', array(62), '5.3'),
+            array('ocifetchstatement', '5.4', 'oci_fetch_all', array(64), '5.3'),
+            array('ocifreecollection', '5.4', 'OCI-Collection::free', array(65), '5.3'),
+            array('ocifreecursor', '5.4', 'oci_free_statement', array(66), '5.3'),
+            array('ocifreedesc', '5.4', 'OCI-Lob::free', array(67), '5.3'),
+            array('ocifreestatement', '5.4', 'oci_free_statement', array(68), '5.3'),
+            array('ociinternaldebug', '5.4', 'oci_internal_debug', array(69), '5.3'),
+            array('ociloadlob', '5.4', 'OCI-Lob::load', array(70), '5.3'),
+            array('ocilogoff', '5.4', 'oci_close', array(71), '5.3'),
+            array('ocilogon', '5.4', 'oci_connect', array(72), '5.3'),
+            array('ocinewcollection', '5.4', 'oci_new_collection', array(73), '5.3'),
+            array('ocinewcursor', '5.4', 'oci_new_cursor', array(74), '5.3'),
+            array('ocinewdescriptor', '5.4', 'oci_new_descriptor', array(75), '5.3'),
+            array('ocinlogon', '5.4', 'oci_new_connect', array(76), '5.3'),
+            array('ocinumcols', '5.4', 'oci_num_fields', array(77), '5.3'),
+            array('ociparse', '5.4', 'oci_parse', array(78), '5.3'),
+            array('ociplogon', '5.4', 'oci_pconnect', array(79), '5.3'),
+            array('ociresult', '5.4', 'oci_result', array(80), '5.3'),
+            array('ocirollback', '5.4', 'oci_rollback', array(81), '5.3'),
+            array('ocirowcount', '5.4', 'oci_num_rows', array(82), '5.3'),
+            array('ocisavelob', '5.4', 'OCI-Lob::save', array(83), '5.3'),
+            array('ocisavelobfile', '5.4', 'OCI-Lob::import', array(84), '5.3'),
+            array('ociserverversion', '5.4', 'oci_server_version', array(85), '5.3'),
+            array('ocisetprefetch', '5.4', 'oci_set_prefetch', array(86), '5.3'),
+            array('ocistatementtype', '5.4', 'oci_statement_type', array(87), '5.3'),
+            array('ociwritelobtofile', '5.4', 'OCI-Lob::export', array(88), '5.3'),
+            array('ociwritetemporarylob', '5.4', 'OCI-Lob::writeTemporary', array(89), '5.3'),
+
+        );
+    }
+
+
+    /**
+     * testForbiddenFunction
+     *
+     * @dataProvider dataForbiddenFunction
+     *
+     * @param string $functionName      Name of the function.
+     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
+     * @param array  $lines             The line numbers in the test file which apply to this function.
+     * @param string $okVersion         A PHP version in which the function was still valid.
+     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
+     *                                  if different from the $forbiddenIn version.
+     *
+     * return void
+     */
+    public function testForbiddenFunction($functionName, $forbiddenIn, $lines, $okVersion, $forbiddenVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($forbiddenVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+        }
+        foreach($lines as $line) {
+            $this->assertError($file, $line, "The use of function {$functionName} is forbidden from PHP version {$forbiddenIn}");
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testForbiddenFunction()
+     *
+     * @return array
+     */
+    public function dataForbiddenFunction()
+    {
+        return array(
+            array('php_logo_guid', '5.5', array(32), '5.4'),
+            array('php_egg_logo_guid', '5.5', array(33), '5.4'),
+            array('php_real_logo_guid', '5.5', array(34), '5.4'),
+            array('zend_logo_guid', '5.5', array(35), '5.4'),
+            array('imagepsbbox', '7.0', array(90), '5.6'),
+            array('imagepsencodefont', '7.0', array(91), '5.6'),
+            array('imagepsextendfont', '7.0', array(92), '5.6'),
+            array('imagepsfreefont', '7.0', array(93), '5.6'),
+            array('imagepsloadfont', '7.0', array(94), '5.6'),
+            array('imagepsslantfont', '7.0', array(95), '5.6'),
+            array('imagepstext', '7.0', array(96), '5.6'),
+
+        );
+    }
+
+
+    /**
+     * testDeprecatedForbiddenFunction
+     *
+     * @dataProvider dataDeprecatedForbiddenFunction
+     *
+     * @param string $functionName      Name of the function.
+     * @param string $deprecatedIn      The PHP version in which the function was deprecated.
+     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
+     * @param array  $lines             The line numbers in the test file which apply to this function.
+     * @param string $okVersion         A PHP version in which the function was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
+     *                                  if different from the $forbiddenIn version.
+     *
+     * return void
+     */
+    public function testDeprecatedForbiddenFunction($functionName, $deprecatedIn, $forbiddenIn, $lines, $okVersion, $deprecatedVersion = null, $forbiddenVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}");
+        }
+
+        if (isset($forbiddenVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+        }
+        foreach($lines as $line) {
+            $this->assertError($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn} and forbidden from PHP version {$forbiddenIn}");
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedForbiddenFunction()
+     *
+     * @return array
+     */
+    public function dataDeprecatedForbiddenFunction()
+    {
+        return array(
+            array('define_syslog_variables', '5.3', '5.4', array(5), '5.2'),
+            array('import_request_variables', '5.3', '5.4', array(11), '5.2'),
+            array('mysql_list_dbs', '5.4', '7.0', array(15), '5.3'),
+            array('magic_quotes_runtime', '5.3', '7.0', array(23), '5.2'),
+            array('set_magic_quotes_runtime', '5.3', '7.0', array(27), '5.2'),
+            array('sql_regcase', '5.3', '7.0', array(31), '5.2'),
+            array('mcrypt_ecb', '5.5', '7.0', array(37), '5.4'),
+            array('mcrypt_cbc', '5.5', '7.0', array(38), '5.4'),
+            array('mcrypt_cfb', '5.5', '7.0', array(39), '5.4'),
+            array('mcrypt_ofb', '5.5', '7.0', array(40), '5.4'),
+
+        );
+    }
+
+
+    /**
+     * testDeprecatedForbiddenFunctionWithAlternative
+     *
+     * @dataProvider dataDeprecatedForbiddenFunctionWithAlternative
+     *
+     * @param string $functionName      Name of the function.
+     * @param string $deprecatedIn      The PHP version in which the function was deprecated.
+     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
+     * @param string $alternative       An alternative function.
+     * @param array  $lines             The line numbers in the test file which apply to this function.
+     * @param string $okVersion         A PHP version in which the function was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
+     *                                  if different from the $forbiddenIn version.
+     *
+     * return void
+     */
+    public function testDeprecatedForbiddenFunctionWithAlternative($functionName, $deprecatedIn, $forbiddenIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $forbiddenVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}; use {$alternative} instead");
+        }
+
+        if (isset($forbiddenVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+        }
+        foreach($lines as $line) {
+            $this->assertError($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn} and forbidden from PHP version {$forbiddenIn}; use {$alternative} instead");
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedForbiddenFunctionWithAlternative()
+     *
+     * @return array
+     */
+    public function dataDeprecatedForbiddenFunctionWithAlternative()
+    {
+        return array(
+            array('call_user_method', '5.3', '7.0', 'call_user_func', array(3), '5.2'),
+            array('call_user_method_array', '5.3', '7.0', 'call_user_func_array', array(4), '5.2'),
+            array('ereg', '5.3', '7.0', 'preg_match', array(7), '5.2'),
+            array('ereg_replace', '5.3', '7.0', 'preg_replace', array(8), '5.2'),
+            array('eregi', '5.3', '7.0', 'preg_match', array(9), '5.2'),
+            array('eregi_replace', '5.3', '7.0', 'preg_replace', array(10), '5.2'),
+            array('mcrypt_generic_end', '5.4', '7.0', 'mcrypt_generic_deinit', array(12), '5.3'),
+            array('mysql_db_query', '5.3', '7.0', 'mysqli_select_db and mysqli_query', array(13), '5.2'),
+            array('mysql_escape_string', '5.3', '7.0', 'mysqli_real_escape_string', array(14), '5.2'),
+            array('mysqli_bind_param', '5.3', '5.4', 'mysqli_stmt_bind_param', array(16), '5.2'),
+            array('mysqli_bind_result', '5.3', '5.4', 'mysqli_stmt_bind_result', array(17), '5.2'),
+            array('mysqli_client_encoding', '5.3', '5.4', 'mysqli_character_set_name', array(18), '5.2'),
+            array('mysqli_fetch', '5.3', '5.4', 'mysqli_stmt_fetch', array(19), '5.2'),
+            array('mysqli_param_count', '5.3', '5.4', 'mysqli_stmt_param_count', array(20), '5.2'),
+            array('mysqli_get_metadata', '5.3', '5.4', 'mysqli_stmt_result_metadata', array(21), '5.2'),
+            array('mysqli_send_long_data', '5.3', '5.4', 'mysqli_stmt_send_long_data', array(22), '5.2'),
+            array('session_register', '5.3', '5.4', '$_SESSION', array(24), '5.2'),
+            array('session_unregister', '5.3', '5.4', '$_SESSION', array(25), '5.2'),
+            array('session_is_registered', '5.3', '5.4', '$_SESSION', array(26), '5.2'),
+            array('set_socket_blocking', '5.3', '7.0', 'stream_set_blocking', array(28), '5.2'),
+            array('split', '5.3', '7.0', 'preg_split', array(29), '5.2'),
+            array('spliti', '5.3', '7.0', 'preg_split', array(30), '5.2'),
+            array('datefmt_set_timezone_id', '5.5', '7.0', 'datefmt_set_timezone', array(36), '5.4'),
+
+        );
     }
-
-    /**
-     * Test when setting the testVersion
-     *
-     * @return void
-     */
-    public function testSettingTestVersion()
-    {
-        $file = $this->sniffFile('sniff-examples/deprecated_functions.php', '5.3');
 
-        $this->assertNoViolation($file, 19);
-    }
 }
-

@@ -23,17 +23,6 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     protected $_sniffFile;
 
     /**
-     * setUp
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-    }
-
-    /**
      * Test ternary operators that are acceptable in all PHP versions.
      *
      * @return void

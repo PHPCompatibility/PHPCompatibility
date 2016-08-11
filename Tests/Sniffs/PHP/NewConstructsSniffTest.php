@@ -1,13 +1,13 @@
 <?php
 /**
- * New constructs sniff test file
+ * New language constructs sniff test file
  *
  * @package PHPCompatibility
  */
 
 
 /**
- * New constructs sniff tests
+ * New language constructs sniff tests
  *
  * @uses BaseSniffTest
  * @package PHPCompatibility

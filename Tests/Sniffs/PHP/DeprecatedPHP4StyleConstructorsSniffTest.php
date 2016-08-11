@@ -1,12 +1,12 @@
 <?php
 /**
- * Default timezone sniff test file
+ * PHP4 style constructors sniff test file
  *
  * @package PHPCompatibility
  */
 
 /**
- * Default timezone required sniff test
+ * PHP4 style constructors sniff test
  *
  * @uses BaseSniffTest
  * @package PHPCompatibility

@@ -15,6 +15,9 @@
  */
 class RemovedExtensionsSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/removed_extensions.php';
+
     /**
      * Sniffed file
      *
@@ -31,295 +34,142 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     {
         parent::setUp();
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/removed_extensions.php');
+        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
     }
 
+
     /**
-     * testActiveScript
+     * testRemovedExtension
+     *
+     * @dataProvider dataRemovedExtension
+     *
+     * @param string $extensionName  Name of the PHP extension.
+     * @param string $removedIn      The PHP version in which the extension was removed.
+     * @param array  $lines          The line numbers in the test file which apply to this extension.
+     * @param string $okVersion      A PHP version in which the extension was still present.
+     * @param string $removedVersion Optional PHP version to test removal message with -
+     *                               if different from the $removedIn version.
      *
      * @return void
      */
-    public function testActiveScript()
+    public function testRemovedExtension($extensionName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
-        $this->assertError($this->_sniffFile, 3, "Extension 'activescript' is removed since PHP 5.3");
-        $this->assertError($this->_sniffFile, 4, "Extension 'activescript' is removed since PHP 5.3");
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertError($file, $line, "Extension '{$extensionName}' is removed since PHP {$removedIn}");
+        }
     }
 
     /**
-     * testCpdf
+     * Data provider.
+     *
+     * @see testRemovedExtension()
+     *
+     * @return array
+     */
+    public function dataRemovedExtension()
+    {
+        return array(
+            array('activescript', '5.3', array(3, 4), '5.2'),
+            array('cpdf', '5.3', array(6, 7, 8), '5.2'),
+            array('dbase', '5.3', array(10), '5.2'),
+            array('dbx', '5.1', array(12), '5.0'),
+            array('dio', '5.1', array(14), '5.0'),
+            array('fam', '5.1', array(16), '5.0'),
+            array('fbsql', '5.3', array(18), '5.2'),
+            array('fdf', '5.3', array(20), '5.2'),
+            array('filepro', '5.2', array(22), '5.1'),
+            array('hw_api', '5.2', array(24), '5.1'),
+            array('ingres', '5.1', array(26), '5.0'),
+            array('ircg', '5.3', array(28), '5.2'),
+            array('mcve', '5.1', array(30), '5.0'),
+            array('ming', '5.3', array(32), '5.2'),
+            array('mnogosearch', '5.1', array(34), '5.0'),
+            array('msql', '5.3', array(36), '5.2'),
+            array('ncurses', '5.3', array(40), '5.2'),
+            array('oracle', '5.3', array(42), '5.2'),
+            array('ovrimos', '5.1', array(44), '5.0'),
+            array('pfpro', '5.3', array(46), '5.2'),
+            array('sqlite', '5.4', array(48), '5.3'),
+            array('sybase', '5.3', array(50), '5.2'),
+            array('w32api', '5.1', array(52), '5.0'),
+            array('yp', '5.3', array(54), '5.2'),
+            array('mssql', '7.0', array(63), '5.6'),
+        );
+    }
+
+
+    /**
+     * testDeprecatedRemovedExtension
+     *
+     * @dataProvider dataDeprecatedRemovedExtension
+     *
+     * @param string $extensionName     Name of the PHP extension.
+     * @param string $deprecatedIn      The PHP version in which the extension was deprecated.
+     * @param string $removedIn         The PHP version in which the extension was removed.
+     * @param array  $lines             The line numbers in the test file which apply to this extension.
+     * @param string $okVersion         A PHP version in which the extension was still present.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     * @param string $removedVersion    Optional PHP version to test removal message with -
+     *                                  if different from the $removedIn version.
      *
      * @return void
      */
-    public function testCpdf()
+    public function testDeprecatedRemovedExtension($extensionName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
-        $this->assertError($this->_sniffFile, 6, "Extension 'cpdf' is removed since PHP 5.3");
-        $this->assertError($this->_sniffFile, 7, "Extension 'cpdf' is removed since PHP 5.3");
-        $this->assertError($this->_sniffFile, 8, "Extension 'cpdf' is removed since PHP 5.3");
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILEE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn}");
+        }
+
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertError($file, $line, "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
+        }
     }
 
     /**
-     * testDbase
+     * Data provider.
      *
-     * @return void
+     * @see testDeprecatedRemovedExtension()
+     *
+     * @return array
      */
-    public function testDbase()
+    public function dataDeprecatedRemovedExtension()
     {
-        $this->assertError($this->_sniffFile, 10, "Extension 'dbase' is removed since PHP 5.3");
+        return array(
+            array('ereg', '5.3', '7.0', array(65), '5.2'),
+            array('mysql_', '5.5', '7.0', array(38), '5.4'),
+        );
     }
 
-    /**
-     * testDbx
-     *
-     * @return void
-     */
-    public function testDbx()
-    {
-        $this->assertError($this->_sniffFile, 12, "Extension 'dbx' is removed since PHP 5.1");
-    }
 
-    /**
-     * testDio
-     *
-     * @return void
-     */
-    public function testDio()
-    {
-        $this->assertError($this->_sniffFile, 14, "Extension 'dio' is removed since PHP 5.1");
-    }
-
-    /**
-     * testFam
-     *
-     * @return void
-     */
-    public function testFam()
-    {
-        $this->assertError($this->_sniffFile, 16, "Extension 'fam' is removed since PHP 5.1");
-    }
-
-    /**
-     * testFbsql
-     *
-     * @return void
-     */
-    public function testFbsql()
-    {
-        $this->assertError($this->_sniffFile, 18, "Extension 'fbsql' is removed since PHP 5.3");
-    }
-
-    /**
-     * testFdf
-     *
-     * @return void
-     */
-    public function testFdf()
-    {
-        $this->assertError($this->_sniffFile, 20, "Extension 'fdf' is removed since PHP 5.3");
-    }
-
-    /**
-     * testFilepro
-     *
-     * @return void
-     */
-    public function testFilepro()
-    {
-        $this->assertError($this->_sniffFile, 22, "Extension 'filepro' is removed since PHP 5.2");
-    }
-
-    /**
-     * testHwApi
-     *
-     * @return void
-     */
-    public function testHwApi()
-    {
-        $this->assertError($this->_sniffFile, 24, "Extension 'hw_api' is removed since PHP 5.2");
-    }
-
-    /**
-     * testIngres
-     *
-     * @return void
-     */
-    public function testIngres()
-    {
-        $this->assertError($this->_sniffFile, 26, "Extension 'ingres' is removed since PHP 5.1");
-    }
-
-    /**
-     * testIrcg
-     *
-     * @return void
-     */
-    public function testIrcg()
-    {
-        $this->assertError($this->_sniffFile, 28, "Extension 'ircg' is removed since PHP 5.3");
-    }
-
-    /**
-     * testMcve
-     *
-     * @return void
-     */
-    public function testMcve()
-    {
-        $this->assertError($this->_sniffFile, 30, "Extension 'mcve' is removed since PHP 5.1");
-    }
-
-    /**
-     * testMing
-     *
-     * @return void
-     */
-    public function testMing()
-    {
-        $this->assertError($this->_sniffFile, 32, "Extension 'ming' is removed since PHP 5.3");
-    }
-
-    /**
-     * testMnogosearch
-     *
-     * @return void
-     */
-    public function testMnogosearch()
-    {
-        $this->assertError($this->_sniffFile, 34, "Extension 'mnogosearch' is removed since PHP 5.1");
-    }
-
-    /**
-     * testMsql
-     *
-     * @return void
-     */
-    public function testMsql()
-    {
-        $this->assertError($this->_sniffFile, 36, "Extension 'msql' is removed since PHP 5.3");
-    }
-
-    /**
-     * testMysql
-     *
-     * @return void
-     */
-    public function testMysql()
-    {
-        $this->assertNoViolation($this->_sniffFile, 67);
-
-        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.4');
-        $this->assertNoViolation($file, 38);
-
-        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.5');
-        $this->assertWarning($file, 38, "Extension 'mysql_' is deprecated since PHP 5.5");
-
-        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '7.0');
-        $this->assertError($file, 38, "Extension 'mysql_' is deprecated since PHP 5.5 and removed since PHP 7.0");
-    }
-
-    /**
-     * testNcurses
-     *
-     * @return void
-     */
-    public function testNcurses()
-    {
-        $this->assertError($this->_sniffFile, 40, "Extension 'ncurses' is removed since PHP 5.3");
-    }
-
-    /**
-     * testOracle
-     *
-     * @return void
-     */
-    public function testOracle()
-    {
-        $this->assertError($this->_sniffFile, 42, "Extension 'oracle' is removed since PHP 5.3");
-    }
-
-    /**
-     * testOvrimos
-     *
-     * @return void
-     */
-    public function testOvrimos()
-    {
-        $this->assertError($this->_sniffFile, 44, "Extension 'ovrimos' is removed since PHP 5.1");
-    }
-
-    /**
-     * testPfpro
-     *
-     * @return void
-     */
-    public function testPfpro()
-    {
-        $this->assertError($this->_sniffFile, 46, "Extension 'pfpro' is removed since PHP 5.3");
-    }
-
-    /**
-     * testSqlite
-     *
-     * @return void
-     */
-    public function testSqlite()
-    {
-        $this->assertError($this->_sniffFile, 48, "Extension 'sqlite' is removed since PHP 5.4");
-    }
-
-    /**
-     * testSybase
-     *
-     * @return void
-     */
-    public function testSybase()
-    {
-        $this->assertError($this->_sniffFile, 50, "Extension 'sybase' is removed since PHP 5.3");
-    }
-
-    /**
-     * testW32api
-     *
-     * @return void
-     */
-    public function testW32api()
-    {
-        $this->assertError($this->_sniffFile, 52, "Extension 'w32api' is removed since PHP 5.1");
-    }
-
-    /**
-     * testYp
-     *
-     * @return void
-     */
-    public function testYp()
-    {
-        $this->assertError($this->_sniffFile, 54, "Extension 'yp' is removed since PHP 5.3");
-    }
-
-    /**
-     * testEreg
-     *
-     * @return void
-     */
-    public function testEreg()
-    {
-        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '5.2');
-        $this->assertNoViolation($file, 64);
-
-        $file = $this->sniffFile('sniff-examples/removed_extensions.php', '7.0');
-        $this->assertError($file, 64, "Extension 'ereg' is removed since PHP 7.0");
-    }
-    
-    /**
-     * testMssql
-     *
-     * @return void
-     */
-    public function testMssql()
-    {
-        $this->assertError($this->_sniffFile, 62, "Extension 'mssql' is removed since PHP 7.0");
-    }
-    
     /**
      * testNotAFunctionCall
      *
@@ -358,5 +208,15 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function testMethod()
     {
         $this->assertNoViolation($this->_sniffFile, 60);
+    }
+
+    /**
+     * testWhiteListing
+     *
+     * @return void
+     */
+    public function testWhiteListing()
+    {
+        $this->assertNoViolation($this->_sniffFile, 68);
     }
 }

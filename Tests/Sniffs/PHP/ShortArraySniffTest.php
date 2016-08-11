@@ -1,5 +1,17 @@
 <?php
+/**
+ * Short array syntax test file
+ *
+ * @package PHPCompatibility
+ */
 
+
+/**
+ * Short array syntax sniff tests
+ *
+ * @uses BaseSniffTest
+ * @package PHPCompatibility
+ */
 class ShortArraySniffTest extends BaseSniffTest
 {
     /** @var string */

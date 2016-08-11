@@ -6,7 +6,7 @@ ini_set('display_errors', 1); // Verify sniff doesn't flag this ini directive
 
 ini_set('allow_url_include', 1);
 $test = ini_get('allow_url_include');
-ini_set("allow_url_include", 1);
+ini_set("allow_url_include", 1); // Verify sniff works when using double quotes.
 
 ini_set('pcre.backtrack_limit', 1);
 $test = ini_get('pcre.backtrack_limit');

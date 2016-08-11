@@ -35,58 +35,50 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testHashFile
+     * testRemovedHashAlgorithms
+     *
+     * @dataProvider dataRemovedHashAlgorithms
+     *
+     * @param int $line Line number on which an error should occur.
      *
      * @return void
      */
-    public function testHashFile()
+    public function testRemovedHashAlgorithms($line)
+    {
+        $this->assertError($this->_sniffFile, $line, 'The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4');
+    }
+
+    /**
+     * dataRemovedHashAlgorithms
+     *
+     * @see testRemovedHashAlgorithms()
+     *
+     * @return array
+     */
+    public function dataRemovedHashAlgorithms()
+    {
+        return array(
+            array(4),
+            array(5),
+            array(6),
+            array(7),
+            array(9),
+            array(11),
+            array(13),
+            array(15),
+            array(16),
+        );
+    }
+
+
+    /**
+     * testOkHashAlgorithm
+     *
+     * @return void
+     */
+    public function testOkHashAlgorithm()
     {
         $this->assertNoViolation($this->_sniffFile, 3);
-        $this->assertError($this->_sniffFile, 4, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-        $this->assertError($this->_sniffFile, 5, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-        $this->assertError($this->_sniffFile, 6, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-        $this->assertError($this->_sniffFile, 7, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-    }
-
-    /**
-     * testHashHmacFile
-     *
-     * @return void
-     */
-    public function testHashHmacFile()
-    {
-        $this->assertError($this->_sniffFile, 9, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-    }
-
-    /**
-     * testHashHmac
-     *
-     * @return void
-     */
-    public function testHashHmac()
-    {
-        $this->assertError($this->_sniffFile, 11, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-    }
-
-    /**
-     * testHashInit
-     *
-     * @return void
-     */
-    public function testHashInit()
-    {
-        $this->assertError($this->_sniffFile, 13, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-    }
-
-    /**
-     * testHash
-     *
-     * @return void
-     */
-    public function testHash()
-    {
-        $this->assertError($this->_sniffFile, 15, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
-        $this->assertError($this->_sniffFile, 16, "The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4");
     }
 
     /**
