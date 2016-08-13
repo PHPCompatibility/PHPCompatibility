@@ -275,4 +275,295 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         return $cnt;
     }
 
+
+    /**
+     * Returns the fully qualified class name for a new class instantiation.
+     *
+     * Returns an empty string if the class name could not be reliably inferred.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of a T_NEW token.
+     *
+     * @return string
+     */
+    public function getFQClassNameFromNewToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return '';
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_NEW) {
+            return '';
+        }
+
+        $find = array(
+                 T_NS_SEPARATOR,
+                 T_STRING,
+                 T_NAMESPACE,
+                 T_WHITESPACE,
+                );
+
+        $start     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
+        $className = $phpcsFile->getTokensAsString($start, ($end - $start));
+        $className = trim($className);
+
+        return $this->getFQName($phpcsFile, $stackPtr, $className);
+    }
+
+
+    /**
+     * Returns the fully qualified name of the class that the specified class extends.
+     *
+     * Returns an empty string if the class does not extend another class or if
+     * the class name could not be reliably inferred.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of a T_CLASS token.
+     *
+     * @return string
+     */
+    public function getFQExtendedClassName(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return '';
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_CLASS) {
+            return '';
+        }
+
+        $extends = $phpcsFile->findExtendedClassName($stackPtr);
+        if (empty($extends) || is_string($extends) === false) {
+            return '';
+        }
+
+        return $this->getFQName($phpcsFile, $stackPtr, $extends);
+    }
+
+
+    /**
+     * Returns the class name for the static usage of a class.
+     * This can be a call to a method, the use of a property or constant.
+     *
+     * Returns an empty string if the class name could not be reliably inferred.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of a T_NEW token.
+     *
+     * @return string
+     */
+    public function getFQClassNameFromDoubleColonToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return '';
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_DOUBLE_COLON) {
+            return '';
+        }
+
+        // Nothing to do if 'parent' or 'static' as we don't know how far the class tree extends.
+        if (in_array($tokens[$stackPtr - 1]['code'], array(T_PARENT, T_STATIC), true)) {
+            return '';
+        }
+
+        // Get the classname from the class declaration if self is used.
+        if ($tokens[$stackPtr - 1]['code'] === T_SELF) {
+            $classDeclarationPtr = $phpcsFile->findPrevious(T_CLASS, $stackPtr - 1);
+            if ($classDeclarationPtr === false) {
+				return '';
+			}
+            $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
+            return $this->getFQName($phpcsFile, $classDeclarationPtr, $className);
+        }
+
+        $find = array(
+                 T_NS_SEPARATOR,
+                 T_STRING,
+                 T_NAMESPACE,
+                 T_WHITESPACE,
+                );
+
+        $start     = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
+        $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
+        $className = trim($className);
+
+        return $this->getFQName($phpcsFile, $stackPtr, $className);
+    }
+
+
+    /**
+     * Get the Fully Qualified name for a class/function/constant etc.
+     *
+     * Checks if a class/function/constant name is already fully qualified and
+     * if not, enrich it with the relevant namespace information.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     * @param string               $name      The class / function / constant name.
+     *
+     * @return string
+     */
+    public function getFQName(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $name)
+    {
+        if (strpos($name, '\\' ) === 0) {
+            // Already fully qualified.
+            return $name;
+        }
+
+        // Remove the namespace keyword if used.
+        if (strpos($name, 'namespace\\') === 0) {
+            $name = substr($name, 10);
+        }
+
+        $namespace = $this->determineNamespace($phpcsFile, $stackPtr);
+
+        if ($namespace === '') {
+            return '\\' . $name;
+        }
+        else {
+            return '\\' . $namespace . '\\' . $name;
+        }
+    }
+
+
+    /**
+     * Is the class/function/constant name namespaced or global ?
+     *
+     * @param string $FQName Fully Qualified name of a class, function etc.
+     *                       I.e. should always start with a `\` !
+     *
+     * @return bool True if namespaced, false if global.
+     */
+    public function isNamespaced($FQName) {
+        if (strpos($FQName, '\\') !== 0) {
+            throw new PHP_CodeSniffer_Exception('$FQName must be a fully qualified name');
+        }
+
+        return (strpos(substr($FQName, 1), '\\') !== false);
+    }
+
+
+    /**
+     * Determine the namespace name an arbitrary token lives in.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                  $stackPtr  The token position for which to determine the namespace.
+     *
+     * @return string Namespace name or empty string if it couldn't be determined or no namespace applies.
+     */
+    public function determineNamespace(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return '';
+        }
+
+        // Check for scoped namespace {}.
+        if (empty($tokens[$stackPtr]['conditions']) === false) {
+            foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
+                if ($type === T_NAMESPACE) {
+                    $namespace = $this->getDeclaredNamespaceName($phpcsFile, $pointer);
+                    if ($namespace !== false) {
+                        return $namespace;
+                    }
+                }
+                break; // We only need to check the highest level condition.
+            }
+        }
+
+        /*
+         * Not in a scoped namespace, so let's see if we can find a non-scoped namespace instead.
+         * Keeping in mind that:
+         * - there can be multiple non-scoped namespaces in a file (bad practice, but it happens).
+         * - the namespace keyword can also be used as part of a function/method call and such.
+         * - that a non-named namespace resolves to the global namespace.
+         */
+        $previousNSToken = $stackPtr;
+        $namespace       = false;
+        do {
+            $previousNSToken = $phpcsFile->findPrevious(T_NAMESPACE, $previousNSToken -1);
+
+            // Stop if we encounter a scoped namespace declaration as we already know we're not in one.
+            if (empty($tokens[$previousNSToken]['scope_condition']) === false && $tokens[$previousNSToken]['scope_condition'] = $previousNSToken) {
+                break;
+            }
+            $namespace = $this->getDeclaredNamespaceName($phpcsFile, $previousNSToken);
+
+        } while ($namespace === false && $previousNSToken !== false);
+
+        // If we still haven't got a namespace, return an empty string.
+        if ($namespace === false) {
+            return '';
+        }
+        else {
+            return $namespace;
+        }
+    }
+
+    /**
+     * Get the complete namespace name for a namespace declaration.
+     *
+     * For hierarchical namespaces, the name will be composed of several tokens,
+     * i.e. MyProject\Sub\Level which will be returned together as one string.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int|bool             $stackPtr  The position of a T_NAMESPACE token.
+     *
+     * @return string|false Namespace name or false if not a namespace declaration.
+     *                      Namespace name can be an empty string for global namespace declaration.
+     */
+    public function getDeclaredNamespaceName(PHP_CodeSniffer_File $phpcsFile, $stackPtr )
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if ($stackPtr === false || isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_NAMESPACE) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr + 1]['code'] === T_NS_SEPARATOR) {
+            // Not a namespace declaration, but use of, i.e. namespace\someFunction();
+            return false;
+        }
+
+        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        if ($tokens[$nextToken]['code'] === T_OPEN_CURLY_BRACKET) {
+            // Declaration for global namespace when using multiple namespaces in a file.
+            // I.e.: namespace {}
+            return '';
+        }
+
+        // Ok, this should be a namespace declaration, so get all the parts together.
+        $validTokens = array(
+                        T_STRING,
+                        T_NS_SEPARATOR,
+                        T_WHITESPACE,
+                       );
+
+        $namespaceName = '';
+        while(in_array($tokens[$nextToken]['code'], $validTokens, true) === true) {
+            $namespaceName .= trim($tokens[$nextToken]['content']);
+            $nextToken++;
+        }
+
+        return $namespaceName;
+    }
+
 }//end class

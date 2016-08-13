@@ -53,44 +53,74 @@ class NewClassesSniffTest extends BaseSniffTest
     public function dataNewClass()
     {
         return array(
-            array('DateTime', '5.1', array(3, 43, 45), '5.2'),
-            array('DateTimeZone', '5.1', array(4, 46), '5.2'),
-            array('RegexIterator', '5.1', array(5, 47), '5.2'),
-            array('RecursiveRegexIterator', '5.1', array(6, 48), '5.2'),
-            array('DateInterval', '5.2', array(7, 49), '5.3'),
-            array('DatePeriod', '5.2', array(8, 50), '5.3'),
-            array('Phar', '5.2', array(9, 51), '5.3'),
-            array('PharData', '5.2', array(10, 52), '5.3'),
-            array('PharException', '5.2', array(11, 53), '5.3'),
-            array('PharFileInfo', '5.2', array(12, 54), '5.3'),
-            array('FilesystemIterator', '5.2', array(13, 55), '5.3'),
-            array('GlobIterator', '5.2', array(14, 56), '5.3'),
-            array('MultipleIterator', '5.2', array(15, 57), '5.3'),
-            array('RecursiveTreeIterator', '5.2', array(16, 58), '5.3'),
-            array('SplDoublyLinkedList', '5.2', array(17, 59), '5.3'),
-            array('SplFixedArray', '5.2', array(18, 60), '5.3'),
-            array('SplHeap', '5.2', array(19, 61), '5.3'),
-            array('SplMaxHeap', '5.2', array(20, 62), '5.3'),
-            array('SplMinHeap', '5.2', array(21, 63), '5.3'),
-            array('SplPriorityQueue', '5.2', array(22, 64), '5.3'),
-            array('SplQueue', '5.2', array(23, 65), '5.3'),
-            array('SplStack', '5.2', array(24, 66), '5.3'),
-            array('CallbackFilterIterator', '5.3', array(25, 67), '5.4'),
-            array('RecursiveCallbackFilterIterator', '5.3', array(26, 68), '5.4'),
-            array('ReflectionZendExtension', '5.3', array(27, 69), '5.4'),
-            array('JsonSerializable', '5.3', array(28), '5.4'),
-            array('SessionHandler', '5.3', array(29, 71), '5.4'),
-            array('SNMP', '5.3', array(30, 72), '5.4'),
-            array('Transliterator', '5.3', array(31, 73), '5.4'),
-            array('CURLFile', '5.4', array(32, 74), '5.5'),
-            array('DateTimeImmutable', '5.4', array(33, 75), '5.5'),
-            array('IntlCalendar', '5.4', array(34, 76), '5.5'),
-            array('IntlGregorianCalendar', '5.4', array(35, 77), '5.5'),
-            array('IntlTimeZone', '5.4', array(36, 78), '5.5'),
-            array('IntlBreakIterator', '5.4', array(37, 79), '5.5'),
-            array('IntlRuleBasedBreakIterator', '5.4', array(38, 80), '5.5'),
-            array('IntlCodePointBreakIterator', '5.4', array(39, 81), '5.5'),
+            array('DateTime', '5.1', array(25, 65, 105), '5.2'),
+            array('DateTimeZone', '5.1', array(26, 66, 106), '5.2'),
+            array('RegexIterator', '5.1', array(27, 67, 107), '5.2'),
+            array('RecursiveRegexIterator', '5.1', array(28, 68, 108), '5.2'),
+            array('DateInterval', '5.2', array(17, 18, 19, 20, 29, 69, 109), '5.3'),
+            array('DatePeriod', '5.2', array(30, 70, 110), '5.3'),
+            array('Phar', '5.2', array(31, 71, 111), '5.3'),
+            array('PharData', '5.2', array(32, 72, 112), '5.3'),
+            array('PharException', '5.2', array(33, 73, 113), '5.3'),
+            array('PharFileInfo', '5.2', array(34, 74, 114), '5.3'),
+            array('FilesystemIterator', '5.2', array(35, 75, 115), '5.3'),
+            array('GlobIterator', '5.2', array(36, 76, 116), '5.3'),
+            array('MultipleIterator', '5.2', array(37, 77, 117), '5.3'),
+            array('RecursiveTreeIterator', '5.2', array(38, 78, 118), '5.3'),
+            array('SplDoublyLinkedList', '5.2', array(39, 79, 119), '5.3'),
+            array('SplFixedArray', '5.2', array(40, 80, 120), '5.3'),
+            array('SplHeap', '5.2', array(41, 81, 121), '5.3'),
+            array('SplMaxHeap', '5.2', array(42, 82, 122), '5.3'),
+            array('SplMinHeap', '5.2', array(43, 83, 123), '5.3'),
+            array('SplPriorityQueue', '5.2', array(44, 84, 124), '5.3'),
+            array('SplQueue', '5.2', array(45, 85, 125), '5.3'),
+            array('SplStack', '5.2', array(46, 86, 126), '5.3'),
+            array('CallbackFilterIterator', '5.3', array(47, 87, 127), '5.4'),
+            array('RecursiveCallbackFilterIterator', '5.3', array(48, 88, 128), '5.4'),
+            array('ReflectionZendExtension', '5.3', array(49, 89, 129), '5.4'),
+            array('SessionHandler', '5.3', array(50, 90, 130), '5.4'),
+            array('SNMP', '5.3', array(51, 91, 131), '5.4'),
+            array('Transliterator', '5.3', array(52, 92, 132), '5.4'),
+            array('CURLFile', '5.4', array(53, 93, 133), '5.5'),
+            array('DateTimeImmutable', '5.4', array(54, 94, 134), '5.5'),
+            array('IntlCalendar', '5.4', array(55, 95, 135), '5.5'),
+            array('IntlGregorianCalendar', '5.4', array(56, 96, 136), '5.5'),
+            array('IntlTimeZone', '5.4', array(57, 97, 137), '5.5'),
+            array('IntlBreakIterator', '5.4', array(58, 98, 138), '5.5'),
+            array('IntlRuleBasedBreakIterator', '5.4', array(59, 99, 139), '5.5'),
+            array('IntlCodePointBreakIterator', '5.4', array(60, 100, 140), '5.5'),
         );
     }
 
+
+    /**
+     * testNoViolation
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoViolation($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoViolation()
+     *
+     * @return array
+     */
+    public function dataNoViolation()
+    {
+        return array(
+            array(6),
+            array(7),
+            array(8),
+        );
+    }
 }
