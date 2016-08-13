@@ -126,38 +126,38 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                     // positives to not identifying a pass-by-reference call at all.
                     // The blacklist may not yet be complete.
                     switch ($tokens[$tokenBefore]['code']) {
-                    case T_LNUMBER:
-                    case T_VARIABLE:
-                    case T_CLOSE_SQUARE_BRACKET:
-                    case T_CLOSE_PARENTHESIS:
                         // In these cases T_BITWISE_AND represents
                         // the bitwise and operator.
-                        continue;
-
-                    // Unfortunately the tokenizer fails to recognize global constants,
-                    // class-constants and -attributes. Any of these are returned is
-                    // treated as T_STRING.
-                    // So we step back another token and check if it is a class
-                    // operator (-> or ::), which means we have a false positive.
-                    // Global constants still remain uncovered.
-                    case T_STRING:
-                        $tokenBeforePlus = $phpcsFile->findPrevious(
-                            PHP_CodeSniffer_Tokens::$emptyTokens,
-                            ($tokenBefore - 1),
-                            null,
-                            true
-                        );
-                        if( T_DOUBLE_COLON === $tokens[$tokenBeforePlus]['code'] ||
-                            T_OBJECT_OPERATOR === $tokens[$tokenBeforePlus]['code']
-                        ) {
+                        case T_LNUMBER:
+                        case T_VARIABLE:
+                        case T_CLOSE_SQUARE_BRACKET:
+                        case T_CLOSE_PARENTHESIS:
                             continue;
-                        }
-
-                    default:
-                        // T_BITWISE_AND represents a pass-by-reference.
-                        $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
-                        $phpcsFile->addError($error, $tokenBefore, 'NotAllowed');
-                        break;
+    
+                        // Unfortunately the tokenizer fails to recognize global constants,
+                        // class-constants and -attributes. Any of these are returned is
+                        // treated as T_STRING.
+                        // So we step back another token and check if it is a class
+                        // operator (-> or ::), which means we have a false positive.
+                        // Global constants still remain uncovered.
+                        case T_STRING:
+                            $tokenBeforePlus = $phpcsFile->findPrevious(
+                                PHP_CodeSniffer_Tokens::$emptyTokens,
+                                ($tokenBefore - 1),
+                                null,
+                                true
+                            );
+                            if( T_DOUBLE_COLON === $tokens[$tokenBeforePlus]['code'] ||
+                                T_OBJECT_OPERATOR === $tokens[$tokenBeforePlus]['code']
+                            ) {
+                                continue;
+                            }
+    
+                        default:
+                            // T_BITWISE_AND represents a pass-by-reference.
+                            $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
+                            $phpcsFile->addError($error, $tokenBefore, 'NotAllowed');
+                            break;
                     }
                 }//end if
             }//end while
