@@ -217,6 +217,8 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             array('imagepsloadfont', '7.0', array(94), '5.6'),
             array('imagepsslantfont', '7.0', array(95), '5.6'),
             array('imagepstext', '7.0', array(96), '5.6'),
+            array('php_check_syntax', '5.0.5', array(98), '5.0', '5.1'),
+            array('mysqli_get_cache_stats', '5.4', array(99), '5.3'),
 
         );
     }

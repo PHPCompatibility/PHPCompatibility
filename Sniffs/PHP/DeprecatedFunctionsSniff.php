@@ -35,6 +35,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      * @var array(string => array(string => bool|string|null))
      */
     protected $forbiddenFunctions = array(
+                                        'php_check_syntax' => array(
+                                            '5.0.5' => true,
+                                            'alternative' => null
+                                        ),
                                         'call_user_method' => array(
                                             '5.3' => false,
                                             '5.4' => false,
@@ -625,6 +629,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '5.5' => false,
                                             '5.6' => false,
                                             'alternative' => 'OCI-Lob::writeTemporary'
+                                        ),
+                                        'mysqli_get_cache_stats' => array(
+                                            '5.4' => true,
+                                            'alternative' => null
                                         ),
                                     );
 

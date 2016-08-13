@@ -95,3 +95,5 @@ imagepsloadfont();
 imagepsslantfont();
 imagepstext();
 ldap_sort();
+php_check_syntax();
+mysqli_get_cache_stats();
