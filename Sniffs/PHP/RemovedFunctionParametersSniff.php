@@ -25,26 +25,39 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     protected $patternMatch = false;
 
     /**
-     * A list of Removed function parameters, not present in older versions.
+     * A list of removed function parameters, which were present in older versions.
      *
-     * The array lists : version number with false (not present) or true (present).
+     * The array lists : version number with true (deprecated and false (removed).
      * The index is the location of the parameter in the parameter list, starting at 0 !
-     * If's sufficient to list the first version where the function appears.
+     * If's sufficient to list the first version where the function was deprecated/removed.
      *
      * @var array
      */
     protected $removedFunctionParameters = array(
-                                        'mktime' => array(
-                                            6 => array(
-                                                'name' => 'is_dst',
-                                                '5.1' => true,
-                                                '7.0' => false
-                                            ),
-                                        ),
                                         'gmmktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
-                                                '7.0' => false
+                                                '5.1' => true, // deprecated
+                                                '7.0' => false,
+                                            ),
+                                        ),
+                                        'ldap_first_attribute' => array(
+                                            2 => array(
+                                                'name' => 'ber_identifier',
+                                                '5.2.4' => false,
+                                            ),
+                                        ),
+                                        'ldap_next_attribute' => array(
+                                            2 => array(
+                                                'name' => 'ber_identifier',
+                                                '5.2.4' => false,
+                                            ),
+                                        ),
+                                        'mktime' => array(
+                                            6 => array(
+                                                'name' => 'is_dst',
+                                                '5.1' => true, // deprecated
+                                                '7.0' => false,
                                             ),
                                         ),
                                     );
@@ -142,23 +155,37 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     {
         $error = '';
 
-        $isError = false;
+        $isError        = false;
+        $previousStatus = null;
         foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $present) {
             if ($version != 'name' && $this->supportsAbove($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'in PHP version ' . $version . ' or later';
+
+                if ($previousStatus !== $present) {
+                    $previousStatus = $present;
+                    if ($present === false) {
+                        $isError = true;
+                        $error .= 'removed';
+                    } else {
+                        $error .= 'deprecated';
+                    }
+                    $error .=  ' in PHP version ' . $version . ' and ';
                 }
             }
         }
 
         if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' does not have a parameter ' . $this->removedFunctionParameters[$function][$parameterLocation]['name'] . ' ' . $error;
+            $error     = 'The "%s" parameter for function %s was ' . $error;
+            $error     = substr($error, 0, strlen($error) - 5);
+            $errorCode = 'RemovedParameter';
+            $data      = array(
+                $this->removedFunctionParameters[$function][$parameterLocation]['name'],
+                $function,
+            );
 
             if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             } else {
-                $phpcsFile->addWarning($error, $stackPtr);
+                $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
             }
         }
 
