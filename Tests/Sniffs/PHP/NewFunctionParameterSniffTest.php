@@ -54,10 +54,10 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     public function dataInvalidParameter()
     {
         return array(
-            array('dirname', 'depth', '5.6', array(3, 9), '7.0'),
-            array('unserialize', 'options', '5.6', array(11), '7.0'),
-            array('session_start', 'options', '5.6', array(13), '7.0'),
-            array('strstr', 'before_needle', '5.2', array(15), '5.3'),
+            array('dirname', 'depth', '5.6', array(7), '7.0'),
+            array('unserialize', 'options', '5.6', array(8), '7.0'),
+            array('session_start', 'options', '5.6', array(9), '7.0'),
+            array('strstr', 'before_needle', '5.2', array(10), '5.3'),
         );
     }
 
@@ -87,8 +87,7 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
     public function dataValidParameter()
     {
         return array(
-            array(5),
-            array(7),
+            array(4),
         );
     }
 }
