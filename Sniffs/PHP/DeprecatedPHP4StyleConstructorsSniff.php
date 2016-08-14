@@ -24,7 +24,23 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
 
     }//end register()
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if ($this->supportsAbove('7.0') === false) {
+            return;
+        }
+
+        if ($this->determineNamespace($phpcsFile, $stackPtr) !== '') {
+            /*
+             * Namespaced methods with the same name as the class are treated as
+             * regular methods, so we can bow out if we're in a namespace.
+             *
+             * Note: the exception to this is PHP 5.3.0-5.3.2. This is currently
+             * not dealt with.
+             */
+            return;
+        }
+
         $tokens = $phpcsFile->getTokens();
 
         $class = $tokens[$stackPtr];
@@ -34,27 +50,29 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
         }
 
         $scopeCloser = $class['scope_closer'];
+        $className   = $phpcsFile->getDeclarationName($stackPtr);
 
-        //get the name of the class
-        $classNamePos = $phpcsFile->findNext(T_STRING, $stackPtr);
-        $className = $tokens[$classNamePos]['content'];
+        if (empty($className) || is_string($className) === false) {
+            return;
+        }
 
         $nextFunc = $stackPtr;
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = false;
         while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-            $funcNamePos = $phpcsFile->findNext(T_STRING, $nextFunc);
+            $funcName = $phpcsFile->getDeclarationName($nextFunc);
+            if (empty($funcName) || is_string($funcName) === false) {
+                continue;
+            }
 
-            if ($tokens[$funcNamePos]['content'] === '__construct') {
+            if ($funcName === '__construct') {
                 $newConstructorFound = true;
             }
 
-            if ($this->supportsAbove('7.0')) {
-                if ($funcNamePos !== false && $tokens[$funcNamePos]['content'] === $className) {
-                    $oldConstructorFound = true;
-                    $oldConstructorPos   = $funcNamePos;
-                }
+            if ($funcName === $className) {
+                $oldConstructorFound = true;
+                $oldConstructorPos   = $phpcsFile->findNext(T_STRING, $nextFunc);
             }
         }
 
