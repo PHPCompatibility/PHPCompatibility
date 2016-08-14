@@ -7,9 +7,18 @@ class foo {
 
 class bar {
     function bar() {
-        echo 'I am just the foo method';
+        echo 'I am just the bar method';
     }
     function __construct() {
         echo 'I am the real constructor';
+    }
+}
+
+namespace foobar {
+
+    class foobar {
+        function foobar() {
+            echo 'I am just the bar method';
+        }
     }
 }
