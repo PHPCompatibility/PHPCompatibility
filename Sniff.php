@@ -238,6 +238,31 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return 0;
         }
 
+        return count($this->getFunctionCallParameters($phpcsFile, $stackPtr));
+    }
+
+
+    /**
+     * Get information on all parameters passed to a function call.
+     *
+     * Expects to be passed the T_STRING stack pointer for the function call.
+     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
+     *
+     * Will return an multi-dimentional array with the start token pointer, end token
+     * pointer and raw parameter value for all parameters. Index will be 0-based.
+     * If no parameters are found, will return an empty array.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile     The file being scanned.
+     * @param int                  $stackPtr      The position of the function call token.
+     *
+     * @return array
+     */
+    public function getFunctionCallParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if ($this->doesFunctionCallHaveParameters($phpcsFile, $stackPtr) === false) {
+            return array();
+        }
+
         // Ok, we know we have a T_STRING with parameters and valid open & close parenthesis.
         $tokens = $phpcsFile->getTokens();
 
@@ -250,8 +275,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $nestedParenthesisCount = count($tokens[$openParenthesis]['nested_parenthesis']) + 1;
         }
 
-        $nextComma = $openParenthesis;
-        $cnt = 0;
+        $parameters = array();
+        $nextComma  = $openParenthesis;
+        $paramStart = $openParenthesis + 1;
+        $cnt        = 0;
         while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
             // Ignore comma's at a lower nesting level.
             if (
@@ -269,10 +296,46 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 continue;
             }
 
+            // Ok, we've reached the end of the parameter.
+            $parameters[$cnt]['start'] = $paramStart;
+            $parameters[$cnt]['end']   = $nextComma - 1;
+            $parameters[$cnt]['raw']   = trim($phpcsFile->getTokensAsString($paramStart, ($nextComma - $paramStart)));
+
+            // Prepare for the next parameter.
+            $paramStart = $nextComma + 1;
             $cnt++;
         }
 
-        return $cnt;
+        return $parameters;
+    }
+
+
+    /**
+     * Get information on a specific parameter passed to a function call.
+     *
+     * Expects to be passed the T_STRING stack pointer for the function call.
+     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
+     *
+     * Will return a array with the start token pointer, end token pointer and the raw value
+     * of the parameter at a specific offset.
+     * If the specified parameter is not found, will return false.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
+     * @param int                  $stackPtr    The position of the function call token.
+     * @param int                  $paramOffset The 0-based index position of the parameter to retrieve.
+     *
+     * @return array|false
+     */
+    public function getFunctionCallParameter(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $paramOffset)
+    {
+        $parameters = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+
+        if (isset($parameters[$paramOffset]) === false) {
+            return false;
+        }
+        else {
+            return $parameters[$paramOffset];
+        }
     }
 
 

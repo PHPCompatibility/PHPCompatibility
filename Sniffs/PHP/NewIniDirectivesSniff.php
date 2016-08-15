@@ -506,8 +506,12 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $iniToken      = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, null);
-        $filteredToken = trim($tokens[$iniToken]['content'], '\'"');
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 0);
+        if ($iniToken === false) {
+            return;
+        }
+
+        $filteredToken = trim($iniToken['raw'], '\'"');
         if (isset($this->newIniDirectives[$filteredToken]) === false) {
             return;
         }
@@ -530,7 +534,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
                 $error .= ". This directive was previously called '" . $this->newIniDirectives[$filteredToken]['alternative'] . "'.";
             }
 
-            $phpcsFile->addWarning($error, $stackPtr);
+            $phpcsFile->addWarning($error, $iniToken['end']);
         }
 
     }//end process()

@@ -19,7 +19,9 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/new_ini_directives.php';
 
     /**
-     * Test functions that shouldnt be flagged by this sniff
+     * Test functions that shouldn't be flagged by this sniff
+     *
+     * @group IniDirectives
      *
      * @return void
      */
@@ -27,6 +29,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.1');
 
+        $this->assertNoViolation($file, 2);
         $this->assertNoViolation($file, 3);
         $this->assertNoViolation($file, 4);
         $this->assertNoViolation($file, 5);
@@ -35,6 +38,8 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testNewIniDirectives
+     *
+     * @group IniDirectives
      *
      * @dataProvider dataNewIniDirectives
      *
@@ -191,6 +196,8 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testNewIniDirectivesWithAlternative
+     *
+     * @group IniDirectives
      *
      * @dataProvider dataNewIniDirectivesWithAlternative
      *

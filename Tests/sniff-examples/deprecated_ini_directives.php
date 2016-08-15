@@ -54,8 +54,8 @@ $a = ini_get('safe_mode_allowed_env_vars');
 ini_set('safe_mode_protected_env_vars', 1);
 $a = ini_get('safe_mode_protected_env_vars');
 
-ini_set('session.save_handler', 1);
-$a = ini_get('session.save_handler');
+ini_set('session.save_handler', 1); // Ok.
+$a = ini_get('session.save_handler'); // Ok.
 
 ini_set('always_populate_raw_post_data', 1);
 
@@ -127,3 +127,7 @@ $a = ini_get('detect_unicode');
 
 ini_set('mbstring.script_encoding', 1);
 $a = ini_get('mbstring.script_encoding');
+
+// Ini directive with variable for ini name.
+$iniName = 'ifx.default_user'
+ini_set($iniName, 'ifx.default_password'); // Ok, as we're interested in the variable name, not the value.
