@@ -43,3 +43,22 @@ switch ($foo) {
     default:
         echo "x\n";
 }
+
+switch ($something) {
+    case 1:
+    default:
+        break;
+    case 2:
+    default:
+        break;
+}
+
+switch ($something) {
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+    default:
+        break;
+}

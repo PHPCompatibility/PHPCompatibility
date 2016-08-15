@@ -20,20 +20,44 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
     /**
      * testForbiddenSwitchWithMultipleDefaultBlocks
      *
+     * @group forbiddenSwitchMultipleDefault
+     *
+     * @dataProvider dataForbiddenSwitchWithMultipleDefaultBlocks
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testForbiddenSwitchWithMultipleDefaultBlocks()
+    public function testForbiddenSwitchWithMultipleDefaultBlocks($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertError($file, 3, 'Switch statements can not have multiple default blocks since PHP 7.0');
+        $this->assertError($file, $line, 'Switch statements can not have multiple default blocks since PHP 7.0');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testForbiddenSwitchWithMultipleDefaultBlocks()
+     *
+     * @return array
+     */
+    public function dataForbiddenSwitchWithMultipleDefaultBlocks()
+    {
+        return array(
+            array(3),
+            array(47),
+            array(56),
+        );
     }
 
 
     /**
      * testValidSwitchStatement
+     *
+     * @group forbiddenSwitchMultipleDefault
      *
      * @dataProvider dataValidSwitchStatement
      *
