@@ -277,6 +277,48 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Verify whether a token is within a class scope.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     * @param bool                 $strict    Whether to strictly check for the T_CLASS
+     *                                        scope or also accept interfaces and traits
+     *                                        as scope.
+     *
+     * @return bool True if within class scope, false otherwise.
+     */
+    public function inClassScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $strict = true)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        // No conditions = no scope.
+        if (empty($tokens[$stackPtr]['conditions'])) {
+            return false;
+        }
+
+        $validScope = array(T_CLASS);
+        if ($strict === false) {
+            $validScope[] = T_INTERFACE;
+            $validScope[] = T_TRAIT;
+        }
+
+        // Check for class scope.
+        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
+            if (in_array($type, $validScope, true)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
      * Returns the fully qualified class name for a new class instantiation.
      *
      * Returns an empty string if the class name could not be reliably inferred.
@@ -565,5 +607,182 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         return $namespaceName;
     }
+
+
+    /**
+     * Returns the method parameters for the specified T_FUNCTION token.
+     *
+     * Each parameter is in the following format:
+     *
+     * <code>
+     *   0 => array(
+     *         'name'              => '$var',  // The variable name.
+     *         'pass_by_reference' => false,   // Passed by reference.
+     *         'type_hint'         => string,  // Type hint for array or custom type
+     *        )
+     * </code>
+     *
+     * Parameters with default values have an additional array index of
+     * 'default' with the value of the default as a string.
+     *
+     * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
+     * class, but with some improvements which were only introduced in PHPCS 2.7.
+     * Once the minimum supported PHPCS version for this sniff library goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->getMethodParameters($stackPtr)` calls.}}
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int $stackPtr The position in the stack of the T_FUNCTION token
+     *                      to acquire the parameters for.
+     *
+     * @return array
+     * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
+     *                                   type T_FUNCTION.
+     */
+    public function getMethodParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION) {
+            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION');
+        }
+
+        $opener = $tokens[$stackPtr]['parenthesis_opener'];
+        $closer = $tokens[$stackPtr]['parenthesis_closer'];
+
+        $vars            = array();
+        $currVar         = null;
+        $paramStart      = ($opener + 1);
+        $defaultStart    = null;
+        $paramCount      = 0;
+        $passByReference = false;
+        $variableLength  = false;
+        $typeHint        = '';
+
+        for ($i = $paramStart; $i <= $closer; $i++) {
+            // Check to see if this token has a parenthesis or bracket opener. If it does
+            // it's likely to be an array which might have arguments in it. This
+            // could cause problems in our parsing below, so lets just skip to the
+            // end of it.
+            if (isset($tokens[$i]['parenthesis_opener']) === true) {
+                // Don't do this if it's the close parenthesis for the method.
+                if ($i !== $tokens[$i]['parenthesis_closer']) {
+                    $i = ($tokens[$i]['parenthesis_closer'] + 1);
+                }
+            }
+
+            if (isset($tokens[$i]['bracket_opener']) === true) {
+                // Don't do this if it's the close parenthesis for the method.
+                if ($i !== $tokens[$i]['bracket_closer']) {
+                    $i = ($tokens[$i]['bracket_closer'] + 1);
+                }
+            }
+
+            switch ($tokens[$i]['code']) {
+            case T_BITWISE_AND:
+                $passByReference = true;
+                break;
+            case T_VARIABLE:
+                $currVar = $i;
+                break;
+            case T_ELLIPSIS:
+                $variableLength = true;
+                break;
+            case T_ARRAY_HINT:
+            case T_CALLABLE:
+                $typeHint = $tokens[$i]['content'];
+                break;
+            case T_SELF:
+            case T_PARENT:
+            case T_STATIC:
+                // Self is valid, the others invalid, but were probably intended as type hints.
+                if (isset($defaultStart) === false) {
+                    $typeHint = $tokens[$i]['content'];
+                }
+                break;
+            case T_STRING:
+                // This is a string, so it may be a type hint, but it could
+                // also be a constant used as a default value.
+                $prevComma = false;
+                for ($t = $i; $t >= $opener; $t--) {
+                    if ($tokens[$t]['code'] === T_COMMA) {
+                        $prevComma = $t;
+                        break;
+                    }
+                }
+
+                if ($prevComma !== false) {
+                    $nextEquals = false;
+                    for ($t = $prevComma; $t < $i; $t++) {
+                        if ($tokens[$t]['code'] === T_EQUAL) {
+                            $nextEquals = $t;
+                            break;
+                        }
+                    }
+
+                    if ($nextEquals !== false) {
+                        break;
+                    }
+                }
+
+                if ($defaultStart === null) {
+                    $typeHint .= $tokens[$i]['content'];
+                }
+                break;
+            case T_NS_SEPARATOR:
+                // Part of a type hint or default value.
+                if ($defaultStart === null) {
+                    $typeHint .= $tokens[$i]['content'];
+                }
+                break;
+            case T_CLOSE_PARENTHESIS:
+            case T_COMMA:
+                // If it's null, then there must be no parameters for this
+                // method.
+                if ($currVar === null) {
+                    continue;
+                }
+
+                $vars[$paramCount]         = array();
+                $vars[$paramCount]['name'] = $tokens[$currVar]['content'];
+
+                if ($defaultStart !== null) {
+                    $vars[$paramCount]['default']
+                        = $phpcsFile->getTokensAsString(
+                            $defaultStart,
+                            ($i - $defaultStart)
+                        );
+                }
+
+                $rawContent = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
+
+                $vars[$paramCount]['pass_by_reference'] = $passByReference;
+                $vars[$paramCount]['variable_length']   = $variableLength;
+                $vars[$paramCount]['type_hint']         = $typeHint;
+                $vars[$paramCount]['raw'] = $rawContent;
+
+                // Reset the vars, as we are about to process the next parameter.
+                $defaultStart    = null;
+                $paramStart      = ($i + 1);
+                $passByReference = false;
+                $variableLength  = false;
+                $typeHint        = '';
+
+                $paramCount++;
+                break;
+            case T_EQUAL:
+                $defaultStart = ($i + 1);
+                break;
+            }//end switch
+        }//end for
+
+        return $vars;
+
+    }//end getMethodParameters()
 
 }//end class
