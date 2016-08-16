@@ -10,3 +10,5 @@ echo $x ?? $a;
 $x = ??= 5;
 
 echo 1 <=> 1;
+
+function newTest(...$arguments) {}
