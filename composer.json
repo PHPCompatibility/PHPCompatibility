@@ -9,7 +9,7 @@
   "require-dev" : {
     "satooshi/php-coveralls" : "dev-master"
   },
-  "license" : "LGPL",
+  "license" : "LGPL-3.0",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
     "psr-4" : {
