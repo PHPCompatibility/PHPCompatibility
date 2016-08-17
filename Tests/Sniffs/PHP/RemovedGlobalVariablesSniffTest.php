@@ -26,9 +26,9 @@ class RemovedGlobalVariablesSniffTest  extends BaseSniffTest
         $this->assertNoViolation($file);
         
         $file = $this->sniffFile('sniff-examples/removed_global_variables.php', '5.6');
-        $this->assertWarning($file, 3, "Global variable 'HTTP_RAW_POST_DATA' is deprecated since PHP 5.6 - use php://input instead");
+        $this->assertWarning($file, 3, 'Global variable \'$HTTP_RAW_POST_DATA\' is deprecated since PHP 5.6 - use php://input instead');
         
         $file = $this->sniffFile('sniff-examples/removed_global_variables.php', '7.0');
-        $this->assertError($file, 3, "Global variable 'HTTP_RAW_POST_DATA' is deprecated since PHP 5.6 and removed since PHP 7.0 - use php://input instead");
+        $this->assertError($file, 3, 'Global variable \'$HTTP_RAW_POST_DATA\' is deprecated since PHP 5.6 and removed since PHP 7.0 - use php://input instead');
     }
 }
