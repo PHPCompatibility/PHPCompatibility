@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArguments.
  *
- * Discourages the use of assigning the return value of new by reference
+ * Forbids variable arguments on break or continue statements.
  *
  * PHP version 5.4
  *
@@ -47,33 +47,34 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.4')) {
-            $tokens = $phpcsFile->getTokens();
-            $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
-            for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
-                $gotError = false;
-                if ($tokens[$curToken]['type'] == 'T_STRING') {
-                    // If the next non-whitespace token after the string
-                    // is an opening parenthesis then it's a function call.
-                    $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
-                    if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-                        continue;
-                    } else {
-                        $gotError = true;
-                    }
-                }
-                switch ($tokens[$curToken]['type']) {
-                    case 'T_VARIABLE':
-                    case 'T_FUNCTION':
-                        $gotError = true;
-                        break;
-                }
-                if ($gotError === true) {
-                    $error = 'Using a variable argument on break or continue is forbidden since PHP 5.4';
-                    $phpcsFile->addError($error, $stackPtr);
+        if ($this->supportsAbove('5.4') === false) {
+            return;
+        }
+
+        $tokens             = $phpcsFile->getTokens();
+        $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
+        $isError            = false;
+        for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
+            if ($tokens[$curToken]['type'] === 'T_STRING') {
+                // If the next non-whitespace token after the string
+                // is an opening parenthesis then it's a function call.
+                $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
+                if ($tokens[$openBracket]['code'] === T_OPEN_PARENTHESIS) {
+                    $isError = true;
+                    break;
                 }
             }
+            else if(in_array($tokens[$curToken]['type'], array('T_VARIABLE', 'T_FUNCTION', 'T_CLOSURE'), true)) {
+                $isError = true;
+                break;
+            }
         }
+
+        if ($isError === true) {
+            $error = 'Using a variable argument on break or continue is forbidden since PHP 5.4';
+            $phpcsFile->addError($error, $stackPtr);
+        }
+
     }//end process()
 
 }//end class
