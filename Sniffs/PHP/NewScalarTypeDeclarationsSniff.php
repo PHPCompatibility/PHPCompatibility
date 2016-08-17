@@ -92,7 +92,6 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
     {
         // Get all parameters from method signature.
         $paramNames   = $this->getMethodParameters($phpcsFile, $stackPtr);
-        $tokens       = $phpcsFile->getTokens();
         $supportsPHP4 = $this->supportsBelow('4.4');
 
         foreach ($paramNames as $param) {
