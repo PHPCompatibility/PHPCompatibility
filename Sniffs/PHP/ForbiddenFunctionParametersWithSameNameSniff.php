@@ -45,24 +45,33 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.0')) {
-            $tokens = $phpcsFile->getTokens();
-            $token  = $tokens[$stackPtr];
-            // Skip function without body.
-            if (isset($token['scope_opener']) === false) {
-                return;
-            }
-
-            // Get all parameters from method signature.
-            $paramNames = array();
-            foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {
-                $paramNames[] = strtolower($param['name']);
-            }
-
-            if (count($paramNames) != count(array_unique($paramNames))) {
-                $phpcsFile->addError('Functions can not have multiple parameters with the same name since PHP 7.0', $stackPtr);
-            }
+        if ($this->supportsAbove('7.0') === false) {
+            return;
         }
+
+        $tokens = $phpcsFile->getTokens();
+        $token  = $tokens[$stackPtr];
+        // Skip function without body.
+        if (isset($token['scope_opener']) === false) {
+            return;
+        }
+
+        // Get all parameters from method signature.
+        $parameters = $phpcsFile->getMethodParameters($stackPtr);
+        if (empty($parameters) || is_array($parameters) === false) {
+            return;
+        }
+
+
+        $paramNames = array();
+        foreach ($parameters as $param) {
+            $paramNames[] = strtolower($param['name']);
+        }
+
+        if (count($paramNames) != count(array_unique($paramNames))) {
+            $phpcsFile->addError('Functions can not have multiple parameters with the same name since PHP 7.0', $stackPtr);
+        }
+
     }//end process()
 
 }//end class
