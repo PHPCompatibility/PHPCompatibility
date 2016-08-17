@@ -20,7 +20,7 @@ Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for
 Installation (method 1)
 -----------------------
 
-* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 or later is required for full support, notices may be thrown on older versions).
+* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 is required for 90% of the sniffs, 2.6 or later is required for full support, notices may be thrown on older versions).
 * Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into the `PHP/CodeSniffer/Standards/PHPCompatibility` directory.
 
 
