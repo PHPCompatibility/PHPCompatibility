@@ -21,7 +21,7 @@ Installation (method 1)
 -----------------------
 
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 or later is required for full support, notices may be thrown on older versions).
-* Checkout this repository as `PHPCompatibility` into the `PHP/CodeSniffer/Standards` directory.
+* Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into the `PHP/CodeSniffer/Standards/PHPCompatibility` directory.
 
 
 Installation in Composer project (method 2)
@@ -32,7 +32,7 @@ Installation in Composer project (method 2)
 ```json
 "require-dev": {
    "squizlabs/php_codesniffer": "*",
-   "wimg/php-compatibility": "dev-master",
+   "wimg/php-compatibility": "*",
    "simplyadmire/composer-plugins" : "@dev",
    "prefer-stable" : true
 },
