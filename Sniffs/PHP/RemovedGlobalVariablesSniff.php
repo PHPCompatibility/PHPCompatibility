@@ -56,41 +56,46 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens    = $phpcsFile->getTokens();
+        $varNameUc = strtoupper(substr($tokens[$stackPtr]['content'], 1));
 
-        foreach ($this->removedGlobalVariables as $variable => $versionList) {
-            if (strtolower($tokens[$stackPtr]['content']) == '$' . strtolower($variable)) {
-                $error = '';
-                $isErrored = false;
-                foreach ($versionList as $version => $status) {
-                    if ($version != 'alternative') {
-                        if ($status == -1 || $status == 0) {
-                            if ($this->supportsAbove($version)) {
-                                switch ($status) {
-                                    case -1:
-                                        $error .= 'deprecated since PHP ' . $version . ' and ';
-                                        break;
-                                    case 0:
-                                        $isErrored = true;
-                                        $error .= 'removed since PHP ' . $version . ' and ';
-                                        break 2;
-                                }
-                            }
-                        }
+        if (isset($this->removedGlobalVariables[$varNameUc]) === false) {
+            return;
+        }
+
+        $versionList = $this->removedGlobalVariables[$varNameUc];
+
+        $error = '';
+        $isError = false;
+        foreach ($versionList as $version => $status) {
+            if ($version !== 'alternative' && ($status === -1 || $status === 0)) {
+                if ($this->supportsAbove($version)) {
+                    switch ($status) {
+                        case -1:
+                            $error .= 'deprecated since PHP ' . $version . ' and ';
+                            break;
+                        case 0:
+                            $isError = true;
+                            $error .= 'removed since PHP ' . $version . ' and ';
+                            break 2;
                     }
                 }
-                if (strlen($error) > 0) {
-                    $error = "Global variable '" . $variable . "' is " . $error;
-                    $error = substr($error, 0, strlen($error) - 5);
-                    if (!is_null($versionList['alternative'])) {
-                        $error .= ' - use ' . $versionList['alternative'] . ' instead.';
-                    }
-                    if ($isErrored === true) {
-                        $phpcsFile->addError($error, $stackPtr);
-                    } else {
-                        $phpcsFile->addWarning($error, $stackPtr);
-                    }
-                }
+            }
+        }
+        if (strlen($error) > 0) {
+            $error = "Global variable '%s' is " . $error;
+            $error = substr($error, 0, strlen($error) - 5);
+            $data  = array(
+                $tokens[$stackPtr]['content']
+            );
+            if (isset($versionList['alternative'])) {
+                $error .= ' - use %s instead.';
+                $data[] = $versionList['alternative'];
+            }
+            if ($isError === true) {
+                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+            } else {
+                $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
             }
         }
 
