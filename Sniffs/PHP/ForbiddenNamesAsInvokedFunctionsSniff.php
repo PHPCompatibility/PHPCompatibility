@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff.
  *
- * Prohibits the use of reserved keywords invoked as functions
+ * Prohibits the use of reserved keywords invoked as functions.
  *
  * PHP version 5.4
  *
@@ -26,7 +26,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
 {
 
     /**
-     * List of tokens to register
+     * List of tokens to register.
      *
      * @var array
      */
@@ -54,7 +54,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
     );
 
     /**
-     * targetedStringTokens
+     * T_STRING keywords to recognize as targetted tokens.
+     *
+     * Compatibility for PHP versions where the keyword is not yet recognized
+     * as its own token.
      *
      * @var array
      */
@@ -80,10 +83,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
      */
     public function register()
     {
-        return array_merge(
-            array(T_STRING),
-            array_keys($this->targetedTokens)
-        );
+        $tokens   = array_keys($this->targetedTokens);
+        $tokens[] = T_STRING;
+
+        return $tokens;
     }//end register()
 
     /**
@@ -97,65 +100,60 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $isString = false;
+        $tokens       = $phpcsFile->getTokens();
+        $tokenCode    = $tokens[$stackPtr]['code'];
+        $tokenContent = $tokens[$stackPtr]['content'];
+        $isString     = false;
 
         // For string tokens we only care if the string is a reserved word used
         // as a function. This only happens in older versions of PHP where the
         // token doesn't exist yet for that keyword.
-        if ($tokens[$stackPtr]['code'] == T_STRING
-            && (!in_array($tokens[$stackPtr]['content'], array_keys($this->targetedStringTokens)))
+        if ($tokenCode === T_STRING
+            && (isset($this->targetedStringTokens[$tokenContent]) === false)
         ) {
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] == T_STRING) {
+        if ($tokenCode === T_STRING) {
             $isString = true;
         }
 
         // Make sure this is a function call.
-        $next = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
-        if ($next === false) {
+        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($next === false || $tokens[$next]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
             return;
         }
 
-        if ($tokens[$next]['code'] == T_OPEN_PARENTHESIS) {
-            $prev = $phpcsFile->findPrevious(array(T_WHITESPACE, T_COMMENT), ($stackPtr - 1), null, true);
+        // This sniff isn't concerned about function declaration.
+        $prev = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prev !== false && $tokens[$prev]['code'] === T_FUNCTION) {
+            return;
+        }
 
-            // This sniff isn't concerned about function declaration
-            if ($tokens[$prev]['code'] == T_FUNCTION) {
+        // For the word catch, it is valid to have an open parenthesis
+        // after it, but only if it is preceded by a right curly brace.
+        if ($tokenCode === T_CATCH) {
+            if ($prev !== false && $tokens[$prev]['code'] === T_CLOSE_CURLY_BRACKET) {
+                // Ok, it's fine
                 return;
             }
+        }
 
-            // For the word catch, it is valid to have an open parenthesis
-            // after it, but only if it is preceded by a right curly brace
-            if ($tokens[$stackPtr]['code'] == T_CATCH) {
-                if ($prev !== false) {
-                    if ($tokens[$prev]['code'] == T_CLOSE_CURLY_BRACKET) {
-                        // Ok, it's fine
-                        return;
-                    }
-                }
-            }
+        if ($isString) {
+            $version = $this->targetedStringTokens[$tokenContent];
+        } else {
+            $version = $this->targetedTokens[$tokenCode];
+        }
 
-            $content = $tokens[$stackPtr]['content'];
-            $tokenCode = $tokens[$stackPtr]['code'];
-            if ($isString) {
-                $version = $this->targetedStringTokens[$content];
-            } else {
-                $version = $this->targetedTokens[$tokenCode];
-            }
-
-            if ($this->supportsAbove($version)) {
-                $error = sprintf(
-                    "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)",
-                    strtolower($content),
-                    $version,
-                    $tokens[$stackPtr]['type']
-                );
-                $phpcsFile->addError($error, $stackPtr);
-            }
+        if ($this->supportsAbove($version)) {
+            $error = "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)";
+            $data = array(
+                strtolower($tokenContent),
+                $version,
+                $tokens[$stackPtr]['type'],
+            );
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
     }//end process()
 
