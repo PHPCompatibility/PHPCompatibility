@@ -51,4 +51,4 @@ script:
   - phpunit --configuration phpunit-travis.xml
 
 after_script:
-  - php vendor/bin/coveralls
+  - travis_retry php vendor/bin/coveralls -v
