@@ -51,4 +51,4 @@ script:
   - phpunit --configuration phpunit-travis.xml
 
 after_script:
-  - travis_retry php vendor/bin/coveralls -v -r Sniffs
+  - travis_retry php vendor/bin/coveralls -v -r Sniffs -x build/logs/clover.xml
