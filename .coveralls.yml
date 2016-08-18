@@ -1,3 +1,4 @@
-root_dir: Sniffs
+src_dir: Sniffs
 coverage_clover: build/logs/clover.xml
 json_path: build/logs/coveralls-upload.json
+service_name: travis-ci
