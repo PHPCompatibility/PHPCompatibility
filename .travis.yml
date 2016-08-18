@@ -49,6 +49,7 @@ script:
   - ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
   - mkdir -p build/logs
   - phpunit --configuration phpunit-travis.xml
+  - cat build/logs/clover.xml
 
 after_script:
   - travis_retry php vendor/bin/coveralls -v -r Sniffs -x build/logs/clover.xml
