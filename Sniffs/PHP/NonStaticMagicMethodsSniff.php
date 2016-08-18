@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff.
  *
- * Prohibits the use of static magic methods as well as protected or private magic methods
+ * Verifies the use of the correct visibility and static properties of magic methods.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -24,17 +24,52 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
 {
 
     /**
-     * A list of magic methods that must be public and not be static
+     * A list of PHP magic methods and their visibility and static requirements.
+     *
+     * Method names in the array should be all *lowercase*.
+     * Visibility can be either 'public', 'protected' or 'private'.
+     * Static can be either 'true' - *must* be static, or 'false' - *must* be non-static.
+     * When a method does not have a specific requirement for either visibility or static,
+     * do *not* add the key.
      *
      * @var array(string)
      */
     protected $magicMethods = array(
-        '__get',
-        '__set',
-        '__isset',
-        '__unset',
-        '__call'
+        '__get' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__set' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__isset' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__unset' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__call' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__callstatic' => array(
+            'visibility' => 'public',
+            'static'     => true,
+        ),
+        '__sleep' => array(
+            'visibility' => 'public',
+        ),
+        '__tostring' => array(
+            'visibility' => 'public',
+        ),
+        '__set_state' => array(
+            'static'     => true,
+        ),
     );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -43,7 +78,7 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
      */
     public function register()
     {
-        return array(T_CLASS, T_INTERFACE);
+        return array(T_CLASS, T_INTERFACE, T_TRAIT);
 
     }//end register()
 
@@ -59,96 +94,69 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3')) {
-            $tokens = $phpcsFile->getTokens();
+        // Should be removed, the requirement was previously also there, 5.3 just started throwing a warning about it.
+        if ($this->supportsAbove('5.3') === false) {
+            return;
+        }
 
-            // Find all the functions in this class or interface
+        $tokens = $phpcsFile->getTokens();
 
-            // Use the scope closer to limit the sniffing within the scope of
-            // this class or interface
-            $classScopeCloser = (isset($tokens[$stackPtr]['scope_closer']))
-                ? $tokens[$stackPtr]['scope_closer']
-                : $stackPtr + 1;
+        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
+            return;
+        }
 
-            $functionPtr = $stackPtr;
+        $classScopeCloser = $tokens[$stackPtr]['scope_closer'];
+        $functionPtr      = $stackPtr;
 
-            while ($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) {
+        // Find all the functions in this class or interface.
+        while ($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) {
+            /*
+             * Get the scope closer for this function in order to know how
+             * to advance to the next function.
+             * If no body of function (e.g. for interfaces), there is
+             * no closing curly brace; advance the pointer differently.
+             */
+            $scopeCloser = isset($tokens[$functionToken]['scope_closer'])
+                ? $tokens[$functionToken]['scope_closer']
+                : $functionToken + 1;
 
-                // Get the scope closer for this function in order to know how
-                // to advance to the next function.
-                // If no body of function (e.g. for interfaces), there is
-                // no closing curly brace; advance the pointer differently
-                $scopeCloser = isset($tokens[$functionToken]['scope_closer'])
-                    ? $tokens[$functionToken]['scope_closer']
-                    : $functionToken + 1;
 
-                $scopeToken = false;
-                $staticToken = false;
-
-                $nameToken = $phpcsFile->findNext(T_WHITESPACE, $functionToken + 1, $classScopeCloser, true);
-                if (in_array($tokens[$nameToken]['content'], $this->magicMethods) === false) {
-                    $functionPtr = $scopeCloser;
-                    continue;
-                }
-
-                // What is the token before the function token?
-                $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, $functionToken - 1, null, true);
-                if (in_array($tokens[$prevToken]['code'], array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                    $scopeToken = $prevToken;
-                } elseif ($tokens[$prevToken]['code'] == T_STATIC) {
-                    $staticToken = $prevToken;
-                } else {
-                    // no scope or static modifiers, this function is okay
-                    $functionPtr = $scopeCloser;
-                    continue;
-                }
-
-                // What is the token before that one?
-                $prevPrevToken = $phpcsFile->findPrevious(T_WHITESPACE, $prevToken - 1, null, true);
-                if (in_array($tokens[$prevPrevToken]['code'], array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                    $scopeToken = $prevPrevToken;
-                } elseif ($tokens[$prevPrevToken]['code'] == T_STATIC) {
-                    $staticToken = $prevPrevToken;
-                }
-
-                $isPublic = ($scopeToken !== false && $tokens[$scopeToken]['type'] != 'T_PUBLIC') ? false : true;
-                $isStatic = ($staticToken === false) ? false : true;
-
-                if ($isPublic && !$isStatic) {
-                    $functionPtr = $scopeCloser;
-                    continue;
-                }
-
-                // Summarize what the problems are
-                if (!$isPublic && $isStatic) {
-                    $error = sprintf(
-                        "Magic methods must be public and cannot be static (since PHP 5.3)! Found static %s function %s",
-                        $tokens[$scopeToken]['content'],
-                        $tokens[$nameToken]['content']
-                    );
-                    $phpcsFile->addError($error, $functionToken);
-                } else {
-                    if (!$isPublic) {
-                        $error = sprintf(
-                            "Magic methods must be public (since PHP 5.3)! Found %s function %s",
-                            $tokens[$scopeToken]['content'],
-                            $tokens[$nameToken]['content']
-                        );
-                        $phpcsFile->addError($error, $functionToken);
-                    }
-
-                    if ($isStatic) {
-                        $error = sprintf(
-                            "Magic methods cannot be static (since PHP 5.3)! Found static function %s",
-                            $tokens[$nameToken]['content']
-                        );
-                        $phpcsFile->addError($error, $functionToken);
-                    }
-                }
-
-                // Advance to next function
+            $methodName   = $phpcsFile->getDeclarationName($functionToken);
+            $methodNameLc = strtolower($methodName);
+            if (isset($this->magicMethods[$methodNameLc]) === false) {
                 $functionPtr = $scopeCloser;
+                continue;
             }
+
+            $methodProperties = $phpcsFile->getMethodProperties($functionToken);
+
+            if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
+                $error = 'Visibility for magic method %s must be %s. Found: %s';
+                $data  = array(
+                    $methodName,
+                    $this->magicMethods[$methodNameLc]['visibility'],
+                    $methodProperties['scope'],
+                );
+
+                $phpcsFile->addError($error, $functionToken, 'MethodVisibility', $data);
+            }
+
+            if (isset($this->magicMethods[$methodNameLc]['static']) && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']) {
+                $error     = 'Magic method %s cannot be defined as static.';
+                $errorCode = 'MethodStatic';
+                if ( $this->magicMethods[$methodNameLc]['static'] === true ) {
+                    $error     = 'Magic method %s must be defined as static.';
+                    $errorCode = 'MethodNonStatic';
+                }
+                $data = array(
+                    $methodName,
+                );
+
+                $phpcsFile->addError($error, $functionToken, $errorCode, $data);
+            }
+
+            // Advance to next function.
+            $functionPtr = $scopeCloser;
         }
 
     }//end process()
