@@ -7,6 +7,10 @@ class Plain
     function __isset($name) {}
     function __unset($name) {}
     function __call($name, $arguments) {}
+    static function __callStatic($name, $arguments) {}
+    function __sleep() {}
+    function __toString() {}
+    static function __set_state($properties) {}
 }
 
 class Normal
@@ -17,63 +21,41 @@ class Normal
     public function __isset($name) {}
     public function __unset($name) {}
     public function __call($name, $arguments) {}
+    public static function __callStatic($name, $arguments) {}
+    public function __sleep() {}
+    public function __toString() {}
+    public static function __set_state($properties) {}
 }
 
-class TooPrivate
+class WrongVisibility
 {
     private function __get($name) {}
-    private function __set($name, $value) {}
-    private function __isset($name) {}
-    private function __unset($name) {}
-    private function __call($name, $arguments) {}
-}
-
-class TooProtected
-{
-    protected function __get($name) {}
     protected function __set($name, $value) {}
-    protected function __isset($name) {}
+    private function __isset($name) {}
     protected function __unset($name) {}
-    protected function __call($name, $arguments) {}
+    private function __call($name, $arguments) {}
+    protected static function __callStatic($name, $arguments) {}
+    private function __sleep() {}
+    protected function __toString() {}
 }
 
-class TooStatic
+class WrongStatic
 {
     static function __get($name) {}
     static function __set($name, $value) {}
     static function __isset($name) {}
     static function __unset($name) {}
     static function __call($name, $arguments) {}
+    function __callStatic($name, $arguments) {}
+    function __set_state($properties) {}
 }
 
-class TooStaticPublic
+class AlternativePropertyOrder
 {
-    static public function __get($name) {}
-}
-
-class TooPublicStatic
-{
-    public static function __get($name) {}
-}
-
-class TooStaticPrivate
-{
-    static private function __get($name) {}
-}
-
-class TooPrivateStatic
-{
-    private static function __get($name) {}
-}
-
-class TooStaticProtected
-{
-    static protected function __get($name) {}
-}
-
-class TooProtectedStatic
-{
-    protected static function __get($name) {}
+    static public function __get($name) {} // Bad: static.
+    static protected function __set($name, $value) {} // Bad: static & protected.
+    static private function __isset($name) {} // Bad: static & private.
+    static public function __callStatic($name, $arguments) {} // Ok.
 }
 
 class StackedStaticPrivate
@@ -91,6 +73,10 @@ interface PlainInterface
     function __isset($name);
     function __unset($name);
     function __call($name, $arguments);
+    static function __callStatic($name, $arguments);
+    function __sleep();
+    function __toString();
+    static function __set_state($properties);
 }
 
 interface NormalInterface
@@ -101,10 +87,31 @@ interface NormalInterface
     public function __isset($name);
     public function __unset($name);
     public function __call($name, $arguments);
+    public static function __callStatic($name, $arguments);
+    public function __sleep();
+    public function __toString();
+    public static function __set_state($properties);
 }
 
-interface TooPrivateInterface
+interface WrongVisibilityInterface
 {
-    private function getId();
-    private function __get($name);
+    protected function __get($name);
+    private function __set($name, $value);
+    protected function __isset($name);
+    private function __unset($name);
+    protected function __call($name, $arguments);
+    private static function __callStatic($name, $arguments);
+    protected function __sleep();
+    private function __toString();
+}
+
+interface WrongStaticInterface
+{
+    static function __get($name);
+    static function __set($name, $value);
+    static function __isset($name);
+    static function __unset($name);
+    static function __call($name, $arguments);
+    function __callStatic($name, $arguments);
+    function __set_state($properties);
 }
