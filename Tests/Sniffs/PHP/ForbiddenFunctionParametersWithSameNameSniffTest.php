@@ -13,10 +13,12 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class ForbiddenForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
+class ForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
 {
     /**
      * testSettingTestVersion
+     *
+     * @group forbiddenFunctionParamsSameName
      *
      * @return void
      */
