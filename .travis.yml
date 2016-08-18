@@ -52,4 +52,4 @@ script:
   - cat build/logs/clover.xml
 
 after_script:
-  - travis_retry php vendor/bin/coveralls -v -r Sniffs -x build/logs/clover.xml
+  - travis_retry php vendor/bin/coveralls -v -x build/logs/clover.xml
