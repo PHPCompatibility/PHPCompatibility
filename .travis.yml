@@ -48,7 +48,7 @@ install:
 script:
   - ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
   - mkdir -p build/logs
-  - phpunit --configuration phpunit-travis.xml
+  - phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml
   - cat build/logs/clover.xml
 
 after_script:

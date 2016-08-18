@@ -6,6 +6,11 @@
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory>./Sniffs/</directory>
+        </whitelist>
+    </filter>
     <log type="coverage-clover" target="build/logs/clover.xml"/>
 </phpunit>
 
