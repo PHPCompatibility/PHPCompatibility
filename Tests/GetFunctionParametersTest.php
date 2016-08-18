@@ -45,37 +45,37 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
     {
         return array(
             array(88, array(
-                       0 => array(
+                       1 => array(
                              'start' => 90,
                              'end'   => 91,
                              'raw'   => '1',
                             ),
-                       1 => array(
+                       2 => array(
                              'start' => 93,
                              'end'   => 94,
                              'raw'   => '2',
                             ),
-                       2 => array(
+                       3 => array(
                              'start' => 96,
                              'end'   => 97,
                              'raw'   => '3',
                             ),
-                       3 => array(
+                       4 => array(
                              'start' => 99,
                              'end'   => 100,
                              'raw'   => '4',
                             ),
-                       4 => array(
+                       5 => array(
                              'start' => 102,
                              'end'   => 103,
                              'raw'   => '5',
                             ),
-                       5 => array(
+                       6 => array(
                              'start' => 105,
                              'end'   => 106,
                              'raw'   => '6',
                             ),
-                       6 => array(
+                       7 => array(
                              'start' => 108,
                              'end'   => 110,
                              'raw'   => 'true',
@@ -84,7 +84,7 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
 
             ),
             array(120, array(
-                        0 => array(
+                        1 => array(
                               'start' => 122,
                               'end'   => 129,
                               'raw'   => 'dirname( __FILE__ )',
@@ -92,32 +92,32 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
                        ),
             ),
             array(250, array(
-                        0 => array(
+                        1 => array(
                               'start' => 252,
                               'end'   => 252,
                               'raw'   => '$stHour',
                              ),
-                        1 => array(
+                        2 => array(
                               'start' => 254,
                               'end'   => 255,
                               'raw'   => '0',
                              ),
-                        2 => array(
+                        3 => array(
                               'start' => 257,
                               'end'   => 258,
                               'raw'   => '0',
                              ),
-                        3 => array(
+                        4 => array(
                               'start' => 260,
                               'end'   => 264,
                               'raw'   => '$arrStDt[0]',
                              ),
-                        4 => array(
+                        5 => array(
                               'start' => 266,
                               'end'   => 270,
                               'raw'   => '$arrStDt[1]',
                              ),
-                        5 => array(
+                        6 => array(
                               'start' => 272,
                               'end'   => 276,
                               'raw'   => '$arrStDt[2]',
@@ -155,25 +155,25 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
     public function dataGetFunctionCallParameter()
     {
         return array(
-            array(88, 3, array(
+            array(88, 4, array(
                           'start' => 99,
                           'end'   => 100,
                           'raw'   => '4',
                          ),
             ),
-            array(120, 0, array(
+            array(120, 1, array(
                            'start' => 122,
                            'end'   => 129,
                            'raw'   => 'dirname( __FILE__ )',
                           ),
             ),
-            array(250, 0, array(
+            array(250, 1, array(
                            'start' => 252,
                            'end'   => 252,
                            'raw'   => '$stHour',
                           ),
             ),
-            array(250, 5, array(
+            array(250, 6, array(
                            'start' => 272,
                            'end'   => 276,
                            'raw'   => '$arrStDt[2]',

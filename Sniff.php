@@ -249,7 +249,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
      * Will return an multi-dimentional array with the start token pointer, end token
-     * pointer and raw parameter value for all parameters. Index will be 0-based.
+     * pointer and raw parameter value for all parameters. Index will be 1-based.
      * If no parameters are found, will return an empty array.
      *
      * @param PHP_CodeSniffer_File $phpcsFile     The file being scanned.
@@ -278,7 +278,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $parameters = array();
         $nextComma  = $openParenthesis;
         $paramStart = $openParenthesis + 1;
-        $cnt        = 0;
+        $cnt        = 1;
         while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
             // Ignore comma's at a lower nesting level.
             if (
@@ -322,7 +322,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
      * @param int                  $stackPtr    The position of the function call token.
-     * @param int                  $paramOffset The 0-based index position of the parameter to retrieve.
+     * @param int                  $paramOffset The 1-based index position of the parameter to retrieve.
      *
      * @return array|false
      */

@@ -226,7 +226,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 0);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
         if ($iniToken === false) {
             return;
         }
