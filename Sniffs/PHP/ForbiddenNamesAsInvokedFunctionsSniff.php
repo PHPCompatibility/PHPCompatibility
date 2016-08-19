@@ -100,16 +100,16 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens       = $phpcsFile->getTokens();
-        $tokenCode    = $tokens[$stackPtr]['code'];
-        $tokenContent = $tokens[$stackPtr]['content'];
-        $isString     = false;
+        $tokens         = $phpcsFile->getTokens();
+        $tokenCode      = $tokens[$stackPtr]['code'];
+        $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
+        $isString       = false;
 
         // For string tokens we only care if the string is a reserved word used
         // as a function. This only happens in older versions of PHP where the
         // token doesn't exist yet for that keyword.
         if ($tokenCode === T_STRING
-            && (isset($this->targetedStringTokens[$tokenContent]) === false)
+            && (isset($this->targetedStringTokens[$tokenContentLc]) === false)
         ) {
             return;
         }
@@ -141,7 +141,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         }
 
         if ($isString) {
-            $version = $this->targetedStringTokens[$tokenContent];
+            $version = $this->targetedStringTokens[$tokenContentLc];
         } else {
             $version = $this->targetedTokens[$tokenCode];
         }
@@ -149,7 +149,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         if ($this->supportsAbove($version)) {
             $error = "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)";
             $data = array(
-                strtolower($tokenContent),
+                $tokenContentLc,
                 $version,
                 $tokens[$stackPtr]['type'],
             );
