@@ -6,6 +6,11 @@ matrix:
   fast_finish: true
   include:
 
+    - php: 5.2
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION="1.5.6"
+    - php: 5.2
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION="master"
+
     - php: 5.3
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.3
@@ -36,18 +41,23 @@ matrix:
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
     - php: 7.0
       env: COVERALLS_VERSION="dev-master" PHPCS_VERSION="dev-master"
+
 
 before_script:
   - phpenv rehash
 
 install:
-  - composer self-update
-  - composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}
-  - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
-  - composer install
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer self-update; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer require squizlabs/php_codesniffer:${PHPCS_VERSION}; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer install; fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_BIN=$(if [[ $PHPCS_VERSION == 3.0 ]]; then echo $PHPCS_DIR/bin/phpcs; else echo $PHPCS_DIR/scripts/phpcs; fi); fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_VERSION $PHPCS_DIR; fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths $(pwd); fi
 
 script:
-  - ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; fi
   - mkdir -p build/logs
   - phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml
 

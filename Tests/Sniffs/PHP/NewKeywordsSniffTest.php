@@ -18,6 +18,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test allow_url_include
      *
+     * @requires PHP 5.3
      * @return void
      */
     public function testDirMagicConstant()
@@ -43,6 +44,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test namespace keyword
      *
+     * @requires PHP 5.3
      * @return void
      */
     public function testNamespaceKeyword()
@@ -55,6 +57,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testNamespaceConstant
      *
+     * @requires PHP 5.3
      * @return void
      */
     public function testNamespaceConstant()
@@ -160,16 +163,25 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testHaltCompiler
      *
-     * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler will be halted...
-     * So testing that any violations created *after* the compiler is halted will not be reported.
-     *
-     * @requires PHP 5.1
+     * @requires PHP 5.3
      * @return void
      */
     public function testHaltCompiler()
     {
-        $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
-
-        $this->assertNoViolation($file, 53);
+        if (version_compare(phpversion(), '5.3', '=')) {
+            // PHP 5.3 actually shows the warning.
+            $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.0');
+            $this->assertError($file, 50, "\"__halt_compiler\" keyword is not present in PHP version 5.0 or earlier");
+        }
+        else {
+            /*
+             * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
+             * will be halted...
+             * So testing that any violations created *after* the compiler is halted will
+             * not be reported.
+             */
+            $file = $this->sniffFile('sniff-examples/new_keywords.php', '5.2');
+            $this->assertNoViolation($file, 53);
+        }
     }
 }

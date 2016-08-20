@@ -41,6 +41,10 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile('sniff-examples/deprecated_php4style_constructors.php', '7.0');
         $this->assertNoViolation($file, 9);
-        $this->assertNoViolation($file, 20);
+
+        if (version_compare(phpversion(), '5.3', '>=')) {
+            // Will only be no violation if namespaces are recognized.
+            $this->assertNoViolation($file, 20);
+        }
     }
 }
