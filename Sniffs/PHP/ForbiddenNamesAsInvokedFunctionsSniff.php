@@ -62,6 +62,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
      * @var array
      */
     protected $targetedStringTokens = array(
+        'goto' => '5.3',
+        'namespace' => '5.3',
         'callable' => '5.4',
         'insteadof' => '5.4',
         'trait' => '5.4',

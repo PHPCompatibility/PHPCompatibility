@@ -57,7 +57,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
         }
 
-        self::$phpcs->process(array(), __DIR__ . '/../');
+        self::$phpcs->process(array(), dirname( __FILE__ ) . '/../');
         self::$phpcs->setIgnorePatterns(array());
     }
 

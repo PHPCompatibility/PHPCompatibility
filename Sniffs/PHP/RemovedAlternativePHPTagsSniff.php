@@ -97,9 +97,15 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
         else if ($openTag['code'] === T_INLINE_HTML
             && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
+            $found = $match[1];
+            if (version_compare(phpversion(), '5.3', '<')) {
+                // Add the missing '<s' at the start of the match for PHP 5.2.
+                $found = '<s' . $match[1];
+            }
+
             $data = array(
                 'Script',
-                $match[1],
+                $found,
             );
             $errorCode = 'ScriptOpenTagFound';
         }
