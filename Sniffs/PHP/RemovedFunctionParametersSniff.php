@@ -16,14 +16,6 @@
  */
 class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_Sniff
 {
-
-    /**
-     * If true, forbidden functions will be considered regular expressions.
-     *
-     * @var bool
-     */
-    protected $patternMatch = false;
-
     /**
      * A list of removed function parameters, which were present in older versions.
      *
@@ -80,12 +72,6 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->removedFunctionParametersNames = array_keys($this->removedFunctionParameters);
-
-        if ($this->patternMatch === true) {
-            foreach ($this->removedFunctionParametersNames as $i => $name) {
-                $this->removedFunctionParametersNames[$i] = '/'.$name.'/i';
-            }
-        }
 
         return array(T_STRING);
     }//end register()
