@@ -47,20 +47,20 @@ class PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff extends PHPCompatibility
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (!$this->supportsAbove('5.3')) {
-            $tokens = $phpcsFile->getTokens();
+        if ($this->supportsBelow('5.2') === false) {
+            return;
+        }
 
-            // Get next non-whitespace token, and check it isn't the related inline else
-            // symbol, which is not allowed prior to PHP 5.3.
-            $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens,
-                                         ($stackPtr + 1), null, true);
+        $tokens = $phpcsFile->getTokens();
 
-            if ($tokens[$next]['code'] == T_INLINE_ELSE) {
-                $error = sprintf(
-                    "Middle may not be omitted from ternary operators in PHP < 5.3"
-                );
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+        // Get next non-whitespace token, and check it isn't the related inline else
+        // symbol, which is not allowed prior to PHP 5.3.
+        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens,
+                                     ($stackPtr + 1), null, true);
+
+        if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
+            $error = 'Middle may not be omitted from ternary operators in PHP < 5.3';
+            $phpcsFile->addWarning($error, $stackPtr);
         }
     }
 }
