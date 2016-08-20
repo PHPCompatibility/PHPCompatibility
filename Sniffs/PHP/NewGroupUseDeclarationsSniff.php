@@ -44,7 +44,7 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (!$this->supportsAbove('7.0')) {
+        if ($this->supportsBelow('5.6')) {
             $phpcsFile->addError('Group use declarations are not allowed in PHP 5.6 or earlier', $stackPtr);
         }
     }//end process()
