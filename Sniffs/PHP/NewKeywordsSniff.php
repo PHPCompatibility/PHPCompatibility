@@ -26,10 +26,12 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      * A list of new keywords, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
-     * If's sufficient to list the first version where the keyword appears.
+     * If's sufficient to list the last version which did not contain the keyword.
      *
-     * If you add a condition, make sure to add the appropriate logic for it as well as
-     * this will not resolve itself automatically.
+     * Description will be used as part of the error message.
+     * Condition is an array of valid scope conditions to check for.
+     * If you need a condition of a different type, make sure to add the appropriate
+     * logic for it as well as this will not resolve itself automatically.
      *
      * @var array(string => array(string => int|string|null))
      */
@@ -43,37 +45,43 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                                             '5.2' => false,
                                             '5.3' => true,
                                             'description' => '"const" keyword',
-                                            'condition' => 'T_CLASS', // Keyword is only new when not in class context.
+                                            'condition' => array(T_CLASS), // Keyword is only new when not in class context.
                                         ),
                                         'T_CALLABLE' => array(
                                             '5.3' => false,
                                             '5.4' => true,
-                                            'description' => '"callable" keyword'
+                                            'description' => '"callable" keyword',
+                                            'content' => 'callable',
                                         ),
                                         'T_DIR' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '__DIR__ magic constant'
+                                            'description' => '__DIR__ magic constant',
+                                            'content' => '__DIR__',
                                         ),
                                         'T_GOTO' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '"goto" keyword'
+                                            'description' => '"goto" keyword',
+                                            'content' => 'goto',
                                         ),
                                         'T_INSTEADOF' => array(
                                             '5.3' => false,
                                             '5.4' => true,
-                                            'description' => '"insteadof" keyword (for traits)'
+                                            'description' => '"insteadof" keyword (for traits)',
+                                            'content' => 'insteadof',
                                         ),
                                         'T_NAMESPACE' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '"namespace" keyword'
+                                            'description' => '"namespace" keyword',
+                                            'content' => 'namespace',
                                         ),
                                         'T_NS_C' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => '__NAMESPACE__ magic constant'
+                                            'description' => '__NAMESPACE__ magic constant',
+                                            'content' => '__NAMESPACE__',
                                         ),
                                         'T_USE' => array(
                                             '5.2' => false,
@@ -83,34 +91,47 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
                                         'T_TRAIT' => array(
                                             '5.3' => false,
                                             '5.4' => true,
-                                            'description' => '"trait" keyword'
+                                            'description' => '"trait" keyword',
+                                            'content' => 'trait',
                                         ),
                                         'T_TRAIT_C' => array(
                                             '5.3' => false,
                                             '5.4' => true,
-                                            'description' => '__TRAIT__ magic constant'
+                                            'description' => '__TRAIT__ magic constant',
+                                            'content' => '__TRAIT__',
                                         ),
                                         'T_YIELD' => array(
                                             '5.4' => false,
                                             '5.5' => true,
-                                            'description' => '"yield" keyword (for generators)'
+                                            'description' => '"yield" keyword (for generators)',
+                                            'content' => 'yield',
                                         ),
                                         'T_FINALLY' => array(
                                             '5.4' => false,
                                             '5.5' => true,
-                                            'description' => '"finally" keyword (in exception handling)'
+                                            'description' => '"finally" keyword (in exception handling)',
+                                            'content' => 'finally',
                                         ),
                                         'T_START_NOWDOC' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => 'nowdoc functionality'
+                                            'description' => 'nowdoc functionality',
                                         ),
                                         'T_END_NOWDOC' => array(
                                             '5.2' => false,
                                             '5.3' => true,
-                                            'description' => 'nowdoc functionality'
+                                            'description' => 'nowdoc functionality',
                                         ),
                                     );
+
+    /**
+     * Translation table for T_STRING tokens.
+     *
+     * Will be set up from the register() method.
+     *
+     * @var array(string => string)
+     */
+    protected $translateContentToToken = array();
 
 
     /**
@@ -120,12 +141,26 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      */
     public function register()
     {
-        $tokens = array();
+        $tokens    = array();
+        $translate = array();
         foreach ($this->newKeywords as $token => $versions) {
             if (defined($token)) {
                 $tokens[] = constant($token);
             }
+            if (isset($versions['content'])) {
+                $translate[$versions['content']] = $token;
+            }
         }
+
+        /*
+         * Deal with tokens not recognized by the PHP version the sniffer is run
+         * under and (not correctly) compensated for by PHPCS.
+         */
+        if (empty($translate) === false) {
+            $this->translateContentToToken = $translate;
+            $tokens[] = T_STRING;
+        }
+
         return $tokens;
 
     }//end register()
@@ -142,38 +177,44 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens    = $phpcsFile->getTokens();
+        $tokenType = $tokens[$stackPtr]['type'];
+
+        // Translate T_STRING token if necessary.
+        if ($tokens[$stackPtr]['type'] === 'T_STRING') {
+            $content = $tokens[$stackPtr]['content'];
+            if (isset($this->translateContentToToken[$content]) === false) {
+                // Not one of the tokens we're looking for.
+                return;
+            }
+
+            $tokenType = $this->translateContentToToken[$content];
+        }
 
         $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
+
         // Skip attempts to use keywords as functions or class names - the former
-        // will be reported by FrobiddenNamesAsInvokedFunctionsSniff, whilst the
-        // latter doesn't yet have an appropriate sniff.
+        // will be reported by ForbiddenNamesAsInvokedFunctionsSniff, whilst the
+        // will be (partially) reported by the ForbiddenNames sniff.
         // Either type will result in false-positives when targetting lower versions
         // of PHP where the name was not reserved, unless we explicitly check for
         // them.
         if (
-            $tokens[$nextToken]['type'] != 'T_OPEN_PARENTHESIS'
+            ($nextToken === false || $tokens[$nextToken]['type'] !== 'T_OPEN_PARENTHESIS')
             &&
-            $tokens[$prevToken]['type'] != 'T_CLASS'
+            ($prevToken === false || $tokens[$prevToken]['type'] !== 'T_CLASS' || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
         ) {
-            // Skip based on special conditions.
-            if (
-                isset($this->newKeywords[$tokens[$stackPtr]['type']]['condition'])
-                &&
-                (empty($tokens[$stackPtr]['conditions']) === false
-                &&
-                is_array($tokens[$stackPtr]['conditions']))
-            ) {
-                foreach ($tokens[$stackPtr]['conditions'] as $condPtr => $condType) {
-                    if ($condType === constant($this->newKeywords[$tokens[$stackPtr]['type']]['condition'])) {
-                        return;
-                    }
+            // Skip based on token scope condition.
+            if (isset($this->newKeywords[$tokenType]['condition'])) {
+                $condition = $this->newKeywords[$tokenType]['condition'];
+                if ($this->tokenHasScope($phpcsFile, $stackPtr, $condition) === true) {
+                    return;
                 }
             }
 
-            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['type']);
+            $this->addError($phpcsFile, $stackPtr, $tokenType);
         }
     }//end process()
 
@@ -185,40 +226,31 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
      * @param int                  $stackPtr    The position of the function
      *                                          in the token array.
      * @param string               $keywordName The name of the keyword.
-     * @param string               $pattern     The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $keywordName, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $keywordName)
     {
-        if ($pattern === null) {
-            $pattern = $keywordName;
-        }
-
-        $error = '';
-
-        $isError = false;
-        foreach ($this->newKeywords[$pattern] as $version => $present) {
-            if (in_array($version, array('condition', 'description'), true)) {
+        $notInVersion = '';
+        foreach ($this->newKeywords[$keywordName] as $version => $present) {
+            if (in_array($version, array('condition', 'description', 'content'), true)) {
                 continue;
             }
 
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
+            if ($present === false && $this->supportsBelow($version)) {
+                $notInVersion = $version;
             }
         }
-        if (strlen($error) > 0) {
-            $error = $this->newKeywords[$keywordName]['description'] . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+        if ($notInVersion !== '') {
+            $error = '%s is not present in PHP version %s or earlier';
+            $data  = array(
+                $this->newKeywords[$keywordName]['description'],
+                $notInVersion,
+            );
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
+
     }//end addError()
 
 }//end class

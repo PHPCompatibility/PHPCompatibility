@@ -47,8 +47,15 @@ class testing {
     const ok = 'a';
 }
 
+function myTest(callable $callableMethod) {}
+
+goto end;
+
+end:
+echo 'something';
+
+
 __halt_compiler();
 
 bla();
 const ok = 'a';
-
