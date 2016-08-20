@@ -55,7 +55,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
         if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
             $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
             if ($tokens[$closeParenthesis + 1]['type'] == 'T_OPEN_SQUARE_BRACKET') {
-                if ($this->supportsBelow('5.3')) {
+                if (!$this->supportsAbove('5.2')) {
                     $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $stackPtr + 3);
                 }
             }

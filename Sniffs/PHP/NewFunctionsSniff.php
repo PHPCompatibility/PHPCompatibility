@@ -16,14 +16,6 @@
  */
 class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sniff
 {
-
-    /**
-     * If true, forbidden functions will be considered regular expressions.
-     *
-     * @var bool
-     */
-    protected $patternMatch = false;
-
     /**
      * A list of new functions, not present in older versions.
      *
@@ -1236,12 +1228,6 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         $this->forbiddenFunctionNames = array_map('strtolower', $this->forbiddenFunctionNames);
         $this->forbiddenFunctions     = array_combine($this->forbiddenFunctionNames, $this->forbiddenFunctions);
 
-        if ($this->patternMatch === true) {
-            foreach ($this->forbiddenFunctionNames as $i => $name) {
-                $this->forbiddenFunctionNames[$i] = '/'.$name.'/i';
-            }
-        }
-
         return array(T_STRING);
 
     }//end register()
@@ -1279,26 +1265,8 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         $function = strtolower($tokens[$stackPtr]['content']);
         $pattern  = null;
 
-        if ($this->patternMatch === true) {
-            $count   = 0;
-            $pattern = preg_replace(
-                    $this->forbiddenFunctionNames,
-                    $this->forbiddenFunctionNames,
-                    $function,
-                    1,
-                    $count
-            );
-
-            if ($count === 0) {
-                return;
-            }
-
-            // Remove the pattern delimiters and modifier.
-            $pattern = substr($pattern, 1, -2);
-        } else {
-            if (in_array($function, $this->forbiddenFunctionNames) === false) {
-                return;
-            }
+        if (in_array($function, $this->forbiddenFunctionNames) === false) {
+            return;
         }
 
         $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content'], $pattern);

@@ -18,14 +18,6 @@
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_Sniff
 {
-
-    /**
-     * If true, forbidden functions will be considered regular expressions.
-     *
-     * @var bool
-     */
-    protected $patternMatch = false;
-
     /**
      * A list of forbidden functions with their alternatives.
      *
@@ -647,12 +639,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
         // they want to check for, so now we can cache out the list.
         $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
 
-        if ($this->patternMatch === true) {
-            foreach ($this->forbiddenFunctionNames as $i => $name) {
-                $this->forbiddenFunctionNames[$i] = '/'.$name.'/i';
-            }
-        }
-
         return array(T_STRING);
 
     }//end register()
@@ -689,26 +675,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
         $function = strtolower($tokens[$stackPtr]['content']);
         $pattern  = null;
 
-        if ($this->patternMatch === true) {
-            $count   = 0;
-            $pattern = preg_replace(
-                    $this->forbiddenFunctionNames,
-                    $this->forbiddenFunctionNames,
-                    $function,
-                    1,
-                    $count
-            );
-
-            if ($count === 0) {
-                return;
-            }
-
-            // Remove the pattern delimiters and modifier.
-            $pattern = substr($pattern, 1, -2);
-        } else {
-            if (in_array($function, $this->forbiddenFunctionNames) === false) {
-                return;
-            }
+        if (in_array($function, $this->forbiddenFunctionNames) === false) {
+            return;
         }
 
         $this->addError($phpcsFile, $stackPtr, $function, $pattern);

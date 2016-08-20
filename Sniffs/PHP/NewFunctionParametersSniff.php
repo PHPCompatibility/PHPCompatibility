@@ -16,14 +16,6 @@
  */
 class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatibility_Sniff
 {
-
-    /**
-     * If true, forbidden functions will be considered regular expressions.
-     *
-     * @var bool
-     */
-    protected $patternMatch = false;
-
     /**
      * A list of new functions, not present in older versions.
      *
@@ -730,12 +722,6 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         // Everyone has had a chance to figure out what forbidden functions
         // they want to check for, so now we can cache out the list.
         $this->newFunctionParametersNames = array_keys($this->newFunctionParameters);
-
-        if ($this->patternMatch === true) {
-            foreach ($this->newFunctionParametersNames as $i => $name) {
-                $this->newFunctionParametersNames[$i] = '/'.$name.'/i';
-            }
-        }
 
         return array(T_STRING);
     }//end register()
