@@ -9,8 +9,14 @@ if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
     define('PHP_CODESNIFFER_IN_TESTS', true);
 }
 
-// See if we are in a PEAR install or PHPCS.
-$phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+// Get the PHPCS dir from an environment variable.
+$phpcsDir = getenv('PHPCS_DIR') . DIRECTORY_SEPARATOR;
+
+if ($phpcsDir === false) {
+    // Ok, no environment variable set, so this might be a PEAR install of PHPCS.
+    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+}
+
 if (file_exists($phpcsDir . 'CodeSniffer.php')) {
     require $phpcsDir . 'CodeSniffer.php';
 }
@@ -19,10 +25,11 @@ else {
     $vendorDir = __DIR__ . '/../vendor';
 
     if (!@include($vendorDir . '/autoload.php')) {
-        die("You must set up the project dependencies, run the following commands:
+        echo 'You must set up the project dependencies, run the following commands:
     wget http://getcomposer.org/composer.phar
     php composer.phar install
-    ");
+    ';
+        die(1);
     }
 }
 
