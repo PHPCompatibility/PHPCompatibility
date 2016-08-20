@@ -25,6 +25,23 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     protected static $phpcs = null;
 
     /**
+     * An array of PHPCS results by filename and PHP version.
+     *
+     * @var array
+     */
+    public static $sniffFiles = array();
+
+    /**
+     * Sets up this unit test.
+     *
+     * @return void
+     */
+    public static function setUpBeforeClass()
+    {
+        self::$sniffFiles = array();
+    }
+
+    /**
      * Sets up this unit test.
      *
      * @return void
@@ -56,6 +73,16 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tear down after each test
+     *
+     * @return void
+     */
+    public static function tearDownAfterClass()
+    {
+        self::$sniffFiles = array();
+    }
+
+    /**
      * Sniff a file and return resulting file object
      *
      * @param string $filename Filename to sniff
@@ -64,19 +91,23 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      */
     public function sniffFile($filename, $targetPhpVersion = null)
     {
+        if ( isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
+            return self::$sniffFiles[$filename][$targetPhpVersion];
+        }
+
         if (null !== $targetPhpVersion) {
             PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
-        $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
+        $pathToFile = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
         try {
-            $phpcsFile = self::$phpcs->processFile($filename);
+            self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
         } catch (Exception $e) {
             $this->fail('An unexpected exception has been caught: ' . $e->getMessage());
             return false;
         }
 
-        return $phpcsFile;
+        return self::$sniffFiles[$filename][$targetPhpVersion];
     }
 
     /**
