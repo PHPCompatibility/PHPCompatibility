@@ -51,117 +51,157 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.4')) {
-            $tokens = $phpcsFile->getTokens();
+        if ($this->supportsAbove('5.3') === false) {
+            return;
+        }
 
-            // Skip tokens that are the names of functions or classes
-            // within their definitions. For example: function myFunction...
-            // "myFunction" is T_STRING but we should skip because it is not a
-            // function or method *call*.
-            $functionName = $stackPtr;
-            $findTokens   = array_merge(
-                PHP_CodeSniffer_Tokens::$emptyTokens,
-                array(T_BITWISE_AND)
-            );
+        $tokens = $phpcsFile->getTokens();
 
-            $functionKeyword = $phpcsFile->findPrevious(
-                $findTokens,
-                ($stackPtr - 1),
-                null,
-                true
-            );
+        // Skip tokens that are the names of functions or classes
+        // within their definitions. For example: function myFunction...
+        // "myFunction" is T_STRING but we should skip because it is not a
+        // function or method *call*.
+        $findTokens = array_merge(
+            PHP_CodeSniffer_Tokens::$emptyTokens,
+            array(T_BITWISE_AND)
+        );
 
-            if ($tokens[$functionKeyword]['code'] === T_FUNCTION
-                || $tokens[$functionKeyword]['code'] === T_CLASS
-            ) {
-                return;
-            }
+        $prevNonEmpty = $phpcsFile->findPrevious(
+            $findTokens,
+            ($stackPtr - 1),
+            null,
+            true
+        );
 
-            // If the next non-whitespace token after the function or method call
-            // is not an opening parenthesis then it cant really be a *call*.
-            $openBracket = $phpcsFile->findNext(
-                PHP_CodeSniffer_Tokens::$emptyTokens,
-                ($functionName + 1),
-                null,
-                true
-            );
+        if ($prevNonEmpty !== false && in_array($tokens[$prevNonEmpty]['code'], array(T_FUNCTION, T_CLASS, T_INTERFACE, T_TRAIT), true)) {
+            return;
+        }
 
-            if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-                return;
-            }
+        // If the next non-whitespace token after the function or method call
+        // is not an opening parenthesis then it can't really be a *call*.
+        $openBracket = $phpcsFile->findNext(
+            PHP_CodeSniffer_Tokens::$emptyTokens,
+            ($stackPtr + 1),
+            null,
+            true
+        );
 
-            $closeBracket = $tokens[$openBracket]['parenthesis_closer'];
+        if ($openBracket === false || $tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS
+           || isset($tokens[$openBracket]['parenthesis_closer']) === false
+        ) {
+            return;
+        }
 
-            $nextSeparator = $openBracket;
-            while (($nextSeparator = $phpcsFile->findNext(T_VARIABLE, ($nextSeparator + 1), $closeBracket)) !== false) {
-                // Make sure the variable belongs directly to this function call
-                // and is not inside a nested function call or array.
-                if (isset($tokens[$nextSeparator]['nested_parenthesis'])) {
-                    $brackets    = $tokens[$nextSeparator]['nested_parenthesis'];
-                    $lastBracket = array_pop($brackets);
-                    if ($lastBracket !== $closeBracket) {
-                        continue;
-                    }
+        // Get the function call parameters.
+        $parameters = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        if (count($parameters) === 0) {
+            return;
+        }
+
+        // Which nesting level is the one we are interested in ?
+        $nestedParenthesisCount = 1;
+        if (isset($tokens[$openBracket]['nested_parenthesis'])) {
+            $nestedParenthesisCount = count($tokens[$openBracket]['nested_parenthesis']) + 1;
+        }
+
+        foreach ($parameters as $parameter) {
+            if ($this->isCallTimePassByReferenceParam($phpcsFile, $parameter, $nestedParenthesisCount) === true) {
+                // T_BITWISE_AND represents a pass-by-reference.
+                $error = 'Using a call-time pass-by-reference is deprecated since PHP 5.3';
+                if($this->supportsAbove('5.4')) {
+                    $error .= ' and prohibited since PHP 5.4';
                 }
-
-                // Checking this: $value = my_function(...[*]$arg...).
-                $tokenBefore = $phpcsFile->findPrevious(
-                    PHP_CodeSniffer_Tokens::$emptyTokens,
-                    ($nextSeparator - 1),
-                    null,
-                    true
-                );
-
-                if ($tokens[$tokenBefore]['code'] === T_BITWISE_AND) {
-                    // Checking this: $value = my_function(...[*]&$arg...).
-                    $tokenBefore = $phpcsFile->findPrevious(
-                        PHP_CodeSniffer_Tokens::$emptyTokens,
-                        ($tokenBefore - 1),
-                        null,
-                        true
-                    );
-
-                    // We have to exclude all uses of T_BITWISE_AND that are not
-                    // references. We use a blacklist approach as we prefer false
-                    // positives to not identifying a pass-by-reference call at all.
-                    // The blacklist may not yet be complete.
-                    switch ($tokens[$tokenBefore]['code']) {
-                        // In these cases T_BITWISE_AND represents
-                        // the bitwise and operator.
-                        case T_LNUMBER:
-                        case T_VARIABLE:
-                        case T_CLOSE_SQUARE_BRACKET:
-                        case T_CLOSE_PARENTHESIS:
-                            continue;
-    
-                        // Unfortunately the tokenizer fails to recognize global constants,
-                        // class-constants and -attributes. Any of these are returned is
-                        // treated as T_STRING.
-                        // So we step back another token and check if it is a class
-                        // operator (-> or ::), which means we have a false positive.
-                        // Global constants still remain uncovered.
-                        case T_STRING:
-                            $tokenBeforePlus = $phpcsFile->findPrevious(
-                                PHP_CodeSniffer_Tokens::$emptyTokens,
-                                ($tokenBefore - 1),
-                                null,
-                                true
-                            );
-                            if( T_DOUBLE_COLON === $tokens[$tokenBeforePlus]['code'] ||
-                                T_OBJECT_OPERATOR === $tokens[$tokenBeforePlus]['code']
-                            ) {
-                                continue;
-                            }
-    
-                        default:
-                            // T_BITWISE_AND represents a pass-by-reference.
-                            $error = 'Using a call-time pass-by-reference is prohibited since php 5.4';
-                            $phpcsFile->addError($error, $tokenBefore, 'NotAllowed');
-                            break;
-                    }
-                }//end if
-            }//end while
+                $phpcsFile->addError($error, $parameter['start'], 'NotAllowed');
+            }
         }
     }//end process()
+
+
+    protected function isCallTimePassByReferenceParam(PHP_CodeSniffer_File $phpcsFile, $parameter, $nestingLevel)
+    {
+        $tokens   = $phpcsFile->getTokens();
+
+        $searchStartToken = $parameter['start'] - 1;
+        $searchEndToken   = $parameter['end'] + 1;
+        $nextVariable     = $searchStartToken;
+        do {
+            $nextVariable = $phpcsFile->findNext(T_VARIABLE, ($nextVariable + 1), $searchEndToken);
+            if ($nextVariable === false) {
+                return false;
+            }
+
+            // Make sure the variable belongs directly to this function call
+            // and is not inside a nested function call or array.
+            if (isset($tokens[$nextVariable]['nested_parenthesis']) === false ||
+               (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
+            ) {
+                continue;
+            }
+
+
+            // Checking this: $value = my_function(...[*]$arg...).
+            $tokenBefore = $phpcsFile->findPrevious(
+                PHP_CodeSniffer_Tokens::$emptyTokens,
+                ($nextVariable - 1),
+                $searchStartToken,
+                true
+            );
+
+            if ($tokenBefore === false || $tokens[$tokenBefore]['code'] !== T_BITWISE_AND) {
+                // Nothing before the token or no &.
+                continue;
+            }
+
+            // Checking this: $value = my_function(...[*]&$arg...).
+            $tokenBefore = $phpcsFile->findPrevious(
+                PHP_CodeSniffer_Tokens::$emptyTokens,
+                ($tokenBefore - 1),
+                $searchStartToken,
+                true
+            );
+
+            // We have to exclude all uses of T_BITWISE_AND that are not
+            // references. We use a blacklist approach as we prefer false
+            // positives to not identifying a pass-by-reference call at all.
+            // The blacklist may not yet be complete.
+            switch ($tokens[$tokenBefore]['code']) {
+                // In these cases T_BITWISE_AND represents
+                // the bitwise and operator.
+                case T_LNUMBER:
+                case T_VARIABLE:
+                case T_CLOSE_SQUARE_BRACKET:
+                case T_CLOSE_PARENTHESIS:
+                    break;
+
+                // Unfortunately the tokenizer fails to recognize global constants,
+                // class-constants and -attributes. Any of these are returned is
+                // treated as T_STRING.
+                // So we step back another token and check if it is a class
+                // operator (-> or ::), which means we have a false positive.
+                // Global constants still remain uncovered.
+                case T_STRING:
+                    $tokenBeforePlus = $phpcsFile->findPrevious(
+                        PHP_CodeSniffer_Tokens::$emptyTokens,
+                        ($tokenBefore - 1),
+                        $searchStartToken,
+                        true
+                    );
+                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON ||
+                        $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
+                    ) {
+                        break;
+                    }
+                    // If not a class constant: fall through.
+
+                default:
+                    // The found T_BITWISE_AND represents a pass-by-reference.
+                    return true;
+            }
+
+        } while($nextVariable < $searchEndToken);
+
+        // This code should never be reached, but here in case of weird bugs ;-)
+        return false;
+    }
 
 }//end class
