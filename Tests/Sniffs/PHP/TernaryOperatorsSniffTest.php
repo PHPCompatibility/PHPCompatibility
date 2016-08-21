@@ -25,6 +25,8 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     /**
      * Test ternary operators that are acceptable in all PHP versions.
      *
+     * @group ternaryOperators
+     *
      * @return void
      */
     public function testStandardTernaryOperators()
@@ -36,17 +38,23 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     /**
      * 5.2 doesn't support elvis operator.
      *
+     * @group ternaryOperators
+     *
      * @return void
      */
     public function testMissingMiddleExpression5dot2()
     {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.2');
+        $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.2-5.4');
         $this->assertWarning($this->_sniffFile, 8,
+                "Middle may not be omitted from ternary operators in PHP < 5.3");
+        $this->assertWarning($this->_sniffFile, 10,
                 "Middle may not be omitted from ternary operators in PHP < 5.3");
     }
 
     /**
      * 5.3 does support elvis operator.
+     *
+     * @group ternaryOperators
      *
      * @return void
      */
@@ -54,6 +62,8 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     {
         $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.3');
         $this->assertNoViolation($this->_sniffFile, 8,
+                "Middle may not be omitted from ternary operators in PHP < 5.3");
+        $this->assertNoViolation($this->_sniffFile, 10,
                 "Middle may not be omitted from ternary operators in PHP < 5.3");
     }
 
