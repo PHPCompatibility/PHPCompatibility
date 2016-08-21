@@ -10,12 +10,13 @@ if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
 }
 
 // Get the PHPCS dir from an environment variable.
-$phpcsDir = getenv('PHPCS_DIR') . DIRECTORY_SEPARATOR;
+$phpcsDir = getenv('PHPCS_DIR');
 
 if ($phpcsDir === false) {
     // Ok, no environment variable set, so this might be a PEAR install of PHPCS.
-    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
 }
+$phpcsDir .= DIRECTORY_SEPARATOR;
 
 if (file_exists($phpcsDir . 'CodeSniffer.php')) {
     require $phpcsDir . 'CodeSniffer.php';
