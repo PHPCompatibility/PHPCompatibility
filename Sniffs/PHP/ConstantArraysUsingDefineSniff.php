@@ -44,6 +44,10 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        if ($this->supportsBelow('5.6') !== true) {
+            return;
+        }
+
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
@@ -60,28 +64,18 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
         }
 
         $function = strtolower($tokens[$stackPtr]['content']);
+        if ($function !== 'define') {
+            return;
+        }
 
-        if ($function === 'define') {
-            $openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, null, null, true);
-            if ($openParenthesis === false) {
-                return;
-            }
+        $secondParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 2);
+        if (isset($secondParam['start'], $secondParam['end']) === false) {
+            return;
+        }
 
-            $comma = $phpcsFile->findNext(T_COMMA, $openParenthesis, $tokens[$openParenthesis]['parenthesis_closer']);
-
-            if ($comma === false) {
-                return;
-            }
-
-            $array = $phpcsFile->findNext(array(T_ARRAY, T_OPEN_SHORT_ARRAY), $comma, $tokens[$openParenthesis]['parenthesis_closer']);
-
-            if ($array !== false) {
-                if ($this->supportsAbove('7.0')) {
-                    return;
-                } else {
-                    $phpcsFile->addError('Constant arrays using define are not allowed in PHP 5.6 or earlier', $array);
-                }
-            }
+        $array = $phpcsFile->findNext(array(T_ARRAY, T_OPEN_SHORT_ARRAY), $secondParam['start'], ($secondParam['end'] + 1));
+        if ($array !== false) {
+            $phpcsFile->addError('Constant arrays using define are not allowed in PHP 5.6 or earlier', $array);
         }
     }
 }
