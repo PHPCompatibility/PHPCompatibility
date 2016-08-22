@@ -21,6 +21,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     /**
      * Test valid directive
      *
+     * @group IniDirectives
+     *
      * @return void
      */
     public function testValidDirective()
@@ -28,10 +30,13 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE);
         $this->assertNoViolation($file, 57);
         $this->assertNoViolation($file, 58);
+        $this->assertNoViolation($file, 133);
     }
 
     /**
      * testDeprecatedForbiddenDirectives
+     *
+     * @group IniDirectives
      *
      * @dataProvider dataDeprecatedForbiddenDirectives
      *
@@ -110,6 +115,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     /**
      * testDeprecatedDirectives
      *
+     * @group IniDirectives
+     *
      * @dataProvider dataDeprecatedDirectives
      *
      * @param string $iniName           Name of the ini directive.
@@ -165,6 +172,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     /**
      * testForbiddenWithAlternative
      *
+     * @group IniDirectives
+     *
      * @dataProvider dataForbiddenWithAlternative
      *
      * @param string $iniName           Name of the ini directive.
@@ -212,6 +221,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testForbiddenDirectives
+     *
+     * @group IniDirectives
      *
      * @dataProvider dataForbiddenDirectives
      *

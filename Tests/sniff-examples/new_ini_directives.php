@@ -1,8 +1,8 @@
 <?php
-
-function some_random_function() {} // Verify sniff doesn't flag this line
-some_random_function(); // Verify sniff doesn't flag this line
-ini_set('display_errors', 1); // Verify sniff doesn't flag this ini directive
+function some_random_function() {} // Verify sniff doesn't flag this line.
+some_random_function(); // Verify sniff doesn't flag this line.
+ini_set('display_errors', 1); // Verify sniff doesn't flag this ini directive.
+ini_set($iniName, 'filter.default'); // Verify sniff doesn't flag on second parameter.
 
 ini_set('allow_url_include', 1);
 $test = ini_get('allow_url_include');
