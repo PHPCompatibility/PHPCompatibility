@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff.
  *
- * Prohibits the use of reserved keywords as class, function, namespace or constant names
+ * Prohibits the use of reserved keywords as class, function, namespace or constant names.
  *
  * PHP version 5.4
  *
@@ -26,8 +26,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
 {
 
     /**
-     * A list of keywords that can not be used as function, class and namespace name or constant name
-     * Mentions since which version it's not allowed
+     * A list of keywords that can not be used as function, class and namespace name or constant name.
+     * Mentions since which version it's not allowed.
      *
      * @var array(string => string)
      */
@@ -104,13 +104,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
 
     /**
      * A list of keywords that can follow use statements.
-     * Mentions since which version it's not allowed
      *
      * @var array(string => string)
      */
     protected $validUseNames = array(
-        'const',
-        'function',
+        'const'    => true,
+        'function' => true,
     );
 
     /**
@@ -118,7 +117,18 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      *
      * @var array
      */
-    protected $targetedTokens = array(T_CLASS, T_FUNCTION, T_NAMESPACE, T_STRING, T_CONST, T_USE, T_AS, T_EXTENDS, T_TRAIT);
+    protected $targetedTokens = array(
+        T_CLASS,
+        T_FUNCTION,
+        T_NAMESPACE,
+        T_STRING,
+        T_CONST,
+        T_USE,
+        T_AS,
+        T_EXTENDS,
+        T_TRAIT,
+        T_INTERFACE,
+    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -148,9 +158,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         $tokens = $phpcsFile->getTokens();
 
         /**
-         * We distinguish between the class, function and namespace names or the define statements
+         * We distinguish between the class, function and namespace names or the define statements.
          */
-        if ($tokens[$stackPtr]['type'] == 'T_STRING') {
+        if ($tokens[$stackPtr]['type'] === 'T_STRING') {
             $this->processString($phpcsFile, $stackPtr, $tokens);
         } else {
             $this->processNonString($phpcsFile, $stackPtr, $tokens);
@@ -170,25 +180,40 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      */
     public function processNonString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
-        if (in_array(strtolower($tokens[$stackPtr + 2]['content']), array_keys($this->invalidNames)) === false) {
+        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextNonEmpty === false) {
             return;
         }
 
-        //  PHP 5.6 allows for use const and use function
+        $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
+        if (isset($this->invalidNames[$nextContentLc]) === false) {
+            return;
+        }
+
+        //  PHP 5.6 allows for use const and use function.
         if ($this->supportsAbove('5.6')
-            && $tokens[$stackPtr]['type'] == 'T_USE'
-            && in_array(strtolower($tokens[$stackPtr + 2]['content']), $this->validUseNames)
+            && $tokens[$stackPtr]['type'] === 'T_USE'
+            && isset($this->validUseNames[$nextContentLc]) === true
         ) {
             return;
         }
 
-        if (isset($tokens[$stackPtr - 2]) && $tokens[$stackPtr - 2]['type'] == 'T_NEW' && $tokens[$stackPtr - 1]['type'] == 'T_WHITESPACE' && $tokens[$stackPtr]['type'] == 'T_ANON_CLASS') {
+        // Deal with anonymous classes.
+        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prevNonEmpty !== false
+            && $tokens[$prevNonEmpty]['type'] === 'T_NEW'
+            && $tokens[$stackPtr]['type'] === 'T_ANON_CLASS'
+        ) {
             return;
         }
 
-        if ($this->supportsAbove($this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])])) {
-            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $tokens[$stackPtr + 2]['content'] . "' (since version " . $this->invalidNames[strtolower($tokens[$stackPtr + 2]['content'])] . ")";
-            $phpcsFile->addError($error, $stackPtr);
+        if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
+            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
+            $data  = array(
+                $tokens[$nextNonEmpty]['content'],
+                $this->invalidNames[$nextContentLc],
+            );
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
 
     }//end process()
@@ -206,35 +231,37 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      */
     public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
+        $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
+
         // Special case for 5.3 where we want to find usage of traits, but
         // trait is not a token.
-        if ($tokens[$stackPtr]['content'] == 'trait') {
+        if ($tokenContentLc === 'trait') {
             return $this->processNonString($phpcsFile, $stackPtr, $tokens);
         }
 
-        // Look for any define/defined token (both T_STRING ones, blame Tokenizer)
-        if ($tokens[$stackPtr]['content'] != 'define' && $tokens[$stackPtr]['content'] != 'defined') {
+        // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
+        if ($tokenContentLc !== 'define' && $tokenContentLc !== 'defined') {
             return;
         }
 
-        // Look for the end of the define/defined
-        $closingParenthesis = $phpcsFile->findNext(T_CLOSE_PARENTHESIS, $stackPtr);
-        if ($closingParenthesis === false) {
+        // Retrieve the define(d) constant name.
+        $firstParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        if ($firstParam === false) {
             return;
         }
 
-        // Look for define name between current position and end of define/defined
-        $defineContent = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stackPtr, $closingParenthesis);
-        if ($defineContent === false) {
-            return;
+        $defineName = strtolower($firstParam['raw']);
+        $defineName = trim($defineName, '\'"');
+
+        if (isset($this->invalidNames[$defineName]) && $this->supportsAbove($this->invalidNames[$defineName])) {
+            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since PHP version %s)";
+            $data  = array(
+                $defineName,
+                $this->invalidNames[$defineName],
+            );
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
 
-        foreach ($this->invalidNames as $key => $value) {
-            if (substr(strtolower($tokens[$defineContent]['content']), 1, -1) == $key) {
-                $error = "Function name, class name, namespace name or constant name can not be reserved keyword '" . $key . "' (since version " . $value . ")";
-                $phpcsFile->addError($error, $stackPtr);
-            }
-        }
     }//end process()
 
 }//end class

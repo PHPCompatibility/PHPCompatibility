@@ -29,6 +29,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     /**
      * testNamespace
      *
+     * @group forbiddenNames
+     *
      * @dataProvider usecaseProvider
      */
     public function testForbiddenNames($usecase)
@@ -88,6 +90,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('function-declare'),
             array('const'),
             array('define'),
+            array('interface'),
+            array('interface-extends'),
         );
         if (version_compare(phpversion(), '5.3', '>=')) {
             $data[] = array('namespace');
@@ -98,6 +102,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
     /**
      * testCorrectUsageOfKeywords
+     *
+     * @group forbiddenNames
      *
      * @return void
      */
@@ -113,6 +119,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
     /**
      * Test setting test version option
+     *
+     * @group forbiddenNames
      *
      * @return void
      */
