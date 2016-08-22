@@ -99,7 +99,7 @@ preg_replace(X_REGEX_Xe, $Replace, $Source);
 preg_replace('{\d}e', $Replace, $Source); //bad
 preg_replace('{\d{2}}e', $Replace, $Source); //bad
 preg_replace('{\d{2}e}', $Replace, $Source); //good
-preg_replace('\d{2}e', $Replace, $Source); // good
+preg_replace('`\d{2}e`', $Replace, $Source); // good
 preg_replace('{^fopen(.*?): }', $Replace, $Source); //good - monolog example
 preg_replace('[\d{2}]e', $Replace, $Source); //bad
 preg_replace('[\d{2}e]', $Replace, $Source); //good
@@ -146,3 +146,9 @@ preg_filter(
 
 // Escaped /e
 preg_filter('/\/e/e', $Replace, $Source);
+
+///////////// More warning generated:
+
+// Regex build up of strings combined with variables/function calls.
+preg_replace('/something' . $variable . 'something else/e', $Replace, $Source);
+preg_replace('/something' . preg_quote($variable) . 'something else/e', $Replace, $Source);
