@@ -31,3 +31,12 @@ class MyClass {
 		static::test_function();
 	}
 }
+
+// Issue #205
+class Foo {
+    static public function bar($a) {
+        echo __METHOD__ . '() called with $a = ' . $a;
+    }
+}
+$theclass = 'Foo';
+$theclass::bar(42);

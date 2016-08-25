@@ -18,3 +18,7 @@ namespace AnotherTesting {
 new DateTime;
 new \DateTime;
 new \AnotherTesting\DateTime();
+
+// Variant on issue #205
+$className = 'DateTime';
+new $className;

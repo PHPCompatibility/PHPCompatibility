@@ -9,7 +9,7 @@
 /**
  * Classname determination from double colon token function tests
  *
- * @uses BaseSniffTest
+ * @uses    BaseAbstractClassMethodTest
  * @package PHPCompatibility
  */
 class GetFQClassNameFromDoubleColonTokenTest extends BaseAbstractClassMethodTest
@@ -62,6 +62,7 @@ class GetFQClassNameFromDoubleColonTokenTest extends BaseAbstractClassMethodTest
             array(173, '\MyClass'),
             array(181, ''),
             array(187, ''),
+            array(247, ''),
         );
     }
 
