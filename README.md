@@ -72,18 +72,18 @@ Alternatively, you can add PHPCompatibility to a custom PHPCS ruleset.
 
 You can also set the `testVersion` from within the ruleset:
 ```xml
-	<arg name="testVersion" value="5.3-5.5"/>
+	<config name="testVersion" value="5.3-5.5"/>
 ```
 
-Other advanced options, such as changing the message type or severity, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
+Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
 
 
-##### PHPCompatibility specific options
+#### PHPCompatibility specific options
 
 At this moment, there is one sniff which has a property which can be set via the ruleset. More custom properties may become available in the future.
 
 The `PHPCompatibility.PHP.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
-This might clash with userland function using the same function prefix.
+This might clash with userland functions using the same function prefix.
 
 To whitelist userland functions, you can pass a comma-delimited list of function names to the sniff.
 ```xml
