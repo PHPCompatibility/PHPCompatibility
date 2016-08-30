@@ -35,10 +35,15 @@ mktime(some_call(5, 1), another(1), why(5, 1, 2), 4, 5, 6); // 6
  */
 filter_input_array(
     INPUT_POST,
-	$args,
-	false
+    $args,
+    false
 ); // 3
 
 gettimeofday (
                true
-			 ); // 1
+             ); // 1
+
+/*
+ * Deal with unnecessary comma after last param.
+ */
+json_encode( array(), );

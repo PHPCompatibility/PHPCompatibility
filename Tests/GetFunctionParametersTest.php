@@ -125,6 +125,15 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
                        ),
 
             ),
+            array(535, array(
+                        1 => array(
+                              'start' => 537,
+                              'end'   => 540,
+                              'raw'   => 'array()',
+                             ),
+                       ),
+
+            ),
         );
     }
 
@@ -233,6 +242,7 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
             array(454, 6),
             array(499, 3),
             array(518, 1),
+            array(535, 1),
         );
     }
 

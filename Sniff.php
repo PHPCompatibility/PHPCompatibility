@@ -301,6 +301,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $parameters[$cnt]['end']   = $nextComma - 1;
             $parameters[$cnt]['raw']   = trim($phpcsFile->getTokensAsString($paramStart, ($nextComma - $paramStart)));
 
+            // Check if there are more tokens before the closing parenthesis.
+            // Prevents code like the following from setting a third parameter:
+            // functionCall( $param1, $param2, );
+            $hasNextParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $nextComma + 1, $closeParenthesis, true, null, true);
+            if ($hasNextParam === false) {
+                break;
+            }
+
             // Prepare for the next parameter.
             $paramStart = $nextComma + 1;
             $cnt++;
