@@ -411,7 +411,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                  T_WHITESPACE,
                 );
 
-        $start     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $start = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        // Bow out if the next token is a variable as we don't know where it was defined.
+        if ($tokens[$start]['code'] === T_VARIABLE) {
+            return '';
+        }
+
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
         $className = trim($className);
@@ -474,6 +479,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[$stackPtr]['code'] !== T_DOUBLE_COLON) {
+            return '';
+        }
+
+        // Nothing to do if previous token is a variable as we don't know where it was defined.
+        if ($tokens[$stackPtr - 1]['code'] === T_VARIABLE) {
             return '';
         }
 

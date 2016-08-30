@@ -57,6 +57,7 @@ class GetFQClassNameFromNewTokenTest extends BaseAbstractClassMethodTest
             array(104, '\DateTime'),
             array(109, '\DateTime'),
             array(115, '\AnotherTesting\DateTime'),
+            array(133, ''),
         );
     }
 
