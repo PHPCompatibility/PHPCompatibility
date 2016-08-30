@@ -20,6 +20,8 @@
 class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_break_continue_variable_argument.php';
+    const ERROR_TYPE_VARIABLE = 'variable argument';
+    const ERROR_TYPE_ZERO = 'zero value argument';
 
     /**
      * Sniffed file
@@ -65,12 +67,13 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
      * @dataProvider dataBreakAndContinueVariableArgument
      *
      * @param int $line The line number.
+     * @param string $errorType The error type.
      *
      * @return void
      */
-    public function testBreakAndContinueVariableArgument($line)
+    public function testBreakAndContinueVariableArgument($line, $errorType)
     {
-        $this->assertError($this->_sniffFile, $line, 'Using a variable argument on break or continue is forbidden since PHP 5.4');
+        $this->assertError($this->_sniffFile, $line, 'Using a ' . $errorType . ' on break or continue is forbidden since PHP 5.4');
     }
 
     /**
@@ -83,18 +86,20 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
     public function dataBreakAndContinueVariableArgument()
     {
         return array(
-            array(53),
-            array(57),
-            array(62),
-            array(66),
-            array(71),
-            array(75),
-            array(80),
-            array(84),
-            array(89),
-            array(93),
-            array(98),
-            array(102),
+            array(53, self::ERROR_TYPE_VARIABLE),
+            array(57, self::ERROR_TYPE_VARIABLE),
+            array(62, self::ERROR_TYPE_VARIABLE),
+            array(66, self::ERROR_TYPE_VARIABLE),
+            array(71, self::ERROR_TYPE_VARIABLE),
+            array(75, self::ERROR_TYPE_VARIABLE),
+            array(80, self::ERROR_TYPE_VARIABLE),
+            array(84, self::ERROR_TYPE_VARIABLE),
+            array(89, self::ERROR_TYPE_VARIABLE),
+            array(93, self::ERROR_TYPE_VARIABLE),
+            array(98, self::ERROR_TYPE_VARIABLE),
+            array(102, self::ERROR_TYPE_VARIABLE),
+            array(107, self::ERROR_TYPE_ZERO),
+            array(111, self::ERROR_TYPE_ZERO),
         );
     }
 
