@@ -24,8 +24,8 @@
  */
 class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff extends PHPCompatibility_Sniff
 {
-    const ERROR_TYPE_VARIABLE = 'variable argument';
-    const ERROR_TYPE_ZERO = 'zero value argument';
+    const ERROR_TYPE_VARIABLE = 'a variable argument';
+    const ERROR_TYPE_ZERO = '0 as an argument';
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -81,7 +81,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
         }
 
         if ($isError === true && !empty($errorType)) {
-            $error = 'Using a ' . $errorType . ' on break or continue is forbidden since PHP 5.4';
+            $error = 'Using ' . $errorType . ' on break or continue is forbidden since PHP 5.4';
             $phpcsFile->addError($error, $stackPtr);
         }
 
