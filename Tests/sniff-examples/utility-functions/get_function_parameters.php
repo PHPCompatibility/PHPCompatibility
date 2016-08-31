@@ -47,3 +47,29 @@ gettimeofday (
  * Deal with unnecessary comma after last param.
  */
 json_encode( array(), );
+
+/*
+ * Issue #211 - deal with short array syntax
+ */
+json_encode(['a' => 'b',]);
+json_encode(['a' => $a,]);
+json_encode(['a' => $a,] + (isset($b) ? ['b' => $b,] : []));
+json_encode(['a' => $a,] + (isset($b) ? ['b' => $b, 'c' => $c,] : []));
+json_encode(['a' => $a, 'b' => $b] + (isset($c) ? ['c' => $c, 'd' => $d] : []));
+json_encode(['a' => $a, 'b' => $b] + (isset($c) ? ['c' => $c, 'd' => $d,] : []));
+json_encode(['a' => $a, 'b' => $b] + (isset($c) ? ['c' => $c, 'd' => $d, $c => 'c'] : []));
+json_encode(['a' => $a,] + (isset($b) ? ['b' => $b,] : []) + ['c' => $c, 'd' => $d,]);
+json_encode(['a' => 'b', 'c' => 'd',]);
+json_encode(['a' => ['b',],]);
+json_encode(['a' => ['b' => 'c',],]);
+json_encode(['a' => ['b' => 'c',], 'd' => ['e' => 'f',],]);
+json_encode(['a' => $a, 'b' => $b,]);
+json_encode(['a' => $a,] + ['b' => $b,]);
+json_encode(['a' => $a] + ['b' => $b, 'c' => $c,]);
+json_encode(['a' => $a, 'b' => $b] + ['c' => $c, 'd' => $d]);
+json_encode(['a' => $a, 'b' => $b] + ['c' => $c, 'd' => $d,]);
+json_encode(['a' => $a, 'b' => $b] + ['c' => $c, 'd' => $d, $c => 'c']);
+json_encode(['a' => $a, 'b' => $b,] + ['c' => $c]);
+json_encode(['a' => $a, 'b' => $b,] + ['c' => $c,]);
+json_encode(['a' => $a, 'b' => $b, 'c' => $c]);
+json_encode(['a' => $a, 'b' => $b, 'c' => $c,] + ['c' => $c, 'd' => $d,]);
