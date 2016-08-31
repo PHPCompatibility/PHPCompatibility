@@ -50,17 +50,22 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
                 T_CONST,
         );
 
-        $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
             // Not a call to a PHP function.
             return;
         }
 
-        if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['type'] == 'T_OPEN_PARENTHESIS') {
-            $closeParenthesis = $tokens[$stackPtr + 1]['parenthesis_closer'];
-            if ($tokens[$closeParenthesis + 1]['type'] == 'T_OPEN_SQUARE_BRACKET') {
-                $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $stackPtr + 3);
-            }
+        $open = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, false, null, true);
+        if ($open === false || isset($tokens[$open]['parenthesis_closer']) === false) {
+            return;
         }
+
+        $closeParenthesis  = $tokens[$open]['parenthesis_closer'];
+        $squareOpenBracket = $phpcsFile->findNext(T_OPEN_SQUARE_BRACKET, ($closeParenthesis + 1), null, false, null, true);
+        if ($squareOpenBracket !== false) {
+            $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $squareOpenBracket);
+        }
+
     }//end process()
 }//end class
