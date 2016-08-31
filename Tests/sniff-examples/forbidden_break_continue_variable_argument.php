@@ -101,6 +101,14 @@ for ($i = 0; $i < 20; $i++) {
         if ($i < 10) {
             continue MyNamespace\myFunction(); // Bad.
         }
+
+        // Bad: Break/continue with zero value.
+        if ($i == 1) {
+            break 0;
+        }
+
+        if ($i < 20) {
+            continue 0;
+        }
     }
 }
-
