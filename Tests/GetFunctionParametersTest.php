@@ -125,6 +125,24 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
                        ),
 
             ),
+            array(535, array(
+                        1 => array(
+                              'start' => 537,
+                              'end'   => 540,
+                              'raw'   => 'array()',
+                             ),
+                       ),
+
+            ),
+            array(577, array(
+                        1 => array(
+                              'start' => 579,
+                              'end'   => 611,
+                              'raw'   => '[\'a\' => $a,] + (isset($b) ? [\'b\' => $b,] : [])',
+                             ),
+                       ),
+
+            ),
         );
     }
 
@@ -233,6 +251,31 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
             array(454, 6),
             array(499, 3),
             array(518, 1),
+            array(535, 1),
+
+            // Issue #211.
+            array(551, 1),
+            array(564, 1),
+            array(577, 1),
+            array(615, 1),
+            array(660, 1),
+            array(710, 1),
+            array(761, 1),
+            array(818, 1),
+            array(874, 1),
+            array(894, 1),
+            array(910, 1),
+            array(930, 1),
+            array(964, 1),
+            array(984, 1),
+            array(1008, 1),
+            array(1038, 1),
+            array(1074, 1),
+            array(1111, 1),
+            array(1154, 1),
+            array(1184, 1),
+            array(1215, 1),
+            array(1241, 1),
         );
     }
 

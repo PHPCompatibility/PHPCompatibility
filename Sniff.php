@@ -266,7 +266,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         // Ok, we know we have a T_STRING with parameters and valid open & close parenthesis.
         $tokens = $phpcsFile->getTokens();
 
-        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis  = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
 
         // Which nesting level is the one we are interested in ?
@@ -279,20 +279,33 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $nextComma  = $openParenthesis;
         $paramStart = $openParenthesis + 1;
         $cnt        = 1;
-        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS), $nextComma + 1, $closeParenthesis + 1)) {
+        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS, T_OPEN_SHORT_ARRAY), $nextComma + 1, $closeParenthesis + 1)) {
+            // Ignore anything within short array definition brackets.
+            if (
+                $tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
+                &&
+                ( isset($tokens[$nextComma]['bracket_opener']) && $tokens[$nextComma]['bracket_opener'] === $nextComma )
+                &&
+                isset($tokens[$nextComma]['bracket_closer'])
+            ) {
+                // Skip forward to the end of the short array definition.
+                $nextComma = $tokens[$nextComma]['bracket_closer'];
+                continue;
+            }
+
             // Ignore comma's at a lower nesting level.
             if (
-                $tokens[$nextComma]['type'] == 'T_COMMA'
+                $tokens[$nextComma]['type'] === 'T_COMMA'
                 &&
                 isset($tokens[$nextComma]['nested_parenthesis'])
                 &&
-                count($tokens[$nextComma]['nested_parenthesis']) != $nestedParenthesisCount
+                count($tokens[$nextComma]['nested_parenthesis']) !== $nestedParenthesisCount
             ) {
                 continue;
             }
 
             // Ignore closing parenthesis if not 'ours'.
-            if ($tokens[$nextComma]['type'] == 'T_CLOSE_PARENTHESIS' && $nextComma != $closeParenthesis) {
+            if ($tokens[$nextComma]['type'] === 'T_CLOSE_PARENTHESIS' && $nextComma !== $closeParenthesis) {
                 continue;
             }
 
@@ -300,6 +313,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $parameters[$cnt]['start'] = $paramStart;
             $parameters[$cnt]['end']   = $nextComma - 1;
             $parameters[$cnt]['raw']   = trim($phpcsFile->getTokensAsString($paramStart, ($nextComma - $paramStart)));
+
+            // Check if there are more tokens before the closing parenthesis.
+            // Prevents code like the following from setting a third parameter:
+            // functionCall( $param1, $param2, );
+            $hasNextParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $nextComma + 1, $closeParenthesis, true, null, true);
+            if ($hasNextParam === false) {
+                break;
+            }
 
             // Prepare for the next parameter.
             $paramStart = $nextComma + 1;
