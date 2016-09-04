@@ -361,17 +361,22 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
-     * Verify whether a token is within a class scope.
+     * Verify whether a token is within a scoped condition.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the token.
-     * @param bool                 $strict    Whether to strictly check for the T_CLASS
-     *                                        scope or also accept interfaces and traits
-     *                                        as scope.
+     * If the optional $validScopes parameter has been passed, the function
+     * will check that the token has at least one condition which is of a
+     * type defined in $validScopes.
      *
-     * @return bool True if within class scope, false otherwise.
+     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
+     * @param int                  $stackPtr    The position of the token.
+     * @param array|int            $validScopes Optional. Array of valid scopes
+     *                                          or int value of a valid scope.
+     *
+     * @return bool Without the optional $scopeTypes: True if within a scope, false otherwise.
+     *              If the $scopeTypes are set: True if *one* of the conditions is a
+     *              valid scope, false otherwise.
      */
-    public function inClassScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $strict = true)
+    public function tokenHasScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $validScopes = null)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -385,20 +390,52 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        $validScope = array(T_CLASS);
-        if ($strict === false) {
-            $validScope[] = T_INTERFACE;
-            $validScope[] = T_TRAIT;
+        // Ok, there are conditions, do we have to check for specific ones ?
+        if (isset($validScopes) === false) {
+            return true;
         }
 
-        // Check for class scope.
+        if (is_int($validScopes)) {
+            // Received an integer, so cast to array.
+            $validScopes = (array) $validScopes;
+        }
+
+        if (empty($validScopes) || is_array($validScopes) === false) {
+            // No valid scope types received, so will not comply.
+            return false;
+        }
+
+        // Check for required scope types.
         foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
-            if (in_array($type, $validScope, true)) {
+            if (in_array($type, $validScopes, true)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+
+    /**
+     * Verify whether a token is within a class scope.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     * @param bool                 $strict    Whether to strictly check for the T_CLASS
+     *                                        scope or also accept interfaces and traits
+     *                                        as scope.
+     *
+     * @return bool True if within class scope, false otherwise.
+     */
+    public function inClassScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $strict = true)
+    {
+        $validScopes = array(T_CLASS);
+        if ($strict === false) {
+            $validScopes[] = T_INTERFACE;
+            $validScopes[] = T_TRAIT;
+        }
+
+        return $this->tokenHasScope($phpcsFile, $stackPtr, $validScopes);
     }
 
 

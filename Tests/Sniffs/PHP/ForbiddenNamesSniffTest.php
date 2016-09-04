@@ -36,7 +36,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     public function testForbiddenNames($usecase)
     {
 
-
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples
         $filename = "sniff-examples/forbidden-names/$usecase.php";
@@ -126,8 +125,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile("sniff-examples/forbidden-names/class.php", "5.2");
+        $file = $this->sniffFile("sniff-examples/forbidden-names/class.php", '4.4');
 
-        $this->assertNoViolation($file, 8);
+        $this->assertNoViolation($file, 3);
     }
 }
