@@ -15,218 +15,134 @@
  */
 class PregReplaceEModifierSniffTest extends BaseSniffTest
 {
+
+    const TEST_FILE = 'sniff-examples/preg_replace_e_modifier.php';
+
     /**
-     * Sniffed file
+     * testDeprecatedEModifier
      *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * testNonDeprecatedPregReplace
+     * @group pregReplaceEModifier
      *
-     * @return void
-     */
-    public function testNonDeprecatedPregReplace()
-    {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.4');
-        $this->assertNoViolation($this->_sniffFile, 9);
-        $this->assertNoViolation($this->_sniffFile, 10);
-        $this->assertNoViolation($this->_sniffFile, 13);
-        $this->assertNoViolation($this->_sniffFile, 14);
-        $this->assertNoViolation($this->_sniffFile, 17);
-        $this->assertNoViolation($this->_sniffFile, 18);
-        $this->assertNoViolation($this->_sniffFile, 21);
-        $this->assertNoViolation($this->_sniffFile, 24);
-        $this->assertNoViolation($this->_sniffFile, 39);
-        $this->assertNoViolation($this->_sniffFile, 45);
-
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.5');
-        $this->assertNoViolation($this->_sniffFile, 9);
-        $this->assertNoViolation($this->_sniffFile, 10);
-        $this->assertNoViolation($this->_sniffFile, 13);
-        $this->assertNoViolation($this->_sniffFile, 14);
-        $this->assertNoViolation($this->_sniffFile, 17);
-        $this->assertNoViolation($this->_sniffFile, 18);
-        $this->assertNoViolation($this->_sniffFile, 21);
-        $this->assertNoViolation($this->_sniffFile, 24);
-        $this->assertNoViolation($this->_sniffFile, 39);
-        $this->assertNoViolation($this->_sniffFile, 45);
-    
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '7.0');
-        $this->assertNoViolation($this->_sniffFile, 9);
-        $this->assertNoViolation($this->_sniffFile, 10);
-        $this->assertNoViolation($this->_sniffFile, 13);
-        $this->assertNoViolation($this->_sniffFile, 14);
-        $this->assertNoViolation($this->_sniffFile, 17);
-        $this->assertNoViolation($this->_sniffFile, 18);
-        $this->assertNoViolation($this->_sniffFile, 21);
-        $this->assertNoViolation($this->_sniffFile, 24);
-        $this->assertNoViolation($this->_sniffFile, 39);
-        $this->assertNoViolation($this->_sniffFile, 45);
-    }
-
-    /**
-     * testDeprecatedPregReplace
+     * @dataProvider dataDeprecatedEModifier
+     *
+     * @param int    $line         Line number where the error should occur.
+     * @param string $functionName Function name.
      *
      * @return void
      */
-    public function testDeprecatedPregReplace()
+    public function testDeprecatedEModifier($line, $functionName = 'preg_replace')
     {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.4');
-        $this->assertNoViolation($this->_sniffFile, 50);
-        $this->assertNoViolation($this->_sniffFile, 51);
-        $this->assertNoViolation($this->_sniffFile, 54);
-        $this->assertNoViolation($this->_sniffFile, 55);
-        $this->assertNoViolation($this->_sniffFile, 58);
-        $this->assertNoViolation($this->_sniffFile, 59);
-        $this->assertNoViolation($this->_sniffFile, 60);
-        $this->assertNoViolation($this->_sniffFile, 63);
-        $this->assertNoViolation($this->_sniffFile, 78);
-        $this->assertNoViolation($this->_sniffFile, 84);
-        
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.5');
-        $error = "preg_replace() - /e modifier is deprecated in PHP 5.5";
-        $this->assertError($this->_sniffFile, 50, $error);
-        $this->assertError($this->_sniffFile, 51, $error);
-        $this->assertError($this->_sniffFile, 54, $error);
-        $this->assertError($this->_sniffFile, 55, $error);
-        $this->assertError($this->_sniffFile, 58, $error);
-        $this->assertError($this->_sniffFile, 59, $error);
-        $this->assertError($this->_sniffFile, 60, $error);
-        $this->assertError($this->_sniffFile, 63, $error);
-        $this->assertError($this->_sniffFile, 78, $error);
-        $this->assertError($this->_sniffFile, 84, $error);
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, $line);
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '7.0');
-        $error = "preg_replace() - /e modifier is forbidden in PHP 7.0";
-        $this->assertError($this->_sniffFile, 50, $error);
-        $this->assertError($this->_sniffFile, 51, $error);
-        $this->assertError($this->_sniffFile, 54, $error);
-        $this->assertError($this->_sniffFile, 55, $error);
-        $this->assertError($this->_sniffFile, 58, $error);
-        $this->assertError($this->_sniffFile, 59, $error);
-        $this->assertError($this->_sniffFile, 60, $error);
-        $this->assertError($this->_sniffFile, 63, $error);
-        $this->assertError($this->_sniffFile, 78, $error);
-        $this->assertError($this->_sniffFile, 84, $error);
+        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $this->assertError($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5");
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertError($file, $line, "{$functionName}() - /e modifier is forbidden since PHP 7.0");
     }
 
     /**
-     * testUntestablePregReplace
+     * dataDeprecatedEModifier
+     *
+     * @see testDeprecatedEModifier()
+     *
+     * @return array
+     */
+    public function dataDeprecatedEModifier() {
+        return array(
+            // preg_replace()
+            array(50),
+            array(51),
+            array(54),
+            array(55),
+            array(58),
+            array(59),
+            array(60),
+            array(63),
+            array(78),
+            array(84),
+
+            // Bracket delimiters.
+            array(99),
+            array(100),
+            array(104),
+            array(106),
+            array(108),
+
+            // preg_filter()
+            array(114, 'preg_filter'),
+            array(115, 'preg_filter'),
+            array(118, 'preg_filter'),
+            array(119, 'preg_filter'),
+            array(122, 'preg_filter'),
+            array(123, 'preg_filter'),
+            array(124, 'preg_filter'),
+            array(127, 'preg_filter'),
+            array(142, 'preg_filter'),
+            array(148, 'preg_filter'),
+        );
+    }
+
+
+    /**
+     * testNoViolation
+     *
+     * @group pregReplaceEModifier
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param int $line Line number where no error should occur.
      *
      * @return void
      */
-    public function testUntestablePregReplace()
+    public function testNoViolation($line)
     {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.4');
-        $this->assertNoViolation($this->_sniffFile, 94);
-        $this->assertNoViolation($this->_sniffFile, 95);
-        $this->assertNoViolation($this->_sniffFile, 96);
-        
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.5');
-        $this->assertNoViolation($this->_sniffFile, 94);
-        $this->assertNoViolation($this->_sniffFile, 95);
-        $this->assertNoViolation($this->_sniffFile, 96);
-        
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '7.0');
-        $this->assertNoViolation($this->_sniffFile, 94);
-        $this->assertNoViolation($this->_sniffFile, 95);
-        $this->assertNoViolation($this->_sniffFile, 96);
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, $line);
+
+        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $this->assertNoViolation($file, $line);
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
-     * @throws Exception
-     */
-    public function testUsingBracketDelimitersPregReplace()
-    {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.4');
-        $this->assertNoViolation($this->_sniffFile, 99);
-        $this->assertNoViolation($this->_sniffFile, 100);
-        $this->assertNoViolation($this->_sniffFile, 101);
-        $this->assertNoViolation($this->_sniffFile, 102);
-        $this->assertNoViolation($this->_sniffFile, 103);
-        $this->assertNoViolation($this->_sniffFile, 104);
-        $this->assertNoViolation($this->_sniffFile, 105);
-        $this->assertNoViolation($this->_sniffFile, 106);
-        $this->assertNoViolation($this->_sniffFile, 107);
-        $this->assertNoViolation($this->_sniffFile, 108);
-        $this->assertNoViolation($this->_sniffFile, 109);
-
-
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.5');
-        $error = "preg_replace() - /e modifier is deprecated in PHP 5.5";
-        $this->assertError($this->_sniffFile, 99, $error);
-        $this->assertError($this->_sniffFile, 100, $error);
-        $this->assertNoViolation($this->_sniffFile, 101);
-        $this->assertNoViolation($this->_sniffFile, 102);
-        $this->assertNoViolation($this->_sniffFile, 103);
-        $this->assertError($this->_sniffFile, 104, $error);
-        $this->assertNoViolation($this->_sniffFile, 105);
-        $this->assertError($this->_sniffFile, 106, $error);
-        $this->assertNoViolation($this->_sniffFile, 107);
-        $this->assertError($this->_sniffFile, 108, $error);
-        $this->assertNoViolation($this->_sniffFile, 109);
-
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '7.0');
-        $error = "preg_replace() - /e modifier is forbidden in PHP 7.0";
-        $this->assertError($this->_sniffFile, 99, $error);
-        $this->assertError($this->_sniffFile, 100, $error);
-        $this->assertNoViolation($this->_sniffFile, 101);
-        $this->assertNoViolation($this->_sniffFile, 102);
-        $this->assertNoViolation($this->_sniffFile, 103);
-        $this->assertError($this->_sniffFile, 104, $error);
-        $this->assertNoViolation($this->_sniffFile, 105);
-        $this->assertError($this->_sniffFile, 106, $error);
-        $this->assertNoViolation($this->_sniffFile, 107);
-        $this->assertError($this->_sniffFile, 108, $error);
-        $this->assertNoViolation($this->_sniffFile, 109);
-    }
-
-    /**
-     * testDeprecatedPregFilter
+     * dataNoViolation
      *
-     * @return void
+     * @see testNoViolation()
+     *
+     * @return array
      */
-    public function testDeprecatedPregFilter()
-    {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.4');
-        $this->assertNoViolation($this->_sniffFile, 114);
-        $this->assertNoViolation($this->_sniffFile, 115);
-        $this->assertNoViolation($this->_sniffFile, 118);
-        $this->assertNoViolation($this->_sniffFile, 119);
-        $this->assertNoViolation($this->_sniffFile, 122);
-        $this->assertNoViolation($this->_sniffFile, 123);
-        $this->assertNoViolation($this->_sniffFile, 124);
-        $this->assertNoViolation($this->_sniffFile, 127);
-        $this->assertNoViolation($this->_sniffFile, 142);
-        $this->assertNoViolation($this->_sniffFile, 148);
+    public function dataNoViolation() {
+        return array(
+            // No or only valid modifiers.
+            array(9),
+            array(10),
+            array(13),
+            array(14),
+            array(17),
+            array(18),
+            array(21),
+            array(24),
+            array(39),
+            array(45),
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '5.5');
-        $error = "preg_replace() - /e modifier is deprecated in PHP 5.5";
-        $this->assertError($this->_sniffFile, 114, $error);
-        $this->assertError($this->_sniffFile, 115, $error);
-        $this->assertError($this->_sniffFile, 118, $error);
-        $this->assertError($this->_sniffFile, 119, $error);
-        $this->assertError($this->_sniffFile, 122, $error);
-        $this->assertError($this->_sniffFile, 123, $error);
-        $this->assertError($this->_sniffFile, 124, $error);
-        $this->assertError($this->_sniffFile, 127, $error);
-        $this->assertError($this->_sniffFile, 142, $error);
-        $this->assertError($this->_sniffFile, 148, $error);
+            // Untestable regex (variable, constant, function call).
+            array(94),
+            array(95),
+            array(96),
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/preg_replace_e_modifier.php', '7.0');
-        $error = "preg_replace() - /e modifier is forbidden in PHP 7.0";
-        $this->assertError($this->_sniffFile, 114, $error);
-        $this->assertError($this->_sniffFile, 115, $error);
-        $this->assertError($this->_sniffFile, 118, $error);
-        $this->assertError($this->_sniffFile, 119, $error);
-        $this->assertError($this->_sniffFile, 122, $error);
-        $this->assertError($this->_sniffFile, 123, $error);
-        $this->assertError($this->_sniffFile, 124, $error);
-        $this->assertError($this->_sniffFile, 127, $error);
-        $this->assertError($this->_sniffFile, 142, $error);
-        $this->assertError($this->_sniffFile, 148, $error);
+            // Bracket delimiters.
+            array(101),
+            array(102),
+            array(103),
+            array(105),
+            array(107),
+            array(109),
+
+        );
     }
 
 }
