@@ -12,7 +12,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshift.
  *
- * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0
+ * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -43,15 +43,25 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPComp
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.0')) {
-            $tokens = $phpcsFile->getTokens();
-
-            $nextNumber = $phpcsFile->findNext(T_LNUMBER, $stackPtr, null, false, null, true);
-            if ($tokens[$nextNumber - 1]['code'] == T_MINUS) {
-                $error = 'Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0';
-                $phpcsFile->addError($error, $nextNumber - 1);
-            }
+        if ($this->supportsAbove('7.0') === false) {
+            return;
         }
+
+        $tokens = $phpcsFile->getTokens();
+
+        $nextNumber = $phpcsFile->findNext(T_LNUMBER, $stackPtr + 1, null, false, null, true);
+        if($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
+            return;
+        }
+
+        $hasMinusSign = $phpcsFile->findNext(T_MINUS, $stackPtr + 1, $nextNumber, false, null, true);
+        if($hasMinusSign === false) {
+            return;
+        }
+
+        $error = 'Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0';
+        $phpcsFile->addError($error, $hasMinusSign);
+
     }//end process()
 
 }//end class
