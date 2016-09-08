@@ -9,13 +9,13 @@
 /**
  * Extended class name determination function tests
  *
- * @uses BaseSniffTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  */
-class GetFQExtendedClassNameTest extends BaseAbstractClassMethodTest
+class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = 'sniff-examples/utility-functions/get_fqextended_classname.php';
+    public $filename = '../sniff-examples/utility-functions/get_fqextended_classname.php';
 
     /**
      * testGetFQExtendedClassName
@@ -25,6 +25,8 @@ class GetFQExtendedClassNameTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataGetFQExtendedClassName
+     *
+     * @covers PHPCompatibility_Sniff::getFQExtendedClassName
      *
      * @param int    $stackPtr Stack pointer for a T_CLASS token in the test file.
      * @param string $expected The expected fully qualified class name.

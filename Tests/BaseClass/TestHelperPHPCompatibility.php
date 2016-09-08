@@ -6,7 +6,7 @@
  */
 
 if (class_exists('PHPCompatibility_Sniff', true) === false) {
-    require_once dirname( dirname(__FILE__) ) . '/Sniff.php';
+    require_once dirname(dirname(dirname(__FILE__))) . '/Sniff.php';
 }
 
 /**
@@ -15,7 +15,7 @@ if (class_exists('PHPCompatibility_Sniff', true) === false) {
  * @uses BaseSniffTest
  * @package PHPCompatibility
  */
-class TestHelperPHPCompatibility extends PHPCompatibility_Sniff {
+class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff {
 	public function register() {}
 	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {}
 }
