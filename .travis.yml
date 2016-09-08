@@ -14,32 +14,39 @@ matrix:
     - php: 5.3
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.3
-      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
 
     - php: 5.4
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.4
-      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
 
     - php: 5.5
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.5
-      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
     - php: 5.5
       env: COVERALLS_VERSION="dev-master" PHPCS_VERSION="dev-master"
 
     - php: 5.6
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.6
-      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
     - php: 5.6
       env: COVERALLS_VERSION="dev-master" PHPCS_VERSION="dev-master"
 
     - php: 7.0
       env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 7.0
-      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0,<=2.6.1"
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
     - php: 7.0
+      env: COVERALLS_VERSION="dev-master" PHPCS_VERSION="dev-master"
+
+    - php: 7.1
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=1.5.1,<2.0"
+    - php: 7.1
+      env: COVERALLS_VERSION="~1.0" PHPCS_VERSION=">=2.0"
+    - php: 7.1
       env: COVERALLS_VERSION="dev-master" PHPCS_VERSION="dev-master"
 
 
