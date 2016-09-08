@@ -137,7 +137,7 @@ on the sniffs, the following installation steps are required.
 
 #### Issues when running the PHPCS Unit tests for another standard
 
-This sniff library uses it's own PHPUnit setup rather than the PHPCS native unit testing framework to allow for testing the sniffs with various config settings for the `testVersion` variable.
+This sniff library uses its own PHPUnit setup rather than the PHPCS native unit testing framework to allow for testing the sniffs with various config settings for the `testVersion` variable.
 
 If you are running the PHPCS native unit tests or the unit tests for another sniff library which uses the PHPCS native unit testing framework, PHPUnit might throw errors related to this sniff library depending on your setup.
 
