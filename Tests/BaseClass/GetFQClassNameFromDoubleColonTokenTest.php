@@ -9,13 +9,13 @@
 /**
  * Classname determination from double colon token function tests
  *
- * @uses    BaseAbstractClassMethodTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  */
-class GetFQClassNameFromDoubleColonTokenTest extends BaseAbstractClassMethodTest
+class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = 'sniff-examples/utility-functions/get_fqclassname_from_double_colon_token.php';
+    public $filename = '../sniff-examples/utility-functions/get_fqclassname_from_double_colon_token.php';
 
     /**
      * testGetFQClassNameFromDoubleColonToken
@@ -25,6 +25,8 @@ class GetFQClassNameFromDoubleColonTokenTest extends BaseAbstractClassMethodTest
      * @requires PHP 5.3
      *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
+     *
+     * @covers PHPCompatibility_Sniff::getFQClassNameFromDoubleColonToken
      *
      * @param int    $stackPtr Stack pointer for a T_DOUBLE_COLON token in the test file.
      * @param string $expected The expected fully qualified class name.

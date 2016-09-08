@@ -9,13 +9,13 @@
 /**
  * Classname determination function tests
  *
- * @uses BaseSniffTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  */
-class GetFQClassNameFromNewTokenTest extends BaseAbstractClassMethodTest
+class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = 'sniff-examples/utility-functions/get_fqclassname_from_new_token.php';
+    public $filename = '../sniff-examples/utility-functions/get_fqclassname_from_new_token.php';
 
     /**
      * testGetFQClassNameFromNewToken
@@ -25,6 +25,8 @@ class GetFQClassNameFromNewTokenTest extends BaseAbstractClassMethodTest
      * @requires PHP 5.3
      *
      * @dataProvider dataGetFQClassNameFromNewToken
+     *
+     * @covers PHPCompatibility_Sniff::getFQClassNameFromNewToken
      *
      * @param int    $stackPtr Stack pointer for a T_NEW token in the test file.
      * @param string $expected The expected fully qualified class name.

@@ -5,14 +5,17 @@
  * @package PHPCompatibility
  */
 
+if (class_exists('BaseSniffTest', true) === false) {
+    require_once dirname(dirname(__FILE__)) . '/BaseSniffTest.php';
+}
 
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
  */
-abstract class BaseAbstractClassMethodTest extends BaseSniffTest
+abstract class BaseClass_MethodTestFrame extends BaseSniffTest
 {
 
     public $filename;
@@ -41,7 +44,7 @@ abstract class BaseAbstractClassMethodTest extends BaseSniffTest
     {
         parent::setUp();
 
-        $this->helperClass = new TestHelperPHPCompatibility;
+        $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
 
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->filename;
         $phpcs    = new PHP_CodeSniffer();

@@ -9,13 +9,13 @@
 /**
  * Function parameters function tests
  *
- * @uses BaseSniffTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  */
-class DoesFunctionCallHaveParametersTest extends BaseAbstractClassMethodTest
+class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestFrame
 {
 
-	public $filename = 'sniff-examples/utility-functions/does_function_call_have_parameters.php';
+	public $filename = '../sniff-examples/utility-functions/does_function_call_have_parameters.php';
 
     /**
      * testDoesFunctionCallHaveParameters
@@ -23,6 +23,8 @@ class DoesFunctionCallHaveParametersTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataDoesFunctionCallHaveParameters
+     *
+     * @covers PHPCompatibility_Sniff::doesFunctionCallHaveParameters
      *
      * @param int    $stackPtr Stack pointer for a T_CLASS token in the test file.
      * @param string $expected The expected fully qualified class name.

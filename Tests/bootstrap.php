@@ -35,4 +35,4 @@ else {
 }
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseAbstractClassMethodTest.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseClass' . DIRECTORY_SEPARATOR . 'MethodTestFrame.php';

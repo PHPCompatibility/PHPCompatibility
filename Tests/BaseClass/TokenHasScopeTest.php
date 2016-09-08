@@ -9,14 +9,14 @@
 /**
  * Token scope function tests
  *
- * @uses    BaseSniffTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class TokenScopeTest extends BaseAbstractClassMethodTest
+class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = 'sniff-examples/utility-functions/token_has_scope.php';
+    public $filename = '../sniff-examples/utility-functions/token_has_scope.php';
 
     /**
      * testTokenHasScope
@@ -24,6 +24,8 @@ class TokenScopeTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataTokenHasScope
+     *
+     * @covers PHPCompatibility_Sniff::tokenHasScope
      *
      * @param int    $stackPtr Stack pointer for an arbitrary token in the test file.
      * @param string $expected The expected boolean return value.
@@ -85,6 +87,8 @@ class TokenScopeTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataInClassScope
+     *
+     * @covers PHPCompatibility_Sniff::inClassScope
      *
      * @param int    $stackPtr Stack pointer for an arbitrary token in the test file.
      * @param string $expected The expected boolean return value.

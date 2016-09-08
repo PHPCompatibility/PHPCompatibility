@@ -9,14 +9,14 @@
 /**
  * Function parameters count function tests
  *
- * @uses    BaseSniffTest
+ * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class GetFunctionParametersTest extends BaseAbstractClassMethodTest
+class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = 'sniff-examples/utility-functions/get_function_parameters.php';
+    public $filename = '../sniff-examples/utility-functions/get_function_parameters.php';
 
     /**
      * testGetFunctionCallParameters
@@ -24,6 +24,8 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataGetFunctionCallParameters
+     *
+     * @covers PHPCompatibility_Sniff::getFunctionCallParameters
      *
      * @param int    $stackPtr Stack pointer for a T_CLASS token in the test file.
      * @param string $expected The expected fully qualified class name.
@@ -154,6 +156,8 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
      *
      * @dataProvider dataGetFunctionCallParameter
      *
+     * @covers PHPCompatibility_Sniff::getFunctionCallParameter
+     *
      * @param int    $stackPtr Stack pointer for a T_CLASS token in the test file.
      * @param string $expected The expected fully qualified class name.
      */
@@ -207,6 +211,8 @@ class GetFunctionParametersTest extends BaseAbstractClassMethodTest
      * @group utilityFunctions
      *
      * @dataProvider dataGetFunctionCallParameterCount
+     *
+     * @covers PHPCompatibility_Sniff::getFunctionCallParameterCount
      *
      * @param int    $stackPtr Stack pointer for a T_CLASS token in the test file.
      * @param string $expected The expected fully qualified class name.
