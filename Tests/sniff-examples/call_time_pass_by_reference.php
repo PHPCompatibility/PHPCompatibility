@@ -1,32 +1,28 @@
 <?php
 
-$a = 1;
-
-class MoneyBags
-{
-}
-
+// Ok: Declare parameter by reference.
 function abc(&$foobar)
 {
     return $foobar;
 }
 
-$right = abc($a);
-$wrong = abc(&$a);
+$right = abc($a); // Ok: no reference.
+$wrong = abc(&$a); // Bad: pass by reference.
 
 $a = E_STRICT; // Sniffer checks strings, and returns if no left paren afterwards
 
 abc($x, $y, $z, &$a);
 
-// nested function call
+// Nested function call.
 preg_replace($a, $b, trim(&$a));
 
+// Ok: Bitwise operations as parameter.
 foobar(3 & $a); // LNUMBER + &
 foobar($a & $b); // variable + &
 foobar($b[0] & $a); // square bracket + &
 foobar(($a) & $b); // parenthesis + &
 foobar(intval(3) & $b); // function + &
-foobar(& $b);
+foobar(& $b); // Bad: pass by reference with space.
 
 define('MY_CONST', 0);
 
@@ -37,11 +33,21 @@ class MoreRefs
 
     public function bar($arg)
     {
+        // Ok: Bitwise operations as parameter.
         $a = sprintf(
             '%s %s %s'
             , self::MYCONST & $arg ? 1 : 2
             , $this->attribute & $arg ? 5 : 6
             , MY_CONST & $arg ? 7 : 8
         );
+
+        $b = $this->foo(&$var); // Bad: pass by reference.
+        $c = self::foobar(&$var); // Bad: pass by reference.
     }
 }
+
+abcd(&$x, &$y, $z, &$aa = false); // Bad: multiple pass by reference.
+
+bcd(10, true, MYCONST); // OK: does not contain variables.
+
+cde((&$abc)); // OK: outside of the scope of this sniff - will result in parse error.
