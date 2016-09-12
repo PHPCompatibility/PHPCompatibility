@@ -77,7 +77,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
                  * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
                  */
                 $algo = strtolower($tokens[$firstParam]['content']);
-                $algo = substr($algo, 1, strlen($algo) - 2);
+                $algo = $this->stripQuotes($algo);
                 switch ($algo) {
                     case 'salsa10':
                     case 'salsa20':

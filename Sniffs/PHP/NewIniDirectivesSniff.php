@@ -511,7 +511,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $filteredToken = trim($iniToken['raw'], '\'"');
+        $filteredToken = $this->stripQuotes($iniToken['raw']);
         if (isset($this->newIniDirectives[$filteredToken]) === false) {
             return;
         }

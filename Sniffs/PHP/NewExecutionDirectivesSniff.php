@@ -199,7 +199,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
 
         $value = $tokens[$stackPtr]['content'];
         if ($tokens[$stackPtr]['code'] === T_CONSTANT_ENCAPSED_STRING) {
-            $value = trim($value, '\'"');
+            $value = $this->stripQuotes($value);
         }
 
         $isError = false;
