@@ -120,7 +120,7 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
             //array(41), // Currently not yet covered.
 
             array(51), // OK: No variables.
-            array(51), // OK: Outside scope of this sniff.
+            array(53), // OK: Outside scope of this sniff.
         );
     }
 
