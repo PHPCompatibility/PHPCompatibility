@@ -36,9 +36,6 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
      * @return array
      */
     public function register() {
-        // Prepare for case-insensitive compare.
-        $this->superglobals = array_map('strtolower', $this->superglobals);
-
         return array(T_FUNCTION);
     }
 
@@ -62,9 +59,7 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
         }
 
         foreach ($parameters as $param) {
-            $paramNameLc = strtolower($param['name']);
-
-            if (in_array($paramNameLc, $this->superglobals, true)) {
+            if (in_array($param['name'], $this->superglobals, true)) {
                 $error = 'Parameter shadowing super global (%s) causes fatal error since PHP 5.4';
                 $data  = array($param['name']);
                 $phpcsFile->addError($error, $stackPtr, 'Found', $data);

@@ -25,11 +25,8 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
      *
      * @dataProvider dataParameterShadowSuperGlobals
      *
-     * @param int    $line  Line number where the error should occur.
-     * @param string $octal (Start of) Binary number as a string.
-     * @param bool   $testNoViolation Whether or not to test for noViolation.
-     *               Defaults to true. Set to false if another error is
-     *               expected on the same line (invalid binary)
+     * @param string $superglobal Parameter name.
+     * @param int    $line        Line number where the error should occur.
      *
      * @return void
      */
@@ -62,8 +59,6 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
             array('$_SESSION', 10),
             array('$_REQUEST', 11),
             array('$_ENV', 12),
-            array('$globals', 15),
-            array('$_post', 16),
         );
     }
 
@@ -73,11 +68,32 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
      *
      * @group parameterShadowSuperGlobals
      *
+     * @dataProvider dataValidParameter
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testValidParameter() {
+    public function testValidParameter($line)
+    {
         $file = $this->sniffFile(self::TEST_FILE);
-        $this->assertNoViolation($file , 19);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testValidParameter()
+     *
+     * @return array
+     */
+    public function dataValidParameter()
+    {
+        return array(
+            array(15),
+            array(16),
+            array(17),
+        );
     }
 
 }
