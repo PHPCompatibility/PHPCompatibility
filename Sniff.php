@@ -123,8 +123,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * @return array|false
      */
-    public function findImplementedInterfaceNames($phpcsFile, $stackPtr)
+    public function findImplementedInterfaceNames(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        if (method_exists($phpcsFile, 'findImplementedInterfaceNames')) {
+            return $phpcsFile->findImplementedInterfaceNames($stackPtr);
+        }
+
         $tokens = $phpcsFile->getTokens();
 
         // Check for the existence of the token.
