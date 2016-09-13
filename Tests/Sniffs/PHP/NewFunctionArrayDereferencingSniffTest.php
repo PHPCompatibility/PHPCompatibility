@@ -47,7 +47,7 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
      */
     public function testNoViolation($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -61,7 +61,11 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
     public function dataNoViolation() {
         return array(
             array(5),
-            array(6),
+            array(8),
+            array(9),
+            array(10),
+            array(11),
+            array(14),
         );
     }
 }
