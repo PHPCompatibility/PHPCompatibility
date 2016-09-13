@@ -251,7 +251,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         }
 
         $defineName = strtolower($firstParam['raw']);
-        $defineName = trim($defineName, '\'"');
+        $defineName = $this->stripQuotes($defineName);
 
         if (isset($this->invalidNames[$defineName]) && $this->supportsAbove($this->invalidNames[$defineName])) {
             $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since PHP version %s)";

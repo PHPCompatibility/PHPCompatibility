@@ -96,7 +96,7 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
          * and end will still be strings. And as that's all we're concerned with,
          * just use the raw content of the first parameter for further processing.
          */
-        $regex = trim($firstParam['raw'], '\'"');
+        $regex = $this->stripQuotes($firstParam['raw']);
 
         $regexFirstChar = substr($regex, 0, 1);
         if (isset($this->doublesSeparators[$regexFirstChar])) {

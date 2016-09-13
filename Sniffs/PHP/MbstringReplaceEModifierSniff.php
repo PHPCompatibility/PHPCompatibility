@@ -82,11 +82,11 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
         /**
          * Get the content of any string tokens in the options parameter and remove the quotes.
          */
-        $options = trim($tokens[$stringToken]['content'], '\'"');
+        $options = $this->stripQuotes($tokens[$stringToken]['content']);
         if ($stringToken !== $optionsParam['end']) {
             while ($stringToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stringToken + 1, $optionsParam['end'] + 1)) {
                 if ($tokens[$stringToken]['code'] === T_CONSTANT_ENCAPSED_STRING) {
-                    $options .= trim($tokens[$stringToken]['content'], '\'"');
+                    $options .= $this->stripQuotes($tokens[$stringToken]['content']);
                 }
             }
         }

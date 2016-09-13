@@ -108,6 +108,21 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
     }//end supportsBelow()
 
+
+    /**
+     * Strip quotes surrounding an arbitrary string.
+     *
+     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING.
+     *
+     * @param string $string The raw string.
+     *
+     * @return string String without quotes around it.
+     */
+    public function stripQuotes($string) {
+        return preg_replace('`^([\'"])(.*)\1$`Ds', '$2', $string);
+    }
+
+
     /**
      * Returns the name(s) of the interface(s) that the specified class implements.
      *

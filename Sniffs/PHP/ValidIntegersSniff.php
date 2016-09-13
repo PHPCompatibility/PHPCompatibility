@@ -198,7 +198,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     private function isHexidecimalNumericString($tokens, $stackPtr) {
         $token = $tokens[$stackPtr];
 
-        if ($token['code'] === T_CONSTANT_ENCAPSED_STRING && preg_match('`^([\'"])0x[a-f0-9]+\1$`iD', $token['content']) === 1) {
+        if ($token['code'] === T_CONSTANT_ENCAPSED_STRING && preg_match('`^0x[a-f0-9]+$`iD', $this->stripQuotes($token['content'])) === 1) {
             return true;
         }
 

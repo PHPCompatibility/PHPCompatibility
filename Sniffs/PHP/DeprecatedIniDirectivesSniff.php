@@ -231,7 +231,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $filteredToken = trim($iniToken['raw'], '\'"');
+        $filteredToken = $this->stripQuotes($iniToken['raw']);
         if (isset($this->deprecatedIniDirectives[$filteredToken]) === false) {
             return;
         }
