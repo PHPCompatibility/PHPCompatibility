@@ -152,6 +152,14 @@ To fix these errors, make sure you are running PHPCS 2.7.1 or higher and add the
 
 This will prevent PHPCS trying to include the PHPCompatibility unit tests when creating the test suite.
 
+PHP Version Support
+-------
+
+The project aims to cover all PHP compatibility changes introduced since PHP 5.0 up to the latest PHP release.  This is an ongoing process and coverage is not yet 100% (if, indeed, it ever could be).  Progress is tracked on [our Github issue tracker](https://github.com/wimg/PHPCompatibility/issues).
+
+Although we do not intend to work on it ourselves, we will accept pull requests that check for compatibility issues in PHP4 code (in particular between PHP 4 and PHP 5.0) as there may still be situations where people need help upgrading legacy systems.  However, coverage for changes introduced in PHP up to and including 5.0 will remain patchy as supporting older versions is not a primary aim at this time.
+
+The sniffs are designed to give the same results regardless of which PHP version you are using to run CodeSniffer.  Therefore you should get consistent results across different testing systems.
 
 License
 -------
