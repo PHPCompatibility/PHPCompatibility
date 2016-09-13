@@ -61,10 +61,10 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
             return;
         }
 
-        $closeParenthesis  = $tokens[$open]['parenthesis_closer'];
-        $squareOpenBracket = $phpcsFile->findNext(T_OPEN_SQUARE_BRACKET, ($closeParenthesis + 1), null, false, null, true);
-        if ($squareOpenBracket !== false) {
-            $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $squareOpenBracket);
+        $closeParenthesis = $tokens[$open]['parenthesis_closer'];
+        $nextNonEmpty     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($closeParenthesis + 1), null, true, null, true);
+        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET') {
+            $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $nextNonEmpty);
         }
 
     }//end process()
