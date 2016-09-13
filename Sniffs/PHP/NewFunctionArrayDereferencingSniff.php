@@ -43,25 +43,36 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
 
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
-                T_DOUBLE_COLON,
-                T_OBJECT_OPERATOR,
-                T_FUNCTION,
-                T_CONST,
-        );
+        // Next non-empty token should be the open parenthesis.
+        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
+            return;
+        }
 
+        // Don't throw errors during live coding.
+        if (isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
+            return;
+        }
+
+        // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
-            // Not a call to a PHP function.
-            return;
+        if($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
+            $ignore = array(
+                    T_FUNCTION,
+                    T_CONST,
+                    T_USE,
+                    T_NEW,
+                    T_CLASS,
+                    T_INTERFACE,
+            );
+
+            if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+                // Not a call to a PHP function or method.
+                return;
+            }
         }
 
-        $open = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, false, null, true);
-        if ($open === false || isset($tokens[$open]['parenthesis_closer']) === false) {
-            return;
-        }
-
-        $closeParenthesis = $tokens[$open]['parenthesis_closer'];
+        $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
         $nextNonEmpty     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($closeParenthesis + 1), null, true, null, true);
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET') {
             $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $nextNonEmpty);
