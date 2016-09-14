@@ -42,5 +42,24 @@ empty( $variableA === $variableB );
 empty();
 empty( /*comment*/ );
 
+
+// Issue #210 + some extra variants - should all be ok as well.
+empty(${$a . $b });
+empty($a[$b . 'c']);
+empty($a->{$b . 'c'});
+empty($a[$b->c()]);
+empty($a[$b->{$c}()]);
+empty($a[$b + 2]);
+empty($a->{$b + 2});
+empty($a[$b && $c]);
+empty($a->{$b && $c});
+empty($a[(int) $b]);
+empty($a->{(string) $c});
+empty(a::${$b});
+empty($a::${$b});
+empty(a::${$b . 'c'});
+empty($a::${$b . 'c'});
+
+
 // Unclosed - live coding, don't examine.
 empty(

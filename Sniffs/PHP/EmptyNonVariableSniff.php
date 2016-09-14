@@ -29,6 +29,19 @@ class PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff extends PHPCompatibility
     protected $tokenBlackList = array();
 
     /**
+     * List of brackets which can be part of a variable variable.
+     *
+     * Key is the open bracket token, value the close bracket token.
+     *
+     * @var array
+     */
+    protected $bracketTokens = array(
+        T_OPEN_CURLY_BRACKET   => T_CLOSE_CURLY_BRACKET,
+        T_OPEN_SQUARE_BRACKET  => T_CLOSE_SQUARE_BRACKET,
+    );
+
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -36,7 +49,7 @@ class PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff extends PHPCompatibility
     public function register()
     {
         // Set the token blacklist only once.
-        $this->tokenBlackList = array_unique(array_merge(
+        $tokenBlackList = array_unique(array_merge(
             PHP_CodeSniffer_Tokens::$assignmentTokens,
             PHP_CodeSniffer_Tokens::$equalityTokens,
             PHP_CodeSniffer_Tokens::$comparisonTokens,
@@ -45,6 +58,7 @@ class PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff extends PHPCompatibility
             PHP_CodeSniffer_Tokens::$castTokens,
             array(T_OPEN_PARENTHESIS, T_STRING_CONCAT)
         ));
+        $this->tokenBlackList = array_combine($tokenBlackList, $tokenBlackList);
 
         return array(T_EMPTY);
     }
@@ -92,9 +106,32 @@ class PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff extends PHPCompatibility
         // Ok, so the first variable is at the right level, now are there any
         // blacklisted tokens within the empty() ?
         $hasBadToken = $phpcsFile->findNext($this->tokenBlackList, $open + 1, $close);
-        if ($hasBadToken !== false) {
+        if ($hasBadToken === false) {
+            return;
+        }
+
+        // If there are also bracket tokens, the blacklisted token might be part of a variable
+        // variable, but if there are no bracket tokens, we know we have an error.
+        $hasBrackets = $phpcsFile->findNext($this->bracketTokens, $open + 1, $close);
+        if ($hasBrackets === false) {
             $this->addError($phpcsFile, $stackPtr);
             return;
+        }
+
+        // Ok, we have both a blacklisted token as well as brackets, so we need to walk
+        // the tokens of the variable variable.
+        for ($i = ($open + 1); $i < $close; $i++) {
+            // If this is a bracket token, skip to the end of the bracketed expression.
+            if (isset($this->bracketTokens[$tokens[$i]['code']], $tokens[$i]['bracket_closer'])) {
+                $i = $tokens[$i]['bracket_closer'];
+                continue;
+            }
+
+            // If it's a blacklisted token, not within brackets, we have an error.
+            if (isset($this->tokenBlackList[$tokens[$i]['code']])) {
+                $this->addError($phpcsFile, $stackPtr);
+                return;
+            }
         }
     }
 

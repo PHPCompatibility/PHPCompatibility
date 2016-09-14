@@ -115,6 +115,26 @@ class EmptyNonVariableSniffTest extends BaseSniffTest
             array(12),
             array(13),
             array(14),
+
+            // Issue #210.
+            array(47),
+            array(48),
+            array(49),
+            array(50),
+            array(51),
+            array(52),
+            array(53),
+            array(54),
+            array(55),
+            array(56),
+            array(57),
+            array(58),
+            array(59),
+            array(60),
+            array(61),
+
+            // Live coding.
+            array(65),
         );
     }
 }
