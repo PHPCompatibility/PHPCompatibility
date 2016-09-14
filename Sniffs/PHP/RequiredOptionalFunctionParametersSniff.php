@@ -4,7 +4,7 @@
  *
  * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
@@ -12,7 +12,7 @@
  *
  * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extends PHPCompatibility_Sniff
 {

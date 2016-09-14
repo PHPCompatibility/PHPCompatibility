@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap file for tests
+ * Bootstrap file for tests.
  *
  * @package PHPCompatibility
  */

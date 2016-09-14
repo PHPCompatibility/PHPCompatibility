@@ -101,7 +101,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Could the current token an potentially be a binary integer ?
      *
-     * @param array $token    Token stack.
+     * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
      * @return bool
@@ -126,7 +126,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Is the current token an invalid binary integer ?
      *
-     * @param array $token    Token stack.
+     * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
      * @return bool
@@ -149,7 +149,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      * Retrieve the content of the tokens which together look like a binary integer.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                $token     Token stack.
+     * @param array                $tokens    Token stack.
      * @param int                  $stackPtr  The position of the current token in
      *                                        the stack.
      *
@@ -172,7 +172,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Is the current token an invalid octal integer ?
      *
-     * @param array $token    Token stack.
+     * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
      * @return bool
@@ -190,7 +190,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Is the current token a hexidecimal numeric string ?
      *
-     * @param array $token    Token stack.
+     * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
      * @return bool

@@ -16,7 +16,8 @@
  * @package   PHPCompatibility
  * @author    Koen Eelen <koen.eelen@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff {
+class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff
+{
 
     public function register()
     {
@@ -45,7 +46,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
 
         $class = $tokens[$stackPtr];
 
-        if(!IsSet($class['scope_closer'])) {
+        if (isset($class['scope_closer']) === false) {
             return;
         }
 
@@ -56,10 +57,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
             return;
         }
 
-        $nextFunc = $stackPtr;
+        $nextFunc            = $stackPtr;
         $newConstructorFound = false;
         $oldConstructorFound = false;
-        $oldConstructorPos   = false;
+        $oldConstructorPos   = -1;
         while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
             $funcName = $phpcsFile->getDeclarationName($nextFunc);
             if (empty($funcName) || is_string($funcName) === false) {

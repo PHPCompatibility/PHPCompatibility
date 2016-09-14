@@ -14,6 +14,7 @@ if (class_exists('BaseSniffTest', true) === false) {
  *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 abstract class BaseClass_MethodTestFrame extends BaseSniffTest
 {

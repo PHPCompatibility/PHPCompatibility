@@ -12,10 +12,10 @@ if (class_exists('PHPCompatibility_Sniff', true) === false) {
 /**
  * Helper class to facilitate testing of the methods within the abstract PHPCompatibility_Sniff class.
  *
- * @uses BaseSniffTest
+ * @uses    PHPCompatibility_Sniff
  * @package PHPCompatibility
  */
 class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff {
-	public function register() {}
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {}
+    public function register() {}
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {}
 }

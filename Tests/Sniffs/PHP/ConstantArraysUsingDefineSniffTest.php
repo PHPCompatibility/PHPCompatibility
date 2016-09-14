@@ -13,7 +13,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class ConstantArraysUsingDefineSniffTest  extends BaseSniffTest
+class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/constant_arrays_using_define.php';
 

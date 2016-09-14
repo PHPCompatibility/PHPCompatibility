@@ -19,7 +19,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     /**
      * A list of removed function parameters, which were present in older versions.
      *
-     * The array lists : version number with true (deprecated and false (removed).
+     * The array lists : version number with true (deprecated) and false (removed).
      * The index is the location of the parameter in the parameter list, starting at 0 !
      * If's sufficient to list the first version where the function was deprecated/removed.
      *

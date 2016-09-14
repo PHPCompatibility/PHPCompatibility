@@ -11,6 +11,7 @@
  *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestFrame
 {

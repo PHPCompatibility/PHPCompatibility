@@ -197,7 +197,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
 
         // Skip attempts to use keywords as functions or class names - the former
         // will be reported by ForbiddenNamesAsInvokedFunctionsSniff, whilst the
-        // will be (partially) reported by the ForbiddenNames sniff.
+        // latter will be (partially) reported by the ForbiddenNames sniff.
         // Either type will result in false-positives when targetting lower versions
         // of PHP where the name was not reserved, unless we explicitly check for
         // them.
