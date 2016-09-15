@@ -252,20 +252,15 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
      * @param string               $className The name of the class.
-     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $className, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $className)
     {
-        if ($pattern === null) {
-            $pattern = $className;
-        }
-
         $error = '';
 
         $isError = false;
-        foreach ($this->newClasses[$pattern] as $version => $present) {
+        foreach ($this->newClasses[$className] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;

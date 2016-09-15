@@ -673,13 +673,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
         }
 
         $function = strtolower($tokens[$stackPtr]['content']);
-        $pattern  = null;
 
         if (in_array($function, $this->forbiddenFunctionNames) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $function, $pattern);
+        $this->addError($phpcsFile, $stackPtr, $function);
 
     }//end process()
 
@@ -690,21 +689,16 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      * @param int                  $stackPtr  The position of the forbidden function
      *                                        in the token array.
      * @param string               $function  The name of the forbidden function.
-     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $function)
     {
-        if ($pattern === null) {
-            $pattern = $function;
-        }
-
         $error = '';
 
         $isError = false;
         $previousVersionStatus = null;
-        foreach ($this->forbiddenFunctions[$pattern] as $version => $forbidden) {
+        foreach ($this->forbiddenFunctions[$function] as $version => $forbidden) {
             if ($this->supportsAbove($version)) {
                 if ($version != 'alternative') {
                     if ($previousVersionStatus !== $forbidden) {
@@ -724,8 +718,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
             $error = 'The use of function ' . $function . ' is ' . $error;
             $error = substr($error, 0, strlen($error) - 5);
 
-            if ($this->forbiddenFunctions[$pattern]['alternative'] !== null) {
-                $error .= '; use ' . $this->forbiddenFunctions[$pattern]['alternative'] . ' instead';
+            if ($this->forbiddenFunctions[$function]['alternative'] !== null) {
+                $error .= '; use ' . $this->forbiddenFunctions[$function]['alternative'] . ' instead';
             }
 
             if ($isError === true) {
