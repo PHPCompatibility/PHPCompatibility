@@ -1263,13 +1263,12 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         }
 
         $function = strtolower($tokens[$stackPtr]['content']);
-        $pattern  = null;
 
         if (in_array($function, $this->forbiddenFunctionNames) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content'], $pattern);
+        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
 
     }//end process()
 
@@ -1281,20 +1280,16 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
      * @param string               $function  The name of the function.
-     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $function)
     {
-        if ($pattern === null) {
-            $pattern = strtolower($function);
-        }
-
-        $error = '';
+        $functionLc = strtolower($function);
+        $error      = '';
 
         $isError = false;
-        foreach ($this->forbiddenFunctions[$pattern] as $version => $present) {
+        foreach ($this->forbiddenFunctions[$functionLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;

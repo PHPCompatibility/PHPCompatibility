@@ -131,20 +131,15 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
      * @param string               $typeName  The type.
-     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $typeName)
     {
-        if ($pattern === null) {
-            $pattern = $typeName;
-        }
-
         $error = '';
 
         $isError = false;
-        foreach ($this->newTypes[$pattern] as $version => $present) {
+        foreach ($this->newTypes[$typeName] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;

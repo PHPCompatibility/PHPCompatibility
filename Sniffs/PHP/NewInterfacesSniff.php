@@ -161,20 +161,16 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
      * @param string               $interface The name of the interface.
-     * @param string               $pattern   The pattern used for the match.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $interface, $pattern=null)
+    protected function addError($phpcsFile, $stackPtr, $interface)
     {
-        if ($pattern === null) {
-            $pattern = strtolower($interface);
-        }
-
-        $error = '';
+        $interfaceLc = strtolower($interface);
+        $error       = '';
 
         $isError = false;
-        foreach ($this->newInterfaces[$pattern] as $version => $present) {
+        foreach ($this->newInterfaces[$interfaceLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;
