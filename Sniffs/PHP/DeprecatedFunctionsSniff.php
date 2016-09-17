@@ -628,6 +628,15 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                         ),
                                     );
 
+	/**
+	 * List of just the function names.
+	 *
+	 * Will be set automatically in the register() method.
+	 *
+	 * @var array
+	 */
+    protected $forbiddenFunctionNames = array();
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

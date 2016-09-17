@@ -11,6 +11,7 @@
  *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
 {

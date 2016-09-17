@@ -45,11 +45,11 @@ class ValidIntegersSniffTest extends BaseSniffTest
      *
      * @dataProvider dataBinaryInteger
      *
-     * @param int    $line  Line number where the error should occur.
-     * @param string $octal (Start of) Binary number as a string.
+     * @param int    $line            Line number where the error should occur.
+     * @param string $binary          (Start of) Binary number as a string.
      * @param bool   $testNoViolation Whether or not to test for noViolation.
-     *               Defaults to true. Set to false if another error is
-     *               expected on the same line (invalid binary)
+     *                                Defaults to true. Set to false if another error is
+     *                                expected on the same line (invalid binary).
      *
      * @return void
      */

@@ -47,8 +47,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPComp
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
         $nextNumber = $phpcsFile->findNext(T_LNUMBER, $stackPtr + 1, null, false, null, true);
         if($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
             return;

@@ -9,9 +9,9 @@
 /**
  * Required Optional Parameter Sniff test file
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Wim Godden <wim@cu.be>
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RequiredOptionalFunctionParameterSniffTest extends BaseSniffTest
 {

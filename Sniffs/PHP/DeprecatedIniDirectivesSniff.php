@@ -222,7 +222,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         }
 
         $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function != 'ini_get' && $function != 'ini_set') {
+        if ($function !== 'ini_get' && $function !== 'ini_set') {
             return;
         }
 

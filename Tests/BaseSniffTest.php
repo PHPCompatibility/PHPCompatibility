@@ -87,7 +87,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      *
      * @param string $filename Filename to sniff
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object
-     * @return PHP_CodeSniffer_File File object|false
+     * @return PHP_CodeSniffer_File|false File object
      */
     public function sniffFile($filename, $targetPhpVersion = null)
     {
@@ -258,12 +258,12 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         return $this->gatherIssues($foundWarnings);
     }
-    
+
     /**
      * Gather all messages or a particular type by line number.
      *
-     * @param array $IssuesArray Array of a particular type of issues,
-	 *                           i.e. errors or warnings.
+     * @param array $issuesArray Array of a particular type of issues,
+     *                           i.e. errors or warnings.
      * @return array
      */
     private function gatherIssues($issuesArray)

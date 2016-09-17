@@ -76,7 +76,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return $arrTestVersions[$testVersion];
         }
         else {
-			return array(null, null);
+            return array(null, null);
         }
     }
 
@@ -569,8 +569,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         if ($tokens[$stackPtr - 1]['code'] === T_SELF) {
             $classDeclarationPtr = $phpcsFile->findPrevious(T_CLASS, $stackPtr - 1);
             if ($classDeclarationPtr === false) {
-				return '';
-			}
+                return '';
+            }
             $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
             return $this->getFQName($phpcsFile, $classDeclarationPtr, $className);
         }
@@ -781,7 +781,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * @param int $stackPtr The position in the stack of the T_FUNCTION token
      *                      to acquire the parameters for.
      *
-     * @return array
+     * @return array|false
      * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
      *                                   type T_FUNCTION.
      */

@@ -216,7 +216,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
 
-    }//end process()
+    }//end processNonString()
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -261,7 +261,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             );
             $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
-
-    }//end process()
+    }//end processString()
 
 }//end class
