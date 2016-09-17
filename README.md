@@ -23,8 +23,10 @@ The sniffs are designed to give the same results regardless of which PHP version
 Thank you
 ---------
 Thanks to all contributors for their valuable contributions.
- 
-Thanks to [![WPEngine](https://cu.be/img/wpengine.png)](http://wpengine.com) for their support on the PHP 7.0 sniffs.
+
+[![WPEngine](https://cu.be/img/wpengine.png)](https://wpengine.com)
+
+Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
 Installation (method 1)
