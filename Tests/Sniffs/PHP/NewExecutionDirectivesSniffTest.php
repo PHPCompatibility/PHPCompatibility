@@ -104,7 +104,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      */
     public function testInvalidDirectiveValue($directive, $value, $line)
     {
-        $this->assertError($this->_sniffFile, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
+        $this->assertWarning($this->_sniffFile, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
     }
 
     /**
@@ -140,7 +140,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
     public function testInvalidEncodingDirectiveValue($directive, $value, $line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertError($file, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
+        $this->assertWarning($file, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
     }
 
     /**
