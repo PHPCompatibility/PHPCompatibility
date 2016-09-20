@@ -6,7 +6,7 @@
  */
 
 if (class_exists('PHPCompatibility_Sniff', true) === false) {
-    require_once dirname(dirname(dirname(__FILE__))) . '/Sniff.php';
+    require_once dirname(dirname(dirname(__FILE__))) . '/PHPCompatibility/Sniff.php';
 }
 
 /**

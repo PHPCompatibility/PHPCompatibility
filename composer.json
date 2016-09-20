@@ -12,9 +12,7 @@
   "license" : "LGPL-3.0",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
-    "psr-4" : {
-      "PHPCompatibility\\" : ""
-    }
+    "classmap" : ["PHPCompatibility"]
   },
   "type" : "phpcodesniffer-standard",
   "support" : {
