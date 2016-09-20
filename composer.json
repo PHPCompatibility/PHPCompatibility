@@ -12,8 +12,8 @@
   "license" : "LGPL-3.0",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
-    "psr-4" : {
-      "PHPCompatibility\\" : ""
+    "psr-0" : {
+      "PHPCompatibility_" : ""
     }
   },
   "type" : "phpcodesniffer-standard",
