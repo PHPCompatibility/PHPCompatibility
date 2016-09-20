@@ -11,9 +11,7 @@ function testingG( $_SESSION ) {}
 function testingH( $_REQUEST ) {}
 function testingI( $_ENV ) {}
 
-// Test case-insensitive compare.
+// This should be ok.
 function testingJ( $globals ) {}
 function testingK( $_post ) {}
-
-// This should be ok.
 function testingL( $POST ) {}
