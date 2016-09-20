@@ -667,8 +667,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     if ($namespace !== false) {
                         return $namespace;
                     }
+                    break; // Nested namespaces is not possible.
                 }
-                break; // We only need to check the highest level condition.
             }
         }
 
