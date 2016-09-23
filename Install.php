@@ -13,23 +13,27 @@ class PHPCompatibility_Install {
         self::unregister_from_cs();
     }
     
-    static function register_in_cs() {
-        if (PHP_CodeSniffer::getConfigData('installed_paths') === NULL) {
-            PHP_CodeSniffer::setConfigData('installed_paths', __DIR__);
-            echo "Registered our path in PHP CodeSniffer\n";
-        } else if (PHP_CodeSniffer::getConfigData('installed_paths') === __DIR__ ) {
-            echo "Our path is already registered in PHP CodeSniffer\n";;
+    static function register_in_cs() { 
+        $installed_paths = self::get_installed_path();
+        if (in_array(__DIR__, $installed_paths)) {
+            echo "Our path is already registered in PHP CodeSniffer\n";
         } else {
-            throw new Exception("Another path is registered in Code Sniffer conf :(");
+            array_push($installed_paths, __DIR__);
+            self::set_installed_path($installed_paths);
+            echo "Registered our path in PHP CodeSniffer\n";
         }
     }
     
     static function unregister_from_cs() {
-        if (PHP_CodeSniffer::getConfigData('installed_paths') === __DIR__) {
-            PHP_CodeSniffer::setConfigData('installed_paths', NULL);
-            echo "Unregistered our path in PHP CodeSniffer\n";
+        $installed_paths = self::get_installed_path();
+        if (! in_array(__DIR__, $installed_paths)) {
+            echo "Our path is not registered in PHP CodeSniffer\n";
         } else {
-            echo "No path registered in Code Sniffer\n";
+            $installed_paths = array_filter($installed_paths, function ($v) {
+                return $v != __DIR__;
+            });
+            self::set_installed_path($installed_paths);
+            echo "Unregistered our path in PHP CodeSniffer\n";
         }
     }
 
@@ -72,5 +76,22 @@ class PHPCompatibility_Install {
         }
         echo "Copy hack removed\n";
     }
-    
+
+    static function get_installed_path() {
+        $installed_paths = PHP_CodeSniffer::getConfigData('installed_paths');
+        if ( $installed_paths === NULL or strlen($installed_paths) == 0 ) {
+            // Because: explode(',' , NULL) == array('')
+            // and we assert no data is empty array
+            return array();
+        }
+        return explode(',', $installed_paths);
+    }
+
+    static function set_installed_path($array) {
+        if(count($array) == 0) {
+            PHP_CodeSniffer::setConfigData('installed_paths', NULL);
+        } else {
+            PHP_CodeSniffer::setConfigData('installed_paths', implode(',', $array));
+        }
+    }
 }
