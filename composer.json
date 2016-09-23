@@ -12,9 +12,7 @@
   "license" : "LGPL-3.0",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
-    "psr-4" : {
-      "PHPCompatibility\\" : ""
-    }
+    "classmap" : ["Sniff.php", "Install.php", "Sniffs/"]
   },
   "type" : "phpcodesniffer-standard",
   "support" : {
@@ -25,5 +23,10 @@
     "name" : "Wim Godden",
     "role" : "lead"
   } ],
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
+  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
+  "bin": 
+    [
+    "bin/phpcompat_enable",
+    "bin/phpcompat_disable"
+    ]
 }

@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+$autoloadPath = dirname(dirname($argv[0])). '/vendor/autoload.php';
+
+if (!file_exists($autoloadPath)) {
+    $autoloadPath = dirname(dirname(dirname(dirname($argv[0])))) . '/autoload.php';
+}
+
+require($autoloadPath);
+
+PHPCompatibility_Install::enable();
