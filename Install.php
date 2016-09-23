@@ -70,7 +70,7 @@ class PHPCompatibility_Install {
         } else {
             passthru('rm -rf "'.$copy.'"');
         }
-        echo "No copy hack removed\n";
+        echo "Copy hack removed\n";
     }
     
 }
