@@ -42,7 +42,7 @@ class PHPCompatibility_Install {
         $copy = __DIR__ .DIRECTORY_SEPARATOR.'PHPCompatibility';
         
         if ( file_exists ($copy)) {
-            echo "Copy hack is already in place\n";
+            echo "Copy workaround is already in place\n";
             return;
         }
         
@@ -57,14 +57,14 @@ class PHPCompatibility_Install {
         } else {
             passthru('cp -r "'.$srcDir .DIRECTORY_SEPARATOR.'Sniffs" "'.$copy.DIRECTORY_SEPARATOR.'Sniffs"');
         }
-        echo "Created copy hack\n";
+        echo "Created copy workaround\n";
     }    
     
     static function remove_copy() {
         $copy = __DIR__ .DIRECTORY_SEPARATOR.'PHPCompatibility';
         
         if ( ! file_exists ($copy)) {
-            echo "No copy hack to remove\n";
+            echo "No copy workaround to remove\n";
             return;
         }
         
@@ -74,7 +74,7 @@ class PHPCompatibility_Install {
         } else {
             passthru('rm -rf "'.$copy.'"');
         }
-        echo "Copy hack removed\n";
+        echo "Copy workaround removed\n";
     }
 
     static function get_installed_path() {
