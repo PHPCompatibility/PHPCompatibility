@@ -14,6 +14,12 @@ class bar {
     }
 }
 
+class barFOO {
+    function BARfoo() {
+        echo 'I am the constructor - but I shouldn\'t be';
+    }
+}
+
 namespace foobar {
 
     class foobar {
