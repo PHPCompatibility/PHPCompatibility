@@ -11,7 +11,7 @@ $okay = namespace\DateTime::static_method();
 
 /*
  * 1. Verify instantiation without parameters is being flagged.
- * 2. + 3. Verify that instation with spacing/comments between elements is being flagged.
+ * 2. + 3. Verify that instantion with spacing/comments between elements is being flagged.
  * 4. Verify that instation with global namespace indicator is being flagged.
  */
 $test = new DateInterval;
@@ -138,3 +138,11 @@ IntlTimeZone::$static_property;
 IntlBreakIterator::$static_property;
 IntlRuleBasedBreakIterator::$static_property;
 IntlCodePointBreakIterator::$static_property;
+
+
+/**
+ * These should all be flagged too as classnames are case-insensitive.
+ */
+$test = new DATETIME(); // Uppercase.
+class MyDateTime extends datetime {} // Lowercase.
+dATeTiMe::static_method(); // Mixed case.

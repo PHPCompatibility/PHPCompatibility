@@ -193,6 +193,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
      */
     public function register()
     {
+        // Handle case-insensitivity of class names.
+        $keys = array_keys( $this->newClasses );
+        $keys = array_map( 'strtolower', $keys );
+        $this->newClasses = array_combine( $keys, $this->newClasses );
+
         return array(
                 T_NEW,
                 T_CLASS,
@@ -234,9 +239,10 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
             return;
         }
 
-        $className = substr($FQClassName, 1); // Remove global namespace indicator.
+        $className   = substr($FQClassName, 1); // Remove global namespace indicator.
+        $classNameLc = strtolower($className);
 
-        if (array_key_exists($className, $this->newClasses) === false) {
+        if (isset($this->newClasses[$classNameLc]) === false) {
             return;
         }
 
@@ -257,10 +263,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
      */
     protected function addError($phpcsFile, $stackPtr, $className)
     {
-        $error = '';
+        $error       = '';
+        $isError     = false;
+        $classNameLc = strtolower($className);
 
-        $isError = false;
-        foreach ($this->newClasses[$className] as $version => $present) {
+        foreach ($this->newClasses[$classNameLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;
