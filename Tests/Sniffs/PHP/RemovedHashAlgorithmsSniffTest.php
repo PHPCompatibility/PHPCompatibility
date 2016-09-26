@@ -15,41 +15,33 @@
  */
 class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
 {
-    /**
-     * Sniffed file
-     *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * setUp
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->_sniffFile = $this->sniffFile('sniff-examples/removed_hash_algorithms.php');
-    }
+    const TEST_FILE = 'sniff-examples/removed_hash_algorithms.php';
 
     /**
      * testRemovedHashAlgorithms
      *
+     * @group hashAlgorithms
+     *
      * @dataProvider dataRemovedHashAlgorithms
      *
-     * @param int $line Line number on which an error should occur.
+     * @param string $algorithm Name of the algorithm.
+     * @param string $removedIn The PHP version in which the algorithm was removed.
+     * @param array  $line      The line number on which the error should occur.
+     * @param string $okVersion A PHP version in which the algorithm was still valid.
      *
-     * @return void
+     * return void
      */
-    public function testRemovedHashAlgorithms($line)
+    public function testRemovedHashAlgorithms($algorithm, $removedIn, $line, $okVersion)
     {
-        $this->assertError($this->_sniffFile, $line, 'The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4');
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $this->assertNoViolation($file, $line);
+
+        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $this->assertError($file, $line, "The {$algorithm} hash algorithm is removed since PHP version {$removedIn}");
     }
 
     /**
-     * dataRemovedHashAlgorithms
+     * Data provider.
      *
      * @see testRemovedHashAlgorithms()
      *
@@ -58,47 +50,67 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
     public function dataRemovedHashAlgorithms()
     {
         return array(
-            array(4),
-            array(5),
-            array(6),
-            array(7),
-            array(9),
-            array(11),
-            array(13),
-            array(15),
-            array(16),
+            array('salsa10', '5.4', 13, '5.3'),
+            array('salsa20', '5.4', 14, '5.3'),
+            array('salsa10', '5.4', 15, '5.3'),
+            array('salsa20', '5.4', 16, '5.3'),
+            array('salsa10', '5.4', 18, '5.3'),
+            array('salsa20', '5.4', 19, '5.3'),
+            array('salsa10', '5.4', 20, '5.3'),
+            array('salsa10', '5.4', 22, '5.3'),
+            array('salsa10', '5.4', 23, '5.3'),
         );
     }
 
 
     /**
-     * testOkHashAlgorithm
+     * testRemovedHashAlgorithmsPbkdf2
+     *
+     * As the function hash_pbkdf2() itself was only introduced in PHP 5.5, we cannot test the noViolation case
+     * (as it would still show an error for use of a new function).
+     *
+     * @group hashAlgorithms
+     *
+     * return void
+     */
+    public function testRemovedHashAlgorithmsPbkdf2()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $this->assertError($file, 25, "The salsa20 hash algorithm is removed since PHP version 5.4");
+    }
+
+
+    /**
+     * testNoViolation
+     *
+     * @group hashAlgorithms
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testOkHashAlgorithm()
+    public function testNoViolation($line)
     {
-        $this->assertNoViolation($this->_sniffFile, 3);
+        $file = $this->sniffFile(self::TEST_FILE, '5.0-99.0');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
-     * testIgnoreSecondParameter
+     * Data provider.
      *
-     * @return void
-     */
-    public function testIgnoreSecondParameter()
-    {
-        $this->assertNoViolation($this->_sniffFile, 17);
-    }
-
-    /**
-     * testIgnoreNonFunctionCall
+     * @see testNoViolation()
      *
-     * @return void
+     * @return array
      */
-    public function testIgnoreNonFunctionCall()
+    public function dataNoViolation()
     {
-        $this->assertNoViolation($this->_sniffFile, 18);
+        return array(
+            array(6),
+            array(7),
+            array(8),
+        );
     }
 
 }

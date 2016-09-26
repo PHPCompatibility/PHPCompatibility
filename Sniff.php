@@ -22,6 +22,24 @@
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 {
 
+    /**
+     * List of functions using hash algorithm as parameter (always the first parameter).
+     *
+     * Used by the new/removed hash algorithm sniffs.
+     * Key is the function name, value is the 1-based parameter position in the function call.
+     *
+     * @var array
+     */
+    protected $hashAlgoFunctions = array(
+        'hash_file'      => 1,
+        'hash_hmac_file' => 1,
+        'hash_hmac'      => 1,
+        'hash_init'      => 1,
+        'hash_pbkdf2'    => 1,
+        'hash'           => 1,
+    );
+
+
 /* The testVersion configuration variable may be in any of the following formats:
  * 1) Omitted/empty, in which case no version is specified.  This effectively
  *    disables all the checks provided by this standard.
