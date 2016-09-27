@@ -21,6 +21,8 @@ class NewClassesSniffTest extends BaseSniffTest
     /**
      * testNewClass
      *
+     * @group newClasses
+     *
      * @dataProvider dataNewClass
      *
      * @param string $className         Class name.
@@ -89,12 +91,18 @@ class NewClassesSniffTest extends BaseSniffTest
             array('IntlBreakIterator', '5.4', array(58, 98, 138), '5.5'),
             array('IntlRuleBasedBreakIterator', '5.4', array(59, 99, 139), '5.5'),
             array('IntlCodePointBreakIterator', '5.4', array(60, 100, 140), '5.5'),
+            
+            array('DATETIME', '5.1', array(146), '5.2'),
+            array('datetime', '5.1', array(147), '5.2'),
+            array('dATeTiMe', '5.1', array(148), '5.2'),
         );
     }
 
 
     /**
      * testNoViolation
+     *
+     * @group newClasses
      *
      * @dataProvider dataNoViolation
      *
