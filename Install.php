@@ -1,5 +1,12 @@
 <?php 
 
+/**
+ * Install functions
+ * 
+ * Used through vandor/bin/phpcompat_(en|dis)able
+ *
+ */
+
 class PHPCompatibility_Install {
     static function enable() {
         echo "Enabling PHPCompatibility\n";
