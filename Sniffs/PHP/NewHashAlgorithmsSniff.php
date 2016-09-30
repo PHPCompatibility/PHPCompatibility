@@ -1,46 +1,76 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff.
- *
- * PHP version 5.4
+ * PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
+ * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff.
- *
- * Discourages the use of deprecated and removed hash algorithms.
- *
- * PHP version 5.4
+ * PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
+ * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibility_Sniff
 {
-
     /**
-     * A list of removed hash algorithms, which were present in older versions.
+     * A list of new hash algorithms, not present in older versions.
      *
-     * The array lists : version number with false (deprecated) and true (removed).
-     * If's sufficient to list the first version where the hash algorithm was deprecated/removed.
+     * The array lists : version number with false (not present) or true (present).
+     * If's sufficient to list the first version where the hash algorithm appears.
      *
      * @var array(string => array(string => bool))
      */
-    protected $removedAlgorithms = array(
+    protected $newAlgorithms = array(
+        'md2' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'ripemd256' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'ripemd320' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'salsa10' => array(
-            '5.4' => true,
+            '5.2' => false,
+            '5.3' => true,
         ),
         'salsa20' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'snefru256' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'sha224' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'joaat' => array(
+            '5.3' => false,
             '5.4' => true,
         ),
+        'fnv132' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'fnv164' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'gost-crypto' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
     );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -71,14 +101,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
         }
 
         // Bow out if not one of the algorithms we're targetting.
-        if (isset($this->removedAlgorithms[$algo]) === false) {
+        if (isset($this->newAlgorithms[$algo]) === false) {
             return;
         }
 
-        // Check if the algorithm used is deprecated or removed.
+        // Check if the algorithm used is new.
         $errorInfo = $this->getErrorInfo($algo);
 
-        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+        if ($errorInfo['not_in_version'] !== '') {
             $this->addError($phpcsFile, $stackPtr, $algo, $errorInfo);
         }
 
@@ -95,19 +125,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
     protected function getErrorInfo($algorithm)
     {
         $errorInfo  = array(
-            'deprecated'  => '',
-            'removed'     => '',
-            'error'       => false,
+            'not_in_version' => '',
         );
 
-        foreach ($this->removedAlgorithms[$algorithm] as $version => $removed) {
-            if ($this->supportsAbove($version)) {
-                if ($removed === true && $errorInfo['removed'] === '') {
-                    $errorInfo['removed'] = $version;
-                    $errorInfo['error']   = true;
-                } elseif ($errorInfo['deprecated'] === '') {
-                    $errorInfo['deprecated'] = $version;
-                }
+        foreach ($this->newAlgorithms[$algorithm] as $version => $present) {
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
             }
         }
 
@@ -131,27 +154,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
      */
     protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
     {
-        $error     = 'The %s hash algorithm is ';
+        $error     = 'The %s hash algorithm is not present in PHP version %s or earlier ';
         $errorCode = $algorithm . 'Found';
-        $data      = array($algorithm);
+        $data      = array(
+            $algorithm,
+            $errorInfo['not_in_version'],
+        );
 
-        if ($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP version %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if ($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP version %s and ';
-            $data[] = $errorInfo['removed'];
-        }
-
-        // Remove the last 'and' from the message.
-        $error = substr($error, 0, strlen($error) - 5);
-
-        if ($errorInfo['error'] === true) {
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

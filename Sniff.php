@@ -953,4 +953,50 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
     }//end getMethodParameters()
 
+
+    /**
+     * Get the hash algorithm name from the parameter in a hash function call.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                  $stackPtr  The position of the T_STRING function token.
+     *
+     * @return string|false The algorithm name without quotes if this was a relevant hash
+     *                      function call or false if it was not.
+     */
+    public function getHashAlgorithmParameter(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_STRING) {
+            return false;
+        }
+
+        $functionName   = $tokens[$stackPtr]['content'];
+        $functionNameLc = strtolower($functionName);
+
+        // Bow out if not one of the functions we're targetting.
+        if (isset($this->hashAlgoFunctions[$functionNameLc]) === false) {
+            return false;
+        }
+
+        // Get the parameter from the function call which should contain the algorithm name.
+        $algoParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
+        if ($algoParam === false) {
+            return false;
+        }
+
+        /**
+         * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes.
+         */
+        $algo = strtolower(trim($algoParam['raw']));
+        $algo = $this->stripQuotes($algo);
+
+        return $algo;
+    }
+
 }//end class
