@@ -136,7 +136,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
                 $nextFunc = $stackPtr;
                 while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
                     $funcName = strtolower($phpcsFile->getDeclarationName($nextFunc));
-                    if (is_string($funcName) === false) {
+                    if ($funcName === '') {
                         continue;
                     }
 
