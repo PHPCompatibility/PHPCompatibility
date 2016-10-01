@@ -56,14 +56,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $varNameUc = strtoupper(substr($tokens[$stackPtr]['content'], 1));
+        $tokens  = $phpcsFile->getTokens();
+        $varName = substr($tokens[$stackPtr]['content'], 1);
 
-        if (isset($this->removedGlobalVariables[$varNameUc]) === false) {
+        if (isset($this->removedGlobalVariables[$varName]) === false) {
             return;
         }
 
-        $versionList = $this->removedGlobalVariables[$varNameUc];
+        $versionList = $this->removedGlobalVariables[$varName];
 
         $error = '';
         $isError = false;
