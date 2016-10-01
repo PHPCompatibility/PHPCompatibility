@@ -156,35 +156,29 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
 
         'mbstring.strict_detection' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.1' => false,
             '5.1.2' => true,
         ),
         'mssql.charset' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.1' => false,
             '5.1.2' => true,
         ),
 
         'gd.jpeg_ignore_warning' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.2' => false,
             '5.1.3' => true,
         ),
 
         'fbsql.show_timestamp_decimals' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.4' => false,
             '5.1.5' => true,
         ),
         'soap.wsdl_cache' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.4' => false,
             '5.1.5' => true,
         ),
         'soap.wsdl_cache_limit' => array(
-            '5.0'   => false,
-            '5.1'   => false,
+            '5.1.4' => false,
             '5.1.5' => true,
         ),
 
@@ -214,26 +208,22 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
 
         'cgi.check_shebang_line' => array(
-            '5.1' => false,
-            '5.2' => false,
+            '5.2.0' => false,
             '5.2.1' => true
         ),
 
         'max_input_nesting_level' => array(
-            '5.1' => false,
-            '5.2' => false,
+            '5.2.2' => false,
             '5.2.3' => true
         ),
 
         'mysqli.allow_local_infile' => array(
-            '5.1'   => false,
-            '5.2'   => false,
+            '5.2.3' => false,
             '5.2.4' => true,
         ),
 
         'max_file_uploads' => array(
-            '5.1'    => false,
-            '5.2'    => false,
+            '5.2.11' => false,
             '5.2.12' => true,
         ),
 
@@ -315,20 +305,17 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
 
         'curl.cainfo' => array(
-            '5.2' => false,
-            '5.3' => false,
+            '5.3.6' => false,
             '5.3.7' => true,
         ),
 
         'max_input_vars' => array(
-            '5.2'   => false,
-            '5.3'   => false,
+            '5.3.8' => false,
             '5.3.9' => true,
         ),
 
         'sqlite3.extension_dir' => array(
-            '5.2'    => false,
-            '5.3'    => false,
+            '5.3.10' => false,
             '5.3.11' => true,
         ),
 
@@ -436,8 +423,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
 
         'session.use_strict_mode' => array(
-            '5.4'   => false,
-            '5.5'   => false,
+            '5.5.1' => false,
             '5.5.2' => true,
         ),
 
@@ -516,25 +502,30 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $error = '';
-
+        $notInVersion = '';
         foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if ($version !== 'alternative') {
-                if ($this->supportsBelow($version)) {
-                    if ($present === true) {
-                        $error .= " not available before version " . $version;
-                    }
-                }
+            if ($version !== 'alternative' && $present === false && $this->supportsBelow($version)) {
+                $notInVersion = $version;
             }
         }
 
-        if (strlen($error) > 0) {
-            $error = "INI directive '" . $filteredToken . "' is" . $error;
+        if ($notInVersion !== '') {
+            $error   = "INI directive '%s' is not present in PHP version %s or earlier";
+            $isError = ($function !== 'ini_get') ? true : false;
+            $data    = array(
+                $filteredToken,
+                $notInVersion
+            );
             if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
-                $error .= ". This directive was previously called '" . $this->newIniDirectives[$filteredToken]['alternative'] . "'.";
+                $error .= ". This directive was previously called '%s'.";
+                $data[] = $this->newIniDirectives[$filteredToken]['alternative'];
             }
 
-            $phpcsFile->addWarning($error, $iniToken['end']);
+            if ($isError === true) {
+                $phpcsFile->addError($error, $iniToken['end'], 'Found', $data);
+            } else {
+                $phpcsFile->addWarning($error, $iniToken['end'], 'Found', $data);
+            }
         }
 
     }//end process()
