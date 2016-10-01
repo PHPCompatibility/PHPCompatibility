@@ -24,8 +24,17 @@
  */
 class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff extends PHPCompatibility_Sniff
 {
-    const ERROR_TYPE_VARIABLE = 'a variable argument';
-    const ERROR_TYPE_ZERO = '0 as an argument';
+    /**
+     * Error types this sniff handles for forbidden break/continue arguments.
+     *
+     * Array key is the error code. Array value will be used as part of the error message.
+     *
+     * @var array
+     */
+    private $errorTypes = array(
+        'variableArgument' => 'a variable argument',
+        'zeroArgument'     => '0 as an argument',
+    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -55,7 +64,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
 
         $tokens             = $phpcsFile->getTokens();
         $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
-        $isError            = false;
         $errorType          = '';
         for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
             if ($tokens[$curToken]['type'] === 'T_STRING') {
@@ -63,26 +71,25 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
                 // is an opening parenthesis then it's a function call.
                 $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
                 if ($tokens[$openBracket]['code'] === T_OPEN_PARENTHESIS) {
-                    $isError = true;
-                    $errorType = self::ERROR_TYPE_VARIABLE;
+                    $errorType = 'variableArgument';
                     break;
                 }
             }
             else if (in_array($tokens[$curToken]['type'], array('T_VARIABLE', 'T_FUNCTION', 'T_CLOSURE'), true)) {
-                $isError = true;
-                $errorType = self::ERROR_TYPE_VARIABLE;
+                $errorType = 'variableArgument';
                 break;
             }
             else if ($tokens[$curToken]['type'] === 'T_LNUMBER' && $tokens[$curToken]['content'] === '0') {
-                $isError = true;
-                $errorType = self::ERROR_TYPE_ZERO;
+                $errorType = 'zeroArgument';
                 break;
             }
         }
 
-        if ($isError === true && !empty($errorType)) {
-            $error = 'Using ' . $errorType . ' on break or continue is forbidden since PHP 5.4';
-            $phpcsFile->addError($error, $stackPtr);
+        if ($errorType !== '') {
+            $error     = 'Using %s on break or continue is forbidden since PHP 5.4';
+            $errorCode = $errorType . 'Found';
+            $data      = array($this->errorTypes[$errorType]);
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
 
     }//end process()
