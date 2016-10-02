@@ -41,6 +41,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testRemovedExtension
      *
+     * @group removedExtensions
+     *
      * @dataProvider dataRemovedExtension
      *
      * @param string $extensionName  Name of the PHP extension.
@@ -112,6 +114,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testDeprecatedRemovedExtension
      *
+     * @group removedExtensions
+     *
      * @dataProvider dataDeprecatedRemovedExtension
      *
      * @param string $extensionName     Name of the PHP extension.
@@ -171,7 +175,58 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
 
     /**
+     * testDeprecatedExtension
+     *
+     * @group removedExtensions
+     *
+     * @dataProvider dataDeprecatedExtension
+     *
+     * @param string $extensionName     Name of the PHP extension.
+     * @param string $deprecatedIn      The PHP version in which the extension was deprecated.
+     * @param array  $lines             The line numbers in the test file which apply to this extension.
+     * @param string $okVersion         A PHP version in which the extension was still present.
+     * @param string $deprecatedVersion Optional PHP version to test removal message with -
+     *                                  if different from the $deprecatedIn version.
+     *
+     * @return void
+     */
+    public function testDeprecatedExtension($extensionName, $deprecatedIn, $lines, $okVersion, $deprecatedVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        if (isset($deprecatedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedVersion);
+        }
+        else {
+            $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        }
+        foreach($lines as $line) {
+            $this->assertWarning($file, $line, "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn}");
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedExtension()
+     *
+     * @return array
+     */
+    public function dataDeprecatedExtension()
+    {
+        return array(
+            array('mcrypt', '7.1', array(71), '7.0'),
+        );
+    }
+
+
+    /**
      * testNotAFunctionCall
+     *
+     * @group removedExtensions
      *
      * @return void
      */
@@ -183,6 +238,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testFunctionDeclaration
      *
+     * @group removedExtensions
+     *
      * @return void
      */
     public function testFunctionDeclaration()
@@ -192,6 +249,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testNewClass
+     *
+     * @group removedExtensions
      *
      * @return void
      */
@@ -203,6 +262,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testMethod
      *
+     * @group removedExtensions
+     *
      * @return void
      */
     public function testMethod()
@@ -212,6 +273,8 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testWhiteListing
+     *
+     * @group removedExtensions
      *
      * @return void
      */
