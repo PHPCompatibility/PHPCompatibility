@@ -29,22 +29,18 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
                                         'int' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'int return type'
                                         ),
                                         'float' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'float return type'
                                         ),
                                         'bool' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'bool return type'
                                         ),
                                         'string' => array(
                                             '5.6' => false,
                                             '7.0' => true,
-                                            'description' => 'string return type'
                                         ),
                                     );
 
@@ -106,12 +102,15 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
             }
         }
         if (strlen($error) > 0) {
-            $error = $this->newTypes[$typeName]['description'] . ' is ' . $error;
+            $error = '%s return type is ' . $error;
+            $data  = array(
+                $typeName,
+            );
 
             if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
             } else {
-                $phpcsFile->addWarning($error, $stackPtr);
+                $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
             }
         }
 

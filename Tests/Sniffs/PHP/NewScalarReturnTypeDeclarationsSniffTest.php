@@ -15,7 +15,11 @@
  */
 class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/new_scalar_return_type_declarations.php';
 
+    /**
+     * Set up: skip these tests if the PHPCS version isn't high enough.
+     */
     protected function setUp()
     {
         if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
@@ -29,15 +33,23 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     /**
      * testScalarReturnType
      *
+     * @group scalarReturnType
+     *
      * @dataProvider dataScalarReturnType
      *
-     * @param int $line The line number.
+     * @param string $returnType        The return type.
+     * @param string $lastVersionBefore The PHP version just *before* the type was introduced.
+     * @param array  $line              The line number in the test file where the error should occur.
+     * @param string $okVersion         A PHP version in which the return type was ok to be used.
      *
      * @return void
      */
-    public function testScalarReturnType($line)
+    public function testScalarReturnType($returnType, $lastVersionBefore, $line, $okVersion)
     {
-        $file = $this->sniffFile('sniff-examples/new_scalar_return_type_declarations.php', '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $this->assertError($file, $line, "{$returnType} return type is not present in PHP version {$lastVersionBefore} or earlier");
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         $this->assertNoViolation($file, $line);
     }
 
@@ -51,10 +63,10 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     public function dataScalarReturnType()
     {
         return array(
-            array(3),
-            array(5),
-            array(7),
-            array(9),
+            array('bool', '5.6', 3, '7.0'),
+            array('int', '5.6', 5, '7.0'),
+            array('float', '5.6', 7, '7.0'),
+            array('string', '5.6', 9, '7.0'),
         );
     }
 }
