@@ -213,6 +213,8 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('session.lazy_write', '7.0', array(299, 300), '5.6'),
             array('zend.assertions', '7.0', array(302, 303), '5.6'),
 
+            array('session.sid_length', '7.1', array(305, 306), '7.0'),
+            array('session.sid_bits_per_character', '7.1', array(308, 309), '7.0'),
         );
     }
 
