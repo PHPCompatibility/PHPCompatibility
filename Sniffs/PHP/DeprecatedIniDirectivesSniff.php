@@ -179,7 +179,20 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
         'xsl.security_prefs' => array(
             '7.0' => true
-        )
+        ),
+
+        'session.entropy_file' => array(
+            '7.1' => true
+        ),
+        'session.entropy_length' => array(
+            '7.1' => true
+        ),
+        'session.hash_function' => array(
+            '7.1' => true
+        ),
+        'session.hash_bits_per_character' => array(
+            '7.1' => true
+        ),
     );
 
     /**
