@@ -50,11 +50,12 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
         return array(
             array('array', '5.0', 4, '5.1'),
             array('array', '5.0', 5, '5.1'),
-            array('callable', '5.3', 9, '5.4'),
-            array('bool', '5.6', 13, '7.0'),
-            array('int', '5.6', 14, '7.0'),
-            array('float', '5.6', 15, '7.0'),
-            array('string', '5.6', 16, '7.0'),
+            array('callable', '5.3', 8, '5.4'),
+            array('bool', '5.6', 11, '7.0'),
+            array('int', '5.6', 12, '7.0'),
+            array('float', '5.6', 13, '7.0'),
+            array('string', '5.6', 14, '7.0'),
+            array('iterable', '7.0', 17, '7.1'),
         );
     }
 
@@ -165,11 +166,12 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
         return array(
             array(4),
             array(5),
-            array(9),
+            array(8),
+            array(11),
+            array(12),
             array(13),
             array(14),
-            array(15),
-            array(16),
+            array(17),
             array(20),
             array(21),
             array(24),
@@ -181,5 +183,5 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
             array(44),
         );
     }
-}
 
+}
