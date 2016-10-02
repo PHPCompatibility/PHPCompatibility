@@ -42,6 +42,11 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
                                             '5.6' => false,
                                             '7.0' => true,
                                         ),
+
+                                        'void' => array(
+                                            '7.0' => false,
+                                            '7.1' => true,
+                                        ),
                                     );
 
 

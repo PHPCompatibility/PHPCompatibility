@@ -67,6 +67,7 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
             array('int', '5.6', 5, '7.0'),
             array('float', '5.6', 7, '7.0'),
             array('string', '5.6', 9, '7.0'),
+            array('void', '7.0', 11, '7.1'),
         );
     }
 }
