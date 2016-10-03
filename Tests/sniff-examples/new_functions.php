@@ -310,3 +310,11 @@ inflate_init();
 deflate_init();
 
 socket_export_stream();
+
+curl_multi_errno();
+curl_share_errno();
+curl_share_strerror();
+is_iterable();
+pcntl_async_signals();
+session_create_id();
+session_gc();

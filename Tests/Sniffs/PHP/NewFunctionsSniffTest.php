@@ -383,6 +383,15 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('deflate_init', '5.6', array(310), '7.0'),
 
             array('socket_export_stream', '7.0.6', array(312), '7.1', '7.0'),
+
+            array('curl_multi_errno', '7.0', array(314), '7.1'),
+            array('curl_share_errno', '7.0', array(315), '7.1'),
+            array('curl_share_strerror', '7.0', array(316), '7.1'),
+            array('is_iterable', '7.0', array(317), '7.1'),
+            array('pcntl_async_signals', '7.0', array(318), '7.1'),
+            array('session_create_id', '7.0', array(319), '7.1'),
+            array('session_gc', '7.0', array(320), '7.1'),
+
         );
     }
 
