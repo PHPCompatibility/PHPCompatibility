@@ -794,10 +794,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * 'default' with the value of the default as a string.
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
-     * class, but with some improvements which were only introduced in PHPCS 2.7.
+     * class, but with some improvements which will probably be introduced in
+     * PHPCS 2.7.1/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
+     *
      * Once the minimum supported PHPCS version for this sniff library goes beyond
      * that, this method can be removed and calls to it replaced with
-     * `$phpcsFile->getMethodParameters($stackPtr)` calls.}}
+     * `$phpcsFile->getMethodParameters($stackPtr)` calls.
+     *
+     * Last synced with PHPCS version: PHPCS 2.7.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int $stackPtr The position in the stack of the T_FUNCTION token
