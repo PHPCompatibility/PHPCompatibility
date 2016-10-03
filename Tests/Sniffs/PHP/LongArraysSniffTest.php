@@ -35,9 +35,14 @@ class LongArraysSniffTest extends BaseSniffTest
      */
     public function testLongVariable($longVariable, $lines, $deprecatedIn, $removedIn, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn} and removed in {$removedIn}; Found '{$longVariable}'");
+            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn}; Found '{$longVariable}'");
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn} and removed in {$removedIn}; Found '{$longVariable}'");
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
