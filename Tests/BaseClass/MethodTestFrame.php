@@ -5,10 +5,6 @@
  * @package PHPCompatibility
  */
 
-if (class_exists('BaseSniffTest', true) === false) {
-    require_once dirname(dirname(__FILE__)) . '/BaseSniffTest.php';
-}
-
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
@@ -16,7 +12,7 @@ if (class_exists('BaseSniffTest', true) === false) {
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class BaseClass_MethodTestFrame extends BaseSniffTest
+abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
 {
 
     public $filename;
