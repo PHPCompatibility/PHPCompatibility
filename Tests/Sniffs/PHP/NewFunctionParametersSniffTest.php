@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class NewFunctionParameterSniffTest extends BaseSniffTest
+class NewFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_function_parameter.php';

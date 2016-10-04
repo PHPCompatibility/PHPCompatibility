@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class RemovedFunctionParameterSniffTest extends BaseSniffTest
+class RemovedFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/removed_function_parameter.php';

@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RequiredOptionalFunctionParameterSniffTest extends BaseSniffTest
+class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/required_optional_function_parameters.php';
