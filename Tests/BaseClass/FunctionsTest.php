@@ -27,11 +27,22 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
     protected $helperClass;
 
 
+    /**
+     * Set up fixtures for this unit test.
+     *
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
         require_once dirname(__FILE__) . '/TestHelperPHPCompatibility.php';
+        parent::setUpBeforeClass();
     }
 
+    /**
+     * Sets up this unit test.
+     *
+     * @return void
+     */
     protected function setUp()
     {
         parent::setUp();

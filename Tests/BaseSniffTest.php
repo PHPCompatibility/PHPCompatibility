@@ -39,6 +39,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$sniffFiles = array();
+        parent::setUpBeforeClass();
     }
 
     /**
@@ -59,6 +60,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         self::$phpcs->process(array(), dirname( __FILE__ ) . '/../');
         self::$phpcs->setIgnorePatterns(array());
+
+        parent::setUp();
     }
 
     /**

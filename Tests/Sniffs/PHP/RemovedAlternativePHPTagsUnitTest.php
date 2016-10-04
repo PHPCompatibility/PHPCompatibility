@@ -31,12 +31,16 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
 
     /**
      * Set up skip condition.
+     *
+     * @return void
      */
     public static function setUpBeforeClass()
     {
         if (version_compare(phpversion(), '7.0', '<')) {
             self::$aspTags = (boolean) ini_get('asp_tags');
         }
+
+        parent::setUpBeforeClass();
     }
 
 
