@@ -16,7 +16,13 @@
 class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = '../sniff-examples/utility-functions/get_function_parameters.php';
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'get_function_parameters.php';
 
     /**
      * testGetFunctionCallParameters

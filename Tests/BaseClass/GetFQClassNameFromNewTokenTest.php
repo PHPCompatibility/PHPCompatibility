@@ -16,7 +16,13 @@
 class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = '../sniff-examples/utility-functions/get_fqclassname_from_new_token.php';
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'get_fqclassname_from_new_token.php';
 
     /**
      * testGetFQClassNameFromNewToken

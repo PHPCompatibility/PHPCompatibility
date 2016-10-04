@@ -16,7 +16,13 @@
 class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = '../sniff-examples/utility-functions/get_fqextended_classname.php';
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'get_fqextended_classname.php';
 
     /**
      * testGetFQExtendedClassName
