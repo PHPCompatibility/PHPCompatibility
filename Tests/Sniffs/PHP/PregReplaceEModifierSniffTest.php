@@ -142,6 +142,8 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(107),
             array(109),
 
+			// Issue 265 - mixed string quotes.
+            array(157),
         );
     }
 
