@@ -1205,6 +1205,11 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
                                             '5.6' => false,
                                             '7.0' => true
                                         ),
+
+                                        'socket_export_stream' => array(
+                                            '7.0.6' => false,
+                                            '7.0.7' => true
+                                        ),
                                     );
 
 

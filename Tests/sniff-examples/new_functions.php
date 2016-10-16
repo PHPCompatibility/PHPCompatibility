@@ -309,3 +309,4 @@ deflate_add();
 inflate_init();
 deflate_init();
 
+socket_export_stream();

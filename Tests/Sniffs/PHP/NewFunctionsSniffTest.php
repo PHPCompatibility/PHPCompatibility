@@ -382,6 +382,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('inflate_init', '5.6', array(309), '7.0'),
             array('deflate_init', '5.6', array(310), '7.0'),
 
+            array('socket_export_stream', '7.0.6', array(312), '7.1', '7.0'),
         );
     }
 
