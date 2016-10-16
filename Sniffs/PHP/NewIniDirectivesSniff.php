@@ -448,6 +448,15 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             '5.6' => false,
             '7.0' => true,
         ),
+
+        'session.sid_length' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'session.sid_bits_per_character' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
     );
 
     /**
