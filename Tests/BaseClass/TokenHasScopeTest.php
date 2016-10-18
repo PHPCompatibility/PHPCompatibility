@@ -116,4 +116,45 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
         );
     }
 
+
+    /**
+     * testInUseScope
+     *
+     * @group utilityFunctions
+     *
+     * @dataProvider dataInUseScope
+     *
+     * @covers PHPCompatibility_Sniff::inUseScope
+     *
+     * @param int    $stackPtr Stack pointer for an arbitrary token in the test file.
+     * @param string $expected The expected boolean return value.
+     */
+    public function testInUseScope($stackPtr, $expected)
+    {
+        $result = $this->helperClass->inUseScope($this->_phpcsFile, $stackPtr);
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * dataInClassScope
+     *
+     * @see testInClassScope()
+     *
+     * @return array
+     */
+    public function dataInUseScope()
+    {
+        return array(
+            array(235, false),
+            array(244, false),
+            array(255, false),
+            array(269, false),
+            array(283, false),
+            array(303, true),
+            array(327, true),
+            array(351, true),
+            array(375, true),
+        );
+    }
+
 }
