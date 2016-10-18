@@ -117,6 +117,19 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     }
 
     /**
+     * testCorrectUsageUseFunctionConst
+     *
+     * @group forbiddenNames
+     *
+     * @return void
+     */
+    public function testCorrectUsageUseFunctionConst()
+    {
+        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage_use.php', '5.6');
+        $this->assertNoViolation($file);
+    }
+
+    /**
      * Test setting test version option
      *
      * @group forbiddenNames
