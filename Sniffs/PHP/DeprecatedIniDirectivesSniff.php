@@ -181,6 +181,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             '7.0' => true
         ),
 
+        'mcrypt.algorithms_dir' => array(
+            '7.1' => false
+        ),
+        'mcrypt.modes_dir' => array(
+            '7.1' => false
+        ),
         'session.entropy_file' => array(
             '7.1' => true
         ),

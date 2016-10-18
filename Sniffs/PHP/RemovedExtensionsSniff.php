@@ -189,6 +189,11 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
                 '7.0' => 0,
                 'alternative' => null
         ),
+        'mcrypt' => array(
+                '7.0' => 1,
+                '7.1' => -1,
+                'alternative' => 'openssl (preferred) or pecl/mcrypt once available'
+        ),
         'mcve' => array(
                 '5.0' => 1,
                 '5.1' => 0,
