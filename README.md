@@ -39,19 +39,17 @@ Installation (method 1)
 Installation in Composer project (method 2)
 -------------------------------------------
 
-* Add the following lines to the `require-dev` section of your composer.json file.
-
-```json
-"require-dev": {
-   "squizlabs/php_codesniffer": "*",
-   "wimg/php-compatibility": "*",
-   "simplyadmire/composer-plugins" : "@dev",
-   "prefer-stable" : true
-},
-
+* in your app dir
+```bash
+# install with composer
+composer require --dev wimg/php-compatibility
+# enable (this does file copy and register)
+./vendor/bin/phpcompat_enable 
+# enjoy :)
+./vendor/bin/phpcs --standard=PHPCompatibility src/
 ```
-* Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.
-* Use the coding standard with `./vendor/bin/phpcs --standard=PHPCompatibility`
+
+* After a `composer update`, please do `./vendor/bin/phpcompat_disable ; ./vendor/bin/phpcompat_enable`
 
 
 Using the compatibility sniffs
