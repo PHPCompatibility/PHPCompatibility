@@ -1,5 +1,5 @@
 {
-  "name" : "wimg/php-compatibility",
+  "name" : "sincos/phpCompatibility",
   "description" : "This is a set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
   "require" : {
     "php" : ">=5.1.2",
@@ -25,13 +25,5 @@
     "name" : "Wim Godden",
     "role" : "lead"
   } ],
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
-  "scripts": {
-    "post-package-install": [
-      "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rp ./vendor/wimg/php-compatibility vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
-    ],
-    "post-packageupdate": [
-      "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rp ./vendor/wimg/php-compatibility vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
-    ]
-  }
+  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
 }
