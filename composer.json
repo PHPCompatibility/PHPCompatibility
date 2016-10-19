@@ -33,5 +33,5 @@
     "post-packageupdate": [
       "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rp ./vendor/wimg/php-compatibility vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
     ]
-  },
+  }
 }
