@@ -787,6 +787,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *         'name'              => '$var',  // The variable name.
      *         'pass_by_reference' => false,   // Passed by reference.
      *         'type_hint'         => string,  // Type hint for array or custom type
+     *         'nullable_type'     => bool,    // Whether the type given in the type hint is nullable
+     *         'type_hint'         => string,  // Type hint for array or custom type
+     *         'raw'               => string,  // Raw content of the tokens for the parameter
      *        )
      * </code>
      *
@@ -796,6 +799,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
      * class, but with some improvements which will probably be introduced in
      * PHPCS 2.7.1/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
+     * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
      *
      * Once the minimum supported PHPCS version for this sniff library goes beyond
      * that, this method can be removed and calls to it replaced with
@@ -804,8 +808,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Last synced with PHPCS version: PHPCS 2.7.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int $stackPtr The position in the stack of the T_FUNCTION token
-     *                      to acquire the parameters for.
+     * @param int                  $stackPtr  The position in the stack of the
+     *                                        T_FUNCTION token to acquire the
+     *                                        parameters for.
      *
      * @return array|false
      * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
@@ -835,6 +840,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $passByReference = false;
         $variableLength  = false;
         $typeHint        = '';
+        $nullableType    = false;
 
         for ($i = $paramStart; $i <= $closer; $i++) {
             // Check to see if this token has a parenthesis or bracket opener. If it does
@@ -873,7 +879,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             case T_PARENT:
             case T_STATIC:
                 // Self is valid, the others invalid, but were probably intended as type hints.
-                if (isset($defaultStart) === false) {
+                if ($defaultStart === null) {
                     $typeHint = $tokens[$i]['content'];
                 }
                 break;
@@ -912,6 +918,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     $typeHint .= $tokens[$i]['content'];
                 }
                 break;
+            case T_INLINE_THEN:
+                if ($defaultStart === null) {
+                    $nullableType = true;
+                    $typeHint    .= $tokens[$i]['content'];
+                }
+                break;
             case T_CLOSE_PARENTHESIS:
             case T_COMMA:
                 // If it's null, then there must be no parameters for this
@@ -936,7 +948,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 $vars[$paramCount]['pass_by_reference'] = $passByReference;
                 $vars[$paramCount]['variable_length']   = $variableLength;
                 $vars[$paramCount]['type_hint']         = $typeHint;
-                $vars[$paramCount]['raw'] = $rawContent;
+                $vars[$paramCount]['nullable_type']     = $nullableType;
+                $vars[$paramCount]['raw']               = $rawContent;
 
                 // Reset the vars, as we are about to process the next parameter.
                 $defaultStart    = null;
@@ -944,6 +957,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 $passByReference = false;
                 $variableLength  = false;
                 $typeHint        = '';
+                $nullableType    = false;
 
                 $paramCount++;
                 break;
