@@ -15,16 +15,6 @@
  */
 class ForbiddenNamesSniffTest extends BaseSniffTest
 {
-    /**
-     * setUp
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-    }
 
     /**
      * testNamespace
@@ -32,10 +22,14 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      * @group forbiddenNames
      *
      * @dataProvider usecaseProvider
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
      */
     public function testForbiddenNames($usecase)
     {
-
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples
         $filename = "sniff-examples/forbidden-names/$usecase.php";
@@ -51,7 +45,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         // Each line of the use case files (starting at line 3) exhibits an
         // error.
         for ($i = 3; $i < $lineCount; $i++) {
-            $this->assertError($file, $i, "Function name, class name, namespace name or constant name can not be reserved keyword");
+            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
         }
 
     }
@@ -101,8 +95,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         if (ini_get('date.timezone') == false) {
             ini_set('date.timezone', 'America/Chicago');
         }
-        $file = $this->sniffFile("sniff-examples/forbidden_names_correct_usage.php");
 
+        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage.php');
         $this->assertNoViolation($file);
     }
 
@@ -128,8 +122,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile("sniff-examples/forbidden-names/class.php", '4.4');
-
+        $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4');
         $this->assertNoViolation($file, 3);
     }
 }

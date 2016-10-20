@@ -167,7 +167,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         $tokens = $phpcsFile->getTokens();
 
         /**
-         * We distinguish between the class, function and namespace names or the define statements.
+         * We distinguish between the class, function and namespace names vs the define statements.
          */
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {
             $this->processString($phpcsFile, $stackPtr, $tokens);
@@ -273,7 +273,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         // Special case for 5.3 where we want to find usage of traits, but
         // trait is not a token.
         if ($tokenContentLc === 'trait') {
-            return $this->processNonString($phpcsFile, $stackPtr, $tokens);
+            $this->processNonString($phpcsFile, $stackPtr, $tokens);
+            return;
         }
 
         // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).

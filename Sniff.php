@@ -408,6 +408,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * @param int                  $stackPtr    The position of the token.
      * @param array|int            $validScopes Optional. Array of valid scopes
      *                                          or int value of a valid scope.
+     *                                          Pass the T_.. constant(s) for the
+     *                                          desired scope to this parameter.
      *
      * @return bool Without the optional $scopeTypes: True if within a scope, false otherwise.
      *              If the $scopeTypes are set: True if *one* of the conditions is a
@@ -443,8 +445,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         // Check for required scope types.
-        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
-            if (in_array($type, $validScopes, true)) {
+        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $tokenCode) {
+            if (in_array($tokenCode, $validScopes, true)) {
                 return true;
             }
         }
@@ -482,7 +484,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * PHPCS cross-version compatibility method.
      *
      * In PHPCS 1.x no conditions are set for a scoped use statement.
-     * This method works round that limitation.
+     * This method works around that limitation.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the token.
