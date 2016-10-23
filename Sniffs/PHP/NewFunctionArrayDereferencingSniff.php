@@ -75,7 +75,11 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
         $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
         $nextNonEmpty     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($closeParenthesis + 1), null, true, null, true);
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET') {
-            $phpcsFile->addError('Function array dereferencing is not present in PHP version 5.3 or earlier', $nextNonEmpty);
+            $phpcsFile->addError(
+                'Function array dereferencing is not present in PHP version 5.3 or earlier',
+                $nextNonEmpty,
+                'Found'
+            );
         }
 
     }//end process()

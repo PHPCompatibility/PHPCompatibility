@@ -56,7 +56,11 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
             return;
         }
 
-        $phpcsFile->addError('Anonymous classes are not supported in PHP 5.6 or earlier', $stackPtr);
+        $phpcsFile->addError(
+            'Anonymous classes are not supported in PHP 5.6 or earlier',
+            $stackPtr,
+            'Found'
+        );
 
     }//end process()
 

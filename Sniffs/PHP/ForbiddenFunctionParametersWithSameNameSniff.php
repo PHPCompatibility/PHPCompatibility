@@ -69,7 +69,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
         }
 
         if (count($paramNames) != count(array_unique($paramNames))) {
-            $phpcsFile->addError('Functions can not have multiple parameters with the same name since PHP 7.0', $stackPtr);
+            $phpcsFile->addError(
+                'Functions can not have multiple parameters with the same name since PHP 7.0',
+                $stackPtr,
+                'Found'
+            );
         }
 
     }//end process()

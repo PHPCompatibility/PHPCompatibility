@@ -108,24 +108,31 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
             }
 
             if ($supportsPHP4 === true) {
-                $error = 'Type hints were not present in PHP 4.4 or earlier.';
-                $phpcsFile->addError($error, $stackPtr, 'TypeHintFound');
+                $phpcsFile->addError(
+                    'Type hints were not present in PHP 4.4 or earlier.',
+                    $stackPtr,
+                    'TypeHintFound'
+                );
             }
             else if (isset($this->newTypes[$param['type_hint']])) {
                 $this->addError($phpcsFile, $stackPtr, $param['type_hint']);
             }
             else if (isset($this->invalidTypes[$param['type_hint']])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
-                $data = array(
+                $data  = array(
                     $param['type_hint'],
                     $this->invalidTypes[$param['type_hint']],
                 );
+
                 $phpcsFile->addError($error, $stackPtr, 'InvalidTypeHintFound', $data);
             }
             else if ($param['type_hint'] === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr) === false) {
-                    $error = "'self' type cannot be used outside of class scope";
-                    $phpcsFile->addError($error, $stackPtr, 'SelfOutsideClassScopeFound');
+                    $phpcsFile->addError(
+                        "'self' type cannot be used outside of class scope",
+                        $stackPtr,
+                        'SelfOutsideClassScopeFound'
+                    );
                 }
             }
         }

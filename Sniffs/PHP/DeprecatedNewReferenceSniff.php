@@ -50,15 +50,17 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompati
         if ($this->supportsAbove('5.3')) {
             $tokens = $phpcsFile->getTokens();
             if ($tokens[$stackPtr - 1]['type'] == 'T_BITWISE_AND' || $tokens[$stackPtr - 2]['type'] == 'T_BITWISE_AND') {
-                $error   = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
-                $isError = false;
+                $error     = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
+                $isError   = false;
+                $errorCode = 'Deprecated';
 
                 if ($this->supportsAbove('7.0')) {
-                    $error  .= ' and forbidden in PHP 7.0';
-                    $isError = true;
+                    $error    .= ' and forbidden in PHP 7.0';
+                    $isError   = true;
+                    $errorCode = 'Forbidden';
                 }
 
-                $this->addMessage($phpcsFile, $error, $stackPtr, $isError);
+                $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
             }
         }
 

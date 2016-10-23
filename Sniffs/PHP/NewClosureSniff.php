@@ -45,7 +45,11 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2')) {
-            $phpcsFile->addError('Closures / anonymous functions are not available in PHP 5.2 or earlier', $stackPtr);
+            $phpcsFile->addError(
+                'Closures / anonymous functions are not available in PHP 5.2 or earlier',
+                $stackPtr,
+                'Found'
+            );
         }
     }//end process()
 

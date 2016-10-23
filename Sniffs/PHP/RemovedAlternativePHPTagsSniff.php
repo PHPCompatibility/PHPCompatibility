@@ -111,8 +111,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
         }
 
         if (isset($errorCode, $data)) {
-            $error = '%s style opening tags have been removed in PHP 7.0. Found "%s"';
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+            $phpcsFile->addError(
+                '%s style opening tags have been removed in PHP 7.0. Found "%s"',
+                $stackPtr,
+                $errorCode,
+                $data
+            );
             return;
         }
 

@@ -81,8 +81,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
             }
 
             if ($error === true) {
-                $error = 'Empty list() assignments are not allowed since PHP 7.0';
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError(
+                    'Empty list() assignments are not allowed since PHP 7.0',
+                    $stackPtr,
+                    'Found'
+                );
             }
         }
     }

@@ -52,13 +52,19 @@ class PHPCompatibility_Sniffs_PHP_LateStaticBindingSniff extends PHPCompatibilit
         $inClass = $this->inClassScope($phpcsFile, $stackPtr, false);
 
         if ($inClass === true && $this->supportsBelow('5.2') === true) {
-            $error = 'Late static binding is not supported in PHP 5.2 or earlier.';
-            $phpcsFile->addError($error, $stackPtr, 'Found');
+            $phpcsFile->addError(
+                'Late static binding is not supported in PHP 5.2 or earlier.',
+                $stackPtr,
+                'Found'
+            );
         }
 
         if ($inClass === false) {
-            $error = 'Late static binding is not supported outside of class scope.';
-            $phpcsFile->addError($error, $stackPtr, 'OutsideClassScope');
+            $phpcsFile->addError(
+                'Late static binding is not supported outside of class scope.',
+                $stackPtr,
+                'OutsideClassScope'
+            );
         }
 
     }//end process()
