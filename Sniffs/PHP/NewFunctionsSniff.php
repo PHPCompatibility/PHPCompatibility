@@ -24,7 +24,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $forbiddenFunctions = array(
+    protected $newFunctions = array(
                                         'array_fill_keys' => array(
                                             '5.1' => false,
                                             '5.2' => true
@@ -1246,7 +1246,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      *
      * @var array
      */
-    private $forbiddenFunctionNames;
+    private $newFunctionNames;
 
 
     /**
@@ -1256,11 +1256,11 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what forbidden functions
+        // Everyone has had a chance to figure out what new functions
         // they want to check for, so now we can cache out the list.
-        $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
-        $this->forbiddenFunctionNames = array_map('strtolower', $this->forbiddenFunctionNames);
-        $this->forbiddenFunctions     = array_combine($this->forbiddenFunctionNames, $this->forbiddenFunctions);
+        $this->newFunctionNames = array_keys($this->newFunctions);
+        $this->newFunctionNames = array_map('strtolower', $this->newFunctionNames);
+        $this->newFunctions     = array_combine($this->newFunctionNames, $this->newFunctions);
 
         return array(T_STRING);
 
@@ -1298,7 +1298,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
         $function = strtolower($tokens[$stackPtr]['content']);
 
-        if (in_array($function, $this->forbiddenFunctionNames) === false) {
+        if (in_array($function, $this->newFunctionNames) === false) {
             return;
         }
 
@@ -1323,7 +1323,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         $error      = '';
 
         $isError = false;
-        foreach ($this->forbiddenFunctions[$functionLc] as $version => $present) {
+        foreach ($this->newFunctions[$functionLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
                     $isError = true;

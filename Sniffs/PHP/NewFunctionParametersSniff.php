@@ -744,7 +744,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what forbidden functions
+        // Everyone has had a chance to figure out what functions
         // they want to check for, so now we can cache out the list.
         $this->newFunctionParametersNames = array_keys($this->newFunctionParameters);
 

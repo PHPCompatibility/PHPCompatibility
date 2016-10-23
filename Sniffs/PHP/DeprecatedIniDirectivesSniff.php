@@ -257,18 +257,18 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
 
         $error = '';
 
-        foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $forbidden)
+        foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $removed)
         {
             if ($version !== 'alternative') {
                 if ($this->supportsAbove($version)) {
-                    if ($forbidden === true) {
+                    if ($removed === true) {
                         $isError = ($function !== 'ini_get') ? true : false;
-                        $error .= " forbidden";
+                        $error .= " removed";
                     } else {
                         $isError = false;
                         $error .= " deprecated";
                     }
-                    $error .= " from PHP " . $version . " and";
+                    $error .= " since PHP " . $version . " and";
                 }
             }
         }

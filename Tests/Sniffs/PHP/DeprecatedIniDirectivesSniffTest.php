@@ -34,25 +34,25 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     }
 
     /**
-     * testDeprecatedForbiddenDirectives
+     * testDeprecatedRemovedDirectives
      *
      * @group IniDirectives
      *
-     * @dataProvider dataDeprecatedForbiddenDirectives
+     * @dataProvider dataDeprecatedRemovedDirectives
      *
      * @param string $iniName           Name of the ini directive.
      * @param string $deprecatedIn      The PHP version in which the ini directive was deprecated.
-     * @param string $forbiddenIn       The PHP version in which the ini directive was forbidden.
+     * @param string $removedIn         The PHP version in which the ini directive was removed.
      * @param array  $lines             The line numbers in the test file which apply to this ini directive.
      * @param string $okVersion         A PHP version in which the ini directive was still valid.
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
      *                                  if different from the $deprecatedIn version.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $removedVersion    Optional PHP version to test removed message with -
+     *                                  if different from the $removedIn version.
      *
      * @return void
      */
-    public function testDeprecatedForbiddenDirectives($iniName, $deprecatedIn, $forbiddenIn, $lines, $okVersion, $deprecatedVersion = null, $forbiddenVersion = null)
+    public function testDeprecatedRemovedDirectives($iniName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
@@ -66,27 +66,27 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated from PHP {$deprecatedIn}.");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}.");
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is deprecated from PHP {$deprecatedIn} and forbidden from PHP {$forbiddenIn}");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is deprecated from PHP {$deprecatedIn} and forbidden from PHP {$forbiddenIn}");
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
     }
 
     /**
      * Data provider.
      *
-     * @see testDeprecatedForbiddenDirectives()
+     * @see testDeprecatedRemovedDirectives()
      *
      * @return array
      */
-    public function dataDeprecatedForbiddenDirectives()
+    public function dataDeprecatedRemovedDirectives()
     {
         return array(
             array('define_syslog_variables', '5.3', '5.4', array(3, 4), '5.2'),
@@ -142,7 +142,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated from PHP {$deprecatedIn}.");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}.");
         }
     }
 
@@ -173,47 +173,47 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
 
     /**
-     * testForbiddenWithAlternative
+     * testRemovedWithAlternative
      *
      * @group IniDirectives
      *
-     * @dataProvider dataForbiddenWithAlternative
+     * @dataProvider dataRemovedWithAlternative
      *
-     * @param string $iniName           Name of the ini directive.
-     * @param string $forbiddenIn       The PHP version in which the ini directive was forbidden.
-     * @param string $alternative       An alternative ini directive for the forbidden directive.
-     * @param array  $lines             The line numbers in the test file which apply to this ini directive.
-     * @param string $okVersion         A PHP version in which the ini directive was still valid.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $iniName        Name of the ini directive.
+     * @param string $removedIn      The PHP version in which the ini directive was removed.
+     * @param string $alternative    An alternative ini directive for the removed directive.
+     * @param array  $lines          The line numbers in the test file which apply to this ini directive.
+     * @param string $okVersion      A PHP version in which the ini directive was still valid.
+     * @param string $removedVersion Optional PHP version to test removed message with -
+     *                               if different from the $removedIn version.
      *
      * @return void
      */
-    public function testForbiddenWithAlternative($iniName, $forbiddenIn, $alternative, $lines, $okVersion, $forbiddenVersion = null)
+    public function testRemovedWithAlternative($iniName, $removedIn, $alternative, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is forbidden from PHP {$forbiddenIn}. Use '{$alternative}' instead.");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is forbidden from PHP {$forbiddenIn}. Use '{$alternative}' instead.");
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}. Use '{$alternative}' instead.");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}. Use '{$alternative}' instead.");
     }
 
     /**
      * Data provider.
      *
-     * @see testForbiddenWithAlternative()
+     * @see testRemovedWithAlternative()
      *
      * @return array
      */
-    public function dataForbiddenWithAlternative()
+    public function dataRemovedWithAlternative()
     {
         return array(
             array('fbsql.batchSize', '5.1', 'fbsql.batchsize', array(89, 90), '5.0'),
@@ -223,46 +223,46 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     }
 
     /**
-     * testForbiddenDirectives
+     * testRemovedDirectives
      *
      * @group IniDirectives
      *
-     * @dataProvider dataForbiddenDirectives
+     * @dataProvider dataRemovedDirectives
      *
-     * @param string $iniName           Name of the ini directive.
-     * @param string $forbiddenIn       The PHP version in which the ini directive was forbidden.
-     * @param array  $lines             The line numbers in the test file which apply to this ini directive.
-     * @param string $okVersion         A PHP version in which the ini directive was still valid.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $iniName        Name of the ini directive.
+     * @param string $removedIn      The PHP version in which the ini directive was removed.
+     * @param array  $lines          The line numbers in the test file which apply to this ini directive.
+     * @param string $okVersion      A PHP version in which the ini directive was still valid.
+     * @param string $removedVersion Optional PHP version to test removed message with -
+     *                               if different from the $removedIn version.
      *
      * @return void
      */
-    public function testForbiddenDirectives($iniName, $forbiddenIn, $lines, $okVersion, $forbiddenVersion = null)
+    public function testRemovedDirectives($iniName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is forbidden from PHP {$forbiddenIn}.");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is forbidden from PHP {$forbiddenIn}.");
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}.");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}.");
     }
 
     /**
      * Data provider.
      *
-     * @see testForbiddenDirectives()
+     * @see testRemovedDirectives()
      *
      * @return array
      */
-    public function dataForbiddenDirectives()
+    public function dataRemovedDirectives()
     {
         return array(
             array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.1', '5.3'),

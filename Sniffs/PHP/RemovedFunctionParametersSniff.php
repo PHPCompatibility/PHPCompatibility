@@ -69,7 +69,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what forbidden functions
+        // Everyone has had a chance to figure out what removed function parameters
         // they want to check for, so now we can cache out the list.
         $this->removedFunctionParametersNames = array_keys($this->removedFunctionParameters);
 
