@@ -168,11 +168,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                 $function,
             );
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-            }
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
 
     }//end addError()

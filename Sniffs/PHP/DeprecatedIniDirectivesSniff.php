@@ -280,11 +280,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
                 $error .= " Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
             }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $iniToken['end']);
-            } else {
-                $phpcsFile->addWarning($error, $iniToken['end']);
-            }
+            $this->addMessage($phpcsFile, $error, $iniToken['end'], $isError);
         }
 
     }//end process()

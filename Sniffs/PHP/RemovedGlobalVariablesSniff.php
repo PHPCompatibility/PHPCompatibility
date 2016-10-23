@@ -92,11 +92,8 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
                 $error .= ' - use %s instead.';
                 $data[] = $versionList['alternative'];
             }
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-            }
+
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'Found', $data);
         }
 
     }//end process()

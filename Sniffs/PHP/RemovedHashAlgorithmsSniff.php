@@ -147,11 +147,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
         // Remove the last 'and' from the message.
         $error = substr($error, 0, strlen($error) - 5);
 
-        if ($errorInfo['error'] === true) {
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-        }
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
 
     }//end addError()
 

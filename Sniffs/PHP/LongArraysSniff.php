@@ -107,10 +107,6 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
             $tokens[$stackPtr]['content']
         );
 
-        if ($isError === true) {
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-        }
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'Found', $data);
     }
 }

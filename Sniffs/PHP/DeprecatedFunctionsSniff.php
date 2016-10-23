@@ -860,11 +860,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                 $error .= '; use ' . $this->removedFunctions[$function]['alternative'] . ' instead';
             }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError);
         }
 
     }//end addError()

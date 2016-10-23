@@ -530,11 +530,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
                 $data[] = $this->newIniDirectives[$filteredToken]['alternative'];
             }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $iniToken['end'], 'Found', $data);
-            } else {
-                $phpcsFile->addWarning($error, $iniToken['end'], 'Found', $data);
-            }
+            $this->addMessage($phpcsFile, $error, $iniToken['end'], $isError, 'Found', $data);
         }
 
     }//end process()

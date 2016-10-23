@@ -100,11 +100,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends
             $error  .= ' and will throw a fatal error since PHP 7.0';
         }
 
-        if ($isError === true) {
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-        }
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'Found', $data);
 
     }//end process()
 

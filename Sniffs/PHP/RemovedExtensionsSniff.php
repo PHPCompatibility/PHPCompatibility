@@ -439,11 +439,8 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
                     if (!is_null($versionList['alternative'])) {
                         $error .= ' - use ' . $versionList['alternative'] . ' instead.';
                     }
-                    if ($isErrored === true) {
-                        $phpcsFile->addError($error, $stackPtr);
-                    } else {
-                        $phpcsFile->addWarning($error, $stackPtr);
-                    }
+
+                    $this->addMessage($phpcsFile, $error, $stackPtr, $isErrored);
                 }
             }
         }
