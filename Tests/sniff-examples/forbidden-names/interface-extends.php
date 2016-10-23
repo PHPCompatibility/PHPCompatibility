@@ -57,14 +57,3 @@ interface Foobar extends __FILE__ {}
 interface Foobar extends __FUNCTION__ {}
 interface Foobar extends __METHOD__ {}
 interface Foobar extends __NAMESPACE__ {}
-interface Foobar extends bool {}
-interface Foobar extends int {}
-interface Foobar extends float {}
-interface Foobar extends string {}
-interface Foobar extends null {}
-interface Foobar extends true {}
-interface Foobar extends false {}
-interface Foobar extends resource {}
-interface Foobar extends object {}
-interface Foobar extends mixed {}
-interface Foobar extends numeric {}

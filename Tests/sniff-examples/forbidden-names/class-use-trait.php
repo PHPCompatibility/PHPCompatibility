@@ -57,14 +57,3 @@ class Foobar { use __FILE__ }
 class Foobar { use __FUNCTION__ }
 class Foobar { use __METHOD__ }
 class Foobar { use __NAMESPACE__ }
-class Foobar { use bool }
-class Foobar { use int }
-class Foobar { use float }
-class Foobar { use string }
-class Foobar { use null }
-class Foobar { use true }
-class Foobar { use false }
-class Foobar { use resource }
-class Foobar { use object }
-class Foobar { use mixed }
-class Foobar { use numeric }

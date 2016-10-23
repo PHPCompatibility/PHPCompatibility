@@ -57,14 +57,3 @@ class Foobar { use BazTrait { oldfunction as protected __FILE__ } }
 class Foobar { use BazTrait { oldfunction as protected __FUNCTION__ } }
 class Foobar { use BazTrait { oldfunction as protected __METHOD__ } }
 class Foobar { use BazTrait { oldfunction as protected __NAMESPACE__ } }
-class Foobar { use BazTrait { oldfunction as protected bool } }
-class Foobar { use BazTrait { oldfunction as protected int } }
-class Foobar { use BazTrait { oldfunction as protected float } }
-class Foobar { use BazTrait { oldfunction as protected string } }
-class Foobar { use BazTrait { oldfunction as protected null } }
-class Foobar { use BazTrait { oldfunction as protected true } }
-class Foobar { use BazTrait { oldfunction as protected false } }
-class Foobar { use BazTrait { oldfunction as protected resource } }
-class Foobar { use BazTrait { oldfunction as protected object } }
-class Foobar { use BazTrait { oldfunction as protected mixed } }
-class Foobar { use BazTrait { oldfunction as protected numeric } }

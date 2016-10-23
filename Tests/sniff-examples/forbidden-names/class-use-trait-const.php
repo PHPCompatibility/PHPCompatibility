@@ -57,14 +57,3 @@ class Foobar { use const __FILE__ }
 class Foobar { use const __FUNCTION__ }
 class Foobar { use const __METHOD__ }
 class Foobar { use const __NAMESPACE__ }
-class Foobar { use const bool }
-class Foobar { use const int }
-class Foobar { use const float }
-class Foobar { use const string }
-class Foobar { use const null }
-class Foobar { use const true }
-class Foobar { use const false }
-class Foobar { use const resource }
-class Foobar { use const object }
-class Foobar { use const mixed }
-class Foobar { use const numeric }

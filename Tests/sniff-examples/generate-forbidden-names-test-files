@@ -66,17 +66,6 @@ $invalidNames = array(
     '__FUNCTION__' => 'all',
     '__METHOD__' => 'all',
     '__NAMESPACE__' => '5.3',
-    'bool' => '7.0',
-    'int' => '7.0',
-    'float' => '7.0',
-    'string' => '7.0',
-    'null' => '7.0',
-    'true' => '7.0',
-    'false' => '7.0',
-    'resource' => '7.0',
-    'object' => '7.0',
-    'mixed' => '7.0',
-    'numeric' => '7.0'
 );
 
 echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";

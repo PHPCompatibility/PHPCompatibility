@@ -57,14 +57,3 @@ interface __FILE__ {}
 interface __FUNCTION__ {}
 interface __METHOD__ {}
 interface __NAMESPACE__ {}
-interface bool {}
-interface int {}
-interface float {}
-interface string {}
-interface null {}
-interface true {}
-interface false {}
-interface resource {}
-interface object {}
-interface mixed {}
-interface numeric {}
