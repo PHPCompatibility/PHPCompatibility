@@ -38,11 +38,48 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
 
    /**
+     * testStringToErrorCode
+     *
+     * @group utilityFunctions
+     *
+     * @dataProvider dataStringToErrorCode
+     *
+     * @covers PHPCompatibility_Sniff::stringToErrorCode
+     *
+     * @param string $input    The input string.
+     * @param string $expected The expected error code.
+     */
+    public function testStringToErrorCode($input, $expected)
+    {
+        $this->assertSame($expected, $this->helperClass->stringToErrorCode($input));
+    }
+
+    /**
+     * dataStringToErrorCode
+     *
+     * @see testStringToErrorCode()
+     *
+     * @return array
+     */
+    public function dataStringToErrorCode()
+    {
+        return array(
+            array('dir_name', 'dir_name'), // No change.
+            array('soap.wsdl_cache', 'soap_wsdl_cache'), // No dot.
+            array('arbitrary-string with space', 'arbitrary_string_with_space'), // No dashes, no spaces.
+            array('^%*&%*€יבר', '__________'), // No non alpha-numeric characters.
+        );
+    }
+
+
+   /**
      * testStripQuotes
      *
      * @group utilityFunctions
      *
      * @dataProvider dataStripQuotes
+     *
+     * @covers PHPCompatibility_Sniff::stripQuotes
      *
      * @param string $input    The input string.
      * @param string $expected The expected function output.

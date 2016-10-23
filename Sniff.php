@@ -154,6 +154,21 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Convert an arbitrary string to an alphanumeric string with underscores.
+     *
+     * Pre-empt issues with arbitrary strings being used as error codes in XML and PHP.
+     *
+     * @param string $baseString Arbitrary string.
+     *
+     * @return string
+     */
+    public function stringToErrorCode($baseString)
+    {
+        return preg_replace('`[^a-z0-9_]`i', '_', strtolower($baseString));
+    }
+
+
+    /**
      * Strip quotes surrounding an arbitrary string.
      *
      * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING.
