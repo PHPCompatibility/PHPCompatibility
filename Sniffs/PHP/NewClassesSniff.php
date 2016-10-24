@@ -194,9 +194,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
     public function register()
     {
         // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->newClasses );
-        $keys = array_map( 'strtolower', $keys );
-        $this->newClasses = array_combine( $keys, $this->newClasses );
+        $this->newClasses = $this->arrayKeysToLowercase($this->newClasses);
 
         return array(
                 T_NEW,

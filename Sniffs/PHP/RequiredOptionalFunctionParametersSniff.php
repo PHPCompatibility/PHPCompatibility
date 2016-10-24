@@ -52,6 +52,9 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
      */
     public function register()
     {
+        // Handle case-insensitivity of function names.
+        $this->functionParameters = $this->arrayKeysToLowercase($this->functionParameters);
+
         return array(T_STRING);
     }//end register()
 
@@ -81,9 +84,10 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (isset($this->functionParameters[$function]) === false) {
+        if (isset($this->functionParameters[$functionLc]) === false) {
             return;
         }
 
@@ -98,7 +102,7 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
         $requiredVersion      = null;
         $parameterName        = null;
 
-        foreach($this->functionParameters[$function] as $offset => $parameterDetails) {
+        foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
                 foreach ($parameterDetails as $version => $present) {
                     if ($version !== 'name' && $present === true && $this->supportsBelow($version)) {

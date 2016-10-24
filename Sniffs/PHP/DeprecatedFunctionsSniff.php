@@ -757,14 +757,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                         ),
                                     );
 
-    /**
-     * List of just the function names.
-     *
-     * Will be set automatically in the register() method.
-     *
-     * @var array
-     */
-    protected $removedFunctionNames = array();
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -773,9 +765,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what removed functions
-        // they want to check for, so now we can cache out the list.
-        $this->removedFunctionNames = array_keys($this->removedFunctions);
+        // Handle case-insensitivity of function names.
+        $this->removedFunctions = $this->arrayKeysToLowercase($this->removedFunctions);
 
         return array(T_STRING);
 
@@ -810,13 +801,14 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->removedFunctionNames) === false) {
+        if (isset($this->removedFunctions[$functionLc]) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $function);
+        $this->addError($phpcsFile, $stackPtr, $functionLc);
 
     }//end process()
 

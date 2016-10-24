@@ -1243,24 +1243,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
 
     /**
-     *
-     * @var array
-     */
-    private $newFunctionNames;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what new functions
-        // they want to check for, so now we can cache out the list.
-        $this->newFunctionNames = array_keys($this->newFunctions);
-        $this->newFunctionNames = array_map('strtolower', $this->newFunctionNames);
-        $this->newFunctions     = array_combine($this->newFunctionNames, $this->newFunctions);
+        // Handle case-insensitivity of function names.
+        $this->newFunctions = $this->arrayKeysToLowercase($this->newFunctions);
 
         return array(T_STRING);
 
@@ -1296,13 +1286,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->newFunctionNames) === false) {
+        if (isset($this->newFunctions[$functionLc]) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+        $this->addError($phpcsFile, $stackPtr, $function);
 
     }//end process()
 

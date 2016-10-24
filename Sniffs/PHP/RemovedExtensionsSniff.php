@@ -175,6 +175,9 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
      */
     public function register()
     {
+        // Handle case-insensitivity of function names.
+        $this->removedExtensions = $this->arrayKeysToLowercase($this->removedExtensions);
+
         return array(T_STRING);
 
     }//end register()
@@ -224,13 +227,16 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             return;
         }
 
-        if($this->isWhiteListed(strtolower($tokens[$stackPtr]['content'])) === true){
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
+
+        if($this->isWhiteListed($functionLc) === true){
             // Function is whitelisted.
             return;
         }
 
         foreach ($this->removedExtensions as $extension => $versionList) {
-            if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
+            if (strpos($functionLc, $extension) === 0) {
                 $error = '';
                 $isError = false;
                 $previousStatus = null;

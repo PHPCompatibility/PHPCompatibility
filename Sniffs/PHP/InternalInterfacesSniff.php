@@ -40,10 +40,8 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
      */
     public function register()
     {
-        // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->internalInterfaces );
-        $keys = array_map( 'strtolower', $keys );
-        $this->internalInterfaces = array_combine( $keys, $this->internalInterfaces );
+        // Handle case-insensitivity of interface names.
+        $this->internalInterfaces = $this->arrayKeysToLowercase($this->internalInterfaces);
 
         return array(T_CLASS);
 

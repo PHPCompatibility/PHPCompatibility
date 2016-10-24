@@ -87,14 +87,9 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
      */
     public function register()
     {
-        // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->newInterfaces );
-        $keys = array_map( 'strtolower', $keys );
-        $this->newInterfaces = array_combine( $keys, $this->newInterfaces );
-
-        $keys = array_keys( $this->unsupportedMethods );
-        $keys = array_map( 'strtolower', $keys );
-        $this->unsupportedMethods = array_combine( $keys, $this->unsupportedMethods );
+        // Handle case-insensitivity of interface names.
+        $this->newInterfaces      = $this->arrayKeysToLowercase($this->newInterfaces);
+        $this->unsupportedMethods = $this->arrayKeysToLowercase($this->unsupportedMethods);
 
         return array(T_CLASS);
 

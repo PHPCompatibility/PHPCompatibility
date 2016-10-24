@@ -731,22 +731,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     *
-     * @var array
-     */
-    private $newFunctionParametersNames;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what functions
-        // they want to check for, so now we can cache out the list.
-        $this->newFunctionParametersNames = array_keys($this->newFunctionParameters);
+        // Handle case-insensitivity of function names.
+        $this->newFunctionParameters = $this->arrayKeysToLowercase($this->newFunctionParameters);
 
         return array(T_STRING);
     }//end register()
@@ -779,7 +771,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
         $function = strtolower($tokens[$stackPtr]['content']);
 
-        if (in_array($function, $this->newFunctionParametersNames) === false) {
+        if (isset($this->newFunctionParameters[$function]) === false) {
             return;
         }
 

@@ -56,22 +56,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
 
     /**
-     *
-     * @var array
-     */
-    private $removedFunctionParametersNames;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what removed function parameters
-        // they want to check for, so now we can cache out the list.
-        $this->removedFunctionParametersNames = array_keys($this->removedFunctionParameters);
+        // Handle case-insensitivity of function names.
+        $this->removedFunctionParameters = $this->arrayKeysToLowercase($this->removedFunctionParameters);
 
         return array(T_STRING);
     }//end register()
@@ -104,7 +96,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
         $function = strtolower($tokens[$stackPtr]['content']);
 
-        if (in_array($function, $this->removedFunctionParametersNames) === false) {
+        if (isset($this->removedFunctionParameters[$function]) === false) {
             return;
         }
 
