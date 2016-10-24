@@ -816,10 +816,8 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
     {
         $error = '';
 
-        $isError = false;
         foreach ($this->newFunctionParameters[$function][$parameterLocation] as $version => $present) {
             if ($version != 'name' && $present === false && $this->supportsBelow($version)) {
-                $isError = true;
                 $error .= 'in PHP version ' . $version . ' or earlier';
                 break;
             }
@@ -828,11 +826,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' does not have a parameter "' . $this->newFunctionParameters[$function][$parameterLocation]['name'] . '" ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+            $phpcsFile->addError($error, $stackPtr);
         }
 
     }//end addError()

@@ -1322,11 +1322,9 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         $functionLc = strtolower($function);
         $error      = '';
 
-        $isError = false;
         foreach ($this->newFunctions[$functionLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -1334,11 +1332,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
         if (strlen($error) > 0) {
             $error = 'The function ' . $function . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+            $phpcsFile->addError($error, $stackPtr);
         }
 
     }//end addError()

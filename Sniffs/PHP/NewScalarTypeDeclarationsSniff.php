@@ -146,11 +146,9 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
     {
         $error = '';
 
-        $isError = false;
         foreach ($this->newTypes[$typeName] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -158,11 +156,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
         if (strlen($error) > 0) {
             $error = "'{$typeName}' type declaration is " . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+            $phpcsFile->addError($error, $stackPtr);
         }
 
     }//end addError()

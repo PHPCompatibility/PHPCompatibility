@@ -141,13 +141,11 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
      */
     protected function maybeAddError($phpcsFile, $stackPtr, $directive)
     {
-        $isError            = false;
         $notInVersion       = '';
         $conditionalVersion = '';
         foreach ($this->newDirectives[$directive] as $version => $present) {
             if (strpos($version, 'valid_') === false && $this->supportsBelow($version)) {
                 if ($present === false) {
-                    $isError      = true;
                     $notInVersion = $version;
                 }
                 else if (is_string($present)) {
@@ -156,8 +154,9 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
                 }
             }
         }
+
         if ($notInVersion !== '' || $conditionalVersion !== '') {
-            if ($isError === true && $notInVersion !== '') {
+            if ($notInVersion !== '') {
                 $error     = 'Directive %s is not present in PHP version %s or earlier';
                 $errorCode = $directive . 'Found';
                 $data      = array(

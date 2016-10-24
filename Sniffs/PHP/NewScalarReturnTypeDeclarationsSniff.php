@@ -97,11 +97,9 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
     {
         $error = '';
 
-        $isError = false;
         foreach ($this->newTypes[$typeName] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -112,11 +110,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
                 $typeName,
             );
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-            }
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
 
     }//end addError()

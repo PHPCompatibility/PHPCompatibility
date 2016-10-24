@@ -264,13 +264,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
     protected function addError($phpcsFile, $stackPtr, $className)
     {
         $error       = '';
-        $isError     = false;
         $classNameLc = strtolower($className);
 
         foreach ($this->newClasses[$classNameLc] as $version => $present) {
             if ($this->supportsBelow($version)) {
                 if ($present === false) {
-                    $isError = true;
                     $error .= 'not present in PHP version ' . $version . ' or earlier';
                 }
             }
@@ -278,11 +276,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
         if (strlen($error) > 0) {
             $error = 'The built-in class ' . $className . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
+            $phpcsFile->addError($error, $stackPtr);
         }
 
     }//end addError()
