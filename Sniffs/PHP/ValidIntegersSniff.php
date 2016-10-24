@@ -69,18 +69,30 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
             return;
         }
 
-        $data = array( $token['content'] );
+        $isError = $this->supportsAbove('7.0');
+        $data    = array( $token['content'] );
+
         if ($this->isInvalidOctalInteger($tokens, $stackPtr) === true) {
-            $error   = 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s';
-            $isError = $this->supportsAbove('7.0');
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'InvalidOctalIntegerFound', $data);
+            $this->addMessage(
+                $phpcsFile,
+                'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s',
+                $stackPtr,
+                $isError,
+                'InvalidOctalIntegerFound',
+                $data
+            );
             return;
         }
 
         if ($this->isHexidecimalNumericString($tokens, $stackPtr) === true) {
-            $error   = 'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: %s';
-            $isError = $this->supportsAbove('7.0');
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'HexNumericStringFound', $data);
+            $this->addMessage(
+                $phpcsFile,
+                'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: %s',
+                $stackPtr,
+                $isError,
+                'HexNumericStringFound',
+                $data
+            );
             return;
         }
 
