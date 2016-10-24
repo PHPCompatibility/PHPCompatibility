@@ -83,17 +83,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
             }
         }
         if (strlen($error) > 0) {
-            $error = "Global variable '%s' is " . $error;
-            $error = substr($error, 0, strlen($error) - 5);
-            $data  = array(
-                $tokens[$stackPtr]['content']
-            );
+            $error     = "Global variable '%s' is " . $error;
+            $error     = substr($error, 0, strlen($error) - 5);
+            $errorCode = $this->stringToErrorCode($varName) . 'Found';
+            $data      = array($tokens[$stackPtr]['content']);
+
             if (isset($versionList['alternative'])) {
                 $error .= ' - use %s instead.';
                 $data[] = $versionList['alternative'];
             }
 
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'Found', $data);
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
 
     }//end process()

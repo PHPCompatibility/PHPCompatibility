@@ -64,10 +64,11 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
+        $tokens  = $phpcsFile->getTokens();
+        $varName = substr($tokens[$stackPtr]['content'], 1);
 
         // Check if the variable name is in our blacklist.
-        if (in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated, true) === false) {
+        if (in_array($varName, $this->deprecated, true) === false) {
             return;
         }
 
@@ -100,13 +101,14 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
         }
 
         // Still here, so throw an error/warning.
-        $error   = "The use of long predefined variables has been deprecated in 5.3%s; Found '%s'";
-        $isError = $this->supportsAbove('5.4');
-        $data    = array(
+        $error     = "The use of long predefined variables has been deprecated in 5.3%s; Found '%s'";
+        $isError   = $this->supportsAbove('5.4');
+        $errorCode = $this->stringToErrorCode($varName) . 'Found';
+        $data      = array(
             ($isError ? ' and removed in 5.4' : ''),
             $tokens[$stackPtr]['content']
         );
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, 'Found', $data);
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
     }
 }

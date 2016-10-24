@@ -132,7 +132,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
     protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
     {
         $error     = 'The %s hash algorithm is ';
-        $errorCode = $algorithm . 'Found';
+        $errorCode = $this->stringToErrorCode($algorithm) . 'Found';
         $data      = array($algorithm);
 
         if ($errorInfo['deprecated'] !== '') {

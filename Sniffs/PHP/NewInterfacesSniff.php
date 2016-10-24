@@ -141,13 +141,15 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
                     }
 
                     if (isset($this->unsupportedMethods[$lcInterface][$funcName]) === true) {
-                        $error = 'Classes that implement interface %s do not support the method %s(). See %s';
-                        $data  = array(
+                        $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
+                        $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
+                        $data      = array(
                             $interface,
                             $funcName,
                             $this->unsupportedMethods[$lcInterface][$funcName],
                         );
-                        $phpcsFile->addError($error, $nextFunc, 'UnsupportedMethod', $data);
+
+                        $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
                     }
                 }
             }

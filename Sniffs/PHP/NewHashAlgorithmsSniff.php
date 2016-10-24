@@ -155,7 +155,7 @@ class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibilit
     protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
     {
         $error     = 'The %s hash algorithm is not present in PHP version %s or earlier ';
-        $errorCode = $algorithm . 'Found';
+        $errorCode = $this->stringToErrorCode($algorithm) . 'Found';
         $data      = array(
             $algorithm,
             $errorInfo['not_in_version'],

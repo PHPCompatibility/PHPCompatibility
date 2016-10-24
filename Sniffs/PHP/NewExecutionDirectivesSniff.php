@@ -111,6 +111,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
                 implode(', ', array_keys($this->newDirectives)),
                 $directiveContent,
             );
+
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
         }
         else {
@@ -158,7 +159,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         if ($notInVersion !== '' || $conditionalVersion !== '') {
             if ($notInVersion !== '') {
                 $error     = 'Directive %s is not present in PHP version %s or earlier';
-                $errorCode = $directive . 'Found';
+                $errorCode = $this->stringToErrorCode($directive) . 'Found';
                 $data      = array(
                     $directive,
                     $notInVersion,
@@ -168,7 +169,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             }
             else if($conditionalVersion !== '') {
                 $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
-                $errorCode = $directive . 'Found';
+                $errorCode = $this->stringToErrorCode($directive) . 'WithConditionFound';
                 $data      = array(
                     $directive,
                     $conditionalVersion,
@@ -215,12 +216,14 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         }
 
         if ($isError === true) {
-            $error = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
-            $data  = array(
+            $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
+            $errorCode = $this->stringToErrorCode($directive) . 'InvalidValueFound';
+            $data      = array(
                 $directive,
                 $value,
             );
-            $phpcsFile->addWarning($error, $stackPtr, 'InvalidDirectiveValueFound', $data);
+
+            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
     }// addErrorOnInvalidValue()
 

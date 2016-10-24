@@ -70,12 +70,14 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
         foreach ($interfaces as $interface) {
             $lcInterface = strtolower($interface);
             if (isset($this->internalInterfaces[$lcInterface]) === true) {
-                $error = 'The interface %s %s';
-                $data  = array(
+                $error     = 'The interface %s %s';
+                $errorCode = $this->stringToErrorCode($lcInterface) . 'Found';
+                $data      = array(
                     $interface,
                     $this->internalInterfaces[$lcInterface],
                 );
-                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+
+                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             }
         }
 

@@ -247,12 +247,14 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
         }
 
         if ($notInVersion !== '') {
-            $error = '%s is not present in PHP version %s or earlier';
-            $data  = array(
+            $error     = '%s is not present in PHP version %s or earlier';
+            $errorCode = $this->stringToErrorCode($keywordName) . 'Found';
+            $data      = array(
                 $this->newKeywords[$keywordName]['description'],
                 $notInVersion,
             );
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
 
     }//end addError()
