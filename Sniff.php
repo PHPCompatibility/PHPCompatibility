@@ -197,6 +197,21 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Make all top level array keys in an array lowercase.
+     *
+     * @param array $array Initial array.
+     *
+     * @return array Same array, but with all lowercase top level keys.
+     */
+    public function arrayKeysToLowercase($array)
+    {
+        $keys = array_keys($array);
+        $keys = array_map('strtolower', $keys);
+        return array_combine($keys, $array);
+    }
+
+
+    /**
      * Returns the name(s) of the interface(s) that the specified class implements.
      *
      * Returns FALSE on error or if there are no implemented interface names.
