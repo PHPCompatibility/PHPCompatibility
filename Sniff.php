@@ -40,6 +40,20 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     );
 
 
+    /**
+     * List of functions which take an ini directive as parameter (always the first parameter).
+     *
+     * Used by the new/removed ini directives sniffs.
+     * Key is the function name, value is the 1-based parameter position in the function call.
+     *
+     * @var array
+     */
+    protected $iniFunctions = array(
+        'ini_get' => 1,
+        'ini_set' => 1,
+    );
+
+
 /* The testVersion configuration variable may be in any of the following formats:
  * 1) Omitted/empty, in which case no version is specified.  This effectively
  *    disables all the checks provided by this standard.

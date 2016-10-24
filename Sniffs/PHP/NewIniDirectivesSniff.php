@@ -500,11 +500,11 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         }
 
         $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function != 'ini_get' && $function != 'ini_set') {
+        if (isset($this->iniFunctions[$function]) === false) {
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$function]);
         if ($iniToken === false) {
             return;
         }
