@@ -499,12 +499,12 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if (isset($this->iniFunctions[$function]) === false) {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$function]);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
         if ($iniToken === false) {
             return;
         }
@@ -523,7 +523,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
 
         if ($notInVersion !== '') {
             $error   = "INI directive '%s' is not present in PHP version %s or earlier";
-            $isError = ($function !== 'ini_get') ? true : false;
+            $isError = ($functionLc !== 'ini_get') ? true : false;
             $data    = array(
                 $filteredToken,
                 $notInVersion

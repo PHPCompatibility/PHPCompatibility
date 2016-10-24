@@ -122,26 +122,27 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
         }
 
         foreach ($interfaces as $interface) {
-            $lcInterface = strtolower($interface);
-            if (isset($this->newInterfaces[$lcInterface]) === true) {
+            $interfaceLc = strtolower($interface);
+            if (isset($this->newInterfaces[$interfaceLc]) === true) {
                 $this->addError($phpcsFile, $stackPtr, $interface);
             }
 
-            if ($checkMethods === true && isset($this->unsupportedMethods[$lcInterface]) === true) {
+            if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
                 $nextFunc = $stackPtr;
                 while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-                    $funcName = strtolower($phpcsFile->getDeclarationName($nextFunc));
-                    if ($funcName === '') {
+                    $funcName   = $phpcsFile->getDeclarationName($nextFunc);
+                    $funcNameLc = strtolower($funcName);
+                    if ($funcNameLc === '') {
                         continue;
                     }
 
-                    if (isset($this->unsupportedMethods[$lcInterface][$funcName]) === true) {
+                    if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
                         $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
                         $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
                         $data      = array(
                             $interface,
                             $funcName,
-                            $this->unsupportedMethods[$lcInterface][$funcName],
+                            $this->unsupportedMethods[$interfaceLc][$funcNameLc],
                         );
 
                         $phpcsFile->addError($error, $nextFunc, $errorCode, $data);

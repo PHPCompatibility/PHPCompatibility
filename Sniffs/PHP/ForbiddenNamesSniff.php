@@ -276,15 +276,15 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
-        $defineName = strtolower($firstParam['raw']);
-        $defineName = $this->stripQuotes($defineName);
+        $defineName   = $this->stripQuotes($firstParam['raw']);
+        $defineNameLc = strtolower($defineName);
 
-        if (isset($this->invalidNames[$defineName]) && $this->supportsAbove($this->invalidNames[$defineName])) {
+        if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
             $data  = array(
                 $defineName,
-                $this->invalidNames[$defineName],
+                $this->invalidNames[$defineNameLc],
             );
-            $this->addError($phpcsFile, $stackPtr, $defineName, $data);
+            $this->addError($phpcsFile, $stackPtr, $defineNameLc, $data);
         }
     }//end processString()
 

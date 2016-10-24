@@ -240,12 +240,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if (isset($this->iniFunctions[$function]) === false) {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$function]);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
         if ($iniToken === false) {
             return;
         }
@@ -262,7 +262,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             if ($version !== 'alternative') {
                 if ($this->supportsAbove($version)) {
                     if ($removed === true) {
-                        $isError = ($function !== 'ini_get') ? true : false;
+                        $isError = ($functionLc !== 'ini_get') ? true : false;
                         $error .= " removed";
                     } else {
                         $isError = false;

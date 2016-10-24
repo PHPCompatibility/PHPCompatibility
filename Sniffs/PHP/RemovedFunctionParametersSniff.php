@@ -94,9 +94,10 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (isset($this->removedFunctionParameters[$function]) === false) {
+        if (isset($this->removedFunctionParameters[$functionLc]) === false) {
             return;
         }
 
@@ -109,7 +110,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->removedFunctionParameters[$function] as $offset => $parameterDetails) {
+        foreach($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
                 $this->addError($phpcsFile, $openParenthesis, $function, $offset);
             }
@@ -131,11 +132,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      */
     protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
     {
+        $functionLc = strtolower($function);
         $error = '';
 
         $isError        = false;
         $previousStatus = null;
-        foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $removed) {
+        foreach ($this->removedFunctionParameters[$functionLc][$parameterLocation] as $version => $removed) {
             if ($version != 'name' && $this->supportsAbove($version)) {
 
                 if ($previousStatus !== $removed) {
@@ -156,7 +158,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
             $error     = substr($error, 0, strlen($error) - 5);
             $errorCode = 'RemovedParameter';
             $data      = array(
-                $this->removedFunctionParameters[$function][$parameterLocation]['name'],
+                $this->removedFunctionParameters[$functionLc][$parameterLocation]['name'],
                 $function,
             );
 

@@ -769,9 +769,10 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (isset($this->newFunctionParameters[$function]) === false) {
+        if (isset($this->newFunctionParameters[$functionLc]) === false) {
             return;
         }
 
@@ -784,7 +785,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->newFunctionParameters[$function] as $offset => $parameterDetails) {
+        foreach($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
                 $this->addError($phpcsFile, $openParenthesis, $function, $offset);
             }
@@ -806,9 +807,10 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
      */
     protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
     {
+        $functionLc = strtolower($function);
         $error = '';
 
-        foreach ($this->newFunctionParameters[$function][$parameterLocation] as $version => $present) {
+        foreach ($this->newFunctionParameters[$functionLc][$parameterLocation] as $version => $present) {
             if ($version != 'name' && $present === false && $this->supportsBelow($version)) {
                 $error .= 'in PHP version ' . $version . ' or earlier';
                 break;
@@ -816,7 +818,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         }
 
         if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' does not have a parameter "' . $this->newFunctionParameters[$function][$parameterLocation]['name'] . '" ' . $error;
+            $error = 'The function ' . $function . ' does not have a parameter "' . $this->newFunctionParameters[$functionLc][$parameterLocation]['name'] . '" ' . $error;
 
             $phpcsFile->addError($error, $stackPtr);
         }

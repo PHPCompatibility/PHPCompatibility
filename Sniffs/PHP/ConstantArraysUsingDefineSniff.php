@@ -63,8 +63,8 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function !== 'define') {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if ($functionLc !== 'define') {
             return;
         }
 
