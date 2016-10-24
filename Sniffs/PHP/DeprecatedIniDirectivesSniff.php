@@ -225,8 +225,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
     {
         $tokens = $phpcsFile->getTokens();
 
-        $isError = false;
-
         $ignore = array(
                    T_DOUBLE_COLON,
                    T_OBJECT_OPERATOR,
@@ -255,34 +253,90 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $error = '';
+        $errorInfo = $this->getErrorInfo($filteredToken, $functionLc);
 
-        foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $removed)
-        {
-            if ($version !== 'alternative') {
-                if ($this->supportsAbove($version)) {
-                    if ($removed === true) {
-                        $isError = ($functionLc !== 'ini_get') ? true : false;
-                        $error .= " removed";
-                    } else {
-                        $isError = false;
-                        $error .= " deprecated";
-                    }
-                    $error .= " since PHP " . $version . " and";
+        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+            $this->addError($phpcsFile, $iniToken['end'], $filteredToken, $errorInfo);
+        }
+
+    }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $iniDirective The name of the ini directive.
+     * @param string $functionLc   The lowercase name of the function used with the ini directive.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($iniDirective, $functionLc)
+    {
+        $errorInfo  = array(
+            'deprecated'  => '',
+            'removed'     => '',
+            'alternative' => '',
+            'error'       => false,
+        );
+
+        foreach ($this->deprecatedIniDirectives[$iniDirective] as $version => $removed) {
+            if ($version !== 'alternative' && $this->supportsAbove($version)) {
+                if ($removed === true && $errorInfo['removed'] === '') {
+                    $errorInfo['removed'] = $version;
+                    $errorInfo['error']   = ($functionLc !== 'ini_get') ? true : false;
+                } elseif($errorInfo['deprecated'] === '') {
+                    $errorInfo['deprecated'] = $version;
                 }
             }
         }
 
-        if (strlen($error) > 0) {
-            $error = "INI directive '" . $filteredToken . "' is" . $error;
-            $error = substr($error, 0, strlen($error) - 4) . ".";
-            if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
-                $error .= " Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
-            }
-
-            $this->addMessage($phpcsFile, $error, $iniToken['end'], $isError);
+        if (isset($this->deprecatedIniDirectives[$iniDirective]['alternative'])) {
+            $errorInfo['alternative'] = $this->deprecatedIniDirectives[$iniDirective]['alternative'];
         }
 
-    }//end process()
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                  $stackPtr     The position of the directive
+     *                                           in the token array.
+     * @param string               $iniDirective The name of the ini directive.
+     * @param array                $errorInfo    Array with details about the versions
+     *                                           in which the ini directive was deprecated
+     *                                           and/or removed.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $iniDirective, $errorInfo)
+    {
+        $error     = "INI directive '%s' is ";
+        $errorCode = $this->stringToErrorCode($iniDirective) . 'Found';
+        $data      = array($iniDirective);
+
+        if($errorInfo['deprecated'] !== '') {
+            $error .= 'deprecated since PHP %s and ';
+            $data[] = $errorInfo['deprecated'];
+        }
+        if($errorInfo['removed'] !== '') {
+            $error .= 'removed since PHP %s and ';
+            $data[] = $errorInfo['removed'];
+        }
+
+        // Remove the last 'and' from the message.
+        $error     = substr($error, 0, strlen($error) - 5) . '.';
+
+        if ($errorInfo['alternative'] !== '') {
+            $error .= " Use '%s' instead.";
+            $data[] = $errorInfo['alternative'];
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+
+    }//end addError()
 
 }//end class

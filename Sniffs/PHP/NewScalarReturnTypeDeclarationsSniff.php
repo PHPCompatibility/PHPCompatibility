@@ -78,40 +78,61 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
     {
         $tokens = $phpcsFile->getTokens();
         if (in_array($tokens[$stackPtr]['content'], array_keys($this->newTypes))) {
-            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+            $errorInfo = $this->getErrorInfo($tokens[$stackPtr]['content']);
+
+            if ($errorInfo['not_in_version'] !== '') {
+                $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content'], $errorInfo);
+            }
         }
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $typeName The return type.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($typeName)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+        );
+
+        foreach ($this->newTypes[$typeName] as $version => $present) {
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
 
 
     /**
      * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
+     * @param int                  $stackPtr  The position of the return type token
      *                                        in the token array.
-     * @param string               $typeName  The type.
+     * @param string               $typeName  The return type.
+     * @param array                $errorInfo Array with details about when the
+     *                                        return type was not (yet) available.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName)
+    protected function addError($phpcsFile, $stackPtr, $typeName, $errorInfo)
     {
-        $error = '';
+        $error     = '%s return type is not present in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($typeName) . 'Found';
+        $data      = array(
+            $typeName,
+            $errorInfo['not_in_version'],
+        );
 
-        foreach ($this->newTypes[$typeName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = '%s return type is ' . $error;
-            $data  = array(
-                $typeName,
-            );
-
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

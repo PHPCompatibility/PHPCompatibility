@@ -1293,38 +1293,62 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $function);
+        $errorInfo = $this->getErrorInfo($functionLc);
+
+        if ($errorInfo['not_in_version'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $function, $errorInfo);
+        }
+
 
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $functionLc The lowercase name of the function.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($functionLc)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+        );
+
+        foreach ($this->newFunctions[$functionLc] as $version => $present) {
+            if ($errorInfo['not_in_version'] === '' && $present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
 
 
     /**
      * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
+     * @param int                  $stackPtr  The position of the function token
      *                                        in the token array.
      * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about when the
+     *                                        function was not (yet) available.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $function)
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
     {
-        $functionLc = strtolower($function);
-        $error      = '';
+        $error     = 'The function %s is not present in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($function) . 'Found';
+        $data      = array(
+            $function,
+            $errorInfo['not_in_version'],
+        );
 
-        foreach ($this->newFunctions[$functionLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' is ' . $error;
-
-            $phpcsFile->addError($error, $stackPtr);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

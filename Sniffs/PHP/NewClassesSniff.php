@@ -244,38 +244,62 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $className);
+        $errorInfo = $this->getErrorInfo($classNameLc);
+
+        if ($errorInfo['not_in_version'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $className, $errorInfo);
+        }
+
 
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $classNameLc The lowercase name of the class.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($classNameLc)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+        );
+
+        foreach ($this->newClasses[$classNameLc] as $version => $present) {
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
 
 
     /**
      * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
+     * @param int                  $stackPtr  The position of the class token
      *                                        in the token array.
      * @param string               $className The name of the class.
+     * @param array                $errorInfo Array with details about when the
+     *                                        class was not (yet) available.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $className)
+    protected function addError($phpcsFile, $stackPtr, $className, $errorInfo)
     {
-        $error       = '';
-        $classNameLc = strtolower($className);
+        $error     = 'The built-in class %s is not present in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($className) . 'Found';
+        $data      = array(
+            $className,
+            $errorInfo['not_in_version'],
+        );
 
-        foreach ($this->newClasses[$classNameLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = 'The built-in class ' . $className . ' is ' . $error;
-
-            $phpcsFile->addError($error, $stackPtr);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

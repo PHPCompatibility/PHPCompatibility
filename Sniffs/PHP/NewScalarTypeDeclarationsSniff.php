@@ -115,7 +115,11 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                 );
             }
             else if (isset($this->newTypes[$param['type_hint']])) {
-                $this->addError($phpcsFile, $stackPtr, $param['type_hint']);
+                $errorInfo = $this->getErrorInfo($param['type_hint']);
+
+                if ($errorInfo['not_in_version'] !== '') {
+                    $this->addError($phpcsFile, $stackPtr, $param['type_hint'], $errorInfo);
+                }
             }
             else if (isset($this->invalidTypes[$param['type_hint']])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
@@ -140,31 +144,51 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
 
 
     /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $typeName The type.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($typeName)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+        );
+
+        foreach ($this->newTypes[$typeName] as $version => $present) {
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
      * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
+     * @param int                  $stackPtr  The position of the class token
      *                                        in the token array.
      * @param string               $typeName  The type.
+     * @param array                $errorInfo Array with details about when the
+     *                                        class was not (yet) available.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName)
+    protected function addError($phpcsFile, $stackPtr, $typeName, $errorInfo)
     {
-        $error = '';
+        $error     = "'%s' type declaration is not present in PHP version %s or earlier";
+        $errorCode = $this->stringToErrorCode($typeName) . 'Found';
+        $data      = array(
+            $typeName,
+            $errorInfo['not_in_version'],
+        );
 
-        foreach ($this->newTypes[$typeName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = "'{$typeName}' type declaration is " . $error;
-
-            $phpcsFile->addError($error, $stackPtr);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

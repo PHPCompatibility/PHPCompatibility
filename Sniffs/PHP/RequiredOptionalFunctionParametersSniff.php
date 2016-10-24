@@ -104,27 +104,71 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
 
         foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
-                foreach ($parameterDetails as $version => $present) {
-                    if ($version !== 'name' && $present === true && $this->supportsBelow($version)) {
-						$requiredVersion = $version;
-						$parameterName   = $parameterDetails['name'];
-                    }
+
+                $errorInfo = $this->getErrorInfo($functionLc, $offset);
+
+                if ($errorInfo['requiredVersion'] !== '') {
+                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
                 }
             }
         }
-        
-        if (isset($requiredVersion, $parameterName)) {
-
-            $error     = 'The "%s" parameter for function %s is missing, but was required for PHP version %s and lower';
-            $errorCode = 'MissingRequiredParameter';
-            $data      = array(
-                          $parameterName,
-                          $function,
-                          $requiredVersion,
-                         );
-            $phpcsFile->addError($error, $openParenthesis, $errorCode, $data);
-		}
 
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $functionLc      The name of the function.
+     * @param int    $parameterOffset The parameter offset within the function call.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($functionLc, $parameterOffset)
+    {
+        $errorInfo  = array(
+            'paramName'       => '',
+            'requiredVersion' => '',
+        );
+
+        $errorInfo['paramName'] = $this->functionParameters[$functionLc][$parameterOffset]['name'];
+
+        foreach ($this->functionParameters[$functionLc][$parameterOffset] as $version => $required) {
+            if ($version !== 'name' && $required === true && $this->supportsBelow($version)) {
+                $errorInfo['requiredVersion'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function
+     *                                        in the token array.
+     * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about the version
+     *                                        in which the parameter was still required.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    {
+        $error     = 'The "%s" parameter for function %s is missing, but was required for PHP version %s and lower';
+        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Missing';
+        $data      = array(
+            $errorInfo['paramName'],
+            $function,
+            $errorInfo['requiredVersion'],
+        );
+
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+
+    }//end addError()
 
 }//end class

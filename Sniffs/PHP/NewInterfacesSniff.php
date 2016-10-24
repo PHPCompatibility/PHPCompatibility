@@ -124,7 +124,12 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
         foreach ($interfaces as $interface) {
             $interfaceLc = strtolower($interface);
             if (isset($this->newInterfaces[$interfaceLc]) === true) {
-                $this->addError($phpcsFile, $stackPtr, $interface);
+
+                $errorInfo = $this->getErrorInfo($interfaceLc);
+
+                if ($errorInfo['not_in_version'] !== '') {
+                    $this->addError($phpcsFile, $stackPtr, $interface, $errorInfo);
+                }
             }
 
             if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
@@ -155,33 +160,51 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Retrieve the relevant (version) information for the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $interface The name of the interface.
+     * @param string $interfaceLc The lowercase name of the interface.
      *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $interface)
+    protected function getErrorInfo($interfaceLc)
     {
-        $interfaceLc = strtolower($interface);
-        $error       = '';
+        $errorInfo  = array(
+            'not_in_version' => '',
+        );
 
         foreach ($this->newInterfaces[$interfaceLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
             }
         }
 
-        if (strlen($error) > 0) {
-            $error = 'The built-in interface ' . $interface . ' is ' . $error;
+        return $errorInfo;
 
-            $phpcsFile->addError($error, $stackPtr);
-        }
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the class token
+     *                                        in the token array.
+     * @param string               $interface The name of the interface.
+     * @param array                $errorInfo Array with details about when the
+     *                                        interface was not (yet) available.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $interface, $errorInfo)
+    {
+        $error     = 'The built-in interface %s is not present in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($interface) . 'Found';
+        $data      = array(
+            $interface,
+            $errorInfo['not_in_version'],
+        );
+
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

@@ -64,40 +64,89 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
             return;
         }
 
-        $versionList = $this->removedGlobalVariables[$varName];
+        $errorInfo = $this->getErrorInfo($varName);
 
-        $error = '';
-        $isError = false;
-        $previousStatus = null;
-        foreach ($versionList as $version => $removed) {
+        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content'], $errorInfo);
+        }
+
+    }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $varName The name of the variable.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($varName)
+    {
+        $errorInfo  = array(
+            'deprecated'  => '',
+            'removed'     => '',
+            'alternative' => '',
+            'error'       => false,
+        );
+
+        foreach ($this->removedGlobalVariables[$varName] as $version => $removed) {
             if ($version !== 'alternative' && $this->supportsAbove($version)) {
-                if ($previousStatus !== $removed) {
-                    $previousStatus = $removed;
-                    if ($removed === true) {
-                        $isError = true;
-                        $error .= 'removed';
-                    } else {
-                        $error .= 'deprecated';
-                    }
-                    $error .=  ' since PHP ' . $version . ' and ';
+                if ($removed === true && $errorInfo['removed'] === '') {
+                    $errorInfo['removed'] = $version;
+                    $errorInfo['error']   = true;
+                } elseif($errorInfo['deprecated'] === '') {
+                    $errorInfo['deprecated'] = $version;
                 }
             }
         }
 
-        if (strlen($error) > 0) {
-            $error     = "Global variable '%s' is " . $error;
-            $error     = substr($error, 0, strlen($error) - 5);
-            $errorCode = $this->stringToErrorCode($varName) . 'Found';
-            $data      = array($tokens[$stackPtr]['content']);
-
-            if (isset($versionList['alternative'])) {
-                $error .= ' - use %s instead.';
-                $data[] = $versionList['alternative'];
-            }
-
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+        if (isset($this->removedGlobalVariables[$varName]['alternative'])) {
+            $errorInfo['alternative'] = $this->removedGlobalVariables[$varName]['alternative'];
         }
 
-    }//end process()
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the variable
+     *                                        in the token array.
+     * @param string               $varName   The name of the variable.
+     * @param array                $errorInfo Array with details about the versions
+     *                                        in which the variable was deprecated
+     *                                        and/or removed.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $varName, $errorInfo)
+    {
+        $error     = "Global variable '%s' is ";
+        $errorCode = $this->stringToErrorCode(substr($varName, 1)) . 'Found';
+        $data      = array($varName);
+
+        if($errorInfo['deprecated'] !== '') {
+            $error .= 'deprecated since PHP %s and ';
+            $data[] = $errorInfo['deprecated'];
+        }
+        if($errorInfo['removed'] !== '') {
+            $error .= 'removed since PHP %s and ';
+            $data[] = $errorInfo['removed'];
+        }
+
+        // Remove the last 'and' from the message.
+        $error = substr($error, 0, strlen($error) - 5);
+
+        if ($errorInfo['alternative'] !== '') {
+            $error .= ' - use %s instead.';
+            $data[] = $errorInfo['alternative'];
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+
+    }//end addError()
 
 }//end class

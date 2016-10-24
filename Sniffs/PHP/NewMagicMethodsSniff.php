@@ -105,27 +105,71 @@ class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_
             return;
         }
 
-        $lastVersionBelow = '';
-        foreach ($this->newMagicMethods[$functionNameLc] as $version => $magic) {
-            if ($version !== 'message' && $magic === false && $this->supportsBelow($version)) {
-                $lastVersionBelow = $version;
-            }
-        }
+        $errorInfo = $this->getErrorInfo($functionNameLc);
 
-        if ($lastVersionBelow !== '') {
-            $error = 'The method %s() was not magical in PHP version %s and earlier. The associated magic functionality will not be invoked.';
-            if (empty($this->newMagicMethods[$functionNameLc]['message']) === false) {
-                $error = $this->newMagicMethods[$functionNameLc]['message'];
-            }
-
-            $data  = array(
-                $functionName,
-                $lastVersionBelow,
-            );
-
-            $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
+        if ($errorInfo['not_in_version'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $functionName, $errorInfo);
         }
 
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $functionNameLc The lowercase name of the function.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($functionNameLc)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+            'message'        => '',
+        );
+
+        foreach ($this->newMagicMethods[$functionNameLc] as $version => $magic) {
+            if ($version !== 'message' && $magic === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        if (empty($this->newMagicMethods[$functionNameLc]['message']) === false) {
+            $errorInfo['message'] = $this->newMagicMethods[$functionNameLc]['message'];
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function token
+     *                                        in the token array.
+     * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about when the
+     *                                        function was not (yet) available.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    {
+        $error = 'The method %s() was not magical in PHP version %s and earlier. The associated magic functionality will not be invoked.';
+        if ($errorInfo['message'] !== '') {
+            $error = $errorInfo['message'];
+        }
+
+        $errorCode = $this->stringToErrorCode($function) . 'Found';
+        $data      = array(
+            $function,
+            $errorInfo['not_in_version'],
+        );
+
+        $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
+
+    }//end addError()
 
 }//end class

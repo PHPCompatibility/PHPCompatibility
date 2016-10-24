@@ -116,7 +116,11 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         }
         else {
             // Check for valid directive for version.
-            $this->maybeAddError($phpcsFile, $stackPtr, $directiveContent);
+            $errorInfo = $this->getErrorInfo($directiveContent);
+
+            if ($errorInfo['not_in_version'] !== '' || $errorInfo['conditional_version'] !== '') {
+                $this->addError($phpcsFile, $stackPtr, $directiveContent, $errorInfo);
+            }
 
             // Check for valid directive value.
             $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $closeParenthesis, true);
@@ -131,56 +135,75 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
 
 
     /**
-     * Generates a error or warning for this sniff.
+     * Retrieve the relevant (version) information for the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the declare statement
-     *                                        in the token array.
-     * @param string               $directive The directive.
+     * @param string $directive The name of the execution directive.
      *
-     * @return void
+     * @return array
      */
-    protected function maybeAddError($phpcsFile, $stackPtr, $directive)
+    protected function getErrorInfo($directive)
     {
-        $notInVersion       = '';
-        $conditionalVersion = '';
+        $errorInfo  = array(
+            'not_in_version'      => '',
+            'conditional_version' => '',
+            'condition'           => '',
+        );
+
         foreach ($this->newDirectives[$directive] as $version => $present) {
             if (strpos($version, 'valid_') === false && $this->supportsBelow($version)) {
                 if ($present === false) {
-                    $notInVersion = $version;
+                    $errorInfo['not_in_version'] = $version;
                 }
                 else if (is_string($present)) {
                     // We cannot test for compilation option (ok, except by scraping the output of phpinfo...).
-                    $conditionalVersion = $version;
+                    $errorInfo['conditional_version'] = $version;
+                    $errorInfo['condition']           = $present;
                 }
             }
         }
 
-        if ($notInVersion !== '' || $conditionalVersion !== '') {
-            if ($notInVersion !== '') {
-                $error     = 'Directive %s is not present in PHP version %s or earlier';
-                $errorCode = $this->stringToErrorCode($directive) . 'Found';
-                $data      = array(
-                    $directive,
-                    $notInVersion,
-                );
+        return $errorInfo;
 
-                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-            }
-            else if($conditionalVersion !== '') {
-                $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
-                $errorCode = $this->stringToErrorCode($directive) . 'WithConditionFound';
-                $data      = array(
-                    $directive,
-                    $conditionalVersion,
-                    $this->newDirectives[$directive][$conditionalVersion],
-                );
+    }//end getErrorInfo()
 
-                $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-            }
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the class token
+     *                                        in the token array.
+     * @param string               $directive The name of the execution directive.
+     * @param array                $errorInfo Array with details about when the
+     *                                        interface was not (yet) available.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $directive, $errorInfo)
+    {
+        if ($errorInfo['not_in_version'] !== '') {
+            $error     = 'Directive %s is not present in PHP version %s or earlier';
+            $errorCode = $this->stringToErrorCode($directive) . 'Found';
+            $data      = array(
+                $directive,
+                $errorInfo['not_in_version'],
+            );
+
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+        }
+        else if($errorInfo['conditional_version'] !== '') {
+            $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
+            $errorCode = $this->stringToErrorCode($directive) . 'WithConditionFound';
+            $data      = array(
+                $directive,
+                $errorInfo['conditional_version'],
+                $errorInfo['condition'],
+            );
+
+            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
 
-    }//end maybeAddError()
+    }//end addError()
 
 
     /**

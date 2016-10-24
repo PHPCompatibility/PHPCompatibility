@@ -112,7 +112,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
         foreach($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+
+                $errorInfo = $this->getErrorInfo($functionLc, $offset);
+
+                if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
+                }
             }
         }
 
@@ -120,50 +125,75 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Retrieve the relevant (version) information for the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
-     * @param int                  $stackPtr          The position of the function
-     *                                                in the token array.
-     * @param string               $function          The name of the function.
-     * @param int                  $parameterLocation The parameter position within the function call.
+     * @param string $functionLc      The lowercase name of the function.
+     * @param int    $parameterOffset The parameter offset within the function call.
      *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
+    protected function getErrorInfo($functionLc, $parameterOffset)
     {
-        $functionLc = strtolower($function);
-        $error = '';
+        $errorInfo  = array(
+            'paramName'   => '',
+            'deprecated'  => '',
+            'removed'     => '',
+            'error'       => false,
+        );
 
-        $isError        = false;
-        $previousStatus = null;
-        foreach ($this->removedFunctionParameters[$functionLc][$parameterLocation] as $version => $removed) {
-            if ($version != 'name' && $this->supportsAbove($version)) {
+        $errorInfo['paramName'] = $this->removedFunctionParameters[$functionLc][$parameterOffset]['name'];
 
-                if ($previousStatus !== $removed) {
-                    $previousStatus = $removed;
-                    if ($removed === true) {
-                        $isError = true;
-                        $error .= 'removed';
-                    } else {
-                        $error .= 'deprecated';
-                    }
-                    $error .=  ' in PHP version ' . $version . ' and ';
+        foreach ($this->removedFunctionParameters[$functionLc][$parameterOffset] as $version => $removed) {
+            if ($version !== 'name' && $this->supportsAbove($version)) {
+                if ($removed === true && $errorInfo['removed'] === '') {
+                    $errorInfo['removed'] = $version;
+                    $errorInfo['error']   = true;
+                } elseif($errorInfo['deprecated'] === '') {
+                    $errorInfo['deprecated'] = $version;
                 }
             }
         }
 
-        if (strlen($error) > 0) {
-            $error     = 'The "%s" parameter for function %s was ' . $error;
-            $error     = substr($error, 0, strlen($error) - 5);
-            $errorCode = 'RemovedParameter';
-            $data      = array(
-                $this->removedFunctionParameters[$functionLc][$parameterLocation]['name'],
-                $function,
-            );
+        return $errorInfo;
 
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function
+     *                                        in the token array.
+     * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about the versions
+     *                                        in which the function was deprecated
+     *                                        and/or removed.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    {
+        $error     = 'The "%s" parameter for function %s was ';
+        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Found';
+        $data      = array(
+            $errorInfo['paramName'],
+            $function,
+        );
+
+        if($errorInfo['deprecated'] !== '') {
+            $error .= 'deprecated in PHP version %s and ';
+            $data[] = $errorInfo['deprecated'];
         }
+        if($errorInfo['removed'] !== '') {
+            $error .= 'removed in PHP version %s and ';
+            $data[] = $errorInfo['removed'];
+        }
+
+        // Remove the last 'and' from the message.
+        $error = substr($error, 0, strlen($error) - 5);
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
 
     }//end addError()
 

@@ -159,37 +159,64 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $tokenType);
+        $errorInfo = $this->getErrorInfo($tokenType);
+
+        if ($errorInfo['not_in_version'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $tokenType, $errorInfo);
+        }
 
     }//end process()
 
 
     /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $tokenType The token type representing the language construct.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($tokenType)
+    {
+        $errorInfo  = array(
+            'description'    => '',
+            'not_in_version' => '',
+        );
+
+        $errorInfo['description'] = $this->newConstructs[$tokenType]['description'];
+
+        foreach ($this->newConstructs[$tokenType] as $version => $present) {
+            if ($present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
      * Generates the error or warning for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                  $stackPtr    The position of the function
-     *                                          in the token array.
-     * @param string               $keywordName The name of the keyword.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the keyword token
+     *                                        in the token array.
+     * @param string               $tokenType The token type representing the language construct.
+     * @param array                $errorInfo Array with details about when the
+     *                                        language construct was not (yet) available.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $keywordName)
+    protected function addError($phpcsFile, $stackPtr, $tokenType, $errorInfo)
     {
-        $error = '';
+        $error     = '%s is not present in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($tokenType) . 'Found';
+        $data      = array(
+            $errorInfo['description'],
+            $errorInfo['not_in_version'],
+        );
 
-        foreach ($this->newConstructs[$keywordName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = $this->newConstructs[$keywordName]['description'] . ' is ' . $error;
-
-            $phpcsFile->addError($error, $stackPtr);
-        }
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

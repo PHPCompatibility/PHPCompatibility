@@ -787,7 +787,12 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
         foreach($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+
+                $errorInfo = $this->getErrorInfo($functionLc, $offset);
+
+                if ($errorInfo['not_in_version'] !== '') {
+                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
+                }
             }
         }
 
@@ -795,33 +800,58 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Retrieve the relevant (version) information for the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
-     * @param int                  $stackPtr          The position of the function
-     *                                                in the token array.
-     * @param string               $function          The name of the function.
-     * @param int                  $parameterLocation The parameter position within the function call.
+     * @param string $functionLc      The lowercase name of the function.
+     * @param int    $parameterOffset The parameter offset within the function call.
      *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
+    protected function getErrorInfo($functionLc, $parameterOffset)
     {
-        $functionLc = strtolower($function);
-        $error = '';
+        $errorInfo  = array(
+            'paramName'      => '',
+            'not_in_version' => '',
+        );
 
-        foreach ($this->newFunctionParameters[$functionLc][$parameterLocation] as $version => $present) {
-            if ($version != 'name' && $present === false && $this->supportsBelow($version)) {
-                $error .= 'in PHP version ' . $version . ' or earlier';
-                break;
+        $errorInfo['paramName'] = $this->newFunctionParameters[$functionLc][$parameterOffset]['name'];
+
+        foreach ($this->newFunctionParameters[$functionLc][$parameterOffset] as $version => $present) {
+            if ($version !== 'name' && $errorInfo['not_in_version'] === ''
+                && $present === false && $this->supportsBelow($version))
+            {
+                $errorInfo['not_in_version'] = $version;
             }
         }
 
-        if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' does not have a parameter "' . $this->newFunctionParameters[$functionLc][$parameterLocation]['name'] . '" ' . $error;
+        return $errorInfo;
 
-            $phpcsFile->addError($error, $stackPtr);
-        }
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function
+     *                                        in the token array.
+     * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about when the function
+     *                                        parameter was not (yet) available.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    {
+        $error     = 'The function %s does not have a parameter "%s" in PHP version %s or earlier';
+        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Found';
+        $data      = array(
+            $function,
+            $errorInfo['paramName'],
+            $errorInfo['not_in_version'],
+        );
+
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
 

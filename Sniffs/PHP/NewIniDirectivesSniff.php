@@ -514,29 +514,74 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $notInVersion = '';
-        foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if ($version !== 'alternative' && $present === false && $this->supportsBelow($version)) {
-                $notInVersion = $version;
-            }
-        }
+        $errorInfo = $this->getErrorInfo($filteredToken, $functionLc);
 
-        if ($notInVersion !== '') {
-            $error   = "INI directive '%s' is not present in PHP version %s or earlier";
-            $isError = ($functionLc !== 'ini_get') ? true : false;
-            $data    = array(
-                $filteredToken,
-                $notInVersion
-            );
-            if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
-                $error .= ". This directive was previously called '%s'.";
-                $data[] = $this->newIniDirectives[$filteredToken]['alternative'];
-            }
-
-            $this->addMessage($phpcsFile, $error, $iniToken['end'], $isError, 'Found', $data);
+        if ($errorInfo['not_in_version'] !== '') {
+            $this->addError($phpcsFile, $iniToken['end'], $filteredToken, $errorInfo);
         }
 
     }//end process()
 
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $iniDirective The name of the ini directive.
+     * @param string $functionLc   The lowercase name of the function used with the ini directive.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($iniDirective, $functionLc)
+    {
+        $errorInfo  = array(
+            'not_in_version' => '',
+            'alternative'    => '',
+            'error'          => (($functionLc !== 'ini_get') ? true : false),
+        );
+
+        foreach ($this->newIniDirectives[$iniDirective] as $version => $present) {
+            if ($version !== 'alternative' && $present === false && $this->supportsBelow($version)) {
+                $errorInfo['not_in_version'] = $version;
+            }
+        }
+
+        if (isset($this->newIniDirectives[$iniDirective]['alternative'])) {
+            $errorInfo['alternative'] = $this->newIniDirectives[$iniDirective]['alternative'];
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                  $stackPtr     The position of the directive
+     *                                           in the token array.
+     * @param string               $iniDirective The name of the ini directive.
+     * @param array                $errorInfo    Array with details about when the
+     *                                           ini directive was not (yet) available.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $iniDirective, $errorInfo)
+    {
+        $error     = "INI directive '%s' is not present in PHP version %s or earlier";
+        $errorCode = $this->stringToErrorCode($iniDirective) . 'Found';
+        $data      = array(
+            $iniDirective,
+            $errorInfo['not_in_version'],
+        );
+
+        if ($errorInfo['alternative'] !== '') {
+            $error .= ". This directive was previously called '%s'.";
+            $data[] = $errorInfo['alternative'];
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+
+    }//end addError()
 
 }//end class

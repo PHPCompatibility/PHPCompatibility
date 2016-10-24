@@ -808,9 +808,50 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $functionLc);
+        $errorInfo = $this->getErrorInfo($functionLc);
+
+        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $function, $errorInfo);
+        }
 
     }//end process()
+
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $functionLc The lowercase name of the function.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($functionLc)
+    {
+        $errorInfo  = array(
+            'deprecated'  => '',
+            'removed'     => '',
+            'alternative' => '',
+            'error'       => false,
+        );
+
+        foreach ($this->removedFunctions[$functionLc] as $version => $removed) {
+            if ($version !== 'alternative' && $this->supportsAbove($version)) {
+                if ($removed === true && $errorInfo['removed'] === '') {
+                    $errorInfo['removed'] = $version;
+                    $errorInfo['error']   = true;
+                } elseif($errorInfo['deprecated'] === '') {
+                    $errorInfo['deprecated'] = $version;
+                }
+            }
+        }
+
+        if (isset($this->removedFunctions[$functionLc]['alternative'])) {
+            $errorInfo['alternative'] = $this->removedFunctions[$functionLc]['alternative'];
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
 
     /**
      * Generates the error or warning for this sniff.
@@ -819,41 +860,36 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
      * @param string               $function  The name of the function.
+     * @param array                $errorInfo Array with details about the versions
+     *                                        in which the function was deprecated
+     *                                        and/or removed.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $function)
+    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
     {
-        $error = '';
+        $error     = 'Function %s() is ';
+        $errorCode = $this->stringToErrorCode($function) . 'Found';
+        $data      = array($function);
 
-        $isError = false;
-        $previousVersionStatus = null;
-        foreach ($this->removedFunctions[$function] as $version => $removed) {
-            if ($this->supportsAbove($version)) {
-                if ($version != 'alternative') {
-                    if ($previousVersionStatus !== $removed) {
-                        $previousVersionStatus = $removed;
-                        if ($removed === true) {
-                            $isError = true;
-                            $error .= 'removed';
-                        } else {
-                            $error .= 'deprecated';
-                        }
-                        $error .=  ' since PHP ' . $version . ' and ';
-                    }
-                }
-            }
+        if($errorInfo['deprecated'] !== '') {
+            $error .= 'deprecated since PHP %s and ';
+            $data[] = $errorInfo['deprecated'];
         }
-        if (strlen($error) > 0) {
-            $error = 'Function ' . $function . '() is ' . $error;
-            $error = substr($error, 0, strlen($error) - 5);
-
-            if ($this->removedFunctions[$function]['alternative'] !== null) {
-                $error .= '; use ' . $this->removedFunctions[$function]['alternative'] . ' instead';
-            }
-
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError);
+        if($errorInfo['removed'] !== '') {
+            $error .= 'removed since PHP %s and ';
+            $data[] = $errorInfo['removed'];
         }
+
+        // Remove the last 'and' from the message.
+        $error = substr($error, 0, strlen($error) - 5);
+
+        if ($errorInfo['alternative'] !== '') {
+            $error .= '; use %s instead';
+            $data[] = $errorInfo['alternative'];
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
 
     }//end addError()
 
