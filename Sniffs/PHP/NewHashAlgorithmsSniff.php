@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new hash algorithms, not present in older versions.
@@ -106,63 +107,36 @@ class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibilit
         }
 
         // Check if the algorithm used is new.
-        $errorInfo = $this->getErrorInfo($algo);
-
-        if ($errorInfo['not_in_version'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $algo, $errorInfo);
-        }
+        $itemInfo = array(
+            'name'   => $algo,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $algorithm The name of the algorithm.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($algorithm)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-        );
-
-        foreach ($this->newAlgorithms[$algorithm] as $version => $present) {
-            if ($present === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newAlgorithms[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $algorithm The name of the algorithm.
-     * @param array                $errorInfo Array with details about the versions
-     *                                        in which the algorithm was deprecated
-     *                                        and/or removed.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = 'The %s hash algorithm is not present in PHP version %s or earlier ';
-        $errorCode = $this->stringToErrorCode($algorithm) . 'Found';
-        $data      = array(
-            $algorithm,
-            $errorInfo['not_in_version'],
-        );
+        return 'The %s hash algorithm is not present in PHP version %s or earlier';
+    }
 
-        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
 
 }//end class

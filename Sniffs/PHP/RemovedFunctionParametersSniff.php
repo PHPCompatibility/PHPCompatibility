@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff
+    extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of removed function parameters, which were present in older versions.
@@ -112,12 +113,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
         foreach($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-
-                $errorInfo = $this->getErrorInfo($functionLc, $offset);
-
-                if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
-                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
-                }
+                $itemInfo = array(
+                    'name'   => $function,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                );
+                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
 
@@ -125,76 +126,86 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $functionLc      The lowercase name of the function.
-     * @param int    $parameterOffset The parameter offset within the function call.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($functionLc, $parameterOffset)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'paramName'   => '',
-            'deprecated'  => '',
-            'removed'     => '',
-            'error'       => false,
-        );
-
-        $errorInfo['paramName'] = $this->removedFunctionParameters[$functionLc][$parameterOffset]['name'];
-
-        foreach ($this->removedFunctionParameters[$functionLc][$parameterOffset] as $version => $removed) {
-            if ($version !== 'name' && $this->supportsAbove($version)) {
-                if ($removed === true && $errorInfo['removed'] === '') {
-                    $errorInfo['removed'] = $version;
-                    $errorInfo['error']   = true;
-                } elseif($errorInfo['deprecated'] === '') {
-                    $errorInfo['deprecated'] = $version;
-                }
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->removedFunctionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get an array of the non-PHP-version array keys used in a sub-array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param array                $errorInfo Array with details about the versions
-     *                                        in which the function was deprecated
-     *                                        and/or removed.
-     *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    protected function getNonVersionArrayKeys()
     {
-        $error     = 'The "%s" parameter for function %s was ';
-        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Found';
-        $data      = array(
-            $errorInfo['paramName'],
-            $function,
-        );
+        return array('name');
+    }
 
-        if($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated in PHP version %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if($errorInfo['removed'] !== '') {
-            $error .= 'removed in PHP version %s and ';
-            $data[] = $errorInfo['removed'];
-        }
 
-        // Remove the last 'and' from the message.
-        $error = substr($error, 0, strlen($error) - 5);
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['paramName'] = $itemArray['name'];
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+        return $errorInfo;
+    }
 
-    }//end addError()
+
+    /**
+     * Get the item name to be used for the creation of the error code.
+     *
+     * @param array $itemInfo  Base information about the item.
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return string
+     */
+    protected function getItemName(array $itemInfo, array $errorInfo)
+    {
+        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The "%s" parameter for function %s() is ';
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        array_shift($data);
+        array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
+        return $data;
+    }
+
 
 }//end class

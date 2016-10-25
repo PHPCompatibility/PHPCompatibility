@@ -22,7 +22,8 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff
+    extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
 
     /**
@@ -75,80 +76,36 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
             return;
         }
 
-        // Check if the algorithm used is deprecated or removed.
-        $errorInfo = $this->getErrorInfo($algo);
-
-        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $algo, $errorInfo);
-        }
+        $itemInfo = array(
+            'name' => $algo,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $algorithm The name of the algorithm.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($algorithm)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'deprecated'  => '',
-            'removed'     => '',
-            'error'       => false,
-        );
-
-        foreach ($this->removedAlgorithms[$algorithm] as $version => $removed) {
-            if ($this->supportsAbove($version)) {
-                if ($removed === true && $errorInfo['removed'] === '') {
-                    $errorInfo['removed'] = $version;
-                    $errorInfo['error']   = true;
-                } elseif ($errorInfo['deprecated'] === '') {
-                    $errorInfo['deprecated'] = $version;
-                }
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->removedAlgorithms[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $algorithm The name of the algorithm.
-     * @param array                $errorInfo Array with details about the versions
-     *                                        in which the algorithm was deprecated
-     *                                        and/or removed.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = 'The %s hash algorithm is ';
-        $errorCode = $this->stringToErrorCode($algorithm) . 'Found';
-        $data      = array($algorithm);
+        return 'The %s hash algorithm is ';
+    }
 
-        if ($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP version %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if ($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP version %s and ';
-            $data[] = $errorInfo['removed'];
-        }
-
-        // Remove the last 'and' from the message.
-        $error = substr($error, 0, strlen($error) - 5);
-
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-    }//end addError()
 
 }//end class

@@ -16,7 +16,8 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -105,71 +106,89 @@ class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($functionNameLc);
-
-        if ($errorInfo['not_in_version'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $functionName, $errorInfo);
-        }
+        $itemInfo = array(
+            'name'   => $functionName,
+            'nameLc' => $functionNameLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $functionNameLc The lowercase name of the function.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($functionNameLc)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-            'message'        => '',
-        );
-
-        foreach ($this->newMagicMethods[$functionNameLc] as $version => $magic) {
-            if ($version !== 'message' && $magic === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        if (empty($this->newMagicMethods[$functionNameLc]['message']) === false) {
-            $errorInfo['message'] = $this->newMagicMethods[$functionNameLc]['message'];
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newMagicMethods[$itemInfo['nameLc']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get an array of the non-PHP-version array keys used in a sub-array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function token
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param array                $errorInfo Array with details about when the
-     *                                        function was not (yet) available.
-     *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    protected function getNonVersionArrayKeys()
     {
-        $error = 'The method %s() was not magical in PHP version %s and earlier. The associated magic functionality will not be invoked.';
+        return array('message');
+    }
+
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo            = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['error']   = false; // Warning, not error.
+        $errorInfo['message'] = '';
+
+        if (empty($itemArray['message']) === false) {
+            $errorInfo['message'] = $itemArray['message'];
+        }
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The method %s() was not magical in PHP version %s and earlier. The associated magic functionality will not be invoked.';
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @param string $error     The error message which was created.
+     * @param array  $itemInfo  Base information about the item this error message applied to.
+     * @param array  $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return string
+     */
+    protected function filterErrorMsg($error, array $itemInfo, array $errorInfo)
+    {
         if ($errorInfo['message'] !== '') {
             $error = $errorInfo['message'];
         }
 
-        $errorCode = $this->stringToErrorCode($function) . 'Found';
-        $data      = array(
-            $function,
-            $errorInfo['not_in_version'],
-        );
+        return $error;
+    }
 
-        $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
 
 }//end class

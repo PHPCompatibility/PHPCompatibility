@@ -16,7 +16,8 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff
+    extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
 
     /**
@@ -64,89 +65,36 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($varName);
-
-        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content'], $errorInfo);
-        }
+        $itemInfo = array(
+            'name' => $varName,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $varName The name of the variable.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($varName)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'deprecated'  => '',
-            'removed'     => '',
-            'alternative' => '',
-            'error'       => false,
-        );
-
-        foreach ($this->removedGlobalVariables[$varName] as $version => $removed) {
-            if ($version !== 'alternative' && $this->supportsAbove($version)) {
-                if ($removed === true && $errorInfo['removed'] === '') {
-                    $errorInfo['removed'] = $version;
-                    $errorInfo['error']   = true;
-                } elseif($errorInfo['deprecated'] === '') {
-                    $errorInfo['deprecated'] = $version;
-                }
-            }
-        }
-
-        if (isset($this->removedGlobalVariables[$varName]['alternative'])) {
-            $errorInfo['alternative'] = $this->removedGlobalVariables[$varName]['alternative'];
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->removedGlobalVariables[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the variable
-     *                                        in the token array.
-     * @param string               $varName   The name of the variable.
-     * @param array                $errorInfo Array with details about the versions
-     *                                        in which the variable was deprecated
-     *                                        and/or removed.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $varName, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = "Global variable '%s' is ";
-        $errorCode = $this->stringToErrorCode(substr($varName, 1)) . 'Found';
-        $data      = array($varName);
+        return "Global variable '\$%s' is ";
+    }
 
-        if($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP %s and ';
-            $data[] = $errorInfo['removed'];
-        }
-
-        // Remove the last 'and' from the message.
-        $error = substr($error, 0, strlen($error) - 5);
-
-        if ($errorInfo['alternative'] !== '') {
-            $error .= ' - use %s instead.';
-            $data[] = $errorInfo['alternative'];
-        }
-
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-    }//end addError()
 
 }//end class

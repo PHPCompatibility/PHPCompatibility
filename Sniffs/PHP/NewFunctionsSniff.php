@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.
@@ -1293,63 +1294,37 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($functionLc);
-
-        if ($errorInfo['not_in_version'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $function, $errorInfo);
-        }
-
+        $itemInfo = array(
+            'name'   => $function,
+            'nameLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $functionLc The lowercase name of the function.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($functionLc)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-        );
-
-        foreach ($this->newFunctions[$functionLc] as $version => $present) {
-            if ($errorInfo['not_in_version'] === '' && $present === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newFunctions[$itemInfo['nameLc']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function token
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param array                $errorInfo Array with details about when the
-     *                                        function was not (yet) available.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = 'The function %s is not present in PHP version %s or earlier';
-        $errorCode = $this->stringToErrorCode($function) . 'Found';
-        $data      = array(
-            $function,
-            $errorInfo['not_in_version'],
-        );
+        return 'The function %s() is not present in PHP version %s or earlier';
+    }
 
-        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
 
 }//end class

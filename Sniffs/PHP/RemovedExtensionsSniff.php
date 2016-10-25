@@ -20,7 +20,8 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
+    extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of functions to whitelist, if any.
@@ -235,99 +236,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($functionLc);
-
-        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
-            $this->addError($phpcsFile, $stackPtr, $function, $errorInfo);
-        }
-
-    }//end process()
-
-
-    /**
-     * Retrieve the relevant (version) information for the error message.
-     *
-     * @param string $functionLc The lowercase name of the function.
-     *
-     * @return array
-     */
-    protected function getErrorInfo($functionLc)
-    {
-        $errorInfo  = array(
-            'extension'   => '',
-            'deprecated'  => '',
-            'removed'     => '',
-            'alternative' => '',
-            'error'       => false,
-        );
-
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos($functionLc, $extension) === 0) {
-                $errorInfo['extension'] = $extension;
-
-                foreach ($versionList as $version => $removed) {
-                    if ($version !== 'alternative' && $this->supportsAbove($version)) {
-                        if ($removed === true && $errorInfo['removed'] === '') {
-                            $errorInfo['removed'] = $version;
-                            $errorInfo['error']   = true;
-                        } elseif($errorInfo['deprecated'] === '') {
-                            $errorInfo['deprecated'] = $version;
-                        }
-                    }
-                }
-
-                if (isset($versionList['alternative'])) {
-                    $errorInfo['alternative'] = $versionList['alternative'];
-                }
-
+                $itemInfo = array(
+                    'name'   => $extension,
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
                 break;
             }
         }
 
-        return $errorInfo;
-
-    }//end getErrorInfo()
-
-
-    /**
-     * Generates the error or warning for this sniff.
-     *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function. Not used.
-     * @param array                $errorInfo Array with details about the versions
-     *                                        in which the function was deprecated
-     *                                        and/or removed.
-     *
-     * @return void
-     */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
-    {
-        $error     = "Extension '%s' is ";
-        $errorCode = $this->stringToErrorCode($errorInfo['extension']) . 'Found';
-        $data      = array($errorInfo['extension']);
-
-        if($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP %s and ';
-            $data[] = $errorInfo['removed'];
-        }
-
-        // Remove the last 'and' from the message.
-        $error = substr($error, 0, strlen($error) - 5);
-
-        if ($errorInfo['alternative'] !== '') {
-            $error .= ' - use %s instead.';
-            $data[] = $errorInfo['alternative'];
-        }
-
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-    }//end addError()
+    }//end process()
 
 
     /**
@@ -360,5 +279,30 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         return false;
 
     }//end isWhiteListed()
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->removedExtensions[$itemInfo['name']];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "Extension '%s' is ";
+    }
+
 
 }//end class

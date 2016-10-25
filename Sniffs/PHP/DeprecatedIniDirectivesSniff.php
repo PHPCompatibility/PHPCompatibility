@@ -20,7 +20,8 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff
+    extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated INI directives.
@@ -253,90 +254,69 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($filteredToken, $functionLc);
-
-        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
-            $this->addError($phpcsFile, $iniToken['end'], $filteredToken, $errorInfo);
-        }
+        $itemInfo = array(
+            'name'       => $filteredToken,
+            'functionLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $iniDirective The name of the ini directive.
-     * @param string $functionLc   The lowercase name of the function used with the ini directive.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($iniDirective, $functionLc)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'deprecated'  => '',
-            'removed'     => '',
-            'alternative' => '',
-            'error'       => false,
-        );
-
-        foreach ($this->deprecatedIniDirectives[$iniDirective] as $version => $removed) {
-            if ($version !== 'alternative' && $this->supportsAbove($version)) {
-                if ($removed === true && $errorInfo['removed'] === '') {
-                    $errorInfo['removed'] = $version;
-                    $errorInfo['error']   = ($functionLc !== 'ini_get') ? true : false;
-                } elseif($errorInfo['deprecated'] === '') {
-                    $errorInfo['deprecated'] = $version;
-                }
-            }
-        }
-
-        if (isset($this->deprecatedIniDirectives[$iniDirective]['alternative'])) {
-            $errorInfo['alternative'] = $this->deprecatedIniDirectives[$iniDirective]['alternative'];
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->deprecatedIniDirectives[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Retrieve the relevant detail (version) information for use in an error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                  $stackPtr     The position of the directive
-     *                                           in the token array.
-     * @param string               $iniDirective The name of the ini directive.
-     * @param array                $errorInfo    Array with details about the versions
-     *                                           in which the ini directive was deprecated
-     *                                           and/or removed.
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
      *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $iniDirective, $errorInfo)
+    public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $error     = "INI directive '%s' is ";
-        $errorCode = $this->stringToErrorCode($iniDirective) . 'Found';
-        $data      = array($iniDirective);
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
 
-        if($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP %s and ';
-            $data[] = $errorInfo['deprecated'];
-        }
-        if($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP %s and ';
-            $data[] = $errorInfo['removed'];
+        // Lower error level to warning if the function used was ini_get.
+        if ($errorInfo['error'] === true && $itemInfo['functionLc'] === 'ini_get') {
+            $errorInfo['error'] = false;
         }
 
-        // Remove the last 'and' from the message.
-        $error     = substr($error, 0, strlen($error) - 5) . '.';
+        return $errorInfo;
+    }
 
-        if ($errorInfo['alternative'] !== '') {
-            $error .= " Use '%s' instead.";
-            $data[] = $errorInfo['alternative'];
-        }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "INI directive '%s' is ";
+    }
 
-    }//end addError()
+
+    /**
+     * Get the error message template for suggesting an alternative for a specific sniff.
+     *
+     * @return string
+     */
+    protected function getAlternativeOptionTemplate()
+    {
+        return str_replace("%s", "'%s'", parent::getAlternativeOptionTemplate());
+    }
+
 
 }//end class

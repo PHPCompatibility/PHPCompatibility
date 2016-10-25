@@ -16,7 +16,8 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -123,13 +124,13 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
 
         foreach ($interfaces as $interface) {
             $interfaceLc = strtolower($interface);
+
             if (isset($this->newInterfaces[$interfaceLc]) === true) {
-
-                $errorInfo = $this->getErrorInfo($interfaceLc);
-
-                if ($errorInfo['not_in_version'] !== '') {
-                    $this->addError($phpcsFile, $stackPtr, $interface, $errorInfo);
-                }
+                $itemInfo = array(
+                    'name'   => $interface,
+                    'nameLc' => $interfaceLc,
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
 
             if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
@@ -160,52 +161,27 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $interfaceLc The lowercase name of the interface.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($interfaceLc)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-        );
-
-        foreach ($this->newInterfaces[$interfaceLc] as $version => $present) {
-            if ($present === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newInterfaces[$itemInfo['nameLc']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the class token
-     *                                        in the token array.
-     * @param string               $interface The name of the interface.
-     * @param array                $errorInfo Array with details about when the
-     *                                        interface was not (yet) available.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $interface, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = 'The built-in interface %s is not present in PHP version %s or earlier';
-        $errorCode = $this->stringToErrorCode($interface) . 'Found';
-        $data      = array(
-            $interface,
-            $errorInfo['not_in_version'],
-        );
+        return 'The built-in interface '.parent::getErrorMsgTemplate();
+    }
 
-        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
 
 }//end class

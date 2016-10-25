@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -115,11 +116,10 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                 );
             }
             else if (isset($this->newTypes[$param['type_hint']])) {
-                $errorInfo = $this->getErrorInfo($param['type_hint']);
-
-                if ($errorInfo['not_in_version'] !== '') {
-                    $this->addError($phpcsFile, $stackPtr, $param['type_hint'], $errorInfo);
-                }
+                $itemInfo = array(
+                    'name'   => $param['type_hint'],
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
             else if (isset($this->invalidTypes[$param['type_hint']])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
@@ -144,52 +144,27 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $typeName The type.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($typeName)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-        );
-
-        foreach ($this->newTypes[$typeName] as $version => $present) {
-            if ($present === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newTypes[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the class token
-     *                                        in the token array.
-     * @param string               $typeName  The type.
-     * @param array                $errorInfo Array with details about when the
-     *                                        class was not (yet) available.
-     *
-     * @return void
+     * @return string
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName, $errorInfo)
+    protected function getErrorMsgTemplate()
     {
-        $error     = "'%s' type declaration is not present in PHP version %s or earlier";
-        $errorCode = $this->stringToErrorCode($typeName) . 'Found';
-        $data      = array(
-            $typeName,
-            $errorInfo['not_in_version'],
-        );
+        return "'%s' type declaration is not present in PHP version %s or earlier";
+    }
 
-        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
 
 }//end class

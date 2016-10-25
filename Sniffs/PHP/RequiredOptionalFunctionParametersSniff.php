@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff
+    extends PHPCompatibility_AbstractComplexVersionSniff
 {
 
     /**
@@ -104,12 +105,12 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
 
         foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
-
-                $errorInfo = $this->getErrorInfo($functionLc, $offset);
-
-                if ($errorInfo['requiredVersion'] !== '') {
-                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
-                }
+                $itemInfo = array(
+                    'name'   => $function,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                );
+                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
 
@@ -117,58 +118,108 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Determine whether an error/warning should be thrown for an item based on collected information.
      *
-     * @param string $functionLc      The name of the function.
-     * @param int    $parameterOffset The parameter offset within the function call.
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return bool
+     */
+    protected function shouldThrowError(array $errorInfo)
+    {
+        return ($errorInfo['requiredVersion'] !== '');
+    }
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->functionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+    }
+
+
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
      *
      * @return array
      */
-    protected function getErrorInfo($functionLc, $parameterOffset)
+    protected function getNonVersionArrayKeys()
     {
-        $errorInfo  = array(
+        return array('name');
+    }
+
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = array(
             'paramName'       => '',
             'requiredVersion' => '',
         );
 
-        $errorInfo['paramName'] = $this->functionParameters[$functionLc][$parameterOffset]['name'];
+        $versionArray = $this->getVersionArray($itemArray);
 
-        foreach ($this->functionParameters[$functionLc][$parameterOffset] as $version => $required) {
-            if ($version !== 'name' && $required === true && $this->supportsBelow($version)) {
+        foreach ($versionArray as $version => $required) {
+            if ($version !== 'name' && $required === true && $this->supportsBelow($version) === true) {
                 $errorInfo['requiredVersion'] = $version;
             }
         }
 
-        return $errorInfo;
+        $errorInfo['paramName'] = $itemArray['name'];
 
+        return $errorInfo;
 
     }//end getErrorInfo()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The "%s" parameter for function %s is missing, but was required for PHP version %s and lower';
+    }
+
+
+    /**
+     * Generates the error or warning for this item.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param array                $errorInfo Array with details about the version
-     *                                        in which the parameter was still required.
+     * @param int                  $stackPtr  The position of the relevant token in
+     *                                        the stack.
+     * @param array                $itemInfo  Base information about the item.
+     * @param array                $errorInfo Array with detail (version) information
+     *                                        relevant to the item.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    public function addError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
-        $error     = 'The "%s" parameter for function %s is missing, but was required for PHP version %s and lower';
-        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Missing';
+        $error     = $this->getErrorMsgTemplate();
+        $errorCode = $this->stringToErrorCode($itemInfo['name'].'_'.$errorInfo['paramName']).'Missing';
         $data      = array(
             $errorInfo['paramName'],
-            $function,
+            $itemInfo['name'],
             $errorInfo['requiredVersion'],
         );
 
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
     }//end addError()
+
 
 }//end class

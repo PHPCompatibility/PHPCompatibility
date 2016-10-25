@@ -14,7 +14,8 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.
@@ -787,12 +788,12 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
         foreach($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-
-                $errorInfo = $this->getErrorInfo($functionLc, $offset);
-
-                if ($errorInfo['not_in_version'] !== '') {
-                    $this->addError($phpcsFile, $openParenthesis, $function, $errorInfo);
-                }
+                $itemInfo = array(
+                    'name'   => $function,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                );
+                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
 
@@ -800,59 +801,86 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $functionLc      The lowercase name of the function.
-     * @param int    $parameterOffset The parameter offset within the function call.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($functionLc, $parameterOffset)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'paramName'      => '',
-            'not_in_version' => '',
-        );
-
-        $errorInfo['paramName'] = $this->newFunctionParameters[$functionLc][$parameterOffset]['name'];
-
-        foreach ($this->newFunctionParameters[$functionLc][$parameterOffset] as $version => $present) {
-            if ($version !== 'name' && $errorInfo['not_in_version'] === ''
-                && $present === false && $this->supportsBelow($version))
-            {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newFunctionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get an array of the non-PHP-version array keys used in a sub-array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
-     * @param array                $errorInfo Array with details about when the function
-     *                                        parameter was not (yet) available.
-     *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $errorInfo)
+    protected function getNonVersionArrayKeys()
     {
-        $error     = 'The function %s does not have a parameter "%s" in PHP version %s or earlier';
-        $errorCode = $this->stringToErrorCode($function . '_' . $errorInfo['paramName']) . 'Found';
-        $data      = array(
-            $function,
-            $errorInfo['paramName'],
-            $errorInfo['not_in_version'],
-        );
+        return array('name');
+    }
 
-        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
 
-    }//end addError()
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['paramName'] = $itemArray['name'];
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the item name to be used for the creation of the error code.
+     *
+     * @param array $itemInfo  Base information about the item.
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return string
+     */
+    protected function getItemName(array $itemInfo, array $errorInfo)
+    {
+        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The function %s() does not have a parameter "%s" in PHP version %s or earlier';
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        array_shift($data);
+        array_unshift($data, $itemInfo['name'], $errorInfo['paramName']);
+        return $data;
+    }
+
 
 }//end class

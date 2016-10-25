@@ -20,7 +20,8 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff
+    extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new INI directives
@@ -514,74 +515,112 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $errorInfo = $this->getErrorInfo($filteredToken, $functionLc);
-
-        if ($errorInfo['not_in_version'] !== '') {
-            $this->addError($phpcsFile, $iniToken['end'], $filteredToken, $errorInfo);
-        }
+        $itemInfo = array(
+            'name'       => $filteredToken,
+            'functionLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
 
     }//end process()
 
 
     /**
-     * Retrieve the relevant (version) information for the error message.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param string $iniDirective The name of the ini directive.
-     * @param string $functionLc   The lowercase name of the function used with the ini directive.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return array
+     * @return array Version and other information about the item.
      */
-    protected function getErrorInfo($iniDirective, $functionLc)
+    public function getItemArray(array $itemInfo)
     {
-        $errorInfo  = array(
-            'not_in_version' => '',
-            'alternative'    => '',
-            'error'          => (($functionLc !== 'ini_get') ? true : false),
-        );
-
-        foreach ($this->newIniDirectives[$iniDirective] as $version => $present) {
-            if ($version !== 'alternative' && $present === false && $this->supportsBelow($version)) {
-                $errorInfo['not_in_version'] = $version;
-            }
-        }
-
-        if (isset($this->newIniDirectives[$iniDirective]['alternative'])) {
-            $errorInfo['alternative'] = $this->newIniDirectives[$iniDirective]['alternative'];
-        }
-
-        return $errorInfo;
-
-    }//end getErrorInfo()
+        return $this->newIniDirectives[$itemInfo['name']];
+    }
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get an array of the non-PHP-version array keys used in a sub-array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                  $stackPtr     The position of the directive
-     *                                           in the token array.
-     * @param string               $iniDirective The name of the ini directive.
-     * @param array                $errorInfo    Array with details about when the
-     *                                           ini directive was not (yet) available.
-     *
-     * @return void
+     * @return array
      */
-    protected function addError($phpcsFile, $stackPtr, $iniDirective, $errorInfo)
+    protected function getNonVersionArrayKeys()
     {
-        $error     = "INI directive '%s' is not present in PHP version %s or earlier";
-        $errorCode = $this->stringToErrorCode($iniDirective) . 'Found';
-        $data      = array(
-            $iniDirective,
-            $errorInfo['not_in_version'],
-        );
+        return array('alternative');
+    }
 
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['alternative'] = '';
+
+        if (isset($itemArray['alternative']) === true) {
+            $errorInfo['alternative'] = $itemArray['alternative'];
+        }
+
+        // Lower error level to warning if the function used was ini_get.
+        if ($errorInfo['error'] === true && $itemInfo['functionLc'] === 'ini_get') {
+            $errorInfo['error'] = false;
+        }
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "INI directive '%s' is not present in PHP version %s or earlier";
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @param string $error     The error message which was created.
+     * @param array  $itemInfo  Base information about the item this error message applied to.
+     * @param array  $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return string
+     */
+    protected function filterErrorMsg($error, array $itemInfo, array $errorInfo)
+    {
         if ($errorInfo['alternative'] !== '') {
             $error .= ". This directive was previously called '%s'.";
+        }
+
+        return $error;
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        if ($errorInfo['alternative'] !== '') {
             $data[] = $errorInfo['alternative'];
         }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+        return $data;
+    }
 
-    }//end addError()
 
 }//end class
