@@ -41,308 +41,129 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
 
     /**
      * A list of removed extensions with their alternative, if any
-     * Array codes : 0 = removed/unavailable, -1 = deprecated, 1 = active
+     *
+     * The array lists : version number with false (deprecated) and true (removed).
+     * If's sufficient to list the first version where the extension was deprecated/removed.
      *
      * @var array(string|null)
      */
     protected $removedExtensions = array(
         'activescript' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/activescript'
         ),
         'cpdf' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/pdflib'
         ),
         'dbase' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => null
         ),
         'dbx' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/dbx'
         ),
         'dio' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/dio'
         ),
         'ereg' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => -1,
-                '5.4' => -1,
-                '5.5' => -1,
-                '5.6' => -1,
-                '7.0' => 0,
+                '5.3' => false,
+                '7.0' => true,
                 'alternative' => 'pcre'
         ),
         'fam' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => null
         ),
         'fbsql' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => null
         ),
         'fdf' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => 'pecl/fdf'
         ),
         'filepro' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.2' => true,
                 'alternative' => null
         ),
         'hw_api' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.2' => true,
                 'alternative' => null
         ),
         'ingres' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/ingres'
         ),
         'ircg' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => null
         ),
         'mcrypt' => array(
-                '7.0' => 1,
-                '7.1' => -1,
+                '7.1' => false,
                 'alternative' => 'openssl (preferred) or pecl/mcrypt once available'
         ),
         'mcve' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/mvce'
         ),
         'ming' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => 'pecl/ming'
         ),
         'mnogosearch' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => null
         ),
         'msql' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => null
         ),
         'mssql' => array(
-                '7.0' => 0,
+                '7.0' => true,
                 'alternative' => null
         ),
         'mysql_' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 1,
-                '5.4' => 1,
-                '5.5' => -1,
-                '5.6' => -1,
-                '7.0' => 0,
+                '5.5' => false,
+                '7.0' => true,
                 'alternative' => 'mysqli',
         ),
         'ncurses' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => 'pecl/ncurses'
         ),
         'oracle' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'oci8 or pdo_oci'
         ),
         'ovrimos' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => null
         ),
         'pfpro' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => null
         ),
         'sqlite' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 1,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.4' => true,
                 'alternative' => null
         ),
         'sybase' => array(
-                '5.0' => 1,
-                '5.1' => 1,
-                '5.2' => 1,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.3' => true,
                 'alternative' => 'sybase_ct'
         ),
         'sybase_ct' => array(
-                '7.0' => 0,
+                '7.0' => true,
                 'alternative' => null
         ),
         'w32api' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => 'pecl/ffi'
         ),
         'yp' => array(
-                '5.0' => 1,
-                '5.1' => 0,
-                '5.2' => 0,
-                '5.3' => 0,
-                '5.4' => 0,
-                '5.5' => 0,
-                '5.6' => 0,
-                '7.0' => 0,
+                '5.1' => true,
                 'alternative' => null
         ),
     );
@@ -411,28 +232,23 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos(strtolower($tokens[$stackPtr]['content']), strtolower($extension)) === 0) {
                 $error = '';
-                $isErrored = false;
-                $isDeprecated = false;
-                foreach ($versionList as $version => $status) {
-                    if ($version != 'alternative') {
-                        if ($status == -1 || $status == 0) {
-                            if ($this->supportsAbove($version)) {
-                                switch ($status) {
-                                    case -1:
-                                        if($isDeprecated === false ) {
-                                            $error .= 'deprecated since PHP ' . $version . ' and ';
-                                            $isDeprecated = true;
-                                        }
-                                        break;
-                                    case 0:
-                                        $isErrored = true;
-                                        $error .= 'removed since PHP ' . $version . ' and ';
-                                        break 2;
-                                }
+                $isError = false;
+                $previousStatus = null;
+                foreach ($versionList as $version => $removed) {
+                    if ($version !== 'alternative' && $this->supportsAbove($version)) {
+                        if ($previousStatus !== $removed) {
+                            $previousStatus = $removed;
+                            if ($removed === true) {
+                                $isError = true;
+                                $error .= 'removed';
+                            } else {
+                                $error .= 'deprecated';
                             }
+                            $error .=  ' since PHP ' . $version . ' and ';
                         }
                     }
                 }
+
                 if (strlen($error) > 0) {
                     $error = "Extension '" . $extension . "' is " . $error;
                     $error = substr($error, 0, strlen($error) - 5);
@@ -440,7 +256,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
                         $error .= ' - use ' . $versionList['alternative'] . ' instead.';
                     }
 
-                    $this->addMessage($phpcsFile, $error, $stackPtr, $isErrored);
+                    $this->addMessage($phpcsFile, $error, $stackPtr, $isError);
                 }
             }
         }

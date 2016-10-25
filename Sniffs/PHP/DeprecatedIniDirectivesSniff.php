@@ -25,8 +25,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
     /**
      * A list of deprecated INI directives.
      *
-     * version => false means the directive was deprecated in that version.
-     * version => true means it was removed in that version.
+     * The array lists : version number with false (deprecated) and true (removed).
+     * If's sufficient to list the first version where the ini directive was deprecated/removed.
      *
      * @var array(string)
      */

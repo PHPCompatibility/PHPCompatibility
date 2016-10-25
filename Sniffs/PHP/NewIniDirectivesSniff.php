@@ -25,6 +25,9 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
     /**
      * A list of new INI directives
      *
+     * The array lists : version number with false (not present) or true (present).
+     * If's sufficient to list the first version where the ini directive appears.
+     *
      * @var array(string)
      */
     protected $newIniDirectives = array(

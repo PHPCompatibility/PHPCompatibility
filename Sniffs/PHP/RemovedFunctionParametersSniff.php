@@ -19,9 +19,9 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     /**
      * A list of removed function parameters, which were present in older versions.
      *
-     * The array lists : version number with true (deprecated) and false (removed).
+     * The array lists : version number with false (deprecated) and true (removed).
      * The index is the location of the parameter in the parameter list, starting at 0 !
-     * If's sufficient to list the first version where the function was deprecated/removed.
+     * If's sufficient to list the first version where the function parameter was deprecated/removed.
      *
      * @var array
      */
@@ -29,27 +29,27 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                                         'gmmktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
-                                                '5.1' => true, // deprecated
-                                                '7.0' => false,
+                                                '5.1' => false, // deprecated
+                                                '7.0' => true,
                                             ),
                                         ),
                                         'ldap_first_attribute' => array(
                                             2 => array(
                                                 'name' => 'ber_identifier',
-                                                '5.2.4' => false,
+                                                '5.2.4' => true,
                                             ),
                                         ),
                                         'ldap_next_attribute' => array(
                                             2 => array(
                                                 'name' => 'ber_identifier',
-                                                '5.2.4' => false,
+                                                '5.2.4' => true,
                                             ),
                                         ),
                                         'mktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
-                                                '5.1' => true, // deprecated
-                                                '7.0' => false,
+                                                '5.1' => false, // deprecated
+                                                '7.0' => true,
                                             ),
                                         ),
                                     );
@@ -143,12 +143,12 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
         $isError        = false;
         $previousStatus = null;
-        foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $present) {
+        foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $removed) {
             if ($version != 'name' && $this->supportsAbove($version)) {
 
-                if ($previousStatus !== $present) {
-                    $previousStatus = $present;
-                    if ($present === false) {
+                if ($previousStatus !== $removed) {
+                    $previousStatus = $removed;
+                    if ($removed === true) {
                         $isError = true;
                         $error .= 'removed';
                     } else {

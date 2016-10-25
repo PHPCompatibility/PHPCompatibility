@@ -20,16 +20,17 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
 {
 
     /**
-     * A list of removed global variables with their alternative, if any
-     * Array codes : 0 = removed/unavailable, -1 = deprecated, 1 = active
+     * A list of removed global variables with their alternative, if any.
+     *
+     * The array lists : version number with false (deprecated) and true (removed).
+     * If's sufficient to list the first version where the variable was deprecated/removed.
      *
      * @var array(string|null)
      */
     protected $removedGlobalVariables = array(
         'HTTP_RAW_POST_DATA' => array(
-            '5.5' => 1,
-            '5.6' => -1,
-            '7.0' => 0,
+            '5.6' => false,
+            '7.0' => true,
             'alternative' => 'php://input'
         ),
     );
@@ -67,21 +68,22 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
 
         $error = '';
         $isError = false;
-        foreach ($versionList as $version => $status) {
-            if ($version !== 'alternative' && ($status === -1 || $status === 0)) {
-                if ($this->supportsAbove($version)) {
-                    switch ($status) {
-                        case -1:
-                            $error .= 'deprecated since PHP ' . $version . ' and ';
-                            break;
-                        case 0:
-                            $isError = true;
-                            $error .= 'removed since PHP ' . $version . ' and ';
-                            break 2;
+        $previousStatus = null;
+        foreach ($versionList as $version => $removed) {
+            if ($version !== 'alternative' && $this->supportsAbove($version)) {
+                if ($previousStatus !== $removed) {
+                    $previousStatus = $removed;
+                    if ($removed === true) {
+                        $isError = true;
+                        $error .= 'removed';
+                    } else {
+                        $error .= 'deprecated';
                     }
+                    $error .=  ' since PHP ' . $version . ' and ';
                 }
             }
         }
+
         if (strlen($error) > 0) {
             $error     = "Global variable '%s' is " . $error;
             $error     = substr($error, 0, strlen($error) - 5);
