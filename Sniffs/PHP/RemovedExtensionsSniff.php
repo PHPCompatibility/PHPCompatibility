@@ -151,13 +151,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
                 '5.4' => true,
                 'alternative' => null
         ),
-        'sybase' => array(
-                '5.3' => true,
-                'alternative' => 'sybase_ct'
-        ),
+        // Has to be before `sybase` as otherwise it will never match.
         'sybase_ct' => array(
                 '7.0' => true,
                 'alternative' => null
+        ),
+        'sybase' => array(
+                '5.3' => true,
+                'alternative' => 'sybase_ct'
         ),
         'w32api' => array(
                 '5.1' => true,
