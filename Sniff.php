@@ -408,6 +408,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * @param int                  $stackPtr    The position of the token.
      * @param array|int            $validScopes Optional. Array of valid scopes
      *                                          or int value of a valid scope.
+     *                                          Pass the T_.. constant(s) for the
+     *                                          desired scope to this parameter.
      *
      * @return bool Without the optional $scopeTypes: True if within a scope, false otherwise.
      *              If the $scopeTypes are set: True if *one* of the conditions is a
@@ -443,8 +445,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         // Check for required scope types.
-        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
-            if (in_array($type, $validScopes, true)) {
+        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $tokenCode) {
+            if (in_array($tokenCode, $validScopes, true)) {
                 return true;
             }
         }
@@ -473,6 +475,53 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         return $this->tokenHasScope($phpcsFile, $stackPtr, $validScopes);
+    }
+
+
+    /**
+     * Verify whether a token is within a scoped use statement.
+     *
+     * PHPCS cross-version compatibility method.
+     *
+     * In PHPCS 1.x no conditions are set for a scoped use statement.
+     * This method works around that limitation.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     *
+     * @return bool True if within use scope, false otherwise.
+     */
+    public function inUseScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        static $isLowPHPCS, $ignoreTokens;
+
+        if (isset($isLowPHPCS) === false) {
+            $isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+        }
+        if (isset($ignoreTokens) === false) {
+            $ignoreTokens              = PHP_CodeSniffer_Tokens::$emptyTokens;
+            $ignoreTokens[T_STRING]    = T_STRING;
+            $ignoreTokens[T_AS]        = T_AS;
+            $ignoreTokens[T_PUBLIC]    = T_PUBLIC;
+            $ignoreTokens[T_PROTECTED] = T_PROTECTED;
+            $ignoreTokens[T_PRIVATE]   = T_PRIVATE;
+        }
+
+        // PHPCS 2.0.
+        if ($isLowPHPCS === false) {
+            return $this->tokenHasScope($phpcsFile, $stackPtr, T_USE);
+        } else {
+            // PHPCS 1.x.
+            $tokens         = $phpcsFile->getTokens();
+            $maybeCurlyOpen = $phpcsFile->findPrevious($ignoreTokens, ($stackPtr - 1), null, true);
+            if ($tokens[$maybeCurlyOpen]['code'] === T_OPEN_CURLY_BRACKET) {
+                $maybeUseStatement = $phpcsFile->findPrevious($ignoreTokens, ($maybeCurlyOpen - 1), null, true);
+                if ($tokens[$maybeUseStatement]['code'] === T_USE) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
