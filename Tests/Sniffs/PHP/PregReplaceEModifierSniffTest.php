@@ -36,10 +36,10 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5");
+        $this->assertWarning($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5");
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertError($file, $line, "{$functionName}() - /e modifier is forbidden since PHP 7.0");
+        $this->assertError($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5 and removed since PHP 7.0");
     }
 
     /**
