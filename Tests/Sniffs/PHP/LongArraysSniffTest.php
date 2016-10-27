@@ -21,6 +21,8 @@ class LongArraysSniffTest extends BaseSniffTest
     /**
      * testLongVariable
      *
+     * @group longArrays
+     *
      * @dataProvider dataLongVariable
      *
      * @param string $longVariable Variable name.
@@ -33,9 +35,14 @@ class LongArraysSniffTest extends BaseSniffTest
      */
     public function testLongVariable($longVariable, $lines, $deprecatedIn, $removedIn, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn} and removed in {$removedIn}; Found '{$longVariable}'");
+            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn}; Found '{$longVariable}'");
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, "The use of long predefined variables has been deprecated in {$deprecatedIn} and removed in {$removedIn}; Found '{$longVariable}'");
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
@@ -54,14 +61,60 @@ class LongArraysSniffTest extends BaseSniffTest
     public function dataLongVariable()
     {
         return array(
-            array('$HTTP_POST_VARS', array(3), '5.3', '5.4', '5.2'),
-            array('$HTTP_GET_VARS', array(4), '5.3', '5.4', '5.2'),
-            array('$HTTP_ENV_VARS', array(5), '5.3', '5.4', '5.2'),
-            array('$HTTP_SERVER_VARS', array(6), '5.3', '5.4', '5.2'),
-            array('$HTTP_COOKIE_VARS', array(7), '5.3', '5.4', '5.2'),
-            array('$HTTP_SESSION_VARS', array(8), '5.3', '5.4', '5.2'),
-            array('$HTTP_POST_FILES', array(9), '5.3', '5.4', '5.2'),
+            array('$HTTP_POST_VARS', array(3, 24), '5.3', '5.4', '5.2'),
+            array('$HTTP_GET_VARS', array(4, 25, 42), '5.3', '5.4', '5.2'),
+            array('$HTTP_ENV_VARS', array(5, 26, 43), '5.3', '5.4', '5.2'),
+            array('$HTTP_SERVER_VARS', array(6, 27), '5.3', '5.4', '5.2'),
+            array('$HTTP_COOKIE_VARS', array(7, 28), '5.3', '5.4', '5.2'),
+            array('$HTTP_SESSION_VARS', array(8, 29), '5.3', '5.4', '5.2'),
+            array('$HTTP_POST_FILES', array(9, 30), '5.3', '5.4', '5.2'),
         );
     }
 
+
+    /**
+     * testNoViolation
+     *
+     * @group longArrays
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoViolation($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoViolation()
+     *
+     * @return array
+     */
+    public function dataNoViolation()
+    {
+        return array(
+            // Issue #268 - class properties named after long array variables.
+            array(14),
+            array(15),
+            array(16),
+            array(17),
+            array(18),
+            array(19),
+            array(20),
+
+            array(33),
+            array(34),
+            array(35),
+            array(36),
+            array(37),
+            array(38),
+            array(39),
+        );
+    }
 }

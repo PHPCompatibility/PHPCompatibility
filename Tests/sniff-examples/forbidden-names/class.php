@@ -1,69 +1,70 @@
 <?php
-class Baz{}
-class abstract{}
-class and{}
-class array{}
-class as{}
-class break{}
-class callable{}
-class case{}
-class catch{}
-class class{}
-class clone{}
-class const{}
-class continue{}
-class declare{}
-class default{}
-class do{}
-class else{}
-class elseif{}
-class enddeclare{}
-class endfor{}
-class endforeach{}
-class endif{}
-class endswitch{}
-class endwhile{}
-class extends{}
-class final{}
-class finally{}
-class for{}
-class foreach{}
-class function{}
-class global{}
-class goto{}
-class if{}
-class interface{}
-class instanceof{}
-class insteadof{}
-class namespace{}
-class new{}
-class or{}
-class private{}
-class protected{}
-class public{}
-class static{}
-class switch{}
-class throw{}
-class trait{}
-class try{}
-class use{}
-class var{}
-class while{}
-class xor{}
-class __CLASS__{}
-class __DIR__{}
-class __FILE__{}
-class __FUNCTION__{}
-class __METHOD__{}
-class __NAMESPACE__{}
-class bool;
-class int;
-class float;
-class string;
-class null;
-class true;
-class false;
-class resource;
-class object;
-class mixed;
-class numeric;
+class Baz {}
+class abstract {}
+class and {}
+class array {}
+class as {}
+class break {}
+class callable {}
+class case {}
+class catch {}
+class class {}
+class clone {}
+class const {}
+class continue {}
+class declare {}
+class default {}
+class do {}
+class else {}
+class elseif {}
+class enddeclare {}
+class endfor {}
+class endforeach {}
+class endif {}
+class endswitch {}
+class endwhile {}
+class extends {}
+class final {}
+class finally {}
+class for {}
+class foreach {}
+class function {}
+class global {}
+class goto {}
+class if {}
+class implements {}
+class interface {}
+class instanceof {}
+class insteadof {}
+class namespace {}
+class new {}
+class or {}
+class private {}
+class protected {}
+class public {}
+class static {}
+class switch {}
+class throw {}
+class trait {}
+class try {}
+class use {}
+class var {}
+class while {}
+class xor {}
+class __CLASS__ {}
+class __DIR__ {}
+class __FILE__ {}
+class __FUNCTION__ {}
+class __METHOD__ {}
+class __NAMESPACE__ {}
+class bool {}
+class int {}
+class float {}
+class string {}
+class null {}
+class true {}
+class false {}
+class resource {}
+class object {}
+class mixed {}
+class numeric {}

@@ -50,6 +50,10 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                                '5.6' => false,
                                '7.0' => true,
                            ),
+                           'iterable' => array(
+                               '7.0' => false,
+                               '7.1' => true,
+                           ),
                           );
 
 

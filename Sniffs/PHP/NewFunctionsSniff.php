@@ -1205,6 +1205,40 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
                                             '5.6' => false,
                                             '7.0' => true
                                         ),
+
+                                        'socket_export_stream' => array(
+                                            '7.0.6' => false,
+                                            '7.0.7' => true
+                                        ),
+
+                                        'curl_multi_errno' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'curl_share_errno' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'curl_share_strerror' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'is_iterable' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'pcntl_async_signals' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'session_create_id' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
+                                        'session_gc' => array(
+                                            '7.0' => false,
+                                            '7.1' => true
+                                        ),
                                     );
 
 

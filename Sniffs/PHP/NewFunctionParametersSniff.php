@@ -439,12 +439,37 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                                 '5.3.2' => false,
                                                 '5.3.3' => true
                                             ),
+                                            5 => array(
+                                                'name' => 'tag',
+                                                '7.0' => false,
+                                                '7.1' => true
+                                            ),
+                                            6 => array(
+                                                'name' => 'aad',
+                                                '7.0' => false,
+                                                '7.1' => true
+                                            ),
                                         ),
                                         'openssl_encrypt' => array(
                                             4 => array(
                                                 'name' => 'iv',
                                                 '5.3.2' => false,
                                                 '5.3.3' => true
+                                            ),
+                                            5 => array(
+                                                'name' => 'tag',
+                                                '7.0' => false,
+                                                '7.1' => true
+                                            ),
+                                            6 => array(
+                                                'name' => 'aad',
+                                                '7.0' => false,
+                                                '7.1' => true
+                                            ),
+                                            7 => array(
+                                                'name' => 'tag_length',
+                                                '7.0' => false,
+                                                '7.1' => true
                                             ),
                                         ),
                                         'openssl_pkcs7_verify' => array(

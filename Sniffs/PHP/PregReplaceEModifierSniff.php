@@ -84,19 +84,23 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
             return;
         }
 
-        $stringToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $firstParam['start'], $firstParam['end'] + 1);
-        if ($stringToken === false) {
+        /*
+         * The first parameter might be build up of a combination of strings,
+         * variables and function calls. We are only concerned with the strings.
+         */
+        $regex = '';
+        for ($i = $firstParam['start']; $i <= $firstParam['end']; $i++ ) {
+            if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
+                $regex .= $this->stripQuotes($tokens[$i]['content']);
+            }
+        }
+        // Deal with multi-line regexes which were broken up in several string tokens.
+        $regex = $this->stripQuotes($regex);
+
+        if ($regex === '') {
             // No string token found in the first parameter, so skip it (e.g. if variable passed in).
             return;
         }
-
-        /*
-         * The first parameter might be build up of a combination of strings,
-         * variables and function calls, but in that case, generally the start
-         * and end will still be strings. And as that's all we're concerned with,
-         * just use the raw content of the first parameter for further processing.
-         */
-        $regex = $this->stripQuotes($firstParam['raw']);
 
         $regexFirstChar = substr($regex, 0, 1);
         if (isset($this->doublesSeparators[$regexFirstChar])) {

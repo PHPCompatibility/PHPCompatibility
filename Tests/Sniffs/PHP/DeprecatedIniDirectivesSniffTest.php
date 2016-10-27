@@ -164,6 +164,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('mbstring.http_input', '5.6', array(71, 72), '5.5'),
             array('mbstring.http_output', '5.6', array(74, 75), '5.5'),
             array('mbstring.internal_encoding', '5.6', array(77, 78), '5.5'),
+
+            array('mcrypt.algorithms_dir', '7.1', array(135, 136), '7.0'),
+            array('mcrypt.modes_dir', '7.1', array(138, 139), '7.0'),
         );
     }
 
@@ -278,6 +281,11 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
             array('asp_tags', '7.0', array(83, 84), '5.6'),
             array('xsl.security_prefs', '7.0', array(86, 87), '5.6'),
+
+            array('session.entropy_file', '7.1', array(141, 142), '7.0'),
+            array('session.entropy_length', '7.1', array(144, 145), '7.0'),
+            array('session.hash_function', '7.1', array(147, 148), '7.0'),
+            array('session.hash_bits_per_character', '7.1', array(150, 151), '7.0'),
         );
     }
 

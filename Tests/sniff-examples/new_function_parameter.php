@@ -56,8 +56,8 @@ mssql_connect($server, 'sa', 'phpfi', true);
 mysqli_commit( $link, $flags, $name ); // NB: 2 new params
 mysqli_rollback( $link, $flags, $name ); // NB: 2 new params
 nl2br("Welcome\r\nThis is my HTML document", false);
-openssl_decrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv);
-openssl_encrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv);
+openssl_decrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv, $tag, $aad);
+openssl_encrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv, $tag, $aad, $tag_length);
 openssl_pkcs7_verify ( $filename , $flags , $outfilename , $cainfo , $extracerts , $content );
 openssl_seal($data, $sealed, $ekeys, array($pk1, $pk2), 'RC4');
 openssl_verify($data, $signature, $public_key_res, OPENSSL_ALGO_SHA1);

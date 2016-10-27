@@ -22,6 +22,24 @@
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 {
 
+    /**
+     * List of functions using hash algorithm as parameter (always the first parameter).
+     *
+     * Used by the new/removed hash algorithm sniffs.
+     * Key is the function name, value is the 1-based parameter position in the function call.
+     *
+     * @var array
+     */
+    protected $hashAlgoFunctions = array(
+        'hash_file'      => 1,
+        'hash_hmac_file' => 1,
+        'hash_hmac'      => 1,
+        'hash_init'      => 1,
+        'hash_pbkdf2'    => 1,
+        'hash'           => 1,
+    );
+
+
 /* The testVersion configuration variable may be in any of the following formats:
  * 1) Omitted/empty, in which case no version is specified.  This effectively
  *    disables all the checks provided by this standard.
@@ -390,6 +408,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * @param int                  $stackPtr    The position of the token.
      * @param array|int            $validScopes Optional. Array of valid scopes
      *                                          or int value of a valid scope.
+     *                                          Pass the T_.. constant(s) for the
+     *                                          desired scope to this parameter.
      *
      * @return bool Without the optional $scopeTypes: True if within a scope, false otherwise.
      *              If the $scopeTypes are set: True if *one* of the conditions is a
@@ -425,8 +445,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         // Check for required scope types.
-        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
-            if (in_array($type, $validScopes, true)) {
+        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $tokenCode) {
+            if (in_array($tokenCode, $validScopes, true)) {
                 return true;
             }
         }
@@ -455,6 +475,53 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         return $this->tokenHasScope($phpcsFile, $stackPtr, $validScopes);
+    }
+
+
+    /**
+     * Verify whether a token is within a scoped use statement.
+     *
+     * PHPCS cross-version compatibility method.
+     *
+     * In PHPCS 1.x no conditions are set for a scoped use statement.
+     * This method works around that limitation.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     *
+     * @return bool True if within use scope, false otherwise.
+     */
+    public function inUseScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        static $isLowPHPCS, $ignoreTokens;
+
+        if (isset($isLowPHPCS) === false) {
+            $isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+        }
+        if (isset($ignoreTokens) === false) {
+            $ignoreTokens              = PHP_CodeSniffer_Tokens::$emptyTokens;
+            $ignoreTokens[T_STRING]    = T_STRING;
+            $ignoreTokens[T_AS]        = T_AS;
+            $ignoreTokens[T_PUBLIC]    = T_PUBLIC;
+            $ignoreTokens[T_PROTECTED] = T_PROTECTED;
+            $ignoreTokens[T_PRIVATE]   = T_PRIVATE;
+        }
+
+        // PHPCS 2.0.
+        if ($isLowPHPCS === false) {
+            return $this->tokenHasScope($phpcsFile, $stackPtr, T_USE);
+        } else {
+            // PHPCS 1.x.
+            $tokens         = $phpcsFile->getTokens();
+            $maybeCurlyOpen = $phpcsFile->findPrevious($ignoreTokens, ($stackPtr - 1), null, true);
+            if ($tokens[$maybeCurlyOpen]['code'] === T_OPEN_CURLY_BRACKET) {
+                $maybeUseStatement = $phpcsFile->findPrevious($ignoreTokens, ($maybeCurlyOpen - 1), null, true);
+                if ($tokens[$maybeUseStatement]['code'] === T_USE) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
@@ -769,6 +836,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *         'name'              => '$var',  // The variable name.
      *         'pass_by_reference' => false,   // Passed by reference.
      *         'type_hint'         => string,  // Type hint for array or custom type
+     *         'nullable_type'     => bool,    // Whether the type given in the type hint is nullable
+     *         'type_hint'         => string,  // Type hint for array or custom type
+     *         'raw'               => string,  // Raw content of the tokens for the parameter
      *        )
      * </code>
      *
@@ -776,14 +846,20 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * 'default' with the value of the default as a string.
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
-     * class, but with some improvements which were only introduced in PHPCS 2.7.
+     * class, but with some improvements which will probably be introduced in
+     * PHPCS 2.7.1/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
+     * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
+     *
      * Once the minimum supported PHPCS version for this sniff library goes beyond
      * that, this method can be removed and calls to it replaced with
-     * `$phpcsFile->getMethodParameters($stackPtr)` calls.}}
+     * `$phpcsFile->getMethodParameters($stackPtr)` calls.
+     *
+     * Last synced with PHPCS version: PHPCS 2.7.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int $stackPtr The position in the stack of the T_FUNCTION token
-     *                      to acquire the parameters for.
+     * @param int                  $stackPtr  The position in the stack of the
+     *                                        T_FUNCTION token to acquire the
+     *                                        parameters for.
      *
      * @return array|false
      * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
@@ -813,6 +889,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $passByReference = false;
         $variableLength  = false;
         $typeHint        = '';
+        $nullableType    = false;
 
         for ($i = $paramStart; $i <= $closer; $i++) {
             // Check to see if this token has a parenthesis or bracket opener. If it does
@@ -851,7 +928,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             case T_PARENT:
             case T_STATIC:
                 // Self is valid, the others invalid, but were probably intended as type hints.
-                if (isset($defaultStart) === false) {
+                if ($defaultStart === null) {
                     $typeHint = $tokens[$i]['content'];
                 }
                 break;
@@ -890,6 +967,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     $typeHint .= $tokens[$i]['content'];
                 }
                 break;
+            case T_INLINE_THEN:
+                if ($defaultStart === null) {
+                    $nullableType = true;
+                    $typeHint    .= $tokens[$i]['content'];
+                }
+                break;
             case T_CLOSE_PARENTHESIS:
             case T_COMMA:
                 // If it's null, then there must be no parameters for this
@@ -914,7 +997,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 $vars[$paramCount]['pass_by_reference'] = $passByReference;
                 $vars[$paramCount]['variable_length']   = $variableLength;
                 $vars[$paramCount]['type_hint']         = $typeHint;
-                $vars[$paramCount]['raw'] = $rawContent;
+                $vars[$paramCount]['nullable_type']     = $nullableType;
+                $vars[$paramCount]['raw']               = $rawContent;
 
                 // Reset the vars, as we are about to process the next parameter.
                 $defaultStart    = null;
@@ -922,6 +1006,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 $passByReference = false;
                 $variableLength  = false;
                 $typeHint        = '';
+                $nullableType    = false;
 
                 $paramCount++;
                 break;
@@ -934,5 +1019,51 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         return $vars;
 
     }//end getMethodParameters()
+
+
+    /**
+     * Get the hash algorithm name from the parameter in a hash function call.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                  $stackPtr  The position of the T_STRING function token.
+     *
+     * @return string|false The algorithm name without quotes if this was a relevant hash
+     *                      function call or false if it was not.
+     */
+    public function getHashAlgorithmParameter(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_STRING) {
+            return false;
+        }
+
+        $functionName   = $tokens[$stackPtr]['content'];
+        $functionNameLc = strtolower($functionName);
+
+        // Bow out if not one of the functions we're targetting.
+        if (isset($this->hashAlgoFunctions[$functionNameLc]) === false) {
+            return false;
+        }
+
+        // Get the parameter from the function call which should contain the algorithm name.
+        $algoParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
+        if ($algoParam === false) {
+            return false;
+        }
+
+        /**
+         * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes.
+         */
+        $algo = strtolower(trim($algoParam['raw']));
+        $algo = $this->stripQuotes($algo);
+
+        return $algo;
+    }
 
 }//end class

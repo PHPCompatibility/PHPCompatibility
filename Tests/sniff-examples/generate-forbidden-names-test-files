@@ -85,14 +85,21 @@ $tests = array(
     'namespace' => function($name) { return "namespace $name;\n"; },
     'use' => function($name) { return "use $name;\n"; },
     'use-as' => function($name) { return "use Foobar as $name;\n"; },
-    'class' => function($name) { return "class $name{}\n"; },
+    'class' => function($name) { return "class $name {}\n"; },
     'class-extends' => function($name) { return "class Foobar extends $name {}\n"; },
     'class-use-trait' => function($name) { return "class Foobar { use $name }\n"; },
-    'class-use-trait-alias-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as $name } }\n"; },
+    'class-use-trait-const' => function($name) { return "class Foobar { use const $name }\n"; },
+    'class-use-trait-function' => function($name) { return "class Foobar { use function $name }\n"; },
+    'class-use-trait-alias-method' => function($name) { if (in_array($name, array('public','protected','private'), true)=== true) { return ''; } else { return "class Foobar { use BazTrait { oldfunction as $name } }\n"; } },
+    'class-use-trait-alias-public-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as public $name } }\n"; },
+    'class-use-trait-alias-protected-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as protected $name } }\n"; },
+    'class-use-trait-alias-private-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as private $name } }\n"; },
     'trait' => function($name) { return "trait $name {}\n"; },
     'function-declare' => function($name) { return "function $name() { };\n"; },
     'const' => function($name) { return "const $name = 1;\n"; },
     'define' => function($name) { return "define('$name', 1);\n"; },
+    'interface' => function($name) { return "interface $name {}\n"; },
+    'interface-extends' => function($name) { return "interface Foobar extends $name {}\n"; },
 );
 
 $path = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'forbidden-names';

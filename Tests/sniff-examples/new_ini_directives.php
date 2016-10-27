@@ -6,7 +6,7 @@ ini_set($iniName, 'filter.default'); // Verify sniff doesn't flag on second para
 
 ini_set('allow_url_include', 1);
 $test = ini_get('allow_url_include');
-ini_set("allow_url_include", 1); // Verify sniff works when using double quotes.
+
 
 ini_set('pcre.backtrack_limit', 1);
 $test = ini_get('pcre.backtrack_limit');
@@ -301,3 +301,9 @@ $test = ini_get('session.lazy_write');
 
 ini_set('zend.assertions', 1);
 $test = ini_get('zend.assertions');
+
+ini_set('session.sid_length', 1);
+$test = ini_get('session.sid_length');
+
+ini_set('session.sid_bits_per_character', 1);
+$test = ini_get('session.sid_bits_per_character');

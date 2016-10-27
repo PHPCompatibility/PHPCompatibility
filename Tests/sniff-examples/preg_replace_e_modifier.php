@@ -152,3 +152,6 @@ preg_filter('/\/e/e', $Replace, $Source);
 // Regex build up of strings combined with variables/function calls.
 preg_replace('/something' . $variable . 'something else/e', $Replace, $Source);
 preg_replace('/something' . preg_quote($variable) . 'something else/e', $Replace, $Source);
+
+// Issue 265 - build up string with varying quotes - this should be ok.
+preg_replace('~'.testme()."~s", '', "foo bar was here");

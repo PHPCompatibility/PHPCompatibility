@@ -39,9 +39,6 @@ class Foobar { use BazTrait { oldfunction as insteadof } }
 class Foobar { use BazTrait { oldfunction as namespace } }
 class Foobar { use BazTrait { oldfunction as new } }
 class Foobar { use BazTrait { oldfunction as or } }
-class Foobar { use BazTrait { oldfunction as private } }
-class Foobar { use BazTrait { oldfunction as protected } }
-class Foobar { use BazTrait { oldfunction as public } }
 class Foobar { use BazTrait { oldfunction as static } }
 class Foobar { use BazTrait { oldfunction as switch } }
 class Foobar { use BazTrait { oldfunction as throw } }

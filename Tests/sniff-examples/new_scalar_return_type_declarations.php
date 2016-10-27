@@ -7,3 +7,5 @@ function foo($a): int {}
 function foo($a): float {}
 
 function foo($a): string {}
+
+function foo($a): void {}

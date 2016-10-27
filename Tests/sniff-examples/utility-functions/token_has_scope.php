@@ -45,3 +45,13 @@ namespace {
         function something() {}
     }
 }
+
+use Baz;
+use Foobar as Baz;
+class Foobar { use Baz }
+class Foobar { use const Baz }
+class Foobar { use function Baz }
+class Foobar { use BazTrait { oldfunction as Baz } }
+class Foobar { use BazTrait { oldfunction as public Baz } }
+class Foobar { use BazTrait { oldfunction as protected Baz } }
+class Foobar { use BazTrait { oldfunction as private Baz } }

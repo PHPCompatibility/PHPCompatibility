@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff.
  *
- * Discourages the use of deprecated and removed hash algorithms
+ * Discourages the use of deprecated and removed hash algorithms.
  *
  * PHP version 5.4
  *
@@ -26,16 +26,20 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
 {
 
     /**
-     * List of functions using the algorithm as parameter (always the first parameter)
+     * A list of removed hash algorithms, which were present in older versions.
      *
-     * @var array
+     * The array lists : version number with false (deprecated) and true (removed).
+     * If's sufficient to list the first version where the hash algorithm was deprecated/removed.
+     *
+     * @var array(string => array(string => bool))
      */
-    protected $algoFunctions = array(
-        'hash_file',
-        'hash_hmac_file',
-        'hash_hmac',
-        'hash_init',
-        'hash'
+    protected $removedAlgorithms = array(
+        'salsa10' => array(
+            '5.4' => true,
+        ),
+        'salsa20' => array(
+            '5.4' => true,
+        ),
     );
 
     /**
@@ -61,36 +65,94 @@ class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatib
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.4')) {
-            $tokens = $phpcsFile->getTokens();
-
-            if (in_array($tokens[$stackPtr]['content'], $this->algoFunctions) === true) {
-                $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-
-                if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
-                    return;
-                }
-
-                $firstParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($openBracket + 1), null, true);
-
-                /**
-                 * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes
-                 */
-                $algo = strtolower($tokens[$firstParam]['content']);
-                $algo = $this->stripQuotes($algo);
-                switch ($algo) {
-                    case 'salsa10':
-                    case 'salsa20':
-                        $error = 'The Salsa10 and Salsa20 hash algorithms have been removed since PHP 5.4';
-                        $phpcsFile->addError($error, $stackPtr);
-                        break;
-                }
-
-            }
+        $algo = $this->getHashAlgorithmParameter($phpcsFile, $stackPtr);
+        if (empty($algo) || is_string($algo) === false) {
+            return;
         }
 
+        // Bow out if not one of the algorithms we're targetting.
+        if (isset($this->removedAlgorithms[$algo]) === false) {
+            return;
+        }
+
+        // Check if the algorithm used is deprecated or removed.
+        $errorInfo = $this->getErrorInfo($algo);
+
+        if ($errorInfo['deprecated'] !== '' || $errorInfo['removed'] !== '') {
+            $this->addError($phpcsFile, $stackPtr, $algo, $errorInfo);
+        }
 
     }//end process()
 
+
+    /**
+     * Retrieve the relevant (version) information for the error message.
+     *
+     * @param string $algorithm The name of the algorithm.
+     *
+     * @return array
+     */
+    protected function getErrorInfo($algorithm)
+    {
+        $errorInfo  = array(
+            'deprecated'  => '',
+            'removed'     => '',
+            'error'       => false,
+        );
+
+        foreach ($this->removedAlgorithms[$algorithm] as $version => $removed) {
+            if ($this->supportsAbove($version)) {
+                if ($removed === true && $errorInfo['removed'] === '') {
+                    $errorInfo['removed'] = $version;
+                    $errorInfo['error']   = true;
+                } elseif ($errorInfo['deprecated'] === '') {
+                    $errorInfo['deprecated'] = $version;
+                }
+            }
+        }
+
+        return $errorInfo;
+
+    }//end getErrorInfo()
+
+
+    /**
+     * Generates the error or warning for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function
+     *                                        in the token array.
+     * @param string               $algorithm The name of the algorithm.
+     * @param array                $errorInfo Array with details about the versions
+     *                                        in which the algorithm was deprecated
+     *                                        and/or removed.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $algorithm, $errorInfo)
+    {
+        $error     = 'The %s hash algorithm is ';
+        $errorCode = $algorithm . 'Found';
+        $data      = array($algorithm);
+
+        if ($errorInfo['deprecated'] !== '') {
+            $error .= 'deprecated since PHP version %s and ';
+            $data[] = $errorInfo['deprecated'];
+        }
+        if ($errorInfo['removed'] !== '') {
+            $error .= 'removed since PHP version %s and ';
+            $data[] = $errorInfo['removed'];
+        }
+
+        // Remove the last 'and' from the message.
+        $error = substr($error, 0, strlen($error) - 5);
+
+        if ($errorInfo['error'] === true) {
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+        } else {
+            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
+        }
+
+    }//end addError()
 
 }//end class

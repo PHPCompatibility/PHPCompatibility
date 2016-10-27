@@ -15,16 +15,6 @@
  */
 class ForbiddenNamesSniffTest extends BaseSniffTest
 {
-    /**
-     * setUp
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-    }
 
     /**
      * testNamespace
@@ -32,30 +22,22 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      * @group forbiddenNames
      *
      * @dataProvider usecaseProvider
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
      */
     public function testForbiddenNames($usecase)
     {
-
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples
         $filename = "sniff-examples/forbidden-names/$usecase.php";
 
-        if (in_array($usecase, array('use', 'class-use-trait'))) {
-            $file = $this->sniffFile($filename, '5.6');
-
-            $this->assertNoViolation($file, 13);
-            $this->assertNoViolation($file, 31);
-
-            $file = $this->sniffFile($filename, '7.0');
-
-            $lineCount = count(file($file->getFilename()));
-
-            for ($i = 60; $i < $lineCount; $i++) {
-                $this->assertError($file, $i, "Function name, class name, namespace name or constant name can not be reserved keyword");
-            }
-        }
-
-        $file = $this->sniffFile($filename);
+        // Set the testVersion to the highest PHP version encountered in the
+        // PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff::$invalidNames list
+        // to catch all errors.
+        $file = $this->sniffFile($filename, '7.0');
 
         $this->assertNoViolation($file, 2);
 
@@ -63,10 +45,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         // Each line of the use case files (starting at line 3) exhibits an
         // error.
         for ($i = 3; $i < $lineCount; $i++) {
-            if (in_array($i, array(13,31)) && in_array($usecase, array('use', 'class-use-trait'))) {
-                continue;
-            }
-            $this->assertError($file, $i, "Function name, class name, namespace name or constant name can not be reserved keyword");
+            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
         }
 
     }
@@ -84,7 +63,12 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('class'),
             array('class-extends'),
             array('class-use-trait'),
+            array('class-use-trait-const'),
+            array('class-use-trait-function'),
             array('class-use-trait-alias-method'),
+            array('class-use-trait-alias-public-method'),
+            array('class-use-trait-alias-protected-method'),
+            array('class-use-trait-alias-private-method'),
             array('trait'),
             array('function-declare'),
             array('const'),
@@ -111,8 +95,21 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         if (ini_get('date.timezone') == false) {
             ini_set('date.timezone', 'America/Chicago');
         }
-        $file = $this->sniffFile("sniff-examples/forbidden_names_correct_usage.php");
 
+        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage.php');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * testCorrectUsageUseFunctionConst
+     *
+     * @group forbiddenNames
+     *
+     * @return void
+     */
+    public function testCorrectUsageUseFunctionConst()
+    {
+        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage_use.php', '5.6');
         $this->assertNoViolation($file);
     }
 
@@ -125,8 +122,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile("sniff-examples/forbidden-names/class.php", '4.4');
-
+        $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4');
         $this->assertNoViolation($file, 3);
     }
 }

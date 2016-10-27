@@ -65,9 +65,51 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        if (in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated, true)) {
-            $error = "The use of long predefined variables has been deprecated in 5.3 and removed in 5.4; Found '%s'";
-            $data  = array($tokens[$stackPtr]['content']);
+
+        // Check if the variable name is in our blacklist.
+        if (in_array(substr($tokens[$stackPtr]['content'], 1), $this->deprecated, true) === false) {
+            return;
+        }
+
+        if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
+            /*
+             * Check for class property definitions.
+             */
+            $properties = array();
+            try {
+                $properties = $phpcsFile->getMemberProperties($stackPtr);
+            } catch ( PHP_CodeSniffer_Exception $e) {
+                // If it's not an expected exception, throw it.
+                if ($e->getMessage() !== '$stackPtr is not a class member var') {
+                    throw $e;
+                }
+            }
+
+            if (isset($properties['scope'])) {
+                // Ok, so this was a class property declaration, not our concern.
+                return;
+            }
+
+            /*
+             * Check for static usage of class properties shadowing the long arrays.
+             */
+            $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+            if ($tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
+                return;
+            }
+        }
+
+        // Still here, so throw an error/warning.
+        $error   = "The use of long predefined variables has been deprecated in 5.3%s; Found '%s'";
+        $isError = $this->supportsAbove('5.4');
+        $data    = array(
+            ($isError ? ' and removed in 5.4' : ''),
+            $tokens[$stackPtr]['content']
+        );
+
+        if ($isError === true) {
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+        } else {
             $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
         }
     }

@@ -66,3 +66,6 @@ ereg();
 
 // @codingStandardsChangeSetting PHPCompatibility.PHP.RemovedExtensions functionWhitelist mysql_to_rfc3339
 mysql_to_rfc3339();
+
+// PHP 7.1 removed extensions:
+mcrypt_encrypt();

@@ -129,5 +129,23 @@ ini_set('mbstring.script_encoding', 1);
 $a = ini_get('mbstring.script_encoding');
 
 // Ini directive with variable for ini name.
-$iniName = 'ifx.default_user'
+$iniName = 'ifx.default_user';
 ini_set($iniName, 'ifx.default_password'); // Ok, as we're interested in the variable name, not the value.
+
+ini_set('mcrypt.algorithms_dir', 1);
+$a = ini_get('mcrypt.algorithms_dir');
+
+ini_set('mcrypt.modes_dir', 1);
+$a = ini_get('mcrypt.modes_dir');
+
+ini_set('session.entropy_file', 1);
+$a = ini_get('session.entropy_file');
+
+ini_set('session.entropy_length', 1);
+$a = ini_get('session.entropy_length');
+
+ini_set('session.hash_function', 1);
+$a = ini_get('session.hash_function');
+
+ini_set('session.hash_bits_per_character', 1);
+$a = ini_get('session.hash_bits_per_character');

@@ -191,6 +191,10 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Snif
             $tokenType = $this->translateContentToToken[$content];
         }
 
+        if (isset($this->newKeywords[$tokenType]) === false) {
+            return;
+        }
+
         $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 

@@ -113,6 +113,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     );
 
     /**
+     * Whether PHPCS 1.x is used or not.
+     *
+     * @var bool
+     */
+    protected $isLowPHPCS = false;
+
+    /**
      * targetedTokens
      *
      * @var array
@@ -137,6 +144,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
      */
     public function register()
     {
+        $this->isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+
         $tokens = $this->targetedTokens;
         if (defined('T_ANON_CLASS')) {
             $tokens[] = constant('T_ANON_CLASS');
@@ -158,7 +167,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         $tokens = $phpcsFile->getTokens();
 
         /**
-         * We distinguish between the class, function and namespace names or the define statements.
+         * We distinguish between the class, function and namespace names vs the define statements.
          */
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {
             $this->processString($phpcsFile, $stackPtr, $tokens);
@@ -185,16 +194,44 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
-        $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
-        if (isset($this->invalidNames[$nextContentLc]) === false) {
-            return;
+        /*
+         * PHP 5.6 allows for use const and use function, but only if followed by the function/constant name.
+         * - `use function HelloWorld` => move to the next token (HelloWorld) to verify.
+         * - `use const HelloWorld` => move to the next token (HelloWorld) to verify.
+         */
+        if ($tokens[$stackPtr]['type'] === 'T_USE'
+            && isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === true
+            && $this->supportsAbove('5.6')
+        ) {
+            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
+                // Prevent duplicate messages: `const` is T_CONST in PHPCS 1.x and T_STRING in PHPCS 2.x.
+                if ($this->isLowPHPCS === true) {
+                    return;
+                }
+                $nextNonEmpty = $maybeUseNext;
+            }
         }
 
-        //  PHP 5.6 allows for use const and use function.
-        if ($this->supportsAbove('5.6')
-            && $tokens[$stackPtr]['type'] === 'T_USE'
-            && isset($this->validUseNames[$nextContentLc]) === true
+        /*
+         * Deal with visibility modifiers.
+         * - `use HelloWorld { sayHello as protected; }` => valid, bow out.
+         * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
+         */
+        else if ($tokens[$stackPtr]['type'] === 'T_AS'
+            && in_array($tokens[$nextNonEmpty]['code'], PHP_CodeSniffer_Tokens::$scopeModifiers, true) === true
+            && $this->inUseScope($phpcsFile, $stackPtr) === true
         ) {
+            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {
+                return;
+            }
+
+            $nextNonEmpty = $maybeUseNext;
+        }
+
+        $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
+        if (isset($this->invalidNames[$nextContentLc]) === false) {
             return;
         }
 
@@ -236,7 +273,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         // Special case for 5.3 where we want to find usage of traits, but
         // trait is not a token.
         if ($tokenContentLc === 'trait') {
-            return $this->processNonString($phpcsFile, $stackPtr, $tokens);
+            $this->processNonString($phpcsFile, $stackPtr, $tokens);
+            return;
         }
 
         // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
@@ -263,4 +301,17 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         }
     }//end processString()
 
+
+    /**
+     * Check if the current token code is for a token which can be considered
+     * the end of a (partial) use statement.
+     *
+     * @param int $token The current token information.
+     *
+     * @return bool
+     */
+    protected function isEndOfUseStatement($token)
+    {
+        return in_array($token['code'], array(T_CLOSE_CURLY_BRACKET, T_SEMICOLON, T_COMMA), true);
+    }
 }//end class

@@ -118,3 +118,28 @@ if (false) {
 
 // xor
 $d = 1 xor 2;
+
+// Issue #117: Traits: alias method with changed visibility.
+class MyClass1 {
+    use HelloWorld { sayHello as protected; }
+}
+class MyClass2 {
+    use HelloWorld {
+        sayHello as private;
+    }
+}
+class MyClass3 {
+    use HelloWorld { sayHello as public; }
+}
+
+class MyClass1 {
+    use HelloWorld {
+        sayHello as protected myProtectedHello;
+    }
+}
+class MyClass2 {
+    use HelloWorld { sayHello as private myPrivateHello; }
+}
+class MyClass3 {
+    use HelloWorld { sayHello as public myPublicHello; }
+}
