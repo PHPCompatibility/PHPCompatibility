@@ -57,14 +57,14 @@ trait __FILE__ {}
 trait __FUNCTION__ {}
 trait __METHOD__ {}
 trait __NAMESPACE__ {}
-trait bool;
-trait int;
-trait float;
-trait string;
-trait null;
-trait true;
-trait false;
-trait resource;
-trait object;
-trait mixed;
-trait numeric;
+trait bool {}
+trait int {}
+trait float {}
+trait string {}
+trait null {}
+trait true {}
+trait false {}
+trait resource {}
+trait object {}
+trait mixed {}
+trait numeric {}

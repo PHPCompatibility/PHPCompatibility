@@ -46,8 +46,8 @@ Installation in Composer project (method 2)
    "squizlabs/php_codesniffer": "*",
    "wimg/php-compatibility": "*",
    "simplyadmire/composer-plugins" : "@dev",
-   "prefer-stable" : true
 },
+"prefer-stable" : true
 
 ```
 * Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.

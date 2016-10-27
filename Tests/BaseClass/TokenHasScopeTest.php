@@ -51,12 +51,12 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 
             // Various scopes.
             array(23, true), // echo within if
-            array(23, true, array( T_IF ) ), // echo within if
-            array(23, false, array( T_SWITCH ) ), // echo within if
+            array(23, true, T_IF), // echo within if
+            array(23, false, array(T_SWITCH) ), // echo within if
 
             array(45, true), // echo within else-if
-            array(45, true, array( T_ELSEIF ) ), // echo within else-if
-            array(45, false, array( T_IF ) ), // echo within else-if
+            array(45, true, array(T_ELSEIF)), // echo within else-if
+            array(45, false, array(T_IF)), // echo within else-if
 
             array(57, true), // echo within else
             array(86, true), // echo within for
@@ -68,7 +68,7 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 
             array(129, true), // echo within case within switch
             array(129, true, array(T_SWITCH)), // echo within case within switch
-            array(129, true, array(T_CASE)), // echo within case within switch
+            array(129, true, T_CASE), // echo within case within switch
             array(129, true, array(T_SWITCH, T_CASE)), // echo within case within switch
             array(129, true, array(T_SWITCH, T_IF)), // echo within case within switch
             array(129, false, array(T_ELSEIF, T_IF)), // echo within case within switch
@@ -113,6 +113,47 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
             array(185, true), // function
             array(202, false), // function
             array(220, true), // function
+        );
+    }
+
+
+    /**
+     * testInUseScope
+     *
+     * @group utilityFunctions
+     *
+     * @dataProvider dataInUseScope
+     *
+     * @covers PHPCompatibility_Sniff::inUseScope
+     *
+     * @param int    $stackPtr Stack pointer for an arbitrary token in the test file.
+     * @param string $expected The expected boolean return value.
+     */
+    public function testInUseScope($stackPtr, $expected)
+    {
+        $result = $this->helperClass->inUseScope($this->_phpcsFile, $stackPtr);
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * dataInClassScope
+     *
+     * @see testInClassScope()
+     *
+     * @return array
+     */
+    public function dataInUseScope()
+    {
+        return array(
+            array(235, false),
+            array(244, false),
+            array(255, false),
+            array(269, false),
+            array(283, false),
+            array(303, true),
+            array(327, true),
+            array(351, true),
+            array(375, true),
         );
     }
 
