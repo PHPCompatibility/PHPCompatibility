@@ -33,7 +33,7 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertError($file, $line, 'Use of deprecated PHP4 style class constructor is not supported since PHP 7');
+        $this->assertWarning($file, $line, 'Use of PHP 4 style class constructor is deprecated since PHP 7');
     }
 
     /**
