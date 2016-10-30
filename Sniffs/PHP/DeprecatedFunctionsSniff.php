@@ -19,14 +19,14 @@
 class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_Sniff
 {
     /**
-     * A list of forbidden functions with their alternatives.
+     * A list of deprecated and removed functions with their alternatives.
      *
-     * The array lists : version number with false (deprecated) or true (forbidden) and an alternative function.
+     * The array lists : version number with false (deprecated) or true (removed) and an alternative function.
      * If no alternative exists, it is NULL, i.e, the function should just not be used.
      *
      * @var array(string => array(string => bool|string|null))
      */
-    protected $forbiddenFunctions = array(
+    protected $removedFunctions = array(
                                         'php_check_syntax' => array(
                                             '5.0.5' => true,
                                             'alternative' => null
@@ -764,7 +764,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      *
      * @var array
      */
-    protected $forbiddenFunctionNames = array();
+    protected $removedFunctionNames = array();
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -773,9 +773,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what forbidden functions
+        // Everyone has had a chance to figure out what removed functions
         // they want to check for, so now we can cache out the list.
-        $this->forbiddenFunctionNames = array_keys($this->forbiddenFunctions);
+        $this->removedFunctionNames = array_keys($this->removedFunctions);
 
         return array(T_STRING);
 
@@ -812,7 +812,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
 
         $function = strtolower($tokens[$stackPtr]['content']);
 
-        if (in_array($function, $this->forbiddenFunctionNames) === false) {
+        if (in_array($function, $this->removedFunctionNames) === false) {
             return;
         }
 
@@ -824,9 +824,9 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      * Generates the error or warning for this sniff.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the forbidden function
+     * @param int                  $stackPtr  The position of the function
      *                                        in the token array.
-     * @param string               $function  The name of the forbidden function.
+     * @param string               $function  The name of the function.
      *
      * @return void
      */
@@ -836,28 +836,28 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
 
         $isError = false;
         $previousVersionStatus = null;
-        foreach ($this->forbiddenFunctions[$function] as $version => $forbidden) {
+        foreach ($this->removedFunctions[$function] as $version => $removed) {
             if ($this->supportsAbove($version)) {
                 if ($version != 'alternative') {
-                    if ($previousVersionStatus !== $forbidden) {
-                        $previousVersionStatus = $forbidden;
-                        if ($forbidden === true) {
+                    if ($previousVersionStatus !== $removed) {
+                        $previousVersionStatus = $removed;
+                        if ($removed === true) {
                             $isError = true;
-                            $error .= 'forbidden';
+                            $error .= 'removed';
                         } else {
-                            $error .= 'discouraged';
+                            $error .= 'deprecated';
                         }
-                        $error .=  ' from PHP version ' . $version . ' and ';
+                        $error .=  ' since PHP ' . $version . ' and ';
                     }
                 }
             }
         }
         if (strlen($error) > 0) {
-            $error = 'The use of function ' . $function . ' is ' . $error;
+            $error = 'Function ' . $function . '() is ' . $error;
             $error = substr($error, 0, strlen($error) - 5);
 
-            if ($this->forbiddenFunctions[$function]['alternative'] !== null) {
-                $error .= '; use ' . $this->forbiddenFunctions[$function]['alternative'] . ' instead';
+            if ($this->removedFunctions[$function]['alternative'] !== null) {
+                $error .= '; use ' . $this->removedFunctions[$function]['alternative'] . ' instead';
             }
 
             if ($isError === true) {

@@ -47,7 +47,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}");
+            $this->assertWarning($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn}");
         }
     }
 
@@ -97,7 +97,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}; use {$alternative} instead");
+            $this->assertWarning($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn}; use {$alternative} instead");
         }
     }
 
@@ -198,45 +198,45 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
 
 
     /**
-     * testForbiddenFunction
+     * testRemovedFunction
      *
-     * @dataProvider dataForbiddenFunction
+     * @dataProvider dataRemovedFunction
      *
-     * @param string $functionName      Name of the function.
-     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
-     * @param array  $lines             The line numbers in the test file which apply to this function.
-     * @param string $okVersion         A PHP version in which the function was still valid.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $functionName   Name of the function.
+     * @param string $removedIn      The PHP version in which the function was removed.
+     * @param array  $lines          The line numbers in the test file which apply to this function.
+     * @param string $okVersion      A PHP version in which the function was still valid.
+     * @param string $removedVersion Optional PHP version to test removed message with -
+     *                               if different from the $removedIn version.
      *
      * return void
      */
-    public function testForbiddenFunction($functionName, $forbiddenIn, $lines, $okVersion, $forbiddenVersion = null)
+    public function testRemovedFunction($functionName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
         foreach($lines as $line) {
-            $this->assertError($file, $line, "The use of function {$functionName} is forbidden from PHP version {$forbiddenIn}");
+            $this->assertError($file, $line, "Function {$functionName}() is removed since PHP {$removedIn}");
         }
     }
 
     /**
      * Data provider.
      *
-     * @see testForbiddenFunction()
+     * @see testRemovedFunction()
      *
      * @return array
      */
-    public function dataForbiddenFunction()
+    public function dataRemovedFunction()
     {
         return array(
             array('php_logo_guid', '5.5', array(32), '5.4'),
@@ -258,23 +258,23 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
 
 
     /**
-     * testDeprecatedForbiddenFunction
+     * testDeprecatedRemovedFunction
      *
-     * @dataProvider dataDeprecatedForbiddenFunction
+     * @dataProvider dataDeprecatedRemovedFunction
      *
      * @param string $functionName      Name of the function.
      * @param string $deprecatedIn      The PHP version in which the function was deprecated.
-     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
+     * @param string $removedIn         The PHP version in which the function was removed.
      * @param array  $lines             The line numbers in the test file which apply to this function.
      * @param string $okVersion         A PHP version in which the function was still valid.
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
      *                                  if different from the $deprecatedIn version.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $removedVersion    Optional PHP version to test removed message with -
+     *                                  if different from the $removedIn version.
      *
      * return void
      */
-    public function testDeprecatedForbiddenFunction($functionName, $deprecatedIn, $forbiddenIn, $lines, $okVersion, $deprecatedVersion = null, $forbiddenVersion = null)
+    public function testDeprecatedRemovedFunction($functionName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
@@ -288,28 +288,28 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}");
+            $this->assertWarning($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn}");
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
         foreach($lines as $line) {
-            $this->assertError($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn} and forbidden from PHP version {$forbiddenIn}");
+            $this->assertError($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
         }
     }
 
     /**
      * Data provider.
      *
-     * @see testDeprecatedForbiddenFunction()
+     * @see testDeprecatedRemovedFunction()
      *
      * @return array
      */
-    public function dataDeprecatedForbiddenFunction()
+    public function dataDeprecatedRemovedFunction()
     {
         return array(
             array('define_syslog_variables', '5.3', '5.4', array(5), '5.2'),
@@ -328,24 +328,24 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
 
 
     /**
-     * testDeprecatedForbiddenFunctionWithAlternative
+     * testDeprecatedRemovedFunctionWithAlternative
      *
-     * @dataProvider dataDeprecatedForbiddenFunctionWithAlternative
+     * @dataProvider dataDeprecatedRemovedFunctionWithAlternative
      *
      * @param string $functionName      Name of the function.
      * @param string $deprecatedIn      The PHP version in which the function was deprecated.
-     * @param string $forbiddenIn       The PHP version in which the function was forbidden.
+     * @param string $removedIn         The PHP version in which the function was removed.
      * @param string $alternative       An alternative function.
      * @param array  $lines             The line numbers in the test file which apply to this function.
      * @param string $okVersion         A PHP version in which the function was still valid.
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
      *                                  if different from the $deprecatedIn version.
-     * @param string $forbiddenVersion  Optional PHP version to test forbidden message with -
-     *                                  if different from the $forbiddenIn version.
+     * @param string $removedVersion    Optional PHP version to test removed message with -
+     *                                  if different from the $removedIn version.
      *
      * return void
      */
-    public function testDeprecatedForbiddenFunctionWithAlternative($functionName, $deprecatedIn, $forbiddenIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $forbiddenVersion = null)
+    public function testDeprecatedRemovedFunctionWithAlternative($functionName, $deprecatedIn, $removedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {
@@ -359,28 +359,28 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn}; use {$alternative} instead");
+            $this->assertWarning($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn}; use {$alternative} instead");
         }
 
-        if (isset($forbiddenVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenVersion);
+        if (isset($removedVersion)){
+            $file = $this->sniffFile(self::TEST_FILE, $removedVersion);
         }
         else {
-            $file = $this->sniffFile(self::TEST_FILE, $forbiddenIn);
+            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
         foreach($lines as $line) {
-            $this->assertError($file, $line, "The use of function {$functionName} is discouraged from PHP version {$deprecatedIn} and forbidden from PHP version {$forbiddenIn}; use {$alternative} instead");
+            $this->assertError($file, $line, "Function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}; use {$alternative} instead");
         }
     }
 
     /**
      * Data provider.
      *
-     * @see testDeprecatedForbiddenFunctionWithAlternative()
+     * @see testDeprecatedRemovedFunctionWithAlternative()
      *
      * @return array
      */
-    public function dataDeprecatedForbiddenFunctionWithAlternative()
+    public function dataDeprecatedRemovedFunctionWithAlternative()
     {
         return array(
             array('call_user_method', '5.3', '7.0', 'call_user_func', array(3), '5.2'),
