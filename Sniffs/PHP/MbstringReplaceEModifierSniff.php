@@ -99,7 +99,7 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
                 $error .= ' Use mb_ereg_replace_callback() instead (PHP 5.4.1+).';
             }
 
-            $phpcsFile->addError($error, $stackPtr, 'Found');
+            $phpcsFile->addWarning($error, $stackPtr, 'Found');
         }
 
     }//end process()

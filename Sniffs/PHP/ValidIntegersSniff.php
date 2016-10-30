@@ -64,7 +64,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
             if ($this->isInvalidBinaryInteger($tokens, $stackPtr) === true) {
                 $error = 'Invalid binary integer detected. Found: %s';
                 $data  = array($this->getBinaryInteger($phpcsFile, $tokens, $stackPtr));
-                $phpcsFile->addError($error, $stackPtr, 'InvalidBinaryIntegerFound', $data);
+                $phpcsFile->addWarning($error, $stackPtr, 'InvalidBinaryIntegerFound', $data);
             }
             return;
         }

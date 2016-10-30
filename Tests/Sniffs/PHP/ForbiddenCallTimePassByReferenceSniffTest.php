@@ -54,7 +54,7 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertError($file, $line, 'Using a call-time pass-by-reference is deprecated since PHP 5.3');
+        $this->assertWarning($file, $line, 'Using a call-time pass-by-reference is deprecated since PHP 5.3');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertError($file, $line, 'Using a call-time pass-by-reference is deprecated since PHP 5.3 and prohibited since PHP 5.4');

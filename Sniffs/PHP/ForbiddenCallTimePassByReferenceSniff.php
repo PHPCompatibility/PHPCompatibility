@@ -107,11 +107,21 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
         foreach ($parameters as $parameter) {
             if ($this->isCallTimePassByReferenceParam($phpcsFile, $parameter, $nestedParenthesisCount) === true) {
                 // T_BITWISE_AND represents a pass-by-reference.
-                $error = 'Using a call-time pass-by-reference is deprecated since PHP 5.3';
+                $error     = 'Using a call-time pass-by-reference is deprecated since PHP 5.3';
+                $isError   = false;
+                $errorCode = 'Deprecated';
+
                 if($this->supportsAbove('5.4')) {
-                    $error .= ' and prohibited since PHP 5.4';
+                    $error    .= ' and prohibited since PHP 5.4';
+                    $isError   = true;
+                    $errorCode = 'NotAllowed';
                 }
-                $phpcsFile->addError($error, $parameter['start'], 'NotAllowed');
+
+                if ($isError === true) {
+                    $phpcsFile->addError($error, $parameter['start'], $errorCode);
+                } else {
+                    $phpcsFile->addWarning($error, $parameter['start'], $errorCode);
+                }
             }
         }
     }//end process()

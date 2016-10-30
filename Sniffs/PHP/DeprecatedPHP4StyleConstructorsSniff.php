@@ -81,7 +81,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
         }
 
         if ($newConstructorFound === false && $oldConstructorFound === true) {
-            $phpcsFile->addError('Use of deprecated PHP4 style class constructor is not supported since PHP 7', $oldConstructorPos);
+            $phpcsFile->addWarning(
+                'Use of deprecated PHP4 style class constructor is not supported since PHP 7.',
+                $oldConstructorPos,
+                'Found'
+            );
         }
     }
 }

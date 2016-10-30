@@ -45,9 +45,9 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     public function testMissingMiddleExpression5dot2()
     {
         $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.2-5.4');
-        $this->assertWarning($this->_sniffFile, 8,
+        $this->assertError($this->_sniffFile, 8,
                 "Middle may not be omitted from ternary operators in PHP < 5.3");
-        $this->assertWarning($this->_sniffFile, 10,
+        $this->assertError($this->_sniffFile, 10,
                 "Middle may not be omitted from ternary operators in PHP < 5.3");
     }
 

@@ -90,7 +90,7 @@ class ValidIntegersSniffTest extends BaseSniffTest
      */
     public function testInvalidBinaryInteger()
     {
-        $this->assertError($this->_sniffFile, 4, 'Invalid binary integer detected. Found: 0b0123456');
+        $this->assertWarning($this->_sniffFile, 4, 'Invalid binary integer detected. Found: 0b0123456');
     }
 
 
