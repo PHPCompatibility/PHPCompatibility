@@ -14,8 +14,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff
-    extends PHPCompatibility_AbstractComplexVersionSniff
+class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extends PHPCompatibility_AbstractComplexVersionSniff
 {
 
     /**
@@ -100,8 +99,6 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
         $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
-        $requiredVersion      = null;
-        $parameterName        = null;
 
         foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {

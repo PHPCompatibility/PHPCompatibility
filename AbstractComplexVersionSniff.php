@@ -14,9 +14,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class PHPCompatibility_AbstractComplexVersionSniff
-    extends PHPCompatibility_Sniff
-    implements PHPCompatibility_ComplexVersionInterface
+abstract class PHPCompatibility_AbstractComplexVersionSniff extends PHPCompatibility_Sniff implements PHPCompatibility_ComplexVersionInterface
 {
 
 

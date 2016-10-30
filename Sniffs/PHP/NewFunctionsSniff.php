@@ -14,8 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.

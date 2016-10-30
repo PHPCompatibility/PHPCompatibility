@@ -16,8 +16,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff
-    extends PHPCompatibility_AbstractRemovedFeatureSniff
+class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
 
     /**

@@ -14,8 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff
-    extends PHPCompatibility_AbstractRemovedFeatureSniff
+class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of removed function parameters, which were present in older versions.

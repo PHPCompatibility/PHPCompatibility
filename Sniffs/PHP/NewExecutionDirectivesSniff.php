@@ -14,8 +14,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -280,7 +279,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff
 
         if ($isError === true) {
             $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
-            $errorCode = $this->stringToErrorCode($directive) . 'InvalidValueFound';
+            $errorCode = $this->stringToErrorCode($directive).'InvalidValueFound';
             $data      = array(
                 $directive,
                 $value,
@@ -334,5 +333,6 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff
             return false;
         }
     }
+
 
 }//end class

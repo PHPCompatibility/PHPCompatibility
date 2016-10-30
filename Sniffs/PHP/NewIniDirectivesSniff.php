@@ -20,8 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new INI directives

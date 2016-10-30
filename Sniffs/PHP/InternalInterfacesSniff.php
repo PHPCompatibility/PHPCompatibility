@@ -69,7 +69,7 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
             $interfaceLc = strtolower($interface);
             if (isset($this->internalInterfaces[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
-                $errorCode = $this->stringToErrorCode($interfaceLc) . 'Found';
+                $errorCode = $this->stringToErrorCode($interfaceLc).'Found';
                 $data      = array(
                     $interface,
                     $this->internalInterfaces[$interfaceLc],
@@ -80,5 +80,6 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
         }
 
     }//end process()
+
 
 }//end class

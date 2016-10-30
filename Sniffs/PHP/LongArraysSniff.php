@@ -103,10 +103,10 @@ class PHPCompatibility_Sniffs_PHP_LongArraysSniff extends PHPCompatibility_Sniff
         // Still here, so throw an error/warning.
         $error     = "The use of long predefined variables has been deprecated in PHP 5.3%s; Found '%s'";
         $isError   = $this->supportsAbove('5.4');
-        $errorCode = $this->stringToErrorCode($varName) . 'Found';
+        $errorCode = $this->stringToErrorCode($varName).'Found';
         $data      = array(
-            ($isError ? ' and removed in PHP 5.4' : ''),
-            $tokens[$stackPtr]['content']
+            (($isError === true) ? ' and removed in PHP 5.4' : ''),
+            $tokens[$stackPtr]['content'],
         );
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);

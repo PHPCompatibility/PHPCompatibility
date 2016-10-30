@@ -19,8 +19,7 @@
  * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewClassesSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -274,7 +273,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff
      */
     protected function getErrorMsgTemplate()
     {
-        return 'The built-in class ' . parent::getErrorMsgTemplate();
+        return 'The built-in class '.parent::getErrorMsgTemplate();
     }
 
 

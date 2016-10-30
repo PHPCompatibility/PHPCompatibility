@@ -303,7 +303,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     protected function addError($phpcsFile, $stackPtr, $content, $data)
     {
         $error     = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
-        $errorCode = $this->stringToErrorCode($content) . 'Found';
+        $errorCode = $this->stringToErrorCode($content).'Found';
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
     }
 

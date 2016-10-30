@@ -16,8 +16,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**

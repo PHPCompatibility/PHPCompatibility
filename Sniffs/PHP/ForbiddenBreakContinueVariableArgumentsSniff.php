@@ -87,8 +87,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
 
         if ($errorType !== '') {
             $error     = 'Using %s on break or continue is forbidden since PHP 5.4';
-            $errorCode = $errorType . 'Found';
+            $errorCode = $errorType.'Found';
             $data      = array($this->errorTypes[$errorType]);
+
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
 

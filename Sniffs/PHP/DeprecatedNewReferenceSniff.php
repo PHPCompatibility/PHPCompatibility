@@ -54,7 +54,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompati
                 $isError   = false;
                 $errorCode = 'Deprecated';
 
-                if ($this->supportsAbove('7.0')) {
+                if ($this->supportsAbove('7.0') === true) {
                     $error    .= ' and forbidden in PHP 7.0';
                     $isError   = true;
                     $errorCode = 'Forbidden';

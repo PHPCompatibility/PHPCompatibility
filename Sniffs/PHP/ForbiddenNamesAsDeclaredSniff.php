@@ -170,7 +170,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
         $version = $this->forbiddenNames[$nameLc];
         if ($this->supportsAbove($version) === true) {
             $error     = "'%s' is a reserved keyword as of PHP version %s and cannot be used to name a class, interface or trait or as part of a namespace (%s)";
-            $errorCode = $this->stringToErrorCode($nameLc) . 'Found';
+            $errorCode = $this->stringToErrorCode($nameLc).'Found';
             $data      = array(
                 $nameLc,
                 $version,

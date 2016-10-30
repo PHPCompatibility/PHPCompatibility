@@ -22,8 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff
-    extends PHPCompatibility_AbstractRemovedFeatureSniff
+class PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
 
     /**

@@ -139,7 +139,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
 
         if ($this->supportsAbove($version)) {
             $error     = "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)";
-            $errorCode = $this->stringToErrorCode($tokenContentLc) . 'Found';
+            $errorCode = $this->stringToErrorCode($tokenContentLc).'Found';
             $data      = array(
                 $tokenContentLc,
                 $version,

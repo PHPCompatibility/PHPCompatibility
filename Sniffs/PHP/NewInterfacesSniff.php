@@ -16,8 +16,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -144,7 +143,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff
 
                     if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
                         $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
-                        $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
+                        $errorCode = $this->stringToErrorCode($interface).'UnsupportedMethod';
                         $data      = array(
                             $interface,
                             $funcName,

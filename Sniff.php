@@ -144,18 +144,18 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     /**
      * Add a PHPCS message to the output stack as either a warning or an error.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile  The file the message applies to.
-     * @param string               $message    The message.
-     * @param int                  $stackPtr   The position of the class token
-     *                                         the message relates to.
-     * @param bool                 $isError    Whether to report the message as an
-     *                                         'error' or 'warning'.
-     *                                         Defaults to true (error).
-     * @param string               $code       The error code for the message.
-     *                                         Defaults to 'Found'.
-     * @param array                $data       Optional input for the data replacements.
+     * @param PHP_CodeSniffer_File $phpcsFile The file the message applies to.
+     * @param string               $message   The message.
+     * @param int                  $stackPtr  The position of the token
+     *                                        the message relates to.
+     * @param bool                 $isError   Whether to report the message as an
+     *                                        'error' or 'warning'.
+     *                                        Defaults to true (error).
+     * @param string               $code      The error code for the message.
+     *                                        Defaults to 'Found'.
+     * @param array                $data      Optional input for the data replacements.
      *
-     * @return void.
+     * @return void
      */
     public function addMessage($phpcsFile, $message, $stackPtr, $isError, $code = 'Found', $data = array())
     {

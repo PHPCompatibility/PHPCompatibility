@@ -14,8 +14,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff
-    extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new hash algorithms, not present in older versions.
