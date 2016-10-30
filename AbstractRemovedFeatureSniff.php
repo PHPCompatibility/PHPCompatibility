@@ -113,17 +113,19 @@ abstract class PHPCompatibility_AbstractRemovedFeatureSniff
         $itemName = $this->getItemName($itemInfo, $errorInfo);
         $error    = $this->getErrorMsgTemplate();
 
-        $errorCode = $this->stringToErrorCode($itemName).'Found';
+        $errorCode = $this->stringToErrorCode($itemName);
         $data      = array($itemName);
 
         if ($errorInfo['deprecated'] !== '') {
-            $error .= 'deprecated since PHP %s and ';
-            $data[] = $errorInfo['deprecated'];
+            $error     .= 'deprecated since PHP %s and ';
+            $errorCode .= 'Deprecated';
+            $data[]     = $errorInfo['deprecated'];
         }
 
         if ($errorInfo['removed'] !== '') {
-            $error .= 'removed since PHP %s and ';
-            $data[] = $errorInfo['removed'];
+            $error     .= 'removed since PHP %s and ';
+            $errorCode .= 'Removed';
+            $data[]     = $errorInfo['removed'];
         }
 
         // Remove the last 'and' from the message.
