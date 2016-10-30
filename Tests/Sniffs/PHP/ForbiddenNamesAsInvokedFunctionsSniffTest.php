@@ -70,18 +70,48 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
             array('public', array(20), '5.0', '4.4'),
             array('trait', array(22), '5.4', '5.3'),
             array('try', array(23), '5.0', '4.4'),
-            array('bool', array(34), '7.0', '5.6'),
-            array('int', array(35), '7.0', '5.6'),
-            array('float', array(36), '7.0', '5.6'),
-            array('string', array(37), '7.0', '5.6'),
-            array('null', array(38, 39), '7.0', '5.6'),
-            array('true', array(40, 41), '7.0', '5.6'),
-            array('false', array(42, 43), '7.0', '5.6'),
-            array('resource', array(44), '7.0', '5.6'),
-            array('object', array(45), '7.0', '5.6'),
-            array('mixed', array(46), '7.0', '5.6'),
-            array('numeric', array(47), '7.0', '5.6'),
         );
     }
 
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number where no error should occur.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High number beyond any newly introduced keywords.
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * dataNoFalsePositives
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives() {
+        return array(
+            array(34),
+            array(35),
+            array(36),
+            array(37),
+            array(38),
+            array(39),
+            array(40),
+            array(41),
+            array(42),
+            array(43),
+            array(44),
+            array(45),
+            array(46),
+            array(47),
+        );
+    }
 }

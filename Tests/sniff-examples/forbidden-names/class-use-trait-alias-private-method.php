@@ -57,14 +57,3 @@ class Foobar { use BazTrait { oldfunction as private __FILE__ } }
 class Foobar { use BazTrait { oldfunction as private __FUNCTION__ } }
 class Foobar { use BazTrait { oldfunction as private __METHOD__ } }
 class Foobar { use BazTrait { oldfunction as private __NAMESPACE__ } }
-class Foobar { use BazTrait { oldfunction as private bool } }
-class Foobar { use BazTrait { oldfunction as private int } }
-class Foobar { use BazTrait { oldfunction as private float } }
-class Foobar { use BazTrait { oldfunction as private string } }
-class Foobar { use BazTrait { oldfunction as private null } }
-class Foobar { use BazTrait { oldfunction as private true } }
-class Foobar { use BazTrait { oldfunction as private false } }
-class Foobar { use BazTrait { oldfunction as private resource } }
-class Foobar { use BazTrait { oldfunction as private object } }
-class Foobar { use BazTrait { oldfunction as private mixed } }
-class Foobar { use BazTrait { oldfunction as private numeric } }

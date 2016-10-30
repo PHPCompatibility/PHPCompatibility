@@ -30,7 +30,7 @@ try {} catch(Exception $e) {}
 try {
 } catch (Exception $e) {}
 
-// New reserved keywords introduced in PHP 7.0.
+// OK: These keywords *can* be used as function names.
 bool();
 int();
 float();

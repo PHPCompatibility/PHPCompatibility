@@ -57,14 +57,3 @@ class __FILE__ {}
 class __FUNCTION__ {}
 class __METHOD__ {}
 class __NAMESPACE__ {}
-class bool {}
-class int {}
-class float {}
-class string {}
-class null {}
-class true {}
-class false {}
-class resource {}
-class object {}
-class mixed {}
-class numeric {}
