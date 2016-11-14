@@ -30,6 +30,8 @@ class resource {}
 class obJeCt {}  // Check case-insensitivity.
 class mixed {}
 class numeric {}
+class iterable {}
+class void {}
 
 interface null {}
 interface true {}
@@ -42,6 +44,8 @@ interface resource {}
 interface object {}
 interface mixed {}
 interface numeric {}
+interface iterable {}
+interface void {}
 
 namespace null;
 namespace true;
@@ -54,6 +58,8 @@ namespace resource;
 namespace object;
 namespace mixed;
 namespace numeric;
+namespace iterable;
+namespace void;
 
 namespace null {}
 namespace true {}
@@ -66,6 +72,8 @@ namespace resource {}
 namespace object {}
 namespace mixed {}
 namespace numeric {}
+namespace iterable {}
+namespace void {}
 
 // Multi-level namespaces.
 namespace MyProject\null\Level;
@@ -79,6 +87,8 @@ namespace MyProject\Sub\resource;
 namespace MyProject\object\Level;
 namespace MyProject\Sub\mixed;
 namespace MyProject\numeric\Level;
+namespace MyProject\Sub\iterable;
+namespace MyProject\void\Level;
 
 // These have to be at the end of the file for PHP 5.2 not to fail on them...
 trait null {}
@@ -92,3 +102,5 @@ trait resource {}
 trait object {}
 trait mixed {}
 trait numeric {}
+trait iterable {}
+trait void {}
