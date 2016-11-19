@@ -32,19 +32,14 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedMagicAutoloadSniff extends PHPCompat
         }
 
         $tokens = $phpcsFile->getTokens();
-
-        $function = $tokens[$stackPtr];
         
+        $function = $tokens[$stackPtr];
+        var_dump($function) . "\n";
         $funcName = $phpcsFile->getDeclarationName($function);
+        die('wtf');
+        echo $funcName . "\n";
         
         if ($funcName != '__autoload') {
-            return;
-        }
-        
-        
-        $class = $tokens[$stackPtr];
-
-        if (isset($class['scope_closer']) === false) {
             return;
         }
 
