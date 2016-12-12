@@ -59,8 +59,11 @@ class PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff extends PHPCompatibility
                                      ($stackPtr + 1), null, true);
 
         if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
-            $error = 'Middle may not be omitted from ternary operators in PHP < 5.3';
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError(
+                'Middle may not be omitted from ternary operators in PHP < 5.3',
+                $stackPtr,
+                'MiddleMissing'
+            );
         }
     }
 }

@@ -147,7 +147,10 @@ class PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff extends PHPCompatibility
      */
     protected function addError($phpcsFile, $stackPtr)
     {
-        $error = 'Only variables can be passed to empty() prior to PHP 5.5.';
-        $phpcsFile->addError($error, $stackPtr, 'Found');
+        $phpcsFile->addError(
+            'Only variables can be passed to empty() prior to PHP 5.5.',
+            $stackPtr,
+            'Found'
+        );
     }
 }

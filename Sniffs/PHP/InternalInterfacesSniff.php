@@ -40,10 +40,8 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
      */
     public function register()
     {
-        // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->internalInterfaces );
-        $keys = array_map( 'strtolower', $keys );
-        $this->internalInterfaces = array_combine( $keys, $this->internalInterfaces );
+        // Handle case-insensitivity of interface names.
+        $this->internalInterfaces = $this->arrayKeysToLowercase($this->internalInterfaces);
 
         return array(T_CLASS);
 
@@ -68,17 +66,20 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
         }
 
         foreach ($interfaces as $interface) {
-            $lcInterface = strtolower($interface);
-            if (isset($this->internalInterfaces[$lcInterface]) === true) {
-                $error = 'The interface %s %s';
-                $data  = array(
+            $interfaceLc = strtolower($interface);
+            if (isset($this->internalInterfaces[$interfaceLc]) === true) {
+                $error     = 'The interface %s %s';
+                $errorCode = $this->stringToErrorCode($interfaceLc).'Found';
+                $data      = array(
                     $interface,
-                    $this->internalInterfaces[$lcInterface],
+                    $this->internalInterfaces[$interfaceLc],
                 );
-                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+
+                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             }
         }
 
     }//end process()
+
 
 }//end class

@@ -14,7 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.
@@ -731,22 +731,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     *
-     * @var array
-     */
-    private $newFunctionParametersNames;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what functions
-        // they want to check for, so now we can cache out the list.
-        $this->newFunctionParametersNames = array_keys($this->newFunctionParameters);
+        // Handle case-insensitivity of function names.
+        $this->newFunctionParameters = $this->arrayKeysToLowercase($this->newFunctionParameters);
 
         return array(T_STRING);
     }//end register()
@@ -777,9 +769,10 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->newFunctionParametersNames) === false) {
+        if (isset($this->newFunctionParameters[$functionLc]) === false) {
             return;
         }
 
@@ -792,9 +785,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->newFunctionParameters[$function] as $offset => $parameterDetails) {
+        foreach($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+                $itemInfo = array(
+                    'name'   => $function,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                );
+                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
 
@@ -802,39 +800,86 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
-     * @param int                  $stackPtr          The position of the function
-     *                                                in the token array.
-     * @param string               $function          The name of the function.
-     * @param int                  $parameterLocation The parameter position within the function call.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->newFunctionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+    }
 
-        $isError = false;
-        foreach ($this->newFunctionParameters[$function][$parameterLocation] as $version => $present) {
-            if ($version != 'name' && $present === false && $this->supportsBelow($version)) {
-                $isError = true;
-                $error .= 'in PHP version ' . $version . ' or earlier';
-                break;
-            }
-        }
 
-        if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' does not have a parameter "' . $this->newFunctionParameters[$function][$parameterLocation]['name'] . '" ' . $error;
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @return array
+     */
+    protected function getNonVersionArrayKeys()
+    {
+        return array('name');
+    }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
 
-    }//end addError()
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['paramName'] = $itemArray['name'];
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the item name to be used for the creation of the error code.
+     *
+     * @param array $itemInfo  Base information about the item.
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return string
+     */
+    protected function getItemName(array $itemInfo, array $errorInfo)
+    {
+        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The function %s() does not have a parameter "%s" in PHP version %s or earlier';
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        array_shift($data);
+        array_unshift($data, $itemInfo['name'], $errorInfo['paramName']);
+        return $data;
+    }
+
 
 }//end class

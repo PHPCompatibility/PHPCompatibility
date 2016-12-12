@@ -20,10 +20,13 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new INI directives
+     *
+     * The array lists : version number with false (not present) or true (present).
+     * If's sufficient to list the first version where the ini directive appears.
      *
      * @var array(string)
      */
@@ -496,12 +499,12 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function != 'ini_get' && $function != 'ini_set') {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
         if ($iniToken === false) {
             return;
         }
@@ -511,33 +514,112 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
             return;
         }
 
-        $notInVersion = '';
-        foreach ($this->newIniDirectives[$filteredToken] as $version => $present) {
-            if ($version !== 'alternative' && $present === false && $this->supportsBelow($version)) {
-                $notInVersion = $version;
-            }
-        }
-
-        if ($notInVersion !== '') {
-            $error   = "INI directive '%s' is not present in PHP version %s or earlier";
-            $isError = ($function !== 'ini_get') ? true : false;
-            $data    = array(
-                $filteredToken,
-                $notInVersion
-            );
-            if (isset($this->newIniDirectives[$filteredToken]['alternative'])) {
-                $error .= ". This directive was previously called '%s'.";
-                $data[] = $this->newIniDirectives[$filteredToken]['alternative'];
-            }
-
-            if ($isError === true) {
-                $phpcsFile->addError($error, $iniToken['end'], 'Found', $data);
-            } else {
-                $phpcsFile->addWarning($error, $iniToken['end'], 'Found', $data);
-            }
-        }
+        $itemInfo = array(
+            'name'       => $filteredToken,
+            'functionLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
 
     }//end process()
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->newIniDirectives[$itemInfo['name']];
+    }
+
+
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @return array
+     */
+    protected function getNonVersionArrayKeys()
+    {
+        return array('alternative');
+    }
+
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['alternative'] = '';
+
+        if (isset($itemArray['alternative']) === true) {
+            $errorInfo['alternative'] = $itemArray['alternative'];
+        }
+
+        // Lower error level to warning if the function used was ini_get.
+        if ($errorInfo['error'] === true && $itemInfo['functionLc'] === 'ini_get') {
+            $errorInfo['error'] = false;
+        }
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "INI directive '%s' is not present in PHP version %s or earlier";
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @param string $error     The error message which was created.
+     * @param array  $itemInfo  Base information about the item this error message applied to.
+     * @param array  $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return string
+     */
+    protected function filterErrorMsg($error, array $itemInfo, array $errorInfo)
+    {
+        if ($errorInfo['alternative'] !== '') {
+            $error .= ". This directive was previously called '%s'.";
+        }
+
+        return $error;
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        if ($errorInfo['alternative'] !== '') {
+            $data[] = $errorInfo['alternative'];
+        }
+
+        return $data;
+    }
 
 
 }//end class

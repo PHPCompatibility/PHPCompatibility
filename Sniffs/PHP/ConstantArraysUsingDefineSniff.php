@@ -63,8 +63,8 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function !== 'define') {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if ($functionLc !== 'define') {
             return;
         }
 
@@ -75,7 +75,11 @@ class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff extends PHPComp
 
         $array = $phpcsFile->findNext(array(T_ARRAY, T_OPEN_SHORT_ARRAY), $secondParam['start'], ($secondParam['end'] + 1));
         if ($array !== false) {
-            $phpcsFile->addError('Constant arrays using define are not allowed in PHP 5.6 or earlier', $array);
+            $phpcsFile->addError(
+                'Constant arrays using define are not allowed in PHP 5.6 or earlier',
+                $array,
+                'Found'
+            );
         }
     }
 }

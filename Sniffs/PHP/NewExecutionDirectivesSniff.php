@@ -14,7 +14,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -111,11 +111,15 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
                 implode(', ', array_keys($this->newDirectives)),
                 $directiveContent,
             );
+
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
         }
         else {
             // Check for valid directive for version.
-            $this->maybeAddError($phpcsFile, $stackPtr, $directiveContent);
+            $itemInfo = array(
+                'name'   => $directiveContent,
+            );
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
             // Check for valid directive value.
             $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $closeParenthesis, true);
@@ -130,57 +134,115 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
 
 
     /**
-     * Generates a error or warning for this sniff.
+     * Determine whether an error/warning should be thrown for an item based on collected information.
+     *
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return bool
+     */
+    protected function shouldThrowError(array $errorInfo)
+    {
+        return ($errorInfo['not_in_version'] !== '' || $errorInfo['conditional_version'] !== '');
+    }
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->newDirectives[$itemInfo['name']];
+    }
+
+
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @return array
+     */
+    protected function getNonVersionArrayKeys()
+    {
+        return array(
+            'valid_value_callback',
+            'valid_values',
+        );
+    }
+
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['conditional_version'] = '';
+        $errorInfo['condition']           = '';
+
+        $versionArray = $this->getVersionArray($itemArray);
+
+        if (empty($versionArray) === false) {
+            foreach ($versionArray as $version => $present) {
+                if (is_string($present) === true && $this->supportsBelow($version) === true) {
+                    // We cannot test for compilation option (ok, except by scraping the output of phpinfo...).
+                    $errorInfo['conditional_version'] = $version;
+                    $errorInfo['condition']           = $present;
+                }
+            }
+        }
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'Directive '.parent::getErrorMsgTemplate();
+    }
+
+
+    /**
+     * Generates the error or warning for this item.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the declare statement
-     *                                        in the token array.
-     * @param string               $directive The directive.
+     * @param int                  $stackPtr  The position of the relevant token in
+     *                                        the stack.
+     * @param array                $itemInfo  Base information about the item.
+     * @param array                $errorInfo Array with detail (version) information
+     *                                        relevant to the item.
      *
      * @return void
      */
-    protected function maybeAddError($phpcsFile, $stackPtr, $directive)
+    public function addError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
-        $isError            = false;
-        $notInVersion       = '';
-        $conditionalVersion = '';
-        foreach ($this->newDirectives[$directive] as $version => $present) {
-            if (strpos($version, 'valid_') === false && $this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError      = true;
-                    $notInVersion = $version;
-                }
-                else if (is_string($present)) {
-                    // We cannot test for compilation option (ok, except by scraping the output of phpinfo...).
-                    $conditionalVersion = $version;
-                }
-            }
-        }
-        if ($notInVersion !== '' || $conditionalVersion !== '') {
-            if ($isError === true && $notInVersion !== '') {
-                $error     = 'Directive %s is not present in PHP version %s or earlier';
-                $errorCode = $directive . 'Found';
-                $data      = array(
-                    $directive,
-                    $notInVersion,
-                );
+        if ($errorInfo['not_in_version'] !== '') {
+            parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
+        } else if ($errorInfo['conditional_version'] !== '') {
+            $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
+            $errorCode = $this->stringToErrorCode($itemInfo['name']).'WithConditionFound';
+            $data      = array(
+                $itemInfo['name'],
+                $errorInfo['conditional_version'],
+                $errorInfo['condition'],
+            );
 
-                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-            }
-            else if($conditionalVersion !== '') {
-                $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
-                $errorCode = $directive . 'Found';
-                $data      = array(
-                    $directive,
-                    $conditionalVersion,
-                    $this->newDirectives[$directive][$conditionalVersion],
-                );
-
-                $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-            }
+            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
 
-    }//end maybeAddError()
+    }//end addError()
 
 
     /**
@@ -216,12 +278,14 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         }
 
         if ($isError === true) {
-            $error = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
-            $data  = array(
+            $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
+            $errorCode = $this->stringToErrorCode($directive).'InvalidValueFound';
+            $data      = array(
                 $directive,
                 $value,
             );
-            $phpcsFile->addWarning($error, $stackPtr, 'InvalidDirectiveValueFound', $data);
+
+            $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
     }// addErrorOnInvalidValue()
 
@@ -269,5 +333,6 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             return false;
         }
     }
+
 
 }//end class

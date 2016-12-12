@@ -234,12 +234,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         }
 
         if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
-            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
             $data  = array(
                 $tokens[$nextNonEmpty]['content'],
                 $this->invalidNames[$nextContentLc],
             );
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+            $this->addError($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content'], $data);
         }
 
     }//end processNonString()
@@ -277,18 +276,36 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
-        $defineName = strtolower($firstParam['raw']);
-        $defineName = $this->stripQuotes($defineName);
+        $defineName   = $this->stripQuotes($firstParam['raw']);
+        $defineNameLc = strtolower($defineName);
 
-        if (isset($this->invalidNames[$defineName]) && $this->supportsAbove($this->invalidNames[$defineName])) {
-            $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since PHP version %s)";
+        if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
             $data  = array(
                 $defineName,
-                $this->invalidNames[$defineName],
+                $this->invalidNames[$defineNameLc],
             );
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+            $this->addError($phpcsFile, $stackPtr, $defineNameLc, $data);
         }
     }//end processString()
+
+
+    /**
+     * Add the error message.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in the
+     *                                        stack passed in $tokens.
+     * @param string               $content   The token content found.
+     * @param array                $data      The data to pass into the error message.
+     *
+     * @return void
+     */
+    protected function addError($phpcsFile, $stackPtr, $content, $data)
+    {
+        $error     = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
+        $errorCode = $this->stringToErrorCode($content).'Found';
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+    }
 
 
     /**

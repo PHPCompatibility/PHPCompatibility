@@ -40,6 +40,20 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     );
 
 
+    /**
+     * List of functions which take an ini directive as parameter (always the first parameter).
+     *
+     * Used by the new/removed ini directives sniffs.
+     * Key is the function name, value is the 1-based parameter position in the function call.
+     *
+     * @var array
+     */
+    protected $iniFunctions = array(
+        'ini_get' => 1,
+        'ini_set' => 1,
+    );
+
+
 /* The testVersion configuration variable may be in any of the following formats:
  * 1) Omitted/empty, in which case no version is specified.  This effectively
  *    disables all the checks provided by this standard.
@@ -128,6 +142,47 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Add a PHPCS message to the output stack as either a warning or an error.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file the message applies to.
+     * @param string               $message   The message.
+     * @param int                  $stackPtr  The position of the token
+     *                                        the message relates to.
+     * @param bool                 $isError   Whether to report the message as an
+     *                                        'error' or 'warning'.
+     *                                        Defaults to true (error).
+     * @param string               $code      The error code for the message.
+     *                                        Defaults to 'Found'.
+     * @param array                $data      Optional input for the data replacements.
+     *
+     * @return void
+     */
+    public function addMessage($phpcsFile, $message, $stackPtr, $isError, $code = 'Found', $data = array())
+    {
+        if ($isError === true) {
+            $phpcsFile->addError($message, $stackPtr, $code, $data);
+        } else {
+            $phpcsFile->addWarning($message, $stackPtr, $code, $data);
+        }
+    }
+
+
+    /**
+     * Convert an arbitrary string to an alphanumeric string with underscores.
+     *
+     * Pre-empt issues with arbitrary strings being used as error codes in XML and PHP.
+     *
+     * @param string $baseString Arbitrary string.
+     *
+     * @return string
+     */
+    public function stringToErrorCode($baseString)
+    {
+        return preg_replace('`[^a-z0-9_]`i', '_', strtolower($baseString));
+    }
+
+
+    /**
      * Strip quotes surrounding an arbitrary string.
      *
      * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING.
@@ -138,6 +193,21 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function stripQuotes($string) {
         return preg_replace('`^([\'"])(.*)\1$`Ds', '$2', $string);
+    }
+
+
+    /**
+     * Make all top level array keys in an array lowercase.
+     *
+     * @param array $array Initial array.
+     *
+     * @return array Same array, but with all lowercase top level keys.
+     */
+    public function arrayKeysToLowercase($array)
+    {
+        $keys = array_keys($array);
+        $keys = array_map('strtolower', $keys);
+        return array_combine($keys, $array);
     }
 
 

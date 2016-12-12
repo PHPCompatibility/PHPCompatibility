@@ -19,7 +19,7 @@
  * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -194,9 +194,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
     public function register()
     {
         // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->newClasses );
-        $keys = array_map( 'strtolower', $keys );
-        $this->newClasses = array_combine( $keys, $this->newClasses );
+        $this->newClasses = $this->arrayKeysToLowercase($this->newClasses);
 
         return array(
                 T_NEW,
@@ -246,45 +244,37 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Sniff
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $className);
+        $itemInfo = array(
+            'name'   => $className,
+            'nameLc' => $classNameLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $className The name of the class.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $className)
+    public function getItemArray(array $itemInfo)
     {
-        $error       = '';
-        $isError     = false;
-        $classNameLc = strtolower($className);
+        return $this->newClasses[$itemInfo['nameLc']];
+    }
 
-        foreach ($this->newClasses[$classNameLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = 'The built-in class ' . $className . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The built-in class '.parent::getErrorMsgTemplate();
+    }
 
-    }//end addError()
 
 }//end class

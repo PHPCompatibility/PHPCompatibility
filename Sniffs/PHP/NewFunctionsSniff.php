@@ -14,7 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.
@@ -1243,24 +1243,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
 
 
     /**
-     *
-     * @var array
-     */
-    private $newFunctionNames;
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what new functions
-        // they want to check for, so now we can cache out the list.
-        $this->newFunctionNames = array_keys($this->newFunctions);
-        $this->newFunctionNames = array_map('strtolower', $this->newFunctionNames);
-        $this->newFunctions     = array_combine($this->newFunctionNames, $this->newFunctions);
+        // Handle case-insensitivity of function names.
+        $this->newFunctions = $this->arrayKeysToLowercase($this->newFunctions);
 
         return array(T_STRING);
 
@@ -1296,51 +1286,44 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Sni
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->newFunctionNames) === false) {
+        if (isset($this->newFunctions[$functionLc]) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+        $itemInfo = array(
+            'name'   => $function,
+            'nameLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $function)
+    public function getItemArray(array $itemInfo)
     {
-        $functionLc = strtolower($function);
-        $error      = '';
+        return $this->newFunctions[$itemInfo['nameLc']];
+    }
 
-        $isError = false;
-        foreach ($this->newFunctions[$functionLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = 'The function ' . $function . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The function %s() is not present in PHP version %s or earlier';
+    }
 
-    }//end addError()
 
 }//end class

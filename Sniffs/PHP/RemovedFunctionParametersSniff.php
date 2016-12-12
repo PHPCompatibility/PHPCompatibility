@@ -14,14 +14,14 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of removed function parameters, which were present in older versions.
      *
-     * The array lists : version number with true (deprecated) and false (removed).
+     * The array lists : version number with false (deprecated) and true (removed).
      * The index is the location of the parameter in the parameter list, starting at 0 !
-     * If's sufficient to list the first version where the function was deprecated/removed.
+     * If's sufficient to list the first version where the function parameter was deprecated/removed.
      *
      * @var array
      */
@@ -29,37 +29,30 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
                                         'gmmktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
-                                                '5.1' => true, // deprecated
-                                                '7.0' => false,
+                                                '5.1' => false, // deprecated
+                                                '7.0' => true,
                                             ),
                                         ),
                                         'ldap_first_attribute' => array(
                                             2 => array(
                                                 'name' => 'ber_identifier',
-                                                '5.2.4' => false,
+                                                '5.2.4' => true,
                                             ),
                                         ),
                                         'ldap_next_attribute' => array(
                                             2 => array(
                                                 'name' => 'ber_identifier',
-                                                '5.2.4' => false,
+                                                '5.2.4' => true,
                                             ),
                                         ),
                                         'mktime' => array(
                                             6 => array(
                                                 'name' => 'is_dst',
-                                                '5.1' => true, // deprecated
-                                                '7.0' => false,
+                                                '5.1' => false, // deprecated
+                                                '7.0' => true,
                                             ),
                                         ),
                                     );
-
-
-    /**
-     *
-     * @var array
-     */
-    private $removedFunctionParametersNames;
 
 
     /**
@@ -69,9 +62,8 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what removed function parameters
-        // they want to check for, so now we can cache out the list.
-        $this->removedFunctionParametersNames = array_keys($this->removedFunctionParameters);
+        // Handle case-insensitivity of function names.
+        $this->removedFunctionParameters = $this->arrayKeysToLowercase($this->removedFunctionParameters);
 
         return array(T_STRING);
     }//end register()
@@ -102,9 +94,10 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->removedFunctionParametersNames) === false) {
+        if (isset($this->removedFunctionParameters[$functionLc]) === false) {
             return;
         }
 
@@ -117,9 +110,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->removedFunctionParameters[$function] as $offset => $parameterDetails) {
+        foreach($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                $this->addError($phpcsFile, $openParenthesis, $function, $offset);
+                $itemInfo = array(
+                    'name'   => $function,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                );
+                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
 
@@ -127,54 +125,86 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
-     * @param int                  $stackPtr          The position of the function
-     *                                                in the token array.
-     * @param string               $function          The name of the function.
-     * @param int                  $parameterLocation The parameter position within the function call.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $function, $parameterLocation)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->removedFunctionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+    }
 
-        $isError        = false;
-        $previousStatus = null;
-        foreach ($this->removedFunctionParameters[$function][$parameterLocation] as $version => $present) {
-            if ($version != 'name' && $this->supportsAbove($version)) {
 
-                if ($previousStatus !== $present) {
-                    $previousStatus = $present;
-                    if ($present === false) {
-                        $isError = true;
-                        $error .= 'removed';
-                    } else {
-                        $error .= 'deprecated';
-                    }
-                    $error .=  ' in PHP version ' . $version . ' and ';
-                }
-            }
-        }
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @return array
+     */
+    protected function getNonVersionArrayKeys()
+    {
+        return array('name');
+    }
 
-        if (strlen($error) > 0) {
-            $error     = 'The "%s" parameter for function %s was ' . $error;
-            $error     = substr($error, 0, strlen($error) - 5);
-            $errorCode = 'RemovedParameter';
-            $data      = array(
-                $this->removedFunctionParameters[$function][$parameterLocation]['name'],
-                $function,
-            );
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
-            }
-        }
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['paramName'] = $itemArray['name'];
 
-    }//end addError()
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the item name to be used for the creation of the error code.
+     *
+     * @param array $itemInfo  Base information about the item.
+     * @param array $errorInfo Detail information about an item.
+     *
+     * @return string
+     */
+    protected function getItemName(array $itemInfo, array $errorInfo)
+    {
+        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The "%s" parameter for function %s() is ';
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        array_shift($data);
+        array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
+        return $data;
+    }
+
 
 }//end class

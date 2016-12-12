@@ -50,8 +50,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenGlobalVariableVariableSniff extends P
             $variable = $phpcsFile->findNext(T_VARIABLE, $stackPtr, $stackPtr + 4, false);
 
             if (isset($tokens[$variable - 1]) && $tokens[$variable - 1]['type'] == 'T_DOLLAR') {
-                $error = 'Global with variable variables is not allowed since PHP 7.0';
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError(
+                    'Global with variable variables is not allowed since PHP 7.0',
+                    $stackPtr,
+                    'Found'
+                );
             }
         }
     }

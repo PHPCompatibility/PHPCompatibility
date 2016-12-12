@@ -117,11 +117,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                     $errorCode = 'NotAllowed';
                 }
 
-                if ($isError === true) {
-                    $phpcsFile->addError($error, $parameter['start'], $errorCode);
-                } else {
-                    $phpcsFile->addWarning($error, $parameter['start'], $errorCode);
-                }
+                $this->addMessage($phpcsFile, $error, $parameter['start'], $isError, $errorCode);
             }
         }
     }//end process()

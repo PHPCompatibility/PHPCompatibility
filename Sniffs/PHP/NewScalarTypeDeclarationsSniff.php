@@ -14,7 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -108,24 +108,34 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
             }
 
             if ($supportsPHP4 === true) {
-                $error = 'Type hints were not present in PHP 4.4 or earlier.';
-                $phpcsFile->addError($error, $stackPtr, 'TypeHintFound');
+                $phpcsFile->addError(
+                    'Type hints were not present in PHP 4.4 or earlier.',
+                    $stackPtr,
+                    'TypeHintFound'
+                );
             }
             else if (isset($this->newTypes[$param['type_hint']])) {
-                $this->addError($phpcsFile, $stackPtr, $param['type_hint']);
+                $itemInfo = array(
+                    'name'   => $param['type_hint'],
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
             else if (isset($this->invalidTypes[$param['type_hint']])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
-                $data = array(
+                $data  = array(
                     $param['type_hint'],
                     $this->invalidTypes[$param['type_hint']],
                 );
+
                 $phpcsFile->addError($error, $stackPtr, 'InvalidTypeHintFound', $data);
             }
             else if ($param['type_hint'] === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr) === false) {
-                    $error = "'self' type cannot be used outside of class scope";
-                    $phpcsFile->addError($error, $stackPtr, 'SelfOutsideClassScopeFound');
+                    $phpcsFile->addError(
+                        "'self' type cannot be used outside of class scope",
+                        $stackPtr,
+                        'SelfOutsideClassScopeFound'
+                    );
                 }
             }
         }
@@ -133,38 +143,27 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $typeName  The type.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->newTypes[$itemInfo['name']];
+    }
 
-        $isError = false;
-        foreach ($this->newTypes[$typeName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = "'{$typeName}' type declaration is " . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "'%s' type declaration is not present in PHP version %s or earlier";
+    }
 
-    }//end addError()
 
 }//end class

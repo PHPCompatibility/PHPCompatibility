@@ -59,8 +59,8 @@ class PHPCompatibility_Sniffs_PHP_NewConstVisibilitySniff extends PHPCompatibili
         if ($this->tokenHasScope($phpcsFile, $stackPtr, array(T_CLASS, T_INTERFACE)) === true && $this->supportsBelow('7.0') === true) {
             $error = 'Visibility indicators for class constants are not supported in PHP 7.0 or earlier. Found "%s const"';
             $data  = array($tokens[$prevToken]['content']);
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
 
+            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
         }
 
     }//end process()

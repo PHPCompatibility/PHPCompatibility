@@ -16,7 +16,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated and removed functions with their alternatives.
@@ -757,14 +757,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                         ),
                                     );
 
-    /**
-     * List of just the function names.
-     *
-     * Will be set automatically in the register() method.
-     *
-     * @var array
-     */
-    protected $removedFunctionNames = array();
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -773,9 +765,8 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
      */
     public function register()
     {
-        // Everyone has had a chance to figure out what removed functions
-        // they want to check for, so now we can cache out the list.
-        $this->removedFunctionNames = array_keys($this->removedFunctions);
+        // Handle case-insensitivity of function names.
+        $this->removedFunctions = $this->arrayKeysToLowercase($this->removedFunctions);
 
         return array(T_STRING);
 
@@ -810,63 +801,44 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
+        $function   = $tokens[$stackPtr]['content'];
+        $functionLc = strtolower($function);
 
-        if (in_array($function, $this->removedFunctionNames) === false) {
+        if (isset($this->removedFunctions[$functionLc]) === false) {
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $function);
+        $itemInfo = array(
+            'name'   => $function,
+            'nameLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
+
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $function  The name of the function.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $function)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->removedFunctions[$itemInfo['nameLc']];
+    }
 
-        $isError = false;
-        $previousVersionStatus = null;
-        foreach ($this->removedFunctions[$function] as $version => $removed) {
-            if ($this->supportsAbove($version)) {
-                if ($version != 'alternative') {
-                    if ($previousVersionStatus !== $removed) {
-                        $previousVersionStatus = $removed;
-                        if ($removed === true) {
-                            $isError = true;
-                            $error .= 'removed';
-                        } else {
-                            $error .= 'deprecated';
-                        }
-                        $error .=  ' since PHP ' . $version . ' and ';
-                    }
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = 'Function ' . $function . '() is ' . $error;
-            $error = substr($error, 0, strlen($error) - 5);
 
-            if ($this->removedFunctions[$function]['alternative'] !== null) {
-                $error .= '; use ' . $this->removedFunctions[$function]['alternative'] . ' instead';
-            }
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'Function %s() is ';
+    }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
-
-    }//end addError()
 
 }//end class

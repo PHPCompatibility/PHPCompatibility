@@ -14,7 +14,7 @@
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -77,48 +77,38 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        if (in_array($tokens[$stackPtr]['content'], array_keys($this->newTypes))) {
-            $this->addError($phpcsFile, $stackPtr, $tokens[$stackPtr]['content']);
+
+        if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
+            $itemInfo = array(
+                'name'   => $tokens[$stackPtr]['content'],
+            );
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
     }//end process()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $typeName  The type.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $typeName)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->newTypes[$itemInfo['name']];
+    }
 
-        $isError = false;
-        foreach ($this->newTypes[$typeName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = '%s return type is ' . $error;
-            $data  = array(
-                $typeName,
-            );
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-            }
-        }
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return '%s return type is not present in PHP version %s or earlier';
+    }
 
-    }//end addError()
 
 }//end class

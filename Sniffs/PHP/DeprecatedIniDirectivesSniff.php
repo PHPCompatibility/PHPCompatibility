@@ -20,13 +20,13 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated INI directives.
      *
-     * version => false means the directive was deprecated in that version.
-     * version => true means it was removed in that version.
+     * The array lists : version number with false (deprecated) and true (removed).
+     * If's sufficient to list the first version where the ini directive was deprecated/removed.
      *
      * @var array(string)
      */
@@ -225,8 +225,6 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
     {
         $tokens = $phpcsFile->getTokens();
 
-        $isError = false;
-
         $ignore = array(
                    T_DOUBLE_COLON,
                    T_OBJECT_OPERATOR,
@@ -240,12 +238,12 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $function = strtolower($tokens[$stackPtr]['content']);
-        if ($function !== 'ini_get' && $function !== 'ini_set') {
+        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
         if ($iniToken === false) {
             return;
         }
@@ -255,38 +253,69 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
             return;
         }
 
-        $error = '';
-
-        foreach ($this->deprecatedIniDirectives[$filteredToken] as $version => $removed)
-        {
-            if ($version !== 'alternative') {
-                if ($this->supportsAbove($version)) {
-                    if ($removed === true) {
-                        $isError = ($function !== 'ini_get') ? true : false;
-                        $error .= " removed";
-                    } else {
-                        $isError = false;
-                        $error .= " deprecated";
-                    }
-                    $error .= " since PHP " . $version . " and";
-                }
-            }
-        }
-
-        if (strlen($error) > 0) {
-            $error = "INI directive '" . $filteredToken . "' is" . $error;
-            $error = substr($error, 0, strlen($error) - 4) . ".";
-            if (isset($this->deprecatedIniDirectives[$filteredToken]['alternative'])) {
-                $error .= " Use '" . $this->deprecatedIniDirectives[$filteredToken]['alternative'] . "' instead.";
-            }
-
-            if ($isError === true) {
-                $phpcsFile->addError($error, $iniToken['end']);
-            } else {
-                $phpcsFile->addWarning($error, $iniToken['end']);
-            }
-        }
+        $itemInfo = array(
+            'name'       => $filteredToken,
+            'functionLc' => $functionLc,
+        );
+        $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
 
     }//end process()
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->deprecatedIniDirectives[$itemInfo['name']];
+    }
+
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+
+        // Lower error level to warning if the function used was ini_get.
+        if ($errorInfo['error'] === true && $itemInfo['functionLc'] === 'ini_get') {
+            $errorInfo['error'] = false;
+        }
+
+        return $errorInfo;
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "INI directive '%s' is ";
+    }
+
+
+    /**
+     * Get the error message template for suggesting an alternative for a specific sniff.
+     *
+     * @return string
+     */
+    protected function getAlternativeOptionTemplate()
+    {
+        return str_replace("%s", "'%s'", parent::getAlternativeOptionTemplate());
+    }
+
 
 }//end class

@@ -66,7 +66,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}.");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}");
         }
 
         if (isset($removedVersion)){
@@ -142,7 +142,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}.");
+            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}");
         }
     }
 
@@ -202,8 +202,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}. Use '{$alternative}' instead.");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}. Use '{$alternative}' instead.");
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}; Use '{$alternative}' instead");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}; Use '{$alternative}' instead");
     }
 
     /**
@@ -251,8 +251,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}.");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}.");
+        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}");
+        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}");
     }
 
     /**

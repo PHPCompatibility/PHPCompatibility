@@ -90,21 +90,18 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends
         }
 
         // If we're still here, no valid loop structure container has been found, so throw an error.
-        $error   = "Using '%s' outside of a loop or switch structure is invalid";
-        $isError = false;
-        $data    = array(
-            $token['content'],
-        );
+        $error     = "Using '%s' outside of a loop or switch structure is invalid";
+        $isError   = false;
+        $errorCode = 'Found';
+        $data      = array($token['content']);
+
         if ($this->supportsAbove('7.0')) {
-            $isError = true;
-            $error  .= ' and will throw a fatal error since PHP 7.0';
+            $error    .= ' and will throw a fatal error since PHP 7.0';
+            $isError   = true;
+            $errorCode = 'FatalError';
         }
 
-        if ($isError === true) {
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-        } else {
-            $phpcsFile->addWarning($error, $stackPtr, 'Found', $data);
-        }
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
 
     }//end process()
 

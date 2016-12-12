@@ -16,7 +16,7 @@
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -87,14 +87,9 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
      */
     public function register()
     {
-        // Handle case-insensitivity of class names.
-        $keys = array_keys( $this->newInterfaces );
-        $keys = array_map( 'strtolower', $keys );
-        $this->newInterfaces = array_combine( $keys, $this->newInterfaces );
-
-        $keys = array_keys( $this->unsupportedMethods );
-        $keys = array_map( 'strtolower', $keys );
-        $this->unsupportedMethods = array_combine( $keys, $this->unsupportedMethods );
+        // Handle case-insensitivity of interface names.
+        $this->newInterfaces      = $this->arrayKeysToLowercase($this->newInterfaces);
+        $this->unsupportedMethods = $this->arrayKeysToLowercase($this->unsupportedMethods);
 
         return array(T_CLASS);
 
@@ -127,27 +122,35 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
         }
 
         foreach ($interfaces as $interface) {
-            $lcInterface = strtolower($interface);
-            if (isset($this->newInterfaces[$lcInterface]) === true) {
-                $this->addError($phpcsFile, $stackPtr, $interface);
+            $interfaceLc = strtolower($interface);
+
+            if (isset($this->newInterfaces[$interfaceLc]) === true) {
+                $itemInfo = array(
+                    'name'   => $interface,
+                    'nameLc' => $interfaceLc,
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
 
-            if ($checkMethods === true && isset($this->unsupportedMethods[$lcInterface]) === true) {
+            if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
                 $nextFunc = $stackPtr;
                 while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-                    $funcName = strtolower($phpcsFile->getDeclarationName($nextFunc));
-                    if ($funcName === '') {
+                    $funcName   = $phpcsFile->getDeclarationName($nextFunc);
+                    $funcNameLc = strtolower($funcName);
+                    if ($funcNameLc === '') {
                         continue;
                     }
 
-                    if (isset($this->unsupportedMethods[$lcInterface][$funcName]) === true) {
-                        $error = 'Classes that implement interface %s do not support the method %s(). See %s';
-                        $data  = array(
+                    if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
+                        $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
+                        $errorCode = $this->stringToErrorCode($interface).'UnsupportedMethod';
+                        $data      = array(
                             $interface,
                             $funcName,
-                            $this->unsupportedMethods[$lcInterface][$funcName],
+                            $this->unsupportedMethods[$interfaceLc][$funcNameLc],
                         );
-                        $phpcsFile->addError($error, $nextFunc, 'UnsupportedMethod', $data);
+
+                        $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
                     }
                 }
             }
@@ -157,40 +160,27 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Sn
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the function
-     *                                        in the token array.
-     * @param string               $interface The name of the interface.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $interface)
+    public function getItemArray(array $itemInfo)
     {
-        $interfaceLc = strtolower($interface);
-        $error       = '';
+        return $this->newInterfaces[$itemInfo['nameLc']];
+    }
 
-        $isError = false;
-        foreach ($this->newInterfaces[$interfaceLc] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
 
-        if (strlen($error) > 0) {
-            $error = 'The built-in interface ' . $interface . ' is ' . $error;
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The built-in interface '.parent::getErrorMsgTemplate();
+    }
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
-
-    }//end addError()
 
 }//end class

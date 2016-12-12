@@ -19,7 +19,7 @@
  * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -159,44 +159,70 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
             return;
         }
 
-        $this->addError($phpcsFile, $stackPtr, $tokenType);
+        $itemInfo = array(
+            'name'   => $tokenType,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
 
 
     /**
-     * Generates the error or warning for this sniff.
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                  $stackPtr    The position of the function
-     *                                          in the token array.
-     * @param string               $keywordName The name of the keyword.
+     * @param array $itemInfo Base information about the item.
      *
-     * @return void
+     * @return array Version and other information about the item.
      */
-    protected function addError($phpcsFile, $stackPtr, $keywordName)
+    public function getItemArray(array $itemInfo)
     {
-        $error = '';
+        return $this->newConstructs[$itemInfo['name']];
+    }
 
-        $isError = false;
-        foreach ($this->newConstructs[$keywordName] as $version => $present) {
-            if ($this->supportsBelow($version)) {
-                if ($present === false) {
-                    $isError = true;
-                    $error .= 'not present in PHP version ' . $version . ' or earlier';
-                }
-            }
-        }
-        if (strlen($error) > 0) {
-            $error = $this->newConstructs[$keywordName]['description'] . ' is ' . $error;
 
-            if ($isError === true) {
-                $phpcsFile->addError($error, $stackPtr);
-            } else {
-                $phpcsFile->addWarning($error, $stackPtr);
-            }
-        }
+    /**
+     * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @return array
+     */
+    protected function getNonVersionArrayKeys()
+    {
+        return array('description');
+    }
 
-    }//end addError()
+
+    /**
+     * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @param array $itemArray Version and other information about the item.
+     * @param array $itemInfo  Base information about the item.
+     *
+     * @return array
+     */
+    public function getErrorInfo(array $itemArray, array $itemInfo)
+    {
+        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo['description'] = $itemArray['description'];
+
+        return $errorInfo;
+
+    }
+
+
+    /**
+     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @param array $data      The error data array which was created.
+     * @param array $itemInfo  Base information about the item this error message applied to.
+     * @param array $errorInfo Detail information about an item this error message applied to.
+     *
+     * @return array
+     */
+    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
+    {
+        $data[0] = $errorInfo['description'];
+        return $data;
+    }
+
 
 }//end class

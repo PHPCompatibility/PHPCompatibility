@@ -129,28 +129,29 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
             }
 
             $methodProperties = $phpcsFile->getMethodProperties($functionToken);
+            $errorCodeBase    = $this->stringToErrorCode($methodNameLc);
 
             if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
-                $error = 'Visibility for magic method %s must be %s. Found: %s';
-                $data  = array(
+                $error     = 'Visibility for magic method %s must be %s. Found: %s';
+                $errorCode = $errorCodeBase.'MethodVisibility';
+                $data      = array(
                     $methodName,
                     $this->magicMethods[$methodNameLc]['visibility'],
                     $methodProperties['scope'],
                 );
 
-                $phpcsFile->addError($error, $functionToken, 'MethodVisibility', $data);
+                $phpcsFile->addError($error, $functionToken, $errorCode, $data);
             }
 
             if (isset($this->magicMethods[$methodNameLc]['static']) && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']) {
                 $error     = 'Magic method %s cannot be defined as static.';
-                $errorCode = 'MethodStatic';
+                $errorCode = $errorCodeBase.'MethodStatic';
+                $data      = array($methodName);
+
                 if ( $this->magicMethods[$methodNameLc]['static'] === true ) {
                     $error     = 'Magic method %s must be defined as static.';
-                    $errorCode = 'MethodNonStatic';
+                    $errorCode = $errorCodeBase.'MethodNonStatic';
                 }
-                $data = array(
-                    $methodName,
-                );
 
                 $phpcsFile->addError($error, $functionToken, $errorCode, $data);
             }
