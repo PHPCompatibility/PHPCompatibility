@@ -20,6 +20,8 @@
  */
 class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/forbidden_empty_list_assignment.php';
+
     /**
      * testEmptyListAssignment
      *
@@ -31,10 +33,10 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
      */
     public function testEmptyListAssignment($line)
     {
-        $file = $this->sniffFile('sniff-examples/forbidden_empty_list_assignment.php', '5.6');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, $line);
 
-        $file = $this->sniffFile('sniff-examples/forbidden_empty_list_assignment.php', '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Empty list() assignments are not allowed since PHP 7.0');
     }
 
@@ -67,7 +69,7 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile('sniff-examples/forbidden_empty_list_assignment.php');
+        $file = $this->sniffFile(self::TEST_FILE);
         $this->assertNoViolation($file, $line);
     }
 

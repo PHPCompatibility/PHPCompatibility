@@ -20,6 +20,8 @@
  */
 class InternalInterfacesSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/internal_interfaces.php';
+
     /**
      * Sniffed file
      *
@@ -36,7 +38,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
     {
         parent::setUp();
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/internal_interfaces.php');
+        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
     }
 
     /**

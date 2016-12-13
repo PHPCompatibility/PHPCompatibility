@@ -19,6 +19,8 @@
  */
 class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/timezone.php';
+
     /**
      * Test ini timezone setting
      *
@@ -31,7 +33,7 @@ class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
         // We'll supress this so PHPunit wont catch the warning
         @ini_set('date.timezone', false);
 
-        $file = $this->sniffFile('sniff-examples/timezone.php');
+        $file = $this->sniffFile(self::TEST_FILE);
 
         $this->assertError($file, 1, 'Default timezone is required since PHP 5.4');
 
@@ -45,7 +47,7 @@ class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile('sniff-examples/timezone.php', '5.3');
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
 
         $this->assertNoViolation($file, 1);
     }
