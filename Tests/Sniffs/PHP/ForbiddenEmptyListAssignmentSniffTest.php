@@ -12,6 +12,8 @@
  * @group forbiddenEmptyListAssignment
  * @group listAssignments
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

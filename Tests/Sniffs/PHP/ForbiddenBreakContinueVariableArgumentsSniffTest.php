@@ -16,6 +16,8 @@
  * @group forbiddenBreakContinueVariableArguments
  * @group breakContinue
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

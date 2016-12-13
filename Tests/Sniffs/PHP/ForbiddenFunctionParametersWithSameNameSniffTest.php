@@ -12,6 +12,8 @@
  * @group forbiddenFunctionParametersWithSameName
  * @group functionDeclarations
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

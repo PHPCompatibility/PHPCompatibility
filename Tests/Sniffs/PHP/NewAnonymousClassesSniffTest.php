@@ -12,6 +12,8 @@
  * @group newAnonymousClasses
  * @group closures
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

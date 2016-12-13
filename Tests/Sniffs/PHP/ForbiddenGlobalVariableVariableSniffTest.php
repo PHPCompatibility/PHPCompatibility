@@ -12,6 +12,8 @@
  * @group forbiddenGlobalVariableVariable
  * @group variableVariables
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenGlobalVariableVariableSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

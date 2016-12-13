@@ -12,6 +12,8 @@
  * @group newMagicMethods
  * @group magicMethods
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

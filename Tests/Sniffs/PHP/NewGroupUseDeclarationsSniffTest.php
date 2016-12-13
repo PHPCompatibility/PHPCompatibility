@@ -11,6 +11,8 @@
  *
  * @group newGroupUseDeclarations
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

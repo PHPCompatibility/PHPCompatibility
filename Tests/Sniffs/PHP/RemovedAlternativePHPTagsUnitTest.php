@@ -11,6 +11,8 @@
  *
  * @group removedAlternativePHPTags
  *
+ * @covers PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

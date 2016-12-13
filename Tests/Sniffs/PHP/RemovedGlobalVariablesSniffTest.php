@@ -12,6 +12,8 @@
  * @group removedGlobalVariables
  * @group superglobals
  *
+ * @covers PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

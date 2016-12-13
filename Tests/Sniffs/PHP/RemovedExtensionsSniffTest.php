@@ -12,6 +12,8 @@
  * @group removedExtensions
  * @group extensions
  *
+ * @covers PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

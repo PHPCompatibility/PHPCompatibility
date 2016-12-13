@@ -12,6 +12,8 @@
  * @group pregReplaceEModifier
  * @group regexEModifier
  *
+ * @covers PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

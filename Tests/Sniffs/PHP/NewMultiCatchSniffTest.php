@@ -12,6 +12,8 @@
  * @group multiCatch
  * @group exceptions
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewMultiCatchSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

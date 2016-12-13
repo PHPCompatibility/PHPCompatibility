@@ -12,6 +12,8 @@
  * @group mbstringReplaceEModifier
  * @group regexEModifier
  *
+ * @covers PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

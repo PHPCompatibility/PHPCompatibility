@@ -12,6 +12,8 @@
  * @group longArrays
  * @group superglobals
  *
+ * @covers PHPCompatibility_Sniffs_PHP_LongArraysSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

@@ -12,6 +12,8 @@
  * @group shortArray
  * @group arraySyntax
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ShortArraySniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  */

@@ -12,6 +12,8 @@
  * @group deprecatedFunctions
  * @group functions
  *
+ * @covers PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

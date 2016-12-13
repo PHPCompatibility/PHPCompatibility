@@ -14,6 +14,8 @@
  * @group forbiddenBreakContinueOutsideLoop
  * @group breakContinue
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

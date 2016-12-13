@@ -12,6 +12,8 @@
  * @group forbiddenNames
  * @group reservedKeywords
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

@@ -11,6 +11,8 @@
  *
  * @group emptyNonVariable
  *
+ * @covers PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

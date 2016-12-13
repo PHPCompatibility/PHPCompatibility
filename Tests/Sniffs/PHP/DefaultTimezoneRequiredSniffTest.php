@@ -11,6 +11,8 @@
  * @group defaultTimezoneRequired
  * @group iniDirectives
  *
+ * @covers PHPCompatibility_Sniffs_PHP_DefaultTimezoneRequiredSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
