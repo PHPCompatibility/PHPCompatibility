@@ -56,7 +56,6 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
             array('abstract', array(6), '5.0', '4.4'),
             array('callable', array(7), '5.4', '5.3'),
             array('catch', array(8), '5.0', '4.4'),
-            array('clone', array(9), '5.0', '4.4'),
             array('final', array(10), '5.0', '4.4'),
             array('finally', array(11), '5.5', '5.4'),
             array('goto', array(12), '5.3', '5.2'),
