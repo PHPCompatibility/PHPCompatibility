@@ -9,6 +9,9 @@
 /**
  * New Classes Sniff tests
  *
+ * @group newClasses
+ * @group classes
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -20,8 +23,6 @@ class NewClassesSniffTest extends BaseSniffTest
 
     /**
      * testNewClass
-     *
-     * @group newClasses
      *
      * @dataProvider dataNewClass
      *
@@ -101,8 +102,6 @@ class NewClassesSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group newClasses
      *
      * @dataProvider dataNoViolation
      *

@@ -9,6 +9,9 @@
 /**
  * New const visibility sniff test file
  *
+ * @group constVisibility
+ * @group constants
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -19,8 +22,6 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
 
     /**
      * testConstVisibility
-     *
-     * @group constVisibility
      *
      * @dataProvider dataConstVisibility
      *
@@ -60,8 +61,6 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group constVisibility
      *
      * @dataProvider dataNoViolation
      *

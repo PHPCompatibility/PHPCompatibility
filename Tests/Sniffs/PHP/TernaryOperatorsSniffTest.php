@@ -9,6 +9,8 @@
 /**
  * Ternary Operators Sniff tests
  *
+ * @group ternaryOperators
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -25,8 +27,6 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     /**
      * Test ternary operators that are acceptable in all PHP versions.
      *
-     * @group ternaryOperators
-     *
      * @return void
      */
     public function testStandardTernaryOperators()
@@ -37,8 +37,6 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
 
     /**
      * 5.2 doesn't support elvis operator.
-     *
-     * @group ternaryOperators
      *
      * @return void
      */
@@ -53,8 +51,6 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
 
     /**
      * 5.3 does support elvis operator.
-     *
-     * @group ternaryOperators
      *
      * @return void
      */

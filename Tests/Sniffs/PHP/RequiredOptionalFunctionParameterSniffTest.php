@@ -9,6 +9,9 @@
 /**
  * Required Optional Parameter Sniff test file
  *
+ * @group requiredOptionalFunctionParameters
+ * @group functionParameters
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

@@ -9,6 +9,8 @@
 /**
  * Empty with non variable sniff test file
  *
+ * @group emptyNonVariable
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -19,8 +21,6 @@ class EmptyNonVariableSniffTest extends BaseSniffTest
 
     /**
      * testEmptyNonVariable
-     *
-     * @group emptyNonVariable
      *
      * @dataProvider dataEmptyNonVariable
      *
@@ -79,8 +79,6 @@ class EmptyNonVariableSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group emptyNonVariable
      *
      * @dataProvider dataNoViolation
      *

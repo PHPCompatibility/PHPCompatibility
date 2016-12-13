@@ -9,6 +9,9 @@
 /**
  * Function parameters count function tests
  *
+ * @group utilityGetFunctionParameters
+ * @group utilityFunctions
+ *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -20,8 +23,6 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
 
     /**
      * testGetFunctionCallParameters
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataGetFunctionCallParameters
      *
@@ -152,8 +153,6 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
     /**
      * testGetFunctionCallParameter
      *
-     * @group utilityFunctions
-     *
      * @dataProvider dataGetFunctionCallParameter
      *
      * @covers PHPCompatibility_Sniff::getFunctionCallParameter
@@ -207,8 +206,6 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
 
     /**
      * testGetFunctionCallParameterCount
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataGetFunctionCallParameterCount
      *

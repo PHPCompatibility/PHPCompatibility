@@ -9,6 +9,8 @@
 /**
  * Removed alternative PHP tags sniff test file
  *
+ * @group removedAlternativePHPTags
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -38,8 +40,6 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
 
     /**
      * testAlternativePHPTags
-     *
-     * @group alternativePHPTags
      *
      * @dataProvider dataAlternativePHPTags
      *
@@ -88,8 +88,6 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
     /**
      * testMaybeASPOpenTag
      *
-     * @group alternativePHPTags
-     *
      * @dataProvider dataMaybeASPOpenTag
      *
      * @param int    $line    The line number.
@@ -137,8 +135,6 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group alternativePHPTags
      *
      * @dataProvider dataNoViolation
      *

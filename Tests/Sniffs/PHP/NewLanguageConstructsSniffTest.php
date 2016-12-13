@@ -9,6 +9,8 @@
 /**
  * New language constructs sniff tests
  *
+ * @group newLanguageConstructs
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -19,8 +21,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
 
     /**
      * testNamespaceSeparator
-     *
-     * @group NewLanguageConstructs
      *
      * @requires PHP 5.3
      *
@@ -38,8 +38,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     /**
      * testPow
      *
-     * @group NewLanguageConstructs
-     *
      * @return void
      */
     public function testPow()
@@ -53,8 +51,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
 
     /**
      * testPowEquals
-     *
-     * @group NewLanguageConstructs
      *
      * @return void
      */
@@ -70,8 +66,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     /**
      * testSpaceship
      *
-     * @group NewLanguageConstructs
-     *
      * @return void
      */
     public function testSpaceship()
@@ -85,8 +79,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
 
     /**
      * Coalescing operator
-     *
-     * @group NewLanguageConstructs
      *
      * @return void
      */
@@ -103,8 +95,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
 
     /**
      * Variadic functions using ...
-     *
-     * @group NewLanguageConstructs
      *
      * @return void
      */

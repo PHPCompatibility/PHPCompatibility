@@ -9,6 +9,9 @@
 /**
  * Short array syntax sniff tests
  *
+ * @group shortArray
+ * @group arraySyntax
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  */
@@ -18,8 +21,6 @@ class ShortArraySniffTest extends BaseSniffTest
 
     /**
      * testViolation
-     *
-     * @group shortArraySyntax
      *
      * @dataProvider dataViolation
      *
@@ -56,8 +57,6 @@ class ShortArraySniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group shortArraySyntax
      *
      * @dataProvider dataNoViolation
      *

@@ -9,6 +9,9 @@
 /**
  * preg_replace() /e modifier sniff tests
  *
+ * @group pregReplaceEModifier
+ * @group regexEModifier
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -20,8 +23,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
 
     /**
      * testDeprecatedEModifier
-     *
-     * @group pregReplaceEModifier
      *
      * @dataProvider dataDeprecatedEModifier
      *
@@ -87,8 +88,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group pregReplaceEModifier
      *
      * @dataProvider dataNoViolation
      *

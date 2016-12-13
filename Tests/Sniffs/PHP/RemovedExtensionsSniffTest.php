@@ -9,6 +9,9 @@
 /**
  * Removed extensions sniff tests
  *
+ * @group removedExtensions
+ * @group extensions
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -40,8 +43,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testRemovedExtension
-     *
-     * @group removedExtensions
      *
      * @dataProvider dataRemovedExtension
      *
@@ -102,8 +103,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testRemovedExtensionWithAlternative
      *
-     * @group removedExtensions
-     *
      * @dataProvider dataRemovedExtensionWithAlternative
      *
      * @param string $extensionName  Name of the PHP extension.
@@ -162,8 +161,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testDeprecatedRemovedExtensionWithAlternative
-     *
-     * @group removedExtensions
      *
      * @dataProvider dataDeprecatedRemovedExtensionWithAlternative
      *
@@ -227,8 +224,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testDeprecatedExtensionWithAlternative
      *
-     * @group removedExtensions
-     *
      * @dataProvider dataDeprecatedExtensionWithAlternative
      *
      * @param string $extensionName     Name of the PHP extension.
@@ -277,8 +272,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testNotAFunctionCall
      *
-     * @group removedExtensions
-     *
      * @return void
      */
     public function testNotAFunctionCall()
@@ -288,8 +281,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testFunctionDeclaration
-     *
-     * @group removedExtensions
      *
      * @return void
      */
@@ -301,8 +292,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testNewClass
      *
-     * @group removedExtensions
-     *
      * @return void
      */
     public function testNewClass()
@@ -313,8 +302,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     /**
      * testMethod
      *
-     * @group removedExtensions
-     *
      * @return void
      */
     public function testMethod()
@@ -324,8 +311,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
     /**
      * testWhiteListing
-     *
-     * @group removedExtensions
      *
      * @return void
      */

@@ -9,6 +9,8 @@
 /**
  * New use group declaration sniff tests
  *
+ * @group newGroupUseDeclarations
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

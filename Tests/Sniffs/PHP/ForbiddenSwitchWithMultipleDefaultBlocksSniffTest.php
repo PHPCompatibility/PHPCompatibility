@@ -9,6 +9,8 @@
 /**
  * Switch statements can only have one default case in PHP 7.0
  *
+ * @group forbiddenSwitchWithMultipleDefaultBlocks
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -19,8 +21,6 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
 
     /**
      * testForbiddenSwitchWithMultipleDefaultBlocks
-     *
-     * @group forbiddenSwitchMultipleDefault
      *
      * @dataProvider dataForbiddenSwitchWithMultipleDefaultBlocks
      *
@@ -56,8 +56,6 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
 
     /**
      * testValidSwitchStatement
-     *
-     * @group forbiddenSwitchMultipleDefault
      *
      * @dataProvider dataValidSwitchStatement
      *

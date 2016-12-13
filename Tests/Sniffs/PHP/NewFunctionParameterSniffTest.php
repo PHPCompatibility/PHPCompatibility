@@ -9,6 +9,9 @@
 /**
  * New Functions Parameter Sniff tests
  *
+ * @group newFunctionParameters
+ * @group functionParameters
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

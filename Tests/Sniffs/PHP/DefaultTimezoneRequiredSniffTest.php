@@ -8,6 +8,9 @@
 /**
  * Default timezone required sniff test
  *
+ * @group defaultTimezoneRequired
+ * @group iniDirectives
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

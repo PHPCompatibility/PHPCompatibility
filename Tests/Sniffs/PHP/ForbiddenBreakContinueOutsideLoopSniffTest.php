@@ -11,6 +11,9 @@
  *
  * Checks for using break and continue outside of a looping structure.
  *
+ * @group forbiddenBreakContinueOutsideLoop
+ * @group breakContinue
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -21,8 +24,6 @@ class ForbiddenBreakContinueOutsideLoopSniffTest extends BaseSniffTest
 
     /**
      * testForbiddenBreakContinueOutsideLoop
-     *
-     * @group forbiddenBreakContinueOutsideLoop
      *
      * @dataProvider dataBreakContinueOutsideLoop
      *
@@ -62,8 +63,6 @@ class ForbiddenBreakContinueOutsideLoopSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group forbiddenBreakContinueOutsideLoop
      *
      * @dataProvider dataNoViolation
      *

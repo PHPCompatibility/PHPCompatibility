@@ -9,6 +9,9 @@
 /**
  * Deprecated functions sniff tests
  *
+ * @group deprecatedFunctions
+ * @group functions
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

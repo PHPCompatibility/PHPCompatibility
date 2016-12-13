@@ -9,6 +9,9 @@
 /**
  * New Anonymous Classes Sniff tests
  *
+ * @group newAnonymousClasses
+ * @group closures
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

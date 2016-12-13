@@ -9,6 +9,8 @@
 /**
  * Valid Integers Sniff tests
  *
+ * @group validIntegers
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -40,8 +42,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
 
     /**
      * testBinaryInteger
-     *
-     * @group ValidIntegers
      *
      * @dataProvider dataBinaryInteger
      *
@@ -84,8 +84,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
     /**
      * testInvalidBinaryInteger
      *
-     * @group ValidIntegers
-     *
      * @return void
      */
     public function testInvalidBinaryInteger()
@@ -96,8 +94,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
 
     /**
      * testInvalidOctalInteger
-     *
-     * @group ValidIntegers
      *
      * @dataProvider dataInvalidOctalInteger
      *
@@ -136,8 +132,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
     /**
      * testValidOctalInteger
      *
-     * @group ValidIntegers
-     *
      * @return void
      */
     public function testValidOctalInteger() {
@@ -147,8 +141,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
 
     /**
      * testHexNumericString
-     *
-     * @group ValidIntegers
      *
      * @return void
      */

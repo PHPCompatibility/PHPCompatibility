@@ -13,6 +13,9 @@
  *     break $varname
  *     continue $varname
  *
+ * @group forbiddenBreakContinueVariableArguments
+ * @group breakContinue
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -48,8 +51,6 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
      *
      * In PHP 5.3, none of the statements should give an error.
      *
-     * @group forbiddenBreakContinue
-     *
      * @return void
      */
     public function testAllowedBreakAndContinueVariableArgument()
@@ -61,8 +62,6 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
 
     /**
      * testBreakAndContinueVariableArgument
-     *
-     * @group forbiddenBreakContinue
      *
      * @dataProvider dataBreakAndContinueVariableArgument
      *
@@ -106,8 +105,6 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group forbiddenBreakContinue
      *
      * @dataProvider dataNoViolation
      *

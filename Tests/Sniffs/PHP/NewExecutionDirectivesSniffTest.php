@@ -9,6 +9,9 @@
 /**
  * New execution directives test file
  *
+ * @group newExecutionDirectives
+ * @group executionDirectives
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -38,8 +41,6 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testNewExecutionDirective
-     *
-     * @group newExecutionDirectives
      *
      * @dataProvider dataNewExecutionDirective
      *
@@ -92,8 +93,6 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
     /**
      * testInvalidDirectiveValue
      *
-     * @group newExecutionDirectives
-     *
      * @dataProvider dataInvalidDirectiveValue
      *
      * @param string $directive Name of the execution directive.
@@ -124,8 +123,6 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testInvalidEncodingDirectiveValue
-     *
-     * @group newExecutionDirectives
      *
      * @requires function mb_list_encodings
      *
@@ -160,8 +157,6 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
     /**
      * testInvalidDirective
      *
-     * @group newExecutionDirectives
-     *
      * @return void
      */
     public function testInvalidDirective()
@@ -172,8 +167,6 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testIncompleteDirective
-     *
-     * @group newExecutionDirectives
      *
      * @return void
      */

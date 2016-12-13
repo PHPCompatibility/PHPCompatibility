@@ -9,6 +9,9 @@
 /**
  * New Functions Sniff tests
  *
+ * @group newFunctions
+ * @group functions
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -25,8 +28,6 @@ class NewFunctionsSniffTest extends BaseSniffTest
      *
      * @requires PHP 5.3
      *
-     * @group newFunctions
-     *
      * @return void
      */
     public function testFunctionsThatShouldntBeFlagged()
@@ -42,8 +43,6 @@ class NewFunctionsSniffTest extends BaseSniffTest
 
     /**
      * testNewFunction
-     *
-     * @group newFunctions
      *
      * @dataProvider dataNewFunction
      *

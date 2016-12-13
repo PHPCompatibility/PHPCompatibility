@@ -9,6 +9,9 @@
 /**
  * Removed global variables sniff tests
  *
+ * @group removedGlobalVariables
+ * @group superglobals
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -19,8 +22,6 @@ class RemovedGlobalVariablesSniffTest  extends BaseSniffTest
 
     /**
      * testRemovedGlobalVariables
-     *
-     * @group removedGlobalVariables
      *
      * @dataProvider dataRemovedGlobalVariables
      *
@@ -58,8 +59,6 @@ class RemovedGlobalVariablesSniffTest  extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group removedGlobalVariables
      *
      * @dataProvider dataNoViolation
      *

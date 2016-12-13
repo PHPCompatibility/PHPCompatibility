@@ -9,6 +9,9 @@
 /**
  * Removed Functions Parameter Sniff test file
  *
+ * @group removedFunctionParameters
+ * @group functionParameters
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

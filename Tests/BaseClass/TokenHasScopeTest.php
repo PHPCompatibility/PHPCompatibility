@@ -9,6 +9,9 @@
 /**
  * Token scope function tests
  *
+ * @group utilityTokenScope
+ * @group utilityFunctions
+ *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -20,8 +23,6 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 
     /**
      * testTokenHasScope
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataTokenHasScope
      *
@@ -84,8 +85,6 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
     /**
      * testInClassScope
      *
-     * @group utilityFunctions
-     *
      * @dataProvider dataInClassScope
      *
      * @covers PHPCompatibility_Sniff::inClassScope
@@ -119,8 +118,6 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 
     /**
      * testInUseScope
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataInUseScope
      *

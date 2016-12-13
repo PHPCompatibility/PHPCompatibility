@@ -9,6 +9,9 @@
 /**
  * New hash algorithms sniff tests.
  *
+ * @group newHashAlgorithms
+ * @group hashAlgorithms
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -19,8 +22,6 @@ class NewHashAlgorithmsSniffTest extends BaseSniffTest
 
     /**
      * testNewHashAlgorithms
-     *
-     * @group hashAlgorithms
      *
      * @dataProvider dataNewHashAlgorithms
      *
@@ -67,8 +68,6 @@ class NewHashAlgorithmsSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group hashAlgorithms
      *
      * @dataProvider dataNoViolation
      *

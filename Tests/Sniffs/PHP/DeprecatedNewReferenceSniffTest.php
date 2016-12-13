@@ -9,6 +9,9 @@
 /**
  * Deprecated new reference sniff tests
  *
+ * @group deprecatedNewReference
+ * @group references
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

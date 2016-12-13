@@ -9,6 +9,9 @@
 /**
  * Deprecated ini directives sniff tests
  *
+ * @group deprecatedIniDirectives
+ * @group iniDirectives
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -20,8 +23,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * Test valid directive
-     *
-     * @group IniDirectives
      *
      * @return void
      */
@@ -35,8 +36,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testDeprecatedRemovedDirectives
-     *
-     * @group IniDirectives
      *
      * @dataProvider dataDeprecatedRemovedDirectives
      *
@@ -115,8 +114,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     /**
      * testDeprecatedDirectives
      *
-     * @group IniDirectives
-     *
      * @dataProvider dataDeprecatedDirectives
      *
      * @param string $iniName           Name of the ini directive.
@@ -175,8 +172,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     /**
      * testRemovedWithAlternative
      *
-     * @group IniDirectives
-     *
      * @dataProvider dataRemovedWithAlternative
      *
      * @param string $iniName        Name of the ini directive.
@@ -224,8 +219,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
     /**
      * testRemovedDirectives
-     *
-     * @group IniDirectives
      *
      * @dataProvider dataRemovedDirectives
      *
