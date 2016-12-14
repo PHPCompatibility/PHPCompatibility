@@ -6,7 +6,7 @@
 abstract();
 callable();
 catch();
-clone();
+// Removed: clone(); see #284
 final();
 finally(); // introduced in 5.5
 goto();
