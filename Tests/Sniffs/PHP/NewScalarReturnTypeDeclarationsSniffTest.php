@@ -9,6 +9,9 @@
 /**
  * New return types test file
  *
+ * @group newScalarReturnTypeDeclarations
+ * @group typeDeclarations
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -32,8 +35,6 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
 
     /**
      * testScalarReturnType
-     *
-     * @group scalarReturnType
      *
      * @dataProvider dataScalarReturnType
      *

@@ -9,6 +9,9 @@
 /**
  * Forbidden call time pass by reference sniff test
  *
+ * @group forbiddenCallTimePassByReference
+ * @group references
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -39,8 +42,6 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
 
     /**
      * testForbiddenCallTimePassByReference
-     *
-     * @group forbiddenCallTimePassByReference
      *
      * @dataProvider dataForbiddenCallTimePassByReference
      *
@@ -82,8 +83,6 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group forbiddenCallTimePassByReference
      *
      * @dataProvider dataNoViolation
      *

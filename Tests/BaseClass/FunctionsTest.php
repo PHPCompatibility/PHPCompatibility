@@ -9,6 +9,9 @@
 /**
  * Generic sniff functions sniff tests
  *
+ * @group utilityMiscFunctions
+ * @group utilityFunctions
+ *
  * @uses    PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -39,8 +42,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
    /**
      * testStringToErrorCode
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataStringToErrorCode
      *
@@ -75,8 +76,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
    /**
      * testStripQuotes
      *
-     * @group utilityFunctions
-     *
      * @dataProvider dataStripQuotes
      *
      * @covers PHPCompatibility_Sniff::stripQuotes
@@ -110,8 +109,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
     /**
      * testArrayKeysToLowercase
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataArrayKeysToLowercase
      *

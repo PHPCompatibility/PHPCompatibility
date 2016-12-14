@@ -9,6 +9,8 @@
 /**
  * New function array dereferencing sniff tests
  *
+ * @group newFunctionArrayDereferencing
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -19,8 +21,6 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
 
     /**
      * testArrayDereferencing
-     *
-     * @group functionArrayDereferencing
      *
      * @dataProvider dataArrayDereferencing
      *
@@ -56,8 +56,6 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group functionArrayDereferencing
      *
      * @dataProvider dataNoViolation
      *

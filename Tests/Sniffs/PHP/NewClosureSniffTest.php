@@ -9,6 +9,9 @@
 /**
  * New Closure Sniff tests
  *
+ * @group newClosure
+ * @group closures
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

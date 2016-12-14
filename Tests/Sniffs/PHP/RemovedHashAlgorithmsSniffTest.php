@@ -9,6 +9,9 @@
 /**
  * Removed hash algorithms sniff tests
  *
+ * @group removedHashAlgorithms
+ * @group hashAlgorithms
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -19,8 +22,6 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
 
     /**
      * testRemovedHashAlgorithms
-     *
-     * @group hashAlgorithms
      *
      * @dataProvider dataRemovedHashAlgorithms
      *
@@ -69,8 +70,6 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
      * As the function hash_pbkdf2() itself was only introduced in PHP 5.5, we cannot test the noViolation case
      * (as it would still show an error for use of a new function).
      *
-     * @group hashAlgorithms
-     *
      * return void
      */
     public function testRemovedHashAlgorithmsPbkdf2()
@@ -82,8 +81,6 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group hashAlgorithms
      *
      * @dataProvider dataNoViolation
      *

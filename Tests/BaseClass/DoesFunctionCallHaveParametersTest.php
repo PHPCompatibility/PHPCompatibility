@@ -9,6 +9,9 @@
 /**
  * Function parameters function tests
  *
+ * @group utilityDoesFunctionCallHaveParameters
+ * @group utilityFunctions
+ *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -20,8 +23,6 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
 
     /**
      * testDoesFunctionCallHaveParameters
-     *
-     * @group utilityFunctions
      *
      * @dataProvider dataDoesFunctionCallHaveParameters
      *

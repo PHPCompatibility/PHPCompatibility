@@ -9,6 +9,9 @@
 /**
  * New nullable type hints / return types sniff test file
  *
+ * @group nullableTypes
+ * @group typeDeclarations
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -19,8 +22,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
 
     /**
      * testNewNullableReturnTypes
-     *
-     * @group nullableTypes
      *
      * @dataProvider dataNewNullableReturnTypes
      *
@@ -67,8 +68,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
     /**
      * testNewNullableTypeHints
      *
-     * @group nullableTypes
-     *
      * @dataProvider dataNewNullableTypeHints
      *
      * @param int $line The line number.
@@ -110,8 +109,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group nullableTypes
      *
      * @dataProvider dataNoViolation
      *

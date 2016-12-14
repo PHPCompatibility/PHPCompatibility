@@ -9,6 +9,9 @@
 /**
  * Constant arrays using define in PHP 7.0 sniff test file
  *
+ * @group constantArraysUsingDefine
+ * @group constants
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -19,8 +22,6 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
 
     /**
      * Verify that checking for a specific version works
-     *
-     * @group constantArraysUsingDefine
      *
      * @dataProvider dataConstantArraysUsingDefine
      *
@@ -55,8 +56,6 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group constantArraysUsingDefine
      *
      * @dataProvider dataNoViolation
      *

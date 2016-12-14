@@ -9,6 +9,9 @@
 /**
  * Forbidden names sniff test
  *
+ * @group forbiddenNames
+ * @group reservedKeywords
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -18,8 +21,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
     /**
      * testNamespace
-     *
-     * @group forbiddenNames
      *
      * @dataProvider usecaseProvider
      *
@@ -86,8 +87,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     /**
      * testCorrectUsageOfKeywords
      *
-     * @group forbiddenNames
-     *
      * @return void
      */
     public function testCorrectUsageOfKeywords()
@@ -103,8 +102,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     /**
      * testCorrectUsageUseFunctionConst
      *
-     * @group forbiddenNames
-     *
      * @return void
      */
     public function testCorrectUsageUseFunctionConst()
@@ -115,8 +112,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
     /**
      * Test setting test version option
-     *
-     * @group forbiddenNames
      *
      * @return void
      */

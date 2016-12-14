@@ -9,6 +9,9 @@
 /**
  * Internal Interfaces Sniff tests
  *
+ * @group internalInterfaces
+ * @group interfaces
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

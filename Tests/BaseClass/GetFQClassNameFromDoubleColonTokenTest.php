@@ -9,6 +9,9 @@
 /**
  * Classname determination from double colon token function tests
  *
+ * @group utilityGetFQClassNameFromDoubleColonToken
+ * @group utilityFunctions
+ *
  * @uses    BaseClass_MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -20,8 +23,6 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
 
     /**
      * testGetFQClassNameFromDoubleColonToken
-     *
-     * @group utilityFunctions
      *
      * @requires PHP 5.3
      *

@@ -9,6 +9,9 @@
 /**
  * Functions can not have multiple parameters with the same name since PHP 7.0 sniff test
  *
+ * @group forbiddenFunctionParametersWithSameName
+ * @group functionDeclarations
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -17,8 +20,6 @@ class ForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
 {
     /**
      * testSettingTestVersion
-     *
-     * @group forbiddenFunctionParamsSameName
      *
      * @return void
      */

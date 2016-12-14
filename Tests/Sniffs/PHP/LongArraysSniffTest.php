@@ -9,6 +9,9 @@
 /**
  * Long Arrays Sniff tests
  *
+ * @group longArrays
+ * @group superglobals
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -20,8 +23,6 @@ class LongArraysSniffTest extends BaseSniffTest
 
     /**
      * testLongVariable
-     *
-     * @group longArrays
      *
      * @dataProvider dataLongVariable
      *
@@ -74,8 +75,6 @@ class LongArraysSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group longArrays
      *
      * @dataProvider dataNoViolation
      *

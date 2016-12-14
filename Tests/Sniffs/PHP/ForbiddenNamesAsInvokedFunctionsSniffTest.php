@@ -9,6 +9,9 @@
 /**
  * Forbidden names as function invocations sniff test file
  *
+ * @group forbiddenNamesAsInvokedFunctions
+ * @group reservedKeywords
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

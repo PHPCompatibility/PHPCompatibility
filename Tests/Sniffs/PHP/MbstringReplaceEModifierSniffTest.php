@@ -9,6 +9,9 @@
 /**
  * Deprecated Mbstring regex replace e modifier test file.
  *
+ * @group mbstringReplaceEModifier
+ * @group regexEModifier
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -19,8 +22,6 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
 
     /**
      * testMbstringEModifier
-     *
-     * @group mbstringEModifier
      *
      * @dataProvider dataMbstringEModifier
      *
@@ -59,8 +60,6 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group mbstringEModifier
      *
      * @dataProvider dataNoViolation
      *

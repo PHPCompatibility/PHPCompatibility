@@ -9,6 +9,9 @@
 /**
  * New Magic Methods Sniff tests.
  *
+ * @group newMagicMethods
+ * @group magicMethods
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
@@ -67,8 +70,6 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
     /**
      * Test magic methods that shouldn't be flagged by this sniff.
      *
-     * @group newMagicMethods
-     *
      * @dataProvider dataMagicMethodsThatShouldntBeFlagged
      *
      * @param int $line The line number.
@@ -103,8 +104,6 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 
     /**
      * testNewMagicMethod
-     *
-     * @group newMagicMethods
      *
      * @dataProvider dataNewMagicMethod
      *
@@ -169,8 +168,6 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 	 * for PHPCS 2.5.1 as the Naming Convention sniff in PHPCS < 2.5.1 does not recognize
 	 * __debugInfo() yet, causing the noViolation sniff to fail.
      *
-     * @group newMagicMethods
-     *
      * @dataProvider dataNewDebugInfo
      *
      * @param string $methodName        Name of the method.
@@ -221,8 +218,6 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 
     /**
      * testChangedToStringMethod
-     *
-     * @group newMagicMethods
      *
      * @dataProvider dataChangedToStringMethod
      *

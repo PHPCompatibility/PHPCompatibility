@@ -9,6 +9,9 @@
 /**
  * New keywords sniff tests
  *
+ * @group newKeywords
+ * @group reservedKeywords
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
@@ -19,8 +22,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * Test allow_url_include
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -35,8 +36,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * Test insteadof
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -55,8 +54,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test namespace keyword
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testNamespaceKeyword()
@@ -70,8 +67,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * testNamespaceConstant
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -87,8 +82,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test trait keyword
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testTraitKeyword()
@@ -102,8 +95,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * Test trait magic constant
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -119,8 +110,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test the use keyword
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testUse()
@@ -134,8 +123,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * Test yield
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -151,8 +138,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testFinally
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testFinally()
@@ -166,8 +151,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * testNowdoc
-     *
-     * @group newKeywords
      *
      * @requires PHP 5.3
      *
@@ -187,8 +170,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testConst
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testConst()
@@ -205,8 +186,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testCallable
      *
-     * @group newKeywords
-     *
      * @return void
      */
     public function testCallable()
@@ -219,8 +198,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
 
     /**
      * testGoto
-     *
-     * @group newKeywords
      *
      * @return void
      */
@@ -236,11 +213,8 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testHaltCompiler
      *
-     * @group newKeywords
-     *
      * @requires PHP 5.3
      *
-
      * @return void
      */
     public function testHaltCompiler()

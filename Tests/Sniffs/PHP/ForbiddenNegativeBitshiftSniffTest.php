@@ -9,6 +9,8 @@
 /**
  * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *
+ * @group forbiddenNegativeBitshift
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
@@ -19,8 +21,6 @@ class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
 
     /**
      * testForbiddenNegativeBitshift
-     *
-     * @group forbiddenNegativeBitshift
      *
      * @dataProvider dataForbiddenNegativeBitshift
      *
@@ -54,8 +54,6 @@ class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
 
     /**
      * testNoViolation
-     *
-     * @group forbiddenNegativeBitshift
      *
      * @dataProvider dataNoViolation
      *

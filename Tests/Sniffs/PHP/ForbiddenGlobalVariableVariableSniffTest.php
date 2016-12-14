@@ -9,6 +9,9 @@
 /**
  * Global with variable variables have been removed in PHP 7.0 sniff test file
  *
+ * @group forbiddenGlobalVariableVariable
+ * @group variableVariables
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
