@@ -55,17 +55,19 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
     public function dataReservedKeyword()
     {
         return array(
-            array('null', array(22, 34, 46, 58, 71, 84), '7.0', '5.6'),
-            array('true', array(23, 35, 47, 59, 72, 85), '7.0', '5.6'),
-            array('false', array(24, 36, 48, 60, 73, 86), '7.0', '5.6'),
-            array('bool', array(25, 37, 49, 61, 74, 87), '7.0', '5.6'),
-            array('int', array(26, 38, 50, 62, 75, 88), '7.0', '5.6'),
-            array('float', array(27, 39, 51, 63, 76, 89), '7.0', '5.6'),
-            array('string', array(28, 40, 52, 64, 77, 90), '7.0', '5.6'),
-            array('resource', array(29, 41, 53, 65, 78, 91), '7.0', '5.6'),
-            array('object', array(30, 42, 54, 66, 79, 92), '7.0', '5.6'),
-            array('mixed', array(31, 43, 55, 67, 80, 93), '7.0', '5.6'),
-            array('numeric', array(32, 44, 56, 68, 81, 94), '7.0', '5.6'),
+            array('null', array(22, 36, 50, 64, 79, 94), '7.0', '5.6'),
+            array('true', array(23, 37, 51, 65, 80, 95), '7.0', '5.6'),
+            array('false', array(24, 38, 52, 66, 81, 96), '7.0', '5.6'),
+            array('bool', array(25, 39, 53, 67, 82, 97), '7.0', '5.6'),
+            array('int', array(26, 40, 54, 68, 83, 98), '7.0', '5.6'),
+            array('float', array(27, 41, 55, 69, 84, 99), '7.0', '5.6'),
+            array('string', array(28, 42, 56, 70, 85, 100), '7.0', '5.6'),
+            array('resource', array(29, 43, 57, 71, 86, 101), '7.0', '5.6'),
+            array('object', array(30, 44, 58, 72, 87, 102), '7.0', '5.6'),
+            array('mixed', array(31, 45, 59, 73, 88, 103), '7.0', '5.6'),
+            array('numeric', array(32, 46, 60, 74, 89, 104), '7.0', '5.6'),
+            array('iterable', array(33, 47, 61, 75, 90, 105), '7.1', '7.0'),
+            array('void', array(34, 48, 62, 76, 91, 106), '7.1', '7.0'),
         );
     }
 

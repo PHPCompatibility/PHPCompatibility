@@ -53,6 +53,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
         'object'   => '7.0',
         'mixed'    => '7.0',
         'numeric'  => '7.0',
+        'iterable' => '7.1',
+        'void'     => '7.1',
     );
 
 
