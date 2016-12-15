@@ -18,6 +18,9 @@
  */
 class ForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/forbidden_function_parameters_with_same_name.php';
+
+
     /**
      * testSettingTestVersion
      *
@@ -25,11 +28,40 @@ class ForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
      */
     public function testSettingTestVersion()
     {
-        $file = $this->sniffFile('sniff-examples/forbidden_function_parameters_with_same_name.php', '5.6');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, 3);
-        
-        $file = $this->sniffFile('sniff-examples/forbidden_function_parameters_with_same_name.php', '7.0');
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, 3, 'Functions can not have multiple parameters with the same name since PHP 7.0');
+    }
+
+    /**
+     * testNoViolation
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param int $line Line number with valid code.
+     *
+     * @return void
+     */
+    public function testNoViolation($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * dataNoViolation
+     *
+     * @see testNoViolation()
+     *
+     * @return array
+     */
+    public function dataNoViolation() {
+        return array(
+            array(5),
+            array(8),
+        );
     }
 }
 
