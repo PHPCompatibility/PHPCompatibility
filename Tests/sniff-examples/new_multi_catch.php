@@ -23,3 +23,8 @@ try {
 } catch (\Exception $e) {
    // ...
 }
+
+// Don't throw errors during live code review.
+try {
+   // Some code...
+} catch (

@@ -82,6 +82,7 @@ class NewMultiCatchSniffTest extends BaseSniffTest
             array(10),
             array(12),
             array(23),
+            array(30), // Live coding.
         );
     }
 }
