@@ -80,6 +80,12 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
     {
         return array(
             array(15),
+            array(18),
+            array(19),
+            array(22),
+            array(23),
+            array(26),
+            array(28),
         );
     }
 
