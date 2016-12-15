@@ -215,7 +215,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function dataDeprecatedRemovedExtensionWithAlternative()
     {
         return array(
-            array('ereg', '5.3', '7.0', 'pcre', array(65), '5.2'),
+            array('ereg', '5.3', '7.0', 'pcre', array(65, 76), '5.2'),
             array('mysql_', '5.5', '7.0', 'mysqli', array(38), '5.4'),
         );
     }
@@ -270,52 +270,39 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
 
 
     /**
-     * testNotAFunctionCall
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNotAFunctionCall()
+    public function testNoFalsePositives($line)
     {
-        $this->assertNoViolation($this->_sniffFile, 57);
+        $file = $this->sniffFile(self::TEST_FILE);
+        $this->assertNoViolation($file, $line);
     }
 
     /**
-     * testFunctionDeclaration
+     * Data provider.
      *
-     * @return void
+     * @see testNoFalsePositives()
+     *
+     * @return array
      */
-    public function testFunctionDeclaration()
+    public function dataNoFalsePositives()
     {
-        $this->assertNoViolation($this->_sniffFile, 58);
+        return array(
+            array(57), // Not a function call.
+            array(58), // Function declaration.
+            array(59), // Class instantiation.
+            array(60), // Method call.
+            array(68), // Whitelisted function.
+            array(74), // Whitelisted function array.
+            array(75), // Whitelisted function array.
+            array(78), // Live coding
+        );
     }
 
-    /**
-     * testNewClass
-     *
-     * @return void
-     */
-    public function testNewClass()
-    {
-        $this->assertNoViolation($this->_sniffFile, 59);
-    }
-
-    /**
-     * testMethod
-     *
-     * @return void
-     */
-    public function testMethod()
-    {
-        $this->assertNoViolation($this->_sniffFile, 60);
-    }
-
-    /**
-     * testWhiteListing
-     *
-     * @return void
-     */
-    public function testWhiteListing()
-    {
-        $this->assertNoViolation($this->_sniffFile, 68);
-    }
 }
