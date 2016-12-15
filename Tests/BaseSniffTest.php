@@ -89,13 +89,13 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object
      * @return PHP_CodeSniffer_File|false File object
      */
-    public function sniffFile($filename, $targetPhpVersion = null)
+    public function sniffFile($filename, $targetPhpVersion = 'none')
     {
         if ( isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
             return self::$sniffFiles[$filename][$targetPhpVersion];
         }
 
-        if (null !== $targetPhpVersion) {
+        if ('none' !== $targetPhpVersion) {
             PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
