@@ -149,3 +149,16 @@ $a = ini_get('session.hash_function');
 
 ini_set('session.hash_bits_per_character', 1);
 $a = ini_get('session.hash_bits_per_character');
+
+
+// Test correct function & parameter detection.
+myClass::ini_set('ANIMALS', 'dog');
+$object->ini_get('ANIMALS', 'dog');
+
+class myClass {
+	const ini_set = true;
+	function ini_get() {}
+}
+
+ini_setter('ANIMALS', 'dog');
+ini_set();
