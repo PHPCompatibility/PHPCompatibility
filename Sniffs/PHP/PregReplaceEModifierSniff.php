@@ -78,18 +78,56 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
             return;
         }
 
-        // Get the first parameter in the function call as that should contain the regex.
+        // Get the first parameter in the function call as that should contain the regex(es).
         $firstParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
         if ($firstParam === false) {
             return;
         }
 
+        // Differentiate between an array of patterns passed and a single pattern.
+        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] +1), true);
+        if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
+            $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
+            foreach ($arrayValues as $value) {
+                $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                if ($hasKey !== false) {
+                    $value['start'] = ($hasKey + 1);
+                    $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+                }
+
+                $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
+            }
+        }
+        else {
+            $this->processRegexPattern($firstParam, $phpcsFile, $stackPtr, $functionName);
+        }
+
+    }//end process()
+
+
+	/**
+     * Analyse a potential regex pattern for usage of the /e modifier.
+     *
+     * @param array                $pattern      Array containing the start and end token
+	 *                                           pointer of the potential regex pattern and
+	 *                                           the raw string value of the pattern.
+     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                  $stackPtr     The position of the current token in the
+     *                                           stack passed in $tokens.
+     * @param string               $functionName The function which contained the pattern.
+     *
+     * @return void
+	 */
+    protected function processRegexPattern($pattern, $phpcsFile, $stackPtr, $functionName)
+    {
+        $tokens = $phpcsFile->getTokens();
+
         /*
-         * The first parameter might be build up of a combination of strings,
-         * variables and function calls. We are only concerned with the strings.
+         * The pattern might be build up of a combination of strings, variables
+         * and function calls. We are only concerned with the strings.
          */
         $regex = '';
-        for ($i = $firstParam['start']; $i <= $firstParam['end']; $i++ ) {
+        for ($i = $pattern['start']; $i <= $pattern['end']; $i++ ) {
             if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
                 $regex .= $this->stripQuotes($tokens[$i]['content']);
             }
@@ -128,7 +166,6 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
                 $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
             }
         }
-
-    }//end process()
+    }//end processRegexPattern()
 
 }//end class

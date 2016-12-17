@@ -155,3 +155,43 @@ preg_replace('/something' . preg_quote($variable) . 'something else/e', $Replace
 
 // Issue 265 - build up string with varying quotes - this should be ok.
 preg_replace('~'.testme()."~s", '', "foo bar was here");
+
+// Passing an array of patterns:
+preg_replace(
+    array(
+        "/double-quoted/e",
+        '/single-quoted/e',
+        '#hash-chars (common)#e',
+        '!exclamations (why not?!e',
+        '/some text/emS',
+        '/some text/i', // Ok
+    ), $Replace, $Source
+);
+// Array of patterns with array keys:
+preg_replace(
+    [
+        'ae' => "/double-quoted/e",
+        'be' => '/single-quoted/e',
+        'ce' => '#hash-chars (common)#e',
+        'de' => '!exclamations (why not?!e',
+        'ee' => '/some text/emS',
+        'ef' => '/some text/i', // Ok
+    ], $Replace, $Source
+);
+// Single line array.
+preg_replace(array("/double-quoted/e", '/something'.preg_quote($variable, '/').'something else/e', '/single-quoted/e',), $Replace, $Source);
+
+
+// Array of patterns, check against false positive - this should be ok.
+// https://wordpress.org/support/topic/wrong-error-preg_replace-e-modifier-is-forbidden-since-php-7-0/
+$cleaned = preg_replace(
+  array(
+    '/<!--[^\[><](.*?)-->/s',
+    '#(?ix)(?>[^\S ]\s*|\s{2,})(?=(?:(?:[^<]++|<(?!/?(?:textarea|pre)\b))*+)(?:<(?>textarea|pre)\b|\z))#'
+  ),
+  array(
+    '',
+    ' '
+  ),
+  $data
+);
