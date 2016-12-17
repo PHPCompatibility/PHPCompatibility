@@ -141,6 +141,13 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
         }
 
         $regexFirstChar = substr($regex, 0, 1);
+
+        // Make sure that the character identified as the delimiter is valid.
+        // Otherwise, it is a false positive caused by the string concatenation.
+        if (preg_match('`[a-z0-9\\\\ ]`i', $regexFirstChar) === 1) {
+            return;
+        }
+
         if (isset($this->doublesSeparators[$regexFirstChar])) {
             $regexEndPos = strrpos($regex, $this->doublesSeparators[$regexFirstChar]);
         }

@@ -195,3 +195,7 @@ $cleaned = preg_replace(
   ),
   $data
 );
+
+// Another false positive.
+// https://wordpress.org/support/topic/wrong-error-preg_replace-e-modifier-is-forbidden-since-php-7-0/
+$this->value = preg_replace( $this->field['preg']['pattern'], $this->field['preg']['replacement'], $this->value );

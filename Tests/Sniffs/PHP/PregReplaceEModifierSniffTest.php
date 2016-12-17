@@ -165,6 +165,7 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(167),
             array(178),
             array(187),
+            array(201),
         );
     }
 
