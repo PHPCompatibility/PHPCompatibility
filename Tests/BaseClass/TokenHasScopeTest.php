@@ -19,7 +19,13 @@
 class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
 {
 
-    public $filename = '../sniff-examples/utility-functions/token_has_scope.php';
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'token_has_scope.php';
 
     /**
      * testTokenHasScope

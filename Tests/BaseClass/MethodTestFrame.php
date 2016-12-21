@@ -5,10 +5,6 @@
  * @package PHPCompatibility
  */
 
-if (class_exists('BaseSniffTest', true) === false) {
-    require_once dirname(dirname(__FILE__)) . '/BaseSniffTest.php';
-}
-
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
@@ -16,10 +12,23 @@ if (class_exists('BaseSniffTest', true) === false) {
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class BaseClass_MethodTestFrame extends BaseSniffTest
+abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
 {
 
-    public $filename;
+    /**
+     * The file name for the file containing the test cases within the $case_directory.
+     *
+     * @var string
+     */
+    protected $filename;
+
+    /**
+     * The path to the directory containing the test file for stand-alone method tests
+     * relative to this file.
+     *
+     * @var string
+     */
+    protected $case_directory = '../sniff-examples/utility-functions/';
 
     /**
      * The PHP_CodeSniffer_File object containing parsed contents of this file.
@@ -47,7 +56,7 @@ abstract class BaseClass_MethodTestFrame extends BaseSniffTest
 
         $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
 
-        $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->filename;
+        $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
         $phpcs    = new PHP_CodeSniffer();
 
         if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {

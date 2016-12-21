@@ -19,7 +19,13 @@
 class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestFrame
 {
 
-	public $filename = '../sniff-examples/utility-functions/does_function_call_have_parameters.php';
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'does_function_call_have_parameters.php';
 
     /**
      * testDoesFunctionCallHaveParameters
