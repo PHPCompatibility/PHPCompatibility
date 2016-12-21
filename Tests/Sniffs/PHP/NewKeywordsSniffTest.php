@@ -178,6 +178,8 @@ class NewKeywordsSniffTest extends BaseSniffTest
         $this->assertError($file, 43, "\"const\" keyword is not present in PHP version 5.2 or earlier");
         $this->assertNoViolation($file, 46);
         $this->assertNoViolation($file, 47);
+        $this->assertNoViolation($file, 51);
+        $this->assertNoViolation($file, 52);
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertNoViolation($file, 43);
@@ -191,7 +193,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
     public function testCallable()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertError($file, 50, "\"callable\" keyword is not present in PHP version 5.3 or earlier");
+        $this->assertError($file, 55, "\"callable\" keyword is not present in PHP version 5.3 or earlier");
 
         // Not testing no violations as the ForbiddenNames sniff will also kick in.
     }
@@ -204,10 +206,10 @@ class NewKeywordsSniffTest extends BaseSniffTest
     public function testGoto()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
-        $this->assertError($file, 52, "\"goto\" keyword is not present in PHP version 5.2 or earlier");
+        $this->assertError($file, 57, "\"goto\" keyword is not present in PHP version 5.2 or earlier");
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, 52);
+        $this->assertNoViolation($file, 57);
     }
 
     /**
@@ -222,7 +224,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
         if (version_compare(phpversion(), '5.3', '=')) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 58, "\"__halt_compiler\" keyword is not present in PHP version 5.0 or earlier");
+            $this->assertError($file, 63, "\"__halt_compiler\" keyword is not present in PHP version 5.0 or earlier");
         }
         else {
             /*
@@ -232,7 +234,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 61);
+            $this->assertNoViolation($file, 66);
         }
     }
 }

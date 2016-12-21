@@ -47,6 +47,11 @@ class testing {
     const ok = 'a';
 }
 
+interface testing {
+    const TEST = 'Hello';
+    const ok = 'a';
+}
+
 function myTest(callable $callableMethod) {}
 
 goto end;
