@@ -12,6 +12,8 @@
  * @group forbiddenCallTimePassByReference
  * @group references
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

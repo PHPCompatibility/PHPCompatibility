@@ -10,6 +10,8 @@
  *
  * @group deprecatedPHP4StyleConstructors
  *
+ * @covers PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Koen Eelen <koen.eelen@cu.be>

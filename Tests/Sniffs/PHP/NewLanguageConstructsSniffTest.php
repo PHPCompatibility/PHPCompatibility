@@ -11,6 +11,8 @@
  *
  * @group newLanguageConstructs
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

@@ -12,6 +12,8 @@
  * @group newExecutionDirectives
  * @group executionDirectives
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

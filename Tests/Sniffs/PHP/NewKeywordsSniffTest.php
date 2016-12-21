@@ -12,6 +12,8 @@
  * @group newKeywords
  * @group reservedKeywords
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewKeywordsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

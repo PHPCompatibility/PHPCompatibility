@@ -12,6 +12,8 @@
  * @group removedHashAlgorithms
  * @group hashAlgorithms
  *
+ * @covers PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

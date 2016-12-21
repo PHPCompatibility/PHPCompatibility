@@ -11,6 +11,8 @@
  *
  * @group ternaryOperators
  *
+ * @covers PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

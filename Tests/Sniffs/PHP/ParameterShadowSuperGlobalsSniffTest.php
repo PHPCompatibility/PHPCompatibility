@@ -12,6 +12,8 @@
  * @group parameterShadowSuperGlobals
  * @group superglobals
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>

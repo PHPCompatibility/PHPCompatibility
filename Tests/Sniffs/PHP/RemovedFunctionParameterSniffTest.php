@@ -12,6 +12,8 @@
  * @group removedFunctionParameters
  * @group functionParameters
  *
+ * @covers PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

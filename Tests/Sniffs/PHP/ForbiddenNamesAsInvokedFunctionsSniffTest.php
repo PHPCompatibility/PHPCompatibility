@@ -12,6 +12,8 @@
  * @group forbiddenNamesAsInvokedFunctions
  * @group reservedKeywords
  *
+ * @covers PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

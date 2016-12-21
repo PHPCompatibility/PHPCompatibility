@@ -12,6 +12,8 @@
  * @group newClasses
  * @group classes
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewClassesSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>

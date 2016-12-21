@@ -12,6 +12,8 @@
  * @group newScalarReturnTypeDeclarations
  * @group typeDeclarations
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>

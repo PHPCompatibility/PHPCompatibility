@@ -12,6 +12,8 @@
  * @group nonStaticMagicMethods
  * @group magicMethods
  *
+ * @covers PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff
+ *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Jansen Price <jansen.price@gmail.com>
