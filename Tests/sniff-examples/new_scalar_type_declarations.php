@@ -43,3 +43,7 @@ namespace test {
 
     function foo(self $a) {} // Invalid - not within a class.
 }
+
+// Ok: No function parameters or no type hints.
+function foo() {}
+function foo( $a, $b ) {}

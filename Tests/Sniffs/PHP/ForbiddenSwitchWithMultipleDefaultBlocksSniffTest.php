@@ -57,15 +57,15 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
 
 
     /**
-     * testValidSwitchStatement
+     * testNoFalsePositives
      *
-     * @dataProvider dataValidSwitchStatement
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testValidSwitchStatement($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
@@ -74,16 +74,17 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testValidSwitchStatement()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataValidSwitchStatement()
+    public function dataNoFalsePositives()
     {
         return array(
             array(14),
             array(23),
             array(43),
+            array(67), // Live coding.
         );
     }
 }

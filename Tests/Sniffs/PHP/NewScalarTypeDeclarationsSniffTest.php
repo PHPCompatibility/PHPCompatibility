@@ -181,4 +181,34 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
         );
     }
 
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.0-7.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            array(48),
+            array(49),
+        );
+    }
 }
