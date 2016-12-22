@@ -89,7 +89,7 @@ class PHPCompatibility_Sniffs_PHP_VariableVariablesSniff extends PHPCompatibilit
             // Now let's also prevent false positives when used with self and static which still work fine.
             $classToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 2), null, true, null, true);
             if ($classToken !== false) {
-                if ($tokens[$classToken]['code'] === T_STATIC) {
+                if ($tokens[$classToken]['code'] === T_STATIC || $tokens[$classToken]['code'] === T_SELF) {
                     return;
                 }
                 elseif ($tokens[$classToken]['code'] === T_STRING && $tokens[$classToken]['content'] === 'self') {
