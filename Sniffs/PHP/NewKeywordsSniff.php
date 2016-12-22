@@ -45,7 +45,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
                                             '5.2' => false,
                                             '5.3' => true,
                                             'description' => '"const" keyword',
-                                            'condition' => array(T_CLASS), // Keyword is only new when not in class context.
+                                            'condition' => array(T_CLASS, T_INTERFACE), // Keyword is only new when not in class context.
                                         ),
                                         'T_CALLABLE' => array(
                                             '5.3' => false,
