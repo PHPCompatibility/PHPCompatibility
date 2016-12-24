@@ -504,24 +504,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return true;
         }
 
-        if (is_int($validScopes)) {
-            // Received an integer, so cast to array.
-            $validScopes = (array) $validScopes;
-        }
-
-        if (empty($validScopes) || is_array($validScopes) === false) {
-            // No valid scope types received, so will not comply.
-            return false;
-        }
-
-        // Check for required scope types.
-        foreach ($tokens[$stackPtr]['conditions'] as $pointer => $tokenCode) {
-            if (in_array($tokenCode, $validScopes, true)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $phpcsFile->hasCondition($stackPtr, $validScopes);
     }
 
 
@@ -544,7 +527,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $validScopes[] = T_TRAIT;
         }
 
-        return $this->tokenHasScope($phpcsFile, $stackPtr, $validScopes);
+        return $phpcsFile->hasCondition($stackPtr, $validScopes);
     }
 
 
@@ -579,7 +562,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         // PHPCS 2.0.
         if ($isLowPHPCS === false) {
-            return $this->tokenHasScope($phpcsFile, $stackPtr, T_USE);
+            return $phpcsFile->hasCondition($stackPtr, T_USE);
         } else {
             // PHPCS 1.x.
             $tokens         = $phpcsFile->getTokens();
