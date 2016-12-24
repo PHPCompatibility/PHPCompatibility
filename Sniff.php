@@ -187,7 +187,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     /**
      * Strip quotes surrounding an arbitrary string.
      *
-     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING.
+     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING / T_DOUBLE_QUOTED_STRING.
      *
      * @param string $string The raw string.
      *
@@ -1148,7 +1148,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         /**
-         * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes.
+         * Algorithm is a text string, so we need to remove the quotes.
          */
         $algo = strtolower(trim($algoParam['raw']));
         $algo = $this->stripQuotes($algo);

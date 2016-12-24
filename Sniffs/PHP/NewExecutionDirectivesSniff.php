@@ -260,7 +260,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if ($tokens[$stackPtr]['code'] === T_CONSTANT_ENCAPSED_STRING) {
+        if (in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
             $value = $this->stripQuotes($value);
         }
 
