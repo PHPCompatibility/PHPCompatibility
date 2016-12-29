@@ -9,18 +9,18 @@
 /**
  * New return types test file
  *
- * @group newScalarReturnTypeDeclarations
+ * @group newReturnTypeDeclarations
  * @group typeDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff
+ * @covers PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff
  *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
+class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_scalar_return_type_declarations.php';
+    const TEST_FILE = 'sniff-examples/new_return_type_declarations.php';
 
     /**
      * Skip the test(s) for low PHPCS versions.
@@ -38,9 +38,9 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testScalarReturnType
+     * testReturnType
      *
-     * @dataProvider dataScalarReturnType
+     * @dataProvider dataReturnType
      *
      * @param string $returnType        The return type.
      * @param string $lastVersionBefore The PHP version just *before* the type was introduced.
@@ -49,7 +49,7 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testScalarReturnType($returnType, $lastVersionBefore, $line, $okVersion)
+    public function testReturnType($returnType, $lastVersionBefore, $line, $okVersion)
     {
         $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
         $this->assertError($file, $line, "{$returnType} return type is not present in PHP version {$lastVersionBefore} or earlier");
@@ -61,11 +61,11 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testScalarReturnType()
+     * @see testReturnType()
      *
      * @return array
      */
-    public function dataScalarReturnType()
+    public function dataReturnType()
     {
         return array(
             array('bool', '5.6', 3, '7.0'),

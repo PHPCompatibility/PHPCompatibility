@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
+ * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,13 +8,13 @@
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
+ * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
