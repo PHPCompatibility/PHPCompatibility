@@ -992,14 +992,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 break;
             case T_ARRAY_HINT:
             case T_CALLABLE:
-                $typeHint = $tokens[$i]['content'];
+                $typeHint .= $tokens[$i]['content'];
                 break;
             case T_SELF:
             case T_PARENT:
             case T_STATIC:
                 // Self is valid, the others invalid, but were probably intended as type hints.
                 if ($defaultStart === null) {
-                    $typeHint = $tokens[$i]['content'];
+                    $typeHint .= $tokens[$i]['content'];
                 }
                 break;
             case T_STRING:
