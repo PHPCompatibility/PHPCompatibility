@@ -522,6 +522,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     public function inClassScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $strict = true)
     {
         $validScopes = array(T_CLASS);
+        if (defined('T_ANON_CLASS') === true) {
+            $validScopes[] = T_ANON_CLASS;
+        }
+
         if ($strict === false) {
             $validScopes[] = T_INTERFACE;
             $validScopes[] = T_TRAIT;
