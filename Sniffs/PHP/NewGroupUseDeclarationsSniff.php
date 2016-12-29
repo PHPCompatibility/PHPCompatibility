@@ -25,10 +25,10 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
      */
     public function register()
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+        if (defined('T_OPEN_USE_GROUP')) {
             return array(T_OPEN_USE_GROUP);
         } else {
-            return array();
+            return array(T_USE);
         }
     }//end register()
 
@@ -44,12 +44,32 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6')) {
-            $phpcsFile->addError(
-                'Group use declarations are not allowed in PHP 5.6 or earlier',
-                $stackPtr,
-                'Found'
-            );
+        if ($this->supportsBelow('5.6') === false) {
+            return;
         }
+
+        $tokens = $phpcsFile->getTokens();
+        $token  = $tokens[$stackPtr];
+
+        // Deal with PHPCS pre-2.6.0.
+        if ($token['code'] === T_USE) {
+            $hasCurlyBrace = $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, ($stackPtr + 1), null, false, null, true);
+            if ($hasCurlyBrace === false) {
+                return;
+            }
+
+            $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
+            if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
+				return;
+			}
+        }
+
+        // Still here ? In that case, it is a group use statement.
+        $phpcsFile->addError(
+            'Group use declarations are not allowed in PHP 5.6 or earlier',
+            $stackPtr,
+            'Found'
+        );
+
     }//end process()
 }//end class

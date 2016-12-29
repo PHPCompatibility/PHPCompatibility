@@ -22,15 +22,6 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
 
     const TEST_FILE = 'sniff-examples/new_group_use_declarations.php';
 
-    protected function setUp()
-    {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
-            $this->markTestSkipped();
-        }
-        else {
-            parent::setUp();
-        }
-    }
 
     /**
      * testGroupUseDeclaration
@@ -62,8 +53,9 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
     public function dataGroupUseDeclaration()
     {
         return array(
-            array(13),
-            array(14),
+            array(23),
+            array(24),
+            array(25),
         );
     }
 
@@ -79,7 +71,7 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
      */
     public function testValidUseDeclaration($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -98,7 +90,11 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
             array(6),
             array(8),
             array(9),
-            array(10),
+            array(11),
+            array(13),
+            array(15),
+            array(19),
+            array(20),
         );
     }
 }
