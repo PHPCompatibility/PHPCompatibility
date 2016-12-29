@@ -228,7 +228,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevNonEmpty !== false
             && $tokens[$prevNonEmpty]['type'] === 'T_NEW'
-            && $tokens[$stackPtr]['type'] === 'T_ANON_CLASS'
+            && ($tokens[$stackPtr]['type'] === 'T_ANON_CLASS' || $tokens[$stackPtr]['type'] === 'T_CLASS')
         ) {
             return;
         }
