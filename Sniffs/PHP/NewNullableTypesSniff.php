@@ -115,7 +115,32 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     protected function processReturnType(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+        $error  = false;
+
         if ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN) {
+            $error = true;
+        }
+        // Deal with namespaced class names.
+        elseif ($tokens[($stackPtr - 1)]['code'] === T_NS_SEPARATOR
+            || (version_compare(PHP_VERSION, '5.3.0', '<') && $tokens[($stackPtr - 1)]['code'] === T_STRING)
+        ) {
+            $validTokens = array(
+                T_STRING,
+                T_NS_SEPARATOR,
+                T_WHITESPACE,
+            );
+            $stackPtr--;
+
+            while(in_array($tokens[($stackPtr - 1)]['code'], $validTokens, true) === true) {
+                $stackPtr--;
+            }
+
+            if ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN) {
+                $error = true;
+            }
+        }
+
+        if ($error === true) {
             $phpcsFile->addError(
                 'Nullable return types are not supported in PHP 7.0 or earlier.',
                 $stackPtr,
