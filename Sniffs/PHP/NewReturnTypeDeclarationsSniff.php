@@ -57,11 +57,15 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
      */
     public function register()
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
-            return array(T_RETURN_TYPE);
-        } else {
-            return array();
+        $tokens = array(
+            T_FUNCTION,
+        );
+
+        if (defined('T_RETURN_TYPE')) {
+            $tokens[] = T_RETURN_TYPE;
         }
+
+        return $tokens;
     }//end register()
 
 
@@ -77,6 +81,14 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+
+        // Deal with older PHPCS version which don't recognize return type hints.
+        if ($tokens[$stackPtr]['code'] === T_FUNCTION) {
+            $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
+            if ($returnTypeHint !== false) {
+                $stackPtr = $returnTypeHint;
+            }
+        }
 
         if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
             $itemInfo = array(

@@ -23,21 +23,6 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/new_return_type_declarations.php';
 
     /**
-     * Skip the test(s) for low PHPCS versions.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
-            $this->markTestSkipped();
-        }
-        else {
-            parent::setUp();
-        }
-    }
-
-    /**
      * testReturnType
      *
      * @dataProvider dataReturnType
