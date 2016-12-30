@@ -33,7 +33,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
             T_FUNCTION,
         );
 
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+        if (defined('T_RETURN_TYPE')) {
             $tokens[] = T_RETURN_TYPE;
         }
 
@@ -62,9 +62,16 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
 
         if ($tokenCode === T_FUNCTION) {
             $this->processFunctionDeclaration($phpcsFile, $stackPtr);
+
+            // Deal with older PHPCS version which don't recognize return type hints.
+            $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
+            if ($returnTypeHint !== false) {
+                $this->processReturnType($phpcsFile, $returnTypeHint);
+            }
         } else {
             $this->processReturnType($phpcsFile, $stackPtr);
         }
+
     }//end process()
 
 
