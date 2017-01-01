@@ -129,7 +129,12 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
         $regex = '';
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++ ) {
             if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
-                $regex .= $this->stripQuotes($tokens[$i]['content']);
+                $content = $this->stripQuotes($tokens[$i]['content']);
+                if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
+                    $content = $this->stripVariables($content);
+                }
+
+                $regex .= trim($content);
             }
         }
         // Deal with multi-line regexes which were broken up in several string tokens.

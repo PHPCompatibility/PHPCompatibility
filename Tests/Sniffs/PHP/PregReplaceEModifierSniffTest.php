@@ -99,6 +99,10 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(177),
 
             array(182), // Three errors.
+
+            // Interpolated variables.
+            array(204),
+            array(205),
         );
     }
 
@@ -166,6 +170,9 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(178),
             array(187),
             array(201),
+
+            // Interpolated variables.
+            array(206),
         );
     }
 
