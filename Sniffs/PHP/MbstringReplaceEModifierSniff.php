@@ -73,21 +73,30 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
             return;
         }
 
-        $stringToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $optionsParam['start'], $optionsParam['end'] + 1);
+        $stringToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$stringTokens, $optionsParam['start'], $optionsParam['end'] + 1);
         if ($stringToken === false) {
             // No string token found in the options parameter, so skip it (e.g. variable passed in).
             return;
         }
 
+        $options = '';
+
         /**
-         * Get the content of any string tokens in the options parameter and remove the quotes.
+         * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
-        $options = $this->stripQuotes($tokens[$stringToken]['content']);
-        if ($stringToken !== $optionsParam['end']) {
-            while ($stringToken = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $stringToken + 1, $optionsParam['end'] + 1)) {
-                if ($tokens[$stringToken]['code'] === T_CONSTANT_ENCAPSED_STRING) {
-                    $options .= $this->stripQuotes($tokens[$stringToken]['content']);
-                }
+        for ($i = $stringToken; $i <= $optionsParam['end']; $i++) {
+            if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === false) {
+                continue;
+            }
+
+            $content = $this->stripQuotes($tokens[$i]['content']);
+            if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
+                $content = $this->stripVariables($content);
+            }
+            $content = trim($content);
+
+            if (empty($content) === false) {
+                $options .= $content;
             }
         }
 

@@ -56,6 +56,9 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
             array(14),
             array(15),
             array(16),
+            array(24),
+            array(25),
+            array(26),
         );
     }
 
@@ -91,6 +94,9 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
             array(9),
             array(10),
             array(11),
+            array(19),
+            array(20),
+            array(21),
         );
     }
 }

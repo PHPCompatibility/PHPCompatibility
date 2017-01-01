@@ -22,6 +22,8 @@
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 {
 
+    const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
+
     /**
      * List of functions using hash algorithm as parameter (always the first parameter).
      *
@@ -185,7 +187,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     /**
      * Strip quotes surrounding an arbitrary string.
      *
-     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING.
+     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING / T_DOUBLE_QUOTED_STRING.
      *
      * @param string $string The raw string.
      *
@@ -193,6 +195,24 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function stripQuotes($string) {
         return preg_replace('`^([\'"])(.*)\1$`Ds', '$2', $string);
+    }
+
+
+    /**
+     * Strip variables from an arbitrary double quoted string.
+     *
+     * Intended for use with the content of a T_DOUBLE_QUOTED_STRING.
+     *
+     * @param string $string The raw string.
+     *
+     * @return string String without variables in it.
+     */
+    public function stripVariables($string) {
+        if (strpos($string, '$') === false) {
+            return $string;
+        }
+
+        return preg_replace( self::REGEX_COMPLEX_VARS, '', $string );
     }
 
 
@@ -1128,7 +1148,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         /**
-         * Algorithm is a T_CONSTANT_ENCAPSED_STRING, so we need to remove the quotes.
+         * Algorithm is a text string, so we need to remove the quotes.
          */
         $algo = strtolower(trim($algoParam['raw']));
         $algo = $this->stripQuotes($algo);
