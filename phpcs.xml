@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCS Coding Standards for PHPCompatibility">
+	<description>Check the code of the PHPCompatibility standard itself.</description>
+
+	<arg value="sp"/>
+	<arg name="extensions" value="php"/>
+
+	<!-- Exclude test case code. -->
+	<exclude-pattern>/Tests/sniff-examples/*</exclude-pattern>
+
+	<!-- Exclude Composer vendor directory. -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<config name="testVersion" value="5.1-99.0"/>
+	<rule ref="PHPCompatibility"/>
+
+	<!-- Verified correct usage. -->
+	<rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
+		<exclude-pattern>*/RemovedAlternativePHPTags*.php</exclude-pattern>
+	</rule>
+
+</ruleset>

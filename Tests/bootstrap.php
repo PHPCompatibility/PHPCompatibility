@@ -23,7 +23,7 @@ if (file_exists($phpcsDir . 'CodeSniffer.php')) {
 }
 else {
     // Otherwise we must be in a composer install.
-    $vendorDir = __DIR__ . '/../vendor';
+    $vendorDir = dirname(__FILE__) . '/../vendor';
 
     if (!@include($vendorDir . '/autoload.php')) {
         echo 'You must set up the project dependencies, run the following commands:
