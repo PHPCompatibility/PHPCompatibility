@@ -301,6 +301,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Expects to be passed the T_STRING stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
+     * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer, it
+     * will detect whether the array has values or is empty.
+     *
      * @link https://github.com/wimg/PHPCompatibility/issues/120
      * @link https://github.com/wimg/PHPCompatibility/issues/152
      *
@@ -318,24 +321,42 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_STRING) {
+        // Is this one of the tokens this function handles ?
+        if (in_array($tokens[$stackPtr]['code'], array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY), true) === false) {
             return false;
         }
 
+        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+
+        // Deal with short array syntax.
+        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY) {
+            if (isset($tokens[$stackPtr]['bracket_closer']) === false) {
+                return false;
+            }
+
+            if ($nextNonEmpty === $tokens[$stackPtr]['bracket_closer']) {
+                // No parameters.
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        // Deal with function calls & long arrays.
         // Next non-empty token should be the open parenthesis.
-        $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-        if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($nextNonEmpty === false && $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
             return false;
         }
 
-        if (isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
+        if (isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false) {
             return false;
         }
 
-        $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
-        $nextNonEmpty     = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $openParenthesis + 1, $closeParenthesis + 1, true);
+        $closeParenthesis = $tokens[$nextNonEmpty]['parenthesis_closer'];
+        $nextNextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $nextNonEmpty + 1, $closeParenthesis + 1, true);
 
-        if ($nextNonEmpty === $closeParenthesis) {
+        if ($nextNextNonEmpty === $closeParenthesis) {
             // No parameters.
             return false;
         }
@@ -349,6 +370,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * Expects to be passed the T_STRING stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
+     *
+     * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
+     * it will return the number of values in the array.
      *
      * @link https://github.com/wimg/PHPCompatibility/issues/111
      * @link https://github.com/wimg/PHPCompatibility/issues/114
@@ -379,6 +403,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * pointer and raw parameter value for all parameters. Index will be 1-based.
      * If no parameters are found, will return an empty array.
      *
+     * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
+     * it will tokenize the values / key/value pairs contained in the array call.
+     *
      * @param PHP_CodeSniffer_File $phpcsFile     The file being scanned.
      * @param int                  $stackPtr      The position of the function call token.
      *
@@ -390,23 +417,34 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return array();
         }
 
-        // Ok, we know we have a T_STRING with parameters and valid open & close parenthesis.
+        // Ok, we know we have a T_STRING, T_ARRAY or T_OPEN_SHORT_ARRAY with parameters
+        // and valid open & close brackets/parenthesis.
         $tokens = $phpcsFile->getTokens();
 
-        $openParenthesis  = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-        $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
+        // Mark the beginning and end tokens.
+        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY) {
+            $opener = $stackPtr;
+            $closer = $tokens[$stackPtr]['bracket_closer'];
+
+            $nestedParenthesisCount = 0;
+        }
+        else {
+            $opener = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+            $closer = $tokens[$opener]['parenthesis_closer'];
+
+            $nestedParenthesisCount = 1;
+        }
 
         // Which nesting level is the one we are interested in ?
-        $nestedParenthesisCount = 1;
-        if (isset($tokens[$openParenthesis]['nested_parenthesis'])) {
-            $nestedParenthesisCount = count($tokens[$openParenthesis]['nested_parenthesis']) + 1;
+        if (isset($tokens[$opener]['nested_parenthesis'])) {
+            $nestedParenthesisCount += count($tokens[$opener]['nested_parenthesis']);
         }
 
         $parameters = array();
-        $nextComma  = $openParenthesis;
-        $paramStart = $openParenthesis + 1;
+        $nextComma  = $opener;
+        $paramStart = $opener + 1;
         $cnt        = 1;
-        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, T_CLOSE_PARENTHESIS, T_OPEN_SHORT_ARRAY), $nextComma + 1, $closeParenthesis + 1)) {
+        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY), $nextComma + 1, $closer + 1)) {
             // Ignore anything within short array definition brackets.
             if (
                 $tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
@@ -431,8 +469,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 continue;
             }
 
-            // Ignore closing parenthesis if not 'ours'.
-            if ($tokens[$nextComma]['type'] === 'T_CLOSE_PARENTHESIS' && $nextComma !== $closeParenthesis) {
+            // Ignore closing parenthesis/bracket if not 'ours'.
+            if ($tokens[$nextComma]['type'] === $tokens[$closer]['type'] && $nextComma !== $closer) {
                 continue;
             }
 
@@ -444,7 +482,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             // Check if there are more tokens before the closing parenthesis.
             // Prevents code like the following from setting a third parameter:
             // functionCall( $param1, $param2, );
-            $hasNextParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $nextComma + 1, $closeParenthesis, true, null, true);
+            $hasNextParam = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $nextComma + 1, $closer, true, null, true);
             if ($hasNextParam === false) {
                 break;
             }

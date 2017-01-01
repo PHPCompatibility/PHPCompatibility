@@ -84,6 +84,21 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(127, 'preg_filter'),
             array(142, 'preg_filter'),
             array(148, 'preg_filter'),
+
+            // Array of patterns.
+            array(162),
+            array(163),
+            array(164),
+            array(165),
+            array(166),
+
+            array(173),
+            array(174),
+            array(175),
+            array(176),
+            array(177),
+
+            array(182), // Three errors.
         );
     }
 
@@ -143,8 +158,14 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(107),
             array(109),
 
-			// Issue 265 - mixed string quotes.
+            // Issue 265 - mixed string quotes.
             array(157),
+
+            // Issues https://wordpress.org/support/topic/wrong-error-preg_replace-e-modifier-is-forbidden-since-php-7-0/
+            array(167),
+            array(178),
+            array(187),
+            array(201),
         );
     }
 
