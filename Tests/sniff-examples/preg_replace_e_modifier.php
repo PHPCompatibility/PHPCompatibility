@@ -199,3 +199,8 @@ $cleaned = preg_replace(
 // Another false positive.
 // https://wordpress.org/support/topic/wrong-error-preg_replace-e-modifier-is-forbidden-since-php-7-0/
 $this->value = preg_replace( $this->field['preg']['pattern'], $this->field['preg']['replacement'], $this->value );
+
+// Deal correctly with interpolated strings.
+preg_replace("/dou$ble-quoted/e", $Replace, $Source); // Bad.
+preg_replace("/dou$ble-quoted/me$me", $Replace, $Source); // Bad.
+preg_replace("/double-quoted/$e", $Replace, $Source); // Ok.
