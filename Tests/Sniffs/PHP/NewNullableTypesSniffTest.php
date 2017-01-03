@@ -33,11 +33,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
      */
     public function testNewNullableReturnTypes($line)
     {
-        // Skip this test for low PHPCS versions.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
-            $this->markTestSkipped();
-        }
-
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Nullable return types are not supported in PHP 7.0 or earlier.');
 

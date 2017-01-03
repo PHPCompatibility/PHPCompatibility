@@ -33,7 +33,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
             T_FUNCTION,
         );
 
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
+        if (defined('T_RETURN_TYPE')) {
             $tokens[] = T_RETURN_TYPE;
         }
 
@@ -62,9 +62,31 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
 
         if ($tokenCode === T_FUNCTION) {
             $this->processFunctionDeclaration($phpcsFile, $stackPtr);
+
+            // Deal with older PHPCS version which don't recognize return type hints.
+            if (isset($tokens[$stackPtr]['parenthesis_closer'], $tokens[$stackPtr]['scope_opener']) === true
+                && ($tokens[$stackPtr]['parenthesis_closer'] + 1) !== $tokens[$stackPtr]['scope_opener']
+            ) {
+                $hasColon = $phpcsFile->findNext(array(T_COLON, T_INLINE_ELSE), ($tokens[$stackPtr]['parenthesis_closer'] + 1), $tokens[$stackPtr]['scope_opener']);
+                if ($hasColon !== false) {
+
+                    // `self` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
+                    $unrecognizedTypes = array(T_CALLABLE, T_SELF);
+                    // Return types are not recognized at all in PHPCS < 2.4.0.
+                    if (defined('T_RETURN_TYPE') === false) {
+                        $unrecognizedTypes = array(T_CALLABLE, T_SELF, T_ARRAY, T_STRING);
+                    }
+
+                    $hasUnrecognizedReturnTypeHint = $phpcsFile->findNext($unrecognizedTypes, ($hasColon + 1), $tokens[$stackPtr]['scope_opener']);
+                    if ($hasUnrecognizedReturnTypeHint !== false) {
+                        $this->processReturnType($phpcsFile, $hasUnrecognizedReturnTypeHint);
+                    }
+                }
+            }
         } else {
             $this->processReturnType($phpcsFile, $stackPtr);
         }
+
     }//end process()
 
 
