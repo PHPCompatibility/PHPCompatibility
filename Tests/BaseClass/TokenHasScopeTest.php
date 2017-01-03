@@ -115,9 +115,10 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
     {
         return array(
             array(181, true), // $property
-            array(185, true), // function
-            array(202, false), // function
-            array(220, true), // function
+            array(185, true), // function in class
+            array(202, false), // global function
+            array(220, true), // function in namespaced class
+            array(391, true), // function in anon class
         );
     }
 

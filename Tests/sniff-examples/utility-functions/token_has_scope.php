@@ -55,3 +55,7 @@ class Foobar { use BazTrait { oldfunction as Baz } }
 class Foobar { use BazTrait { oldfunction as public Baz } }
 class Foobar { use BazTrait { oldfunction as protected Baz } }
 class Foobar { use BazTrait { oldfunction as private Baz } }
+
+new class {
+    function something() {}
+}
