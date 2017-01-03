@@ -44,18 +44,35 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenGlobalVariableVariableSniff extends P
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.0')) {
-            $tokens = $phpcsFile->getTokens();
+        if ($this->supportsAbove('7.0') === false) {
+            return;
+        }
 
-            $variable = $phpcsFile->findNext(T_VARIABLE, $stackPtr, $stackPtr + 4, false);
+        $tokens         = $phpcsFile->getTokens();
+        $endOfStatement = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr + 1));
+        if ($endOfStatement === false) {
+            // No semi-colon - live coding.
+            return;
+        }
 
-            if (isset($tokens[$variable - 1]) && $tokens[$variable - 1]['type'] == 'T_DOLLAR') {
+        for ($ptr = ($stackPtr + 1); $ptr <= $endOfStatement; $ptr++) {
+            $variable = $phpcsFile->findNext(T_VARIABLE, $ptr, $endOfStatement, false, null, true);
+            if ($variable !== false && (isset($tokens[$variable - 1]) && $tokens[$variable - 1]['type'] === 'T_DOLLAR')) {
                 $phpcsFile->addError(
                     'Global with variable variables is not allowed since PHP 7.0',
                     $stackPtr,
                     'Found'
                 );
+                return;
             }
+
+            // Move the stack pointer forward to the next variable for multi-variable statements.
+            $nextComma = $phpcsFile->findNext(T_COMMA, $ptr, $endOfStatement, false, null, true);
+            if ($nextComma === false) {
+                break;
+            }
+
+            $ptr = $nextComma;
         }
     }
 }
