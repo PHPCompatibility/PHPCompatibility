@@ -26,3 +26,7 @@ class myClass {
 notDefine('ANIMALS', 'dog');
 
 define('ANIMALS');
+
+// Array within a function call.
+define('WPDIRAUTH_LDAP_RETURN_KEYS',serialize(array('sn', 'givenname', 'mail')));
+define('WPDIRAUTH_LDAP_RETURN_KEYS',serialize(['sn', 'givenname', 'mail']));

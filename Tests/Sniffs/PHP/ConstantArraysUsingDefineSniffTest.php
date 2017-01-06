@@ -67,7 +67,7 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
      */
     public function testNoViolation($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -88,6 +88,8 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
             array(23),
             array(26),
             array(28),
+            array(31),
+            array(32),
         );
     }
 
