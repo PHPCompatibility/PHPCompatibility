@@ -949,11 +949,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * <code>
      *   0 => array(
      *         'name'              => '$var',  // The variable name.
-     *         'pass_by_reference' => false,   // Passed by reference.
-     *         'type_hint'         => string,  // Type hint for array or custom type
-     *         'nullable_type'     => bool,    // Whether the type given in the type hint is nullable
-     *         'type_hint'         => string,  // Type hint for array or custom type
-     *         'raw'               => string,  // Raw content of the tokens for the parameter
+     *         'content'           => string,  // The full content of the variable definition.
+     *         'pass_by_reference' => boolean, // Is the variable passed by reference?
+     *         'type_hint'         => string,  // The type hint for the variable.
+     *         'nullable_type'     => boolean, // Is the variable using a nullable type?
      *        )
      * </code>
      *
@@ -962,14 +961,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
      * class, but with some improvements which will probably be introduced in
-     * PHPCS 2.7.1/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
+     * PHPCS 2.7.2/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
      * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
      *
-     * Once the minimum supported PHPCS version for this sniff library goes beyond
+     * Once the minimum supported PHPCS version for this standard goes beyond
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->getMethodParameters($stackPtr)` calls.
      *
-     * Last synced with PHPCS version: PHPCS 2.7.}}
+     * Last synced with PHPCS version: PHPCS 2.7.2-alpha.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int                  $stackPtr  The position in the stack of the
@@ -982,6 +981,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function getMethodParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.2', '>=') === true) {
+            return $phpcsFile->getMethodParameters($stackPtr);
+        }
+
         $tokens = $phpcsFile->getTokens();
 
         // Check for the existence of the token.
@@ -1037,14 +1040,14 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 break;
             case T_ARRAY_HINT:
             case T_CALLABLE:
-                $typeHint = $tokens[$i]['content'];
+                $typeHint .= $tokens[$i]['content'];
                 break;
             case T_SELF:
             case T_PARENT:
             case T_STATIC:
                 // Self is valid, the others invalid, but were probably intended as type hints.
-                if ($defaultStart === null) {
-                    $typeHint = $tokens[$i]['content'];
+                if (isset($defaultStart) === false) {
+                    $typeHint .= $tokens[$i]['content'];
                 }
                 break;
             case T_STRING:
@@ -1096,8 +1099,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     continue;
                 }
 
-                $vars[$paramCount]         = array();
-                $vars[$paramCount]['name'] = $tokens[$currVar]['content'];
+                $vars[$paramCount]            = array();
+                $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
+                $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
 
                 if ($defaultStart !== null) {
                     $vars[$paramCount]['default']
@@ -1107,13 +1111,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                         );
                 }
 
-                $rawContent = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
-
                 $vars[$paramCount]['pass_by_reference'] = $passByReference;
                 $vars[$paramCount]['variable_length']   = $variableLength;
                 $vars[$paramCount]['type_hint']         = $typeHint;
                 $vars[$paramCount]['nullable_type']     = $nullableType;
-                $vars[$paramCount]['raw']               = $rawContent;
 
                 // Reset the vars, as we are about to process the next parameter.
                 $defaultStart    = null;
