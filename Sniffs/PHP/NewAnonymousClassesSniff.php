@@ -20,6 +20,11 @@
  */
 class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibility_Sniff
 {
+
+    private $indicators = array(
+        T_CLASS => T_CLASS,
+    );
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -27,11 +32,11 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
      */
     public function register()
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
-            return array(T_NEW);
-        } else {
-            return array();
+        if (defined('T_ANON_CLASS')) {
+            $this->indicators[T_ANON_CLASS] = T_ANON_CLASS;
         }
+
+        return array(T_NEW);
     }//end register()
 
 
@@ -50,12 +55,13 @@ class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibil
             return;
         }
 
-        $whitespace = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, $stackPtr + 2);
-        $class      = $phpcsFile->findNext(T_ANON_CLASS, $stackPtr + 2, $stackPtr + 3);
-        if ($whitespace === false || $class === false) {
+        $tokens       = $phpcsFile->getTokens();
+        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        if ($nextNonEmpty === false || isset($this->indicators[$tokens[$nextNonEmpty]['code']]) === false) {
             return;
         }
 
+        // Still here ? In that case, it is an anonymous class.
         $phpcsFile->addError(
             'Anonymous classes are not supported in PHP 5.6 or earlier',
             $stackPtr,
