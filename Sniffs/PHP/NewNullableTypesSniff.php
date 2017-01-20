@@ -25,6 +25,10 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * {@internal Not sniffing for T_NULLABLE which was introduced in PHPCS 2.7.2
+     * as in that case we can't distinguish between parameter type hints and
+     * return type hints for the error message.}}
+     *
      * @return array
      */
     public function register()
@@ -115,9 +119,17 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     protected function processReturnType(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+
+        if (isset($tokens[($stackPtr - 1)]['code']) === false) {
+            return;
+        }
+
         $error  = false;
 
-        if ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN) {
+        // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
+        if ((defined('T_NULLABLE') === true && $tokens[($stackPtr - 1)]['type'] === 'T_NULLABLE')
+            || (defined('T_NULLABLE') === false && $tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN)
+        ) {
             $error = true;
         }
         // Deal with namespaced class names.
@@ -135,7 +147,9 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
                 $stackPtr--;
             }
 
-            if ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN) {
+            if ((defined('T_NULLABLE') === true && $tokens[($stackPtr - 1)]['type'] === 'T_NULLABLE')
+                || (defined('T_NULLABLE') === false && $tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN)
+            ) {
                 $error = true;
             }
         }

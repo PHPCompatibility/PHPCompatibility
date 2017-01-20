@@ -1015,12 +1015,16 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
      * class, but with some improvements which will probably be introduced in
-     * PHPCS 2.7.2/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
+     * PHPCS 2.7.2. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
      * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
      *
      * Once the minimum supported PHPCS version for this standard goes beyond
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->getMethodParameters($stackPtr)` calls.
+     *
+     * NOTE: This version does not deal with the new T_NULLABLE token type.
+     * This token is included upstream only in 2.7.2+ and as we defer to upstream
+     * in that case, no need to deal with it here.
      *
      * Last synced with PHPCS version: PHPCS 2.7.2-alpha.}}
      *
@@ -1035,7 +1039,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function getMethodParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.2', '>=') === true) {
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
             return $phpcsFile->getMethodParameters($stackPtr);
         }
 
