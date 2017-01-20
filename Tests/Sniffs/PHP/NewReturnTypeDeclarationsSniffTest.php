@@ -53,12 +53,19 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
     public function dataReturnType()
     {
         return array(
-            array('bool', '5.6', 3, '7.0'),
+            array('bool', '5.6', 4, '7.0'),
             array('int', '5.6', 5, '7.0'),
-            array('float', '5.6', 7, '7.0'),
-            array('string', '5.6', 9, '7.0'),
-            array('void', '7.0', 11, '7.1'),
+            array('float', '5.6', 6, '7.0'),
+            array('string', '5.6', 7, '7.0'),
+            array('array', '5.6', 8, '7.0'),
+            array('callable', '5.6', 9, '7.0'),
+            array('self', '5.6', 10, '7.0'),
+            array('Class name', '5.6', 11, '7.0'),
+            array('Class name', '5.6', 12, '7.0'),
+            array('Class name', '5.6', 13, '7.0'),
+            array('Class name', '5.6', 14, '7.0'),
+
+            array('void', '7.0', 17, '7.1'),
         );
     }
 }
-

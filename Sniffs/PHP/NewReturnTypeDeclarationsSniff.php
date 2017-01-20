@@ -2,6 +2,8 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
  *
+ * PHP version 7.0
+ *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -9,6 +11,8 @@
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
+ *
+ * PHP version 7.0
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -39,6 +43,22 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
                                             '7.0' => true,
                                         ),
                                         'string' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'array' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'callable' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'self' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'Class name' => array(
                                             '5.6' => false,
                                             '7.0' => true,
                                         ),
@@ -93,6 +113,15 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
         if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
             $itemInfo = array(
                 'name'   => $tokens[$stackPtr]['content'],
+            );
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+        }
+        // Handle class name based return types.
+        elseif ($tokens[$stackPtr]['code'] === T_STRING
+            || (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === T_RETURN_TYPE)
+        ) {
+            $itemInfo = array(
+                'name'   => 'Class name',
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
