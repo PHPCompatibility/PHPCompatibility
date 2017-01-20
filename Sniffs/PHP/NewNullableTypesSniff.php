@@ -35,6 +35,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     {
         $tokens = array(
             T_FUNCTION,
+            T_CLOSURE,
         );
 
         if (defined('T_RETURN_TYPE')) {
@@ -64,7 +65,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
         $tokens    = $phpcsFile->getTokens();
         $tokenCode = $tokens[$stackPtr]['code'];
 
-        if ($tokenCode === T_FUNCTION) {
+        if ($tokenCode === T_FUNCTION || $tokenCode === T_CLOSURE) {
             $this->processFunctionDeclaration($phpcsFile, $stackPtr);
 
             // Deal with older PHPCS version which don't recognize return type hints.

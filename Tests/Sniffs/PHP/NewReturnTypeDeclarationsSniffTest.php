@@ -66,6 +66,8 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
             array('Class name', '5.6', 14, '7.0'),
 
             array('void', '7.0', 17, '7.1'),
+
+            array('callable', '5.6', 20, '7.0'),
         );
     }
 }

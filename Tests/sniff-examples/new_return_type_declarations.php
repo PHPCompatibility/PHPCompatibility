@@ -15,3 +15,6 @@ function foo($a): \myNamespace\Baz {}
 
 // PHP 7.1+
 function foo($a): void {}
+
+// Anonymous function.
+function($a): callable {}

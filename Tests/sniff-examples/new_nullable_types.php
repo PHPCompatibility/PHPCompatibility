@@ -58,3 +58,7 @@ class NullableTypes {
     // Test with multiple variables and different spacing.
     function testTypeHintNullableMultiParam( ?bool $nullableA, ?int $nullableB, ?Baz $nullableC ) {}
 }
+
+// Test closures with nullable types.
+function (): ?string {}
+function(?callable $nullable) {}

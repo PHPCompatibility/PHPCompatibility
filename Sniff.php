@@ -996,7 +996,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
-     * Returns the method parameters for the specified T_FUNCTION token.
+     * Returns the method parameters for the specified function token.
      *
      * Each parameter is in the following format:
      *
@@ -1015,8 +1015,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
      * class, but with some improvements which will probably be introduced in
-     * PHPCS 2.7.2. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
-     * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
+     * PHPCS 2.7.2. {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1193} and
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1293}.
      *
      * Once the minimum supported PHPCS version for this standard goes beyond
      * that, this method can be removed and calls to it replaced with
@@ -1030,12 +1031,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int                  $stackPtr  The position in the stack of the
-     *                                        T_FUNCTION token to acquire the
+     *                                        function token to acquire the
      *                                        parameters for.
      *
      * @return array|false
      * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
-     *                                   type T_FUNCTION.
+     *                                   type T_FUNCTION or T_CLOSURE.
      */
     public function getMethodParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -1050,8 +1051,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_FUNCTION) {
-            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION');
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
 
         $opener = $tokens[$stackPtr]['parenthesis_opener'];

@@ -79,6 +79,7 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
     {
         $tokens = array(
             T_FUNCTION,
+            T_CLOSURE,
         );
 
         if (defined('T_RETURN_TYPE')) {
@@ -103,7 +104,7 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
         $tokens = $phpcsFile->getTokens();
 
         // Deal with older PHPCS version which don't recognize return type hints.
-        if ($tokens[$stackPtr]['code'] === T_FUNCTION) {
+        if ($tokens[$stackPtr]['code'] === T_FUNCTION || $tokens[$stackPtr]['code'] === T_CLOSURE) {
             $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
             if ($returnTypeHint !== false) {
                 $stackPtr = $returnTypeHint;
