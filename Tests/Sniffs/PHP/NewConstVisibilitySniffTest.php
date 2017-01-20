@@ -54,6 +54,10 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
             array(20),
             array(23),
             array(24),
+
+            array(33),
+            array(34),
+            array(35),
         );
     }
 
@@ -86,6 +90,7 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
             array(3),
             array(7),
             array(17),
+            array(30),
         );
     }
 
