@@ -11,7 +11,7 @@
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_NewClassesSniff.
+ * PHPCompatibility_Sniffs_PHP_NewKeywordsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -111,16 +111,6 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
                                             '5.5' => true,
                                             'description' => '"finally" keyword (in exception handling)',
                                             'content' => 'finally',
-                                        ),
-                                        'T_START_NOWDOC' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => 'nowdoc functionality',
-                                        ),
-                                        'T_END_NOWDOC' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => 'nowdoc functionality',
                                         ),
                                     );
 
