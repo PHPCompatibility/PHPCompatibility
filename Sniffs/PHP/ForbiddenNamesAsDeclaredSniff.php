@@ -87,6 +87,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        if ($this->supportsAbove('7.0') === false) {
+            return;
+        }
+
         $tokens         = $phpcsFile->getTokens();
         $tokenCode      = $tokens[$stackPtr]['code'];
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
