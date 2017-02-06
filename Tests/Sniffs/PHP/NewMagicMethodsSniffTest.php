@@ -30,6 +30,8 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 
     /**
      * Set up skip condition.
+     *
+     * @return void
      */
     public static function setUpBeforeClass()
     {
@@ -37,6 +39,8 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
         if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<') && version_compare(phpversion(), '5.4', '<')) {
             self::$recognizesTraits = false;
         }
+
+        parent::setUpBeforeClass();
     }
 
 

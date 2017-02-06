@@ -23,7 +23,9 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/new_scalar_return_type_declarations.php';
 
     /**
-     * Set up: skip these tests if the PHPCS version isn't high enough.
+     * Skip the test(s) for low PHPCS versions.
+     *
+     * @return void
      */
     protected function setUp()
     {

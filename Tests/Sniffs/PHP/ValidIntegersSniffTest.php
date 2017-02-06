@@ -30,11 +30,11 @@ class ValidIntegersSniffTest extends BaseSniffTest
     protected $_sniffFile;
 
     /**
-     * setUp
+     * Set up the test file for some of these unit tests.
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
