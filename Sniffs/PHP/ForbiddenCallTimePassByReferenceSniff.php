@@ -179,6 +179,24 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                 case T_CLOSE_PARENTHESIS:
                     break;
 
+                // Prevent false positive on assign by reference and compare with reference
+                // with function call parameters.
+                case T_EQUAL:
+                case T_AND_EQUAL:
+                case T_OR_EQUAL:
+                case T_CONCAT_EQUAL:
+                case T_DIV_EQUAL:
+                case T_MINUS_EQUAL:
+                case T_MOD_EQUAL:
+                case T_MUL_EQUAL:
+                case T_PLUS_EQUAL:
+                case T_XOR_EQUAL:
+                case T_SL_EQUAL:
+                case T_SR_EQUAL:
+                case T_IS_EQUAL:
+                case T_IS_IDENTICAL:
+                    break;
+
                 // Unfortunately the tokenizer fails to recognize global constants,
                 // class-constants and -attributes. Any of these are returned is
                 // treated as T_STRING.
@@ -200,6 +218,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                     // If not a class constant: fall through.
 
                 default:
+                    // Deal with T_POW_EQUAL which doesn't exist in PHPCS 1.x
+                    if (defined('T_POW_EQUAL') && $tokens[$tokenBefore]['type'] === 'T_POW_EQUAL') {
+                        break;
+                    }
+
                     // The found T_BITWISE_AND represents a pass-by-reference.
                     return true;
             }

@@ -51,3 +51,25 @@ abcd(&$x, &$y, $z, &$aa = false); // Bad: multiple pass by reference.
 bcd(10, true, MYCONST); // OK: does not contain variables.
 
 cde((&$abc)); // OK: outside of the scope of this sniff - will result in parse error.
+
+// Issue https://github.com/wimg/PHPCompatibility/issues/68
+$attr  = $this->doExtraAttributes("h$level", $dummy =& $matches[3]); // OK: assign by reference.
+if (!is_null($done = &$this->cacheKey('autoPurgeCache'))) {} // OK: assign by reference.
+def( $dummy .= &$b );
+def( $dummy += &$b );
+def( $dummy -= &$b );
+def( $dummy *= &$b );
+def( $dummy /= &$b );
+def( $dummy %= &$b );
+def( $dummy **= &$b );
+def( $dummy &= &$b );
+def( $dummy |= &$b );
+def( $dummy ^= &$b );
+def( $dummy <<= &$b );
+def( $dummy >>= &$b );
+
+def( &$dummy .= $b ); // Bad: pass by reference.
+
+// Ok: Comparisons passed as function parameter.
+efg( true == &$b );
+efg( true === &$b );
