@@ -59,6 +59,8 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
             array('float', '5.6', 13, '7.0'),
             array('string', '5.6', 14, '7.0'),
             array('iterable', '7.0', 17, '7.1'),
+            array('callable', '5.3', 52, '5.4'),
+            array('int', '5.6', 53, '7.0'),
         );
     }
 
@@ -178,6 +180,8 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
             array(37),
             array(41, true),
             array(44),
+            array(52),
+            array(53),
         );
     }
 

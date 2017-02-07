@@ -79,7 +79,10 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(
+            T_FUNCTION,
+            T_CLOSURE,
+        );
     }//end register()
 
 

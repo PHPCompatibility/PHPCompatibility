@@ -1014,8 +1014,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * 'default' with the value of the default as a string.
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
-     * class, but with some improvements which will probably be introduced in
-     * PHPCS 2.7.2. {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
+     * class, but with some improvements which have been introduced in
+     * PHPCS 2.8.0.
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
      * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1193} and
      * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1293}.
      *
