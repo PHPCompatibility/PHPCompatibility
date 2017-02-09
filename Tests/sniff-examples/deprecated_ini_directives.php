@@ -162,3 +162,6 @@ class myClass {
 
 ini_setter('ANIMALS', 'dog');
 ini_set();
+
+ini_set('mbstring.func_overload', 2);
+$a = ini_get('mbstring.func_overload');
