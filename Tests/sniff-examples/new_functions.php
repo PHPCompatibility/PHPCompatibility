@@ -318,3 +318,8 @@ is_iterable();
 pcntl_async_signals();
 session_create_id();
 session_gc();
+
+socket_addrinfo_lookup();
+socket_addrinfo_connect();
+socket_addrinfo_bind();
+socket_addrinfo_explain();

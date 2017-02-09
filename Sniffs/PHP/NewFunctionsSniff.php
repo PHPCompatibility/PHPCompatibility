@@ -1239,6 +1239,23 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Abs
                                             '7.0' => false,
                                             '7.1' => true
                                         ),
+
+                                        'socket_addrinfo_lookup' => array(
+                                            '7.1' => false,
+                                            '7.2' => true
+                                        ),
+                                        'socket_addrinfo_connect' => array(
+                                            '7.1' => false,
+                                            '7.2' => true
+                                        ),
+                                        'socket_addrinfo_bind' => array(
+                                            '7.1' => false,
+                                            '7.2' => true
+                                        ),
+                                        'socket_addrinfo_explain' => array(
+                                            '7.1' => false,
+                                            '7.2' => true
+                                        ),
                                     );
 
 
