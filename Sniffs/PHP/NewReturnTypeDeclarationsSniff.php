@@ -1,6 +1,8 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
+ * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
+ *
+ * PHP version 7.0
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,13 +10,15 @@
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff.
+ * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
+ *
+ * PHP version 7.0
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
 
     /**
@@ -42,6 +46,22 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
                                             '5.6' => false,
                                             '7.0' => true,
                                         ),
+                                        'array' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'callable' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'self' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
+                                        'Class name' => array(
+                                            '5.6' => false,
+                                            '7.0' => true,
+                                        ),
 
                                         'void' => array(
                                             '7.0' => false,
@@ -57,11 +77,16 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
      */
     public function register()
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4') >= 0) {
-            return array(T_RETURN_TYPE);
-        } else {
-            return array();
+        $tokens = array(
+            T_FUNCTION,
+            T_CLOSURE,
+        );
+
+        if (defined('T_RETURN_TYPE')) {
+            $tokens[] = T_RETURN_TYPE;
         }
+
+        return $tokens;
     }//end register()
 
 
@@ -78,9 +103,26 @@ class PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff extends P
     {
         $tokens = $phpcsFile->getTokens();
 
+        // Deal with older PHPCS version which don't recognize return type hints.
+        if ($tokens[$stackPtr]['code'] === T_FUNCTION || $tokens[$stackPtr]['code'] === T_CLOSURE) {
+            $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
+            if ($returnTypeHint !== false) {
+                $stackPtr = $returnTypeHint;
+            }
+        }
+
         if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
             $itemInfo = array(
                 'name'   => $tokens[$stackPtr]['content'],
+            );
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+        }
+        // Handle class name based return types.
+        elseif ($tokens[$stackPtr]['code'] === T_STRING
+            || (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === T_RETURN_TYPE)
+        ) {
+            $itemInfo = array(
+                'name'   => 'Class name',
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }

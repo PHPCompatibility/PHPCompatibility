@@ -942,7 +942,61 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
-     * Returns the method parameters for the specified T_FUNCTION token.
+     * Get the stack pointer for a return type token for a given function.
+     *
+     * Compatible layer for older PHPCS versions which don't recognize
+     * return type hints correctly.
+     *
+     * Expects to be passed T_RETURN_TYPE, T_FUNCTION or T_CLOSURE token.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     *
+     * @return int|false Stack pointer to the return type token or false if
+     *                   no return type was found or the passed token was
+     *                   not of the correct type.
+     */
+    public function getReturnTypeHintToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        if (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === T_RETURN_TYPE) {
+            return $tokens[$stackPtr]['code'];
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+            return false;
+        }
+
+        if (isset($tokens[$stackPtr]['parenthesis_closer'], $tokens[$stackPtr]['scope_opener']) === false
+            || ($tokens[$stackPtr]['parenthesis_closer'] + 1) === $tokens[$stackPtr]['scope_opener']
+        ) {
+            return false;
+        }
+
+        $hasColon = $phpcsFile->findNext(array(T_COLON, T_INLINE_ELSE), ($tokens[$stackPtr]['parenthesis_closer'] + 1), $tokens[$stackPtr]['scope_opener']);
+        if ($hasColon === false) {
+            return false;
+        }
+
+        // `self` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
+        $unrecognizedTypes = array(
+            T_CALLABLE,
+            T_SELF,
+        );
+
+        // Return types are not recognized at all in PHPCS < 2.4.0.
+        if (defined('T_RETURN_TYPE') === false) {
+            $unrecognizedTypes[] = T_ARRAY;
+            $unrecognizedTypes[] = T_STRING;
+        }
+
+        return $phpcsFile->findNext($unrecognizedTypes, ($hasColon + 1), $tokens[$stackPtr]['scope_opener']);
+    }
+
+
+    /**
+     * Returns the method parameters for the specified function token.
      *
      * Each parameter is in the following format:
      *
@@ -961,27 +1015,32 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * {@internal Duplicate of same method as contained in the `PHP_CodeSniffer_File`
      * class, but with some improvements which will probably be introduced in
-     * PHPCS 2.7.2/2.8. {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1117}
-     * and {@see https://github.com/squizlabs/PHP_CodeSniffer/pull/1193}
+     * PHPCS 2.7.2. {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1193} and
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1293}.
      *
      * Once the minimum supported PHPCS version for this standard goes beyond
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->getMethodParameters($stackPtr)` calls.
      *
+     * NOTE: This version does not deal with the new T_NULLABLE token type.
+     * This token is included upstream only in 2.7.2+ and as we defer to upstream
+     * in that case, no need to deal with it here.
+     *
      * Last synced with PHPCS version: PHPCS 2.7.2-alpha.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int                  $stackPtr  The position in the stack of the
-     *                                        T_FUNCTION token to acquire the
+     *                                        function token to acquire the
      *                                        parameters for.
      *
      * @return array|false
      * @throws PHP_CodeSniffer_Exception If the specified $stackPtr is not of
-     *                                   type T_FUNCTION.
+     *                                   type T_FUNCTION or T_CLOSURE.
      */
     public function getMethodParameters(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.2', '>=') === true) {
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
             return $phpcsFile->getMethodParameters($stackPtr);
         }
 
@@ -992,8 +1051,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_FUNCTION) {
-            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION');
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+            throw new PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
 
         $opener = $tokens[$stackPtr]['parenthesis_opener'];

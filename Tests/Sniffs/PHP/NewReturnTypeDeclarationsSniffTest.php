@@ -9,38 +9,23 @@
 /**
  * New return types test file
  *
- * @group newScalarReturnTypeDeclarations
+ * @group newReturnTypeDeclarations
  * @group typeDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewScalarReturnTypeDeclarationsSniff
+ * @covers PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff
  *
  * @uses BaseSniffTest
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
+class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_scalar_return_type_declarations.php';
+    const TEST_FILE = 'sniff-examples/new_return_type_declarations.php';
 
     /**
-     * Skip the test(s) for low PHPCS versions.
+     * testReturnType
      *
-     * @return void
-     */
-    protected function setUp()
-    {
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
-            $this->markTestSkipped();
-        }
-        else {
-            parent::setUp();
-        }
-    }
-
-    /**
-     * testScalarReturnType
-     *
-     * @dataProvider dataScalarReturnType
+     * @dataProvider dataReturnType
      *
      * @param string $returnType        The return type.
      * @param string $lastVersionBefore The PHP version just *before* the type was introduced.
@@ -49,7 +34,7 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testScalarReturnType($returnType, $lastVersionBefore, $line, $okVersion)
+    public function testReturnType($returnType, $lastVersionBefore, $line, $okVersion)
     {
         $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
         $this->assertError($file, $line, "{$returnType} return type is not present in PHP version {$lastVersionBefore} or earlier");
@@ -61,19 +46,28 @@ class NewScalarReturnTypeDeclarationsSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testScalarReturnType()
+     * @see testReturnType()
      *
      * @return array
      */
-    public function dataScalarReturnType()
+    public function dataReturnType()
     {
         return array(
-            array('bool', '5.6', 3, '7.0'),
+            array('bool', '5.6', 4, '7.0'),
             array('int', '5.6', 5, '7.0'),
-            array('float', '5.6', 7, '7.0'),
-            array('string', '5.6', 9, '7.0'),
-            array('void', '7.0', 11, '7.1'),
+            array('float', '5.6', 6, '7.0'),
+            array('string', '5.6', 7, '7.0'),
+            array('array', '5.6', 8, '7.0'),
+            array('callable', '5.6', 9, '7.0'),
+            array('self', '5.6', 10, '7.0'),
+            array('Class name', '5.6', 11, '7.0'),
+            array('Class name', '5.6', 12, '7.0'),
+            array('Class name', '5.6', 13, '7.0'),
+            array('Class name', '5.6', 14, '7.0'),
+
+            array('void', '7.0', 17, '7.1'),
+
+            array('callable', '5.6', 20, '7.0'),
         );
     }
 }
-

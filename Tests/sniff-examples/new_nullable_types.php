@@ -13,6 +13,7 @@ class NullableTypes {
     function testReturnCallable(): callable {}
     function testReturnSelf(): self {}
     function testReturnObject(): Baz {}
+    function testReturnNamespacedObject(): \myNamespace\Baz {}
 
     /**
      * PHP 7.1: New nullable return types.
@@ -25,6 +26,7 @@ class NullableTypes {
     function testReturnNullableCallable(): ?callable {}
     function testReturnNullableSelf(): ?self {}
     function testReturnNullableObject(): ?Baz {}
+    function testReturnNamespacedObject(): ?\myNamespace\Baz {}
 
 
     /**
@@ -38,6 +40,7 @@ class NullableTypes {
     function testTypeHintCallable(callable $nullable) {}
     function testTypeHintSelf(self $nullable) {}
     function testTypeHintObject(Baz $nullable) {}
+    function testTypeHintNamespacedObject(\myNamespace\Baz $nullable) {}
 
     /**
      * PHP 7.1: Nullable type hints.
@@ -50,7 +53,12 @@ class NullableTypes {
     function testTypeHintNullableCallable(?callable $nullable) {}
     function testTypeHintNullableSelf(?self $nullable) {}
     function testTypeHintNullableObject(?Baz $nullable) {}
+    function testTypeHintNullableNamespacedObject(?\myNamespace\Baz $nullable) {}
 
-	// Test with multiple variables and different spacing.
+    // Test with multiple variables and different spacing.
     function testTypeHintNullableMultiParam( ?bool $nullableA, ?int $nullableB, ?Baz $nullableC ) {}
 }
+
+// Test closures with nullable types.
+function (): ?string {}
+function(?callable $nullable) {}

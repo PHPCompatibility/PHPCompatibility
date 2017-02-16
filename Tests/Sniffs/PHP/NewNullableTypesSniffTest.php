@@ -33,11 +33,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
      */
     public function testNewNullableReturnTypes($line)
     {
-        // Skip this test for low PHPCS versions.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '<')) {
-            $this->markTestSkipped();
-        }
-
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Nullable return types are not supported in PHP 7.0 or earlier.');
 
@@ -55,7 +50,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
     public function dataNewNullableReturnTypes()
     {
         return array(
-            array(20),
             array(21),
             array(22),
             array(23),
@@ -63,6 +57,10 @@ class NewNullableTypesSniffTest extends BaseSniffTest
             array(25),
             array(26),
             array(27),
+            array(28),
+            array(29),
+
+            array(63),
         );
     }
 
@@ -95,16 +93,19 @@ class NewNullableTypesSniffTest extends BaseSniffTest
     public function dataNewNullableTypeHints()
     {
         return array(
-            array(45),
-            array(46),
-            array(47),
             array(48),
             array(49),
             array(50),
             array(51),
             array(52),
+            array(53),
+            array(54),
+            array(55),
+            array(56),
 
-            array(55), // Three errors of the same.
+            array(59), // Three errors of the same.
+
+            array(64),
         );
     }
 
@@ -142,15 +143,17 @@ class NewNullableTypesSniffTest extends BaseSniffTest
             array(13),
             array(14),
             array(15),
+            array(16),
 
-            array(33),
-            array(34),
             array(35),
             array(36),
             array(37),
             array(38),
             array(39),
             array(40),
+            array(41),
+            array(42),
+            array(43),
         );
     }
 }
