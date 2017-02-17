@@ -61,6 +61,11 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
                                             '7.0' => true,
                                             'description' => 'null coalescing operator (??)'
                                         ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN
+                                        'T_COALESCE_EQUAL' => array(
+                                            '7.1' => false,
+                                            '7.2' => true,
+                                            'description' => 'null coalesce equal operator (??=)'
+                                        ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL
                                     );
 
 
@@ -72,20 +77,26 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      * @var array(string => int)
      */
     protected $newConstructsPHPCSCompat = array(
-                                        'T_POW'       => T_MULTIPLY,
-                                        'T_POW_EQUAL' => T_MUL_EQUAL,
-                                        'T_SPACESHIP' => T_GREATER_THAN,
-                                        'T_COALESCE'  => T_INLINE_THEN,
+                                        'T_POW'            => T_MULTIPLY,
+                                        'T_POW_EQUAL'      => T_MUL_EQUAL,
+                                        'T_SPACESHIP'      => T_GREATER_THAN,
+                                        'T_COALESCE'       => T_INLINE_THEN,
+                                        'T_COALESCE_EQUAL' => T_EQUAL,
                                     );
 
     /**
-     * Translation table for PHPCS 1.x tokens.
+     * Translation table for PHPCS 1.x and older 2.x tokens.
      *
      * The 'before' index lists the token which would have to be directly before the
      * token found for it to be one of the new language constructs.
      * The 'real_token' index indicates which language construct was found in that case.
      *
-     * {@internal 'before' was choosen rather than 'after' as that allowed for a 1-on-1
+     * If the token combination has multi-layer complexity, such as is the case
+     * with T_COALESCE(_EQUAL), a 'callback' index is added instead pointing to a
+	 * separate function which can determine whether this is the targetted token across
+	 * PHP and PHPCS versions.
+     *
+     * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
      * translation list with the current tokens.}}
      *
      * @var array(string => array(string => string))
@@ -104,8 +115,12 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
                                             'real_token' => 'T_SPACESHIP',
                                         ),
                                         'T_INLINE_THEN' => array(
-                                            'before' => 'T_INLINE_THEN',
+                                            'callback' => 'isTCoalesce',
                                             'real_token' => 'T_COALESCE',
+                                        ),
+                                        'T_EQUAL' => array(
+                                            'callback' => 'isTCoalesceEqual',
+                                            'real_token' => 'T_COALESCE_EQUAL',
                                         ),
                                     );
 
@@ -143,15 +158,26 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
 
-        // Translate pre-PHPCS 2.0 tokens for new constructs to the actual construct.
+        // Translate older PHPCS token combis for new constructs to the actual construct.
         if (isset($this->newConstructs[$tokenType]) === false) {
             if (
                 isset($this->PHPCSCompatTranslate[$tokenType])
                 &&
-                $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before']
+                ((isset($this->PHPCSCompatTranslate[$tokenType]['before'])
+                    && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
+                ||
+                (isset($this->PHPCSCompatTranslate[$tokenType]['callback'])
+                    && call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
             ) {
                 $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
             }
+        } elseif ($tokenType === 'T_COALESCE') {
+            // Make sure that T_COALESCE is not confused with T_COALESCE_EQUAL.
+            if (isset($tokens[($stackPtr + 1)]) !== false && $tokens[($stackPtr + 1)]['code'] === T_EQUAL) {
+                // Ignore as will be dealt with via the T_EQUAL token.
+                return;
+            }
+
         }
 
         // If the translation did not yield one of the tokens we are looking for, bow out.
@@ -224,5 +250,57 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
         return $data;
     }
 
+
+    /**
+     * Callback function to determine whether a T_EQUAL token is really a T_COALESCE_EQUAL token.
+     *
+     * @param array $tokens   The token stack.
+     * @param int   $stackPtr The current position in the token stack.
+     *
+     * @return bool
+     */
+    private function isTCoalesceEqual($tokens, $stackPtr)
+    {
+        if ($tokens[$stackPtr]['code'] !== T_EQUAL || isset($tokens[($stackPtr - 1)]) === false) {
+            // Function called for wrong token or token has no predecesor.
+            return false;
+        }
+
+        if ($tokens[($stackPtr - 1)]['type'] === 'T_COALESCE') {
+            return true;
+        }
+        if ($tokens[($stackPtr - 1)]['type'] === 'T_INLINE_THEN'
+            && ( isset($tokens[($stackPtr - 2)]) && $tokens[($stackPtr - 2)]['type'] === 'T_INLINE_THEN')
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Callback function to determine whether a T_INLINE_THEN token is really a T_COALESCE token.
+     *
+     * @param array $tokens   The token stack.
+     * @param int   $stackPtr The current position in the token stack.
+     *
+     * @return bool
+     */
+    private function isTCoalesce($tokens, $stackPtr)
+    {
+        if ($tokens[$stackPtr]['code'] !== T_INLINE_THEN || isset($tokens[($stackPtr - 1)]) === false) {
+            // Function called for wrong token or token has no predecesor.
+            return false;
+        }
+
+        if ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN) {
+            // Make sure not to confuse it with the T_COALESCE_EQUAL token.
+            if (isset($tokens[($stackPtr + 1)]) === false || $tokens[($stackPtr + 1)]['code'] !== T_EQUAL) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }//end class
