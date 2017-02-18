@@ -30,7 +30,10 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(
+            T_FUNCTION,
+            T_CLOSURE,
+        );
 
     }//end register()
 
@@ -57,7 +60,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
         }
 
         // Get all parameters from method signature.
-        $parameters = $phpcsFile->getMethodParameters($stackPtr);
+        $parameters = $this->getMethodParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || is_array($parameters) === false) {
             return;
         }

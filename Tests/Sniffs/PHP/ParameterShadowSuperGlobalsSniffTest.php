@@ -62,6 +62,9 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
             array('$_SESSION', 10),
             array('$_REQUEST', 11),
             array('$_ENV', 12),
+            array('$GLOBALS', 20),
+            array('$_SERVER', 21),
+            array('$_GET', 22),
         );
     }
 

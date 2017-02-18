@@ -15,3 +15,8 @@ function testingI( $_ENV ) {}
 function testingJ( $globals ) {}
 function testingK( $_post ) {}
 function testingL( $POST ) {}
+
+// Closures: these should be flagged.
+function ( $GLOBALS ) {}
+function( $_SERVER ) {}
+function($_GET) {}

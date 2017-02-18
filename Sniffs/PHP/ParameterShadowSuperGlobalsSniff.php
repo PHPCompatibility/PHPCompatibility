@@ -36,7 +36,10 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
      * @return array
      */
     public function register() {
-        return array(T_FUNCTION);
+        return array(
+            T_FUNCTION,
+            T_CLOSURE,
+        );
     }
 
     /**
@@ -53,7 +56,7 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
         }
 
         // Get all parameters from function signature.
-        $parameters = $phpcsFile->getMethodParameters($stackPtr);
+        $parameters = $this->getMethodParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || is_array($parameters) === false) {
             return;
         }
