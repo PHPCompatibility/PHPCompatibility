@@ -34,12 +34,6 @@ function gen_one_to_three() {
     }
 }
 
-$str = <<<'EOD'
-Example of string
-spanning multiple lines
-using nowdoc syntax.
-EOD;
-
 const TEST = 'Hello';
 
 class testing {
