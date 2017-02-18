@@ -671,6 +671,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 );
 
         $start = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+
+        if ($start === false) {
+            return '';
+        }
+
         // Bow out if the next token is a variable as we don't know where it was defined.
         if ($tokens[$start]['code'] === T_VARIABLE) {
             return '';
