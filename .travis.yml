@@ -60,7 +60,7 @@ before_install:
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_BIN=$PHPCS_DIR/scripts/phpcs; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_VERSION $PHPCS_DIR; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths $(pwd); fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths "$(dirname "$(pwd)")"; fi
 
 before_script:
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then mkdir -p build/logs; fi
