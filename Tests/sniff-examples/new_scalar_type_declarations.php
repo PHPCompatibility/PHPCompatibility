@@ -51,3 +51,7 @@ function foo( $a, $b ) {}
 // Type hints in closures.
 function (callable $a) {}
 function(int $a) {}
+
+// Deal with nullable type hints.
+function foo(?callable $a) {}
+function foo(?int $a) {}
