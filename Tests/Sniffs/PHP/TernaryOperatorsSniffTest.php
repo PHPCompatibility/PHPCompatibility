@@ -19,50 +19,50 @@
  */
 class TernaryOperatorsSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/ternary_operator.php';
+
     /**
-     * Sniffed file
+     * testElvisOperator
      *
-     * @var PHP_CodeSniffer_File
+     * @dataProvider dataElvisOperator
+     *
+     * @param int $line Line number where the error should occur.
+     *
+     * @return void
      */
-    protected $_sniffFile;
+    public function testElvisOperator($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertError($file, $line, 'Middle may not be omitted from ternary operators in PHP < 5.3');
+
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * dataElvisOperator
+     *
+     * @see testElvisOperator()
+     *
+     * @return array
+     */
+    public function dataElvisOperator() {
+        return array(
+            array(8),
+            array(10),
+        );
+    }
+
 
     /**
      * Test ternary operators that are acceptable in all PHP versions.
      *
      * @return void
      */
-    public function testStandardTernaryOperators()
+    public function testNoFalsePositives()
     {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php');
-        $this->assertNoViolation($this->_sniffFile, 5);
-    }
-
-    /**
-     * 5.2 doesn't support elvis operator.
-     *
-     * @return void
-     */
-    public function testMissingMiddleExpression5dot2()
-    {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.2-5.4');
-        $this->assertError($this->_sniffFile, 8,
-                "Middle may not be omitted from ternary operators in PHP < 5.3");
-        $this->assertError($this->_sniffFile, 10,
-                "Middle may not be omitted from ternary operators in PHP < 5.3");
-    }
-
-    /**
-     * 5.3 does support elvis operator.
-     *
-     * @return void
-     */
-    public function testMissingMiddleExpression5dot3()
-    {
-        $this->_sniffFile = $this->sniffFile('sniff-examples/ternary_operator.php', '5.3');
-        $this->assertNoViolation($this->_sniffFile, 8,
-                "Middle may not be omitted from ternary operators in PHP < 5.3");
-        $this->assertNoViolation($this->_sniffFile, 10,
-                "Middle may not be omitted from ternary operators in PHP < 5.3");
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertNoViolation($file, 5);
     }
 
 }
