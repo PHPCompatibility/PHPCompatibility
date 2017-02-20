@@ -19,3 +19,7 @@ class MyMultiple implements SplSubject, JsonSerializable, Countable {}
 // Test case-insensitive matching
 class MyUppercase implements COUNTABLE {}
 class MyLowercase implements countable {}
+
+// These shouldn't throw errors.
+class MyJsonSerializable implements JsonSerializableSomething {}
+class MyJsonSerializable implements myNameSpace\JsonSerializable {}

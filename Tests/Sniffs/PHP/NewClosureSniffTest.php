@@ -20,6 +20,8 @@
  */
 class NewClosureSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/new_closure.php';
+
     /**
      * Test closures
      *
@@ -27,10 +29,23 @@ class NewClosureSniffTest extends BaseSniffTest
      */
     public function testClosure()
     {
-        $file = $this->sniffFile('sniff-examples/new_closure.php', '5.2');
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertError($file, 3, 'Closures / anonymous functions are not available in PHP 5.2 or earlier');
 
-        $file = $this->sniffFile('sniff-examples/new_closure.php', '5.3');
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertNoViolation($file, 3);
     }
+
+
+    /**
+     * testNoFalsePositives
+     *
+     * @return void
+     */
+    public function testNoFalsePositives()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertNoViolation($file, 6);
+    }
+
 }

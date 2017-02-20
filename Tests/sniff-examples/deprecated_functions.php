@@ -129,3 +129,12 @@ mcrypt_module_is_block_mode();
 mcrypt_module_open();
 mcrypt_module_self_test();
 mdecrypt_generic();
+
+// Test against false positives.
+$class->php_check_syntax();
+MyClass::php_check_syntax();
+MyNamespace\php_check_syntax();
+echo PHP_CHECK_SYNTAX; // Constant.
+const php_check_syntax;
+use php_check_syntax;
+function php_check_syntax() {}

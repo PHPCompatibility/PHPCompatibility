@@ -90,4 +90,34 @@ class InternalInterfacesSniffTest extends BaseSniffTest
         $this->assertError($this->_sniffFile, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable.');
         $this->assertError($this->_sniffFile, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable.');
     }
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $this->assertNoViolation($this->_sniffFile, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            array(13),
+            array(14),
+        );
+    }
+
 }
