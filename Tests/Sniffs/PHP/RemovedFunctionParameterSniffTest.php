@@ -120,15 +120,15 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
 
 
     /**
-     * testValidParameter
+     * testNoFalsePositives
      *
-     * @dataProvider dataValidParameter
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testValidParameter($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
@@ -137,11 +137,11 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testValidParameter()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataValidParameter()
+    public function dataNoFalsePositives()
     {
         return array(
             array(4),

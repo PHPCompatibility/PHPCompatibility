@@ -57,28 +57,28 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
 
 
     /**
-     * testValidListAssignment
+     * testNoFalsePositives
      *
-     * @dataProvider dataValidListAssignment
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line Line number with a valid list assignment.
      *
      * @return void
      */
-    public function testValidListAssignment($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile('sniff-examples/forbidden_empty_list_assignment.php');
         $this->assertNoViolation($file, $line);
     }
 
     /**
-     * dataValidListAssignment
+     * dataNoFalsePositives
      *
-     * @see testValidListAssignment()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataValidListAssignment() {
+    public function dataNoFalsePositives() {
         return array(
             array(13),
             array(14),

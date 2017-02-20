@@ -72,16 +72,16 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testCorrectImplementation
+     * testNoFalsePositives
      *
-     * @dataProvider dataCorrectImplementation
+     * @dataProvider dataNoFalsePositives
      *
      * @param int  $line    The line number.
      * @param bool $isTrait Whether to load the class/interface test file or the trait test file.
      *
      * @return void
      */
-    public function testCorrectImplementation($line, $isTrait = false)
+    public function testNoFalsePositives($line, $isTrait = false)
     {
         if ($isTrait === true && self::$recognizesTraits === false) {
             $this->markTestSkipped();
@@ -95,11 +95,11 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testCorrectImplementation()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataCorrectImplementation()
+    public function dataNoFalsePositives()
     {
         return array(
             /*

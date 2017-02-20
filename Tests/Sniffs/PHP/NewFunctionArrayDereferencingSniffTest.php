@@ -57,28 +57,28 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoViolation
+     * testNoFalsePositives
      *
-     * @dataProvider dataNoViolation
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line Line number with valid code.
      *
      * @return void
      */
-    public function testNoViolation($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
     /**
-     * dataNoViolation
+     * dataNoFalsePositives
      *
-     * @see testNoViolation()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataNoViolation() {
+    public function dataNoFalsePositives() {
         return array(
             array(5),
             array(8),

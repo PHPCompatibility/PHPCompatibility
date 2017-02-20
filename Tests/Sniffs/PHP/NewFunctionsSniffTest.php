@@ -32,7 +32,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testFunctionsThatShouldntBeFlagged()
+    public function testNoFalsePositives()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
 

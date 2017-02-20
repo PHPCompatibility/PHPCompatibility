@@ -113,11 +113,11 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     }
 
     /**
-     * Test setting test version option
+     * testNoFalsePositives
      *
      * @return void
      */
-    public function testSettingTestVersion()
+    public function testNoFalsePositives()
     {
         $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4');
         $this->assertNoViolation($file, 3);

@@ -108,15 +108,15 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoViolation
+     * testNoFalsePositives
      *
-     * @dataProvider dataNoViolation
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line Line number where no error should occur.
      *
      * @return void
      */
-    public function testNoViolation($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertNoViolation($file, $line);
@@ -129,13 +129,13 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
     }
 
     /**
-     * dataNoViolation
+     * dataNoFalsePositives
      *
-     * @see testNoViolation()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataNoViolation() {
+    public function dataNoFalsePositives() {
         return array(
             // No or only valid modifiers.
             array(9),

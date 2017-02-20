@@ -26,13 +26,13 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
     /**
      * Test functions that shouldn't be flagged by this sniff
      *
-     * @dataProvider dataFunctionThatShouldntBeFlagged
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testFunctionThatShouldntBeFlagged($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.1');
         $this->assertNoViolation($file, $line);
@@ -41,11 +41,11 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testFunctionThatShouldntBeFlagged()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataFunctionThatShouldntBeFlagged()
+    public function dataNoFalsePositives()
     {
         return array(
             array(2),
