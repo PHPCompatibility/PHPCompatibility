@@ -24,26 +24,6 @@ class NewFunctionsSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/new_functions.php';
 
     /**
-     * Test functions that shouldn't be flagged by this sniff.
-     *
-     * These are either userland methods or namespaced functions.
-     *
-     * @requires PHP 5.3
-     *
-     * @return void
-     */
-    public function testNoFalsePositives()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
-
-        $this->assertNoViolation($file, 4);
-        $this->assertNoViolation($file, 5);
-        $this->assertNoViolation($file, 6);
-        $this->assertNoViolation($file, 7);
-    }
-
-
-    /**
      * testNewFunction
      *
      * @dataProvider dataNewFunction
@@ -394,6 +374,47 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('session_gc', '7.0', array(320), '7.1'),
 
         );
+    }
+
+
+    /**
+     * Test functions that shouldn't be flagged by this sniff.
+     *
+     * These are either userland methods or namespaced functions.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $testCases = array(
+            array(4),
+            array(5),
+            array(7),
+        );
+
+        // Add an additional testcase which will only be 'no violation' if namespaces are recognized.
+        if (version_compare(phpversion(), '5.3', '>=')) {
+            $testCases[] = array(6);
+        }
+
+        return $testCases;
     }
 
 }

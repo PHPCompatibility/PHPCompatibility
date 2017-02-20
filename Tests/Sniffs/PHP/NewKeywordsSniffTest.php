@@ -160,14 +160,43 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertError($file, 37, '"const" keyword is not present in PHP version 5.2 or earlier');
-        $this->assertNoViolation($file, 40);
-        $this->assertNoViolation($file, 41);
-        $this->assertNoViolation($file, 45);
-        $this->assertNoViolation($file, 46);
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertNoViolation($file, 37);
     }
+
+    /**
+     * testConstNoFalsePositives
+     *
+     * @dataProvider dataConstNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testConstNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testConstNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataConstNoFalsePositives()
+    {
+        return array(
+            array(40),
+            array(41),
+            array(45),
+            array(46),
+        );
+    }
+
 
     /**
      * testCallable

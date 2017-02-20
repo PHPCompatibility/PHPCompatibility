@@ -24,44 +24,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/deprecated_ini_directives.php';
 
     /**
-     * testNoFalsePositives
-     *
-     * @dataProvider dataNoFalsePositives
-     *
-     * @param int $line The line number.
-     *
-     * @return void
-     */
-    public function testNoFalsePositives($line)
-    {
-        $file = $this->sniffFile(self::TEST_FILE);
-        $this->assertNoViolation($file, $line);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testNoFalsePositives()
-     *
-     * @return array
-     */
-    public function dataNoFalsePositives()
-    {
-        return array(
-            array(57),
-            array(58),
-            array(133),
-            array(155),
-            array(156),
-            array(159),
-            array(160),
-            array(163),
-            array(164),
-        );
-    }
-
-
-    /**
      * testDeprecatedRemovedDirectives
      *
      * @dataProvider dataDeprecatedRemovedDirectives
@@ -306,6 +268,44 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('session.entropy_length', '7.1', array(144, 145), '7.0'),
             array('session.hash_function', '7.1', array(147, 148), '7.0'),
             array('session.hash_bits_per_character', '7.1', array(150, 151), '7.0'),
+        );
+    }
+
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            array(57),
+            array(58),
+            array(133),
+            array(155),
+            array(156),
+            array(159),
+            array(160),
+            array(163),
+            array(164),
         );
     }
 
