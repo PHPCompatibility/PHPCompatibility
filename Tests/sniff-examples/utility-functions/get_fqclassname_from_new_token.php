@@ -19,6 +19,9 @@ new DateTime;
 new \DateTime;
 new \AnotherTesting\DateTime();
 
-// Variant on issue #205
+// Variant on issue #205.
 $className = 'DateTime';
 new $className;
+
+// Issue #338 - no infinite loop on unfinished code.
+$var = new

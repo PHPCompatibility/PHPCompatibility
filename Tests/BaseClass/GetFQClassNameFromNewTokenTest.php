@@ -67,7 +67,8 @@ class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
             array(104, '\DateTime'),
             array(109, '\DateTime'),
             array(115, '\AnotherTesting\DateTime'),
-            array(133, ''),
+            array(134, ''),
+            array(145, ''),
         );
     }
 
