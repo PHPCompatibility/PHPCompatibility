@@ -24,7 +24,7 @@ namespace foobar {
 
     class foobar {
         function foobar() {
-            echo 'I am just the bar method';
+            echo 'I am just the foobar method';
         }
     }
 }
