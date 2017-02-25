@@ -26,18 +26,20 @@ class ShortArraySniffTest extends BaseSniffTest
      *
      * @dataProvider dataViolation
      *
-     * @param int $line The line number.
+     * @param int $lineOpen   The line number for the short array opener.
+     * @param int $lineCloser The line number for the short array closer.
      *
      * @return void
      */
-    public function testViolation($line)
+    public function testViolation($lineOpen, $lineClose)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertError($file, $line, 'Short array syntax (open) is available since 5.4');
-        $this->assertError($file, $line, 'Short array syntax (close) is available since 5.4');
+        $this->assertError($file, $lineOpen, 'Short array syntax (open) is available since 5.4');
+        $this->assertError($file, $lineClose, 'Short array syntax (close) is available since 5.4');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $line);
+        $this->assertNoViolation($file, $lineOpen);
+        $this->assertNoViolation($file, $lineClose);
     }
 
     /**
@@ -50,9 +52,10 @@ class ShortArraySniffTest extends BaseSniffTest
     public function dataViolation()
     {
         return array(
-            array(12),
-            array(13),
-            array(14),
+            array(12, 12),
+            array(13, 13),
+            array(14, 14),
+            array(16, 19),
         );
     }
 
