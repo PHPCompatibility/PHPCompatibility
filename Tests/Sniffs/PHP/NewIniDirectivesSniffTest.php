@@ -24,39 +24,6 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/new_ini_directives.php';
 
     /**
-     * Test functions that shouldn't be flagged by this sniff
-     *
-     * @dataProvider dataFunctionThatShouldntBeFlagged
-     *
-     * @param int $line The line number.
-     *
-     * @return void
-     */
-    public function testFunctionThatShouldntBeFlagged($line)
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.1');
-        $this->assertNoViolation($file, $line);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testFunctionThatShouldntBeFlagged()
-     *
-     * @return array
-     */
-    public function dataFunctionThatShouldntBeFlagged()
-    {
-        return array(
-            array(2),
-            array(3),
-            array(4),
-            array(5),
-        );
-    }
-
-
-    /**
      * testNewIniDirectives
      *
      * @dataProvider dataNewIniDirectives
@@ -265,6 +232,39 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         return array(
             array('fbsql.batchsize', '5.1', 'fbsql.batchSize', array(167, 168), '5.0'),
             array('zend.detect_unicode', '5.4', 'detect_unicode', array(260, 261), '5.3'),
+        );
+    }
+
+
+    /**
+     * Test functions that shouldn't be flagged by this sniff
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            array(2),
+            array(3),
+            array(4),
+            array(5),
         );
     }
 

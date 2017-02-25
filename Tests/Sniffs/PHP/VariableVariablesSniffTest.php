@@ -60,15 +60,15 @@ class VariableVariablesSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositive
+     * testNoFalsePositives
      *
-     * @dataProvider dataNoFalsePositive
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositive($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
@@ -77,11 +77,11 @@ class VariableVariablesSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testNoFalsePositive()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataNoFalsePositive()
+    public function dataNoFalsePositives()
     {
         return array(
             array(11),

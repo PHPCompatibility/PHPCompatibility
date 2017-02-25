@@ -57,26 +57,26 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
     /**
      * Test valid methods with the same name as the class.
      *
-     * @dataProvider dataValidMethods
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line Line number where the error should occur.
      *
      * @return void
      */
-    public function testValidMethods($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
     /**
-     * dataValidMethods
+     * dataNoFalsePositives
      *
-     * @see testValidMethods()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataValidMethods()
+    public function dataNoFalsePositives()
 	{
         $testCases = array(
             array(9),

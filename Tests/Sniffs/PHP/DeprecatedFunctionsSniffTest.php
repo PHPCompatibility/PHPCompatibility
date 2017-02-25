@@ -415,4 +415,47 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
         );
     }
 
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecated function version.
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $testCases = array(
+            array(134),
+            array(135),
+            // array(137), // Not yet accounted for in the code, uncomment when fixed.
+            array(138),
+            array(139),
+            array(140),
+            array(141),
+        );
+
+        // Add an additional testcase which will only be 'no violation' if namespaces are recognized.
+        if (version_compare(phpversion(), '5.3', '>=')) {
+            $testCases[] = array(136);
+        }
+
+        return $testCases;
+    }
+
 }

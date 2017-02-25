@@ -59,12 +59,13 @@ class DeprecatedNewReferenceSniffTest extends BaseSniffTest
         );
     }
 
+
     /**
-     * testNoReference
+     * testNoFalsePositives
      *
      * @return void
      */
-    public function testNoReference()
+    public function testNoFalsePositives()
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, 8);

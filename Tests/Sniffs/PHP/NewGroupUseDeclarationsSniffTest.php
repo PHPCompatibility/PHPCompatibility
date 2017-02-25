@@ -61,15 +61,15 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
 
 
     /**
-     * testValidUseDeclaration
+     * testNoFalsePositives
      *
-     * @dataProvider dataValidUseDeclaration
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testValidUseDeclaration($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, $line);
@@ -78,11 +78,11 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testValidUseDeclaration()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataValidUseDeclaration()
+    public function dataNoFalsePositives()
     {
         return array(
             array(4),

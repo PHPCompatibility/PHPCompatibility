@@ -77,7 +77,7 @@ class NewInterfacesSniffTest extends BaseSniffTest
      */
     public function testUnsupportedMethods()
     {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php');
+        $file = $this->sniffFile(self::TEST_FILE);
         $this->assertError($file, 8, 'Classes that implement interface Serializable do not support the method __sleep(). See http://php.net/serializable');
         $this->assertError($file, 9, 'Classes that implement interface Serializable do not support the method __wakeup(). See http://php.net/serializable');
     }
@@ -89,9 +89,40 @@ class NewInterfacesSniffTest extends BaseSniffTest
      */
     public function testCaseInsensitive()
     {
-        $file = $this->sniffFile('sniff-examples/new_interfaces.php', '5.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.0');
         $this->assertError($file, 20, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
         $this->assertError($file, 21, 'The built-in interface countable is not present in PHP version 5.0 or earlier');
+    }
+
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            array(24),
+            array(25),
+        );
     }
 
 }

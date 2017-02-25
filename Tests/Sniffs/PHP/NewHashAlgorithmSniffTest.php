@@ -69,15 +69,15 @@ class NewHashAlgorithmsSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoViolation
+     * testNoFalsePositives
      *
-     * @dataProvider dataNoViolation
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoViolation($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.0-99.0');
         $this->assertNoViolation($file, $line);
@@ -86,11 +86,11 @@ class NewHashAlgorithmsSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testNoViolation()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataNoViolation()
+    public function dataNoFalsePositives()
     {
         return array(
             array(6),

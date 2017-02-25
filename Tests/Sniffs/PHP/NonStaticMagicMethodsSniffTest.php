@@ -71,115 +71,6 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
         }
     }
 
-    /**
-     * testCorrectImplementation
-     *
-     * @dataProvider dataCorrectImplementation
-     *
-     * @param int  $line    The line number.
-     * @param bool $isTrait Whether to load the class/interface test file or the trait test file.
-     *
-     * @return void
-     */
-    public function testCorrectImplementation($line, $isTrait = false)
-    {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped();
-            return;
-        }
-
-        $file = $this->getTestFile($isTrait);
-        $this->assertNoViolation($file, $line);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testCorrectImplementation()
-     *
-     * @return array
-     */
-    public function dataCorrectImplementation()
-    {
-        return array(
-            /*
-             * nonstatic_magic_methods.php
-             */
-            // Plain class.
-            array(5),
-            array(6),
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            // Normal class.
-            array(18),
-            array(19),
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(24),
-            array(25),
-            array(26),
-            array(27),
-
-            // Alternative property order & stacked.
-            array(58),
-
-            // Plain interface.
-            array(71),
-            array(72),
-            array(73),
-            array(74),
-            array(75),
-            array(76),
-            array(77),
-            array(78),
-            array(79),
-            // Normal interface.
-            array(84),
-            array(85),
-            array(86),
-            array(87),
-            array(88),
-            array(89),
-            array(90),
-            array(91),
-            array(92),
-            array(93),
-
-            /*
-             * nonstatic_magic_methods_traits.php
-             */
-            // Plain trait.
-            array(5, true),
-            array(6, true),
-            array(7, true),
-            array(8, true),
-            array(9, true),
-            array(10, true),
-            array(11, true),
-            array(12, true),
-            array(13, true),
-            // Normal trait.
-            array(18, true),
-            array(19, true),
-            array(20, true),
-            array(21, true),
-            array(22, true),
-            array(23, true),
-            array(24, true),
-            array(25, true),
-            array(26, true),
-            array(27, true),
-
-        );
-    }
-
 
     /**
      * testWrongMethodVisibility
@@ -378,6 +269,116 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             // Trait.
             array('__callStatic', 49, true),
             array('__set_state', 50, true),
+
+        );
+    }
+
+
+    /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int  $line    The line number.
+     * @param bool $isTrait Whether to load the class/interface test file or the trait test file.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line, $isTrait = false)
+    {
+        if ($isTrait === true && self::$recognizesTraits === false) {
+            $this->markTestSkipped();
+            return;
+        }
+
+        $file = $this->getTestFile($isTrait);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            /*
+             * nonstatic_magic_methods.php
+             */
+            // Plain class.
+            array(5),
+            array(6),
+            array(7),
+            array(8),
+            array(9),
+            array(10),
+            array(11),
+            array(12),
+            array(13),
+            // Normal class.
+            array(18),
+            array(19),
+            array(20),
+            array(21),
+            array(22),
+            array(23),
+            array(24),
+            array(25),
+            array(26),
+            array(27),
+
+            // Alternative property order & stacked.
+            array(58),
+
+            // Plain interface.
+            array(71),
+            array(72),
+            array(73),
+            array(74),
+            array(75),
+            array(76),
+            array(77),
+            array(78),
+            array(79),
+            // Normal interface.
+            array(84),
+            array(85),
+            array(86),
+            array(87),
+            array(88),
+            array(89),
+            array(90),
+            array(91),
+            array(92),
+            array(93),
+
+            /*
+             * nonstatic_magic_methods_traits.php
+             */
+            // Plain trait.
+            array(5, true),
+            array(6, true),
+            array(7, true),
+            array(8, true),
+            array(9, true),
+            array(10, true),
+            array(11, true),
+            array(12, true),
+            array(13, true),
+            // Normal trait.
+            array(18, true),
+            array(19, true),
+            array(20, true),
+            array(21, true),
+            array(22, true),
+            array(23, true),
+            array(24, true),
+            array(25, true),
+            array(26, true),
+            array(27, true),
 
         );
     }

@@ -86,15 +86,15 @@ class LateStaticBindingSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoViolation
+     * testNoFalsePositives
      *
-     * @dataProvider dataNoViolation
+     * @dataProvider dataNoFalsePositives
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoViolation($line)
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertNoViolation($file, $line);
@@ -103,11 +103,11 @@ class LateStaticBindingSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testNoViolation()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public function dataNoViolation()
+    public function dataNoFalsePositives()
     {
         return array(
             array(7),

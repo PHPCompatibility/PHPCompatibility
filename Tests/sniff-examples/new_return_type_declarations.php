@@ -18,3 +18,7 @@ function foo($a): void {}
 
 // Anonymous function.
 function($a): callable {}
+
+// OK: no return type hint.
+function foo($a) {}
+function ($a) {}

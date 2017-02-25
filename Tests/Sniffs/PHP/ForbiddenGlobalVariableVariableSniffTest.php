@@ -58,7 +58,7 @@ class ForbiddenGlobalVariableVariableSniffTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositive
+     * testNoFalsePositives
      *
      * @dataProvider dataNoFalsePositives
      *
