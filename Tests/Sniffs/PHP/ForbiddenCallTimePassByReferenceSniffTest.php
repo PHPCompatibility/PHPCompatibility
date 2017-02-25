@@ -47,7 +47,7 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
      *
      * @dataProvider dataForbiddenCallTimePassByReference
      *
-     * @param int    $line  Line number where the error should occur.
+     * @param int $line Line number where the error should occur.
      *
      * @return void
      */

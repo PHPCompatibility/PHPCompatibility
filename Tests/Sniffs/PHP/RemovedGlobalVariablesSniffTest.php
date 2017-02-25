@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class RemovedGlobalVariablesSniffTest  extends BaseSniffTest
+class RemovedGlobalVariablesSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/removed_global_variables.php';
 

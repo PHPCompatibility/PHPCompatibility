@@ -35,7 +35,7 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile('sniff-examples/forbidden_empty_list_assignment.php', '7.0');
-        $this->assertError($file, $line, "Empty list() assignments are not allowed since PHP 7.0");
+        $this->assertError($file, $line, 'Empty list() assignments are not allowed since PHP 7.0');
     }
 
     /**
