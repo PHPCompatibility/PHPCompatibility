@@ -30,25 +30,22 @@ class LongArraysSniffTest extends BaseSniffTest
      *
      * @param string $longVariable Variable name.
      * @param array  $lines        The line numbers in the test file which apply to this variable.
-     * @param string $deprecatedIn The PHP version in which the variable became deprecated.
-     * @param string $removedIn    The PHP version in which the variable was removed.
-     * @param string $okVersion    A PHP version in which the variable was still ok to be used.
      *
      * @return void
      */
-    public function testLongVariable($longVariable, $lines, $deprecatedIn, $removedIn, $okVersion)
+    public function testLongVariable($longVariable, $lines)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in PHP {$deprecatedIn}; Found '{$longVariable}'");
+            $this->assertWarning($file, $line, "The use of long predefined variables has been deprecated in PHP 5.3; Found '{$longVariable}'");
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "The use of long predefined variables has been deprecated in PHP {$deprecatedIn} and removed in PHP {$removedIn}; Found '{$longVariable}'");
+            $this->assertError($file, $line, "The use of long predefined variables has been deprecated in PHP 5.3 and removed in PHP 5.4; Found '{$longVariable}'");
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -64,13 +61,13 @@ class LongArraysSniffTest extends BaseSniffTest
     public function dataLongVariable()
     {
         return array(
-            array('$HTTP_POST_VARS', array(3, 24), '5.3', '5.4', '5.2'),
-            array('$HTTP_GET_VARS', array(4, 25, 42), '5.3', '5.4', '5.2'),
-            array('$HTTP_ENV_VARS', array(5, 26, 43), '5.3', '5.4', '5.2'),
-            array('$HTTP_SERVER_VARS', array(6, 27), '5.3', '5.4', '5.2'),
-            array('$HTTP_COOKIE_VARS', array(7, 28), '5.3', '5.4', '5.2'),
-            array('$HTTP_SESSION_VARS', array(8, 29), '5.3', '5.4', '5.2'),
-            array('$HTTP_POST_FILES', array(9, 30), '5.3', '5.4', '5.2'),
+            array('$HTTP_POST_VARS', array(3, 24)),
+            array('$HTTP_GET_VARS', array(4, 25, 42)),
+            array('$HTTP_ENV_VARS', array(5, 26, 43)),
+            array('$HTTP_SERVER_VARS', array(6, 27)),
+            array('$HTTP_COOKIE_VARS', array(7, 28)),
+            array('$HTTP_SESSION_VARS', array(8, 29)),
+            array('$HTTP_POST_FILES', array(9, 30)),
         );
     }
 
@@ -118,4 +115,5 @@ class LongArraysSniffTest extends BaseSniffTest
             array(39),
         );
     }
+
 }
