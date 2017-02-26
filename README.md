@@ -34,7 +34,7 @@ Thanks to all contributors for their valuable contributions.
 Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
-Installation (method 1)
+Installation using PEAR (method 1)
 -----------------------
 
 * Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer`.
@@ -57,6 +57,18 @@ Installation in Composer project (method 2)
 ```
 * Run `composer update --lock` to install both phpcs and PHPCompatibility coding standard.
 * Use the coding standard with `./vendor/bin/phpcs --standard=PHPCompatibility`
+
+
+Installation via a git check-out to an arbitrary directory (method 3)
+-----------------------
+
+* Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation) (Composer, PEAR, Phar file, Git checkout).
+* Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into an arbitrary directory.
+* Add the path to the directory **above** the directory in which you cloned the PHPCompability repo to the PHPCS configuration using the below command.
+   I.e. if you cloned the `PHPCompatibility` repository to the `/my/custom/standards/PHPCompatibility` directory, you will need to add the `/my/custom/standards` directory to the PHPCS [`installed_paths` configuration variable](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
+```bash
+phpcs --config-set installed_paths /path/to/dir/above
+```
 
 
 Using the compatibility sniffs
