@@ -708,15 +708,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return '';
         }
 
-        $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_NAMESPACE,
-                 T_WHITESPACE,
-                );
-
         $start = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-
         if ($start === false) {
             return '';
         }
@@ -725,6 +717,18 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         if ($tokens[$start]['code'] === T_VARIABLE) {
             return '';
         }
+
+        // Bow out if the next token is the class keyword.
+        if ($tokens[$start]['type'] === 'T_ANON_CLASS' || $tokens[$start]['code'] === T_CLASS) {
+            return '';
+        }
+
+        $find = array(
+                 T_NS_SEPARATOR,
+                 T_STRING,
+                 T_NAMESPACE,
+                 T_WHITESPACE,
+                );
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
@@ -754,7 +758,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return '';
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_CLASS) {
+        if ($tokens[$stackPtr]['code'] !== T_CLASS && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS') {
             return '';
         }
 
@@ -818,7 +822,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                  T_WHITESPACE,
                 );
 
-        $start     = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
+        $start = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
+        if ($start === false) {
+            return '';
+        }
+
         $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
         $className = trim($className);
 
