@@ -18,7 +18,12 @@ The project aims to cover all PHP compatibility changes introduced since PHP 5.0
 
 Pull requests that check for compatibility issues in PHP4 code - in particular between PHP 4 and PHP 5.0 - are very welcome as there are still situations where people need help upgrading legacy systems. However, coverage for changes introduced before PHP 5.1 will remain patchy as sniffs for this are not actively being developed at this time.
 
-The sniffs are designed to give the same results regardless of which PHP version you are using to run CodeSniffer.  Therefore you should get consistent results independently of the PHP version used in your test environment.
+Requirements
+-------
+
+The sniffs are designed to give the same results regardless of which PHP version you are using to run CodeSniffer.  You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.3 or higher.
+
+PHP CodeSniffer 1.5.1 is required for 90% of the sniffs, PHPCS 2.6 or later is required for full support, notices may be thrown on older versions.
 
 Thank you
 ---------
@@ -32,7 +37,7 @@ Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sni
 Installation (method 1)
 -----------------------
 
-* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer` (PHP_CodeSniffer 1.5.1 is required for 90% of the sniffs, 2.6 or later is required for full support, notices may be thrown on older versions).
+* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer`.
 * Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into the `PHP/CodeSniffer/Standards/PHPCompatibility` directory.
 
 
