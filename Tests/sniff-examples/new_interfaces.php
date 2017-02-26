@@ -30,3 +30,8 @@ $b = new class implements Serializable {
     public function __sleep() {}
     public function __wakeup() {}
 }
+
+// Additional new interfaces.
+class MyTraversable implements Traversable {}
+class MyDateTimeInterface implements DateTimeInterface {}
+class MyThrowable implements Throwable {}

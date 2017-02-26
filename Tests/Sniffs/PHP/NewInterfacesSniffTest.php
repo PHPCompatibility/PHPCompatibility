@@ -68,6 +68,9 @@ class NewInterfacesSniffTest extends BaseSniffTest
             array('SplSubject', '5.0', array(12, 17), '5.1'),
             array('JsonSerializable', '5.3', array(13), '5.4'),
             array('SessionHandlerInterface', '5.3', array(14), '5.4'),
+            array('Traversable', '4.4', array(35), '5.0'),
+            array('DateTimeInterface', '5.4', array(36), '5.5'),
+            array('Throwable', '5.6', array(37), '7.0'),
         );
     }
 
