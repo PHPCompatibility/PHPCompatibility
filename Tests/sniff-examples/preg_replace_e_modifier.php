@@ -204,3 +204,8 @@ $this->value = preg_replace( $this->field['preg']['pattern'], $this->field['preg
 preg_replace("/dou$ble-quoted/e", $Replace, $Source); // Bad.
 preg_replace("/dou$ble-quoted/me$me", $Replace, $Source); // Bad.
 preg_replace("/double-quoted/$e", $Replace, $Source); // Ok.
+
+// Yet another false positive. Who the heck uses a quote character as a delimiter ?!?!?!?
+// https://wordpress.org/support/topic/false-positive-preg_replace-e-modifier/
+$code = preg_replace("'(?<![\$.a-zA-Z0-9_])while\('", '3#(', $code); // Ok.
+$code = preg_replace("'(?<![\$.a-zA-Z0-9_])while\('e", '3#(', $code); // Bad.

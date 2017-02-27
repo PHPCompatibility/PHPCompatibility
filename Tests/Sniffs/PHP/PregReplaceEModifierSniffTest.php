@@ -103,6 +103,9 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             // Interpolated variables.
             array(204),
             array(205),
+
+            // Quote as a delimiter.
+            array(211),
         );
     }
 
@@ -173,6 +176,9 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
 
             // Interpolated variables.
             array(206),
+
+            // Quote as a delimiter.
+            array(210),
         );
     }
 
