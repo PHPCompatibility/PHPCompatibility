@@ -184,15 +184,16 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         $errors   = $this->gatherErrors($file);
         $warnings = $this->gatherWarnings($file);
 
-        if (!count($errors) && !count($warnings)) {
+        if (empty($errors) && empty($warnings)) {
             return $this->assertTrue(true);
         }
 
-        if ($lineNumber == 0) {
+        if ($lineNumber === 0) {
+            $failMessage = 'Failed asserting no violations in file. Found ' . count($errors) . ' errors and ' . count($warnings) . ' warnings.';
             $allMessages = $errors + $warnings;
             // TODO: Update the fail message to give the tester some
             // indication of what the errors or warnings were
-            return $this->assertEmpty($allMessages, 'Failed asserting no violations in file');
+            return $this->assertEmpty($allMessages, $failMessage);
         }
 
         $encounteredMessages = array();
@@ -208,14 +209,9 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        if (!count($encounteredMessages)) {
-            return $this->assertTrue(true);
-        }
-
-        $failMessage = "Failed asserting no standards violation on line $lineNumber: "
-            . implode(', ', $encounteredMessages);
-
-        $this->assertEmpty($encounteredMessages, $failMessage);
+        $failMessage = "Failed asserting no standards violation on line $lineNumber. Found: \n"
+            . implode("\n", $encounteredMessages);
+        $this->assertCount(0, $encounteredMessages, $failMessage);
     }
 
     /**
