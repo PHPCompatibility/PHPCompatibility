@@ -45,7 +45,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testPow()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 5, "power operator (**) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 5, 'power operator (**) is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, 5);
@@ -59,7 +59,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testPowEquals()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 6, "power assignment operator (**=) is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 6, 'power assignment operator (**=) is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, 6);
@@ -73,7 +73,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testSpaceship()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertError($file, 12, "spaceship operator (<=>) is not present in PHP version 5.6 or earlier");
+        $this->assertError($file, 12, 'spaceship operator (<=>) is not present in PHP version 5.6 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, 12);
@@ -87,7 +87,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testCoalescing()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertError($file, 8, "null coalescing operator (??) is not present in PHP version 5.6 or earlier");
+        $this->assertError($file, 8, 'null coalescing operator (??) is not present in PHP version 5.6 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, 8);
@@ -101,7 +101,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testCoalesceEquals()
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertError($file, 10, "null coalesce equal operator (??=) is not present in PHP version 7.1 or earlier");
+        $this->assertError($file, 10, 'null coalesce equal operator (??=) is not present in PHP version 7.1 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '7.2');
         $this->assertNoViolation($file, 10);
@@ -115,7 +115,7 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testEllipsis()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 14, "variadic functions using ... is not present in PHP version 5.5 or earlier");
+        $this->assertError($file, 14, 'variadic functions using ... is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertNoViolation($file, 14);

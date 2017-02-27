@@ -45,8 +45,9 @@ class NewFunctionsSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
         }
+        $error        = "The function {$functionName}() is not present in PHP version {$lastVersionBefore} or earlier";
         foreach($lines as $line) {
-            $this->assertError($file, $line, "The function {$functionName}() is not present in PHP version {$lastVersionBefore} or earlier");
+            $this->assertError($file, $line, $error);
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);

@@ -37,9 +37,10 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      */
     public function testReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $error = "'{$keyword}' is a reserved keyword introduced in PHP version {$introducedIn} and cannot be invoked as a function";
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "'{$keyword}' is a reserved keyword introduced in PHP version {$introducedIn} and cannot be invoked as a function");
+            $this->assertError($file, $line, $error);
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);

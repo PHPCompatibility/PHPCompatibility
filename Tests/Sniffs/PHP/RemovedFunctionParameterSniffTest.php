@@ -50,8 +50,9 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
+        $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is removed since PHP {$removedIn}";
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "The \"{$parameterName}\" parameter for function {$functionName}() is removed since PHP {$removedIn}");
+            $this->assertError($file, $line, $error);
         }
     }
 
@@ -92,14 +93,16 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
             $this->assertNoViolation($file, $line);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        $file  = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn}";
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn}");
+            $this->assertWarning($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $file  = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}";
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
+            $this->assertError($file, $line, $error);
         }
     }
 

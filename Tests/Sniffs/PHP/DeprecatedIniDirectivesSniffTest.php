@@ -53,8 +53,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
+        $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}";
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}");
+            $this->assertWarning($file, $line, $error);
         }
 
         if (isset($removedVersion)){
@@ -63,8 +64,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}");
+        $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}";
+        $this->assertError($file, $lines[0], $error);
+        $this->assertWarning($file, $lines[1], $error);
     }
 
     /**
@@ -127,8 +129,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
         }
+        $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}";
         foreach($lines as $line) {
-            $this->assertWarning($file, $line, "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}");
+            $this->assertWarning($file, $line, $error);
         }
     }
 
@@ -155,7 +158,6 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('mcrypt.modes_dir', '7.1', array(138, 139), '7.0'),
         );
     }
-
 
 
     /**
@@ -186,8 +188,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}; Use '{$alternative}' instead");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}; Use '{$alternative}' instead");
+        $error        = "INI directive '{$iniName}' is removed since PHP {$removedIn}; Use '{$alternative}' instead";
+        $this->assertError($file, $lines[0], $error);
+        $this->assertWarning($file, $lines[1], $error);
     }
 
     /**
@@ -205,6 +208,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('mbstring.script_encoding', '5.4', 'zend.script_encoding', array(128, 129), '5.3'),
         );
     }
+
 
     /**
      * testRemovedDirectives
@@ -233,8 +237,9 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $removedIn);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is removed since PHP {$removedIn}");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is removed since PHP {$removedIn}");
+        $error        = "INI directive '{$iniName}' is removed since PHP {$removedIn}";
+        $this->assertError($file, $lines[0], $error);
+        $this->assertWarning($file, $lines[1], $error);
     }
 
     /**

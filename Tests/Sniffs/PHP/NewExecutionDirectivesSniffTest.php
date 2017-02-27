@@ -57,15 +57,17 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      */
     public function testNewExecutionDirective($directive, $lastVersionBefore, $lines, $okVersion, $conditionalVersion = null, $condition = null)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $file  = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $error = "Directive {$directive} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "Directive {$directive} is not present in PHP version {$lastVersionBefore} or earlier");
+            $this->assertError($file, $line, $error);
         }
 
         if (isset($conditionalVersion, $condition)) {
-            $file = $this->sniffFile(self::TEST_FILE, $conditionalVersion);
+            $file  = $this->sniffFile(self::TEST_FILE, $conditionalVersion);
+            $error = "Directive {$directive} is present in PHP version {$conditionalVersion} but will be disregarded unless PHP is compiled with {$condition}";
             foreach ($lines as $line) {
-                $this->assertWarning($file, $line, "Directive {$directive} is present in PHP version {$conditionalVersion} but will be disregarded unless PHP is compiled with {$condition}");
+                $this->assertWarning($file, $line, $error);
             }
         }
 

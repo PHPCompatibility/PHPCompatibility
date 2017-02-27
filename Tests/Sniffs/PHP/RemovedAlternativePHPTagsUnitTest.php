@@ -66,7 +66,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertError($file, $line, $type . ' style opening tags have been removed in PHP 7.0. Found "' . $snippet . '"');
+        $this->assertError($file, $line, "{$type} style opening tags have been removed in PHP 7.0. Found \"{$snippet}\"");
     }
 
     /**
@@ -116,7 +116,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
             // PHP 5.2 does not generate the snippet correctly.
             $warning = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: <%';
         } else {
-            $warning = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: ' . $snippet;
+            $warning = "Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: {$snippet}";
         }
         $this->assertWarning($file, $line, $warning);
     }

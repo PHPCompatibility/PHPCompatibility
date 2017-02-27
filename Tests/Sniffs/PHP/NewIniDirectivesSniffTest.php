@@ -45,9 +45,10 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier");
 
+        $error        = "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier";
+        $this->assertError($file, $lines[0], $error);
+        $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach( $lines as $line ) {
@@ -211,8 +212,9 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         else {
             $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
         }
-        $this->assertError($file, $lines[0], "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier. This directive was previously called '{$alternative}'.");
-        $this->assertWarning($file, $lines[1], "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier. This directive was previously called '{$alternative}'.");
+        $error        = "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier. This directive was previously called '{$alternative}'.";
+        $this->assertError($file, $lines[0], $error);
+        $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
         foreach($lines as $line) {

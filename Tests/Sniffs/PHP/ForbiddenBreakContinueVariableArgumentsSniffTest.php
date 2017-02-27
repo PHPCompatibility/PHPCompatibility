@@ -74,7 +74,7 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
      */
     public function testBreakAndContinueVariableArgument($line, $errorType)
     {
-        $this->assertError($this->_sniffFile, $line, 'Using ' . $errorType . ' on break or continue is forbidden since PHP 5.4');
+        $this->assertError($this->_sniffFile, $line, "Using {$errorType} on break or continue is forbidden since PHP 5.4");
     }
 
     /**
