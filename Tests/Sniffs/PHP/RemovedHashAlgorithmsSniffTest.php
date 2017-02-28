@@ -77,7 +77,7 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
     public function testRemovedHashAlgorithmsPbkdf2()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 25, "The salsa20 hash algorithm is removed since PHP 5.4");
+        $this->assertError($file, 25, 'The salsa20 hash algorithm is removed since PHP 5.4');
     }
 
 

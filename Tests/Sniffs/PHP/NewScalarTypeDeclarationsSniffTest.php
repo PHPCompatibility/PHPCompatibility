@@ -111,7 +111,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
     public function testInvalidSelfTypeDeclaration($line)
     {
         $file = $this->sniffFile(self::TEST_FILE);
-        $this->assertError($file, $line, "'self' type cannot be used outside of class scope");
+        $this->assertError($file, $line, '\'self\' type cannot be used outside of class scope');
     }
 
     /**

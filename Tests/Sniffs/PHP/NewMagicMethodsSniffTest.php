@@ -128,9 +128,10 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait, $lastVersionBefore);
+        $file  = $this->getTestFile($isTrait, $lastVersionBefore);
+        $error = "The method {$methodName}() was not magical in PHP version {$lastVersionBefore} and earlier. The associated magic functionality will not be invoked.";
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The method {$methodName}() was not magical in PHP version {$lastVersionBefore} and earlier. The associated magic functionality will not be invoked.");
+            $this->assertWarning($file, $line, $error);
         }
 
         $file = $this->getTestFile($isTrait, $okVersion);
@@ -191,9 +192,10 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait, $lastVersionBefore);
+        $file  = $this->getTestFile($isTrait, $lastVersionBefore);
+        $error = "The method {$methodName}() was not magical in PHP version {$lastVersionBefore} and earlier. The associated magic functionality will not be invoked.";
         foreach ($lines as $line) {
-            $this->assertWarning($file, $line, "The method {$methodName}() was not magical in PHP version {$lastVersionBefore} and earlier. The associated magic functionality will not be invoked.");
+            $this->assertWarning($file, $line, $error);
         }
 
 		if (version_compare(PHP_CodeSniffer::VERSION, '2.5.1', '>=')) {
@@ -240,7 +242,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
         }
 
         $file = $this->getTestFile($isTrait, '5.1');
-        $this->assertWarning($file, $line, "The method __toString() was not truly magical in PHP version 5.1 and earlier. The associated magic functionality will only be called when directly combined with echo or print.");
+        $this->assertWarning($file, $line, 'The method __toString() was not truly magical in PHP version 5.1 and earlier. The associated magic functionality will only be called when directly combined with echo or print.');
 
         $file = $this->getTestFile($isTrait, '5.2');
         $this->assertNoViolation($file, $line);

@@ -59,7 +59,7 @@ class ValidIntegersSniffTest extends BaseSniffTest
     {
 		
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertError($file, $line, 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: ' . $binary);
+        $this->assertError($file, $line, "Binary integer literals were not present in PHP version 5.3 or earlier. Found: {$binary}");
 
 
 		if ($testNoViolation === true) {
@@ -106,7 +106,7 @@ class ValidIntegersSniffTest extends BaseSniffTest
      */
     public function testInvalidOctalInteger($line, $octal)
     {
-        $error = 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: ' . $octal;
+        $error = "Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: {$octal}";
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertWarning($file, $line, $error);

@@ -37,9 +37,10 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
      */
     public function testReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $error = "'{$keyword}' is a reserved keyword as of PHP version {$introducedIn} and cannot be used to name a class, interface or trait or as part of a namespace";
         foreach ($lines as $line) {
-            $this->assertError($file, $line, "'{$keyword}' is a reserved keyword as of PHP version {$introducedIn} and cannot be used to name a class, interface or trait or as part of a namespace");
+            $this->assertError($file, $line, $error);
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
