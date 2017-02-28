@@ -104,4 +104,30 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
 
     }//end tearDown()
 
+
+    /**
+     * Get the token pointer for a target token based on a specific comment found on the line before.
+     *
+     * @param string    $commentString The comment to look for.
+     * @param int|array $tokenType     The type of token(s) to look for.
+     *
+     * @return int
+     */
+    public function getTargetToken($commentString, $tokenType)
+    {
+        $start   = ($this->_phpcsFile->numTokens - 1);
+        $comment = $this->_phpcsFile->findPrevious(
+            T_COMMENT,
+            $start,
+            null,
+            false,
+            $commentString
+        );
+
+        return $this->_phpcsFile->findNext(
+            $tokenType,
+            ($comment + 1)
+        );
+    }
+
 }
