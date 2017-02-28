@@ -105,19 +105,19 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
     }//end process()
 
 
-	/**
+    /**
      * Analyse a potential regex pattern for usage of the /e modifier.
      *
      * @param array                $pattern      Array containing the start and end token
-	 *                                           pointer of the potential regex pattern and
-	 *                                           the raw string value of the pattern.
+     *                                           pointer of the potential regex pattern and
+     *                                           the raw string value of the pattern.
      * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                  $stackPtr     The position of the current token in the
      *                                           stack passed in $tokens.
      * @param string               $functionName The function which contained the pattern.
      *
      * @return void
-	 */
+     */
     protected function processRegexPattern($pattern, $phpcsFile, $stackPtr, $functionName)
     {
         $tokens = $phpcsFile->getTokens();
@@ -137,8 +137,11 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
                 $regex .= trim($content);
             }
         }
+
         // Deal with multi-line regexes which were broken up in several string tokens.
-        $regex = $this->stripQuotes($regex);
+        if ($tokens[$pattern['start']]['line'] !== $tokens[$pattern['end']]['line']) {
+            $regex = $this->stripQuotes($regex);
+        }
 
         if ($regex === '') {
             // No string token found in the first parameter, so skip it (e.g. if variable passed in).
