@@ -306,7 +306,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
 
 
     /**
-     * Check whether a value is valid encoding.
+     * Check whether a value is a valid encoding.
      *
      * Callback function to test whether the value for an execution directive is valid.
      *
@@ -316,22 +316,17 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
      */
     protected function validEncoding($value)
     {
-        $encodings = array();
-        if (function_exists('mb_list_encodings')) {
+        static $encodings;
+        if (isset($encodings) === false && function_exists('mb_list_encodings')) {
             $encodings = mb_list_encodings();
         }
 
-        if (empty($encodings)) {
+        if (empty($encodings) || is_array($encodings) === false) {
             // If we can't test the encoding, let it pass through.
             return true;
         }
 
-        if (in_array($value, $encodings, true)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return in_array($value, $encodings, true);
     }
 
 
