@@ -876,7 +876,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $previousNSToken = $phpcsFile->findPrevious(T_NAMESPACE, $previousNSToken -1);
 
             // Stop if we encounter a scoped namespace declaration as we already know we're not in one.
-            if (empty($tokens[$previousNSToken]['scope_condition']) === false && $tokens[$previousNSToken]['scope_condition'] = $previousNSToken) {
+            if (empty($tokens[$previousNSToken]['scope_condition']) === false && $tokens[$previousNSToken]['scope_condition'] === $previousNSToken) {
                 break;
             }
             $namespace = $this->getDeclaredNamespaceName($phpcsFile, $previousNSToken);
