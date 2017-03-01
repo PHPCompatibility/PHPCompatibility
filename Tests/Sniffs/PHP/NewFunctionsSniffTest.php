@@ -65,8 +65,9 @@ class NewFunctionsSniffTest extends BaseSniffTest
      */
     public function dataNewFunction() {
         return array(
-            array('array_fill_keys', '5.1', array(12, 13), '5.3'),
-            array('error_get_last', '5.1', array(14), '5.3'),
+            array('array_fill_keys', '5.1', array(12), '5.2'),
+            array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.
+            array('error_get_last', '5.1', array(14), '5.2'),
             array('image_type_to_extension', '5.1', array(15), '5.2'),
             array('memory_get_peak_usage', '5.1', array(16), '5.2'),
             array('sys_get_temp_dir', '5.1', array(17), '5.2'),

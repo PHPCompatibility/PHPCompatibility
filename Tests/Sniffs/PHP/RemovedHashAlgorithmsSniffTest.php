@@ -62,22 +62,8 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
             array('salsa10', '5.4', 20, '5.3'),
             array('salsa10', '5.4', 22, '5.3'),
             array('salsa10', '5.4', 23, '5.3'),
+            array('salsa20', '5.4', 25, '5.3'),
         );
-    }
-
-
-    /**
-     * testRemovedHashAlgorithmsPbkdf2
-     *
-     * As the function hash_pbkdf2() itself was only introduced in PHP 5.5, we cannot test the noViolation case
-     * (as it would still show an error for use of a new function).
-     *
-     * return void
-     */
-    public function testRemovedHashAlgorithmsPbkdf2()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 25, 'The salsa20 hash algorithm is removed since PHP 5.4');
     }
 
 

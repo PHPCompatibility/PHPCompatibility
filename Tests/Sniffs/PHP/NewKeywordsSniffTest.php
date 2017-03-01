@@ -208,7 +208,8 @@ class NewKeywordsSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, 49, '"callable" keyword is not present in PHP version 5.3 or earlier');
 
-        // Not testing no violations as the ForbiddenNames sniff will also kick in.
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, 49);
     }
 
     /**

@@ -131,6 +131,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array(6),
             array(7),
             array(8),
+            array(9),
         );
     }
 }
