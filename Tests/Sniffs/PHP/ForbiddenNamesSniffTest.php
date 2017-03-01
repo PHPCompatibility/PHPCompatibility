@@ -60,7 +60,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function usecaseProvider()
     {
-        $data = array(
+        return array(
+            array('namespace'),
             array('use'),
             array('use-as'),
             array('class'),
@@ -79,12 +80,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('interface'),
             array('interface-extends'),
         );
-        if (version_compare(phpversion(), '5.3', '>=')) {
-            $data[] = array('namespace');
-        }
-
-        return $data;
     }
+
 
     /**
      * testCorrectUsageOfKeywords
