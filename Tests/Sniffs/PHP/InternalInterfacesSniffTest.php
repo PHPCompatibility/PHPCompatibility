@@ -123,4 +123,9 @@ class InternalInterfacesSniffTest extends BaseSniffTest
         );
     }
 
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff is version independent.
+     */
+
 }

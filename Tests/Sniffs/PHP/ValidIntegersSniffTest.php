@@ -141,4 +141,10 @@ class ValidIntegersSniffTest extends BaseSniffTest
         $this->assertNoViolation($file, 12);
     }
 
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
+     * about invalid integers independently of the testVersion.
+     */
+
 }

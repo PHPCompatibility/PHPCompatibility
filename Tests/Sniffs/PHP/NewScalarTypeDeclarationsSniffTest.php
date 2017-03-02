@@ -215,4 +215,11 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
             array(49),
         );
     }
+
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw errors
+     * for invalid type hints and incorrect usage.
+     */
+
 }

@@ -182,5 +182,9 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 25);
     }
 
-}
 
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as the directive value checks are version independent.
+     */
+
+}
