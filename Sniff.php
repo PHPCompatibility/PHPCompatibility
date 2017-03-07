@@ -56,29 +56,31 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     );
 
 
-/* The testVersion configuration variable may be in any of the following formats:
- * 1) Omitted/empty, in which case no version is specified.  This effectively
- *    disables all the checks provided by this standard.
- * 2) A single PHP version number, e.g. "5.4" in which case the standard checks that
- *    the code will run on that version of PHP (no deprecated features or newer
- *    features being used).
- * 3) A range, e.g. "5.0-5.5", in which case the standard checks the code will run
- *    on all PHP versions in that range, and that it doesn't use any features that
- *    were deprecated by the final version in the list, or which were not available
- *    for the first version in the list.
- * PHP version numbers should always be in Major.Minor format.  Both "5", "5.3.2"
- * would be treated as invalid, and ignored.
- * This standard doesn't support checking against PHP4, so the minimum version that
- * is recognised is "5.0".
- */
-
+    /**
+     * Get the testVersion configuration variable.
+     *
+     * The testVersion configuration variable may be in any of the following formats:
+     * 1) Omitted/empty, in which case no version is specified. This effectively
+     *    disables all the checks for new PHP features provided by this standard.
+     * 2) A single PHP version number, e.g. "5.4" in which case the standard checks that
+     *    the code will run on that version of PHP (no deprecated features or newer
+     *    features being used).
+     * 3) A range, e.g. "5.0-5.5", in which case the standard checks the code will run
+     *    on all PHP versions in that range, and that it doesn't use any features that
+     *    were deprecated by the final version in the list, or which were not available
+     *    for the first version in the list.
+     * PHP version numbers should always be in Major.Minor format.  Both "5", "5.3.2"
+     * would be treated as invalid, and ignored.
+     *
+     * @return array $arrTestVersions will hold an array containing min/max version
+     *               of PHP that we are checking against (see above).  If only a
+     *               single version number is specified, then this is used as
+     *               both the min and max.
+     *
+     * @throws PHP_CodeSniffer_Exception If testVersion is invalid.
+     */
     private function getTestVersion()
     {
-        /**
-         * var $arrTestVersions will hold an array containing min/max version of PHP
-         *   that we are checking against (see above).  If only a single version
-         *   number is specified, then this is used as both the min and max.
-         */
         static $arrTestVersions = array();
 
         $testVersion = trim(PHP_CodeSniffer::getConfigData('testVersion'));
@@ -114,6 +116,19 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
     }
 
+
+    /**
+     * Check whether a specific PHP version is equal to or higher than the maximum
+     * supported PHP version as provided by the user in `testVersion`.
+     *
+     * Should be used when sniffing for *old* PHP features (deprecated/removed).
+     *
+     * @param string $phpVersion A PHP version number in 'major.minor' format.
+     *
+     * @return bool True if testVersion has not been provided or if the PHP version
+     *              is equal to or higher than the highest supported PHP version
+     *              in testVersion. False otherwise.
+     */
     public function supportsAbove($phpVersion)
     {
         $testVersion = $this->getTestVersion();
@@ -128,6 +143,19 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
     }//end supportsAbove()
 
+
+    /**
+     * Check whether a specific PHP version is equal to or lower than the minimum
+     * supported PHP version as provided by the user in `testVersion`.
+     *
+     * Should be used when sniffing for *new* PHP features.
+     *
+     * @param string $phpVersion A PHP version number in 'major.minor' format.
+     *
+     * @return bool True if the PHP version is equal to or lower than the lowest
+     *              supported PHP version in testVersion.
+     *              False otherwise or if no testVersion is provided.
+     */
     public function supportsBelow($phpVersion)
     {
         $testVersion = $this->getTestVersion();
