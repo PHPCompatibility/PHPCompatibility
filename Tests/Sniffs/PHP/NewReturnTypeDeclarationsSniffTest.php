@@ -83,7 +83,7 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

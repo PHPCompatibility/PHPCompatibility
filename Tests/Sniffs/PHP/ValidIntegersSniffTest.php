@@ -23,26 +23,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/valid_integers.php';
 
     /**
-     * Sniffed file
-     *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * Set up the test file for some of these unit tests.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
-    }
-
-
-    /**
      * testBinaryInteger
      *
      * @dataProvider dataBinaryInteger
@@ -90,7 +70,8 @@ class ValidIntegersSniffTest extends BaseSniffTest
      */
     public function testInvalidBinaryInteger()
     {
-        $this->assertWarning($this->_sniffFile, 4, 'Invalid binary integer detected. Found: 0b0123456');
+        $file = $this->sniffFile(self::TEST_FILE); // Message will be shown independently of testVersion.
+        $this->assertWarning($file, 4, 'Invalid binary integer detected. Found: 0b0123456');
     }
 
 
@@ -108,7 +89,7 @@ class ValidIntegersSniffTest extends BaseSniffTest
     {
         $error = "Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: {$octal}";
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertWarning($file, $line, $error);
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
@@ -137,7 +118,8 @@ class ValidIntegersSniffTest extends BaseSniffTest
      * @return void
      */
     public function testValidOctalInteger() {
-        $this->assertNoViolation($this->_sniffFile, 6);
+        $file = $this->sniffFile(self::TEST_FILE, '4.0-99.0');
+        $this->assertNoViolation($file, 6);
     }
 
 
@@ -150,7 +132,7 @@ class ValidIntegersSniffTest extends BaseSniffTest
     {
         $error = 'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: \'0xaa78b5\'';
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
         $this->assertWarning($file, 11, $error);
         $this->assertNoViolation($file, 12);
 

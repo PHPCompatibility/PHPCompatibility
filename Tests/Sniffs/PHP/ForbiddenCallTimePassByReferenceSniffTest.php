@@ -22,25 +22,6 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/call_time_pass_by_reference.php';
 
-    /**
-     * Sniffed file
-     *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * Set up the test file for this unit test.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
-    }
-
 
     /**
      * testForbiddenCallTimePassByReference
@@ -95,7 +76,8 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $this->assertNoViolation($this->_sniffFile, $line);
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, $line);
     }
 
     /**

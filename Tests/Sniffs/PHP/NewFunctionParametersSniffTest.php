@@ -163,7 +163,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('str_word_count', 'charlist', '5.0', array(87), '5.1'),
             array('substr_count', 'offset', '5.0', array(88), '5.1'),
             array('substr_count', 'length', '5.0', array(88), '5.1'),
-            array('sybase_connect', 'new', '5.2', array(89), '5.2.17'),
+            array('sybase_connect', 'new', '5.2', array(89), '5.3'),
             array('timezone_transitions_get', 'timestamp_begin', '5.2', array(90), '5.3'),
             array('timezone_transitions_get', 'timestamp_end', '5.2', array(90), '5.3'),
             array('timezone_identifiers_list', 'what', '5.2', array(91), '5.3'),
@@ -186,7 +186,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

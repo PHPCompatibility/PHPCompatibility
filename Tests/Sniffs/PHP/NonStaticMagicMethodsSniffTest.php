@@ -58,16 +58,17 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
      * mixed in one file anyway, so this issue for which this is a work-around,
      * should not cause real world issues anyway.}}
      *
-     * @param bool $isTrait Whether to load the class/interface test file or the trait test file.
+     * @param bool   $isTrait     Whether to load the class/interface test file or the trait test file.
+     * @param string $testVersion Value of 'testVersion' to set on PHPCS object.
      *
      * @return PHP_CodeSniffer_File File object|false
      */
-    protected function getTestFile($isTrait) {
+    protected function getTestFile($isTrait, $testVersion = null) {
         if ($isTrait === false) {
-            return $this->sniffFile('sniff-examples/nonstatic_magic_methods.php');
+            return $this->sniffFile('sniff-examples/nonstatic_magic_methods.php', $testVersion);
         }
         else {
-            return $this->sniffFile('sniff-examples/nonstatic_magic_methods_traits.php');
+            return $this->sniffFile('sniff-examples/nonstatic_magic_methods_traits.php', $testVersion);
         }
     }
 
@@ -92,7 +93,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait);
+        $file = $this->getTestFile($isTrait, '5.3-99.0');
         $this->assertError($file, $line, "Visibility for magic method {$methodName} must be {$desiredVisibility}. Found: {$testVisibility}");
     }
 
@@ -169,7 +170,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait);
+        $file = $this->getTestFile($isTrait, '5.3-99.0');
         $this->assertError($file, $line, "Magic method {$methodName} cannot be defined as static.");
     }
 
@@ -238,7 +239,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait);
+        $file = $this->getTestFile($isTrait, '5.3-99.0');
         $this->assertError($file, $line, "Magic method {$methodName} must be defined as static.");
     }
 
@@ -291,7 +292,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->getTestFile($isTrait);
+        $file = $this->getTestFile($isTrait, '5.3-99.0');
         $this->assertNoViolation($file, $line);
     }
 

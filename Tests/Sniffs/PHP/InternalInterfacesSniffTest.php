@@ -38,6 +38,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
     {
         parent::setUp();
 
+        // Sniff file without testVersion as all checks run independently of testVersion being set.
         $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
     }
 

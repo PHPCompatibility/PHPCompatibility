@@ -87,7 +87,7 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High number beyond any newly introduced reserved words.
         $this->assertNoViolation($file, $line);
     }
 

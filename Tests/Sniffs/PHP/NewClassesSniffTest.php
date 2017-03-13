@@ -114,7 +114,7 @@ class NewClassesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(self::TEST_FILE, '5.1'); // TestVersion based on the specific classes being tested.
         $this->assertNoViolation($file, $line);
     }
 

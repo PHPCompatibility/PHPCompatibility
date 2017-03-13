@@ -84,7 +84,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      */
     public function testMagicMethodsThatShouldntBeFlagged($line)
     {
-        $file = $this->getTestFile(false, '5.0');
+        $file = $this->getTestFile(false, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

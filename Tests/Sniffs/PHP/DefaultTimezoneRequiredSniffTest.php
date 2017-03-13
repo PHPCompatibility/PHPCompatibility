@@ -33,7 +33,7 @@ class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
         // We'll supress this so PHPunit wont catch the warning
         @ini_set('date.timezone', false);
 
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
 
         $this->assertError($file, 1, 'Default timezone is required since PHP 5.4');
 

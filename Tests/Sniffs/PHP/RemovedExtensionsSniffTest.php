@@ -24,26 +24,6 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/removed_extensions.php';
 
     /**
-     * Sniffed file
-     *
-     * @var PHP_CodeSniffer_File
-     */
-    protected $_sniffFile;
-
-    /**
-     * Set up the test file for some of these unit tests.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
-    }
-
-
-    /**
      * testRemovedExtension
      *
      * @dataProvider dataRemovedExtension
@@ -287,7 +267,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 

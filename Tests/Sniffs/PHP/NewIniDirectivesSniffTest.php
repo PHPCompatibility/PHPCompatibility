@@ -249,7 +249,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.1');
+        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

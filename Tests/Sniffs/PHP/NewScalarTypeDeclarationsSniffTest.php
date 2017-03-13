@@ -77,7 +77,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
      */
     public function testInvalidTypeDeclaration($type, $alternative, $line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Lowest version in which this message will show.
         $this->assertError($file, $line, "'{$type}' is not a valid type declaration. Did you mean {$alternative} ?");
     }
 
@@ -110,7 +110,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
      */
     public function testInvalidSelfTypeDeclaration($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Lowest version in which this message will show.
         $this->assertError($file, $line, '\'self\' type cannot be used outside of class scope');
     }
 
@@ -197,7 +197,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0-7.1');
+        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

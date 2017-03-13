@@ -66,7 +66,7 @@ class NewMultiCatchSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0'); // Arbitrary pre-PHP 7.1 version.
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
     }
 

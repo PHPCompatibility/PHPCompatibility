@@ -67,7 +67,7 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertNoViolation($file, $line);
     }
 

@@ -77,7 +77,7 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.3'); // Version before earliest required/optional change.
         $this->assertNoViolation($file, $line);
     }
 

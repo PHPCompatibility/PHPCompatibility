@@ -79,7 +79,7 @@ class NewHashAlgorithmsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0-99.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
