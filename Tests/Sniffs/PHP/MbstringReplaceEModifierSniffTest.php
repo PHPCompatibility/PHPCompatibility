@@ -33,9 +33,6 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
      */
     public function testMbstringEModifier($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $line);
-
         $file = $this->sniffFile(self::TEST_FILE, '5.3-7.1');
         $this->assertWarning($file, $line, 'The Mbstring regex "e" modifier is deprecated since PHP 7.1.');
 
@@ -99,4 +96,17 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
             array(21),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file);
+    }
+
 }

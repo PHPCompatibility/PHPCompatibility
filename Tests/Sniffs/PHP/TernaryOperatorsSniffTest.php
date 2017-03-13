@@ -34,10 +34,8 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertError($file, $line, 'Middle may not be omitted from ternary operators in PHP < 5.3');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, $line);
     }
+
 
     /**
      * dataElvisOperator
@@ -63,6 +61,18 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertNoViolation($file, 5);
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file);
     }
 
 }

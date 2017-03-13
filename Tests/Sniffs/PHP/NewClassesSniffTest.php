@@ -134,4 +134,17 @@ class NewClassesSniffTest extends BaseSniffTest
             array(9),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
+    }
+
 }

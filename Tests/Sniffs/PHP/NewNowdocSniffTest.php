@@ -36,9 +36,6 @@ class NewNowdocSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertError($file, $line, 'Nowdocs are not present in PHP version 5.2 or earlier.');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -103,6 +100,18 @@ class NewNowdocSniffTest extends BaseSniffTest
         }
 
         return $data;
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file);
     }
 
 }

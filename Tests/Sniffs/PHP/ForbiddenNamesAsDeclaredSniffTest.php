@@ -114,4 +114,17 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
             array(16),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.6'); // Low version below the first introduced reserved word.
+        $this->assertNoViolation($file);
+    }
+
 }

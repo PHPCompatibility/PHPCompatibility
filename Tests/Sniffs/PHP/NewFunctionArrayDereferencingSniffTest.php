@@ -34,9 +34,6 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, $line, 'Function array dereferencing is not present in PHP version 5.3 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -88,4 +85,17 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
             array(19),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file);
+    }
+
 }

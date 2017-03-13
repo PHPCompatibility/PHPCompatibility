@@ -212,4 +212,21 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
         );
     }
 
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        // new_magic_methods.php
+        $file = $this->getTestFile(false, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
+
+        // new_magic_methods_traits.php
+        $file = $this->getTestFile(true, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
+    }
+
 }

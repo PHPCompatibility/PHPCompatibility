@@ -35,9 +35,6 @@ class NewMultiCatchSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Catching multiple exceptions within one statement is not supported in PHP 7.0 or earlier.');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -87,4 +84,17 @@ class NewMultiCatchSniffTest extends BaseSniffTest
             array(30), // Live coding.
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $this->assertNoViolation($file);
+    }
+
 }

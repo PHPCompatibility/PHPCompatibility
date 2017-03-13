@@ -30,20 +30,6 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
 
 
     /**
-     * testAllowedBreakAndContinueVariableArgument
-     *
-     * In PHP 5.3, none of the statements should give an error.
-     *
-     * @return void
-     */
-    public function testAllowedBreakAndContinueVariableArgument()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file);
-    }
-
-
-    /**
      * testBreakAndContinueVariableArgument
      *
      * @dataProvider dataBreakAndContinueVariableArgument
@@ -124,5 +110,17 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
             array(48),
         );
     }
-}
 
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file);
+    }
+
+}

@@ -35,11 +35,6 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
      */
     public function testParameterShadowSuperGlobal($superglobal, $line)
     {
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, $line);
-
-
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertError($file, $line, "Parameter shadowing super global ({$superglobal}) causes fatal error since PHP 5.4");
     }
@@ -98,6 +93,18 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
             array(16),
             array(17),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file);
     }
 
 }

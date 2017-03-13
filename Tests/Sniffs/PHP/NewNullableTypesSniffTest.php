@@ -35,9 +35,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Nullable return types are not supported in PHP 7.0 or earlier.');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -78,9 +75,6 @@ class NewNullableTypesSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Nullable type declarations are not supported in PHP 7.0 or earlier.');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -156,4 +150,17 @@ class NewNullableTypesSniffTest extends BaseSniffTest
             array(43),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $this->assertNoViolation($file);
+    }
+
 }

@@ -292,4 +292,16 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
         );
     }
 
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first deprecation.
+        $this->assertNoViolation($file);
+    }
+
 }
