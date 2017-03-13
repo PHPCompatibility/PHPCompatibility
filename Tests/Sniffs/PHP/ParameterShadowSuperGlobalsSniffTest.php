@@ -46,7 +46,8 @@ class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataParameterShadowSuperGlobals() {
+    public function dataParameterShadowSuperGlobals()
+    {
         return array(
             array('$GLOBALS', 4),
             array('$_SERVER', 5),

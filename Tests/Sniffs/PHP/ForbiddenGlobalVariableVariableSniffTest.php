@@ -23,7 +23,7 @@ class ForbiddenGlobalVariableVariableSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/forbidden_global_variable_variable.php';
 
     /**
-     * Verify that checking for a specific version works
+     * testGlobalVariableVariable
      *
      * @dataProvider dataGlobalVariableVariable
      *

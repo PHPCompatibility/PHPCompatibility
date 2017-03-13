@@ -43,7 +43,8 @@ class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenNegativeBitshift() {
+    public function dataForbiddenNegativeBitshift()
+    {
         return array(
             array(3),
             array(4),

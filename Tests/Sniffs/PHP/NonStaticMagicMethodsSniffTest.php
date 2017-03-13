@@ -63,11 +63,11 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
      *
      * @return PHP_CodeSniffer_File File object|false
      */
-    protected function getTestFile($isTrait, $testVersion = null) {
+    protected function getTestFile($isTrait, $testVersion = null)
+    {
         if ($isTrait === false) {
             return $this->sniffFile('sniff-examples/nonstatic_magic_methods.php', $testVersion);
-        }
-        else {
+        } else {
             return $this->sniffFile('sniff-examples/nonstatic_magic_methods_traits.php', $testVersion);
         }
     }

@@ -37,15 +37,14 @@ class ValidIntegersSniffTest extends BaseSniffTest
      */
     public function testBinaryInteger($line, $binary, $testNoViolation = true)
     {
-		
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, $line, "Binary integer literals were not present in PHP version 5.3 or earlier. Found: {$binary}");
 
 
-		if ($testNoViolation === true) {
-	        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-	        $this->assertNoViolation($file, $line);
-		}
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(self::TEST_FILE, '5.4');
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
@@ -55,7 +54,8 @@ class ValidIntegersSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataBinaryInteger() {
+    public function dataBinaryInteger()
+    {
         return array(
             array(3, '0b001001101', true),
             array(4, '0b01', false),
@@ -103,7 +103,8 @@ class ValidIntegersSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidOctalInteger() {
+    public function dataInvalidOctalInteger()
+    {
         return array(
             array(7, '08'),
             array(8, '038'),
@@ -117,7 +118,8 @@ class ValidIntegersSniffTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testValidOctalInteger() {
+    public function testValidOctalInteger()
+    {
         $file = $this->sniffFile(self::TEST_FILE, '4.0-99.0');
         $this->assertNoViolation($file, 6);
     }

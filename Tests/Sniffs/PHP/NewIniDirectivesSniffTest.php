@@ -200,7 +200,6 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
      * @param string $lastVersionBefore The last PHP version in which the ini directive was not present.
      * @param string $testVersion       Optional PHP version to test error/warning message with -
      *                                  if different from the $lastVersionBeforeversion.
-
      *
      * @return void
      */
@@ -239,7 +238,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
 
     /**
-     * Test functions that shouldn't be flagged by this sniff
+     * testNoFalsePositives
      *
      * @dataProvider dataNoFalsePositives
      *

@@ -49,7 +49,8 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedEModifier() {
+    public function dataDeprecatedEModifier()
+    {
         return array(
             // preg_replace()
             array(50),
@@ -129,7 +130,8 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             // No or only valid modifiers.
             array(9),

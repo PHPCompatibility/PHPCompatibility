@@ -63,48 +63,13 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      *
      * @return PHP_CodeSniffer_File File object|false
      */
-    protected function getTestFile($isTrait, $testVersion = null) {
+    protected function getTestFile($isTrait, $testVersion = null)
+    {
         if ($isTrait === false) {
             return $this->sniffFile('sniff-examples/new_magic_methods.php', $testVersion);
-        }
-        else {
+        } else {
             return $this->sniffFile('sniff-examples/new_magic_methods_traits.php', $testVersion);
         }
-    }
-
-
-    /**
-     * Test magic methods that shouldn't be flagged by this sniff.
-     *
-     * @dataProvider dataMagicMethodsThatShouldntBeFlagged
-     *
-     * @param int $line The line number.
-     *
-     * @return void
-     */
-    public function testMagicMethodsThatShouldntBeFlagged($line)
-    {
-        $file = $this->getTestFile(false, '4.4'); // Low version below the first addition.
-        $this->assertNoViolation($file, $line);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testMagicMethodsThatShouldntBeFlagged()
-     *
-     * @return array
-     */
-    public function dataMagicMethodsThatShouldntBeFlagged() {
-        return array(
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-        );
     }
 
 
@@ -147,7 +112,8 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewMagicMethod() {
+    public function dataNewMagicMethod()
+    {
         return array(
             // new_magic_methods.php
             array('__get', '4.4', array(22, 34), '5.0'),
@@ -201,7 +167,8 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedToStringMethod() {
+    public function dataChangedToStringMethod()
+    {
         return array(
             // new_magic_methods.php
             array(26),
@@ -209,6 +176,42 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 
             // new_magic_methods_traits.php
             array(9, true),
+        );
+    }
+
+
+    /**
+     * Test magic methods that shouldn't be flagged by this sniff.
+     *
+     * @dataProvider dataMagicMethodsThatShouldntBeFlagged
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testMagicMethodsThatShouldntBeFlagged($line)
+    {
+        $file = $this->getTestFile(false, '4.4'); // Low version below the first addition.
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testMagicMethodsThatShouldntBeFlagged()
+     *
+     * @return array
+     */
+    public function dataMagicMethodsThatShouldntBeFlagged()
+    {
+        return array(
+            array(8),
+            array(9),
+            array(10),
+            array(11),
+            array(12),
+            array(13),
+            array(14),
         );
     }
 

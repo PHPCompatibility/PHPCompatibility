@@ -101,7 +101,8 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             array(34),
             array(35),

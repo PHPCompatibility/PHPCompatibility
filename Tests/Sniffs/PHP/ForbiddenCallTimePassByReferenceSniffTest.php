@@ -48,7 +48,8 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenCallTimePassByReference() {
+    public function dataForbiddenCallTimePassByReference()
+    {
         return array(
             array(10), // Bad: call time pass by reference.
             array(14), // Bad: call time pass by reference with multi-parameter call.

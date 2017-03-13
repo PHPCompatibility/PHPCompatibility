@@ -44,7 +44,8 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataEmptyListAssignment() {
+    public function dataEmptyListAssignment()
+    {
         return array(
             array(3),
             array(4),
@@ -77,7 +78,8 @@ class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             array(13),
             array(14),

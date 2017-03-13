@@ -22,7 +22,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 {
 
     /**
-     * testNamespace
+     * testForbiddenNames
      *
      * @dataProvider usecaseProvider
      *

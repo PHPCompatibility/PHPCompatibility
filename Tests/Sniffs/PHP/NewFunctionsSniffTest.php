@@ -63,7 +63,8 @@ class NewFunctionsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewFunction() {
+    public function dataNewFunction()
+    {
         return array(
             array('array_fill_keys', '5.1', array(12), '5.2'),
             array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.

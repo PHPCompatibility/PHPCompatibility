@@ -23,7 +23,7 @@ class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/constant_arrays_using_define.php';
 
     /**
-     * Verify that checking for a specific version works
+     * testConstantArraysUsingDefine
      *
      * @dataProvider dataConstantArraysUsingDefine
      *

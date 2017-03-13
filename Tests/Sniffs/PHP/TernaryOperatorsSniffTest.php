@@ -44,7 +44,8 @@ class TernaryOperatorsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataElvisOperator() {
+    public function dataElvisOperator()
+    {
         return array(
             array(8),
             array(10),

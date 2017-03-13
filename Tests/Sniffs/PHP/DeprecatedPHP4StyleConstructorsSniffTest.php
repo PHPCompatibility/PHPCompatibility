@@ -43,7 +43,7 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      * @return array
      */
     public function dataIsDeprecated()
-	{
+    {
         return array(
             array(3),
             array(18),
@@ -74,7 +74,7 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      * @return array
      */
     public function dataNoFalsePositives()
-	{
+    {
         $testCases = array(
             array(9),
         );

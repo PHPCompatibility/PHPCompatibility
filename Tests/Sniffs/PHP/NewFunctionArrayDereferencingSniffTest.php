@@ -43,7 +43,8 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArrayDereferencing() {
+    public function dataArrayDereferencing()
+    {
         return array(
             array(3),
             array(14),
@@ -75,7 +76,8 @@ class NewFunctionArrayDereferencingSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             array(5),
             array(8),

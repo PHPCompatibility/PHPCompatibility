@@ -78,7 +78,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
             array('ovrimos', '5.1', array(44), '5.0'),
             array('pfpro', '5.3', array(46), '5.2'),
             array('sqlite', '5.4', array(48), '5.3'),
-//            array('sybase', '7.0', array(xx), '5.6'), sybase_ct ???
+            // array('sybase', '7.0', array(xx), '5.6'), sybase_ct ???
             array('yp', '5.1', array(54), '5.0'),
         );
     }
@@ -90,7 +90,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
      *
      * @param string $extensionName  Name of the PHP extension.
      * @param string $removedIn      The PHP version in which the extension was removed.
-     * @param string $alternative       An alternative extension.
+     * @param string $alternative    An alternative extension.
      * @param array  $lines          The line numbers in the test file which apply to this extension.
      * @param string $okVersion      A PHP version in which the extension was still present.
      * @param string $removedVersion Optional PHP version to test removal message with -
