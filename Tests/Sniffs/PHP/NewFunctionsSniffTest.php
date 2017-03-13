@@ -335,7 +335,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('gmp_rootrem', '5.5', array(280), '5.6'),
             array('hash_equals', '5.5', array(281), '5.6'),
             array('ldap_escape', '5.5', array(282), '5.6'),
-            array('ldap_modify_batch', '5.4.25', array(283), '5.6', '5.4'),
+            array('ldap_modify_batch', '5.4.25', array(283), '5.6', '5.4'), // Function introduced in 5.4.25 and 5.5.10.
             array('mysqli_get_links_stats', '5.5', array(284), '5.6'),
             array('openssl_get_cert_locations', '5.5', array(285), '5.6'),
             array('openssl_x509_fingerprint', '5.5', array(286), '5.6'),
