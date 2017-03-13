@@ -11,11 +11,11 @@
  * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
  * warnings
  *
- * @uses PHPUnit_Framework_TestCase
+ * @uses    PHPCompatibility_Testcase_Wrapper
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
-class BaseSniffTest extends PHPUnit_Framework_TestCase
+class BaseSniffTest extends PHPCompatibility_Testcase_Wrapper
 {
     /**
      * The PHP_CodeSniffer object used for testing.

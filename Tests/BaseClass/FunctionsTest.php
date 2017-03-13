@@ -12,11 +12,11 @@
  * @group utilityMiscFunctions
  * @group utilityFunctions
  *
- * @uses    PHPUnit_Framework_TestCase
+ * @uses    PHPCompatibility_Testcase_Wrapper
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
+class BaseClass_FunctionsTest extends PHPCompatibility_Testcase_Wrapper
 {
 
     /**
@@ -116,10 +116,16 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
-        $this->setExpectedException(
-            'PHPUnit_Framework_Error_Warning',
-            sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion)
-        );
+        if (method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException(
+                'PHPUnit_Framework_Error_Warning',
+                sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion)
+            );
+        } else {
+            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectExceptionMessage(sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion));
+        }
+
         $this->testGetTestVersion($testVersion, array(null, null));
     }
 
@@ -154,12 +160,17 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        $this->setExpectedException(
-            'PHPUnit_Framework_Error_Warning',
-            sprintf('Invalid testVersion setting: \'%s\'', $testVersion)
-        );
-        $this->testGetTestVersion($testVersion, array(null, null));
+        if (method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException(
+                'PHPUnit_Framework_Error_Warning',
+                sprintf('Invalid testVersion setting: \'%s\'', $testVersion)
+            );
+        } else {
+            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', $testVersion));
+        }
 
+        $this->testGetTestVersion($testVersion, array(null, null));
     }
 
     /**

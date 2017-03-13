@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="Tests/bootstrap.php" colors="true">
+<phpunit bootstrap="Tests/bootstrap.php" colors="true" backupGlobals="true">
     <testsuites>
         <testsuite name="PHPCompatibility Sniffs Tests">
             <directory>./Tests/</directory>
