@@ -124,9 +124,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertNoViolation($file, $line);
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertNoViolation($file, $line);
-
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
     }
