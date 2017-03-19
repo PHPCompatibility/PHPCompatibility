@@ -76,7 +76,7 @@ Using the compatibility sniffs
 * Use the coding standard with `phpcs --standard=PHPCompatibility`
 * You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
 * You can also specify a range of PHP versions that your code needs to support.  In this situation, compatibility issues that affect any of the PHP versions in that range will be reported:
-`--runtime-set testVersion 5.3-5.5`
+`--runtime-set testVersion 5.3-5.5`.  You can omit one or other part of the range if you want to support everything above/below a particular version (e.g. `--runtime-set testVersion 7.0-` to support PHP 7 and above).
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 

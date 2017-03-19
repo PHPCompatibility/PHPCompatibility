@@ -96,6 +96,8 @@ class BaseClass_FunctionsTest extends PHPCompatibility_Testcase_Wrapper
             array('7.0-7.5', array('7.0', '7.5')), // Range of versions.
             array('5.6-5.6', array('5.6', '5.6')), // Range of versions - min & max the same.
             array('4.0 - 99.0', array('4.0', '99.0')), // Range of versions with spaces around dash.
+            array('-5.6', array('4.0', '5.6')), // Range, with no minimum.
+            array('7.0-', array('7.0', '99.9')), // Range, with no maximum.
         );
     }
 

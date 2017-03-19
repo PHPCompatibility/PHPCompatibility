@@ -69,6 +69,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *    on all PHP versions in that range, and that it doesn't use any features that
      *    were deprecated by the final version in the list, or which were not available
      *    for the first version in the list.
+     *    We accept ranges where one of the components is missing, e.g. "-5.6" means
+     *    all versions up to PHP 5.6, and "7.0-" means all versions above PHP 7.0.
      * PHP version numbers should always be in Major.Minor format.  Both "5", "5.3.2"
      * would be treated as invalid, and ignored.
      *
@@ -101,6 +103,21 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 else {
                     $arrTestVersions[$testVersion] = array($matches[1], $matches[2]);
                 }
+            }
+            elseif (preg_match('/^\d+\.\d+-$/', $testVersion)) {
+                $testVersion = substr($testVersion, 0, -1);
+                // If no upper-limit is set, we set the max version to 99.9.
+                // This is *probably* safe... :-)
+                $arrTestVersions[$testVersion] = array($testVersion, '99.9');
+            }
+            elseif (preg_match('/^-\d+\.\d+$/', $testVersion)) {
+                $testVersion = substr($testVersion, 1);
+                // If no lower-limit is set, we set the min version to 4.0.
+                // Whilst development focuses on PHP 5 and above, we also accept
+                // sniffs for PHP 4, so we include that as the minimum.
+                // (It makes no sense to support PHP 3 as this was effectively a
+                // different language).
+                $arrTestVersions[$testVersion] = array('4.0', $testVersion);
             }
             elseif (!$testVersion == '') {
                 trigger_error("Invalid testVersion setting: '" . $testVersion
