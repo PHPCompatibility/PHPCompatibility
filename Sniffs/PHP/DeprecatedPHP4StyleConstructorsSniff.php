@@ -78,6 +78,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
                 $oldConstructorFound = true;
                 $oldConstructorPos   = $phpcsFile->findNext(T_STRING, $nextFunc);
             }
+
+            // If both have been found, no need to continue looping through the functions.
+            if ($newConstructorFound === true && $oldConstructorFound === true) {
+                break;
+            }
         }
 
         if ($newConstructorFound === false && $oldConstructorFound === true) {
