@@ -1,26 +1,26 @@
 <?php
 /**
- * New nowdoc sniff test file
+ * New nowdoc and quoted heredoc sniff test file
  *
  * @package PHPCompatibility
  */
 
 
 /**
- * New nowdoc sniff tests
+ * New nowdoc and quoted heredoc sniff tests
  *
- * @group newNowdoc
+ * @group newNowdocQuotedHeredoc
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewNowdocSniff
+ * @covers PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff
  *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewNowdocSniffTest extends BaseSniffTest
+class NewNowdocQuotedHeredocSniffTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_nowdoc.php';
+    const TEST_FILE = 'sniff-examples/new_nowdoc_quoted_heredoc.php';
 
 
     /**

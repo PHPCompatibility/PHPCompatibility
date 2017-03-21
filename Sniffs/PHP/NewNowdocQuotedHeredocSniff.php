@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewNowdocSniff.
+ * PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff.
  *
  * PHP version 5.3
  *
@@ -10,13 +10,13 @@
  */
 
 /**
- * PHPCompatibility_Sniffs_PHP_NewNowdocSniff.
+ * PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewNowdocSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff extends PHPCompatibility_Sniff
 {
 
     /**
