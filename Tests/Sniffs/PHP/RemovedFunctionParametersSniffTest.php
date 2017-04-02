@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class RemovedFunctionParameterSniffTest extends BaseSniffTest
+class RemovedFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/removed_function_parameter.php';
@@ -133,7 +133,7 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -150,6 +150,18 @@ class RemovedFunctionParameterSniffTest extends BaseSniffTest
             array(4),
             array(5),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first deprecation.
+        $this->assertNoViolation($file);
     }
 
 }

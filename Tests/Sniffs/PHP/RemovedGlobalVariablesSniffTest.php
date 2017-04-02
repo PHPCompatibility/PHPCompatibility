@@ -90,7 +90,7 @@ class RemovedGlobalVariablesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0');
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -127,6 +127,18 @@ class RemovedGlobalVariablesSniffTest extends BaseSniffTest
             array(47),
             array(48),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Low version below the first deprecation.
+        $this->assertNoViolation($file);
     }
 
 }

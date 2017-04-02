@@ -22,4 +22,4 @@ hash_init(   'salsa10'  );
 hash("salsa10");
 hash("salsa10", "2nd param", 3, false);
 
-hash_pbkdf2('salsa20'); // Needs to be tested separately as the function was only introduced in PHP 5.5.
+hash_pbkdf2('salsa20');

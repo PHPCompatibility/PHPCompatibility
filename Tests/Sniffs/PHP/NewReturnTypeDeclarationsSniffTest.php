@@ -83,7 +83,7 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.6'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -100,6 +100,18 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
             array(23),
             array(24),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
     }
 
 }

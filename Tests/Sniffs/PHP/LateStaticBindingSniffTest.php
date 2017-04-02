@@ -66,7 +66,7 @@ class LateStaticBindingSniffTest extends BaseSniffTest
      */
     public function testLateStaticBindingOutsideClassScope($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE); // Message will be shown independently of testVersion.
         $this->assertError($file, $line, 'Late static binding is not supported outside of class scope.');
     }
 
@@ -116,4 +116,11 @@ class LateStaticBindingSniffTest extends BaseSniffTest
             array(16),
         );
     }
+
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw an error
+     * independently of PHP version when late static binding is used outside of class scope.
+     */
+
 }

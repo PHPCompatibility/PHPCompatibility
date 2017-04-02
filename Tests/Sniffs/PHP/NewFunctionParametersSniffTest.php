@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author Wim Godden <wim@cu.be>
  */
-class NewFunctionParameterSniffTest extends BaseSniffTest
+class NewFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_function_parameter.php';
@@ -113,9 +113,9 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
             array('is_a', 'allow_string', '5.3.8', array(46), '5.4', '5.3'),
             array('is_subclass_of', 'allow_string', '5.3.8', array(47), '5.4', '5.3'),
             array('iterator_to_array', 'use_keys', '5.2', array(48), '5.3', '5.2'),
-            array('json_decode', 'depth', '5.2', array(49), '5.4'),
+            array('json_decode', 'depth', '5.2', array(49), '5.4'), // OK version > version in which last parameter was added to the function.
             array('json_decode', 'options', '5.3', array(49), '5.4'),
-            array('json_encode', 'options', '5.2', array(50), '5.5'),
+            array('json_encode', 'options', '5.2', array(50), '5.5'), // OK version > version in which last parameter was added to the function.
             array('json_encode', 'depth', '5.4', array(50), '5.5'),
             array('memory_get_peak_usage', 'real_usage', '5.1', array(51), '5.2'),
             array('memory_get_usage', 'real_usage', '5.1', array(52), '5.2'),
@@ -127,10 +127,10 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
             array('mysqli_rollback', 'flags', '5.4', array(57), '5.5'),
             array('mysqli_rollback', 'name', '5.4', array(57), '5.5'),
             array('nl2br', 'is_xhtml', '5.2', array(58), '5.3'),
-            array('openssl_decrypt', 'iv', '5.3.2', array(59), '7.1', '5.3'),
+            array('openssl_decrypt', 'iv', '5.3.2', array(59), '7.1', '5.3'), // OK version > version in which last parameter was added to the function.
             array('openssl_decrypt', 'tag', '7.0', array(59), '7.1'),
             array('openssl_decrypt', 'aad', '7.0', array(59), '7.1'),
-            array('openssl_encrypt', 'iv', '5.3.2', array(60), '7.1', '5.3'),
+            array('openssl_encrypt', 'iv', '5.3.2', array(60), '7.1', '5.3'), // OK version > version in which last parameter was added to the function.
             array('openssl_encrypt', 'tag', '7.0', array(60), '7.1'),
             array('openssl_encrypt', 'aad', '7.0', array(60), '7.1'),
             array('openssl_encrypt', 'tag_length', '7.0', array(60), '7.1'),
@@ -163,13 +163,13 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
             array('str_word_count', 'charlist', '5.0', array(87), '5.1'),
             array('substr_count', 'offset', '5.0', array(88), '5.1'),
             array('substr_count', 'length', '5.0', array(88), '5.1'),
-            array('sybase_connect', 'new', '5.2', array(89), '5.2.17'),
+            array('sybase_connect', 'new', '5.2', array(89), '5.3'),
             array('timezone_transitions_get', 'timestamp_begin', '5.2', array(90), '5.3'),
             array('timezone_transitions_get', 'timestamp_end', '5.2', array(90), '5.3'),
             array('timezone_identifiers_list', 'what', '5.2', array(91), '5.3'),
             array('timezone_identifiers_list', 'country', '5.2', array(91), '5.3'),
             array('token_get_all', 'flags', '5.6', array(92), '7.0'),
-            array('ucwords', 'delimiters', '5.4.31', array(93), '5.6', '5.4'),
+            array('ucwords', 'delimiters', '5.4.31', array(93), '5.6', '5.4'), // Function introduced in 5.4.31 and 5.5.15.
             array('unserialize', 'options', '5.6', array(94), '7.0'),
         );
     }
@@ -186,7 +186,7 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -202,6 +202,18 @@ class NewFunctionParameterSniffTest extends BaseSniffTest
         return array(
             array(4),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
     }
 
 }

@@ -14,7 +14,7 @@ class MyJsonSerializable implements JsonSerializable {}
 class MySessionHandlerInterface implements SessionHandlerInterface {}
 
 // Test multiple interfaces
-class MyMultiple implements SplSubject, JsonSerializable, Countable {}
+class MyMultiple implements SplSubject, SeekableIterator, Countable {}
 
 // Test case-insensitive matching
 class MyUppercase implements COUNTABLE {}

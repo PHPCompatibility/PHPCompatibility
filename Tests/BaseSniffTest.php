@@ -17,6 +17,8 @@
  */
 class BaseSniffTest extends PHPCompatibility_Testcase_Wrapper
 {
+    const STANDARD_NAME = 'PHPCompatibility';
+
     /**
      * The PHP_CodeSniffer object used for testing.
      *
@@ -58,7 +60,14 @@ class BaseSniffTest extends PHPCompatibility_Testcase_Wrapper
             self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
         }
 
-        self::$phpcs->process(array(), dirname( __FILE__ ) . '/../');
+        // Restrict the sniffing of the test case files to the particular sniff being tested.
+        if (method_exists('PHP_CodeSniffer', 'initStandard')) {
+            self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
+        } else {
+            // PHPCS 1.x
+            self::$phpcs->process(array(), dirname( __FILE__ ) . '/../', array($this->getSniffCode()));
+        }
+
         self::$phpcs->setIgnorePatterns(array());
 
         parent::setUp();
@@ -86,6 +95,16 @@ class BaseSniffTest extends PHPCompatibility_Testcase_Wrapper
     }
 
     /**
+     * Get the sniff code for the current sniff being tested.
+     *
+     * @return string
+     */
+    protected function getSniffCode()
+    {
+        return self::STANDARD_NAME . '.PHP.' . str_replace('SniffTest', '', get_class($this));
+    }
+
+    /**
      * Sniff a file and return resulting file object
      *
      * @param string $filename Filename to sniff
@@ -104,7 +123,13 @@ class BaseSniffTest extends PHPCompatibility_Testcase_Wrapper
 
         $pathToFile = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
         try {
-            self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
+            if (method_exists('PHP_CodeSniffer', 'initStandard')) {
+                self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
+            } else {
+                // PHPCS 1.x - Sniff code restrictions have to be passed via the function call.
+                self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile, null, array($this->getSniffCode()));
+            }
+
         } catch (Exception $e) {
             $this->fail('An unexpected exception has been caught: ' . $e->getMessage());
             return false;
