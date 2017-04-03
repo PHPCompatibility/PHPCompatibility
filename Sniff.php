@@ -25,6 +25,25 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
 
     /**
+     * List of superglobals as an array of strings.
+     *
+     * Used by the ParameterShadowSuperGlobals and ForbiddenClosureUseVariableNames sniffs.
+     *
+     * @var array
+     */
+    protected $superglobals = array(
+        '$GLOBALS',
+        '$_SERVER',
+        '$_GET',
+        '$_POST',
+        '$_FILES',
+        '$_COOKIE',
+        '$_SESSION',
+        '$_REQUEST',
+        '$_ENV'
+    );
+
+    /**
      * List of functions using hash algorithm as parameter (always the first parameter).
      *
      * Used by the new/removed hash algorithm sniffs.

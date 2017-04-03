@@ -4,6 +4,8 @@
  *
  * Discourages use of superglobals as parameters for functions.
  *
+ * {@internal List of superglobals is maintained in the parent class.}}
+ *
  * PHP version 5.4
  *
  * @category   PHP
@@ -13,22 +15,6 @@
  */
 class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCompatibility_Sniff
 {
-    /**
-     * List of superglobals as an array of strings.
-     *
-     * @var array
-     */
-    protected $superglobals = array(
-        '$GLOBALS',
-        '$_SERVER',
-        '$_GET',
-        '$_POST',
-        '$_FILES',
-        '$_COOKIE',
-        '$_SESSION',
-        '$_REQUEST',
-        '$_ENV'
-    );
 
     /**
      * Register the tokens to listen for.
