@@ -40,3 +40,15 @@ interface MyInterface
     public function __invoke($x);
     public function __debugInfo();
 }
+
+/*
+ * Test against false positives. No error when outside class scope.
+ */
+function __get($name) {}
+function __isset($name) {}
+function __unset($name) {}
+function __set_state($properties) {}
+function __toString() {}
+function __callStatic($name, $arguments) {}
+function __invoke($x) {}
+function __debugInfo() {}
