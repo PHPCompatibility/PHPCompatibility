@@ -54,13 +54,15 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
             );
         }
 
+        $isStatic = $this->isClosureStatic($phpcsFile, $stackPtr);
+        $usesThis = $this->findThisUsageInClosure($phpcsFile, $stackPtr);
 
         if ($this->supportsBelow('5.3')) {
 
             /*
              * Closures can only be declared as static since PHP 5.4.
              */
-            if ($this->isClosureStatic($phpcsFile, $stackPtr) === true) {
+            if ($isStatic === true) {
                 $phpcsFile->addError(
                     'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier',
                     $stackPtr,
@@ -71,8 +73,8 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
             /*
              * Closures declared within classes only have access to $this since PHP 5.4.
              */
-            $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr);
-            if ($thisFound !== false) {
+            if ($usesThis !== false) {
+                $thisFound = $usesThis;
                 do {
                     $phpcsFile->addError(
                         'Closures / anonymous functions did not have access to $this in PHP 5.3 or earlier',
@@ -84,6 +86,41 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
 
                 } while($thisFound !== false);
             }
+        }
+
+        /*
+         * Check for correct usage.
+         */
+        if ($this->supportsAbove('5.4') && $usesThis !== false) {
+
+            $thisFound = $usesThis;
+
+            do {
+                /*
+                 * Closures only have access to $this if not declared as static.
+                 */
+                if ($isStatic === true) {
+                    $phpcsFile->addError(
+                        'Closures / anonymous functions declared as static do not have access to $this',
+                        $thisFound,
+                        'ThisFoundInStatic'
+                    );
+                }
+
+                /*
+                 * Closures only have access to $this if used within a class context.
+                 */
+                else if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
+                    $phpcsFile->addError(
+                        'Closures / anonymous functions only have access to $this if used within a class',
+                        $thisFound,
+                        'ThisFoundOutsideClass'
+                    );
+                }
+
+                $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr, ($thisFound + 1));
+
+            } while($thisFound !== false);
         }
 
     }//end process()
