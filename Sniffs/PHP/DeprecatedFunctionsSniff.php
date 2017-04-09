@@ -755,6 +755,14 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
                                             '7.1' => false,
                                             'alternative' => 'OpenSSL'
                                         ),
+                                        'jpeg2wbmp' => array(
+                                            '7.2' => false,
+                                            'alternative' => 'imagecreatefromjpeg() and imagewbmp()'
+                                        ),
+                                        'png2wbmp' => array(
+                                            '7.2' => false,
+                                            'alternative' => 'imagecreatefrompng() or imagewbmp()'
+                                        ),
                                     );
 
 
