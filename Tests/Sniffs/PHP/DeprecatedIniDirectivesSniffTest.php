@@ -156,6 +156,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
             array('mcrypt.algorithms_dir', '7.1', array(135, 136), '7.0'),
             array('mcrypt.modes_dir', '7.1', array(138, 139), '7.0'),
+
+            array('mbstring.func_overload', '7.2', array(166, 167), '7.1'),
         );
     }
 
