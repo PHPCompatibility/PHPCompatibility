@@ -92,3 +92,4 @@ timezone_identifiers_list( $what, $country); // NB: 2 new params
 token_get_all('<?php echo; ?>',TOKEN_PARSE);
 ucwords($foo, '|');
 $data = unserialize($foo, ["allowed_classes" => false]);
+get_defined_functions(true);
