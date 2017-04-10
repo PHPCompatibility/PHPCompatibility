@@ -78,7 +78,17 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
      */
     public function register()
     {
-        return array(T_CLASS, T_INTERFACE, T_TRAIT);
+        $targets = array(
+            T_CLASS,
+            T_INTERFACE,
+            T_TRAIT,
+        );
+
+        if (defined('T_ANON_CLASS')) {
+            $targets[] = constant('T_ANON_CLASS');
+        }
+
+        return $targets;
 
     }//end register()
 
