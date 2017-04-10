@@ -1191,6 +1191,57 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Get an array of just the type hints from a function declaration.
+     *
+     * Expects to be passed T_FUNCTION or T_CLOSURE token.
+     *
+     * Strips potential nullable indicator and potential global namespace
+     * indicator from the type hints before returning them.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the token.
+     *
+     * @return array Array with type hints or an empty array if
+     *               - the function does not have any parameters
+     *               - no type hints were found
+     *               - or the passed token was not of the correct type.
+     */
+    public function getTypeHintsFromFunctionDeclaration(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+            return array();
+        }
+
+        $parameters = $this->getMethodParameters($phpcsFile, $stackPtr);
+        if (empty($parameters) || is_array($parameters) === false) {
+            return array();
+        }
+
+        $typeHints = array();
+
+        foreach ($parameters as $param) {
+            if ($param['type_hint'] === '') {
+                continue;
+            }
+
+            // Strip off potential nullable indication.
+            $typeHint = ltrim($param['type_hint'], '?');
+
+            // Strip off potential (global) namespace indication.
+            $typeHint = ltrim($typeHint, '\\');
+
+            if ($typeHint !== '') {
+                $typeHints[] = $typeHint;
+            }
+        }
+
+        return $typeHints;
+    }
+
+
+    /**
      * Returns the method parameters for the specified function token.
      *
      * Each parameter is in the following format:
