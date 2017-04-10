@@ -62,8 +62,8 @@ class NewInterfacesSniffTest extends BaseSniffTest
             array('Countable', '5.0', array(3, 17), '5.1'),
             array('OuterIterator', '5.0', array(4), '5.1'),
             array('RecursiveIterator', '5.0', array(5), '5.1'),
-            array('SeekableIterator', '5.0', array(6, 17), '5.1'),
-            array('Serializable', '5.0', array(7), '5.1'),
+            array('SeekableIterator', '5.0', array(6, 17, 28), '5.1'),
+            array('Serializable', '5.0', array(7, 29), '5.1'),
             array('SplObserver', '5.0', array(11), '5.1'),
             array('SplSubject', '5.0', array(12, 17), '5.1'),
             array('JsonSerializable', '5.3', array(13), '5.4'),
@@ -74,14 +74,36 @@ class NewInterfacesSniffTest extends BaseSniffTest
     /**
      * Test unsupported methods
      *
+     * @dataProvider dataUnsupportedMethods
+     *
+     * @param array  $line       The line number.
+     * @param string $methodName The name of the unsupported method which should be detected.
+     *
      * @return void
      */
-    public function testUnsupportedMethods()
+    public function testUnsupportedMethods($line, $methodName)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.1'); // Version in which the Serializable interface was introduced.
-        $this->assertError($file, 8, 'Classes that implement interface Serializable do not support the method __sleep(). See http://php.net/serializable');
-        $this->assertError($file, 9, 'Classes that implement interface Serializable do not support the method __wakeup(). See http://php.net/serializable');
+        $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See http://php.net/serializable");
     }
+
+    /**
+     * Data provider.
+     *
+     * @see testUnsupportedMethods()
+     *
+     * @return array
+     */
+    public function dataUnsupportedMethods()
+    {
+        return array(
+            array(8, '__sleep'),
+            array(9, '__wakeup'),
+            array(30, '__sleep'),
+            array(31, '__wakeup'),
+        );
+    }
+
 
     /**
      * Test interfaces in different cases.

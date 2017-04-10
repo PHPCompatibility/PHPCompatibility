@@ -282,8 +282,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Returns FALSE on error or if there are no implemented interface names.
      *
      * {@internal Duplicate of same method as introduced in PHPCS 2.7.
+     * This method also includes an improvement we use which was only introduced
+     * in PHPCS 2.8.0, so only defer to upstream for higher versions.
      * Once the minimum supported PHPCS version for this sniff library goes beyond
-     * that, this method can be removed and call to it replaced with
+     * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->findImplementedInterfaceNames($stackPtr)` calls.}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
@@ -293,7 +295,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function findImplementedInterfaceNames(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (method_exists($phpcsFile, 'findImplementedInterfaceNames')) {
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
             return $phpcsFile->findImplementedInterfaceNames($stackPtr);
         }
 
@@ -304,7 +306,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_CLASS) {
+        if ($tokens[$stackPtr]['code'] !== T_CLASS
+            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
+        ) {
             return false;
         }
 

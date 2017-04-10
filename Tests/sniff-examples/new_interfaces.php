@@ -5,8 +5,8 @@ class MyOuterIterator implements OuterIterator {}
 class MyRecursiveIterator implements RecursiveIterator {}
 class MySeekableIterator implements SeekableIterator {}
 class MySerializable implements Serializable {
-	public function __sleep() {}
-	public function __wakeup() {}
+    public function __sleep() {}
+    public function __wakeup() {}
 }
 class MySplObserver implements SplObserver {}
 class MySplSubject implements SplSubject {}
@@ -23,3 +23,10 @@ class MyLowercase implements countable {}
 // These shouldn't throw errors.
 class MyJsonSerializable implements JsonSerializableSomething {}
 class MyJsonSerializable implements myNameSpace\JsonSerializable {}
+
+// Test anonymous class support.
+$a = new class implements SeekableIterator {}
+$b = new class implements Serializable {
+    public function __sleep() {}
+    public function __wakeup() {}
+}
