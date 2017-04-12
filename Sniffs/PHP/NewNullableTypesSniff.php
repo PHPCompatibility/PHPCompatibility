@@ -98,7 +98,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
                 if ($param['nullable_type'] === true) {
                     $phpcsFile->addError(
                         'Nullable type declarations are not supported in PHP 7.0 or earlier. Found: %s',
-                        $stackPtr,
+                        $param['token'],
                         'typeDeclarationFound',
                         array($param['type_hint'])
                     );
