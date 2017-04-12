@@ -86,6 +86,7 @@ $tests = array(
     'class-use-trait-alias-final-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as final $name } }\n"; },
     'trait' => function($name) { return "trait $name {}\n"; },
     'function-declare' => function($name) { return "function $name() { };\n"; },
+    'function-declare-reference' => function($name) { return "function &$name() { };\n"; },
     'const' => function($name) { return "const $name = 1;\n"; },
     'define' => function($name) { return "define('$name', 1);\n"; },
     'interface' => function($name) { return "interface $name {}\n"; },

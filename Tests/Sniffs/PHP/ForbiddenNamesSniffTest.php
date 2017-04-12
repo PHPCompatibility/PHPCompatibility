@@ -76,6 +76,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('class-use-trait-alias-final-method'),
             array('trait'),
             array('function-declare'),
+            array('function-declare-reference'),
             array('const'),
             array('define'),
             array('interface'),
