@@ -1,0 +1,116 @@
+<?php
+/**
+ * Is class property ? test file
+ *
+ * @package PHPCompatibility
+ */
+
+
+/**
+ * isClassProperty() function tests
+ *
+ * @group utilityIsClassProperty
+ * @group utilityFunctions
+ *
+ * @uses    BaseClass_MethodTestFrame
+ * @package PHPCompatibility
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ */
+class BaseClass_isClassPropertyTest extends BaseClass_MethodTestFrame
+{
+
+    /**
+     * The file name for the file containing the test cases within the
+     * `sniff-examples/utility-functions/` directory.
+     *
+     * @var string
+     */
+    protected $filename = 'is_class_property.php';
+
+    /**
+     * Whether or not traits will be recognized in PHPCS.
+     *
+     * @var bool
+     */
+    protected static $recognizesTraits = true;
+
+
+    /**
+     * Set up skip condition.
+     *
+     * @return void
+     */
+    public static function setUpBeforeClass()
+    {
+        // When using PHPCS 1.x combined with PHP 5.3 or lower, traits are not recognized.
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<') && version_compare(phpversion(), '5.4', '<')) {
+            self::$recognizesTraits = false;
+        }
+
+        parent::setUpBeforeClass();
+    }
+
+
+    /**
+     * testIsClassProperty
+     *
+     * @dataProvider dataIsClassProperty
+     *
+     * @covers PHPCompatibility_Sniff::isClassProperty
+     *
+     * @param string $commentString The comment which prefaces the target token in the test file.
+     * @param string $expected      The expected boolean return value.
+     * @param bool   $isTrait       Whether the test relates to a variable in a trait.
+     */
+    public function testIsClassProperty($commentString, $expected, $isTrait = false)
+    {
+        if ($isTrait === true && self::$recognizesTraits === false) {
+            $this->markTestSkipped();
+            return;
+        }
+
+        $stackPtr = $this->getTargetToken($commentString, T_VARIABLE);
+        $result   = $this->helperClass->isClassProperty($this->_phpcsFile, $stackPtr);
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * dataIsClassProperty
+     *
+     * @see testIsClassProperty()
+     *
+     * @return array
+     */
+    public function dataIsClassProperty()
+    {
+        return array(
+            array('/* Case 1 */', false),
+            array('/* Case 2 */', false),
+            array('/* Case 3 */', false),
+            array('/* Case 4 */', true),
+            array('/* Case 5 */', true),
+            array('/* Case 6 */', true),
+            array('/* Case 7 */', true),
+            array('/* Case 8 */', false),
+            array('/* Case 9 */', false),
+            array('/* Case 10 */', true),
+            array('/* Case 11 */', true),
+            array('/* Case 12 */', true),
+            array('/* Case 13 */', true),
+            array('/* Case 14 */', false),
+            array('/* Case 15 */', false),
+            array('/* Case 16 */', false),
+            array('/* Case 17 */', false),
+            array('/* Case 18 */', false),
+            array('/* Case 19 */', false),
+            array('/* Case 20 */', false),
+            array('/* Case 21 */', false),
+            array('/* Case 22 */', true, true),
+            array('/* Case 23 */', true, true),
+            array('/* Case 24 */', true, true),
+            array('/* Case 25 */', true, true),
+            array('/* Case 26 */', false, true),
+            array('/* Case 27 */', false, true),
+        );
+    }
+}

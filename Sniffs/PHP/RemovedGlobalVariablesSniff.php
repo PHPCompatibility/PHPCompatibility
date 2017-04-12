@@ -71,6 +71,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
         ),
     );
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -81,6 +82,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
         return array(T_VARIABLE);
 
     }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -104,28 +106,13 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
             return;
         }
 
+        if ($this->isClassProperty($phpcsFile, $stackPtr) === true) {
+            // Ok, so this was a class property declaration, not our concern.
+            return;
+        }
+
+        // Check for static usage of class properties shadowing the removed global variables.
         if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
-            /*
-             * Check for class property definitions.
-             */
-            $properties = array();
-            try {
-                $properties = $phpcsFile->getMemberProperties($stackPtr);
-            } catch ( PHP_CodeSniffer_Exception $e) {
-                // If it's not an expected exception, throw it.
-                if ($e->getMessage() !== '$stackPtr is not a class member var') {
-                    throw $e;
-                }
-            }
-
-            if (isset($properties['scope'])) {
-                // Ok, so this was a class property declaration, not our concern.
-                return;
-            }
-
-            /*
-             * Check for static usage of class properties shadowing the removed global variables.
-             */
             $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
             if ($prevToken !== false && $tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
                 return;

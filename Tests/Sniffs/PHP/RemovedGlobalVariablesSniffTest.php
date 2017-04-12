@@ -66,15 +66,15 @@ class RemovedGlobalVariablesSniffTest extends BaseSniffTest
     public function dataRemovedGlobalVariables()
     {
         return array(
-            array('HTTP_POST_VARS', '5.3', '5.4', array(9, 31), '$_POST', '5.2'),
-            array('HTTP_GET_VARS', '5.3', '5.4', array(10, 32, 51), '$_GET', '5.2'),
-            array('HTTP_ENV_VARS', '5.3', '5.4', array(11, 33, 52), '$_ENV', '5.2'),
-            array('HTTP_SERVER_VARS', '5.3', '5.4', array(12, 34), '$_SERVER', '5.2'),
-            array('HTTP_COOKIE_VARS', '5.3', '5.4', array(13, 35), '$_COOKIE', '5.2'),
-            array('HTTP_SESSION_VARS', '5.3', '5.4', array(14, 36), '$_SESSION', '5.2'),
-            array('HTTP_POST_FILES', '5.3', '5.4', array(15, 37), '$_FILES', '5.2'),
+            array('HTTP_POST_VARS', '5.3', '5.4', array(9, 31, 71, 91), '$_POST', '5.2'),
+            array('HTTP_GET_VARS', '5.3', '5.4', array(10, 32, 51, 72), '$_GET', '5.2'),
+            array('HTTP_ENV_VARS', '5.3', '5.4', array(11, 33, 52, 73), '$_ENV', '5.2'),
+            array('HTTP_SERVER_VARS', '5.3', '5.4', array(12, 34, 74, 92), '$_SERVER', '5.2'),
+            array('HTTP_COOKIE_VARS', '5.3', '5.4', array(13, 35, 75), '$_COOKIE', '5.2'),
+            array('HTTP_SESSION_VARS', '5.3', '5.4', array(14, 36, 76, 93), '$_SESSION', '5.2'),
+            array('HTTP_POST_FILES', '5.3', '5.4', array(15, 37, 77), '$_FILES', '5.2'),
 
-            array('HTTP_RAW_POST_DATA', '5.6', '7.0', array(3, 38, 53), 'php://input', '5.5'),
+            array('HTTP_RAW_POST_DATA', '5.6', '7.0', array(3, 38, 53, 78), 'php://input', '5.5'),
         );
     }
 
@@ -126,6 +126,25 @@ class RemovedGlobalVariablesSniffTest extends BaseSniffTest
             array(46),
             array(47),
             array(48),
+
+            // Issue #333 - class properties named after long array variables in anonymous classes.
+            array(60),
+            array(61),
+            array(62),
+            array(63),
+            array(64),
+            array(65),
+            array(66),
+            array(67),
+
+            array(81),
+            array(82),
+            array(83),
+            array(84),
+            array(85),
+            array(86),
+            array(87),
+            array(88),
         );
     }
 
