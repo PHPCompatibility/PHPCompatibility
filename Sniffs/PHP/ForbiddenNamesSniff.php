@@ -109,6 +109,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     protected $isLowPHPCS = false;
 
     /**
+     * Scope modifiers and other keywords allowed in trait use statements.
+     *
+     * @var array
+     */
+    private $allowed_modifiers = array();
+
+    /**
      * targetedTokens
      *
      * @var array
@@ -134,6 +141,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     public function register()
     {
         $this->isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+
+        $this->allowed_modifiers          = array_combine(
+            PHP_CodeSniffer_Tokens::$scopeModifiers, PHP_CodeSniffer_Tokens::$scopeModifiers
+        );
+        $this->allowed_modifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;
         if (defined('T_ANON_CLASS')) {
@@ -208,7 +220,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
          * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
          */
         else if ($tokens[$stackPtr]['type'] === 'T_AS'
-            && in_array($tokens[$nextNonEmpty]['code'], PHP_CodeSniffer_Tokens::$scopeModifiers, true) === true
+            && isset($this->allowed_modifiers[$tokens[$nextNonEmpty]['code']]) === true
             && $this->inUseScope($phpcsFile, $stackPtr) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
