@@ -196,11 +196,17 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
         // Handle case-insensitivity of class names.
         $this->newClasses = $this->arrayKeysToLowercase($this->newClasses);
 
-        return array(
-                T_NEW,
-                T_CLASS,
-                T_DOUBLE_COLON,
-               );
+        $targets = array(
+            T_NEW,
+            T_CLASS,
+            T_DOUBLE_COLON,
+        );
+
+        if (defined('T_ANON_CLASS')) {
+            $targets[] = constant('T_ANON_CLASS');
+        }
+
+        return $targets;
 
     }//end register()
 
@@ -222,7 +228,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
         if ($tokens[$stackPtr]['type'] === 'T_NEW') {
             $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
         }
-        else if ($tokens[$stackPtr]['type'] === 'T_CLASS') {
+        else if ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
             $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
         }
         else if ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
