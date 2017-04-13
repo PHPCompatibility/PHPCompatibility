@@ -179,3 +179,88 @@ function ( MultipleIterator $a ) {}
 function(\RecursiveCallbackFilterIterator $a) {}
 function ( ?SNMP $a ) {}
 function(myNameSpace\IntlTimeZone $a) {} // Ok.
+
+/*
+ * Exception classes should be caught too.
+ */
+throw new DomainException($msg);
+throw new ReflectionException($msg);
+throw new UI\Exception\RuntimeException($msg);
+
+class MyException extends Exception {}
+class MyException extends UnexpectedValueException {}
+class MyException extends UI\Exception\InvalidArgumentException {}
+
+ErrorException::static_method();
+LengthException::static_method();
+OverflowException::CLASS_CONSTANT;
+UnderflowException::CLASS_CONSTANT;
+PDOException::$static_property;
+UI\Exception\RuntimeException::$static_property;
+
+new class extends BadFunctionCallException {}
+new class extends mysqli_sql_exception {}
+new class extends DivisionByZeroError {}
+
+class MyExceptionHandler {
+    // New Exceptions as typehints.
+    function ExceptionTypeHint( BadMethodCallException $e ) {}
+    function ExceptionTypeHint( RangeException $e ) {}
+    function ExceptionTypeHint( ArithmeticError $e ) {}
+    function ExceptionTypeHint( UI\Exception\InvalidArgumentException $e ) {}
+}
+
+// New exceptions as type hints in anonymous functions.
+function ( Error $e ) {}
+
+try {
+} catch (Exception $e) {
+} catch (ErrorException $e) {
+} catch (BadFunctionCallException $e) {
+} catch (BadMethodCallException $e) {
+} catch (DomainException $e) {
+} catch (InvalidArgumentException $e) {
+} catch (LengthException $e) {
+} catch (LogicException $e) {
+} catch (OutOfBoundsException $e) {
+} catch (OutOfRangeException $e) {
+} catch (OverflowException $e) {
+} catch (RangeException $e) {
+} catch (RuntimeException $e) {
+} catch (UnderflowException $e) {
+} catch (UnexpectedValueException $e) {
+} catch (DOMException $e) {
+} catch (mysqli_sql_exception $e) {
+} catch (PDOException $e) {
+} catch (ReflectionException $e) {
+} catch (SoapFault $e) {
+} catch (PharException $e) {
+} catch (SNMPException $e) {
+} catch (IntlException $e) {
+} catch (Error $e) {
+} catch (ArithmeticError $e) {
+} catch (AssertionError $e) {
+} catch (DivisionByZeroError $e) {
+} catch (ParseError $e) {
+} catch (TypeError $e) {
+} catch (UI\Exception\InvalidArgumentException $e) {
+} catch (UI\Exception\RuntimeException $e) {
+}
+
+
+
+
+// Multi-catch.
+try {
+} catch (InvalidArgumentException | \LogicException | OutOfBoundsException | \OutOfRangeException | RuntimeException $e) {
+}
+
+// Global namespace, should throw error.
+try {
+} catch (\DOMException $e) {
+}
+
+// Namespaced, should be ignored.
+try {
+} catch (\My\Except\DOMException $e) {
+}
