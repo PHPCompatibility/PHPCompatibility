@@ -263,6 +263,24 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             return;
         }
 
+        /*
+         * Deal with PHP 7 relaxing the rules.
+         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
+         * of classes, interfaces and traits, except that class may not be used as constant name."
+         */
+        if (
+            ((
+                $tokens[$stackPtr]['type'] === 'T_FUNCTION'
+                && $this->inClassScope($phpcsFile, $stackPtr, false) === true
+            ) || (
+                $tokens[$stackPtr]['type'] === 'T_CONST'
+                && $this->isClassConstant($phpcsFile, $stackPtr) === true
+                && $nextContentLc !== 'class'
+            )) && $this->supportsBelow('5.6') === false
+        ) {
+            return;
+        }
+
         if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
             $data  = array(
                 $tokens[$nextNonEmpty]['content'],

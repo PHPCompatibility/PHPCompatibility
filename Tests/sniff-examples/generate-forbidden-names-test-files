@@ -87,7 +87,9 @@ $tests = array(
     'trait' => function($name) { return "trait $name {}\n"; },
     'function-declare' => function($name) { return "function $name() { };\n"; },
     'function-declare-reference' => function($name) { return "function &$name() { };\n"; },
+    'method-declare' => function($name) { return "class Foobar { function $name() { } };\n"; }, // Only pre-PHP 7!
     'const' => function($name) { return "const $name = 1;\n"; },
+    'class-const' => function($name) { if ($name === 'class') { return ''; } else { $name = strtoupper($name); return "class Foobar { const $name = 1; }\n"; } }, // Only pre-PHP 7!
     'define' => function($name) { return "define('$name', 1);\n"; },
     'interface' => function($name) { return "interface $name {}\n"; },
     'interface-extends' => function($name) { return "interface Foobar extends $name {}\n"; },

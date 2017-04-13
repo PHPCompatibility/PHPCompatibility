@@ -77,7 +77,9 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
             array('trait'),
             array('function-declare'),
             array('function-declare-reference'),
+            array('method-declare'),
             array('const'),
+            array('class-const'),
             array('define'),
             array('interface'),
             array('interface-extends'),
@@ -106,6 +108,36 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage_use.php', '5.6');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * testNotForbiddenInPHP7
+     *
+     * @dataProvider usecaseProviderPHP7
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
+     */
+    public function testNotForbiddenInPHP7($usecase)
+    {
+        $file = $this->sniffFile("sniff-examples/forbidden-names/$usecase.php", '7.0');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Provides use cases to test with each keyword
+     *
+     * @return array
+     */
+    public function usecaseProviderPHP7()
+    {
+        return array(
+            array('method-declare'),
+            array('class-const'),
+        );
+    }
+
 
     /**
      * testNoFalsePositives
