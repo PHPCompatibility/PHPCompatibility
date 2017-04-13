@@ -28,9 +28,14 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the class appears.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool))
      */
     protected $newClasses = array(
+                                        'libXMLError' => array(
+                                            '5.0' => false,
+                                            '5.1' => true
+                                        ),
+
                                         'DateTime' => array(
                                             '5.1' => false,
                                             '5.2' => true

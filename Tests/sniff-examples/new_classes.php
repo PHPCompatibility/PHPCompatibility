@@ -58,7 +58,7 @@ $test = new IntlTimeZone();
 $test = new IntlBreakIterator();
 $test = new IntlRuleBasedBreakIterator();
 $test = new IntlCodePointBreakIterator();
-
+$test = new libXMLError();
 
 
 
@@ -98,7 +98,7 @@ class MyIntlTimeZone extends IntlTimeZone {}
 class MyIntlBreakIterator extends IntlBreakIterator {}
 class MyIntlRuleBasedBreakIterator extends IntlRuleBasedBreakIterator {}
 class MyIntlCodePointBreakIterator extends IntlCodePointBreakIterator {}
-
+class MylibXMLError extends libXMLError {}
 
 
 
@@ -138,7 +138,7 @@ IntlTimeZone::$static_property;
 IntlBreakIterator::$static_property;
 IntlRuleBasedBreakIterator::$static_property;
 IntlCodePointBreakIterator::$static_property;
-
+libXMLError::$static_property;
 
 /*
  * These should all be flagged too as classnames are case-insensitive.

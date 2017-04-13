@@ -95,6 +95,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('IntlBreakIterator', '5.4', array(58, 98, 138), '5.5'),
             array('IntlRuleBasedBreakIterator', '5.4', array(59, 99, 139), '5.5'),
             array('IntlCodePointBreakIterator', '5.4', array(60, 100, 140), '5.5'),
+            array('libXMLError', '5.0', array(61, 101, 141), '5.1'),
 
             array('DATETIME', '5.1', array(146), '5.2'),
             array('datetime', '5.1', array(147), '5.2'),
