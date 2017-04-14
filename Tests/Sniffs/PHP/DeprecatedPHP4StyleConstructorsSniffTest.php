@@ -31,9 +31,6 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      */
     public function testIsDeprecated($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertNoViolation($file, $line);
-
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertWarning($file, $line, 'Use of deprecated PHP4 style class constructor is not supported since PHP 7');
     }
@@ -46,7 +43,7 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      * @return array
      */
     public function dataIsDeprecated()
-	{
+    {
         return array(
             array(3),
             array(18),
@@ -77,7 +74,7 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      * @return array
      */
     public function dataNoFalsePositives()
-	{
+    {
         $testCases = array(
             array(9),
         );
@@ -89,4 +86,17 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
 
         return $testCases;
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $this->assertNoViolation($file);
+    }
+
 }

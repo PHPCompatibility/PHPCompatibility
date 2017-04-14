@@ -20,6 +20,8 @@
  */
 class InternalInterfacesSniffTest extends BaseSniffTest
 {
+    const TEST_FILE = 'sniff-examples/internal_interfaces.php';
+
     /**
      * Sniffed file
      *
@@ -36,7 +38,8 @@ class InternalInterfacesSniffTest extends BaseSniffTest
     {
         parent::setUp();
 
-        $this->_sniffFile = $this->sniffFile('sniff-examples/internal_interfaces.php');
+        // Sniff file without testVersion as all checks run independently of testVersion being set.
+        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
     }
 
     /**
@@ -119,5 +122,10 @@ class InternalInterfacesSniffTest extends BaseSniffTest
             array(14),
         );
     }
+
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff is version independent.
+     */
 
 }

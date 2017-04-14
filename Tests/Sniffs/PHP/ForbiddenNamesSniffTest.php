@@ -22,7 +22,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 {
 
     /**
-     * testNamespace
+     * testForbiddenNames
      *
      * @dataProvider usecaseProvider
      *
@@ -39,8 +39,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
         // Set the testVersion to the highest PHP version encountered in the
         // PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff::$invalidNames list
-        // to catch all errors.
-        $file = $this->sniffFile($filename, '7.0');
+        // to catch all errors + beyond `use function/const` exception.
+        $file = $this->sniffFile($filename, '5.6');
 
         $this->assertNoViolation($file, 2);
 
@@ -90,11 +90,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testCorrectUsageOfKeywords()
     {
-        if (ini_get('date.timezone') == false) {
-            ini_set('date.timezone', 'America/Chicago');
-        }
-
-        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage.php');
+        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage.php', '5.5');
         $this->assertNoViolation($file);
     }
 
@@ -116,7 +112,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4');
+        $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4'); // Version number specific to the line being tested.
         $this->assertNoViolation($file, 3);
     }
 }

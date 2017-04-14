@@ -18,7 +18,7 @@
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RequiredOptionalFunctionParameterSniffTest extends BaseSniffTest
+class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/required_optional_function_parameters.php';
@@ -77,7 +77,7 @@ class RequiredOptionalFunctionParameterSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(self::TEST_FILE, '5.3'); // Version before earliest required/optional change.
         $this->assertNoViolation($file, $line);
     }
 
@@ -94,6 +94,18 @@ class RequiredOptionalFunctionParameterSniffTest extends BaseSniffTest
             array(4),
             array(5),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest required/optional change.
+        $this->assertNoViolation($file);
     }
 
 }

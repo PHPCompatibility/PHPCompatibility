@@ -6,7 +6,7 @@
 $okay = new StdClass();
 $okay = new \myNamespace\DateTime();
 $okay = \myNamespace\DateTime::static_method();
-$okay = namespace\DateTime::static_method();
+$okay = SomeNamespace\DateTime::static_method();
 // Left empty for additional test cases to be added.
 
 /*

@@ -434,7 +434,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecated function version.
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -463,6 +463,18 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
         }
 
         return $testCases;
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first deprecation.
+        $this->assertNoViolation($file);
     }
 
 }

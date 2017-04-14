@@ -36,10 +36,6 @@ class ShortArraySniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, $lineOpen, 'Short array syntax (open) is available since 5.4');
         $this->assertError($file, $lineClose, 'Short array syntax (close) is available since 5.4');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $lineOpen);
-        $this->assertNoViolation($file, $lineClose);
     }
 
     /**
@@ -90,4 +86,17 @@ class ShortArraySniffTest extends BaseSniffTest
             array(7),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file);
+    }
+
 }

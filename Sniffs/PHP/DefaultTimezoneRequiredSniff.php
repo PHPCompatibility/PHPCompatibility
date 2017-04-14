@@ -20,7 +20,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DefaultTimeZoneRequiredSniff extends PHPCompatibility_Sniff
+class PHPCompatibility_Sniffs_PHP_DefaultTimezoneRequiredSniff extends PHPCompatibility_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

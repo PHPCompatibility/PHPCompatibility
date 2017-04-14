@@ -35,9 +35,6 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertError($file, $line, 'Visibility indicators for class constants are not supported in PHP 7.0 or earlier.');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -57,6 +54,10 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
             array(20),
             array(23),
             array(24),
+
+            array(33),
+            array(34),
+            array(35),
         );
     }
 
@@ -72,7 +73,7 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3'); // Arbitrary pre-PHP 7.1 version.
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -89,6 +90,20 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
             array(3),
             array(7),
             array(17),
+            array(30),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $this->assertNoViolation($file);
+    }
+
 }

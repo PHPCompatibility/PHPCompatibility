@@ -199,6 +199,10 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         'session.hash_bits_per_character' => array(
             '7.1' => true
         ),
+
+        'mbstring.func_overload' => array(
+            '7.2' => false
+        ),
     );
 
     /**

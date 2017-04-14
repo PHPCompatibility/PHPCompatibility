@@ -38,6 +38,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
     {
         parent::setUp();
 
+        // Sniff file without testVersion for testing the version independent sniff features.
         $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
     }
 
@@ -107,6 +108,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      */
     public function testInvalidDirectiveValue($directive, $value, $line)
     {
+        // Message will be shown independently of testVersion.
         $this->assertWarning($this->_sniffFile, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
     }
 
@@ -117,7 +119,8 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidDirectiveValue() {
+    public function dataInvalidDirectiveValue()
+    {
         return array(
             array('ticks', 'TICK_VALUE', 16),
             array('strict_types', 'false', 18),
@@ -140,8 +143,8 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      */
     public function testInvalidEncodingDirectiveValue($directive, $value, $line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertWarning($file, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
+        // Message will be shown independently of testVersion.
+        $this->assertWarning($this->_sniffFile, $line, "The execution directive {$directive} does not seem to have a valid value. Please review. Found: {$value}");
     }
 
     /**
@@ -151,7 +154,8 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidEncodingDirectiveValue() {
+    public function dataInvalidEncodingDirectiveValue()
+    {
         return array(
             array('encoding', 'invalid', 17),
         );
@@ -165,6 +169,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
      */
     public function testInvalidDirective()
     {
+        // Message will be shown independently of testVersion.
         $this->assertError($this->_sniffFile, 22, 'Declare can only be used with the directives ticks, encoding, strict_types. Found: invalid');
     }
 
@@ -179,5 +184,9 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
         $this->assertNoViolation($this->_sniffFile, 25);
     }
 
-}
 
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as the directive value checks are version independent.
+     */
+
+}

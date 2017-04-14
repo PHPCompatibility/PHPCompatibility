@@ -156,6 +156,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
             array('mcrypt.algorithms_dir', '7.1', array(135, 136), '7.0'),
             array('mcrypt.modes_dir', '7.1', array(138, 139), '7.0'),
+
+            array('mbstring.func_overload', '7.2', array(166, 167), '7.1'),
         );
     }
 
@@ -252,17 +254,17 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function dataRemovedDirectives()
     {
         return array(
-            array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.1', '5.3'),
-            array('ifx.blobinfile', '5.2.1', array(95, 96), '5.1', '5.3'),
-            array('ifx.byteasvarchar', '5.2.1', array(98, 99), '5.1', '5.3'),
-            array('ifx.charasvarchar', '5.2.1', array(101, 102), '5.1', '5.3'),
-            array('ifx.default_host', '5.2.1', array(104, 105), '5.1', '5.3'),
-            array('ifx.default_password', '5.2.1', array(107, 108), '5.1', '5.3'),
-            array('ifx.default_user', '5.2.1', array(110, 111), '5.1', '5.3'),
-            array('ifx.max_links', '5.2.1', array(113, 114), '5.1', '5.3'),
-            array('ifx.max_persistent', '5.2.1', array(116, 117), '5.1', '5.3'),
-            array('ifx.nullformat', '5.2.1', array(119, 120), '5.1', '5.3'),
-            array('ifx.textasvarchar', '5.2.1', array(122, 123), '5.1', '5.3'),
+            array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.2', '5.3'),
+            array('ifx.blobinfile', '5.2.1', array(95, 96), '5.2', '5.3'),
+            array('ifx.byteasvarchar', '5.2.1', array(98, 99), '5.2', '5.3'),
+            array('ifx.charasvarchar', '5.2.1', array(101, 102), '5.2', '5.3'),
+            array('ifx.default_host', '5.2.1', array(104, 105), '5.2', '5.3'),
+            array('ifx.default_password', '5.2.1', array(107, 108), '5.2', '5.3'),
+            array('ifx.default_user', '5.2.1', array(110, 111), '5.2', '5.3'),
+            array('ifx.max_links', '5.2.1', array(113, 114), '5.2', '5.3'),
+            array('ifx.max_persistent', '5.2.1', array(116, 117), '5.2', '5.3'),
+            array('ifx.nullformat', '5.2.1', array(119, 120), '5.2', '5.3'),
+            array('ifx.textasvarchar', '5.2.1', array(122, 123), '5.2', '5.3'),
 
             array('zend.ze1_compatibility_mode', '5.3', array(36, 37), '5.2'),
 
@@ -288,7 +290,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -312,6 +314,18 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array(163),
             array(164),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first deprecation.
+        $this->assertNoViolation($file);
     }
 
 }

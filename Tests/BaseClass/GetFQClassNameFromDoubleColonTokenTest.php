@@ -36,11 +36,13 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
      *
      * @covers PHPCompatibility_Sniff::getFQClassNameFromDoubleColonToken
      *
-     * @param int    $stackPtr Stack pointer for a T_DOUBLE_COLON token in the test file.
-     * @param string $expected The expected fully qualified class name.
+     * @param string $commentString The comment which prefaces the T_DOUBLE_COLON token in the test file.
+     * @param string $expected      The expected fully qualified class name.
      */
-    public function testGetFQClassNameFromDoubleColonToken($stackPtr, $expected) {
-        $result = $this->helperClass->getFQClassNameFromDoubleColonToken($this->_phpcsFile, $stackPtr);
+    public function testGetFQClassNameFromDoubleColonToken($commentString, $expected)
+    {
+        $stackPtr = $this->getTargetToken($commentString, T_DOUBLE_COLON);
+        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->_phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -54,25 +56,25 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
     public function dataGetFQClassNameFromDoubleColonToken()
     {
         return array(
-            array(3, '\DateTime'),
-            array(8, '\DateTime'),
-            array(13, '\DateTime'),
-            array(21, '\DateTime'),
-            array(30, '\DateTime'),
-            array(39, '\AnotherNS\DateTime'),
-            array(49, '\FQNS\DateTime'),
-            array(61, '\DateTime'),
-            array(76, '\AnotherNS\DateTime'),
-            array(90, '\Testing\DateTime'),
-            array(96, '\Testing\DateTime'),
-            array(102, '\Testing\DateTime'),
-            array(127, '\Testing\MyClass'),
-            array(135, ''),
-            array(141, ''),
-            array(173, '\MyClass'),
-            array(181, ''),
-            array(187, ''),
-            array(247, ''),
+            array('/* Case 1 */', '\DateTime'),
+            array('/* Case 2 */', '\DateTime'),
+            array('/* Case 3 */', '\DateTime'),
+            array('/* Case 4 */', '\DateTime'),
+            array('/* Case 5 */', '\DateTime'),
+            array('/* Case 6 */', '\AnotherNS\DateTime'),
+            array('/* Case 7 */', '\FQNS\DateTime'),
+            array('/* Case 8 */', '\DateTime'),
+            array('/* Case 9 */', '\AnotherNS\DateTime'),
+            array('/* Case 10 */', '\Testing\DateTime'),
+            array('/* Case 11 */', '\Testing\DateTime'),
+            array('/* Case 12 */', '\Testing\DateTime'),
+            array('/* Case 13 */', '\Testing\MyClass'),
+            array('/* Case 14 */', ''),
+            array('/* Case 15 */', ''),
+            array('/* Case 16 */', '\MyClass'),
+            array('/* Case 17 */', ''),
+            array('/* Case 18 */', ''),
+            array('/* Case 19 */', ''),
         );
     }
 

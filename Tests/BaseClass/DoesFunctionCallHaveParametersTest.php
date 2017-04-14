@@ -34,12 +34,13 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
      *
      * @covers PHPCompatibility_Sniff::doesFunctionCallHaveParameters
      *
-     * @param int    $stackPtr Stack pointer for a function call T_STRING token
-     *                         or a T_ARRAY token in the test file.
-     * @param string $expected The expected fully qualified class name.
+     * @param string $commentString The comment which prefaces the target token in the test file.
+     * @param bool   $expected      Whether or not the function/array has parameters/values.
      */
-    public function testDoesFunctionCallHaveParameters($stackPtr, $expected) {
-        $result = $this->helperClass->doesFunctionCallHaveParameters($this->_phpcsFile, $stackPtr);
+    public function testDoesFunctionCallHaveParameters($commentString, $expected)
+    {
+        $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
+        $result   = $this->helperClass->doesFunctionCallHaveParameters($this->_phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -54,29 +55,29 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
     {
         return array(
             // Function calls.
-            array(12, false),
-            array(17, false),
-            array(23, false),
-            array(31, false),
-            array(42, true),
-            array(50, true),
-            array(60, true),
+            array('/* Case S1 */', false),
+            array('/* Case S2 */', false),
+            array('/* Case S3 */', false),
+            array('/* Case S4 */', false),
+            array('/* Case S5 */', true),
+            array('/* Case S6 */', true),
+            array('/* Case S7 */', true),
 
             // Arrays.
-            array(80, false),
-            array(89, false),
-            array(99, false),
-            array(111, false),
-            array(121, false),
-            array(129, false),
-            array(138, false),
-            array(149, false),
-            array(163, true),
-            array(175, true),
-            array(189, true),
-            array(199, true),
-            array(210, true),
-            array(223, true),
+            array('/* Case A1 */', false),
+            array('/* Case A2 */', false),
+            array('/* Case A3 */', false),
+            array('/* Case A4 */', false),
+            array('/* Case A5 */', false),
+            array('/* Case A6 */', false),
+            array('/* Case A7 */', false),
+            array('/* Case A8 */', false),
+            array('/* Case A9 */', true),
+            array('/* Case A10 */', true),
+            array('/* Case A11 */', true),
+            array('/* Case A12 */', true),
+            array('/* Case A13 */', true),
+            array('/* Case A14 */', true),
         );
     }
 

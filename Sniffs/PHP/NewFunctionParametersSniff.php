@@ -186,6 +186,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                                 '5.1' => true
                                             ),
                                         ),
+                                        'get_defined_functions' => array(
+                                            0 => array(
+                                                'name' => 'exclude_disabled',
+                                                '7.0.14' => false,
+                                                '7.0.15' => true
+                                            ),
+                                        ),
                                         'get_html_translation_table' => array(
                                             2 => array(
                                                 'name' => 'encoding',

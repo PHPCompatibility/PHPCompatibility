@@ -35,9 +35,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      */
     public function testDeprecatedEModifier($line, $functionName = 'preg_replace')
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $line);
-
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
         $this->assertWarning($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5");
 
@@ -52,7 +49,8 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedEModifier() {
+    public function dataDeprecatedEModifier()
+    {
         return array(
             // preg_replace()
             array(50),
@@ -121,12 +119,6 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, $line);
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertNoViolation($file, $line);
-
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
         $this->assertNoViolation($file, $line);
     }
@@ -138,7 +130,8 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             // No or only valid modifiers.
             array(9),
@@ -180,6 +173,18 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             // Quote as a delimiter.
             array(210),
         );
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file);
     }
 
 }

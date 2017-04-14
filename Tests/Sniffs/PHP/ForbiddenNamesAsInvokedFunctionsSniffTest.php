@@ -101,7 +101,8 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives() {
+    public function dataNoFalsePositives()
+    {
         return array(
             array(34),
             array(35),
@@ -119,4 +120,17 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
             array(47),
         );
     }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first introduced reserved word.
+        $this->assertNoViolation($file);
+    }
+
 }

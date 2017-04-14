@@ -63,10 +63,12 @@ class NewFunctionsSniffTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewFunction() {
+    public function dataNewFunction()
+    {
         return array(
-            array('array_fill_keys', '5.1', array(12, 13), '5.3'),
-            array('error_get_last', '5.1', array(14), '5.3'),
+            array('array_fill_keys', '5.1', array(12), '5.2'),
+            array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.
+            array('error_get_last', '5.1', array(14), '5.2'),
             array('image_type_to_extension', '5.1', array(15), '5.2'),
             array('memory_get_peak_usage', '5.1', array(16), '5.2'),
             array('sys_get_temp_dir', '5.1', array(17), '5.2'),
@@ -335,7 +337,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('gmp_rootrem', '5.5', array(280), '5.6'),
             array('hash_equals', '5.5', array(281), '5.6'),
             array('ldap_escape', '5.5', array(282), '5.6'),
-            array('ldap_modify_batch', '5.4.25', array(283), '5.6', '5.4'),
+            array('ldap_modify_batch', '5.4.25', array(283), '5.6', '5.4'), // Function introduced in 5.4.25 and 5.5.10.
             array('mysqli_get_links_stats', '5.5', array(284), '5.6'),
             array('openssl_get_cert_locations', '5.5', array(285), '5.6'),
             array('openssl_x509_fingerprint', '5.5', array(286), '5.6'),
@@ -374,6 +376,10 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('session_create_id', '7.0', array(319), '7.1'),
             array('session_gc', '7.0', array(320), '7.1'),
 
+            array('socket_addrinfo_lookup', '7.1', array(322), '7.2'),
+            array('socket_addrinfo_connect', '7.1', array(323), '7.2'),
+            array('socket_addrinfo_bind', '7.1', array(324), '7.2'),
+            array('socket_addrinfo_explain', '7.1', array(325), '7.2'),
         );
     }
 
@@ -391,7 +397,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(self::TEST_FILE, '5.1'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -416,6 +422,18 @@ class NewFunctionsSniffTest extends BaseSniffTest
         }
 
         return $testCases;
+    }
+
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $this->assertNoViolation($file);
     }
 
 }
