@@ -161,3 +161,10 @@ $a = new class {}
 // Nested namespace declarations.
 namespace Foo\Bar\Baz;
 namespace Foo\Bar\Baz {}
+
+/**
+ * Issue #124/#126: Valid use statements with function or const (PHP 5.6+).
+ */
+use function MyFunctionName;
+use function MyFunctionName as func;
+use const MyCONSTANT;

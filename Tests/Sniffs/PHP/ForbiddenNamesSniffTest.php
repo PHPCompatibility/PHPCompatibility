@@ -44,8 +44,8 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
 
         // Set the testVersion to the highest PHP version encountered in the
         // PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff::$invalidNames list
-        // to catch all errors + beyond `use function/const` exception.
-        $file = $this->sniffFile($filename, '5.6');
+        // to catch all errors.
+        $file = $this->sniffFile($filename, '5.5');
 
         $this->assertNoViolation($file, 2);
 
@@ -104,16 +104,6 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         $this->assertNoViolation($file);
     }
 
-    /**
-     * testCorrectUsageUseFunctionConst
-     *
-     * @return void
-     */
-    public function testCorrectUsageUseFunctionConst()
-    {
-        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage_use.php', '5.6');
-        $this->assertNoViolation($file);
-    }
 
     /**
      * testNotForbiddenInPHP7
