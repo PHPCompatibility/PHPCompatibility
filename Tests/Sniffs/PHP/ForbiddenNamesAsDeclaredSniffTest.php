@@ -38,7 +38,7 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
     public function testReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
     {
         $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
-        $error = "'{$keyword}' is a reserved keyword as of PHP version {$introducedIn} and cannot be used to name a class, interface or trait or as part of a namespace";
+        $error = "'{$keyword}' is a reserved keyword as of PHP version {$introducedIn} and should not be used to name a class, interface or trait or as part of a namespace";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
@@ -66,12 +66,52 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
             array('int', array(26, 40, 54, 68, 83, 98), '7.0', '5.6'),
             array('float', array(27, 41, 55, 69, 84, 99), '7.0', '5.6'),
             array('string', array(28, 42, 56, 70, 85, 100), '7.0', '5.6'),
+            array('iterable', array(33, 47, 61, 75, 90, 105), '7.1', '7.0'),
+            array('void', array(34, 48, 62, 76, 91, 106), '7.1', '7.0'),
+        );
+    }
+
+
+    /**
+     * testSoftReservedKeyword
+     *
+     * @dataProvider dataSoftReservedKeyword
+     *
+     * @param string $keyword      Soft reserved keyword.
+     * @param array  $lines        The line numbers in the test file which apply to this keyword.
+     * @param string $introducedIn The PHP version in which the keyword became a reserved word.
+     * @param string $okVersion    A PHP version in which the keyword was not yet reserved.
+     *
+     * @return void
+     */
+    public function testSoftReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
+    {
+        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $error = "'{$keyword}' is a soft reserved keyword as of PHP version {$introducedIn} and should not be used to name a class, interface or trait or as part of a namespace";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testSoftReservedKeyword()
+     *
+     * @return array
+     */
+    public function dataSoftReservedKeyword()
+    {
+        return array(
             array('resource', array(29, 43, 57, 71, 86, 101), '7.0', '5.6'),
             array('object', array(30, 44, 58, 72, 87, 102), '7.0', '5.6'),
             array('mixed', array(31, 45, 59, 73, 88, 103), '7.0', '5.6'),
             array('numeric', array(32, 46, 60, 74, 89, 104), '7.0', '5.6'),
-            array('iterable', array(33, 47, 61, 75, 90, 105), '7.1', '7.0'),
-            array('void', array(34, 48, 62, 76, 91, 106), '7.1', '7.0'),
         );
     }
 

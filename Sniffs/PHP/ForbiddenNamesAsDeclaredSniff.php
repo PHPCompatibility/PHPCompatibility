@@ -13,6 +13,7 @@
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredClassSniff.
  *
  * Prohibits the use of some reserved keywords to name a class, interface, trait or namespace.
+ * Emits errors for reserved words and warnings for soft-reserved words.
  *
  * @see http://php.net/manual/en/reserved.other-reserved-words.php
  *
@@ -49,13 +50,35 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
         'int'      => '7.0',
         'float'    => '7.0',
         'string'   => '7.0',
+        'iterable' => '7.1',
+        'void'     => '7.1',
+    );
+
+    /**
+     * T_STRING keywords to recognize as soft reserved names.
+     *
+     * Using any of these keywords to name a class, interface, trait or namespace
+     * is highly discouraged since they may be used in future versions of PHP.
+     *
+     * @var array
+     */
+    protected $softReservedNames = array(
         'resource' => '7.0',
         'object'   => '7.0',
         'mixed'    => '7.0',
         'numeric'  => '7.0',
-        'iterable' => '7.1',
-        'void'     => '7.1',
     );
+
+    /**
+     * Combined list of the two lists above.
+     *
+     * Used for quick check whether or not something is a reserved
+     * word.
+     * Set from the `register()` method.
+     *
+     * @var array
+     */
+    private $allForbiddenNames = array();
 
 
     /**
@@ -65,6 +88,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
      */
     public function register()
     {
+        // Do the list merge only once.
+        $this->allForbiddenNames = array_merge($this->forbiddenNames, $this->softReservedNames);
+
         return array(
             T_CLASS,
             T_INTERFACE,
@@ -118,7 +144,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
             }
 
             $nameLc = strtolower($name);
-            if (isset($this->forbiddenNames[$nameLc]) === false) {
+            if (isset($this->allForbiddenNames[$nameLc]) === false) {
                 return;
             }
 
@@ -132,7 +158,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
             $namespaceParts = explode('\\', $namespaceName);
             foreach ($namespaceParts as $namespacePart) {
                 $partLc = strtolower($namespacePart);
-                if (isset($this->forbiddenNames[$partLc]) === true) {
+                if (isset($this->allForbiddenNames[$partLc]) === true) {
                     $name   = $namespacePart;
                     $nameLc = $partLc;
                     break;
@@ -156,7 +182,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
                 do {
                     $nextNonEmptyLc = strtolower($tokens[$nextNonEmpty]['content']);
 
-                    if (isset($this->forbiddenNames[$nextNonEmptyLc]) === true) {
+                    if (isset($this->allForbiddenNames[$nextNonEmptyLc]) === true) {
                         $name   = $tokens[$nextNonEmpty]['content'];
                         $nameLc = $nextNonEmptyLc;
                         break;
@@ -173,19 +199,40 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
         }
 
         // Still here, so this is one of the reserved words.
-        $version = $this->forbiddenNames[$nameLc];
-        if ($this->supportsAbove($version) === true) {
-            $error     = "'%s' is a reserved keyword as of PHP version %s and cannot be used to name a class, interface or trait or as part of a namespace (%s)";
-            $errorCode = $this->stringToErrorCode($nameLc).'Found';
-            $data      = array(
-                $nameLc,
-                $version,
-                $tokens[$stackPtr]['type'],
-            );
+        // Build up the error message.
+        $error     = "'%s' is a";
+        $isError   = null;
+        $errorCode = $this->stringToErrorCode($nameLc).'Found';
+        $data      = array(
+            $nameLc,
+        );
 
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+        if (isset($this->softReservedNames[$nameLc]) === true
+            && $this->supportsAbove($this->softReservedNames[$nameLc]) === true
+        ) {
+            $error  .= ' soft reserved keyword as of PHP version %s';
+            $isError = false;
+            $data[]  = $this->softReservedNames[$nameLc];
         }
-    }//end process()
 
+        if (isset($this->forbiddenNames[$nameLc]) === true
+            && $this->supportsAbove($this->forbiddenNames[$nameLc]) === true
+        ) {
+            if (isset($isError) === true) {
+                $error .= ' and a';
+            }
+            $error  .= ' reserved keyword as of PHP version %s';
+            $isError = true;
+            $data[]  = $this->forbiddenNames[$nameLc];
+        }
+
+        if (isset($isError) === true) {
+            $error .= ' and should not be used to name a class, interface or trait or as part of a namespace (%s)';
+            $data[] = $tokens[$stackPtr]['type'];
+
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+        }
+
+    }//end process()
 
 }//end class
