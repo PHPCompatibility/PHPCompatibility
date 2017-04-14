@@ -33,6 +33,11 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
      */
     public function testForbiddenNames($usecase)
     {
+        if (version_compare(phpversion(), '5.3', '<') === true && $usecase === 'nested-namespace') {
+            $this->markTestSkipped('PHP 5.2 does not recognize namespaces.');
+            return;
+        }
+
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples
         $filename = "sniff-examples/forbidden-names/$usecase.php";
@@ -62,6 +67,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     {
         return array(
             array('namespace'),
+            array('nested-namespace'),
             array('use'),
             array('use-as'),
             array('class'),
