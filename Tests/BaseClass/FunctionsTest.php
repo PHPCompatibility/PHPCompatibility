@@ -98,6 +98,14 @@ class BaseClass_FunctionsTest extends PHPCompatibility_Testcase_Wrapper
             array('4.0 - 99.0', array('4.0', '99.0')), // Range of versions with spaces around dash.
             array('-5.6', array('4.0', '5.6')), // Range, with no minimum.
             array('7.0-', array('7.0', '99.9')), // Range, with no maximum.
+
+		// Whitespace tests.  Shouldn't really come up in standard command-line use,
+		// but could occur if command-line argument is quoted or added via
+		// ruleset.xml.
+            array(' 5.0', array('5.0', '5.0')), // Single version.
+            array('5.0 ', array('5.0', '5.0')), // Single version.
+            array('5.1 - 5.5', array('5.1', '5.5')), // Range of versions.
+            array(' 5.1 - 5.5 ', array('5.1', '5.5')), // Range of versions.
         );
     }
 
@@ -189,6 +197,17 @@ class BaseClass_FunctionsTest extends PHPCompatibility_Testcase_Wrapper
             array('568'), // Not in major.minor format.
             array('5.6.28'), // Not in major.minor format.
             array('seven.one'), // Non numeric.
+
+            array('-'), // blank range.
+            array('5.4-5.5-5.6'), // mutiple ranges.
+
+            array('5-7.0'), // invalid left half.
+            array('5.1.2-7.0'), // invalid left half.
+            array('5AndJunk-7.0'), // invalid left half.
+
+            array('5.5-7'), // invalid right half.
+            array('5.5-7.0.5'), // invalid right half.
+            array('5.5-7AndJunk'), // invalid right half.
         );
     }
 
