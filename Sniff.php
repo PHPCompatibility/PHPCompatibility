@@ -1088,13 +1088,80 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
+        // Note: interfaces can not declare properties.
+        $validScopes = array(
+            'T_CLASS'      => true,
+            'T_ANON_CLASS' => true,
+            'T_TRAIT'      => true,
+        );
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $validScopes) === true) {
+            // Make sure it's not a method parameter.
+            if (empty($tokens[$stackPtr]['nested_parenthesis']) === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check whether a T_CONST token is a class constant declaration.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                  $stackPtr  The position in the stack of the
+     *                                        T_CONST token to verify.
+     *
+     * @return bool
+     */
+    public function isClassConstant(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        if (isset($tokens[$stackPtr]) === false || $tokens[$stackPtr]['code'] !== T_CONST) {
+            return false;
+        }
+
+        // Note: traits can not declare constants.
+        $validScopes = array(
+            'T_CLASS'      => true,
+            'T_ANON_CLASS' => true,
+            'T_INTERFACE'  => true,
+        );
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $validScopes) === true) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check whether the direct wrapping scope of a token is within a limited set of
+     * acceptable tokens.
+     *
+     * Used to check, for instance, if a T_CONST is a class constant.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile   Instance of phpcsFile.
+     * @param int                  $stackPtr    The position in the stack of the
+     *                                          T_CONST token to verify.
+     * @param array                $validScopes Array of token types.
+     *                                          Keys should be the token types in string
+     *                                          format to allow for newer token types.
+     *                                          Value is irrelevant.
+     *
+     * @return bool
+     */
+    protected function validDirectScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $validScopes)
+    {
+        $tokens = $phpcsFile->getTokens();
+
         if (empty($tokens[$stackPtr]['conditions']) === true) {
             return false;
         }
 
         /*
-         * Check to see if the variable is a property by checking if the
-         * direct wrapping scope is a class like structure.
+         * Check only the direct wrapping scope of the token.
          */
         $conditions = array_keys($tokens[$stackPtr]['conditions']);
         $ptr        = array_pop($conditions);
@@ -1103,15 +1170,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        // Note: interfaces can not declare properties.
-        if ($tokens[$ptr]['type'] === 'T_CLASS'
-            || $tokens[$ptr]['type'] === 'T_ANON_CLASS'
-            || $tokens[$ptr]['type'] === 'T_TRAIT'
-        ) {
-            // Make sure it's not a method parameter.
-            if (empty($tokens[$stackPtr]['nested_parenthesis']) === true) {
-                return true;
-            }
+        if (isset($validScopes[$tokens[$ptr]['type']]) === true) {
+            return true;
         }
 
         return false;
