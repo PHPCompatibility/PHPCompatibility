@@ -897,14 +897,15 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         // Check for scoped namespace {}.
         if (empty($tokens[$stackPtr]['conditions']) === false) {
-            foreach ($tokens[$stackPtr]['conditions'] as $pointer => $type) {
-                if ($type === T_NAMESPACE) {
-                    $namespace = $this->getDeclaredNamespaceName($phpcsFile, $pointer);
-                    if ($namespace !== false) {
-                        return $namespace;
-                    }
-                    break; // Nested namespaces is not possible.
+            $namespacePtr = $phpcsFile->getCondition($stackPtr, T_NAMESPACE);
+            if ($namespacePtr !== false ) {
+                $namespace = $this->getDeclaredNamespaceName($phpcsFile, $namespacePtr);
+                if ($namespace !== false) {
+                    return $namespace;
                 }
+
+                // We are in a scoped namespace, but couldn't determine the name. Searching for a global namespace is futile.
+                return '';
             }
         }
 
@@ -918,12 +919,13 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $previousNSToken = $stackPtr;
         $namespace       = false;
         do {
-            $previousNSToken = $phpcsFile->findPrevious(T_NAMESPACE, $previousNSToken -1);
+            $previousNSToken = $phpcsFile->findPrevious(T_NAMESPACE, ($previousNSToken - 1));
 
             // Stop if we encounter a scoped namespace declaration as we already know we're not in one.
             if (empty($tokens[$previousNSToken]['scope_condition']) === false && $tokens[$previousNSToken]['scope_condition'] === $previousNSToken) {
                 break;
             }
+
             $namespace = $this->getDeclaredNamespaceName($phpcsFile, $previousNSToken);
 
         } while ($namespace === false && $previousNSToken !== false);
@@ -962,12 +964,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if ($tokens[$stackPtr + 1]['code'] === T_NS_SEPARATOR) {
+        if ($tokens[($stackPtr + 1)]['code'] === T_NS_SEPARATOR) {
             // Not a namespace declaration, but use of, i.e. namespace\someFunction();
             return false;
         }
 
-        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
         if ($tokens[$nextToken]['code'] === T_OPEN_CURLY_BRACKET) {
             // Declaration for global namespace when using multiple namespaces in a file.
             // I.e.: namespace {}
@@ -976,13 +978,13 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         // Ok, this should be a namespace declaration, so get all the parts together.
         $validTokens = array(
-                        T_STRING,
-                        T_NS_SEPARATOR,
-                        T_WHITESPACE,
+                        T_STRING       => true,
+                        T_NS_SEPARATOR => true,
+                        T_WHITESPACE   => true,
                        );
 
         $namespaceName = '';
-        while(in_array($tokens[$nextToken]['code'], $validTokens, true) === true) {
+        while(isset($validTokens[$tokens[$nextToken]['code']]) === true) {
             $namespaceName .= trim($tokens[$nextToken]['content']);
             $nextToken++;
         }
