@@ -34,9 +34,10 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      *
      * @covers PHPCompatibility_Sniff::tokenHasScope
      *
-     * @param string $commentString The comment which prefaces the target token in the test file.
-     * @param int    $targetType    The token type for the target token.
-     * @param string $expected The expected boolean return value.
+     * @param string    $commentString The comment which prefaces the target token in the test file.
+     * @param int       $targetType    The token type for the target token.
+     * @param string    $expected      The expected boolean return value.
+     * @param int|array $validTokens   Optional. Valid token scope(s).
      */
     public function testTokenHasScope($commentString, $targetType, $expected, $validTokens = null)
     {
