@@ -22,6 +22,8 @@ class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_closure_use_variable_names.php';
 
+    const TEST_FILE_LIVE_CODING = 'sniff-examples/forbidden_closure_use_variable_names.2.php';
+
     /**
      * testForbiddenClosureUseVariableNames
      *
@@ -96,8 +98,42 @@ class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
             array(32),
             array(33),
             array(36),
-            array(41), // Live coding.
-            array(44), // Live coding.
+        );
+    }
+
+
+    /**
+     * testNoFalsePositivesLiveCoding
+     *
+     * @dataProvider dataNoFalsePositivesLiveCoding
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesLiveCoding($line)
+    {
+        if (strpos(PHP_CodeSniffer::VERSION, '2.5.1') !== false) {
+            $this->markTestSkipped('PHPCS 2.5.1 has a bug in the tokenizer which affects this test.');
+            return;
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE_LIVE_CODING, '7.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesLiveCoding()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositivesLiveCoding()
+    {
+        return array(
+            array(41),
+            array(44),
         );
     }
 
