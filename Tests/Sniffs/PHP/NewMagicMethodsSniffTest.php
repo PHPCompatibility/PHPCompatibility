@@ -217,6 +217,44 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
 
 
     /**
+     * testNoFalsePositives
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int  $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->getTestFile(false, '4.4'); // Low version below the first addition.
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return array(
+            // Functions of same name outside class context.
+            array(47),
+            array(48),
+            array(49),
+            array(50),
+            array(51),
+            array(52),
+            array(53),
+            array(54),
+        );
+    }
+
+
+    /**
      * Verify no notices are thrown at all.
      *
      * @return void
