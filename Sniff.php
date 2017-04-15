@@ -1067,6 +1067,58 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
 
     /**
+     * Check whether a T_VARIABLE token is a class property declaration.
+     *
+     * Compatibility layer for PHPCS cross-version compatibility
+     * as PHPCS 2.4.0 - 2.7.1 does not have good enough support for
+     * anonymous classes. Along the same lines, the`getMemberProperties()`
+     * method does not support the `var` prefix.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                  $stackPtr  The position in the stack of the
+     *                                        T_VARIABLE token to verify.
+     *
+     * @return bool
+     */
+    public function isClassProperty(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        if (isset($tokens[$stackPtr]) === false || $tokens[$stackPtr]['code'] !== T_VARIABLE) {
+            return false;
+        }
+
+        if (empty($tokens[$stackPtr]['conditions']) === true) {
+            return false;
+        }
+
+        /*
+         * Check to see if the variable is a property by checking if the
+         * direct wrapping scope is a class like structure.
+         */
+        $conditions = array_keys($tokens[$stackPtr]['conditions']);
+        $ptr        = array_pop($conditions);
+
+        if (isset($tokens[$ptr]) === false) {
+            return false;
+        }
+
+        // Note: interfaces can not declare properties.
+        if ($tokens[$ptr]['type'] === 'T_CLASS'
+            || $tokens[$ptr]['type'] === 'T_ANON_CLASS'
+            || $tokens[$ptr]['type'] === 'T_TRAIT'
+        ) {
+            // Make sure it's not a method parameter.
+            if (empty($tokens[$stackPtr]['nested_parenthesis']) === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
      * Returns the method parameters for the specified function token.
      *
      * Each parameter is in the following format:
