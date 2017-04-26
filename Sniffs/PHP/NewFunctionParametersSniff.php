@@ -340,7 +340,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                         'iterator_to_array' => array(
                                             1 => array(
                                                 'name' => 'use_keys',
-                                                '5.2' => false,
+                                                '5.2.0' => false,
                                                 '5.2.1' => true
                                             ),
                                         ),

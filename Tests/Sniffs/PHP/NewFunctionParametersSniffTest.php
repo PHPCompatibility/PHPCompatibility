@@ -113,7 +113,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('ini_get_all', 'details', '5.2', array(45), '5.3'),
             array('is_a', 'allow_string', '5.3.8', array(46), '5.4', '5.3'),
             array('is_subclass_of', 'allow_string', '5.3.8', array(47), '5.4', '5.3'),
-            array('iterator_to_array', 'use_keys', '5.2', array(48), '5.3', '5.2'),
+            array('iterator_to_array', 'use_keys', '5.2.0', array(48), '5.3', '5.2'), // Function introduced in 5.2.1.
             array('json_decode', 'depth', '5.2', array(49), '5.4'), // OK version > version in which last parameter was added to the function.
             array('json_decode', 'options', '5.3', array(49), '5.4'),
             array('json_encode', 'options', '5.2', array(50), '5.5'), // OK version > version in which last parameter was added to the function.
