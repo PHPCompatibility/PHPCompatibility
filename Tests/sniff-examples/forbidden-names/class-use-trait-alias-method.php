@@ -24,7 +24,6 @@ class Foobar { use BazTrait { oldfunction as endif } }
 class Foobar { use BazTrait { oldfunction as endswitch } }
 class Foobar { use BazTrait { oldfunction as endwhile } }
 class Foobar { use BazTrait { oldfunction as extends } }
-class Foobar { use BazTrait { oldfunction as final } }
 class Foobar { use BazTrait { oldfunction as finally } }
 class Foobar { use BazTrait { oldfunction as for } }
 class Foobar { use BazTrait { oldfunction as foreach } }

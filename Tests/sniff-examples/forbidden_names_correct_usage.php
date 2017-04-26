@@ -143,3 +143,11 @@ class MyClass2 {
 class MyClass3 {
     use HelloWorld { sayHello as public myPublicHello; }
 }
+
+class MyClass3 {
+    use HelloWorld { sayHello as final; }
+}
+
+class MyClass4 {
+    use HelloWorld { sayHello as final myFinalHello; }
+}
