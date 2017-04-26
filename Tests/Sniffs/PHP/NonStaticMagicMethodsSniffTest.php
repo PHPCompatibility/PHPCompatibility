@@ -135,6 +135,16 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             array('__sleep', 'public', 'protected', 104),
             array('__toString', 'public', 'private', 105),
 
+            // Anonymous class.
+            array('__get', 'public', 'private', 149),
+            array('__set', 'public', 'protected', 150),
+            array('__isset', 'public', 'private', 151),
+            array('__unset', 'public', 'protected', 152),
+            array('__call', 'public', 'private', 153),
+            array('__callStatic', 'public', 'protected', 154),
+            array('__sleep', 'public', 'private', 155),
+            array('__toString', 'public', 'protected', 156),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
@@ -207,6 +217,13 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             array('__unset', 113),
             array('__call', 114),
 
+            // Anonymous class.
+            array('__get', 161),
+            array('__set', 162),
+            array('__isset', 163),
+            array('__unset', 164),
+            array('__call', 165),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
@@ -263,6 +280,10 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             // Interface.
             array('__callStatic', 115),
             array('__set_state', 116),
+
+            // Anonymous class.
+            array('__callStatic', 166),
+            array('__set_state', 167),
 
             /*
              * nonstatic_magic_methods_traits.php
@@ -355,6 +376,28 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
             array(91),
             array(92),
             array(93),
+
+            // Plain anonymous class.
+            array(122),
+            array(123),
+            array(124),
+            array(125),
+            array(126),
+            array(127),
+            array(128),
+            array(129),
+            array(130),
+            // Normal anonymous class.
+            array(135),
+            array(136),
+            array(137),
+            array(138),
+            array(139),
+            array(140),
+            array(141),
+            array(142),
+            array(143),
+            array(144),
 
             /*
              * nonstatic_magic_methods_traits.php
