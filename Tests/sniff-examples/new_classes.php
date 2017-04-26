@@ -140,9 +140,19 @@ IntlRuleBasedBreakIterator::$static_property;
 IntlCodePointBreakIterator::$static_property;
 
 
-/**
+/*
  * These should all be flagged too as classnames are case-insensitive.
  */
 $test = new DATETIME(); // Uppercase.
 class MyDateTime extends datetime {} // Lowercase.
 dATeTiMe::static_method(); // Mixed case.
+
+// Test anonymous classes extending a new class.
+new class extends DateTime {}
+new class extends \Phar {}
+new class extends SplMinHeap {}
+new class extends \Transliterator {}
+
+// Check against false positives.
+new class extends \My\IntlRuleBasedBreakIterator {}
+new class extends My\IntlRuleBasedBreakIterator {}

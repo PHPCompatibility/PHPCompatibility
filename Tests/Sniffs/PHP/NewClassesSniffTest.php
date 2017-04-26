@@ -59,13 +59,13 @@ class NewClassesSniffTest extends BaseSniffTest
     public function dataNewClass()
     {
         return array(
-            array('DateTime', '5.1', array(25, 65, 105), '5.2'),
+            array('DateTime', '5.1', array(25, 65, 105, 151), '5.2'),
             array('DateTimeZone', '5.1', array(26, 66, 106), '5.2'),
             array('RegexIterator', '5.1', array(27, 67, 107), '5.2'),
             array('RecursiveRegexIterator', '5.1', array(28, 68, 108), '5.2'),
             array('DateInterval', '5.2', array(17, 18, 19, 20, 29, 69, 109), '5.3'),
             array('DatePeriod', '5.2', array(30, 70, 110), '5.3'),
-            array('Phar', '5.2', array(31, 71, 111), '5.3'),
+            array('Phar', '5.2', array(31, 71, 111, 152), '5.3'),
             array('PharData', '5.2', array(32, 72, 112), '5.3'),
             array('PharException', '5.2', array(33, 73, 113), '5.3'),
             array('PharFileInfo', '5.2', array(34, 74, 114), '5.3'),
@@ -77,7 +77,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('SplFixedArray', '5.2', array(40, 80, 120), '5.3'),
             array('SplHeap', '5.2', array(41, 81, 121), '5.3'),
             array('SplMaxHeap', '5.2', array(42, 82, 122), '5.3'),
-            array('SplMinHeap', '5.2', array(43, 83, 123), '5.3'),
+            array('SplMinHeap', '5.2', array(43, 83, 123, 153), '5.3'),
             array('SplPriorityQueue', '5.2', array(44, 84, 124), '5.3'),
             array('SplQueue', '5.2', array(45, 85, 125), '5.3'),
             array('SplStack', '5.2', array(46, 86, 126), '5.3'),
@@ -86,7 +86,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('ReflectionZendExtension', '5.3', array(49, 89, 129), '5.4'),
             array('SessionHandler', '5.3', array(50, 90, 130), '5.4'),
             array('SNMP', '5.3', array(51, 91, 131), '5.4'),
-            array('Transliterator', '5.3', array(52, 92, 132), '5.4'),
+            array('Transliterator', '5.3', array(52, 92, 132, 154), '5.4'),
             array('CURLFile', '5.4', array(53, 93, 133), '5.5'),
             array('DateTimeImmutable', '5.4', array(54, 94, 134), '5.5'),
             array('IntlCalendar', '5.4', array(55, 95, 135), '5.5'),
@@ -95,7 +95,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('IntlBreakIterator', '5.4', array(58, 98, 138), '5.5'),
             array('IntlRuleBasedBreakIterator', '5.4', array(59, 99, 139), '5.5'),
             array('IntlCodePointBreakIterator', '5.4', array(60, 100, 140), '5.5'),
-            
+
             array('DATETIME', '5.1', array(146), '5.2'),
             array('datetime', '5.1', array(147), '5.2'),
             array('dATeTiMe', '5.1', array(148), '5.2'),
@@ -132,6 +132,8 @@ class NewClassesSniffTest extends BaseSniffTest
             array(7),
             array(8),
             array(9),
+            array(157),
+            array(158),
         );
     }
 
