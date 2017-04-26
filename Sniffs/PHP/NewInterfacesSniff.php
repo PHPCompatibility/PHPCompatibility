@@ -91,7 +91,13 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
         $this->newInterfaces      = $this->arrayKeysToLowercase($this->newInterfaces);
         $this->unsupportedMethods = $this->arrayKeysToLowercase($this->unsupportedMethods);
 
-        return array(T_CLASS);
+        $targets = array(T_CLASS);
+
+        if (defined('T_ANON_CLASS')) {
+            $targets[] = constant('T_ANON_CLASS');
+        }
+
+        return $targets;
 
     }//end register()
 

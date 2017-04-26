@@ -43,7 +43,13 @@ class PHPCompatibility_Sniffs_PHP_InternalInterfacesSniff extends PHPCompatibili
         // Handle case-insensitivity of interface names.
         $this->internalInterfaces = $this->arrayKeysToLowercase($this->internalInterfaces);
 
-        return array(T_CLASS);
+        $targets = array(T_CLASS);
+
+        if (defined('T_ANON_CLASS')) {
+            $targets[] = constant('T_ANON_CLASS');
+        }
+
+        return $targets;
 
     }//end register()
 
