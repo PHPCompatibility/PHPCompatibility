@@ -1,26 +1,26 @@
 <?php
 /**
- * New nowdoc sniff test file
+ * New nowdoc and quoted heredoc sniff test file
  *
  * @package PHPCompatibility
  */
 
 
 /**
- * New nowdoc sniff tests
+ * New nowdoc and quoted heredoc sniff tests
  *
- * @group newNowdoc
+ * @group newNowdocQuotedHeredoc
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewNowdocSniff
+ * @covers PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff
  *
  * @uses    BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewNowdocSniffTest extends BaseSniffTest
+class NewNowdocQuotedHeredocSniffTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_nowdoc.php';
+    const TEST_FILE = 'sniff-examples/new_nowdoc_quoted_heredoc.php';
 
 
     /**
@@ -48,16 +48,50 @@ class NewNowdocSniffTest extends BaseSniffTest
     public function dataNowdoc()
     {
         return array(
-            array(11),
             array(15),
-            array(17),
+            array(19),
             array(21),
             array(25),
-            array(28),
-            array(30),
-            array(33),
-            array(36),
-            array(44),
+            array(29),
+            array(32),
+            array(34),
+            array(37),
+            array(40),
+            array(48),
+        );
+    }
+
+
+    /**
+     * testQuotedHeredoc
+     *
+     * @dataProvider dataQuotedHeredoc
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testQuotedHeredoc($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertError($file, $line, 'The Heredoc identifier may not be enclosed in (double) quotes in PHP version 5.2 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testQuotedHeredoc()
+     *
+     * @return array
+     */
+    public function dataQuotedHeredoc()
+    {
+        return array(
+            array(55),
+            array(61),
+            array(69),
+            array(74),
+            array(80),
         );
     }
 
@@ -89,14 +123,18 @@ class NewNowdocSniffTest extends BaseSniffTest
         $data = array(
             array(4),
             array(8),
-            array(26),
-            array(32),
+            array(30),
+            array(36),
+            array(70),
+            array(76),
         );
 
         // PHPCS 1.x does not support skipping forward.
         if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
-            $data[] = array(38);
             $data[] = array(42);
+            $data[] = array(46);
+            $data[] = array(82);
+            $data[] = array(86);
         }
 
         return $data;
