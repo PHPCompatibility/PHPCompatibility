@@ -116,13 +116,13 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
     {
         return array(
             // new_magic_methods.php
-            array('__get', '4.4', array(22, 34), '5.0'),
-            array('__isset', '5.0', array(23, 35), '5.1'),
-            array('__unset', '5.0', array(24, 36), '5.1'),
-            array('__set_state', '5.0', array(25, 37), '5.1'),
-            array('__callStatic', '5.2', array(27, 39), '5.3'),
-            array('__invoke', '5.2', array(28, 40), '5.3'),
-            array('__debugInfo', '5.5', array(29, 41), '5.6'),
+            array('__get', '4.4', array(22, 34, 61), '5.0'),
+            array('__isset', '5.0', array(23, 35, 62), '5.1'),
+            array('__unset', '5.0', array(24, 36, 63), '5.1'),
+            array('__set_state', '5.0', array(25, 37, 64), '5.1'),
+            array('__callStatic', '5.2', array(27, 39, 66), '5.3'),
+            array('__invoke', '5.2', array(28, 40, 67), '5.3'),
+            array('__debugInfo', '5.5', array(29, 41, 68), '5.6'),
 
             // new_magic_methods_traits.php
             array('__get', '4.4', array(5), '5.0', true),
@@ -173,6 +173,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
             // new_magic_methods.php
             array(26),
             array(38),
+            array(65),
 
             // new_magic_methods_traits.php
             array(9, true),
