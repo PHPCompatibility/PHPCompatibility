@@ -116,7 +116,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
                     'Type hints were not present in PHP 4.4 or earlier.',
-                    $stackPtr,
+                    $param['token'],
                     'TypeHintFound'
                 );
             }
@@ -124,7 +124,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                 $itemInfo = array(
                     'name'   => $type_hint,
                 );
-                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+                $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
             }
             else if (isset($this->invalidTypes[$type_hint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
@@ -133,13 +133,13 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                     $this->invalidTypes[$type_hint],
                 );
 
-                $phpcsFile->addError($error, $stackPtr, 'InvalidTypeHintFound', $data);
+                $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
             }
             else if ($type_hint === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
                     $phpcsFile->addError(
                         "'self' type cannot be used outside of class scope",
-                        $stackPtr,
+                        $param['token'],
                         'SelfOutsideClassScopeFound'
                     );
                 }

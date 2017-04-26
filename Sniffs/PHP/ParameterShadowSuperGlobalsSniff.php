@@ -53,7 +53,7 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
                 $errorCode = $this->stringToErrorCode(substr($param['name'], 1)).'Found';
                 $data      = array($param['name']);
 
-                $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+                $phpcsFile->addError($error, $param['token'], $errorCode, $data);
             }
         }
     }

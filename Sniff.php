@@ -1137,9 +1137,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * <code>
      *   0 => array(
+     *         'token'             => int,     // The position of the var in the token stack.
      *         'name'              => '$var',  // The variable name.
      *         'content'           => string,  // The full content of the variable definition.
      *         'pass_by_reference' => boolean, // Is the variable passed by reference?
+     *         'variable_length'   => boolean, // Is the param of variable length through use of `...` ?
      *         'type_hint'         => string,  // The type hint for the variable.
      *         'nullable_type'     => boolean, // Is the variable using a nullable type?
      *        )
@@ -1160,10 +1162,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * `$phpcsFile->getMethodParameters($stackPtr)` calls.
      *
      * NOTE: This version does not deal with the new T_NULLABLE token type.
-     * This token is included upstream only in 2.7.2+ and as we defer to upstream
+     * This token is included upstream only in 2.8.0+ and as we defer to upstream
      * in that case, no need to deal with it here.
      *
-     * Last synced with PHPCS version: PHPCS 2.7.2-alpha.}}
+     * Last synced with PHPCS version: PHPCS 2.9.0-alpha at commit f1511adad043edfd6d2e595e77385c32577eb2bc}}
      *
      * @param PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int                  $stackPtr  The position in the stack of the
@@ -1295,15 +1297,16 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 }
 
                 $vars[$paramCount]            = array();
+                $vars[$paramCount]['token']   = $currVar;
                 $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
                 $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
 
                 if ($defaultStart !== null) {
                     $vars[$paramCount]['default']
-                        = $phpcsFile->getTokensAsString(
+                        = trim($phpcsFile->getTokensAsString(
                             $defaultStart,
                             ($i - $defaultStart)
-                        );
+                        ));
                 }
 
                 $vars[$paramCount]['pass_by_reference'] = $passByReference;
