@@ -64,11 +64,16 @@ Installation via a git check-out to an arbitrary directory (method 3)
 
 * Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation) (Composer, PEAR, Phar file, Git checkout).
 * Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into an arbitrary directory.
-* Add the path to the directory **above** the directory in which you cloned the PHPCompability repo to the PHPCS configuration using the below command.
+* Add the path to the directory **_above_** the directory in which you cloned the PHPCompability repo to the PHPCS configuration using the below command.
+   ```bash
+   phpcs --config-set installed_paths /path/to/dir/above
+   ```
    I.e. if you cloned the `PHPCompatibility` repository to the `/my/custom/standards/PHPCompatibility` directory, you will need to add the `/my/custom/standards` directory to the PHPCS [`installed_paths` configuration variable](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
-```bash
-phpcs --config-set installed_paths /path/to/dir/above
-```
+
+   **Pro-tip:** Alternatively, _and only if you use PHPCS version 2.6.0 or higher_, you can tell PHP_CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
+   ```xml
+   <config name="installed_paths" value="/path/to/dir/above" />
+   ```
 
 
 Using the compatibility sniffs
