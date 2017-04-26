@@ -10,6 +10,7 @@
  * New function array dereferencing sniff tests
  *
  * @group newFunctionArrayDereferencing
+ * @group dereferencing
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff
  *
