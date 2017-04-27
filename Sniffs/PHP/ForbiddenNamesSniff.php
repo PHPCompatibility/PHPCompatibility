@@ -196,11 +196,23 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
         }
 
         /*
+         * Deal with anonymous classes - `class` before a reserved keyword is sometimes
+         * misidentified as `T_ANON_CLASS`.
+         * In PHPCS < 2.3.4 these were tokenized as T_CLASS no matter what.
+         */
+        if ($tokens[$stackPtr]['type'] === 'T_ANON_CLASS' || $tokens[$stackPtr]['type'] === 'T_CLASS') {
+            $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['type'] === 'T_NEW') {
+                return;
+            }
+        }
+
+        /*
          * PHP 5.6 allows for use const and use function, but only if followed by the function/constant name.
          * - `use function HelloWorld` => move to the next token (HelloWorld) to verify.
          * - `use const HelloWorld` => move to the next token (HelloWorld) to verify.
          */
-        if ($tokens[$stackPtr]['type'] === 'T_USE'
+        else if ($tokens[$stackPtr]['type'] === 'T_USE'
             && isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === true
             && $this->supportsAbove('5.6')
         ) {
@@ -248,15 +260,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
 
         $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
         if (isset($this->invalidNames[$nextContentLc]) === false) {
-            return;
-        }
-
-        // Deal with anonymous classes.
-        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevNonEmpty !== false
-            && $tokens[$prevNonEmpty]['type'] === 'T_NEW'
-            && ($tokens[$stackPtr]['type'] === 'T_ANON_CLASS' || $tokens[$stackPtr]['type'] === 'T_CLASS')
-        ) {
             return;
         }
 

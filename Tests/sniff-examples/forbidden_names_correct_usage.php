@@ -154,3 +154,6 @@ class MyClass4 {
 
 // Functions declared to return by reference.
 function &mySayHello() {}
+
+// Anonymous classes.
+$a = new class {}
