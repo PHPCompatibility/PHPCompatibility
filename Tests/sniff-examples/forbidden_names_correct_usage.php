@@ -151,3 +151,6 @@ class MyClass3 {
 class MyClass4 {
     use HelloWorld { sayHello as final myFinalHello; }
 }
+
+// Functions declared to return by reference.
+function &mySayHello() {}

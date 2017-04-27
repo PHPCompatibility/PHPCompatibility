@@ -231,6 +231,21 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             $nextNonEmpty = $maybeUseNext;
         }
 
+        /*
+         * Deal with functions declared to return by reference.
+         */
+        else if ($tokens[$stackPtr]['type'] === 'T_FUNCTION'
+            && $tokens[$nextNonEmpty]['type'] === 'T_BITWISE_AND'
+        ) {
+            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            if ($maybeUseNext === false) {
+                // Live coding.
+                return;
+            }
+
+            $nextNonEmpty = $maybeUseNext;
+        }
+
         $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
         if (isset($this->invalidNames[$nextContentLc]) === false) {
             return;
