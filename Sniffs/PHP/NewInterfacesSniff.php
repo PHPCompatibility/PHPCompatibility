@@ -28,6 +28,11 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
      * @var array(string => array(string => int|string|null))
      */
     protected $newInterfaces = array(
+                                'Traversable' => array(
+                                    '4.4' => false,
+                                    '5.0' => true
+                                ),
+
                                 'Countable' => array(
                                     '5.0' => false,
                                     '5.1' => true
@@ -64,6 +69,16 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
                                 'SessionHandlerInterface' => array(
                                     '5.3' => false,
                                     '5.4' => true
+                                ),
+
+                                'DateTimeInterface' => array(
+                                    '5.4' => false,
+                                    '5.5' => true
+                                ),
+
+                                'Throwable' => array(
+                                    '5.6' => false,
+                                    '7.0' => true
                                 ),
 
                                );
