@@ -35,3 +35,38 @@ $b = new class implements Serializable {
 class MyTraversable implements Traversable {}
 class MyDateTimeInterface implements DateTimeInterface {}
 class MyThrowable implements Throwable {}
+
+class MyClass {
+	// Interfaces as typehints.
+	function CountableTypeHint( Countable $a ) {}
+	function OuterIteratorTypeHint( OuterIterator $a ) {}
+	function RecursiveIteratorTypeHint( RecursiveIterator $a ) {}
+	function SeekableIteratorTypeHint( SeekableIterator $a ) {}
+	function SerializableTypeHint( Serializable $a ) {}
+	function SplObserverTypeHint( SplObserver $a ) {}
+	function SplSubjectTypeHint( SplSubject $a ) {}
+	function JsonSerializableTypeHint( JsonSerializable $a ) {}
+	function SessionHandlerInterfaceTypeHint( SessionHandlerInterface $a ) {}
+	function TraversableTypeHint( Traversable $a ) {}
+	function DateTimeInterfaceTypeHint( DateTimeInterface $a ) {}
+	function ThrowableTypeHint( Throwable $a ) {}
+
+	// Namespaced interfaces as typehints
+	function SerializableTypeHint( \Serializable $a ) {} // Error: global namespace.
+	function SplObserverTypeHint( myNameSpace\SplObserver $a ) {} // Ok.
+	function SplSubjectTypeHint( \some\other\SplSubject $a ) {} // Ok.
+
+	// Interfaces as nullable typehints (PHP 7.1+).
+	function TraversableTypeHint( ?Traversable $a ) {}
+	function DateTimeInterfaceTypeHint( ?\DateTimeInterface $a ) {}
+	function ThrowableTypeHint( ?Throwable $a ) {}
+	
+	// Function with multiple typehinted parameters.
+	function MultipleTypeHints (OuterIterator $a, ?int $b, SplObserver $c, ?\RecursiveIterator $d) {}
+}
+
+// Interfaces in type hints in anonymous functions.
+function ( SplSubject $a ) {}
+function(\Serializable $a) {}
+function ( ?Traversable $a ) {}
+function(myNameSpace\SplObserver $a) {} // Ok.

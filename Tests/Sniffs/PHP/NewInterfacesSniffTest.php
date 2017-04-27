@@ -59,18 +59,18 @@ class NewInterfacesSniffTest extends BaseSniffTest
     public function dataNewInterface()
     {
         return array(
-            array('Countable', '5.0', array(3, 17), '5.1'),
-            array('OuterIterator', '5.0', array(4), '5.1'),
-            array('RecursiveIterator', '5.0', array(5), '5.1'),
-            array('SeekableIterator', '5.0', array(6, 17, 28), '5.1'),
-            array('Serializable', '5.0', array(7, 29), '5.1'),
-            array('SplObserver', '5.0', array(11), '5.1'),
-            array('SplSubject', '5.0', array(12, 17), '5.1'),
-            array('JsonSerializable', '5.3', array(13), '5.4'),
-            array('SessionHandlerInterface', '5.3', array(14), '5.4'),
-            array('Traversable', '4.4', array(35), '5.0'),
-            array('DateTimeInterface', '5.4', array(36), '5.5'),
-            array('Throwable', '5.6', array(37), '7.0'),
+            array('Countable', '5.0', array(3, 17, 41), '5.1'),
+            array('OuterIterator', '5.0', array(4, 42, 65), '5.1'),
+            array('RecursiveIterator', '5.0', array(5, 43, 65), '5.1'),
+            array('SeekableIterator', '5.0', array(6, 17, 28, 44), '5.1'),
+            array('Serializable', '5.0', array(7, 29, 45, 55, 70), '5.1'),
+            array('SplObserver', '5.0', array(11, 46, 65), '5.1'),
+            array('SplSubject', '5.0', array(12, 17, 47, 69), '5.1'),
+            array('JsonSerializable', '5.3', array(13, 48), '5.4'),
+            array('SessionHandlerInterface', '5.3', array(14, 49), '5.4'),
+            array('Traversable', '4.4', array(35, 50, 60, 71), '5.0'),
+            array('DateTimeInterface', '5.4', array(36, 51, 61), '5.5'),
+            array('Throwable', '5.6', array(37, 52, 62), '7.0'),
         );
     }
 
@@ -148,6 +148,9 @@ class NewInterfacesSniffTest extends BaseSniffTest
         return array(
             array(24),
             array(25),
+            array(56),
+            array(57),
+            array(72),
         );
     }
 
