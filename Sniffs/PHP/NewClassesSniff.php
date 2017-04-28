@@ -205,6 +205,8 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             T_NEW,
             T_CLASS,
             T_DOUBLE_COLON,
+            T_FUNCTION,
+            T_CLOSURE,
         );
 
         if (defined('T_ANON_CLASS')) {
@@ -226,6 +228,33 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
      * @return void
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        switch($tokens[$stackPtr]['type']) {
+            case 'T_FUNCTION':
+            case 'T_CLOSURE':
+                $this->processFunctionToken($phpcsFile, $stackPtr);
+                break;
+
+            default:
+                $this->processSingularToken($phpcsFile, $stackPtr);
+                break;
+        }
+
+    }//end process()
+
+
+    /**
+     * Processes this test for when a token resulting in a singular class name is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processSingularToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens      = $phpcsFile->getTokens();
         $FQClassName = '';
@@ -261,7 +290,41 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
-    }//end process()
+    }//end processSingularToken()
+
+
+    /**
+     * Processes this test for when a function token is encountered.
+     *
+     * - Detect new classes when used as a type hint.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processFunctionToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
+        $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
+        if (empty($typeHints) || is_array($typeHints) === false) {
+            return;
+        }
+
+        foreach ($typeHints as $hint) {
+
+            $typeHintLc = strtolower($hint);
+
+            if (isset($this->newClasses[$typeHintLc]) === true) {
+                $itemInfo = array(
+                    'name'   => $hint,
+                    'nameLc' => $typeHintLc,
+                );
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            }
+        }
+    }
 
 
     /**

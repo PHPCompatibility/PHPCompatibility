@@ -156,3 +156,26 @@ new class extends \Transliterator {}
 // Check against false positives.
 new class extends \My\IntlRuleBasedBreakIterator {}
 new class extends My\IntlRuleBasedBreakIterator {}
+
+class MyClass {
+    // New Classes as typehints.
+    function DateTimeZoneTypeHint( DateTimeZone $a ) {}
+    function RegexIteratorTypeHint( RegexIterator $a ) {}
+    function SplHeapTypeHint( SplHeap $a ) {}
+    function IntlCalendarTypeHint( IntlCalendar $a ) {}
+
+    // Namespaced classes as typehints.
+    function GlobIteratorTypeHint( \GlobIterator $a ) {} // Error: global namespace.
+    function SplQueueTypeHint( myNameSpace\SplQueue $a ) {} // Ok.
+    function CURLFileTypeHint( \some\other\CURLFile $a ) {} // Ok.
+
+    // New classes as nullable typehints (PHP 7.1+).
+    function DatePeriodTypeHint( ?DatePeriod $a ) {}
+    function FilesystemIteratorTypeHint( ?\FilesystemIterator $a ) {}
+}
+
+// New classes as type hints in anonymous functions.
+function ( MultipleIterator $a ) {}
+function(\RecursiveCallbackFilterIterator $a) {}
+function ( ?SNMP $a ) {}
+function(myNameSpace\IntlTimeZone $a) {} // Ok.
