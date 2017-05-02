@@ -69,10 +69,6 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
                                             '5.2' => false,
                                             '5.3' => true
                                         ),
-                                        'PharException' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
                                         'PharFileInfo' => array(
                                             '5.2' => false,
                                             '5.3' => true
@@ -190,6 +186,155 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
 
                                     );
 
+    /**
+     * A list of new Exception classes, not present in older versions.
+     *
+     * The array lists : version number with false (not present) or true (present).
+     * If's sufficient to list the first version where the class appears.
+     *
+     * {@internal Classes listed here do not need to be added to the $newClasses
+     *            property as well.
+     *            This list is automatically added to the $newClasses property
+     *            in the `register()` method.}}
+     *
+     * @var array(string => array(string => bool))
+     */
+    protected $newExceptions = array(
+        'Exception' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'ErrorException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'BadFunctionCallException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'BadMethodCallException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'DomainException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'InvalidArgumentException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'LengthException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'LogicException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'OutOfBoundsException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'OutOfRangeException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'OverflowException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'RangeException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'RuntimeException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'UnderflowException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'UnexpectedValueException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'DOMException' => array(
+            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'mysqli_sql_exception' => array(
+            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'PDOException' => array(
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'ReflectionException' => array(
+            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
+            '5.0' => false,
+            '5.1' => true
+        ),
+        'SoapFault' => array(
+            // According to the docs introduced in PHP 5.0.1, but Exception was only introduced in 5.1.
+            '5.0' => false,
+            '5.1' => true
+        ),
+
+        'PharException' => array(
+            '5.2' => false,
+            '5.3' => true
+        ),
+
+        'SNMPException' => array(
+            '5.3' => false,
+            '5.4' => true
+        ),
+
+        'IntlException' => array(
+            '5.5.0' => false,
+            '5.5.1' => true
+        ),
+
+        'Error' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'ArithmeticError' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'AssertionError' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'DivisionByZeroError' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'ParseError' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'TypeError' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'UI\Exception\InvalidArgumentException' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+        'UI\Exception\RuntimeException' => array(
+            '5.6' => false,
+            '7.0' => true
+        ),
+
+    );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -200,6 +345,10 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
     {
         // Handle case-insensitivity of class names.
         $this->newClasses = $this->arrayKeysToLowercase($this->newClasses);
+        $this->newExceptions = $this->arrayKeysToLowercase($this->newExceptions);
+
+        // Add the Exception classes to the Classes list.
+        $this->newClasses = array_merge($this->newClasses, $this->newExceptions);
 
         $targets = array(
             T_NEW,
@@ -207,6 +356,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             T_DOUBLE_COLON,
             T_FUNCTION,
             T_CLOSURE,
+            T_CATCH,
         );
 
         if (defined('T_ANON_CLASS')) {
@@ -235,6 +385,10 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             case 'T_FUNCTION':
             case 'T_CLOSURE':
                 $this->processFunctionToken($phpcsFile, $stackPtr);
+                break;
+
+            case 'T_CATCH':
+                $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
 
             default:
@@ -270,10 +424,6 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
         }
 
         if ($FQClassName === '') {
-            return;
-        }
-
-        if ($this->isNamespaced($FQClassName) === true) {
             return;
         }
 
@@ -322,6 +472,72 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
                     'nameLc' => $typeHintLc,
                 );
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            }
+        }
+    }
+
+
+    /**
+     * Processes this test for when a catch token is encountered.
+     *
+     * - Detect exceptions when used in a catch statement.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processCatchToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Bow out during live coding.
+        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
+            return;
+        }
+
+        $opener = $tokens[$stackPtr]['parenthesis_opener'];
+        $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
+        $name   = '';
+        $listen = array(
+            // Parts of a (namespaced) class name.
+            T_STRING              => true,
+            T_NS_SEPARATOR        => true,
+            // End/split tokens.
+            T_VARIABLE            => false,
+            T_BITWISE_OR          => false,
+            T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
+        );
+
+        for ($i = ($opener + 1); $i < $closer; $i++ ) {
+            if (isset($listen[$tokens[$i]['code']]) === false) {
+                continue;
+            }
+
+            if ($listen[$tokens[$i]['code']] === true) {
+                $name .= $tokens[$i]['content'];
+                continue;
+            } else {
+                if (empty($name) === true) {
+                    // Weird, we should have a name by the time we encounter a variable or |.
+                    // So this may be the closer.
+                    continue;
+                }
+
+                $name   = ltrim($name, '\\');
+                $nameLC = strtolower($name);
+
+                if (isset($this->newExceptions[$nameLC]) === true) {
+                    $itemInfo = array(
+                        'name'   => $name,
+                        'nameLc' => $nameLC,
+                    );
+                    $this->handleFeature($phpcsFile, $i, $itemInfo);
+                }
+
+                // Reset for a potential multi-catch.
+                $name = '';
             }
         }
     }
