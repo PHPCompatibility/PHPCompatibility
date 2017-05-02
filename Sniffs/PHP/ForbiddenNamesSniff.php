@@ -258,6 +258,40 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
             $nextNonEmpty = $maybeUseNext;
         }
 
+        /*
+         * Deal with nested namespaces.
+         */
+        else if ($tokens[$stackPtr]['type'] === 'T_NAMESPACE') {
+            if ($tokens[$stackPtr + 1]['code'] === T_NS_SEPARATOR) {
+                // Not a namespace declaration, but use of, i.e. namespace\someFunction();
+                return;
+            }
+
+            $endToken      = $phpcsFile->findNext(array(T_SEMICOLON, T_OPEN_CURLY_BRACKET), ($stackPtr + 1), null, false, null, true);
+            $namespaceName = trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
+            if (empty($namespaceName) === true) {
+                return;
+            }
+
+            $namespaceParts = explode('\\', $namespaceName);
+            foreach ($namespaceParts as $namespacePart) {
+                $partLc = strtolower($namespacePart);
+                if (isset($this->invalidNames[$partLc]) === false) {
+                    continue;
+                }
+
+                // Find the token position of the part which matched.
+                for ($i = ($stackPtr + 1); $i < $endToken; $i++) {
+                    if ($tokens[$i]['content'] === $namespacePart) {
+                        $nextNonEmpty = $i;
+                        break;
+                    }
+                }
+            }
+            unset($i, $namespacePart, $partLc);
+        }
+
+
         $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
         if (isset($this->invalidNames[$nextContentLc]) === false) {
             return;

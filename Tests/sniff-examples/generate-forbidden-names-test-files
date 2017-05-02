@@ -72,6 +72,7 @@ echo "Generating files containing invalid PHP code that is attempting to use res
 
 $tests = array(
     'namespace' => function($name) { return "namespace $name;\n"; },
+    'nested-namespace' => function($name) { return "namespace Foo\\{$name}\\Bar;\n"; },
     'use' => function($name) { return "use $name;\n"; },
     'use-as' => function($name) { return "use Foobar as $name;\n"; },
     'class' => function($name) { return "class $name {}\n"; },

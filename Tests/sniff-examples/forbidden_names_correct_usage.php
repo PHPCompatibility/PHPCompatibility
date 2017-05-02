@@ -157,3 +157,7 @@ function &mySayHello() {}
 
 // Anonymous classes.
 $a = new class {}
+
+// Nested namespace declarations.
+namespace Foo\Bar\Baz;
+namespace Foo\Bar\Baz {}
