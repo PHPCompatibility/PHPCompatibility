@@ -214,7 +214,6 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
          */
         else if ($tokens[$stackPtr]['type'] === 'T_USE'
             && isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === true
-            && $this->supportsAbove('5.6')
         ) {
             $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
