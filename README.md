@@ -25,6 +25,8 @@ The sniffs are designed to give the same results regardless of which PHP version
 
 PHP CodeSniffer 1.5.1 is required for 90% of the sniffs, PHPCS 2.6 or later is required for full support, notices may be thrown on older versions.
 
+The PHPCompatibility standard is currently not compatible with PHPCS 3.0, though the [intention is to fix this](https://github.com/wimg/PHPCompatibility/issues/367) in the near future.
+
 Thank you
 ---------
 Thanks to all contributors for their valuable contributions.
