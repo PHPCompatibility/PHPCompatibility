@@ -91,6 +91,8 @@ class NewConstVisibilitySniffTest extends BaseSniffTest
             array(7),
             array(17),
             array(30),
+            array(44),
+            array(48),
         );
     }
 

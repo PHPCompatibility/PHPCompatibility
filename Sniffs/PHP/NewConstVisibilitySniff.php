@@ -44,35 +44,31 @@ class PHPCompatibility_Sniffs_PHP_NewConstVisibilitySniff extends PHPCompatibili
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        if ($this->supportsBelow('7.0') === false) {
+            return;
+        }
+
         $tokens    = $phpcsFile->getTokens();
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
 
-        if ($prevToken === false) {
-            return;
-        }
-
         // Is the previous token a visibility indicator ?
-        if (in_array($tokens[$prevToken]['code'], PHP_CodeSniffer_Tokens::$scopeModifiers, true) === false) {
+        if ($prevToken === false || in_array($tokens[$prevToken]['code'], PHP_CodeSniffer_Tokens::$scopeModifiers, true) === false) {
             return;
         }
 
-        $targetScopes = array(
-            T_CLASS,
-            T_INTERFACE,
+        // Is this a class constant ?
+        if ($this->isClassConstant($phpcsFile, $stackPtr) === false) {
+            // This may be a constant declaration in the global namespace with visibility,
+            // but that would throw a parse error, i.e. not our concern.
+            return;
+        }
+
+        $phpcsFile->addError(
+            'Visibility indicators for class constants are not supported in PHP 7.0 or earlier. Found "%s const"',
+            $stackPtr,
+            'Found',
+            array($tokens[$prevToken]['content'])
         );
-
-        if (defined('T_ANON_CLASS')) {
-            $targetScopes[] = constant('T_ANON_CLASS');
-        }
-
-        if ($this->tokenHasScope($phpcsFile, $stackPtr, $targetScopes) === true
-            && $this->supportsBelow('7.0') === true
-        ) {
-            $error = 'Visibility indicators for class constants are not supported in PHP 7.0 or earlier. Found "%s const"';
-            $data  = array($tokens[$prevToken]['content']);
-
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-        }
 
     }//end process()
 
