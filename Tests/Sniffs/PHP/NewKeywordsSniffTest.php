@@ -154,16 +154,38 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testConst
      *
+     * @dataProvider dataConst
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testConst()
+    public function testConst($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
-        $this->assertError($file, 37, '"const" keyword is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, $line, '"const" keyword is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, 37);
+        $this->assertNoViolation($file, $line);
     }
+
+    /**
+     * Data provider.
+     *
+     * @see testConst()
+     *
+     * @return array
+     */
+    public function dataConst()
+    {
+        return array(
+            array(37),
+            array(44),
+            array(53),
+            array(62),
+        );
+    }
+
 
     /**
      * testConstNoFalsePositives
@@ -192,8 +214,10 @@ class NewKeywordsSniffTest extends BaseSniffTest
         return array(
             array(40),
             array(41),
-            array(45),
-            array(46),
+            array(49),
+            array(50),
+            array(58),
+            array(59),
         );
     }
 
@@ -206,10 +230,10 @@ class NewKeywordsSniffTest extends BaseSniffTest
     public function testCallable()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertError($file, 49, '"callable" keyword is not present in PHP version 5.3 or earlier');
+        $this->assertError($file, 67, '"callable" keyword is not present in PHP version 5.3 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertNoViolation($file, 49);
+        $this->assertNoViolation($file, 67);
     }
 
     /**
@@ -220,10 +244,10 @@ class NewKeywordsSniffTest extends BaseSniffTest
     public function testGoto()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
-        $this->assertError($file, 51, '"goto" keyword is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, 69, '"goto" keyword is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
-        $this->assertNoViolation($file, 51);
+        $this->assertNoViolation($file, 69);
     }
 
     /**
@@ -238,7 +262,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
         if (version_compare(phpversion(), '5.3', '=')) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 63, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
+            $this->assertError($file, 75, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         }
         else {
             /*
@@ -248,7 +272,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 66);
+            $this->assertNoViolation($file, 78);
         }
     }
 
