@@ -19,9 +19,12 @@
 		<exclude-pattern>*/RemovedAlternativePHPTags*.php</exclude-pattern>
 	</rule>
 
-	<!-- Verified correct usage: compatibility layer. -->
+	<!-- Verified correct usage: PHPUnit 6 compatibility layer. -->
 	<rule ref="PHPCompatibility.PHP.NewLanguageConstructs.t_ns_separatorFound">
-		<exclude-pattern>/Tests/TestcaseWrapper_v6.php</exclude-pattern>
+		<exclude-pattern>/Tests/PHPUnit6Compat.php</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.PHP.NewFunctions.class_aliasFound">
+		<exclude-pattern>/Tests/PHPUnit6Compat.php</exclude-pattern>
 	</rule>
 
 </ruleset>
