@@ -8,11 +8,11 @@
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
- * @uses    PHPCompatibility_Testcase_Wrapper
+ * @uses    PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class BaseClass_MethodTestFrame extends PHPCompatibility_Testcase_Wrapper
+abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
 {
 
     /**

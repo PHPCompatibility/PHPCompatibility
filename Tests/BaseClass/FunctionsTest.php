@@ -12,11 +12,11 @@
  * @group utilityMiscFunctions
  * @group utilityFunctions
  *
- * @uses    PHPCompatibility_Testcase_Wrapper
+ * @uses    PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_FunctionsTest extends PHPCompatibility_Testcase_Wrapper
+class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 {
 
     /**

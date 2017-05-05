@@ -34,16 +34,9 @@ else {
     }
 }
 
-$phpunitVersion = 0;
-exec('phpunit --version', $output);
-if (preg_match('`PHPUnit ([0-9\.]+) by Sebastian Bergmann`', implode(' ', $output), $matches) > 0 && isset($matches[1])) {
-    $phpunitVersion = $matches[1];
-}
-
-if (version_compare($phpunitVersion, '6.0', '>') === true) {
-    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestcaseWrapper_v6.php';
-} else {
-    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestcaseWrapper.php';
+// PHPUnit cross version compatibility.
+if (class_exists('PHPUnit\Runner\Version')) {
+    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'PHPUnit6Compat.php';
 }
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
