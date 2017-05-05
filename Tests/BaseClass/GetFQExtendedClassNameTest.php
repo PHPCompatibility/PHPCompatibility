@@ -38,6 +38,8 @@ class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
      *
      * @param string $commentString The comment which prefaces the T_CLASS token in the test file.
      * @param string $expected      The expected fully qualified class name.
+     *
+     * @return void
      */
     public function testGetFQExtendedClassName($commentString, $expected)
     {

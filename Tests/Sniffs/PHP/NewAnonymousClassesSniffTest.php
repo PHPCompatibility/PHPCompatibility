@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Wim Godden <wim@cu.be>
+ * @author  Wim Godden <wim@cu.be>
  */
 class NewAnonymousClassesSniffTest extends BaseSniffTest
 {

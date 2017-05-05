@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewKeywordsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewKeywordsSniffTest extends BaseSniffTest
 {

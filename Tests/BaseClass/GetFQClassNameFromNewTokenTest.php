@@ -38,6 +38,8 @@ class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
      *
      * @param string $commentString The comment which prefaces the T_NEW token in the test file.
      * @param string $expected      The expected fully qualified class name.
+     *
+     * @return void
      */
     public function testGetFQClassNameFromNewToken($commentString, $expected)
     {

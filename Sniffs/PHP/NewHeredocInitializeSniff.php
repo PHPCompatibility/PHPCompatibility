@@ -102,7 +102,7 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
                         return;
                     }
 
-                    // Still here ? Then we have a static variable assignment
+                    // Still here ? Then we have a static variable assignment.
                     $this->throwError($phpcsFile, $stackPtr, 'staticvar');
                 }
                 return;

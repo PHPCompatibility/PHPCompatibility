@@ -8,10 +8,10 @@
  *
  * PHP version 5.4
  *
- * @category   PHP
- * @package    PHPCompatibility
- * @author     Declan Kelly <declankelly90@gmail.com>
- * @copyright  2015 Declan Kelly
+ * @category  PHP
+ * @package   PHPCompatibility
+ * @author    Declan Kelly <declankelly90@gmail.com>
+ * @copyright 2015 Declan Kelly
  */
 class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCompatibility_Sniff
 {
@@ -32,8 +32,8 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
     /**
      * Processes the test.
      *
-     * @param PHP_CodeSniffer_file $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token.
      *
      * @return void
      */

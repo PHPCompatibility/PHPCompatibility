@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class RemovedExtensionsSniffTest extends BaseSniffTest
 {
@@ -268,7 +268,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
             array(68), // Whitelisted function.
             array(74), // Whitelisted function array.
             array(75), // Whitelisted function array.
-            array(78), // Live coding
+            array(78), // Live coding.
         );
     }
 

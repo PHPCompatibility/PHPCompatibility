@@ -36,6 +36,8 @@ class BaseClass_isClassConstantTest extends BaseClass_MethodTestFrame
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
+     *
+     * @return void
      */
     public function testIsClassConstant($commentString, $expected)
     {

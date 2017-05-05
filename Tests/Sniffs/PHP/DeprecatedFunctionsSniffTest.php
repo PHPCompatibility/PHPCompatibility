@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class DeprecatedFunctionsSniffTest extends BaseSniffTest
 {
@@ -36,7 +36,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
      *                                  if different from the $deprecatedIn version.
      *
-     * return void
+     * @return void
      */
     public function testDeprecatedFunction($functionName, $deprecatedIn, $lines, $okVersion, $deprecatedVersion = null)
     {
@@ -83,7 +83,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
      *                                  if different from the $deprecatedIn version.
      *
-     * return void
+     * @return void
      */
     public function testDeprecatedFunctionWithAlternative($functionName, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
     {
@@ -210,7 +210,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      * @param string $removedVersion Optional PHP version to test removed message with -
      *                               if different from the $removedIn version.
      *
-     * return void
+     * @return void
      */
     public function testRemovedFunction($functionName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
@@ -270,7 +270,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      * @param string $removedVersion    Optional PHP version to test removed message with -
      *                                  if different from the $removedIn version.
      *
-     * return void
+     * @return void
      */
     public function testDeprecatedRemovedFunction($functionName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
@@ -335,7 +335,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
      * @param string $removedVersion    Optional PHP version to test removed message with -
      *                                  if different from the $removedIn version.
      *
-     * return void
+     * @return void
      */
     public function testDeprecatedRemovedFunctionWithAlternative($functionName, $deprecatedIn, $removedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {

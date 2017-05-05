@@ -61,6 +61,8 @@ class BaseClass_isClassPropertyTest extends BaseClass_MethodTestFrame
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
      * @param bool   $isTrait       Whether the test relates to a variable in a trait.
+     *
+     * @return void
      */
     public function testIsClassProperty($commentString, $expected, $isTrait = false)
     {

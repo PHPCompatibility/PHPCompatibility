@@ -35,7 +35,9 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
      * @covers PHPCompatibility_Sniff::getFunctionCallParameters
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
-     * @param string $expected The expected parameter array.
+     * @param string $expected      The expected parameter array.
+     *
+     * @return void
      */
     public function testGetFunctionCallParameters($commentString, $expected)
     {
@@ -257,7 +259,10 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
      * @covers PHPCompatibility_Sniff::getFunctionCallParameter
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
-     * @param string $expected The expected array for the specific parameter.
+     * @param int    $paramPosition The position of the parameter we want to retrieve the details for.
+     * @param string $expected      The expected array for the specific parameter.
+     *
+     * @return void
      */
     public function testGetFunctionCallParameter($commentString, $paramPosition, $expected)
     {

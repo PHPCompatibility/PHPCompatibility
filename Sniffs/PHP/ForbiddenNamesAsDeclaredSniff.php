@@ -2,7 +2,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredClassSniff.
  *
- * PHP version 7
+ * PHP version 7.0+
  *
  * @category PHP
  * @package  PHPCompatibility
@@ -17,7 +17,7 @@
  *
  * @see http://php.net/manual/en/reserved.other-reserved-words.php
  *
- * PHP version 7
+ * PHP version 7.0+
  *
  * @category PHP
  * @package  PHPCompatibility

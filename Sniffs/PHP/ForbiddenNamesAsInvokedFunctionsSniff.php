@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff.
  *
- * PHP version 5.4
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Jansen Price <jansen.price@gmail.com>
@@ -14,8 +12,6 @@
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff.
  *
  * Prohibits the use of reserved keywords invoked as functions.
- *
- * PHP version 5.4
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -125,7 +121,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         // after it, but only if it is preceded by a right curly brace.
         if ($tokenCode === T_CATCH) {
             if ($prev !== false && $tokens[$prev]['code'] === T_CLOSE_CURLY_BRACKET) {
-                // Ok, it's fine
+                // Ok, it's fine.
                 return;
             }
         }

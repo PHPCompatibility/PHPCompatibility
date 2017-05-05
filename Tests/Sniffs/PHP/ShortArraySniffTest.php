@@ -14,8 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_ShortArraySniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
+ * @author  Alex Miroshnikov <unknown@example.com>
  */
 class ShortArraySniffTest extends BaseSniffTest
 {
@@ -26,8 +27,8 @@ class ShortArraySniffTest extends BaseSniffTest
      *
      * @dataProvider dataViolation
      *
-     * @param int $lineOpen   The line number for the short array opener.
-     * @param int $lineCloser The line number for the short array closer.
+     * @param int $lineOpen  The line number for the short array opener.
+     * @param int $lineClose The line number for the short array closer.
      *
      * @return void
      */

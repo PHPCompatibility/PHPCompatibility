@@ -15,6 +15,8 @@
  *
  * Discourages the use of deprecated INI directives through ini_set() or ini_get().
  *
+ * PHP version 5.4
+ *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>

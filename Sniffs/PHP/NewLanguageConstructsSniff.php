@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff.
  *
- * PHP version 5.5
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -16,7 +14,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatibility_AbstractNewFeatureSniff
@@ -40,12 +37,12 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
             '5.5' => false,
             '5.6' => true,
             'description' => 'power operator (**)',
-        ), // identified in PHPCS 1.5 as T_MULTIPLY + T_MULTIPLY
+        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MULTIPLY.
         'T_POW_EQUAL' => array(
             '5.5' => false,
             '5.6' => true,
             'description' => 'power assignment operator (**=)',
-        ), // identified in PHPCS 1.5 as T_MULTIPLY + T_MUL_EQUAL
+        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MUL_EQUAL.
         'T_ELLIPSIS' => array(
             '5.5' => false,
             '5.6' => true,
@@ -55,17 +52,17 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
             '5.6' => false,
             '7.0' => true,
             'description' => 'spaceship operator (<=>)',
-        ), // identified in PHPCS 1.5 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN
+        ), // Identified in PHPCS 1.5 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN.
         'T_COALESCE' => array(
             '5.6' => false,
             '7.0' => true,
             'description' => 'null coalescing operator (??)',
-        ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN
+        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN.
         'T_COALESCE_EQUAL' => array(
             '7.1' => false,
             '7.2' => true,
             'description' => 'null coalesce equal operator (??=)',
-        ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL
+        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
     );
 
 

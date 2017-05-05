@@ -9,7 +9,6 @@
  * @author    Gary Rogers <gmrwebde@gmail.com>
  * @author    Florian Grandel <jerico.dev@gmail.com>
  * @copyright 2009 Florian Grandel
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
 
 /**
@@ -24,7 +23,6 @@
  * @author    Gary Rogers <gmrwebde@gmail.com>
  * @author    Florian Grandel <jerico.dev@gmail.com>
  * @copyright 2009 Florian Grandel
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  */
 class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends PHPCompatibility_Sniff
 {
@@ -218,7 +216,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                     // If not a class constant: fall through.
 
                 default:
-                    // Deal with T_POW_EQUAL which doesn't exist in PHPCS 1.x
+                    // Deal with T_POW_EQUAL which doesn't exist in PHPCS 1.x.
                     if (defined('T_POW_EQUAL') && $tokens[$tokenBefore]['type'] === 'T_POW_EQUAL') {
                         break;
                     }

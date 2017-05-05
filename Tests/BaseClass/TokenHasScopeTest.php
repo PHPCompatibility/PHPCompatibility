@@ -38,6 +38,8 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param int       $targetType    The token type for the target token.
      * @param string    $expected      The expected boolean return value.
      * @param int|array $validTokens   Optional. Valid token scope(s).
+     *
+     * @return void
      */
     public function testTokenHasScope($commentString, $targetType, $expected, $validTokens = null)
     {
@@ -101,6 +103,8 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.
      * @param string $expected      The expected boolean return value.
+     *
+     * @return void
      */
     public function testInClassScope($commentString, $targetType, $expected)
     {
@@ -138,6 +142,8 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.
      * @param string $expected      The expected boolean return value.
+     *
+     * @return void
      */
     public function testInUseScope($commentString, $targetType, $expected)
     {

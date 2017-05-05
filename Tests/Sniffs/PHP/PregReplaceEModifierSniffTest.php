@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class PregReplaceEModifierSniffTest extends BaseSniffTest
 {
@@ -52,7 +52,7 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
     public function dataDeprecatedEModifier()
     {
         return array(
-            // preg_replace()
+            // Function preg_replace().
             array(50),
             array(51),
             array(54),
@@ -71,7 +71,7 @@ class PregReplaceEModifierSniffTest extends BaseSniffTest
             array(106),
             array(108),
 
-            // preg_filter()
+            // Function preg_filter().
             array(114, 'preg_filter'),
             array(115, 'preg_filter'),
             array(118, 'preg_filter'),

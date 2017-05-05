@@ -2,9 +2,9 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
@@ -12,9 +12,9 @@
  *
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
@@ -29,34 +29,34 @@ class PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff extends PHPCompatibility_
      * @var array(string => array(string => int|string|null))
      */
     protected $newMagicMethods = array(
-        '__get' => array( // verified
+        '__get' => array(
             '4.4' => false,
             '5.0' => true,
         ),
 
-        '__isset' => array( // verified
+        '__isset' => array(
             '5.0' => false,
             '5.1' => true,
         ),
-        '__unset' => array( // verified
+        '__unset' => array(
             '5.0' => false,
             '5.1' => true,
         ),
-        '__set_state' => array( // verified
+        '__set_state' => array(
             '5.0' => false,
             '5.1' => true,
         ),
 
-        '__callstatic' => array( // verified
+        '__callstatic' => array(
             '5.2' => false,
             '5.3' => true,
         ),
-        '__invoke' => array( // verified
+        '__invoke' => array(
             '5.2' => false,
             '5.3' => true,
         ),
 
-        '__debuginfo' => array( // verified
+        '__debuginfo' => array(
             '5.5' => false,
             '5.6' => true,
         ),

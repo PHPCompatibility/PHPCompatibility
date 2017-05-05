@@ -2,7 +2,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff.
  *
- * PHP version 5.6
+ * PHP version 5.5
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -13,10 +13,11 @@
 /**
  * PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff.
  *
+ * PHP version 5.5
+ *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.1.0
  * @copyright 2014 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibility_Sniff

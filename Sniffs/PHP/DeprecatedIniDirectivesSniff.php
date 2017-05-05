@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff.
  *
- * PHP version 5.4
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>

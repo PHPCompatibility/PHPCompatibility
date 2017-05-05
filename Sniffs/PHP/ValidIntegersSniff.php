@@ -2,17 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sniff
 {
@@ -158,7 +158,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      */
     private function getBinaryInteger(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
     {
-        $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING
+        $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
 
         if ($this->isLowPHPVersion === false) {
             $i = $stackPtr;

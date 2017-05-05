@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniff.
  *
- * PHP version 5.6
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -16,7 +14,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.1.0
  * @copyright 2014 Cu.be Solutions bvba
  */
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
@@ -474,8 +471,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
      * it will tokenize the values / key/value pairs contained in the array call.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile     The file being scanned.
-     * @param int                  $stackPtr      The position of the function call token.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function call token.
      *
      * @return array
      */
@@ -891,7 +888,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Is the class/function/constant name namespaced or global ?
      *
      * @param string $FQName Fully Qualified name of a class, function etc.
-     *                       I.e. should always start with a `\` !
+     *                       I.e. should always start with a `\`.
      *
      * @return bool True if namespaced, false if global.
      */
@@ -1548,9 +1545,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        /**
-         * Algorithm is a text string, so we need to remove the quotes.
-         */
+        // Algorithm is a text string, so we need to remove the quotes.
         $algo = strtolower(trim($algoParam['raw']));
         $algo = $this->stripQuotes($algo);
 

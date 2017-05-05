@@ -14,6 +14,7 @@ if (class_exists('PHPCompatibility_Sniff', true) === false) {
  *
  * @uses    PHPCompatibility_Sniff
  * @package PHPCompatibility
+ * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff
 {

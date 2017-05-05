@@ -4,17 +4,19 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Koen Eelen <koen.eelen@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Koen Eelen <koen.eelen@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Koen Eelen <koen.eelen@cu.be>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Koen Eelen <koen.eelen@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff
 {

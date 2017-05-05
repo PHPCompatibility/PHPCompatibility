@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff.
  *
- * PHP version 5.4
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -14,8 +12,6 @@
  * PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff.
  *
  * Prohibits the use of reserved keywords as class, function, namespace or constant names.
- *
- * PHP version 5.4
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -116,7 +112,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     private $allowed_modifiers = array();
 
     /**
-     * targetedTokens
+     * Targeted tokens.
      *
      * @var array
      */
@@ -168,7 +164,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff extends PHPCompatibility_S
     {
         $tokens = $phpcsFile->getTokens();
 
-        /**
+        /*
          * We distinguish between the class, function and namespace names vs the define statements.
          */
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {

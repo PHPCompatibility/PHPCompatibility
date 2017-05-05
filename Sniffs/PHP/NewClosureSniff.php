@@ -4,9 +4,9 @@
  *
  * PHP version 5.3
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim@cu.be>
  */
 
 /**
@@ -16,9 +16,9 @@
  *
  * PHP version 5.3
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
 {

@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
  *
- * PHP version 5.4
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -224,7 +222,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         }
 
         if ($tokens[$previous]['code'] === T_OBJECT_OPERATOR) {
-            // We are calling a method of an object
+            // We are calling a method of an object.
             return;
         }
 

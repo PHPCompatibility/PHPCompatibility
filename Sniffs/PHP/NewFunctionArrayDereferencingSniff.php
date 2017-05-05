@@ -2,17 +2,21 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHPCompatibility_Sniff
 {

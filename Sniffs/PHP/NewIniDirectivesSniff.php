@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff.
  *
- * PHP version 5.5
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>

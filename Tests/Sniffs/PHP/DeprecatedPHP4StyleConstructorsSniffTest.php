@@ -12,9 +12,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Koen Eelen <koen.eelen@cu.be>
+ * @author  Koen Eelen <koen.eelen@cu.be>
  */
 class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
 {

@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Wim Godden <wim@cu.be>
+ * @author  Wim Godden <wim@cu.be>
  */
 class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
 {
@@ -27,8 +27,10 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
      *
      * @dataProvider dataNewTypeDeclaration
      *
-     * @param string $type The scalar type.
-     * @param int    $line Line number on which to expect an error.
+     * @param string $type              The scalar type.
+     * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
+     * @param array  $line              The line number where the error is expected.
+     * @param string $okVersion         A PHP version in which the type hint was ok to be used.
      *
      * @return void
      */
@@ -72,8 +74,9 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
      *
      * @dataProvider dataInvalidTypeDeclaration
      *
-     * @param string $type The scalar type.
-     * @param int    $line Line number on which to expect an error.
+     * @param string $type        The scalar type.
+     * @param string $alternative Alternative for the invalid type hint.
+     * @param int    $line        Line number on which to expect an error.
      *
      * @return void
      */

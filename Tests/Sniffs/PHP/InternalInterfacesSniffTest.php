@@ -58,8 +58,8 @@ class InternalInterfacesSniffTest extends BaseSniffTest
      *
      * @dataProvider dataInternalInterfaces
      *
-     * @param string $interface Interface name.
-     * @param array  $line      The line number in the test file.
+     * @param string $type Interface name.
+     * @param array  $line The line number in the test file.
      *
      * @return void
      */

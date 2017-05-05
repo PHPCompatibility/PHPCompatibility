@@ -4,17 +4,19 @@
  *
  * PHP version 7.1
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * PHP version 7.1
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompatibility_Sniff
 {
@@ -81,7 +83,7 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
 
         $options = '';
 
-        /**
+        /*
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
         for ($i = $stringToken; $i <= $optionsParam['end']; $i++) {
@@ -103,7 +105,7 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
         if (strpos($options, 'e') !== false) {
             $error = 'The Mbstring regex "e" modifier is deprecated since PHP 7.1.';
 
-            // The alternative mb_ereg_replace_callback() function is only available since 5.4.1
+            // The alternative mb_ereg_replace_callback() function is only available since 5.4.1.
             if ($this->supportsBelow('5.4.1') === false) {
                 $error .= ' Use mb_ereg_replace_callback() instead (PHP 5.4.1+).';
             }

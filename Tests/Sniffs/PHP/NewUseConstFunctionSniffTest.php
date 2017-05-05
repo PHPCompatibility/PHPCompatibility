@@ -28,8 +28,7 @@ class NewUseConstFunctionSniffTest extends BaseSniffTest
      *
      * @dataProvider dataNewUseConstFunction
      *
-     * @param int    $line    The line number.
-     * @param bool   $isTrait Whether the test relates to a method in a trait.
+     * @param int $line The line number.
      *
      * @return void
      */

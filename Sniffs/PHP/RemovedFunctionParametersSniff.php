@@ -2,17 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
 {
@@ -29,7 +29,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         'gmmktime' => array(
             6 => array(
                 'name' => 'is_dst',
-                '5.1' => false, // deprecated
+                '5.1' => false,
                 '7.0' => true,
             ),
         ),
@@ -48,7 +48,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         'mktime' => array(
             6 => array(
                 'name' => 'is_dst',
-                '5.1' => false, // deprecated
+                '5.1' => false,
                 '7.0' => true,
             ),
         ),

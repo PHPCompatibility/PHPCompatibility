@@ -36,6 +36,8 @@ class BaseClass_GetFunctionParameterCountTest extends BaseClass_MethodTestFrame
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected parameter count.
+     *
+     * @return void
      */
     public function testGetFunctionCallParameterCount($commentString, $expected)
     {
