@@ -29,9 +29,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
      * If's sufficient to list the last version which did not contain the keyword.
      *
      * Description will be used as part of the error message.
-     * Condition is an array of valid scope conditions to check for.
-     * If you need a condition of a different type, make sure to add the appropriate
-     * logic for it as well as this will not resolve itself automatically.
+     * Condition is the name of a callback method within this class or the parent class
+     * which checks whether the token complies with a certain condition.
+     * The callback function will be passed the $phpcsFile and the $stackPtr.
+     * The callback function should return `true` if the condition is met and the
+     * error should *not* be thrown.
      *
      * @var array(string => array(string => int|string|null))
      */
@@ -45,7 +47,7 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
                                             '5.2' => false,
                                             '5.3' => true,
                                             'description' => '"const" keyword',
-                                            'condition' => array(T_CLASS, T_INTERFACE), // Keyword is only new when not in class context.
+                                            'condition' => 'isClassConstant', // Keyword is only new when not in class context.
                                         ),
                                         'T_CALLABLE' => array(
                                             '5.3' => false,
@@ -201,11 +203,10 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
             ($prevToken === false || $tokens[$prevToken]['type'] !== 'T_CLASS' || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
         ) {
             // Skip based on token scope condition.
-            if (isset($this->newKeywords[$tokenType]['condition'])) {
-                $condition = $this->newKeywords[$tokenType]['condition'];
-                if ($this->tokenHasScope($phpcsFile, $stackPtr, $condition) === true) {
-                    return;
-                }
+            if (isset($this->newKeywords[$tokenType]['condition'])
+                && call_user_func(array($this, $this->newKeywords[$tokenType]['condition']), $phpcsFile, $stackPtr) === true
+            ) {
+                return;
             }
 
             $itemInfo = array(

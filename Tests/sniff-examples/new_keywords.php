@@ -39,12 +39,30 @@ const TEST = 'Hello';
 class testing {
     const TEST = 'Hello';
     const ok = 'a';
+
+    public function something() {
+        const TEST = 'This is not a class constant';
+    }
 }
 
 interface testing {
     const TEST = 'Hello';
     const ok = 'a';
+
+    public function something() {
+        const TEST = 'This is not an interface constant';
+    }
 }
+
+$a = new class {
+    const TEST = 'Hello';
+    const ok = 'a';
+
+    public function something() {
+        const TEST = 'This is not a class constant';
+    }
+}
+
 
 function myTest(callable $callableMethod) {}
 
