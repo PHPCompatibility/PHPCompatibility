@@ -16,6 +16,12 @@
  */
 class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sniff
 {
+
+    /**
+     * Whether PHPCS is run on a PHP < 5.4.
+     *
+     * @var bool
+     */
     protected $isLowPHPVersion = false;
 
     /**

@@ -18,10 +18,24 @@ if (class_exists('PHPCompatibility_Sniff', true) === false) {
  */
 class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff
 {
+    /**
+     * Dummy method to bypass the abstract method implementation requirements.
+     *
+     * @return void
+     */
     public function register()
     {
     }
 
+    /**
+     * Dummy method to bypass the abstract method implementation requirements.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack.
+     *
+     * @return void
+     */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
     }

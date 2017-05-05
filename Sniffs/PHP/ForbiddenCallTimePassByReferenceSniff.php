@@ -121,6 +121,15 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
     }//end process()
 
 
+    /**
+     * Determine whether a parameter is passed by reference.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param array                $parameter    Function parameter infor array.
+     * @param int                  $nestingLevel Target nesting level.
+     *
+     * @return bool
+     */
     protected function isCallTimePassByReferenceParam(PHP_CodeSniffer_File $phpcsFile, $parameter, $nestingLevel)
     {
         $tokens   = $phpcsFile->getTokens();

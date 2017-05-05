@@ -2,6 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
  *
+ * PHP version 5.4
+ *
+ * @category  PHP
+ * @package   PHPCompatibility
+ * @author    Declan Kelly <declankelly90@gmail.com>
+ * @copyright 2015 Declan Kelly
+ */
+
+/**
+ * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ *
  * Discourages use of superglobals as parameters for functions.
  *
  * {@internal List of superglobals is maintained in the parent class.}}

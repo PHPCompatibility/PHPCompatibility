@@ -1,5 +1,25 @@
 <?php
+/**
+ * PHPCompatibility_Sniffs_PHP_ShortArray.
+ *
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Alex Miroshnikov <unknown@example.com>
+ */
 
+/**
+ * PHPCompatibility_Sniffs_PHP_ShortArray.
+ *
+ * Short array syntax is available since PHP 5.4
+ *
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Alex Miroshnikov <unknown@example.com>
+ */
 class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
 {
 

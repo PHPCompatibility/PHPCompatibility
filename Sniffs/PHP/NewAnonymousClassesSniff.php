@@ -23,6 +23,14 @@
 class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibility_Sniff
 {
 
+    /**
+     * Tokens which in various PHP versions indicate the `class` keyword.
+     *
+     * The dedicated anonymous class token is added from the `register()`
+     * method if the token is available.
+     *
+     * @var array
+     */
     private $indicators = array(
         T_CLASS => T_CLASS,
     );
