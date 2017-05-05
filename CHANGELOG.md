@@ -50,8 +50,8 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :twisted_rightwards_arrows: The `NewNowdoc` sniff has been renamed to `NewNowdocQuotedHeredoc` and will now also check for double quoted heredoc identifiers as introduced in PHP 5.3. [#390](https://github.com/wimg/PHPCompatibility/pull/390)
 - :pencil2: `NewFunctionParameter` sniff: version number precision for one parameter. [#384](https://github.com/wimg/PHPCompatibility/pull/384)
 - :umbrella: Skipping two unit tests for the `ForbiddenClosureUseVariable` sniff when run on PHPCS 2.5.1 as these cause an infinite loop due to an upstream bug. [#408](https://github.com/wimg/PHPCompatibility/pull/408)
-- :recycle: Various (minor) refactoring for improved performance and sniff accuracy. [#385](https://github.com/wimg/PHPCompatibility/pull/385), [#387](https://github.com/wimg/PHPCompatibility/pull/387), [#415](https://github.com/wimg/PHPCompatibility/pull/415)
-- :recycle: Minor simplification of the PHPUnit 6 compatibility layer. [#426](https://github.com/wimg/PHPCompatibility/pull/426)
+- :recycle: Various (minor) refactoring for improved performance and sniff accuracy. [#385](https://github.com/wimg/PHPCompatibility/pull/385), [#387](https://github.com/wimg/PHPCompatibility/pull/387), [#415](https://github.com/wimg/PHPCompatibility/pull/415), [#423](https://github.com/wimg/PHPCompatibility/pull/423), [#424](https://github.com/wimg/PHPCompatibility/pull/424)
+- :recycle: Minor simplification of the PHPUnit 6 compatibility layer and other test code. [#426](https://github.com/wimg/PHPCompatibility/pull/426), [#425](https://github.com/wimg/PHPCompatibility/pull/425)
 - General housekeeping. [#398](https://github.com/wimg/PHPCompatibility/pull/398), [#400](https://github.com/wimg/PHPCompatibility/pull/400)
 - :wrench: Minor tweaks to the Travis build script. [#409](https://github.com/wimg/PHPCompatibility/pull/409)
 - :green_heart: The sniffs are now also tested against PHP nightly for consistent results. [#380](https://github.com/wimg/PHPCompatibility/pull/380)
@@ -64,7 +64,7 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :bug: The `ForbiddenNames` sniff would fail to report on functions declared to return by reference using a reserved keyword as the function name. [#413](https://github.com/wimg/PHPCompatibility/pull/413)
 - :bug: The `ForbiddenNames` sniff would only examine the first part of a namespace and not report on reserved keywords used in subsequent parts of a nested namespace. [#419](https://github.com/wimg/PHPCompatibility/pull/419)
 - :bug: The `ForbiddenNames` sniff would not always correctly report on use statements importing constants or functions using reserved keywords. [#420](https://github.com/wimg/PHPCompatibility/pull/420)
--
+- :bug: The `NewKeywords` sniff would sometimes fail to report on the `const` keyword when used in a class, but not for a class constant. [#424](https://github.com/wimg/PHPCompatibility/pull/424)
 - :green_heart: PHPCS has released version 3.0 and updated the `master` branch to reflect this. This was causing the builds to fail. [#422](https://github.com/wimg/PHPCompatibility/pull/422)
 
 ### Credits
