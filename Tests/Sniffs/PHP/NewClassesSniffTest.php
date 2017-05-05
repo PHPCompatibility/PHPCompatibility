@@ -44,13 +44,9 @@ class NewClassesSniffTest extends BaseSniffTest
             return;
         }
 
-        if (isset($testVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $testVersion);
-        }
-        else {
-            $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
-        }
-        $error = "The built-in class {$className} is not present in PHP version {$lastVersionBefore} or earlier";
+        $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $error        = "The built-in class {$className} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
