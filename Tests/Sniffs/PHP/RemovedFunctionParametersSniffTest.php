@@ -44,12 +44,8 @@ class RemovedFunctionParametersSniffTest extends BaseSniffTest
             $this->assertNoViolation($file, $line);
         }
 
-        if (isset($testVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $testVersion);
-        }
-        else {
-            $file = $this->sniffFile(self::TEST_FILE, $removedIn);
-        }
+        $errorVersion = (isset($testVersion)) ? $testVersion : $removedIn;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is removed since PHP {$removedIn}";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);

@@ -39,12 +39,8 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
      */
     public function testInvalidParameter($functionName, $parameterName, $lastVersionBefore, $lines, $okVersion, $testVersion = null)
     {
-        if (isset($testVersion)){
-            $file = $this->sniffFile(self::TEST_FILE, $testVersion);
-        }
-        else {
-            $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
-        }
+        $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "The function {$functionName}() does not have a parameter \"{$parameterName}\" in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
