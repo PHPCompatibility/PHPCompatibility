@@ -34,3 +34,17 @@ $a = new class
     protected const PROTECTED_CONST = 3;
     private const PRIVATE_CONST = 4;
 }
+
+/*
+ * Test against some false positives.
+ *
+ * Constants defined in the global namespace can not have visibility indicators,
+ * but this is outside the scope of this library. Would cause a parse error anyway.
+ */
+public const GLOBAL_CONSTANT = 'not valid';
+
+class NotAClassConstant {
+    public function something() {
+        public const GLOBAL_CONSTANT = 'not valid';
+    }
+}
