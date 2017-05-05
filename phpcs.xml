@@ -11,6 +11,9 @@
 	<!-- Exclude Composer vendor directory. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 
+	<!--
+		PHP cross version compatibility ;-).
+	-->
 	<config name="testVersion" value="5.1-99.0"/>
 	<rule ref="PHPCompatibility"/>
 
@@ -25,6 +28,25 @@
 	</rule>
 	<rule ref="PHPCompatibility.PHP.NewFunctions.class_aliasFound">
 		<exclude-pattern>/Tests/PHPUnit6Compat.php</exclude-pattern>
+	</rule>
+
+	<!--
+		Minimal code style check.
+	-->
+	<rule ref="PSR2">
+		<!-- To address at a later point in time. -->
+		<exclude name="Generic.Files.LineLength.TooLong"/>
+
+		<!-- These will be addressed when making the repo compatible with PHPCS 3.x. -->
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+
+		<!-- Ignoring a number of whitespace issues around blank lines. -->
+		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+		<exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
+		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
+		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
 	</rule>
 
 </ruleset>
