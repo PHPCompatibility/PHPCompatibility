@@ -13,6 +13,9 @@
 /**
  * PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff.
  *
+ * Check for usage of the `e` modifier with PCRE functions which is deprecated since PHP 5.5
+ * and removed as of PHP 7.0.
+ *
  * PHP version 5.5
  *
  * @category  PHP

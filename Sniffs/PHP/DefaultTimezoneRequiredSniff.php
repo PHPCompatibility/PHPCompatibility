@@ -13,7 +13,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_DefaultTimeZoneRequiredSniff.
  *
- * Discourages the use of deprecated INI directives through ini_set() or ini_get().
+ * Requires that a default timezone is set as of PHP 5.4.
  *
  * PHP version 5.4
  *
