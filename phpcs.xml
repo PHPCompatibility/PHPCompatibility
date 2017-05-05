@@ -61,4 +61,41 @@
 		<exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
 	</rule>
 
+	<!--
+		Inline Documentation check.
+	-->
+	<rule ref="Generic.Commenting.DocComment">
+		<!-- Having a @see or @internal tag before the @param tags is fine. -->
+		<exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
+	</rule>
+
+	<!-- No need to be as strict about comment punctuation for the unit tests. -->
+	<rule ref="Generic.Commenting.DocComment.ShortNotCapital">
+		<exclude-pattern>/Tests/*.php</exclude-pattern>
+	</rule>
+
+
+	<rule ref="PEAR.Commenting">
+		<!-- Exclude PEAR specific tag requirements. -->
+		<exclude name="PEAR.Commenting.FileComment.MissingVersion" />
+		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
+		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag" />
+		<exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
+		<exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
+
+		<!-- Having a @see or @internal tag before the @category tag is fine. -->
+		<exclude name="PEAR.Commenting.ClassComment.CategoryTagOrder"/>
+	</rule>
+
+	<!-- No need to be as strict about file and class comment tags for the unit tests. -->
+	<rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
+		<exclude-pattern>/Tests/*.php</exclude-pattern>
+	</rule>
+	<rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
+		<exclude-pattern>/Tests/*.php</exclude-pattern>
+	</rule>
+	<rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
+		<exclude-pattern>/Tests/*.php</exclude-pattern>
+	</rule>
+
 </ruleset>
