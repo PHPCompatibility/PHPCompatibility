@@ -573,7 +573,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
                                         'session_set_save_handler' => array(
                                             6 => array(
                                                 'name' => 'create_sid',
-                                                '5.5' => false,
+                                                '5.5.0' => false,
                                                 '5.5.1' => true
                                             ),
                                         ),
