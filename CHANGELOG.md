@@ -13,6 +13,68 @@ The `patch` version numbers are specific to this library.
 _Nothing yet._
 
 
+## [7.1.4] - 2017-xx-xx
+
+See all related issues and PRs in the [7.1.4 milestone].
+
+### Added
+- :star2: New `CaseSensitiveKeywords` sniff to detect use of non-lowercase `self`, `static` and `parent` keywords which could cause compatibility issues pre-PHP 5.5. [#382](https://github.com/wimg/PHPCompatibility/pull/382)
+- :star2: New `ConstantArraysUsingConst` sniff to detect constants defined using the `const` keyword being assigned an array value which was not supported prior to PHP 5.6. [#397](https://github.com/wimg/PHPCompatibility/pull/397)
+- :star2: New `ForbiddenClosureUseVariableNames` sniff to detect PHP 7.1 forbidden variable names in closure use statements. [#386](https://github.com/wimg/PHPCompatibility/pull/386). Fixes [#374](https://github.com/wimg/PHPCompatibility/issues/374)
+- :star2: New `NewArrayStringDereferencing` sniff to detect array and string literal dereferencing as introduced in PHP 5.5. [#388](https://github.com/wimg/PHPCompatibility/pull/388)
+- :star2: New `NewHeredocInitialize` sniff to detect initialization of static variables and class properties/constants using the heredoc syntax which is supported since PHP 5.3. [#391](https://github.com/wimg/PHPCompatibility/pull/391). Fixes [#51](https://github.com/wimg/PHPCompatibility/issues/51)
+- :star2: New `NewMagicClassConstant` sniff to detect use of the magic `::class` constant as introduced in PHP 5.5. [#403](https://github.com/wimg/PHPCompatibility/pull/403). Fixes [#364](https://github.com/wimg/PHPCompatibility/issues/364).
+- :star2: New `NewUseConstFunction` sniff to detect use statements importing constants and functions as introduced in PHP 5.6. [#401](https://github.com/wimg/PHPCompatibility/pull/401)
+- :star: `DeprecatedFunctions` sniff: recognize PHP 7.2 deprecated GD functions. [#392](https://github.com/wimg/PHPCompatibility/pull/392)
+- :star: `DeprecatedIniDirectives` sniff: recognize PHP 7.2 deprecated `mbstring.func_overload` directive. [#377](https://github.com/wimg/PHPCompatibility/pull/377)
+- :star: `NewClasses` sniff: check for the PHP 5.1 `libXMLError` class. [#412](https://github.com/wimg/PHPCompatibility/pull/412)
+- :star: `NewClasses` sniff: recognize all native PHP Exception classes. [#418](https://github.com/wimg/PHPCompatibility/pull/418)
+- :star: `NewClosures` sniff: check for closures being declared as static and closures using `$this`. Both of which was not supported pre-PHP 5.4. [#389](https://github.com/wimg/PHPCompatibility/pull/389). Fixes [#24](https://github.com/wimg/PHPCompatibility/issues/24).
+- :star: `NewFunctionParameters` sniff: recognize new `exclude_disabled` parameter for the `get_defined_functions()` function as introduced in PHP 7.0.15. [#375](https://github.com/wimg/PHPCompatibility/pull/375)
+- :star: `NewFunctions` sniff: recognize new PHP 7.2 socket related functions. [#376](https://github.com/wimg/PHPCompatibility/pull/376)
+- :star: `NewInterfaces` sniff: check for some more PHP native interfaces. [#411](https://github.com/wimg/PHPCompatibility/pull/411)
+- :star: New `isClassProperty()`, `isClassConstant()` and `validDirectScope()` utility methods to the `PHPCompatibility_Sniff` class. [#393](https://github.com/wimg/PHPCompatibility/pull/393), [#391](https://github.com/wimg/PHPCompatibility/pull/391).
+- :star: New `getTypeHintsFromFunctionDeclaration()` utility method to the `PHPCompatibility_Sniff` class. [#414](https://github.com/wimg/PHPCompatibility/pull/414).
+- :umbrella: Unit tests against false positives for the `NewMagicMethods` sniff. [#381](https://github.com/wimg/PHPCompatibility/pull/381)
+- :umbrella: More unit tests for the `getTestVersion()` utility method. [#405](https://github.com/wimg/PHPCompatibility/pull/405), [#430](https://github.com/wimg/PHPCompatibility/pull/430)
+- :green_heart: The XML of the ruleset will now be validated and checked for consistent code style during the build testing by Travis. [#433](https://github.com/wimg/PHPCompatibility/pull/433)
+- :books: Readme: information about setting `installed_paths` via a custom ruleset. [#407](https://github.com/wimg/PHPCompatibility/pull/407)
+- :books: `Changelog.md` file containing a record of notable changes since the first tagged release. [#421](https://github.com/wimg/PHPCompatibility/pull/421)
+
+### Changed
+- :pushpin: The `ForbiddenNamesAsDeclared` sniff will now emit `warning`s for soft reserved keywords. [#406](https://github.com/wimg/PHPCompatibility/pull/406), [#370](https://github.com/wimg/PHPCompatibility/pull/370).
+- :pushpin: The `ForbiddenNames` sniff will now allow for the more liberal rules for usage of reserved keywords as of PHP 7.0. [#417](https://github.com/wimg/PHPCompatibility/pull/417)
+- :pushpin: The `InternalInterfaces`, `NewClasses`, `NewConstVisibility`, `NewInterfaces`, `NewMagicMethods`, `NonStaticMagicMethods` and `RemovedGlobalVariables` sniffs will now also sniff for and correctly report violations in combination with anonymous classes. [#378](https://github.com/wimg/PHPCompatibility/pull/378), [#383](https://github.com/wimg/PHPCompatibility/pull/383), [#393](https://github.com/wimg/PHPCompatibility/pull/393), [#394](https://github.com/wimg/PHPCompatibility/pull/394), [#395](https://github.com/wimg/PHPCompatibility/pull/395), [#396](https://github.com/wimg/PHPCompatibility/pull/396). Fixes [#351](https://github.com/wimg/PHPCompatibility/issues/351) and [#333](https://github.com/wimg/PHPCompatibility/issues/333).
+- :pushpin: The `NewClasses` and `NewInterfaces` sniffs will now also report on new classes/interfaces when used as type hints. [#414](https://github.com/wimg/PHPCompatibility/pull/414), [#416](https://github.com/wimg/PHPCompatibility/pull/416). Fixes [#352](https://github.com/wimg/PHPCompatibility/issues/352)
+- :pushpin: The `NewClasses` sniff will now also report on Exception classes when used in (multi-)`catch` statements. [#418](https://github.com/wimg/PHPCompatibility/pull/418). Fixes [#373](https://github.com/wimg/PHPCompatibility/issues/373).
+- :pushpin: The `NewScalarTypeDeclarations` sniff will now report on new type hints even when the type hint is nullable. [#379](https://github.com/wimg/PHPCompatibility/pull/379)
+- :twisted_rightwards_arrows: The `NewNowdoc` sniff has been renamed to `NewNowdocQuotedHeredoc` and will now also check for double quoted heredoc identifiers as introduced in PHP 5.3. [#390](https://github.com/wimg/PHPCompatibility/pull/390)
+- :rewind: The `NewClasses` sniff will now also report anonymous classes which `extend` a new sniff when used in combination with PHPCS 2.4.0-2.8.0. [#432](https://github.com/wimg/PHPCompatibility/pull/432). Fixes [#334](https://github.com/wimg/PHPCompatibility/issues/334).
+- :pencil2: `NewFunctionParameter` sniff: version number precision for two parameters. [#384](https://github.com/wimg/PHPCompatibility/pull/384), [#428](https://github.com/wimg/PHPCompatibility/pull/428)
+- :umbrella: Skipping two unit tests for the `ForbiddenClosureUseVariable` sniff when run on PHPCS 2.5.1 as these cause an infinite loop due to an upstream bug. [#408](https://github.com/wimg/PHPCompatibility/pull/408)
+- :umbrella: Skipping unit tests involving `trait`s in combination with PHP < 5.4 and PHPCS < 2.4.0 as `trait`s are not recognized in those circumstances. [#431](https://github.com/wimg/PHPCompatibility/pull/431)
+- :recycle: Various (minor) refactoring for improved performance and sniff accuracy. [#385](https://github.com/wimg/PHPCompatibility/pull/385), [#387](https://github.com/wimg/PHPCompatibility/pull/387), [#415](https://github.com/wimg/PHPCompatibility/pull/415), [#423](https://github.com/wimg/PHPCompatibility/pull/423), [#424](https://github.com/wimg/PHPCompatibility/pull/424)
+- :recycle: Minor simplification of the PHPUnit 6 compatibility layer and other test code. [#426](https://github.com/wimg/PHPCompatibility/pull/426), [#425](https://github.com/wimg/PHPCompatibility/pull/425)
+- General housekeeping. [#398](https://github.com/wimg/PHPCompatibility/pull/398), [#400](https://github.com/wimg/PHPCompatibility/pull/400)
+- :wrench: Minor tweaks to the Travis build script. [#409](https://github.com/wimg/PHPCompatibility/pull/409)
+- :green_heart: The sniffs are now also tested against PHP nightly for consistent results. [#380](https://github.com/wimg/PHPCompatibility/pull/380)
+
+### Removed
+-
+
+### Fixed
+- :fire: Using unbounded ranges in `testVersion` resulted in unreported errors when used with sniffs using the `supportsBelow()` method. This affected the results of approximately half the sniffs. [#430](https://github.com/wimg/PHPCompatibility/pull/430)
+- :bug: The `ForbiddenNames` sniff would throw false positives for `use` statements with the `final` modifier in traits. [#402](https://github.com/wimg/PHPCompatibility/pull/402).
+- :bug: The `ForbiddenNames` sniff would fail to report on functions declared to return by reference using a reserved keyword as the function name. [#413](https://github.com/wimg/PHPCompatibility/pull/413)
+- :bug: The `ForbiddenNames` sniff would only examine the first part of a namespace and not report on reserved keywords used in subsequent parts of a nested namespace. [#419](https://github.com/wimg/PHPCompatibility/pull/419)
+- :bug: The `ForbiddenNames` sniff would not always correctly report on use statements importing constants or functions using reserved keywords. [#420](https://github.com/wimg/PHPCompatibility/pull/420)
+- :bug: The `NewKeywords` sniff would sometimes fail to report on the `const` keyword when used in a class, but not for a class constant. [#424](https://github.com/wimg/PHPCompatibility/pull/424)
+- :green_heart: PHPCS has released version 3.0 and updated the `master` branch to reflect this. This was causing the builds to fail. [#422](https://github.com/wimg/PHPCompatibility/pull/422)
+
+### Credits
+Thanks go out to [Juliette Reinders Folmer] and [Mark Clements] for their contributions to this version. :clap:
+
+
 ## [7.1.3] - 2017-04-02
 
 See all related issues and PRs in the [7.1.3 milestone].
@@ -149,7 +211,7 @@ See all related issues and PRs in the [7.0.8 milestone].
     * `DeprecatedPHP4StyleConstructors` will now throw a `warning` instead of an `error` for deprecated PHP4 style class constructors.
     * `ForbiddenCallTimePassByReference` will now throw a `warning` if the `testVersion` is `5.3` and an `error` if the `testVersion` if `5.4` or higher.
     * `MbstringReplaceEModifier` will now throw a `warning` instead of an `error` for usage of the deprecated `e` modifier.
-    * `PregReplaceEModifier` will now throw a `warning` if the `testVersion` is `5.5` or `5.6` and an `error` if the `testVersion` if `7.0` or higher.
+    * `PregReplaceEModifier` will now throw a `warning` if the `testVersion` is `5.5` or `5.6` and an `error` if the `testVersion` if `7.0` or higher. Fixes [#290](https://github.com/wimg/PHPCompatibility/issues/290).
     * `TernaryOperators` will now throw an `error` when the `testVersion` < `5.3` and the middle part has been omitted.
     * `ValidIntegers` will now throw a `warning` when an invalid binary integer is detected.
 - :pencil2: `DeprecatedFunctions` and `DeprecatedIniDirectives` sniffs: minor change in the sniff error message text. Use _"removed"_ rather than the ominous _"forbidden"_. [#285](https://github.com/wimg/PHPCompatibility/pull/285)
@@ -159,7 +221,7 @@ See all related issues and PRs in the [7.0.8 milestone].
 - :bug: `ForbiddenNames` sniff would throw false positives for `use` statements which changed the visibility of methods in traits. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
 - :bug: `ForbiddenNames` sniff would not report reserved keywords when used in combination with `use function` or `use const`. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
 - :bug: `ForbiddenNames` sniff would potentially - unintentionally - skip over tokens, thereby - potentially - not reporting all errors. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
-- :wrench: Composer config: `prefer-stable` should be a root element of the json file.
+- :wrench: Composer config: `prefer-stable` should be a root element of the json file. Fixes [#277](https://github.com/wimg/PHPCompatibility/issues/277).
 
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
@@ -530,7 +592,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...HEAD
+[7.1.4]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...7.1.4
 [7.1.3]: https://github.com/wimg/PHPCompatibility/compare/7.1.2...7.1.3
 [7.1.2]: https://github.com/wimg/PHPCompatibility/compare/7.1.1...7.1.2
 [7.1.1]: https://github.com/wimg/PHPCompatibility/compare/7.1.0...7.1.1
@@ -546,6 +609,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[7.1.4 milestone]: https://github.com/wimg/PHPCompatibility/milestone/15
 [7.1.3 milestone]: https://github.com/wimg/PHPCompatibility/milestone/14
 [7.1.2 milestone]: https://github.com/wimg/PHPCompatibility/milestone/13
 [7.1.1 milestone]: https://github.com/wimg/PHPCompatibility/milestone/12
