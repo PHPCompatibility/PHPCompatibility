@@ -1,5 +1,5 @@
 {
-  "name" : "wimg/php-compatibility",
+  "name" : "sincos/PHPCompatibility",
   "description" : "This is a set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
   "require" : {
     "php" : ">=5.1.2",
