@@ -6,8 +6,8 @@
     <!-- This rule covers checking for non-magic methods using __ prefix. -->
     <!-- Covers part 2 of issue 64: https://github.com/wimg/PHPCompatibility/issues/64 -->
     <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
-        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps" />
-        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps" />
+        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps"/>
+        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps"/>
     </rule>
     <rule ref="Generic.NamingConventions.CamelCapsFunctionName.MethodDoubleUnderscore">
         <type>warning</type>

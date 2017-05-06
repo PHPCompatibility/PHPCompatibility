@@ -61,6 +61,7 @@ matrix:
     - php: nightly
 
 before_install:
+  - export XMLLINT_INDENT="    "
   # PHP 5.3+: set up test environment using Composer.
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer self-update; fi
   - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
@@ -77,12 +78,20 @@ before_script:
   - phpenv rehash
 
 script:
+  # Lint all PHP files against parse errors.
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; fi
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then find -L . -path ./Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then find -L . -path ./Tests/sniff-examples -prune -o -path ./Tests/PHPUnit6Compat.php -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
+  # Check the code style of the code base.
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./phpcs.xml; fi
+  # Run the unit tests.
   - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
   - if [[ $TRAVIS_PHP_VERSION == "5.2" || $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
+  # Validate the xml file.
+  # @link http://xmlsoft.org/xmllint.html
+  - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./ruleset.xml; fi
+  # Check the code-style consistency of the xml files.
+  - if [[ "$SNIFF" == "1" ]]; then diff -B ./ruleset.xml <(xmllint --format "./ruleset.xml"); fi
 
 after_success:
   - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
