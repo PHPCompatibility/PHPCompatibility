@@ -38,8 +38,8 @@ class NewHeredocInitializeSniffTest extends BaseSniffTest
      */
     public static function setUpBeforeClass()
     {
-        // When using PHPCS 1.x combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<') && version_compare(phpversion(), '5.4', '<')) {
+        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
+        if (version_compare(PHP_CodeSniffer::VERSION, '2.4.0', '<') && version_compare(phpversion(), '5.4', '<')) {
             self::$recognizesTraits = false;
         }
 
@@ -61,7 +61,7 @@ class NewHeredocInitializeSniffTest extends BaseSniffTest
     public function testHeredocInitialize($line, $type, $isTrait = false)
     {
         if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS 1.5.x in combination with PHP < 5.4');
+            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
             return;
         }
 
