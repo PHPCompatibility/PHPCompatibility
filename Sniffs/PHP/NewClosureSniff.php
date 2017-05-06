@@ -84,7 +84,7 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
 
                     $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr, ($thisFound + 1));
 
-                } while($thisFound !== false);
+                } while ($thisFound !== false);
             }
         }
 
@@ -110,7 +110,7 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
                 /*
                  * Closures only have access to $this if used within a class context.
                  */
-                else if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
+                elseif ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
                     $phpcsFile->addError(
                         'Closures / anonymous functions only have access to $this if used within a class',
                         $thisFound,
@@ -120,7 +120,7 @@ class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
 
                 $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr, ($thisFound + 1));
 
-            } while($thisFound !== false);
+            } while ($thisFound !== false);
         }
 
     }//end process()

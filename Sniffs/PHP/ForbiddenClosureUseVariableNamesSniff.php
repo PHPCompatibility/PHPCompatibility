@@ -47,67 +47,67 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenClosureUseVariableNamesSniff extends 
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.1') === false) {
-			return;
-		}
+            return;
+        }
 
-		$tokens = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
 
-		// Verify this use statement is used with a closure - if so, it has to have parenthesis before it.
-		$previousNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-		if ($previousNonEmpty === false || $tokens[$previousNonEmpty]['code'] !== T_CLOSE_PARENTHESIS
-			|| isset($tokens[$previousNonEmpty]['parenthesis_opener']) === false
-		) {
-			return;
-		}
+        // Verify this use statement is used with a closure - if so, it has to have parenthesis before it.
+        $previousNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        if ($previousNonEmpty === false || $tokens[$previousNonEmpty]['code'] !== T_CLOSE_PARENTHESIS
+            || isset($tokens[$previousNonEmpty]['parenthesis_opener']) === false
+        ) {
+            return;
+        }
 
-		// ... and (a variable within) parenthesis after it.
-		$nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-		if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
-			return;
-		}
+        // ... and (a variable within) parenthesis after it.
+        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
+            return;
+        }
 
-		if (isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false) {
-			// Live coding.
-			return;
-		}
+        if (isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false) {
+            // Live coding.
+            return;
+        }
 
-		$closurePtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true );
-		if ($tokens[$closurePtr]['code'] !== T_CLOSURE) {
-			return;
-		}
+        $closurePtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true);
+        if ($tokens[$closurePtr]['code'] !== T_CLOSURE) {
+            return;
+        }
 
-		// Get the parameters declared by the closure.
-		$closureParams = $this->getMethodParameters($phpcsFile, $closurePtr);
+        // Get the parameters declared by the closure.
+        $closureParams = $this->getMethodParameters($phpcsFile, $closurePtr);
 
-		$errorMsg = 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: %s';
+        $errorMsg = 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: %s';
 
-		for ($i = ($nextNonEmpty + 1); $i < $tokens[$nextNonEmpty]['parenthesis_closer']; $i++) {
-			if ($tokens[$i]['code'] !== T_VARIABLE) {
-				continue;
-			}
-			
-			$variableName = $tokens[$i]['content'];
+        for ($i = ($nextNonEmpty + 1); $i < $tokens[$nextNonEmpty]['parenthesis_closer']; $i++) {
+            if ($tokens[$i]['code'] !== T_VARIABLE) {
+                continue;
+            }
 
-			if ($variableName === '$this') {
-				$phpcsFile->addError($errorMsg, $i, 'FoundThis', array($variableName));
-				continue;
-			}
+            $variableName = $tokens[$i]['content'];
 
-			if (in_array($variableName, $this->superglobals, true) === true) {
-				$phpcsFile->addError($errorMsg, $i, 'FoundSuperglobal', array($variableName));
-				continue;
-			}
+            if ($variableName === '$this') {
+                $phpcsFile->addError($errorMsg, $i, 'FoundThis', array($variableName));
+                continue;
+            }
 
-			// Check whether it is one of the parameters declared by the closure.
-			if (empty($closureParams) === false) {
-				foreach ($closureParams as $param) {
-					if ($param['name'] === $variableName) {
-						$phpcsFile->addError($errorMsg, $i, 'FoundShadowParam', array($variableName));
-						continue 2;
-					}
-				}
-			}
-		}
+            if (in_array($variableName, $this->superglobals, true) === true) {
+                $phpcsFile->addError($errorMsg, $i, 'FoundSuperglobal', array($variableName));
+                continue;
+            }
+
+            // Check whether it is one of the parameters declared by the closure.
+            if (empty($closureParams) === false) {
+                foreach ($closureParams as $param) {
+                    if ($param['name'] === $variableName) {
+                        $phpcsFile->addError($errorMsg, $i, 'FoundShadowParam', array($variableName));
+                        continue 2;
+                    }
+                }
+            }
+        }
 
     }//end process()
 

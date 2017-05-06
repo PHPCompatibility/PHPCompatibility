@@ -144,7 +144,7 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
             );
             $stackPtr--;
 
-            while(in_array($tokens[($stackPtr - 1)]['code'], $validTokens, true) === true) {
+            while (in_array($tokens[($stackPtr - 1)]['code'], $validTokens, true) === true) {
                 $stackPtr--;
             }
 

@@ -81,8 +81,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends
                     return;
                 }
             }
-        }
-        else {
+        } else {
             // Deal with older PHPCS versions.
             if (isset($token['scope_condition']) === true && isset($this->backCompat[$tokens[$token['scope_condition']]['code']]) === true) {
                 return;

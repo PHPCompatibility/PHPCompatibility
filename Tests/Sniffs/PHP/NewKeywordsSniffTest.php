@@ -263,8 +263,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
             $this->assertError($file, 75, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
-        }
-        else {
+        } else {
             /*
              * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
              * will be halted...

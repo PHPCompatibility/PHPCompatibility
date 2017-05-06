@@ -46,7 +46,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach( $lines as $line ) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -207,7 +207,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }

@@ -43,14 +43,14 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function testDeprecatedRemovedDirectives($iniName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
@@ -111,14 +111,14 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function testDeprecatedDirectives($iniName, $deprecatedIn, $lines, $okVersion, $deprecatedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
     }
@@ -168,7 +168,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function testRemovedWithAlternative($iniName, $removedIn, $alternative, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
@@ -213,7 +213,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
     public function testRemovedDirectives($iniName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 

@@ -792,7 +792,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionParametersSniff extends PHPCompatib
         $openParenthesis = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
+        foreach ($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
                 $itemInfo = array(
                     'name'   => $function,

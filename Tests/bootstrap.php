@@ -20,8 +20,8 @@ $phpcsDir .= DIRECTORY_SEPARATOR;
 
 if (file_exists($phpcsDir . 'CodeSniffer.php')) {
     require $phpcsDir . 'CodeSniffer.php';
-}
-else {
+
+} else {
     // Otherwise we must be in a composer install.
     $vendorDir = dirname(__FILE__) . '/../vendor';
 

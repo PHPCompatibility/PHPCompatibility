@@ -197,10 +197,11 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
         // Either type will result in false-positives when targetting lower versions
         // of PHP where the name was not reserved, unless we explicitly check for
         // them.
-        if (
-            ($nextToken === false || $tokens[$nextToken]['type'] !== 'T_OPEN_PARENTHESIS')
-            &&
-            ($prevToken === false || $tokens[$prevToken]['type'] !== 'T_CLASS' || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
+        if (($nextToken === false
+                || $tokens[$nextToken]['type'] !== 'T_OPEN_PARENTHESIS')
+            && ($prevToken === false
+                || $tokens[$prevToken]['type'] !== 'T_CLASS'
+                || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
         ) {
             // Skip based on token scope condition.
             if (isset($this->newKeywords[$tokenType]['condition'])

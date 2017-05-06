@@ -21,7 +21,8 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array(
             T_FUNCTION,
             T_CLOSURE,
@@ -36,7 +37,8 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         if ($this->supportsAbove('5.4') === false) {
             return;
         }

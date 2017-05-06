@@ -158,7 +158,7 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
                 $errorCode = $errorCodeBase.'MethodStatic';
                 $data      = array($methodName);
 
-                if ( $this->magicMethods[$methodNameLc]['static'] === true ) {
+                if ($this->magicMethods[$methodNameLc]['static'] === true) {
                     $error     = 'Magic method %s must be defined as static.';
                     $errorCode = $errorCodeBase.'MethodNonStatic';
                 }

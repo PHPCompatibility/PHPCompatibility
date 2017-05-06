@@ -74,7 +74,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
 
-		// Verify that the caching of the function results is working correctly.
+        // Verify that the caching of the function results is working correctly.
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
 
         // Clean up / reset the value.
@@ -102,9 +102,9 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
             array('-5.6', array('4.0', '5.6')), // Range, with no minimum.
             array('7.0-', array('7.0', '99.9')), // Range, with no maximum.
 
-		// Whitespace tests.  Shouldn't really come up in standard command-line use,
-		// but could occur if command-line argument is quoted or added via
-		// ruleset.xml.
+        // Whitespace tests.  Shouldn't really come up in standard command-line use,
+        // but could occur if command-line argument is quoted or added via
+        // ruleset.xml.
             array(' 5.0', array('5.0', '5.0')), // Single version.
             array('5.0 ', array('5.0', '5.0')), // Single version.
             array('5.1 - 5.5', array('5.1', '5.5')), // Range of versions.

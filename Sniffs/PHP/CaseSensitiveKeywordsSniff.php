@@ -32,10 +32,10 @@ class PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff extends PHPCompatib
     public function register()
     {
         return array(
-			T_SELF,
-			T_STATIC,
-			T_PARENT,
-		);
+            T_SELF,
+            T_STATIC,
+            T_PARENT,
+        );
     }
 
     /**
@@ -50,12 +50,12 @@ class PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff extends PHPCompatib
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
-			return;
-		}
+            return;
+        }
 
         $tokens         = $phpcsFile->getTokens();
         $tokenContentLC = strtolower($tokens[$stackPtr]['content']);
-        
+
         if ($tokenContentLC !== $tokens[$stackPtr]['content']) {
             $phpcsFile->addError(
                 'The keyword \'%s\' was treated in a case-sensitive fashion in certain cases in PHP 5.4 or earlier. Use the lowercase version for consistent support.',

@@ -15,7 +15,13 @@ if (class_exists('PHPCompatibility_Sniff', true) === false) {
  * @uses    PHPCompatibility_Sniff
  * @package PHPCompatibility
  */
-class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff {
-    public function register() {}
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {}
+class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff
+{
+    public function register()
+    {
+    }
+
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+    }
 }

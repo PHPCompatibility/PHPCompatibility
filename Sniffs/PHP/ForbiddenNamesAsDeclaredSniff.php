@@ -148,7 +148,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
                 return;
             }
 
-        } else if ($tokenCode === T_NAMESPACE) {
+        } elseif ($tokenCode === T_NAMESPACE) {
             $namespaceName = $this->getDeclaredNamespaceName($phpcsFile, $stackPtr);
 
             if ($namespaceName === false || $namespaceName === '') {
@@ -164,7 +164,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
                     break;
                 }
             }
-        } else if ($tokenCode === T_STRING) {
+        } elseif ($tokenCode === T_STRING) {
             // Traits and namespaces which are not yet tokenized as T_TRAIT/T_NAMESPACE.
             $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
@@ -176,7 +176,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
             if ($nextNonEmptyCode !== T_STRING && isset($this->forbiddenTokens[$nextNonEmptyCode]) === true) {
                 $name   = $tokens[$nextNonEmpty]['content'];
                 $nameLc = strtolower($tokens[$nextNonEmpty]['content']);
-            } else if ($nextNonEmptyCode === T_STRING) {
+            } elseif ($nextNonEmptyCode === T_STRING) {
                 $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_OPEN_CURLY_BRACKET), ($stackPtr + 1));
 
                 do {

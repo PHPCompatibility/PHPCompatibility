@@ -93,8 +93,8 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      *
      * If the token combination has multi-layer complexity, such as is the case
      * with T_COALESCE(_EQUAL), a 'callback' index is added instead pointing to a
-	 * separate function which can determine whether this is the targetted token across
-	 * PHP and PHPCS versions.
+     * separate function which can determine whether this is the targetted token across
+     * PHP and PHPCS versions.
      *
      * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
      * translation list with the current tokens.}}
@@ -135,8 +135,7 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
         foreach ($this->newConstructs as $token => $versions) {
             if (defined($token)) {
                 $tokens[] = constant($token);
-            }
-            else if(isset($this->newConstructsPHPCSCompat[$token])) {
+            } elseif (isset($this->newConstructsPHPCSCompat[$token])) {
                 $tokens[] = $this->newConstructsPHPCSCompat[$token];
             }
         }
@@ -160,13 +159,10 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
 
         // Translate older PHPCS token combis for new constructs to the actual construct.
         if (isset($this->newConstructs[$tokenType]) === false) {
-            if (
-                isset($this->PHPCSCompatTranslate[$tokenType])
-                &&
-                ((isset($this->PHPCSCompatTranslate[$tokenType]['before'])
+            if (isset($this->PHPCSCompatTranslate[$tokenType])
+                && ((isset($this->PHPCSCompatTranslate[$tokenType]['before']) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
-                ||
-                (isset($this->PHPCSCompatTranslate[$tokenType]['callback'])
+                || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
                     && call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
             ) {
                 $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
@@ -177,7 +173,6 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
                 // Ignore as will be dealt with via the T_EQUAL token.
                 return;
             }
-
         }
 
         // If the translation did not yield one of the tokens we are looking for, bow out.

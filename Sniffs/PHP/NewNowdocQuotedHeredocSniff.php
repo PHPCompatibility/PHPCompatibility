@@ -126,7 +126,6 @@ class PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff extends PHPCompati
                 case '"':
                     $isHeredoc = true;
                     break;
-
             }
 
 

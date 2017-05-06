@@ -74,7 +74,7 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
         $functionNameLc = strtolower($functionName);
 
         // Bow out if not one of the functions we're targetting.
-        if ( isset($this->functions[$functionNameLc]) === false ) {
+        if (isset($this->functions[$functionNameLc]) === false) {
             return;
         }
 
@@ -97,8 +97,8 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
 
                 $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
             }
-        }
-        else {
+
+        } else {
             $this->processRegexPattern($firstParam, $phpcsFile, $stackPtr, $functionName);
         }
 
@@ -127,7 +127,7 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
          * and function calls. We are only concerned with the strings.
          */
         $regex = '';
-        for ($i = $pattern['start']; $i <= $pattern['end']; $i++ ) {
+        for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
             if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
                 $content = $this->stripQuotes($tokens[$i]['content']);
                 if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
@@ -158,12 +158,11 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
 
         if (isset($this->doublesSeparators[$regexFirstChar])) {
             $regexEndPos = strrpos($regex, $this->doublesSeparators[$regexFirstChar]);
-        }
-        else {
+        } else {
             $regexEndPos = strrpos($regex, $regexFirstChar);
         }
 
-        if($regexEndPos) {
+        if ($regexEndPos) {
             $modifiers = substr($regex, $regexEndPos + 1);
 
             if (strpos($modifiers, 'e') !== false) {

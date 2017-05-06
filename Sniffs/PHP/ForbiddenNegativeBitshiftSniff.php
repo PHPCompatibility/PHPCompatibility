@@ -48,12 +48,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPComp
         }
 
         $nextNumber = $phpcsFile->findNext(T_LNUMBER, $stackPtr + 1, null, false, null, true);
-        if($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
+        if ($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
             return;
         }
 
         $hasMinusSign = $phpcsFile->findNext(T_MINUS, $stackPtr + 1, $nextNumber, false, null, true);
-        if($hasMinusSign === false) {
+        if ($hasMinusSign === false) {
             return;
         }
 

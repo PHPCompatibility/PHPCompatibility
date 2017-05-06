@@ -134,7 +134,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch($tokens[$stackPtr]['type']) {
+        switch ($tokens[$stackPtr]['type']) {
             case 'T_CLASS':
             case 'T_ANON_CLASS':
                 $this->processClassToken($phpcsFile, $stackPtr);
@@ -176,7 +176,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
         $tokens       = $phpcsFile->getTokens();
         $checkMethods = false;
 
-        if(isset($tokens[$stackPtr]['scope_closer'])) {
+        if (isset($tokens[$stackPtr]['scope_closer'])) {
             $checkMethods = true;
             $scopeCloser = $tokens[$stackPtr]['scope_closer'];
         }

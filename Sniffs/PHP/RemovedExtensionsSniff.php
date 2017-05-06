@@ -223,7 +223,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             return;
         }
 
-        if ( $tokens[$previous]['code'] === T_OBJECT_OPERATOR ) {
+        if ($tokens[$previous]['code'] === T_OBJECT_OPERATOR) {
             // We are calling a method of an object
             return;
         }
@@ -231,7 +231,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         $function   = $tokens[$stackPtr]['content'];
         $functionLc = strtolower($function);
 
-        if($this->isWhiteListed($functionLc) === true){
+        if ($this->isWhiteListed($functionLc) === true) {
             // Function is whitelisted.
             return;
         }
@@ -258,7 +258,8 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
      *
      * @return bool
      */
-    protected function isWhiteListed($content) {
+    protected function isWhiteListed($content)
+    {
         if (isset($this->functionWhitelist) === false) {
             return false;
         }
@@ -272,7 +273,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         }
 
         if (is_array($this->functionWhitelist) === true) {
-            $this->functionWhitelist = array_map('strtolower',$this->functionWhitelist);
+            $this->functionWhitelist = array_map('strtolower', $this->functionWhitelist);
             return in_array($content, $this->functionWhitelist, true);
         }
 

@@ -80,21 +80,20 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
                     $content,
                 );
                 $errorCode = 'ASPOpenTagFound';
-            }
-            else if (strpos($content, '<script ') !== false) {
+
+            } elseif (strpos($content, '<script ') !== false) {
                 $data = array(
                     'Script',
                     $content,
                 );
                 $errorCode = 'ScriptOpenTagFound';
-            }
-            else {
+            } else {
                 return;
             }
         }
         // Account for incorrect script open tags.
         // The "(?:<s)?" in the regex is to work-around a bug in the tokenizer in PHP 5.2.
-        else if ($openTag['code'] === T_INLINE_HTML
+        elseif ($openTag['code'] === T_INLINE_HTML
             && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found = $match[1];

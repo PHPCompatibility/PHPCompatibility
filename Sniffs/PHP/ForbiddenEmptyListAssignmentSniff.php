@@ -72,7 +72,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
 
             $close = $tokens[$open]['parenthesis_closer'];
             $error = true;
-            if(($close - $open) > 1) {
+            if (($close - $open) > 1) {
                 for ($cnt = $open + 1; $cnt < $close; $cnt++) {
                     if (isset($this->ignoreTokens[$tokens[$cnt]['code']]) === false) {
                         $error = false;

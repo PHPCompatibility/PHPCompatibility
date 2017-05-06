@@ -1297,8 +1297,8 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Abs
         if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
             // Not a call to a PHP function.
             return;
-        }
-        else if($tokens[$prevToken]['code'] === T_NS_SEPARATOR && $tokens[$prevToken - 1]['code'] === T_STRING) {
+
+        } elseif ($tokens[$prevToken]['code'] === T_NS_SEPARATOR && $tokens[$prevToken - 1]['code'] === T_STRING) {
             // Namespaced function.
             return;
         }

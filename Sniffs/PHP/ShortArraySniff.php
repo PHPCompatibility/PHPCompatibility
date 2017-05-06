@@ -38,9 +38,9 @@ class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
         $error = '%s is available since 5.4';
         $data  = array();
 
-        if ($token['type'] === 'T_OPEN_SHORT_ARRAY' ) {
+        if ($token['type'] === 'T_OPEN_SHORT_ARRAY') {
             $data[] = 'Short array syntax (open)';
-        } elseif ($token['type'] === 'T_CLOSE_SHORT_ARRAY' ) {
+        } elseif ($token['type'] === 'T_CLOSE_SHORT_ARRAY') {
             $data[] = 'Short array syntax (close)';
         }
 

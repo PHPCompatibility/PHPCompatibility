@@ -40,14 +40,14 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function testRemovedExtension($extensionName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "Extension '{$extensionName}' is removed since PHP {$removedIn}";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
     }
@@ -97,14 +97,14 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function testRemovedExtensionWithAlternative($extensionName, $removedIn, $alternative, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "Extension '{$extensionName}' is removed since PHP {$removedIn}; Use {$alternative} instead";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
     }
@@ -156,21 +156,21 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function testDeprecatedRemovedExtensionWithAlternative($extensionName, $deprecatedIn, $removedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}; Use {$alternative} instead";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
     }
@@ -209,14 +209,14 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
     public function testDeprecatedExtensionWithAlternative($extensionName, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
     {
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
     }

@@ -79,8 +79,8 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
                 array(),
                 $phpcs
             );
-        }
-        else {
+
+        } else {
             $this->_phpcsFile = new PHP_CodeSniffer_File(
                 $filename,
                 array(),

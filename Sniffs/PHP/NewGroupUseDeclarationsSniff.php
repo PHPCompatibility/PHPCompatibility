@@ -60,8 +60,8 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
 
             $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
             if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
-				return;
-			}
+                return;
+            }
         }
 
         // Still here ? In that case, it is a group use statement.

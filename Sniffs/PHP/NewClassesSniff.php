@@ -381,7 +381,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch($tokens[$stackPtr]['type']) {
+        switch ($tokens[$stackPtr]['type']) {
             case 'T_FUNCTION':
             case 'T_CLOSURE':
                 $this->processFunctionToken($phpcsFile, $stackPtr);
@@ -415,11 +415,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
 
         if ($tokens[$stackPtr]['type'] === 'T_NEW') {
             $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
-        }
-        else if ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
+
+        } elseif ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
             $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
-        }
-        else if ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
+
+        } elseif ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
             $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
@@ -510,7 +510,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
         );
 
-        for ($i = ($opener + 1); $i < $closer; $i++ ) {
+        for ($i = ($opener + 1); $i < $closer; $i++) {
             if (isset($listen[$tokens[$i]['code']]) === false) {
                 continue;
             }

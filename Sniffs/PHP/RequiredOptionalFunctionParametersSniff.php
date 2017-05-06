@@ -100,7 +100,7 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
         $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
+        foreach ($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
                 $itemInfo = array(
                     'name'   => $function,

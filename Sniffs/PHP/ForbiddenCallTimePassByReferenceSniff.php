@@ -111,7 +111,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                 $isError   = false;
                 $errorCode = 'Deprecated';
 
-                if($this->supportsAbove('5.4')) {
+                if ($this->supportsAbove('5.4')) {
                     $error    .= ' and prohibited since PHP 5.4';
                     $isError   = true;
                     $errorCode = 'NotAllowed';
@@ -226,8 +226,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                     // The found T_BITWISE_AND represents a pass-by-reference.
                     return true;
             }
-
-        } while($nextVariable < $searchEndToken);
+        } while ($nextVariable < $searchEndToken);
 
         // This code should never be reached, but here in case of weird bugs ;-)
         return false;

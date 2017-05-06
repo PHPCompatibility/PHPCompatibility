@@ -119,14 +119,14 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                     $param['token'],
                     'TypeHintFound'
                 );
-            }
-            else if (isset($this->newTypes[$type_hint])) {
+
+            } elseif (isset($this->newTypes[$type_hint])) {
                 $itemInfo = array(
                     'name'   => $type_hint,
                 );
                 $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
-            }
-            else if (isset($this->invalidTypes[$type_hint])) {
+
+            } elseif (isset($this->invalidTypes[$type_hint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
                 $data  = array(
                     $type_hint,
@@ -134,8 +134,8 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                 );
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
-            }
-            else if ($type_hint === 'self') {
+
+            } elseif ($type_hint === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
                     $phpcsFile->addError(
                         "'self' type cannot be used outside of class scope",

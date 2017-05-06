@@ -65,7 +65,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
         } else {
             // PHPCS 1.x
-            self::$phpcs->process(array(), dirname( __FILE__ ) . '/../', array($this->getSniffCode()));
+            self::$phpcs->process(array(), dirname(__FILE__) . '/../', array($this->getSniffCode()));
         }
 
         self::$phpcs->setIgnorePatterns(array());
@@ -113,7 +113,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      */
     public function sniffFile($filename, $targetPhpVersion = 'none')
     {
-        if ( isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
+        if (isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
             return self::$sniffFiles[$filename][$targetPhpVersion];
         }
 
@@ -192,7 +192,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         $insteadMessagesString = implode(', ', $insteadFoundMessages);
         return $this->assertContains(
-            $expectedMessage, $insteadMessagesString,
+            $expectedMessage,
+            $insteadMessagesString,
             "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString."
         );
     }
@@ -309,4 +310,3 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         return $allIssues;
     }
 }
-

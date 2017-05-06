@@ -63,7 +63,7 @@ class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompa
         $functionNameLc = strtolower($tokens[$stackPtr]['content']);
 
         // Bow out if not one of the functions we're targetting.
-        if ( isset($this->functions[$functionNameLc]) === false ) {
+        if (isset($this->functions[$functionNameLc]) === false) {
             return;
         }
 
