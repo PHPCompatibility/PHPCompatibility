@@ -37,37 +37,37 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
 
         'ifx.allow_persistent' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.blobinfile' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.byteasvarchar' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.charasvarchar' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.default_host' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.default_password' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.default_user' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.max_links' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.max_persistent' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.nullformat' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
         'ifx.textasvarchar' => array(
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
 
         'zend.ze1_compatibility_mode' => array(
@@ -76,11 +76,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
 
         'allow_call_time_pass_reference' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'define_syslog_variables' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'detect_unicode' => array(
             '5.4'         => true,
@@ -88,19 +88,19 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
         'highlight.bg' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'magic_quotes_gpc' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'magic_quotes_runtime' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'magic_quotes_sybase' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'mbstring.script_encoding' => array(
             '5.4'         => true,
@@ -108,100 +108,100 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         ),
         'register_globals' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'register_long_arrays' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode_allowed_env_vars' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode_exec_dir' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode_gid' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode_include_dir' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'safe_mode_protected_env_vars' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'session.bug_compat_42' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'session.bug_compat_warn' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
         'y2k_compliance' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
 
         'always_populate_raw_post_data' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'iconv.input_encoding' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
         'iconv.output_encoding' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
         'iconv.internal_encoding' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
         'mbstring.http_input' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
         'mbstring.http_output' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
         'mbstring.internal_encoding' => array(
-            '5.6' => false
+            '5.6' => false,
         ),
 
         'asp_tags' => array(
-            '7.0' => true
+            '7.0' => true,
         ),
         'xsl.security_prefs' => array(
-            '7.0' => true
+            '7.0' => true,
         ),
 
         'mcrypt.algorithms_dir' => array(
-            '7.1' => false
+            '7.1' => false,
         ),
         'mcrypt.modes_dir' => array(
-            '7.1' => false
+            '7.1' => false,
         ),
         'session.entropy_file' => array(
-            '7.1' => true
+            '7.1' => true,
         ),
         'session.entropy_length' => array(
-            '7.1' => true
+            '7.1' => true,
         ),
         'session.hash_function' => array(
-            '7.1' => true
+            '7.1' => true,
         ),
         'session.hash_bits_per_character' => array(
-            '7.1' => true
+            '7.1' => true,
         ),
 
         'mbstring.func_overload' => array(
-            '7.2' => false
+            '7.2' => false,
         ),
     );
 
@@ -230,11 +230,11 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff extends PHPCompat
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-                   T_DOUBLE_COLON,
-                   T_OBJECT_OPERATOR,
-                   T_FUNCTION,
-                   T_CONST,
-                  );
+            T_DOUBLE_COLON,
+            T_OBJECT_OPERATOR,
+            T_FUNCTION,
+            T_CONST,
+        );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         if (in_array($tokens[$prevToken]['code'], $ignore) === true) {

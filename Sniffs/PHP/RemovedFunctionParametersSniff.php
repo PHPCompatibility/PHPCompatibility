@@ -26,33 +26,33 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
      * @var array
      */
     protected $removedFunctionParameters = array(
-                                        'gmmktime' => array(
-                                            6 => array(
-                                                'name' => 'is_dst',
-                                                '5.1' => false, // deprecated
-                                                '7.0' => true,
-                                            ),
-                                        ),
-                                        'ldap_first_attribute' => array(
-                                            2 => array(
-                                                'name' => 'ber_identifier',
-                                                '5.2.4' => true,
-                                            ),
-                                        ),
-                                        'ldap_next_attribute' => array(
-                                            2 => array(
-                                                'name' => 'ber_identifier',
-                                                '5.2.4' => true,
-                                            ),
-                                        ),
-                                        'mktime' => array(
-                                            6 => array(
-                                                'name' => 'is_dst',
-                                                '5.1' => false, // deprecated
-                                                '7.0' => true,
-                                            ),
-                                        ),
-                                    );
+        'gmmktime' => array(
+            6 => array(
+                'name' => 'is_dst',
+                '5.1' => false, // deprecated
+                '7.0' => true,
+            ),
+        ),
+        'ldap_first_attribute' => array(
+            2 => array(
+                'name' => 'ber_identifier',
+                '5.2.4' => true,
+            ),
+        ),
+        'ldap_next_attribute' => array(
+            2 => array(
+                'name' => 'ber_identifier',
+                '5.2.4' => true,
+            ),
+        ),
+        'mktime' => array(
+            6 => array(
+                'name' => 'is_dst',
+                '5.1' => false, // deprecated
+                '7.0' => true,
+            ),
+        ),
+    );
 
 
     /**
@@ -82,10 +82,10 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-                T_DOUBLE_COLON,
-                T_OBJECT_OPERATOR,
-                T_FUNCTION,
-                T_CONST,
+            T_DOUBLE_COLON,
+            T_OBJECT_OPERATOR,
+            T_FUNCTION,
+            T_CONST,
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);

@@ -187,7 +187,7 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
 
         'allow_url_include' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
         'filter.default' => array(
             '5.1' => false,
@@ -199,25 +199,25 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         ),
         'pcre.backtrack_limit' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
         'pcre.recursion_limit' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
         'session.cookie_httponly' => array(
             '5.1' => false,
-            '5.2' => true
+            '5.2' => true,
         ),
 
         'cgi.check_shebang_line' => array(
             '5.2.0' => false,
-            '5.2.1' => true
+            '5.2.1' => true,
         ),
 
         'max_input_nesting_level' => array(
             '5.2.2' => false,
-            '5.2.3' => true
+            '5.2.3' => true,
         ),
 
         'mysqli.allow_local_infile' => array(
@@ -487,11 +487,11 @@ class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-                   T_DOUBLE_COLON,
-                   T_OBJECT_OPERATOR,
-                   T_FUNCTION,
-                   T_CONST,
-                  );
+            T_DOUBLE_COLON,
+            T_OBJECT_OPERATOR,
+            T_FUNCTION,
+            T_CONST,
+        );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         if (in_array($tokens[$prevToken]['code'], $ignore) === true) {

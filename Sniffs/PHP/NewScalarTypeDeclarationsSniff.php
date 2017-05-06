@@ -25,36 +25,36 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newTypes = array (
-                           'array' => array(
-                               '5.0' => false,
-                               '5.1' => true,
-                           ),
-                           'callable' => array(
-                               '5.3' => false,
-                               '5.4' => true,
-                           ),
-                           'int' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'float' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'bool' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'string' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'iterable' => array(
-                               '7.0' => false,
-                               '7.1' => true,
-                           ),
-                          );
+    protected $newTypes = array(
+        'array' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'callable' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'int' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'float' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'bool' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'string' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'iterable' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+    );
 
 
     /**
@@ -64,12 +64,12 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      *
      * @var array(string => string)
      */
-    protected $invalidTypes = array (
-                               'parent'  => 'self',
-                               'static'  => 'self',
-                               'boolean' => 'bool',
-                               'integer' => 'int',
-                              );
+    protected $invalidTypes = array(
+        'parent'  => 'self',
+        'static'  => 'self',
+        'boolean' => 'bool',
+        'integer' => 'int',
+    );
 
 
     /**

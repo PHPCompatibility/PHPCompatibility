@@ -41,10 +41,10 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
         }
 
         return array(
-                T_OPEN_TAG,
-                T_OPEN_TAG_WITH_ECHO,
-                T_INLINE_HTML,
-               );
+            T_OPEN_TAG,
+            T_OPEN_TAG_WITH_ECHO,
+            T_INLINE_HTML,
+        );
 
     }//end register()
 

@@ -58,12 +58,12 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
             $ignore = array(
-                    T_FUNCTION,
-                    T_CONST,
-                    T_USE,
-                    T_NEW,
-                    T_CLASS,
-                    T_INTERFACE,
+                T_FUNCTION,
+                T_CONST,
+                T_USE,
+                T_NEW,
+                T_CLASS,
+                T_INTERFACE,
             );
 
             if (in_array($tokens[$prevToken]['code'], $ignore) === true) {

@@ -28,9 +28,9 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
         $this->isLowPHPVersion = version_compare(phpversion(), '5.4', '<');
 
         return array(
-                T_LNUMBER, // Binary, octal integers.
-                T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
-               );
+            T_LNUMBER, // Binary, octal integers.
+            T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
+        );
 
     }//end register()
 

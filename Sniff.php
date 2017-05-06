@@ -40,7 +40,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         '$_COOKIE',
         '$_SESSION',
         '$_REQUEST',
-        '$_ENV'
+        '$_ENV',
     );
 
     /**
@@ -343,11 +343,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_WHITESPACE,
-                 T_COMMA,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_WHITESPACE,
+            T_COMMA,
+        );
 
         $end  = $phpcsFile->findNext($find, ($implementsIndex + 1), ($classOpenerIndex + 1), true);
         $name = $phpcsFile->getTokensAsString(($implementsIndex + 1), ($end - $implementsIndex - 1));
@@ -742,11 +742,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_NAMESPACE,
-                 T_WHITESPACE,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_NAMESPACE,
+            T_WHITESPACE,
+        );
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
@@ -834,11 +834,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_NAMESPACE,
-                 T_WHITESPACE,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_NAMESPACE,
+            T_WHITESPACE,
+        );
 
         $start = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
         if ($start === false) {
@@ -1005,10 +1005,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         // Ok, this should be a namespace declaration, so get all the parts together.
         $validTokens = array(
-                        T_STRING       => true,
-                        T_NS_SEPARATOR => true,
-                        T_WHITESPACE   => true,
-                       );
+            T_STRING       => true,
+            T_NS_SEPARATOR => true,
+            T_WHITESPACE   => true,
+        );
 
         $namespaceName = '';
         while (isset($validTokens[$tokens[$nextToken]['code']]) === true) {

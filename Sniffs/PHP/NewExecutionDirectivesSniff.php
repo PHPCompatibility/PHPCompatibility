@@ -26,24 +26,24 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newDirectives = array (
-                                'ticks' => array(
-                                    '3.1' => false,
-                                    '4.0' => true,
-                                    'valid_value_callback' => 'isNumeric',
-                                ),
-                                'encoding' => array(
-                                    '5.2' => false,
-                                    '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
-                                    '5.4' => true,
-                                    'valid_value_callback' => 'validEncoding',
-                                ),
-                                'strict_types' => array(
-                                    '5.6' => false,
-                                    '7.0' => true,
-                                    'valid_values' => array(1),
-                                ),
-                               );
+    protected $newDirectives = array(
+        'ticks' => array(
+            '3.1' => false,
+            '4.0' => true,
+            'valid_value_callback' => 'isNumeric',
+        ),
+        'encoding' => array(
+            '5.2' => false,
+            '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
+            '5.4' => true,
+            'valid_value_callback' => 'validEncoding',
+        ),
+        'strict_types' => array(
+            '5.6' => false,
+            '7.0' => true,
+            'valid_values' => array(1),
+        ),
+    );
 
 
     /**

@@ -63,7 +63,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
         'callable' => '5.4',
         'insteadof' => '5.4',
         'trait' => '5.4',
-        'finally' => '5.5'
+        'finally' => '5.5',
     );
 
     /**

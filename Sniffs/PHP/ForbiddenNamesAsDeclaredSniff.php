@@ -34,7 +34,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
     protected $forbiddenTokens = array(
         T_NULL  => '7.0',
         T_TRUE  => '7.0',
-        T_FALSE => '7.0'
+        T_FALSE => '7.0',
     );
 
     /**

@@ -29,45 +29,45 @@ class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPComp
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newTypes = array (
-                                        'int' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'float' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'bool' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'string' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'array' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'callable' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'self' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
-                                        'Class name' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                        ),
+    protected $newTypes = array(
+        'int' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'float' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'bool' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'string' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'array' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'callable' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'self' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'Class name' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
 
-                                        'void' => array(
-                                            '7.0' => false,
-                                            '7.1' => true,
-                                        ),
-                                    );
+        'void' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+    );
 
 
     /**
