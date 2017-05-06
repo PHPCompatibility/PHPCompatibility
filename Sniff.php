@@ -124,19 +124,17 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 }
             }
             elseif (preg_match('/^\d+\.\d+-$/', $testVersion)) {
-                $testVersion = substr($testVersion, 0, -1);
                 // If no upper-limit is set, we set the max version to 99.9.
                 // This is *probably* safe... :-)
-                $arrTestVersions[$testVersion] = array($testVersion, '99.9');
+                $arrTestVersions[$testVersion] = array(substr($testVersion, 0, -1), '99.9');
             }
             elseif (preg_match('/^-\d+\.\d+$/', $testVersion)) {
-                $testVersion = substr($testVersion, 1);
                 // If no lower-limit is set, we set the min version to 4.0.
                 // Whilst development focuses on PHP 5 and above, we also accept
                 // sniffs for PHP 4, so we include that as the minimum.
                 // (It makes no sense to support PHP 3 as this was effectively a
                 // different language).
-                $arrTestVersions[$testVersion] = array('4.0', $testVersion);
+                $arrTestVersions[$testVersion] = array('4.0', substr($testVersion, 1));
             }
             elseif (!$testVersion == '') {
                 trigger_error("Invalid testVersion setting: '" . $testVersion
