@@ -45,7 +45,7 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :pushpin: The `ForbiddenNames` sniff will now allow for the more liberal rules for usage of reserved keywords as of PHP 7.0. [#417](https://github.com/wimg/PHPCompatibility/pull/417)
 - :pushpin: The `InternalInterfaces`, `NewClasses`, `NewConstVisibility`, `NewInterfaces`, `NewMagicMethods`, `NonStaticMagicMethods` and `RemovedGlobalVariables` sniffs will now also sniff for and correctly report violations in combination with anonymous classes. [#378](https://github.com/wimg/PHPCompatibility/pull/378), [#383](https://github.com/wimg/PHPCompatibility/pull/383), [#393](https://github.com/wimg/PHPCompatibility/pull/393), [#394](https://github.com/wimg/PHPCompatibility/pull/394), [#395](https://github.com/wimg/PHPCompatibility/pull/395), [#396](https://github.com/wimg/PHPCompatibility/pull/396). Fixes [#351](https://github.com/wimg/PHPCompatibility/issues/351) and [#333](https://github.com/wimg/PHPCompatibility/issues/333).
 - :pushpin: The `NewClasses` and `NewInterfaces` sniffs will now also report on new classes/interfaces when used as type hints. [#414](https://github.com/wimg/PHPCompatibility/pull/414), [#416](https://github.com/wimg/PHPCompatibility/pull/416). Fixes [#352](https://github.com/wimg/PHPCompatibility/issues/352)
-- :pushpin: The `NewClasses` sniff will now also report on Exception classes when used in (multi-)`catch` statements. [#418](https://github.com/wimg/PHPCompatibility/pull/418)
+- :pushpin: The `NewClasses` sniff will now also report on Exception classes when used in (multi-)`catch` statements. [#418](https://github.com/wimg/PHPCompatibility/pull/418). Fixes [#373](https://github.com/wimg/PHPCompatibility/issues/373).
 - :pushpin: The `NewScalarTypeDeclarations` sniff will now report on new type hints even when the type hint is nullable. [#379](https://github.com/wimg/PHPCompatibility/pull/379)
 - :twisted_rightwards_arrows: The `NewNowdoc` sniff has been renamed to `NewNowdocQuotedHeredoc` and will now also check for double quoted heredoc identifiers as introduced in PHP 5.3. [#390](https://github.com/wimg/PHPCompatibility/pull/390)
 - :pencil2: `NewFunctionParameter` sniff: version number precision for one parameter. [#384](https://github.com/wimg/PHPCompatibility/pull/384)
@@ -207,7 +207,7 @@ See all related issues and PRs in the [7.0.8 milestone].
     * `DeprecatedPHP4StyleConstructors` will now throw a `warning` instead of an `error` for deprecated PHP4 style class constructors.
     * `ForbiddenCallTimePassByReference` will now throw a `warning` if the `testVersion` is `5.3` and an `error` if the `testVersion` if `5.4` or higher.
     * `MbstringReplaceEModifier` will now throw a `warning` instead of an `error` for usage of the deprecated `e` modifier.
-    * `PregReplaceEModifier` will now throw a `warning` if the `testVersion` is `5.5` or `5.6` and an `error` if the `testVersion` if `7.0` or higher.
+    * `PregReplaceEModifier` will now throw a `warning` if the `testVersion` is `5.5` or `5.6` and an `error` if the `testVersion` if `7.0` or higher. Fixes [#290](https://github.com/wimg/PHPCompatibility/issues/290).
     * `TernaryOperators` will now throw an `error` when the `testVersion` < `5.3` and the middle part has been omitted.
     * `ValidIntegers` will now throw a `warning` when an invalid binary integer is detected.
 - :pencil2: `DeprecatedFunctions` and `DeprecatedIniDirectives` sniffs: minor change in the sniff error message text. Use _"removed"_ rather than the ominous _"forbidden"_. [#285](https://github.com/wimg/PHPCompatibility/pull/285)
@@ -217,7 +217,7 @@ See all related issues and PRs in the [7.0.8 milestone].
 - :bug: `ForbiddenNames` sniff would throw false positives for `use` statements which changed the visibility of methods in traits. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
 - :bug: `ForbiddenNames` sniff would not report reserved keywords when used in combination with `use function` or `use const`. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
 - :bug: `ForbiddenNames` sniff would potentially - unintentionally - skip over tokens, thereby - potentially - not reporting all errors. [#271](https://github.com/wimg/PHPCompatibility/pull/271).
-- :wrench: Composer config: `prefer-stable` should be a root element of the json file.
+- :wrench: Composer config: `prefer-stable` should be a root element of the json file. Fixes [#277](https://github.com/wimg/PHPCompatibility/issues/277).
 
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
