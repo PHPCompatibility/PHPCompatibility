@@ -36,7 +36,8 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :star: New `isClassProperty()`, `isClassConstant()` and `validDirectScope()` utility methods to the `PHPCompatibility_Sniff` class. [#393](https://github.com/wimg/PHPCompatibility/pull/393), [#391](https://github.com/wimg/PHPCompatibility/pull/391).
 - :star: New `getTypeHintsFromFunctionDeclaration()` utility method to the `PHPCompatibility_Sniff` class. [#414](https://github.com/wimg/PHPCompatibility/pull/414).
 - :umbrella: Unit tests against false positives for the `NewMagicMethods` sniff. [#381](https://github.com/wimg/PHPCompatibility/pull/381)
-- :umbrella: More unit tests for the `getTestVersion()` utility method. [#405](https://github.com/wimg/PHPCompatibility/pull/405)
+- :umbrella: More unit tests for the `getTestVersion()` utility method. [#405](https://github.com/wimg/PHPCompatibility/pull/405), [#430](https://github.com/wimg/PHPCompatibility/pull/430)
+- :green_heart: The XML of the ruleset will now be validated and checked for consistent code style during the build testing by Travis. [#433](https://github.com/wimg/PHPCompatibility/pull/433)
 - :books: Readme: information about setting `installed_paths` via a custom ruleset. [#407](https://github.com/wimg/PHPCompatibility/pull/407)
 - :books: `Changelog.md` file containing a record of notable changes since the first tagged release. [#421](https://github.com/wimg/PHPCompatibility/pull/421)
 
@@ -48,8 +49,10 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :pushpin: The `NewClasses` sniff will now also report on Exception classes when used in (multi-)`catch` statements. [#418](https://github.com/wimg/PHPCompatibility/pull/418). Fixes [#373](https://github.com/wimg/PHPCompatibility/issues/373).
 - :pushpin: The `NewScalarTypeDeclarations` sniff will now report on new type hints even when the type hint is nullable. [#379](https://github.com/wimg/PHPCompatibility/pull/379)
 - :twisted_rightwards_arrows: The `NewNowdoc` sniff has been renamed to `NewNowdocQuotedHeredoc` and will now also check for double quoted heredoc identifiers as introduced in PHP 5.3. [#390](https://github.com/wimg/PHPCompatibility/pull/390)
-- :pencil2: `NewFunctionParameter` sniff: version number precision for one parameter. [#384](https://github.com/wimg/PHPCompatibility/pull/384)
+- :rewind: The `NewClasses` sniff will now also report anonymous classes which `extend` a new sniff when used in combination with PHPCS 2.4.0-2.8.0. [#432](https://github.com/wimg/PHPCompatibility/pull/432). Fixes [#334](https://github.com/wimg/PHPCompatibility/issues/334).
+- :pencil2: `NewFunctionParameter` sniff: version number precision for two parameters. [#384](https://github.com/wimg/PHPCompatibility/pull/384), [#428](https://github.com/wimg/PHPCompatibility/pull/428)
 - :umbrella: Skipping two unit tests for the `ForbiddenClosureUseVariable` sniff when run on PHPCS 2.5.1 as these cause an infinite loop due to an upstream bug. [#408](https://github.com/wimg/PHPCompatibility/pull/408)
+- :umbrella: Skipping unit tests involving `trait`s in combination with PHP < 5.4 and PHPCS < 2.4.0 as `trait`s are not recognized in those circumstances. [#431](https://github.com/wimg/PHPCompatibility/pull/431)
 - :recycle: Various (minor) refactoring for improved performance and sniff accuracy. [#385](https://github.com/wimg/PHPCompatibility/pull/385), [#387](https://github.com/wimg/PHPCompatibility/pull/387), [#415](https://github.com/wimg/PHPCompatibility/pull/415), [#423](https://github.com/wimg/PHPCompatibility/pull/423), [#424](https://github.com/wimg/PHPCompatibility/pull/424)
 - :recycle: Minor simplification of the PHPUnit 6 compatibility layer and other test code. [#426](https://github.com/wimg/PHPCompatibility/pull/426), [#425](https://github.com/wimg/PHPCompatibility/pull/425)
 - General housekeeping. [#398](https://github.com/wimg/PHPCompatibility/pull/398), [#400](https://github.com/wimg/PHPCompatibility/pull/400)
@@ -60,6 +63,7 @@ See all related issues and PRs in the [7.1.4 milestone].
 -
 
 ### Fixed
+- :fire: Using unbounded ranges in `testVersion` resulted in unreported errors when used with sniffs using the `supportsBelow()` method. This affected the results of approximately half the sniffs. [#430](https://github.com/wimg/PHPCompatibility/pull/430)
 - :bug: The `ForbiddenNames` sniff would throw false positives for `use` statements with the `final` modifier in traits. [#402](https://github.com/wimg/PHPCompatibility/pull/402).
 - :bug: The `ForbiddenNames` sniff would fail to report on functions declared to return by reference using a reserved keyword as the function name. [#413](https://github.com/wimg/PHPCompatibility/pull/413)
 - :bug: The `ForbiddenNames` sniff would only examine the first part of a namespace and not report on reserved keywords used in subsequent parts of a nested namespace. [#419](https://github.com/wimg/PHPCompatibility/pull/419)
