@@ -74,6 +74,9 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
 
+		// Verify that the caching of the function results is working correctly.
+        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
+
         // Clean up / reset the value.
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
     }
