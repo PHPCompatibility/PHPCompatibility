@@ -35,7 +35,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
      *
      * @var PHP_CodeSniffer_File
      */
-    protected $_phpcsFile;
+    protected $phpcsFile;
 
     /**
      * A wrapper for the abstract PHPCompatibility sniff.
@@ -71,7 +71,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
         $phpcs    = new PHP_CodeSniffer();
 
         if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {
-            $this->_phpcsFile = new PHP_CodeSniffer_File(
+            $this->phpcsFile = new PHP_CodeSniffer_File(
                 $filename,
                 array(),
                 array(),
@@ -81,7 +81,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
             );
 
         } else {
-            $this->_phpcsFile = new PHP_CodeSniffer_File(
+            $this->phpcsFile = new PHP_CodeSniffer_File(
                 $filename,
                 array(),
                 array(),
@@ -90,7 +90,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
         }
 
         $contents = file_get_contents($filename);
-        $this->_phpcsFile->start($contents);
+        $this->phpcsFile->start($contents);
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_phpcsFile, $this->helperClass);
+        unset($this->phpcsFile, $this->helperClass);
 
     }//end tearDown()
 
@@ -115,8 +115,8 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
      */
     public function getTargetToken($commentString, $tokenType)
     {
-        $start   = ($this->_phpcsFile->numTokens - 1);
-        $comment = $this->_phpcsFile->findPrevious(
+        $start   = ($this->phpcsFile->numTokens - 1);
+        $comment = $this->phpcsFile->findPrevious(
             T_COMMENT,
             $start,
             null,
@@ -124,7 +124,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
             $commentString
         );
 
-        return $this->_phpcsFile->findNext(
+        return $this->phpcsFile->findNext(
             $tokenType,
             ($comment + 1)
         );

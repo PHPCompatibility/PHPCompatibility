@@ -42,7 +42,7 @@ class BaseClass_GetFQClassNameFromNewTokenTest extends BaseClass_MethodTestFrame
     public function testGetFQClassNameFromNewToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, T_NEW);
-        $result   = $this->helperClass->getFQClassNameFromNewToken($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFQClassNameFromNewToken($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

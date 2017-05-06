@@ -40,7 +40,7 @@ class BaseClass_isClassConstantTest extends BaseClass_MethodTestFrame
     public function testIsClassConstant($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, T_CONST);
-        $result   = $this->helperClass->isClassConstant($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->isClassConstant($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

@@ -27,7 +27,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
      *
      * @var PHP_CodeSniffer_File
      */
-    protected $_sniffFile;
+    protected $sniffResult;
 
     /**
      * Interface error messages.
@@ -50,7 +50,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
         parent::setUp();
 
         // Sniff file without testVersion as all checks run independently of testVersion being set.
-        $this->_sniffFile = $this->sniffFile(self::TEST_FILE);
+        $this->sniffResult = $this->sniffFile(self::TEST_FILE);
     }
 
     /**
@@ -65,7 +65,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
      */
     public function testInternalInterfaces($type, $line)
     {
-        $this->assertError($this->_sniffFile, $line, $this->messages[$type]);
+        $this->assertError($this->sniffResult, $line, $this->messages[$type]);
     }
 
     /**
@@ -100,8 +100,8 @@ class InternalInterfacesSniffTest extends BaseSniffTest
      */
     public function testCaseInsensitive()
     {
-        $this->assertError($this->_sniffFile, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable.');
-        $this->assertError($this->_sniffFile, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable.');
+        $this->assertError($this->sniffResult, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable.');
+        $this->assertError($this->sniffResult, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable.');
     }
 
     /**
@@ -115,7 +115,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $this->assertNoViolation($this->_sniffFile, $line);
+        $this->assertNoViolation($this->sniffResult, $line);
     }
 
     /**

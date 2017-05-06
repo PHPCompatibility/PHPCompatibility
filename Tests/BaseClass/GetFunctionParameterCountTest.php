@@ -40,7 +40,7 @@ class BaseClass_GetFunctionParameterCountTest extends BaseClass_MethodTestFrame
     public function testGetFunctionCallParameterCount($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
-        $result   = $this->helperClass->getFunctionCallParameterCount($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFunctionCallParameterCount($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

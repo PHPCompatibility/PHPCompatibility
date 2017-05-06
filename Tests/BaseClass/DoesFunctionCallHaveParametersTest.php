@@ -40,7 +40,7 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
     public function testDoesFunctionCallHaveParameters($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
-        $result   = $this->helperClass->doesFunctionCallHaveParameters($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->doesFunctionCallHaveParameters($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

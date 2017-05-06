@@ -27,7 +27,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
      *
      * @var bool
      */
-    private $_aspTags = false;
+    private $aspTags = false;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -37,7 +37,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
     public function register()
     {
         if (version_compare(phpversion(), '7.0', '<') === true) {
-            $this->_aspTags = (boolean) ini_get('asp_tags');
+            $this->aspTags = (boolean) ini_get('asp_tags');
         }
 
         return array(
@@ -121,7 +121,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
 
 
         // If we're still here, we can't be sure if what we find was really intended as ASP open tags.
-        if ($openTag['code'] === T_INLINE_HTML && $this->_aspTags === false) {
+        if ($openTag['code'] === T_INLINE_HTML && $this->aspTags === false) {
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');

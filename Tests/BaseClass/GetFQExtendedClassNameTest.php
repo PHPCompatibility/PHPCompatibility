@@ -42,7 +42,7 @@ class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
     public function testGetFQExtendedClassName($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, T_CLASS);
-        $result   = $this->helperClass->getFQExtendedClassName($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFQExtendedClassName($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

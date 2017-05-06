@@ -70,7 +70,7 @@ class BaseClass_isClassPropertyTest extends BaseClass_MethodTestFrame
         }
 
         $stackPtr = $this->getTargetToken($commentString, T_VARIABLE);
-        $result   = $this->helperClass->isClassProperty($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->isClassProperty($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

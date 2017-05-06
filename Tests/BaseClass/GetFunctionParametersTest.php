@@ -51,7 +51,7 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
             $expected[$key]['end']   = $stackPtr + $value['end'];
         }
 
-        $result   = $this->helperClass->getFunctionCallParameters($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFunctionCallParameters($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -260,7 +260,7 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
         $expected['start'] += $stackPtr;
         $expected['end']   += $stackPtr;
 
-        $result = $this->helperClass->getFunctionCallParameter($this->_phpcsFile, $stackPtr, $paramPosition);
+        $result = $this->helperClass->getFunctionCallParameter($this->phpcsFile, $stackPtr, $paramPosition);
         $this->assertSame($expected, $result);
     }
 

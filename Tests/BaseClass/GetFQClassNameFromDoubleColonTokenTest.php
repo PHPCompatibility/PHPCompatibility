@@ -42,7 +42,7 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
     public function testGetFQClassNameFromDoubleColonToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, T_DOUBLE_COLON);
-        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
