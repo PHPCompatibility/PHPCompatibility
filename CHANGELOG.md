@@ -13,7 +13,7 @@ The `patch` version numbers are specific to this library.
 _Nothing yet._
 
 
-## [7.1.4] - 2017-xx-xx
+## [7.1.4] - 2017-05-06
 
 See all related issues and PRs in the [7.1.4 milestone].
 
@@ -58,9 +58,6 @@ See all related issues and PRs in the [7.1.4 milestone].
 - General housekeeping. [#398](https://github.com/wimg/PHPCompatibility/pull/398), [#400](https://github.com/wimg/PHPCompatibility/pull/400)
 - :wrench: Minor tweaks to the Travis build script. [#409](https://github.com/wimg/PHPCompatibility/pull/409)
 - :green_heart: The sniffs are now also tested against PHP nightly for consistent results. [#380](https://github.com/wimg/PHPCompatibility/pull/380)
-
-### Removed
--
 
 ### Fixed
 - :fire: Using unbounded ranges in `testVersion` resulted in unreported errors when used with sniffs using the `supportsBelow()` method. This affected the results of approximately half the sniffs. [#430](https://github.com/wimg/PHPCompatibility/pull/430)
