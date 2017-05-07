@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_VariableVariables.
+ * \PHPCompatibility\Sniffs\PHP\VariableVariables.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_VariableVariables.
+ * \PHPCompatibility\Sniffs\PHP\VariableVariables.
  *
  * The interpretation of variable variables has changed in PHP 7.0.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_VariableVariablesSniff extends PHPCompatibility_Sniff
+class VariableVariablesSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

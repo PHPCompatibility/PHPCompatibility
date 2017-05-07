@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewIniDirectivesSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,8 +8,12 @@
  * @copyright 2013 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewIniDirectivesSniff.
  *
  * Discourages the use of new INI directives through ini_set() or ini_get().
  *
@@ -18,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {
     /**
      * A list of new INI directives

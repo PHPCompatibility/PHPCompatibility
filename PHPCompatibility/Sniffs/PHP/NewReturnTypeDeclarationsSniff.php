@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewReturnTypeDeclarationsSniff.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewReturnTypeDeclarationsSniff.
  *
  * PHP version 7.0
  *
@@ -18,7 +22,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
 
     /**

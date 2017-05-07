@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,15 +8,19 @@
  * @copyright 2013 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewKeywordsSniff extends AbstractNewFeatureSniff
 {
 
     /**

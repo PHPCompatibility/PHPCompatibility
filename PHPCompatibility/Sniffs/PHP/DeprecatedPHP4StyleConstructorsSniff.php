@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Koen Eelen <koen.eelen@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff.
  *
  * PHP version 7.0
  *
@@ -18,7 +22,7 @@
  * @package  PHPCompatibility
  * @author   Koen Eelen <koen.eelen@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff
+class DeprecatedPHP4StyleConstructorsSniff extends Sniff
 {
 
     /**

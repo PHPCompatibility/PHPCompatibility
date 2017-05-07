@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTags.
+ * \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTags.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTags.
+ * \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTags.
  *
  * Check for usage of alternative PHP tags - removed in PHP 7.0.
  *
@@ -23,7 +27,7 @@
  * Based on `Generic_Sniffs_PHP_DisallowAlternativePHPTags` by Juliette Reinders Folmer
  * which was merged into PHPCS 2.7.0.
  */
-class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPCompatibility_Sniff
+class RemovedAlternativePHPTagsSniff extends Sniff
 {
 
     /**

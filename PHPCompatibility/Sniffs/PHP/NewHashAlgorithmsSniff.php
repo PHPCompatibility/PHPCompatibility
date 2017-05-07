@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHashAlgorithmsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHashAlgorithmsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 {
     /**
      * A list of new hash algorithms, not present in older versions.

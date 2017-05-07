@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ * \PHPCompatibility\Sniffs\PHP\ParameterShadowSuperGlobalsSniff
  *
  * PHP version 5.4
  *
@@ -10,8 +10,12 @@
  * @copyright 2015 Declan Kelly
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ * \PHPCompatibility\Sniffs\PHP\ParameterShadowSuperGlobalsSniff
  *
  * Discourages use of superglobals as parameters for functions.
  *
@@ -24,7 +28,7 @@
  * @author    Declan Kelly <declankelly90@gmail.com>
  * @copyright 2015 Declan Kelly
  */
-class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCompatibility_Sniff
+class ParameterShadowSuperGlobalsSniff extends Sniff
 {
 
     /**

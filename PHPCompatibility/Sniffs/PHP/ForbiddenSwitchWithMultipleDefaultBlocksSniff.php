@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenSwitchWithMultipleDefaultBlocksSniff.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenSwitchWithMultipleDefaultBlocksSniff.
  *
  * Switch statements can not have multiple default blocks since PHP 7.0
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenSwitchWithMultipleDefaultBlocksSniff extends PHPCompatibility_Sniff
+class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
 {
 
     /**

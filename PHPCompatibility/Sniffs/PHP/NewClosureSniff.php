@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewClosure.
+ * \PHPCompatibility\Sniffs\PHP\NewClosure.
  *
  * PHP version 5.3
  *
@@ -9,8 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewClosure.
+ * \PHPCompatibility\Sniffs\PHP\NewClosure.
  *
  * Closures are available since PHP 5.3
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewClosureSniff extends PHPCompatibility_Sniff
+class NewClosureSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

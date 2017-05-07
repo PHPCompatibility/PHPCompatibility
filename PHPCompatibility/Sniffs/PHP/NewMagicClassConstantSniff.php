@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff.
  *
  * PHP version 5.5
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff.
  *
  * The special ClassName::class constant is available as of PHP 5.5.0, and allows for
  * fully qualified class name resolution at compile.
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff extends PHPCompatibility_Sniff
+class NewMagicClassConstantSniff extends Sniff
 {
 
     /**

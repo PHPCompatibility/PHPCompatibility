@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ConstantArraysUsingConstSniff.
+ * \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingConstSniff.
  *
  * PHP version 5.6
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ConstantArraysUsingConstSniff.
+ * \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingConstSniff.
  *
  * Constant arrays using the constant keyword in PHP 5.6
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ConstantArraysUsingConstSniff extends PHPCompatibility_Sniff
+class ConstantArraysUsingConstSniff extends Sniff
 {
 
     /**

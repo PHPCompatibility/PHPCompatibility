@@ -9,6 +9,10 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
  * PHP 7.1 Forbidden variable names in closure use statements.
  *
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenClosureUseVariableNamesSniff extends PHPCompatibility_Sniff
+class ForbiddenClosureUseVariableNamesSniff extends Sniff
 {
 
     /**

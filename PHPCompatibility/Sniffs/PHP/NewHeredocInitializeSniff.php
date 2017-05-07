@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
  *
  * PHP version 5.3
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
  *
  * As of PHP 5.3.0, it's possible to initialize static variables and class
  * properties/constants using the Heredoc syntax.
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibility_Sniff
+class NewHeredocInitializeSniff extends Sniff
 {
 
     /**

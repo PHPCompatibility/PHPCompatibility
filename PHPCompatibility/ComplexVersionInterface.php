@@ -1,14 +1,16 @@
 <?php
 /**
- * PHPCompatibility_ComplexVersionInterface.
+ * \PHPCompatibility\ComplexVersionInterface.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility;
+
 /**
- * PHPCompatibility_ComplexVersionInterface.
+ * \PHPCompatibility\ComplexVersionInterface.
  *
  * Interface to be implemented by sniffs using a multi-dimensional array of
  * PHP features (functions, classes etc) being sniffed for with version
@@ -18,7 +20,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-interface PHPCompatibility_ComplexVersionInterface
+interface ComplexVersionInterface
 {
 
 

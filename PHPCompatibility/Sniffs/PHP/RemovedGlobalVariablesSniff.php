@@ -1,14 +1,18 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff.
  *
  * Discourages the use of removed global variables. Suggests alternative extensions if available
  *
@@ -16,7 +20,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 {
 
     /**

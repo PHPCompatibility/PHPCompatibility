@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_newFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\newFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewFunctionsSniff extends AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.

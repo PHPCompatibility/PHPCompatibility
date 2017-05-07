@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff.
+ * \PHPCompatibility\Sniffs\PHP\TernaryOperatorsSniff.
  *
  * PHP version 5.3
  *
@@ -10,8 +10,12 @@
  * @copyright 2012 Ben Selby
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff.
+ * \PHPCompatibility\Sniffs\PHP\TernaryOperatorsSniff.
  *
  * Performs checks on ternary operators, specifically that the middle expression
  * is not omitted for versions that don't support this.
@@ -23,7 +27,7 @@
  * @author    Ben Selby <bselby@plus.net>
  * @copyright 2012 Ben Selby
  */
-class PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff extends PHPCompatibility_Sniff
+class TernaryOperatorsSniff extends Sniff
 {
 
     /**

@@ -1,20 +1,22 @@
 <?php
 /**
- * PHPCompatibility_AbstractNewFeatureSniff.
+ * \PHPCompatibility\AbstractNewFeatureSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility;
+
 /**
- * PPHPCompatibility_AbstractNewFeatureSniff.
+ * \PHPCompatibility\AbstractNewFeatureSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class PHPCompatibility_AbstractNewFeatureSniff extends PHPCompatibility_AbstractComplexVersionSniff
+abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 {
 
 

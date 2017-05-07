@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsInvokedFunctionsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,8 +8,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsInvokedFunctionsSniff.
  *
  * Prohibits the use of reserved keywords invoked as functions.
  *
@@ -18,7 +22,7 @@
  * @author    Jansen Price <jansen.price@gmail.com>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends PHPCompatibility_Sniff
+class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 {
 
     /**

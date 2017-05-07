@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewMultiCatch.
+ * \PHPCompatibility\Sniffs\PHP\NewMultiCatch.
  *
  * PHP version 7.1
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewMultiCatch.
+ * \PHPCompatibility\Sniffs\PHP\NewMultiCatch.
  *
  * Catching multiple exception types in one statement is available since PHP 7.1.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewMultiCatchSniff extends PHPCompatibility_Sniff
+class NewMultiCatchSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

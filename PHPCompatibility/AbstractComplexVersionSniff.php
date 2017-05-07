@@ -1,20 +1,22 @@
 <?php
 /**
- * PHPCompatibility_AbstractComplexVersionSniff.
+ * \PHPCompatibility\AbstractComplexVersionSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility;
+
 /**
- * PHPCompatibility_AbstractComplexVersionSniff.
+ * \PHPCompatibility\AbstractComplexVersionSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class PHPCompatibility_AbstractComplexVersionSniff extends PHPCompatibility_Sniff implements PHPCompatibility_ComplexVersionInterface
+abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersionInterface
 {
 
 

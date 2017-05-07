@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sniff
+class ValidIntegersSniff extends Sniff
 {
 
     /**

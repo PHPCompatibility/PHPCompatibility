@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 {
 
     /**

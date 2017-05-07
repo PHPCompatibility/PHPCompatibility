@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewFunctionArrayDereferencingSniff.
  *
  * PHP version 5.4
  *
@@ -9,8 +9,12 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewFunctionArrayDereferencingSniff.
  *
  * PHP version 5.4
  *
@@ -18,7 +22,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHPCompatibility_Sniff
+class NewFunctionArrayDereferencingSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

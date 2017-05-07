@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff.
  *
  * PHP version 7.1
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff.
  *
  * PHP version 7.1
  *
@@ -18,7 +22,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff extends PHPCompatibility_Sniff
+class MbstringReplaceEModifierSniff extends Sniff
 {
 
     /**

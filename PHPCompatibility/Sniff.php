@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniff.
+ * \PHPCompatibility\Sniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,15 +8,17 @@
  * @copyright 2014 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility;
+
 /**
- * PHPCompatibility_Sniff.
+ * \PHPCompatibility\Sniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2014 Cu.be Solutions bvba
  */
-abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
+abstract class Sniff implements PHP_CodeSniffer_Sniff
 {
 
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';

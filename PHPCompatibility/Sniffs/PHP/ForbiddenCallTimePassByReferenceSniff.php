@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReference.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenCallTimePassByReference.
  *
  * PHP version 5.4
  *
@@ -11,8 +11,12 @@
  * @copyright 2009 Florian Grandel
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReference.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenCallTimePassByReference.
  *
  * Discourages the use of call time pass by references
  *
@@ -24,7 +28,7 @@
  * @author    Florian Grandel <jerico.dev@gmail.com>
  * @copyright 2009 Florian Grandel
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends PHPCompatibility_Sniff
+class ForbiddenCallTimePassByReferenceSniff extends Sniff
 {
 
     /**

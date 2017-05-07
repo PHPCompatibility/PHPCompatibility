@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_LateStaticBindingSniff.
+ * \PHPCompatibility\Sniffs\PHP\LateStaticBindingSniff.
  *
  * PHP version 5.3
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_LateStaticBindingSniff.
+ * \PHPCompatibility\Sniffs\PHP\LateStaticBindingSniff.
  *
  * PHP version 5.3
  *
@@ -18,7 +22,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_LateStaticBindingSniff extends PHPCompatibility_Sniff
+class LateStaticBindingSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

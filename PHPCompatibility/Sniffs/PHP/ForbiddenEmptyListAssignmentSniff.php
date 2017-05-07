@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff.
  *
  * Empty list() assignments have been removed in PHP 7.0
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPCompatibility_Sniff
+class ForbiddenEmptyListAssignmentSniff extends Sniff
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,8 +8,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
  *
  * Discourages the use of removed extensions. Suggests alternative extensions if available
  *
@@ -18,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of functions to whitelist, if any.

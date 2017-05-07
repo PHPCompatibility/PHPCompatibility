@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
 
     /**

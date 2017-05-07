@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
  *
  * PHP version 5.5
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
  *
  * Array and string literals can now be dereferenced directly to access individual elements and characters.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff extends PHPCompatibility_Sniff
+class NewArrayStringDereferencingSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

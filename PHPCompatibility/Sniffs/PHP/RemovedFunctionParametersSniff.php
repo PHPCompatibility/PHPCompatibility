@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of removed function parameters, which were present in older versions.
