@@ -2,20 +2,26 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sniff
 {
+
+    /**
+     * Whether PHPCS is run on a PHP < 5.4.
+     *
+     * @var bool
+     */
     protected $isLowPHPVersion = false;
 
     /**
@@ -28,9 +34,9 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
         $this->isLowPHPVersion = version_compare(phpversion(), '5.4', '<');
 
         return array(
-                T_LNUMBER, // Binary, octal integers.
-                T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
-               );
+            T_LNUMBER, // Binary, octal integers.
+            T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
+        );
 
     }//end register()
 
@@ -54,8 +60,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
                 if ($this->isLowPHPVersion === false) {
                     $data = array($token['content']);
-                }
-                else {
+                } else {
                     $data = array($this->getBinaryInteger($phpcsFile, $tokens, $stackPtr));
                 }
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
@@ -107,7 +112,8 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      *
      * @return bool
      */
-    private function couldBeBinaryInteger($tokens, $stackPtr) {
+    private function couldBeBinaryInteger($tokens, $stackPtr)
+    {
         $token = $tokens[$stackPtr];
 
         if ($token['code'] !== T_LNUMBER) {
@@ -132,7 +138,8 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      *
      * @return bool
      */
-    private function isInvalidBinaryInteger($tokens, $stackPtr) {
+    private function isInvalidBinaryInteger($tokens, $stackPtr)
+    {
         if ($this->couldBeBinaryInteger($tokens, $stackPtr) === false) {
             return false;
         }
@@ -140,8 +147,7 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
         if ($this->isLowPHPVersion === false) {
             // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
             return ($tokens[$stackPtr+1]['code'] === T_LNUMBER);
-        }
-        else {
+        } else {
             return (preg_match('`^b[0-1]+$`D', $tokens[$stackPtr+1]['content']) === 0);
         }
     }
@@ -156,8 +162,9 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      *
      * @return string
      */
-    private function getBinaryInteger(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr) {
-        $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING
+    private function getBinaryInteger(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
+    {
+        $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
 
         if ($this->isLowPHPVersion === false) {
             $i = $stackPtr;
@@ -178,7 +185,8 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      *
      * @return bool
      */
-    private function isInvalidOctalInteger($tokens, $stackPtr) {
+    private function isInvalidOctalInteger($tokens, $stackPtr)
+    {
         $token = $tokens[$stackPtr];
 
         if ($token['code'] === T_LNUMBER && preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $token['content']) === 1) {
@@ -196,7 +204,8 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
      *
      * @return bool
      */
-    private function isHexidecimalNumericString($tokens, $stackPtr) {
+    private function isHexidecimalNumericString($tokens, $stackPtr)
+    {
         $token = $tokens[$stackPtr];
 
         if ($token['code'] === T_CONSTANT_ENCAPSED_STRING && preg_match('`^0x[a-f0-9]+$`iD', $this->stripQuotes($token['content'])) === 1) {

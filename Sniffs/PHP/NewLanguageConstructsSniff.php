@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff.
  *
- * PHP version 5.5
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -16,7 +14,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatibility_AbstractNewFeatureSniff
@@ -31,42 +28,42 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      * @var array(string => array(string => int|string|null))
      */
     protected $newConstructs = array(
-                                        'T_NS_SEPARATOR' => array(
-                                            '5.2' => false,
-                                            '5.3' => true,
-                                            'description' => 'the \ operator (for namespaces)'
-                                        ),
-                                        'T_POW' => array(
-                                            '5.5' => false,
-                                            '5.6' => true,
-                                            'description' => 'power operator (**)'
-                                        ), // identified in PHPCS 1.5 as T_MULTIPLY + T_MULTIPLY
-                                        'T_POW_EQUAL' => array(
-                                            '5.5' => false,
-                                            '5.6' => true,
-                                            'description' => 'power assignment operator (**=)'
-                                        ), // identified in PHPCS 1.5 as T_MULTIPLY + T_MUL_EQUAL
-                                        'T_ELLIPSIS' => array(
-                                            '5.5' => false,
-                                            '5.6' => true,
-                                            'description' => 'variadic functions using ...'
-                                        ),
-                                        'T_SPACESHIP' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                            'description' => 'spaceship operator (<=>)'
-                                        ), // identified in PHPCS 1.5 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN
-                                        'T_COALESCE' => array(
-                                            '5.6' => false,
-                                            '7.0' => true,
-                                            'description' => 'null coalescing operator (??)'
-                                        ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN
-                                        'T_COALESCE_EQUAL' => array(
-                                            '7.1' => false,
-                                            '7.2' => true,
-                                            'description' => 'null coalesce equal operator (??=)'
-                                        ), // identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL
-                                    );
+        'T_NS_SEPARATOR' => array(
+            '5.2' => false,
+            '5.3' => true,
+            'description' => 'the \ operator (for namespaces)',
+        ),
+        'T_POW' => array(
+            '5.5' => false,
+            '5.6' => true,
+            'description' => 'power operator (**)',
+        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MULTIPLY.
+        'T_POW_EQUAL' => array(
+            '5.5' => false,
+            '5.6' => true,
+            'description' => 'power assignment operator (**=)',
+        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MUL_EQUAL.
+        'T_ELLIPSIS' => array(
+            '5.5' => false,
+            '5.6' => true,
+            'description' => 'variadic functions using ...',
+        ),
+        'T_SPACESHIP' => array(
+            '5.6' => false,
+            '7.0' => true,
+            'description' => 'spaceship operator (<=>)',
+        ), // Identified in PHPCS 1.5 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN.
+        'T_COALESCE' => array(
+            '5.6' => false,
+            '7.0' => true,
+            'description' => 'null coalescing operator (??)',
+        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN.
+        'T_COALESCE_EQUAL' => array(
+            '7.1' => false,
+            '7.2' => true,
+            'description' => 'null coalesce equal operator (??=)',
+        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
+    );
 
 
     /**
@@ -77,12 +74,12 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      * @var array(string => int)
      */
     protected $newConstructsPHPCSCompat = array(
-                                        'T_POW'            => T_MULTIPLY,
-                                        'T_POW_EQUAL'      => T_MUL_EQUAL,
-                                        'T_SPACESHIP'      => T_GREATER_THAN,
-                                        'T_COALESCE'       => T_INLINE_THEN,
-                                        'T_COALESCE_EQUAL' => T_EQUAL,
-                                    );
+        'T_POW'            => T_MULTIPLY,
+        'T_POW_EQUAL'      => T_MUL_EQUAL,
+        'T_SPACESHIP'      => T_GREATER_THAN,
+        'T_COALESCE'       => T_INLINE_THEN,
+        'T_COALESCE_EQUAL' => T_EQUAL,
+    );
 
     /**
      * Translation table for PHPCS 1.x and older 2.x tokens.
@@ -93,8 +90,8 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      *
      * If the token combination has multi-layer complexity, such as is the case
      * with T_COALESCE(_EQUAL), a 'callback' index is added instead pointing to a
-	 * separate function which can determine whether this is the targetted token across
-	 * PHP and PHPCS versions.
+     * separate function which can determine whether this is the targetted token across
+     * PHP and PHPCS versions.
      *
      * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
      * translation list with the current tokens.}}
@@ -102,27 +99,27 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
      * @var array(string => array(string => string))
      */
     protected $PHPCSCompatTranslate = array(
-                                        'T_MULTIPLY' => array(
-                                            'before' => 'T_MULTIPLY',
-                                            'real_token' => 'T_POW',
-                                        ),
-                                        'T_MUL_EQUAL' => array(
-                                            'before' => 'T_MULTIPLY',
-                                            'real_token' => 'T_POW_EQUAL',
-                                        ),
-                                        'T_GREATER_THAN' => array(
-                                            'before' => 'T_IS_SMALLER_OR_EQUAL',
-                                            'real_token' => 'T_SPACESHIP',
-                                        ),
-                                        'T_INLINE_THEN' => array(
-                                            'callback' => 'isTCoalesce',
-                                            'real_token' => 'T_COALESCE',
-                                        ),
-                                        'T_EQUAL' => array(
-                                            'callback' => 'isTCoalesceEqual',
-                                            'real_token' => 'T_COALESCE_EQUAL',
-                                        ),
-                                    );
+        'T_MULTIPLY' => array(
+            'before' => 'T_MULTIPLY',
+            'real_token' => 'T_POW',
+        ),
+        'T_MUL_EQUAL' => array(
+            'before' => 'T_MULTIPLY',
+            'real_token' => 'T_POW_EQUAL',
+        ),
+        'T_GREATER_THAN' => array(
+            'before' => 'T_IS_SMALLER_OR_EQUAL',
+            'real_token' => 'T_SPACESHIP',
+        ),
+        'T_INLINE_THEN' => array(
+            'callback' => 'isTCoalesce',
+            'real_token' => 'T_COALESCE',
+        ),
+        'T_EQUAL' => array(
+            'callback' => 'isTCoalesceEqual',
+            'real_token' => 'T_COALESCE_EQUAL',
+        ),
+    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -135,8 +132,7 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
         foreach ($this->newConstructs as $token => $versions) {
             if (defined($token)) {
                 $tokens[] = constant($token);
-            }
-            else if(isset($this->newConstructsPHPCSCompat[$token])) {
+            } elseif (isset($this->newConstructsPHPCSCompat[$token])) {
                 $tokens[] = $this->newConstructsPHPCSCompat[$token];
             }
         }
@@ -160,13 +156,10 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
 
         // Translate older PHPCS token combis for new constructs to the actual construct.
         if (isset($this->newConstructs[$tokenType]) === false) {
-            if (
-                isset($this->PHPCSCompatTranslate[$tokenType])
-                &&
-                ((isset($this->PHPCSCompatTranslate[$tokenType]['before'])
+            if (isset($this->PHPCSCompatTranslate[$tokenType])
+                && ((isset($this->PHPCSCompatTranslate[$tokenType]['before']) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
-                ||
-                (isset($this->PHPCSCompatTranslate[$tokenType]['callback'])
+                || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
                     && call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
             ) {
                 $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
@@ -177,7 +170,6 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
                 // Ignore as will be dealt with via the T_EQUAL token.
                 return;
             }
-
         }
 
         // If the translation did not yield one of the tokens we are looking for, bow out.

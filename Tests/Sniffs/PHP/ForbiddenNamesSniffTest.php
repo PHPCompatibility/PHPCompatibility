@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_ForbiddenNamesSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class ForbiddenNamesSniffTest extends BaseSniffTest
 {
@@ -39,7 +39,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         }
 
         // These use cases were generated using the PHP script
-        // `generate-forbidden-names-test-files` in sniff-examples
+        // `generate-forbidden-names-test-files` in sniff-examples.
         $filename = "sniff-examples/forbidden-names/$usecase.php";
 
         // Set the testVersion to the highest PHP version encountered in the
@@ -59,7 +59,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     }
 
     /**
-     * Provides use cases to test with each keyword
+     * Provides use cases to test with each keyword.
      *
      * @return array
      */
@@ -122,7 +122,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
     }
 
     /**
-     * Provides use cases to test with each keyword
+     * Provides use cases to test with each keyword.
      *
      * @return array
      */

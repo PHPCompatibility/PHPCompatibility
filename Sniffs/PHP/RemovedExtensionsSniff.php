@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
  *
- * PHP version 5.4
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -49,123 +47,123 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
      */
     protected $removedExtensions = array(
         'activescript' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/activescript'
+            '5.1' => true,
+            'alternative' => 'pecl/activescript',
         ),
         'cpdf' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/pdflib'
+            '5.1' => true,
+            'alternative' => 'pecl/pdflib',
         ),
         'dbase' => array(
-                '5.3' => true,
-                'alternative' => null
+            '5.3' => true,
+            'alternative' => null,
         ),
         'dbx' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/dbx'
+            '5.1' => true,
+            'alternative' => 'pecl/dbx',
         ),
         'dio' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/dio'
+            '5.1' => true,
+            'alternative' => 'pecl/dio',
         ),
         'ereg' => array(
-                '5.3' => false,
-                '7.0' => true,
-                'alternative' => 'pcre'
+            '5.3' => false,
+            '7.0' => true,
+            'alternative' => 'pcre',
         ),
         'fam' => array(
-                '5.1' => true,
-                'alternative' => null
+            '5.1' => true,
+            'alternative' => null,
         ),
         'fbsql' => array(
-                '5.3' => true,
-                'alternative' => null
+            '5.3' => true,
+            'alternative' => null,
         ),
         'fdf' => array(
-                '5.3' => true,
-                'alternative' => 'pecl/fdf'
+            '5.3' => true,
+            'alternative' => 'pecl/fdf',
         ),
         'filepro' => array(
-                '5.2' => true,
-                'alternative' => null
+            '5.2' => true,
+            'alternative' => null,
         ),
         'hw_api' => array(
-                '5.2' => true,
-                'alternative' => null
+            '5.2' => true,
+            'alternative' => null,
         ),
         'ingres' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/ingres'
+            '5.1' => true,
+            'alternative' => 'pecl/ingres',
         ),
         'ircg' => array(
-                '5.1' => true,
-                'alternative' => null
+            '5.1' => true,
+            'alternative' => null,
         ),
         'mcrypt' => array(
-                '7.1' => false,
-                'alternative' => 'openssl (preferred) or pecl/mcrypt once available'
+            '7.1' => false,
+            'alternative' => 'openssl (preferred) or pecl/mcrypt once available',
         ),
         'mcve' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/mvce'
+            '5.1' => true,
+            'alternative' => 'pecl/mvce',
         ),
         'ming' => array(
-                '5.3' => true,
-                'alternative' => 'pecl/ming'
+            '5.3' => true,
+            'alternative' => 'pecl/ming',
         ),
         'mnogosearch' => array(
-                '5.1' => true,
-                'alternative' => null
+            '5.1' => true,
+            'alternative' => null,
         ),
         'msql' => array(
-                '5.3' => true,
-                'alternative' => null
+            '5.3' => true,
+            'alternative' => null,
         ),
         'mssql' => array(
-                '7.0' => true,
-                'alternative' => null
+            '7.0' => true,
+            'alternative' => null,
         ),
         'mysql_' => array(
-                '5.5' => false,
-                '7.0' => true,
-                'alternative' => 'mysqli',
+            '5.5' => false,
+            '7.0' => true,
+            'alternative' => 'mysqli',
         ),
         'ncurses' => array(
-                '5.3' => true,
-                'alternative' => 'pecl/ncurses'
+            '5.3' => true,
+            'alternative' => 'pecl/ncurses',
         ),
         'oracle' => array(
-                '5.1' => true,
-                'alternative' => 'oci8 or pdo_oci'
+            '5.1' => true,
+            'alternative' => 'oci8 or pdo_oci',
         ),
         'ovrimos' => array(
-                '5.1' => true,
-                'alternative' => null
+            '5.1' => true,
+            'alternative' => null,
         ),
         'pfpro' => array(
-                '5.3' => true,
-                'alternative' => null
+            '5.3' => true,
+            'alternative' => null,
         ),
         'sqlite' => array(
-                '5.4' => true,
-                'alternative' => null
+            '5.4' => true,
+            'alternative' => null,
         ),
         // Has to be before `sybase` as otherwise it will never match.
         'sybase_ct' => array(
-                '7.0' => true,
-                'alternative' => null
+            '7.0' => true,
+            'alternative' => null,
         ),
         'sybase' => array(
-                '5.3' => true,
-                'alternative' => 'sybase_ct'
+            '5.3' => true,
+            'alternative' => 'sybase_ct',
         ),
         'w32api' => array(
-                '5.1' => true,
-                'alternative' => 'pecl/ffi'
+            '5.1' => true,
+            'alternative' => 'pecl/ffi',
         ),
         'yp' => array(
-                '5.1' => true,
-                'alternative' => null
+            '5.1' => true,
+            'alternative' => null,
         ),
     );
 
@@ -223,15 +221,15 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
             return;
         }
 
-        if ( $tokens[$previous]['code'] === T_OBJECT_OPERATOR ) {
-            // We are calling a method of an object
+        if ($tokens[$previous]['code'] === T_OBJECT_OPERATOR) {
+            // We are calling a method of an object.
             return;
         }
 
         $function   = $tokens[$stackPtr]['content'];
         $functionLc = strtolower($function);
 
-        if($this->isWhiteListed($functionLc) === true){
+        if ($this->isWhiteListed($functionLc) === true) {
             // Function is whitelisted.
             return;
         }
@@ -258,7 +256,8 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
      *
      * @return bool
      */
-    protected function isWhiteListed($content) {
+    protected function isWhiteListed($content)
+    {
         if (isset($this->functionWhitelist) === false) {
             return false;
         }
@@ -272,7 +271,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         }
 
         if (is_array($this->functionWhitelist) === true) {
-            $this->functionWhitelist = array_map('strtolower',$this->functionWhitelist);
+            $this->functionWhitelist = array_map('strtolower', $this->functionWhitelist);
             return in_array($content, $this->functionWhitelist, true);
         }
 

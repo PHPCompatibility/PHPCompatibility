@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniff.
  *
- * PHP version 5.6
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -16,7 +14,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.1.0
  * @copyright 2014 Cu.be Solutions bvba
  */
 abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
@@ -40,7 +37,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         '$_COOKIE',
         '$_SESSION',
         '$_REQUEST',
-        '$_ENV'
+        '$_ENV',
     );
 
     /**
@@ -111,41 +108,42 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $arrTestVersions[$testVersion] = array(null, null);
             if (preg_match('/^\d+\.\d+$/', $testVersion)) {
                 $arrTestVersions[$testVersion] = array($testVersion, $testVersion);
-            }
-            elseif (preg_match('/^(\d+\.\d+)\s*-\s*(\d+\.\d+)$/', $testVersion,
-                               $matches))
-            {
+
+            } elseif (preg_match('/^(\d+\.\d+)\s*-\s*(\d+\.\d+)$/', $testVersion, $matches)) {
                 if (version_compare($matches[1], $matches[2], '>')) {
-                    trigger_error("Invalid range in testVersion setting: '"
-                                  . $testVersion . "'", E_USER_WARNING);
+                    trigger_error(
+                        "Invalid range in testVersion setting: '" . $testVersion . "'",
+                        E_USER_WARNING
+                    );
                 }
                 else {
                     $arrTestVersions[$testVersion] = array($matches[1], $matches[2]);
                 }
-            }
-            elseif (preg_match('/^\d+\.\d+-$/', $testVersion)) {
+
+            } elseif (preg_match('/^\d+\.\d+-$/', $testVersion)) {
                 // If no upper-limit is set, we set the max version to 99.9.
                 // This is *probably* safe... :-)
                 $arrTestVersions[$testVersion] = array(substr($testVersion, 0, -1), '99.9');
-            }
-            elseif (preg_match('/^-\d+\.\d+$/', $testVersion)) {
+
+            } elseif (preg_match('/^-\d+\.\d+$/', $testVersion)) {
                 // If no lower-limit is set, we set the min version to 4.0.
                 // Whilst development focuses on PHP 5 and above, we also accept
                 // sniffs for PHP 4, so we include that as the minimum.
                 // (It makes no sense to support PHP 3 as this was effectively a
                 // different language).
                 $arrTestVersions[$testVersion] = array('4.0', substr($testVersion, 1));
-            }
-            elseif (!$testVersion == '') {
-                trigger_error("Invalid testVersion setting: '" . $testVersion
-                              . "'", E_USER_WARNING);
+
+            } elseif (!$testVersion == '') {
+                trigger_error(
+                    "Invalid testVersion setting: '" . $testVersion . "'",
+                    E_USER_WARNING
+                );
             }
         }
 
         if (isset($arrTestVersions[$testVersion])) {
             return $arrTestVersions[$testVersion];
-        }
-        else {
+        } else {
             return array(null, null);
         }
     }
@@ -255,7 +253,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * @return string String without quotes around it.
      */
-    public function stripQuotes($string) {
+    public function stripQuotes($string)
+    {
         return preg_replace('`^([\'"])(.*)\1$`Ds', '$2', $string);
     }
 
@@ -269,12 +268,13 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      *
      * @return string String without variables in it.
      */
-    public function stripVariables($string) {
+    public function stripVariables($string)
+    {
         if (strpos($string, '$') === false) {
             return $string;
         }
 
-        return preg_replace( self::REGEX_COMPLEX_VARS, '', $string );
+        return preg_replace(self::REGEX_COMPLEX_VARS, '', $string);
     }
 
 
@@ -340,11 +340,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_WHITESPACE,
-                 T_COMMA,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_WHITESPACE,
+            T_COMMA,
+        );
 
         $end  = $phpcsFile->findNext($find, ($implementsIndex + 1), ($classOpenerIndex + 1), true);
         $name = $phpcsFile->getTokensAsString(($implementsIndex + 1), ($end - $implementsIndex - 1));
@@ -403,8 +403,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             if ($nextNonEmpty === $tokens[$stackPtr]['bracket_closer']) {
                 // No parameters.
                 return false;
-            }
-            else {
+            } else {
                 return true;
             }
         }
@@ -472,8 +471,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
      * it will tokenize the values / key/value pairs contained in the array call.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile     The file being scanned.
-     * @param int                  $stackPtr      The position of the function call token.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the function call token.
      *
      * @return array
      */
@@ -493,8 +492,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             $closer = $tokens[$stackPtr]['bracket_closer'];
 
             $nestedParenthesisCount = 0;
-        }
-        else {
+
+        } else {
             $opener = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
             $closer = $tokens[$opener]['parenthesis_closer'];
 
@@ -512,12 +511,10 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $cnt        = 1;
         while ($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY), $nextComma + 1, $closer + 1)) {
             // Ignore anything within short array definition brackets.
-            if (
-                $tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
-                &&
-                ( isset($tokens[$nextComma]['bracket_opener']) && $tokens[$nextComma]['bracket_opener'] === $nextComma )
-                &&
-                isset($tokens[$nextComma]['bracket_closer'])
+            if ($tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
+                && (isset($tokens[$nextComma]['bracket_opener'])
+                    && $tokens[$nextComma]['bracket_opener'] === $nextComma)
+                && isset($tokens[$nextComma]['bracket_closer'])
             ) {
                 // Skip forward to the end of the short array definition.
                 $nextComma = $tokens[$nextComma]['bracket_closer'];
@@ -525,12 +522,9 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             }
 
             // Ignore comma's at a lower nesting level.
-            if (
-                $tokens[$nextComma]['type'] === 'T_COMMA'
-                &&
-                isset($tokens[$nextComma]['nested_parenthesis'])
-                &&
-                count($tokens[$nextComma]['nested_parenthesis']) !== $nestedParenthesisCount
+            if ($tokens[$nextComma]['type'] === 'T_COMMA'
+                && isset($tokens[$nextComma]['nested_parenthesis'])
+                && count($tokens[$nextComma]['nested_parenthesis']) !== $nestedParenthesisCount
             ) {
                 continue;
             }
@@ -745,11 +739,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_NAMESPACE,
-                 T_WHITESPACE,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_NAMESPACE,
+            T_WHITESPACE,
+        );
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
@@ -837,11 +831,11 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_NAMESPACE,
-                 T_WHITESPACE,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_NAMESPACE,
+            T_WHITESPACE,
+        );
 
         $start = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
         if ($start === false) {
@@ -869,7 +863,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      */
     public function getFQName(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $name)
     {
-        if (strpos($name, '\\' ) === 0) {
+        if (strpos($name, '\\') === 0) {
             // Already fully qualified.
             return $name;
         }
@@ -894,11 +888,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * Is the class/function/constant name namespaced or global ?
      *
      * @param string $FQName Fully Qualified name of a class, function etc.
-     *                       I.e. should always start with a `\` !
+     *                       I.e. should always start with a `\`.
      *
      * @return bool True if namespaced, false if global.
      */
-    public function isNamespaced($FQName) {
+    public function isNamespaced($FQName)
+    {
         if (strpos($FQName, '\\') !== 0) {
             throw new PHP_CodeSniffer_Exception('$FQName must be a fully qualified name');
         }
@@ -927,7 +922,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         // Check for scoped namespace {}.
         if (empty($tokens[$stackPtr]['conditions']) === false) {
             $namespacePtr = $phpcsFile->getCondition($stackPtr, T_NAMESPACE);
-            if ($namespacePtr !== false ) {
+            if ($namespacePtr !== false) {
                 $namespace = $this->getDeclaredNamespaceName($phpcsFile, $namespacePtr);
                 if ($namespace !== false) {
                     return $namespace;
@@ -980,7 +975,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
      * @return string|false Namespace name or false if not a namespace declaration.
      *                      Namespace name can be an empty string for global namespace declaration.
      */
-    public function getDeclaredNamespaceName(PHP_CodeSniffer_File $phpcsFile, $stackPtr )
+    public function getDeclaredNamespaceName(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -1007,13 +1002,13 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         // Ok, this should be a namespace declaration, so get all the parts together.
         $validTokens = array(
-                        T_STRING       => true,
-                        T_NS_SEPARATOR => true,
-                        T_WHITESPACE   => true,
-                       );
+            T_STRING       => true,
+            T_NS_SEPARATOR => true,
+            T_WHITESPACE   => true,
+        );
 
         $namespaceName = '';
-        while(isset($validTokens[$tokens[$nextToken]['code']]) === true) {
+        while (isset($validTokens[$tokens[$nextToken]['code']]) === true) {
             $namespaceName .= trim($tokens[$nextToken]['content']);
             $nextToken++;
         }
@@ -1335,107 +1330,107 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             }
 
             switch ($tokens[$i]['code']) {
-            case T_BITWISE_AND:
-                $passByReference = true;
-                break;
-            case T_VARIABLE:
-                $currVar = $i;
-                break;
-            case T_ELLIPSIS:
-                $variableLength = true;
-                break;
-            case T_ARRAY_HINT:
-            case T_CALLABLE:
-                $typeHint .= $tokens[$i]['content'];
-                break;
-            case T_SELF:
-            case T_PARENT:
-            case T_STATIC:
-                // Self is valid, the others invalid, but were probably intended as type hints.
-                if (isset($defaultStart) === false) {
+                case T_BITWISE_AND:
+                    $passByReference = true;
+                    break;
+                case T_VARIABLE:
+                    $currVar = $i;
+                    break;
+                case T_ELLIPSIS:
+                    $variableLength = true;
+                    break;
+                case T_ARRAY_HINT:
+                case T_CALLABLE:
                     $typeHint .= $tokens[$i]['content'];
-                }
-                break;
-            case T_STRING:
-                // This is a string, so it may be a type hint, but it could
-                // also be a constant used as a default value.
-                $prevComma = false;
-                for ($t = $i; $t >= $opener; $t--) {
-                    if ($tokens[$t]['code'] === T_COMMA) {
-                        $prevComma = $t;
-                        break;
+                    break;
+                case T_SELF:
+                case T_PARENT:
+                case T_STATIC:
+                    // Self is valid, the others invalid, but were probably intended as type hints.
+                    if (isset($defaultStart) === false) {
+                        $typeHint .= $tokens[$i]['content'];
                     }
-                }
-
-                if ($prevComma !== false) {
-                    $nextEquals = false;
-                    for ($t = $prevComma; $t < $i; $t++) {
-                        if ($tokens[$t]['code'] === T_EQUAL) {
-                            $nextEquals = $t;
+                    break;
+                case T_STRING:
+                    // This is a string, so it may be a type hint, but it could
+                    // also be a constant used as a default value.
+                    $prevComma = false;
+                    for ($t = $i; $t >= $opener; $t--) {
+                        if ($tokens[$t]['code'] === T_COMMA) {
+                            $prevComma = $t;
                             break;
                         }
                     }
-
-                    if ($nextEquals !== false) {
-                        break;
+    
+                    if ($prevComma !== false) {
+                        $nextEquals = false;
+                        for ($t = $prevComma; $t < $i; $t++) {
+                            if ($tokens[$t]['code'] === T_EQUAL) {
+                                $nextEquals = $t;
+                                break;
+                            }
+                        }
+    
+                        if ($nextEquals !== false) {
+                            break;
+                        }
                     }
-                }
-
-                if ($defaultStart === null) {
-                    $typeHint .= $tokens[$i]['content'];
-                }
-                break;
-            case T_NS_SEPARATOR:
-                // Part of a type hint or default value.
-                if ($defaultStart === null) {
-                    $typeHint .= $tokens[$i]['content'];
-                }
-                break;
-            case T_INLINE_THEN:
-                if ($defaultStart === null) {
-                    $nullableType = true;
-                    $typeHint    .= $tokens[$i]['content'];
-                }
-                break;
-            case T_CLOSE_PARENTHESIS:
-            case T_COMMA:
-                // If it's null, then there must be no parameters for this
-                // method.
-                if ($currVar === null) {
-                    continue;
-                }
-
-                $vars[$paramCount]            = array();
-                $vars[$paramCount]['token']   = $currVar;
-                $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
-                $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
-
-                if ($defaultStart !== null) {
-                    $vars[$paramCount]['default']
-                        = trim($phpcsFile->getTokensAsString(
-                            $defaultStart,
-                            ($i - $defaultStart)
-                        ));
-                }
-
-                $vars[$paramCount]['pass_by_reference'] = $passByReference;
-                $vars[$paramCount]['variable_length']   = $variableLength;
-                $vars[$paramCount]['type_hint']         = $typeHint;
-                $vars[$paramCount]['nullable_type']     = $nullableType;
-
-                // Reset the vars, as we are about to process the next parameter.
-                $defaultStart    = null;
-                $paramStart      = ($i + 1);
-                $passByReference = false;
-                $variableLength  = false;
-                $typeHint        = '';
-                $nullableType    = false;
-
-                $paramCount++;
-                break;
-            case T_EQUAL:
-                $defaultStart = ($i + 1);
-                break;
+    
+                    if ($defaultStart === null) {
+                        $typeHint .= $tokens[$i]['content'];
+                    }
+                    break;
+                case T_NS_SEPARATOR:
+                    // Part of a type hint or default value.
+                    if ($defaultStart === null) {
+                        $typeHint .= $tokens[$i]['content'];
+                    }
+                    break;
+                case T_INLINE_THEN:
+                    if ($defaultStart === null) {
+                        $nullableType = true;
+                        $typeHint    .= $tokens[$i]['content'];
+                    }
+                    break;
+                case T_CLOSE_PARENTHESIS:
+                case T_COMMA:
+                    // If it's null, then there must be no parameters for this
+                    // method.
+                    if ($currVar === null) {
+                        continue;
+                    }
+    
+                    $vars[$paramCount]            = array();
+                    $vars[$paramCount]['token']   = $currVar;
+                    $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
+                    $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
+    
+                    if ($defaultStart !== null) {
+                        $vars[$paramCount]['default']
+                            = trim($phpcsFile->getTokensAsString(
+                                $defaultStart,
+                                ($i - $defaultStart)
+                            ));
+                    }
+    
+                    $vars[$paramCount]['pass_by_reference'] = $passByReference;
+                    $vars[$paramCount]['variable_length']   = $variableLength;
+                    $vars[$paramCount]['type_hint']         = $typeHint;
+                    $vars[$paramCount]['nullable_type']     = $nullableType;
+    
+                    // Reset the vars, as we are about to process the next parameter.
+                    $defaultStart    = null;
+                    $paramStart      = ($i + 1);
+                    $passByReference = false;
+                    $variableLength  = false;
+                    $typeHint        = '';
+                    $nullableType    = false;
+    
+                    $paramCount++;
+                    break;
+                case T_EQUAL:
+                    $defaultStart = ($i + 1);
+                    break;
             }//end switch
         }//end for
 
@@ -1550,9 +1545,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        /**
-         * Algorithm is a text string, so we need to remove the quotes.
-         */
+        // Algorithm is a text string, so we need to remove the quotes.
         $algo = strtolower(trim($algoParam['raw']));
         $algo = $this->stripQuotes($algo);
 

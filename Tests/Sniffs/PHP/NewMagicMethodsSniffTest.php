@@ -222,7 +222,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param int  $line The line number.
+     * @param int $line The line number.
      *
      * @return void
      */

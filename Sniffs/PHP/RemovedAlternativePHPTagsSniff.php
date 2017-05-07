@@ -2,9 +2,11 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTags.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
@@ -12,9 +14,11 @@
  *
  * Check for usage of alternative PHP tags - removed in PHP 7.0.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  *
  * Based on `Generic_Sniffs_PHP_DisallowAlternativePHPTags` by Juliette Reinders Folmer
  * which was merged into PHPCS 2.7.0.
@@ -27,7 +31,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
      *
      * @var bool
      */
-    private $_aspTags = false;
+    private $aspTags = false;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -37,14 +41,14 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
     public function register()
     {
         if (version_compare(phpversion(), '7.0', '<') === true) {
-            $this->_aspTags = (boolean) ini_get('asp_tags');
+            $this->aspTags = (boolean) ini_get('asp_tags');
         }
 
         return array(
-                T_OPEN_TAG,
-                T_OPEN_TAG_WITH_ECHO,
-                T_INLINE_HTML,
-               );
+            T_OPEN_TAG,
+            T_OPEN_TAG_WITH_ECHO,
+            T_INLINE_HTML,
+        );
 
     }//end register()
 
@@ -80,21 +84,20 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
                     $content,
                 );
                 $errorCode = 'ASPOpenTagFound';
-            }
-            else if (strpos($content, '<script ') !== false) {
+
+            } elseif (strpos($content, '<script ') !== false) {
                 $data = array(
                     'Script',
                     $content,
                 );
                 $errorCode = 'ScriptOpenTagFound';
-            }
-            else {
+            } else {
                 return;
             }
         }
         // Account for incorrect script open tags.
         // The "(?:<s)?" in the regex is to work-around a bug in the tokenizer in PHP 5.2.
-        else if ($openTag['code'] === T_INLINE_HTML
+        elseif ($openTag['code'] === T_INLINE_HTML
             && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found = $match[1];
@@ -122,7 +125,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff extends PHPComp
 
 
         // If we're still here, we can't be sure if what we find was really intended as ASP open tags.
-        if ($openTag['code'] === T_INLINE_HTML && $this->_aspTags === false) {
+        if ($openTag['code'] === T_INLINE_HTML && $this->aspTags === false) {
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');

@@ -4,27 +4,43 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Koen Eelen <koen.eelen@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Koen Eelen <koen.eelen@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Koen Eelen <koen.eelen@cu.be>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Koen Eelen <koen.eelen@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends PHPCompatibility_Sniff
 {
 
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
     public function register()
     {
         return array(T_CLASS);
 
-    }//end register()
+    }
 
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in the
+     *                                        stack passed in $tokens.
+     *
+     * @return void
+     */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {

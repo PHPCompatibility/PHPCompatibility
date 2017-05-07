@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewFunctionsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewFunctionsSniffTest extends BaseSniffTest
 {
@@ -42,12 +42,12 @@ class NewFunctionsSniffTest extends BaseSniffTest
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "The function {$functionName}() is not present in PHP version {$lastVersionBefore} or earlier";
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach( $lines as $line ) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }

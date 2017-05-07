@@ -4,9 +4,9 @@
  *
  * PHP version 5.6
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**

@@ -2,19 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewInterfacesSniff.
  *
- * PHP version 5.5
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewInterfacesSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
@@ -28,60 +26,60 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
      * @var array(string => array(string => int|string|null))
      */
     protected $newInterfaces = array(
-                                'Traversable' => array(
-                                    '4.4' => false,
-                                    '5.0' => true
-                                ),
+        'Traversable' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
 
-                                'Countable' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
-                                'OuterIterator' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
-                                'RecursiveIterator' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
-                                'SeekableIterator' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
-                                'Serializable' => array(
-                                    '5.0' => false,
-                                    '5.1' => true,
-                                ),
-                                'SplObserver' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
-                                'SplSubject' => array(
-                                    '5.0' => false,
-                                    '5.1' => true
-                                ),
+        'Countable' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'OuterIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'RecursiveIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'SeekableIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'Serializable' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'SplObserver' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'SplSubject' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
-                                'JsonSerializable' => array(
-                                    '5.3' => false,
-                                    '5.4' => true
-                                ),
-                                'SessionHandlerInterface' => array(
-                                    '5.3' => false,
-                                    '5.4' => true
-                                ),
+        'JsonSerializable' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'SessionHandlerInterface' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
 
-                                'DateTimeInterface' => array(
-                                    '5.4' => false,
-                                    '5.5' => true
-                                ),
+        'DateTimeInterface' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
 
-                                'Throwable' => array(
-                                    '5.6' => false,
-                                    '7.0' => true
-                                ),
+        'Throwable' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
 
-                               );
+    );
 
     /**
      * A list of methods which cannot be used in combination with particular interfaces.
@@ -89,11 +87,11 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
      * @var array(string => array(string => string))
      */
     protected $unsupportedMethods = array(
-                                     'Serializable' => array(
-                                         '__sleep'  => 'http://php.net/serializable',
-                                         '__wakeup' => 'http://php.net/serializable',
-                                     ),
-                                    );
+        'Serializable' => array(
+            '__sleep'  => 'http://php.net/serializable',
+            '__wakeup' => 'http://php.net/serializable',
+        ),
+    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -134,7 +132,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch($tokens[$stackPtr]['type']) {
+        switch ($tokens[$stackPtr]['type']) {
             case 'T_CLASS':
             case 'T_ANON_CLASS':
                 $this->processClassToken($phpcsFile, $stackPtr);
@@ -176,7 +174,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
         $tokens       = $phpcsFile->getTokens();
         $checkMethods = false;
 
-        if(isset($tokens[$stackPtr]['scope_closer'])) {
+        if (isset($tokens[$stackPtr]['scope_closer'])) {
             $checkMethods = true;
             $scopeCloser = $tokens[$stackPtr]['scope_closer'];
         }

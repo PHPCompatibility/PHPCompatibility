@@ -2,17 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
@@ -25,36 +25,36 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newTypes = array (
-                           'array' => array(
-                               '5.0' => false,
-                               '5.1' => true,
-                           ),
-                           'callable' => array(
-                               '5.3' => false,
-                               '5.4' => true,
-                           ),
-                           'int' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'float' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'bool' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'string' => array(
-                               '5.6' => false,
-                               '7.0' => true,
-                           ),
-                           'iterable' => array(
-                               '7.0' => false,
-                               '7.1' => true,
-                           ),
-                          );
+    protected $newTypes = array(
+        'array' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'callable' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'int' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'float' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'bool' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'string' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'iterable' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+    );
 
 
     /**
@@ -64,12 +64,12 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
      *
      * @var array(string => string)
      */
-    protected $invalidTypes = array (
-                               'parent'  => 'self',
-                               'static'  => 'self',
-                               'boolean' => 'bool',
-                               'integer' => 'int',
-                              );
+    protected $invalidTypes = array(
+        'parent'  => 'self',
+        'static'  => 'self',
+        'boolean' => 'bool',
+        'integer' => 'int',
+    );
 
 
     /**
@@ -119,14 +119,14 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                     $param['token'],
                     'TypeHintFound'
                 );
-            }
-            else if (isset($this->newTypes[$type_hint])) {
+
+            } elseif (isset($this->newTypes[$type_hint])) {
                 $itemInfo = array(
                     'name'   => $type_hint,
                 );
                 $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
-            }
-            else if (isset($this->invalidTypes[$type_hint])) {
+
+            } elseif (isset($this->invalidTypes[$type_hint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
                 $data  = array(
                     $type_hint,
@@ -134,8 +134,8 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
                 );
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
-            }
-            else if ($type_hint === 'self') {
+
+            } elseif ($type_hint === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
                     $phpcsFile->addError(
                         "'self' type cannot be used outside of class scope",

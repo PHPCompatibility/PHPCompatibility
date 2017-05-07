@@ -2,16 +2,27 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
  *
+ * PHP version 5.4
+ *
+ * @category  PHP
+ * @package   PHPCompatibility
+ * @author    Declan Kelly <declankelly90@gmail.com>
+ * @copyright 2015 Declan Kelly
+ */
+
+/**
+ * PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ *
  * Discourages use of superglobals as parameters for functions.
  *
  * {@internal List of superglobals is maintained in the parent class.}}
  *
  * PHP version 5.4
  *
- * @category   PHP
- * @package    PHPCompatibility
- * @author     Declan Kelly <declankelly90@gmail.com>
- * @copyright  2015 Declan Kelly
+ * @category  PHP
+ * @package   PHPCompatibility
+ * @author    Declan Kelly <declankelly90@gmail.com>
+ * @copyright 2015 Declan Kelly
  */
 class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCompatibility_Sniff
 {
@@ -21,7 +32,8 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array(
             T_FUNCTION,
             T_CLOSURE,
@@ -31,12 +43,13 @@ class PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff extends PHPCo
     /**
      * Processes the test.
      *
-     * @param PHP_CodeSniffer_file $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         if ($this->supportsAbove('5.4') === false) {
             return;
         }

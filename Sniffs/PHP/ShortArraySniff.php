@@ -1,5 +1,25 @@
 <?php
+/**
+ * PHPCompatibility_Sniffs_PHP_ShortArray.
+ *
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Alex Miroshnikov <unknown@example.com>
+ */
 
+/**
+ * PHPCompatibility_Sniffs_PHP_ShortArray.
+ *
+ * Short array syntax is available since PHP 5.4
+ *
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Alex Miroshnikov <unknown@example.com>
+ */
 class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
 {
 
@@ -38,9 +58,9 @@ class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
         $error = '%s is available since 5.4';
         $data  = array();
 
-        if ($token['type'] === 'T_OPEN_SHORT_ARRAY' ) {
+        if ($token['type'] === 'T_OPEN_SHORT_ARRAY') {
             $data[] = 'Short array syntax (open)';
-        } elseif ($token['type'] === 'T_CLOSE_SHORT_ARRAY' ) {
+        } elseif ($token['type'] === 'T_CLOSE_SHORT_ARRAY') {
             $data[] = 'Short array syntax (close)';
         }
 

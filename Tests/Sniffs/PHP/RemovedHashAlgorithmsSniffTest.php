@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
 {
@@ -32,7 +32,7 @@ class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
      * @param array  $line      The line number on which the error should occur.
      * @param string $okVersion A PHP version in which the algorithm was still valid.
      *
-     * return void
+     * @return void
      */
     public function testRemovedHashAlgorithms($algorithm, $removedIn, $line, $okVersion)
     {

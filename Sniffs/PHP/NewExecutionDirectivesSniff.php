@@ -2,17 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
 {
@@ -26,24 +26,24 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
      *
      * @var array(string => array(string => int|string|null))
      */
-    protected $newDirectives = array (
-                                'ticks' => array(
-                                    '3.1' => false,
-                                    '4.0' => true,
-                                    'valid_value_callback' => 'isNumeric',
-                                ),
-                                'encoding' => array(
-                                    '5.2' => false,
-                                    '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
-                                    '5.4' => true,
-                                    'valid_value_callback' => 'validEncoding',
-                                ),
-                                'strict_types' => array(
-                                    '5.6' => false,
-                                    '7.0' => true,
-                                    'valid_values' => array(1),
-                                ),
-                               );
+    protected $newDirectives = array(
+        'ticks' => array(
+            '3.1' => false,
+            '4.0' => true,
+            'valid_value_callback' => 'isNumeric',
+        ),
+        'encoding' => array(
+            '5.2' => false,
+            '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
+            '5.4' => true,
+            'valid_value_callback' => 'validEncoding',
+        ),
+        'strict_types' => array(
+            '5.6' => false,
+            '7.0' => true,
+            'valid_values' => array(1),
+        ),
+    );
 
 
     /**
@@ -82,21 +82,20 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
         $tokens = $phpcsFile->getTokens();
 
         if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === true) {
-	        $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
-	        $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
-        }
-        else {
-	        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
-				return;
-			}
+            $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
+            $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
+        } else {
+            if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
+                return;
+            }
 
-			// Deal with PHPCS 1.x which does not set the parenthesis properly for declare statements.
-			$openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
-			if ($openParenthesis === false || isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
-				return;
-			}
-			$closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
-		}
+            // Deal with PHPCS 1.x which does not set the parenthesis properly for declare statements.
+            $openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
+            if ($openParenthesis === false || isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
+                return;
+            }
+            $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
+        }
 
         $directivePtr = $phpcsFile->findNext(T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
         if ($directivePtr === false) {
@@ -113,8 +112,8 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             );
 
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
-        }
-        else {
+
+        } else {
             // Check for valid directive for version.
             $itemInfo = array(
                 'name'   => $directiveContent,
@@ -230,7 +229,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
     {
         if ($errorInfo['not_in_version'] !== '') {
             parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
-        } else if ($errorInfo['conditional_version'] !== '') {
+        } elseif ($errorInfo['conditional_version'] !== '') {
             $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
             $errorCode = $this->stringToErrorCode($itemInfo['name']).'WithConditionFound';
             $data      = array(
@@ -269,8 +268,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             if (in_array($value, $this->newDirectives[$directive]['valid_values']) === false) {
                 $isError = true;
             }
-        }
-        else if (isset($this->newDirectives[$directive]['valid_value_callback'])) {
+        } elseif (isset($this->newDirectives[$directive]['valid_value_callback'])) {
             $valid = call_user_func(array($this, $this->newDirectives[$directive]['valid_value_callback']), $value);
             if ($valid === false) {
                 $isError = true;

@@ -36,11 +36,13 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param bool   $expected      Whether or not the function/array has parameters/values.
+     *
+     * @return void
      */
     public function testDoesFunctionCallHaveParameters($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
-        $result   = $this->helperClass->doesFunctionCallHaveParameters($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->doesFunctionCallHaveParameters($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

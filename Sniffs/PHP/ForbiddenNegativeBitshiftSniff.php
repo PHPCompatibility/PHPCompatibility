@@ -4,9 +4,9 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim@cu.be>
  */
 
 /**
@@ -14,9 +14,11 @@
  *
  * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim@cu.be>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPCompatibility_Sniff
 {
@@ -48,12 +50,12 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNegativeBitshiftSniff extends PHPComp
         }
 
         $nextNumber = $phpcsFile->findNext(T_LNUMBER, $stackPtr + 1, null, false, null, true);
-        if($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
+        if ($nextNumber === false || ($stackPtr + 1) === $nextNumber) {
             return;
         }
 
         $hasMinusSign = $phpcsFile->findNext(T_MINUS, $stackPtr + 1, $nextNumber, false, null, true);
-        if($hasMinusSign === false) {
+        if ($hasMinusSign === false) {
             return;
         }
 

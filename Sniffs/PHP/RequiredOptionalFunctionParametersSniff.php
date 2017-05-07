@@ -2,17 +2,17 @@
 /**
  * PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extends PHPCompatibility_AbstractComplexVersionSniff
 {
@@ -28,21 +28,21 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
      * @var array
      */
     protected $functionParameters = array(
-                                     'preg_match_all' => array(
-                                         2 => array(
-                                             'name' => 'matches',
-                                             '5.3' => true,
-                                             '5.4' => false,
-                                         ),
-                                     ),
-                                     'stream_socket_enable_crypto' => array(
-                                         2 => array(
-                                             'name' => 'crypto_type',
-                                             '5.5' => true,
-                                             '5.6' => false,
-                                         ),
-                                     ),
-                                    );
+        'preg_match_all' => array(
+            2 => array(
+                'name' => 'matches',
+                '5.3' => true,
+                '5.4' => false,
+            ),
+        ),
+        'stream_socket_enable_crypto' => array(
+            2 => array(
+                'name' => 'crypto_type',
+                '5.5' => true,
+                '5.6' => false,
+            ),
+        ),
+    );
 
 
     /**
@@ -72,10 +72,10 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-                T_DOUBLE_COLON,
-                T_OBJECT_OPERATOR,
-                T_FUNCTION,
-                T_CONST,
+            T_DOUBLE_COLON,
+            T_OBJECT_OPERATOR,
+            T_FUNCTION,
+            T_CONST,
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
@@ -100,7 +100,7 @@ class PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff extend
         $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
-        foreach($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
+        foreach ($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
                 $itemInfo = array(
                     'name'   => $function,

@@ -38,11 +38,13 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
      *
      * @param string $commentString The comment which prefaces the T_DOUBLE_COLON token in the test file.
      * @param string $expected      The expected fully qualified class name.
+     *
+     * @return void
      */
     public function testGetFQClassNameFromDoubleColonToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, T_DOUBLE_COLON);
-        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

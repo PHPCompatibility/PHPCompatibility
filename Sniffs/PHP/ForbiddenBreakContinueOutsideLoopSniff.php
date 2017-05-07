@@ -2,7 +2,7 @@
 /**
  * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoop.
  *
- * PHP version 7
+ * PHP version 7.0
  *
  * @category PHP
  * @package  PHPCompatibility
@@ -14,7 +14,7 @@
  *
  * Forbids use of break or continue statements outside of looping structures.
  *
- * PHP version 7
+ * PHP version 7.0
  *
  * @category PHP
  * @package  PHPCompatibility
@@ -81,8 +81,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends
                     return;
                 }
             }
-        }
-        else {
+        } else {
             // Deal with older PHPCS versions.
             if (isset($token['scope_condition']) === true && isset($this->backCompat[$tokens[$token['scope_condition']]['code']]) === true) {
                 return;

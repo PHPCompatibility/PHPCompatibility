@@ -1,6 +1,6 @@
 <?php
 /**
- * Base sniff test class file
+ * Base sniff test class file.
  *
  * @package PHPCompatibility
  */
@@ -9,7 +9,7 @@
  * BaseSniffTest
  *
  * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
- * warnings
+ * warnings.
  *
  * @uses    PHPUnit_Framework_TestCase
  * @package PHPCompatibility
@@ -56,7 +56,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         }
 
         PHP_CodeSniffer::setConfigData('testVersion', null, true);
-        if (method_exists('PHP_CodeSniffer_CLI', 'setCommandLineValues')) { // For PHPCS 2.x
+        if (method_exists('PHP_CodeSniffer_CLI', 'setCommandLineValues')) { // For PHPCS 2.x.
             self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
         }
 
@@ -64,8 +64,8 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         if (method_exists('PHP_CodeSniffer', 'initStandard')) {
             self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
         } else {
-            // PHPCS 1.x
-            self::$phpcs->process(array(), dirname( __FILE__ ) . '/../', array($this->getSniffCode()));
+            // PHPCS 1.x.
+            self::$phpcs->process(array(), dirname(__FILE__) . '/../', array($this->getSniffCode()));
         }
 
         self::$phpcs->setIgnorePatterns(array());
@@ -74,18 +74,18 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tear down after each test
+     * Tear down after each test.
      *
      * @return void
      */
     public function tearDown()
     {
-        // Reset any settingsStandard (targetPhpVersion)
+        // Reset any settingsStandard (targetPhpVersion).
         self::$phpcs->cli->settingsStandard = array();
     }
 
     /**
-     * Tear down after each test
+     * Tear down after each test.
      *
      * @return void
      */
@@ -105,15 +105,16 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Sniff a file and return resulting file object
+     * Sniff a file and return resulting file object.
      *
-     * @param string $filename Filename to sniff
-     * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object
-     * @return PHP_CodeSniffer_File|false File object
+     * @param string $filename         Filename to sniff.
+     * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
+     *
+     * @return PHP_CodeSniffer_File|false File object.
      */
     public function sniffFile($filename, $targetPhpVersion = 'none')
     {
-        if ( isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
+        if (isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
             return self::$sniffFiles[$filename][$targetPhpVersion];
         }
 
@@ -139,11 +140,12 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert a PHPCS error on a particular line number
+     * Assert a PHPCS error on a particular line number.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer file object
-     * @param int $lineNumber Line number
-     * @param string $expectedMessage Expected error message (assertContains)
+     * @param PHP_CodeSniffer_File $file            Codesniffer file object.
+     * @param int                  $lineNumber      Line number.
+     * @param string               $expectedMessage Expected error message (assertContains).
+     *
      * @return bool
      */
     public function assertError(PHP_CodeSniffer_File $file, $lineNumber, $expectedMessage)
@@ -154,11 +156,12 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Assert a PHPCS warning on a particular line number
+     * Assert a PHPCS warning on a particular line number.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer file object
-     * @param int $lineNumber Line number
-     * @param string $expectedMessage Expected message (assertContains)
+     * @param PHP_CodeSniffer_File $file            Codesniffer file object.
+     * @param int                  $lineNumber      Line number.
+     * @param string               $expectedMessage Expected message (assertContains).
+     *
      * @return bool
      */
     public function assertWarning(PHP_CodeSniffer_File $file, $lineNumber, $expectedMessage)
@@ -175,6 +178,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      * @param string $type            The type of issues, either 'error' or 'warning'.
      * @param int    $lineNumber      Line number.
      * @param string $expectedMessage Expected message (assertContains).
+     *
      * @return bool
      */
     private function assertForType($issues, $type, $lineNumber, $expectedMessage)
@@ -185,23 +189,25 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
 
         $insteadFoundMessages = array();
 
-        // Concat any error messages so we can do an assertContains
+        // Concat any error messages so we can do an assertContains.
         foreach ($issues[$lineNumber] as $issue) {
             $insteadFoundMessages[] = $issue['message'];
         }
 
         $insteadMessagesString = implode(', ', $insteadFoundMessages);
         return $this->assertContains(
-            $expectedMessage, $insteadMessagesString,
+            $expectedMessage,
+            $insteadMessagesString,
             "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString."
         );
     }
 
     /**
-     * Assert no violation (warning or error) on a given line number
+     * Assert no violation (warning or error) on a given line number.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer File object
-     * @param mixed $lineNumber Line number
+     * @param PHP_CodeSniffer_File $file       Codesniffer File object.
+     * @param mixed                $lineNumber Line number.
+     *
      * @return bool
      */
     public function assertNoViolation(PHP_CodeSniffer_File $file, $lineNumber = 0)
@@ -217,7 +223,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             $failMessage = 'Failed asserting no violations in file. Found ' . count($errors) . ' errors and ' . count($warnings) . ' warnings.';
             $allMessages = $errors + $warnings;
             // TODO: Update the fail message to give the tester some
-            // indication of what the errors or warnings were
+            // indication of what the errors or warnings were.
             return $this->assertEmpty($allMessages, $failMessage);
         }
 
@@ -240,12 +246,13 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Show violations in file by line number
+     * Show violations in file by line number.
      *
-     * This is useful for debugging sniffs on a file
+     * This is useful for debugging sniffs on a file.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer file object
-     * @return void
+     * @param PHP_CodeSniffer_File $file Codesniffer file object.
+     *
+     * @return array
      */
     public function showViolations(PHP_CodeSniffer_File $file)
     {
@@ -258,9 +265,10 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Gather all error messages by line number from phpcs file result
+     * Gather all error messages by line number from phpcs file result.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer File object
+     * @param PHP_CodeSniffer_File $file Codesniffer File object.
+     *
      * @return array
      */
     public function gatherErrors(PHP_CodeSniffer_File $file)
@@ -271,9 +279,10 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Gather all warning messages by line number from phpcs file result
+     * Gather all warning messages by line number from phpcs file result.
      *
-     * @param PHP_CodeSniffer_File $file Codesniffer File object
+     * @param PHP_CodeSniffer_File $file Codesniffer File object.
+     *
      * @return array
      */
     public function gatherWarnings(PHP_CodeSniffer_File $file)
@@ -288,6 +297,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
      *
      * @param array $issuesArray Array of a particular type of issues,
      *                           i.e. errors or warnings.
+     *
      * @return array
      */
     private function gatherIssues($issuesArray)
@@ -309,4 +319,3 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
         return $allIssues;
     }
 }
-

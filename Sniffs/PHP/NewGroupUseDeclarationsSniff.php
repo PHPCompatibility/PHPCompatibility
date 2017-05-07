@@ -4,17 +4,19 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompatibility_Sniff
 {
@@ -60,8 +62,8 @@ class PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff extends PHPCompat
 
             $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
             if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
-				return;
-			}
+                return;
+            }
         }
 
         // Still here ? In that case, it is a group use statement.

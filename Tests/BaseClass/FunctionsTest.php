@@ -65,6 +65,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
      * @param string $expected    The expected testVersion array.
+     *
+     * @return void
      */
     public function testGetTestVersion($testVersion, $expected)
     {
@@ -74,7 +76,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
 
-		// Verify that the caching of the function results is working correctly.
+        // Verify that the caching of the function results is working correctly.
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
 
         // Clean up / reset the value.
@@ -102,9 +104,9 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
             array('-5.6', array('4.0', '5.6')), // Range, with no minimum.
             array('7.0-', array('7.0', '99.9')), // Range, with no maximum.
 
-		// Whitespace tests.  Shouldn't really come up in standard command-line use,
-		// but could occur if command-line argument is quoted or added via
-		// ruleset.xml.
+        // Whitespace tests.  Shouldn't really come up in standard command-line use,
+        // but could occur if command-line argument is quoted or added via
+        // ruleset.xml.
             array(' 5.0', array('5.0', '5.0')), // Single version.
             array('5.0 ', array('5.0', '5.0')), // Single version.
             array('5.1 - 5.5', array('5.1', '5.5')), // Range of versions.
@@ -126,6 +128,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *           The function itself works fine in PHP < 5.3.2.
      *
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
+     *
+     * @return void
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
@@ -170,6 +174,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *           The function itself works fine in PHP < 5.3.2.
      *
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
+     *
+     * @return void
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
@@ -201,15 +207,15 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
             array('5.6.28'), // Not in major.minor format.
             array('seven.one'), // Non numeric.
 
-            array('-'), // blank range.
-            array('5.4-5.5-5.6'), // mutiple ranges.
+            array('-'), // Blank range.
+            array('5.4-5.5-5.6'), // Mutiple ranges.
 
-            array('5-7.0'), // invalid left half.
-            array('5.1.2-7.0'), // invalid left half.
-            array('5AndJunk-7.0'), // invalid left half.
+            array('5-7.0'), // Invalid left half.
+            array('5.1.2-7.0'), // Invalid left half.
+            array('5AndJunk-7.0'), // Invalid left half.
 
-            array('5.5-7'), // invalid right half.
-            array('5.5-7.0.5'), // invalid right half.
+            array('5.5-7'), // Invalid right half.
+            array('5.5-7.0.5'), // Invalid right half.
             array('5.5-7AndJunk'), // invalid right half.
         );
     }
@@ -225,6 +231,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      * @param string $phpVersion  The PHP version we want to test.
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
      * @param string $expected    Expected result.
+     *
+     * @return void
      */
     public function testSupportsAbove($phpVersion, $testVersion, $expected)
     {
@@ -271,6 +279,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      * @param string $phpVersion  The PHP version we want to test.
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
      * @param string $expected    Expected result.
+     *
+     * @return void
      */
     public function testSupportsBelow($phpVersion, $testVersion, $expected)
     {
@@ -316,6 +326,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @param string $input    The input string.
      * @param string $expected The expected error code.
+     *
+     * @return void
      */
     public function testStringToErrorCode($input, $expected)
     {
@@ -341,15 +353,17 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
 
    /**
-     * testStripQuotes
-     *
-     * @dataProvider dataStripQuotes
-     *
-     * @covers PHPCompatibility_Sniff::stripQuotes
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     */
+    * testStripQuotes
+    *
+    * @dataProvider dataStripQuotes
+    *
+    * @covers PHPCompatibility_Sniff::stripQuotes
+    *
+    * @param string $input    The input string.
+    * @param string $expected The expected function output.
+    *
+    * @return void
+    */
     public function testStripQuotes($input, $expected)
     {
         $this->assertSame($expected, $this->helperClass->stripQuotes($input));
@@ -383,6 +397,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @param string $input    The input string.
      * @param string $expected The expected function output.
+     *
+     * @return void
      */
     public function testArrayKeysToLowercase($input, $expected)
     {
@@ -416,15 +432,17 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
 
    /**
-     * testStripVariables
-     *
-     * @dataProvider dataStripVariables
-     *
-     * @covers PHPCompatibility_Sniff::stripQuotes
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     */
+    * testStripVariables
+    *
+    * @dataProvider dataStripVariables
+    *
+    * @covers PHPCompatibility_Sniff::stripQuotes
+    *
+    * @param string $input    The input string.
+    * @param string $expected The expected function output.
+    *
+    * @return void
+    */
     public function testStripVariables($input, $expected)
     {
         $this->assertSame($expected, $this->helperClass->stripVariables($input));
@@ -482,8 +500,8 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
     /**
      * Test helper: Call protected/private method of a class.
      *
-     * @param object &$object    Instantiated object that we will run method on.
-     * @param string $methodName Method name to call
+     * @param object $object     Instantiated object that we will run method on.
+     * @param string $methodName Method name to call.
      * @param array  $parameters Array of parameters to pass into method.
      *
      * @return mixed Method return.

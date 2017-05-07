@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_ForbiddenGlobalVariableVariableSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Wim Godden <wim@cu.be>
+ * @author  Wim Godden <wim@cu.be>
  */
 class ForbiddenGlobalVariableVariableSniffTest extends BaseSniffTest
 {

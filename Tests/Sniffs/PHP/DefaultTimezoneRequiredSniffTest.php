@@ -13,16 +13,16 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_DefaultTimezoneRequiredSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/timezone.php';
 
     /**
-     * Test ini timezone setting
+     * Test ini timezone setting.
      *
      * @return void
      */
@@ -30,7 +30,7 @@ class DefaultTimezoneRequiredSniffTest extends BaseSniffTest
     {
         $timezone = ini_get('date.timezone');
 
-        // We'll supress this so PHPunit wont catch the warning
+        // We'll supress this so PHPunit wont catch the warning.
         @ini_set('date.timezone', false);
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');

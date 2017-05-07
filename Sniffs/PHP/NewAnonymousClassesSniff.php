@@ -4,9 +4,9 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
@@ -14,13 +14,23 @@
  *
  * Anonymous classes are supported in PHP 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 7.0
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff extends PHPCompatibility_Sniff
 {
 
+    /**
+     * Tokens which in various PHP versions indicate the `class` keyword.
+     *
+     * The dedicated anonymous class token is added from the `register()`
+     * method if the token is available.
+     *
+     * @var array
+     */
     private $indicators = array(
         T_CLASS => T_CLASS,
     );

@@ -69,7 +69,7 @@ abstract class PHPCompatibility_AbstractRemovedFeatureSniff extends PHPCompatibi
                     if ($removed === true && $errorInfo['removed'] === '') {
                         $errorInfo['removed'] = $version;
                         $errorInfo['error']   = true;
-                    } else if ($errorInfo['deprecated'] === '') {
+                    } elseif ($errorInfo['deprecated'] === '') {
                         $errorInfo['deprecated'] = $version;
                     }
                 }

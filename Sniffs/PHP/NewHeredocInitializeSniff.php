@@ -102,7 +102,7 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
                         return;
                     }
 
-                    // Still here ? Then we have a static variable assignment
+                    // Still here ? Then we have a static variable assignment.
                     $this->throwError($phpcsFile, $stackPtr, 'staticvar');
                 }
                 return;
@@ -121,7 +121,7 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
      */
     protected function throwError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type)
     {
-        switch($type) {
+        switch ($type) {
             case 'const':
                 $phrase = 'class constants';
                 break;

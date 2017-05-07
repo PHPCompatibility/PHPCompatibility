@@ -2,17 +2,21 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 /**
  * PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * PHP version 5.4
+ *
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHPCompatibility_Sniff
 {
@@ -56,14 +60,14 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
 
         // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
+        if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
             $ignore = array(
-                    T_FUNCTION,
-                    T_CONST,
-                    T_USE,
-                    T_NEW,
-                    T_CLASS,
-                    T_INTERFACE,
+                T_FUNCTION,
+                T_CONST,
+                T_USE,
+                T_NEW,
+                T_CLASS,
+                T_INTERFACE,
             );
 
             if (in_array($tokens[$prevToken]['code'], $ignore) === true) {

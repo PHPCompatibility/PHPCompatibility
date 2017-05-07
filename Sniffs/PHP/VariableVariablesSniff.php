@@ -4,9 +4,9 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
 /**
@@ -16,9 +16,9 @@
  *
  * PHP version 7.0
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCompatibility_Sniffs_PHP_VariableVariablesSniff extends PHPCompatibility_Sniff
 {
@@ -65,22 +65,21 @@ class PHPCompatibility_Sniffs_PHP_VariableVariablesSniff extends PHPCompatibilit
         // For static object calls, it only applies when this is a function call.
         if ($tokens[($stackPtr - 1)]['code'] === T_DOUBLE_COLON) {
             $hasBrackets = $tokens[$nextToken]['bracket_closer'];
-            while (($hasBrackets = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false ) {
+            while (($hasBrackets = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false) {
                 if ($tokens[$hasBrackets]['code'] === T_OPEN_SQUARE_BRACKET) {
                     if (isset($tokens[$hasBrackets]['bracket_closer'])) {
-						$hasBrackets = $tokens[$hasBrackets]['bracket_closer'];
+                        $hasBrackets = $tokens[$hasBrackets]['bracket_closer'];
                         continue;
-                    }
-                    else {
+                    } else {
                         // Live coding.
                         return;
                     }
-                }
-                elseif ($tokens[$hasBrackets]['code'] === T_OPEN_PARENTHESIS) {
+
+                } elseif ($tokens[$hasBrackets]['code'] === T_OPEN_PARENTHESIS) {
                     // Caught!
                     break;
-                }
-                else {
+
+                } else {
                     // Not a function call, so bow out.
                     return;
                 }

@@ -14,9 +14,9 @@
  *
  * @covers PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff
  *
- * @uses BaseSniffTest
+ * @uses    BaseSniffTest
  * @package PHPCompatibility
- * @author Jansen Price <jansen.price@gmail.com>
+ * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewIniDirectivesSniffTest extends BaseSniffTest
 {
@@ -46,7 +46,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach( $lines as $line ) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -207,7 +207,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
         $this->assertWarning($file, $lines[1], $error);
 
         $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
     }

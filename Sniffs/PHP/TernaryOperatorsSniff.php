@@ -55,8 +55,7 @@ class PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff extends PHPCompatibility
 
         // Get next non-whitespace token, and check it isn't the related inline else
         // symbol, which is not allowed prior to PHP 5.3.
-        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens,
-                                     ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
             $phpcsFile->addError(

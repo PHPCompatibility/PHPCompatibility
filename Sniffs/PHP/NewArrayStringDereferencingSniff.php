@@ -53,7 +53,7 @@ class PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff extends PHPCo
 
         $tokens = $phpcsFile->getTokens();
 
-        switch($tokens[$stackPtr]['code']) {
+        switch ($tokens[$stackPtr]['code']) {
             case T_CONSTANT_ENCAPSED_STRING:
                 $type = 'string literals';
                 $end  = $stackPtr;

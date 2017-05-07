@@ -2,8 +2,6 @@
 /**
  * PHPCompatibility_Sniffs_PHP_NewClassesSniff.
  *
- * PHP version 5.5
- *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
@@ -16,7 +14,6 @@
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
- * @version   1.0.0
  * @copyright 2013 Cu.be Solutions bvba
  */
 class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_AbstractNewFeatureSniff
@@ -31,160 +28,160 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
      * @var array(string => array(string => bool))
      */
     protected $newClasses = array(
-                                        'libXMLError' => array(
-                                            '5.0' => false,
-                                            '5.1' => true
-                                        ),
+        'libXMLError' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
-                                        'DateTime' => array(
-                                            '5.1' => false,
-                                            '5.2' => true
-                                        ),
-                                        'DateTimeZone' => array(
-                                            '5.1' => false,
-                                            '5.2' => true
-                                        ),
-                                        'RegexIterator' => array(
-                                            '5.1' => false,
-                                            '5.2' => true
-                                        ),
-                                        'RecursiveRegexIterator' => array(
-                                            '5.1' => false,
-                                            '5.2' => true
-                                        ),
+        'DateTime' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'DateTimeZone' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'RegexIterator' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'RecursiveRegexIterator' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
 
-                                        'DateInterval' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'DatePeriod' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'Phar' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'PharData' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'PharFileInfo' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'FilesystemIterator' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'GlobIterator' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'MultipleIterator' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'RecursiveTreeIterator' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplDoublyLinkedList' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplFixedArray' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplHeap' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplMaxHeap' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplMinHeap' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplPriorityQueue' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplQueue' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
-                                        'SplStack' => array(
-                                            '5.2' => false,
-                                            '5.3' => true
-                                        ),
+        'DateInterval' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'DatePeriod' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'Phar' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'PharData' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'PharFileInfo' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'FilesystemIterator' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'GlobIterator' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'MultipleIterator' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'RecursiveTreeIterator' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplDoublyLinkedList' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplFixedArray' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplHeap' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplMaxHeap' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplMinHeap' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplPriorityQueue' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplQueue' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'SplStack' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
 
-                                        'CallbackFilterIterator' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'RecursiveCallbackFilterIterator' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'ReflectionZendExtension' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'SessionHandler' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'SNMP' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'Transliterator' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
-                                        'Spoofchecker' => array(
-                                            '5.3' => false,
-                                            '5.4' => true
-                                        ),
+        'CallbackFilterIterator' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'RecursiveCallbackFilterIterator' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'ReflectionZendExtension' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'SessionHandler' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'SNMP' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'Transliterator' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'Spoofchecker' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
 
-                                        'CURLFile' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'DateTimeImmutable' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlCalendar' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlGregorianCalendar' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlTimeZone' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlBreakIterator' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlRuleBasedBreakIterator' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
-                                        'IntlCodePointBreakIterator' => array(
-                                            '5.4' => false,
-                                            '5.5' => true
-                                        ),
+        'CURLFile' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'DateTimeImmutable' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlCalendar' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlGregorianCalendar' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlTimeZone' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlBreakIterator' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlRuleBasedBreakIterator' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'IntlCodePointBreakIterator' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
 
-                                    );
+    );
 
     /**
      * A list of new Exception classes, not present in older versions.
@@ -202,135 +199,135 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
     protected $newExceptions = array(
         'Exception' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'ErrorException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'BadFunctionCallException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'BadMethodCallException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'DomainException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'InvalidArgumentException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'LengthException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'LogicException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'OutOfBoundsException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'OutOfRangeException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'OverflowException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'RangeException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'RuntimeException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'UnderflowException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'UnexpectedValueException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'DOMException' => array(
             // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'mysqli_sql_exception' => array(
             // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'PDOException' => array(
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'ReflectionException' => array(
             // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
         'SoapFault' => array(
             // According to the docs introduced in PHP 5.0.1, but Exception was only introduced in 5.1.
             '5.0' => false,
-            '5.1' => true
+            '5.1' => true,
         ),
 
         'PharException' => array(
             '5.2' => false,
-            '5.3' => true
+            '5.3' => true,
         ),
 
         'SNMPException' => array(
             '5.3' => false,
-            '5.4' => true
+            '5.4' => true,
         ),
 
         'IntlException' => array(
             '5.5.0' => false,
-            '5.5.1' => true
+            '5.5.1' => true,
         ),
 
         'Error' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'ArithmeticError' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'AssertionError' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'DivisionByZeroError' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'ParseError' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'TypeError' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'UI\Exception\InvalidArgumentException' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
         'UI\Exception\RuntimeException' => array(
             '5.6' => false,
-            '7.0' => true
+            '7.0' => true,
         ),
 
     );
@@ -381,7 +378,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch($tokens[$stackPtr]['type']) {
+        switch ($tokens[$stackPtr]['type']) {
             case 'T_FUNCTION':
             case 'T_CLOSURE':
                 $this->processFunctionToken($phpcsFile, $stackPtr);
@@ -415,11 +412,11 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
 
         if ($tokens[$stackPtr]['type'] === 'T_NEW') {
             $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
-        }
-        else if ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
+
+        } elseif ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
             $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
-        }
-        else if ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
+
+        } elseif ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
             $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
@@ -510,7 +507,7 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
         );
 
-        for ($i = ($opener + 1); $i < $closer; $i++ ) {
+        for ($i = ($opener + 1); $i < $closer; $i++) {
             if (isset($listen[$tokens[$i]['code']]) === false) {
                 continue;
             }

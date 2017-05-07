@@ -38,11 +38,13 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param int       $targetType    The token type for the target token.
      * @param string    $expected      The expected boolean return value.
      * @param int|array $validTokens   Optional. Valid token scope(s).
+     *
+     * @return void
      */
     public function testTokenHasScope($commentString, $targetType, $expected, $validTokens = null)
     {
         $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result   = $this->helperClass->tokenHasScope($this->_phpcsFile, $stackPtr, $validTokens);
+        $result   = $this->helperClass->tokenHasScope($this->phpcsFile, $stackPtr, $validTokens);
         $this->assertSame($expected, $result);
     }
 
@@ -101,11 +103,13 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.
      * @param string $expected      The expected boolean return value.
+     *
+     * @return void
      */
     public function testInClassScope($commentString, $targetType, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result = $this->helperClass->inClassScope($this->_phpcsFile, $stackPtr);
+        $result = $this->helperClass->inClassScope($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -138,11 +142,13 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.
      * @param string $expected      The expected boolean return value.
+     *
+     * @return void
      */
     public function testInUseScope($commentString, $targetType, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result   = $this->helperClass->inUseScope($this->_phpcsFile, $stackPtr);
+        $result   = $this->helperClass->inUseScope($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
