@@ -21,4 +21,4 @@ echo bar::classProp; // Not the keyword.
 /*
  * Invalid use check.
  */
-echo foobar::class; // Invalid: Used outside of a namespace + class foobar does not exist in this file.
+echo foobar::class; // Invalid: Used outside of a namespace.

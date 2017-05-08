@@ -71,49 +71,23 @@ class PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff extends PHPCompatib
             return;
         }
 
-        $classNameToken = $phpcsFile->findPrevious(T_STRING, ($prevToken - 1), null, false, null, true);
 
         // Useless if not in a namespace.
-        $hasNamespace = false;
-        if ($classNameToken !== false) {
-            $namespace = $this->determineNamespace($phpcsFile, $classNameToken);
-            if (empty($namespace) === false) {
-                $hasNamespace = true;
-            }
-        }
-
-        if ($hasNamespace === false) {
-            $phpcsFile->addWarning(
-                'Using the magic class constant ClassName::class is only useful in combination with a namespaced class',
-                $stackPtr,
-                'NotInNamespace'
-            );
-        }
-
-
-        // Is the magic constant used in a file which actually contains the referenced class ?
+        $classNameToken = $phpcsFile->findPrevious(T_STRING, ($prevToken - 1), null, false, null, true);
         if ($classNameToken === false) {
             return;
         }
 
-        $targetClassName = $tokens[$classNameToken]['content'];
-        $classPtr        = $stackPtr;
-        while ($classPtr > 0) {
-            $classPtr = $phpcsFile->findPrevious(T_CLASS, ($classPtr - 1));
-
-            if ($classPtr !== false) {
-                $className = $phpcsFile->getDeclarationName($classPtr);
-                if (empty($className) === false && $className === $targetClassName) {
-                    return;
-                }
-            }
+        $namespace = $this->determineNamespace($phpcsFile, $classNameToken);
+        if (empty($namespace) === false) {
+            return;
         }
 
-        // Still here? In that case, the magic constant is used in a file which doesn't contain the target class.
         $phpcsFile->addWarning(
-            'The magic class constant ClassName::class can only be used in the same file as where the class is defined',
+            'Using the magic class constant ClassName::class is only useful in combination with a namespaced class',
             $stackPtr,
-            'FileDoesNotContainClass'
+            'NotInNamespace'
         );
     }
+
 }

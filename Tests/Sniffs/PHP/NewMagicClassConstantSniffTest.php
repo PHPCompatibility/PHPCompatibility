@@ -105,7 +105,6 @@ class NewMagicClassConstantSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
         $this->assertWarning($file, 24, 'Using the magic class constant ClassName::class is only useful in combination with a namespaced class');
-        $this->assertWarning($file, 24, 'The magic class constant ClassName::class can only be used in the same file as where the class is defined');
     }
 
 
