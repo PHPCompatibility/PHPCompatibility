@@ -15,10 +15,5 @@ namespace MyNameSpace {
 /*
  * False positives check.
  */
-new class {} // Anonymous class, not the keyword.
 echo bar::classProp; // Not the keyword.
-
-/*
- * Invalid use check.
- */
-echo foobar::class; // Invalid: Used outside of a namespace + class foobar does not exist in this file.
+new class {} // Anonymous class, not the keyword.
