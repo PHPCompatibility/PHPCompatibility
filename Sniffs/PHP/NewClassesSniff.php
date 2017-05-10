@@ -198,8 +198,10 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
      */
     protected $newExceptions = array(
         'Exception' => array(
-            '5.0' => false,
-            '5.1' => true,
+            // According to the docs introduced in PHP 5.1, but this appears to be.
+            // an error.  Class was introduced with try/catch keywords in PHP 5.0.
+            '4.4' => false,
+            '5.0' => true,
         ),
         'ErrorException' => array(
             '5.0' => false,
@@ -258,28 +260,24 @@ class PHPCompatibility_Sniffs_PHP_NewClassesSniff extends PHPCompatibility_Abstr
             '5.1' => true,
         ),
         'DOMException' => array(
-            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
-            '5.0' => false,
-            '5.1' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
         'mysqli_sql_exception' => array(
-            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
-            '5.0' => false,
-            '5.1' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
         'PDOException' => array(
             '5.0' => false,
             '5.1' => true,
         ),
         'ReflectionException' => array(
-            // According to the docs introduced in PHP 5.0, but Exception was only introduced in 5.1.
-            '5.0' => false,
-            '5.1' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
         'SoapFault' => array(
-            // According to the docs introduced in PHP 5.0.1, but Exception was only introduced in 5.1.
-            '5.0' => false,
-            '5.1' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
 
         'PharException' => array(
