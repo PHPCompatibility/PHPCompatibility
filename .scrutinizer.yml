@@ -7,6 +7,9 @@ tools:
     php_pdepend: true
     php_analyzer: true
     sensiolabs_security_checker: true
+    external_code_coverage: true
+    external_code_coverage:
+        timeout: 600    # Timeout in seconds.
 
 checks:
     php: true

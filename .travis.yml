@@ -94,4 +94,4 @@ script:
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./ruleset.xml <(xmllint --format "./ruleset.xml"); fi
 
 after_success:
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; wget https://scrutinizer-ci.com/ocular.phar ; php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi
