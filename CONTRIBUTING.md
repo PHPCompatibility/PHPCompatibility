@@ -39,8 +39,8 @@ on the sniffs, the following installation steps are required.
 
         {
             "require": {
-                "phpunit/phpunit": "3.7.*",
-                "squizlabs/php_codesniffer": ">=2.0"
+                "phpunit/phpunit": ">=4.0",
+                "squizlabs/php_codesniffer": "^2.0"
             }
         }
 
