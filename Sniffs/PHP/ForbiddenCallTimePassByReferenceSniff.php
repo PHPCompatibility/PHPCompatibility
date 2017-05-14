@@ -59,10 +59,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
         // within their definitions. For example: function myFunction...
         // "myFunction" is T_STRING but we should skip because it is not a
         // function or method *call*.
-        $findTokens = array_merge(
-            PHP_CodeSniffer_Tokens::$emptyTokens,
-            array(T_BITWISE_AND)
-        );
+        $findTokens   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $findTokens[] = T_BITWISE_AND;
 
         $prevNonEmpty = $phpcsFile->findPrevious(
             $findTokens,

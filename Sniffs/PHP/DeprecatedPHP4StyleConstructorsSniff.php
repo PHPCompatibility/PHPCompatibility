@@ -92,7 +92,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff extends P
 
             if ($funcNameLc === $classNameLc) {
                 $oldConstructorFound = true;
-                $oldConstructorPos   = $phpcsFile->findNext(T_STRING, $nextFunc);
+                $oldConstructorPos   = $nextFunc;
             }
 
             // If both have been found, no need to continue looping through the functions.
