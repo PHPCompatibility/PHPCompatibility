@@ -166,7 +166,7 @@ class PHPCompatibility_Sniffs_PHP_PregReplaceEModifierSniff extends PHPCompatibi
             $regexEndPos = strrpos($regex, $regexFirstChar);
         }
 
-        if ($regexEndPos) {
+        if ($regexEndPos !== false) {
             $modifiers = substr($regex, $regexEndPos + 1);
 
             if (strpos($modifiers, 'e') !== false) {

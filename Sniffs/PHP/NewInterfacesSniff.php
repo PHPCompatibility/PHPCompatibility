@@ -176,7 +176,7 @@ class PHPCompatibility_Sniffs_PHP_NewInterfacesSniff extends PHPCompatibility_Ab
 
         if (isset($tokens[$stackPtr]['scope_closer'])) {
             $checkMethods = true;
-            $scopeCloser = $tokens[$stackPtr]['scope_closer'];
+            $scopeCloser  = $tokens[$stackPtr]['scope_closer'];
         }
 
         foreach ($interfaces as $interface) {

@@ -59,10 +59,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
         // within their definitions. For example: function myFunction...
         // "myFunction" is T_STRING but we should skip because it is not a
         // function or method *call*.
-        $findTokens = array_merge(
-            PHP_CodeSniffer_Tokens::$emptyTokens,
-            array(T_BITWISE_AND)
-        );
+        $findTokens   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $findTokens[] = T_BITWISE_AND;
 
         $prevNonEmpty = $phpcsFile->findPrevious(
             $findTokens,
@@ -85,7 +83,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
         );
 
         if ($openBracket === false || $tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS
-           || isset($tokens[$openBracket]['parenthesis_closer']) === false
+            || isset($tokens[$openBracket]['parenthesis_closer']) === false
         ) {
             return;
         }
@@ -125,7 +123,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
      * Determine whether a parameter is passed by reference.
      *
      * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param array                $parameter    Function parameter infor array.
+     * @param array                $parameter    Information on the current parameter
+     *                                           to be examined.
      * @param int                  $nestingLevel Target nesting level.
      *
      * @return bool
@@ -145,8 +144,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
 
             // Make sure the variable belongs directly to this function call
             // and is not inside a nested function call or array.
-            if (isset($tokens[$nextVariable]['nested_parenthesis']) === false ||
-               (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
+            if (isset($tokens[$nextVariable]['nested_parenthesis']) === false
+                || (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
             ) {
                 continue;
             }
@@ -217,8 +216,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                         $searchStartToken,
                         true
                     );
-                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON ||
-                        $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
+                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON
+                        || $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
                     ) {
                         break;
                     }

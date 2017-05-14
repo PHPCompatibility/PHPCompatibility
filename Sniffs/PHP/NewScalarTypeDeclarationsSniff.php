@@ -98,7 +98,7 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        $paramNames   = $this->getMethodParameters($phpcsFile, $stackPtr);
+        $paramNames = $this->getMethodParameters($phpcsFile, $stackPtr);
         if (empty($paramNames)) {
             return;
         }

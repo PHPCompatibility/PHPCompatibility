@@ -72,7 +72,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenClosureUseVariableNamesSniff extends 
         }
 
         $closurePtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true);
-        if ($tokens[$closurePtr]['code'] !== T_CLOSURE) {
+        if ($closurePtr === false || $tokens[$closurePtr]['code'] !== T_CLOSURE) {
             return;
         }
 

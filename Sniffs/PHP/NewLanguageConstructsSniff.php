@@ -157,7 +157,7 @@ class PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff extends PHPCompatib
         // Translate older PHPCS token combis for new constructs to the actual construct.
         if (isset($this->newConstructs[$tokenType]) === false) {
             if (isset($this->PHPCSCompatTranslate[$tokenType])
-                && ((isset($this->PHPCSCompatTranslate[$tokenType]['before']) === true
+                && ((isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
                 || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
                     && call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))

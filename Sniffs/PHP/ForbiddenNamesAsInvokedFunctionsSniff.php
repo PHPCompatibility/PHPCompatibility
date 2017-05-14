@@ -126,7 +126,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff extends 
             }
         }
 
-        if ($isString) {
+        if ($isString === true) {
             $version = $this->targetedStringTokens[$tokenContentLc];
         } else {
             $version = $this->targetedTokens[$tokenCode];

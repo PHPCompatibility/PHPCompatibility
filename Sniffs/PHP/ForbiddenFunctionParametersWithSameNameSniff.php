@@ -71,7 +71,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff e
             $paramNames[] = strtolower($param['name']);
         }
 
-        if (count($paramNames) != count(array_unique($paramNames))) {
+        if (count($paramNames) !== count(array_unique($paramNames))) {
             $phpcsFile->addError(
                 'Functions can not have multiple parameters with the same name since PHP 7.0',
                 $stackPtr,

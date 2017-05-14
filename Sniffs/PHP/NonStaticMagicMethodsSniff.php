@@ -119,7 +119,7 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
         $functionPtr      = $stackPtr;
 
         // Find all the functions in this class or interface.
-        while ($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) {
+        while (($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) !== false) {
             /*
              * Get the scope closer for this function in order to know how
              * to advance to the next function.
