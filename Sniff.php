@@ -509,7 +509,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $nextComma  = $opener;
         $paramStart = $opener + 1;
         $cnt        = 1;
-        while ($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY), $nextComma + 1, $closer + 1)) {
+        while (($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY), $nextComma + 1, $closer + 1)) !== false) {
             // Ignore anything within short array definition brackets.
             if ($tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
                 && (isset($tokens[$nextComma]['bracket_opener'])
@@ -836,11 +836,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
             T_WHITESPACE,
         );
 
-        $start = ($phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true) + 1);
-        if ($start === false) {
+        $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
+        if ($start === false || isset($tokens[($start + 1)]) === false) {
             return '';
         }
 
+        $start     = ($start + 1);
         $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
         $className = trim($className);
 

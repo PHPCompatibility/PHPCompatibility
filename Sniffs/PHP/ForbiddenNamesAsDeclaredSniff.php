@@ -178,6 +178,9 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
                 $nameLc = strtolower($tokens[$nextNonEmpty]['content']);
             } elseif ($nextNonEmptyCode === T_STRING) {
                 $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_OPEN_CURLY_BRACKET), ($stackPtr + 1));
+                if ($endOfStatement === false) {
+                    return;
+                }
 
                 do {
                     $nextNonEmptyLc = strtolower($tokens[$nextNonEmpty]['content']);
