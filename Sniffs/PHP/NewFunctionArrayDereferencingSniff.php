@@ -70,7 +70,7 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff extends PHP
                 T_INTERFACE,
             );
 
-            if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+            if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
                 // Not a call to a PHP function or method.
                 return;
             }

@@ -103,7 +103,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         $testVersion = trim(PHP_CodeSniffer::getConfigData('testVersion'));
 
-        if (!isset($arrTestVersions[$testVersion]) && !empty($testVersion)) {
+        if (isset($arrTestVersions[$testVersion]) === false && empty($testVersion) === false) {
 
             $arrTestVersions[$testVersion] = array(null, null);
             if (preg_match('/^\d+\.\d+$/', $testVersion)) {
@@ -133,7 +133,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 // different language).
                 $arrTestVersions[$testVersion] = array('4.0', substr($testVersion, 1));
 
-            } elseif (!$testVersion == '') {
+            } elseif ($testVersion !== '') {
                 trigger_error(
                     "Invalid testVersion setting: '" . $testVersion . "'",
                     E_USER_WARNING
@@ -193,7 +193,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         $testVersion = $this->getTestVersion();
         $testVersion = $testVersion[0];
 
-        if (!is_null($testVersion)
+        if (is_null($testVersion) === false
             && version_compare($testVersion, $phpVersion) <= 0
         ) {
             return true;
