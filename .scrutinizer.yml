@@ -1,3 +1,5 @@
+# language: php
+
 filter:
     excluded_paths:
         - 'Tests/*'
@@ -7,6 +9,22 @@ tools:
     php_pdepend: true
     php_analyzer: true
     sensiolabs_security_checker: true
+    external_code_coverage: true
+    external_code_coverage:
+        timeout: 1800    # Timeout in seconds.
 
 checks:
     php: true
+
+build_failure_conditions:
+    # New issues of major or higher severity
+    - 'issues.severity(>= MAJOR).new.exists'
+
+    # Code Quality Rating drops below 7.5
+    - 'project.metric("scrutinizer.quality", < 7.5)'
+
+    # Code Coverage drops below 85%
+    - 'project.metric("scrutinizer.test_coverage", < 0.85)'
+
+    # Code Coverage decreased from previous inspection by more than 0.5%
+    - 'project.metric_change("scrutinizer.test_coverage", < -0.005)'
