@@ -76,6 +76,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
                 for ($cnt = $open + 1; $cnt < $close; $cnt++) {
                     if (isset($this->ignoreTokens[$tokens[$cnt]['code']]) === false) {
                         $error = false;
+                        break;
                     }
                 }
             }
