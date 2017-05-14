@@ -1,11 +1,19 @@
 PHP Compatibility Coding Standard for PHP_CodeSniffer
 =====================================================
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/wimg/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
-[![Build Status](https://travis-ci.org/wimg/PHPCompatibility.png?branch=master)](https://travis-ci.org/wimg/PHPCompatibility)
-[![Coverage Status](https://coveralls.io/repos/github/wimg/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/wimg/PHPCompatibility?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/wimg/php-compatibility/v/stable.png)](https://packagist.org/packages/wimg/php-compatibility)
 [![Latest Unstable Version](https://poser.pugx.org/wimg/php-compatibility/v/unstable.png)](https://packagist.org/packages/wimg/php-compatibility)
-[![License](https://poser.pugx.org/wimg/php-compatibility/license.png)](https://packagist.org/packages/wimg/php-compatibility)
+![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
+[![License](https://poser.pugx.org/wimg/php-compatibility/license.png)](https://github.com/wimg/PHPCompatibility/blob/master/LICENSE)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/wimg/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
+
+[![Build Status](https://travis-ci.org/wimg/PHPCompatibility.png?branch=master)](https://travis-ci.org/wimg/PHPCompatibility)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/)
+[![Coverage Status](https://coveralls.io/repos/github/wimg/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/wimg/PHPCompatibility?branch=master)
+[![Dependency Status](https://www.versioneye.com/php/wimg:php-compatibility/badge)](https://www.versioneye.com/php/wimg:php-compatibility)
+
+[![Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
+[![Not Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/not-tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
+
 
 This is a set of sniffs for [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
 It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
