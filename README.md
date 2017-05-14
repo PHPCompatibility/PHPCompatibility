@@ -25,7 +25,7 @@ The sniffs are designed to give the same results regardless of which PHP version
 
 PHP CodeSniffer 1.5.1 is required for 90% of the sniffs, PHPCS 2.6 or later is required for full support, notices may be thrown on older versions.
 
-The PHPCompatibility standard is currently not compatible with PHPCS 3.0, though the [intention is to fix this](https://github.com/wimg/PHPCompatibility/issues/367) in the near future.
+**_The PHPCompatibility standard is currently not compatible with PHPCS 3.0, though the [intention is to fix this](https://github.com/wimg/PHPCompatibility/issues/367) in the near future._**
 
 Thank you
 ---------
@@ -39,7 +39,7 @@ Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sni
 Installation using PEAR (method 1)
 -----------------------
 
-* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer`.
+* Install [PHP_CodeSniffer](http://pear.php.net/PHP_CodeSniffer) with `pear install PHP_CodeSniffer-2.9.0`.
 * Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into the `PHP/CodeSniffer/Standards/PHPCompatibility` directory.
 
 
@@ -50,7 +50,7 @@ Installation in Composer project (method 2)
 
 ```json
 "require-dev": {
-   "squizlabs/php_codesniffer": "*",
+   "squizlabs/php_codesniffer": "^2.0",
    "wimg/php-compatibility": "*",
    "simplyadmire/composer-plugins" : "@dev"
 },
@@ -64,7 +64,7 @@ Installation in Composer project (method 2)
 Installation via a git check-out to an arbitrary directory (method 3)
 -----------------------
 
-* Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation) (Composer, PEAR, Phar file, Git checkout).
+* Install the latest `2.x` version of [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation) (Composer, PEAR, Phar file, Git checkout).
 * Checkout the latest release from https://github.com/wimg/PHPCompatibility/releases into an arbitrary directory.
 * Add the path to the directory **_above_** the directory in which you cloned the PHPCompability repo to the PHPCS configuration using the below command.
    ```bash
