@@ -285,7 +285,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
-    }// addErrorOnInvalidValue()
+    }// addWarningOnInvalidValue()
 
 
     /**
