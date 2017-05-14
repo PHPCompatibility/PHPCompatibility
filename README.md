@@ -29,7 +29,7 @@ PHP CodeSniffer 1.5.1 is required for 90% of the sniffs, PHPCS 2.6 or later is r
 
 Thank you
 ---------
-Thanks to all contributors for their valuable contributions.
+Thanks to all [contributors](https://github.com/wimg/PHPCompatibility/graphs/contributors) for their valuable contributions.
 
 [![WPEngine](https://cu.be/img/wpengine.png)](https://wpengine.com)
 
