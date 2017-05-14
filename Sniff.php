@@ -115,8 +115,8 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                         "Invalid range in testVersion setting: '" . $testVersion . "'",
                         E_USER_WARNING
                     );
-                }
-                else {
+
+                } else {
                     $arrTestVersions[$testVersion] = array($matches[1], $matches[2]);
                 }
 
@@ -578,8 +578,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         if (isset($parameters[$paramOffset]) === false) {
             return false;
-        }
-        else {
+        } else {
             return $parameters[$paramOffset];
         }
     }
@@ -877,8 +876,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
         if ($namespace === '') {
             return '\\' . $name;
-        }
-        else {
+        } else {
             return '\\' . $namespace . '\\' . $name;
         }
     }
@@ -957,8 +955,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         // If we still haven't got a namespace, return an empty string.
         if ($namespace === false) {
             return '';
-        }
-        else {
+        } else {
             return $namespace;
         }
     }
@@ -1361,7 +1358,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                             break;
                         }
                     }
-    
+
                     if ($prevComma !== false) {
                         $nextEquals = false;
                         for ($t = $prevComma; $t < $i; $t++) {
@@ -1370,12 +1367,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                                 break;
                             }
                         }
-    
+
                         if ($nextEquals !== false) {
                             break;
                         }
                     }
-    
+
                     if ($defaultStart === null) {
                         $typeHint .= $tokens[$i]['content'];
                     }
@@ -1399,12 +1396,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     if ($currVar === null) {
                         continue;
                     }
-    
+
                     $vars[$paramCount]            = array();
                     $vars[$paramCount]['token']   = $currVar;
                     $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
                     $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
-    
+
                     if ($defaultStart !== null) {
                         $vars[$paramCount]['default']
                             = trim($phpcsFile->getTokensAsString(
@@ -1412,12 +1409,12 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                                 ($i - $defaultStart)
                             ));
                     }
-    
+
                     $vars[$paramCount]['pass_by_reference'] = $passByReference;
                     $vars[$paramCount]['variable_length']   = $variableLength;
                     $vars[$paramCount]['type_hint']         = $typeHint;
                     $vars[$paramCount]['nullable_type']     = $nullableType;
-    
+
                     // Reset the vars, as we are about to process the next parameter.
                     $defaultStart    = null;
                     $paramStart      = ($i + 1);
@@ -1425,7 +1422,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                     $variableLength  = false;
                     $typeHint        = '';
                     $nullableType    = false;
-    
+
                     $paramCount++;
                     break;
                 case T_EQUAL:

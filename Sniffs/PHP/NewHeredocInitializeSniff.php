@@ -58,13 +58,13 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($equalSign - 1), null, true, null, true);
-        if ($prevNonEmpty === false ||
-            ($tokens[$prevNonEmpty]['code'] !== T_VARIABLE && $tokens[$prevNonEmpty]['code'] !== T_STRING)
+        if ($prevNonEmpty === false
+            || ($tokens[$prevNonEmpty]['code'] !== T_VARIABLE
+                && $tokens[$prevNonEmpty]['code'] !== T_STRING)
         ) {
             // Not a variable or constant assignment.
             return;
         }
-
 
         switch ($tokens[$prevNonEmpty]['type']) {
             /*

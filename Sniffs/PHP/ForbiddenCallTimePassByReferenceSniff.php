@@ -83,7 +83,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
         );
 
         if ($openBracket === false || $tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS
-           || isset($tokens[$openBracket]['parenthesis_closer']) === false
+            || isset($tokens[$openBracket]['parenthesis_closer']) === false
         ) {
             return;
         }
@@ -144,8 +144,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
 
             // Make sure the variable belongs directly to this function call
             // and is not inside a nested function call or array.
-            if (isset($tokens[$nextVariable]['nested_parenthesis']) === false ||
-               (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
+            if (isset($tokens[$nextVariable]['nested_parenthesis']) === false
+                || (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
             ) {
                 continue;
             }
@@ -216,8 +216,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff extends 
                         $searchStartToken,
                         true
                     );
-                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON ||
-                        $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
+                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON
+                        || $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
                     ) {
                         break;
                     }
