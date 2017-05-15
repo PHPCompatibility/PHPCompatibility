@@ -85,7 +85,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
             $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
         } else {
-            if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
+            if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '>=')) {
                 return;
             }
 
