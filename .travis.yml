@@ -56,16 +56,25 @@ matrix:
     - php: nightly
       env: PHPCS_VERSION="2.9.x-dev"
 
+    - php: hhvm
+      dist: trusty
+      env: PHPCS_VERSION=">=1.5.1,<2.0"
+    - php: hhvm
+      dist: trusty
+      env: PHPCS_VERSION="2.9.x-dev"
+
   allow_failures:
     # Allow failures for unstable builds.
     - php: nightly
+    - php: hhvm
 
 before_install:
   - export XMLLINT_INDENT="    "
   # PHP 5.3+: set up test environment using Composer.
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer self-update; fi
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $COVERALLS_VERSION ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION};fi
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer require squizlabs/php_codesniffer:${PHPCS_VERSION}; fi
+  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then composer require phpunit/phpunit:~4.0; fi
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer install; fi
   # PHP 5.2: set up test environment using git cloning.
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
@@ -74,7 +83,7 @@ before_install:
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths "$(dirname "$(pwd)")"; fi
 
 before_script:
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then mkdir -p build/logs; fi
+  - if [[ $COVERALLS_VERSION ]]; then mkdir -p build/logs; fi
   - phpenv rehash
 
 script:
@@ -85,8 +94,9 @@ script:
   # Check the code style of the code base.
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./phpcs.xml --runtime-set ignore_warnings_on_exit 1; fi
   # Run the unit tests.
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
+  - if [[ $COVERALLS_VERSION ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
   - if [[ $TRAVIS_PHP_VERSION == "5.2" || $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
+  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit --configuration phpunit.xml; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html
   - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./ruleset.xml; fi
@@ -94,4 +104,4 @@ script:
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./ruleset.xml <(xmllint --format "./ruleset.xml"); fi
 
 after_success:
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $TRAVIS_PHP_VERSION != "nightly" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
+  - if [[ $COVERALLS_VERSION ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
