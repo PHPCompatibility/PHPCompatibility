@@ -670,7 +670,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
         static $isLowPHPCS, $ignoreTokens;
 
         if (isset($isLowPHPCS) === false) {
-            $isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+            $isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.3.0', '<');
         }
         if (isset($ignoreTokens) === false) {
             $ignoreTokens              = PHP_CodeSniffer_Tokens::$emptyTokens;
