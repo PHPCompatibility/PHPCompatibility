@@ -1327,29 +1327,29 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                 }
             }
 
-            switch ($tokens[$i]['code']) {
-                case T_BITWISE_AND:
+            switch ($tokens[$i]['type']) {
+                case 'T_BITWISE_AND':
                     $passByReference = true;
                     break;
-                case T_VARIABLE:
+                case 'T_VARIABLE':
                     $currVar = $i;
                     break;
-                case T_ELLIPSIS:
+                case 'T_ELLIPSIS':
                     $variableLength = true;
                     break;
-                case T_ARRAY_HINT:
-                case T_CALLABLE:
+                case 'T_ARRAY_HINT':
+                case 'T_CALLABLE':
                     $typeHint .= $tokens[$i]['content'];
                     break;
-                case T_SELF:
-                case T_PARENT:
-                case T_STATIC:
+                case 'T_SELF':
+                case 'T_PARENT':
+                case 'T_STATIC':
                     // Self is valid, the others invalid, but were probably intended as type hints.
                     if (isset($defaultStart) === false) {
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
-                case T_STRING:
+                case 'T_STRING':
                     // This is a string, so it may be a type hint, but it could
                     // also be a constant used as a default value.
                     $prevComma = false;
@@ -1378,20 +1378,20 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
-                case T_NS_SEPARATOR:
+                case 'T_NS_SEPARATOR':
                     // Part of a type hint or default value.
                     if ($defaultStart === null) {
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
-                case T_INLINE_THEN:
+                case 'T_INLINE_THEN':
                     if ($defaultStart === null) {
                         $nullableType = true;
                         $typeHint    .= $tokens[$i]['content'];
                     }
                     break;
-                case T_CLOSE_PARENTHESIS:
-                case T_COMMA:
+                case 'T_CLOSE_PARENTHESIS':
+                case 'T_COMMA':
                     // If it's null, then there must be no parameters for this
                     // method.
                     if ($currVar === null) {
@@ -1426,7 +1426,7 @@ abstract class PHPCompatibility_Sniff implements PHP_CodeSniffer_Sniff
 
                     $paramCount++;
                     break;
-                case T_EQUAL:
+                case 'T_EQUAL':
                     $defaultStart = ($i + 1);
                     break;
             }//end switch
