@@ -83,6 +83,11 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
                 $errorType = 'zeroArgument';
                 break;
             }
+            } elseif ($tokens[$curToken]['type'] === 'T_LNUMBER') {
+                $errorType = 'variableArgument';
+                break;
+            }
+
         }
 
         if ($errorType !== '') {
