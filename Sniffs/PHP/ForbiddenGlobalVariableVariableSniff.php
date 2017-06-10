@@ -49,7 +49,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenGlobalVariableVariableSniff extends P
         }
 
         $tokens         = $phpcsFile->getTokens();
-        $endOfStatement = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr + 1));
+        $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_CLOSE_TAG), ($stackPtr + 1));
         if ($endOfStatement === false) {
             // No semi-colon - live coding.
             return;
