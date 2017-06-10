@@ -69,6 +69,8 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
             array(102, self::ERROR_TYPE_VARIABLE),
             array(107, self::ERROR_TYPE_ZERO),
             array(111, self::ERROR_TYPE_ZERO),
+            array(118, self::ERROR_TYPE_ZERO),
+            array(122, self::ERROR_TYPE_VARIABLE),
         );
     }
 
@@ -108,6 +110,7 @@ class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
             array(39),
             array(44),
             array(48),
+            array(126),
         );
     }
 
