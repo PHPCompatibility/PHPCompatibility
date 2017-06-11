@@ -63,7 +63,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
         }
 
         $tokens             = $phpcsFile->getTokens();
-        $nextSemicolonToken = $phpcsFile->findNext(T_SEMICOLON, ($stackPtr), null, false);
+        $nextSemicolonToken = $phpcsFile->findNext(array(T_SEMICOLON, T_CLOSE_TAG), ($stackPtr), null, false);
         $errorType          = '';
         for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
             if ($tokens[$curToken]['type'] === 'T_STRING') {

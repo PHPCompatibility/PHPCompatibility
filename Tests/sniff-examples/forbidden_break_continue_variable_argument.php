@@ -112,3 +112,17 @@ for ($i = 0; $i < 20; $i++) {
         }
     }
 }
+
+// Issue #460 and some variations.
+for ($x=0;$x<5;$x++):
+    continue 0 ?> <?php
+endfor;
+
+for ($x=0;$x<5;$x++):
+    continue $x ?> <?php
+endfor;
+
+for ($x=0;$x<5;$x++):
+    continue ?> <?php
+    print 0;
+endfor;
