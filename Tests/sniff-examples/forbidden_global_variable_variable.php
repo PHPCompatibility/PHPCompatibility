@@ -24,5 +24,8 @@ global ${$var['key1']['key2']};
 global ${$obj->$bar};
 global ${$obj->{$var['key']}};
 
+// Variant on issue #460
+global $test, $$test, $$$test ?> <?php
+
 // Live coding.
 global
