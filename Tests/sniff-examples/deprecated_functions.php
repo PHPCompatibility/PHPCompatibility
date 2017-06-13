@@ -138,6 +138,7 @@ echo PHP_CHECK_SYNTAX; // Constant.
 const php_check_syntax;
 use php_check_syntax;
 function php_check_syntax() {}
+abstract class Split {}
 
 // More deprecated functions, PHP 7.2
 jpeg2wbmp();

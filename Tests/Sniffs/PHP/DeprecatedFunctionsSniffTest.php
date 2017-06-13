@@ -192,8 +192,8 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             array('mcrypt_module_self_test', '7.1', 'OpenSSL', array(130), '7.0'),
             array('mdecrypt_generic', '7.1', 'OpenSSL', array(131), '7.0'),
 
-            array('jpeg2wbmp', '7.2', 'imagecreatefromjpeg() and imagewbmp()', array(143), '7.1'),
-            array('png2wbmp', '7.2', 'imagecreatefrompng() or imagewbmp()', array(144), '7.1'),
+            array('jpeg2wbmp', '7.2', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
+            array('png2wbmp', '7.2', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
         );
     }
 
