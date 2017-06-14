@@ -796,6 +796,7 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
             T_DOUBLE_COLON,
             T_OBJECT_OPERATOR,
             T_FUNCTION,
+            T_CLASS,
             T_CONST,
             T_USE,
             T_NS_SEPARATOR,
