@@ -29,7 +29,7 @@ Pull requests that check for compatibility issues in PHP4 code - in particular b
 Requirements
 -------
 
-The sniffs are designed to give the same results regardless of which PHP version you are using to run CodeSniffer.  You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.3 or higher.
+The sniffs are designed to give the same results regardless of which PHP version you are using to run CodeSniffer. You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.4 or higher.
 
 PHP CodeSniffer 1.5.1 is required for 90% of the sniffs, PHPCS 2.6 or later is required for full support, notices may be thrown on older versions.
 
@@ -88,10 +88,10 @@ Installation via a git check-out to an arbitrary directory (method 3)
 
 Using the compatibility sniffs
 ------------------------------
-* Use the coding standard with `phpcs --standard=PHPCompatibility`
+* Run the coding standard from the command-line with `phpcs --standard=PHPCompatibility`
 * You can specify which PHP version you want to test against by specifying `--runtime-set testVersion 5.5`.
-* You can also specify a range of PHP versions that your code needs to support.  In this situation, compatibility issues that affect any of the PHP versions in that range will be reported:
-`--runtime-set testVersion 5.3-5.5`.  You can omit one or other part of the range if you want to support everything above/below a particular version (e.g. `--runtime-set testVersion 7.0-` to support PHP 7 and above).
+* You can also specify a range of PHP versions that your code needs to support. In this situation, compatibility issues that affect any of the PHP versions in that range will be reported: `--runtime-set testVersion 5.3-5.5`.
+    You can omit one or other part of the range if you want to support everything above/below a particular version, i.e. `--runtime-set testVersion 7.0-` to support PHP 7 and above.
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
