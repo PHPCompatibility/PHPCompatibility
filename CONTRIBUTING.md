@@ -1,8 +1,10 @@
+Hi, thank you for your interest in contributing to PHPCompatibility! We look forward to working with you.
+
 Reporting bugs
 --------------
 
 Before reporting a bug, you should check what sniff an error is coming from.
-Run `phpcs` with the `-s` flag will show the names of the sniffs with each error.
+Running `phpcs` with the `-s` flag will show the names of the sniffs with each error.
 
 Bug reports containing a minimal code sample which can be used to reproduce the issue are highly appreciated as those are most easily actionable.
 
@@ -18,12 +20,13 @@ Pull requests
 
 Contributions in the form of pull requests are very welcome.
 
-To start contributing, fork the repository, create a new branch in your fork, make your intended changes and pull the branch aginst the `master` branch of this repository.
+To start contributing, fork the repository, create a new branch in your fork, make your intended changes and pull the branch against the `master` branch of this repository.
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
 All code should be compatible with PHPCS 1.5.6 and PHPCS 2.x.
 All code should be compatible with PHP 5.1 to PHP nightly.
+All code should comply with the PHPCompatibility coding standards. The ruleset used by PHPCompatibility is largely based on PSR2 with minor variations and some additional checks for documentation and such.
 
 
 Running the Sniff Tests
@@ -31,23 +34,26 @@ Running the Sniff Tests
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests
 on the sniffs, the following installation steps are required.
 
-1. Install the master branch of `PHP_CodeSniffer`
-   [https://github.com/squizlabs/PHP_CodeSniffer.git].
+1. Install the latest release from the `2.x` branch of [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer.git).
 
-   This can be done with composer by adding the following into
-   `~/.composer/composer.json`:
+    This can be done with composer using the following command:
 
+        $ composer require "squizlabs/php_codesniffer=^2.0"
+
+    or by adding the following into `~/.composer/composer.json`:
+    ```json
         {
             "require": {
                 "phpunit/phpunit": ">=4.0",
                 "squizlabs/php_codesniffer": "^2.0"
             }
         }
+    ```
 
 2. Run the following command to compose in the versions indicated in the above
    global composer.json file:
 
-        $ composer.phar global install
+        $ composer global install
 
 3. Update your system `$PATH` to include the globally composed files:
 
@@ -58,11 +64,10 @@ on the sniffs, the following installation steps are required.
 
         $ ln -s /path/to/PHPCompatibility ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
 
-5. Verify standard is available with `phpcs -i`. The output should include
-   `PHPCompatibility`
+5. Verify the standard is available with `phpcs -i`. The output should include `PHPCompatibility`.
 
-6. Run the tests by running `phpunit` in the root directory of
-   PHPCompatibility. It will read the `phpunit.xml` file and execute the tests
+6. Run the tests by running `phpunit` in the root directory of PHPCompatibility.
+   It will read the `phpunit.xml` file and execute the tests.
 
 
 #### Issues when running the PHPCS Unit tests for another standard
