@@ -57,7 +57,7 @@ class PHPCompatibility_Sniffs_Upgrade_Release716Sniff extends PHPCompatibility_S
         }
 
         $phpcsFile->addWarning(
-            "IMPORTANT NOTICE:\nPlease be advised that the upcoming 7.1.6 version of the PHPCompatibility standard will contain a breaking change.\n\nPlease read the changelog carefully when you upgrade and follow the instructions contained therein to retain uninterupted service.\n\nThank you for using PHPCompatibility!",
+            "IMPORTANT NOTICE:\nPlease be advised that the upcoming 7.1.6 version of the PHPCompatibility standard will contain a breaking change.\n\nPlease read the changelog carefully when you upgrade and follow the instructions contained therein to retain uninterupted service.\n\nTo disable this notice, add `--exclude=PHPCompatibility.Upgrade.Release716` to your command.\n\nThank you for using PHPCompatibility!",
             0,
             'BreakingChange'
         );
