@@ -47,22 +47,27 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompati
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3')) {
-            $tokens = $phpcsFile->getTokens();
-            if ($tokens[$stackPtr - 1]['type'] == 'T_BITWISE_AND' || $tokens[$stackPtr - 2]['type'] == 'T_BITWISE_AND') {
-                $error     = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
-                $isError   = false;
-                $errorCode = 'Deprecated';
-
-                if ($this->supportsAbove('7.0') === true) {
-                    $error    .= ' and forbidden in PHP 7.0';
-                    $isError   = true;
-                    $errorCode = 'Forbidden';
-                }
-
-                $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
-            }
+        if ($this->supportsAbove('5.3') === false) {
+            return;
         }
+
+        $tokens = $phpcsFile->getTokens();
+        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['type'] !== 'T_BITWISE_AND') {
+            return;
+        }
+
+        $error     = 'Assigning the return value of new by reference is deprecated in PHP 5.3';
+        $isError   = false;
+        $errorCode = 'Deprecated';
+
+        if ($this->supportsAbove('7.0') === true) {
+            $error    .= ' and forbidden in PHP 7.0';
+            $isError   = true;
+            $errorCode = 'Forbidden';
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
 
     }//end process()
 
