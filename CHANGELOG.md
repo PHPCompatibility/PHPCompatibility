@@ -13,6 +13,42 @@ The `patch` version numbers are specific to this library.
 _Nothing yet._
 
 
+## [7.1.5] - 2017-07-17
+
+See all related issues and PRs in the [7.1.5 milestone].
+
+### Added
+- :star: The `NewKeywords` sniff will now also sniff for `yield from` which was introduced in PHP 7.0. [#477](https://github.com/wimg/PHPCompatibility/pull/477). Fixes [#476](https://github.com/wimg/PHPCompatibility/issues/476)
+- :books: The LGPL-3.0 license. [#447](https://github.com/wimg/PHPCompatibility/pull/447)
+
+### Changed
+- :rewind: The `NewExecutionDirectives` sniff will now also report on execution directives when used in combination with PHPCS 2.0.0-2.3.3. [#451](https://github.com/wimg/PHPCompatibility/pull/451)
+- :rewind: The `getMethodParameters()` utility method will no longer break when used with PHPCS 1.5.x < 1.5.6. This affected a number of sniffs. [#452](https://github.com/wimg/PHPCompatibility/pull/452)
+- :rewind: The `inUseScope()` utility method will no longer break when used with PHPCS 2.0.0 - 2.2.0. This affected a number of sniffs. [#454](https://github.com/wimg/PHPCompatibility/pull/454)
+- :recycle: Various (minor) refactoring for improved performance and sniff accuracy. [#443](https://github.com/wimg/PHPCompatibility/pull/443), [#474](https://github.com/wimg/PHPCompatibility/pull/474)
+- :pencil2: Renamed a test file for consistency. [#453](https://github.com/wimg/PHPCompatibility/pull/453)
+- :wrench: Code style clean up. [#429](https://github.com/wimg/PHPCompatibility/pull/429)
+- :wrench: Prevent Composer installing PHPCS 3.x. **_PHPCS 3.x is not (yet) supported by the PHPCompatibility standard, but will be in the near future._** [#444](https://github.com/wimg/PHPCompatibility/pull/444)
+- :green_heart: The code base will now be checked for consistent code style during build testing. [#429](https://github.com/wimg/PHPCompatibility/pull/429)
+- :green_heart: The sniffs are now also tested against HHVM for consistent results. _Note: the sniffs do not contain any HHVM specific checks nor is there any intention to add them at this time._ [#450](https://github.com/wimg/PHPCompatibility/pull/450)
+- :books: Made it explicit that - at this moment - PHPCS 3.x is not (yet) supported. [#444](https://github.com/wimg/PHPCompatibility/pull/444)
+- :books: Minor improvements to the Readme. [#448](https://github.com/wimg/PHPCompatibility/pull/448), [#449](https://github.com/wimg/PHPCompatibility/pull/449), [#468](https://github.com/wimg/PHPCompatibility/pull/468)
+- :books: Minor improvements to the Contributing guidelines. [#467](https://github.com/wimg/PHPCompatibility/pull/467)
+
+### Removed
+- :no_entry_sign: The `DefaultTimeZoneRequired` sniff. This sniff was checking server settings rather than code. [#458](https://github.com/wimg/PHPCompatibility/pull/458). Fixes [#457](https://github.com/wimg/PHPCompatibility/issues/457)
+- :no_entry_sign: The `NewMagicClassConstant` sniff as introduced in v 7.1.4 contained two additional checks for not strictly compatibility related issues. One of these was plainly wrong, the other opinionated. Both have been removed. [#442](https://github.com/wimg/PHPCompatibility/pull/442). Fixes [#436](https://github.com/wimg/PHPCompatibility/issues/436)
+
+### Fixed
+- :bug: `NewClass` sniff: was reporting an incorrect introduction version number for a few of the Exception classes. [#441](https://github.com/wimg/PHPCompatibility/pull/441). Fixes [#440](https://github.com/wimg/PHPCompatibility/issues/440).
+- :bug: `ForbiddenBreakContinueVariableArguments` sniff: was incorrectly reporting an error if the `break` or `continue` was followed by a PHP closing tag (breaking out of PHP). [#462](https://github.com/wimg/PHPCompatibility/pull/462). Fixes [#460](https://github.com/wimg/PHPCompatibility/issues/460)
+- :bug: `ForbiddenGlobalVariableVariable` sniff: was incorrectly reporting an error if the `global` statement was followed by a PHP closing tag (breaking out of PHP). [#463](https://github.com/wimg/PHPCompatibility/pull/463).
+- :bug: `DeprecatedFunctions` sniff: was reporting false positives for classes using the same name as a deprecated function. [#465](https://github.com/wimg/PHPCompatibility/pull/465). Fixes [#464](https://github.com/wimg/PHPCompatibility/issues/464)
+
+### Credits
+Thanks go out to [Juliette Reinders Folmer] and [Mark Clements] for their contributions to this version. :clap:
+
+
 ## [7.1.4] - 2017-05-06
 
 See all related issues and PRs in the [7.1.4 milestone].
@@ -589,7 +625,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...HEAD
+[7.1.5]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...7.1.5
 [7.1.4]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...7.1.4
 [7.1.3]: https://github.com/wimg/PHPCompatibility/compare/7.1.2...7.1.3
 [7.1.2]: https://github.com/wimg/PHPCompatibility/compare/7.1.1...7.1.2
@@ -606,6 +643,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[7.1.5 milestone]: https://github.com/wimg/PHPCompatibility/milestone/17
 [7.1.4 milestone]: https://github.com/wimg/PHPCompatibility/milestone/15
 [7.1.3 milestone]: https://github.com/wimg/PHPCompatibility/milestone/14
 [7.1.2 milestone]: https://github.com/wimg/PHPCompatibility/milestone/13
