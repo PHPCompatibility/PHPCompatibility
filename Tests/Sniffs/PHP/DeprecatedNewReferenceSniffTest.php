@@ -53,6 +53,8 @@ class DeprecatedNewReferenceSniffTest extends BaseSniffTest
         return array(
             array(9),
             array(10),
+            array(11),
+            array(12),
         );
     }
 

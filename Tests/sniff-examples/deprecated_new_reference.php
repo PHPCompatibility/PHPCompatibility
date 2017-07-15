@@ -8,3 +8,5 @@ class Foobar
 $foobar = new Foobar();
 $foobar2 = &new Foobar();
 $foobar3 = & new Foobar();
+$foobar4 =& /* reference */ new Foobar();
+$foobar5 = &                new Foobar();
