@@ -71,6 +71,13 @@ goto end;
 end:
 echo 'something';
 
+function testYieldFrom() {
+    yield from [3, 4];
+    yield
+		from [3, 4]; // This is yield from, but tokenized as two T_YIELD_FROM tokens.
+    yield /*something*/ from [3, 4]; // Test against false positive.
+}
+
 
 __halt_compiler();
 

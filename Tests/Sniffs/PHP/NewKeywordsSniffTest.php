@@ -126,15 +126,67 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * Test yield
      *
+     * @dataProvider dataYield
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testYield()
+    public function testYield($line)
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertError($file, 33, '"yield" keyword (for generators) is not present in PHP version 5.4 or earlier');
+        $this->assertError($file, $line, '"yield" keyword (for generators) is not present in PHP version 5.4 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertNoViolation($file, 33);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testYield()
+     *
+     * @return array
+     */
+    public function dataYield()
+    {
+        return array(
+            array(33),
+            array(78),
+        );
+    }
+
+    /**
+     * Test yield from
+     *
+     * @dataProvider dataYieldFrom
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testYieldFrom($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $this->assertError($file, $line, '"yield from" keyword (for generators) is not present in PHP version 5.6 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testYieldFrom()
+     *
+     * @return array
+     */
+    public function dataYieldFrom()
+    {
+        return array(
+            array(75),
+            array(76),
+        );
     }
 
     /**
@@ -267,7 +319,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
         if (version_compare(phpversion(), '5.3', '=')) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 75, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
+            $this->assertError($file, 82, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         } else {
             /*
              * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
@@ -276,7 +328,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 78);
+            $this->assertNoViolation($file, 85);
         }
     }
 
