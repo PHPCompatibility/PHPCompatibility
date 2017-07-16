@@ -91,7 +91,7 @@ script:
   - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./PHPCompatibility/Tests/PHPUnit6Compat.php -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
   # Check the code style of the code base.
-  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./phpcs.xml --runtime-set ignore_warnings_on_exit 1; fi
+  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --runtime-set ignore_warnings_on_exit 1; fi
   # Run the unit tests.
   - if [[ $COVERALLS_VERSION ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
   - if [[ $TRAVIS_PHP_VERSION == "5.2" || $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
