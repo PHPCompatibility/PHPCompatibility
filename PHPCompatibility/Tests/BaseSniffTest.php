@@ -65,7 +65,7 @@ class BaseSniffTest extends PHPUnit_Framework_TestCase
             self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
         } else {
             // PHPCS 1.x.
-            self::$phpcs->process(array(), dirname(__FILE__) . '/../', array($this->getSniffCode()));
+            self::$phpcs->process(array(), dirname(dirname(__FILE__)) . '/', array($this->getSniffCode()));
         }
 
         self::$phpcs->setIgnorePatterns(array());

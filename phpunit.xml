@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="Tests/bootstrap.php" colors="true" backupGlobals="true">
+<phpunit bootstrap="PHPCompatibility/Tests/bootstrap.php" colors="true" backupGlobals="true">
     <testsuites>
         <testsuite name="PHPCompatibility Sniffs Tests">
-            <directory>./Tests/</directory>
+            <directory>./PHPCompatibility/Tests/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

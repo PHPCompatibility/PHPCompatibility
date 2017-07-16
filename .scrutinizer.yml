@@ -1,6 +1,6 @@
 filter:
     excluded_paths:
-        - 'Tests/*'
+        - 'PHPCompatibility/Tests/*'
 
 tools:
     php_sim: true

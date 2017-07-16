@@ -14,7 +14,7 @@ $phpcsDir = getenv('PHPCS_DIR');
 
 if ($phpcsDir === false) {
     // Ok, no environment variable set, so this might be a PEAR install of PHPCS.
-    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
+    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
 }
 $phpcsDir .= DIRECTORY_SEPARATOR;
 
@@ -23,7 +23,7 @@ if (file_exists($phpcsDir . 'CodeSniffer.php')) {
 
 } else {
     // Otherwise we must be in a composer install.
-    $vendorDir = dirname(__FILE__) . '/../vendor';
+    $vendorDir = dirname(__FILE__) . '/../../vendor';
 
     if (!@include($vendorDir . '/autoload.php')) {
         echo 'You must set up the project dependencies, run the following commands:

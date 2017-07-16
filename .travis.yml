@@ -80,7 +80,7 @@ before_install:
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_BIN=$PHPCS_DIR/scripts/phpcs; fi
   - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_VERSION $PHPCS_DIR; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths "$(dirname "$(pwd)")"; fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths "$(pwd)"; fi
 
 before_script:
   - if [[ $COVERALLS_VERSION ]]; then mkdir -p build/logs; fi
@@ -88,9 +88,8 @@ before_script:
 
 script:
   # Lint all PHP files against parse errors.
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then ln -s `pwd` vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; fi
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then find -L . -path ./Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then find -L . -path ./Tests/sniff-examples -prune -o -path ./Tests/PHPUnit6Compat.php -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
+  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
+  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./PHPCompatibility/Tests/PHPUnit6Compat.php -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
   # Check the code style of the code base.
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --standard=./phpcs.xml --runtime-set ignore_warnings_on_exit 1; fi
   # Run the unit tests.
@@ -99,9 +98,9 @@ script:
   - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit --configuration phpunit.xml; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html
-  - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./ruleset.xml; fi
+  - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./PHPCompatibility/ruleset.xml; fi
   # Check the code-style consistency of the xml files.
-  - if [[ "$SNIFF" == "1" ]]; then diff -B ./ruleset.xml <(xmllint --format "./ruleset.xml"); fi
+  - if [[ "$SNIFF" == "1" ]]; then diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml"); fi
 
 after_success:
   - if [[ $COVERALLS_VERSION ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi

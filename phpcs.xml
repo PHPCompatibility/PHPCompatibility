@@ -6,7 +6,7 @@
 	<arg name="extensions" value="php"/>
 
 	<!-- Exclude test case code. -->
-	<exclude-pattern>/Tests/sniff-examples/*</exclude-pattern>
+	<exclude-pattern>*/Tests/sniff-examples/*</exclude-pattern>
 
 	<!-- Exclude Composer vendor directory. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
@@ -24,10 +24,10 @@
 
 	<!-- Verified correct usage: PHPUnit 6 compatibility layer. -->
 	<rule ref="PHPCompatibility.PHP.NewLanguageConstructs.t_ns_separatorFound">
-		<exclude-pattern>/Tests/PHPUnit6Compat.php</exclude-pattern>
+		<exclude-pattern>*/Tests/PHPUnit6Compat.php</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.PHP.NewFunctions.class_aliasFound">
-		<exclude-pattern>/Tests/PHPUnit6Compat.php</exclude-pattern>
+		<exclude-pattern>*/Tests/PHPUnit6Compat.php</exclude-pattern>
 	</rule>
 
 	<!--
@@ -71,7 +71,7 @@
 
 	<!-- No need to be as strict about comment punctuation for the unit tests. -->
 	<rule ref="Generic.Commenting.DocComment.ShortNotCapital">
-		<exclude-pattern>/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*.php</exclude-pattern>
 	</rule>
 
 
@@ -89,13 +89,13 @@
 
 	<!-- No need to be as strict about file and class comment tags for the unit tests. -->
 	<rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
-		<exclude-pattern>/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*.php</exclude-pattern>
 	</rule>
 	<rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
-		<exclude-pattern>/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*.php</exclude-pattern>
 	</rule>
 	<rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
-		<exclude-pattern>/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*.php</exclude-pattern>
 	</rule>
 
 </ruleset>

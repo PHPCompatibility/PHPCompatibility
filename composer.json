@@ -6,12 +6,19 @@
     "ext-tokenizer" : "*",
     "squizlabs/php_codesniffer" : "^2.0"
   },
+  "suggest" : {
+    "dealerdirect/phpcodesniffer-composer-installer": "*"
+  },
   "license" : "LGPL-3.0",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
     "psr-4" : {
-      "PHPCompatibility\\" : ""
+      "PHPCompatibility\\" : "PHPCompatibility/"
     }
+  },
+  "scripts" : {
+    "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
+    "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
   },
   "type" : "phpcodesniffer-standard",
   "support" : {
