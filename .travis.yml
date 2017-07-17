@@ -7,6 +7,14 @@ cache:
 
 language: php
 
+## Cache composer downloads.
+cache:
+  directories:
+    # Cache directory for older Composer versions.
+    - $HOME/.composer/cache/files
+    # Cache directory for more recent Composer versions.
+    - $HOME/.cache/composer/files
+
 php:
   - 5.5
   - 5.6
@@ -82,7 +90,8 @@ before_install:
   - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then composer require phpunit/phpunit:5.7.17; fi
   # --no-dev makes sure the Travis provided version of PHPUnit is used for better stability.
-  - composer install --no-dev
+  # --prefer-dist will allow for optimal use of the travis caching ability.
+  - composer install --no-dev --prefer-dist
 
 before_script:
   - if [[ $COVERALLS_VERSION ]]; then mkdir -p build/logs; fi
