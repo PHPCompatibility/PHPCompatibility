@@ -50,6 +50,19 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
         $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
     }
 
+    /**
+     * Clean up after finished test.
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+
+        // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
+        PHP_CodeSniffer::setConfigData('testVersion', null, true);
+    }
+
 
     /**
      * testGetTestVersion
@@ -78,9 +91,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
 
         // Verify that the caching of the function results is working correctly.
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
-
-        // Clean up / reset the value.
-        PHP_CodeSniffer::setConfigData('testVersion', null, true);
     }
 
     /**
@@ -241,9 +251,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($expected, $this->helperClass->supportsAbove($phpVersion));
-
-        // Clean up / reset the value.
-        PHP_CodeSniffer::setConfigData('testVersion', null, true);
     }
 
     /**
@@ -289,9 +296,6 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));
-
-        // Clean up / reset the value.
-        PHP_CodeSniffer::setConfigData('testVersion', null, true);
     }
 
     /**
