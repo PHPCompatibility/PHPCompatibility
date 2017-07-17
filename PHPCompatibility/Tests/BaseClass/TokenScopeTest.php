@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Token scope function tests
@@ -12,11 +13,11 @@
  * @group utilityTokenScope
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
+class TokenScopeTest extends MethodTestFrame
 {
 
     /**
@@ -32,7 +33,7 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataTokenHasScope
      *
-     * @covers PHPCompatibility_Sniff::tokenHasScope
+     * @covers \PHPCompatibility\Sniff::tokenHasScope
      *
      * @param string    $commentString The comment which prefaces the target token in the test file.
      * @param int       $targetType    The token type for the target token.
@@ -98,7 +99,7 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataInClassScope
      *
-     * @covers PHPCompatibility_Sniff::inClassScope
+     * @covers \PHPCompatibility\Sniff::inClassScope
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.
@@ -137,7 +138,7 @@ class BaseClass_TokenScopeTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataInUseScope
      *
-     * @covers PHPCompatibility_Sniff::inUseScope
+     * @covers \PHPCompatibility\Sniff::inUseScope
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $targetType    The token type for the target token.

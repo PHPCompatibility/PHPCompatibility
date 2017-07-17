@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New type declarations test file
@@ -12,9 +15,9 @@
  * @group newScalarTypeDeclarations
  * @group typeDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

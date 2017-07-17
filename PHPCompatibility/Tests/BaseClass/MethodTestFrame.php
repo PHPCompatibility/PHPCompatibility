@@ -5,6 +5,8 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
+
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
@@ -12,7 +14,7 @@
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
+abstract class MethodTestFrame extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -40,7 +42,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
     /**
      * A wrapper for the abstract PHPCompatibility sniff.
      *
-     * @var PHPCompatibility_Sniff
+     * @var \PHPCompatibility\Sniff
      */
     protected $helperClass;
 
@@ -65,7 +67,7 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
+        $this->helperClass = new TestHelperPHPCompatibility;
 
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
         $phpcs    = new PHP_CodeSniffer();

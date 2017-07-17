@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New nowdoc and quoted heredoc sniff tests
@@ -12,9 +15,9 @@
  * @group newNowdocQuotedHeredoc
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewNowdocQuotedHeredocSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

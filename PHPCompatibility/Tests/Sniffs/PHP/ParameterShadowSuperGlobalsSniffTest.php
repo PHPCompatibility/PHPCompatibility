@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * ParameterShadowSuperGlobalsSniffTest
@@ -12,9 +15,9 @@
  * @group parameterShadowSuperGlobals
  * @group superglobals
  *
- * @covers PHPCompatibility_Sniffs_PHP_ParameterShadowSuperGlobalsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ParameterShadowSuperGlobalsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

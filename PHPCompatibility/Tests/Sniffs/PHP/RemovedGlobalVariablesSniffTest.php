@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Removed global variables sniff tests
@@ -12,9 +15,9 @@
  * @group removedGlobalVariables
  * @group superglobals
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Generic sniff functions sniff tests
@@ -16,13 +17,13 @@
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
+class FunctionsTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * A wrapper for the abstract PHPCompatibility sniff.
      *
-     * @var PHPCompatibility_Sniff
+     * @var \PHPCompatibility\Sniff
      */
     protected $helperClass;
 
@@ -47,7 +48,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
+        $this->helperClass = new TestHelperPHPCompatibility;
     }
 
     /**
@@ -69,7 +70,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataGetTestVersion
      *
-     * @covers PHPCompatibility_Sniff::getTestVersion
+     * @covers \PHPCompatibility\Sniff::getTestVersion
      *
      * @requires PHP 5.3.2
      * @internal Requirement is needed to be able to test the private method
@@ -130,7 +131,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataGetTestVersionInvalidRange
      *
-     * @covers PHPCompatibility_Sniff::getTestVersion
+     * @covers \PHPCompatibility\Sniff::getTestVersion
      *
      * @requires PHP 5.3.2
      * @internal Requirement is needed to be able to test the private method
@@ -176,7 +177,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataGetTestVersionInvalidVersion
      *
-     * @covers PHPCompatibility_Sniff::getTestVersion
+     * @covers \PHPCompatibility\Sniff::getTestVersion
      *
      * @requires PHP 5.3.2
      * @internal Requirement is needed to be able to test the private method
@@ -236,7 +237,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataSupportsAbove
      *
-     * @covers PHPCompatibility_Sniff::supportsAbove
+     * @covers \PHPCompatibility\Sniff::supportsAbove
      *
      * @param string $phpVersion  The PHP version we want to test.
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
@@ -281,7 +282,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataSupportsBelow
      *
-     * @covers PHPCompatibility_Sniff::supportsBelow
+     * @covers \PHPCompatibility\Sniff::supportsBelow
      *
      * @param string $phpVersion  The PHP version we want to test.
      * @param string $testVersion The testVersion as normally set via the command line or ruleset.
@@ -326,7 +327,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataStringToErrorCode
      *
-     * @covers PHPCompatibility_Sniff::stringToErrorCode
+     * @covers \PHPCompatibility\Sniff::stringToErrorCode
      *
      * @param string $input    The input string.
      * @param string $expected The expected error code.
@@ -361,7 +362,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
     *
     * @dataProvider dataStripQuotes
     *
-    * @covers PHPCompatibility_Sniff::stripQuotes
+    * @covers \PHPCompatibility\Sniff::stripQuotes
     *
     * @param string $input    The input string.
     * @param string $expected The expected function output.
@@ -397,7 +398,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider dataArrayKeysToLowercase
      *
-     * @covers PHPCompatibility_Sniff::arrayKeysToLowercase
+     * @covers \PHPCompatibility\Sniff::arrayKeysToLowercase
      *
      * @param string $input    The input string.
      * @param string $expected The expected function output.
@@ -440,7 +441,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
     *
     * @dataProvider dataStripVariables
     *
-    * @covers PHPCompatibility_Sniff::stripQuotes
+    * @covers \PHPCompatibility\Sniff::stripQuotes
     *
     * @param string $input    The input string.
     * @param string $expected The expected function output.

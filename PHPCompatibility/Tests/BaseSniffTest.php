@@ -5,6 +5,8 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests;
+
 /**
  * BaseSniffTest
  *

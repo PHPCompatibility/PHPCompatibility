@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Short array syntax sniff tests
@@ -12,9 +15,9 @@
  * @group shortArray
  * @group arraySyntax
  *
- * @covers PHPCompatibility_Sniffs_PHP_ShortArraySniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ShortArraySniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Alex Miroshnikov <unknown@example.com>
  */

@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Extended class name determination function tests
@@ -12,11 +13,11 @@
  * @group utilityGetFQExtendedClassName
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
+class GetFQExtendedClassNameTest extends MethodTestFrame
 {
 
     /**
@@ -34,7 +35,7 @@ class BaseClass_GetFQExtendedClassNameTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataGetFQExtendedClassName
      *
-     * @covers PHPCompatibility_Sniff::getFQExtendedClassName
+     * @covers \PHPCompatibility\Sniff::getFQExtendedClassName
      *
      * @param string $commentString The comment which prefaces the T_CLASS token in the test file.
      * @param string $expected      The expected fully qualified class name.

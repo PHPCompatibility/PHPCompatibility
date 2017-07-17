@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New catching multiple exception types sniff test file
@@ -12,9 +15,9 @@
  * @group multiCatch
  * @group exceptions
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewMultiCatchSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewMultiCatchSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

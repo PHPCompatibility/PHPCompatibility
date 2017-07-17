@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Removed Functions Parameter Sniff test file
@@ -12,9 +15,9 @@
  * @group removedFunctionParameters
  * @group functionParameters
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Non Static Magic Sniff tests
@@ -12,9 +15,9 @@
  * @group nonStaticMagicMethods
  * @group magicMethods
  *
- * @covers PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

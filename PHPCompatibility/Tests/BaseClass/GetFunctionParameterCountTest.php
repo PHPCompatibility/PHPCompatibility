@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Function parameters count function tests
@@ -12,11 +13,11 @@
  * @group utilityGetFunctionParameterCount
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_GetFunctionParameterCountTest extends BaseClass_MethodTestFrame
+class GetFunctionParameterCountTest extends MethodTestFrame
 {
 
     /**
@@ -32,7 +33,7 @@ class BaseClass_GetFunctionParameterCountTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataGetFunctionCallParameterCount
      *
-     * @covers PHPCompatibility_Sniff::getFunctionCallParameterCount
+     * @covers \PHPCompatibility\Sniff::getFunctionCallParameterCount
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected parameter count.

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Removed extensions sniff tests
@@ -12,9 +15,9 @@
  * @group removedExtensions
  * @group extensions
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

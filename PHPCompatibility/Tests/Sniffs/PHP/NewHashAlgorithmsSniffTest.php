@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New hash algorithms sniff tests.
@@ -12,9 +15,9 @@
  * @group newHashAlgorithms
  * @group hashAlgorithms
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewHashAlgorithmsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewHashAlgorithmsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

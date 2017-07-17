@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Forbidden call time pass by reference sniff test
@@ -12,9 +15,9 @@
  * @group forbiddenCallTimePassByReference
  * @group references
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenCallTimePassByReferenceSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenCallTimePassByReferenceSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

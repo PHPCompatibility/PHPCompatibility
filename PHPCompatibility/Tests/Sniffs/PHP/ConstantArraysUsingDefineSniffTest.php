@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Constant arrays using define in PHP 7.0 sniff test file
@@ -12,9 +15,9 @@
  * @group constantArraysUsingDefine
  * @group constants
  *
- * @covers PHPCompatibility_Sniffs_PHP_ConstantArraysUsingDefineSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingDefineSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

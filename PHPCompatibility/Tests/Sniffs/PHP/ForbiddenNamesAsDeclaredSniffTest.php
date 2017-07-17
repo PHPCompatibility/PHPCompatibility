@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Forbidden names as declared name for class, interface, trait or namespace.
@@ -12,9 +15,9 @@
  * @group forbiddenNamesAsDeclared
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

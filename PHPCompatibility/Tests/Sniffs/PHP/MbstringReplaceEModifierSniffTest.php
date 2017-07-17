@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Deprecated Mbstring regex replace e modifier test file.
@@ -12,9 +15,9 @@
  * @group mbstringReplaceEModifier
  * @group regexEModifier
  *
- * @covers PHPCompatibility_Sniffs_PHP_MbstringReplaceEModifierSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

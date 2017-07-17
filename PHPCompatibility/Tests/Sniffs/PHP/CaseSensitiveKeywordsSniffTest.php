@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * self, parent and static were sometimes treated case sensitively prior to PHP 5.5.
@@ -12,9 +15,9 @@
  * @group caseSensitiveKeywords
  * @group keywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

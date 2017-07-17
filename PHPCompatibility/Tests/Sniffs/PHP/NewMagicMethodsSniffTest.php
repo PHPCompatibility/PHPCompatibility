@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Magic Methods Sniff tests.
@@ -12,9 +15,9 @@
  * @group newMagicMethods
  * @group magicMethods
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewMagicMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewMagicMethodsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

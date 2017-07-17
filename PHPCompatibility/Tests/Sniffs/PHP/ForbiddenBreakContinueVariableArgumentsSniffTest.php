@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Forbidden break and continue variable arguments sniff test
@@ -16,9 +19,9 @@
  * @group forbiddenBreakContinueVariableArguments
  * @group breakContinue
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArgumentsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Function parameters function tests
@@ -12,11 +13,11 @@
  * @group utilityDoesFunctionCallHaveParameters
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestFrame
+class DoesFunctionCallHaveParametersTest extends MethodTestFrame
 {
 
     /**
@@ -32,7 +33,7 @@ class BaseClass_DoesFunctionCallHaveParametersTest extends BaseClass_MethodTestF
      *
      * @dataProvider dataDoesFunctionCallHaveParameters
      *
-     * @covers PHPCompatibility_Sniff::doesFunctionCallHaveParameters
+     * @covers \PHPCompatibility\Sniff::doesFunctionCallHaveParameters
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param bool   $expected      Whether or not the function/array has parameters/values.

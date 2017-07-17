@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Forbidden break and continue outside loop sniff test.
@@ -14,9 +17,9 @@
  * @group forbiddenBreakContinueOutsideLoop
  * @group breakContinue
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoopSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

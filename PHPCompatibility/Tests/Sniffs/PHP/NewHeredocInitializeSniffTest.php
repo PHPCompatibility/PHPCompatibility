@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New initialize with heredoc in PHP 5.3 sniff test file
@@ -13,9 +16,9 @@
  * @group constants
  * @group variables
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

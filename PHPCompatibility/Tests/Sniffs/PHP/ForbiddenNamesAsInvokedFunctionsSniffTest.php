@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Forbidden names as function invocations sniff test file
@@ -12,9 +15,9 @@
  * @group forbiddenNamesAsInvokedFunctions
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsInvokedFunctionsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsInvokedFunctionsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

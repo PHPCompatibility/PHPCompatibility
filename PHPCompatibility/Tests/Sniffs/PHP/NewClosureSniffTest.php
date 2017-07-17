@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Closure Sniff tests
@@ -12,9 +15,9 @@
  * @group newClosure
  * @group closures
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewClosureSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewClosureSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

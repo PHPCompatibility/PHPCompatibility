@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Ternary Operators Sniff tests
  *
  * @group ternaryOperators
  *
- * @covers PHPCompatibility_Sniffs_PHP_TernaryOperatorsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\TernaryOperatorsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

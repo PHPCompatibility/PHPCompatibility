@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * PHP 7.1 Forbidden variable names in closure use statements tests.
@@ -12,9 +15,9 @@
  * @group forbiddenClosureUseVariableNames
  * @group closures
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenClosureUseVariableNamesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenClosureUseVariableNamesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

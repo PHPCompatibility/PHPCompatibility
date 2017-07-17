@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New return types test file
@@ -12,9 +15,9 @@
  * @group newReturnTypeDeclarations
  * @group typeDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewReturnTypeDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewReturnTypeDeclarationsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

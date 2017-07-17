@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Deprecated new reference sniff tests
@@ -12,9 +15,9 @@
  * @group deprecatedNewReference
  * @group references
  *
- * @covers PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

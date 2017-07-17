@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Classes Sniff tests
@@ -12,9 +15,9 @@
  * @group newClasses
  * @group classes
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewClassesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewClassesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
