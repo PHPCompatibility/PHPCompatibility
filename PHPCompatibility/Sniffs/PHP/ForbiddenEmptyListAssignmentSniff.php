@@ -43,8 +43,8 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
     {
         // Set up a list of tokens to disregard when determining whether the list() is empty.
         // Only needs to be set up once.
-        $this->ignoreTokens = PHP_CodeSniffer_Tokens::$emptyTokens;
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {
+        $this->ignoreTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        if (version_compare(\PHP_CodeSniffer::VERSION, '2.0', '<')) {
             $this->ignoreTokens = array_combine($this->ignoreTokens, $this->ignoreTokens);
         }
         $this->ignoreTokens[T_COMMA]             = T_COMMA;
@@ -58,13 +58,13 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0')) {
             $tokens = $phpcsFile->getTokens();

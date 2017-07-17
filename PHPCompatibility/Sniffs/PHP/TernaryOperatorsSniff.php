@@ -43,13 +43,13 @@ class TernaryOperatorsSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2') === false) {
             return;
@@ -59,7 +59,7 @@ class TernaryOperatorsSniff extends Sniff
 
         // Get next non-whitespace token, and check it isn't the related inline else
         // symbol, which is not allowed prior to PHP 5.3.
-        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
             $phpcsFile->addError(

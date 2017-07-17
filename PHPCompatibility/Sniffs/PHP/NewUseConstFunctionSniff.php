@@ -53,13 +53,13 @@ class NewUseConstFunctionSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.5') !== true) {
             return;
@@ -67,7 +67,7 @@ class NewUseConstFunctionSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             // Live coding.
             return;
@@ -79,7 +79,7 @@ class NewUseConstFunctionSniff extends Sniff
         }
 
         // `use const` and `use function` have to be followed by the function/constant name.
-        $functionOrConstName = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
+        $functionOrConstName = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
         if ($functionOrConstName === false
             // Identifies as T_AS or T_STRING, this covers both.
             || ($tokens[$functionOrConstName]['content'] === 'as'

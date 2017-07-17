@@ -42,13 +42,13 @@ class NewGroupUseDeclarationsSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.6') === false) {
             return;
@@ -64,7 +64,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
                 return;
             }
 
-            $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
+            $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
             if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
                 return;
             }

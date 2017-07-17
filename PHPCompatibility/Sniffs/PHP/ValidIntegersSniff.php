@@ -48,13 +48,13 @@ class ValidIntegersSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
@@ -159,14 +159,14 @@ class ValidIntegersSniff extends Sniff
     /**
      * Retrieve the content of the tokens which together look like a binary integer.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                $tokens    Token stack.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param array                 $tokens    Token stack.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack.
      *
      * @return string
      */
-    private function getBinaryInteger(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
+    private function getBinaryInteger(\PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
     {
         $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
 

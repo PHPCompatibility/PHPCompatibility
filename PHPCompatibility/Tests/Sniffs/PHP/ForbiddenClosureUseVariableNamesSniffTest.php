@@ -116,7 +116,7 @@ class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositivesLiveCoding($line)
     {
-        if (strpos(PHP_CodeSniffer::VERSION, '2.5.1') !== false) {
+        if (strpos(\PHP_CodeSniffer::VERSION, '2.5.1') !== false) {
             $this->markTestSkipped('PHPCS 2.5.1 has a bug in the tokenizer which affects this test.');
             return;
         }

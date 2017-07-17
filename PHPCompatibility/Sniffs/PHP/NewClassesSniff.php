@@ -370,13 +370,13 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -401,13 +401,13 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     /**
      * Processes this test for when a token resulting in a singular class name is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    private function processSingularToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processSingularToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens      = $phpcsFile->getTokens();
         $FQClassName = '';
@@ -447,13 +447,13 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new classes when used as a type hint.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    private function processFunctionToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processFunctionToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
@@ -481,13 +481,13 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * - Detect exceptions when used in a catch statement.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    private function processCatchToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processCatchToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

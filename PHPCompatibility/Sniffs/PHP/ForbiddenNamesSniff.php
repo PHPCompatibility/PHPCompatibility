@@ -140,11 +140,11 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPCS = version_compare(PHP_CodeSniffer::VERSION, '2.0', '<');
+        $this->isLowPHPCS = version_compare(\PHP_CodeSniffer::VERSION, '2.0', '<');
 
         $this->allowed_modifiers          = array_combine(
-            PHP_CodeSniffer_Tokens::$scopeModifiers,
-            PHP_CodeSniffer_Tokens::$scopeModifiers
+            \PHP_CodeSniffer_Tokens::$scopeModifiers,
+            \PHP_CodeSniffer_Tokens::$scopeModifiers
         );
         $this->allowed_modifiers[T_FINAL] = T_FINAL;
 
@@ -158,13 +158,13 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -181,17 +181,17 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
-     * @param array                $tokens    The stack of tokens that make up
-     *                                        the file.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
+     * @param array                 $tokens    The stack of tokens that make up
+     *                                         the file.
      *
      * @return void
      */
-    public function processNonString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
+    public function processNonString(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
-        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             return;
         }
@@ -202,7 +202,7 @@ class ForbiddenNamesSniff extends Sniff
          * In PHPCS < 2.3.4 these were tokenized as T_CLASS no matter what.
          */
         if ($tokens[$stackPtr]['type'] === 'T_ANON_CLASS' || $tokens[$stackPtr]['type'] === 'T_CLASS') {
-            $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['type'] === 'T_NEW') {
                 return;
             }
@@ -216,7 +216,7 @@ class ForbiddenNamesSniff extends Sniff
         elseif ($tokens[$stackPtr]['type'] === 'T_USE'
             && isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === true
         ) {
-            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
                 // Prevent duplicate messages: `const` is T_CONST in PHPCS 1.x and T_STRING in PHPCS 2.x.
                 if ($this->isLowPHPCS === true) {
@@ -235,7 +235,7 @@ class ForbiddenNamesSniff extends Sniff
             && isset($this->allowed_modifiers[$tokens[$nextNonEmpty]['code']]) === true
             && $this->inUseScope($phpcsFile, $stackPtr) === true
         ) {
-            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {
                 return;
             }
@@ -249,7 +249,7 @@ class ForbiddenNamesSniff extends Sniff
         elseif ($tokens[$stackPtr]['type'] === 'T_FUNCTION'
             && $tokens[$nextNonEmpty]['type'] === 'T_BITWISE_AND'
         ) {
-            $maybeUseNext = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
+            $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext === false) {
                 // Live coding.
                 return;
@@ -325,15 +325,15 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
-     * @param array                $tokens    The stack of tokens that make up
-     *                                        the file.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
+     * @param array                 $tokens    The stack of tokens that make up
+     *                                         the file.
      *
      * @return void
      */
-    public function processString(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
+    public function processString(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
     {
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
 
@@ -377,11 +377,11 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Add the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
-     * @param string               $content   The token content found.
-     * @param array                $data      The data to pass into the error message.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
+     * @param string                $content   The token content found.
+     * @param array                 $data      The data to pass into the error message.
      *
      * @return void
      */

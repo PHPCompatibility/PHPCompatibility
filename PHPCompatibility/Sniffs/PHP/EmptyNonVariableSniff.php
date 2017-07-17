@@ -55,12 +55,12 @@ class EmptyNonVariableSniff extends Sniff
     {
         // Set the token blacklist only once.
         $tokenBlackList = array_unique(array_merge(
-            PHP_CodeSniffer_Tokens::$assignmentTokens,
-            PHP_CodeSniffer_Tokens::$equalityTokens,
-            PHP_CodeSniffer_Tokens::$comparisonTokens,
-            PHP_CodeSniffer_Tokens::$operators,
-            PHP_CodeSniffer_Tokens::$booleanOperators,
-            PHP_CodeSniffer_Tokens::$castTokens,
+            \PHP_CodeSniffer_Tokens::$assignmentTokens,
+            \PHP_CodeSniffer_Tokens::$equalityTokens,
+            \PHP_CodeSniffer_Tokens::$comparisonTokens,
+            \PHP_CodeSniffer_Tokens::$operators,
+            \PHP_CodeSniffer_Tokens::$booleanOperators,
+            \PHP_CodeSniffer_Tokens::$castTokens,
             array(T_OPEN_PARENTHESIS, T_STRING_CONCAT)
         ));
         $this->tokenBlackList = array_combine($tokenBlackList, $tokenBlackList);
@@ -71,13 +71,13 @@ class EmptyNonVariableSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;
@@ -144,13 +144,13 @@ class EmptyNonVariableSniff extends Sniff
     /**
      * Add the error message.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    protected function addError($phpcsFile, $stackPtr)
+    protected function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $phpcsFile->addError(
             'Only variables can be passed to empty() prior to PHP 5.5.',

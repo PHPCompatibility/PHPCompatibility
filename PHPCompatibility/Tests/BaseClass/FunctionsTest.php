@@ -13,11 +13,11 @@ namespace PHPCompatibility\Tests\BaseClass;
  * @group utilityMiscFunctions
  * @group utilityFunctions
  *
- * @uses    PHPUnit_Framework_TestCase
+ * @uses    \PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class FunctionsTest extends PHPUnit_Framework_TestCase
+class FunctionsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -61,7 +61,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         parent::tearDown();
 
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
-        PHP_CodeSniffer::setConfigData('testVersion', null, true);
+        \PHP_CodeSniffer::setConfigData('testVersion', null, true);
     }
 
 
@@ -85,7 +85,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
     public function testGetTestVersion($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
@@ -248,7 +248,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
     public function testSupportsAbove($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsAbove($phpVersion));
@@ -293,7 +293,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
     public function testSupportsBelow($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));
@@ -513,7 +513,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
      */
     private function invokeMethod(&$object, $methodName, array $parameters = array())
     {
-        $reflection = new ReflectionClass(get_class($object));
+        $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
 

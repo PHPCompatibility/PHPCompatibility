@@ -75,13 +75,13 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -111,7 +111,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         }
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis      = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {

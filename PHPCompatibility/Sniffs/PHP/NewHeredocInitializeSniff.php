@@ -41,13 +41,13 @@ class NewHeredocInitializeSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2') !== true) {
             return;
@@ -55,13 +55,13 @@ class NewHeredocInitializeSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $equalSign = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $equalSign = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
         if ($equalSign === false || $tokens[$equalSign]['code'] !== T_EQUAL) {
             // Not an assignment.
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($equalSign - 1), null, true, null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($equalSign - 1), null, true, null, true);
         if ($prevNonEmpty === false
             || ($tokens[$prevNonEmpty]['code'] !== T_VARIABLE
                 && $tokens[$prevNonEmpty]['code'] !== T_STRING)
@@ -76,7 +76,7 @@ class NewHeredocInitializeSniff extends Sniff
              */
             case 'T_STRING':
                 // Walk back to check for the const keyword.
-                $constPtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
+                $constPtr = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
                 if ($constPtr === false || $tokens[$constPtr]['code'] !== T_CONST) {
                     // Not a constant assignment.
                     return;
@@ -100,7 +100,7 @@ class NewHeredocInitializeSniff extends Sniff
                  */
                 else {
                     // Walk back to check this is a static variable `static $var =`.
-                    $staticPtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
+                    $staticPtr = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
                     if ($staticPtr === false || $tokens[$staticPtr]['code'] !== T_STATIC) {
                         // Not a static variable assignment.
                         return;
@@ -117,13 +117,13 @@ class NewHeredocInitializeSniff extends Sniff
     /**
      * Throw an error if a non-static value is found.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the token to link the error to.
-     * @param string               $type      Type of usage found.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the token to link the error to.
+     * @param string                $type      Type of usage found.
      *
      * @return void
      */
-    protected function throwError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type)
+    protected function throwError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type)
     {
         switch ($type) {
             case 'const':

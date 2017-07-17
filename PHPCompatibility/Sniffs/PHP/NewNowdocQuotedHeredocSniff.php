@@ -55,15 +55,15 @@ class NewNowdocQuotedHeredocSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return int|void On older PHP versions passes a pointer to the nowdoc/heredoc closer
      *                  to skip passed anything in between in regards to processing
      *                  the file for this sniff.
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2') === false) {
             return;

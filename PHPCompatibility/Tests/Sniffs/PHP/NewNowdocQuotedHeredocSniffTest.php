@@ -133,7 +133,7 @@ class NewNowdocQuotedHeredocSniffTest extends BaseSniffTest
         );
 
         // PHPCS 1.x does not support skipping forward.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
+        if (version_compare(\PHP_CodeSniffer::VERSION, '2.0', '>=')) {
             $data[] = array(42);
             $data[] = array(46);
             $data[] = array(82);

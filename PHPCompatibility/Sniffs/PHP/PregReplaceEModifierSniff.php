@@ -65,13 +65,13 @@ class PregReplaceEModifierSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.5') === false) {
             return;
@@ -93,7 +93,7 @@ class PregReplaceEModifierSniff extends Sniff
         }
 
         // Differentiate between an array of patterns passed and a single pattern.
-        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] +1), true);
+        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] +1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
             foreach ($arrayValues as $value) {
@@ -116,17 +116,17 @@ class PregReplaceEModifierSniff extends Sniff
     /**
      * Analyse a potential regex pattern for usage of the /e modifier.
      *
-     * @param array                $pattern      Array containing the start and end token
-     *                                           pointer of the potential regex pattern and
-     *                                           the raw string value of the pattern.
-     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                  $stackPtr     The position of the current token in the
-     *                                           stack passed in $tokens.
-     * @param string               $functionName The function which contained the pattern.
+     * @param array                 $pattern      Array containing the start and end token
+     *                                            pointer of the potential regex pattern and
+     *                                            the raw string value of the pattern.
+     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                   $stackPtr     The position of the current token in the
+     *                                            stack passed in $tokens.
+     * @param string                $functionName The function which contained the pattern.
      *
      * @return void
      */
-    protected function processRegexPattern($pattern, $phpcsFile, $stackPtr, $functionName)
+    protected function processRegexPattern($pattern, \PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -136,7 +136,7 @@ class PregReplaceEModifierSniff extends Sniff
          */
         $regex = '';
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
-            if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
+            if (in_array($tokens[$i]['code'], \PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
                 $content = $this->stripQuotes($tokens[$i]['content']);
                 if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
                     $content = $this->stripVariables($content);

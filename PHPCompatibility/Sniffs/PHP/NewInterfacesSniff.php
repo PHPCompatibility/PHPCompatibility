@@ -126,13 +126,13 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -161,13 +161,13 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      * - Detect classes implementing the new interfaces.
      * - Detect classes implementing the new interfaces with unsupported functions.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    private function processClassToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processClassToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $interfaces = $this->findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
@@ -225,13 +225,13 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new interfaces when used as a type hint.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    private function processFunctionToken(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processFunctionToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
         if (empty($typeHints) || is_array($typeHints) === false) {

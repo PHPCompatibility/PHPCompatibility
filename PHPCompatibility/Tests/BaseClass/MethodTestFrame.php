@@ -10,11 +10,11 @@ namespace PHPCompatibility\Tests\BaseClass;
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
- * @uses    PHPUnit_Framework_TestCase
+ * @uses    \PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class MethodTestFrame extends PHPUnit_Framework_TestCase
+abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -33,9 +33,9 @@ abstract class MethodTestFrame extends PHPUnit_Framework_TestCase
     protected $case_directory = '../sniff-examples/utility-functions/';
 
     /**
-     * The PHP_CodeSniffer_File object containing parsed contents of this file.
+     * The \PHP_CodeSniffer_File object containing parsed contents of this file.
      *
-     * @var PHP_CodeSniffer_File
+     * @var \PHP_CodeSniffer_File
      */
     protected $phpcsFile;
 
@@ -70,10 +70,10 @@ abstract class MethodTestFrame extends PHPUnit_Framework_TestCase
         $this->helperClass = new TestHelperPHPCompatibility;
 
         $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
-        $phpcs    = new PHP_CodeSniffer();
+        $phpcs    = new \PHP_CodeSniffer();
 
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {
-            $this->phpcsFile = new PHP_CodeSniffer_File(
+        if (version_compare(\PHP_CodeSniffer::VERSION, '2.0', '<')) {
+            $this->phpcsFile = new \PHP_CodeSniffer_File(
                 $filename,
                 array(),
                 array(),
@@ -83,7 +83,7 @@ abstract class MethodTestFrame extends PHPUnit_Framework_TestCase
             );
 
         } else {
-            $this->phpcsFile = new PHP_CodeSniffer_File(
+            $this->phpcsFile = new \PHP_CodeSniffer_File(
                 $filename,
                 array(),
                 array(),

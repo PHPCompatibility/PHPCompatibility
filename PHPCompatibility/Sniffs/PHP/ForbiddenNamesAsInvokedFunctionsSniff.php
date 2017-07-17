@@ -82,13 +82,13 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens         = $phpcsFile->getTokens();
         $tokenCode      = $tokens[$stackPtr]['code'];
@@ -109,14 +109,14 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         }
 
         // Make sure this is a function call.
-        $next = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($next === false || $tokens[$next]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
             return;
         }
 
         // This sniff isn't concerned about function declaration.
-        $prev = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prev !== false && $tokens[$prev]['code'] === T_FUNCTION) {
             return;
         }

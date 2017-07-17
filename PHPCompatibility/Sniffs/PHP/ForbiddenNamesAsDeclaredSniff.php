@@ -109,13 +109,13 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -134,7 +134,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
         if (in_array($tokenCode, array(T_CLASS, T_INTERFACE, T_TRAIT), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
-            $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
                 $name = $tokens[$nextNonEmpty]['content'];
             } else {
@@ -170,7 +170,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             }
         } elseif ($tokenCode === T_STRING) {
             // Traits and namespaces which are not yet tokenized as T_TRAIT/T_NAMESPACE.
-            $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
                 return;
             }
@@ -195,7 +195,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                         break;
                     }
 
-                    $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
+                    $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
                 } while ($nextNonEmpty !== false);
             }
             unset($nextNonEmptyCode, $nextNonEmptyLc, $endOfStatement);

@@ -45,13 +45,13 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.3') === false) {
             return;
@@ -63,7 +63,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // within their definitions. For example: function myFunction...
         // "myFunction" is T_STRING but we should skip because it is not a
         // function or method *call*.
-        $findTokens   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $findTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $findTokens[] = T_BITWISE_AND;
 
         $prevNonEmpty = $phpcsFile->findPrevious(
@@ -80,7 +80,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // If the next non-whitespace token after the function or method call
         // is not an opening parenthesis then it can't really be a *call*.
         $openBracket = $phpcsFile->findNext(
-            PHP_CodeSniffer_Tokens::$emptyTokens,
+            \PHP_CodeSniffer_Tokens::$emptyTokens,
             ($stackPtr + 1),
             null,
             true
@@ -126,14 +126,14 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     /**
      * Determine whether a parameter is passed by reference.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param array                $parameter    Information on the current parameter
-     *                                           to be examined.
-     * @param int                  $nestingLevel Target nesting level.
+     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param array                 $parameter    Information on the current parameter
+     *                                            to be examined.
+     * @param int                   $nestingLevel Target nesting level.
      *
      * @return bool
      */
-    protected function isCallTimePassByReferenceParam(PHP_CodeSniffer_File $phpcsFile, $parameter, $nestingLevel)
+    protected function isCallTimePassByReferenceParam(\PHP_CodeSniffer_File $phpcsFile, $parameter, $nestingLevel)
     {
         $tokens   = $phpcsFile->getTokens();
 
@@ -157,7 +157,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
             // Checking this: $value = my_function(...[*]$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
-                PHP_CodeSniffer_Tokens::$emptyTokens,
+                \PHP_CodeSniffer_Tokens::$emptyTokens,
                 ($nextVariable - 1),
                 $searchStartToken,
                 true
@@ -170,7 +170,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
             // Checking this: $value = my_function(...[*]&$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
-                PHP_CodeSniffer_Tokens::$emptyTokens,
+                \PHP_CodeSniffer_Tokens::$emptyTokens,
                 ($tokenBefore - 1),
                 $searchStartToken,
                 true
@@ -215,7 +215,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 // Global constants still remain uncovered.
                 case T_STRING:
                     $tokenBeforePlus = $phpcsFile->findPrevious(
-                        PHP_CodeSniffer_Tokens::$emptyTokens,
+                        \PHP_CodeSniffer_Tokens::$emptyTokens,
                         ($tokenBefore - 1),
                         $searchStartToken,
                         true

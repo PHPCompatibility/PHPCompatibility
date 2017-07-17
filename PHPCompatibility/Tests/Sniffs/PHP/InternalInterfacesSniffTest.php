@@ -28,7 +28,7 @@ class InternalInterfacesSniffTest extends BaseSniffTest
     /**
      * Sniffed file
      *
-     * @var PHP_CodeSniffer_File
+     * @var \PHP_CodeSniffer_File
      */
     protected $sniffResult;
 

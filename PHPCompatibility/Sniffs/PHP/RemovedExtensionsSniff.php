@@ -188,18 +188,18 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
@@ -212,7 +212,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         }
 
         // Find the previous non-empty token.
-        $search   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $search   = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $search[] = T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
         if ($tokens[$previous]['code'] === T_FUNCTION) {

@@ -54,13 +54,13 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.0') === false) {
             return;
@@ -87,13 +87,13 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Process this test for function tokens.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processFunctionDeclaration(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processFunctionDeclaration(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $params = $this->getMethodParameters($phpcsFile, $stackPtr);
 
@@ -115,13 +115,13 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Process this test for return type tokens.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processReturnType(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processReturnType(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

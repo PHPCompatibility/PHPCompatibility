@@ -40,13 +40,13 @@ class NewClosureSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2')) {
             $phpcsFile->addError(
@@ -131,16 +131,16 @@ class NewClosureSniff extends Sniff
     /**
      * Check whether the closure is declared as static.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return bool
      */
-    protected function isClosureStatic(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isClosureStatic(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
-        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
 
         return ($prevToken !== false && $tokens[$prevToken]['code'] === T_STATIC);
     }
@@ -149,14 +149,14 @@ class NewClosureSniff extends Sniff
     /**
      * Check if the code within a closure uses the $this variable.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile  The file being scanned.
-     * @param int                  $stackPtr   The position of the closure token.
-     * @param int                  $startToken Optional. The position within the closure to continue searching from.
+     * @param \PHP_CodeSniffer_File $phpcsFile  The file being scanned.
+     * @param int                   $stackPtr   The position of the closure token.
+     * @param int                   $startToken Optional. The position within the closure to continue searching from.
      *
      * @return int|false The stackPtr to the first $this usage if found or false if
      *                   $this is not used or usage of $this could not reliably be determined.
      */
-    protected function findThisUsageInClosure(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $startToken = null)
+    protected function findThisUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $startToken = null)
     {
         $tokens = $phpcsFile->getTokens();
 

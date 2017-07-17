@@ -65,13 +65,13 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -101,7 +101,7 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
         }
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis      = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
         foreach ($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
@@ -199,16 +199,16 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
     /**
      * Generates the error or warning for this item.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the relevant token in
-     *                                        the stack.
-     * @param array                $itemInfo  Base information about the item.
-     * @param array                $errorInfo Array with detail (version) information
-     *                                        relevant to the item.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the relevant token in
+     *                                         the stack.
+     * @param array                 $itemInfo  Base information about the item.
+     * @param array                 $errorInfo Array with detail (version) information
+     *                                         relevant to the item.
      *
      * @return void
      */
-    public function addError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $error     = $this->getErrorMsgTemplate();
         $errorCode = $this->stringToErrorCode($itemInfo['name'].'_'.$errorInfo['paramName']).'Missing';
