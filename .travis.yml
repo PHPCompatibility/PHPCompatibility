@@ -19,17 +19,31 @@ php:
   - 5.5
   - 5.6
   - 7.0
-  - 7.1
+  - nightly
 
 env:
-  # `master`, i.e PHPCS 3.x.
-  - PHPCS_VERSION="dev-master" LINT=1 COVERALLS_VERSION="dev-master"
-  # PHPCS 1.5.x
-  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+  global:
+    - COVERALLS_VERSION="notset"
+  matrix:
+    # `master`, i.e PHPCS 3.x.
+    - PHPCS_VERSION="dev-master" LINT=1
+    # PHPCS 1.5.x
+    - PHPCS_VERSION=">=1.5.1,<2.0"
 
 matrix:
   fast_finish: true
   include:
+    # N.B.: Coverage is only checked on the lowest and highest stable PHP versions for all PHPCS versions.
+
+    - php: 7.1
+      env: PHPCS_VERSION="dev-master" LINT=1 SNIFF=1 COVERALLS_VERSION="dev-master"
+      addons:
+        apt:
+          packages:
+            - libxml2-utils
+    - php: 7.1
+      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+
     # PHPCS 3.x cannot be run on PHP 5.3.
     - php: 5.3
       dist: precise
@@ -38,37 +52,27 @@ matrix:
       dist: precise
       env: PHPCS_VERSION=">=2.0,<3.0" LINT=1 COVERALLS_VERSION="~1.0"
 
-    # PHP 5.4 needs a different Coveralls version.
+    # PHP 5.4 with low PHPCS needs "precise" + one build with Coveralls.
     - php: 5.4
       dist: precise
-      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
+      env: PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.4
       dist: precise
-      env: PHPCS_VERSION="2.2.*" COVERALLS_VERSION="~1.0"
+      env: PHPCS_VERSION="2.2.*"
     - php: 5.4
       env: PHPCS_VERSION="dev-master" LINT=1 COVERALLS_VERSION="~1.0"
 
     # Test against a variation of PHPCS 2.x versions.
     - php: 5.5
-      env: PHPCS_VERSION="2.4.*" COVERALLS_VERSION="dev-master"
+      env: PHPCS_VERSION="2.4.*"
     - php: 5.6
-      env: PHPCS_VERSION="2.8.*" COVERALLS_VERSION="dev-master"
+      env: PHPCS_VERSION="2.8.*"
     - php: 7.0
-      env: PHPCS_VERSION="2.6.*" SNIFF=1 COVERALLS_VERSION="dev-master"
-      addons:
-        apt:
-          packages:
-            - libxml2-utils
+      env: PHPCS_VERSION="2.6.*"
     - php: 7.1
       env: PHPCS_VERSION="2.3.*" COVERALLS_VERSION="dev-master"
-
-    # Coverage is not checked on nightly and HHVM.
-    - php: nightly
-      env: PHPCS_VERSION=">=1.5.1,<2.0"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
-    - php: nightly
-      env: PHPCS_VERSION="dev-master" LINT=1
 
     - php: hhvm
       dist: trusty
@@ -86,7 +90,7 @@ before_install:
   - export XMLLINT_INDENT="    "
   # PHP 5.3+: set up test environment using Composer.
   - composer self-update
-  - if [[ $COVERALLS_VERSION ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
+  - if [[ $COVERALLS_VERSION != "notset" ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
   - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then composer require phpunit/phpunit:5.7.17; fi
   # --no-dev makes sure the Travis provided version of PHPUnit is used for better stability.
@@ -94,18 +98,18 @@ before_install:
   - composer install --no-dev --prefer-dist
 
 before_script:
-  - if [[ $COVERALLS_VERSION ]]; then mkdir -p build/logs; fi
+  - if [[ $COVERALLS_VERSION != "notset" ]]; then mkdir -p build/logs; fi
   - phpenv rehash
 
 script:
   # Lint all PHP files against parse errors.
   - if [[ "$LINT" == "1" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
+  # Run the unit tests.
+  - if [[ $COVERALLS_VERSION != "notset" ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
+  - if [[ $TRAVIS_PHP_VERSION != hhv* && $COVERALLS_VERSION == "notset" ]]; then phpunit; fi
+  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit; fi
   # Check the code style of the code base.
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --runtime-set ignore_warnings_on_exit 1; fi
-  # Run the unit tests.
-  - if [[ $COVERALLS_VERSION ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
-  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit; fi
-  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html
   - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./PHPCompatibility/ruleset.xml; fi
@@ -113,4 +117,4 @@ script:
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml"); fi
 
 after_success:
-  - if [[ $COVERALLS_VERSION ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
+  - if [[ $COVERALLS_VERSION != "notset" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
