@@ -10,6 +10,8 @@
 
 namespace PHPCompatibility;
 
+use PHPCompatibility\PHPCSHelper;
+
 /**
  * \PHPCompatibility\Sniff.
  *
@@ -103,7 +105,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     {
         static $arrTestVersions = array();
 
-        $testVersion = trim(\PHP_CodeSniffer::getConfigData('testVersion'));
+        $testVersion = trim(PHPCSHelper::getConfigData('testVersion'));
 
         if (isset($arrTestVersions[$testVersion]) === false && empty($testVersion) === false) {
 
@@ -314,7 +316,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     public function findImplementedInterfaceNames(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(\PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.7.1', '>') === true) {
             return $phpcsFile->findImplementedInterfaceNames($stackPtr);
         }
 
@@ -672,7 +674,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         static $isLowPHPCS, $ignoreTokens;
 
         if (isset($isLowPHPCS) === false) {
-            $isLowPHPCS = version_compare(\PHP_CodeSniffer::VERSION, '2.3.0', '<');
+            $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.3.0', '<');
         }
         if (isset($ignoreTokens) === false) {
             $ignoreTokens              = \PHP_CodeSniffer_Tokens::$emptyTokens;
@@ -1282,7 +1284,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     public function getMethodParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(\PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.7.1', '>') === true) {
             return $phpcsFile->getMethodParameters($stackPtr);
         }
 
@@ -1463,7 +1465,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     public function findExtendedClassName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(\PHP_CodeSniffer::VERSION, '2.7.1', '>') === true) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.7.1', '>') === true) {
             return $phpcsFile->findExtendedClassName($stackPtr);
         }
 

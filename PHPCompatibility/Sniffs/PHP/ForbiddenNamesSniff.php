@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesSniff.
@@ -140,7 +141,7 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPCS = version_compare(\PHP_CodeSniffer::VERSION, '2.0', '<');
+        $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
 
         $this->allowed_modifiers          = array_combine(
             \PHP_CodeSniffer_Tokens::$scopeModifiers,

@@ -7,6 +7,8 @@
 
 namespace PHPCompatibility\Tests;
 
+use PHPCompatibility\PHPCSHelper;
+
 /**
  * BaseSniffTest
  *
@@ -121,7 +123,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
         }
 
         if ('none' !== $targetPhpVersion) {
-            \PHP_CodeSniffer::setConfigData('testVersion', $targetPhpVersion, true);
+            PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
         $pathToFile = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;

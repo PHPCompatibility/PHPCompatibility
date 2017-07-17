@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff.
@@ -44,7 +45,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
         // Set up a list of tokens to disregard when determining whether the list() is empty.
         // Only needs to be set up once.
         $this->ignoreTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
-        if (version_compare(\PHP_CodeSniffer::VERSION, '2.0', '<')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.0', '<')) {
             $this->ignoreTokens = array_combine($this->ignoreTokens, $this->ignoreTokens);
         }
         $this->ignoreTokens[T_COMMA]             = T_COMMA;

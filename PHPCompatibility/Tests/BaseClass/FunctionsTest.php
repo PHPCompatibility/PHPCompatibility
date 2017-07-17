@@ -7,6 +7,8 @@
 
 namespace PHPCompatibility\Tests\BaseClass;
 
+use PHPCompatibility\PHPCSHelper;
+
 /**
  * Generic sniff functions sniff tests
  *
@@ -61,7 +63,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
         parent::tearDown();
 
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
-        \PHP_CodeSniffer::setConfigData('testVersion', null, true);
+        PHPCSHelper::setConfigData('testVersion', null, true);
     }
 
 
@@ -85,7 +87,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     public function testGetTestVersion($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
@@ -248,7 +250,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     public function testSupportsAbove($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsAbove($phpVersion));
@@ -293,7 +295,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     public function testSupportsBelow($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            \PHP_CodeSniffer::setConfigData('testVersion', $testVersion, true);
+            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));

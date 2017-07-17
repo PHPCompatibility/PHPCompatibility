@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
@@ -89,7 +90,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
             $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
         } else {
-            if (version_compare(\PHP_CodeSniffer::VERSION, '2.3.4', '>=')) {
+            if (version_compare(PHPCSHelper::getVersion(), '2.3.4', '>=')) {
                 return;
             }
 
