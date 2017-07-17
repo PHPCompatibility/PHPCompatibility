@@ -14,20 +14,12 @@
 	<!--
 		PHP cross version compatibility ;-).
 	-->
-	<config name="testVersion" value="5.1-99.0"/>
+	<config name="testVersion" value="5.3-99.0"/>
 	<rule ref="PHPCompatibility"/>
 
 	<!-- Verified correct usage. -->
 	<rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
 		<exclude-pattern>*/RemovedAlternativePHPTags*.php</exclude-pattern>
-	</rule>
-
-	<!-- Verified correct usage: PHPUnit 6 compatibility layer. -->
-	<rule ref="PHPCompatibility.PHP.NewLanguageConstructs.t_ns_separatorFound">
-		<exclude-pattern>*/Tests/PHPUnit6Compat.php</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.PHP.NewFunctions.class_aliasFound">
-		<exclude-pattern>*/Tests/PHPUnit6Compat.php</exclude-pattern>
 	</rule>
 
 	<!--
@@ -36,10 +28,6 @@
 	<rule ref="PSR2">
 		<!-- To address at a later point in time. -->
 		<exclude name="Generic.Files.LineLength.TooLong"/>
-
-		<!-- These will be addressed when making the repo compatible with PHPCS 3.x. -->
-		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 
 		<!-- Ignoring a number of whitespace issues around blank lines. -->
 		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>

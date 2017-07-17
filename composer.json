@@ -2,9 +2,9 @@
   "name" : "wimg/php-compatibility",
   "description" : "This is a set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
   "require" : {
-    "php" : ">=5.1.2",
+    "php" : ">=5.3",
     "ext-tokenizer" : "*",
-    "squizlabs/php_codesniffer" : "^2.0"
+    "squizlabs/php_codesniffer" : "^2.0 || ^3.0.1"
   },
   "suggest" : {
     "dealerdirect/phpcodesniffer-composer-installer": "*"
