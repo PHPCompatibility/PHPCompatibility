@@ -347,7 +347,7 @@ class BaseClass_FunctionsTest extends PHPUnit_Framework_TestCase
             array('dir_name', 'dir_name'), // No change.
             array('soap.wsdl_cache', 'soap_wsdl_cache'), // No dot.
             array('arbitrary-string with space', 'arbitrary_string_with_space'), // No dashes, no spaces.
-            array('^%*&%*€éáø', '__________'), // No non alpha-numeric characters.
+            array('^%*&%*â‚¬Ã ?', '____________'), // No non alpha-numeric characters.
         );
     }
 
