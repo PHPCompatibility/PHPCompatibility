@@ -140,6 +140,9 @@ To whitelist userland functions, you can pass a comma-delimited list of function
 	</rule>
 ```
 
+This property was added in PHPCompatibility version 7.0.1.
+As of PHPCompatibility version 8.0.0, this custom property is only supported in combination with PHPCS > 2.6.0 due to an upstream bug (which was fixed in PHPCS 2.6.0).
+
 
 License
 -------
