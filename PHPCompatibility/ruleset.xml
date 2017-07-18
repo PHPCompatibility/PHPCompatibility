@@ -3,6 +3,8 @@
 <ruleset name="PHPCompatibility">
     <description>Coding Standard that checks for PHP version compatibility.</description>
 
+    <autoload>./../PHPCSAliases.php</autoload>
+
     <!-- This rule covers checking for non-magic methods using __ prefix. -->
     <!-- Covers part 2 of issue 64: https://github.com/wimg/PHPCompatibility/issues/64 -->
     <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
