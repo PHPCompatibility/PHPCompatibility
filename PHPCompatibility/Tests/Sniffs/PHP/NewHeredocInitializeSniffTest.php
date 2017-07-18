@@ -82,21 +82,15 @@ class NewHeredocInitializeSniffTest extends BaseSniffTest
      */
     public function dataHeredocInitialize()
     {
-        $data = array(
+        return array(
             array(5, 'static variables'),
             array(13, 'class constants'),
+            array(19, 'class properties'),
             array(27, 'class constants'),
             array(31, 'class properties'),
             array(39, 'class constants'),
             array(47, 'class properties', true),
         );
-
-        // Quoted heredoc identifier is not recognized in PHP 5.2.
-        if (version_compare(phpversion(), '5.3', '>=')) {
-            $data[] = array(19, 'class properties');
-        }
-
-        return $data;
     }
 
 

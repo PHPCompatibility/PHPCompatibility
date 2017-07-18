@@ -79,16 +79,10 @@ class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $testCases = array(
+        return array(
             array(9),
+            array(26),
         );
-
-        // Add an additional testcase which will only be 'no violation' if namespaces are recognized.
-        if (version_compare(phpversion(), '5.3', '>=')) {
-            $testCases[] = array(26);
-        }
-
-        return $testCases;
     }
 
 

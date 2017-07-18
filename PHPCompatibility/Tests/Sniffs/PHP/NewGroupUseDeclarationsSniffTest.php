@@ -29,8 +29,6 @@ class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
     /**
      * testGroupUseDeclaration
      *
-     * @requires PHP 5.3
-     *
      * @dataProvider dataGroupUseDeclaration
      *
      * @param int $line The line number.

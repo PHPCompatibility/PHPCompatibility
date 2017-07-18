@@ -308,8 +308,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
     /**
      * testHaltCompiler
      *
-     * @requires PHP 5.3
-     *
      * @return void
      */
     public function testHaltCompiler()
