@@ -24,7 +24,7 @@ $phpcsDir = getenv('PHPCS_DIR');
 if ($phpcsDir === false) {
     // Ok, no environment variable set, so this might be a PEAR install of PHPCS.
     // @todo fix path for PEAR install!
-    $phpcsDir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
+    $phpcsDir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
 }
 $phpcsDir .= DIRECTORY_SEPARATOR;
 
@@ -38,7 +38,7 @@ if (file_exists($phpcsDir . 'autoload.php')) {
 
 } else {
     // Otherwise we must be in a composer install.
-    $vendorDir        = dirname(__FILE__) . '/../../vendor';
+    $vendorDir        = __DIR__ . '/../../vendor';
     $composerAutoload = $vendorDir . DIRECTORY_SEPARATOR . 'autoload.php';
     $phpcsAutoload    = $vendorDir . DIRECTORY_SEPARATOR . 'squizlabs' . DIRECTORY_SEPARATOR . 'php_codesniffer' . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -57,8 +57,11 @@ if (file_exists($phpcsDir . 'autoload.php')) {
 }
 
 // PHPUnit cross version compatibility.
-if (class_exists('PHPUnit\Runner\Version')) {
-    require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'PHPUnit6Compat.php';
+if (class_exists('PHPUnit\Runner\Version')
+    && version_compare(PHPUnit\Runner\Version::id(), '6.0', '>=')
+    && class_exists('PHPUnit_Framework_TestCase') === false
+) {
+    class_alias('PHPUnit\Framework\TestCase', 'PHPUnit_Framework_TestCase');
 }
 
 
@@ -73,5 +76,5 @@ if (version_compare(\PHPCompatibility\PHPCSHelper::getVersion(), '2.99.99', '>')
     include_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'PHPCSAliases.php';
 }
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'BaseClass' . DIRECTORY_SEPARATOR . 'MethodTestFrame.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'BaseSniffTest.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'BaseClass' . DIRECTORY_SEPARATOR . 'MethodTestFrame.php';

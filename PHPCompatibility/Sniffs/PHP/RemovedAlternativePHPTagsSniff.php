@@ -44,7 +44,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
      */
     public function register()
     {
-        if (version_compare(phpversion(), '7.0', '<') === true) {
+        if (version_compare(PHP_VERSION_ID, '70000', '<') === true) {
             $this->aspTags = (boolean) ini_get('asp_tags');
         }
 

@@ -39,7 +39,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
      */
     public static function setUpBeforeClass()
     {
-        if (version_compare(phpversion(), '7.0', '<')) {
+        if (version_compare(PHP_VERSION_ID, '70000', '<')) {
             self::$aspTags = (boolean) ini_get('asp_tags');
         }
 

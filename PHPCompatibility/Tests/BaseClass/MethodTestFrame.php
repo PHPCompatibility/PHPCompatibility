@@ -56,7 +56,7 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        require_once dirname(__FILE__) . '/TestHelperPHPCompatibility.php';
+        require_once __DIR__ . '/TestHelperPHPCompatibility.php';
         parent::setUpBeforeClass();
     }
 
