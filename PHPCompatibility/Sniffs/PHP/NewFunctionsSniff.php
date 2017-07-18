@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_newFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\newFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewFunctionsSniff extends AbstractNewFeatureSniff
 {
     /**
      * A list of new functions, not present in older versions.
@@ -1276,13 +1280,13 @@ class PHPCompatibility_Sniffs_PHP_NewFunctionsSniff extends PHPCompatibility_Abs
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New const visibility sniff test file
@@ -12,9 +15,9 @@
  * @group constVisibility
  * @group constants
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewConstVisibilitySniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewConstVisibilitySniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

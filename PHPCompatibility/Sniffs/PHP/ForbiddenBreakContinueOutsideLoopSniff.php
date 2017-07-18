@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoop.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoop.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoop.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoop.
  *
  * Forbids use of break or continue statements outside of looping structures.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends PHPCompatibility_Sniff
+class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
 {
 
     /**
@@ -63,13 +67,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueOutsideLoopSniff extends
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New keywords sniff tests
@@ -12,9 +15,9 @@
  * @group newKeywords
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewKeywordsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

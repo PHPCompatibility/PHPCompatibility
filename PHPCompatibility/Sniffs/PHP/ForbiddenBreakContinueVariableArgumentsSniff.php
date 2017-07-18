@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArguments.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArguments.
  *
  * PHP version 5.4
  *
@@ -10,8 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArguments.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArguments.
  *
  * Forbids variable arguments on break or continue statements.
  *
@@ -22,7 +26,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff extends PHPCompatibility_Sniff
+class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {
     /**
      * Error types this sniff handles for forbidden break/continue arguments.
@@ -50,13 +54,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.4') === false) {
             return;
@@ -69,7 +73,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenBreakContinueVariableArgumentsSniff e
             if ($tokens[$curToken]['type'] === 'T_STRING') {
                 // If the next non-whitespace token after the string
                 // is an opening parenthesis then it's a function call.
-                $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
+                $openBracket = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $curToken + 1, null, true);
                 if ($tokens[$openBracket]['code'] === T_OPEN_PARENTHESIS) {
                     $errorType = 'variableArgument';
                     break;

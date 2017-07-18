@@ -2,66 +2,59 @@ sudo: false
 
 language: php
 
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+
+env:
+  # `master`, i.e PHPCS 3.x.
+  - PHPCS_VERSION="dev-master" COVERALLS_VERSION="dev-master"
+  # PHPCS 1.5.x
+  - PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+
 matrix:
   fast_finish: true
   include:
-
-    - php: 5.2
-      env: PHPCS_VERSION="1.5.6"
-    - php: 5.2
-      env: PHPCS_VERSION="2.9"
-
+    # PHPCS 3.x cannot be run on PHP 5.3.
     - php: 5.3
       env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
     - php: 5.3
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="~1.0"
 
+    # PHP 5.4 needs a different Coveralls version.
     - php: 5.4
       env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
     - php: 5.4
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="~1.0"
+    - php: 5.4
+      env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="~1.0"
 
-    - php: 5.5
-      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+    # These will be changed to set variations of PHPCS 2.x in a next PR.
     - php: 5.5
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
-    - php: 5.5
-      env: PHPCS_VERSION="2.9.x-dev" COVERALLS_VERSION="dev-master"
-
-    - php: 5.6
-      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
     - php: 5.6
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
-    - php: 5.6
-      env: PHPCS_VERSION="2.9.x-dev" COVERALLS_VERSION="dev-master"
-
     - php: 7.0
-      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
-    - php: 7.0
-      env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
-    - php: 7.0
-      env: PHPCS_VERSION="2.9.x-dev" SNIFF=1 COVERALLS_VERSION="dev-master"
-
-    - php: 7.1
-      env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="dev-master"
+      env: PHPCS_VERSION=">=2.0,<3.0" SNIFF=1  COVERALLS_VERSION="dev-master"
     - php: 7.1
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
-    - php: 7.1
-      env: PHPCS_VERSION="2.9.x-dev" COVERALLS_VERSION="dev-master"
 
+    # Coverage is not checked on nightly and HHVM.
     - php: nightly
       env: PHPCS_VERSION=">=1.5.1,<2.0"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
     - php: nightly
-      env: PHPCS_VERSION="2.9.x-dev"
+      env: PHPCS_VERSION="dev-master"
 
     - php: hhvm
       dist: trusty
       env: PHPCS_VERSION=">=1.5.1,<2.0"
     - php: hhvm
       dist: trusty
-      env: PHPCS_VERSION="2.9.x-dev"
+      env: PHPCS_VERSION="dev-master"
 
   allow_failures:
     # Allow failures for unstable builds.
@@ -71,16 +64,11 @@ matrix:
 before_install:
   - export XMLLINT_INDENT="    "
   # PHP 5.3+: set up test environment using Composer.
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer self-update; fi
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" && $COVERALLS_VERSION ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION};fi
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer require squizlabs/php_codesniffer:${PHPCS_VERSION}; fi
+  - composer self-update
+  - if [[ $COVERALLS_VERSION ]]; then composer require --dev satooshi/php-coveralls:${COVERALLS_VERSION}; fi
+  - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then composer require phpunit/phpunit:~4.0; fi
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then composer install; fi
-  # PHP 5.2: set up test environment using git cloning.
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then export PHPCS_BIN=$PHPCS_DIR/scripts/phpcs; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_VERSION $PHPCS_DIR; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then $PHPCS_BIN --config-set installed_paths "$(pwd)"; fi
+  - composer install
 
 before_script:
   - if [[ $COVERALLS_VERSION ]]; then mkdir -p build/logs; fi
@@ -88,13 +76,12 @@ before_script:
 
 script:
   # Lint all PHP files against parse errors.
-  - if [[ $TRAVIS_PHP_VERSION > "5.2" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
-  - if [[ $TRAVIS_PHP_VERSION < "5.3" ]]; then find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./PHPCompatibility/Tests/PHPUnit6Compat.php -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l; fi
+  - find -L . -path ./PHPCompatibility/Tests/sniff-examples -prune -o -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
   # Check the code style of the code base.
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --runtime-set ignore_warnings_on_exit 1; fi
   # Run the unit tests.
   - if [[ $COVERALLS_VERSION ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
-  - if [[ $TRAVIS_PHP_VERSION == "5.2" || $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
+  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
   - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit --configuration phpunit.xml; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html

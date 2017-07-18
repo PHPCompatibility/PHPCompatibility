@@ -1,14 +1,16 @@
 <?php
 /**
- * PHPCompatibility_ComplexVersionInterface.
+ * \PHPCompatibility\ComplexVersionInterface.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility;
+
 /**
- * PHPCompatibility_ComplexVersionInterface.
+ * \PHPCompatibility\ComplexVersionInterface.
  *
  * Interface to be implemented by sniffs using a multi-dimensional array of
  * PHP features (functions, classes etc) being sniffed for with version
@@ -18,7 +20,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-interface PHPCompatibility_ComplexVersionInterface
+interface ComplexVersionInterface
 {
 
 
@@ -26,14 +28,14 @@ interface PHPCompatibility_ComplexVersionInterface
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error/warning for an item.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the relevant token in
-     *                                        the stack.
-     * @param array                $itemInfo  Base information about the item.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the relevant token in
+     *                                         the stack.
+     * @param array                 $itemInfo  Base information about the item.
      *
      * @return void
      */
-    public function handleFeature(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo);
+    public function handleFeature(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo);
 
 
     /**
@@ -60,16 +62,16 @@ interface PHPCompatibility_ComplexVersionInterface
     /**
      * Generates the error or warning for this item.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the relevant token in
-     *                                        the stack.
-     * @param array                $itemInfo  Base information about the item.
-     * @param array                $errorInfo Array with detail (version) information
-     *                                        relevant to the item.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the relevant token in
+     *                                         the stack.
+     * @param array                 $itemInfo  Base information about the item.
+     * @param array                 $errorInfo Array with detail (version) information
+     *                                         relevant to the item.
      *
      * @return void
      */
-    public function addError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo);
+    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo);
 
 
 }//end interface

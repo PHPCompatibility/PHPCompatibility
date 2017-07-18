@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New language constructs sniff tests
  *
  * @group newLanguageConstructs
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewLanguageConstructsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewLanguageConstructsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

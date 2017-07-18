@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Anonymous Classes Sniff tests
@@ -12,9 +15,9 @@
  * @group newAnonymousClasses
  * @group closures
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewAnonymousClassesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewAnonymousClassesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Functions can not have multiple parameters with the same name since PHP 7.0 sniff test
@@ -12,9 +15,9 @@
  * @group forbiddenFunctionParametersWithSameName
  * @group functionDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenFunctionParametersWithSameNameSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenFunctionParametersWithSameNameSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

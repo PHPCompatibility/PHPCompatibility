@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Classname determination from double colon token function tests
@@ -12,11 +13,11 @@
  * @group utilityGetFQClassNameFromDoubleColonToken
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodTestFrame
+class GetFQClassNameFromDoubleColonTokenTest extends MethodTestFrame
 {
 
     /**
@@ -34,7 +35,7 @@ class BaseClass_GetFQClassNameFromDoubleColonTokenTest extends BaseClass_MethodT
      *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
      *
-     * @covers PHPCompatibility_Sniff::getFQClassNameFromDoubleColonToken
+     * @covers \PHPCompatibility\Sniff::getFQClassNameFromDoubleColonToken
      *
      * @param string $commentString The comment which prefaces the T_DOUBLE_COLON token in the test file.
      * @param string $expected      The expected fully qualified class name.

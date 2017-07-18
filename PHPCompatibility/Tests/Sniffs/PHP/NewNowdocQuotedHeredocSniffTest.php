@@ -5,6 +5,10 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * New nowdoc and quoted heredoc sniff tests
@@ -12,9 +16,9 @@
  * @group newNowdocQuotedHeredoc
  * @group reservedKeywords
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewNowdocQuotedHeredocSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewNowdocQuotedHeredocSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
@@ -130,7 +134,7 @@ class NewNowdocQuotedHeredocSniffTest extends BaseSniffTest
         );
 
         // PHPCS 1.x does not support skipping forward.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '>=')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.0', '>=')) {
             $data[] = array(42);
             $data[] = array(46);
             $data[] = array(82);

@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
 
     /**
@@ -89,13 +93,13 @@ class PHPCompatibility_Sniffs_PHP_NewScalarTypeDeclarationsSniff extends PHPComp
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
         $paramNames = $this->getMethodParameters($phpcsFile, $stackPtr);

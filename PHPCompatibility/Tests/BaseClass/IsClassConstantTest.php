@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * isClassConstant() function tests
@@ -12,11 +13,11 @@
  * @group utilityIsClassConstant
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_isClassConstantTest extends BaseClass_MethodTestFrame
+class IsClassConstantTest extends MethodTestFrame
 {
 
     /**
@@ -32,7 +33,7 @@ class BaseClass_isClassConstantTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataIsClassConstant
      *
-     * @covers PHPCompatibility_Sniff::isClassConstant
+     * @covers \PHPCompatibility\Sniff::isClassConstant
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.

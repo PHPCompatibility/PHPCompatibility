@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
  *
  * PHP version 5.3
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
  *
  * As of PHP 5.3.0, it's possible to initialize static variables and class
  * properties/constants using the Heredoc syntax.
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibility_Sniff
+class NewHeredocInitializeSniff extends Sniff
 {
 
     /**
@@ -37,13 +41,13 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2') !== true) {
             return;
@@ -51,13 +55,13 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
 
         $tokens = $phpcsFile->getTokens();
 
-        $equalSign = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $equalSign = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
         if ($equalSign === false || $tokens[$equalSign]['code'] !== T_EQUAL) {
             // Not an assignment.
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($equalSign - 1), null, true, null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($equalSign - 1), null, true, null, true);
         if ($prevNonEmpty === false
             || ($tokens[$prevNonEmpty]['code'] !== T_VARIABLE
                 && $tokens[$prevNonEmpty]['code'] !== T_STRING)
@@ -72,7 +76,7 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
              */
             case 'T_STRING':
                 // Walk back to check for the const keyword.
-                $constPtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
+                $constPtr = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
                 if ($constPtr === false || $tokens[$constPtr]['code'] !== T_CONST) {
                     // Not a constant assignment.
                     return;
@@ -96,7 +100,7 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
                  */
                 else {
                     // Walk back to check this is a static variable `static $var =`.
-                    $staticPtr = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
+                    $staticPtr = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true, null, true);
                     if ($staticPtr === false || $tokens[$staticPtr]['code'] !== T_STATIC) {
                         // Not a static variable assignment.
                         return;
@@ -113,13 +117,13 @@ class PHPCompatibility_Sniffs_PHP_NewHeredocInitializeSniff extends PHPCompatibi
     /**
      * Throw an error if a non-static value is found.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the token to link the error to.
-     * @param string               $type      Type of usage found.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the token to link the error to.
+     * @param string                $type      Type of usage found.
      *
      * @return void
      */
-    protected function throwError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type)
+    protected function throwError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type)
     {
         switch ($type) {
             case 'const':

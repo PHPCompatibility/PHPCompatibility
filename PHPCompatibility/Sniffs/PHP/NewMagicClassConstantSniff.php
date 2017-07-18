@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff.
  *
  * PHP version 5.5
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff.
  *
  * The special ClassName::class constant is available as of PHP 5.5.0, and allows for
  * fully qualified class name resolution at compile.
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff extends PHPCompatibility_Sniff
+class NewMagicClassConstantSniff extends Sniff
 {
 
     /**
@@ -37,13 +41,13 @@ class PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff extends PHPCompatib
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;
@@ -55,7 +59,7 @@ class PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff extends PHPCompatib
             return;
         }
 
-        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
         if ($prevToken === false || $tokens[$prevToken]['code'] !== T_DOUBLE_COLON) {
             return;
         }

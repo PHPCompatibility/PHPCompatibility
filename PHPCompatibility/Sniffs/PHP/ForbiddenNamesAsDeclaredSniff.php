@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredClassSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredClassSniff.
  *
  * PHP version 7.0+
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredClassSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredClassSniff.
  *
  * Prohibits the use of some reserved keywords to name a class, interface, trait or namespace.
  * Emits errors for reserved words and warnings for soft-reserved words.
@@ -23,7 +27,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompatibility_Sniff
+class ForbiddenNamesAsDeclaredSniff extends Sniff
 {
 
     /**
@@ -105,13 +109,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -130,7 +134,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
 
         if (in_array($tokenCode, array(T_CLASS, T_INTERFACE, T_TRAIT), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
-            $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
                 $name = $tokens[$nextNonEmpty]['content'];
             } else {
@@ -166,7 +170,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
             }
         } elseif ($tokenCode === T_STRING) {
             // Traits and namespaces which are not yet tokenized as T_TRAIT/T_NAMESPACE.
-            $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
                 return;
             }
@@ -191,7 +195,7 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenNamesAsDeclaredSniff extends PHPCompa
                         break;
                     }
 
-                    $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
+                    $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
                 } while ($nextNonEmpty !== false);
             }
             unset($nextNonEmptyCode, $nextNonEmptyLc, $endOfStatement);

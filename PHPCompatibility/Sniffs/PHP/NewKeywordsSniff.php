@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,15 +8,19 @@
  * @copyright 2013 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2013 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewKeywordsSniff extends AbstractNewFeatureSniff
 {
 
     /**
@@ -167,13 +171,13 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
@@ -225,8 +229,8 @@ class PHPCompatibility_Sniffs_PHP_NewKeywordsSniff extends PHPCompatibility_Abst
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true);
-        $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
 
         // Skip attempts to use keywords as functions or class names - the former

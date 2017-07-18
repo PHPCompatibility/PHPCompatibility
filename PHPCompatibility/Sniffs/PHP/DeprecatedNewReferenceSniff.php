@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff.
  *
  * PHP version 5.4
  *
@@ -10,8 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff.
  *
  * Discourages the use of assigning the return value of new by reference
  *
@@ -22,7 +26,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompatibility_Sniff
+class DeprecatedNewReferenceSniff extends Sniff
 {
 
     /**
@@ -39,20 +43,20 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedNewReferenceSniff extends PHPCompati
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.3') === false) {
             return;
         }
 
         $tokens = $phpcsFile->getTokens();
-        $prevNonEmpty = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['type'] !== 'T_BITWISE_AND') {
             return;
         }

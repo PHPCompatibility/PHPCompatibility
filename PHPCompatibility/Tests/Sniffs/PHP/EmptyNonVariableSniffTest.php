@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Empty with non variable sniff test file
  *
  * @group emptyNonVariable
  *
- * @covers PHPCompatibility_Sniffs_PHP_EmptyNonVariableSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\EmptyNonVariableSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

@@ -5,18 +5,18 @@
  * @package PHPCompatibility
  */
 
-if (class_exists('PHPCompatibility_Sniff', true) === false) {
-    require_once dirname(dirname(dirname(__FILE__))) . '/Sniff.php';
-}
+namespace PHPCompatibility\Tests\BaseClass;
+
+use PHPCompatibility\Sniff;
 
 /**
- * Helper class to facilitate testing of the methods within the abstract PHPCompatibility_Sniff class.
+ * Helper class to facilitate testing of the methods within the abstract \PHPCompatibility\Sniff class.
  *
- * @uses    PHPCompatibility_Sniff
+ * @uses    \PHPCompatibility\Sniff
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff
+class TestHelperPHPCompatibility extends Sniff
 {
     /**
      * Dummy method to bypass the abstract method implementation requirements.
@@ -30,13 +30,13 @@ class BaseClass_TestHelperPHPCompatibility extends PHPCompatibility_Sniff
     /**
      * Dummy method to bypass the abstract method implementation requirements.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
     }
 }

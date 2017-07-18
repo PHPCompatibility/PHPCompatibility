@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff.
  *
  * PHP version 5.4
  *
@@ -10,8 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff.
  *
  * Verifies the use of the correct visibility and static properties of magic methods.
  *
@@ -20,7 +24,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatibility_Sniff
+class NonStaticMagicMethodsSniff extends Sniff
 {
 
     /**
@@ -96,13 +100,13 @@ class PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff extends PHPCompatib
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // Should be removed, the requirement was previously also there, 5.3 just started throwing a warning about it.
         if ($this->supportsAbove('5.3') === false) {

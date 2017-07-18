@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Interfaces Sniff tests
@@ -12,9 +15,9 @@
  * @group newInterfaces
  * @group interfaces
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewInterfacesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewInterfacesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

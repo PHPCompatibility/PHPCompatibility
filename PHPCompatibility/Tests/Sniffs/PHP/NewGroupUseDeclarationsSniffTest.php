@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New use group declaration sniff tests
  *
  * @group newGroupUseDeclarations
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewGroupUseDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewGroupUseDeclarationsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New ini directives sniff tests
@@ -12,9 +15,9 @@
  * @group newIniDirectives
  * @group iniDirectives
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewIniDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewIniDirectivesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

@@ -5,6 +5,7 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
 
 /**
  * Function parameters retrieval function tests
@@ -12,11 +13,11 @@
  * @group utilityGetFunctionParameters
  * @group utilityFunctions
  *
- * @uses    BaseClass_MethodTestFrame
+ * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
+class GetFunctionParametersTest extends MethodTestFrame
 {
 
     /**
@@ -32,7 +33,7 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataGetFunctionCallParameters
      *
-     * @covers PHPCompatibility_Sniff::getFunctionCallParameters
+     * @covers \PHPCompatibility\Sniff::getFunctionCallParameters
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected parameter array.
@@ -256,7 +257,7 @@ class BaseClass_GetFunctionParametersTest extends BaseClass_MethodTestFrame
      *
      * @dataProvider dataGetFunctionCallParameter
      *
-     * @covers PHPCompatibility_Sniff::getFunctionCallParameter
+     * @covers \PHPCompatibility\Sniff::getFunctionCallParameter
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param int    $paramPosition The position of the parameter we want to retrieve the details for.

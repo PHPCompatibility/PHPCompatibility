@@ -1,14 +1,18 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff.
  *
  * Discourages the use of removed global variables. Suggests alternative extensions if available
  *
@@ -16,7 +20,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 {
 
     /**
@@ -87,13 +91,13 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.3') === false) {
             return;
@@ -113,7 +117,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedGlobalVariablesSniff extends PHPCompati
 
         // Check for static usage of class properties shadowing the removed global variables.
         if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
-            $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+            $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
             if ($prevToken !== false && $tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
                 return;
             }

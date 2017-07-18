@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff.
  *
  * PHP version 5.5
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff.
+ * \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff.
  *
  * Prior to PHP 5.5, cases existed where the self, parent, and static keywords
  * were treated in a case sensitive fashion.
@@ -21,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff extends PHPCompatibility_Sniff
+class CaseSensitiveKeywordsSniff extends Sniff
 {
 
     /**
@@ -41,13 +45,13 @@ class PHPCompatibility_Sniffs_PHP_CaseSensitiveKeywordsSniff extends PHPCompatib
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;

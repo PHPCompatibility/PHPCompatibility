@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated and removed functions with their alternatives.
@@ -782,13 +786,13 @@ class PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff extends PHPCompatibil
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

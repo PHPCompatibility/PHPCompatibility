@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ShortArray.
+ * \PHPCompatibility\Sniffs\PHP\ShortArray.
  *
  * PHP version 5.4
  *
@@ -9,8 +9,12 @@
  * @author   Alex Miroshnikov <unknown@example.com>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ShortArray.
+ * \PHPCompatibility\Sniffs\PHP\ShortArray.
  *
  * Short array syntax is available since PHP 5.4
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Alex Miroshnikov <unknown@example.com>
  */
-class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
+class ShortArraySniff extends Sniff
 {
 
     /**
@@ -40,13 +44,13 @@ class PHPCompatibility_Sniffs_PHP_ShortArraySniff extends PHPCompatibility_Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.3') === false) {
             return;

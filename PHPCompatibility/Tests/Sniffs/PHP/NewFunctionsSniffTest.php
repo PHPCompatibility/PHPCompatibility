@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New Functions Sniff tests
@@ -12,9 +15,9 @@
  * @group newFunctions
  * @group functions
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewFunctionsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewFunctionsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

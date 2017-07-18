@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff.
  *
  * PHP version 7.0
  *
@@ -9,8 +9,13 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff.
+ * \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff.
  *
  * Empty list() assignments have been removed in PHP 7.0
  *
@@ -20,7 +25,7 @@
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPCompatibility_Sniff
+class ForbiddenEmptyListAssignmentSniff extends Sniff
 {
 
     /**
@@ -39,8 +44,8 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
     {
         // Set up a list of tokens to disregard when determining whether the list() is empty.
         // Only needs to be set up once.
-        $this->ignoreTokens = PHP_CodeSniffer_Tokens::$emptyTokens;
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {
+        $this->ignoreTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        if (version_compare(PHPCSHelper::getVersion(), '2.0', '<')) {
             $this->ignoreTokens = array_combine($this->ignoreTokens, $this->ignoreTokens);
         }
         $this->ignoreTokens[T_COMMA]             = T_COMMA;
@@ -54,13 +59,13 @@ class PHPCompatibility_Sniffs_PHP_ForbiddenEmptyListAssignmentSniff extends PHPC
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0')) {
             $tokens = $phpcsFile->getTokens();

@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Removed hash algorithms sniff tests
@@ -12,9 +15,9 @@
  * @group removedHashAlgorithms
  * @group hashAlgorithms
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedHashAlgorithmsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedHashAlgorithmsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

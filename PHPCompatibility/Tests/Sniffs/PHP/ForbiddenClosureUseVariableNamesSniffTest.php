@@ -5,6 +5,10 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * PHP 7.1 Forbidden variable names in closure use statements tests.
@@ -12,9 +16,9 @@
  * @group forbiddenClosureUseVariableNames
  * @group closures
  *
- * @covers PHPCompatibility_Sniffs_PHP_ForbiddenClosureUseVariableNamesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenClosureUseVariableNamesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
@@ -113,7 +117,7 @@ class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositivesLiveCoding($line)
     {
-        if (strpos(PHP_CodeSniffer::VERSION, '2.5.1') !== false) {
+        if (strpos(PHPCSHelper::getVersion(), '2.5.1') !== false) {
             $this->markTestSkipped('PHPCS 2.5.1 has a bug in the tokenizer which affects this test.');
             return;
         }

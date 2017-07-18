@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Removed alternative PHP tags sniff test file
  *
  * @group removedAlternativePHPTags
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedAlternativePHPTagsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTagsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

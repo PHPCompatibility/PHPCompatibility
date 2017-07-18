@@ -5,15 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Late static binding sniff test file
  *
  * @group lateStaticBinding
  *
- * @covers PHPCompatibility_Sniffs_PHP_LateStaticBindingSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\LateStaticBindingSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of removed function parameters, which were present in older versions.
@@ -71,13 +75,13 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -107,7 +111,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedFunctionParametersSniff extends PHPComp
         }
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis      = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {

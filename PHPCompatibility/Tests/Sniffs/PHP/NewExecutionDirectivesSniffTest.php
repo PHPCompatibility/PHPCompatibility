@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New execution directives test file
@@ -12,9 +15,9 @@
  * @group newExecutionDirectives
  * @group executionDirectives
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
@@ -25,7 +28,7 @@ class NewExecutionDirectivesSniffTest extends BaseSniffTest
     /**
      * Sniffed file
      *
-     * @var PHP_CodeSniffer_File
+     * @var \PHP_CodeSniffer_File
      */
     protected $sniffResult;
 

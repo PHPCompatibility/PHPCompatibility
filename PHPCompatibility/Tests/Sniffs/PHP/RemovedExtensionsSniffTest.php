@@ -5,6 +5,10 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * Removed extensions sniff tests
@@ -12,9 +16,9 @@
  * @group removedExtensions
  * @group extensions
  *
- * @covers PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
@@ -260,16 +264,22 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
+        $data = array(
             array(57), // Not a function call.
             array(58), // Function declaration.
             array(59), // Class instantiation.
             array(60), // Method call.
-            array(68), // Whitelisted function.
-            array(74), // Whitelisted function array.
-            array(75), // Whitelisted function array.
             array(78), // Live coding.
         );
+
+        // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
+        if (version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
+            $data[] = array(68); // Whitelisted function.
+            $data[] = array(74); // Whitelisted function array.
+            $data[] = array(75); // Whitelisted function array.
+        }
+
+        return $data;
     }
 
 

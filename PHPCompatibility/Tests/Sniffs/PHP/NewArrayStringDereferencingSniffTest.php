@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New array and string literal dereferencing sniff test.
@@ -12,9 +15,9 @@
  * @group newArrayStringDereferencing
  * @group dereferencing
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

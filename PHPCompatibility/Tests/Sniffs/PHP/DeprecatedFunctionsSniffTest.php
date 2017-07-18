@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Deprecated functions sniff tests
@@ -12,9 +15,9 @@
  * @group deprecatedFunctions
  * @group functions
  *
- * @covers PHPCompatibility_Sniffs_PHP_DeprecatedFunctionsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,8 +8,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractRemovedFeatureSniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
  *
  * Discourages the use of removed extensions. Suggests alternative extensions if available
  *
@@ -18,7 +22,7 @@
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibility_AbstractRemovedFeatureSniff
+class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of functions to whitelist, if any.
@@ -184,18 +188,18 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
@@ -208,7 +212,7 @@ class PHPCompatibility_Sniffs_PHP_RemovedExtensionsSniff extends PHPCompatibilit
         }
 
         // Find the previous non-empty token.
-        $search   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $search   = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $search[] = T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
         if ($tokens[$previous]['code'] === T_FUNCTION) {

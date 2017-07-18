@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New function array dereferencing sniff tests
@@ -12,9 +15,9 @@
  * @group newFunctionArrayDereferencing
  * @group dereferencing
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewFunctionArrayDereferencingSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewFunctionArrayDereferencingSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */

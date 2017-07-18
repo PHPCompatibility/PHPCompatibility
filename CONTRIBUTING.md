@@ -24,9 +24,9 @@ To start contributing, fork the repository, create a new branch in your fork, ma
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
-All code should be compatible with PHPCS 1.5.6 and PHPCS 2.x.
-All code should be compatible with PHP 5.1 to PHP nightly.
-All code should comply with the PHPCompatibility coding standards. The ruleset used by PHPCompatibility is largely based on PSR2 with minor variations and some additional checks for documentation and such.
+* All code should be compatible with PHPCS 1.5.6, PHPCS 2.x and PHPCS 3.x.
+* All code should be compatible with PHP 5.3 to PHP nightly.
+* All code should comply with the PHPCompatibility coding standards. The ruleset used by PHPCompatibility is largely based on PSR2 with minor variations and some additional checks for documentation and such.
 
 
 Running the Sniff Tests
@@ -34,18 +34,18 @@ Running the Sniff Tests
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests
 on the sniffs, the following installation steps are required.
 
-1. Install the latest release from the `2.x` branch of [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer.git).
+1. Install the latest release or the `master` branch of [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer.git).
 
     This can be done with composer using the following command:
 
-        $ composer require "squizlabs/php_codesniffer=^2.0"
+        $ composer require "squizlabs/php_codesniffer=^2.0 || ^3.0.1"
 
     or by adding the following into `~/.composer/composer.json`:
     ```json
         {
             "require": {
                 "phpunit/phpunit": ">=4.0",
-                "squizlabs/php_codesniffer": "^2.0"
+                "squizlabs/php_codesniffer": "^2.0 || ^3.0.1"
             }
         }
     ```

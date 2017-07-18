@@ -1,20 +1,25 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompatibility_AbstractNewFeatureSniff
+class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 {
 
     /**
@@ -61,7 +66,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
      */
     public function register()
     {
-        $this->ignoreTokens          = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $this->ignoreTokens          = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $this->ignoreTokens[T_EQUAL] = T_EQUAL;
 
         return array(T_DECLARE);
@@ -71,13 +76,13 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -85,7 +90,7 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
             $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
             $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
         } else {
-            if (version_compare(PHP_CodeSniffer::VERSION, '2.3.4', '>=')) {
+            if (version_compare(PHPCSHelper::getVersion(), '2.3.4', '>=')) {
                 return;
             }
 
@@ -216,16 +221,16 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
     /**
      * Generates the error or warning for this item.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the relevant token in
-     *                                        the stack.
-     * @param array                $itemInfo  Base information about the item.
-     * @param array                $errorInfo Array with detail (version) information
-     *                                        relevant to the item.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the relevant token in
+     *                                         the stack.
+     * @param array                 $itemInfo  Base information about the item.
+     * @param array                 $errorInfo Array with detail (version) information
+     *                                         relevant to the item.
      *
      * @return void
      */
-    public function addError(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         if ($errorInfo['not_in_version'] !== '') {
             parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
@@ -247,19 +252,19 @@ class PHPCompatibility_Sniffs_PHP_NewExecutionDirectivesSniff extends PHPCompati
     /**
      * Generates a error or warning for this sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the execution directive value
-     *                                        in the token array.
-     * @param string               $directive The directive.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the execution directive value
+     *                                         in the token array.
+     * @param string                $directive The directive.
      *
      * @return void
      */
-    protected function addWarningOnInvalidValue($phpcsFile, $stackPtr, $directive)
+    protected function addWarningOnInvalidValue(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $directive)
     {
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if (in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
+        if (in_array($tokens[$stackPtr]['code'], \PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
             $value = $this->stripQuotes($value);
         }
 

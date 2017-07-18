@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New magic ::class constant sniff test file.
@@ -12,9 +15,9 @@
  * @group newMagicClassConstant
  * @group constants
  *
- * @covers PHPCompatibility_Sniffs_PHP_NewMagicClassConstantSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

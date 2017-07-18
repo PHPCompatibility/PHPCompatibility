@@ -5,14 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\BaseClass;
+
+use PHPCompatibility\PHPCSHelper;
+
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
  *
- * @uses    PHPUnit_Framework_TestCase
+ * @uses    \PHPUnit_Framework_TestCase
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
+abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -31,16 +35,16 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
     protected $case_directory = '../sniff-examples/utility-functions/';
 
     /**
-     * The PHP_CodeSniffer_File object containing parsed contents of this file.
+     * The \PHP_CodeSniffer_File object containing parsed contents of this file.
      *
-     * @var PHP_CodeSniffer_File
+     * @var \PHP_CodeSniffer_File
      */
     protected $phpcsFile;
 
     /**
      * A wrapper for the abstract PHPCompatibility sniff.
      *
-     * @var PHPCompatibility_Sniff
+     * @var \PHPCompatibility\Sniff
      */
     protected $helperClass;
 
@@ -65,32 +69,46 @@ abstract class BaseClass_MethodTestFrame extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->helperClass = new BaseClass_TestHelperPHPCompatibility;
+        $this->helperClass = new TestHelperPHPCompatibility;
 
-        $filename = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
-        $phpcs    = new PHP_CodeSniffer();
+        $filename = realpath(__DIR__) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
+        $contents = file_get_contents($filename);
 
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.0', '<')) {
-            $this->phpcsFile = new PHP_CodeSniffer_File(
-                $filename,
-                array(),
-                array(),
-                array(),
-                array(),
-                $phpcs
-            );
+        if (version_compare(PHPCSHelper::getVersion(), '2.99.99', '>')) {
+            // PHPCS 3.x.
+            $config            = new \PHP_Codesniffer\Config();
+            $config->standards = array('PHPCompatibility');
+
+            $ruleset = new \PHP_CodeSniffer\Ruleset($config);
+
+            $this->phpcsFile = new \PHP_CodeSniffer\Files\DummyFile($contents, $ruleset, $config);
+            $this->phpcsFile->process();
 
         } else {
-            $this->phpcsFile = new PHP_CodeSniffer_File(
-                $filename,
-                array(),
-                array(),
-                $phpcs
-            );
-        }
+            $phpcs = new \PHP_CodeSniffer();
 
-        $contents = file_get_contents($filename);
-        $this->phpcsFile->start($contents);
+            if (version_compare(PHPCSHelper::getVersion(), '1.99.99', '>')) {
+                // PHPCS 2.x.
+                $this->phpcsFile = new \PHP_CodeSniffer_File(
+                    $filename,
+                    array(),
+                    array(),
+                    $phpcs
+                );
+            } else {
+                // PHPCS 1.x.
+                $this->phpcsFile = new \PHP_CodeSniffer_File(
+                    $filename,
+                    array(),
+                    array(),
+                    array(),
+                    array(),
+                    $phpcs
+                );
+            }
+
+            $this->phpcsFile->start($contents);
+        }
     }
 
     /**

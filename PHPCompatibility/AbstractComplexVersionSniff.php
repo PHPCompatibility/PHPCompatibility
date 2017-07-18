@@ -1,20 +1,22 @@
 <?php
 /**
- * PHPCompatibility_AbstractComplexVersionSniff.
+ * \PHPCompatibility\AbstractComplexVersionSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility;
+
 /**
- * PHPCompatibility_AbstractComplexVersionSniff.
+ * \PHPCompatibility\AbstractComplexVersionSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class PHPCompatibility_AbstractComplexVersionSniff extends PHPCompatibility_Sniff implements PHPCompatibility_ComplexVersionInterface
+abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersionInterface
 {
 
 
@@ -22,14 +24,14 @@ abstract class PHPCompatibility_AbstractComplexVersionSniff extends PHPCompatibi
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error/warning for an item.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the relevant token in
-     *                                        the stack.
-     * @param array                $itemInfo  Base information about the item.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the relevant token in
+     *                                         the stack.
+     * @param array                 $itemInfo  Base information about the item.
      *
      * @return void
      */
-    public function handleFeature(PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo)
+    public function handleFeature(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo)
     {
         $itemArray = $this->getItemArray($itemInfo);
         $errorInfo = $this->getErrorInfo($itemArray, $itemInfo);

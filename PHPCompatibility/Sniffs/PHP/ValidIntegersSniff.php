@@ -1,20 +1,24 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sniff
+class ValidIntegersSniff extends Sniff
 {
 
     /**
@@ -44,13 +48,13 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
@@ -155,14 +159,14 @@ class PHPCompatibility_Sniffs_PHP_ValidIntegersSniff extends PHPCompatibility_Sn
     /**
      * Retrieve the content of the tokens which together look like a binary integer.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                $tokens    Token stack.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param array                 $tokens    Token stack.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack.
      *
      * @return string
      */
-    private function getBinaryInteger(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
+    private function getBinaryInteger(\PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
     {
         $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
 

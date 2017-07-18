@@ -5,6 +5,10 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * Non Static Magic Sniff tests
@@ -12,9 +16,9 @@
  * @group nonStaticMagicMethods
  * @group magicMethods
  *
- * @covers PHPCompatibility_Sniffs_PHP_NonStaticMagicMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
@@ -36,7 +40,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
     public static function setUpBeforeClass()
     {
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHP_CodeSniffer::VERSION, '2.4.0', '<') && version_compare(phpversion(), '5.4', '<')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(phpversion(), '5.4', '<')) {
             self::$recognizesTraits = false;
         }
 
@@ -61,7 +65,7 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
      * @param bool   $isTrait     Whether to load the class/interface test file or the trait test file.
      * @param string $testVersion Value of 'testVersion' to set on PHPCS object.
      *
-     * @return PHP_CodeSniffer_File File object|false
+     * @return \PHP_CodeSniffer_File File object|false
      */
     protected function getTestFile($isTrait, $testVersion = null)
     {

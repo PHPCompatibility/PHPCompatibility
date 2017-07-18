@@ -5,14 +5,18 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
+
 /**
  * PHP4 style constructors sniff test
  *
  * @group deprecatedPHP4StyleConstructors
  *
- * @covers PHPCompatibility_Sniffs_PHP_DeprecatedPHP4StyleConstructorsSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Koen Eelen <koen.eelen@cu.be>
  */

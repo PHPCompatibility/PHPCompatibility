@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
  *
  * PHP version 5.5
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
  *
  * Array and string literals can now be dereferenced directly to access individual elements and characters.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff extends PHPCompatibility_Sniff
+class NewArrayStringDereferencingSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -39,13 +43,13 @@ class PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff extends PHPCo
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;
@@ -85,7 +89,7 @@ class PHPCompatibility_Sniffs_PHP_NewArrayStringDereferencingSniff extends PHPCo
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true, null, true);
 
         if ($nextNonEmpty !== false &&
             ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET' ||

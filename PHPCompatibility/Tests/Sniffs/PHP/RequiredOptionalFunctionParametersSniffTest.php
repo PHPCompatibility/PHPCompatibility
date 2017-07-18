@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Required Optional Parameter Sniff test file
@@ -12,9 +15,9 @@
  * @group requiredOptionalFunctionParameters
  * @group functionParameters
  *
- * @covers PHPCompatibility_Sniffs_PHP_RequiredOptionalFunctionParametersSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\RequiredOptionalFunctionParametersSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */

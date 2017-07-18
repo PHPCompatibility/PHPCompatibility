@@ -5,6 +5,9 @@
  * @package PHPCompatibility
  */
 
+namespace PHPCompatibility\Tests\Sniffs\PHP;
+
+use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Deprecated ini directives sniff tests
@@ -12,9 +15,9 @@
  * @group deprecatedIniDirectives
  * @group iniDirectives
  *
- * @covers PHPCompatibility_Sniffs_PHP_DeprecatedIniDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedIniDirectivesSniff
  *
- * @uses    BaseSniffTest
+ * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */

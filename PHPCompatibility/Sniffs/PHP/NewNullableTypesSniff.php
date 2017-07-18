@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPCompatibility_Sniffs_PHP_NewNullableTypes.
+ * \PHPCompatibility\Sniffs\PHP\NewNullableTypes.
  *
  * PHP version 7.1
  *
@@ -9,8 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
+namespace PHPCompatibility\Sniffs\PHP;
+
+use PHPCompatibility\Sniff;
+
 /**
- * PHPCompatibility_Sniffs_PHP_NewNullableTypes.
+ * \PHPCompatibility\Sniffs\PHP\NewNullableTypes.
  *
  * Nullable type hints and return types are available since PHP 7.1.
  *
@@ -20,7 +24,7 @@
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility_Sniff
+class NewNullableTypesSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -50,13 +54,13 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.0') === false) {
             return;
@@ -83,13 +87,13 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     /**
      * Process this test for function tokens.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processFunctionDeclaration(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processFunctionDeclaration(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $params = $this->getMethodParameters($phpcsFile, $stackPtr);
 
@@ -111,13 +115,13 @@ class PHPCompatibility_Sniffs_PHP_NewNullableTypesSniff extends PHPCompatibility
     /**
      * Process this test for return type tokens.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processReturnType(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processReturnType(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
