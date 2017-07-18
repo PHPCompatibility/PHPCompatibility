@@ -91,6 +91,22 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             '5.3' => true,
             'description' => '"use" keyword (for traits/namespaces/anonymous functions)',
         ),
+        'T_START_NOWDOC' => array(
+            '5.2' => false,
+            '5.3' => true,
+            'description' => 'nowdoc functionality',
+        ),
+        'T_END_NOWDOC' => array(
+            '5.2' => false,
+            '5.3' => true,
+            'description' => 'nowdoc functionality',
+        ),
+        'T_START_HEREDOC' => array(
+            '5.2' => false,
+            '5.3' => true,
+            'description' => '(Double) quoted Heredoc identifier',
+            'condition'   => 'isNotQuoted', // Heredoc is only new with quoted identifier.
+        ),
         'T_TRAIT' => array(
             '5.3' => false,
             '5.4' => true,
@@ -320,6 +336,25 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
     {
         $data[0] = $errorInfo['description'];
         return $data;
+    }
+
+
+    /**
+     * Callback for the quoted heredoc identifier condition.
+     *
+     * A double quoted identifier will have the opening quote on position 3
+     * in the string: `<<<"ID"`.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return bool
+     */
+    public function isNotQuoted(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+        return ($tokens[$stackPtr]['content'][3] !== '"');
     }
 
 
