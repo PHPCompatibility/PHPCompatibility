@@ -138,9 +138,7 @@ class NewNullableTypesSniff extends Sniff
             $error = true;
         }
         // Deal with namespaced class names.
-        elseif ($tokens[($stackPtr - 1)]['code'] === T_NS_SEPARATOR
-            || (version_compare(PHP_VERSION, '5.3.0', '<') && $tokens[($stackPtr - 1)]['code'] === T_STRING)
-        ) {
+        elseif ($tokens[($stackPtr - 1)]['code'] === T_NS_SEPARATOR) {
             $validTokens = array(
                 T_STRING,
                 T_NS_SEPARATOR,
