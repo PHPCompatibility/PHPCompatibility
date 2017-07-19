@@ -1,5 +1,10 @@
 sudo: false
 
+dist: trusty
+
+cache:
+  apt: true
+
 language: php
 
 php:
@@ -19,14 +24,18 @@ matrix:
   include:
     # PHPCS 3.x cannot be run on PHP 5.3.
     - php: 5.3
+      dist: precise
       env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
     - php: 5.3
+      dist: precise
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="~1.0"
 
     # PHP 5.4 needs a different Coveralls version.
     - php: 5.4
+      dist: precise
       env: PHPCS_VERSION=">=1.5.1,<2.0" COVERALLS_VERSION="~1.0"
     - php: 5.4
+      dist: precise
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="~1.0"
     - php: 5.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="~1.0"
@@ -38,6 +47,10 @@ matrix:
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
     - php: 7.0
       env: PHPCS_VERSION=">=2.0,<3.0" SNIFF=1  COVERALLS_VERSION="dev-master"
+      addons:
+        apt:
+          packages:
+            - libxml2-utils
     - php: 7.1
       env: PHPCS_VERSION=">=2.0,<3.0" COVERALLS_VERSION="dev-master"
 
