@@ -166,5 +166,8 @@ ini_set();
 ini_set('mbstring.func_overload', 2);
 $a = ini_get('mbstring.func_overload');
 
+ini_set('sql.safe_mode', true);
+$a = ini_get('sql.safe_mode');
+
 ini_set('track_errors', true);
 $a = ini_get('track_errors');
