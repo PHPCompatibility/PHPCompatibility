@@ -765,6 +765,10 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
         ),
+        'create_function' => array(
+            '7.2' => false,
+            'alternative' => 'an anonymous function',
+        ),
     );
 
 
