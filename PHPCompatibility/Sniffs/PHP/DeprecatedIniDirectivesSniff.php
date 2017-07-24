@@ -205,6 +205,9 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'mbstring.func_overload' => array(
             '7.2' => false,
         ),
+        'track_errors' => array(
+            '7.2' => false,
+        ),
     );
 
     /**
