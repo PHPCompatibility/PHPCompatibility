@@ -769,6 +769,10 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
             'alternative' => 'an anonymous function',
         ),
+        'each' => array(
+            '7.2' => false,
+            'alternative' => 'a foreach loop',
+        ),
     );
 
 

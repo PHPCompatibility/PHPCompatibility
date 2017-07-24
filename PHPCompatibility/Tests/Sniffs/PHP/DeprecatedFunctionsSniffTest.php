@@ -198,6 +198,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             array('jpeg2wbmp', '7.2', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
             array('png2wbmp', '7.2', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
             array('create_function', '7.2', 'an anonymous function', array(146), '7.1'),
+            array('each', '7.2', 'a foreach loop', array(147), '7.1'),
         );
     }
 
