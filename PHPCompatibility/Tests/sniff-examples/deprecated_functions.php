@@ -145,3 +145,4 @@ jpeg2wbmp();
 png2wbmp();
 create_function();
 while (list($key, $val) = each($array)) {}
+gmp_random(2);
