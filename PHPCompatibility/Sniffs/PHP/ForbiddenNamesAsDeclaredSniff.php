@@ -56,6 +56,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         'string'   => '7.0',
         'iterable' => '7.1',
         'void'     => '7.1',
+        'object'   => '7.2',
     );
 
     /**

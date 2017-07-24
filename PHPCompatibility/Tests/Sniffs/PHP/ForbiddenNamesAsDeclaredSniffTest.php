@@ -112,9 +112,50 @@ class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
     {
         return array(
             array('resource', array(29, 43, 57, 71, 86, 101), '7.0', '5.6'),
-            array('object', array(30, 44, 58, 72, 87, 102), '7.0', '5.6'),
             array('mixed', array(31, 45, 59, 73, 88, 103), '7.0', '5.6'),
             array('numeric', array(32, 46, 60, 74, 89, 104), '7.0', '5.6'),
+        );
+    }
+
+
+    /**
+     * testSoftHardReservedKeyword
+     *
+     * @dataProvider dataSoftHardReservedKeyword
+     *
+     * @param string $keyword      Soft reserved keyword.
+     * @param array  $lines        The line numbers in the test file which apply to this keyword.
+     * @param string $introducedIn The PHP version in which the keyword became a reserved word.
+     * @param string $okVersion    A PHP version in which the keyword was not yet reserved.
+     * @param string $soft2Hard    The PHP version in which the keyword status changed from
+     *                             soft reserved to (hard) reserved.
+     *
+     * @return void
+     */
+    public function testSoftHardReservedKeyword($keyword, $lines, $introducedIn, $okVersion, $soft2Hard)
+    {
+        // Test Soft reserved message and Ok version.
+        $this->testSoftReservedKeyword($keyword, $lines, $introducedIn, $okVersion);
+
+        // Test hard reserved message.
+        $file  = $this->sniffFile(self::TEST_FILE, $soft2Hard);
+        $error = "'{$keyword}' is a soft reserved keyword as of PHP version {$introducedIn} and a reserved keyword as of PHP version {$soft2Hard} and should not be used to name a class, interface or trait or as part of a namespace";
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testSoftHardReservedKeyword()
+     *
+     * @return array
+     */
+    public function dataSoftHardReservedKeyword()
+    {
+        return array(
+            array('object', array(30, 44, 58, 72, 87, 102), '7.0', '5.6', '7.2'),
         );
     }
 

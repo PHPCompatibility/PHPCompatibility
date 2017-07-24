@@ -68,6 +68,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
             array('int', '5.6', 53, '7.0'),
             array('callable', '5.3', 56, '5.4'),
             array('int', '5.6', 57, '7.0'),
+            array('object', '7.1', 60, '7.2'),
         );
     }
 
