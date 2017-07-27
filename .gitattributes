@@ -1,0 +1,28 @@
+#
+# Exclude these files from release archives.
+# This will also make them unavailable when using Composer with `--prefer-dist`.
+# If you develop for PHPCompatibility using Composer, use `--prefer-source`.
+# https://www.reddit.com/r/PHP/comments/2jzp6k/i_dont_need_your_tests_in_my_production
+# https://blog.madewithlove.be/post/gitattributes/
+#
+/.coveralls.yml export-ignore
+/.scrutinizer.yml export-ignore
+/.travis.yml export-ignore
+/phpcs.xml.dist export-ignore
+/phpunit.xml.dist export-ignore
+/phpunit-travis.xml export-ignore
+/.github export-ignore
+/bin export-ignore
+/PHPCompatibility/Tests export-ignore
+
+#
+# Auto detect text files and perform LF normalization
+# http://davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
+#
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+*.md text
+*.php text
