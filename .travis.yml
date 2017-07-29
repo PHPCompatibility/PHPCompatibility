@@ -81,8 +81,8 @@ script:
   - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --runtime-set ignore_warnings_on_exit 1; fi
   # Run the unit tests.
   - if [[ $COVERALLS_VERSION ]]; then phpunit --configuration phpunit-travis.xml --coverage-clover build/logs/clover.xml; fi
-  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit --configuration phpunit.xml; fi
-  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit --configuration phpunit.xml; fi
+  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then phpunit; fi
+  - if [[ $TRAVIS_PHP_VERSION == hhv* ]]; then vendor/bin/phpunit; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html
   - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./PHPCompatibility/ruleset.xml; fi
