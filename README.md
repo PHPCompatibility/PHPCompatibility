@@ -84,7 +84,7 @@ Installation via a git check-out to an arbitrary directory (method 3)
 
    **Pro-tip:** Alternatively, _and only if you use PHPCS version 2.6.0 or higher_, you can tell PHP_CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
    ```xml
-   <config name="installed_paths" value="/path/to/dir/above" />
+   <config name="installed_paths" value="/path/to/dir/above"/>
    ```
 
 
@@ -107,10 +107,10 @@ Alternatively, you can add PHPCompatibility to a custom PHPCS ruleset.
 	<description>My rules for PHP_CodeSniffer</description>
 
 	<!-- Run against the PHPCompatibility ruleset -->
-	<rule ref="PHPCompatibility" />
+	<rule ref="PHPCompatibility"/>
 	
 	<!-- Run against a second ruleset -->
-	<rule ref="PSR2" />
+	<rule ref="PSR2"/>
 
 </ruleset>
 ```
@@ -135,7 +135,7 @@ To whitelist userland functions, you can pass a comma-delimited list of function
 	<!-- Whitelist the mysql_to_rfc3339() and mysql_another_function() functions. -->
 	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
 		<properties>
-			<property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function" />
+			<property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
 		</properties>
 	</rule>
 ```
