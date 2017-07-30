@@ -35,7 +35,7 @@ class ValidIntegersSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPVersion = version_compare(phpversion(), '5.4', '<');
+        $this->isLowPHPVersion = version_compare(PHP_VERSION_ID, '50400', '<');
 
         return array(
             T_LNUMBER, // Binary, octal integers.

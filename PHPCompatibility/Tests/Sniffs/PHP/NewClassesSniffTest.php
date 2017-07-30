@@ -42,11 +42,6 @@ class NewClassesSniffTest extends BaseSniffTest
      */
     public function testNewClass($className, $lastVersionBefore, $lines, $okVersion, $testVersion = null)
     {
-        if (version_compare(phpversion(), '5.3', '<') === true && strpos($className, '\\') !== false) {
-            $this->markTestSkipped('PHP 5.2 does not recognize namespaces.');
-            return;
-        }
-
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
         $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
         $error        = "The built-in class {$className} is not present in PHP version {$lastVersionBefore} or earlier";

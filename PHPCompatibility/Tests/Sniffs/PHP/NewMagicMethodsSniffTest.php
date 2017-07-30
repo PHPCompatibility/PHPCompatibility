@@ -40,7 +40,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
     public static function setUpBeforeClass()
     {
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(phpversion(), '5.4', '<')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
             self::$recognizesTraits = false;
         }
 

@@ -306,9 +306,48 @@ class NewKeywordsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testHaltCompiler
+     * testNowdoc
      *
-     * @requires PHP 5.3
+     * @return void
+     */
+    public function testNowdoc()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertError($file, 89, 'nowdoc functionality is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, 93, 'nowdoc functionality is not present in PHP version 5.2 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, 89);
+        $this->assertNoViolation($file, 93);
+    }
+
+    /**
+     * testQuotedHeredoc
+     *
+     * @return void
+     */
+    public function testQuotedHeredoc()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertError($file, 96, '(Double) quoted Heredoc identifier is not present in PHP version 5.2 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, 96);
+    }
+
+    /**
+     * testQuotedHeredocNoFalsePositives
+     *
+     * @return void
+     */
+    public function testQuotedHeredocNoFalsePositives()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertNoViolation($file, 82);
+    }
+
+    /**
+     * testHaltCompiler
      *
      * @return void
      */
@@ -319,10 +358,10 @@ class NewKeywordsSniffTest extends BaseSniffTest
             return;
         }
 
-        if (version_compare(phpversion(), '5.3', '=')) {
+        if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 82, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
+            $this->assertError($file, 102, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         } else {
             /*
              * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
@@ -331,7 +370,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 85);
+            $this->assertNoViolation($file, 105);
         }
     }
 

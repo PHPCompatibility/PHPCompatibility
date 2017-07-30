@@ -78,6 +78,26 @@ function testYieldFrom() {
     yield /*something*/ from [3, 4]; // Test against false positive.
 }
 
+// Normal Heredoc is ok.
+$str = <<<EOD
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+EOD;
+
+// PHP 5.3 Nowdoc.
+$str = <<<'LABEL'
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+LABEL;
+
+// PHP 5.3 quoted heredoc.
+$str = <<<"LABEL"
+Example of string
+spanning multiple lines
+using nowdoc syntax.
+LABEL;
 
 __halt_compiler();
 

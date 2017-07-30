@@ -75,7 +75,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
                 self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
             } else {
                 // PHPCS 1.x.
-                self::$phpcs->process(array(), dirname(dirname(__FILE__)) . '/', array($this->getSniffCode()));
+                self::$phpcs->process(array(), dirname(__DIR__) . '/', array($this->getSniffCode()));
             }
 
             self::$phpcs->setIgnorePatterns(array());
@@ -137,7 +137,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
-        $pathToFile = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $filename;
+        $pathToFile = realpath(__DIR__) . DIRECTORY_SEPARATOR . $filename;
         try {
             if (class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
                 // PHPCS 3.x.

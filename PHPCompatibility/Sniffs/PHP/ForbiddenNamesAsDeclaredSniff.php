@@ -125,10 +125,10 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         $tokenCode      = $tokens[$stackPtr]['code'];
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
 
-        // For string tokens we only care about 'trait' and 'namespace' as those are
-        // the only ones which may not be correctly recognized as it's own token.
+        // For string tokens we only care about 'trait' as that is the only one
+        // which may not be correctly recognized as it's own token.
         // This only happens in older versions of PHP where the token doesn't exist yet as a keyword.
-        if ($tokenCode === T_STRING && ($tokenContentLc !== 'trait' && $tokenContentLc !== 'namespace')) {
+        if ($tokenCode === T_STRING && $tokenContentLc !== 'trait') {
             return;
         }
 
@@ -169,7 +169,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                 }
             }
         } elseif ($tokenCode === T_STRING) {
-            // Traits and namespaces which are not yet tokenized as T_TRAIT/T_NAMESPACE.
+            // Traits which are not yet tokenized as T_TRAIT.
             $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
                 return;

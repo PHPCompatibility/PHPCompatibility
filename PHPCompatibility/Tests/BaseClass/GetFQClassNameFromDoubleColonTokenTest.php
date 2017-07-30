@@ -31,8 +31,6 @@ class GetFQClassNameFromDoubleColonTokenTest extends MethodTestFrame
     /**
      * testGetFQClassNameFromDoubleColonToken
      *
-     * @requires PHP 5.3
-     *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
      *
      * @covers \PHPCompatibility\Sniff::getFQClassNameFromDoubleColonToken

@@ -31,8 +31,6 @@ class GetFQExtendedClassNameTest extends MethodTestFrame
     /**
      * testGetFQExtendedClassName
      *
-     * @requires PHP 5.3
-     *
      * @dataProvider dataGetFQExtendedClassName
      *
      * @covers \PHPCompatibility\Sniff::getFQExtendedClassName
