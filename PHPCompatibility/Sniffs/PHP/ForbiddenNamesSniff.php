@@ -344,9 +344,7 @@ class ForbiddenNamesSniff extends Sniff
          * - namespace keyword in PHP < 5.3
          * - trait keyword in PHP < 5.4
          */
-        if ((version_compare(phpversion(), '5.3', '<') && $tokenContentLc === 'namespace')
-            || (version_compare(phpversion(), '5.4', '<') && $tokenContentLc === 'trait')
-        ) {
+        if (version_compare(PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {
             $this->processNonString($phpcsFile, $stackPtr, $tokens);
             return;
         }

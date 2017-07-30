@@ -31,8 +31,6 @@ class GetFQClassNameFromNewTokenTest extends MethodTestFrame
     /**
      * testGetFQClassNameFromNewToken
      *
-     * @requires PHP 5.3
-     *
      * @dataProvider dataGetFQClassNameFromNewToken
      *
      * @covers \PHPCompatibility\Sniff::getFQClassNameFromNewToken

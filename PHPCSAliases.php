@@ -24,7 +24,7 @@
  * manner.}}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
-    if (class_exists('\PHP_CodeSniffer_Sniff') === false) {
+    if (interface_exists('\PHP_CodeSniffer_Sniff') === false) {
         class_alias('PHP_CodeSniffer\Sniffs\Sniff', '\PHP_CodeSniffer_Sniff');
     }
     if (class_exists('\PHP_CodeSniffer_File') === false) {
@@ -53,7 +53,7 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
 if (defined('PHP_CODESNIFFER_IN_TESTS')) {
     spl_autoload_register(function ($class) {
         // Only try & load our own classes.
-        if (strpos($class, 'PHPCompatibility') !== 0) {
+        if (stripos($class, 'PHPCompatibility') !== 0) {
             return;
         }
 

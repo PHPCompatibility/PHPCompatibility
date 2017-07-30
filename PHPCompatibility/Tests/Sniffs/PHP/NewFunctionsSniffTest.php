@@ -409,18 +409,12 @@ class NewFunctionsSniffTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $testCases = array(
+        return array(
             array(4),
             array(5),
+            array(6),
             array(7),
         );
-
-        // Add an additional testcase which will only be 'no violation' if namespaces are recognized.
-        if (version_compare(phpversion(), '5.3', '>=')) {
-            $testCases[] = array(6);
-        }
-
-        return $testCases;
     }
 
 

@@ -96,12 +96,6 @@ class NewMagicClassConstantSniffTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // Namespace detection does not work on PHP 5.2.
-        if (version_compare(phpversion(), '5.3.0', '>=') === false) {
-            $this->markTestSkipped();
-            return;
-        }
-
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
         $this->assertNoViolation($file);
     }

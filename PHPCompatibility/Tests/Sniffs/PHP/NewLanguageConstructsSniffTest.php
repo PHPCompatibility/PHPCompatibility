@@ -27,8 +27,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     /**
      * testNamespaceSeparator
      *
-     * @requires PHP 5.3
-     *
      * @return void
      */
     public function testNamespaceSeparator()
