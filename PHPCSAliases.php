@@ -24,7 +24,7 @@
  * manner.}}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
-    if (class_exists('\PHP_CodeSniffer_Sniff') === false) {
+    if (interface_exists('\PHP_CodeSniffer_Sniff') === false) {
         class_alias('PHP_CodeSniffer\Sniffs\Sniff', '\PHP_CodeSniffer_Sniff');
     }
     if (class_exists('\PHP_CodeSniffer_File') === false) {
