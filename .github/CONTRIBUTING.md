@@ -53,7 +53,7 @@ on the sniffs, the following installation steps are required.
 2. Run the following command to compose in the versions indicated in the above
    global composer.json file:
 
-        $ composer global install
+        $ composer global install --prefer-source
 
 3. Update your system `$PATH` to include the globally composed files:
 
