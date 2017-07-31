@@ -4,7 +4,7 @@ Reporting bugs
 --------------
 
 Before reporting a bug, you should check what sniff an error is coming from.
-Running `phpcs` with the `-s` flag will show the names of the sniffs with each error.
+Running `phpcs` with the `-s` flag will show the name of the sniff with each error.
 
 Bug reports containing a minimal code sample which can be used to reproduce the issue are highly appreciated as those are most easily actionable.
 
@@ -13,7 +13,7 @@ Requesting features
 
 The PHPCompatibility standard only concerns itself with cross-version PHP compatibility of code.
 
-When requesting a new feature, please add a link to a relevant page in the PHP Manual / PHP Changelog / PHP RFC website which illustrates the feature you are requesting.
+When requesting a new feature, please add a link to a relevant page in the [PHP Manual](http://php.net/manual/en/) / PHP Changelog / [PHP RFC website](https://wiki.php.net/rfc) which illustrates the feature you are requesting.
 
 Pull requests
 -------------
@@ -26,53 +26,45 @@ Please make sure that your pull request contains unit tests covering what's bein
 
 * All code should be compatible with PHPCS 1.5.6, PHPCS 2.x and PHPCS 3.x.
 * All code should be compatible with PHP 5.3 to PHP nightly.
-* All code should comply with the PHPCompatibility coding standards. The ruleset used by PHPCompatibility is largely based on PSR2 with minor variations and some additional checks for documentation and such.
+* All code should comply with the PHPCompatibility coding standards.
+    The ruleset used by PHPCompatibility is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
 
 
 Running the Sniff Tests
 -----------------------
-All the sniffs are fully tested with PHPUnit tests. In order to run the tests
-on the sniffs, the following installation steps are required.
+All the sniffs are fully tested with PHPUnit tests. In order to run the tests on the sniffs, the following installation steps are required.
 
-1. Install the latest release or the `master` branch of [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer.git).
+1. Install PHP CodeSniffer and PHP Compatibility by following the instructions in the Readme for either [installing with Composer](https://github.com/wimg/PHPCompatibility/blob/master/README.md#installation-in-a-composer-project-method-1) or via a [Git Checkout to an arbitrary directory](https://github.com/wimg/PHPCompatibility/blob/master/README.md#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2).
 
-    This can be done with composer using the following command:
+    If you install using Composer, make sure you run `composer install --prefer-source` to get access to the unit tests and other development related files.
 
-        $ composer require "squizlabs/php_codesniffer=^2.0 || ^3.0.1"
+    **Pro-tip**: If you develop regularly for the PHPCompatibility standard, it may be preferable to use a git clone based install of PHP CodeSniffer to allow you to easily test sniffs with different PHP CodeSniffer versions by switching between tags.
 
-    or by adding the following into `~/.composer/composer.json`:
-    ```json
-        {
-            "require": {
-                "phpunit/phpunit": ">=4.0",
-                "squizlabs/php_codesniffer": "^2.0 || ^3.0.1"
-            }
-        }
+2. If you used Composer, PHPUnit should be installed automatically and you are done.
+
+    Run the tests by running `phpunit` in the root directory of PHPCompatibility.
+    It will read the `phpunit.xml.dist` file and execute the tests.
+
+3. If you used any of the other installation methods and don't have PHPUnit installed on your system yet, download and [install PHPUnit](https://phpunit.de/getting-started.html).
+
+4. To get the unit tests running with a non-Composer-based install, you need to set an environment variable so the PHPCompatibility unit test suite will know where to find PHPCS.
+
+    The most flexible way to do this, is by setting this variable in a custom `phpunit.xml` file.
+    
+    1. Copy the existing `phpunit.xml.dist` file in the root directory of the PHPCompatibility repository and name it `phpunit.xml`.
+    2. Add the following snippet to the new file, replacing the value `/path/to/PHPCS` with the path to the directory in which you installed PHP CodeSniffer on your system:
+    ```xml
+    <php>
+        <env name="PHPCS_DIR" value="/path/to/PHPCS"/>
+    </php>
     ```
-
-2. Run the following command to compose in the versions indicated in the above
-   global composer.json file:
-
-        $ composer global install --prefer-source
-
-3. Update your system `$PATH` to include the globally composed files:
-
-        $ export PATH=~/.composer/vendor/bin:$PATH
-
-4. Be sure that the `PHPCompatibility` directory is symlinked into
-   `PHP_Codesniffer`'s standards directory:
-
-        $ ln -s /path/to/PHPCompatibility ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility
-
-5. Verify the standard is available with `phpcs -i`. The output should include `PHPCompatibility`.
-
-6. Run the tests by running `phpunit` in the root directory of PHPCompatibility.
-   It will read the `phpunit.xml` file and execute the tests.
+    3. Run the tests by running `phpunit` from the root directory of your PHPCompatibility install.
+       It will automatically read the `phpunit.xml` file and execute the tests.
 
 
 #### Issues when running the PHPCS Unit tests for another standard
 
-This sniff library uses its own PHPUnit setup rather than the PHPCS native unit testing framework to allow for testing the sniffs with various config settings for the `testVersion` variable.
+This sniff library uses its own PHPUnit setup rather than the PHP CodeSniffer native unit testing framework to allow for testing the sniffs with various settings for the `testVersion` config variable.
 
 If you are running the PHPCS native unit tests or the unit tests for another sniff library which uses the PHPCS native unit testing framework, PHPUnit might throw errors related to this sniff library depending on your setup.
 
@@ -80,9 +72,9 @@ This will generally only happen if you have both PHPCompatibility as well as ano
 
 To fix these errors, make sure you are running PHPCS 2.7.1 or higher and add the following to the `phpunit.xml` file for the sniff library you are testing:
 ```xml
-	<php>
-		<env name="PHPCS_IGNORE_TESTS" value="PHPCompatibility"/>
-	</php>
+    <php>
+        <env name="PHPCS_IGNORE_TESTS" value="PHPCompatibility"/>
+    </php>
 ```
 
 This will prevent PHPCS trying to include the PHPCompatibility unit tests when creating the test suite.
