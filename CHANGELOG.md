@@ -4,13 +4,144 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 
-The `major.minor` version numbers are based on the PHP version for which compatibility check support was added.
-The `patch` version numbers are specific to this library.
+Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
+From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 
 ## [Unreleased]
 
 _Nothing yet._
+
+## [8.0.0] - 2017-08-03
+
+**IMPORTANT**: This release contains a **breaking change**. Please read the below information carefully before upgrading!
+
+The directory layout of the PHPCompatibility standard has been changed for improved compatibility with Composer.
+This means that the PHPCompatibility standard no longer extends from the root directory of the repository, but now lives in its own subdirectory `/PHPCompatibility`.
+
+This release also bring compatibility with PHPCS 3.x to the PHPCompatibility standard.
+
+There are two things you will need to be aware of:
+* The path to the PHPCompatibility standard has changed.
+* If you intend to upgrade to PHPCS 3.x, the path to the `phpcs` script has changed (upstream change).
+
+Please follow the below upgrade instructions carefully. This should be a one-time only action.
+
+### Upgrade instructions
+
+### Before upgrading
+
+If you had previously made accommodations for the old directory layout, you should remove any such _"hacks"_ (meant in the kindest of ways) now.
+
+By this we mean: symlinks for the PHPCompatibility install to the `PHP_CodeSniffer/CodeSniffer/Standards` directory, scripts to move the sniffs files to the PHPCS directory, scripts which made symlinks etc.
+
+So, please remove those first.
+
+> **Side-note**:
+>
+> If you had previously forked this repository to solve this issue, please consider reverting your fork to the official version or removing it all together.
+
+### Upgrading: re-registering PHPCompatibility with PHP CodeSniffer
+
+External PHP CodeSniffer standards need to be registered with PHP CodeSniffer. You have probably done this the first time you used PHPCompatibility or have a script or Composer plugin in place to do this for you.
+
+As the directory layout of PHPCompatibility has changed, the path previously registered with PHP CodeSniffer will no longer work and running `phpcs -i` will **_not_** list PHPCompatibility as one of the registered standards.
+
+#### Using a Composer plugin
+
+If you use Composer, we recommend you use a Composer plugin to sort this out. In previous install instructions we recommended the SimplyAdmin plugin for this. This plugin has since been abandoned. We now recommend the DealerDirect plugin.
+```bash
+composer remove --dev simplyadmire/composer-plugins
+composer require --dev dealerdirect/phpcodesniffer-composer-installer:^0.4.1
+composer install
+composer update wimg/php-compatibility squizlabs/php_codesniffer
+vendor/bin/phpcs -i
+```
+If all went well, you should now see PHPCompatibility listed again in the list of installed standards.
+
+#### Manually re-registering PHPCompatibility
+
+1. First run `phpcs --config-show` to check which path(s) are currently registered with PHP CodeSniffer for external standards.
+2. Check in the below table what the new path for PHPCompatibility will be - the path should point to the root directory of your PHPCompatibility install (not to the sub-directory of the same name):
+
+    Install type | Old path | New path
+    ------------ | -------- | ---------
+    Composer     | `vendor/wimg` | `vendor/wimg/php-compatibility`
+    Unzipped release to arbitrary directory | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
+    Git checkout | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
+    PEAR         | If the old install instruction has been followed, not registered. | `path/to/PHPCompatibility`
+    
+    > **Side-note**:
+	>
+	> If you used the old install instructions for a PEAR install, i.e. checking out the latest release to the `PHP/CodeSniffer/Standards/PHPCompatibility` directory, and you intend to upgrade to PHP CodeSniffer 3.x, it is recommended you move the PHPCompatibility folder out of the PEAR directory now, as the layout of the PHPCS directory has changed with PHPCS 3.x and you may otherwise lose your PHPCompatibility install when you upgrade PHP CodeSniffer via PEAR.
+
+3. There are two ways in which you can register the new `installed_paths` value with PHP CodeSniffer. Choose your preferred method:
+    * Run `phpcs --config-set installed_paths ...` and include all previously installed paths including the _adjusted_ path for the PHPCompatibility standard.
+
+        For example, if the previous value of `installed_paths` was
+		
+		`/path/to/MyStandard,/path/to/dir/abovePHPCompatibility`
+
+		you should now set it using
+
+		`phpcs --config-set installed_paths /path/to/MyStandard,/path/to/PHPCompatibility`
+
+    * If you use a custom ruleset in combination with PHPCS 2.6.0 or higher, you can pass the value to PHPCS from your custom ruleset:
+        ```xml
+        <config name="installed_paths" value="vendor/wimg/php-compatibility" />
+        ```
+4. Run `phpcs -i` to verify that the PHPCompatibility standard is now listed again in the list of installed standards.
+
+
+### Upgrading to PHPCS 3.x
+
+The path to the `phpcs` script has changed in PHPCS 3.x which will impact how you call PHPCS.
+
+Version | PHPCS 2.x | PHPCS 3.x
+------- | --------- | ---------
+Generic `phpcs` Command | `path/to/PHP_CodeSniffer/scripts/phpcs ....` | `path/to/PHP_CodeSniffer/bin/phpcs ....`
+Composer command | `vendor/bin/phpcs ...` | `vendor/bin/phpcs ...`
+
+So, for Composer users, nothing changes. For everyone else, you may want to add the `path/to/PHP_CodeSniffer/bin/phpcs` path to your PATH environment variable or adjust any scripts - like build scripts - which call PHPCS.
+
+
+### Upgrading a Travis build script
+
+If you run PHPCompatibility against your code as part of your Travis build:
+* If you use Composer to install PHP CodeSniffer and PHPCompatibility on the travis image and you've made the above mentioned changes, your build should pass again.
+* If you use `git clone` to install PHP CodeSniffer and PHPCompatibility on the travis image, your build will fail until you make the following changes:
+    1. Check which branch of PHPCS is being checked out. If you previously fixed this to a pre-PHPCS 3.x branch or tag, you can now change this (back) to `master` or a PHPCS 3 tag.
+    2. Check to which path PHPCompatibility is being cloned and adjust the path if necessary.
+    3. Adjust the `phpcs --config-set installed_paths` command as described above to point to the root of the cloned PHPCompatibility repo.
+    4. If you switched to using PHPCS 3.x, adjust the call to PHPCS.
+
+
+### Changelog for version 8.0.0
+
+See all related issues and PRs in the [8.0.0 milestone].
+
+### Added
+- :two_hearts: Support for PHP CodeSniffer 3.x. [#482](https://github.com/wimg/PHPCompatibility/pull/482), [#481](https://github.com/wimg/PHPCompatibility/pull/481), [#480](https://github.com/wimg/PHPCompatibility/pull/480), [#488](https://github.com/wimg/PHPCompatibility/pull/488), [#489](https://github.com/wimg/PHPCompatibility/pull/489), [#495](https://github.com/wimg/PHPCompatibility/pull/495)
+
+### Changed
+- :gift: As of this version PHPCompatibility will use semantic versioning.
+- :fire: The directory structure of the repository has changed for better compatibility with installation via Composer. [#446](https://github.com/wimg/PHPCompatibility/pull/446). Fixes [#102](https://github.com/wimg/PHPCompatibility/issues/102), [#107](https://github.com/wimg/PHPCompatibility/issues/107)
+- :pencil2: The custom `functionWhitelist` property for the `PHPCompatibility.PHP.RemovedExtensions` sniff is now only supported in combination with PHP CodeSniffer 2.6.0 or higher (due to an upstream bug which was fixed in PHPCS 2.6.0). [#482](https://github.com/wimg/PHPCompatibility/pull/482)
+- :wrench: Improved the information provided to Composer from the `composer.json` file. [#446](https://github.com/wimg/PHPCompatibility/pull/446), [#482](https://github.com/wimg/PHPCompatibility/pull/482), [#486](https://github.com/wimg/PHPCompatibility/pull/486)
+- :wrench: Release archives will no longer contain the unit tests and other typical development files. You can still get these by using Composer with `--prefer-source` or by checking out a git clone of the repository. [#494](https://github.com/wimg/PHPCompatibility/pull/494)
+- :wrench: A variety of minor improvements to the build process. [#485](https://github.com/wimg/PHPCompatibility/pull/485), [#486](https://github.com/wimg/PHPCompatibility/pull/486), [#487](https://github.com/wimg/PHPCompatibility/pull/487)
+- :wrench: Some files for use by contributors have been renamed to use `.dist` extensions or moved for easier access. [#478](https://github.com/wimg/PHPCompatibility/pull/478), [#479](https://github.com/wimg/PHPCompatibility/pull/479), [#483](https://github.com/wimg/PHPCompatibility/pull/483), [#493](https://github.com/wimg/PHPCompatibility/pull/493)
+- :books: The installation instructions in the Readme. [#496](https://github.com/wimg/PHPCompatibility/pull/496)
+- :books: The unit test instructions in the Contributing file. [#496](https://github.com/wimg/PHPCompatibility/pull/496)
+- :books: Improved the example code in the Readme. [#490](https://github.com/wimg/PHPCompatibility/pull/490)
+
+### Removed
+- :no_entry_sign: Support for PHP 5.1 and 5.2.
+
+    The sniffs can now only be run on PHP 5.3 or higher in combination with PHPCS 1.5.6 or 2.x and on PHP 5.4 or higher in combination with PHPCS 3.x. [#484](https://github.com/wimg/PHPCompatibility/pull/484), [#482](https://github.com/wimg/PHPCompatibility/pull/482)
+
+### Credits
+Thanks go out to [Gary Jones] and [Juliette Reinders Folmer] for their contributions to this version. :clap:
 
 
 ## [7.1.5] - 2017-07-17
@@ -563,7 +694,7 @@ See all related issues and PRs in the [7.0 milestone].
 - :pushpin: The `DeprecatedIniDirectives` sniff used to always throw an `warning`. Now it will throw an `error` when a removed ini directive is used. [#110](https://github.com/wimg/PHPCompatibility/pull/110).
 - :pushpin: The `DeprecatedNewReference` sniff will now throw an error when the `testVersion` includes PHP 7.0 or higher. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
 - :pushpin: The `ForbiddenNames` sniff now supports detection of reserved keywords when used in combination with PHP 7 anonymous classes. [#108](https://github.com/wimg/PHPCompatibility/pull/108), [#110](https://github.com/wimg/PHPCompatibility/pull/110).
-- :pushpin: The `PregReplaceEModifier` sniff will now throw an error when the `testVersion` includes PHP 7.0 or higher.  [#110](https://github.com/wimg/PHPCompatibility/pull/110)
+- :pushpin: The `PregReplaceEModifier` sniff will now throw an error when the `testVersion` includes PHP 7.0 or higher. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
 - :pencil2: `NewKeywords` sniff: clarified the error message text for the `use` keyword. Fixes [#46](https://github.com/wimg/PHPCompatibility/issues/46).
 - :recycle: Minor refactor of the `testVersion` related utility functions. [#98](https://github.com/wimg/PHPCompatibility/pull/98)
 - :wrench: Add autoload to the `composer.json` file. [#96](https://github.com/wimg/PHPCompatibility/pull/96) Fixes [#67](https://github.com/wimg/PHPCompatibility/issues/67).
@@ -614,7 +745,7 @@ See all related issues and PRs in the [5.6 milestone].
 - :white_check_mark: Compatibility with PHPCS 2.0 - 2.3. [#63](https://github.com/wimg/PHPCompatibility/pull/63), [#65](https://github.com/wimg/PHPCompatibility/pull/65)
 
 ### Credits
-Thanks go out to Daniel Jänecke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
+Thanks go out to Daniel JÃ¤necke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
 
 
 ## 5.5 - 2014-04-04
@@ -625,7 +756,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...HEAD
+[8.0.0]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...8.0.0
 [7.1.5]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...7.1.5
 [7.1.4]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...7.1.4
 [7.1.3]: https://github.com/wimg/PHPCompatibility/compare/7.1.2...7.1.3
@@ -643,6 +775,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[8.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/19
 [7.1.5 milestone]: https://github.com/wimg/PHPCompatibility/milestone/17
 [7.1.4 milestone]: https://github.com/wimg/PHPCompatibility/milestone/15
 [7.1.3 milestone]: https://github.com/wimg/PHPCompatibility/milestone/14
@@ -668,6 +801,7 @@ See all related issues and PRs in the [5.5 milestone].
 [djaenecke]: https://github.com/djaenecke
 [Dominic]: https://github.com/dol
 [Eugene Maslovich]: https://github.com/ehpc
+[Gary Jones]: https://github.com/GaryJones
 [Jaap van Otterdijk]: https://github.com/jaapio
 [Jason Stallings]: https://github.com/octalmage
 [Juliette Reinders Folmer]: https://github.com/jrfnl
