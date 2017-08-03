@@ -765,6 +765,18 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
         ),
+        'create_function' => array(
+            '7.2' => false,
+            'alternative' => 'an anonymous function',
+        ),
+        'each' => array(
+            '7.2' => false,
+            'alternative' => 'a foreach loop',
+        ),
+        'gmp_random' => array(
+            '7.2' => false,
+            'alternative' => 'gmp_random_bits() or gmp_random_range()',
+        ),
     );
 
 
