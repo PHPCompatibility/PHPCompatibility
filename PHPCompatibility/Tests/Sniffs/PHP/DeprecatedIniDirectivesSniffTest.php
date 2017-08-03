@@ -149,6 +149,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('mcrypt.modes_dir', '7.1', array(138, 139), '7.0'),
 
             array('mbstring.func_overload', '7.2', array(166, 167), '7.1'),
+            array('track_errors', '7.2', array(172, 173), '7.1'),
         );
     }
 
@@ -258,6 +259,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('session.entropy_length', '7.1', array(144, 145), '7.0'),
             array('session.hash_function', '7.1', array(147, 148), '7.0'),
             array('session.hash_bits_per_character', '7.1', array(150, 151), '7.0'),
+
+            array('sql.safe_mode', '7.2', array(169, 170), '7.1'),
         );
     }
 

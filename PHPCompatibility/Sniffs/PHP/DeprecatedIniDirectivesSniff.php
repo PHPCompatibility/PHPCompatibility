@@ -205,6 +205,12 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'mbstring.func_overload' => array(
             '7.2' => false,
         ),
+        'sql.safe_mode' => array(
+            '7.2' => true,
+        ),
+        'track_errors' => array(
+            '7.2' => false,
+        ),
     );
 
     /**
