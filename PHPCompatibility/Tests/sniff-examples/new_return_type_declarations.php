@@ -22,3 +22,6 @@ function($a): callable {}
 // OK: no return type hint.
 function foo($a) {}
 function ($a) {}
+
+// PHP 7.2+
+function foo($a): object {}

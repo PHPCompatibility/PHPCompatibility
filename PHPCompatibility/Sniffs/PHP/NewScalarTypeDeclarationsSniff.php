@@ -58,6 +58,10 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'object' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
     );
 
 

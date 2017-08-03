@@ -55,3 +55,6 @@ function(int $a) {}
 // Deal with nullable type hints.
 function foo(?callable $a) {}
 function foo(?int $a) {}
+
+// Object type declaration - PHP 7.2+
+function foo(object $a) {}
