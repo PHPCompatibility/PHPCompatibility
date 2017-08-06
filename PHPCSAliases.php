@@ -38,19 +38,20 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
     }
 
     define('PHPCOMPATIBILITY_PHPCS_ALIASES_SET', true);
-}
 
-
-/*
- * Register an autoloader.
- *
- * {@internal This autoloader is not needed for running the sniffs, however, it *is*
- * needed for running the unit tests as the PHPCS native autoloader runs into trouble there.
- * This issue will be fixed in PHPCS 3.1, so the below code can be removed once the
- * minimum PHPCS 3.x requirement for PHPCompatibility has gone up to 3.1.
- * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1564} }}
- */
-if (defined('PHP_CODESNIFFER_IN_TESTS')) {
+    /*
+     * Register an autoloader.
+     *
+     * {@internal This autoloader is not needed for running the sniffs, however, it *is*
+     * needed for running the unit tests as the PHPCS native autoloader runs into trouble there.
+     * This issue will be fixed in PHPCS 3.1, so the below code can be removed once the
+     * minimum PHPCS 3.x requirement for PHPCompatibility has gone up to 3.1.
+     * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1564} }}
+     *
+     * {@internal Update: when `installed_paths` is set via the ruleset, this autoloader
+     * **is** needed to run the sniffs.
+     * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1591} }}
+     */
     spl_autoload_register(function ($class) {
         // Only try & load our own classes.
         if (stripos($class, 'PHPCompatibility') !== 0) {
