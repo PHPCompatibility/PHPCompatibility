@@ -7,10 +7,33 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
 From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
+**IMPORTANT**: The 8.0.0 release contains a **breaking change**. Please read the below information carefully before upgrading!
+
 
 ## [Unreleased]
 
 _Nothing yet._
+
+## [8.0.1] - 2017-08-07
+
+See all related issues and PRs in the [8.0.1 milestone].
+
+### Added
+- PHP 7.2 trailing comma in group use statement is now allowed
+- :fire: PHP 7.2 deprecated functions
+- :fire: PHP 7.2 deprecated/removed ini directives
+- :sparkles: PHP 7.2 (unset) cast handling
+
+### Changed
+- :wrench: Temporary hotfix for installed_paths (pending upstream fix)
+- :wrench: Improved clarity of the deprecated functions alternative
+- :wrench: `object` can now be used as a typehint IN PHP 7.2
+- :wrench: 2 missing valid types (`parent` and `iterable`) added as return types
+
+### Credits
+Thanks go out to [Juliette Reinders Folmer] for their contributions to this version. :clap:
+
+
 
 ## [8.0.0] - 2017-08-03
 
@@ -114,6 +137,7 @@ If you run PHPCompatibility against your code as part of your Travis build:
     2. Check to which path PHPCompatibility is being cloned and adjust the path if necessary.
     3. Adjust the `phpcs --config-set installed_paths` command as described above to point to the root of the cloned PHPCompatibility repo.
     4. If you switched to using PHPCS 3.x, adjust the call to PHPCS.
+
 
 
 ### Changelog for version 8.0.0
@@ -745,7 +769,7 @@ See all related issues and PRs in the [5.6 milestone].
 - :white_check_mark: Compatibility with PHPCS 2.0 - 2.3. [#63](https://github.com/wimg/PHPCompatibility/pull/63), [#65](https://github.com/wimg/PHPCompatibility/pull/65)
 
 ### Credits
-Thanks go out to Daniel JÃ¤necke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
+Thanks go out to Daniel Jänecke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
 
 
 ## 5.5 - 2014-04-04
