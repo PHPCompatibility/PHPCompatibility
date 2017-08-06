@@ -58,6 +58,10 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+        'parent' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
         'self' => array(
             '5.6' => false,
             '7.0' => true,
@@ -67,6 +71,10 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             '7.0' => true,
         ),
 
+        'iterable' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
         'void' => array(
             '7.0' => false,
             '7.1' => true,

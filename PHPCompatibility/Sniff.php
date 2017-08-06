@@ -1057,10 +1057,11 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return false;
         }
 
-        // `self` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
+        // `self`, `parent` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
         $unrecognizedTypes = array(
             T_CALLABLE,
             T_SELF,
+            T_PARENT,
         );
 
         // Return types are not recognized at all in PHPCS < 2.4.0.
