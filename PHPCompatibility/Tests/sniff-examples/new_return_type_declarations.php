@@ -8,12 +8,14 @@ function foo($a): string {}
 function foo($a): array {}
 function foo($a): callable {}
 function foo($a): self {}
+function foo($a): parent {}
 function foo($a): Baz {}
 function foo($a): \Baz {}
 function foo($a): myNamespace\Baz {}
 function foo($a): \myNamespace\Baz {}
 
 // PHP 7.1+
+function foo($a): iterable {}
 function foo($a): void {}
 
 // Anonymous function.
