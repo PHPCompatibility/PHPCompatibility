@@ -20,19 +20,19 @@ _Nothing yet._
 See all related issues and PRs in the [8.0.1 milestone].
 
 ### Added
-- :star2: New `DeprecatedTypeCasts` sniff to detect deprecated and removed type casts, such as the `(unset)` type cast as deprecated in PHP 7.2
-- :star2: New `NewTypeCasts` sniff to detect type casts not present in older PHP versions such as the `(binary)` type cast as added in PHP 5.2.1
-- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing comma's in group use statements
-- :star: `DeprecatedFunctions` sniff: recognize some more PHP 7.2 deprecated functions
-- :star: `DeprecatedIniDirectives` sniff: recognize more PHP 7.2 deprecated ini directives
+- :star2: New `DeprecatedTypeCasts` sniff to detect deprecated and removed type casts, such as the `(unset)` type cast as deprecated in PHP 7.2. [#498](https://github.com/wimg/PHPCompatibility/pull/498)
+- :star2: New `NewTypeCasts` sniff to detect type casts not present in older PHP versions such as the `(binary)` type cast as added in PHP 5.2.1. [#497](https://github.com/wimg/PHPCompatibility/pull/497)
+- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing comma's in group use statements. [#504](https://github.com/wimg/PHPCompatibility/pull/504)
+- :star: `DeprecatedFunctions` sniff: recognize some more PHP 7.2 deprecated functions. [#501](https://github.com/wimg/PHPCompatibility/pull/501)
+- :star: `DeprecatedIniDirectives` sniff: recognize more PHP 7.2 deprecated ini directives. [#500](https://github.com/wimg/PHPCompatibility/pull/500)
 
 
 ### Changed
-- :fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591))
-- :wrench: Improved clarity of the deprecated functions alternative in the error message
-- :star: `ForbiddenNames` sniff: recognize `object` as a forbidden keyword since PHP 7.2.
-- :star: `NewReturnTypeDeclarations` sniff: recognize generic `parent`, PHP 7.1 `iterable` and PHP 7.2 `object` return type declarations.
-- :star: `NewScalarTypeDeclarations` sniff: recognize PHP 7.2 `object` type declarion.
+- :fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591).) [#503](https://github.com/wimg/PHPCompatibility/pull/503)
+- :wrench: Improved clarity of the deprecated functions alternative in the error message. [#502](https://github.com/wimg/PHPCompatibility/pull/502)
+- :star: `ForbiddenNames` sniff: recognize `object` as a forbidden keyword since PHP 7.2. [#499](https://github.com/wimg/PHPCompatibility/pull/499)
+- :star: `NewReturnTypeDeclarations` sniff: recognize generic `parent`, PHP 7.1 `iterable` and PHP 7.2 `object` return type declarations. [#505](https://github.com/wimg/PHPCompatibility/pull/505)
+- :star: `NewScalarTypeDeclarations` sniff: recognize PHP 7.2 `object` type declarion. [#499](https://github.com/wimg/PHPCompatibility/pull/499)
 
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
