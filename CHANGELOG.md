@@ -7,10 +7,38 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
 From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
+**IMPORTANT**: The 8.0.0 release contains a **breaking change**. Please read the v [8.0.0 changelog](CHANGELOG.md#800---2017-08-03) carefully before upgrading.
+
 
 ## [Unreleased]
 
 _Nothing yet._
+
+
+## [8.0.1] - 2017-08-07
+
+See all related issues and PRs in the [8.0.1 milestone].
+
+### Added
+- :star2: New `DeprecatedTypeCasts` sniff to detect deprecated and removed type casts, such as the `(unset)` type cast as deprecated in PHP 7.2. [#498](https://github.com/wimg/PHPCompatibility/pull/498)
+- :star2: New `NewTypeCasts` sniff to detect type casts not present in older PHP versions such as the `(binary)` type cast as added in PHP 5.2.1. [#497](https://github.com/wimg/PHPCompatibility/pull/497)
+- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing comma's in group use statements. [#504](https://github.com/wimg/PHPCompatibility/pull/504)
+- :star: `DeprecatedFunctions` sniff: recognize some more PHP 7.2 deprecated functions. [#501](https://github.com/wimg/PHPCompatibility/pull/501)
+- :star: `DeprecatedIniDirectives` sniff: recognize more PHP 7.2 deprecated ini directives. [#500](https://github.com/wimg/PHPCompatibility/pull/500)
+- :star: `ForbiddenNames` sniff: recognize `object` as a forbidden keyword since PHP 7.2. [#499](https://github.com/wimg/PHPCompatibility/pull/499)
+- :star: `NewReturnTypeDeclarations` sniff: recognize generic `parent`, PHP 7.1 `iterable` and PHP 7.2 `object` return type declarations. [#505](https://github.com/wimg/PHPCompatibility/pull/505), [#499](https://github.com/wimg/PHPCompatibility/pull/499)
+- :star: `NewScalarTypeDeclarations` sniff: recognize PHP 7.2 `object` type declarion. [#499](https://github.com/wimg/PHPCompatibility/pull/499)
+
+### Changed
+:pencil2: Improved clarity of the deprecated functions alternative in the error message. [#502](https://github.com/wimg/PHPCompatibility/pull/502)
+
+### Fixed
+:fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591).) [#503](https://github.com/wimg/PHPCompatibility/pull/503)
+
+### Credits
+Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
+
+
 
 ## [8.0.0] - 2017-08-03
 
@@ -114,6 +142,7 @@ If you run PHPCompatibility against your code as part of your Travis build:
     2. Check to which path PHPCompatibility is being cloned and adjust the path if necessary.
     3. Adjust the `phpcs --config-set installed_paths` command as described above to point to the root of the cloned PHPCompatibility repo.
     4. If you switched to using PHPCS 3.x, adjust the call to PHPCS.
+
 
 
 ### Changelog for version 8.0.0
@@ -745,7 +774,7 @@ See all related issues and PRs in the [5.6 milestone].
 - :white_check_mark: Compatibility with PHPCS 2.0 - 2.3. [#63](https://github.com/wimg/PHPCompatibility/pull/63), [#65](https://github.com/wimg/PHPCompatibility/pull/65)
 
 ### Credits
-Thanks go out to Daniel JÃ¤necke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
+Thanks go out to Daniel Jänecke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
 
 
 ## 5.5 - 2014-04-04
@@ -756,7 +785,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...HEAD
+[8.0.1]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...8.0.1
 [8.0.0]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...8.0.0
 [7.1.5]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...7.1.5
 [7.1.4]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...7.1.4
@@ -775,6 +805,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[8.0.1 milestone]: https://github.com/wimg/PHPCompatibility/milestone/20
 [8.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/19
 [7.1.5 milestone]: https://github.com/wimg/PHPCompatibility/milestone/17
 [7.1.4 milestone]: https://github.com/wimg/PHPCompatibility/milestone/15
@@ -817,3 +848,4 @@ See all related issues and PRs in the [5.5 milestone].
 [Sam Van der Borght]: https://github.com/samvdb
 [Tadas Juozapaitis]: https://github.com/kasp3r
 [Yoshiaki Yoshida]: https://github.com/kakakakakku
+ 
