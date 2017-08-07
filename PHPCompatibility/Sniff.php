@@ -776,7 +776,10 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return '';
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_CLASS && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS') {
+        if ($tokens[$stackPtr]['code'] !== T_CLASS
+            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
+            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
+        ) {
             return '';
         }
 
@@ -1443,7 +1446,8 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
 
     /**
-     * Returns the name of the class that the specified class extends.
+     * Returns the name of the class that the specified class extends
+     * (works for classes, anonymous classes and interfaces).
      *
      * Returns FALSE on error or if there is no extended class name.
      *
@@ -1456,17 +1460,16 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->findExtendedClassName($stackPtr)` calls.
      *
-     * Last synced with PHPCS version: PHPCS 2.9.0 at commit b940fb7dca8c2a37f0514161b495363e5b36d879}}
+     * Last synced with PHPCS version: PHPCS 3.1.0-alpha at commit a9efcc9b0703f3f9f4a900623d4e97128a6aafc6}}
      *
      * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int                   $stackPtr  The position in the stack of the
-     *                                         class token.
+     * @param int                   $stackPtr  The position of the class token in the stack.
      *
      * @return string|false
      */
     public function findExtendedClassName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(PHPCSHelper::getVersion(), '2.7.1', '>') === true) {
+        if (version_compare(PHPCSHelper::getVersion(), '3.1.0', '>=') === true) {
             return $phpcsFile->findExtendedClassName($stackPtr);
         }
 
@@ -1478,7 +1481,8 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[$stackPtr]['code'] !== T_CLASS
-            && $tokens[$stackPtr]['code'] !== T_ANON_CLASS
+            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
+            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
         ) {
             return false;
         }

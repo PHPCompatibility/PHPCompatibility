@@ -44,3 +44,8 @@ class MyTestN extends DateTime {}
 class MyTestO extends anotherNS\DateTime {}
 /* Case 15 */
 class MyTestP extends \FQNS\DateTime {}
+
+/* Case 16 */
+interface MyInterface extends \SomeInterface {}
+/* Case 17 */
+interface MyInterface extends SomeInterface {}
