@@ -7,31 +7,35 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
 From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
-**IMPORTANT**: The 8.0.0 release contains a **breaking change**. Please read the below information carefully before upgrading!
+**IMPORTANT**: The 8.0.0 release contains a **breaking change**. Please read the v [8.0.0 changelog](CHANGELOG.md#800---2017-08-03) carefully before upgrading.
 
 
 ## [Unreleased]
 
 _Nothing yet._
 
+
 ## [8.0.1] - 2017-08-07
 
 See all related issues and PRs in the [8.0.1 milestone].
 
 ### Added
-- PHP 7.2 trailing comma in group use statement is now allowed
-- :fire: PHP 7.2 deprecated functions
-- :fire: PHP 7.2 deprecated/removed ini directives
-- :sparkles: PHP 7.2 (unset) cast handling
+- :star2: New `DeprecatedTypeCasts` sniff to detect deprecated and removed type casts, such as the `(unset)` type cast as deprecated in PHP 7.2
+- :star2: New `NewTypeCasts` sniff to detect type casts not present in older PHP versions such as the `(binary)` type cast as added in PHP 5.2.1
+- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing comma's in group use statements
+- :star: `DeprecatedFunctions` sniff: recognize some more PHP 7.2 deprecated functions
+- :star: `DeprecatedIniDirectives` sniff: recognize more PHP 7.2 deprecated ini directives
+
 
 ### Changed
-- :wrench: Temporary hotfix for installed_paths (pending upstream fix)
-- :wrench: Improved clarity of the deprecated functions alternative
-- :wrench: `object` can now be used as a typehint IN PHP 7.2
-- :wrench: 2 missing valid types (`parent` and `iterable`) added as return types
+- :fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591))
+- :wrench: Improved clarity of the deprecated functions alternative in the error message
+- :star: `ForbiddenNames` sniff: recognize `object` as a forbidden keyword since PHP 7.2.
+- :star: `NewReturnTypeDeclarations` sniff: recognize generic `parent`, PHP 7.1 `iterable` and PHP 7.2 `object` return type declarations.
+- :star: `NewScalarTypeDeclarations` sniff: recognize PHP 7.2 `object` type declarion.
 
 ### Credits
-Thanks go out to [Juliette Reinders Folmer] for their contributions to this version. :clap:
+Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
 
 
 
@@ -780,7 +784,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...HEAD
+[8.0.1]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...8.0.1
 [8.0.0]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...8.0.0
 [7.1.5]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...7.1.5
 [7.1.4]: https://github.com/wimg/PHPCompatibility/compare/7.1.3...7.1.4
@@ -799,6 +804,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[8.0.1 milestone]: https://github.com/wimg/PHPCompatibility/milestone/20
 [8.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/19
 [7.1.5 milestone]: https://github.com/wimg/PHPCompatibility/milestone/17
 [7.1.4 milestone]: https://github.com/wimg/PHPCompatibility/milestone/15
@@ -841,3 +847,4 @@ See all related issues and PRs in the [5.5 milestone].
 [Sam Van der Borght]: https://github.com/samvdb
 [Tadas Juozapaitis]: https://github.com/kasp3r
 [Yoshiaki Yoshida]: https://github.com/kakakakakku
+ 
