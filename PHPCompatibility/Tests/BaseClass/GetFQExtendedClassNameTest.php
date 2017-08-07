@@ -42,7 +42,7 @@ class GetFQExtendedClassNameTest extends MethodTestFrame
      */
     public function testGetFQExtendedClassName($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, T_CLASS);
+        $stackPtr = $this->getTargetToken($commentString, array(T_CLASS, T_INTERFACE));
         $result   = $this->helperClass->getFQExtendedClassName($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
@@ -72,6 +72,8 @@ class GetFQExtendedClassNameTest extends MethodTestFrame
             array('/* Case 13 */', '\Yet\More\Testing\DateTime'),
             array('/* Case 14 */', '\Yet\More\Testing\anotherNS\DateTime'),
             array('/* Case 15 */', '\FQNS\DateTime'),
+            array('/* Case 16 */', '\SomeInterface'),
+            array('/* Case 17 */', '\Yet\More\Testing\SomeInterface'),
         );
     }
 
