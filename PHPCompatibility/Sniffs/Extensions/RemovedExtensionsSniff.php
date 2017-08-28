@@ -84,14 +84,17 @@ class RemovedExtensionsSniff extends Sniff
         'dbase' => [
             '5.3' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'dbx' => [
             '5.1' => true,
             'alternative' => 'pecl/dbx',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'dio' => [
             '5.1' => true,
             'alternative' => 'pecl/dio',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'ereg' => [
             '5.3' => false,
@@ -101,18 +104,22 @@ class RemovedExtensionsSniff extends Sniff
         'fam' => [
             '5.1' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'fbsql' => [
             '5.3' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'fdf' => [
             '5.3' => true,
             'alternative' => 'pecl/fdf',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'filepro' => [
             '5.2' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: function 'filepro' exists - all other functions use separator.
         ],
         'hw_api' => [
             '5.2' => true,
@@ -125,6 +132,7 @@ class RemovedExtensionsSniff extends Sniff
         'ingres' => [
             '5.1' => true,
             'alternative' => 'pecl/ingres',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'ircg' => [
             '5.1' => true,
@@ -134,6 +142,7 @@ class RemovedExtensionsSniff extends Sniff
             '7.1' => false,
             '7.2' => true,
             'alternative' => 'openssl (preferred) or pecl/mcrypt once available',
+            'separator' => '_', // Verified: all functions use separator, though there is also the mdecrypt_generic function.
         ],
         'mcve' => [
             '5.1' => true,
@@ -146,23 +155,29 @@ class RemovedExtensionsSniff extends Sniff
         'mnogosearch' => [
             '5.1' => true,
             'alternative' => null,
+            'prefix' => 'udm',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'msql' => [
             '5.3' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: function 'msql' exists - all other functions use separator.
         ],
         'mssql' => [
             '7.0' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'mysql_' => [
             '5.5' => false,
             '7.0' => true,
             'alternative' => 'mysqli',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'ncurses' => [
             '5.3' => true,
             'alternative' => 'pecl/ncurses',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'oracle' => [
             '5.1' => true,
@@ -171,6 +186,7 @@ class RemovedExtensionsSniff extends Sniff
         'ovrimos' => [
             '5.1' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'pfpro_' => [
             '5.1' => true,
@@ -183,6 +199,7 @@ class RemovedExtensionsSniff extends Sniff
         'sqlite' => [
             '5.4' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
         // Has to be before `sybase` as otherwise it will never match.
         'sybase_ct' => [
@@ -192,10 +209,12 @@ class RemovedExtensionsSniff extends Sniff
         'sybase' => [
             '5.3' => true,
             'alternative' => 'sybase_ct',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'w32api' => [
             '5.1' => true,
             'alternative' => 'pecl/ffi',
+            'separator' => '_', // Verified: all functions use separator.
         ],
         'wddx' => [
             '7.4' => true,
@@ -204,6 +223,7 @@ class RemovedExtensionsSniff extends Sniff
         'yp' => [
             '5.1' => true,
             'alternative' => null,
+            'separator' => '_', // Verified: all functions use separator.
         ],
     ];
 

@@ -79,5 +79,7 @@ ibase_trans();
 wddx_deserialize();
 recode();
 
+$a = \SQLite3();
+
 // Don't throw errors during live code review.
 ereg($a, $b
