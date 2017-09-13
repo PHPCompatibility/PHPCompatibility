@@ -19,6 +19,7 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.2
   - nightly
 
 env:
@@ -54,10 +55,8 @@ matrix:
 
     # PHP 5.4 with low PHPCS needs "precise" + one build with Coveralls.
     - php: 5.4
-      dist: precise
       env: PHPCS_VERSION=">=1.5.1,<2.0"
     - php: 5.4
-      dist: precise
       env: PHPCS_VERSION="2.2.*"
     - php: 5.4
       env: PHPCS_VERSION="dev-master" LINT=1 COVERALLS_VERSION="~1.0"
@@ -71,6 +70,8 @@ matrix:
       env: PHPCS_VERSION="2.6.*"
     - php: 7.1
       env: PHPCS_VERSION="2.3.*" COVERALLS_VERSION="dev-master"
+    - php: 7.2
+      env: PHPCS_VERSION="2.7.*"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
 
