@@ -53,17 +53,28 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      * T_STRING keywords to recognize as targetted tokens.
      *
      * Compatibility for PHP versions where the keyword is not yet recognized
-     * as its own token.
+     * as its own token and for PHPCS versions which change the token to
+     * T_STRING when used in a method call.
      *
      * @var array
      */
     protected $targetedStringTokens = array(
-        'goto' => '5.3',
-        'namespace' => '5.3',
-        'callable' => '5.4',
-        'insteadof' => '5.4',
-        'trait' => '5.4',
-        'finally' => '5.5',
+        'abstract'   => '5.0',
+        'callable'   => '5.4',
+        'catch'      => '5.0',
+        'final'      => '5.0',
+        'finally'    => '5.5',
+        'goto'       => '5.3',
+        'implements' => '5.0',
+        'interface'  => '5.0',
+        'instanceof' => '5.0',
+        'insteadof'  => '5.4',
+        'namespace'  => '5.3',
+        'private'    => '5.0',
+        'protected'  => '5.0',
+        'public'     => '5.0',
+        'trait'      => '5.4',
+        'try'        => '5.0',
     );
 
     /**
@@ -95,9 +106,12 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
         $isString       = false;
 
-        // For string tokens we only care if the string is a reserved word used
-        // as a function. This only happens in older versions of PHP where the
-        // token doesn't exist yet for that keyword.
+        /*
+         * For string tokens we only care if the string is a reserved word used
+         * as a function. This only happens in older versions of PHP where the
+         * token doesn't exist yet for that keyword or in later versions when the
+         * token is used in a method invocation.
+         */
         if ($tokenCode === T_STRING
             && (isset($this->targetedStringTokens[$tokenContentLc]) === false)
         ) {
@@ -115,9 +129,22 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
             return;
         }
 
-        // This sniff isn't concerned about function declaration.
+        // This sniff isn't concerned about function declarations.
         $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prev !== false && $tokens[$prev]['code'] === T_FUNCTION) {
+            return;
+        }
+
+        /*
+         * Deal with PHP 7 relaxing the rules.
+         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
+         * of classes, interfaces and traits...", i.e. they can be invoked as a method call.
+         *
+         * Only needed for those keywords which we sniff out via T_STRING.
+         */
+        if (($tokens[$prev]['code'] === T_OBJECT_OPERATOR || $tokens[$prev]['code'] === T_DOUBLE_COLON)
+            && $this->supportsBelow('5.6') === false
+        ) {
             return;
         }
 
