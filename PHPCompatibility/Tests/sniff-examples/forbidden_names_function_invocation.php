@@ -45,3 +45,24 @@ resource();
 object();
 mixed();
 numeric();
+
+/*
+ * As of PHP 7.0, they can be used as method names.
+ * Only testing the back-compat ones with T_STRING as they are the only ones which could give a false positive.
+ */
+$myObject->abstract();
+MyClassName::callable();
+$myObject->catch();
+MyClassName::final();
+$myObject->finally();
+MyClassName::goto();
+$myObject->implements();
+MyClassName::interface();
+$myObject->instanceof();
+MyClassName::insteadof();
+$myObject->namespace();
+MyClassName::private();
+$myObject->protected();
+MyClassName::public();
+$myObject->trait();
+MyClassName::try();
