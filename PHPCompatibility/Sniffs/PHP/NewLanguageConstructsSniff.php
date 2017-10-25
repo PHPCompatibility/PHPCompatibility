@@ -62,9 +62,13 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             '7.0' => true,
             'description' => 'null coalescing operator (??)',
         ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN.
+        /*
+         * Was slated for 7.2, but still not implemented. PHPCS however does already tokenize it.
+         * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
+         */
         'T_COALESCE_EQUAL' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.2' => false,
+            '7.3' => true,
             'description' => 'null coalesce equal operator (??=)',
         ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
     );
