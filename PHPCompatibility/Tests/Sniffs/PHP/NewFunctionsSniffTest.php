@@ -383,6 +383,8 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('socket_addrinfo_connect', '7.1', array(327), '7.2'),
             array('socket_addrinfo_bind', '7.1', array(328), '7.2'),
             array('socket_addrinfo_explain', '7.1', array(329), '7.2'),
+            array('stream_isatty', '7.1', array(330), '7.2'),
+            array('sapi_windows_vt100_support', '7.1', array(331), '7.2'),
         );
     }
 

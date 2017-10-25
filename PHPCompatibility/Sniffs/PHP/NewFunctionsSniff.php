@@ -1244,6 +1244,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'stream_isatty' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sapi_windows_vt100_support' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'ldap_exop' => array(
             '7.1' => false,
             '7.2' => true,
