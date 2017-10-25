@@ -1300,6 +1300,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'mb_chr' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'mb_ord' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'mb_scrub' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'socket_addrinfo_lookup' => array(
             '7.1' => false,
             '7.2' => true,

@@ -337,3 +337,6 @@ imageopenpolygon();
 imageresolution();
 imagesetclip();
 hash_hmac_algos();
+mb_chr();
+mb_ord();
+mb_scrub();

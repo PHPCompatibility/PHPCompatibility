@@ -393,6 +393,9 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('imageresolution', '7.1', array(337), '7.2'),
             array('imagesetclip', '7.1', array(338), '7.2'),
             array('hash_hmac_algos', '7.1', array(339), '7.2'),
+            array('mb_chr', '7.1', array(340), '7.2'),
+            array('mb_ord', '7.1', array(341), '7.2'),
+            array('mb_scrub', '7.1', array(342), '7.2'),
         );
     }
 
