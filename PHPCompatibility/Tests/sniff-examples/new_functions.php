@@ -336,3 +336,4 @@ imagegetclip();
 imageopenpolygon();
 imageresolution();
 imagesetclip();
+hash_hmac_algos();
