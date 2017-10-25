@@ -109,13 +109,12 @@ class IsClassPropertyTest extends MethodTestFrame
             array('/* Case 18 */', false),
             array('/* Case 19 */', false),
             array('/* Case 20 */', false),
-            array('/* Case 21 */', false),
+            array('/* Case 21 */', true, true),
             array('/* Case 22 */', true, true),
             array('/* Case 23 */', true, true),
             array('/* Case 24 */', true, true),
-            array('/* Case 25 */', true, true),
+            array('/* Case 25 */', false, true),
             array('/* Case 26 */', false, true),
-            array('/* Case 27 */', false, true),
         );
     }
 }
