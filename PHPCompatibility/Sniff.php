@@ -1564,4 +1564,130 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         return $algo;
     }
 
+
+    /**
+     * Determine whether an arbitrary T_STRING token is the use of a global constant.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the function call token.
+     *
+     * @return bool
+     */
+    public function isUseOfGlobalConstant(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        static $isLowPHPCS, $isLowPHP;
+
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        // Is this one of the tokens this function handles ?
+        if ($tokens[$stackPtr]['code'] !== T_STRING) {
+            return false;
+        }
+
+        // Check for older PHP, PHPCS version so we can compensate for misidentified tokens.
+        if (isset($isLowPHPCS, $isLowPHP) === false) {
+            $isLowPHP   = false;
+            $isLowPHPCS = false;
+            if (version_compare(PHP_VERSION_ID, '50400', '<')) {
+                $isLowPHP   = true;
+                $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.4.0', '<');
+            }
+        }
+
+        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($next !== false
+            && ($tokens[$next]['code'] === T_OPEN_PARENTHESIS
+                || $tokens[$next]['code'] === T_DOUBLE_COLON)
+        ) {
+            // Function call or declaration.
+            return false;
+        }
+
+        // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
+        $tokensToIgnore = array(
+            'T_NAMESPACE'       => true,
+            'T_USE'             => true,
+            'T_CLASS'           => true,
+            'T_TRAIT'           => true,
+            'T_INTERFACE'       => true,
+            'T_EXTENDS'         => true,
+            'T_IMPLEMENTS'      => true,
+            'T_NEW'             => true,
+            'T_FUNCTION'        => true,
+            'T_DOUBLE_COLON'    => true,
+            'T_OBJECT_OPERATOR' => true,
+            'T_INSTANCEOF'      => true,
+            'T_INSTEADOF'       => true,
+            'T_GOTO'            => true,
+            'T_AS'              => true,
+            'T_PUBLIC'          => true,
+            'T_PROTECTED'       => true,
+            'T_PRIVATE'         => true,
+        );
+
+        $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prev !== false
+            && (isset($tokensToIgnore[$tokens[$prev]['type']]) === true)
+                || ($tokens[$prev]['code'] === T_STRING
+                    && (($isLowPHPCS === true
+                        && $tokens[$prev]['content'] === 'trait')
+                    || ($isLowPHP === true
+                        && $tokens[$prev]['content'] === 'insteadof')))
+        ) {
+            // Not the use of a constant.
+            return false;
+        }
+
+        if ($prev !== false
+            && $tokens[$prev]['code'] === T_NS_SEPARATOR
+            && $tokens[($prev - 1)]['code'] === T_STRING
+        ) {
+            // Namespaced constant of the same name.
+            return false;
+        }
+
+        if ($prev !== false
+            && $tokens[$prev]['code'] === T_CONST
+            && $this->isClassConstant($phpcsFile, $prev) === true
+        ) {
+            // Class constant declaration of the same name.
+            return false;
+        }
+
+        /*
+         * Deal with a number of variations of use statements.
+         */
+        for ($i = $stackPtr; $i > 0; $i--) {
+            if ($tokens[$i]['line'] !== $tokens[$stackPtr]['line']) {
+                break;
+            }
+        }
+
+        $firstOnLine = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($i + 1), null, true);
+        if ($firstOnLine !== false && $tokens[$firstOnLine]['code'] === T_USE) {
+            $nextOnLine = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($firstOnLine + 1), null, true);
+            if ($nextOnLine !== false) {
+                if (($tokens[$nextOnLine]['code'] === T_STRING && $tokens[$nextOnLine]['content'] === 'const')
+                    || $tokens[$nextOnLine]['code'] === T_CONST // Happens in some PHPCS versions.
+                ) {
+                    $hasNsSep = $phpcsFile->findNext(T_NS_SEPARATOR, ($nextOnLine + 1), $stackPtr);
+                    if ($hasNsSep !== false) {
+                        // Namespaced const (group) use statement.
+                        return false;
+                    }
+                } else {
+                    // Not a const use statement.
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 }//end class
