@@ -172,9 +172,11 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
 
         $versionArray = $this->getVersionArray($itemArray);
 
-        foreach ($versionArray as $version => $required) {
-            if ($version !== 'name' && $required === true && $this->supportsBelow($version) === true) {
-                $errorInfo['requiredVersion'] = $version;
+        if (empty($versionArray) === false) {
+            foreach ($versionArray as $version => $required) {
+                if ($required === true && $this->supportsBelow($version) === true) {
+                    $errorInfo['requiredVersion'] = $version;
+                }
             }
         }
 
@@ -192,7 +194,7 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
      */
     protected function getErrorMsgTemplate()
     {
-        return 'The "%s" parameter for function %s is missing, but was required for PHP version %s and lower';
+        return 'The "%s" parameter for function %s() is missing, but was required for PHP version %s and lower';
     }
 
 
