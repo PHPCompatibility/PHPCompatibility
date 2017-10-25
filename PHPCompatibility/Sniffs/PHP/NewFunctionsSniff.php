@@ -1256,6 +1256,30 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'imagebmp' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagecreatefrombmp' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagegetclip' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imageopenpolygon' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imageresolution' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagesetclip' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'ldap_exop' => array(
             '7.1' => false,
             '7.2' => true,

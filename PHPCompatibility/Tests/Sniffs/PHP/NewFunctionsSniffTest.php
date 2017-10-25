@@ -386,6 +386,12 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('stream_isatty', '7.1', array(330), '7.2'),
             array('sapi_windows_vt100_support', '7.1', array(331), '7.2'),
             array('ftp_append', '7.1', array(332), '7.2'),
+            array('imagebmp', '7.1', array(333), '7.2'),
+            array('imagecreatefrombmp', '7.1', array(334), '7.2'),
+            array('imagegetclip', '7.1', array(335), '7.2'),
+            array('imageopenpolygon', '7.1', array(336), '7.2'),
+            array('imageresolution', '7.1', array(337), '7.2'),
+            array('imagesetclip', '7.1', array(338), '7.2'),
         );
     }
 
