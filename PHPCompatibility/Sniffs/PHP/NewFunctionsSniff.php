@@ -1244,6 +1244,22 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'ldap_exop' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_exop_passwd' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_exop_whoami' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_parse_exop' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'socket_addrinfo_lookup' => array(
             '7.1' => false,
             '7.2' => true,

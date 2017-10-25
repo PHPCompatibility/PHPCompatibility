@@ -319,6 +319,10 @@ pcntl_async_signals();
 session_create_id();
 session_gc();
 
+ldap_exop();
+ldap_exop_passwd();
+ldap_exop_whoami();
+ldap_parse_exop();
 socket_addrinfo_lookup();
 socket_addrinfo_connect();
 socket_addrinfo_bind();

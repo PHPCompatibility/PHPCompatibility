@@ -375,10 +375,14 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('session_create_id', '7.0', array(319), '7.1'),
             array('session_gc', '7.0', array(320), '7.1'),
 
-            array('socket_addrinfo_lookup', '7.1', array(322), '7.2'),
-            array('socket_addrinfo_connect', '7.1', array(323), '7.2'),
-            array('socket_addrinfo_bind', '7.1', array(324), '7.2'),
-            array('socket_addrinfo_explain', '7.1', array(325), '7.2'),
+            array('ldap_exop', '7.1', array(322), '7.2'),
+            array('ldap_exop_passwd', '7.1', array(323), '7.2'),
+            array('ldap_exop_whoami', '7.1', array(324), '7.2'),
+            array('ldap_parse_exop', '7.1', array(325), '7.2'),
+            array('socket_addrinfo_lookup', '7.1', array(326), '7.2'),
+            array('socket_addrinfo_connect', '7.1', array(327), '7.2'),
+            array('socket_addrinfo_bind', '7.1', array(328), '7.2'),
+            array('socket_addrinfo_explain', '7.1', array(329), '7.2'),
         );
     }
 
