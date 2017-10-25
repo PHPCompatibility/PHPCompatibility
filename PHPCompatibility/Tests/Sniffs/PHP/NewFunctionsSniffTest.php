@@ -385,6 +385,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('socket_addrinfo_explain', '7.1', array(329), '7.2'),
             array('stream_isatty', '7.1', array(330), '7.2'),
             array('sapi_windows_vt100_support', '7.1', array(331), '7.2'),
+            array('ftp_append', '7.1', array(332), '7.2'),
         );
     }
 

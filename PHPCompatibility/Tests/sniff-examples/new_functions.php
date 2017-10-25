@@ -329,3 +329,4 @@ socket_addrinfo_bind();
 socket_addrinfo_explain();
 stream_isatty();
 sapi_windows_vt100_support();
+ftp_append();
