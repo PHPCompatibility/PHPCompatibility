@@ -130,7 +130,6 @@ class ForbiddenNamesSniff extends Sniff
         T_USE,
         T_AS,
         T_EXTENDS,
-        T_TRAIT,
         T_INTERFACE,
     );
 
@@ -150,9 +149,15 @@ class ForbiddenNamesSniff extends Sniff
         $this->allowed_modifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;
+
+        if (defined('T_TRAIT')) {
+            $tokens[] = constant('T_TRAIT');
+        }
+
         if (defined('T_ANON_CLASS')) {
             $tokens[] = constant('T_ANON_CLASS');
         }
+
         return $tokens;
     }//end register()
 

@@ -35,17 +35,14 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         T_CALLABLE => '5.4',
         T_CATCH => '5.0',
         T_FINAL => '5.0',
-        T_FINALLY => '5.5',
         T_GOTO => '5.3',
         T_IMPLEMENTS => '5.0',
         T_INTERFACE => '5.0',
         T_INSTANCEOF => '5.0',
-        T_INSTEADOF => '5.4',
         T_NAMESPACE => '5.3',
         T_PRIVATE => '5.0',
         T_PROTECTED => '5.0',
         T_PUBLIC => '5.0',
-        T_TRAIT => '5.4',
         T_TRY => '5.0',
     );
 
@@ -84,6 +81,16 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      */
     public function register()
     {
+        if (defined('T_FINALLY')) {
+            $this->targetedTokens[T_FINALLY] = '5.5';
+        }
+        if (defined('T_INSTEADOF')) {
+            $this->targetedTokens[T_INSTEADOF] = '5.4';
+        }
+        if (defined('T_TRAIT')) {
+            $this->targetedTokens[T_TRAIT] = '5.4';
+        }
+
         $tokens   = array_keys($this->targetedTokens);
         $tokens[] = T_STRING;
 

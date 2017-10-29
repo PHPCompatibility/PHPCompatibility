@@ -654,7 +654,10 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         if ($strict === false) {
             $validScopes[] = T_INTERFACE;
-            $validScopes[] = T_TRAIT;
+
+            if (defined('T_TRAIT')) {
+                $validScopes[] = constant('T_TRAIT');
+            }
         }
 
         return $phpcsFile->hasCondition($stackPtr, $validScopes);

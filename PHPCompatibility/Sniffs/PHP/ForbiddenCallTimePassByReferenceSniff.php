@@ -73,7 +73,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             true
         );
 
-        if ($prevNonEmpty !== false && in_array($tokens[$prevNonEmpty]['code'], array(T_FUNCTION, T_CLASS, T_INTERFACE, T_TRAIT), true)) {
+        if ($prevNonEmpty !== false && in_array($tokens[$prevNonEmpty]['type'], array('T_FUNCTION', 'T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             return;
         }
 

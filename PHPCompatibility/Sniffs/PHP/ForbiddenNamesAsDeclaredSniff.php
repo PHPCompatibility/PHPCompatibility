@@ -96,13 +96,18 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         // Do the list merge only once.
         $this->allForbiddenNames = array_merge($this->forbiddenNames, $this->softReservedNames);
 
-        return array(
+        $targets = array(
             T_CLASS,
             T_INTERFACE,
             T_NAMESPACE,
-            T_TRAIT,
             T_STRING, // Compat for PHPCS 1.x and PHP < 5.3.
         );
+
+        if (defined('T_TRAIT')) {
+            $targets[] = constant('T_TRAIT');
+        }
+
+        return $targets;
 
     }//end register()
 
@@ -124,6 +129,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
         $tokens         = $phpcsFile->getTokens();
         $tokenCode      = $tokens[$stackPtr]['code'];
+        $tokenType      = $tokens[$stackPtr]['type'];
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
 
         // For string tokens we only care about 'trait' as that is the only one
@@ -133,7 +139,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             return;
         }
 
-        if (in_array($tokenCode, array(T_CLASS, T_INTERFACE, T_TRAIT), true)) {
+        if (in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
             $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
