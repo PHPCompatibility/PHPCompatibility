@@ -61,7 +61,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
     public function testAlternativePHPTags($type, $snippet, $line)
     {
         if ($type === 'ASP' && self::$aspTags === false) {
-            $this->markTestSkipped();
+            $this->markTestSkipped('ASP tags are unavailable (PHP 7+) or disabled.');
             return;
         }
 
@@ -104,7 +104,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
     public function testMaybeASPOpenTag($line, $snippet)
     {
         if (self::$aspTags === true) {
-            $this->markTestSkipped();
+            $this->markTestSkipped('ASP tags are unavailable (PHP 7+) or disabled.');
             return;
         }
 
