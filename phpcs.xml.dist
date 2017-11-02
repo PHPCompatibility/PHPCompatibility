@@ -19,7 +19,7 @@
 
 	<!-- Verified correct usage. -->
 	<rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
-		<exclude-pattern>*/RemovedAlternativePHPTags*.php</exclude-pattern>
+		<exclude-pattern>*/RemovedAlternativePHPTags*\.php</exclude-pattern>
 	</rule>
 
 	<!--
@@ -59,7 +59,7 @@
 
 	<!-- No need to be as strict about comment punctuation for the unit tests. -->
 	<rule ref="Generic.Commenting.DocComment.ShortNotCapital">
-		<exclude-pattern>*/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
 	</rule>
 
 
@@ -77,13 +77,13 @@
 
 	<!-- No need to be as strict about file and class comment tags for the unit tests. -->
 	<rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
-		<exclude-pattern>*/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
 	</rule>
 	<rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
-		<exclude-pattern>*/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
 	</rule>
 	<rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
-		<exclude-pattern>*/Tests/*.php</exclude-pattern>
+		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
 	</rule>
 
 </ruleset>
