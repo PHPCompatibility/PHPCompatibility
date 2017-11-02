@@ -101,10 +101,10 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
      */
     public function testCoalesceEquals()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertError($file, 10, 'null coalesce equal operator (??=) is not present in PHP version 7.1 or earlier');
-
         $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $this->assertError($file, 10, 'null coalesce equal operator (??=) is not present in PHP version 7.2 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '7.3');
         $this->assertNoViolation($file, 10);
     }
 
