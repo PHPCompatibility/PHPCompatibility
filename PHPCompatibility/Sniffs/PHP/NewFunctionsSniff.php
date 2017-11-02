@@ -1244,6 +1244,74 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'stream_isatty' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sapi_windows_vt100_support' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ftp_append' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'hash_hmac_algos' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagebmp' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagecreatefrombmp' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagegetclip' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imageopenpolygon' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imageresolution' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'imagesetclip' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_exop' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_exop_passwd' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_exop_whoami' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'ldap_parse_exop' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'mb_chr' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'mb_ord' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'mb_scrub' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'socket_addrinfo_lookup' => array(
             '7.1' => false,
             '7.2' => true,
