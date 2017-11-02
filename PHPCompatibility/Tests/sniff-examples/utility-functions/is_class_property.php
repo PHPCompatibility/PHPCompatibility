@@ -62,19 +62,19 @@ interface MyInterface {
 }
 
 trait MyTrait {
-	/* Case 22 */
+	/* Case 21 */
 	public $var = true;
-	/* Case 23 */
+	/* Case 22 */
 	protected $var = true;
-	/* Case 24 */
+	/* Case 23 */
 	private $var = true;
-	/* Case 25 */
+	/* Case 24 */
 	var $var = true;
 
-	/* Case 26 */
+	/* Case 25 */
 	function something($var = false)
 	{
-		/* Case 27 */
+		/* Case 26 */
 		$var = false;
 	}
 }
