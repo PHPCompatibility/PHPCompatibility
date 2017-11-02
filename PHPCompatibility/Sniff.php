@@ -105,51 +105,56 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     {
         static $arrTestVersions = array();
 
+        $default     = array(null, null);
         $testVersion = trim(PHPCSHelper::getConfigData('testVersion'));
 
-        if (isset($arrTestVersions[$testVersion]) === false && empty($testVersion) === false) {
+        if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
 
-            $arrTestVersions[$testVersion] = array(null, null);
-            if (preg_match('/^\d+\.\d+$/', $testVersion)) {
+            $arrTestVersions[$testVersion] = $default;
+
+            if (preg_match('`^\d+\.\d+$`', $testVersion)) {
                 $arrTestVersions[$testVersion] = array($testVersion, $testVersion);
-
-            } elseif (preg_match('/^(\d+\.\d+)\s*-\s*(\d+\.\d+)$/', $testVersion, $matches)) {
-                if (version_compare($matches[1], $matches[2], '>')) {
-                    trigger_error(
-                        "Invalid range in testVersion setting: '" . $testVersion . "'",
-                        E_USER_WARNING
-                    );
-
-                } else {
-                    $arrTestVersions[$testVersion] = array($matches[1], $matches[2]);
-                }
-
-            } elseif (preg_match('/^\d+\.\d+-$/', $testVersion)) {
-                // If no upper-limit is set, we set the max version to 99.9.
-                // This is *probably* safe... :-)
-                $arrTestVersions[$testVersion] = array(substr($testVersion, 0, -1), '99.9');
-
-            } elseif (preg_match('/^-\d+\.\d+$/', $testVersion)) {
-                // If no lower-limit is set, we set the min version to 4.0.
-                // Whilst development focuses on PHP 5 and above, we also accept
-                // sniffs for PHP 4, so we include that as the minimum.
-                // (It makes no sense to support PHP 3 as this was effectively a
-                // different language).
-                $arrTestVersions[$testVersion] = array('4.0', substr($testVersion, 1));
-
-            } elseif ($testVersion !== '') {
-                trigger_error(
-                    "Invalid testVersion setting: '" . $testVersion . "'",
-                    E_USER_WARNING
-                );
+                return $arrTestVersions[$testVersion];
             }
+
+            if (preg_match('`^(\d+\.\d+)?\s*-\s*(\d+\.\d+)?$`', $testVersion, $matches)) {
+                if (empty($matches[1]) === false || empty($matches[2]) === false) {
+                    // If no lower-limit is set, we set the min version to 4.0.
+                    // Whilst development focuses on PHP 5 and above, we also accept
+                    // sniffs for PHP 4, so we include that as the minimum.
+                    // (It makes no sense to support PHP 3 as this was effectively a
+                    // different language).
+                    $min = empty($matches[1]) ? '4.0' : $matches[1];
+
+                    // If no upper-limit is set, we set the max version to 99.9.
+                    $max = empty($matches[2]) ? '99.9' : $matches[2];
+
+                    if (version_compare($min, $max, '>')) {
+                        trigger_error(
+                            "Invalid range in testVersion setting: '" . $testVersion . "'",
+                            E_USER_WARNING
+                        );
+                        return $default;
+                    }
+                    else {
+                        $arrTestVersions[$testVersion] = array($min, $max);
+                        return $arrTestVersions[$testVersion];
+                    }
+                }
+            }
+
+            trigger_error(
+                "Invalid testVersion setting: '" . $testVersion . "'",
+                E_USER_WARNING
+            );
+            return $default;
         }
 
         if (isset($arrTestVersions[$testVersion])) {
             return $arrTestVersions[$testVersion];
-        } else {
-            return array(null, null);
         }
+
+        return $default;
     }
 
 

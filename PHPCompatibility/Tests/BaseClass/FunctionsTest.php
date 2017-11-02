@@ -117,9 +117,9 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
             array('-5.6', array('4.0', '5.6')), // Range, with no minimum.
             array('7.0-', array('7.0', '99.9')), // Range, with no maximum.
 
-        // Whitespace tests.  Shouldn't really come up in standard command-line use,
-        // but could occur if command-line argument is quoted or added via
-        // ruleset.xml.
+            // Whitespace tests.  Shouldn't really come up in standard command-line use,
+            // but could occur if command-line argument is quoted or added via
+            // ruleset.xml.
             array(' 5.0', array('5.0', '5.0')), // Single version.
             array('5.0 ', array('5.0', '5.0')), // Single version.
             array('5.1 - 5.5', array('5.1', '5.5')), // Range of versions.
@@ -170,6 +170,8 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('5.6-5.4'), // Range of versions - min > max.
+            array('-3.0'), // Range of versions - min > max. Absolute minimum is 4.0.
+            array('105.0-'), // Range of versions - min > max. Absolute maximum is 99.9.
         );
     }
 
@@ -195,11 +197,11 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
         if (method_exists($this, 'setExpectedException')) {
             $this->setExpectedException(
                 'PHPUnit_Framework_Error_Warning',
-                sprintf('Invalid testVersion setting: \'%s\'', $testVersion)
+                sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion))
             );
         } else {
             $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', $testVersion));
+            $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion)));
         }
 
         $this->testGetTestVersion($testVersion, array(null, null));
@@ -221,7 +223,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
             array('seven.one'), // Non numeric.
 
             array('-'), // Blank range.
-            array('5.4-5.5-5.6'), // Mutiple ranges.
+            array('5.4-5.5-5.6'), // Multiple ranges.
 
             array('5-7.0'), // Invalid left half.
             array('5.1.2-7.0'), // Invalid left half.
