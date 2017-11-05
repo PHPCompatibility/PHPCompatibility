@@ -42,7 +42,7 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
     public function testRequiredOptionalParameter($functionName, $parameterName, $requiredUpTo, $lines, $okVersion)
     {
         $file  = $this->sniffFile(self::TEST_FILE, $requiredUpTo);
-        $error = "The \"{$parameterName}\" parameter for function {$functionName} is missing, but was required for PHP version {$requiredUpTo} and lower";
+        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing, but was required for PHP version {$requiredUpTo} and lower";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
