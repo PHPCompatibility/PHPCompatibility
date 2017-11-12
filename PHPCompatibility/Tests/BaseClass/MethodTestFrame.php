@@ -128,10 +128,11 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
      *
      * @param string    $commentString The comment to look for.
      * @param int|array $tokenType     The type of token(s) to look for.
+     * @param string    $tokenContent  Optional. The token content for the target token.
      *
      * @return int
      */
-    public function getTargetToken($commentString, $tokenType)
+    public function getTargetToken($commentString, $tokenType, $tokenContent = null)
     {
         $start   = ($this->phpcsFile->numTokens - 1);
         $comment = $this->phpcsFile->findPrevious(
@@ -142,10 +143,34 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
             $commentString
         );
 
-        return $this->phpcsFile->findNext(
+        $tokens = $this->phpcsFile->getTokens();
+        $end    = $start;
+
+        // Limit the token finding to between this and the next case comment.
+        for ($i = ($comment + 1); $i < $start; $i++) {
+            if ($tokens[$i]['code'] !== T_COMMENT) {
+                continue;
+            }
+
+            if (stripos($tokens[$i]['content'], '/* Case') === 0) {
+                $end = ($i - 1);
+                break;
+            }
+        }
+
+        $target = $this->phpcsFile->findNext(
             $tokenType,
-            ($comment + 1)
+            ($comment + 1),
+            $end,
+            false,
+            $tokenContent
         );
+
+        if ($target === false) {
+            $this->assertFalse(true, 'Failed to find test target token.');
+        }
+
+        return $target;
     }
 
 }
