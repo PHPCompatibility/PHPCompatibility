@@ -94,6 +94,7 @@ Installation in a Composer project (method 1)
     ./vendor/bin/phpcs -p . --standard=PHPCompatibility
     ```
 
+By default the report will be outputted to the console, if you want to have a file report check `--report-full=path/to/report-file`, more information check the [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
 
 Installation via a git check-out to an arbitrary directory (method 2)
 -----------------------
@@ -127,6 +128,7 @@ Installation via a git check-out to an arbitrary directory (method 2)
     phpcs -p . --standard=PHPCompatibility
     ```
 
+By default the report will be outputed to the console, if you want to have a file report check `--report-full=path/to/report-file`, more information check the [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
 
 Sniffing your code for compatibility with specific PHP version(s)
 ------------------------------
