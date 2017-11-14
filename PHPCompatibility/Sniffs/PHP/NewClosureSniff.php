@@ -113,8 +113,8 @@ class NewClosureSniff extends Sniff
                  * Closures only have access to $this if used within a class context.
                  */
                 elseif ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
-                    $phpcsFile->addError(
-                        'Closures / anonymous functions only have access to $this if used within a class',
+                    $phpcsFile->addWarning(
+                        'Closures / anonymous functions only have access to $this if used within a class or when bound to an object using bindTo(). Please verify.',
                         $thisFound,
                         'ThisFoundOutsideClass'
                     );

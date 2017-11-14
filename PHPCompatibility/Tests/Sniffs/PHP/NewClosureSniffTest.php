@@ -60,7 +60,7 @@ class NewClosureSniffTest extends BaseSniffTest
             array(40),
             array(47),
             array(52),
-            array(57),
+            array(59),
         );
     }
 
@@ -201,7 +201,7 @@ class NewClosureSniffTest extends BaseSniffTest
     public function testThisInClosureOutsideClass()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
-        $this->assertError($file, 53, 'Closures / anonymous functions only have access to $this if used within a class');
+        $this->assertWarning($file, 53, 'Closures / anonymous functions only have access to $this if used within a class or when bound to an object using bindTo(). Please verify.');
     }
 
 
@@ -231,7 +231,7 @@ class NewClosureSniffTest extends BaseSniffTest
     {
         return array(
             array(48),
-            array(58),
+            array(60),
         );
     }
 
