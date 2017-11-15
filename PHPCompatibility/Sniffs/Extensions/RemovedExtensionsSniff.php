@@ -81,6 +81,14 @@ class RemovedExtensionsSniff extends Sniff
             '5.1' => true,
             'alternative' => 'pecl/pdflib',
         ],
+        /* seen & verified */
+        'crack' => [
+            '5.0' => true,
+            'alternative' => 'pecl/crack',
+            // No ini variables
+            // No constants
+            // Function prefix: crack_
+        ],
         'dbase' => [
             '5.3' => true,
             'alternative' => null,
@@ -91,10 +99,13 @@ class RemovedExtensionsSniff extends Sniff
             'alternative' => 'pecl/dbx',
             'separator' => '_', // Verified: all functions use separator.
         ],
+        /* seen & verified */
         'dio' => [
             '5.1' => true,
             'alternative' => 'pecl/dio',
             'separator' => '_', // Verified: all functions use separator.
+            // No ini variables
+            // All constants start with F_, O_ or S_ ... bit too arbitrary
         ],
         'ereg' => [
             '5.3' => false,
@@ -138,15 +149,31 @@ class RemovedExtensionsSniff extends Sniff
             '5.1' => true,
             'alternative' => null,
         ],
+        /* seen & verified */
         'mcrypt' => [
             '7.1' => false,
             '7.2' => true,
             'alternative' => 'openssl (preferred) or pecl/mcrypt once available',
             'separator' => '_', // Verified: all functions use separator, though there is also the mdecrypt_generic function.
+            // ini prefix: `mcrypt.`
+            // All constants start with MCRYPT_
+            // Functions prefix: `mcrypt_` and `mdecrypt_`
         ],
+        /* seen & verified */
         'mcve' => [
             '5.1' => true,
             'alternative' => 'pecl/mcve',
+            // No ini variables
+            // All constants start with M_ -> only five: M_PENDING, M_DONE, M_ERROR, M_FAIL, M_SUCCESS
+            // Function prefix: m_
+        ],
+        /* seen & verified */
+        'mimetype' => [
+            '5.3' => true,
+            'alternative' => 'fileinfo',
+            // ini prefix: `mime_magic.`
+            // NO constants
+            // NO functions (at least none documented) ?
         ],
         'ming' => [
             '5.3' => true,
@@ -174,10 +201,13 @@ class RemovedExtensionsSniff extends Sniff
             'alternative' => 'mysqli',
             'separator' => '_', // Verified: all functions use separator.
         ],
+        /* seen & verified */
         'ncurses' => [
             '5.3' => true,
             'alternative' => 'pecl/ncurses',
             'separator' => '_', // Verified: all functions use separator.
+            // No ini variables
+            // All constants start with NCURSES_
         ],
         'oracle' => [
             '5.1' => true,
