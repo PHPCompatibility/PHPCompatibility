@@ -1506,10 +1506,10 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         $find = array(
-                 T_NS_SEPARATOR,
-                 T_STRING,
-                 T_WHITESPACE,
-                );
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_WHITESPACE,
+        );
 
         $end  = $phpcsFile->findNext($find, ($extendsIndex + 1), $classCloserIndex, true);
         $name = $phpcsFile->getTokensAsString(($extendsIndex + 1), ($end - $extendsIndex - 1));

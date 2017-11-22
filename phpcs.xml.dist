@@ -48,17 +48,30 @@
 		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
 	</rule>
 
-	<rule ref="Squiz.Arrays.ArrayDeclaration">
-		<!-- Ignoring the Squiz indentation rules as normalized arrays are preferred.
-		     Unfortunately there is currently no upstream sniff to check for this. -->
-		<exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned"/>
-		<exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned"/>
-		<exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned"/>
 
-		<!-- Single and multi-line arrays are both allowed. -->
-		<exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed"/>
-		<exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed"/>
-	</rule>
+    <!-- Use normalized array indentation. -->
+    <rule ref="Generic.Arrays.ArrayIndent"/>
+	<rule ref="Squiz.Arrays.ArrayDeclaration"/>
+
+	<!-- Ignoring the Squiz indentation rules as normalized arrays are preferred. -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.ValueNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned">
+        <severity>0</severity>
+    </rule>
+
+	<!-- Single and multi-line arrays are both allowed. -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed">
+        <severity>0</severity>
+    </rule>
+
 
 	<!--
 		Inline Documentation check.
