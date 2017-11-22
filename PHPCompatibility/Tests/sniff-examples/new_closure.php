@@ -48,10 +48,12 @@ static function() {
     var_dump($something);
 }
 
-// Invalid: Using $this outside of a class context.
-function() {
+// Warning: Using $this outside of a class context.
+$closure = function() {
    var_dump($this);
 }
+$foo = new stdClass();
+$closure = $closure->bindTo($foo);
 
 // Valid: using a variable - not $this - in a closure.
 function() {
