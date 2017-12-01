@@ -135,7 +135,7 @@ $class->php_check_syntax();
 MyClass::php_check_syntax();
 MyNamespace\php_check_syntax();
 echo PHP_CHECK_SYNTAX; // Constant.
-const php_check_syntax;
+const php_check_syntax = 'abc';
 use php_check_syntax;
 function php_check_syntax() {}
 abstract class Split {}

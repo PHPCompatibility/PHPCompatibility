@@ -3,7 +3,7 @@
 class MyClass {
 	const SOMETHING = 123;
 
-	$prop = 'string';
+	public $prop = 'string';
 
 	public function test() {
 		// Correct usage.
