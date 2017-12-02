@@ -24,7 +24,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
 {
     /**
      * Scopes to exclude when testing using validDirectScope
-     * 
+     *
      * @var array
      */
     private $excludeScopes = array(
