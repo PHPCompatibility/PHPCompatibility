@@ -53,8 +53,16 @@ class DeprecatedMagicAutoloadSniff extends Sniff
         if (strtolower($funcName) !== '__autoload') {
             return;
         }
+
+        if ($this->determineNamespace($phpcsFile, $stackPtr) != '') {
+            return;
+        }
+
+        if ($this->validDirectScope($phpcsFile, $stackPtr, array(T_CLASS, T_ANON_CLASS, T_INTERFACE, T_TRAIT)) === true) {
+            return;
+        }
         
-        $this->addMessage($phpcsFile, 'Use of __autoload() function is deprecated since PHP 7.2', $stackPtr, false);
+        $phpcsFile->addWarning('Use of __autoload() function is deprecated since PHP 7.2', $stackPtr, 'Found');
     }//end process()
 
 }//end class

@@ -66,8 +66,6 @@
 	<rule ref="Generic.Commenting.DocComment">
 		<!-- Having a @see or @internal tag before the @param tags is fine. -->
 		<exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
-		<!-- We prefer seeing nicely looking docblock comments -->
-		<exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
 	</rule>
 
 	<!-- No need to be as strict about comment punctuation for the unit tests. -->
