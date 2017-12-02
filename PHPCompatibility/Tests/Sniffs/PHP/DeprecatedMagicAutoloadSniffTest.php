@@ -60,7 +60,8 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      *
      * @dataProvider dataIsNotAffected
      *
-     * @param int $line The line number where the error should occur.
+     * @param string $testFile The file to test
+     * @param int    $line     The line number where the error should occur.
      *
      * @return void
      */
