@@ -4,9 +4,9 @@
  *
  * PHP version 7.2
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 
 namespace PHPCompatibility\Sniffs\PHP;
@@ -16,13 +16,23 @@ use PHPCompatibility\Sniff;
 /**
  * \PHPCompatibility\Sniffs\PHP\DeprecatedMagicAutoloadSniff.
  *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
+ * @category PHP
+ * @package  PHPCompatibility
+ * @author   Wim Godden <wim.godden@cu.be>
  */
 class DeprecatedMagicAutoloadSniff extends Sniff
 {
-
+    /**
+     * @var array
+     */
+    private $excludeScopes = array(
+        'T_CLASS'      => true,
+        'T_ANON_CLASS' => true,
+        'T_INTERFACE'  => true,
+        'T_TRAIT'      => true,
+        'T_NAMESPACE'  => true, // = Only scoped namespaces, non-scoped still needs to be checked in another way.
+    );
+    
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -44,6 +54,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        $tokens = $phpcsFile->getTokens();
         if ($this->supportsAbove('7.2') === false) {
             return;
         }
@@ -54,14 +65,14 @@ class DeprecatedMagicAutoloadSniff extends Sniff
             return;
         }
 
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->excludeScopes) === true) {
+            return;
+        }
+
         if ($this->determineNamespace($phpcsFile, $stackPtr) != '') {
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, array('T_CLASS', 'T_ANON_CLASS', 'T_INTERFACE', 'T_TRAIT')) === true) {
-            return;
-        }
-        
         $phpcsFile->addWarning('Use of __autoload() function is deprecated since PHP 7.2', $stackPtr, 'Found');
     }//end process()
 
