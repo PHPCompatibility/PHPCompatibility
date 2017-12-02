@@ -54,7 +54,6 @@ class DeprecatedMagicAutoloadSniff extends Sniff
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
         if ($this->supportsAbove('7.2') === false) {
             return;
         }
