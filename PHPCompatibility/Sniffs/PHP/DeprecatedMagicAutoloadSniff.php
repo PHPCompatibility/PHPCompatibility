@@ -58,7 +58,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, array(T_CLASS, T_ANON_CLASS, T_INTERFACE, T_TRAIT)) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, array('T_CLASS', 'T_ANON_CLASS', 'T_INTERFACE', 'T_TRAIT')) === true) {
             return;
         }
         
