@@ -248,7 +248,6 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true);
         $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
-
         // Skip attempts to use keywords as functions or class names - the former
         // will be reported by ForbiddenNamesAsInvokedFunctionsSniff, whilst the
         // latter will be (partially) reported by the ForbiddenNames sniff.

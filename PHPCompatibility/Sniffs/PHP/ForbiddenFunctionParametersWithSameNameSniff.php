@@ -69,7 +69,6 @@ class ForbiddenFunctionParametersWithSameNameSniff extends Sniff
             return;
         }
 
-
         $paramNames = array();
         foreach ($parameters as $param) {
             $paramNames[] = strtolower($param['name']);

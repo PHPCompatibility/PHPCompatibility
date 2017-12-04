@@ -297,7 +297,6 @@ class ForbiddenNamesSniff extends Sniff
             unset($i, $namespacePart, $partLc);
         }
 
-
         $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
         if (isset($this->invalidNames[$nextContentLc]) === false) {
             return;

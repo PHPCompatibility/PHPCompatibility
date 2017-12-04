@@ -52,7 +52,6 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
         $this->ignoreTokens[T_OPEN_PARENTHESIS]  = T_OPEN_PARENTHESIS;
         $this->ignoreTokens[T_CLOSE_PARENTHESIS] = T_CLOSE_PARENTHESIS;
 
-
         return array(T_LIST);
     }
 

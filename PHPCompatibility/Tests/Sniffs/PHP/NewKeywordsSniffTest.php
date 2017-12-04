@@ -50,7 +50,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
         $this->assertError($file, 15, '"insteadof" keyword (for traits) is not present in PHP version 5.3 or earlier');
         $this->assertError($file, 16, '"insteadof" keyword (for traits) is not present in PHP version 5.3 or earlier');
 
-
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertNoViolation($file, 15);
         $this->assertNoViolation($file, 16);
