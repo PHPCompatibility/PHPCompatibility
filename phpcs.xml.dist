@@ -1,75 +1,75 @@
 <?xml version="1.0"?>
 <ruleset name="PHPCS Coding Standards for PHPCompatibility">
-	<description>Check the code of the PHPCompatibility standard itself.</description>
+    <description>Check the code of the PHPCompatibility standard itself.</description>
 
-	<arg value="sp"/>
-	<arg name="extensions" value="php"/>
+    <arg value="sp"/>
+    <arg name="extensions" value="php"/>
 
-	<!-- Exclude test case code. -->
-	<exclude-pattern>*/Tests/sniff-examples/*</exclude-pattern>
+    <!-- Exclude test case code. -->
+    <exclude-pattern>*/Tests/sniff-examples/*</exclude-pattern>
 
-	<!-- Exclude Composer vendor directory. -->
-	<exclude-pattern>*/vendor/*</exclude-pattern>
+    <!-- Exclude Composer vendor directory. -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
 
-	<!--
-		PHP cross version compatibility ;-).
-	-->
-	<config name="testVersion" value="5.3-99.0"/>
-	<rule ref="PHPCompatibility"/>
+    <!--
+        PHP cross version compatibility ;-).
+    -->
+    <config name="testVersion" value="5.3-99.0"/>
+    <rule ref="PHPCompatibility"/>
 
-	<!-- Verified correct usage. -->
-	<rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
-		<exclude-pattern>*/RemovedAlternativePHPTags*\.php</exclude-pattern>
-	</rule>
+    <!-- Verified correct usage. -->
+    <rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
+        <exclude-pattern>*/RemovedAlternativePHPTags*\.php</exclude-pattern>
+    </rule>
 
-	<!-- Verified correct usage. -->
-	<rule ref="PHPCompatibility.PHP.NewConstants.t_finallyFound">
-		<exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.PHP.NewConstants.t_insteadofFound">
-		<exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.PHP.NewConstants.t_traitFound">
-		<exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-	</rule>
+    <!-- Verified correct usage. -->
+    <rule ref="PHPCompatibility.PHP.NewConstants.t_finallyFound">
+        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.PHP.NewConstants.t_insteadofFound">
+        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.PHP.NewConstants.t_traitFound">
+        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
+    </rule>
 
-	<!--
-		Minimal code style check.
-	-->
-	<rule ref="PSR2">
-		<!-- To address at a later point in time. -->
-		<exclude name="Generic.Files.LineLength.TooLong"/>
+    <!--
+        Minimal code style check.
+    -->
+    <rule ref="PSR2">
+        <!-- To address at a later point in time. -->
+        <exclude name="Generic.Files.LineLength.TooLong"/>
 
-		<!-- Ignoring a number of whitespace issues around blank lines. -->
-		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
-		<exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
-		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
-		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
-		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
-	</rule>
+        <!-- Ignoring a number of whitespace issues around blank lines. -->
+        <exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+        <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+    </rule>
 
-	<!-- PSR2 appears to ignore blank lines for superfluous whitespace and in several other places. Let's fix that. -->
-	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
-		<properties>
-			<property name="ignoreBlankLines" value="false"/>
-		</properties>
-	</rule>
-	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile">
-		<severity>5</severity>
-	</rule>
-	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile">
-		<severity>5</severity>
-	</rule>
-	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+    <!-- PSR2 appears to ignore blank lines for superfluous whitespace and in several other places. Let's fix that. -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile">
         <severity>5</severity>
-	</rule>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile">
+        <severity>5</severity>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+        <severity>5</severity>
+    </rule>
 
 
     <!-- Use normalized array indentation. -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
-	<rule ref="Squiz.Arrays.ArrayDeclaration"/>
+    <rule ref="Squiz.Arrays.ArrayDeclaration"/>
 
-	<!-- Ignoring the Squiz indentation rules as normalized arrays are preferred. -->
+    <!-- Ignoring the Squiz indentation rules as normalized arrays are preferred. -->
     <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
         <severity>0</severity>
     </rule>
@@ -80,7 +80,7 @@
         <severity>0</severity>
     </rule>
 
-	<!-- Single and multi-line arrays are both allowed. -->
+    <!-- Single and multi-line arrays are both allowed. -->
     <rule ref="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed">
         <severity>0</severity>
     </rule>
@@ -89,41 +89,41 @@
     </rule>
 
 
-	<!--
-		Inline Documentation check.
-	-->
-	<rule ref="Generic.Commenting.DocComment">
-		<!-- Having a @see or @internal tag before the @param tags is fine. -->
-		<exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
-	</rule>
+    <!--
+        Inline Documentation check.
+    -->
+    <rule ref="Generic.Commenting.DocComment">
+        <!-- Having a @see or @internal tag before the @param tags is fine. -->
+        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
+    </rule>
 
-	<!-- No need to be as strict about comment punctuation for the unit tests. -->
-	<rule ref="Generic.Commenting.DocComment.ShortNotCapital">
-		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
-	</rule>
+    <!-- No need to be as strict about comment punctuation for the unit tests. -->
+    <rule ref="Generic.Commenting.DocComment.ShortNotCapital">
+        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+    </rule>
 
 
-	<rule ref="PEAR.Commenting">
-		<!-- Exclude PEAR specific tag requirements. -->
-		<exclude name="PEAR.Commenting.FileComment.MissingVersion" />
-		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
-		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag" />
-		<exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
-		<exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
+    <rule ref="PEAR.Commenting">
+        <!-- Exclude PEAR specific tag requirements. -->
+        <exclude name="PEAR.Commenting.FileComment.MissingVersion" />
+        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
+        <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag" />
+        <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
+        <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
 
-		<!-- Having a @see or @internal tag before the @category tag is fine. -->
-		<exclude name="PEAR.Commenting.ClassComment.CategoryTagOrder"/>
-	</rule>
+        <!-- Having a @see or @internal tag before the @category tag is fine. -->
+        <exclude name="PEAR.Commenting.ClassComment.CategoryTagOrder"/>
+    </rule>
 
-	<!-- No need to be as strict about file and class comment tags for the unit tests. -->
-	<rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
-		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
-	</rule>
-	<rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
-		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
-	</rule>
-	<rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
-		<exclude-pattern>*/Tests/*\.php</exclude-pattern>
-	</rule>
+    <!-- No need to be as strict about file and class comment tags for the unit tests. -->
+    <rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
+        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+    </rule>
+    <rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
+        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+    </rule>
+    <rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
+        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+    </rule>
 
 </ruleset>
