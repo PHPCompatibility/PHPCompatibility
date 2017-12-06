@@ -8,6 +8,7 @@
 namespace PHPCompatibility\Tests\Sniffs\PHP;
 
 use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * __autoload deprecation for PHP 7.2 sniff test
@@ -23,6 +24,27 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     const TEST_FILE = 'sniff-examples/deprecated_magic_autoload.php';
     const TEST_FILE_NAMESPACED = 'sniff-examples/deprecated_magic_autoload_namespaced.php';
 
+    /**
+     * Whether or not traits will be recognized in PHPCS.
+     *
+     * @var bool
+     */
+    protected static $recognizesTraits = true;
+    
+    /**
+     * Set up skip condition.
+     *
+     * @return void
+     */
+    public static function setUpBeforeClass()
+    {
+        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
+        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
+            self::$recognizesTraits = false;
+        }
+        parent::setUpBeforeClass();
+    }
+    
     /**
      * Test __autoload deprecation.
      *
@@ -62,11 +84,17 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      *
      * @param string $testFile The file to test
      * @param int    $line     The line number where the error should occur.
+     * @param bool   $isTrait  Whether the test relates to a method in a trait.
      *
      * @return void
      */
-    public function testIsNotAffected($testFile, $line)
+    public function testIsNotAffected($testFile, $line, $isTrait)
     {
+        if ($isTrait === true && self::$recognizesTraits === false) {
+            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
+            return;
+        }
+        
         $file = $this->sniffFile($testFile, '7.2');
         $this->assertNoViolation($file, $line);
     }
@@ -81,15 +109,15 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     public function dataIsNotAffected()
     {
         return array(
-            array(self::TEST_FILE, 8),
-            array(self::TEST_FILE, 14),
-            array(self::TEST_FILE, 18),
-            array(self::TEST_FILE, 24),
-            array(self::TEST_FILE_NAMESPACED, 6),
-            array(self::TEST_FILE_NAMESPACED, 11),
-            array(self::TEST_FILE_NAMESPACED, 16),
-            array(self::TEST_FILE_NAMESPACED, 21),
-            array(self::TEST_FILE_NAMESPACED, 27),
+            array(self::TEST_FILE, 8, false),
+            array(self::TEST_FILE, 14, false),
+            array(self::TEST_FILE, 18, true),
+            array(self::TEST_FILE, 24, false),
+            array(self::TEST_FILE_NAMESPACED, 6, false),
+            array(self::TEST_FILE_NAMESPACED, 11, false),
+            array(self::TEST_FILE_NAMESPACED, 16, false),
+            array(self::TEST_FILE_NAMESPACED, 20, true),
+            array(self::TEST_FILE_NAMESPACED, 26, false),
         );
     }
     
