@@ -23,16 +23,16 @@ use PHPCompatibility\Sniff;
 class DeprecatedMagicAutoloadSniff extends Sniff
 {
     /**
-     * Scopes to exclude when testing using validDirectScope
+     * Scopes to look for when testing using validDirectScope
      *
      * @var array
      */
-    private $excludeScopes = array(
+    private $checkForScopes = array(
         'T_CLASS'      => true,
         'T_ANON_CLASS' => true,
         'T_INTERFACE'  => true,
         'T_TRAIT'      => true,
-        'T_NAMESPACE'  => true, // = Only scoped namespaces, non-scoped still needs to be checked in another way.
+        'T_NAMESPACE'  => true,
     );
 
     /**
@@ -66,7 +66,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->excludeScopes) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->checkForScopes) === true) {
             return;
         }
 
