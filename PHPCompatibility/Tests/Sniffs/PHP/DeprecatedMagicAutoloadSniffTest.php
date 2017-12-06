@@ -25,11 +25,11 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     const TEST_FILE_NAMESPACED = 'sniff-examples/deprecated_magic_autoload_namespaced.php';
 
     /**
-     * Whether or not traits will be recognized in PHPCS.
+     * Whether or not traits and interfaces will be recognized in PHPCS.
      *
      * @var bool
      */
-    protected static $recognizesTraits = true;
+    protected static $recognizesTraitsOrInterfaces = true;
     
     /**
      * Set up skip condition.
@@ -40,9 +40,21 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     {
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
         if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
+            self::$recognizesTraitsOrInterfaces = false;
         }
         parent::setUpBeforeClass();
+    }
+    
+
+    /**
+     * Test __autoload deprecation not causing issue in 7.1.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersion()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $this->assertNoViolation($file);
     }
     
     /**
@@ -56,9 +68,6 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      */
     public function testIsDeprecated($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
-        $this->assertNoViolation($file, $line);
-        
         $file = $this->sniffFile(self::TEST_FILE, '7.2');
         $this->assertWarning($file, $line, 'Use of __autoload() function is deprecated since PHP 7.2');
     }
@@ -90,7 +99,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      */
     public function testIsNotAffected($testFile, $line, $isTrait)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
+        if ($isTrait === true && self::$recognizesTraitsOrInterfaces === false) {
             $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
             return;
         }
@@ -110,12 +119,12 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     {
         return array(
             array(self::TEST_FILE, 8, false),
-            array(self::TEST_FILE, 14, false),
+            array(self::TEST_FILE, 14, true),
             array(self::TEST_FILE, 18, true),
             array(self::TEST_FILE, 24, false),
             array(self::TEST_FILE_NAMESPACED, 6, false),
             array(self::TEST_FILE_NAMESPACED, 11, false),
-            array(self::TEST_FILE_NAMESPACED, 16, false),
+            array(self::TEST_FILE_NAMESPACED, 16, true),
             array(self::TEST_FILE_NAMESPACED, 20, true),
             array(self::TEST_FILE_NAMESPACED, 26, false),
         );

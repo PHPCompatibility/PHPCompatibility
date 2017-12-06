@@ -34,7 +34,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
         'T_TRAIT'      => true,
         'T_NAMESPACE'  => true, // = Only scoped namespaces, non-scoped still needs to be checked in another way.
     );
-    
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
