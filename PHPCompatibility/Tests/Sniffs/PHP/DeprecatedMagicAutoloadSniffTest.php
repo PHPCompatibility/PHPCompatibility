@@ -102,7 +102,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
             $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
             return;
         }
-        
+
         $file = $this->sniffFile($testFile, '7.2');
         $this->assertNoViolation($file, $line);
     }
