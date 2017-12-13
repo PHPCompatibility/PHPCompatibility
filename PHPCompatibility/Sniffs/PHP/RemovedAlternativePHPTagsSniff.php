@@ -122,7 +122,6 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             return;
         }
 
-
         // If we're still here, we can't be sure if what we find was really intended as ASP open tags.
         if ($openTag['code'] === T_INLINE_HTML && $this->aspTags === false) {
             if (strpos($content, '<%') !== false) {

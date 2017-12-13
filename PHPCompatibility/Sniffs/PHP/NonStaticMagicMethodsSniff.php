@@ -133,10 +133,11 @@ class NonStaticMagicMethodsSniff extends Sniff
              * If no body of function (e.g. for interfaces), there is
              * no closing curly brace; advance the pointer differently.
              */
-            $scopeCloser = isset($tokens[$functionToken]['scope_closer'])
-                ? $tokens[$functionToken]['scope_closer']
-                : $functionToken + 1;
-
+            if (isset($tokens[$functionToken]['scope_closer'])) {
+                $scopeCloser = $tokens[$functionToken]['scope_closer'];
+            } else {
+                $scopeCloser = ($functionToken + 1);
+            }
 
             $methodName   = $phpcsFile->getDeclarationName($functionToken);
             $methodNameLc = strtolower($methodName);

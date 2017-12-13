@@ -154,7 +154,6 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 continue;
             }
 
-
             // Checking this: $value = my_function(...[*]$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
                 \PHP_CodeSniffer_Tokens::$emptyTokens,

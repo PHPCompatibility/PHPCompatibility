@@ -43,7 +43,6 @@ class ValidIntegersSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, $line, "Binary integer literals were not present in PHP version 5.3 or earlier. Found: {$binary}");
 
-
         if ($testNoViolation === true) {
             $file = $this->sniffFile(self::TEST_FILE, '5.4');
             $this->assertNoViolation($file, $line);
