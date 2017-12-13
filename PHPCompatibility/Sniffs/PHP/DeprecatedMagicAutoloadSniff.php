@@ -61,7 +61,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
         }
 
         $funcName = $phpcsFile->getDeclarationName($stackPtr);
-        
+
         if (strtolower($funcName) !== '__autoload') {
             return;
         }

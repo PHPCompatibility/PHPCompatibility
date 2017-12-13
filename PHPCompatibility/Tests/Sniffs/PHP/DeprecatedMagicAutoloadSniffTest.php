@@ -30,7 +30,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      * @var bool
      */
     protected static $recognizesTraitsOrInterfaces = true;
-    
+
     /**
      * Set up skip condition.
      *
@@ -44,7 +44,6 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
         }
         parent::setUpBeforeClass();
     }
-    
 
     /**
      * Test __autoload deprecation not causing issue in 7.1.
@@ -56,7 +55,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '7.1');
         $this->assertNoViolation($file);
     }
-    
+
     /**
      * Test __autoload deprecation.
      *
@@ -85,7 +84,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
             array(3),
         );
     }
-    
+
     /**
      * Test not affected __autoload declarations.
      *
@@ -107,7 +106,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
         $file = $this->sniffFile($testFile, '7.2');
         $this->assertNoViolation($file, $line);
     }
-    
+
     /**
      * dataIsDeprecated
      *
@@ -129,5 +128,4 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
             array(self::TEST_FILE_NAMESPACED, 26, false),
         );
     }
-    
 }
