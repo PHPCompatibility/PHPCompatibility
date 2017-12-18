@@ -319,6 +319,9 @@ pcntl_async_signals();
 session_create_id();
 session_gc();
 
+oci_register_taf_callback();
+oci_unregister_taf_callback();
+
 ldap_exop();
 ldap_exop_passwd();
 ldap_exop_whoami();
