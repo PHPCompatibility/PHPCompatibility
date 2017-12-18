@@ -310,6 +310,8 @@ inflate_init();
 deflate_init();
 
 socket_export_stream();
+oci_register_taf_callback();
+oci_unregister_taf_callback();
 
 curl_multi_errno();
 curl_share_errno();

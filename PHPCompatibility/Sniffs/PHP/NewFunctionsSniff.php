@@ -1209,12 +1209,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
-
         'socket_export_stream' => array(
             '7.0.6' => false,
             '7.0.7' => true,
         ),
-
+        'oci_register_taf_callback' => array(
+            '7.0.20' => false,
+            '7.0.21' => true,
+        ),
+        'oci_unregister_taf_callback' => array(
+            '7.0.20' => false,
+            '7.0.21' => true,
+        ),
         'curl_multi_errno' => array(
             '7.0' => false,
             '7.1' => true,
@@ -1243,7 +1249,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
-
         'stream_isatty' => array(
             '7.1' => false,
             '7.2' => true,
