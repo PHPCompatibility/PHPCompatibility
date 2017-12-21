@@ -1244,6 +1244,15 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'oci_register_taf_callback' => array(
+            '7.1.6' => false,
+            '7.1.7' => true,
+        ),
+        'oci_unregister_taf_callback' => array(
+            '7.1.8' => false,
+            '7.1.9' => true,
+        ),
+
         'stream_isatty' => array(
             '7.1' => false,
             '7.2' => true,
