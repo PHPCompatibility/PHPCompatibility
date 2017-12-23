@@ -777,6 +777,10 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
         ),
+        'read_exif_data' => array(
+            '7.2' => false,
+            'alternative' => 'exif_read_data()',
+        ),
     );
 
 
