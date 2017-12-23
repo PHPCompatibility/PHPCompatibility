@@ -80,7 +80,7 @@ As the directory layout of PHPCompatibility has changed, the path previously reg
 If you use Composer, we recommend you use a Composer plugin to sort this out. In previous install instructions we recommended the SimplyAdmin plugin for this. This plugin has since been abandoned. We now recommend the DealerDirect plugin.
 ```bash
 composer remove --dev simplyadmire/composer-plugins
-composer require --dev dealerdirect/phpcodesniffer-composer-installer:^0.4.1
+composer require --dev dealerdirect/phpcodesniffer-composer-installer:^0.4.3
 composer install
 composer update wimg/php-compatibility squizlabs/php_codesniffer
 vendor/bin/phpcs -i
