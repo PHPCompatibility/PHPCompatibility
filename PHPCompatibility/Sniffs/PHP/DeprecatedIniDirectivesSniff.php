@@ -213,6 +213,9 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'track_errors' => array(
             '7.2' => false,
         ),
+        'opcache.fast_shutdown' => array(
+            '7.2' => true,
+        ),
     );
 
     /**

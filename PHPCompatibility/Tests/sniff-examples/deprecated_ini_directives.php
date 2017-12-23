@@ -171,3 +171,6 @@ $a = ini_get('sql.safe_mode');
 
 ini_set('track_errors', true);
 $a = ini_get('track_errors');
+
+ini_set('opcache.fast_shutdown', true);
+$a = ini_get('opcache.fast_shutdown');

@@ -262,6 +262,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('session.hash_bits_per_character', '7.1', array(150, 151), '7.0'),
 
             array('sql.safe_mode', '7.2', array(169, 170), '7.1'),
+            array('opcache.fast_shutdown', '7.2', array(175, 176), '7.1'),
         );
     }
 
