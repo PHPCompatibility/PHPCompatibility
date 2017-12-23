@@ -73,3 +73,8 @@ def( &$dummy .= $b ); // Bad: pass by reference.
 // Ok: Comparisons passed as function parameter.
 efg( true == &$b );
 efg( true === &$b );
+
+// Issue https://github.com/wimg/PHPCompatibility/issues/39
+foo(Bar::FOO & $a);
+$foo = self::FLAG_GETDATA & $flags ? 'SQL_CALC_FOUND_ROWS' : '';
+$handler->throwAt(E_ALL & $handler->thrownErrors, true);

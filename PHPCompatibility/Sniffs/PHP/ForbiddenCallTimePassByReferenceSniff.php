@@ -32,6 +32,42 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 {
 
     /**
+     * Tokens that represent assignments or equality comparisons.
+     *
+     * Near duplicate of Tokens::$assignmentTokens + Tokens::$equalityTokens.
+     * Copied in for PHPCS cross-version compatibility.
+     *
+     * @var array
+     */
+    private $assignOrCompare = array(
+        // Comparison tokens.
+        'T_IS_EQUAL'            => true,
+        'T_IS_NOT_EQUAL'        => true,
+        'T_IS_IDENTICAL'        => true,
+        'T_IS_NOT_IDENTICAL'    => true,
+        'T_IS_SMALLER_OR_EQUAL' => true,
+        'T_IS_GREATER_OR_EQUAL' => true,
+
+        // Assignment tokens.
+        'T_EQUAL'          => true,
+        'T_AND_EQUAL'      => true,
+        'T_OR_EQUAL'       => true,
+        'T_CONCAT_EQUAL'   => true,
+        'T_DIV_EQUAL'      => true,
+        'T_MINUS_EQUAL'    => true,
+        'T_POW_EQUAL'      => true,
+        'T_MOD_EQUAL'      => true,
+        'T_MUL_EQUAL'      => true,
+        'T_PLUS_EQUAL'     => true,
+        'T_XOR_EQUAL'      => true,
+        'T_DOUBLE_ARROW'   => true,
+        'T_SL_EQUAL'       => true,
+        'T_SR_EQUAL'       => true,
+        'T_COALESCE_EQUAL' => true,
+        'T_ZSR_EQUAL'      => true,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -135,7 +171,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      */
     protected function isCallTimePassByReferenceParam(\PHP_CodeSniffer_File $phpcsFile, $parameter, $nestingLevel)
     {
-        $tokens   = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
 
         $searchStartToken = $parameter['start'] - 1;
         $searchEndToken   = $parameter['end'] + 1;
@@ -167,6 +203,10 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 continue;
             }
 
+            if ($phpcsFile->isReference($tokenBefore) === false) {
+                continue;
+            }
+
             // Checking this: $value = my_function(...[*]&$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
                 \PHP_CodeSniffer_Tokens::$emptyTokens,
@@ -175,66 +215,15 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 true
             );
 
-            // We have to exclude all uses of T_BITWISE_AND that are not
-            // references. We use a blacklist approach as we prefer false
-            // positives to not identifying a pass-by-reference call at all.
-            // The blacklist may not yet be complete.
-            switch ($tokens[$tokenBefore]['code']) {
-                // In these cases T_BITWISE_AND represents
-                // the bitwise and operator.
-                case T_LNUMBER:
-                case T_VARIABLE:
-                case T_CLOSE_SQUARE_BRACKET:
-                case T_CLOSE_PARENTHESIS:
-                    break;
-
-                // Prevent false positive on assign by reference and compare with reference
-                // with function call parameters.
-                case T_EQUAL:
-                case T_AND_EQUAL:
-                case T_OR_EQUAL:
-                case T_CONCAT_EQUAL:
-                case T_DIV_EQUAL:
-                case T_MINUS_EQUAL:
-                case T_MOD_EQUAL:
-                case T_MUL_EQUAL:
-                case T_PLUS_EQUAL:
-                case T_XOR_EQUAL:
-                case T_SL_EQUAL:
-                case T_SR_EQUAL:
-                case T_IS_EQUAL:
-                case T_IS_IDENTICAL:
-                    break;
-
-                // Unfortunately the tokenizer fails to recognize global constants,
-                // class-constants and -attributes. Any of these are returned is
-                // treated as T_STRING.
-                // So we step back another token and check if it is a class
-                // operator (-> or ::), which means we have a false positive.
-                // Global constants still remain uncovered.
-                case T_STRING:
-                    $tokenBeforePlus = $phpcsFile->findPrevious(
-                        \PHP_CodeSniffer_Tokens::$emptyTokens,
-                        ($tokenBefore - 1),
-                        $searchStartToken,
-                        true
-                    );
-                    if ($tokens[$tokenBeforePlus]['code'] === T_DOUBLE_COLON
-                        || $tokens[$tokenBeforePlus]['code'] === T_OBJECT_OPERATOR
-                    ) {
-                        break;
-                    }
-                    // If not a class constant: fall through.
-
-                default:
-                    // Deal with T_POW_EQUAL which doesn't exist in PHPCS 1.x.
-                    if (defined('T_POW_EQUAL') && $tokens[$tokenBefore]['type'] === 'T_POW_EQUAL') {
-                        break;
-                    }
-
-                    // The found T_BITWISE_AND represents a pass-by-reference.
-                    return true;
+            // Prevent false positive on assign by reference and compare with reference
+            // within function call parameters.
+            if (isset($this->assignOrCompare[$tokens[$tokenBefore]['type']])) {
+                continue;
             }
+
+            // The found T_BITWISE_AND represents a pass-by-reference.
+            return true;
+
         } while ($nextVariable < $searchEndToken);
 
         // This code should never be reached, but here in case of weird bugs ;-)
