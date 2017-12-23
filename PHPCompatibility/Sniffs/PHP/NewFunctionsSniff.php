@@ -1337,6 +1337,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'spl_object_id' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'sodium_add' => array(
             '7.1' => false,
             '7.2' => true,

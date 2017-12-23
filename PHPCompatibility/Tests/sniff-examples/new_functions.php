@@ -416,3 +416,4 @@ sodium_memcmp();
 sodium_memzero();
 sodium_pad();
 sodium_unpad();
+spl_object_id();
