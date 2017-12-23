@@ -92,7 +92,7 @@ before_install:
   - export XMLLINT_INDENT="    "
   # PHP 5.3+: set up test environment using Composer.
   - composer self-update
-  - if [[ $COVERALLS_VERSION != "notset" ]]; then composer require --dev php-coveralls/php-coveralls:${COVERALLS_VERSION}; fi
+  - if [[ $COVERALLS_VERSION != "notset" ]]; then composer require php-coveralls/php-coveralls:${COVERALLS_VERSION}; fi
   - composer require squizlabs/php_codesniffer:${PHPCS_VERSION}
   - if [[ $PHPUNIT_VERSION != "travis" ]]; then composer require phpunit/phpunit:${PHPUNIT_VERSION}; fi
   # --no-dev makes sure the Travis provided version of PHPUnit is used for better stability.
