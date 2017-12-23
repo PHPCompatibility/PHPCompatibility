@@ -118,7 +118,70 @@ class RemovedConstantsSniffTest extends BaseSniffTest
             array('CURLCLOSEPOLICY_CALLBACK', '5.6', array(13), '5.5'),
             array('CURLCLOSEPOLICY_OLDEST', '5.6', array(14), '5.5'),
             array('PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT', '7.0', array(15), '5.6'),
+        );
+    }
 
+
+    /**
+     * testDeprecatedRemovedConstant
+     *
+     * @dataProvider dataDeprecatedRemovedConstant
+     *
+     * @param string $constantName      Name of the PHP constant.
+     * @param string $deprecatedIn      The PHP version in which the constant was deprecated.
+     * @param string $removedIn         The PHP version in which the constant was removed.
+     * @param array  $lines             The line numbers in the test file which apply to this constant.
+     * @param string $okVersion         A PHP version in which the constant was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     * @param string $removedVersion    Optional PHP version to test removed message with -
+     *                                  if different from the $removedIn version.
+     *
+     * @return void
+     */
+    public function testDeprecatedRemovedConstant($constantName, $deprecatedIn, $removedIn, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $error        = "The constant \"{$constantName}\" is deprecated since PHP {$deprecatedIn}";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+
+        $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $error        = "The constant \"{$constantName}\" is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}";
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedRemovedConstant()
+     *
+     * @return array
+     */
+    public function dataDeprecatedRemovedConstant()
+    {
+        return array(
+            array('MCRYPT_MODE_ECB', '7.1', '7.2', array(17), '7.0'),
+            array('MCRYPT_MODE_CBC', '7.1', '7.2', array(18), '7.0'),
+            array('MCRYPT_MODE_CFB', '7.1', '7.2', array(19), '7.0'),
+            array('MCRYPT_MODE_OFB', '7.1', '7.2', array(20), '7.0'),
+            array('MCRYPT_MODE_NOFB', '7.1', '7.2', array(21), '7.0'),
+            array('MCRYPT_MODE_STREAM', '7.1', '7.2', array(22), '7.0'),
+            array('MCRYPT_ENCRYPT', '7.1', '7.2', array(23), '7.0'),
+            array('MCRYPT_DECRYPT', '7.1', '7.2', array(24), '7.0'),
+            array('MCRYPT_DEV_RANDOM', '7.1', '7.2', array(25), '7.0'),
+            array('MCRYPT_DEV_URANDOM', '7.1', '7.2', array(26), '7.0'),
+            array('MCRYPT_RAND', '7.1', '7.2', array(27), '7.0'),
         );
     }
 

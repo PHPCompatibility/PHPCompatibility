@@ -64,6 +64,50 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
         ),
 
+        'MCRYPT_MODE_ECB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_CBC' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_CFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_OFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_NOFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_STREAM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_ENCRYPT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DECRYPT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DEV_RANDOM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DEV_URANDOM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RAND' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
     );
 
 
