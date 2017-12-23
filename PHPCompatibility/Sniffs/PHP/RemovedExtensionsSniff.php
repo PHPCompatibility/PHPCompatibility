@@ -105,6 +105,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         ),
         'mcrypt' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'openssl (preferred) or pecl/mcrypt once available',
         ),
         'mcve' => array(
