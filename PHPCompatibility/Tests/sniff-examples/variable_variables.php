@@ -33,5 +33,10 @@ class fooBar {
     }
 }
 
+// Test code style independent sniffing.
+echo $  $var['key1']['key2']; // Bad.
+echo $obj  ->   /* comment */ $var['key']; // Bad.
+echo myClass  :: { /* comment */ $var['key']}(); // OK.
+
 // Live coding.
 echo $$var['key'

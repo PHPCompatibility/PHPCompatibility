@@ -61,13 +61,14 @@ class VariableVariablesSniff extends Sniff
             return;
         }
 
-        // The previous token has to be a $, -> or ::.
-        if (isset($tokens[($stackPtr - 1)]) === false || in_array($tokens[($stackPtr - 1)]['code'], array(T_DOLLAR, T_OBJECT_OPERATOR, T_DOUBLE_COLON), true) === false) {
+        // The previous non-empty token has to be a $, -> or ::.
+        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        if ($prevToken === false || in_array($tokens[$prevToken]['code'], array(T_DOLLAR, T_OBJECT_OPERATOR, T_DOUBLE_COLON), true) === false) {
             return;
         }
 
         // For static object calls, it only applies when this is a function call.
-        if ($tokens[($stackPtr - 1)]['code'] === T_DOUBLE_COLON) {
+        if ($tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
             $hasBrackets = $tokens[$nextToken]['bracket_closer'];
             while (($hasBrackets = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false) {
                 if ($tokens[$hasBrackets]['code'] === T_OPEN_SQUARE_BRACKET) {
@@ -90,7 +91,7 @@ class VariableVariablesSniff extends Sniff
             }
 
             // Now let's also prevent false positives when used with self and static which still work fine.
-            $classToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 2), null, true, null, true);
+            $classToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
             if ($classToken !== false) {
                 if ($tokens[$classToken]['code'] === T_STATIC || $tokens[$classToken]['code'] === T_SELF) {
                     return;
