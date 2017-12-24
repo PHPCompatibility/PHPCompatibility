@@ -200,6 +200,7 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             array('create_function', '7.2', 'an anonymous function', array(146), '7.1'),
             array('each', '7.2', 'a foreach loop', array(147), '7.1'),
             array('gmp_random', '7.2', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
+            array('read_exif_data', '7.2', 'exif_read_data()', array(149), '7.1'),
         );
     }
 
