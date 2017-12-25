@@ -133,6 +133,7 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
         'mcrypt_generic_end' => array(
+            '5.3' => false,
             '5.4' => false,
             '5.5' => false,
             '5.6' => false,
@@ -631,130 +632,162 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
 
         'mcrypt_create_iv' => array(
             '7.1' => false,
-            'alternative' => 'OpenSSL',
+            '7.2' => true,
+            'alternative' => 'random_bytes() or OpenSSL',
         ),
         'mcrypt_decrypt' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_algorithms_name' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_block_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_iv_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_key_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_modes_name' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_get_supported_key_sizes' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_is_block_algorithm_mode' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_is_block_algorithm' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_is_block_mode' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_enc_self_test' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_encrypt' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_generic_deinit' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_generic_init' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_generic' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_get_block_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_get_cipher_name' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_get_iv_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_get_key_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_list_algorithms' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_list_modes' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_close' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_get_algo_block_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_get_algo_key_size' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_get_supported_key_sizes' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_is_block_algorithm_mode' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_is_block_algorithm' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_is_block_mode' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_open' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mcrypt_module_self_test' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'mdecrypt_generic' => array(
             '7.1' => false,
+            '7.2' => true,
             'alternative' => 'OpenSSL',
         ),
         'jpeg2wbmp' => array(

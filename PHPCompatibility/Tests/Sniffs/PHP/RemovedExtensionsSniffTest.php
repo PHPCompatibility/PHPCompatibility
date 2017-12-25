@@ -191,51 +191,7 @@ class RemovedExtensionsSniffTest extends BaseSniffTest
         return array(
             array('ereg', '5.3', '7.0', 'pcre', array(65, 76), '5.2'),
             array('mysql_', '5.5', '7.0', 'mysqli', array(38), '5.4'),
-        );
-    }
-
-
-    /**
-     * testDeprecatedExtensionWithAlternative
-     *
-     * @dataProvider dataDeprecatedExtensionWithAlternative
-     *
-     * @param string $extensionName     Name of the PHP extension.
-     * @param string $deprecatedIn      The PHP version in which the extension was deprecated.
-     * @param string $alternative       An alternative extension.
-     * @param array  $lines             The line numbers in the test file which apply to this extension.
-     * @param string $okVersion         A PHP version in which the extension was still present.
-     * @param string $deprecatedVersion Optional PHP version to test removal message with -
-     *                                  if different from the $deprecatedIn version.
-     *
-     * @return void
-     */
-    public function testDeprecatedExtensionWithAlternative($extensionName, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
-    {
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
-        foreach ($lines as $line) {
-            $this->assertNoViolation($file, $line);
-        }
-
-        $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
-        $error        = "Extension '{$extensionName}' is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
-        foreach ($lines as $line) {
-            $this->assertWarning($file, $line, $error);
-        }
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testDeprecatedExtensionWithAlternative()
-     *
-     * @return array
-     */
-    public function dataDeprecatedExtensionWithAlternative()
-    {
-        return array(
-            array('mcrypt', '7.1', 'openssl (preferred) or pecl/mcrypt once available', array(71), '7.0'),
+            array('mcrypt', '7.1', '7.2', 'openssl (preferred) or pecl/mcrypt once available', array(71), '7.0'),
         );
     }
 

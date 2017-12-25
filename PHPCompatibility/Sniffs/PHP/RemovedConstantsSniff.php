@@ -64,6 +64,214 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
         ),
 
+        'MCRYPT_MODE_ECB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_CBC' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_CFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_OFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_NOFB' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MODE_STREAM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_ENCRYPT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DECRYPT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DEV_RANDOM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DEV_URANDOM' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RAND' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_3DES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_ARCFOUR_IV' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_ARCFOUR' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_BLOWFISH' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_CAST_128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_CAST_256' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_CRYPT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_DES_COMPAT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_ENIGMA' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_GOST' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_IDEA' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_LOKI97' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_MARS' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_PANAMA' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RIJNDAEL_128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RIJNDAEL_192' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RIJNDAEL_256' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC2' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC4' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC6' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC6_128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC6_192' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_RC6_256' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SAFER64' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SAFER128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SAFERPLUS' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SERPENT' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SERPENT_128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SERPENT_192' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SERPENT_256' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_SKIPJACK' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TEAN' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_THREEWAY' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TRIPLEDES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TWOFISH' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TWOFISH128' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TWOFISH192' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_TWOFISH256' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_WAKE' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'MCRYPT_XTEA' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
     );
 
 
