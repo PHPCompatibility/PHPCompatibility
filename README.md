@@ -94,8 +94,6 @@ Installation in a Composer project (method 1)
     ./vendor/bin/phpcs -p . --standard=PHPCompatibility
     ```
 
-By default the report will be outputted to the console, if you want to have a file report check `--report-full=path/to/report-file`, more information check the [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
-
 Installation via a git check-out to an arbitrary directory (method 2)
 -----------------------
 
@@ -128,8 +126,6 @@ Installation via a git check-out to an arbitrary directory (method 2)
     phpcs -p . --standard=PHPCompatibility
     ```
 
-By default the report will be outputed to the console, if you want to have a file report check `--report-full=path/to/report-file`, more information check the [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
-
 Sniffing your code for compatibility with specific PHP version(s)
 ------------------------------
 * Run the coding standard from the command-line with `phpcs -p . --standard=PHPCompatibility`.
@@ -138,6 +134,8 @@ Sniffing your code for compatibility with specific PHP version(s)
     - You can run the checks for just one specific PHP version by adding `--runtime-set testVersion 5.5` to your command line command.
     - You can also specify a range of PHP versions that your code needs to support. In this situation, compatibility issues that affect any of the PHP versions in that range will be reported: `--runtime-set testVersion 5.3-5.5`.
     - As of PHPCompatibility 7.1.3, you can omit one part of the range if you want to support everything above or below a particular version, i.e. use `--runtime-set testVersion 7.0-` to run all the checks for PHP 7.0 and above.
+* By default the report will be sent to the console, if you want to save the report to a file, add the following to the command line command: `--report-full=path/to/report-file`.
+    For more information and other reporting options, check the [PHP CodeSniffer wiki](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
