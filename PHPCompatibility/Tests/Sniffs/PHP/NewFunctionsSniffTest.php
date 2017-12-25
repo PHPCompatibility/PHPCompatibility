@@ -472,6 +472,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('sodium_memzero', '7.1', array(416), '7.2'),
             array('sodium_pad', '7.1', array(417), '7.2'),
             array('sodium_unpad', '7.1', array(418), '7.2'),
+            array('spl_object_id', '7.1', array(419), '7.2'),
         );
     }
 
