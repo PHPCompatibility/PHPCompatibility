@@ -15,6 +15,51 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 _Nothing yet._
 
 
+## [8.1.0] - 2017-12-27
+
+See all related issues and PRs in the [8.1.0 milestone].
+
+### Added
+- :star2: New `NewConstants` and `RemovedConstants` sniffs to detect usage of new/removed PHP constants for all PHP versions from PHP 5 up. [#526](https://github.com/wimg/PHPCompatibility/pull/525), [#551](https://github.com/wimg/PHPCompatibility/pull/551), [#566](https://github.com/wimg/PHPCompatibility/pull/566). Fixes [#263](https://github.com/wimg/PHPCompatibility/issues/263).
+- :star2: New `MagicAutoloadDeprecation` sniff to detect deprecated `__autoload()` functions as deprecated in PHP 7.2. [#540](https://github.com/wimg/PHPCompatibility/pull/540)
+- :star2: New `OptionalRequiredFunctionParameter` sniff to check for missing function call parameters which were required and only became optional in a later PHP version. [#524](https://github.com/wimg/PHPCompatibility/pull/524)
+- :star2: New `DynamicAccessToStatic` sniff to detect dynamic access to static methods and properties, as well as class constants, prior to PHP 5.3. [#535](https://github.com/wimg/PHPCompatibility/pull/535). Fixes [#534](https://github.com/wimg/PHPCompatibility/issues/534).
+- :star: `DeprecatedFunctions` sniff: recognize yet more PHP 7.2 deprecated functions. [#561](https://github.com/wimg/PHPCompatibility/pull/561),  [#566](https://github.com/wimg/PHPCompatibility/pull/566)
+- :star: `DeprecatedIniDirectives` sniff: recognize the last of the PHP 7.2 deprecated ini directives.  [#566](https://github.com/wimg/PHPCompatibility/pull/566), [#567](https://github.com/wimg/PHPCompatibility/pull/567)
+- :star: `NewFunctions` : detection of all new PHP 7.2 functions added. [#522](https://github.com/wimg/PHPCompatibility/pull/522), [#545](https://github.com/wimg/PHPCompatibility/pull/545), [#551](https://github.com/wimg/PHPCompatibility/pull/551), [#565](https://github.com/wimg/PHPCompatibility/pull/565)
+- :star: `RemovedExtensions` : report on usage of the `mcrypt` extension which has been removed in PHP 7.2. [#566](https://github.com/wimg/PHPCompatibility/pull/566)
+- :star: `RemovedGlobalVariables` : detection of the use of `$php_errormsg` with `track_errors` which has been deprecated in PHP 7.2. [#528](https://github.com/wimg/PHPCompatibility/pull/528)
+- :books: Documentation : added reporting usage instructions. [#533](https://github.com/wimg/PHPCompatibility/pull/533), [#552](https://github.com/wimg/PHPCompatibility/pull/552)
+
+### Changed
+- :pushpin: `NewClosures` : downgraded "$this found in closure outside class" to warning. [#536](https://github.com/wimg/PHPCompatibility/pull/535). Fixes [#527](https://github.com/wimg/PHPCompatibility/issues/527).
+- :pushpin: `ForbiddenGlobalVariableVariable` : the sniff will now throw an error for each variable in a `global` statement which is no longer supported and show the variable found to make it easier to fix this. Previously only one error would be thrown per `global` statement. [#564](https://github.com/wimg/PHPCompatibility/pull/564)
+- :pushpin: `ForbiddenGlobalVariableVariable` : the sniff will now throw `warning`s for non-bare variables used in a `global` statement as those are discouraged since PHP 7.0. [#564](https://github.com/wimg/PHPCompatibility/pull/564)
+- :rewind: `NewLanguageConstructs` : updated the version number for `T_COALESCE_EQUAL`. [#523](https://github.com/wimg/PHPCompatibility/pull/523)
+- :pencil2: `Sniff::getTestVersion()` : simplified regex logic. [#520](https://github.com/wimg/PHPCompatibility/pull/520)
+- :green_heart: Travis : build tests are now being run against PHP 7.2 as well. [#511](https://github.com/wimg/PHPCompatibility/pull/511)
+- :wrench: Improved check for superfluous whitespaces in files. [#542](https://github.com/wimg/PHPCompatibility/pull/542)
+- :wrench: Build/PHPCS : stabilized the exclude patterns. [#529](https://github.com/wimg/PHPCompatibility/pull/529)
+- :wrench: Build/PHPCS : added array indentation check. [#538](https://github.com/wimg/PHPCompatibility/pull/538)
+- :white_check_mark: PHPCS cross-version compatibility : sync `FindExtendedClassname()` method with upstream. [#507](https://github.com/wimg/PHPCompatibility/pull/507)
+- :wrench: The minimum version for the recommended `DealerDirect/phpcodesniffer-composer-installer` Composer plugin has been upped to `0.4.3`. [#548](https://github.com/wimg/PHPCompatibility/pull/548)
+
+### Fixed
+- :bug: `ForbiddenCallTimePassByReference` : a false positive was being thrown when a global constant was followed by a _bitwise and_. [#562](https://github.com/wimg/PHPCompatibility/pull/562). Fixes [#39](https://github.com/wimg/PHPCompatibility/issues/39).
+- :bug: `ForbiddenGlobalVariableVariable` : the sniff was overzealous and would also report on `global` in combination with variable variables which are still supported. [#564](https://github.com/wimg/PHPCompatibility/pull/564). Fixes [#537](https://github.com/wimg/PHPCompatibility/issues/537).
+- :bug: `ForbiddenGlobalVariableVariable` : variables interspersed with whitespace and/or comments were not being reported. [#564](https://github.com/wimg/PHPCompatibility/pull/564)
+- :rewind: `ForbiddenNamesAsInvokedFunctions` : improved recognition of function invocations using forbidden words and prevent warnings for keywords which are no longer forbidden as method names in PHP 7.0+. [#516](https://github.com/wimg/PHPCompatibility/pull/516). Fixes [#515](https://github.com/wimg/PHPCompatibility/issues/515)
+- :bug: `VariableVariables` : variables interspersed with whitespace and/or comments were not being reported. [#563](https://github.com/wimg/PHPCompatibility/pull/563)
+- :umbrella: Fixed some unintentional syntax errors in test files. [#539](https://github.com/wimg/PHPCompatibility/pull/539)
+- :umbrella: Tests : fixed case numbering error. [#525](https://github.com/wimg/PHPCompatibility/pull/525)
+- :books: Tests : added missing test skip explanation. [#521](https://github.com/wimg/PHPCompatibility/pull/521)
+- :wrench: Fixed PHPCS whitespaces. [#543](https://github.com/wimg/PHPCompatibility/pull/543)
+- :wrench: Fixed code test coverage verification. [#550](https://github.com/wimg/PHPCompatibility/pull/550). Fixes [#549](https://github.com/wimg/PHPCompatibility/issues/549).
+
+### Credits
+Thanks go out to [Juliette Reinders Folmer] and [Jonathan Van Belle] for their contributions to this version. :clap:
+
+
 ## [8.0.1] - 2017-08-07
 
 See all related issues and PRs in the [8.0.1 milestone].
@@ -774,7 +819,7 @@ See all related issues and PRs in the [5.6 milestone].
 - :white_check_mark: Compatibility with PHPCS 2.0 - 2.3. [#63](https://github.com/wimg/PHPCompatibility/pull/63), [#65](https://github.com/wimg/PHPCompatibility/pull/65)
 
 ### Credits
-Thanks go out to Daniel Jänecke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
+Thanks go out to Daniel JÃ¤necke, [Declan Kelly], [Dominic], [Jaap van Otterdijk], [Marin Crnkovic], [Mark Clements], [Nick Pack], [Oliver Klee], [Rowan Collins] and [Sam Van der Borght] for their contributions to this version. :clap:
 
 
 ## 5.5 - 2014-04-04
@@ -785,7 +830,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.1.0...HEAD
+[8.1.0]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...8.1.0
 [8.0.1]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...8.0.1
 [8.0.0]: https://github.com/wimg/PHPCompatibility/compare/7.1.5...8.0.0
 [7.1.5]: https://github.com/wimg/PHPCompatibility/compare/7.1.4...7.1.5
@@ -805,6 +851,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[8.1.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/21
 [8.0.1 milestone]: https://github.com/wimg/PHPCompatibility/milestone/20
 [8.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/19
 [7.1.5 milestone]: https://github.com/wimg/PHPCompatibility/milestone/17
@@ -835,6 +882,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Gary Jones]: https://github.com/GaryJones
 [Jaap van Otterdijk]: https://github.com/jaapio
 [Jason Stallings]: https://github.com/octalmage
+[Jonathan Van Belle]: https://github.com/Grummfy
 [Juliette Reinders Folmer]: https://github.com/jrfnl
 [Ken Guest]: https://github.com/kenguest
 [Komarov Alexey]: https://github.com/erdraug
