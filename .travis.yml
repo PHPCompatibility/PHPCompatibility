@@ -120,6 +120,9 @@ script:
   - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./PHPCompatibility/ruleset.xml; fi
   # Check the code-style consistency of the xml files.
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml"); fi
+  # Validate the composer.json file.
+  # @link https://getcomposer.org/doc/03-cli.md#validate
+  - if [[ "$LINT" == "1" ]]; then composer validate --no-check-all; fi
 
 after_success:
   - if [[ $COVERALLS_VERSION == "^1.0" ]]; then php vendor/bin/coveralls -v -x build/logs/clover.xml; fi
