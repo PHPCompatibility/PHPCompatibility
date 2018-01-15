@@ -74,6 +74,7 @@ class NewInterfacesSniffTest extends BaseSniffTest
             array('Traversable', '4.4', array(35, 50, 60, 71), '5.0'),
             array('DateTimeInterface', '5.4', array(36, 51, 61), '5.5'),
             array('Throwable', '5.6', array(37, 52, 62), '7.0'),
+            array('Reflector', '4.4', array(75), '5.0'),
         );
     }
 
