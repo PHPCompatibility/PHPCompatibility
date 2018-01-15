@@ -34,6 +34,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             '4.4' => false,
             '5.0' => true,
         ),
+        'Reflector' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
 
         'Countable' => array(
             '5.0' => false,

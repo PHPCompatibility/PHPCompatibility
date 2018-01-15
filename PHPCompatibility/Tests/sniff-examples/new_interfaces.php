@@ -70,3 +70,6 @@ function ( SplSubject $a ) {}
 function(\Serializable $a) {}
 function ( ?Traversable $a ) {}
 function(myNameSpace\SplObserver $a) {} // Ok.
+
+// Additional new interfaces.
+class MyReflector implements Reflector {}
