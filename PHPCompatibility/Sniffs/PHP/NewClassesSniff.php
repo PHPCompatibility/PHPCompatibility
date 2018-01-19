@@ -32,9 +32,128 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => bool))
      */
     protected $newClasses = array(
+        'ArrayObject' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'ArrayIterator' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'CachingIterator' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'DirectoryIterator' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'RecursiveDirectoryIterator' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'RecursiveIteratorIterator' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'php_user_filter' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'tidy' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+
+        'SimpleXMLElement' => array(
+            '5.0.0' => false,
+            '5.0.1' => true,
+        ),
+        'tidyNode' => array(
+            '5.0.0' => false,
+            '5.0.1' => true,
+        ),
+
         'libXMLError' => array(
             '5.0' => false,
             '5.1' => true,
+        ),
+        'PDO' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'PDOStatement' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'AppendIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'EmptyIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'FilterIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'InfiniteIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'IteratorIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'LimitIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'NoRewindIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'ParentIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'RecursiveArrayIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'RecursiveCachingIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'RecursiveFilterIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'SimpleXMLIterator' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'SplFileObject' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'XMLReader' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+
+        'SplFileInfo' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'SplTempFileObject' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'XMLWriter' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
         ),
 
         'DateTime' => array(
@@ -53,12 +172,52 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
+        'ReflectionFunctionAbstract' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'ZipArchive' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
 
+        'Closure' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'DateInterval' => array(
             '5.2' => false,
             '5.3' => true,
         ),
         'DatePeriod' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'finfo' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'Collator' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'NumberFormatter' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'Locale' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'Normalizer' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'MessageFormatter' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'IntlDateFormatter' => array(
             '5.2' => false,
             '5.3' => true,
         ),
@@ -110,6 +269,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.2' => false,
             '5.3' => true,
         ),
+        'SplObjectStorage' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'SplPriorityQueue' => array(
             '5.2' => false,
             '5.3' => true,
@@ -121,6 +284,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'SplStack' => array(
             '5.2' => false,
             '5.3' => true,
+        ),
+
+        'ResourceBundle' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
         ),
 
         'CallbackFilterIterator' => array(
@@ -152,6 +320,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
 
+        'Generator' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
         'CURLFile' => array(
             '5.4' => false,
             '5.5' => true,
@@ -183,6 +355,33 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'IntlCodePointBreakIterator' => array(
             '5.4' => false,
             '5.5' => true,
+        ),
+        'UConverter' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+
+        'GMP' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
+
+        'IntlChar' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'ReflectionType' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'ReflectionGenerator' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+
+        'ReflectionClassConstant' => array(
+            '7.0' => false,
+            '7.1' => true,
         ),
 
     );
@@ -332,6 +531,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.0' => true,
         ),
 
+        'ArgumentCountError' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
     );
 
 

@@ -245,8 +245,8 @@ try {
 } catch (TypeError $e) {
 } catch (UI\Exception\InvalidArgumentException $e) {
 } catch (UI\Exception\RuntimeException $e) {
+} catch (ArgumentCountError $e) {
 }
-
 
 
 
@@ -264,3 +264,52 @@ try {
 try {
 } catch (\My\Except\DOMException $e) {
 }
+
+$test = new ZipArchive();
+class MyCollator extends Collator {}
+NumberFormatter::static_method();
+new class extends Locale {}
+function NormalizerTypeHint( \Normalizer $a ) {}
+function MessageFormatterTypeHint( \MessageFormatter $a ) {}
+$test = new IntlDateFormatter();
+class MyResourceBundle extends ResourceBundle {}
+UConverter::$static_property;
+function IntlCharTypeHint( IntlChar $a ) {}
+new class extends finfo {}
+function ClosureTypeHint( Closure $a ) {}
+class MyGenerator extends Generator {}
+new class extends GMP {}
+class MySplObjectStorage extends SplObjectStorage {}
+$test = new ArrayIterator();
+$test = new CachingIterator();
+$test = new DirectoryIterator();
+$test = new RecursiveDirectoryIterator();
+$test = new RecursiveIteratorIterator();
+class MyAppendIterator extends AppendIterator {}
+class MyEmptyIterator extends EmptyIterator {}
+new class extends FilterIterator {}
+new class extends InfiniteIterator {}
+IteratorIterator::static_method();
+LimitIterator::$static_property;
+function NoRewindIteratorTypeHint( \NoRewindIterator $a ) {}
+function ParentIteratorTypeHint( \ParentIterator $a ) {}
+function RecursiveArrayIteratorTypeHint( \RecursiveArrayIterator $a ) {}
+function RecursiveCachingIteratorTypeHint(RecursiveCachingIterator $a) {}
+function RecursiveFilterIteratorTypeHint( \RecursiveFilterIterator $a ) {}
+$test = new php_user_filter();
+class Mytidy extends tidy {}
+tidyNode::CLASS_CONSTANT;
+$test = new SplFileObject();
+$test = new SplFileInfo();
+$test = new SplTempFileObject();
+class MyArrayObject extends ArrayObject {}
+new class extends ReflectionClassConstant {}
+ReflectionFunctionAbstract::CLASS_CONSTANT;
+function ReflectionTypeTypeHint( \ReflectionType $a ) {}
+function ReflectionGeneratorTypeHint( ReflectionGenerator $a ) {}
+class MySimpleXMLElement extends SimpleXMLElement {}
+$test = new SimpleXMLIterator();
+$test = new XMLReader();
+$test = new XMLWriter();
+$test = new PDO();
+class MyPDOStatement extends PDOStatement {}
