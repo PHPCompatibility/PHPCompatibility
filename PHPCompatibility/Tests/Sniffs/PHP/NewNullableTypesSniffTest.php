@@ -61,6 +61,7 @@ class NewNullableTypesSniffTest extends BaseSniffTest
             array(29),
 
             array(63),
+            array(77),
         );
     }
 
@@ -103,6 +104,8 @@ class NewNullableTypesSniffTest extends BaseSniffTest
             array(59), // Three errors of the same.
 
             array(64),
+            array(68),
+            array(74),
         );
     }
 
