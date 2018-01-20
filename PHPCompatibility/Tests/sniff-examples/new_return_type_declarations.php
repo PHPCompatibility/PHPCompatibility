@@ -27,3 +27,13 @@ function ($a) {}
 
 // PHP 7.2+
 function foo($a): object {}
+
+function fooInterspersedWithComments($a) :
+	// Comment.
+	?
+	// phpcs:ignore Standard.Category.Sniff -- ignore something about a return type declaration.
+	\myNamespace\
+	// Comment.
+	Baz
+{
+}

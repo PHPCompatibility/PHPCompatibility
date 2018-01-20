@@ -68,6 +68,7 @@ class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
             array('Class name', '5.6', 13, '7.0'),
             array('Class name', '5.6', 14, '7.0'),
             array('Class name', '5.6', 15, '7.0'),
+            array('Class name', '5.6', 37, '7.0'),
 
             array('iterable', '7.0', 18, '7.1'),
             array('void', '7.0', 19, '7.1'),

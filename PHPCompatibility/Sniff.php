@@ -1063,7 +1063,11 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return false;
         }
 
-        $hasColon = $phpcsFile->findNext(array(T_COLON, T_INLINE_ELSE), ($tokens[$stackPtr]['parenthesis_closer'] + 1), $tokens[$stackPtr]['scope_opener']);
+        $hasColon = $phpcsFile->findNext(
+            array(T_COLON, T_INLINE_ELSE),
+            ($tokens[$stackPtr]['parenthesis_closer'] + 1),
+            $tokens[$stackPtr]['scope_opener']
+        );
         if ($hasColon === false) {
             return false;
         }
@@ -1081,7 +1085,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             $unrecognizedTypes[] = T_STRING;
         }
 
-        return $phpcsFile->findNext($unrecognizedTypes, ($hasColon + 1), $tokens[$stackPtr]['scope_opener']);
+        return $phpcsFile->findPrevious($unrecognizedTypes, ($tokens[$stackPtr]['scope_opener'] - 1), $hasColon);
     }
 
 
