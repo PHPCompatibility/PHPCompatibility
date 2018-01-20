@@ -1,32 +1,32 @@
 <?php
 
 // PHP 7.0+
-function foo($a): bool {}
-function foo($a): int {}
-function foo($a): float {}
-function foo($a): string {}
-function foo($a): array {}
-function foo($a): callable {}
-function foo($a): self {}
-function foo($a): parent {}
-function foo($a): Baz {}
-function foo($a): \Baz {}
-function foo($a): myNamespace\Baz {}
-function foo($a): \myNamespace\Baz {}
+function fooBool($a): bool {}
+function fooInt($a): int {}
+function fooFloat($a): float {}
+function fooString($a): string {}
+function fooArray($a): array {}
+function fooCallable($a): callable {}
+function fooSelf($a): self {}
+function fooParent($a): parent {}
+function fooBaz($a): Baz {}
+function fooGNSBaz($a): \Baz {}
+function fooNSBaz($a): myNamespace\Baz {}
+function fooNSBaz2($a): \myNamespace\Baz {}
 
 // PHP 7.1+
-function foo($a): iterable {}
-function foo($a): void {}
+function fooIterable($a): iterable {}
+function fooVoid($a): void {}
 
 // Anonymous function.
 function($a): callable {}
 
 // OK: no return type hint.
-function foo($a) {}
+function fooNone($a) {}
 function ($a) {}
 
 // PHP 7.2+
-function foo($a): object {}
+function fooObject($a): object {}
 
 function fooInterspersedWithComments($a) :
 	// Comment.
