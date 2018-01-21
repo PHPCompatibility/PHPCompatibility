@@ -122,6 +122,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             $targets[] = constant('T_ANON_CLASS');
         }
 
+        if (defined('T_RETURN_TYPE')) {
+            $targets[] = constant('T_RETURN_TYPE');
+        }
+
         return $targets;
 
     }//end register()
@@ -149,6 +153,16 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             case 'T_FUNCTION':
             case 'T_CLOSURE':
                 $this->processFunctionToken($phpcsFile, $stackPtr);
+
+                // Deal with older PHPCS versions which don't recognize return type hints.
+                $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
+                if ($returnTypeHint !== false) {
+                    $this->processReturnTypeToken($phpcsFile, $returnTypeHint);
+                }
+                break;
+
+            case 'T_RETURN_TYPE':
+                $this->processReturnTypeToken($phpcsFile, $stackPtr);
                 break;
 
             default:
@@ -254,6 +268,36 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
         }
+    }
+
+
+    /**
+     * Processes this test for when a return type token is encountered.
+     *
+     * - Detect new interfaces when used as a return type declaration.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processReturnTypeToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $returnTypeHint   = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
+        $returnTypeHint   = ltrim($returnTypeHint, '\\');
+        $returnTypeHintLc = strtolower($returnTypeHint);
+
+        if (isset($this->newInterfaces[$returnTypeHintLc]) === false) {
+            return;
+        }
+
+        // Still here ? Then this is a return type declaration using a new interface.
+        $itemInfo = array(
+            'name'   => $returnTypeHint,
+            'nameLc' => $returnTypeHintLc,
+        );
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
 

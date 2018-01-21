@@ -71,8 +71,8 @@ class NewInterfacesSniffTest extends BaseSniffTest
             array('SplSubject', '5.0', array(12, 17, 47, 69), '5.1'),
             array('JsonSerializable', '5.3', array(13, 48), '5.4'),
             array('SessionHandlerInterface', '5.3', array(14, 49), '5.4'),
-            array('Traversable', '4.4', array(35, 50, 60, 71), '5.0'),
-            array('DateTimeInterface', '5.4', array(36, 51, 61), '5.5'),
+            array('Traversable', '4.4', array(35, 50, 60, 71, 79), '5.0'),
+            array('DateTimeInterface', '5.4', array(36, 51, 61, 80), '5.5'),
             array('Throwable', '5.6', array(37, 52, 62), '7.0'),
             array('Reflector', '4.4', array(75), '5.0'),
         );
@@ -122,6 +122,8 @@ class NewInterfacesSniffTest extends BaseSniffTest
         $file = $this->sniffFile(self::TEST_FILE, '5.0');
         $this->assertError($file, 20, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
         $this->assertError($file, 21, 'The built-in interface countable is not present in PHP version 5.0 or earlier');
+        $this->assertError($file, 78, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
+        $this->assertError($file, 81, 'The built-in interface throwable is not present in PHP version 5.6 or earlier');
     }
 
 
@@ -136,7 +138,7 @@ class NewInterfacesSniffTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Low version below the first addition.
+        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -155,6 +157,9 @@ class NewInterfacesSniffTest extends BaseSniffTest
             array(56),
             array(57),
             array(72),
+            array(84),
+            array(85),
+            array(86),
         );
     }
 
