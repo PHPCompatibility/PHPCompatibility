@@ -1,6 +1,18 @@
+# language: php
+
+build:
+    nodes:
+        analysis:
+            project_setup:
+                override: true
+            tests:
+                override: [php-scrutinizer-run]
+
 filter:
     excluded_paths:
-        - 'PHPCompatibility/Tests/*'
+        - 'PHPCompatibility/Tests/'
+    dependency_paths:
+        - 'vendor/'
 
 tools:
     php_sim: true
@@ -10,3 +22,13 @@ tools:
 
 checks:
     php: true
+
+build_failure_conditions:
+    # New issues of major or higher severity
+    - 'issues.severity(>= MAJOR).new.exists'
+
+    # Code Quality Rating drops below 7.5
+    - 'project.metric("scrutinizer.quality", < 7.5)'
+
+    # New classes/methods introduced with a rating of D or worse
+    - 'elements.rating(<= D).new.exists'
