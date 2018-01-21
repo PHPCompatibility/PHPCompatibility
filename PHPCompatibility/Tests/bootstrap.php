@@ -5,6 +5,26 @@
  * @package PHPCompatibility
  */
 
+/*
+ * When possible let Xdebug (2.6.0+) handle code coverage file filtering.
+ *
+ * @internal This MUST be run BEFORE any files are included for optimal effect!
+ *
+ * @link https://bugs.xdebug.org/view.php?id=1059
+ * @link https://github.com/sebastianbergmann/php-code-coverage/issues/514
+ */
+$testingCodeCoverage = getenv('COVERALLS_VERSION');
+if ($testingCodeCoverage !== false && $testingCodeCoverage !== 'notset') {
+    $xdebugVersion = phpversion('xdebug');
+    if (version_compare($xdebugVersion, '2.5.99', '>') === true) {
+        xdebug_set_filter(
+            XDEBUG_FILTER_CODE_COVERAGE,
+            XDEBUG_PATH_WHITELIST,
+            array(dirname(__DIR__) . '/Sniffs')
+        );
+    }
+}
+
 if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
     define('PHP_CODESNIFFER_IN_TESTS', true);
 }
