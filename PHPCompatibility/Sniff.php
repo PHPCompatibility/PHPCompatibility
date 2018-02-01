@@ -1090,6 +1090,49 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
 
     /**
+     * Get the complete return type declaration for a given function.
+     *
+     * Cross-version compatible way to retrieve the complete return type declaration.
+     *
+     * For a classname-based return type, PHPCS, as well as the Sniff::getReturnTypeHintToken()
+     * method will mark the classname as the return type token.
+     * This method will find preceeding namespaces and namespace separators and will return a
+     * string containing the qualified return type declaration.
+     *
+     * Expects to be passed a T_RETURN_TYPE token or the return value from a call to
+     * the Sniff::getReturnTypeHintToken() method.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the return type token.
+     *
+     * @return string|false The name of the return type token.
+     */
+    public function getReturnTypeHintName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // In older PHPCS versions, the nullable indicator will turn a return type colon into a T_INLINE_ELSE.
+        $colon = $phpcsFile->findPrevious(array(T_COLON, T_INLINE_ELSE, T_FUNCTION, T_CLOSE_PARENTHESIS), ($stackPtr - 1));
+        if ($colon === false
+            || ($tokens[$colon]['code'] !== T_COLON && $tokens[$colon]['code'] !== T_INLINE_ELSE)
+        ) {
+            // Shouldn't happen, just in case.
+            return;
+        }
+
+        $returnTypeHint = '';
+        for ($i = ($colon + 1); $i < $stackPtr; $i++) {
+            if ($tokens[$i]['code'] === T_STRING || $tokens[$i]['code'] === T_NS_SEPARATOR) {
+                $returnTypeHint .= $tokens[$i]['content'];
+            }
+        }
+        $returnTypeHint  .= $tokens[$stackPtr]['content'];
+
+        return $returnTypeHint;
+    }
+
+
+    /**
      * Check whether a T_VARIABLE token is a class property declaration.
      *
      * Compatibility layer for PHPCS cross-version compatibility

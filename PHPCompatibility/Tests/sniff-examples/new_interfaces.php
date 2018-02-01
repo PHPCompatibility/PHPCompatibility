@@ -73,3 +73,14 @@ function(myNameSpace\SplObserver $a) {} // Ok.
 
 // Additional new interfaces.
 class MyReflector implements Reflector {}
+
+// Test recognition of return type declarations.
+function CountableReturnTypeHint( $a ) : COUNTABLE {}
+function TraversableReturnTypeHint( $a ) : ?Traversable {}
+function DateTimeInterfaceReturnTypeHint( $a ) : \DateTimeInterface {}
+function($a):throwable {}
+
+// Test against false positives for return type declarations.
+function SeekableIteratorReturnTypeHint( $a ) : SomeNS\SeekableIterator {}
+function SessionHandlerInterfaceReturnTypeHint( $a ) : ?\MyNS\SessionHandlerInterface {}
+function SplSubjectReturnTypeHint( $a ) : \MyNS\SplSubject\AnotherInterface {}

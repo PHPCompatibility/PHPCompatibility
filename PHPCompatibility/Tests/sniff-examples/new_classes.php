@@ -313,3 +313,15 @@ $test = new XMLReader();
 $test = new XMLWriter();
 $test = new PDO();
 class MyPDOStatement extends PDOStatement {}
+
+// Test recognition of return type declarations.
+function DateTimeReturnTypeHint( $a ) : DateTime {}
+function DateTimeNullableReturnTypeHint( $a ) : ?DateTime {}
+function GlobalNSLcDateTimeReturnTypeHint( $a ) : \datetime {}
+function GlobalNSDateTimeNullableReturnTypeHint( $a ) : ?\DateTime {}
+function UIExceptionReturnTypeHint( $e ): UI\Exception\InvalidArgumentException {}
+
+// Test against false positives for return type declarations.
+function NsDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime {}
+function NsNullDateTimeReturnTypeHint( $a ) : ?SomeNamespace\DateTime {}
+function NoDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime\RealClass {}

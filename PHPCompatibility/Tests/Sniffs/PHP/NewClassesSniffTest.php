@@ -95,7 +95,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('SplFileInfo', '5.1.1', array(303), '5.2', '5.1'),
             array('SplTempFileObject', '5.1.1', array(304), '5.2', '5.1'),
             array('XMLWriter', '5.1.1', array(313), '5.2', '5.1'),
-            array('DateTime', '5.1', array(25, 65, 105, 151), '5.2'),
+            array('DateTime', '5.1', array(25, 65, 105, 151, 318, 319, 321), '5.2'),
             array('DateTimeZone', '5.1', array(26, 66, 106, 162), '5.2'),
             array('RegexIterator', '5.1', array(27, 67, 107, 163), '5.2'),
             array('RecursiveRegexIterator', '5.1', array(28, 68, 108), '5.2'),
@@ -152,7 +152,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('ReflectionClassConstant', '7.0', array(306), '7.1'),
 
             array('DATETIME', '5.1', array(146), '5.2'),
-            array('datetime', '5.1', array(147), '5.2'),
+            array('datetime', '5.1', array(147, 320), '5.2'),
             array('dATeTiMe', '5.1', array(148), '5.2'),
 
             array('Exception', '4.4', array(190, 217), '5.0'),
@@ -184,7 +184,7 @@ class NewClassesSniffTest extends BaseSniffTest
             array('DivisionByZeroError', '5.6', array(203, 243), '7.0'),
             array('ParseError', '5.6', array(244), '7.0'),
             array('TypeError', '5.6', array(245), '7.0'),
-            array('UI\Exception\InvalidArgumentException', '5.6', array(192, 210, 246), '7.0'),
+            array('UI\Exception\InvalidArgumentException', '5.6', array(192, 210, 246, 322), '7.0'),
             array('UI\Exception\RuntimeException', '5.6', array(188, 199, 247), '7.0'),
             array('ArgumentCountError', '7.0', array(248), '7.1'),
         );
@@ -226,6 +226,9 @@ class NewClassesSniffTest extends BaseSniffTest
             array(170),
             array(181),
             array(265),
+            array(325),
+            array(326),
+            array(327),
         );
     }
 
