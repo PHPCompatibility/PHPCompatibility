@@ -98,6 +98,7 @@ class IsUseOfGlobalConstantTest extends MethodTestFrame
             array('/* Case A7 */', true),
             array('/* Case A8 */', true),
             array('/* Case A9 */', true),
+            array('/* Case A10 */', true),
         );
     }
 }
