@@ -139,25 +139,25 @@ class RemovedAlternativePHPTagsSniff extends Sniff
     /**
      * Get a snippet from a HTML token.
      *
-     * @param string $content  The content of the HTML token.
-     * @param string $start_at Partial string to use as a starting point for the snippet.
-     * @param int    $length   The target length of the snippet to get. Defaults to 25.
+     * @param string $content The content of the HTML token.
+     * @param string $startAt Partial string to use as a starting point for the snippet.
+     * @param int    $length  The target length of the snippet to get. Defaults to 25.
      *
      * @return string
      */
-    protected function getSnippet($content, $start_at = '', $length = 25)
+    protected function getSnippet($content, $startAt = '', $length = 25)
     {
-        $start_pos = 0;
+        $startPos = 0;
 
-        if ($start_at !== '') {
-            $start_pos = strpos($content, $start_at);
-            if ($start_pos !== false) {
-                $start_pos += strlen($start_at);
+        if ($startAt !== '') {
+            $startPos = strpos($content, $startAt);
+            if ($startPos !== false) {
+                $startPos += strlen($startAt);
             }
         }
 
-        $snippet = substr($content, $start_pos, $length);
-        if ((strlen($content) - $start_pos) > $length) {
+        $snippet = substr($content, $startPos, $length);
+        if ((strlen($content) - $startPos) > $length) {
             $snippet .= '...';
         }
 

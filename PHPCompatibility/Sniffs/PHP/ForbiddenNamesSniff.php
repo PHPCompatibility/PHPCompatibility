@@ -114,7 +114,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array
      */
-    private $allowed_modifiers = array();
+    private $allowedModifiers = array();
 
     /**
      * Targeted tokens.
@@ -142,11 +142,11 @@ class ForbiddenNamesSniff extends Sniff
     {
         $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
 
-        $this->allowed_modifiers          = array_combine(
+        $this->allowedModifiers          = array_combine(
             \PHP_CodeSniffer_Tokens::$scopeModifiers,
             \PHP_CodeSniffer_Tokens::$scopeModifiers
         );
-        $this->allowed_modifiers[T_FINAL] = T_FINAL;
+        $this->allowedModifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;
 
@@ -238,7 +238,7 @@ class ForbiddenNamesSniff extends Sniff
          * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_AS'
-            && isset($this->allowed_modifiers[$tokens[$nextNonEmpty]['code']]) === true
+            && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
             && $this->inUseScope($phpcsFile, $stackPtr) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);

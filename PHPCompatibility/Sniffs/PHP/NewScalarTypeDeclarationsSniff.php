@@ -119,7 +119,7 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
             }
 
             // Strip off potential nullable indication.
-            $type_hint = ltrim($param['type_hint'], '?');
+            $typeHint = ltrim($param['type_hint'], '?');
 
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
@@ -128,22 +128,22 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
                     'TypeHintFound'
                 );
 
-            } elseif (isset($this->newTypes[$type_hint])) {
+            } elseif (isset($this->newTypes[$typeHint])) {
                 $itemInfo = array(
-                    'name'   => $type_hint,
+                    'name'   => $typeHint,
                 );
                 $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
 
-            } elseif (isset($this->invalidTypes[$type_hint])) {
+            } elseif (isset($this->invalidTypes[$typeHint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
                 $data  = array(
-                    $type_hint,
-                    $this->invalidTypes[$type_hint],
+                    $typeHint,
+                    $this->invalidTypes[$typeHint],
                 );
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
 
-            } elseif ($type_hint === 'self') {
+            } elseif ($typeHint === 'self') {
                 if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
                     $phpcsFile->addError(
                         "'self' type cannot be used outside of class scope",
