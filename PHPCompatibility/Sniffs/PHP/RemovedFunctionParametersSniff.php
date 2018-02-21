@@ -33,27 +33,27 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         'gmmktime' => array(
             6 => array(
                 'name' => 'is_dst',
-                '5.1' => false,
-                '7.0' => true,
+                '5.1'  => false,
+                '7.0'  => true,
             ),
         ),
         'ldap_first_attribute' => array(
             2 => array(
-                'name' => 'ber_identifier',
+                'name'  => 'ber_identifier',
                 '5.2.4' => true,
             ),
         ),
         'ldap_next_attribute' => array(
             2 => array(
-                'name' => 'ber_identifier',
+                'name'  => 'ber_identifier',
                 '5.2.4' => true,
             ),
         ),
         'mktime' => array(
             6 => array(
                 'name' => 'is_dst',
-                '5.1' => false,
-                '7.0' => true,
+                '5.1'  => false,
+                '7.0'  => true,
             ),
         ),
     );

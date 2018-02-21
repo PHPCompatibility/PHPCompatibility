@@ -108,23 +108,23 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      */
     protected $PHPCSCompatTranslate = array(
         'T_MULTIPLY' => array(
-            'before' => 'T_MULTIPLY',
+            'before'     => 'T_MULTIPLY',
             'real_token' => 'T_POW',
         ),
         'T_MUL_EQUAL' => array(
-            'before' => 'T_MULTIPLY',
+            'before'     => 'T_MULTIPLY',
             'real_token' => 'T_POW_EQUAL',
         ),
         'T_GREATER_THAN' => array(
-            'before' => 'T_IS_SMALLER_OR_EQUAL',
+            'before'     => 'T_IS_SMALLER_OR_EQUAL',
             'real_token' => 'T_SPACESHIP',
         ),
         'T_INLINE_THEN' => array(
-            'callback' => 'isTCoalesce',
+            'callback'   => 'isTCoalesce',
             'real_token' => 'T_COALESCE',
         ),
         'T_EQUAL' => array(
-            'callback' => 'isTCoalesceEqual',
+            'callback'   => 'isTCoalesceEqual',
             'real_token' => 'T_COALESCE_EQUAL',
         ),
     );

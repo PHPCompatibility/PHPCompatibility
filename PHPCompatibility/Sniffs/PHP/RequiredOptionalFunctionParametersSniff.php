@@ -35,15 +35,15 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
         'preg_match_all' => array(
             2 => array(
                 'name' => 'matches',
-                '5.3' => true,
-                '5.4' => false,
+                '5.3'  => true,
+                '5.4'  => false,
             ),
         ),
         'stream_socket_enable_crypto' => array(
             2 => array(
                 'name' => 'crypto_type',
-                '5.5' => true,
-                '5.6' => false,
+                '5.5'  => true,
+                '5.6'  => false,
             ),
         ),
     );

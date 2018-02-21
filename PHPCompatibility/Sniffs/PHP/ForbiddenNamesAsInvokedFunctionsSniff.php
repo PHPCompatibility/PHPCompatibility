@@ -31,19 +31,19 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      * @var array
      */
     protected $targetedTokens = array(
-        T_ABSTRACT => '5.0',
-        T_CALLABLE => '5.4',
-        T_CATCH => '5.0',
-        T_FINAL => '5.0',
-        T_GOTO => '5.3',
+        T_ABSTRACT   => '5.0',
+        T_CALLABLE   => '5.4',
+        T_CATCH      => '5.0',
+        T_FINAL      => '5.0',
+        T_GOTO       => '5.3',
         T_IMPLEMENTS => '5.0',
-        T_INTERFACE => '5.0',
+        T_INTERFACE  => '5.0',
         T_INSTANCEOF => '5.0',
-        T_NAMESPACE => '5.3',
-        T_PRIVATE => '5.0',
-        T_PROTECTED => '5.0',
-        T_PUBLIC => '5.0',
-        T_TRY => '5.0',
+        T_NAMESPACE  => '5.3',
+        T_PRIVATE    => '5.0',
+        T_PROTECTED  => '5.0',
+        T_PUBLIC     => '5.0',
+        T_TRY        => '5.0',
     );
 
     /**

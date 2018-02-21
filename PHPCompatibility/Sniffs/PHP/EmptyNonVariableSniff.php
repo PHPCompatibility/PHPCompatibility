@@ -41,8 +41,8 @@ class EmptyNonVariableSniff extends Sniff
      * @var array
      */
     protected $bracketTokens = array(
-        T_OPEN_CURLY_BRACKET   => T_CLOSE_CURLY_BRACKET,
-        T_OPEN_SQUARE_BRACKET  => T_CLOSE_SQUARE_BRACKET,
+        T_OPEN_CURLY_BRACKET  => T_CLOSE_CURLY_BRACKET,
+        T_OPEN_SQUARE_BRACKET => T_CLOSE_SQUARE_BRACKET,
     );
 
 
