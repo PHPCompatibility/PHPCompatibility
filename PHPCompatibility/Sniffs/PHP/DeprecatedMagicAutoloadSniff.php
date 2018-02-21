@@ -70,7 +70,7 @@ class DeprecatedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->determineNamespace($phpcsFile, $stackPtr) != '') {
+        if ($this->determineNamespace($phpcsFile, $stackPtr) !== '') {
             return;
         }
 
