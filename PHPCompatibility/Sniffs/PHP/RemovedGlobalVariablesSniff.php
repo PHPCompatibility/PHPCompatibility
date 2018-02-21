@@ -211,7 +211,7 @@ class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         if ($function === false && isset($tokens[$stackPtr]['nested_parenthesis']) === true) {
             $parenthesisCloser = end($tokens[$stackPtr]['nested_parenthesis']);
             if (isset($tokens[$parenthesisCloser]['parenthesis_owner'])
-                && ( $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_FUNCTION
+                && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_FUNCTION
                     || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_CLOSURE)
             ) {
                 $function = $tokens[$parenthesisCloser]['parenthesis_owner'];

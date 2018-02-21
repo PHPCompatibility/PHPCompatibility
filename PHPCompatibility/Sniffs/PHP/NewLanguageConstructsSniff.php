@@ -270,7 +270,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             return true;
         }
         if ($tokens[($stackPtr - 1)]['type'] === 'T_INLINE_THEN'
-            && ( isset($tokens[($stackPtr - 2)]) && $tokens[($stackPtr - 2)]['type'] === 'T_INLINE_THEN')
+            && (isset($tokens[($stackPtr - 2)]) && $tokens[($stackPtr - 2)]['type'] === 'T_INLINE_THEN')
         ) {
             return true;
         }

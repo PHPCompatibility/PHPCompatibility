@@ -129,7 +129,7 @@ class NewNullableTypesSniff extends Sniff
             return;
         }
 
-        $error  = false;
+        $error = false;
 
         // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
         if ((defined('T_NULLABLE') === true && $tokens[($stackPtr - 1)]['type'] === 'T_NULLABLE')

@@ -91,9 +91,9 @@ class NewArrayStringDereferencingSniff extends Sniff
 
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true, null, true);
 
-        if ($nextNonEmpty !== false &&
-            ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET' ||
-                $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SHORT_ARRAY') // Work around bug #1381 in PHPCS 2.8.1 and lower.
+        if ($nextNonEmpty !== false
+            && ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET'
+                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SHORT_ARRAY') // Work around bug #1381 in PHPCS 2.8.1 and lower.
         ) {
             $phpcsFile->addError(
                 'Direct array dereferencing of %s is not present in PHP version 5.4 or earlier',

@@ -546,7 +546,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of class names.
-        $this->newClasses = $this->arrayKeysToLowercase($this->newClasses);
+        $this->newClasses    = $this->arrayKeysToLowercase($this->newClasses);
         $this->newExceptions = $this->arrayKeysToLowercase($this->newExceptions);
 
         // Add the Exception classes to the Classes list.

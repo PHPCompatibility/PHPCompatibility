@@ -311,14 +311,14 @@ class ForbiddenNamesSniff extends Sniff
                 && $this->inClassScope($phpcsFile, $stackPtr, false) === true)
             || ($tokens[$stackPtr]['type'] === 'T_CONST'
                 && $this->isClassConstant($phpcsFile, $stackPtr) === true
-                && $nextContentLc !== 'class')
-            ) && $this->supportsBelow('5.6') === false
+                && $nextContentLc !== 'class'))
+            && $this->supportsBelow('5.6') === false
         ) {
             return;
         }
 
         if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
-            $data  = array(
+            $data = array(
                 $tokens[$nextNonEmpty]['content'],
                 $this->invalidNames[$nextContentLc],
             );
@@ -368,7 +368,7 @@ class ForbiddenNamesSniff extends Sniff
         $defineNameLc = strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
-            $data  = array(
+            $data = array(
                 $defineName,
                 $this->invalidNames[$defineNameLc],
             );

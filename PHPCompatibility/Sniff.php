@@ -1126,7 +1126,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                 $returnTypeHint .= $tokens[$i]['content'];
             }
         }
-        $returnTypeHint  .= $tokens[$stackPtr]['content'];
+        $returnTypeHint .= $tokens[$stackPtr]['content'];
 
         return $returnTypeHint;
     }
@@ -1467,11 +1467,12 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                     $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
 
                     if ($defaultStart !== null) {
-                        $vars[$paramCount]['default']
-                            = trim($phpcsFile->getTokensAsString(
+                        $vars[$paramCount]['default'] = trim(
+                            $phpcsFile->getTokensAsString(
                                 $defaultStart,
                                 ($i - $defaultStart)
-                            ));
+                            )
+                        );
                     }
 
                     $vars[$paramCount]['pass_by_reference'] = $passByReference;
