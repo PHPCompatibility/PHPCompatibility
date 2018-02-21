@@ -231,7 +231,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
 
             array('5.5-7'), // Invalid right half.
             array('5.5-7.0.5'), // Invalid right half.
-            array('5.5-7AndJunk'), // invalid right half.
+            array('5.5-7AndJunk'), // Invalid right half.
         );
     }
 

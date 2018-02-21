@@ -843,7 +843,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.2' => false,
             '5.3' => true,
         ),
-        // libxml:
+        // Libxml:
         'LIBXML_LOADED_VERSION' => array(
             '5.2' => false,
             '5.3' => true,

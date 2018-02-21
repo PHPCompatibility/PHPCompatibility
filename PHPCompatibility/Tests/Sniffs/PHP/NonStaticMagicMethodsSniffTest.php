@@ -439,11 +439,11 @@ class NonStaticMagicMethodsSniffTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // nonstatic_magic_methods.php
+        // File: nonstatic_magic_methods.php.
         $file = $this->getTestFile(false, '5.2');
         $this->assertNoViolation($file);
 
-        // nonstatic_magic_methods_traits.php
+        // File: nonstatic_magic_methods_traits.php.
         $file = $this->getTestFile(true, '5.2');
         $this->assertNoViolation($file);
     }
