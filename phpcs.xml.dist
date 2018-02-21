@@ -5,6 +5,8 @@
     <arg value="sp"/>
     <arg name="extensions" value="php"/>
 
+    <file>.</file>
+
     <!-- Exclude test case code. -->
     <exclude-pattern>*/Tests/sniff-examples/*</exclude-pattern>
 
@@ -48,6 +50,19 @@
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
     </rule>
 
+	<!-- Check that variable names are in camelCaps. -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
+
+	<!-- Check that function and method names are in camelCaps. -->
+	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+		<properties>
+			<!-- Allow for two adjacent capital letters for acronyms. -->
+			<property name="strict" value="false"/>
+		</properties>
+	</rule>
+
     <!-- PSR2 appears to ignore blank lines for superfluous whitespace and in several other places. Let's fix that. -->
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
@@ -85,6 +100,11 @@
         <severity>0</severity>
     </rule>
     <rule ref="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed">
+        <severity>0</severity>
+    </rule>
+
+    <!-- All nice and good, but too much of a fuss for the outer array of nested arrays. -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned">
         <severity>0</severity>
     </rule>
 
