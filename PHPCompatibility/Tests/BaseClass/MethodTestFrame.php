@@ -147,13 +147,13 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
         $end    = $start;
 
         // Limit the token finding to between this and the next case comment.
-        for ($i = ($comment + 1); $i < $start; $i++) {
+        for ($i = ($comment + 1); $i < $end; $i++) {
             if ($tokens[$i]['code'] !== T_COMMENT) {
                 continue;
             }
 
             if (stripos($tokens[$i]['content'], '/* Case') === 0) {
-                $end = ($i - 1);
+                $end = $i;
                 break;
             }
         }
