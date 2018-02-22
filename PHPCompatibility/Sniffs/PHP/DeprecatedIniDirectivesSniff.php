@@ -34,7 +34,7 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      */
     protected $deprecatedIniDirectives = array(
         'fbsql.batchSize' => array(
-            '5.1' => true,
+            '5.1'         => true,
             'alternative' => 'fbsql.batchsize',
         ),
 

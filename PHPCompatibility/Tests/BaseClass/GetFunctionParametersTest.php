@@ -54,7 +54,7 @@ class GetFunctionParametersTest extends MethodTestFrame
             $expected[$key]['end']   = $stackPtr + $value['end'];
         }
 
-        $result   = $this->helperClass->getFunctionCallParameters($this->phpcsFile, $stackPtr);
+        $result = $this->helperClass->getFunctionCallParameters($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

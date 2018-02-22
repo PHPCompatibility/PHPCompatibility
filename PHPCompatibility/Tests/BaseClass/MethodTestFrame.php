@@ -32,7 +32,7 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
      *
      * @var string
      */
-    protected $case_directory = '../sniff-examples/utility-functions/';
+    protected $testcasePath = '../sniff-examples/utility-functions/';
 
     /**
      * The \PHP_CodeSniffer_File object containing parsed contents of this file.
@@ -71,7 +71,7 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
 
         $this->helperClass = new TestHelperPHPCompatibility;
 
-        $filename = realpath(__DIR__) . DIRECTORY_SEPARATOR . $this->case_directory . $this->filename;
+        $filename = realpath(__DIR__) . DIRECTORY_SEPARATOR . $this->testcasePath . $this->filename;
         $contents = file_get_contents($filename);
 
         if (version_compare(PHPCSHelper::getVersion(), '2.99.99', '>')) {

@@ -1126,7 +1126,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                 $returnTypeHint .= $tokens[$i]['content'];
             }
         }
-        $returnTypeHint  .= $tokens[$stackPtr]['content'];
+        $returnTypeHint .= $tokens[$stackPtr]['content'];
 
         return $returnTypeHint;
     }
@@ -1467,11 +1467,12 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                     $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
 
                     if ($defaultStart !== null) {
-                        $vars[$paramCount]['default']
-                            = trim($phpcsFile->getTokensAsString(
+                        $vars[$paramCount]['default'] = trim(
+                            $phpcsFile->getTokensAsString(
                                 $defaultStart,
                                 ($i - $defaultStart)
-                            ));
+                            )
+                        );
                     }
 
                     $vars[$paramCount]['pass_by_reference'] = $passByReference;
@@ -1682,12 +1683,12 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prev !== false
-            && (isset($tokensToIgnore[$tokens[$prev]['type']]) === true)
+            && (isset($tokensToIgnore[$tokens[$prev]['type']]) === true
                 || ($tokens[$prev]['code'] === T_STRING
                     && (($isLowPHPCS === true
                         && $tokens[$prev]['content'] === 'trait')
                     || ($isLowPHP === true
-                        && $tokens[$prev]['content'] === 'insteadof')))
+                        && $tokens[$prev]['content'] === 'insteadof'))))
         ) {
             // Not the use of a constant.
             return false;

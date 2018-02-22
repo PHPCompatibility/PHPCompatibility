@@ -1099,10 +1099,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ),
         'ldap_modify_batch' => array(
             '5.4.25' => false,
-            '5.5.9' => false,
+            '5.5.9'  => false,
             '5.4.26' => true,
             '5.5.10' => true,
-            '5.6.0' => true,
+            '5.6.0'  => true,
         ),
         'mysqli_get_links_stats' => array(
             '5.5' => false,

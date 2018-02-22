@@ -33,62 +33,62 @@ class ForbiddenNamesSniff extends Sniff
      * @var array(string => string)
      */
     protected $invalidNames = array(
-        'abstract' => '5.0',
-        'and' => 'all',
-        'array' => 'all',
-        'as' => 'all',
-        'break' => 'all',
-        'callable' => '5.4',
-        'case' => 'all',
-        'catch' => '5.0',
-        'class' => 'all',
-        'clone' => '5.0',
-        'const' => 'all',
-        'continue' => 'all',
-        'declare' => 'all',
-        'default' => 'all',
-        'do' => 'all',
-        'else' => 'all',
-        'elseif' => 'all',
-        'enddeclare' => 'all',
-        'endfor' => 'all',
-        'endforeach' => 'all',
-        'endif' => 'all',
-        'endswitch' => 'all',
-        'endwhile' => 'all',
-        'extends' => 'all',
-        'final' => '5.0',
-        'finally' => '5.5',
-        'for' => 'all',
-        'foreach' => 'all',
-        'function' => 'all',
-        'global' => 'all',
-        'goto' => '5.3',
-        'if' => 'all',
-        'implements' => '5.0',
-        'interface' => '5.0',
-        'instanceof' => '5.0',
-        'insteadof' => '5.4',
-        'namespace' => '5.3',
-        'new' => 'all',
-        'or' => 'all',
-        'private' => '5.0',
-        'protected' => '5.0',
-        'public' => '5.0',
-        'static' => 'all',
-        'switch' => 'all',
-        'throw' => '5.0',
-        'trait' => '5.4',
-        'try' => '5.0',
-        'use' => 'all',
-        'var' => 'all',
-        'while' => 'all',
-        'xor' => 'all',
-        '__class__' => 'all',
-        '__dir__' => '5.3',
-        '__file__' => 'all',
-        '__function__' => 'all',
-        '__method__' => 'all',
+        'abstract'      => '5.0',
+        'and'           => 'all',
+        'array'         => 'all',
+        'as'            => 'all',
+        'break'         => 'all',
+        'callable'      => '5.4',
+        'case'          => 'all',
+        'catch'         => '5.0',
+        'class'         => 'all',
+        'clone'         => '5.0',
+        'const'         => 'all',
+        'continue'      => 'all',
+        'declare'       => 'all',
+        'default'       => 'all',
+        'do'            => 'all',
+        'else'          => 'all',
+        'elseif'        => 'all',
+        'enddeclare'    => 'all',
+        'endfor'        => 'all',
+        'endforeach'    => 'all',
+        'endif'         => 'all',
+        'endswitch'     => 'all',
+        'endwhile'      => 'all',
+        'extends'       => 'all',
+        'final'         => '5.0',
+        'finally'       => '5.5',
+        'for'           => 'all',
+        'foreach'       => 'all',
+        'function'      => 'all',
+        'global'        => 'all',
+        'goto'          => '5.3',
+        'if'            => 'all',
+        'implements'    => '5.0',
+        'interface'     => '5.0',
+        'instanceof'    => '5.0',
+        'insteadof'     => '5.4',
+        'namespace'     => '5.3',
+        'new'           => 'all',
+        'or'            => 'all',
+        'private'       => '5.0',
+        'protected'     => '5.0',
+        'public'        => '5.0',
+        'static'        => 'all',
+        'switch'        => 'all',
+        'throw'         => '5.0',
+        'trait'         => '5.4',
+        'try'           => '5.0',
+        'use'           => 'all',
+        'var'           => 'all',
+        'while'         => 'all',
+        'xor'           => 'all',
+        '__class__'     => 'all',
+        '__dir__'       => '5.3',
+        '__file__'      => 'all',
+        '__function__'  => 'all',
+        '__method__'    => 'all',
         '__namespace__' => '5.3',
     );
 
@@ -114,7 +114,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array
      */
-    private $allowed_modifiers = array();
+    private $allowedModifiers = array();
 
     /**
      * Targeted tokens.
@@ -142,11 +142,11 @@ class ForbiddenNamesSniff extends Sniff
     {
         $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
 
-        $this->allowed_modifiers          = array_combine(
+        $this->allowedModifiers          = array_combine(
             \PHP_CodeSniffer_Tokens::$scopeModifiers,
             \PHP_CodeSniffer_Tokens::$scopeModifiers
         );
-        $this->allowed_modifiers[T_FINAL] = T_FINAL;
+        $this->allowedModifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;
 
@@ -238,7 +238,7 @@ class ForbiddenNamesSniff extends Sniff
          * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_AS'
-            && isset($this->allowed_modifiers[$tokens[$nextNonEmpty]['code']]) === true
+            && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
             && $this->inUseScope($phpcsFile, $stackPtr) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
@@ -311,14 +311,14 @@ class ForbiddenNamesSniff extends Sniff
                 && $this->inClassScope($phpcsFile, $stackPtr, false) === true)
             || ($tokens[$stackPtr]['type'] === 'T_CONST'
                 && $this->isClassConstant($phpcsFile, $stackPtr) === true
-                && $nextContentLc !== 'class')
-            ) && $this->supportsBelow('5.6') === false
+                && $nextContentLc !== 'class'))
+            && $this->supportsBelow('5.6') === false
         ) {
             return;
         }
 
         if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
-            $data  = array(
+            $data = array(
                 $tokens[$nextNonEmpty]['content'],
                 $this->invalidNames[$nextContentLc],
             );
@@ -368,7 +368,7 @@ class ForbiddenNamesSniff extends Sniff
         $defineNameLc = strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
-            $data  = array(
+            $data = array(
                 $defineName,
                 $this->invalidNames[$defineNameLc],
             );

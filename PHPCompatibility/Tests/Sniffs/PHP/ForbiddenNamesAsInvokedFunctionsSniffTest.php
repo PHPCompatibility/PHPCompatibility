@@ -31,19 +31,19 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
      *
      * @dataProvider dataReservedKeyword
      *
-     * @param string $keyword        Reserved keyword.
-     * @param array  $lines_function The line numbers in the test file which apply to this keyword as a function call.
-     * @param array  $lines_method   The line numbers in the test file which apply to this keyword as a method call.
-     * @param string $introducedIn   The PHP version in which the keyword became a reserved word.
-     * @param string $okVersion      A PHP version in which the keyword was not yet reserved.
+     * @param string $keyword       Reserved keyword.
+     * @param array  $linesFunction The line numbers in the test file which apply to this keyword as a function call.
+     * @param array  $linesMethod   The line numbers in the test file which apply to this keyword as a method call.
+     * @param string $introducedIn  The PHP version in which the keyword became a reserved word.
+     * @param string $okVersion     A PHP version in which the keyword was not yet reserved.
      *
      * @return void
      */
-    public function testReservedKeyword($keyword, $lines_function, $lines_method, $introducedIn, $okVersion)
+    public function testReservedKeyword($keyword, $linesFunction, $linesMethod, $introducedIn, $okVersion)
     {
         $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
         $error = "'{$keyword}' is a reserved keyword introduced in PHP version {$introducedIn} and cannot be invoked as a function";
-        $lines = array_merge($lines_function, $lines_method);
+        $lines = array_merge($linesFunction, $linesMethod);
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
@@ -53,13 +53,13 @@ class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
             $this->assertNoViolation($file, $line);
         }
 
-        if (empty($lines_method) === true) {
+        if (empty($linesMethod) === true) {
             return;
         }
 
         // Test that method calls do not throw an error for PHP 7.0+.
         $file = $this->sniffFile(self::TEST_FILE, '7.0-');
-        foreach ($lines_method as $line) {
+        foreach ($linesMethod as $line) {
             $this->assertNoViolation($file, $line);
         }
     }

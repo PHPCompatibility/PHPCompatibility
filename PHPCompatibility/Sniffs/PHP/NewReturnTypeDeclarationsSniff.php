@@ -130,7 +130,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
         if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
             $itemInfo = array(
-                'name'   => $tokens[$stackPtr]['content'],
+                'name' => $tokens[$stackPtr]['content'],
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }

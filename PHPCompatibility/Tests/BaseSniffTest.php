@@ -210,7 +210,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      */
     private function assertForType($issues, $type, $lineNumber, $expectedMessage)
     {
-        if (!isset($issues[$lineNumber])) {
+        if (isset($issues[$lineNumber]) === false) {
             throw new \Exception("Expected $type '$expectedMessage' on line number $lineNumber, but none found.");
         }
 
@@ -334,7 +334,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             foreach ($lineIssues as $column => $issues) {
                 foreach ($issues as $issue) {
 
-                    if (!isset($allIssues[$line])) {
+                    if (isset($allIssues[$line]) === false) {
                         $allIssues[$line] = array();
                     }
 

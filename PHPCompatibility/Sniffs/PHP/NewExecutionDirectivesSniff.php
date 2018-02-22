@@ -290,7 +290,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
-    }// addWarningOnInvalidValue()
+    }//end addWarningOnInvalidValue()
 
 
     /**

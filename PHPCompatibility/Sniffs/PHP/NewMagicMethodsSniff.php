@@ -68,8 +68,8 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
         // Special case - only became properly magical in 5.2.0,
         // before that it was only called for echo and print.
         '__tostring' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'     => false,
+            '5.2'     => true,
             'message' => 'The method %s() was not truly magical in PHP version %s and earlier. The associated magic functionality will only be called when directly combined with echo or print.',
         ),
     );

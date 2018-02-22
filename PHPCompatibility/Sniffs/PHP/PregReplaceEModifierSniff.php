@@ -93,7 +93,7 @@ class PregReplaceEModifierSniff extends Sniff
         }
 
         // Differentiate between an array of patterns passed and a single pattern.
-        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] +1), true);
+        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
             foreach ($arrayValues as $value) {

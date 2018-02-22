@@ -130,7 +130,7 @@ class ValidIntegersSniff extends Sniff
         // Pre-5.4, binary strings are tokenized as T_LNUMBER (0) + T_STRING ("b01010101").
         // At this point, we don't yet care whether it's a valid binary int, that's a separate check.
         else {
-            return($token['content'] === '0' && $tokens[$stackPtr+1]['code'] === T_STRING && preg_match('`^b[0-9]+$`D', $tokens[$stackPtr+1]['content']) === 1);
+            return($token['content'] === '0' && $tokens[$stackPtr + 1]['code'] === T_STRING && preg_match('`^b[0-9]+$`D', $tokens[$stackPtr + 1]['content']) === 1);
         }
     }
 
@@ -150,9 +150,9 @@ class ValidIntegersSniff extends Sniff
 
         if ($this->isLowPHPVersion === false) {
             // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
-            return ($tokens[$stackPtr+1]['code'] === T_LNUMBER);
+            return ($tokens[$stackPtr + 1]['code'] === T_LNUMBER);
         } else {
-            return (preg_match('`^b[0-1]+$`D', $tokens[$stackPtr+1]['content']) === 0);
+            return (preg_match('`^b[0-1]+$`D', $tokens[$stackPtr + 1]['content']) === 0);
         }
     }
 

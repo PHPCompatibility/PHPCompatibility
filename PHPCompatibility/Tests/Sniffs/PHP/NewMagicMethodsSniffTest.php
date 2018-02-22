@@ -119,7 +119,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
     public function dataNewMagicMethod()
     {
         return array(
-            // new_magic_methods.php
+            // File: new_magic_methods.php.
             array('__get', '4.4', array(22, 34, 61), '5.0'),
             array('__isset', '5.0', array(23, 35, 62), '5.1'),
             array('__unset', '5.0', array(24, 36, 63), '5.1'),
@@ -128,7 +128,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
             array('__invoke', '5.2', array(28, 40, 67), '5.3'),
             array('__debugInfo', '5.5', array(29, 41, 68), '5.6'),
 
-            // new_magic_methods_traits.php
+            // File: new_magic_methods_traits.php.
             array('__get', '4.4', array(5), '5.0', true),
             array('__isset', '5.0', array(6), '5.1', true),
             array('__unset', '5.0', array(7), '5.1', true),
@@ -174,12 +174,12 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
     public function dataChangedToStringMethod()
     {
         return array(
-            // new_magic_methods.php
+            // File: new_magic_methods.php.
             array(26),
             array(38),
             array(65),
 
-            // new_magic_methods_traits.php
+            // File: new_magic_methods_traits.php.
             array(9, true),
         );
     }
@@ -266,11 +266,11 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // new_magic_methods.php
+        // File: new_magic_methods.php.
         $file = $this->getTestFile(false, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
 
-        // new_magic_methods_traits.php
+        // File: new_magic_methods_traits.php.
         $file = $this->getTestFile(true, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }

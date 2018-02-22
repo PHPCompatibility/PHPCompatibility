@@ -114,7 +114,7 @@ script:
   - if [[ $PHPUNIT_VERSION == "travis" && $COVERALLS_VERSION == "notset" ]]; then phpunit; fi
   - if [[ $PHPUNIT_VERSION != "travis" && $COVERALLS_VERSION == "notset" ]]; then vendor/bin/phpunit; fi
   # Check the code style of the code base.
-  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs . --runtime-set ignore_warnings_on_exit 1; fi
+  - if [[ "$SNIFF" == "1" ]]; then vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1; fi
   # Validate the xml file.
   # @link http://xmlsoft.org/xmllint.html
   - if [[ "$SNIFF" == "1" ]]; then xmllint --noout ./PHPCompatibility/ruleset.xml; fi

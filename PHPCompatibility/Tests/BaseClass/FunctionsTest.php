@@ -231,7 +231,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
 
             array('5.5-7'), // Invalid right half.
             array('5.5-7.0.5'), // Invalid right half.
-            array('5.5-7AndJunk'), // invalid right half.
+            array('5.5-7AndJunk'), // Invalid right half.
         );
     }
 
@@ -361,18 +361,18 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
 
-   /**
-    * testStripQuotes
-    *
-    * @dataProvider dataStripQuotes
-    *
-    * @covers \PHPCompatibility\Sniff::stripQuotes
-    *
-    * @param string $input    The input string.
-    * @param string $expected The expected function output.
-    *
-    * @return void
-    */
+    /**
+     * testStripQuotes
+     *
+     * @dataProvider dataStripQuotes
+     *
+     * @covers \PHPCompatibility\Sniff::stripQuotes
+     *
+     * @param string $input    The input string.
+     * @param string $expected The expected function output.
+     *
+     * @return void
+     */
     public function testStripQuotes($input, $expected)
     {
         $this->assertSame($expected, $this->helperClass->stripQuotes($input));
@@ -440,18 +440,18 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     }
 
 
-   /**
-    * testStripVariables
-    *
-    * @dataProvider dataStripVariables
-    *
-    * @covers \PHPCompatibility\Sniff::stripQuotes
-    *
-    * @param string $input    The input string.
-    * @param string $expected The expected function output.
-    *
-    * @return void
-    */
+    /**
+     * testStripVariables
+     *
+     * @dataProvider dataStripVariables
+     *
+     * @covers \PHPCompatibility\Sniff::stripQuotes
+     *
+     * @param string $input    The input string.
+     * @param string $expected The expected function output.
+     *
+     * @return void
+     */
     public function testStripVariables($input, $expected)
     {
         $this->assertSame($expected, $this->helperClass->stripVariables($input));
@@ -518,7 +518,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     private function invokeMethod(&$object, $methodName, array $parameters = array())
     {
         $reflection = new \ReflectionClass(get_class($object));
-        $method = $reflection->getMethod($methodName);
+        $method     = $reflection->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);

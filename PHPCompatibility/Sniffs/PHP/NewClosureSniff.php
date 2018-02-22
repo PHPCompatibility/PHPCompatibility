@@ -60,7 +60,6 @@ class NewClosureSniff extends Sniff
         $usesThis = $this->findThisUsageInClosure($phpcsFile, $stackPtr);
 
         if ($this->supportsBelow('5.3')) {
-
             /*
              * Closures can only be declared as static since PHP 5.4.
              */
