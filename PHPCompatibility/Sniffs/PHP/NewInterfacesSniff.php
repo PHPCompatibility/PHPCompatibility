@@ -119,11 +119,12 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         );
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = constant('T_ANON_CLASS');
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
+            $targets[] = T_ANON_CLASS;
         }
 
         if (defined('T_RETURN_TYPE')) {
-            $targets[] = constant('T_RETURN_TYPE');
+            $targets[] = T_RETURN_TYPE;
         }
 
         return $targets;
