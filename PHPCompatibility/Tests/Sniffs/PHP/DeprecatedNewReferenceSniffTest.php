@@ -40,7 +40,7 @@ class DeprecatedNewReferenceSniffTest extends BaseSniffTest
         $this->assertWarning($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3');
 
         $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertError($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3 and forbidden in PHP 7.0');
+        $this->assertError($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3 and has been removed in PHP 7.0');
 
     }
 
