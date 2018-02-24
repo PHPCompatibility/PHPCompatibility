@@ -52,19 +52,26 @@ class ConstantArraysUsingConstSniff extends Sniff
             return;
         }
 
-        $find = array(
+        $tokens = $phpcsFile->getTokens();
+        $find   = array(
             T_ARRAY             => T_ARRAY,
             T_OPEN_SHORT_ARRAY  => T_OPEN_SHORT_ARRAY,
-            T_CLOSE_SHORT_ARRAY => T_CLOSE_SHORT_ARRAY,
         );
 
-        $hasArray = $phpcsFile->findNext($find, ($stackPtr + 1), null, false, null, true);
-        if ($hasArray !== false) {
+        while (($hasArray = $phpcsFile->findNext($find, ($stackPtr + 1), null, false, null, true)) !== false) {
             $phpcsFile->addError(
                 'Constant arrays using the "const" keyword are not allowed in PHP 5.5 or earlier',
                 $hasArray,
                 'Found'
             );
+
+            // Skip past the content of the array.
+            $stackPtr = $hasArray;
+            if ($tokens[$hasArray]['code'] === T_OPEN_SHORT_ARRAY && isset($tokens[$hasArray]['bracket_closer'])) {
+                $stackPtr = $tokens[$hasArray]['bracket_closer'];
+            } elseif ($tokens[$hasArray]['code'] === T_ARRAY && isset($tokens[$hasArray]['parenthesis_closer'])) {
+                $stackPtr = $tokens[$hasArray]['parenthesis_closer'];
+            }
         }
     }
 }

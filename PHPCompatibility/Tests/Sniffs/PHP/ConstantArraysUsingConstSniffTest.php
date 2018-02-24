@@ -56,6 +56,9 @@ class ConstantArraysUsingConstSniffTest extends BaseSniffTest
             array(12),
             array(19),
             array(25),
+            array(37),
+            array(39),
+            array(41),
         );
     }
 
@@ -87,6 +90,10 @@ class ConstantArraysUsingConstSniffTest extends BaseSniffTest
         return array(
             array(31),
             array(33),
+            array(36),
+            array(38),
+            array(40),
+            array(42),
         );
     }
 
