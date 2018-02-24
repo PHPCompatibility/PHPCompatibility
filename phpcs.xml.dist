@@ -19,22 +19,6 @@
     <config name="testVersion" value="5.3-99.0"/>
     <rule ref="PHPCompatibility"/>
 
-    <!-- Verified correct usage. -->
-    <rule ref="PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved">
-        <exclude-pattern>*/RemovedAlternativePHPTags*\.php</exclude-pattern>
-    </rule>
-
-    <!-- Verified correct usage. -->
-    <rule ref="PHPCompatibility.PHP.NewConstants.t_finallyFound">
-        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-    </rule>
-    <rule ref="PHPCompatibility.PHP.NewConstants.t_insteadofFound">
-        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-    </rule>
-    <rule ref="PHPCompatibility.PHP.NewConstants.t_traitFound">
-        <exclude-pattern>*/ForbiddenNamesAsInvokedFunctionsSniff\.php</exclude-pattern>
-    </rule>
-
     <!--
         Minimal code style check.
     -->

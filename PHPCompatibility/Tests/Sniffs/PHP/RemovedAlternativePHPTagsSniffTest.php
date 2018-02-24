@@ -40,6 +40,7 @@ class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
     public static function setUpBeforeClass()
     {
         if (version_compare(PHP_VERSION_ID, '70000', '<')) {
+            // phpcs:ignore PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved
             self::$aspTags = (boolean) ini_get('asp_tags');
         }
 
