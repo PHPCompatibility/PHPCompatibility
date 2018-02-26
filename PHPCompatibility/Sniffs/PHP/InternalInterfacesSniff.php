@@ -48,7 +48,8 @@ class InternalInterfacesSniff extends Sniff
         $targets = array(T_CLASS);
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = constant('T_ANON_CLASS');
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
+            $targets[] = T_ANON_CLASS;
         }
 
         return $targets;

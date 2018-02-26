@@ -104,7 +104,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         );
 
         if (defined('T_TRAIT')) {
-            $targets[] = constant('T_TRAIT');
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
+            $targets[] = T_TRAIT;
         }
 
         return $targets;

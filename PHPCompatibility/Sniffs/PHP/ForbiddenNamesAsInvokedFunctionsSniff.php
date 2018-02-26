@@ -82,12 +82,15 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     public function register()
     {
         if (defined('T_FINALLY')) {
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_finallyFound
             $this->targetedTokens[T_FINALLY] = '5.5';
         }
         if (defined('T_INSTEADOF')) {
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_insteadofFound
             $this->targetedTokens[T_INSTEADOF] = '5.4';
         }
         if (defined('T_TRAIT')) {
+            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
             $this->targetedTokens[T_TRAIT] = '5.4';
         }
 
