@@ -1,25 +1,7 @@
 <?xml version="1.0"?>
-
 <ruleset name="PHPCompatibility">
     <description>Coding Standard that checks for PHP version compatibility.</description>
 
     <autoload>./../PHPCSAliases.php</autoload>
-
-    <!-- This rule covers checking for non-magic methods using __ prefix. -->
-    <!-- Covers part 2 of issue 64: https://github.com/wimg/PHPCompatibility/issues/64 -->
-    <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
-        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps"/>
-        <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps"/>
-    </rule>
-    <rule ref="Generic.NamingConventions.CamelCapsFunctionName.MethodDoubleUnderscore">
-        <type>warning</type>
-        <!-- Original message: Method name "%s" is invalid; only PHP magic methods should be prefixed with a double underscore -->
-        <message>Method name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use</message>
-    </rule>
-    <rule ref="Generic.NamingConventions.CamelCapsFunctionName.FunctionDoubleUnderscore">
-        <type>warning</type>
-        <!-- Original message: Function name "%s" is invalid; only PHP magic methods should be prefixed with a double underscore -->
-        <message>Function name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use</message>
-    </rule>
 
 </ruleset>
