@@ -134,3 +134,9 @@ const PHP_VERSION_ID = 'something';
 
 /* Case A9 */
 $array[PHP_VERSION_ID] = 'something';
+
+/* Case A10 */
+const ABC = '123',
+      DEF = '456',
+      PHP_VERSION_ID = 'something',
+	  GHI = 789;
