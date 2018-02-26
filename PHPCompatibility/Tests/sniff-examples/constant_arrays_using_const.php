@@ -30,4 +30,14 @@ class MyClass {
  */
 const ANIMALS = 'array';
 
-const ABC; // Not an assignment. Useless, but what the heck ;-)
+const DEF; // Not an assignment. Useless, but what the heck ;-)
+
+// Multi-constant declaration.
+const MULTI_A = 1,
+    MULTI_B = array( 'a', 'b' ),
+    MULTI_C = 'string',
+    MULTI_D = ['a', 'b'],
+    MULTI_E = true,
+    MULTI_F = array(
+        ['c', 'd'],
+    );
