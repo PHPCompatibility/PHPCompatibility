@@ -551,6 +551,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.1'  => true,
             ),
         ),
+        'pg_last_notice' => array(
+            1 => array(
+                'name' => 'option',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'pg_lo_create' => array(
             1 => array(
                 'name' => 'object_id',

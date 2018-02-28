@@ -97,3 +97,4 @@ bcmod( '100', '10', '2' );
 get_headers( $url, $format, $context );
 getopt($options, $longopts, $optind);
 pg_fetch_all( $result, $result_type );
+pg_last_notice( $connection, $option );

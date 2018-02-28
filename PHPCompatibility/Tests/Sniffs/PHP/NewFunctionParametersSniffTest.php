@@ -144,6 +144,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('parse_ini_file', 'scanner_mode', '5.2', array(64), '5.3'),
             array('parse_url', 'component', '5.1.1', array(65), '5.2', '5.1'),
             array('pg_fetch_all', 'result_type', '7.0', array(99), '7.1'),
+            array('pg_last_notice', 'option', '7.0', array(100), '7.1'),
             array('pg_lo_create', 'object_id', '5.2', array(66), '5.3'),
             array('pg_lo_import', 'object_id', '5.2', array(67), '5.3'),
             array('preg_replace', 'count', '5.0', array(68), '5.1'),
