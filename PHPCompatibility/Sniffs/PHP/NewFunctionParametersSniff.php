@@ -496,6 +496,11 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.0'  => false,
                 '5.1'  => true,
             ),
+            6 => array(
+                'name' => 'p7bfilename',
+                '7.1'  => false,
+                '7.2'  => true,
+            ),
         ),
         'openssl_seal' => array(
             4 => array(
