@@ -572,6 +572,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.3'  => true,
             ),
         ),
+        'pg_select' => array(
+            4 => array(
+                'name' => 'result_type',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'preg_replace' => array(
             4 => array(
                 'name' => 'count',
