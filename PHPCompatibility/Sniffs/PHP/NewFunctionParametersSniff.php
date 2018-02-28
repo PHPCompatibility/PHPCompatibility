@@ -596,6 +596,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.1'  => true,
             ),
         ),
+        'php_uname' => array(
+            0 => array(
+                'name' => 'mode',
+                '5.6'  => false,
+                '7.0'  => true,
+            ),
+        ),
         'preg_replace' => array(
             4 => array(
                 'name' => 'count',
