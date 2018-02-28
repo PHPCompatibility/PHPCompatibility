@@ -534,6 +534,11 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.2'  => false,
                 '5.3'  => true,
             ),
+            5 => array(
+                'name' => 'iv',
+                '5.6'  => false,
+                '7.0'  => true,
+            ),
         ),
         'openssl_verify' => array(
             3 => array(

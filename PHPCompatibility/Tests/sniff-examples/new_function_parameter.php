@@ -59,7 +59,7 @@ nl2br("Welcome\r\nThis is my HTML document", false);
 openssl_decrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv, $tag, $aad);
 openssl_encrypt($data, 'aes-256-cbc', $encryption_key, OPENSSL_RAW_DATA, $iv, $tag, $aad, $tag_length);
 openssl_pkcs7_verify ( $filename , $flags , $outfilename , $cainfo , $extracerts , $content, $p7bfilename );
-openssl_seal($data, $sealed, $ekeys, array($pk1, $pk2), 'RC4');
+openssl_seal($data, $sealed, $ekeys, array($pk1, $pk2), 'RC4', 'iv');
 openssl_verify($data, $signature, $public_key_res, OPENSSL_ALGO_SHA1);
 parse_ini_file('sample.ini', true, INI_SCANNER_RAW);
 parse_url($url, PHP_URL_PATH);
