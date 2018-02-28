@@ -137,6 +137,8 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('openssl_encrypt', 'tag', '7.0', array(60), '7.1'),
             array('openssl_encrypt', 'aad', '7.0', array(60), '7.1'),
             array('openssl_encrypt', 'tag_length', '7.0', array(60), '7.1'),
+            array('openssl_open', 'method', '5.2', array(103), '7.0'), // OK version > version in which last parameter was added to the function.
+            array('openssl_open', 'iv', '5.6', array(103), '7.0'),
             array('openssl_pkcs7_verify', 'content', '5.0', array(61), '7.2'), // OK version > version in which last parameter was added to the function.
             array('openssl_pkcs7_verify', 'p7bfilename', '7.1', array(61), '7.2'),
             array('openssl_seal', 'method', '5.2', array(62), '5.3'),

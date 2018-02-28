@@ -504,6 +504,18 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.1'  => true,
             ),
         ),
+        'openssl_open' => array(
+            4 => array(
+                'name' => 'method',
+                '5.2'  => false,
+                '5.3'  => true,
+            ),
+            5 => array(
+                'name' => 'iv',
+                '5.6'  => false,
+                '7.0'  => true,
+            ),
+        ),
         'openssl_pkcs7_verify' => array(
             5 => array(
                 'name' => 'content',

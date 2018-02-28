@@ -100,3 +100,4 @@ pg_fetch_all( $result, $result_type );
 pg_last_notice( $connection, $option );
 pg_select ($connection, $table_name, $assoc_array, $options, $result_type);
 unpack($format,$data,$offset);
+openssl_open( $sealed_data, &$open_data, $env_key, $priv_key_id, $method, $iv);
