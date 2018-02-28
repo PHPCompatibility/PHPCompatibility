@@ -71,7 +71,7 @@ round(1.55, 1, PHP_ROUND_HALF_EVEN);
 sem_acquire( $sem_identifier, true );
 session_regenerate_id (true);
 session_set_cookie_params($lifetime, $path, $domain, false, true );
-session_set_save_handler( array($handler, 'open'), array($handler, 'close'), array($handler, 'read'), array($handler, 'write'), array($handler, 'destroy'), array($handler, 'gc'), array($handler, 'create_sid') );
+session_set_save_handler( array($handler, 'open'), array($handler, 'close'), array($handler, 'read'), array($handler, 'write'), array($handler, 'destroy'), array($handler, 'gc'), array($handler, 'create_sid'), array($handler, 'validate_sid'), array($handler, 'update_timestamp') );
 session_start(array('bla'));
 setcookie('TestCookie', '', time() - 3600, '/~rasmus/', 'example.com', 1, true);
 setrawcookie('TestCookie', '', time() - 3600, '/~rasmus/', 'example.com', 1, true);

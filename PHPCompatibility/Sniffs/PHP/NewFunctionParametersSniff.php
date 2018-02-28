@@ -651,6 +651,16 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.5.0' => false,
                 '5.5.1' => true,
             ),
+            7 => array(
+                'name'  => 'validate_sid',
+                '5.6' => false,
+                '7.0' => true,
+            ),
+            8 => array(
+                'name' => 'update_timestamp',
+                '5.6'  => false,
+                '7.0'  => true,
+            ),
         ),
         'session_start' => array(
             0 => array(

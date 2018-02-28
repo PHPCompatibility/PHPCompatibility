@@ -158,7 +158,9 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('sem_acquire', 'nowait', '5.6', array(71), '7.0'),
             array('session_regenerate_id', 'delete_old_session', '5.0', array(72), '5.1'),
             array('session_set_cookie_params', 'httponly', '5.1', array(73), '5.2'),
-            array('session_set_save_handler', 'create_sid', '5.5.0', array(74), '5.6', '5.5'),
+            array('session_set_save_handler', 'create_sid', '5.5.0', array(74), '7.0', '5.5'), // OK version > version in which last parameter was added to the function.
+            array('session_set_save_handler', 'validate_sid', '5.6', array(74), '7.0'),
+            array('session_set_save_handler', 'update_timestamp', '5.6', array(74), '7.0'),
             array('session_start', 'options', '5.6', array(75), '7.0'),
             array('setcookie', 'httponly', '5.1', array(76), '5.2'),
             array('setrawcookie', 'httponly', '5.1', array(77), '5.2'),
