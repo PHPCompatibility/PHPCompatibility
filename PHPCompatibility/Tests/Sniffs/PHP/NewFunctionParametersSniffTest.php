@@ -91,6 +91,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('filter_var_array', 'add_empty', '5.3', array(29), '5.4'),
             array('gettimeofday', 'return_float', '5.0', array(30), '5.1'),
             array('get_defined_functions', 'exclude_disabled', '7.0.14', array(95), '7.1', '7.0'),
+            array('get_headers', 'context', '7.0', array(97), '7.1'),
             array('get_html_translation_table', 'encoding', '5.3.3', array(31), '5.4', '5.3'),
             array('get_loaded_extensions', 'zend_extensions', '5.2.3', array(32), '5.3', '5.2'),
             array('gzcompress', 'encoding', '5.3', array(33), '5.4'),

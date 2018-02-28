@@ -204,6 +204,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.0.15' => true,
             ),
         ),
+        'get_headers' => array(
+            2 => array(
+                'name' => 'context',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'get_html_translation_table' => array(
             2 => array(
                 'name'  => 'encoding',

@@ -94,3 +94,4 @@ ucwords($foo, '|');
 $data = unserialize($foo, ["allowed_classes" => false]);
 get_defined_functions(true);
 bcmod( '100', '10', '2' );
+get_headers( $url, $format, $context );
