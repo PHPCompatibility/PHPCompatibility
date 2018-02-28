@@ -65,6 +65,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.2'  => true,
             ),
         ),
+        'bcmod' => array(
+            2 => array(
+                'name' => 'scale',
+                '7.1'  => false,
+                '7.2'  => true,
+            ),
+        ),
         'class_implements' => array(
             1 => array(
                 'name' => 'autoload',

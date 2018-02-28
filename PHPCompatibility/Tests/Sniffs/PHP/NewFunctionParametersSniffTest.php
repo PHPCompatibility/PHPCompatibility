@@ -70,6 +70,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('array_unique', 'sort_flags', '5.2.8', array(13), '5.3', '5.2'),
             array('assert', 'description', '5.4.7', array(14), '5.5', '5.4'),
             array('base64_decode', 'strict', '5.1', array(15), '5.2'),
+            array('bcmod', 'scale', '7.1', array(96), '7.2'),
             array('class_implements', 'autoload', '5.0', array(16), '5.1'),
             array('class_parents', 'autoload', '5.0', array(17), '5.1'),
             array('clearstatcache', 'clear_realpath_cache', '5.2', array(18), '5.3'),
