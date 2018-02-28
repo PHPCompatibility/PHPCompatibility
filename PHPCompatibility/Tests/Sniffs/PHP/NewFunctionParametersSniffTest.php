@@ -177,6 +177,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('timezone_identifiers_list', 'country', '5.2', array(91), '5.3'),
             array('token_get_all', 'flags', '5.6', array(92), '7.0'),
             array('ucwords', 'delimiters', '5.4.31', array(93), '5.6', '5.4'), // Function introduced in 5.4.31 and 5.5.15.
+            array('unpack', 'offset', '7.0', array(102), '7.1'),
             array('unserialize', 'options', '5.6', array(94), '7.0'),
         );
     }

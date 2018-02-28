@@ -778,6 +778,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.5.16' => true,
             ),
         ),
+        'unpack' => array(
+            2 => array(
+                'name' => 'offset',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'unserialize' => array(
             1 => array(
                 'name' => 'options',
