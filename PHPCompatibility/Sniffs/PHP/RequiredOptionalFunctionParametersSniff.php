@@ -32,6 +32,13 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
      * @var array
      */
     protected $functionParameters = array(
+        'bcscale' => array(
+            0 => array(
+                'name' => 'scale',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
         'preg_match_all' => array(
             2 => array(
                 'name' => 'matches',
@@ -95,13 +102,14 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
             return;
         }
 
-        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
-        if ($parameterCount === 0) {
+        $parameterCount  = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        $openParenthesis = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+
+        // If the parameter count returned > 0, we know there will be valid open parenthesis.
+        if ($parameterCount === 0 && $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
             return;
         }
 
-        // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
         foreach ($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
