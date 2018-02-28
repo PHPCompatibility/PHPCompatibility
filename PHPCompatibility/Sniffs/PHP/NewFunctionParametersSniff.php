@@ -190,6 +190,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.4'  => true,
             ),
         ),
+        'getopt' => array(
+            2 => array(
+                'name' => 'optind',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'gettimeofday' => array(
             0 => array(
                 'name' => 'return_float',

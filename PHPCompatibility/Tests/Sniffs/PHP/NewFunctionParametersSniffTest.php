@@ -89,6 +89,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
             array('file_get_contents', 'maxlen', '5.0', array(27), '5.1'),
             array('filter_input_array', 'add_empty', '5.3', array(28), '5.4'),
             array('filter_var_array', 'add_empty', '5.3', array(29), '5.4'),
+            array('getopt', 'optind', '7.0', array(98), '7.1'),
             array('gettimeofday', 'return_float', '5.0', array(30), '5.1'),
             array('get_defined_functions', 'exclude_disabled', '7.0.14', array(95), '7.1', '7.0'),
             array('get_headers', 'context', '7.0', array(97), '7.1'),
