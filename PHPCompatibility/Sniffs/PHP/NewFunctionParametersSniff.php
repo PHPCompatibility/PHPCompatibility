@@ -544,6 +544,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.1.2' => true,
             ),
         ),
+        'pg_fetch_all' => array(
+            1 => array(
+                'name' => 'result_type',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'pg_lo_create' => array(
             1 => array(
                 'name' => 'object_id',

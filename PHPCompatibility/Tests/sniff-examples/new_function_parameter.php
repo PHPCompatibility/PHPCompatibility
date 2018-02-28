@@ -96,3 +96,4 @@ get_defined_functions(true);
 bcmod( '100', '10', '2' );
 get_headers( $url, $format, $context );
 getopt($options, $longopts, $optind);
+pg_fetch_all( $result, $result_type );
