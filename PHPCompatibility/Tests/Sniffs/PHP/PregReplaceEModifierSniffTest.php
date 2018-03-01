@@ -13,7 +13,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * preg_replace() /e modifier sniff tests
  *
  * @group pregReplaceEModifier
- * @group regexEModifier
+ * @group regexModifiers
  *
  * @covers \PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff
  *
