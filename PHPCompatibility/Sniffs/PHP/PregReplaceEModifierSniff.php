@@ -96,14 +96,30 @@ class PregReplaceEModifierSniff extends Sniff
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
-            foreach ($arrayValues as $value) {
-                $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
-                if ($hasKey !== false) {
-                    $value['start'] = ($hasKey + 1);
-                    $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+            if ($functionName === 'preg_replace_callback_array') {
+                // For preg_replace_callback_array(), the patterns will be in the array keys.
+                foreach ($arrayValues as $value) {
+                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    if ($hasKey === false) {
+                        continue;
+                    }
+
+                    $value['end'] = ($hasKey - 1);
+                    $value['raw'] = trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
+                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
                 }
 
-                $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
+            } else {
+                // Otherwise, the patterns will be in the array values.
+                foreach ($arrayValues as $value) {
+                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    if ($hasKey !== false) {
+                        $value['start'] = ($hasKey + 1);
+                        $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+                    }
+
+                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
+                }
             }
 
         } else {
