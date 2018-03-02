@@ -69,6 +69,48 @@ class OptionalRequiredFunctionParametersSniffTest extends BaseSniffTest
 
 
     /**
+     * testOptionalRecommendedParameter
+     *
+     * @dataProvider dataOptionalRecommendedParameter
+     *
+     * @param string $functionName        Function name.
+     * @param string $parameterName       Parameter name.
+     * @param string $softRecommendedFrom The PHP version in which the parameter became recommended.
+     * @param array  $lines               The line numbers in the test file which apply to this class.
+     * @param string $okVersion           A PHP version in which to test for no violation.
+     *
+     * @return void
+     */
+    public function testOptionalRecommendedParameter($functionName, $parameterName, $softRecommendedFrom, $lines, $okVersion)
+    {
+        $file  = $this->sniffFile(self::TEST_FILE, $softRecommendedFrom);
+        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing. Passing this parameter is strongly recommended since PHP {$softRecommendedFrom}";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testOptionalRecommendedParameter()
+     *
+     * @return array
+     */
+    public function dataOptionalRecommendedParameter()
+    {
+        return array(
+            array('crypt', 'salt', '5.6', array(8), '5.5'),
+        );
+    }
+
+
+    /**
      * testNoFalsePositives
      *
      * @dataProvider dataNoFalsePositives
@@ -105,7 +147,7 @@ class OptionalRequiredFunctionParametersSniffTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1'); // Version before earliest required/optional change.
+        $file = $this->sniffFile(self::TEST_FILE, '5.5'); // Version before earliest required/optional change.
         $this->assertNoViolation($file);
     }
 
