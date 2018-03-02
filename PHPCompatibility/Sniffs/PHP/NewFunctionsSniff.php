@@ -1144,6 +1144,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
         ),
+        'pg_lo_truncate' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
         'pg_socket' => array(
             '5.5' => false,
             '5.6' => true,
