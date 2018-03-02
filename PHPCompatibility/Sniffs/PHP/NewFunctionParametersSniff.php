@@ -190,6 +190,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.4'  => true,
             ),
         ),
+        'getenv' => array(
+            1 => array(
+                'name' => 'local_only',
+                '5.5.37'  => false,
+                '5.5.38'  => true, // Also introduced in PHP 5.6.24 and 7.0.9.
+            ),
+        ),
         'getopt' => array(
             2 => array(
                 'name' => 'optind',
