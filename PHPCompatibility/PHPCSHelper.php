@@ -88,6 +88,101 @@ class PHPCSHelper
 
 
     /**
+     * Returns the position of the last non-whitespace token in a statement.
+     *
+     * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
+     * class and introduced in PHPCS 2.1.0.
+     *
+     * Once the minimum supported PHPCS version for this standard goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->findEndOfStatement($start, $ignore)` calls.
+     *
+     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit f5d899dcb5c534a1c3cca34668624517856ba823}}
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                   $start     The position to start searching from in the token stack.
+     * @param int|array             $ignore    Token types that should not be considered stop points.
+     *
+     * @return int
+     */
+    public static function findEndOfStatement(\PHP_CodeSniffer_File $phpcsFile, $start, $ignore = null)
+    {
+        if (version_compare(self::getVersion(), '3.3.0', '>=') === true) {
+            return $phpcsFile->findEndOfStatement($start, $ignore);
+        }
+
+        $tokens    = $phpcsFile->getTokens();
+        $endTokens = array(
+            T_COLON                => true,
+            T_COMMA                => true,
+            T_DOUBLE_ARROW         => true,
+            T_SEMICOLON            => true,
+            T_CLOSE_PARENTHESIS    => true,
+            T_CLOSE_SQUARE_BRACKET => true,
+            T_CLOSE_CURLY_BRACKET  => true,
+            T_CLOSE_SHORT_ARRAY    => true,
+            T_OPEN_TAG             => true,
+            T_CLOSE_TAG            => true,
+        );
+
+        if ($ignore !== null) {
+            $ignore = (array) $ignore;
+            foreach ($ignore as $code) {
+                if (isset($endTokens[$code]) === true) {
+                    unset($endTokens[$code]);
+                }
+            }
+        }
+
+        $lastNotEmpty = $start;
+
+        for ($i = $start; $i < $phpcsFile->numTokens; $i++) {
+            if ($i !== $start && isset($endTokens[$tokens[$i]['code']]) === true) {
+                // Found the end of the statement.
+                if ($tokens[$i]['code'] === T_CLOSE_PARENTHESIS
+                    || $tokens[$i]['code'] === T_CLOSE_SQUARE_BRACKET
+                    || $tokens[$i]['code'] === T_CLOSE_CURLY_BRACKET
+                    || $tokens[$i]['code'] === T_CLOSE_SHORT_ARRAY
+                    || $tokens[$i]['code'] === T_OPEN_TAG
+                    || $tokens[$i]['code'] === T_CLOSE_TAG
+                ) {
+                    return $lastNotEmpty;
+                }
+
+                return $i;
+            }
+
+            // Skip nested statements.
+            if (isset($tokens[$i]['scope_closer']) === true
+                && ($i === $tokens[$i]['scope_opener']
+                || $i === $tokens[$i]['scope_condition'])
+            ) {
+                if ($i === $start && isset(Util\Tokens::$scopeOpeners[$this->tokens[$i]['code']]) === true) {
+                    return $this->tokens[$i]['scope_closer'];
+                }
+
+                $i = $tokens[$i]['scope_closer'];
+            } elseif (isset($tokens[$i]['bracket_closer']) === true
+                && $i === $tokens[$i]['bracket_opener']
+            ) {
+                $i = $tokens[$i]['bracket_closer'];
+            } elseif (isset($tokens[$i]['parenthesis_closer']) === true
+                && $i === $tokens[$i]['parenthesis_opener']
+            ) {
+                $i = $tokens[$i]['parenthesis_closer'];
+            }
+
+            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
+                $lastNotEmpty = $i;
+            }
+        }//end for
+
+        return ($phpcsFile->numTokens - 1);
+
+    }//end findEndOfStatement()
+
+
+    /**
      * Returns the name of the class that the specified class extends
      * (works for classes, anonymous classes and interfaces).
      *
