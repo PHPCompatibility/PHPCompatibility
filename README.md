@@ -165,6 +165,13 @@ You can also set the `testVersion` from within the ruleset:
 
 Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
 
+#### `testVersion` in the ruleset versus command-line
+
+In PHPCS 3.2.0 and lower, once you set the `testVersion` in the ruleset, you could not overrule it from the command-line anymore.
+Starting with PHPCS 3.3.0, the `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
+
+This allows for more flexibility when, for instance, your project needs to comply with PHP `5.5-`, but you have a bootstrap file which needs to be compatible with PHP `5.2-`.
+
 
 #### PHPCompatibility specific options
 
