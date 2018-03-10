@@ -12,7 +12,6 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Dependency Status](https://www.versioneye.com/php/wimg:php-compatibility/badge)](https://www.versioneye.com/php/wimg:php-compatibility)
 
 [![Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
-[![Not Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/not-tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
 
 
 This is a set of sniffs for [PHP CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
