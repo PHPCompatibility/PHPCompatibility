@@ -65,6 +65,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.2'  => true,
             ),
         ),
+        'bcmod' => array(
+            2 => array(
+                'name' => 'scale',
+                '7.1'  => false,
+                '7.2'  => true,
+            ),
+        ),
         'class_implements' => array(
             1 => array(
                 'name' => 'autoload',
@@ -183,6 +190,20 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.4'  => true,
             ),
         ),
+        'getenv' => array(
+            1 => array(
+                'name' => 'local_only',
+                '5.5.37'  => false,
+                '5.5.38'  => true, // Also introduced in PHP 5.6.24 and 7.0.9.
+            ),
+        ),
+        'getopt' => array(
+            2 => array(
+                'name' => 'optind',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'gettimeofday' => array(
             0 => array(
                 'name' => 'return_float',
@@ -195,6 +216,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name'   => 'exclude_disabled',
                 '7.0.14' => false,
                 '7.0.15' => true,
+            ),
+        ),
+        'get_headers' => array(
+            2 => array(
+                'name' => 'context',
+                '7.0'  => false,
+                '7.1'  => true,
             ),
         ),
         'get_html_translation_table' => array(
@@ -483,11 +511,28 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.1'  => true,
             ),
         ),
+        'openssl_open' => array(
+            4 => array(
+                'name' => 'method',
+                '5.2'  => false,
+                '5.3'  => true,
+            ),
+            5 => array(
+                'name' => 'iv',
+                '5.6'  => false,
+                '7.0'  => true,
+            ),
+        ),
         'openssl_pkcs7_verify' => array(
             5 => array(
                 'name' => 'content',
                 '5.0'  => false,
                 '5.1'  => true,
+            ),
+            6 => array(
+                'name' => 'p7bfilename',
+                '7.1'  => false,
+                '7.2'  => true,
             ),
         ),
         'openssl_seal' => array(
@@ -495,6 +540,11 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name' => 'method',
                 '5.2'  => false,
                 '5.3'  => true,
+            ),
+            5 => array(
+                'name' => 'iv',
+                '5.6'  => false,
+                '7.0'  => true,
             ),
         ),
         'openssl_verify' => array(
@@ -518,6 +568,20 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.1.2' => true,
             ),
         ),
+        'pg_fetch_all' => array(
+            1 => array(
+                'name' => 'result_type',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
+        'pg_last_notice' => array(
+            1 => array(
+                'name' => 'option',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'pg_lo_create' => array(
             1 => array(
                 'name' => 'object_id',
@@ -530,6 +594,20 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name' => 'object_id',
                 '5.2'  => false,
                 '5.3'  => true,
+            ),
+        ),
+        'pg_select' => array(
+            4 => array(
+                'name' => 'result_type',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
+        'php_uname' => array(
+            0 => array(
+                'name' => 'mode',
+                '5.6'  => false,
+                '7.0'  => true,
             ),
         ),
         'preg_replace' => array(
@@ -579,6 +657,16 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name'  => 'create_sid',
                 '5.5.0' => false,
                 '5.5.1' => true,
+            ),
+            7 => array(
+                'name'  => 'validate_sid',
+                '5.6' => false,
+                '7.0' => true,
+            ),
+            8 => array(
+                'name' => 'update_timestamp',
+                '5.6'  => false,
+                '7.0'  => true,
             ),
         ),
         'session_start' => array(
@@ -729,6 +817,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.5.15' => false,
                 '5.4.32' => true,
                 '5.5.16' => true,
+            ),
+        ),
+        'unpack' => array(
+            2 => array(
+                'name' => 'offset',
+                '7.0'  => false,
+                '7.1'  => true,
             ),
         ),
         'unserialize' => array(
