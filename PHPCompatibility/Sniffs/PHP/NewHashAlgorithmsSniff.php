@@ -73,6 +73,31 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
         ),
+
+        'sha512/224' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sha512/256' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sha3-224' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sha3-256' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sha3-384' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sha3-512' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
     );
 
 

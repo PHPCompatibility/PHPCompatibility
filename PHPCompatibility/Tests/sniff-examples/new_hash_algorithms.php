@@ -24,3 +24,10 @@ hash("fnv132", "2nd param", 3, false);
 hash("fnv164");
 
 hash_pbkdf2('gost-crypto');
+
+hash_file('sha512/224');
+hash_hmac_file('sha512/256');
+hash_hmac('sha3-224');
+hash_init('sha3-256');
+hash_pbkdf2('sha3-384');
+hash('sha3-512');
