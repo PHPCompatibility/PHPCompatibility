@@ -66,9 +66,9 @@ class DeprecatedNewReferenceSniff extends Sniff
         $errorCode = 'Deprecated';
 
         if ($this->supportsAbove('7.0') === true) {
-            $error    .= ' and forbidden in PHP 7.0';
+            $error    .= ' and has been removed in PHP 7.0';
             $isError   = true;
-            $errorCode = 'Forbidden';
+            $errorCode = 'Removed';
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
