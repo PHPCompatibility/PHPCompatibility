@@ -22,7 +22,7 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
 
     /**
-     * A list of new types
+     * A list of new types.
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
@@ -33,6 +33,14 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
         'array' => array(
             '5.0' => false,
             '5.1' => true,
+        ),
+        'self' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'parent' => array(
+            '5.1' => false,
+            '5.2' => true,
         ),
         'callable' => array(
             '5.3' => false,
@@ -73,7 +81,6 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
      * @var array(string => string)
      */
     protected $invalidTypes = array(
-        'parent'  => 'self',
         'static'  => 'self',
         'boolean' => 'bool',
         'integer' => 'int',
@@ -130,10 +137,24 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
             } elseif (isset($this->newTypes[$typeHint])) {
                 $itemInfo = array(
-                    'name'   => $typeHint,
+                    'name' => $typeHint,
                 );
                 $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
 
+                // As of PHP 7.0, using `self` or `parent` outside class scope throws a fatal error.
+                // Only throw this error for PHP 5.2+ as before that the "type hint not supported" error
+                // will be thrown.
+                if (($typeHint === 'self' || $typeHint === 'parent')
+                    && $this->inClassScope($phpcsFile, $stackPtr, false) === false
+                    && $this->supportsAbove('5.2') !== false
+                ) {
+                    $phpcsFile->addError(
+                        "'%s' type cannot be used outside of class scope",
+                        $param['token'],
+                        ucfirst($typeHint) . 'OutsideClassScopeFound',
+                        array($typeHint)
+                    );
+                }
             } elseif (isset($this->invalidTypes[$typeHint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
                 $data  = array(
@@ -143,14 +164,6 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
 
-            } elseif ($typeHint === 'self') {
-                if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
-                    $phpcsFile->addError(
-                        "'self' type cannot be used outside of class scope",
-                        $param['token'],
-                        'SelfOutsideClassScopeFound'
-                    );
-                }
             }
         }
     }//end process()

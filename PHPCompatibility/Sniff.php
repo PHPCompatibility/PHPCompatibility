@@ -1408,7 +1408,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                 case 'T_SELF':
                 case 'T_PARENT':
                 case 'T_STATIC':
-                    // Self is valid, the others invalid, but were probably intended as type hints.
+                    // Self and parent are valid, static invalid, but was probably intended as type hint.
                     if (isset($defaultStart) === false) {
                         $typeHint .= $tokens[$i]['content'];
                     }

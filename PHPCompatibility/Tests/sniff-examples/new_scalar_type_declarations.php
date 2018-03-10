@@ -21,7 +21,7 @@ function foo(boolean $a) {}
 function foo(integer $a) {}
 
 class MyOtherClass extends MyClass {
-    function foo(parent $a) {}
+    function foo(parent $a) {} // Correction: Valid as of PHP 5.2+.
     function bar(static $a) {}
 }
 
@@ -29,7 +29,7 @@ class MyOtherClass extends MyClass {
 function foo(stdClass $a) {}
 
 
-// Class/interface type declaration with self keyword - PHP 5.0+
+// Class/interface type declaration with self keyword - PHP 5.2+
 class MyClass {
     function foo(self $a) {}
 }
@@ -58,3 +58,10 @@ function foo(?int $a) {}
 
 // Object type declaration - PHP 7.2+
 function foo(object $a) {}
+
+// Use of "parent" outside class scope.
+function foo(parent $a) {} // Invalid - not within a class.
+
+namespace test {
+    function foo(parent $a) {} // Invalid - not within a class.
+}
