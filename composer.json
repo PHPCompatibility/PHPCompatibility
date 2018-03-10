@@ -1,6 +1,18 @@
 {
   "name" : "wimg/php-compatibility",
   "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
+  "type" : "phpcodesniffer-standard",
+  "keywords" : [ "compatibility", "phpcs", "standards" ],
+  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
+  "license" : "LGPL-3.0-or-later",
+  "authors" : [ {
+    "name" : "Wim Godden",
+    "role" : "lead"
+  } ],
+  "support" : {
+    "issues" : "https://github.com/wimg/PHPCompatibility/issues",
+    "source" : "https://github.com/wimg/PHPCompatibility"
+  },
   "require" : {
     "php" : ">=5.3",
     "squizlabs/php_codesniffer" : "^2.2 || ^3.0.2"
@@ -14,8 +26,6 @@
   "suggest" : {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
   },
-  "license" : "LGPL-3.0-or-later",
-  "keywords" : [ "compatibility", "phpcs", "standards" ],
   "autoload" : {
     "psr-4" : {
       "PHPCompatibility\\" : "PHPCompatibility/"
@@ -24,15 +34,5 @@
   "scripts" : {
     "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
     "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
-  },
-  "type" : "phpcodesniffer-standard",
-  "support" : {
-    "issues" : "https://github.com/wimg/PHPCompatibility/issues",
-    "source" : "https://github.com/wimg/PHPCompatibility"
-  },
-  "authors" : [ {
-    "name" : "Wim Godden",
-    "role" : "lead"
-  } ],
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/"
+  }
 }
