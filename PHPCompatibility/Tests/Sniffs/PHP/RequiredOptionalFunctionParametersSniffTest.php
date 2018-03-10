@@ -65,6 +65,7 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
         return array(
             array('preg_match_all', 'matches', '5.3', array(8), '5.4'),
             array('stream_socket_enable_crypto', 'crypto_type', '5.5', array(9), '5.6'),
+            array('bcscale', 'scale', '7.2', array(12), '7.3'),
         );
     }
 
@@ -96,6 +97,7 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
         return array(
             array(4),
             array(5),
+            array(11),
         );
     }
 
