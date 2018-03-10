@@ -473,6 +473,8 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('sodium_pad', '7.1', array(417), '7.2'),
             array('sodium_unpad', '7.1', array(418), '7.2'),
             array('spl_object_id', '7.1', array(419), '7.2'),
+
+            array('pg_lo_truncate', '5.5', array(420), '5.6'),
         );
     }
 

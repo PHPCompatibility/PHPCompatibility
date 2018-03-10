@@ -417,3 +417,4 @@ sodium_memzero();
 sodium_pad();
 sodium_unpad();
 spl_object_id();
+pg_lo_truncate();
