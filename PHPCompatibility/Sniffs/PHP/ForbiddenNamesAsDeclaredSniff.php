@@ -217,7 +217,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         // Build up the error message.
         $error     = "'%s' is a";
         $isError   = null;
-        $errorCode = $this->stringToErrorCode($nameLc).'Found';
+        $errorCode = $this->stringToErrorCode($nameLc) . 'Found';
         $data      = array(
             $nameLc,
         );

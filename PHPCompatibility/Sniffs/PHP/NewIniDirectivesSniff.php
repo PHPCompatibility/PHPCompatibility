@@ -559,7 +559,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['alternative'] = '';
 
         if (isset($itemArray['alternative']) === true) {

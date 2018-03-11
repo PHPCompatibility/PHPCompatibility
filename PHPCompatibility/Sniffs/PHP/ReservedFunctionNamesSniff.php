@@ -100,7 +100,7 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
                     'Method name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use.',
                     $stackPtr,
                     'MethodDoubleUnderscore',
-                    array($className.'::'.$methodName)
+                    array($className . '::' . $methodName)
                 );
             }
         }

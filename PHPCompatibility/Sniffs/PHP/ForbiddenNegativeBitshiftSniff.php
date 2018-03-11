@@ -77,8 +77,8 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Determine the start and end of the part of the statement we need to examine.
-        $start  = ($stackPtr + 1);
-        $next   = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $start, null, true);
+        $start = ($stackPtr + 1);
+        $next  = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $start, null, true);
         if ($next !== false && $tokens[$next]['code'] === T_OPEN_PARENTHESIS) {
             $start = ($next + 1);
         }

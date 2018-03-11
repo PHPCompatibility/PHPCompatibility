@@ -162,7 +162,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo              = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['paramName'] = $itemArray['name'];
 
         return $errorInfo;
@@ -179,7 +179,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     protected function getItemName(array $itemInfo, array $errorInfo)
     {
-        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+        return $itemInfo['name'] . '_' . $errorInfo['paramName'];
     }
 
 

@@ -186,7 +186,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
         }
 
         $itemInfo = array(
-            'name'   => $tokenType,
+            'name' => $tokenType,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
@@ -227,7 +227,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;

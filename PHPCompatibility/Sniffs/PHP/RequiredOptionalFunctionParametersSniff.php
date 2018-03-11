@@ -228,7 +228,7 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
     public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $error     = $this->getErrorMsgTemplate();
-        $errorCode = $this->stringToErrorCode($itemInfo['name'].'_'.$errorInfo['paramName']).'Missing';
+        $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']) . 'Missing';
         $data      = array(
             $errorInfo['paramName'],
             $itemInfo['name'],

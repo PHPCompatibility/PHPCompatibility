@@ -326,7 +326,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;
