@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * PHP 7.1 Forbidden variable names in closure use statements.
@@ -81,7 +82,7 @@ class ForbiddenClosureUseVariableNamesSniff extends Sniff
         }
 
         // Get the parameters declared by the closure.
-        $closureParams = $this->getMethodParameters($phpcsFile, $closurePtr);
+        $closureParams = PHPCSHelper::getMethodParameters($phpcsFile, $closurePtr);
 
         $errorMsg = 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: %s';
 

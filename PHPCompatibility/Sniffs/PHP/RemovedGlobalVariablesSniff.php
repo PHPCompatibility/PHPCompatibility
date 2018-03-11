@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff.
@@ -248,7 +249,7 @@ class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Is this a function param shadowing the PHP native one ?
         if ($function !== false) {
-            $parameters = $this->getMethodParameters($phpcsFile, $function);
+            $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $function);
             if (is_array($parameters) === true && empty($parameters) === false) {
                 foreach ($parameters as $param) {
                     if ($param['name'] === '$php_errormsg') {

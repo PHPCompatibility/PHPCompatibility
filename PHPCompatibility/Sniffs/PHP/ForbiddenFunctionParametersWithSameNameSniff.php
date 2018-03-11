@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\ForbiddenFunctionParametersWithSameName.
@@ -64,7 +65,7 @@ class ForbiddenFunctionParametersWithSameNameSniff extends Sniff
         }
 
         // Get all parameters from method signature.
-        $parameters = $this->getMethodParameters($phpcsFile, $stackPtr);
+        $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || is_array($parameters) === false) {
             return;
         }

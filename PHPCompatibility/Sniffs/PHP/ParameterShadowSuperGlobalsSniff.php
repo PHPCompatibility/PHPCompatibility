@@ -13,6 +13,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\ParameterShadowSuperGlobalsSniff
@@ -59,7 +60,7 @@ class ParameterShadowSuperGlobalsSniff extends Sniff
         }
 
         // Get all parameters from function signature.
-        $parameters = $this->getMethodParameters($phpcsFile, $stackPtr);
+        $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || is_array($parameters) === false) {
             return;
         }
