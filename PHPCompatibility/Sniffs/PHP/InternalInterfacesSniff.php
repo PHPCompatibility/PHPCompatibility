@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\InternalInterfacesSniff.
@@ -68,7 +69,7 @@ class InternalInterfacesSniff extends Sniff
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $interfaces = $this->findImplementedInterfaceNames($phpcsFile, $stackPtr);
+        $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
         if (is_array($interfaces) === false || $interfaces === array()) {
             return;

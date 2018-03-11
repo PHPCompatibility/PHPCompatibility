@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\NewInterfacesSniff.
@@ -188,7 +189,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      */
     private function processClassToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $interfaces = $this->findImplementedInterfaceNames($phpcsFile, $stackPtr);
+        $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
         if (is_array($interfaces) === false || $interfaces === array()) {
             return;
