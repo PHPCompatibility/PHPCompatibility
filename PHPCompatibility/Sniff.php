@@ -724,7 +724,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return '';
         }
 
-        $extends = $this->findExtendedClassName($phpcsFile, $stackPtr);
+        $extends = PHPCSHelper::findExtendedClassName($phpcsFile, $stackPtr);
         if (empty($extends) || is_string($extends) === false) {
             return '';
         }
@@ -1226,77 +1226,6 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         return $typeHints;
     }
-
-
-    /**
-     * Returns the name of the class that the specified class extends
-     * (works for classes, anonymous classes and interfaces).
-     *
-     * Returns FALSE on error or if there is no extended class name.
-     *
-     * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
-     * class, but with some improvements which have been introduced in
-     * PHPCS 2.8.0.
-     * {@link https://github.com/squizlabs/PHP_CodeSniffer/commit/0011d448119d4c568e3ac1f825ae78815bf2cc34}.
-     *
-     * Once the minimum supported PHPCS version for this standard goes beyond
-     * that, this method can be removed and calls to it replaced with
-     * `$phpcsFile->findExtendedClassName($stackPtr)` calls.
-     *
-     * Last synced with PHPCS version: PHPCS 3.1.0-alpha at commit a9efcc9b0703f3f9f4a900623d4e97128a6aafc6}}
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int                   $stackPtr  The position of the class token in the stack.
-     *
-     * @return string|false
-     */
-    public function findExtendedClassName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        if (version_compare(PHPCSHelper::getVersion(), '3.1.0', '>=') === true) {
-            return $phpcsFile->findExtendedClassName($stackPtr);
-        }
-
-        $tokens = $phpcsFile->getTokens();
-
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
-            return false;
-        }
-
-        if ($tokens[$stackPtr]['code'] !== T_CLASS
-            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
-            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
-        ) {
-            return false;
-        }
-
-        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
-            return false;
-        }
-
-        $classCloserIndex = $tokens[$stackPtr]['scope_closer'];
-        $extendsIndex     = $phpcsFile->findNext(T_EXTENDS, $stackPtr, $classCloserIndex);
-        if (false === $extendsIndex) {
-            return false;
-        }
-
-        $find = array(
-            T_NS_SEPARATOR,
-            T_STRING,
-            T_WHITESPACE,
-        );
-
-        $end  = $phpcsFile->findNext($find, ($extendsIndex + 1), $classCloserIndex, true);
-        $name = $phpcsFile->getTokensAsString(($extendsIndex + 1), ($end - $extendsIndex - 1));
-        $name = trim($name);
-
-        if ($name === '') {
-            return false;
-        }
-
-        return $name;
-
-    }//end findExtendedClassName()
 
 
     /**
