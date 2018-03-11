@@ -50,9 +50,7 @@ class TestHelperPHPCompatibility extends Sniff
      *                                           token will be examined as part of the snippet.
      * @param bool                  $allowFloats Whether to only consider integers, or also floats.
      *
-     * @return float|bool The number found if PHP would evaluate the snippet as a number.
-     *                    False if not or if it could not be reliably determined
-     *                    (variable or calculations and such).
+     * @return int|float|bool
      */
     public function isNumber(\PHP_CodeSniffer_File $phpcsFile, $start, $end, $allowFloats = false)
     {

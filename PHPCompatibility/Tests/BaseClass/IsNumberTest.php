@@ -37,7 +37,7 @@ class IsNumberTest extends MethodTestFrame
      * @covers \PHPCompatibility\Sniff::isPositiveNumber
      * @covers \PHPCompatibility\Sniff::isNegativeNumber
      *
-     * @param string     $commentString    The commentwhich prefaces the target snippet in the test file.
+     * @param string     $commentString    The comment which prefaces the target snippet in the test file.
      * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
      * @param float|bool $isNumber         The expected return value for isNumber().
      * @param bool       $isPositiveNumber The expected return value for isPositiveNumber().

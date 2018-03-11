@@ -34,7 +34,7 @@ $a = 5 * 8;
 $a = '10 things' . ' or nothing';
 
 /*
- * Make sure that zeo numbers are correctly identified.
+ * Make sure that zero numbers are correctly identified.
  *
  * The below should be recognized as numbers (integers).
  */

@@ -34,7 +34,7 @@ class NewFunctionParametersSniffTest extends BaseSniffTest
      * @param string $functionName      Function name.
      * @param string $parameterName     Parameter name.
      * @param string $lastVersionBefore The PHP version just *before* the parameter was introduced.
-     * @param array  $lines             The line numbers in the test file which apply to this class.
+     * @param array  $lines             The line numbers in the test file which apply to this function parameter.
      * @param string $okVersion         A PHP version in which the parameter was ok to be used.
      * @param string $testVersion       Optional PHP version to use for testing the flagged case.
      *

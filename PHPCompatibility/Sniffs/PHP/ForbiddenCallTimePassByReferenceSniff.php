@@ -40,7 +40,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      * @var array
      */
     private $assignOrCompare = array(
-        // Comparison tokens.
+        // Equality tokens.
         'T_IS_EQUAL'            => true,
         'T_IS_NOT_EQUAL'        => true,
         'T_IS_IDENTICAL'        => true,
@@ -226,7 +226,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
         } while ($nextVariable < $searchEndToken);
 
-        // This code should never be reached, but here in case of weird bugs ;-)
+        // This code should never be reached, but here in case of weird bugs.
         return false;
     }
 
