@@ -86,4 +86,348 @@ class PHPCSHelper
         }
     }
 
+
+    /**
+     * Returns the name of the class that the specified class extends
+     * (works for classes, anonymous classes and interfaces).
+     *
+     * Returns FALSE on error or if there is no extended class name.
+     *
+     * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
+     * class, but with some improvements which have been introduced in
+     * PHPCS 2.8.0.
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/commit/0011d448119d4c568e3ac1f825ae78815bf2cc34}.
+     *
+     * Once the minimum supported PHPCS version for this standard goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->findExtendedClassName($stackPtr)` calls.
+     *
+     * Last synced with PHPCS version: PHPCS 3.1.0-alpha at commit a9efcc9b0703f3f9f4a900623d4e97128a6aafc6}}
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                   $stackPtr  The position of the class token in the stack.
+     *
+     * @return string|false
+     */
+    public static function findExtendedClassName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if (version_compare(self::getVersion(), '3.1.0', '>=') === true) {
+            return $phpcsFile->findExtendedClassName($stackPtr);
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_CLASS
+            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
+            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
+        ) {
+            return false;
+        }
+
+        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
+            return false;
+        }
+
+        $classCloserIndex = $tokens[$stackPtr]['scope_closer'];
+        $extendsIndex     = $phpcsFile->findNext(T_EXTENDS, $stackPtr, $classCloserIndex);
+        if (false === $extendsIndex) {
+            return false;
+        }
+
+        $find = array(
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_WHITESPACE,
+        );
+
+        $end  = $phpcsFile->findNext($find, ($extendsIndex + 1), $classCloserIndex, true);
+        $name = $phpcsFile->getTokensAsString(($extendsIndex + 1), ($end - $extendsIndex - 1));
+        $name = trim($name);
+
+        if ($name === '') {
+            return false;
+        }
+
+        return $name;
+
+    }//end findExtendedClassName()
+
+
+    /**
+     * Returns the name(s) of the interface(s) that the specified class implements.
+     *
+     * Returns FALSE on error or if there are no implemented interface names.
+     *
+     * {@internal Duplicate of same method as introduced in PHPCS 2.7.
+     * This method also includes an improvement we use which was only introduced
+     * in PHPCS 2.8.0, so only defer to upstream for higher versions.
+     * Once the minimum supported PHPCS version for this sniff library goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->findImplementedInterfaceNames($stackPtr)` calls.}}
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the class token.
+     *
+     * @return array|false
+     */
+    public static function findImplementedInterfaceNames(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if (version_compare(self::getVersion(), '2.7.1', '>') === true) {
+            return $phpcsFile->findImplementedInterfaceNames($stackPtr);
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_CLASS
+            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
+        ) {
+            return false;
+        }
+
+        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
+            return false;
+        }
+
+        $classOpenerIndex = $tokens[$stackPtr]['scope_opener'];
+        $implementsIndex  = $phpcsFile->findNext(T_IMPLEMENTS, $stackPtr, $classOpenerIndex);
+        if ($implementsIndex === false) {
+            return false;
+        }
+
+        $find = array(
+            T_NS_SEPARATOR,
+            T_STRING,
+            T_WHITESPACE,
+            T_COMMA,
+        );
+
+        $end  = $phpcsFile->findNext($find, ($implementsIndex + 1), ($classOpenerIndex + 1), true);
+        $name = $phpcsFile->getTokensAsString(($implementsIndex + 1), ($end - $implementsIndex - 1));
+        $name = trim($name);
+
+        if ($name === '') {
+            return false;
+        } else {
+            $names = explode(',', $name);
+            $names = array_map('trim', $names);
+            return $names;
+        }
+
+    }//end findImplementedInterfaceNames()
+
+
+    /**
+     * Returns the method parameters for the specified function token.
+     *
+     * Each parameter is in the following format:
+     *
+     * <code>
+     *   0 => array(
+     *         'token'             => int,     // The position of the var in the token stack.
+     *         'name'              => '$var',  // The variable name.
+     *         'content'           => string,  // The full content of the variable definition.
+     *         'pass_by_reference' => boolean, // Is the variable passed by reference?
+     *         'variable_length'   => boolean, // Is the param of variable length through use of `...` ?
+     *         'type_hint'         => string,  // The type hint for the variable.
+     *         'nullable_type'     => boolean, // Is the variable using a nullable type?
+     *        )
+     * </code>
+     *
+     * Parameters with default values have an additional array index of
+     * 'default' with the value of the default as a string.
+     *
+     * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
+     * class, but with some improvements which have been introduced in
+     * PHPCS 2.8.0.
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1193} and
+     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1293}.
+     *
+     * Once the minimum supported PHPCS version for this standard goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->getMethodParameters($stackPtr)` calls.
+     *
+     * NOTE: This version does not deal with the new T_NULLABLE token type.
+     * This token is included upstream only in 2.8.0+ and as we defer to upstream
+     * in that case, no need to deal with it here.
+     *
+     * Last synced with PHPCS version: PHPCS 2.9.0-alpha at commit f1511adad043edfd6d2e595e77385c32577eb2bc}}
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                   $stackPtr  The position in the stack of the
+     *                                         function token to acquire the
+     *                                         parameters for.
+     *
+     * @return array|false
+     * @throws \PHP_CodeSniffer_Exception If the specified $stackPtr is not of
+     *                                    type T_FUNCTION or T_CLOSURE.
+     */
+    public static function getMethodParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        if (version_compare(self::getVersion(), '2.7.1', '>') === true) {
+            return $phpcsFile->getMethodParameters($stackPtr);
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+            throw new \PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
+        }
+
+        $opener = $tokens[$stackPtr]['parenthesis_opener'];
+        $closer = $tokens[$stackPtr]['parenthesis_closer'];
+
+        $vars            = array();
+        $currVar         = null;
+        $paramStart      = ($opener + 1);
+        $defaultStart    = null;
+        $paramCount      = 0;
+        $passByReference = false;
+        $variableLength  = false;
+        $typeHint        = '';
+        $nullableType    = false;
+
+        for ($i = $paramStart; $i <= $closer; $i++) {
+            // Check to see if this token has a parenthesis or bracket opener. If it does
+            // it's likely to be an array which might have arguments in it. This
+            // could cause problems in our parsing below, so lets just skip to the
+            // end of it.
+            if (isset($tokens[$i]['parenthesis_opener']) === true) {
+                // Don't do this if it's the close parenthesis for the method.
+                if ($i !== $tokens[$i]['parenthesis_closer']) {
+                    $i = ($tokens[$i]['parenthesis_closer'] + 1);
+                }
+            }
+
+            if (isset($tokens[$i]['bracket_opener']) === true) {
+                // Don't do this if it's the close parenthesis for the method.
+                if ($i !== $tokens[$i]['bracket_closer']) {
+                    $i = ($tokens[$i]['bracket_closer'] + 1);
+                }
+            }
+
+            switch ($tokens[$i]['type']) {
+                case 'T_BITWISE_AND':
+                    $passByReference = true;
+                    break;
+                case 'T_VARIABLE':
+                    $currVar = $i;
+                    break;
+                case 'T_ELLIPSIS':
+                    $variableLength = true;
+                    break;
+                case 'T_ARRAY_HINT':
+                case 'T_CALLABLE':
+                    $typeHint .= $tokens[$i]['content'];
+                    break;
+                case 'T_SELF':
+                case 'T_PARENT':
+                case 'T_STATIC':
+                    // Self and parent are valid, static invalid, but was probably intended as type hint.
+                    if (isset($defaultStart) === false) {
+                        $typeHint .= $tokens[$i]['content'];
+                    }
+                    break;
+                case 'T_STRING':
+                    // This is a string, so it may be a type hint, but it could
+                    // also be a constant used as a default value.
+                    $prevComma = false;
+                    for ($t = $i; $t >= $opener; $t--) {
+                        if ($tokens[$t]['code'] === T_COMMA) {
+                            $prevComma = $t;
+                            break;
+                        }
+                    }
+
+                    if ($prevComma !== false) {
+                        $nextEquals = false;
+                        for ($t = $prevComma; $t < $i; $t++) {
+                            if ($tokens[$t]['code'] === T_EQUAL) {
+                                $nextEquals = $t;
+                                break;
+                            }
+                        }
+
+                        if ($nextEquals !== false) {
+                            break;
+                        }
+                    }
+
+                    if ($defaultStart === null) {
+                        $typeHint .= $tokens[$i]['content'];
+                    }
+                    break;
+                case 'T_NS_SEPARATOR':
+                    // Part of a type hint or default value.
+                    if ($defaultStart === null) {
+                        $typeHint .= $tokens[$i]['content'];
+                    }
+                    break;
+                case 'T_INLINE_THEN':
+                    if ($defaultStart === null) {
+                        $nullableType = true;
+                        $typeHint    .= $tokens[$i]['content'];
+                    }
+                    break;
+                case 'T_CLOSE_PARENTHESIS':
+                case 'T_COMMA':
+                    // If it's null, then there must be no parameters for this
+                    // method.
+                    if ($currVar === null) {
+                        continue;
+                    }
+
+                    $vars[$paramCount]            = array();
+                    $vars[$paramCount]['token']   = $currVar;
+                    $vars[$paramCount]['name']    = $tokens[$currVar]['content'];
+                    $vars[$paramCount]['content'] = trim($phpcsFile->getTokensAsString($paramStart, ($i - $paramStart)));
+
+                    if ($defaultStart !== null) {
+                        $vars[$paramCount]['default'] = trim(
+                            $phpcsFile->getTokensAsString(
+                                $defaultStart,
+                                ($i - $defaultStart)
+                            )
+                        );
+                    }
+
+                    $vars[$paramCount]['pass_by_reference'] = $passByReference;
+                    $vars[$paramCount]['variable_length']   = $variableLength;
+                    $vars[$paramCount]['type_hint']         = $typeHint;
+                    $vars[$paramCount]['nullable_type']     = $nullableType;
+
+                    // Reset the vars, as we are about to process the next parameter.
+                    $defaultStart    = null;
+                    $paramStart      = ($i + 1);
+                    $passByReference = false;
+                    $variableLength  = false;
+                    $typeHint        = '';
+                    $nullableType    = false;
+
+                    $paramCount++;
+                    break;
+                case 'T_EQUAL':
+                    $defaultStart = ($i + 1);
+                    break;
+            }//end switch
+        }//end for
+
+        return $vars;
+
+    }//end getMethodParameters()
 }

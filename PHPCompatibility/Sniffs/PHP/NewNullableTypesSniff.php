@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\Sniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\NewNullableTypes.
@@ -95,7 +96,7 @@ class NewNullableTypesSniff extends Sniff
      */
     protected function processFunctionDeclaration(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $params = $this->getMethodParameters($phpcsFile, $stackPtr);
+        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
 
         if (empty($params) === false && is_array($params)) {
             foreach ($params as $param) {

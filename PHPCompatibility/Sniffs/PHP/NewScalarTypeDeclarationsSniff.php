@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\PHP;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
@@ -113,7 +114,7 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        $paramNames = $this->getMethodParameters($phpcsFile, $stackPtr);
+        $paramNames = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
         if (empty($paramNames)) {
             return;
         }
