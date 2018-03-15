@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibility-WP">
+    <description>WordPress specific ruleset which checks for PHP cross version compatibility.</description>
+
+    <autoload>./../PHPCSAliases.php</autoload>
+
+    <!--
+    The WordPress minimum PHP requirement is PHP 5.2.4.
+    Add the following in your project PHPCS ruleset to enforce this:
+    <config name="testVersion" value="5.2-"/>
+    
+    This directive is not included in this ruleset as individual projects may use
+    a different (higher) minimum PHP version.
+    -->
+
+    <rule ref="PHPCompatibility">
+        <!-- Whitelist PHP native classes, interfaces, functions and constants which
+             are back-filled by WP.
+
+             Based on:
+             * /wp-includes/compat.php
+             * /wp-includes/random_compat/random.php
+        -->
+        <exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
+        <exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
+
+        <exclude name="PHPCompatibility.PHP.NewConstants.json_pretty_printFound"/>
+        <exclude name="PHPCompatibility.PHP.NewConstants.php_version_idFound"/>
+
+        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.json_last_error_msgFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.random_intFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.random_bytesFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
+
+        <exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
+    </rule>
+
+    <!-- Whitelist the WP Core mysql_to_rfc3339() function. -->
+    <rule ref="PHPCompatibility.PHP.RemovedExtensions">
+        <properties>
+            <property name="functionWhitelist" type="array" value="mysql_to_rfc3339"/>
+        </properties>
+    </rule>
+
+</ruleset>

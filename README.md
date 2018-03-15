@@ -138,6 +138,26 @@ Sniffing your code for compatibility with specific PHP version(s)
 
 More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
+
+### Using a framework/CMS specific ruleset
+
+As of PHPCompatibility 8.2.0, this library ships with a [limited set of framework/CMS specific ruleset(s)](https://github.com/wimg/PHPCompatibility/tree/master/framework-rulesets).
+
+Framework/CMS specific ruleset do not set the minimum PHP version for your project, so you will still need to pass a `testVersion` to get the most accurate results.
+
+* To use a framework/CMS specific ruleset from the command-line:
+    ```bash
+    phpcs -p . --standard=path/to/PHPCompatibility/framework-rulesets/framework-name.xml --runtime-set testVersion 5.5-
+    ```
+
+* To use a framework/CMS specific ruleset from within a custom ruleset - more about those below -, it is **strongly** recommended to use a Composer-based install so the path to PHPCompatibility will be predictable and the same for all users of the custom ruleset.
+    ```xml
+    <config name="testVersion" value="5.5-"/>
+    <rule ref="./vendor/wimg/php-compatibility/framework-rulesets/framework-name.xml"/>
+    ```
+    The path should be an absolute path or the path relative to the final ruleset in the root of a project.
+
+
 Using a custom ruleset
 ------------------------------
 Like with any PHP CodeSniffer standard, you can add PHPCompatibility to a custom PHP CodeSniffer ruleset.
