@@ -24,7 +24,8 @@
     "squizlabs/php_codesniffer": "2.6.2"
   },
   "suggest" : {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+    "roave/security-advisories": "dev-master"
   },
   "autoload" : {
     "psr-4" : {
