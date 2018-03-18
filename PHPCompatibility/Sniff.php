@@ -1631,5 +1631,4 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         return $content;
     }
-
 }//end class

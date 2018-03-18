@@ -51,6 +51,9 @@ class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
         return array(
             array(3),
             array(4),
+            array(5),
+            array(7),
+            array(8),
         );
     }
 
@@ -80,11 +83,12 @@ class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         return array(
-            array(6),
-            array(7),
-            array(8),
-            //array(9), - currently gives a false positive, @todo: uncomment when fixed.
+            array(10),
+            array(11),
             array(12),
+            array(13),
+            array(16),
+            array(19),
         );
     }
 
