@@ -352,11 +352,6 @@ class NewKeywordsSniffTest extends BaseSniffTest
      */
     public function testHaltCompiler()
     {
-        if (defined('HHVM_VERSION') === true) {
-            $this->markTestSkipped('HHVM: investigation needed. It might be that the compiler *is* halted, but the tokenizer is not ?');
-            return;
-        }
-
         if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');

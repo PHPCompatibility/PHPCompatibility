@@ -76,17 +76,9 @@ matrix:
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
 
-    - php: hhvm
-      dist: trusty
-      env: PHPCS_VERSION=">=1.5.1,<2.0" PHPUNIT_VERSION="5.7.17"
-    - php: hhvm
-      dist: trusty
-      env: PHPCS_VERSION="dev-master" LINT=1 PHPUNIT_VERSION="5.7.17"
-
   allow_failures:
     # Allow failures for unstable builds.
     - php: nightly
-    - php: hhvm
 
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.
