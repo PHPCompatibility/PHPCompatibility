@@ -130,35 +130,27 @@ class NewNullableTypesSniff extends Sniff
             return;
         }
 
-        $error = false;
+        $previous = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
-        // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
-        if ((defined('T_NULLABLE') === true && $tokens[($stackPtr - 1)]['type'] === 'T_NULLABLE')
-            || (defined('T_NULLABLE') === false && $tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN)
-        ) {
-            $error = true;
-        }
         // Deal with namespaced class names.
-        elseif ($tokens[($stackPtr - 1)]['code'] === T_NS_SEPARATOR) {
-            $validTokens = array(
-                T_STRING,
-                T_NS_SEPARATOR,
-                T_WHITESPACE,
-            );
+        if ($tokens[$previous]['code'] === T_NS_SEPARATOR) {
+            $validTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
+            $validTokens[] = T_STRING;
+            $validTokens[] = T_NS_SEPARATOR;
+
             $stackPtr--;
 
             while (in_array($tokens[($stackPtr - 1)]['code'], $validTokens, true) === true) {
                 $stackPtr--;
             }
 
-            if ((defined('T_NULLABLE') === true && $tokens[($stackPtr - 1)]['type'] === 'T_NULLABLE')
-                || (defined('T_NULLABLE') === false && $tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN)
-            ) {
-                $error = true;
-            }
+            $previous = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         }
 
-        if ($error === true) {
+        // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
+        if ((defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
+            || (defined('T_NULLABLE') === false && $tokens[$previous]['code'] === T_INLINE_THEN)
+        ) {
             $phpcsFile->addError(
                 'Nullable return types are not supported in PHP 7.0 or earlier.',
                 $stackPtr,
