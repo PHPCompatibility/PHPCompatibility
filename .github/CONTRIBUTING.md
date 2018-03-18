@@ -29,6 +29,27 @@ Please make sure that your pull request contains unit tests covering what's bein
 * All code should comply with the PHPCompatibility coding standards.
     The ruleset used by PHPCompatibility is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
 
+### Framework/CMS specific rulesets
+
+As of PHPCompatibility 8.2.0, framework/CMS specific rulesets will be accepted to be hosted from within this repository.
+
+A framework/CMS specific ruleset will generally contain `<exclude ...>` directives for backfills provided by the framework/CMS to prevent false positives.
+
+> A backfill is a function/constant/class (etc) which has been added to PHP in a later version than the minimum supported version of the framework/CMS and for which a function/constant/class of the same name is included in the framework/CMS when a PHP version is detected in which the function/constant/class did not yet exist.
+
+These rulesets will not be actively maintained by the maintainers of PHPCompatibility.
+
+The communities behind these PHP frameworks/CMSes are strongly encouraged to maintain these rulesets and pull requests with updates will be accepted gladly.
+
+**Note:**
+* It is recommended to include a link to the framework/CMS source file where the backfill is declared when sending in a pull request adding a new backfill for one of these rulesets.
+* If the backfills provided by different major versions of frameworks/CMSes are signficantly different, separate rulesets for the relevant major versions of frameworks/CMSes will be accepted.
+* Framework/CMS specific rulesets should always contain the `<autoload>` directive as included in the [PHPCompatibility ruleset](https://github.com/wimg/PHPCompatibility/blob/master/PHPCompatibility/ruleset.xml#L5).
+* Framework/CMS specific ruleset should **_not_** contain a `<config name="testVersion" value="..."/>` directive.
+
+    While a framework/CMS may have a certain minimum PHP version, projects based on the framework/CMS might have a different (higher) minimum PHP version.
+    As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
+
 
 Running the Sniff Tests
 -----------------------
