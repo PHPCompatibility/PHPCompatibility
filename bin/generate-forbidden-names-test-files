@@ -3,7 +3,9 @@
 /**
  * This script is used to generate the test case specimens for the forbidden-names Sniff.
  *
- * @package PHPCompatibility
+ * @category Tests
+ * @package  PHPCompatibility
+ * @author   Jansen Price <jansen.price@gmail.com>
  */
 
 // This array is pulled from PHPCompatibility/Sniffs/PHP/ForbiddenNamesSniff.php
@@ -70,29 +72,86 @@ $invalidNames = array(
 echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
 
 $tests = array(
-    'namespace' => function($name) { return "namespace $name;\n"; },
-    'nested-namespace' => function($name) { return "namespace Foo\\{$name}\\Bar;\n"; },
-    'use' => function($name) { return "use $name;\n"; },
-    'use-as' => function($name) { return "use Foobar as $name;\n"; },
-    'class' => function($name) { return "class $name {}\n"; },
-    'class-extends' => function($name) { return "class Foobar extends $name {}\n"; },
-    'class-use-trait' => function($name) { return "class Foobar { use $name }\n"; },
-    'class-use-trait-const' => function($name) { return "class Foobar { use const $name }\n"; },
-    'class-use-trait-function' => function($name) { return "class Foobar { use function $name }\n"; },
-    'class-use-trait-alias-method' => function($name) { if (in_array($name, array('public','protected','private','final'), true)=== true) { return ''; } else { return "class Foobar { use BazTrait { oldfunction as $name } }\n"; } },
-    'class-use-trait-alias-public-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as public $name } }\n"; },
-    'class-use-trait-alias-protected-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as protected $name } }\n"; },
-    'class-use-trait-alias-private-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as private $name } }\n"; },
-    'class-use-trait-alias-final-method' => function($name) { return "class Foobar { use BazTrait { oldfunction as final $name } }\n"; },
-    'trait' => function($name) { return "trait $name {}\n"; },
-    'function-declare' => function($name) { return "function $name() { };\n"; },
-    'function-declare-reference' => function($name) { return "function &$name() { };\n"; },
-    'method-declare' => function($name) { return "class Foobar { function $name() { } };\n"; }, // Only pre-PHP 7!
-    'const' => function($name) { return "const $name = 1;\n"; },
-    'class-const' => function($name) { if ($name === 'class') { return ''; } else { $name = strtoupper($name); return "class Foobar { const $name = 1; }\n"; } }, // Only pre-PHP 7!
-    'define' => function($name) { return "define('$name', 1);\n"; },
-    'interface' => function($name) { return "interface $name {}\n"; },
-    'interface-extends' => function($name) { return "interface Foobar extends $name {}\n"; },
+    'namespace'                              => function ($name) {
+        return "namespace $name;\n";
+    },
+    'nested-namespace'                       => function ($name) {
+        return "namespace Foo\\{$name}\\Bar;\n";
+    },
+    'use'                                    => function ($name) {
+        return "use $name;\n";
+    },
+    'use-as'                                 => function ($name) {
+        return "use Foobar as $name;\n";
+    },
+    'class'                                  => function ($name) {
+        return "class $name {}\n";
+    },
+    'class-extends'                          => function ($name) {
+        return "class Foobar extends $name {}\n";
+    },
+    'class-use-trait'                        => function ($name) {
+        return "class Foobar { use $name }\n";
+    },
+    'class-use-trait-const'                  => function ($name) {
+        return "class Foobar { use const $name }\n";
+    },
+    'class-use-trait-function'               => function ($name) {
+        return "class Foobar { use function $name }\n";
+    },
+    'class-use-trait-alias-method'           => function ($name) {
+        if (in_array($name, array('public', 'protected', 'private', 'final'), true) === true) {
+            return '';
+        } else {
+            return "class Foobar { use BazTrait { oldfunction as $name } }\n";
+        }
+    },
+    'class-use-trait-alias-public-method'    => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as public $name } }\n";
+    },
+    'class-use-trait-alias-protected-method' => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as protected $name } }\n";
+    },
+    'class-use-trait-alias-private-method'   => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as private $name } }\n";
+    },
+    'class-use-trait-alias-final-method'     => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as final $name } }\n";
+    },
+    'trait'                                  => function ($name) {
+        return "trait $name {}\n";
+    },
+    'function-declare'                       => function ($name) {
+        return "function $name() { };\n";
+    },
+    'function-declare-reference'             => function ($name) {
+        return "function &$name() { };\n";
+    },
+    // Only pre-PHP 7!
+    'method-declare'                         => function ($name) {
+        return "class Foobar { function $name() { } };\n";
+    },
+    'const'                                  => function ($name) {
+        return "const $name = 1;\n";
+    },
+    // Only pre-PHP 7!
+    'class-const'                            => function ($name) {
+        if ($name === 'class') {
+            return '';
+        } else {
+            $name = strtoupper($name);
+            return "class Foobar { const $name = 1; }\n";
+        }
+    },
+    'define'                                 => function ($name) {
+        return "define('$name', 1);\n";
+    },
+    'interface'                              => function ($name) {
+        return "interface $name {}\n";
+    },
+    'interface-extends'                      => function ($name) {
+        return "interface Foobar extends $name {}\n";
+    },
 );
 
 $path = realpath(dirname(__DIR__))
@@ -102,14 +161,14 @@ $path = realpath(dirname(__DIR__))
     . DIRECTORY_SEPARATOR . 'forbidden-names';
 
 foreach ($tests as $name => $callback) {
-    $filename = $path . DIRECTORY_SEPARATOR . $name . ".php";
+    $filename = $path . DIRECTORY_SEPARATOR . $name . '.php';
     echo "Creating file '$filename'\n";
     file_put_contents($filename, "<?php\n" . $callback('Baz'));
 }
 
 foreach (array_keys($invalidNames) as $name) {
     foreach ($tests as $testname => $callback) {
-        $filename = $path . DIRECTORY_SEPARATOR . $testname . ".php";
+        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.php';
         file_put_contents($filename, $callback($name), FILE_APPEND);
     }
 }
