@@ -487,6 +487,8 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('spl_object_id', '7.1', array(419), '7.2'),
 
             array('pg_lo_truncate', '5.5', array(420), '5.6'),
+
+            array('is_countable', '7.2', array(433), '7.3'),
         );
     }
 
