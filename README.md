@@ -9,7 +9,6 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Build Status](https://travis-ci.org/wimg/PHPCompatibility.png?branch=master)](https://travis-ci.org/wimg/PHPCompatibility)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/)
 [![Coverage Status](https://coveralls.io/repos/github/wimg/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/wimg/PHPCompatibility?branch=master)
-[![Dependency Status](https://www.versioneye.com/php/wimg:php-compatibility/badge)](https://www.versioneye.com/php/wimg:php-compatibility)
 
 [![Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
 
