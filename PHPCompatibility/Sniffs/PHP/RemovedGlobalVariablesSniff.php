@@ -210,7 +210,8 @@ class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // It could also be a function param, which is not in the function scope.
         if ($function === false && isset($tokens[$stackPtr]['nested_parenthesis']) === true) {
-            $parenthesisCloser = end($tokens[$stackPtr]['nested_parenthesis']);
+            $nestedParentheses = $tokens[$stackPtr]['nested_parenthesis'];
+            $parenthesisCloser = end($nestedParentheses);
             if (isset($tokens[$parenthesisCloser]['parenthesis_owner'])
                 && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_FUNCTION
                     || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_CLOSURE)
