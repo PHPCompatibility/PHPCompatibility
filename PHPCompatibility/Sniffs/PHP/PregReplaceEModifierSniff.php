@@ -73,7 +73,7 @@ class PregReplaceEModifierSniff extends Sniff
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.5') === false) {
+        if ($this->bowOutEarly() === true) {
             return;
         }
 
@@ -96,14 +96,30 @@ class PregReplaceEModifierSniff extends Sniff
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
-            foreach ($arrayValues as $value) {
-                $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
-                if ($hasKey !== false) {
-                    $value['start'] = ($hasKey + 1);
-                    $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+            if ($functionName === 'preg_replace_callback_array') {
+                // For preg_replace_callback_array(), the patterns will be in the array keys.
+                foreach ($arrayValues as $value) {
+                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    if ($hasKey === false) {
+                        continue;
+                    }
+
+                    $value['end'] = ($hasKey - 1);
+                    $value['raw'] = trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
+                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
                 }
 
-                $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
+            } else {
+                // Otherwise, the patterns will be in the array values.
+                foreach ($arrayValues as $value) {
+                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    if ($hasKey !== false) {
+                        $value['start'] = ($hasKey + 1);
+                        $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+                    }
+
+                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
+                }
             }
 
         } else {
@@ -111,6 +127,17 @@ class PregReplaceEModifierSniff extends Sniff
         }
 
     }//end process()
+
+
+    /**
+     * Do a version check to determine if this sniff needs to run at all.
+     *
+     * @return bool
+     */
+    protected function bowOutEarly()
+    {
+        return ($this->supportsAbove('5.5') === false);
+    }
 
 
     /**
@@ -172,22 +199,38 @@ class PregReplaceEModifierSniff extends Sniff
 
         if ($regexEndPos !== false) {
             $modifiers = substr($regex, $regexEndPos + 1);
-
-            if (strpos($modifiers, 'e') !== false) {
-                $error     = '%s() - /e modifier is deprecated since PHP 5.5';
-                $isError   = false;
-                $errorCode = 'Deprecated';
-                $data      = array($functionName);
-
-                if ($this->supportsAbove('7.0')) {
-                    $error    .= ' and removed since PHP 7.0';
-                    $isError   = true;
-                    $errorCode = 'Removed';
-                }
-
-                $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
-            }
+            $this->examineModifiers($phpcsFile, $stackPtr, $functionName, $modifiers);
         }
     }//end processRegexPattern()
+
+
+    /**
+     * Examine the regex modifier string.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                   $stackPtr     The position of the current token in the
+     *                                            stack passed in $tokens.
+     * @param string                $functionName The function which contained the pattern.
+     * @param string                $modifiers    The regex modifiers found.
+     *
+     * @return void
+     */
+    protected function examineModifiers(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $modifiers)
+    {
+        if (strpos($modifiers, 'e') !== false) {
+            $error     = '%s() - /e modifier is deprecated since PHP 5.5';
+            $isError   = false;
+            $errorCode = 'Deprecated';
+            $data      = array($functionName);
+
+            if ($this->supportsAbove('7.0')) {
+                $error    .= ' and removed since PHP 7.0';
+                $isError   = true;
+                $errorCode = 'Removed';
+            }
+
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+        }
+    }
 
 }//end class

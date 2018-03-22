@@ -13,7 +13,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Deprecated Mbstring regex replace e modifier test file.
  *
  * @group mbstringReplaceEModifier
- * @group regexEModifier
+ * @group regexModifiers
  *
  * @covers \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff
  *
