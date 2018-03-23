@@ -70,6 +70,17 @@ class NewKeywordsSniffTest extends BaseSniffTest
     }
 
     /**
+     * Test against false positives for the namespace keyword.
+     *
+     * @return void
+     */
+    public function testNamespaceNoFalsePositives()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $this->assertNoViolation($file, 117);
+    }
+
+    /**
      * testNamespaceConstant
      *
      * @return void
@@ -92,9 +103,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertError($file, 24, '"trait" keyword is not present in PHP version 5.3 or earlier');
+        $this->assertError($file, 105, '"trait" keyword is not present in PHP version 5.3 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertNoViolation($file, 24);
+        $this->assertNoViolation($file, 105);
     }
 
     /**
@@ -159,6 +172,17 @@ class NewKeywordsSniffTest extends BaseSniffTest
     }
 
     /**
+     * Test against false positives for the yield keyword.
+     *
+     * @return void
+     */
+    public function testYieldNoFalsePositives()
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, 120);
+    }
+
+    /**
      * Test yield from
      *
      * @dataProvider dataYieldFrom
@@ -200,9 +224,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.4');
         $this->assertError($file, 9, '"finally" keyword (in exception handling) is not present in PHP version 5.4 or earlier');
+        $this->assertError($file, 108, '"finally" keyword (in exception handling) is not present in PHP version 5.4 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
         $this->assertNoViolation($file, 9);
+        $this->assertNoViolation($file, 108);
     }
 
     /**
@@ -355,7 +381,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
         if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 102, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
+            $this->assertError($file, 122, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         } else {
             /*
              * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
@@ -364,7 +390,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 105);
+            $this->assertNoViolation($file, 125);
         }
     }
 

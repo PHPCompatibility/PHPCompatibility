@@ -204,6 +204,10 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         // Translate T_STRING token if necessary.
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {
             $content = $tokens[$stackPtr]['content'];
+            if (strpos($content, '__') !== 0) {
+                $content = strtolower($tokens[$stackPtr]['content']);
+            }
+
             if (isset($this->translateContentToToken[$content]) === false) {
                 // Not one of the tokens we're looking for.
                 return;
@@ -247,6 +251,14 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
         $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true);
         $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+
+        if ($prevToken !== false
+            && ($tokens[$prevToken]['code'] === T_DOUBLE_COLON
+            || $tokens[$prevToken]['code'] === T_OBJECT_OPERATOR)
+        ) {
+            // Class property of the same name as one of the keywords. Ignore.
+            return;
+        }
 
         // Skip attempts to use keywords as functions or class names - the former
         // will be reported by ForbiddenNamesAsInvokedFunctionsSniff, whilst the
