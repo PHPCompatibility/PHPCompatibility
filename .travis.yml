@@ -114,6 +114,7 @@ script:
   # Check the code-style consistency of the xml files.
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml"); fi
   - if [[ "$SNIFF" == "1" ]]; then diff -B ./framework-rulesets/wordpress.xml <(xmllint --format "./framework-rulesets/wordpress.xml"); fi
+  - if [[ "$SNIFF" == "1" ]]; then diff -B ./framework-rulesets/joomla.xml <(xmllint --format "./framework-rulesets/joomla.xml"); fi
   # Validate the composer.json file.
   # @link https://getcomposer.org/doc/03-cli.md#validate
   - if [[ "$LINT" == "1" ]]; then composer validate --no-check-all; fi
