@@ -112,11 +112,12 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      */
     protected function getSniffCode()
     {
-        $class = get_class($this);
-        $parts = explode('\\', $class);
-        $sniff = array_pop($parts);
-        $sniff = str_replace('SniffTest', '', $sniff);
-        return self::STANDARD_NAME . '.PHP.' . $sniff;
+        $class    = get_class($this);
+        $parts    = explode('\\', $class);
+        $sniff    = array_pop($parts);
+        $sniff    = str_replace('SniffTest', '', $sniff);
+        $category = array_pop($parts);
+        return self::STANDARD_NAME . '.' . $category . '.' . $sniff;
     }
 
     /**
