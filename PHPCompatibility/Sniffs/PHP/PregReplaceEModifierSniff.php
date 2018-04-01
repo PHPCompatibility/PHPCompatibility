@@ -12,7 +12,7 @@
 
 namespace PHPCompatibility\Sniffs\PHP;
 
-use PHPCompatibility\Sniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
  * \PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff.
@@ -27,7 +27,7 @@ use PHPCompatibility\Sniff;
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2014 Cu.be Solutions bvba
  */
-class PregReplaceEModifierSniff extends Sniff
+class PregReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**
@@ -35,7 +35,7 @@ class PregReplaceEModifierSniff extends Sniff
      *
      * @var array
      */
-    protected $functions = array(
+    protected $targetFunctions = array(
         'preg_replace' => true,
         'preg_filter'  => true,
     );
@@ -52,51 +52,34 @@ class PregReplaceEModifierSniff extends Sniff
         '<' => '>',
     );
 
-    /**
-     * Returns an array of tokens this test wants to listen for.
-     *
-     * @return array
-     */
-    public function register()
-    {
-        return array(T_STRING);
-    }//end register()
 
     /**
-     * Processes this test, when one of its tokens is encountered.
+     * Process the parameters of a matched function.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
+     * @param int                   $stackPtr     The position of the current token in the stack.
+     * @param string                $functionName The token content (function name) which was matched.
+     * @param array                 $parameters   Array with information about the parameters.
      *
-     * @return void
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if ($this->bowOutEarly() === true) {
+        // Check the first parameter in the function call as that should contain the regex(es).
+        if (isset($parameters[1]) === false) {
             return;
         }
 
         $tokens         = $phpcsFile->getTokens();
-        $functionName   = $tokens[$stackPtr]['content'];
         $functionNameLc = strtolower($functionName);
-
-        // Bow out if not one of the functions we're targetting.
-        if (isset($this->functions[$functionNameLc]) === false) {
-            return;
-        }
-
-        // Get the first parameter in the function call as that should contain the regex(es).
-        $firstParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
-        if ($firstParam === false) {
-            return;
-        }
+        $firstParam     = $parameters[1];
 
         // Differentiate between an array of patterns passed and a single pattern.
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
-            if ($functionName === 'preg_replace_callback_array') {
+            if ($functionNameLc === 'preg_replace_callback_array') {
                 // For preg_replace_callback_array(), the patterns will be in the array keys.
                 foreach ($arrayValues as $value) {
                     $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
@@ -125,8 +108,7 @@ class PregReplaceEModifierSniff extends Sniff
         } else {
             $this->processRegexPattern($firstParam, $phpcsFile, $stackPtr, $functionName);
         }
-
-    }//end process()
+    }
 
 
     /**

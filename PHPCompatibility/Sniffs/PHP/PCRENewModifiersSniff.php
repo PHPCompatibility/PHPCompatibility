@@ -28,7 +28,7 @@ class PCRENewModifiersSniff extends PregReplaceEModifierSniff
      *
      * @var array
      */
-    protected $functions = array(
+    protected $targetFunctions = array(
         'preg_replace'                => true,
         'preg_filter'                 => true,
         'preg_grep'                   => true,
