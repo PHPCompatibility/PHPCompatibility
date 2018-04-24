@@ -10,3 +10,6 @@ stream_socket_enable_crypto($fp, true);
 
 bcscale( 10 ); // Ok.
 bcscale(); // PHP 7.3+.
+
+$ip = getenv('REMOTE_ADDR'); // OK
+$ip = getenv(); // PHP 7.1+

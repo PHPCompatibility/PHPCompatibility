@@ -39,6 +39,13 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
                 '7.3'  => false,
             ),
         ),
+        'getenv' => array(
+            0 => array(
+                'name' => 'varname',
+                '7.0'  => true,
+                '7.1'  => false,
+            ),
+        ),
         'preg_match_all' => array(
             2 => array(
                 'name' => 'matches',
