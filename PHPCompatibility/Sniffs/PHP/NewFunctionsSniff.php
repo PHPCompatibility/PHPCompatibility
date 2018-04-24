@@ -1349,6 +1349,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'sodium_base642bin' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_bin2base64' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'sodium_bin2hex' => array(
             '7.1' => false,
             '7.2' => true,
@@ -1394,6 +1402,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'sodium_crypto_aead_chacha20poly1305_keygen' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_aead_xchacha20poly1305_ietf_decrypt' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_aead_xchacha20poly1305_ietf_encrypt' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_aead_xchacha20poly1305_ietf_keygen' => array(
             '7.1' => false,
             '7.2' => true,
         ),
@@ -1513,6 +1533,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'sodium_crypto_pwhash_str_needs_rehash' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'sodium_crypto_pwhash_str_verify' => array(
             '7.1' => false,
             '7.2' => true,
@@ -1542,6 +1566,30 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'sodium_crypto_secretbox' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_init_pull' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_init_push' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_keygen' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_pull' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_push' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'sodium_crypto_secretstream_xchacha20poly1305_rekey' => array(
             '7.1' => false,
             '7.2' => true,
         ),
