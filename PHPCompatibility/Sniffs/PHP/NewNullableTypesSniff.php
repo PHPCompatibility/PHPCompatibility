@@ -73,7 +73,8 @@ class NewNullableTypesSniff extends Sniff
         if ($tokenCode === T_FUNCTION || $tokenCode === T_CLOSURE) {
             $this->processFunctionDeclaration($phpcsFile, $stackPtr);
 
-            // Deal with older PHPCS version which don't recognize return type hints.
+            // Deal with older PHPCS version which don't recognize return type hints
+            // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
             $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
             if ($returnTypeHint !== false) {
                 $this->processReturnType($phpcsFile, $returnTypeHint);
