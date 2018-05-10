@@ -990,16 +990,29 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return false;
         }
 
-        if (isset($tokens[$stackPtr]['parenthesis_closer'], $tokens[$stackPtr]['scope_opener']) === false
-            || ($tokens[$stackPtr]['parenthesis_closer'] + 1) === $tokens[$stackPtr]['scope_opener']
-        ) {
+        if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
+            return false;
+        }
+
+        // Allow for interface and abstract method declarations.
+        $endOfFunctionDeclaration = null;
+        if (isset($tokens[$stackPtr]['scope_opener'])) {
+            $endOfFunctionDeclaration = $tokens[$stackPtr]['scope_opener'];
+        } else {
+            $nextSemiColon = $phpcsFile->findNext(T_SEMICOLON, ($tokens[$stackPtr]['parenthesis_closer'] + 1), null, false, null, true);
+            if ($nextSemiColon !== false) {
+                $endOfFunctionDeclaration = $nextSemiColon;
+            }
+        }
+
+        if (isset($endOfFunctionDeclaration) === false) {
             return false;
         }
 
         $hasColon = $phpcsFile->findNext(
             array(T_COLON, T_INLINE_ELSE),
             ($tokens[$stackPtr]['parenthesis_closer'] + 1),
-            $tokens[$stackPtr]['scope_opener']
+            $endOfFunctionDeclaration
         );
         if ($hasColon === false) {
             return false;
@@ -1022,7 +1035,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             T_STRING,
         );
 
-        return $phpcsFile->findPrevious($unrecognizedTypes, ($tokens[$stackPtr]['scope_opener'] - 1), $hasColon);
+        return $phpcsFile->findPrevious($unrecognizedTypes, ($endOfFunctionDeclaration - 1), $hasColon);
     }
 
 
