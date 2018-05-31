@@ -14,31 +14,41 @@
     -->
 
     <rule ref="PHPCompatibility">
-        <!-- Whitelist PHP native classes, interfaces, functions and constants which
-             are back-filled by WP.
-
-             Based on:
-             * /wp-includes/compat.php
-             * /wp-includes/random_compat/random.php
-        -->
-        <exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
-        <exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
-
+        <!-- Contained in /wp-includes/compat.php. -->
+        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_hmacFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.json_encodeFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.json_decodeFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"/>
         <exclude name="PHPCompatibility.PHP.NewConstants.json_pretty_printFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.json_last_error_msgFound"/>
+        <exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.is_iterableFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.is_countableFound"/>
+
+        <!-- Contained in /wp-includes/spl-autoload-compat.php. -->
+        <exclude name="PHPCompatibility.PHP.NewFunctions.spl_autoload_registerFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.spl_autoload_unregisterFound"/>
+        <exclude name="PHPCompatibility.PHP.NewFunctions.spl_autoload_functionsFound"/>
+
+        <!-- Contained in /wp-includes/random_compat/random.php. -->
         <exclude name="PHPCompatibility.PHP.NewConstants.php_version_idFound"/>
 
-        <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.json_last_error_msgFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.random_intFound"/>
+        <!-- Contained in /wp-includes/random_compat/*.php (various files). -->
         <exclude name="PHPCompatibility.PHP.NewFunctions.random_bytesFound"/>
-        <exclude name="PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound"/>
 
-        <exclude name="PHPCompatibility.PHP.NewInterfaces.jsonserializableFound"/>
+        <!-- Contained in /wp-includes/random_compat/random_int.php. -->
+        <exclude name="PHPCompatibility.PHP.NewFunctions.random_intFound"/>
+
+        <!-- Contained in /wp-includes/random_compat/error_polyfill.php. -->
+        <exclude name="PHPCompatibility.PHP.NewClasses.errorFound"/>
+        <exclude name="PHPCompatibility.PHP.NewClasses.typeerrorFound"/>
     </rule>
 
     <!-- Whitelist the WP Core mysql_to_rfc3339() function. -->
     <rule ref="PHPCompatibility.PHP.RemovedExtensions">
         <properties>
+            <!-- Contained in /wp-includes/functions.php. -->
             <property name="functionWhitelist" type="array" value="mysql_to_rfc3339"/>
         </properties>
     </rule>
