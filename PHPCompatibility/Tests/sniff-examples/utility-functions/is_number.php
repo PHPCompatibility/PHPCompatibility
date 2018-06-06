@@ -57,6 +57,9 @@ $a = '0';
 /* Case ZI5 */
 $a = - '        0 things';
 
+/* Case ZI6 */
+$a = null;
+
 /*
  * Make sure that zero numbers are correctly identified.
  *

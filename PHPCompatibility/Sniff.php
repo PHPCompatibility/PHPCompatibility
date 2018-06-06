@@ -1515,6 +1515,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $validTokens[T_LNUMBER] = true;
         $validTokens[T_TRUE]    = true; // Evaluates to int 1.
         $validTokens[T_FALSE]   = true; // Evaluates to int 0.
+        $validTokens[T_NULL]    = true; // Evaluates to int 0.
 
         if ($allowFloats === true) {
             $validTokens[T_DNUMBER] = true;
@@ -1554,7 +1555,9 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             $content = (float) $tokens[$nextNonEmpty]['content'];
         } elseif ($tokens[$nextNonEmpty]['code'] === T_TRUE) {
             $content = 1.0;
-        } elseif ($tokens[$nextNonEmpty]['code'] === T_FALSE) {
+        } elseif ($tokens[$nextNonEmpty]['code'] === T_FALSE
+            || $tokens[$nextNonEmpty]['code'] === T_NULL
+        ) {
             $content = 0.0;
         } elseif (isset($stringTokens[$tokens[$nextNonEmpty]['code']]) === true) {
 

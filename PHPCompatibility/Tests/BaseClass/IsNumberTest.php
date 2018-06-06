@@ -91,12 +91,14 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case ZI3 */', false, -0, false, false),
             array('/* Case ZI4 */', false, 0, false, false),
             array('/* Case ZI5 */', false, -0, false, false),
+            array('/* Case ZI6 */', false, 0, false, false),
 
             array('/* Case ZI1 */', true, 0.0, false, false),
             array('/* Case ZI2 */', true, 0.0, false, false),
             array('/* Case ZI3 */', true, -0.0, false, false),
             array('/* Case ZI4 */', true, 0.0, false, false),
             array('/* Case ZI5 */', true, -0.0, false, false),
+            array('/* Case ZI6 */', true, 0.0, false, false),
 
             array('/* Case ZF1 */', false, false, false, false),
             array('/* Case ZF2 */', false, false, false, false),
