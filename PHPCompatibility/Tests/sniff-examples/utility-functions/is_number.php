@@ -134,6 +134,8 @@ $a = - true;
 /* Case I15 */
 $a = + '  0123 things';
 
+/* Case I16 */
+$a = -+-+10;
 
 /*
  * Make sure that numbers are correctly identified.

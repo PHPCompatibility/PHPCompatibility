@@ -1532,13 +1532,13 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $start, $searchEnd, true);
-        if ($nextNonEmpty !== false
+        while ($nextNonEmpty !== false
             && ($tokens[$nextNonEmpty]['code'] === T_PLUS
             || $tokens[$nextNonEmpty]['code'] === T_MINUS)
         ) {
 
             if ($tokens[$nextNonEmpty]['code'] === T_MINUS) {
-                $negativeNumber = true;
+                $negativeNumber = ($negativeNumber === false ) ? true : false;
             }
 
             $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);

@@ -121,6 +121,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case I12 */', false, 10, true, false),
             array('/* Case I14 */', false, -1, false, true),
             array('/* Case I15 */', false, 123, true, false),
+            array('/* Case I16 */', false, 10, true, false),
 
             array('/* Case I1 */', true, 1.0, true, false),
             array('/* Case I2 */', true, -10.0, false, true),
@@ -136,6 +137,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case I12 */', true, 10.0, true, false),
             array('/* Case I14 */', true, -1.0, false, true),
             array('/* Case I15 */', true, 123.0, true, false),
+            array('/* Case I16 */', true, 10.0, true, false),
 
             array('/* Case F1 */', false, false, false, false),
             array('/* Case F2 */', false, false, false, false),
