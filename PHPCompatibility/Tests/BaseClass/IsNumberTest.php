@@ -77,7 +77,6 @@ class IsNumberTest extends MethodTestFrame
         return array(
             array('/* Case 1 */', true, false, false, false),
             array('/* Case 2 */', true, false, false, false),
-            array('/* Case 3 */', true, false, false, false),
             array('/* Case 4 */', true, false, false, false),
             array('/* Case 5 */', true, false, false, false),
             array('/* Case 6 */', true, false, false, false),
@@ -92,6 +91,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case ZI4 */', false, 0, false, false),
             array('/* Case ZI5 */', false, -0, false, false),
             array('/* Case ZI6 */', false, 0, false, false),
+            array('/* Case ZI7 */', false, 0, false, false),
 
             array('/* Case ZI1 */', true, 0.0, false, false),
             array('/* Case ZI2 */', true, 0.0, false, false),
@@ -99,6 +99,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case ZI4 */', true, 0.0, false, false),
             array('/* Case ZI5 */', true, -0.0, false, false),
             array('/* Case ZI6 */', true, 0.0, false, false),
+            array('/* Case ZI7 */', true, 0.0, false, false),
 
             array('/* Case ZF1 */', false, false, false, false),
             array('/* Case ZF2 */', false, false, false, false),

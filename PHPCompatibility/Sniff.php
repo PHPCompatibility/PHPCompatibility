@@ -1606,17 +1606,21 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             // Does the text string start with a number ? If so, PHP would juggle it and use it as a number.
             if ($allowFloats === false) {
                 if ($intString !== 1 || $floatString === 1) {
-                    // Found non-numeric start or float. Only integers targetted.
-                    return false;
-                }
+                    if ($floatString === 1) {
+                        // Found float. Only integers targetted.
+                        return false;
+                    }
 
-                $content = (float) trim($intMatch[0]);
+                    $content = 0.0;
+                } else {
+                    $content = (float) trim($intMatch[0]);
+                }
             } else {
                 if ($intString !== 1 && $floatString !== 1) {
-                    return false;
+                    $content = 0.0;
+                } else {
+                    $content = ($floatString === 1) ? (float) trim($floatMatch[0]) : (float) trim($intMatch[0]);
                 }
-
-                $content = ($floatString === 1) ? (float) trim($floatMatch[0]) : (float) trim($intMatch[0]);
             }
 
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.

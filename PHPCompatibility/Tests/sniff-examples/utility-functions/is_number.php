@@ -12,9 +12,6 @@ $a = [];
 /* Case 2 */
 $a = - $b;
 
-/* Case 3 */
-$a = - 'not a numeric string';
-
 /* Case 4 */
 $a = +;
 
@@ -59,6 +56,10 @@ $a = - '        0 things';
 
 /* Case ZI6 */
 $a = null;
+
+/* Case ZI7 */
+$a = - 'not a numeric string';
+
 
 /*
  * Make sure that zero numbers are correctly identified.
