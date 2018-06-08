@@ -187,6 +187,8 @@ class NewClassesSniffTest extends BaseSniffTest
             array('UI\Exception\InvalidArgumentException', '5.6', array(192, 210, 246, 322), '7.0'),
             array('UI\Exception\RuntimeException', '5.6', array(188, 199, 247), '7.0'),
             array('ArgumentCountError', '7.0', array(248), '7.1'),
+            array('CompileError', '7.2', array(249), '7.3'),
+            array('JsonException', '7.2', array(250, 339), '7.3'),
         );
     }
 
