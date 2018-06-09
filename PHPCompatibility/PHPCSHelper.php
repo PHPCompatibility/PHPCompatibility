@@ -328,12 +328,14 @@ class PHPCSHelper
      *
      * <code>
      *   0 => array(
-     *         'token'             => int,     // The position of the var in the token stack.
      *         'name'              => '$var',  // The variable name.
+     *         'token'             => integer, // The stack pointer to the variable name.
      *         'content'           => string,  // The full content of the variable definition.
      *         'pass_by_reference' => boolean, // Is the variable passed by reference?
      *         'variable_length'   => boolean, // Is the param of variable length through use of `...` ?
      *         'type_hint'         => string,  // The type hint for the variable.
+     *         'type_hint_token'   => integer, // The stack pointer to the type hint
+     *                                         // or false if there is no type hint.
      *         'nullable_type'     => boolean, // Is the variable using a nullable type?
      *        )
      * </code>
@@ -342,21 +344,9 @@ class PHPCSHelper
      * 'default' with the value of the default as a string.
      *
      * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
-     * class, but with some improvements which have been introduced in
-     * PHPCS 2.8.0.
-     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1117},
-     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1193} and
-     * {@link https://github.com/squizlabs/PHP_CodeSniffer/pull/1293}.
+     * class.
      *
-     * Once the minimum supported PHPCS version for this standard goes beyond
-     * that, this method can be removed and calls to it replaced with
-     * `$phpcsFile->getMethodParameters($stackPtr)` calls.
-     *
-     * NOTE: This version does not deal with the new T_NULLABLE token type.
-     * This token is included upstream only in 2.8.0+ and as we defer to upstream
-     * in that case, no need to deal with it here.
-     *
-     * Last synced with PHPCS version: PHPCS 2.9.0-alpha at commit f1511adad043edfd6d2e595e77385c32577eb2bc}}
+     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit 53a28408d345044c0360c2c1b4a2aaebf4a3b8c9}}
      *
      * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
      * @param int                   $stackPtr  The position in the stack of the
@@ -369,7 +359,7 @@ class PHPCSHelper
      */
     public static function getMethodParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (version_compare(self::getVersion(), '2.7.1', '>') === true) {
+        if (version_compare(self::getVersion(), '3.3.0', '>=') === true) {
             return $phpcsFile->getMethodParameters($stackPtr);
         }
 
@@ -380,7 +370,9 @@ class PHPCSHelper
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
+        if ($tokens[$stackPtr]['code'] !== T_FUNCTION
+            && $tokens[$stackPtr]['code'] !== T_CLOSURE
+        ) {
             throw new \PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
 
@@ -395,6 +387,7 @@ class PHPCSHelper
         $passByReference = false;
         $variableLength  = false;
         $typeHint        = '';
+        $typeHintToken   = false;
         $nullableType    = false;
 
         for ($i = $paramStart; $i <= $closer; $i++) {
@@ -418,7 +411,9 @@ class PHPCSHelper
 
             switch ($tokens[$i]['type']) {
                 case 'T_BITWISE_AND':
-                    $passByReference = true;
+                    if ($defaultStart === null) {
+                        $passByReference = true;
+                    }
                     break;
                 case 'T_VARIABLE':
                     $currVar = $i;
@@ -426,8 +421,12 @@ class PHPCSHelper
                 case 'T_ELLIPSIS':
                     $variableLength = true;
                     break;
-                case 'T_ARRAY_HINT':
+                case 'T_ARRAY_HINT': // Pre-PHPCS 3.3.0.
                 case 'T_CALLABLE':
+                    if ($typeHintToken === false) {
+                        $typeHintToken = $i;
+                    }
+
                     $typeHint .= $tokens[$i]['content'];
                     break;
                 case 'T_SELF':
@@ -435,6 +434,10 @@ class PHPCSHelper
                 case 'T_STATIC':
                     // Self and parent are valid, static invalid, but was probably intended as type hint.
                     if (isset($defaultStart) === false) {
+                        if ($typeHintToken === false) {
+                            $typeHintToken = $i;
+                        }
+
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
@@ -464,16 +467,25 @@ class PHPCSHelper
                     }
 
                     if ($defaultStart === null) {
+                        if ($typeHintToken === false) {
+                            $typeHintToken = $i;
+                        }
+
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
                 case 'T_NS_SEPARATOR':
                     // Part of a type hint or default value.
                     if ($defaultStart === null) {
+                        if ($typeHintToken === false) {
+                            $typeHintToken = $i;
+                        }
+
                         $typeHint .= $tokens[$i]['content'];
                     }
                     break;
-                case 'T_INLINE_THEN':
+                case 'T_NULLABLE':
+                case 'T_INLINE_THEN': // Pre-PHPCS 2.8.0.
                     if ($defaultStart === null) {
                         $nullableType = true;
                         $typeHint    .= $tokens[$i]['content'];
@@ -504,6 +516,7 @@ class PHPCSHelper
                     $vars[$paramCount]['pass_by_reference'] = $passByReference;
                     $vars[$paramCount]['variable_length']   = $variableLength;
                     $vars[$paramCount]['type_hint']         = $typeHint;
+                    $vars[$paramCount]['type_hint_token']   = $typeHintToken;
                     $vars[$paramCount]['nullable_type']     = $nullableType;
 
                     // Reset the vars, as we are about to process the next parameter.
@@ -512,6 +525,7 @@ class PHPCSHelper
                     $passByReference = false;
                     $variableLength  = false;
                     $typeHint        = '';
+                    $typeHintToken   = false;
                     $nullableType    = false;
 
                     $paramCount++;
