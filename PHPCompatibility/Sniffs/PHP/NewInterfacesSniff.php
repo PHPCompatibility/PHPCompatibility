@@ -156,7 +156,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             case 'T_CLOSURE':
                 $this->processFunctionToken($phpcsFile, $stackPtr);
 
-                // Deal with older PHPCS versions which don't recognize return type hints.
+                // Deal with older PHPCS versions which don't recognize return type hints
+                // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
                 $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
                 if ($returnTypeHint !== false) {
                     $this->processReturnTypeToken($phpcsFile, $returnTypeHint);

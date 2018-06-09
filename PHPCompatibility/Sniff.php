@@ -1005,18 +1005,22 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return false;
         }
 
-        // `self`, `parent` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
+        /*
+         * - `self`, `parent` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
+         * - Return types are not recognized at all in PHPCS < 2.4.0.
+         * - The T_RETURN_TYPE token is defined, but no longer in use since PHPCS 3.3.0+.
+         *   The token will now be tokenized as T_STRING.
+         * - An `array` (return) type declaration was tokenized as `T_ARRAY_HINT` in PHPCS 2.3.3 - 3.2.3
+         *   to prevent confusing sniffs looking for array declarations.
+         *   As of PHPCS 3.3.0 `array` as a type declaration will be tokenized as `T_STRING`.
+         */
         $unrecognizedTypes = array(
             T_CALLABLE,
             T_SELF,
             T_PARENT,
+            T_ARRAY, // PHPCS < 2.4.0.
+            T_STRING,
         );
-
-        // Return types are not recognized at all in PHPCS < 2.4.0.
-        if (defined('T_RETURN_TYPE') === false) {
-            $unrecognizedTypes[] = T_ARRAY;
-            $unrecognizedTypes[] = T_STRING;
-        }
 
         return $phpcsFile->findPrevious($unrecognizedTypes, ($tokens[$stackPtr]['scope_opener'] - 1), $hasColon);
     }
@@ -1053,13 +1057,27 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
+        $emptyTokens = array_flip(\PHP_CodeSniffer_Tokens::$emptyTokens); // PHPCS 1.x compat.
+
         $returnTypeHint = '';
-        for ($i = ($colon + 1); $i < $stackPtr; $i++) {
-            if ($tokens[$i]['code'] === T_STRING || $tokens[$i]['code'] === T_NS_SEPARATOR) {
-                $returnTypeHint .= $tokens[$i]['content'];
+        for ($i = ($colon + 1); $i <= $stackPtr; $i++) {
+            // As of PHPCS 3.3.0+, all tokens are tokenized as "normal", so T_CALLABLE, T_SELF etc are
+            // all possible, just exclude anything that's regarded as empty and the nullable indicator.
+            if (isset($emptyTokens[$tokens[$i]['code']])) {
+                continue;
             }
+
+            if ($tokens[$i]['type'] === 'T_NULLABLE') {
+                continue;
+            }
+
+            if (defined('T_NULLABLE') === false && $tokens[$i]['code'] === T_INLINE_THEN) {
+                // Old PHPCS.
+                continue;
+            }
+
+            $returnTypeHint .= $tokens[$i]['content'];
         }
-        $returnTypeHint .= $tokens[$stackPtr]['content'];
 
         return $returnTypeHint;
     }
