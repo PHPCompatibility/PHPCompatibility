@@ -1649,4 +1649,165 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         return $content;
     }
+
+
+    /**
+     * Determine whether a T_OPEN/CLOSE_SHORT_ARRAY token is a list() construct.
+     *
+     * Note: A variety of PHPCS versions have bugs in the tokenizing of short arrays.
+     * In that case, the tokens are identified as T_OPEN/CLOSE_SQUARE_BRACKET.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the function call token.
+     *
+     * @return bool
+     */
+    public function isShortList(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return false;
+        }
+
+        // Is this one of the tokens this function handles ?
+        if ($tokens[$stackPtr]['code'] !== T_OPEN_SHORT_ARRAY
+            && $tokens[$stackPtr]['code'] !== T_CLOSE_SHORT_ARRAY
+        ) {
+            return false;
+        }
+
+        switch ($tokens[$stackPtr]['code']) {
+            case T_OPEN_SHORT_ARRAY:
+                if (isset($tokens[$stackPtr]['bracket_closer']) === true) {
+                    $opener = $stackPtr;
+                    $closer = $tokens[$stackPtr]['bracket_closer'];
+                }
+                break;
+
+            case T_CLOSE_SHORT_ARRAY:
+                if (isset($tokens[$stackPtr]['bracket_opener']) === true) {
+                    $opener = $tokens[$stackPtr]['bracket_opener'];
+                    $closer = $stackPtr;
+                }
+                break;
+        }
+
+        if (isset($opener, $closer) === false) {
+            // Parse error, live coding or real square bracket.
+            return false;
+        }
+
+        /*
+         * PHPCS cross-version compatibility: work around for square brackets misidentified
+         * as short array when preceded by a variable variable in older PHPCS versions.
+         */
+        $prevNonEmpty = $phpcsFile->findPrevious(
+            \PHP_CodeSniffer_Tokens::$emptyTokens,
+            ($opener - 1),
+            null,
+            true,
+            null,
+            true
+        );
+
+        if ($prevNonEmpty !== false
+            && $tokens[$prevNonEmpty]['code'] === T_CLOSE_CURLY_BRACKET
+            && isset($tokens[$prevNonEmpty]['bracket_opener']) === true
+        ) {
+            $maybeVariableVariable = $phpcsFile->findPrevious(
+                \PHP_CodeSniffer_Tokens::$emptyTokens,
+                ($tokens[$prevNonEmpty]['bracket_opener'] - 1),
+                null,
+                true,
+                null,
+                true
+            );
+
+            if ($tokens[$maybeVariableVariable]['code'] === T_VARIABLE
+                || $tokens[$maybeVariableVariable]['code'] === T_DOLLAR
+            ) {
+                return false;
+            }
+        }
+
+        $nextNonEmpty = $phpcsFile->findNext(
+            \PHP_CodeSniffer_Tokens::$emptyTokens,
+            ($closer + 1),
+            null,
+            true,
+            null,
+            true
+        );
+
+        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === T_EQUAL) {
+            return true;
+        }
+
+        if ($prevNonEmpty !== false
+            && $tokens[$prevNonEmpty]['code'] === T_AS
+            && isset($tokens[$prevNonEmpty]['nested_parenthesis']) === true
+        ) {
+            $parentheses = $tokens[$prevNonEmpty]['nested_parenthesis'];
+            $parentheses = array_reverse($tokens[$prevNonEmpty]['nested_parenthesis'], true);
+            foreach ($parentheses as $open => $close) {
+                if (isset($tokens[$open]['parenthesis_owner'])
+                    && $tokens[$tokens[$open]['parenthesis_owner']]['code'] === T_FOREACH
+                ) {
+                    return true;
+                }
+            }
+        }
+
+        // Maybe this is a short list syntax nested inside another short list syntax ?
+        $parentOpener = $opener;
+        do {
+            $parentOpener = $phpcsFile->findPrevious(
+                array(T_OPEN_SHORT_ARRAY, T_OPEN_SQUARE_BRACKET),
+                ($parentOpener - 1),
+                null,
+                false,
+                null,
+                true
+            );
+
+            if ($parentOpener === false) {
+                return false;
+            }
+
+        } while (isset($tokens[$parentOpener]['bracket_closer']) === true
+            && $tokens[$parentOpener]['bracket_closer'] < $opener
+        );
+
+        if (isset($tokens[$parentOpener]['bracket_closer']) === true
+            && $tokens[$parentOpener]['bracket_closer'] > $closer
+        ) {
+            // Work around tokenizer issue in PHPCS 2.0 - 2.7.
+            $phpcsVersion = PHPCSHelper::getVersion();
+            if ((version_compare($phpcsVersion, '2.0', '>') === true
+                && version_compare($phpcsVersion, '2.8', '<') === true)
+                && $tokens[$parentOpener]['code'] === T_OPEN_SQUARE_BRACKET
+            ) {
+                $nextNonEmpty = $phpcsFile->findNext(
+                    \PHP_CodeSniffer_Tokens::$emptyTokens,
+                    ($tokens[$parentOpener]['bracket_closer'] + 1),
+                    null,
+                    true,
+                    null,
+                    true
+                );
+
+                if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === T_EQUAL) {
+                    return true;
+                }
+
+                return false;
+            }
+
+            return $this->isShortList($phpcsFile, $parentOpener);
+        }
+
+        return false;
+    }
 }//end class
