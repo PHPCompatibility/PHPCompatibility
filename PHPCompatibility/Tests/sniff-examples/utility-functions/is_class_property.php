@@ -78,3 +78,20 @@ trait MyTrait {
 		$var = false;
 	}
 }
+
+// Multi-property declarations.
+class MyClass {
+	/* Case 27 */
+	public $varA = true,
+		/* Case 28 */
+		$varB = false,
+		/* Case 29 */
+		$varC = 'string';
+
+	/* Case 30 */
+	private $varD = true,
+		/* Case 31 */
+		$varE = false,
+		/* Case 32 */
+		$varF = 'string';
+}
