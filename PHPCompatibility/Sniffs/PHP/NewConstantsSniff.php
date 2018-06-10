@@ -1841,6 +1841,20 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
+        // Core/Password Hashing:
+        'PASSWORD_BCRYPT' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'PASSWORD_DEFAULT' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'PASSWORD_BCRYPT_DEFAULT_COST' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+
 
         // Libxml:
         'LIBXML_SCHEMA_CREATE' => array(
