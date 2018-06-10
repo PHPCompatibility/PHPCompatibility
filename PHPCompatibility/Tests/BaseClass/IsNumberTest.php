@@ -77,7 +77,6 @@ class IsNumberTest extends MethodTestFrame
         return array(
             array('/* Case 1 */', true, false, false, false),
             array('/* Case 2 */', true, false, false, false),
-            array('/* Case 3 */', true, false, false, false),
             array('/* Case 4 */', true, false, false, false),
             array('/* Case 5 */', true, false, false, false),
             array('/* Case 6 */', true, false, false, false),
@@ -91,12 +90,16 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case ZI3 */', false, -0, false, false),
             array('/* Case ZI4 */', false, 0, false, false),
             array('/* Case ZI5 */', false, -0, false, false),
+            array('/* Case ZI6 */', false, 0, false, false),
+            array('/* Case ZI7 */', false, 0, false, false),
 
             array('/* Case ZI1 */', true, 0.0, false, false),
             array('/* Case ZI2 */', true, 0.0, false, false),
             array('/* Case ZI3 */', true, -0.0, false, false),
             array('/* Case ZI4 */', true, 0.0, false, false),
             array('/* Case ZI5 */', true, -0.0, false, false),
+            array('/* Case ZI6 */', true, 0.0, false, false),
+            array('/* Case ZI7 */', true, 0.0, false, false),
 
             array('/* Case ZF1 */', false, false, false, false),
             array('/* Case ZF2 */', false, false, false, false),
@@ -118,6 +121,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case I12 */', false, 10, true, false),
             array('/* Case I14 */', false, -1, false, true),
             array('/* Case I15 */', false, 123, true, false),
+            array('/* Case I16 */', false, 10, true, false),
 
             array('/* Case I1 */', true, 1.0, true, false),
             array('/* Case I2 */', true, -10.0, false, true),
@@ -133,6 +137,7 @@ class IsNumberTest extends MethodTestFrame
             array('/* Case I12 */', true, 10.0, true, false),
             array('/* Case I14 */', true, -1.0, false, true),
             array('/* Case I15 */', true, 123.0, true, false),
+            array('/* Case I16 */', true, 10.0, true, false),
 
             array('/* Case F1 */', false, false, false, false),
             array('/* Case F2 */', false, false, false, false),

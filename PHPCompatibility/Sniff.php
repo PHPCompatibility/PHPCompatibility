@@ -1515,6 +1515,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $validTokens[T_LNUMBER] = true;
         $validTokens[T_TRUE]    = true; // Evaluates to int 1.
         $validTokens[T_FALSE]   = true; // Evaluates to int 0.
+        $validTokens[T_NULL]    = true; // Evaluates to int 0.
 
         if ($allowFloats === true) {
             $validTokens[T_DNUMBER] = true;
@@ -1531,13 +1532,13 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $start, $searchEnd, true);
-        if ($nextNonEmpty !== false
+        while ($nextNonEmpty !== false
             && ($tokens[$nextNonEmpty]['code'] === T_PLUS
             || $tokens[$nextNonEmpty]['code'] === T_MINUS)
         ) {
 
             if ($tokens[$nextNonEmpty]['code'] === T_MINUS) {
-                $negativeNumber = true;
+                $negativeNumber = ($negativeNumber === false ) ? true : false;
             }
 
             $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);
@@ -1554,7 +1555,9 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             $content = (float) $tokens[$nextNonEmpty]['content'];
         } elseif ($tokens[$nextNonEmpty]['code'] === T_TRUE) {
             $content = 1.0;
-        } elseif ($tokens[$nextNonEmpty]['code'] === T_FALSE) {
+        } elseif ($tokens[$nextNonEmpty]['code'] === T_FALSE
+            || $tokens[$nextNonEmpty]['code'] === T_NULL
+        ) {
             $content = 0.0;
         } elseif (isset($stringTokens[$tokens[$nextNonEmpty]['code']]) === true) {
 
@@ -1603,17 +1606,21 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             // Does the text string start with a number ? If so, PHP would juggle it and use it as a number.
             if ($allowFloats === false) {
                 if ($intString !== 1 || $floatString === 1) {
-                    // Found non-numeric start or float. Only integers targetted.
-                    return false;
-                }
+                    if ($floatString === 1) {
+                        // Found float. Only integers targetted.
+                        return false;
+                    }
 
-                $content = (float) trim($intMatch[0]);
+                    $content = 0.0;
+                } else {
+                    $content = (float) trim($intMatch[0]);
+                }
             } else {
                 if ($intString !== 1 && $floatString !== 1) {
-                    return false;
+                    $content = 0.0;
+                } else {
+                    $content = ($floatString === 1) ? (float) trim($floatMatch[0]) : (float) trim($intMatch[0]);
                 }
-
-                $content = ($floatString === 1) ? (float) trim($floatMatch[0]) : (float) trim($intMatch[0]);
             }
 
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.
