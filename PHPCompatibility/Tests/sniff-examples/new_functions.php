@@ -430,3 +430,4 @@ sodium_crypto_secretstream_xchacha20poly1305_keygen();
 sodium_crypto_secretstream_xchacha20poly1305_pull();
 sodium_crypto_secretstream_xchacha20poly1305_push();
 sodium_crypto_secretstream_xchacha20poly1305_rekey();
+is_countable();

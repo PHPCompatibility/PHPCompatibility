@@ -1685,6 +1685,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+
+        'is_countable' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
 
