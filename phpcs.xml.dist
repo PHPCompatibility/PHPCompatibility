@@ -13,6 +13,13 @@
     <!-- Exclude Composer vendor directory. -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="./"/>
+
+	<!-- Check up to 8 files simultanously. -->
+	<arg name="parallel" value="8"/>
+
+
     <!--
         PHP cross version compatibility ;-).
     -->
