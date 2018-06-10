@@ -983,7 +983,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
 
         if (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === T_RETURN_TYPE) {
-            return $tokens[$stackPtr]['code'];
+            return $stackPtr;
         }
 
         if ($tokens[$stackPtr]['code'] !== T_FUNCTION && $tokens[$stackPtr]['code'] !== T_CLOSURE) {
