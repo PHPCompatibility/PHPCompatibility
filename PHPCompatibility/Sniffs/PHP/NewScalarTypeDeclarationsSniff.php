@@ -131,7 +131,7 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
-                    'Type hints were not present in PHP 4.4 or earlier.',
+                    'Type declarations were not present in PHP 4.4 or earlier.',
                     $param['token'],
                     'TypeHintFound'
                 );
@@ -164,7 +164,6 @@ class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 );
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
-
             }
         }
     }//end process()

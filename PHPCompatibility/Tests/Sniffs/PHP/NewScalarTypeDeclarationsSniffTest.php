@@ -167,7 +167,7 @@ class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
     public function testTypeDeclaration($line, $testNoViolation = false)
     {
         $file = $this->sniffFile(self::TEST_FILE, '4.4');
-        $this->assertError($file, $line, 'Type hints were not present in PHP 4.4 or earlier');
+        $this->assertError($file, $line, 'Type declarations were not present in PHP 4.4 or earlier');
 
         if ($testNoViolation === true) {
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
