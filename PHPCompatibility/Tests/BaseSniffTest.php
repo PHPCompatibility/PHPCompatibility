@@ -134,7 +134,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             return self::$sniffFiles[$filename][$targetPhpVersion];
         }
 
-        if ('none' !== $targetPhpVersion) {
+        if ($targetPhpVersion !== 'none') {
             PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 

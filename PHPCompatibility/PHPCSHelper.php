@@ -230,7 +230,7 @@ class PHPCSHelper
 
         $classCloserIndex = $tokens[$stackPtr]['scope_closer'];
         $extendsIndex     = $phpcsFile->findNext(T_EXTENDS, $stackPtr, $classCloserIndex);
-        if (false === $extendsIndex) {
+        if ($extendsIndex === false) {
             return false;
         }
 
