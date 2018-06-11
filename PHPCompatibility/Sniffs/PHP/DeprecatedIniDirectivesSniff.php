@@ -250,7 +250,7 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+        if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
             // Not a call to a PHP function.
             return;
         }
