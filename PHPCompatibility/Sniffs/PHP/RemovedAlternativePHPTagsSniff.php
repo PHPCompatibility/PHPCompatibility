@@ -46,7 +46,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
     {
         if (version_compare(PHP_VERSION_ID, '70000', '<') === true) {
             // phpcs:ignore PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved
-            $this->aspTags = (boolean) ini_get('asp_tags');
+            $this->aspTags = (bool) ini_get('asp_tags');
         }
 
         return array(
