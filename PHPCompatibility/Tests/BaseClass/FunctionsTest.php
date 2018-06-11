@@ -50,7 +50,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->helperClass = new TestHelperPHPCompatibility;
+        $this->helperClass = new TestHelperPHPCompatibility();
     }
 
     /**

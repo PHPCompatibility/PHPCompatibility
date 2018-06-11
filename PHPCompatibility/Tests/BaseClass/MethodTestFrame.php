@@ -69,7 +69,7 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->helperClass = new TestHelperPHPCompatibility;
+        $this->helperClass = new TestHelperPHPCompatibility();
 
         $filename = realpath(__DIR__) . DIRECTORY_SEPARATOR . $this->testcasePath . $this->filename;
         $contents = file_get_contents($filename);
