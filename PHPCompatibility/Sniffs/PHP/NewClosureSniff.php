@@ -96,6 +96,25 @@ class NewClosureSniff extends Sniff
 
                 } while ($thisFound !== false);
             }
+
+            /*
+             * Closures declared within classes only have access to self/parent/static since PHP 5.4.
+             */
+            $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, $scopeStart, $scopeEnd);
+
+            if ($usesClassRef !== false) {
+                do {
+                    $phpcsFile->addError(
+                        'Closures / anonymous functions could not use "%s::" in PHP 5.3 or earlier',
+                        $usesClassRef,
+                        'ClassRefFound',
+                        array(strtolower($tokens[$usesClassRef]['content']))
+                    );
+
+                    $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, ($usesClassRef + 1), $scopeEnd);
+
+                } while ($usesClassRef !== false);
+            }
         }
 
         /*
@@ -181,6 +200,39 @@ class NewClosureSniff extends Sniff
             false,
             '$this'
         );
+    }
+
+    /**
+     * Check if the code within a closure uses "self/parent/static".
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile  The file being scanned.
+     * @param int                   $startToken The position within the closure to continue searching from.
+     * @param int                   $endToken   The closure scope closer to stop searching at.
+     *
+     * @return int|false The stackPtr to the first classRef usage if found or false if
+     *                   they are not used.
+     */
+    protected function findClassRefUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $startToken, $endToken)
+    {
+        // Make sure the $startToken is valid.
+        if ($startToken >= $endToken) {
+            return false;
+        }
+
+        $tokens   = $phpcsFile->getTokens();
+        $classRef = $phpcsFile->findNext(array(T_SELF, T_PARENT, T_STATIC), $startToken, $endToken);
+
+        if ($classRef === false || $tokens[$classRef]['code'] !== T_STATIC) {
+            return $classRef;
+        }
+
+        // T_STATIC, make sure it is used as a class reference.
+        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($classRef + 1), $endToken, true);
+        if ($next === false || $tokens[$next]['code'] !== T_DOUBLE_COLON) {
+            return false;
+        }
+
+        return $classRef;
     }
 
 }//end class

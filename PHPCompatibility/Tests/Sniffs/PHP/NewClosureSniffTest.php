@@ -236,6 +236,75 @@ class NewClosureSniffTest extends BaseSniffTest
         );
     }
 
+
+    /**
+     * Test using self/parent/static in closures.
+     *
+     * @dataProvider dataClassRefInClosure
+     *
+     * @param int    $line The line number.
+     * @param string $ref  The class reference encountered.
+     *
+     * @return void
+     */
+    public function testClassRefInClosure($line, $ref)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertError($file, $line, 'Closures / anonymous functions could not use "' . $ref . '::" in PHP 5.3 or earlier');
+
+        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testClassRefInClosure()
+     *
+     * @return array
+     */
+    public function dataClassRefInClosure()
+    {
+        return array(
+            array(83, 'self'),
+            array(84, 'self'),
+            array(85, 'parent'),
+            array(86, 'static'),
+        );
+    }
+
+
+    /**
+     * Test no false positives for other uses of static within closures.
+     *
+     * @dataProvider dataNoFalsePositivesClassRefInClosure
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesClassRefInClosure($line)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesClassRefInClosure()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositivesClassRefInClosure()
+    {
+        return array(
+            array(88),
+            array(90),
+        );
+    }
+
+
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about the use of closures in PHP < 5.3 and about invalid usage of $this in closures for PHP 5.4+.
