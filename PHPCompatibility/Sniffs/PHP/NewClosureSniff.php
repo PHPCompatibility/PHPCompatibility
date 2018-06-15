@@ -56,21 +56,30 @@ class NewClosureSniff extends Sniff
             );
         }
 
+        /*
+         * Closures can only be declared as static since PHP 5.4.
+         */
         $isStatic = $this->isClosureStatic($phpcsFile, $stackPtr);
-        $usesThis = $this->findThisUsageInClosure($phpcsFile, $stackPtr);
+        if ($this->supportsBelow('5.3') && $isStatic === true) {
+            $phpcsFile->addError(
+                'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier',
+                $stackPtr,
+                'StaticFound'
+            );
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false) {
+            // Live coding or parse error.
+            return;
+        }
+
+        $scopeStart = ($tokens[$stackPtr]['scope_opener'] + 1);
+        $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
+        $usesThis   = $this->findThisUsageInClosure($phpcsFile, $scopeStart, $scopeEnd);
 
         if ($this->supportsBelow('5.3')) {
-            /*
-             * Closures can only be declared as static since PHP 5.4.
-             */
-            if ($isStatic === true) {
-                $phpcsFile->addError(
-                    'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier',
-                    $stackPtr,
-                    'StaticFound'
-                );
-            }
-
             /*
              * Closures declared within classes only have access to $this since PHP 5.4.
              */
@@ -83,7 +92,7 @@ class NewClosureSniff extends Sniff
                         'ThisFound'
                     );
 
-                    $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr, ($thisFound + 1));
+                    $thisFound = $this->findThisUsageInClosure($phpcsFile, ($thisFound + 1), $scopeEnd);
 
                 } while ($thisFound !== false);
             }
@@ -119,10 +128,13 @@ class NewClosureSniff extends Sniff
                     );
                 }
 
-                $thisFound = $this->findThisUsageInClosure($phpcsFile, $stackPtr, ($thisFound + 1));
+                $thisFound = $this->findThisUsageInClosure($phpcsFile, ($thisFound + 1), $scopeEnd);
 
             } while ($thisFound !== false);
         }
+
+        // Prevent double reporting for nested closures.
+        return $scopeEnd;
 
     }//end process()
 
@@ -149,35 +161,23 @@ class NewClosureSniff extends Sniff
      * Check if the code within a closure uses the $this variable.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile  The file being scanned.
-     * @param int                   $stackPtr   The position of the closure token.
-     * @param int                   $startToken Optional. The position within the closure to continue searching from.
+     * @param int                   $startToken The position within the closure to continue searching from.
+     * @param int                   $endToken   The closure scope closer to stop searching at.
      *
      * @return int|false The stackPtr to the first $this usage if found or false if
-     *                   $this is not used or usage of $this could not reliably be determined.
+     *                   $this is not used.
      */
-    protected function findThisUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $startToken = null)
+    protected function findThisUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $startToken, $endToken)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false) {
-            // Live coding or parse error.
+        // Make sure the $startToken is valid.
+        if ($startToken >= $endToken) {
             return false;
-        }
-
-        // Make sure the optional $startToken is valid.
-        if (isset($startToken) === true && (isset($tokens[$startToken]) === false || $startToken >= $tokens[$stackPtr]['scope_closer'])) {
-            return false;
-        }
-
-        $start = ($tokens[$stackPtr]['scope_opener'] + 1);
-        if (isset($startToken) === true) {
-            $start = $startToken;
         }
 
         return $phpcsFile->findNext(
             T_VARIABLE,
-            $start,
-            $tokens[$stackPtr]['scope_closer'],
+            $startToken,
+            $endToken,
             false,
             '$this'
         );

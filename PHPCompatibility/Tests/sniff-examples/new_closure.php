@@ -59,3 +59,15 @@ $closure = $closure->bindTo($foo);
 function() {
    var_dump($something);
 }
+
+// Make sure $this in nested closures does not get reported twice.
+class NestedClosures {
+	public function testIt() {
+		$a = function() {
+			return function() {
+				return $this;
+			};
+		}
+	}
+}
+

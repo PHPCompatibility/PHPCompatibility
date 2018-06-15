@@ -146,6 +146,7 @@ class NewClosureSniffTest extends BaseSniffTest
             array(32, false),
             array(33, false),
             array(53, false),
+            array(68),
         );
     }
 
