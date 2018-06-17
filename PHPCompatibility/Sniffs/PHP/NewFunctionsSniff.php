@@ -29,6 +29,42 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => int|string|null))
      */
     protected $newFunctions = array(
+        'iterator_count' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'iterator_to_array' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload_call' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload_extensions' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload_functions' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload_register' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload_unregister' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'spl_autoload' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'hash_hmac' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
         'array_fill_keys' => array(
             '5.1' => false,
             '5.2' => true,

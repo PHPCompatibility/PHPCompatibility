@@ -489,6 +489,16 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('pg_lo_truncate', '5.5', array(420), '5.6'),
 
             array('is_countable', '7.2', array(433), '7.3'),
+
+            array('iterator_count', '5.0', array(434), '5.1'),
+            array('iterator_to_array', '5.0', array(435), '5.1'),
+            array('spl_autoload_call', '5.0', array(436), '5.1'),
+            array('spl_autoload_extensions', '5.0', array(437), '5.1'),
+            array('spl_autoload_functions', '5.0', array(438), '5.1'),
+            array('spl_autoload_register', '5.0', array(439), '5.1'),
+            array('spl_autoload_unregister', '5.0', array(440), '5.1'),
+            array('spl_autoload', '5.0', array(441), '5.1'),
+            array('hash_hmac', '5.1.1', array(442), '5.2', '5.1'),
         );
     }
 
