@@ -325,3 +325,13 @@ function UIExceptionReturnTypeHint( $e ): UI\Exception\InvalidArgumentException 
 function NsDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime {}
 function NsNullDateTimeReturnTypeHint( $a ) : ?SomeNamespace\DateTime {}
 function NoDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime\RealClass {}
+
+// Test abstract method declaration recognition.
+class TestThis {
+	abstract protected function AbstractFunctionParamAndReturnTypeHint( \DateTimeZone $a ) : DateTime;
+}
+
+// Test interface method declaration recognition.
+interface TestThat {
+	public function InterfaceMethodParamAndReturnTypeHint( XMLReader $a ) : \SplFileObject;
+}
