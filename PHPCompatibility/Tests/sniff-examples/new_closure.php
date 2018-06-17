@@ -5,7 +5,7 @@ spl_autoload_register( function ( $class ) {
 
 function something() {}
 
-// PHP 5.4+,
+// PHP 5.4+.
 class Test
 {
     // PHP 5.4+: Static closures.
@@ -58,4 +58,35 @@ $closure = $closure->bindTo($foo);
 // Valid: using a variable - not $this - in a closure.
 function() {
    var_dump($something);
+}
+
+// Make sure $this in nested closures does not get reported twice.
+class NestedClosures {
+	public function testIt() {
+		$a = function() {
+			return function() {
+				return $this;
+			};
+		}
+	}
+}
+
+// More PHP 5.4+: using self/parent/static in class context.
+class SelfTest
+{
+	const ABC = '';
+
+    // PHP 5.4+: Using self/parent/static in a class context.
+    public function testThis()
+    {
+        return function() {
+            var_dump(SELF::ABC);
+            var_dump(self::ABC); // Let's make sure we get an error for each line using self.
+            var_dump(parent::ABC);
+            var_dump(static::ABC);
+            
+            static $a = 'abc';
+            static function() {};
+        };
+    }
 }
