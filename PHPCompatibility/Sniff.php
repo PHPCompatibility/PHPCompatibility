@@ -1646,6 +1646,15 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     protected function isNumericCalculation(\PHP_CodeSniffer_File $phpcsFile, $start, $end)
     {
+        $arithmeticTokens = \PHP_CodeSniffer_Tokens::$arithmeticTokens;
+
+        // phpcs:disable PHPCompatibility.PHP.NewConstants.t_powFound
+        if (defined('T_POW') && isset($arithmeticTokens[T_POW]) === false) {
+            // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
+            $arithmeticTokens[T_POW] = T_POW;
+        }
+        // phpcs:enable
+
         $skipTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $skipTokens[] = T_MINUS;
         $skipTokens[] = T_PLUS;
@@ -1654,7 +1663,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $nextNonEmpty = ($start - 1);
         do {
             $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
-            $arithmeticOperator = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+            $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
         } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
 
         if ($arithmeticOperator === false) {
@@ -1666,13 +1675,23 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $subsetEnd   = ($arithmeticOperator - 1);
 
         while ($this->isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
-            && isset($tokens[$arithmeticOperator + 1]) === true
+            && isset($tokens[($arithmeticOperator + 1)]) === true
         ) {
+            // Recognize T_POW for PHPCS < 2.4.0 on low PHP versions.
+            if (defined('T_POW') === false
+                && $tokens[$arithmeticOperator]['code'] === T_MULTIPLY
+                && $tokens[($arithmeticOperator + 1)]['code'] === T_MULTIPLY
+                && isset($tokens[$arithmeticOperator + 2]) === true
+            ) {
+                // Move operator one forward to the second * in T_POW.
+                ++$arithmeticOperator;
+            }
+
             $subsetStart  = ($arithmeticOperator + 1);
             $nextNonEmpty = $arithmeticOperator;
             do {
                 $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
-                $arithmeticOperator = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+                $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
             } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
 
             if ($arithmeticOperator === false) {
