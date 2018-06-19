@@ -1769,7 +1769,6 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             && $tokens[$prevNonEmpty]['code'] === T_AS
             && isset($tokens[$prevNonEmpty]['nested_parenthesis']) === true
         ) {
-            $parentheses = $tokens[$prevNonEmpty]['nested_parenthesis'];
             $parentheses = array_reverse($tokens[$prevNonEmpty]['nested_parenthesis'], true);
             foreach ($parentheses as $open => $close) {
                 if (isset($tokens[$open]['parenthesis_owner'])
