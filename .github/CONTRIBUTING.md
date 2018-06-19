@@ -27,13 +27,13 @@ Please make sure that your pull request contains unit tests covering what's bein
 * All code should be compatible with PHPCS 1.5.6, PHPCS 2.x and PHPCS 3.x.
 * All code should be compatible with PHP 5.3 to PHP nightly.
 * All code should comply with the PHPCompatibility coding standards.
-    The ruleset used by PHPCompatibility is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
+    The [ruleset used by PHPCompatibility](https://github.com/wimg/PHPCompatibility/blob/master/phpcs.xml.dist) is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
 
 ### Framework/CMS specific rulesets
 
 As of PHPCompatibility 8.2.0, framework/CMS specific rulesets will be accepted to be hosted from within this repository.
 
-A framework/CMS specific ruleset will generally contain `<exclude ...>` directives for backfills provided by the framework/CMS to prevent false positives.
+A framework/CMS specific ruleset will generally contain `<exclude ...>` directives for backfills/polyfills provided by the framework/CMS to prevent false positives.
 
 > A backfill is a function/constant/class (etc) which has been added to PHP in a later version than the minimum supported version of the framework/CMS and for which a function/constant/class of the same name is included in the framework/CMS when a PHP version is detected in which the function/constant/class did not yet exist.
 
@@ -49,6 +49,7 @@ The communities behind these PHP frameworks/CMSes are strongly encouraged to mai
 
     While a framework/CMS may have a certain minimum PHP version, projects based on the framework/CMS might have a different (higher) minimum PHP version.
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
+* When adding a new framework/CMS specific ruleset, please make sure the file is added to the [Travis script](https://github.com/wimg/PHPCompatibility/blob/master/.travis.yml#L116) to verify the XML consistency.
 
 
 Running the Sniff Tests
