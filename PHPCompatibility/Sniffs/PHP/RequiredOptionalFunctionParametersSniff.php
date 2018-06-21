@@ -32,9 +32,79 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
      * @var array
      */
     protected $functionParameters = array(
+        'array_push' => array(
+            1 => array(
+                'name' => 'element to push',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'array_unshift' => array(
+            1 => array(
+                'name' => 'element to prepend',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
         'bcscale' => array(
             0 => array(
                 'name' => 'scale',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_fget' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_fput' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_get' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_nb_fget' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_nb_fput' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_nb_get' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_nb_put' => array(
+            3 => array(
+                'name' => 'mode',
+                '7.2'  => true,
+                '7.3'  => false,
+            ),
+        ),
+        'ftp_put' => array(
+            3 => array(
+                'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ),
