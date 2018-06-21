@@ -488,8 +488,6 @@ class NewFunctionsSniffTest extends BaseSniffTest
 
             array('pg_lo_truncate', '5.5', array(420), '5.6'),
 
-            array('is_countable', '7.2', array(433), '7.3'),
-
             array('iterator_count', '5.0', array(434), '5.1'),
             array('iterator_to_array', '5.0', array(435), '5.1'),
             array('spl_autoload_call', '5.0', array(436), '5.1'),
@@ -499,6 +497,24 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('spl_autoload_unregister', '5.0', array(440), '5.1'),
             array('spl_autoload', '5.0', array(441), '5.1'),
             array('hash_hmac', '5.1.1', array(442), '5.2', '5.1'),
+
+            array('hrtime', '7.2', array(444), '7.3'),
+            array('is_countable', '7.2', array(445), '7.3'),
+            array('array_key_first', '7.2', array(446), '7.3'),
+            array('array_key_last', '7.2', array(447), '7.3'),
+            array('fpm_get_status', '7.2', array(448), '7.3'),
+            array('net_get_interfaces', '7.2', array(449), '7.3'),
+            array('gmp_binomial', '7.2', array(450), '7.3'),
+            array('gmp_lcm', '7.2', array(451), '7.3'),
+            array('gmp_perfect_power', '7.2', array(452), '7.3'),
+            array('gmp_kronecker', '7.2', array(453), '7.3'),
+            array('ldap_exop_refresh', '7.2', array(454), '7.3'),
+            array('normalizer_get_raw_decomposition', '7.2', array(455), '7.3'),
+            array('openssl_pkey_derive', '7.2', array(456), '7.3'),
+            array('sapi_add_request_header', '7.2', array(457), '7.3'),
+            array('socket_wsaprotocol_info_export', '7.2', array(458), '7.3'),
+            array('socket_wsaprotocol_info_import', '7.2', array(459), '7.3'),
+            array('socket_wsaprotocol_info_release', '7.2', array(460), '7.3'),
         );
     }
 

@@ -1722,7 +1722,71 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
 
+        'hrtime' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'is_countable' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'array_key_first' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'array_key_last' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'fpm_get_status' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'net_get_interfaces' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'gmp_binomial' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'gmp_lcm' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'gmp_perfect_power' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'gmp_kronecker' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_exop_refresh' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'normalizer_get_raw_decomposition' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'openssl_pkey_derive' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'sapi_add_request_header' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'socket_wsaprotocol_info_export' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'socket_wsaprotocol_info_import' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'socket_wsaprotocol_info_release' => array(
             '7.2' => false,
             '7.3' => true,
         ),
