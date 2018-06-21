@@ -174,3 +174,9 @@ $a = ini_get('track_errors');
 
 ini_set('opcache.fast_shutdown', true);
 $a = ini_get('opcache.fast_shutdown');
+
+ini_set('birdstep.max_links', 10);
+$a = ini_get('birdstep.max_links');
+
+ini_set('opcache.inherited_hack', true);
+$a = ini_get('opcache.inherited_hack');

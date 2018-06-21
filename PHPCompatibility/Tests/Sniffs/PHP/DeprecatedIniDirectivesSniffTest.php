@@ -97,6 +97,7 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
             array('mcrypt.algorithms_dir', '7.1', '7.2', array(135, 136), '7.0'),
             array('mcrypt.modes_dir', '7.1', '7.2', array(138, 139), '7.0'),
 
+            array('opcache.inherited_hack', '5.3', '7.3', array(181, 182), '5.2'),
         );
     }
 
@@ -263,6 +264,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
             array('sql.safe_mode', '7.2', array(169, 170), '7.1'),
             array('opcache.fast_shutdown', '7.2', array(175, 176), '7.1'),
+
+            array('birdstep.max_links', '7.3', array(178, 179), '7.2'),
         );
     }
 

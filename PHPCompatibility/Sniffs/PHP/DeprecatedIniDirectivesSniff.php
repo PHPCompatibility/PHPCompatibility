@@ -216,6 +216,14 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'opcache.fast_shutdown' => array(
             '7.2' => true,
         ),
+
+        'birdstep.max_links' => array(
+            '7.3' => true,
+        ),
+        'opcache.inherited_hack' => array(
+            '5.3' => false, // Soft deprecated, i.e. ignored.
+            '7.3' => true,
+        ),
     );
 
     /**
