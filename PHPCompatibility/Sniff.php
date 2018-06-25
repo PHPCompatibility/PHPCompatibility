@@ -450,7 +450,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         $nextComma  = $opener;
         $paramStart = $opener + 1;
         $cnt        = 1;
-        while (($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY), $nextComma + 1, $closer + 1)) !== false) {
+        while (($nextComma = $phpcsFile->findNext(array(T_COMMA, $tokens[$closer]['code'], T_OPEN_SHORT_ARRAY, T_CLOSURE), $nextComma + 1, $closer + 1)) !== false) {
             // Ignore anything within short array definition brackets.
             if ($tokens[$nextComma]['type'] === 'T_OPEN_SHORT_ARRAY'
                 && (isset($tokens[$nextComma]['bracket_opener'])
@@ -459,6 +459,17 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             ) {
                 // Skip forward to the end of the short array definition.
                 $nextComma = $tokens[$nextComma]['bracket_closer'];
+                continue;
+            }
+
+            // Skip past closures passed as function parameters.
+            if ($tokens[$nextComma]['type'] === 'T_CLOSURE'
+                && (isset($tokens[$nextComma]['scope_condition'])
+                    && $tokens[$nextComma]['scope_condition'] === $nextComma)
+                && isset($tokens[$nextComma]['scope_closer'])
+            ) {
+                // Skip forward to the end of the closure declaration.
+                $nextComma = $tokens[$nextComma]['scope_closer'];
                 continue;
             }
 

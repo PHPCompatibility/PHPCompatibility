@@ -174,6 +174,29 @@ class GetFunctionParametersTest extends MethodTestFrame
                     ),
                 ),
             ),
+            array(
+                '/* Case S6 */',
+                array(
+                    1 => array(
+                        'start' => 2,
+                        'end'   => 90,
+                        'raw'   => '/* Case A7 */
+    [
+        \'~\'.$dyn.\'~J\' => function ($match) {
+            echo strlen($match[0]), \' matches for "a" found\', PHP_EOL;
+        },
+        \'~\'.function_call().\'~i\' => function ($match) {
+            echo strlen($match[0]), \' matches for "b" found\', PHP_EOL;
+        },
+    ]',
+                    ),
+                    2 => array(
+                        'start' => 92,
+                        'end'   => 95,
+                        'raw'   => '$subject',
+                    ),
+                ),
+            ),
 
             // Long array.
             array(
@@ -245,6 +268,27 @@ class GetFunctionParametersTest extends MethodTestFrame
                         'start' => 24,
                         'end'   => 28,
                         'raw'   => 'date(\'Y\')',
+                    ),
+                ),
+            ),
+
+            // Array containing closure.
+            array(
+                '/* Case A7 */',
+                array(
+                    1 => array(
+                        'start' => 1,
+                        'end'   => 38,
+                        'raw'   => '\'~\'.$dyn.\'~J\' => function ($match) {
+            echo strlen($match[0]), \' matches for "a" found\', PHP_EOL;
+        }',
+                    ),
+                    2 => array(
+                        'start' => 40,
+                        'end'   => 79,
+                        'raw'   => '\'~\'.function_call().\'~i\' => function ($match) {
+            echo strlen($match[0]), \' matches for "b" found\', PHP_EOL;
+        }',
                     ),
                 ),
             ),
