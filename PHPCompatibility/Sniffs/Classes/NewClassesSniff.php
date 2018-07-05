@@ -591,11 +591,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             \T_CATCH,
         );
 
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $targets[] = \T_ANON_CLASS;
         }
 
-        if (defined('T_RETURN_TYPE')) {
+        if (\defined('T_RETURN_TYPE')) {
             $targets[] = \T_RETURN_TYPE;
         }
 
@@ -702,7 +702,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     {
         // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
-        if (empty($typeHints) || is_array($typeHints) === false) {
+        if (empty($typeHints) || \is_array($typeHints) === false) {
             return;
         }
 

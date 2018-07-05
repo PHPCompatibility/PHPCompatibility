@@ -66,7 +66,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
 
         // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(\T_DOUBLE_COLON, \T_OBJECT_OPERATOR), true) === false) {
+        if ($prevToken !== false && \in_array($tokens[$prevToken]['code'], array(\T_DOUBLE_COLON, \T_OBJECT_OPERATOR), true) === false) {
             $ignore = array(
                 \T_FUNCTION  => true,
                 \T_CONST     => true,

@@ -80,7 +80,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
                     break;
                 }
 
-            } elseif (in_array($tokens[$curToken]['type'], array('T_VARIABLE', 'T_FUNCTION', 'T_CLOSURE'), true)) {
+            } elseif (\in_array($tokens[$curToken]['type'], array('T_VARIABLE', 'T_FUNCTION', 'T_CLOSURE'), true)) {
                 $errorType = 'variableArgument';
                 break;
 

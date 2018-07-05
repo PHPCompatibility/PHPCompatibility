@@ -137,7 +137,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             return;
         }
 
-        if (in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
+        if (\in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
@@ -148,7 +148,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             }
             unset($nextNonEmpty);
 
-            if (isset($name) === false || is_string($name) === false || $name === '') {
+            if (isset($name) === false || \is_string($name) === false || $name === '') {
                 return;
             }
 

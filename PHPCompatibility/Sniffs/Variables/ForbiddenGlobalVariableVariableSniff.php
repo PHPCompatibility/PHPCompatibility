@@ -78,7 +78,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
                     $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
 
                     if ($next !== false
-                        && in_array($tokens[$next]['code'], array(\T_OPEN_SQUARE_BRACKET, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON), true) === true
+                        && \in_array($tokens[$next]['code'], array(\T_OPEN_SQUARE_BRACKET, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON), true) === true
                     ) {
                         $phpcsFile->addError(
                             'Global with variable variables is not allowed since PHP 7.0. Found %s',

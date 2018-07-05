@@ -106,7 +106,7 @@ class BaseSniffTest extends PHPUnit_TestCase
      */
     protected function getSniffCode()
     {
-        $class    = get_class($this);
+        $class    = \get_class($this);
         $parts    = explode('\\', $class);
         $sniff    = array_pop($parts);
         $sniff    = str_replace('UnitTest', '', $sniff);
@@ -247,7 +247,7 @@ class BaseSniffTest extends PHPUnit_TestCase
         }
 
         if ($lineNumber === 0) {
-            $failMessage = 'Failed asserting no violations in file. Found ' . count($errors) . ' errors and ' . count($warnings) . ' warnings.';
+            $failMessage = 'Failed asserting no violations in file. Found ' . \count($errors) . ' errors and ' . \count($warnings) . ' warnings.';
             $allMessages = $errors + $warnings;
             // TODO: Update the fail message to give the tester some
             // indication of what the errors or warnings were.

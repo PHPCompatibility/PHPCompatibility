@@ -129,7 +129,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     {
         $tokens = array();
         foreach ($this->newOperators as $token => $versions) {
-            if (defined($token)) {
+            if (\defined($token)) {
                 $tokens[] = constant($token);
             } elseif (isset($this->newOperatorsPHPCSCompat[$token])) {
                 $tokens[] = $this->newOperatorsPHPCSCompat[$token];
@@ -159,7 +159,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
                 && ((isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
                 || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
-                    && call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
+                    && \call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
             ) {
                 $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
             }

@@ -54,7 +54,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
     {
         $tokens = array();
         foreach ($this->newTypeCasts as $token => $versions) {
-            if (defined($token)) {
+            if (\defined($token)) {
                 $tokens[] = constant($token);
             }
         }

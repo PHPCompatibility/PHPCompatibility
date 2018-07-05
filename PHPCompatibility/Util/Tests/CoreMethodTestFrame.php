@@ -48,7 +48,7 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 
         $this->helperClass = new TestHelperPHPCompatibility();
 
-        $FQClassName = get_class($this);
+        $FQClassName = \get_class($this);
         $parts       = explode('\\', $FQClassName);
         $className   = array_pop($parts);
         $subDir      = array_pop($parts);

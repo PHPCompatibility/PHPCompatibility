@@ -125,7 +125,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
     public function process(File $phpcsFile, $stackPtr)
     {
         $algo = $this->getHashAlgorithmParameter($phpcsFile, $stackPtr);
-        if (empty($algo) || is_string($algo) === false) {
+        if (empty($algo) || \is_string($algo) === false) {
             return;
         }
 

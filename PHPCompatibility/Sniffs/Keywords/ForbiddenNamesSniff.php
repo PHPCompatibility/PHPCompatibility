@@ -140,7 +140,7 @@ class ForbiddenNamesSniff extends Sniff
 
         $tokens = $this->targetedTokens;
 
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $tokens[] = \T_ANON_CLASS;
         }
 
@@ -386,6 +386,6 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function isEndOfUseStatement($token)
     {
-        return in_array($token['code'], array(\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA), true);
+        return \in_array($token['code'], array(\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA), true);
     }
 }

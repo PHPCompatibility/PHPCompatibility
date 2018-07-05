@@ -152,12 +152,12 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         if ($startAt !== '') {
             $startPos = strpos($content, $startAt);
             if ($startPos !== false) {
-                $startPos += strlen($startAt);
+                $startPos += \strlen($startAt);
             }
         }
 
         $snippet = substr($content, $startPos, $length);
-        if ((strlen($content) - $startPos) > $length) {
+        if ((\strlen($content) - $startPos) > $length) {
             $snippet .= '...';
         }
 

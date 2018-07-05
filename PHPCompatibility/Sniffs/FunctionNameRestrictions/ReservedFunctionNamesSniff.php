@@ -43,7 +43,7 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
     public function __construct()
     {
         $scopeTokens = array(\T_CLASS, \T_INTERFACE, \T_TRAIT);
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $scopeTokens[] = \T_ANON_CLASS;
         }
 

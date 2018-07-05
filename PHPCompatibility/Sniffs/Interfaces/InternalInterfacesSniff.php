@@ -49,7 +49,7 @@ class InternalInterfacesSniff extends Sniff
 
         $targets = array(\T_CLASS);
 
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $targets[] = \T_ANON_CLASS;
         }
 
@@ -70,7 +70,7 @@ class InternalInterfacesSniff extends Sniff
     {
         $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
-        if (is_array($interfaces) === false || $interfaces === array()) {
+        if (\is_array($interfaces) === false || $interfaces === array()) {
             return;
         }
 

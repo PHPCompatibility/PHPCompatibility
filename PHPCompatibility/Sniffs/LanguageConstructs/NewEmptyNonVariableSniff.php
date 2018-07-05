@@ -68,7 +68,7 @@ class NewEmptyNonVariableSniff extends Sniff
 
         $nestingLevel = 0;
         if ($close !== ($open + 1) && isset($tokens[$open + 1]['nested_parenthesis'])) {
-            $nestingLevel = count($tokens[$open + 1]['nested_parenthesis']);
+            $nestingLevel = \count($tokens[$open + 1]['nested_parenthesis']);
         }
 
         if ($this->isVariable($phpcsFile, ($open + 1), $close, $nestingLevel) === true) {

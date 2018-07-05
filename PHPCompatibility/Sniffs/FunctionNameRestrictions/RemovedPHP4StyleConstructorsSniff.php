@@ -83,7 +83,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         $scopeCloser = $class['scope_closer'];
         $className   = $tokens[$nextNonEmpty]['content'];
 
-        if (empty($className) || is_string($className) === false) {
+        if (empty($className) || \is_string($className) === false) {
             return;
         }
 
@@ -100,7 +100,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
             }
 
             $funcName = $phpcsFile->getDeclarationName($nextFunc);
-            if (empty($funcName) || is_string($funcName) === false) {
+            if (empty($funcName) || \is_string($funcName) === false) {
                 $nextFunc = $functionScopeCloser;
                 continue;
             }
