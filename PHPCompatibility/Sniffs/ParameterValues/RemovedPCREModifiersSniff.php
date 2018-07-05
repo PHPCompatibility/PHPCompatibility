@@ -79,12 +79,12 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
         // Differentiate between an array of patterns passed and a single pattern.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
-        if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === T_ARRAY || $tokens[$nextNonEmpty]['code'] === T_OPEN_SHORT_ARRAY)) {
+        if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === \T_ARRAY || $tokens[$nextNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY)) {
             $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
             if ($functionNameLc === 'preg_replace_callback_array') {
                 // For preg_replace_callback_array(), the patterns will be in the array keys.
                 foreach ($arrayValues as $value) {
-                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
                     if ($hasKey === false) {
                         continue;
                     }
@@ -97,7 +97,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             } else {
                 // Otherwise, the patterns will be in the array values.
                 foreach ($arrayValues as $value) {
-                    $hasKey = $phpcsFile->findNext(T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
+                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
                     if ($hasKey !== false) {
                         $value['start'] = ($hasKey + 1);
                         $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
@@ -149,7 +149,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
             if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
                 $content = $this->stripQuotes($tokens[$i]['content']);
-                if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
+                if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                     $content = $this->stripVariables($content);
                 }
 

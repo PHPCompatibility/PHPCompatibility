@@ -36,10 +36,10 @@ class RemovedNamespacedAssertSniff extends Sniff
      * @var array
      */
     private $scopes = array(
-        T_CLASS,
-        T_INTERFACE,
-        T_TRAIT,
-        T_CLOSURE,
+        \T_CLASS,
+        \T_INTERFACE,
+        \T_TRAIT,
+        \T_CLOSURE,
     );
 
     /**
@@ -51,10 +51,10 @@ class RemovedNamespacedAssertSniff extends Sniff
     {
         // Enrich the scopes list.
         if (defined('T_ANON_CLASS')) {
-            $this->scopes[] = T_ANON_CLASS;
+            $this->scopes[] = \T_ANON_CLASS;
         }
 
-        return array(T_FUNCTION);
+        return array(\T_FUNCTION);
     }
 
     /**

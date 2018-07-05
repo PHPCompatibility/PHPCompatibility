@@ -95,7 +95,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
         if (strtolower($functionName) === 'hash_init'
             && (isset($parameters[2]) === false
             || ($parameters[2]['raw'] !== 'HASH_HMAC'
-                && $parameters[2]['raw'] !== (string) HASH_HMAC))
+                && $parameters[2]['raw'] !== (string) \HASH_HMAC))
         ) {
             // For hash_init(), these hashes are only disabled with HASH_HMAC set.
             return;

@@ -72,7 +72,7 @@ class LowPHPCSSniff extends Sniff
     public function register()
     {
         return array(
-            T_OPEN_TAG,
+            \T_OPEN_TAG,
         );
     }
 

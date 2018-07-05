@@ -35,7 +35,7 @@ class NewConstVisibilitySniff extends Sniff
      */
     public function register()
     {
-        return array(T_CONST);
+        return array(\T_CONST);
     }
 
     /**

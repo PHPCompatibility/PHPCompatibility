@@ -302,7 +302,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
 

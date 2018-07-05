@@ -36,7 +36,7 @@ class NewEmptyNonVariableSniff extends Sniff
      */
     public function register()
     {
-        return array(T_EMPTY);
+        return array(\T_EMPTY);
     }
 
     /**
@@ -58,7 +58,7 @@ class NewEmptyNonVariableSniff extends Sniff
 
         $open = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
         if ($open === false
-            || $tokens[$open]['code'] !== T_OPEN_PARENTHESIS
+            || $tokens[$open]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$open]['parenthesis_closer']) === false
         ) {
             return;

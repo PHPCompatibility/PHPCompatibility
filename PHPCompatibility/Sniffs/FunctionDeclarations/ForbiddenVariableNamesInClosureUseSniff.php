@@ -38,7 +38,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
      */
     public function register()
     {
-        return array(T_USE);
+        return array(\T_USE);
     }
 
     /**
@@ -60,7 +60,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 
         // Verify this use statement is used with a closure - if so, it has to have parenthesis before it.
         $previousNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($previousNonEmpty === false || $tokens[$previousNonEmpty]['code'] !== T_CLOSE_PARENTHESIS
+        if ($previousNonEmpty === false || $tokens[$previousNonEmpty]['code'] !== \T_CLOSE_PARENTHESIS
             || isset($tokens[$previousNonEmpty]['parenthesis_opener']) === false
         ) {
             return;
@@ -68,7 +68,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 
         // ... and (a variable within) parenthesis after it.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
             return;
         }
 
@@ -78,7 +78,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
         }
 
         $closurePtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true);
-        if ($closurePtr === false || $tokens[$closurePtr]['code'] !== T_CLOSURE) {
+        if ($closurePtr === false || $tokens[$closurePtr]['code'] !== \T_CLOSURE) {
             return;
         }
 
@@ -88,7 +88,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
         $errorMsg = 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: %s';
 
         for ($i = ($nextNonEmpty + 1); $i < $tokens[$nextNonEmpty]['parenthesis_closer']; $i++) {
-            if ($tokens[$i]['code'] !== T_VARIABLE) {
+            if ($tokens[$i]['code'] !== \T_VARIABLE) {
                 continue;
             }
 

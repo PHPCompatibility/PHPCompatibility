@@ -40,8 +40,8 @@ class NewClassMemberAccessSniff extends Sniff
     public function register()
     {
         return array(
-            T_NEW,
-            T_CLONE,
+            \T_NEW,
+            \T_CLONE,
         );
     }
 
@@ -58,9 +58,9 @@ class NewClassMemberAccessSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === T_NEW && $this->supportsBelow('5.3') !== true) {
+        if ($tokens[$stackPtr]['code'] === \T_NEW && $this->supportsBelow('5.3') !== true) {
             return;
-        } elseif ($tokens[$stackPtr]['code'] === T_CLONE && $this->supportsBelow('5.6') !== true) {
+        } elseif ($tokens[$stackPtr]['code'] === \T_CLONE && $this->supportsBelow('5.6') !== true) {
             return;
         }
 
@@ -78,7 +78,7 @@ class NewClassMemberAccessSniff extends Sniff
         }
 
         $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
-        if ($prevBeforeParenthesis !== false && $tokens[$prevBeforeParenthesis]['code'] === T_STRING) {
+        if ($prevBeforeParenthesis !== false && $tokens[$prevBeforeParenthesis]['code'] === \T_STRING) {
             // This is most likely a function call with the new/cloned object as a parameter.
             return;
         }
@@ -89,8 +89,8 @@ class NewClassMemberAccessSniff extends Sniff
             return;
         }
 
-        if ($tokens[$nextAfterParenthesis]['code'] !== T_OBJECT_OPERATOR
-            && $tokens[$nextAfterParenthesis]['code'] !== T_OPEN_SQUARE_BRACKET
+        if ($tokens[$nextAfterParenthesis]['code'] !== \T_OBJECT_OPERATOR
+            && $tokens[$nextAfterParenthesis]['code'] !== \T_OPEN_SQUARE_BRACKET
         ) {
             return;
         }
@@ -98,7 +98,7 @@ class NewClassMemberAccessSniff extends Sniff
         $data      = array('instantiation', '5.3');
         $errorCode = 'OnNewFound';
 
-        if ($tokens[$stackPtr]['code'] === T_CLONE) {
+        if ($tokens[$stackPtr]['code'] === \T_CLONE) {
             $data      = array('cloning', '5.6');
             $errorCode = 'OnCloneFound';
         }

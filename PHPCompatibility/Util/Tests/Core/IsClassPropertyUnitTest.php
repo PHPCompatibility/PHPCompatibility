@@ -39,7 +39,7 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
     public static function setUpBeforeClass()
     {
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
             self::$recognizesTraits = false;
         }
 
@@ -68,7 +68,7 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
             return;
         }
 
-        $stackPtr = $this->getTargetToken($commentString, T_VARIABLE);
+        $stackPtr = $this->getTargetToken($commentString, \T_VARIABLE);
         $result   = $this->helperClass->isClassProperty($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

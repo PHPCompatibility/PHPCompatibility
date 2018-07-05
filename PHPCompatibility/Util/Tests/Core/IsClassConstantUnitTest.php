@@ -37,7 +37,7 @@ class IsClassConstantUnitTest extends CoreMethodTestFrame
      */
     public function testIsClassConstant($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, T_CONST);
+        $stackPtr = $this->getTargetToken($commentString, \T_CONST);
         $result   = $this->helperClass->isClassConstant($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

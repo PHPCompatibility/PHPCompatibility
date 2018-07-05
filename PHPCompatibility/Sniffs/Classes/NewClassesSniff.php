@@ -583,20 +583,20 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         $this->newClasses = array_merge($this->newClasses, $this->newExceptions);
 
         $targets = array(
-            T_NEW,
-            T_CLASS,
-            T_DOUBLE_COLON,
-            T_FUNCTION,
-            T_CLOSURE,
-            T_CATCH,
+            \T_NEW,
+            \T_CLASS,
+            \T_DOUBLE_COLON,
+            \T_FUNCTION,
+            \T_CLOSURE,
+            \T_CATCH,
         );
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = T_ANON_CLASS;
+            $targets[] = \T_ANON_CLASS;
         }
 
         if (defined('T_RETURN_TYPE')) {
-            $targets[] = T_RETURN_TYPE;
+            $targets[] = \T_RETURN_TYPE;
         }
 
         return $targets;
@@ -746,12 +746,12 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         $name   = '';
         $listen = array(
             // Parts of a (namespaced) class name.
-            T_STRING              => true,
-            T_NS_SEPARATOR        => true,
+            \T_STRING              => true,
+            \T_NS_SEPARATOR        => true,
             // End/split tokens.
-            T_VARIABLE            => false,
-            T_BITWISE_OR          => false,
-            T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
+            \T_VARIABLE            => false,
+            \T_BITWISE_OR          => false,
+            \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
         );
 
         for ($i = ($opener + 1); $i < $closer; $i++) {

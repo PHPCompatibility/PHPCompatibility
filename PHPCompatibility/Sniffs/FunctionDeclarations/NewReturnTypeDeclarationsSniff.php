@@ -96,12 +96,12 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         $tokens = array(
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
 
         if (defined('T_RETURN_TYPE')) {
-            $tokens[] = T_RETURN_TYPE;
+            $tokens[] = \T_RETURN_TYPE;
         }
 
         return $tokens;
@@ -123,7 +123,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
         // Deal with older PHPCS version which don't recognize return type hints
         // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
-        if ($tokens[$stackPtr]['code'] === T_FUNCTION || $tokens[$stackPtr]['code'] === T_CLOSURE) {
+        if ($tokens[$stackPtr]['code'] === \T_FUNCTION || $tokens[$stackPtr]['code'] === \T_CLOSURE) {
             $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
             if ($returnTypeHint !== false) {
                 $stackPtr = $returnTypeHint;
@@ -137,8 +137,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
         // Handle class name based return types.
-        elseif ($tokens[$stackPtr]['code'] === T_STRING
-            || (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === T_RETURN_TYPE)
+        elseif ($tokens[$stackPtr]['code'] === \T_STRING
+            || (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE)
         ) {
             $itemInfo = array(
                 'name'   => 'Class name',

@@ -35,7 +35,7 @@ class NewClosureSniff extends Sniff
      */
     public function register()
     {
-        return array(T_CLOSURE);
+        return array(\T_CLOSURE);
     }
 
     /**
@@ -172,7 +172,7 @@ class NewClosureSniff extends Sniff
         $tokens    = $phpcsFile->getTokens();
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
 
-        return ($prevToken !== false && $tokens[$prevToken]['code'] === T_STATIC);
+        return ($prevToken !== false && $tokens[$prevToken]['code'] === \T_STATIC);
     }
 
 
@@ -194,7 +194,7 @@ class NewClosureSniff extends Sniff
         }
 
         return $phpcsFile->findNext(
-            T_VARIABLE,
+            \T_VARIABLE,
             $startToken,
             $endToken,
             false,
@@ -220,15 +220,15 @@ class NewClosureSniff extends Sniff
         }
 
         $tokens   = $phpcsFile->getTokens();
-        $classRef = $phpcsFile->findNext(array(T_SELF, T_PARENT, T_STATIC), $startToken, $endToken);
+        $classRef = $phpcsFile->findNext(array(\T_SELF, \T_PARENT, \T_STATIC), $startToken, $endToken);
 
-        if ($classRef === false || $tokens[$classRef]['code'] !== T_STATIC) {
+        if ($classRef === false || $tokens[$classRef]['code'] !== \T_STATIC) {
             return $classRef;
         }
 
         // T_STATIC, make sure it is used as a class reference.
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($classRef + 1), $endToken, true);
-        if ($next === false || $tokens[$next]['code'] !== T_DOUBLE_COLON) {
+        if ($next === false || $tokens[$next]['code'] !== \T_DOUBLE_COLON) {
             return false;
         }
 

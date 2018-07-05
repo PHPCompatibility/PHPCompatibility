@@ -36,8 +36,8 @@ class NewShortArraySniff extends Sniff
     public function register()
     {
         return array(
-            T_OPEN_SHORT_ARRAY,
-            T_CLOSE_SHORT_ARRAY,
+            \T_OPEN_SHORT_ARRAY,
+            \T_CLOSE_SHORT_ARRAY,
         );
     }
 

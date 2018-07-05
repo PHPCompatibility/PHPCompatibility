@@ -60,9 +60,9 @@ class ForbiddenThisUseContextsSniff extends Sniff
      * @var array
      */
     private $ooScopeTokens = array(
-        'T_CLASS'     => T_CLASS,
-        'T_INTERFACE' => T_INTERFACE,
-        'T_TRAIT'     => T_TRAIT,
+        'T_CLASS'     => \T_CLASS,
+        'T_INTERFACE' => \T_INTERFACE,
+        'T_TRAIT'     => \T_TRAIT,
     );
 
     /**
@@ -85,8 +85,8 @@ class ForbiddenThisUseContextsSniff extends Sniff
      * @var array
      */
     private $validUseOutsideObject = array(
-        T_ISSET => true,
-        T_EMPTY => true,
+        \T_ISSET => true,
+        \T_EMPTY => true,
     );
 
     /**
@@ -99,18 +99,18 @@ class ForbiddenThisUseContextsSniff extends Sniff
     public function register()
     {
         if (defined('T_ANON_CLASS')) {
-            $this->ooScopeTokens['T_ANON_CLASS'] = T_ANON_CLASS;
+            $this->ooScopeTokens['T_ANON_CLASS'] = \T_ANON_CLASS;
         }
 
         $this->skipOverScopes += $this->ooScopeTokens;
 
         return array(
-            T_FUNCTION,
-            T_CLOSURE,
-            T_GLOBAL,
-            T_CATCH,
-            T_FOREACH,
-            T_UNSET,
+            \T_FUNCTION,
+            \T_CLOSURE,
+            \T_GLOBAL,
+            \T_CATCH,
+            \T_FOREACH,
+            \T_UNSET,
         );
     }
 
@@ -134,29 +134,29 @@ class ForbiddenThisUseContextsSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case T_FUNCTION:
+            case \T_FUNCTION:
                 $this->isThisUsedAsParameter($phpcsFile, $stackPtr);
                 $this->isThisUsedOutsideObjectContext($phpcsFile, $stackPtr);
                 break;
 
-            case T_CLOSURE:
+            case \T_CLOSURE:
                 $this->isThisUsedAsParameter($phpcsFile, $stackPtr);
                 break;
 
-            case T_GLOBAL:
+            case \T_GLOBAL:
                 /*
                  * $this can no longer be imported using the `global` keyword.
                  * This worked in PHP 7.0, though in PHP 5.x, it would throw a
                  * fatal "Cannot re-assign $this" error.
                  */
-                $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_CLOSE_TAG), ($stackPtr + 1));
+                $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr + 1));
                 if ($endOfStatement === false) {
                     // No semi-colon - live coding.
                     return;
                 }
 
                 for ($i = ($stackPtr + 1); $i < $endOfStatement; $i++) {
-                    if ($tokens[$i]['code'] !== T_VARIABLE || $tokens[$i]['content'] !== '$this') {
+                    if ($tokens[$i]['code'] !== \T_VARIABLE || $tokens[$i]['content'] !== '$this') {
                         continue;
                     }
 
@@ -169,7 +169,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
 
                 break;
 
-            case T_CATCH:
+            case \T_CATCH:
                 /*
                  * $this can no longer be used as a catch variable.
                  */
@@ -178,7 +178,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 }
 
                 $varPtr = $phpcsFile->findNext(
-                    T_VARIABLE,
+                    \T_VARIABLE,
                     ($tokens[$stackPtr]['parenthesis_opener'] + 1),
                     $tokens[$stackPtr]['parenthesis_closer']
                 );
@@ -195,7 +195,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
 
                 break;
 
-            case T_FOREACH:
+            case \T_FOREACH:
                 /*
                  * $this can no longer be used as a foreach *value* variable.
                  * This worked in PHP 7.0, though in PHP 5.x, it would throw a
@@ -206,7 +206,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 }
 
                 $stopPtr = $phpcsFile->findPrevious(
-                    array(T_AS, T_DOUBLE_ARROW),
+                    array(\T_AS, \T_DOUBLE_ARROW),
                     ($tokens[$stackPtr]['parenthesis_closer'] - 1),
                     $tokens[$stackPtr]['parenthesis_opener']
                 );
@@ -215,7 +215,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 }
 
                 $valueVarPtr = $phpcsFile->findNext(
-                    T_VARIABLE,
+                    \T_VARIABLE,
                     ($stopPtr + 1),
                     $tokens[$stackPtr]['parenthesis_closer']
                 );
@@ -231,8 +231,8 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 );
 
                 if ($afterThis !== false
-                    && ($tokens[$afterThis]['code'] === T_OBJECT_OPERATOR
-                        || $tokens[$afterThis]['code'] === T_DOUBLE_COLON)
+                    && ($tokens[$afterThis]['code'] === \T_OBJECT_OPERATOR
+                        || $tokens[$afterThis]['code'] === \T_DOUBLE_COLON)
                 ) {
                     return;
                 }
@@ -245,20 +245,20 @@ class ForbiddenThisUseContextsSniff extends Sniff
 
                 break;
 
-            case T_UNSET:
+            case \T_UNSET:
                 /*
                  * $this can no longer be unset.
                  */
                 $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
                 if ($openParenthesis === false
-                    || $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS
+                    || $tokens[$openParenthesis]['code'] !== \T_OPEN_PARENTHESIS
                     || isset($tokens[$openParenthesis]['parenthesis_closer']) === false
                 ) {
                     return;
                 }
 
                 for ($i = ($openParenthesis + 1); $i < $tokens[$openParenthesis]['parenthesis_closer']; $i++) {
-                    if ($tokens[$i]['code'] !== T_VARIABLE || $tokens[$i]['content'] !== '$this') {
+                    if ($tokens[$i]['code'] !== \T_VARIABLE || $tokens[$i]['content'] !== '$this') {
                         continue;
                     }
 
@@ -270,9 +270,9 @@ class ForbiddenThisUseContextsSniff extends Sniff
                     );
 
                     if ($afterThis !== false
-                        && ($tokens[$afterThis]['code'] === T_OBJECT_OPERATOR
-                            || $tokens[$afterThis]['code'] === T_DOUBLE_COLON
-                            || $tokens[$afterThis]['code'] === T_OPEN_SQUARE_BRACKET)
+                        && ($tokens[$afterThis]['code'] === \T_OBJECT_OPERATOR
+                            || $tokens[$afterThis]['code'] === \T_DOUBLE_COLON
+                            || $tokens[$afterThis]['code'] === \T_OPEN_SQUARE_BRACKET)
                     ) {
                         $i = $afterThis;
                         continue;
@@ -321,7 +321,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 continue;
             }
 
-            if ($tokens[$stackPtr]['code'] === T_FUNCTION) {
+            if ($tokens[$stackPtr]['code'] === \T_FUNCTION) {
                 $phpcsFile->addError(
                     '"$this" can no longer be used as a parameter since PHP 7.1.',
                     $param['token'],
@@ -391,7 +391,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 continue;
             }
 
-            if ($tokens[$i]['code'] !== T_VARIABLE || $tokens[$i]['content'] !== '$this') {
+            if ($tokens[$i]['code'] !== \T_VARIABLE || $tokens[$i]['content'] !== '$this') {
                 continue;
             }
 

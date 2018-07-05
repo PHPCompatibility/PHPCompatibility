@@ -97,8 +97,8 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         return array(
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
     }
 

@@ -53,12 +53,12 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * @var array
      */
     private $ignoreTokens = array(
-        T_DOUBLE_COLON    => true,
-        T_OBJECT_OPERATOR => true,
-        T_FUNCTION        => true,
-        T_NEW             => true,
-        T_CONST           => true,
-        T_USE             => true,
+        \T_DOUBLE_COLON    => true,
+        \T_OBJECT_OPERATOR => true,
+        \T_FUNCTION        => true,
+        \T_NEW             => true,
+        \T_CONST           => true,
+        \T_USE             => true,
     );
 
 
@@ -72,7 +72,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         // Handle case-insensitivity of function names.
         $this->targetFunctions = $this->arrayKeysToLowercase($this->targetFunctions);
 
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
 
@@ -102,8 +102,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($this->isMethod === true) {
-            if ($tokens[$prevNonEmpty]['code'] !== T_DOUBLE_COLON
-                && $tokens[$prevNonEmpty]['code'] !== T_OBJECT_OPERATOR
+            if ($tokens[$prevNonEmpty]['code'] !== \T_DOUBLE_COLON
+                && $tokens[$prevNonEmpty]['code'] !== \T_OBJECT_OPERATOR
             ) {
                 // Not a call to a PHP method.
                 return;
@@ -114,8 +114,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
                 return;
             }
 
-            if ($tokens[$prevNonEmpty]['code'] === T_NS_SEPARATOR
-                && $tokens[$prevNonEmpty - 1]['code'] === T_STRING
+            if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
+                && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING
             ) {
                 // Namespaced function.
                 return;

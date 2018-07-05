@@ -34,9 +34,9 @@ class NewGroupUseDeclarationsSniff extends Sniff
     public function register()
     {
         if (defined('T_OPEN_USE_GROUP')) {
-            return array(T_OPEN_USE_GROUP);
+            return array(\T_OPEN_USE_GROUP);
         } else {
-            return array(T_USE);
+            return array(\T_USE);
         }
     }
 
@@ -60,14 +60,14 @@ class NewGroupUseDeclarationsSniff extends Sniff
         $token  = $tokens[$stackPtr];
 
         // Deal with PHPCS pre-2.6.0.
-        if ($token['code'] === T_USE) {
-            $hasCurlyBrace = $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, ($stackPtr + 1), null, false, null, true);
+        if ($token['code'] === \T_USE) {
+            $hasCurlyBrace = $phpcsFile->findNext(\T_OPEN_CURLY_BRACKET, ($stackPtr + 1), null, false, null, true);
             if ($hasCurlyBrace === false) {
                 return;
             }
 
             $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
-            if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
+            if ($prevToken === false || $tokens[$prevToken]['code'] !== \T_NS_SEPARATOR) {
                 return;
             }
 
@@ -83,9 +83,9 @@ class NewGroupUseDeclarationsSniff extends Sniff
             );
         }
 
-        $closers = array(T_CLOSE_CURLY_BRACKET);
+        $closers = array(\T_CLOSE_CURLY_BRACKET);
         if (defined('T_CLOSE_USE_GROUP')) {
-            $closers[] = T_CLOSE_USE_GROUP;
+            $closers[] = \T_CLOSE_USE_GROUP;
         }
 
         $closeCurly = $phpcsFile->findNext($closers, ($stackPtr + 1), null, false, null, true);
@@ -94,7 +94,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
         }
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closeCurly - 1), null, true);
-        if ($tokens[$prevToken]['code'] === T_COMMA) {
+        if ($tokens[$prevToken]['code'] === \T_COMMA) {
             $phpcsFile->addError(
                 'Trailing comma\'s are not allowed in group use statements in PHP 7.1 or earlier',
                 $prevToken,

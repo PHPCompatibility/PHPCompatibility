@@ -31,7 +31,7 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
      * @var array
      */
     protected $targetsInList = array(
-        T_BITWISE_AND => T_BITWISE_AND,
+        \T_BITWISE_AND => \T_BITWISE_AND,
     );
 
     /**

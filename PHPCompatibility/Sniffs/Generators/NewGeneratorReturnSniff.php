@@ -34,8 +34,8 @@ class NewGeneratorReturnSniff extends Sniff
      * @var array
      */
     private $validConditions = array(
-        T_FUNCTION => T_FUNCTION,
-        T_CLOSURE  => T_CLOSURE,
+        \T_FUNCTION => \T_FUNCTION,
+        \T_CLOSURE  => \T_CLOSURE,
     );
 
 
@@ -47,7 +47,7 @@ class NewGeneratorReturnSniff extends Sniff
     public function register()
     {
         $targets = array(
-            T_YIELD,
+            \T_YIELD,
         );
 
         /*
@@ -63,14 +63,14 @@ class NewGeneratorReturnSniff extends Sniff
          * For PHP 5.5+ we need to look for T_YIELD.
          * For PHPCS 3.1.0+, we also need to look for T_YIELD_FROM.
          */
-        if (version_compare(PHP_VERSION_ID, '50500', '<') === true
+        if (version_compare(\PHP_VERSION_ID, '50500', '<') === true
             && version_compare(PHPCSHelper::getVersion(), '3.1.0', '<') === true
         ) {
-            $targets[] = T_STRING;
+            $targets[] = \T_STRING;
         }
 
         if (defined('T_YIELD_FROM')) {
-            $targets[] = T_YIELD_FROM;
+            $targets[] = \T_YIELD_FROM;
         }
 
         return $targets;
@@ -93,7 +93,7 @@ class NewGeneratorReturnSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === T_STRING
+        if ($tokens[$stackPtr]['code'] === \T_STRING
             && $tokens[$stackPtr]['content'] !== 'yield'
         ) {
             return;
@@ -122,15 +122,15 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $targets = array(T_RETURN, T_CLOSURE, T_FUNCTION, T_CLASS);
+        $targets = array(\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS);
         if (defined('T_ANON_CLASS')) {
-            $targets[] = T_ANON_CLASS;
+            $targets[] = \T_ANON_CLASS;
         }
 
         $current = $tokens[$function]['scope_opener'];
 
         while (($current = $phpcsFile->findNext($targets, ($current + 1), $tokens[$function]['scope_closer'])) !== false) {
-            if ($tokens[$current]['code'] === T_RETURN) {
+            if ($tokens[$current]['code'] === \T_RETURN) {
                 $phpcsFile->addError(
                     'Returning a final expression from a generator was not supported in PHP 5.6 or earlier',
                     $current,

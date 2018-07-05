@@ -77,7 +77,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         // Handle case-insensitivity of function names.
         $this->removedFunctionParameters = $this->arrayKeysToLowercase($this->removedFunctionParameters);
 
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**
@@ -94,13 +94,13 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-            T_DOUBLE_COLON    => true,
-            T_OBJECT_OPERATOR => true,
-            T_FUNCTION        => true,
-            T_CONST           => true,
+            \T_DOUBLE_COLON    => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_FUNCTION        => true,
+            \T_CONST           => true,
         );
 
-        $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
             // Not a call to a PHP function.
             return;

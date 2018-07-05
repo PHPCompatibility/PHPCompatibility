@@ -41,12 +41,12 @@ class NewNullableTypesSniff extends Sniff
     public function register()
     {
         $tokens = array(
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
 
         if (defined('T_RETURN_TYPE')) {
-            $tokens[] = T_RETURN_TYPE;
+            $tokens[] = \T_RETURN_TYPE;
         }
 
         return $tokens;
@@ -71,7 +71,7 @@ class NewNullableTypesSniff extends Sniff
         $tokens    = $phpcsFile->getTokens();
         $tokenCode = $tokens[$stackPtr]['code'];
 
-        if ($tokenCode === T_FUNCTION || $tokenCode === T_CLOSURE) {
+        if ($tokenCode === \T_FUNCTION || $tokenCode === \T_CLOSURE) {
             $this->processFunctionDeclaration($phpcsFile, $stackPtr);
 
             // Deal with older PHPCS version which don't recognize return type hints
@@ -134,10 +134,10 @@ class NewNullableTypesSniff extends Sniff
         $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         // Deal with namespaced class names.
-        if ($tokens[$previous]['code'] === T_NS_SEPARATOR) {
-            $validTokens                 = Tokens::$emptyTokens;
-            $validTokens[T_STRING]       = true;
-            $validTokens[T_NS_SEPARATOR] = true;
+        if ($tokens[$previous]['code'] === \T_NS_SEPARATOR) {
+            $validTokens                  = Tokens::$emptyTokens;
+            $validTokens[\T_STRING]       = true;
+            $validTokens[\T_NS_SEPARATOR] = true;
 
             $stackPtr--;
 
@@ -150,7 +150,7 @@ class NewNullableTypesSniff extends Sniff
 
         // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
         if ((defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
-            || (defined('T_NULLABLE') === false && $tokens[$previous]['code'] === T_INLINE_THEN)
+            || (defined('T_NULLABLE') === false && $tokens[$previous]['code'] === \T_INLINE_THEN)
         ) {
             $phpcsFile->addError(
                 'Nullable return types are not supported in PHP 7.0 or earlier.',

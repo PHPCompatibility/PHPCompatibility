@@ -98,7 +98,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
             }
 
             $content = $this->stripQuotes($tokens[$i]['content']);
-            if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
+            if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                 $content = $this->stripVariables($content);
             }
             $content = trim($content);

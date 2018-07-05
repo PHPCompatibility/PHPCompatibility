@@ -37,7 +37,7 @@ class NewShortListSniff extends Sniff
      */
     public function register()
     {
-        return array(T_OPEN_SHORT_ARRAY);
+        return array(\T_OPEN_SHORT_ARRAY);
     }
 
     /**
@@ -62,7 +62,7 @@ class NewShortListSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $closer = $tokens[$stackPtr]['bracket_closer'];
 
-        $hasVariable = $phpcsFile->findNext(T_VARIABLE, ($stackPtr + 1), $closer);
+        $hasVariable = $phpcsFile->findNext(\T_VARIABLE, ($stackPtr + 1), $closer);
         if ($hasVariable === false) {
             // List syntax is only valid if there are variables in it.
             return;

@@ -33,7 +33,7 @@ class NewLateStaticBindingSniff extends Sniff
      */
     public function register()
     {
-        return array(T_STATIC);
+        return array(\T_STATIC);
     }
 
 
@@ -54,7 +54,7 @@ class NewLateStaticBindingSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        if ($tokens[$nextNonEmpty]['code'] !== T_DOUBLE_COLON) {
+        if ($tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
             return;
         }
 

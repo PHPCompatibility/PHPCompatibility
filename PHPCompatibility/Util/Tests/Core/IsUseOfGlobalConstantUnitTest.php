@@ -36,7 +36,7 @@ class IsUseOfGlobalConstantUnitTest extends CoreMethodTestFrame
      */
     public function testIsUseOfGlobalConstant($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, T_STRING, 'PHP_VERSION_ID');
+        $stackPtr = $this->getTargetToken($commentString, \T_STRING, 'PHP_VERSION_ID');
         $result   = $this->helperClass->isUseOfGlobalConstant($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

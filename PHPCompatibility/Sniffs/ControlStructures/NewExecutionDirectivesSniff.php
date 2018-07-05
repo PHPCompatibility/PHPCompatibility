@@ -68,10 +68,10 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $this->ignoreTokens          = Tokens::$emptyTokens;
-        $this->ignoreTokens[T_EQUAL] = T_EQUAL;
+        $this->ignoreTokens           = Tokens::$emptyTokens;
+        $this->ignoreTokens[\T_EQUAL] = \T_EQUAL;
 
-        return array(T_DECLARE);
+        return array(\T_DECLARE);
     }
 
 
@@ -97,14 +97,14 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             }
 
             // Deal with PHPCS 2.3.0-2.3.3 which do not yet set the parenthesis properly for declare statements.
-            $openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
+            $openParenthesis = $phpcsFile->findNext(\T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
             if ($openParenthesis === false || isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
                 return;
             }
             $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
         }
 
-        $directivePtr = $phpcsFile->findNext(T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
+        $directivePtr = $phpcsFile->findNext(\T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
         if ($directivePtr === false) {
             return;
         }

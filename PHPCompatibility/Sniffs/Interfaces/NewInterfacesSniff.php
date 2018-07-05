@@ -123,17 +123,17 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         $this->unsupportedMethods = $this->arrayKeysToLowercase($this->unsupportedMethods);
 
         $targets = array(
-            T_CLASS,
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_CLASS,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = T_ANON_CLASS;
+            $targets[] = \T_ANON_CLASS;
         }
 
         if (defined('T_RETURN_TYPE')) {
-            $targets[] = T_RETURN_TYPE;
+            $targets[] = \T_RETURN_TYPE;
         }
 
         return $targets;
@@ -224,7 +224,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
             if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
                 $nextFunc = $stackPtr;
-                while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
+                while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
                     $funcName   = $phpcsFile->getDeclarationName($nextFunc);
                     $funcNameLc = strtolower($funcName);
                     if ($funcNameLc === '') {

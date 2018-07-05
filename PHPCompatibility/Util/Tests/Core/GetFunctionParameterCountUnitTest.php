@@ -36,7 +36,7 @@ class GetFunctionParameterCountUnitTest extends CoreMethodTestFrame
      */
     public function testGetFunctionCallParameterCount($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
+        $stackPtr = $this->getTargetToken($commentString, array(\T_STRING, \T_ARRAY, \T_OPEN_SHORT_ARRAY));
         $result   = $this->helperClass->getFunctionCallParameterCount($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

@@ -379,7 +379,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testHaltCompiler()
     {
-        if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
+        if (\PHP_MAJOR_VERSION === 5 && \PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(__FILE__, '5.0');
             $this->assertError($file, 124, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');

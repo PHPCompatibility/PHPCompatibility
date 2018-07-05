@@ -3454,7 +3454,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**

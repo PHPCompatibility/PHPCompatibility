@@ -35,7 +35,7 @@ class NewConstantArraysUsingConstSniff extends Sniff
      */
     public function register()
     {
-        return array(T_CONST);
+        return array(\T_CONST);
     }
 
     /**
@@ -55,8 +55,8 @@ class NewConstantArraysUsingConstSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
         $find   = array(
-            T_ARRAY             => T_ARRAY,
-            T_OPEN_SHORT_ARRAY  => T_OPEN_SHORT_ARRAY,
+            \T_ARRAY            => \T_ARRAY,
+            \T_OPEN_SHORT_ARRAY => \T_OPEN_SHORT_ARRAY,
         );
 
         while (($hasArray = $phpcsFile->findNext($find, ($stackPtr + 1), null, false, null, true)) !== false) {
@@ -68,9 +68,9 @@ class NewConstantArraysUsingConstSniff extends Sniff
 
             // Skip past the content of the array.
             $stackPtr = $hasArray;
-            if ($tokens[$hasArray]['code'] === T_OPEN_SHORT_ARRAY && isset($tokens[$hasArray]['bracket_closer'])) {
+            if ($tokens[$hasArray]['code'] === \T_OPEN_SHORT_ARRAY && isset($tokens[$hasArray]['bracket_closer'])) {
                 $stackPtr = $tokens[$hasArray]['bracket_closer'];
-            } elseif ($tokens[$hasArray]['code'] === T_ARRAY && isset($tokens[$hasArray]['parenthesis_closer'])) {
+            } elseif ($tokens[$hasArray]['code'] === \T_ARRAY && isset($tokens[$hasArray]['parenthesis_closer'])) {
                 $stackPtr = $tokens[$hasArray]['parenthesis_closer'];
             }
         }

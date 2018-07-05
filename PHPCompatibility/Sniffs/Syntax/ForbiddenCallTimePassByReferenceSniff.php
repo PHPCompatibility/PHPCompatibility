@@ -77,8 +77,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     public function register()
     {
         return array(
-            T_STRING,
-            T_VARIABLE,
+            \T_STRING,
+            \T_VARIABLE,
         );
     }
 
@@ -104,7 +104,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // "myFunction" is T_STRING but we should skip because it is not a
         // function or method *call*.
         $findTokens   = Tokens::$emptyTokens;
-        $findTokens[] = T_BITWISE_AND;
+        $findTokens[] = \T_BITWISE_AND;
 
         $prevNonEmpty = $phpcsFile->findPrevious(
             $findTokens,
@@ -121,7 +121,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // is not an opening parenthesis then it can't really be a *call*.
         $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
-        if ($openBracket === false || $tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS
+        if ($openBracket === false || $tokens[$openBracket]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$openBracket]['parenthesis_closer']) === false
         ) {
             return;
@@ -176,7 +176,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         $searchEndToken   = $parameter['end'] + 1;
         $nextVariable     = $searchStartToken;
         do {
-            $nextVariable = $phpcsFile->findNext(array(T_VARIABLE, T_OPEN_SHORT_ARRAY, T_CLOSURE), ($nextVariable + 1), $searchEndToken);
+            $nextVariable = $phpcsFile->findNext(array(\T_VARIABLE, \T_OPEN_SHORT_ARRAY, \T_CLOSURE), ($nextVariable + 1), $searchEndToken);
             if ($nextVariable === false) {
                 return false;
             }
@@ -219,7 +219,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 true
             );
 
-            if ($tokenBefore === false || $tokens[$tokenBefore]['code'] !== T_BITWISE_AND) {
+            if ($tokenBefore === false || $tokens[$tokenBefore]['code'] !== \T_BITWISE_AND) {
                 // Nothing before the token or no &.
                 continue;
             }

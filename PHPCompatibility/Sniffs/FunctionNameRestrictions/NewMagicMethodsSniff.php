@@ -83,7 +83,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(\T_FUNCTION);
     }
 
 

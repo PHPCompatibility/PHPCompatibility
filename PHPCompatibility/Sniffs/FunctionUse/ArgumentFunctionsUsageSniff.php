@@ -54,7 +54,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
 
@@ -77,22 +77,22 @@ class ArgumentFunctionsUsageSniff extends Sniff
 
         // Next non-empty token should be the open parenthesis.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
             return;
         }
 
         $ignore = array(
-            T_DOUBLE_COLON    => true,
-            T_OBJECT_OPERATOR => true,
-            T_FUNCTION        => true,
-            T_NEW             => true,
+            \T_DOUBLE_COLON    => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_FUNCTION        => true,
+            \T_NEW             => true,
         );
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
             // Not a call to a PHP function.
             return;
-        } elseif ($tokens[$prevNonEmpty]['code'] === T_NS_SEPARATOR && $tokens[$prevNonEmpty - 1]['code'] === T_STRING) {
+        } elseif ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING) {
             // Namespaced function.
             return;
         }
@@ -105,7 +105,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
          * As PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
          */
-        if ($phpcsFile->hasCondition($stackPtr, array(T_FUNCTION, T_CLOSURE)) === false) {
+        if ($phpcsFile->hasCondition($stackPtr, array(\T_FUNCTION, \T_CLOSURE)) === false) {
             $isError = false;
             $message = 'Use of %s() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.';
 
@@ -138,12 +138,12 @@ class ArgumentFunctionsUsageSniff extends Sniff
         } else {
             $opener       = key($tokens[$stackPtr]['nested_parenthesis']);
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-            if ($tokens[$prevNonEmpty]['code'] !== T_STRING) {
+            if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
                 return;
             }
 
             $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevNonEmpty]['code'] === T_FUNCTION) {
+            if ($tokens[$prevPrevNonEmpty]['code'] === \T_FUNCTION) {
                 return;
             }
 

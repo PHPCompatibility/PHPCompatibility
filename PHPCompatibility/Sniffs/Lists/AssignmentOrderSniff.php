@@ -38,8 +38,8 @@ class AssignmentOrderSniff extends Sniff
     public function register()
     {
         return array(
-            T_LIST,
-            T_OPEN_SHORT_ARRAY,
+            \T_LIST,
+            \T_OPEN_SHORT_ARRAY,
         );
     }
 
@@ -63,17 +63,17 @@ class AssignmentOrderSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY
+        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY
             && $this->isShortList($phpcsFile, $stackPtr) === false
         ) {
             // Short array, not short list.
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] === T_LIST) {
+        if ($tokens[$stackPtr]['code'] === \T_LIST) {
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false
-                || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
+                || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
                 || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
             ) {
                 // Parse error or live coding.
@@ -99,18 +99,18 @@ class AssignmentOrderSniff extends Sniff
          * OK, so we have the opener & closer, now we need to check all the variables in the
          * list() to see if there are duplicates as that's the problem.
          */
-        $hasVars = $phpcsFile->findNext(array(T_VARIABLE, T_DOLLAR), ($opener + 1), $closer);
+        $hasVars = $phpcsFile->findNext(array(\T_VARIABLE, \T_DOLLAR), ($opener + 1), $closer);
         if ($hasVars === false) {
             // Empty list, not our concern.
             return ($closer + 1);
         }
 
         // Set the variable delimiters based on the list type being examined.
-        $stopPoints = array(T_COMMA);
-        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY) {
-            $stopPoints[] = T_CLOSE_SHORT_ARRAY;
+        $stopPoints = array(\T_COMMA);
+        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
+            $stopPoints[] = \T_CLOSE_SHORT_ARRAY;
         } else {
-            $stopPoints[] = T_CLOSE_PARENTHESIS;
+            $stopPoints[] = \T_CLOSE_PARENTHESIS;
         }
 
         $listVars      = array();
@@ -128,13 +128,13 @@ class AssignmentOrderSniff extends Sniff
             }
 
             // Also detect this in PHP 7.1 keyed lists.
-            $hasDoubleArrow = $phpcsFile->findNext(T_DOUBLE_ARROW, ($lastStopPoint + 1), $nextStopPoint);
+            $hasDoubleArrow = $phpcsFile->findNext(\T_DOUBLE_ARROW, ($lastStopPoint + 1), $nextStopPoint);
             if ($hasDoubleArrow !== false) {
                 $lastStopPoint = $hasDoubleArrow;
             }
 
             // Find the start of the variable, allowing for variable variables.
-            $nextStartPoint = $phpcsFile->findNext(array(T_VARIABLE, T_DOLLAR), ($lastStopPoint + 1), $nextStopPoint);
+            $nextStartPoint = $phpcsFile->findNext(array(\T_VARIABLE, \T_DOLLAR), ($lastStopPoint + 1), $nextStopPoint);
             if ($nextStartPoint === false) {
                 // Skip past empty bits in the list, i.e. `list( $a, , ,)`.
                 $lastStopPoint = $nextStopPoint;

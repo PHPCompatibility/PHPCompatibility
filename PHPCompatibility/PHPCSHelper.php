@@ -149,13 +149,13 @@ class PHPCSHelper
         $tokens    = $phpcsFile->getTokens();
         $endTokens = Tokens::$blockOpeners;
 
-        $endTokens[T_COLON]            = true;
-        $endTokens[T_COMMA]            = true;
-        $endTokens[T_DOUBLE_ARROW]     = true;
-        $endTokens[T_SEMICOLON]        = true;
-        $endTokens[T_OPEN_TAG]         = true;
-        $endTokens[T_CLOSE_TAG]        = true;
-        $endTokens[T_OPEN_SHORT_ARRAY] = true;
+        $endTokens[\T_COLON]            = true;
+        $endTokens[\T_COMMA]            = true;
+        $endTokens[\T_DOUBLE_ARROW]     = true;
+        $endTokens[\T_SEMICOLON]        = true;
+        $endTokens[\T_OPEN_TAG]         = true;
+        $endTokens[\T_CLOSE_TAG]        = true;
+        $endTokens[\T_OPEN_SHORT_ARRAY] = true;
 
         if ($ignore !== null) {
             $ignore = (array) $ignore;
@@ -227,16 +227,16 @@ class PHPCSHelper
 
         $tokens    = $phpcsFile->getTokens();
         $endTokens = array(
-            T_COLON                => true,
-            T_COMMA                => true,
-            T_DOUBLE_ARROW         => true,
-            T_SEMICOLON            => true,
-            T_CLOSE_PARENTHESIS    => true,
-            T_CLOSE_SQUARE_BRACKET => true,
-            T_CLOSE_CURLY_BRACKET  => true,
-            T_CLOSE_SHORT_ARRAY    => true,
-            T_OPEN_TAG             => true,
-            T_CLOSE_TAG            => true,
+            \T_COLON                => true,
+            \T_COMMA                => true,
+            \T_DOUBLE_ARROW         => true,
+            \T_SEMICOLON            => true,
+            \T_CLOSE_PARENTHESIS    => true,
+            \T_CLOSE_SQUARE_BRACKET => true,
+            \T_CLOSE_CURLY_BRACKET  => true,
+            \T_CLOSE_SHORT_ARRAY    => true,
+            \T_OPEN_TAG             => true,
+            \T_CLOSE_TAG            => true,
         );
 
         if ($ignore !== null) {
@@ -253,12 +253,12 @@ class PHPCSHelper
         for ($i = $start; $i < $phpcsFile->numTokens; $i++) {
             if ($i !== $start && isset($endTokens[$tokens[$i]['code']]) === true) {
                 // Found the end of the statement.
-                if ($tokens[$i]['code'] === T_CLOSE_PARENTHESIS
-                    || $tokens[$i]['code'] === T_CLOSE_SQUARE_BRACKET
-                    || $tokens[$i]['code'] === T_CLOSE_CURLY_BRACKET
-                    || $tokens[$i]['code'] === T_CLOSE_SHORT_ARRAY
-                    || $tokens[$i]['code'] === T_OPEN_TAG
-                    || $tokens[$i]['code'] === T_CLOSE_TAG
+                if ($tokens[$i]['code'] === \T_CLOSE_PARENTHESIS
+                    || $tokens[$i]['code'] === \T_CLOSE_SQUARE_BRACKET
+                    || $tokens[$i]['code'] === \T_CLOSE_CURLY_BRACKET
+                    || $tokens[$i]['code'] === \T_CLOSE_SHORT_ARRAY
+                    || $tokens[$i]['code'] === \T_OPEN_TAG
+                    || $tokens[$i]['code'] === \T_CLOSE_TAG
                 ) {
                     return $lastNotEmpty;
                 }
@@ -330,7 +330,7 @@ class PHPCSHelper
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_CLASS
+        if ($tokens[$stackPtr]['code'] !== \T_CLASS
             && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
             && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
         ) {
@@ -342,15 +342,15 @@ class PHPCSHelper
         }
 
         $classCloserIndex = $tokens[$stackPtr]['scope_closer'];
-        $extendsIndex     = $phpcsFile->findNext(T_EXTENDS, $stackPtr, $classCloserIndex);
+        $extendsIndex     = $phpcsFile->findNext(\T_EXTENDS, $stackPtr, $classCloserIndex);
         if ($extendsIndex === false) {
             return false;
         }
 
         $find = array(
-            T_NS_SEPARATOR,
-            T_STRING,
-            T_WHITESPACE,
+            \T_NS_SEPARATOR,
+            \T_STRING,
+            \T_WHITESPACE,
         );
 
         $end  = $phpcsFile->findNext($find, ($extendsIndex + 1), $classCloserIndex, true);
@@ -395,7 +395,7 @@ class PHPCSHelper
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_CLASS
+        if ($tokens[$stackPtr]['code'] !== \T_CLASS
             && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
         ) {
             return false;
@@ -406,16 +406,16 @@ class PHPCSHelper
         }
 
         $classOpenerIndex = $tokens[$stackPtr]['scope_opener'];
-        $implementsIndex  = $phpcsFile->findNext(T_IMPLEMENTS, $stackPtr, $classOpenerIndex);
+        $implementsIndex  = $phpcsFile->findNext(\T_IMPLEMENTS, $stackPtr, $classOpenerIndex);
         if ($implementsIndex === false) {
             return false;
         }
 
         $find = array(
-            T_NS_SEPARATOR,
-            T_STRING,
-            T_WHITESPACE,
-            T_COMMA,
+            \T_NS_SEPARATOR,
+            \T_STRING,
+            \T_WHITESPACE,
+            \T_COMMA,
         );
 
         $end  = $phpcsFile->findNext($find, ($implementsIndex + 1), ($classOpenerIndex + 1), true);
@@ -481,8 +481,8 @@ class PHPCSHelper
             return false;
         }
 
-        if ($tokens[$stackPtr]['code'] !== T_FUNCTION
-            && $tokens[$stackPtr]['code'] !== T_CLOSURE
+        if ($tokens[$stackPtr]['code'] !== \T_FUNCTION
+            && $tokens[$stackPtr]['code'] !== \T_CLOSURE
         ) {
             throw new PHPCS_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
@@ -557,7 +557,7 @@ class PHPCSHelper
                     // also be a constant used as a default value.
                     $prevComma = false;
                     for ($t = $i; $t >= $opener; $t--) {
-                        if ($tokens[$t]['code'] === T_COMMA) {
+                        if ($tokens[$t]['code'] === \T_COMMA) {
                             $prevComma = $t;
                             break;
                         }
@@ -566,7 +566,7 @@ class PHPCSHelper
                     if ($prevComma !== false) {
                         $nextEquals = false;
                         for ($t = $prevComma; $t < $i; $t++) {
-                            if ($tokens[$t]['code'] === T_EQUAL) {
+                            if ($tokens[$t]['code'] === \T_EQUAL) {
                                 $nextEquals = $t;
                                 break;
                             }

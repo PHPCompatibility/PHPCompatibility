@@ -34,11 +34,11 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      * @var array
      */
     protected $validLoopStructures = array(
-        T_FOR     => true,
-        T_FOREACH => true,
-        T_WHILE   => true,
-        T_DO      => true,
-        T_SWITCH  => true,
+        \T_FOR     => true,
+        \T_FOREACH => true,
+        \T_WHILE   => true,
+        \T_DO      => true,
+        \T_SWITCH  => true,
     );
 
     /**
@@ -47,8 +47,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      * @var array
      */
     protected $backCompat = array(
-        T_CASE    => true,
-        T_DEFAULT => true,
+        \T_CASE    => true,
+        \T_DEFAULT => true,
     );
 
     /**
@@ -59,8 +59,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
     public function register()
     {
         return array(
-            T_BREAK,
-            T_CONTINUE,
+            \T_BREAK,
+            \T_CONTINUE,
         );
     }
 

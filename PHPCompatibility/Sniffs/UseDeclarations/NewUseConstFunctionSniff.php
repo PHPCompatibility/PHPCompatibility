@@ -48,7 +48,7 @@ class NewUseConstFunctionSniff extends Sniff
      */
     public function register()
     {
-        return array(T_USE);
+        return array(\T_USE);
     }
 
 
@@ -85,7 +85,7 @@ class NewUseConstFunctionSniff extends Sniff
         if ($functionOrConstName === false
             // Identifies as T_AS or T_STRING, this covers both.
             || ($tokens[$functionOrConstName]['content'] === 'as'
-            || $tokens[$functionOrConstName]['code'] === T_COMMA)
+            || $tokens[$functionOrConstName]['code'] === \T_COMMA)
         ) {
             // Live coding or incorrect use of reserved keyword, but that is
             // covered by the ForbiddenNames sniff.

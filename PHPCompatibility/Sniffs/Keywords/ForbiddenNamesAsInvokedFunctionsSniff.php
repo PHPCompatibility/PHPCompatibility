@@ -33,22 +33,23 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      * @var array
      */
     protected $targetedTokens = array(
-        T_ABSTRACT   => '5.0',
-        T_CALLABLE   => '5.4',
-        T_CATCH      => '5.0',
-        T_FINAL      => '5.0',
-        T_FINALLY    => '5.5',
-        T_GOTO       => '5.3',
-        T_IMPLEMENTS => '5.0',
-        T_INTERFACE  => '5.0',
-        T_INSTANCEOF => '5.0',
-        T_INSTEADOF  => '5.4',
-        T_NAMESPACE  => '5.3',
-        T_PRIVATE    => '5.0',
-        T_PROTECTED  => '5.0',
-        T_PUBLIC     => '5.0',
-        T_TRAIT      => '5.4',
-        T_TRY        => '5.0',
+        \T_ABSTRACT   => '5.0',
+        \T_CALLABLE   => '5.4',
+        \T_CATCH      => '5.0',
+        \T_FINAL      => '5.0',
+        \T_FINALLY    => '5.5',
+        \T_GOTO       => '5.3',
+        \T_IMPLEMENTS => '5.0',
+        \T_INTERFACE  => '5.0',
+        \T_INSTANCEOF => '5.0',
+        \T_INSTEADOF  => '5.4',
+        \T_NAMESPACE  => '5.3',
+        \T_PRIVATE    => '5.0',
+        \T_PROTECTED  => '5.0',
+        \T_PUBLIC     => '5.0',
+        \T_TRAIT      => '5.4',
+        \T_TRY        => '5.0',
+
     );
 
     /**
@@ -87,7 +88,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     public function register()
     {
         $tokens   = array_keys($this->targetedTokens);
-        $tokens[] = T_STRING;
+        $tokens[] = \T_STRING;
 
         return $tokens;
     }
@@ -114,26 +115,26 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
          * token doesn't exist yet for that keyword or in later versions when the
          * token is used in a method invocation.
          */
-        if ($tokenCode === T_STRING
+        if ($tokenCode === \T_STRING
             && (isset($this->targetedStringTokens[$tokenContentLc]) === false)
         ) {
             return;
         }
 
-        if ($tokenCode === T_STRING) {
+        if ($tokenCode === \T_STRING) {
             $isString = true;
         }
 
         // Make sure this is a function call.
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($next === false || $tokens[$next]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($next === false || $tokens[$next]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a function call.
             return;
         }
 
         // This sniff isn't concerned about function declarations.
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false && $tokens[$prev]['code'] === T_FUNCTION) {
+        if ($prev !== false && $tokens[$prev]['code'] === \T_FUNCTION) {
             return;
         }
 
@@ -144,7 +145,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
          *
          * Only needed for those keywords which we sniff out via T_STRING.
          */
-        if (($tokens[$prev]['code'] === T_OBJECT_OPERATOR || $tokens[$prev]['code'] === T_DOUBLE_COLON)
+        if (($tokens[$prev]['code'] === \T_OBJECT_OPERATOR || $tokens[$prev]['code'] === \T_DOUBLE_COLON)
             && $this->supportsBelow('5.6') === false
         ) {
             return;
@@ -152,8 +153,8 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 
         // For the word catch, it is valid to have an open parenthesis
         // after it, but only if it is preceded by a right curly brace.
-        if ($tokenCode === T_CATCH) {
-            if ($prev !== false && $tokens[$prev]['code'] === T_CLOSE_CURLY_BRACKET) {
+        if ($tokenCode === \T_CATCH) {
+            if ($prev !== false && $tokens[$prev]['code'] === \T_CLOSE_CURLY_BRACKET) {
                 // Ok, it's fine.
                 return;
             }
