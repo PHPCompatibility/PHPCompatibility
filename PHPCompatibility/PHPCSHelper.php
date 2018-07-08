@@ -496,7 +496,7 @@ class PHPCSHelper
                     // If it's null, then there must be no parameters for this
                     // method.
                     if ($currVar === null) {
-                        continue;
+                        break;
                     }
 
                     $vars[$paramCount]            = array();
