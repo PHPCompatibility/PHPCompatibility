@@ -169,6 +169,9 @@
         <!-- Via `symfony/polyfill-php56` -->
         <exclude name="PHPCompatibility.PHP.NewFunctions.hash_equalsFound"/>
         <exclude name="PHPCompatibility.PHP.NewFunctions.ldap_escapeFound"/>
+
+        <!-- Via `symfony/polyfill-php73` -->
+        <exclude name="PHPCompatibility.PHP.NewFunctions.is_countableFound"/>
     </rule>
 
 </ruleset>
