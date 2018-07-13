@@ -46,7 +46,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
     {
         if (version_compare(PHP_VERSION_ID, '70000', '<') === true) {
             // phpcs:ignore PHPCompatibility.PHP.DeprecatedIniDirectives.asp_tagsRemoved
-            $this->aspTags = (boolean) ini_get('asp_tags');
+            $this->aspTags = (bool) ini_get('asp_tags');
         }
 
         return array(
@@ -84,14 +84,14 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         if ($openTag['code'] === T_OPEN_TAG || $openTag['code'] === T_OPEN_TAG_WITH_ECHO) {
 
             if ($content === '<%' || $content === '<%=') {
-                $data = array(
+                $data      = array(
                     'ASP',
                     $content,
                 );
                 $errorCode = 'ASPOpenTagFound';
 
             } elseif (strpos($content, '<script ') !== false) {
-                $data = array(
+                $data      = array(
                     'Script',
                     $content,
                 );
@@ -105,8 +105,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         elseif ($openTag['code'] === T_INLINE_HTML
             && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
-            $found = $match[1];
-            $data  = array(
+            $found     = $match[1];
+            $data      = array(
                 'Script',
                 $found,
             );
@@ -128,7 +128,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');
-                $data    = array('<%'.$snippet);
+                $data    = array('<%' . $snippet);
 
                 $phpcsFile->addWarning($error, $stackPtr, 'MaybeASPOpenTagFound', $data);
             }

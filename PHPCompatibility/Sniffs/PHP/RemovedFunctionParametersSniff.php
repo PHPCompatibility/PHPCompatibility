@@ -93,7 +93,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+        if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
             // Not a call to a PHP function.
             return;
         }
@@ -162,7 +162,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo              = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['paramName'] = $itemArray['name'];
 
         return $errorInfo;
@@ -179,7 +179,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     protected function getItemName(array $itemInfo, array $errorInfo)
     {
-        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+        return $itemInfo['name'] . '_' . $errorInfo['paramName'];
     }
 
 

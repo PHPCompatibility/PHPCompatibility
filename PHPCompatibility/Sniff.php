@@ -135,8 +135,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                             E_USER_WARNING
                         );
                         return $default;
-                    }
-                    else {
+                    } else {
                         $arrTestVersions[$testVersion] = array($min, $max);
                         return $arrTestVersions[$testVersion];
                     }
@@ -1562,7 +1561,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         ) {
 
             if ($tokens[$nextNonEmpty]['code'] === T_MINUS) {
-                $negativeNumber = ($negativeNumber === false ) ? true : false;
+                $negativeNumber = ($negativeNumber === false) ? true : false;
             }
 
             $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);

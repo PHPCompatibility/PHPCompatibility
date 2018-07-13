@@ -97,7 +97,7 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+        if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
             // Not a call to a PHP function.
             return;
         }
@@ -228,7 +228,7 @@ class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSnif
     public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $error     = $this->getErrorMsgTemplate();
-        $errorCode = $this->stringToErrorCode($itemInfo['name'].'_'.$errorInfo['paramName']).'Missing';
+        $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']) . 'Missing';
         $data      = array(
             $errorInfo['paramName'],
             $itemInfo['name'],

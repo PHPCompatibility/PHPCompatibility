@@ -496,7 +496,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+        if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
             // Not a call to a PHP function.
             return;
         }
@@ -559,7 +559,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['alternative'] = '';
 
         if (isset($itemArray['alternative']) === true) {

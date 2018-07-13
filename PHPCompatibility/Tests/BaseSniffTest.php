@@ -28,7 +28,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * Used by PHPCS 1.x and 2.x.
      *
-     * @var PHP_CodeSniffer
+     * @var \PHP_CodeSniffer
      */
     protected static $phpcs = null;
 
@@ -134,7 +134,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             return self::$sniffFiles[$filename][$targetPhpVersion];
         }
 
-        if ('none' !== $targetPhpVersion) {
+        if ($targetPhpVersion !== 'none') {
             PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 

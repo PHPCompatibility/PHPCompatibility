@@ -811,7 +811,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      */
     protected function getErrorMsgTemplate()
     {
-        return 'The built-in class '.parent::getErrorMsgTemplate();
+        return 'The built-in class ' . parent::getErrorMsgTemplate();
     }
 
 

@@ -110,7 +110,7 @@ class TokenScopeTest extends MethodTestFrame
     public function testInClassScope($commentString, $targetType, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result = $this->helperClass->inClassScope($this->phpcsFile, $stackPtr);
+        $result   = $this->helperClass->inClassScope($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 

@@ -95,8 +95,7 @@ class VariableVariablesSniff extends Sniff
             if ($classToken !== false) {
                 if ($tokens[$classToken]['code'] === T_STATIC || $tokens[$classToken]['code'] === T_SELF) {
                     return;
-                }
-                elseif ($tokens[$classToken]['code'] === T_STRING && $tokens[$classToken]['content'] === 'self') {
+                } elseif ($tokens[$classToken]['code'] === T_STRING && $tokens[$classToken]['content'] === 'self') {
                     return;
                 }
             }

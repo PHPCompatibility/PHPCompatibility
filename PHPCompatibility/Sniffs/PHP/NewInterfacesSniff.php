@@ -226,7 +226,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
                     if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
                         $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
-                        $errorCode = $this->stringToErrorCode($interface).'UnsupportedMethod';
+                        $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
                         $data      = array(
                             $interface,
                             $funcName,
@@ -324,7 +324,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      */
     protected function getErrorMsgTemplate()
     {
-        return 'The built-in interface '.parent::getErrorMsgTemplate();
+        return 'The built-in interface ' . parent::getErrorMsgTemplate();
     }
 
 

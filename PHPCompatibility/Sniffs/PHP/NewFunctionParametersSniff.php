@@ -192,9 +192,9 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         ),
         'getenv' => array(
             1 => array(
-                'name' => 'local_only',
-                '5.5.37'  => false,
-                '5.5.38'  => true, // Also introduced in PHP 5.6.24 and 7.0.9.
+                'name'   => 'local_only',
+                '5.5.37' => false,
+                '5.5.38' => true, // Also introduced in PHP 5.6.24 and 7.0.9.
             ),
         ),
         'getopt' => array(
@@ -659,9 +659,9 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.5.1' => true,
             ),
             7 => array(
-                'name'  => 'validate_sid',
-                '5.6' => false,
-                '7.0' => true,
+                'name' => 'validate_sid',
+                '5.6'  => false,
+                '7.0'  => true,
             ),
             8 => array(
                 'name' => 'update_timestamp',
@@ -870,7 +870,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         );
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (in_array($tokens[$prevToken]['code'], $ignore) === true) {
+        if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
             // Not a call to a PHP function.
             return;
         }
@@ -939,7 +939,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo              = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['paramName'] = $itemArray['name'];
 
         return $errorInfo;
@@ -956,7 +956,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
      */
     protected function getItemName(array $itemInfo, array $errorInfo)
     {
-        return $itemInfo['name'].'_'.$errorInfo['paramName'];
+        return $itemInfo['name'] . '_' . $errorInfo['paramName'];
     }
 
 

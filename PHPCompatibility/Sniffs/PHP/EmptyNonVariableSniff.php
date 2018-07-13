@@ -65,6 +65,7 @@ class EmptyNonVariableSniff extends Sniff
                 array(T_OPEN_PARENTHESIS, T_STRING_CONCAT)
             )
         );
+
         $this->tokenBlackList = array_combine($tokenBlackList, $tokenBlackList);
 
         return array(T_EMPTY);

@@ -127,7 +127,7 @@ class OptionalRequiredFunctionParametersSniff extends RequiredOptionalFunctionPa
             $error .= 'strongly recommended ';
         }
 
-        $errorCode = $this->stringToErrorCode($itemInfo['name'].'_'.$errorInfo['paramName']);
+        $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']);
         $data      = array(
             $errorInfo['paramName'],
             $itemInfo['name'],
@@ -151,7 +151,7 @@ class OptionalRequiredFunctionParametersSniff extends RequiredOptionalFunctionPa
             }
 
             // Remove the last 'and' from the message.
-            $error      = substr($error, 0, (strlen($error) - 5));
+            $error = substr($error, 0, (strlen($error) - 5));
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);

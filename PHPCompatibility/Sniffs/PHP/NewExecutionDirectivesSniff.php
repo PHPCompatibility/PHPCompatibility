@@ -214,7 +214,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     protected function getErrorMsgTemplate()
     {
-        return 'Directive '.parent::getErrorMsgTemplate();
+        return 'Directive ' . parent::getErrorMsgTemplate();
     }
 
 
@@ -236,7 +236,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
         } elseif ($errorInfo['conditional_version'] !== '') {
             $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
-            $errorCode = $this->stringToErrorCode($itemInfo['name']).'WithConditionFound';
+            $errorCode = $this->stringToErrorCode($itemInfo['name']) . 'WithConditionFound';
             $data      = array(
                 $itemInfo['name'],
                 $errorInfo['conditional_version'],
@@ -282,7 +282,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         if ($isError === true) {
             $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
-            $errorCode = $this->stringToErrorCode($directive).'InvalidValueFound';
+            $errorCode = $this->stringToErrorCode($directive) . 'InvalidValueFound';
             $data      = array(
                 $directive,
                 $value,

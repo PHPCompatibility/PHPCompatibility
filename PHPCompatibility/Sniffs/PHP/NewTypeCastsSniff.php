@@ -97,6 +97,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
 
                     $tokenType = 'T_BINARY_CAST';
                     break;
+
                 case 'T_CONSTANT_ENCAPSED_STRING':
                     if (strpos($tokenContent, 'b"') === 0 && substr($tokenContent, -1) === '"') {
                         $tokenType = 'T_BINARY_CAST';
@@ -156,7 +157,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
+        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;
