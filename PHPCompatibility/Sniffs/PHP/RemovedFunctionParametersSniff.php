@@ -195,11 +195,11 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
 
     /**
-     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     * Filter the error data before it's passed to PHPCS.
      *
      * @param array $data      The error data array which was created.
-     * @param array $itemInfo  Base information about the item this error message applied to.
-     * @param array $errorInfo Detail information about an item this error message applied to.
+     * @param array $itemInfo  Base information about the item this error message applies to.
+     * @param array $errorInfo Detail information about an item this error message applies to.
      *
      * @return array
      */

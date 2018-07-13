@@ -255,7 +255,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Strip quotes surrounding an arbitrary string.
      *
-     * Intended for use with the content of a T_CONSTANT_ENCAPSED_STRING / T_DOUBLE_QUOTED_STRING.
+     * Intended for use with the contents of a T_CONSTANT_ENCAPSED_STRING / T_DOUBLE_QUOTED_STRING.
      *
      * @param string $string The raw string.
      *
@@ -270,7 +270,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Strip variables from an arbitrary double quoted string.
      *
-     * Intended for use with the content of a T_DOUBLE_QUOTED_STRING.
+     * Intended for use with the contents of a T_DOUBLE_QUOTED_STRING.
      *
      * @param string $string The raw string.
      *
