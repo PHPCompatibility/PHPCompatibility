@@ -157,8 +157,8 @@ class PHPCSHelper
                 && ($i === $tokens[$i]['scope_opener']
                 || $i === $tokens[$i]['scope_condition'])
             ) {
-                if ($i === $start && isset(Util\Tokens::$scopeOpeners[$this->tokens[$i]['code']]) === true) {
-                    return $this->tokens[$i]['scope_closer'];
+                if ($i === $start && isset(Util\Tokens::$scopeOpeners[$tokens[$i]['code']]) === true) {
+                    return $tokens[$i]['scope_closer'];
                 }
 
                 $i = $tokens[$i]['scope_closer'];
