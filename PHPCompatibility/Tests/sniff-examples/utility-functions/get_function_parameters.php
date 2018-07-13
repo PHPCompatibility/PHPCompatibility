@@ -4,7 +4,7 @@
 myfunction( 1, 2, 3, 4, 5, 6, true );
 
 /*
- * Propertly deal with nested parenthesis.
+ * Properly deal with nested parenthesis.
  * Also see Github issues #111 / #114 / #151.
  */
 /* Case S2 */
@@ -42,3 +42,20 @@ $bar = [0, 0, date('s'), date('m'), date('d'), date('Y')]; // 6
 $bar = [str_replace("../", "/", trim($value))]; // 1
 /* Case A6 */
 $bar = [0 => $a, 2 => $b, (isset($c) ? 6 => $c : 6 => null)];
+
+/*
+ * Properly deal with closures passed as function call parameters.
+ */
+/* Case S6 */
+preg_replace_callback_array(
+	/* Case A7 */
+    [
+        '~'.$dyn.'~J' => function ($match) {
+            echo strlen($match[0]), ' matches for "a" found', PHP_EOL;
+        },
+        '~'.function_call().'~i' => function ($match) {
+            echo strlen($match[0]), ' matches for "b" found', PHP_EOL;
+        },
+    ],
+    $subject
+);
