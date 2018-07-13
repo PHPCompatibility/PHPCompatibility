@@ -27,7 +27,7 @@ Please make sure that your pull request contains unit tests covering what's bein
 * All code should be compatible with PHPCS 1.5.6, PHPCS 2.x and PHPCS 3.x.
 * All code should be compatible with PHP 5.3 to PHP nightly.
 * All code should comply with the PHPCompatibility coding standards.
-    The [ruleset used by PHPCompatibility](https://github.com/wimg/PHPCompatibility/blob/master/phpcs.xml.dist) is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
+    The [ruleset used by PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/phpcs.xml.dist) is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
 
 ### Framework/CMS specific rulesets
 
@@ -44,19 +44,19 @@ The communities behind these PHP frameworks/CMSes are strongly encouraged to mai
 **Note:**
 * It is recommended to include a link to the framework/CMS source file where the backfill is declared when sending in a pull request adding a new backfill for one of these rulesets.
 * If the backfills provided by different major versions of frameworks/CMSes are signficantly different, separate rulesets for the relevant major versions of frameworks/CMSes will be accepted.
-* Framework/CMS specific rulesets should always contain the `<autoload>` directive as included in the [PHPCompatibility ruleset](https://github.com/wimg/PHPCompatibility/blob/master/PHPCompatibility/ruleset.xml#L5).
+* Framework/CMS specific rulesets should always contain the `<autoload>` directive as included in the [PHPCompatibility ruleset](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/PHPCompatibility/ruleset.xml#L5).
 * Framework/CMS specific ruleset should **_not_** contain a `<config name="testVersion" value="..."/>` directive.
 
     While a framework/CMS may have a certain minimum PHP version, projects based on the framework/CMS might have a different (higher) minimum PHP version.
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
-* When adding a new framework/CMS specific ruleset, please make sure the file is added to the [Travis script](https://github.com/wimg/PHPCompatibility/blob/master/.travis.yml#L116) to verify the XML consistency.
+* When adding a new framework/CMS specific ruleset, please make sure the file is added to the [Travis script](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/.travis.yml#L116) to verify the XML consistency.
 
 
 Running the Sniff Tests
 -----------------------
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests on the sniffs, the following installation steps are required.
 
-1. Install PHP CodeSniffer and PHP Compatibility by following the instructions in the Readme for either [installing with Composer](https://github.com/wimg/PHPCompatibility/blob/master/README.md#installation-in-a-composer-project-method-1) or via a [Git Checkout to an arbitrary directory](https://github.com/wimg/PHPCompatibility/blob/master/README.md#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2).
+1. Install PHP CodeSniffer and PHP Compatibility by following the instructions in the Readme for either [installing with Composer](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installation-in-a-composer-project-method-1) or via a [Git Checkout to an arbitrary directory](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2).
 
     If you install using Composer, make sure you run `composer install --prefer-source` to get access to the unit tests and other development related files.
 

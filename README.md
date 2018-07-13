@@ -1,16 +1,16 @@
 PHP Compatibility Coding Standard for PHP CodeSniffer
 =====================================================
-[![Latest Stable Version](https://poser.pugx.org/wimg/php-compatibility/v/stable.png)](https://packagist.org/packages/wimg/php-compatibility)
-[![Latest Unstable Version](https://poser.pugx.org/wimg/php-compatibility/v/unstable.png)](https://packagist.org/packages/wimg/php-compatibility)
+[![Latest Stable Version](https://poser.pugx.org/phpcompatibility/php-compatibility/v/stable.png)](https://packagist.org/packages/phpcompatibility/php-compatibility)
+[![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/php-compatibility/v/unstable.png)](https://packagist.org/packages/phpcompatibility/php-compatibility)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
-[![License](https://poser.pugx.org/wimg/php-compatibility/license.png)](https://github.com/wimg/PHPCompatibility/blob/master/LICENSE)
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/wimg/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
+[![License](https://poser.pugx.org/phpcompatibility/php-compatibility/license.png)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/PHPCompatibility/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
 
-[![Build Status](https://travis-ci.org/wimg/PHPCompatibility.png?branch=master)](https://travis-ci.org/wimg/PHPCompatibility)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wimg/PHPCompatibility/)
-[![Coverage Status](https://coveralls.io/repos/github/wimg/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/wimg/PHPCompatibility?branch=master)
+[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibility.png?branch=master)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
+[![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=master)
 
-[![Tested Runtime Badge](http://php-eye.com/badge/wimg/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/wimg/php-compatibility)
+[![Tested Runtime Badge](http://php-eye.com/badge/phpcompatibility/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/phpcompatibility/php-compatibility)
 
 
 This is a set of sniffs for [PHP CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
@@ -20,7 +20,7 @@ It will allow you to analyse your code for compatibility with higher and lower v
 PHP Version Support
 -------
 
-The project aims to cover all PHP compatibility changes introduced since PHP 5.0 up to the latest PHP release. This is an ongoing process and coverage is not yet 100% (if, indeed, it ever could be). Progress is tracked on [our Github issue tracker](https://github.com/wimg/PHPCompatibility/issues).
+The project aims to cover all PHP compatibility changes introduced since PHP 5.0 up to the latest PHP release. This is an ongoing process and coverage is not yet 100% (if, indeed, it ever could be). Progress is tracked on [our Github issue tracker](https://github.com/PHPCompatibility/PHPCompatibility/issues).
 
 Pull requests that check for compatibility issues in PHP 4 code - in particular between PHP 4 and PHP 5.0 - are very welcome as there are still situations where people need help upgrading legacy systems. However, coverage for changes introduced before PHP 5.1 will remain patchy as sniffs for this are not actively being developed at this time.
 
@@ -41,7 +41,7 @@ As of version 8.0.0, the PHPCompatibility standard can also be used with PHP Cod
 
 Thank you
 ---------
-Thanks to all [contributors](https://github.com/wimg/PHPCompatibility/graphs/contributors) for their valuable contributions.
+Thanks to all [contributors](https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors) for their valuable contributions.
 
 [![WPEngine](https://cu.be/img/wpengine.png)](https://wpengine.com)
 
@@ -52,7 +52,7 @@ Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sni
 --------
 As of version 8.0.0, the installation instructions have changed. For most users, this means they will have to run a one-time-only extra command, make a change to their Composer configuration and/or adjust their build scripts.
 
-Please read the changelog for version [8.0.0](https://github.com/wimg/PHPCompatibility/releases/tag/8.0.0) carefully before upgrading.
+Please read the changelog for version [8.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/8.0.0) carefully before upgrading.
 
 
 Installation in a Composer project (method 1)
@@ -61,7 +61,7 @@ Installation in a Composer project (method 1)
 * Add the following lines to the `require-dev` section of your `composer.json` file.
     ```json
     "require-dev": {
-        "wimg/php-compatibility": "*"
+        "phpcompatibility/php-compatibility": "*"
     },
     "prefer-stable" : true
     ```
@@ -69,8 +69,8 @@ Installation in a Composer project (method 1)
     - If PHPCompatibility is the **_only_** external PHP CodeSniffer standard you use, you can add the following to your `composer.json` file to automatically run the necessary command:
         ```json
         "scripts": {
-            "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wimg/php-compatibility",
-            "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wimg/php-compatibility"
+            "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+            "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
         }
         ```
     - Alternatively - and **_strongly recommended_** if you use more than one external PHP CodeSniffer standard - you can use any of the following Composer plugins to handle this for you.
@@ -82,7 +82,7 @@ Installation in a Composer project (method 1)
        * [SimplyAdmire/ComposerPlugins](https://github.com/SimplyAdmire/ComposerPlugins). This plugin *might* still work, but appears to be abandoned.
     - As a last alternative in case you use a custom ruleset, _and only if you use PHP CodeSniffer version 2.6.0 or higher_, you can tell PHP CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
         ```xml
-        <config name="installed_paths" value="vendor/wimg/php-compatibility" />
+        <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
         ```
 * Run `composer update --lock` to install both PHP CodeSniffer, the PHPCompatibility coding standard and - optionally - the Composer plugin.
 * Verify that the PHPCompatibility standard is registered correctly by running `./vendor/bin/phpcs -i` on the command line. PHPCompatibility should be listed as one of the available standards.
@@ -99,7 +99,7 @@ Installation via a git check-out to an arbitrary directory (method 2)
     PHP CodeSniffer offers a variety of installation methods to suit your work-flow: Composer, [PEAR](http://pear.php.net/PHP_CodeSniffer), a Phar file, zipped/tarred release archives or checking the repository out using Git.
 
     **Pro-tip:** Register the path to PHPCS in your system `$PATH` environment variable to make the `phpcs` command available from anywhere in your file system.
-* Download the [latest PHPCompatibility release](https://github.com/wimg/PHPCompatibility/releases) and unzip/untar it into an arbitrary directory.
+* Download the [latest PHPCompatibility release](https://github.com/PHPCompatibility/PHPCompatibility/releases) and unzip/untar it into an arbitrary directory.
 
     You can also choose to clone the repository using git to easily update your install regularly.
 * Add the path to the directory in which you placed your copy of the PHPCompatibility repo to the PHP CodeSniffer configuration using the below command from the command line:
@@ -139,7 +139,7 @@ More information can be found on Wim Godden's [blog](http://techblog.wimgodden.b
 
 ### Using a framework/CMS specific ruleset
 
-As of PHPCompatibility 8.2.0, this library ships with a [limited set of framework/CMS specific ruleset(s)](https://github.com/wimg/PHPCompatibility/tree/master/framework-rulesets).
+As of PHPCompatibility 8.2.0, this library ships with a [limited set of framework/CMS specific ruleset(s)](https://github.com/PHPCompatibility/PHPCompatibility/tree/master/framework-rulesets).
 
 Framework/CMS specific ruleset do not set the minimum PHP version for your project, so you will still need to pass a `testVersion` to get the most accurate results.
 
@@ -151,7 +151,7 @@ Framework/CMS specific ruleset do not set the minimum PHP version for your proje
 * To use a framework/CMS specific ruleset from within a custom ruleset - more about those below -, it is **strongly** recommended to use a Composer-based install so the path to PHPCompatibility will be predictable and the same for all users of the custom ruleset.
     ```xml
     <config name="testVersion" value="5.5-"/>
-    <rule ref="./vendor/wimg/php-compatibility/framework-rulesets/framework-name.xml"/>
+    <rule ref="./vendor/phpcompatibility/php-compatibility/framework-rulesets/framework-name.xml"/>
     ```
     The path should be an absolute path or the path relative to the final ruleset in the root of a project.
 

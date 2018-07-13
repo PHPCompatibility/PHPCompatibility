@@ -52,7 +52,7 @@ bcd(10, true, MYCONST); // OK: does not contain variables.
 
 cde((&$abc)); // OK: outside of the scope of this sniff - will result in parse error.
 
-// Issue https://github.com/wimg/PHPCompatibility/issues/68
+// Issue https://github.com/PHPCompatibility/PHPCompatibility/issues/68
 $attr  = $this->doExtraAttributes("h$level", $dummy =& $matches[3]); // OK: assign by reference.
 if (!is_null($done = &$this->cacheKey('autoPurgeCache'))) {} // OK: assign by reference.
 def( $dummy .= &$b );
@@ -74,7 +74,7 @@ def( &$dummy .= $b ); // Bad: pass by reference.
 efg( true == &$b );
 efg( true === &$b );
 
-// Issue https://github.com/wimg/PHPCompatibility/issues/39
+// Issue https://github.com/PHPCompatibility/PHPCompatibility/issues/39
 foo(Bar::FOO & $a);
 $foo = self::FLAG_GETDATA & $flags ? 'SQL_CALC_FOUND_ROWS' : '';
 $handler->throwAt(E_ALL & $handler->thrownErrors, true);

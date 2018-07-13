@@ -127,7 +127,7 @@ If you use Composer, we recommend you use a Composer plugin to sort this out. In
 composer remove --dev simplyadmire/composer-plugins
 composer require --dev dealerdirect/phpcodesniffer-composer-installer:^0.4.3
 composer install
-composer update wimg/php-compatibility squizlabs/php_codesniffer
+composer update phpcompatibility/php-compatibility squizlabs/php_codesniffer
 vendor/bin/phpcs -i
 ```
 If all went well, you should now see PHPCompatibility listed again in the list of installed standards.
@@ -139,7 +139,7 @@ If all went well, you should now see PHPCompatibility listed again in the list o
 
     Install type | Old path | New path
     ------------ | -------- | ---------
-    Composer     | `vendor/wimg` | `vendor/wimg/php-compatibility`
+    Composer     | `vendor/wimg` | `vendor/phpcompatibility/php-compatibility`
     Unzipped release to arbitrary directory | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
     Git checkout | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
     PEAR         | If the old install instruction has been followed, not registered. | `path/to/PHPCompatibility`
@@ -161,7 +161,7 @@ If all went well, you should now see PHPCompatibility listed again in the list o
 
     * If you use a custom ruleset in combination with PHPCS 2.6.0 or higher, you can pass the value to PHPCS from your custom ruleset:
         ```xml
-        <config name="installed_paths" value="vendor/wimg/php-compatibility" />
+        <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
         ```
 4. Run `phpcs -i` to verify that the PHPCompatibility standard is now listed again in the list of installed standards.
 
