@@ -49,23 +49,23 @@ Property example
 FOOBAR;
 }
 
-
-/*
- * Test against false positives.
- */
-// Not a class constant.
-const ONE = <<<FOOBAR
-Property example
+const ONE = <<<"FOOBAR"
+Global constant example
 FOOBAR;
 
+// This is a parse error no matter what, but that's not our concern.
+// (`const` can only be used in class scope or global scope).
 class SomeThing {
-    function scoped {
+    function scoped() {
         const ONE = <<<FOOBAR
 Property example
 FOOBAR;
     }
 }
 
+/*
+ * Test against false positives.
+ */
 // Pre-PHP 5.3 ordinary variable initialization with heredoc was already ok.
 $var = <<<FOOBAR
 Constant example
@@ -80,3 +80,48 @@ $array = array( 'key' => <<<FOOBAR
 Constant example
 FOOBAR
 );
+
+/*
+ * Test handling of multi-declarations.
+ */
+static $a = <<<EOD
+Multi-declaration in static variable.
+EOD
+    , $b = <<<"EOT"
+Multi-declaration in static variable.
+EOT;
+
+// Class properties/constants.
+class foo
+{
+    const BAR = <<<FOOBAR
+Multi-declaration class constant
+FOOBAR
+    , FOO = <<<FOOBAR
+Multi-declaration class constant
+FOOBAR;
+
+    private $baz = <<<"FOOBAR"
+Multi-declaration Property example
+FOOBAR
+    , $foy = <<<FOOBAR
+Multi-declaration Property example
+FOOBAR;
+}
+
+/*
+ * Test handling of function parameter default values.
+ */
+function heredocDefault(string $a = <<<EOD
+This is a function default value.
+EOD
+) {}
+
+function heredocDefaults(
+    $a = <<<EOD
+This is a function default value.
+EOD
+    , $b = <<<"EOT"
+This is a function default value.
+EOT
+) {}
