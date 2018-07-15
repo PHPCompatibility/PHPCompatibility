@@ -31,7 +31,9 @@ Please make sure that your pull request contains unit tests covering what's bein
 
 ### Framework/CMS specific rulesets
 
-As of PHPCompatibility 8.2.0, framework/CMS specific rulesets will be accepted to be hosted from within this repository.
+Since mid 2018, framework/CMS specific rulesets will be accepted to be hosted in separate repositories in the PHPCompatibility organisation. If you are interested in adding a ruleset for a framework/CMS, you can request a repository for it by [opening an issue](https://github.com/PHPCompatibility/PHPCompatibility/issues/new) in this repo.
+
+#### Guidelines for framework/CMS specific rulesets
 
 A framework/CMS specific ruleset will generally contain `<exclude ...>` directives for backfills/polyfills provided by the framework/CMS to prevent false positives.
 
@@ -44,12 +46,10 @@ The communities behind these PHP frameworks/CMSes are strongly encouraged to mai
 **Note:**
 * It is recommended to include a link to the framework/CMS source file where the backfill is declared when sending in a pull request adding a new backfill for one of these rulesets.
 * If the backfills provided by different major versions of frameworks/CMSes are signficantly different, separate rulesets for the relevant major versions of frameworks/CMSes will be accepted.
-* Framework/CMS specific rulesets should always contain the `<autoload>` directive as included in the [PHPCompatibility ruleset](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/PHPCompatibility/ruleset.xml#L5).
 * Framework/CMS specific ruleset should **_not_** contain a `<config name="testVersion" value="..."/>` directive.
 
     While a framework/CMS may have a certain minimum PHP version, projects based on the framework/CMS might have a different (higher) minimum PHP version.
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
-* When adding a new framework/CMS specific ruleset, please make sure the file is added to the [Travis script](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/.travis.yml#L116) to verify the XML consistency.
 
 
 Running the Sniff Tests
