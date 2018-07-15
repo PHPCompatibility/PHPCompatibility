@@ -30,7 +30,7 @@ Requirements
 * PHP 5.3+ for use with PHP CodeSniffer 1.x and 2.x.
 * PHP 5.4+ for use with PHP CodeSniffer 3.x.
 
-PHP CodeSniffer: 1.5.6, 2.2.0+ or 3.0.2+.
+PHP CodeSniffer: 1.5.6, 2.3.0+ or 3.0.2+.
 
 The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.4 or higher.
 
@@ -61,7 +61,6 @@ Installation in a Composer project (method 1)
 * Add the following lines to the `require-dev` section of your `composer.json` file.
     ```json
     "require-dev": {
-        "squizlabs/php_codesniffer": "^2.2 || ^3.0.2",
         "wimg/php-compatibility": "*"
     },
     "prefer-stable" : true
