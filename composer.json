@@ -1,5 +1,5 @@
 {
-  "name" : "wimg/php-compatibility",
+  "name" : "phpcompatibility/php-compatibility",
   "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
   "type" : "phpcodesniffer-standard",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
@@ -10,8 +10,8 @@
     "role" : "lead"
   } ],
   "support" : {
-    "issues" : "https://github.com/wimg/PHPCompatibility/issues",
-    "source" : "https://github.com/wimg/PHPCompatibility"
+    "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
+    "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
   },
   "require" : {
     "php" : ">=5.3",
