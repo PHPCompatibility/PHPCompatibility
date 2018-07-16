@@ -88,6 +88,37 @@ class PHPCSHelper
 
 
     /**
+     * Get the value of a single PHPCS config key.
+     *
+     * This config key can be set in the `CodeSniffer.conf` file, on the
+     * command-line or in a ruleset.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param string                $key       The name of the config value.
+     *
+     * @return string|null
+     */
+    public static function getCommandLineData($phpcsFile, $key)
+    {
+        if (method_exists('\PHP_CodeSniffer\Config', 'getAllConfigData')) {
+            // PHPCS 3.x.
+            $config = $phpcsFile->config;
+            if (isset($config->{$key})) {
+                return $config->{$key};
+            }
+        } else {
+            // PHPCS 1.x & 2.x.
+            $config = $phpcsFile->phpcs->cli->getCommandLineValues();
+            if (isset($config[$key])) {
+                return $config[$key];
+            }
+        }
+
+        return null;
+    }
+
+
+    /**
      * Returns the position of the last non-whitespace token in a statement.
      *
      * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`

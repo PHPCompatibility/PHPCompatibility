@@ -38,6 +38,8 @@ PHP CodeSniffer 1.5.6 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 o
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
 
+Note: support for PHP CodeSniffer < 2.3.0 will be dropped in the near future.
+
 
 Thank you
 ---------
