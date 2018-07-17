@@ -39,11 +39,7 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
      */
     public function __construct()
     {
-        $scopeTokens = array(T_CLASS, T_INTERFACE);
-        if (defined('T_TRAIT')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-            $scopeTokens[] = T_TRAIT;
-        }
+        $scopeTokens = array(T_CLASS, T_INTERFACE, T_TRAIT);
         if (defined('T_ANON_CLASS')) {
             // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
             $scopeTokens[] = T_ANON_CLASS;

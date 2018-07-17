@@ -35,14 +35,16 @@ class NewGeneratorReturnSniff extends Sniff
      */
     public function register()
     {
-        $targets = array();
+        $targets = array(
+            T_YIELD,
+        );
 
         /*
          * The `yield` keyword was introduced in PHP 5.5 with the token T_YIELD.
          * The `yield from` keyword was introduced in PHP 7.0 and tokenizes as
          * "T_YIELD T_WHITESPACE T_STRING".
          *
-         * Pre-PHPCS 3.1.0, the T_YIELD token was not back-filled for PHP < 5.5.
+         * Pre-PHPCS 3.1.0, the T_YIELD token was not correctly back-filled for PHP < 5.5.
          * Also, as of PHPCS 3.1.0, the PHPCS tokenizer adds a new T_YIELD_FROM
          * token.
          *
@@ -54,11 +56,6 @@ class NewGeneratorReturnSniff extends Sniff
             && version_compare(PHPCSHelper::getVersion(), '3.1.0', '<') === true
         ) {
             $targets[] = T_STRING;
-        }
-
-        if (defined('T_YIELD')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_yieldFound
-            $targets[] = T_YIELD;
         }
 
         if (defined('T_YIELD_FROM')) {

@@ -70,6 +70,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
         T_DIR                      => T_DIR,
         T_FUNC_C                   => T_FUNC_C,
         T_CLASS_C                  => T_CLASS_C,
+        T_TRAIT_C                  => T_TRAIT_C,
         T_METHOD_C                 => T_METHOD_C,
         T_NS_C                     => T_NS_C,
 
@@ -110,16 +111,6 @@ class NewConstantScalarExpressionsSniff extends Sniff
      */
     public function setProperties()
     {
-        /*
-         * Not available on PHPCS 1.x icw PHP 5.3.
-         * Not a problem for recognition as when the token is not available
-         * __TRAIT__ will be tokenized as T_STRING which will pass.
-         */
-        if (defined('T_TRAIT_C') === true) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_trait_cFound
-            $this->safeOperands[T_TRAIT_C] = T_TRAIT_C;
-        }
-
         $emptyTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $heredocTokens = \PHP_CodeSniffer_Tokens::$heredocTokens;
         if (version_compare(PHPCSHelper::getVersion(), '2.0', '<')) {
