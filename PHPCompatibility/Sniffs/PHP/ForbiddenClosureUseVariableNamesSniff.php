@@ -98,7 +98,7 @@ class ForbiddenClosureUseVariableNamesSniff extends Sniff
                 continue;
             }
 
-            if (in_array($variableName, $this->superglobals, true) === true) {
+            if (isset($this->superglobals[$variableName]) === true) {
                 $phpcsFile->addError($errorMsg, $i, 'FoundSuperglobal', array($variableName));
                 continue;
             }

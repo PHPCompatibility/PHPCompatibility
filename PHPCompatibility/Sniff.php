@@ -33,15 +33,15 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      * @var array
      */
     protected $superglobals = array(
-        '$GLOBALS',
-        '$_SERVER',
-        '$_GET',
-        '$_POST',
-        '$_FILES',
-        '$_COOKIE',
-        '$_SESSION',
-        '$_REQUEST',
-        '$_ENV',
+        '$GLOBALS'  => true,
+        '$_SERVER'  => true,
+        '$_GET'     => true,
+        '$_POST'    => true,
+        '$_FILES'   => true,
+        '$_COOKIE'  => true,
+        '$_SESSION' => true,
+        '$_REQUEST' => true,
+        '$_ENV'     => true,
     );
 
     /**

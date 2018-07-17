@@ -66,7 +66,7 @@ class ParameterShadowSuperGlobalsSniff extends Sniff
         }
 
         foreach ($parameters as $param) {
-            if (in_array($param['name'], $this->superglobals, true)) {
+            if (isset($this->superglobals[$param['name']]) === true) {
                 $error     = 'Parameter shadowing super global (%s) causes fatal error since PHP 5.4';
                 $errorCode = $this->stringToErrorCode(substr($param['name'], 1)) . 'Found';
                 $data      = array($param['name']);

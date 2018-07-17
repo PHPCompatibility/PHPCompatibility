@@ -66,15 +66,15 @@ class NewFunctionArrayDereferencingSniff extends Sniff
         $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
             $ignore = array(
-                T_FUNCTION,
-                T_CONST,
-                T_USE,
-                T_NEW,
-                T_CLASS,
-                T_INTERFACE,
+                T_FUNCTION  => true,
+                T_CONST     => true,
+                T_USE       => true,
+                T_NEW       => true,
+                T_CLASS     => true,
+                T_INTERFACE => true,
             );
 
-            if (in_array($tokens[$prevToken]['code'], $ignore, true) === true) {
+            if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
                 // Not a call to a PHP function or method.
                 return;
             }
