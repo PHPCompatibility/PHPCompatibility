@@ -182,6 +182,9 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
             array('session.sid_length', '7.1', array(305, 306), '7.0'),
             array('session.sid_bits_per_character', '7.1', array(308, 309), '7.0'),
+
+            array('syslog.facility', '7.3', array(311, 312), '7.2'),
+            array('syslog.ident', '7.3', array(314, 315), '7.2'),
         );
     }
 
