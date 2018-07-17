@@ -103,13 +103,6 @@ class ForbiddenNamesSniff extends Sniff
     );
 
     /**
-     * Whether PHPCS 1.x is used or not.
-     *
-     * @var bool
-     */
-    protected $isLowPHPCS = false;
-
-    /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
      * @var array
@@ -141,8 +134,6 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
-
         $this->allowedModifiers          = \PHP_CodeSniffer_Tokens::$scopeModifiers;
         $this->allowedModifiers[T_FINAL] = T_FINAL;
 
@@ -219,10 +210,6 @@ class ForbiddenNamesSniff extends Sniff
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
-                // Prevent duplicate messages: `const` is T_CONST in PHPCS 1.x and T_STRING in PHPCS 2.x.
-                if ($this->isLowPHPCS === true) {
-                    return;
-                }
                 $nextNonEmpty = $maybeUseNext;
             }
         }
