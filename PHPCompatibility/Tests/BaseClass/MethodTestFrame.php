@@ -85,27 +85,14 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
             $this->phpcsFile->process();
 
         } else {
-            $phpcs = new \PHP_CodeSniffer();
-
-            if (version_compare(PHPCSHelper::getVersion(), '1.99.99', '>')) {
-                // PHPCS 2.x.
-                $this->phpcsFile = new \PHP_CodeSniffer_File(
-                    $filename,
-                    array(),
-                    array(),
-                    $phpcs
-                );
-            } else {
-                // PHPCS 1.x.
-                $this->phpcsFile = new \PHP_CodeSniffer_File(
-                    $filename,
-                    array(),
-                    array(),
-                    array(),
-                    array(),
-                    $phpcs
-                );
-            }
+            // PHPCS 2.x.
+            $phpcs           = new \PHP_CodeSniffer();
+            $this->phpcsFile = new \PHP_CodeSniffer_File(
+                $filename,
+                array(),
+                array(),
+                $phpcs
+            );
 
             $this->phpcsFile->start($contents);
         }

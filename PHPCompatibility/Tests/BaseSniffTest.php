@@ -26,7 +26,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
     /**
      * The PHP_CodeSniffer object used for testing.
      *
-     * Used by PHPCS 1.x and 2.x.
+     * Used by PHPCS 2.x.
      *
      * @var \PHP_CodeSniffer
      */
@@ -59,24 +59,16 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
     {
         if (class_exists('\PHP_CodeSniffer') === true) {
             /*
-             * PHPCS 1.x and 2.x.
+             * PHPCS 2.x.
              */
             if (self::$phpcs === null) {
                 self::$phpcs = new \PHP_CodeSniffer();
             }
 
-            if (method_exists('\PHP_CodeSniffer_CLI', 'setCommandLineValues')) {
-                // For PHPCS 2.x.
-                self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
-            }
+            self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
 
             // Restrict the sniffing of the test case files to the particular sniff being tested.
-            if (method_exists('\PHP_CodeSniffer', 'initStandard')) {
-                self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
-            } else {
-                // PHPCS 1.x.
-                self::$phpcs->process(array(), dirname(__DIR__) . '/', array($this->getSniffCode()));
-            }
+            self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
 
             self::$phpcs->setIgnorePatterns(array());
         }
@@ -151,12 +143,9 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
 
                 self::$sniffFiles[$filename][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
                 self::$sniffFiles[$filename][$targetPhpVersion]->process();
-            } elseif (method_exists('\PHP_CodeSniffer', 'initStandard')) {
+            } else {
                 // PHPCS 2.x.
                 self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
-            } else {
-                // PHPCS 1.x - Sniff code restrictions have to be passed via the function call.
-                self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile, null, array($this->getSniffCode()));
             }
 
         } catch (\Exception $e) {

@@ -31,19 +31,12 @@ class DiscouragedSwitchContinueSniffTest extends BaseSniffTest
      *
      * @dataProvider dataDiscouragedSwitchContinue
      *
-     * @param int  $line           The line number.
-     * @param bool $skipOnLowPHPCS Whether this test needs to be skipped on low PHPCS versions.
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testDiscouragedSwitchContinue($line, $skipOnLowPHPCS = false)
+    public function testDiscouragedSwitchContinue($line)
     {
-        // When using PHPCS 2.2.0 or lower, control structure conditions are not available.
-        if ($skipOnLowPHPCS === true && version_compare(PHPCSHelper::getVersion(), '2.3.0', '<')) {
-            $this->markTestSkipped('Control structure conditions are not reliable in PHPCS < 2.3.0');
-            return;
-        }
-
         $file = $this->sniffFile(self::TEST_FILE, '7.3');
         $this->assertWarning($file, $line, "Targeting a 'switch' control structure with a 'continue' statement is strongly discouraged and will throw a warning as of PHP 7.3.");
     }
@@ -70,10 +63,10 @@ class DiscouragedSwitchContinueSniffTest extends BaseSniffTest
             array(95),
             array(100),
             array(102),
-            array(114, true),
-            array(120, true),
-            array(149, true),
-            array(174, true),
+            array(114),
+            array(120),
+            array(149),
+            array(174),
 
             /*
             @todo: False negatives. Unscoped control structure within case.
