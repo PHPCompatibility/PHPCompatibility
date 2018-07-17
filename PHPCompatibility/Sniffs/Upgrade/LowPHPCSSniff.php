@@ -17,8 +17,8 @@ use PHPCompatibility\PHPCSHelper;
  *
  * Add a notification for users of low PHPCS versions.
  *
- * Originally PHPCompatibility supported PHPCS 1.5.x, 2.x, 3.x.
- * Support for PHPCS <2.3.0 will be dropped in PHPCompatibility 9.0.0.
+ * Originally PHPCompatibility supported PHPCS 1.5.x, 2.x and since PHPCompatibility 8.0.0, 3.x.
+ * Support for PHPCS < 2.3.0 has been dropped in PHPCompatibility 9.0.0.
  *
  * The standard will - up to a point - still work for users of lower
  * PHPCS versions, but will give less accurate results and may throw
@@ -40,7 +40,7 @@ class LowPHPCSSniff extends Sniff
      *
      * @var string
      */
-    protected $minSupportedVersion = '1.5.6';
+    protected $minSupportedVersion = '2.3.0';
 
     /**
      * The minimum recommended PHPCS version.
