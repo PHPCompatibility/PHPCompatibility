@@ -37,7 +37,7 @@ class PHPCSHelper
             // PHPCS 3.x.
             return \PHP_CodeSniffer\Config::VERSION;
         } else {
-            // PHPCS 1.x & 2.x.
+            // PHPCS 2.x.
             return \PHP_CodeSniffer::VERSION;
         }
     }
@@ -62,7 +62,7 @@ class PHPCSHelper
             // PHPCS 3.x.
             \PHP_CodeSniffer\Config::setConfigData($key, $value, $temp);
         } else {
-            // PHPCS 1.x & 2.x.
+            // PHPCS 2.x.
             \PHP_CodeSniffer::setConfigData($key, $value, $temp);
         }
     }
@@ -81,7 +81,7 @@ class PHPCSHelper
             // PHPCS 3.x.
             return \PHP_CodeSniffer\Config::getConfigData($key);
         } else {
-            // PHPCS 1.x & 2.x.
+            // PHPCS 2.x.
             return \PHP_CodeSniffer::getConfigData($key);
         }
     }
@@ -107,7 +107,7 @@ class PHPCSHelper
                 return $config->{$key};
             }
         } else {
-            // PHPCS 1.x & 2.x.
+            // PHPCS 2.x.
             $config = $phpcsFile->phpcs->cli->getCommandLineValues();
             if (isset($config[$key])) {
                 return $config[$key];

@@ -101,7 +101,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             T_INTERFACE,
             T_TRAIT,
             T_NAMESPACE,
-            T_STRING, // Compat for PHPCS 1.x and PHP < 5.3.
+            T_STRING, // Compat for PHPCS < 2.4.0 and PHP < 5.3.
         );
 
         return $targets;

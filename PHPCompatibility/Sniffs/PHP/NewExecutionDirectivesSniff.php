@@ -94,7 +94,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
                 return;
             }
 
-            // Deal with PHPCS 1.x which does not set the parenthesis properly for declare statements.
+            // Deal with PHPCS 2.3.0-2.3.3 which do not yet set the parenthesis properly for declare statements.
             $openParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
             if ($openParenthesis === false || isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
                 return;

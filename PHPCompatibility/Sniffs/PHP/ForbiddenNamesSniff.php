@@ -327,7 +327,6 @@ class ForbiddenNamesSniff extends Sniff
         /*
          * Special case for PHP versions where the target is not yet identified as
          * its own token, but presents as T_STRING.
-         * - namespace keyword in PHP < 5.3
          * - trait keyword in PHP < 5.4
          */
         if (version_compare(PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {

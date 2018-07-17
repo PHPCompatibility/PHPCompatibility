@@ -41,12 +41,12 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
             'description' => 'power operator (**)',
-        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MULTIPLY.
+        ), // Identified in PHP < 5.6 icw PHPCS < 2.4.0 as T_MULTIPLY + T_MULTIPLY.
         'T_POW_EQUAL' => array(
             '5.5' => false,
             '5.6' => true,
             'description' => 'power assignment operator (**=)',
-        ), // Identified in PHPCS 1.5 as T_MULTIPLY + T_MUL_EQUAL.
+        ), // Identified in PHP < 5.6 icw PHPCS < 2.6.0 as T_MULTIPLY + T_MUL_EQUAL.
         'T_ELLIPSIS' => array(
             '5.5' => false,
             '5.6' => true,
@@ -56,12 +56,12 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
             'description' => 'spaceship operator (<=>)',
-        ), // Identified in PHPCS 1.5 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN.
+        ), // Identified in PHP < 7.0 icw PHPCS < 2.5.1 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN.
         'T_COALESCE' => array(
             '5.6' => false,
             '7.0' => true,
             'description' => 'null coalescing operator (??)',
-        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN.
+        ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
         /*
          * Was slated for 7.2, but still not implemented. PHPCS however does already tokenize it.
          * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
@@ -70,12 +70,12 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
             'description' => 'null coalesce equal operator (??=)',
-        ), // Identified in PHPCS 1.5 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and pre-PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
+        ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
     );
 
 
     /**
-     * A list of new language constructs which are not recognized in PHPCS 1.x.
+     * A list of new language constructs which are not recognized in older PHPCS versions.
      *
      * The array lists an alternative token to listen for.
      *
@@ -90,7 +90,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
     );
 
     /**
-     * Translation table for PHPCS 1.x and older 2.x tokens.
+     * Token translation table for older PHPCS versions.
      *
      * The 'before' index lists the token which would have to be directly before the
      * token found for it to be one of the new language constructs.
