@@ -64,12 +64,6 @@ class DiscouragedSwitchContinueSniff extends Sniff
         \T_CLOSE_PARENTHESIS => \T_CLOSE_PARENTHESIS,
     );
 
-    /**
-     * PHPCS cross-version compatible version of the Tokens::$emptyTokens array.
-     *
-     * @var array
-     */
-    private $emptyTokens = array();
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -78,14 +72,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
      */
     public function register()
     {
-        $arithmeticTokens  = \PHP_CodeSniffer_Tokens::$arithmeticTokens;
-        $this->emptyTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
-        if (version_compare(PHPCSHelper::getVersion(), '2.0', '<')) {
-            $arithmeticTokens  = array_combine($arithmeticTokens, $arithmeticTokens);
-            $this->emptyTokens = array_combine($this->emptyTokens, $this->emptyTokens);
-        }
-
-        $this->acceptedLevelTokens = $this->acceptedLevelTokens + $arithmeticTokens + $this->emptyTokens;
+        $this->acceptedLevelTokens += \PHP_CodeSniffer_Tokens::$arithmeticTokens;
+        $this->acceptedLevelTokens += \PHP_CodeSniffer_Tokens::$emptyTokens;
 
         return array(\T_SWITCH);
     }
@@ -178,7 +166,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
                         continue 2;
                     }
 
-                    if (isset($this->emptyTokens[$tokens[$i]['code']]) === true) {
+                    if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                         continue;
                     }
 

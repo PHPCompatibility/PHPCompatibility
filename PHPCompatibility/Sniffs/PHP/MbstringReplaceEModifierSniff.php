@@ -89,7 +89,7 @@ class MbstringReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
         for ($i = $stringToken; $i <= $optionsParam['end']; $i++) {
-            if (in_array($tokens[$i]['code'], \PHP_CodeSniffer_Tokens::$stringTokens, true) === false) {
+            if (isset(\PHP_CodeSniffer_Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
 

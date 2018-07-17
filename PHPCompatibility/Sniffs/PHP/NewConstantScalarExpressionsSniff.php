@@ -111,15 +111,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
      */
     public function setProperties()
     {
-        $emptyTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
-        $heredocTokens = \PHP_CodeSniffer_Tokens::$heredocTokens;
-        if (version_compare(PHPCSHelper::getVersion(), '2.0', '<')) {
-            // PHPCS 1.x compat.
-            $emptyTokens   = array_combine($emptyTokens, $emptyTokens);
-            $heredocTokens = array_combine($heredocTokens, $heredocTokens);
-        }
-
-        $this->safeOperands = $this->safeOperands + $heredocTokens + $emptyTokens;
+        $this->safeOperands += \PHP_CodeSniffer_Tokens::$heredocTokens;
+        $this->safeOperands += \PHP_CodeSniffer_Tokens::$emptyTokens;
     }
 
 

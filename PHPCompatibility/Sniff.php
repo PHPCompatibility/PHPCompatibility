@@ -1029,13 +1029,11 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $emptyTokens = array_flip(\PHP_CodeSniffer_Tokens::$emptyTokens); // PHPCS 1.x compat.
-
         $returnTypeHint = '';
         for ($i = ($colon + 1); $i <= $stackPtr; $i++) {
             // As of PHPCS 3.3.0+, all tokens are tokenized as "normal", so T_CALLABLE, T_SELF etc are
             // all possible, just exclude anything that's regarded as empty and the nullable indicator.
-            if (isset($emptyTokens[$tokens[$i]['code']])) {
+            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']])) {
                 continue;
             }
 
@@ -1480,8 +1478,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     protected function isNumber(\PHP_CodeSniffer_File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $stringTokens  = array_flip(\PHP_CodeSniffer_Tokens::$heredocTokens); // Flipping for PHPCS 1.x compat.
-        $stringTokens += array_flip(\PHP_CodeSniffer_Tokens::$stringTokens); // Flipping for PHPCS 1.x compat.
+        $stringTokens  = \PHP_CodeSniffer_Tokens::$heredocTokens + \PHP_CodeSniffer_Tokens::$stringTokens;
 
         $validTokens            = array();
         $validTokens[T_LNUMBER] = true;

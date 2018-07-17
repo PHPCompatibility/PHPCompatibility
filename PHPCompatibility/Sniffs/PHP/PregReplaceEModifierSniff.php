@@ -145,7 +145,7 @@ class PregReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
          */
         $regex = '';
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
-            if (in_array($tokens[$i]['code'], \PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
+            if (isset(\PHP_CodeSniffer_Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
                 $content = $this->stripQuotes($tokens[$i]['content']);
                 if ($tokens[$i]['code'] === T_DOUBLE_QUOTED_STRING) {
                     $content = $this->stripVariables($content);

@@ -143,10 +143,7 @@ class ForbiddenNamesSniff extends Sniff
     {
         $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
 
-        $this->allowedModifiers          = array_combine(
-            \PHP_CodeSniffer_Tokens::$scopeModifiers,
-            \PHP_CodeSniffer_Tokens::$scopeModifiers
-        );
+        $this->allowedModifiers          = \PHP_CodeSniffer_Tokens::$scopeModifiers;
         $this->allowedModifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;

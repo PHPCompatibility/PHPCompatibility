@@ -48,14 +48,6 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
         // Call the grand-parent constructor directly.
         \PHP_CodeSniffer_Standards_AbstractScopeSniff::__construct($scopeTokens, array(T_FUNCTION), true);
 
-        $phpcsVersion = PHPCSHelper::getVersion();
-
-        if (version_compare($phpcsVersion, '2.0.0', '<') === true) {
-            $this->magicMethods            = array_flip($this->magicMethods);
-            $this->methodsDoubleUnderscore = array_flip($this->methodsDoubleUnderscore);
-            $this->magicFunctions          = array_flip($this->magicFunctions);
-        }
-
         // Make sure debuginfo is included in the array. Upstream only includes it since 2.5.1.
         $this->magicMethods['debuginfo'] = true;
     }

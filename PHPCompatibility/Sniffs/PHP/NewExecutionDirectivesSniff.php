@@ -264,7 +264,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if (in_array($tokens[$stackPtr]['code'], \PHP_CodeSniffer_Tokens::$stringTokens, true) === true) {
+        if (isset(\PHP_CodeSniffer_Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
             $value = $this->stripQuotes($value);
         }
 
