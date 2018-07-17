@@ -608,53 +608,6 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
 
     /**
-     * Verify whether a token is within a scoped use statement.
-     *
-     * PHPCS cross-version compatibility method.
-     *
-     * In PHPCS 1.x no conditions are set for a scoped use statement.
-     * This method works around that limitation.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
-     *
-     * @return bool True if within use scope, false otherwise.
-     */
-    public function inUseScope(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        static $isLowPHPCS, $ignoreTokens;
-
-        if (isset($isLowPHPCS) === false) {
-            $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.3.0', '<');
-        }
-        if (isset($ignoreTokens) === false) {
-            $ignoreTokens              = \PHP_CodeSniffer_Tokens::$emptyTokens;
-            $ignoreTokens[T_STRING]    = T_STRING;
-            $ignoreTokens[T_AS]        = T_AS;
-            $ignoreTokens[T_PUBLIC]    = T_PUBLIC;
-            $ignoreTokens[T_PROTECTED] = T_PROTECTED;
-            $ignoreTokens[T_PRIVATE]   = T_PRIVATE;
-        }
-
-        // PHPCS 2.0.
-        if ($isLowPHPCS === false) {
-            return $phpcsFile->hasCondition($stackPtr, T_USE);
-        } else {
-            // PHPCS 1.x.
-            $tokens         = $phpcsFile->getTokens();
-            $maybeCurlyOpen = $phpcsFile->findPrevious($ignoreTokens, ($stackPtr - 1), null, true);
-            if ($tokens[$maybeCurlyOpen]['code'] === T_OPEN_CURLY_BRACKET) {
-                $maybeUseStatement = $phpcsFile->findPrevious($ignoreTokens, ($maybeCurlyOpen - 1), null, true);
-                if ($tokens[$maybeUseStatement]['code'] === T_USE) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
-
-    /**
      * Returns the fully qualified class name for a new class instantiation.
      *
      * Returns an empty string if the class name could not be reliably inferred.

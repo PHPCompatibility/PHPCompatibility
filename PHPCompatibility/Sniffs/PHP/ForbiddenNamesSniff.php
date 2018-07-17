@@ -241,7 +241,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_AS'
             && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
-            && $this->inUseScope($phpcsFile, $stackPtr) === true
+            && $phpcsFile->hasCondition($stackPtr, T_USE) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {

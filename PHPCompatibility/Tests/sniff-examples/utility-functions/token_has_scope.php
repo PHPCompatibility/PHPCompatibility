@@ -61,25 +61,6 @@ namespace {
     }
 }
 
-/* Case U1 */
-use Baz;
-/* Case U2 */
-use Foobar as Baz;
-/* Case U3- */
-class Foobar { use /* Case U3 */ Baz }
-/* Case U4- */
-class Foobar { use /* Case U4 */ const Baz }
-/* Case U5- */
-class Foobar { use /* Case U5 */ function Baz }
-/* Case U6 */
-class Foobar { use BazTrait { oldfunction as Baz } }
-/* Case U7 */
-class Foobar { use BazTrait { oldfunction as public Baz } }
-/* Case U8 */
-class Foobar { use BazTrait { oldfunction as protected Baz } }
-/* Case U9 */
-class Foobar { use BazTrait { oldfunction as private Baz } }
-
 /* Case C5 */
 new class {
     function something() {}
