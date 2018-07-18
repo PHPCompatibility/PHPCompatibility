@@ -272,6 +272,25 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+
+        'PHPDBG_FILE' => array(
+            '7.3' => true,
+        ),
+        'PHPDBG_METHOD' => array(
+            '7.3' => true,
+        ),
+        'PHPDBG_LINENO' => array(
+            '7.3' => true,
+        ),
+        'PHPDBG_FUNC' => array(
+            '7.3' => true,
+        ),
+        'FILTER_FLAG_SCHEME_REQUIRED' => array(
+            '7.3' => false,
+        ),
+        'FILTER_FLAG_HOST_REQUIRED' => array(
+            '7.3' => false,
+        ),
     );
 
 

@@ -66,7 +66,8 @@ class RemovedConstantsSniffTest extends BaseSniffTest
     {
         return array(
             array('INTL_IDNA_VARIANT_2003', '7.2', array(16), '7.1'),
-
+            array('FILTER_FLAG_SCHEME_REQUIRED', '7.3', array(73), '7.2'),
+            array('FILTER_FLAG_HOST_REQUIRED', '7.3', array(74), '7.2'),
         );
     }
 
@@ -118,6 +119,10 @@ class RemovedConstantsSniffTest extends BaseSniffTest
             array('CURLCLOSEPOLICY_CALLBACK', '5.6', array(13), '5.5'),
             array('CURLCLOSEPOLICY_OLDEST', '5.6', array(14), '5.5'),
             array('PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT', '7.0', array(15), '5.6'),
+            array('PHPDBG_FILE', '7.3', array(69), '7.2'),
+            array('PHPDBG_METHOD', '7.3', array(70), '7.2'),
+            array('PHPDBG_LINENO', '7.3', array(71), '7.2'),
+            array('PHPDBG_FUNC', '7.3', array(72), '7.2'),
         );
     }
 
