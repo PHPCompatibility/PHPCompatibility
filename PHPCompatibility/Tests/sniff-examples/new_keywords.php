@@ -119,6 +119,8 @@ $response->header( 'Location', rest_url( sprintf( '%s/%s/%d', $this->namespace, 
 // yield used as a class constant.
 echo MyClass::yield;
 
+echo __dir__; // Magic constants are also case-insensitive.
+
 __halt_compiler();
 
 bla();
