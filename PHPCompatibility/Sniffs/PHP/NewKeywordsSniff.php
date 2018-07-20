@@ -166,7 +166,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
                 $tokens[] = constant($token);
             }
             if (isset($versions['content'])) {
-                $translate[$versions['content']] = $token;
+                $translate[strtolower($versions['content'])] = $token;
             }
         }
 
@@ -203,10 +203,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
         // Translate T_STRING token if necessary.
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {
-            $content = $tokens[$stackPtr]['content'];
-            if (strpos($content, '__') !== 0) {
-                $content = strtolower($tokens[$stackPtr]['content']);
-            }
+            $content = strtolower($tokens[$stackPtr]['content']);
 
             if (isset($this->translateContentToToken[$content]) === false) {
                 // Not one of the tokens we're looking for.

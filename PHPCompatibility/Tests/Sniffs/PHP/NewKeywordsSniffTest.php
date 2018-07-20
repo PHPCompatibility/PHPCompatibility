@@ -34,9 +34,11 @@ class NewKeywordsSniffTest extends BaseSniffTest
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.2');
         $this->assertError($file, 3, '__DIR__ magic constant is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, 122, '__DIR__ magic constant is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.3');
         $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, 122);
     }
 
     /**
@@ -381,7 +383,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
         if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
             $file = $this->sniffFile(self::TEST_FILE, '5.0');
-            $this->assertError($file, 122, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
+            $this->assertError($file, 124, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         } else {
             /*
              * Usage of `__halt_compiler()` cannot be tested on its own token as the compiler
@@ -390,7 +392,7 @@ class NewKeywordsSniffTest extends BaseSniffTest
              * not be reported.
              */
             $file = $this->sniffFile(self::TEST_FILE, '5.2');
-            $this->assertNoViolation($file, 125);
+            $this->assertNoViolation($file, 127);
         }
     }
 
