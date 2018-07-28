@@ -67,6 +67,16 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
             array('stream_socket_enable_crypto', 'crypto_type', '5.5', array(9), '5.6'),
             array('bcscale', 'scale', '7.2', array(12), '7.3'),
             array('getenv', 'varname', '7.0', array(15), '7.1'),
+            array('array_push', 'element to push', '7.2', array(18), '7.3'),
+            array('array_unshift', 'element to prepend', '7.2', array(21), '7.3'),
+            array('ftp_fget', 'mode', '7.2', array(24), '7.3'),
+            array('ftp_fput', 'mode', '7.2', array(25), '7.3'),
+            array('ftp_get', 'mode', '7.2', array(26), '7.3'),
+            array('ftp_nb_fget', 'mode', '7.2', array(27), '7.3'),
+            array('ftp_nb_fput', 'mode', '7.2', array(28), '7.3'),
+            array('ftp_nb_get', 'mode', '7.2', array(29), '7.3'),
+            array('ftp_nb_put', 'mode', '7.2', array(30), '7.3'),
+            array('ftp_put', 'mode', '7.2', array(31), '7.3'),
         );
     }
 
@@ -100,6 +110,10 @@ class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
             array(5),
             array(11),
             array(14),
+            array(17),
+            array(20),
+            array(23),
+            array(32),
         );
     }
 
