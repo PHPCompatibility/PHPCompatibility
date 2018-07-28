@@ -30,6 +30,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      * @var array
      */
     protected $removedFunctionParameters = array(
+        'define' => array(
+            2 => array(
+                'name' => 'case_insensitive',
+                '7.3'  => false, // Slated for removal in PHP 8.0.0.
+            ),
+        ),
         'gmmktime' => array(
             6 => array(
                 'name' => 'is_dst',

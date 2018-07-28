@@ -10,3 +10,6 @@ gmmktime(1, 2, 3, 4, 5, 6, true);
 
 ldap_first_attribute( $link_identifier, $result_entry_identifier, $ber_identifier );
 ldap_next_attribute( $link_identifier, $result_entry_identifier, $ber_identifier );
+
+define('CONSTANT', 'foo'); // OK.
+define( 'CONSTANT', 'foo', true, );

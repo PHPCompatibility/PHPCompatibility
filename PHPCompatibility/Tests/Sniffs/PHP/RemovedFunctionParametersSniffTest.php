@@ -122,6 +122,50 @@ class RemovedFunctionParametersSniffTest extends BaseSniffTest
 
 
     /**
+     * testDeprecatedParameter
+     *
+     * @dataProvider dataDeprecatedParameter
+     *
+     * @param string $functionName  Function name.
+     * @param string $parameterName Parameter name.
+     * @param string $deprecatedIn  The PHP version in which the parameter was deprecated.
+     * @param array  $lines         The line numbers in the test file which apply to this class.
+     * @param string $okVersion     A PHP version in which the parameter was ok to be used.
+     * @param string $testVersion   Optional. A PHP version in which to test for the deprecation message.
+     *
+     * @return void
+     */
+    public function testDeprecatedParameter($functionName, $parameterName, $deprecatedIn, $lines, $okVersion, $testVersion = null)
+    {
+        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($testVersion)) ? $testVersion : $deprecatedIn;
+        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn}";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedParameter()
+     *
+     * @return array
+     */
+    public function dataDeprecatedParameter()
+    {
+        return array(
+            array('define', 'case_insensitive', '7.3', array(15), '7.2'),
+        );
+    }
+
+
+    /**
      * testNoFalsePositives
      *
      * @dataProvider dataNoFalsePositives
@@ -148,6 +192,7 @@ class RemovedFunctionParametersSniffTest extends BaseSniffTest
         return array(
             array(4),
             array(5),
+            array(14),
         );
     }
 
