@@ -100,7 +100,7 @@ class PHPCSHelper
      */
     public static function getCommandLineData($phpcsFile, $key)
     {
-        if (method_exists('\PHP_CodeSniffer\Config', 'getAllConfigData')) {
+        if (class_exists('\PHP_CodeSniffer\Config')) {
             // PHPCS 3.x.
             $config = $phpcsFile->config;
             if (isset($config->{$key})) {
