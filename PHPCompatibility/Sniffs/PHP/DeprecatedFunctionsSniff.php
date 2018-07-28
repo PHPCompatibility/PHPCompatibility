@@ -814,6 +814,11 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.2' => false,
             'alternative' => 'exif_read_data()',
         ),
+
+        'image2wbmp' => array(
+            '7.3' => false,
+            'alternative' => 'imagewbmp()',
+        ),
     );
 
 

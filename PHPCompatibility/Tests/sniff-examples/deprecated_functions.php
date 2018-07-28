@@ -147,3 +147,6 @@ create_function();
 while (list($key, $val) = each($array)) {}
 gmp_random(2);
 read_exif_data();
+
+// PHP 7.3.
+image2wbmp();
