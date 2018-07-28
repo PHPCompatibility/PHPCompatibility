@@ -56,7 +56,7 @@ class NewMagicMethodsSniffTest extends BaseSniffTest
      * - one covering classes and interfaces
      * - one covering traits
      *
-     * This is to avoid test failing because PHPCS 1.x gets confused about the scope
+     * This is to avoid test failing because PHPCS < 2.4.0 gets confused about the scope
      * openers/closers when run on PHP 5.3 or lower.
      * In a 'normal' situation you won't often find classes, interfaces and traits all
      * mixed in one file anyway, so this issue for which this is a work-around,

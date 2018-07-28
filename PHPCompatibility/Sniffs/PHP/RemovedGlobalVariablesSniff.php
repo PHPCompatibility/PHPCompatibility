@@ -243,7 +243,7 @@ class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Is this a variable assignment ?
         if ($nextNonEmpty !== false
-            && in_array($tokens[$nextNonEmpty]['code'], \PHP_CodeSniffer_Tokens::$assignmentTokens, true)
+            && isset(\PHP_CodeSniffer_Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
         ) {
             return false;
         }
@@ -292,7 +292,7 @@ class RemovedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             );
 
             if ($nextNonEmpty !== false
-                && in_array($tokens[$nextNonEmpty]['code'], \PHP_CodeSniffer_Tokens::$assignmentTokens, true)
+                && isset(\PHP_CodeSniffer_Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
             ) {
                 return false;
             }

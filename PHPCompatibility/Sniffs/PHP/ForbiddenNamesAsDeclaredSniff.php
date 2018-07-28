@@ -99,14 +99,10 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         $targets = array(
             T_CLASS,
             T_INTERFACE,
+            T_TRAIT,
             T_NAMESPACE,
-            T_STRING, // Compat for PHPCS 1.x and PHP < 5.3.
+            T_STRING, // Compat for PHPCS < 2.4.0 and PHP < 5.3.
         );
-
-        if (defined('T_TRAIT')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-            $targets[] = T_TRAIT;
-        }
 
         return $targets;
 

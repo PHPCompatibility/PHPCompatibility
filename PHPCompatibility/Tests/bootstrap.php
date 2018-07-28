@@ -44,7 +44,7 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
     include_once dirname(dirname(__DIR__)) . $ds . 'PHPCSAliases.php';
 
 } elseif ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'CodeSniffer.php')) {
-    // PHPCS 1.x, 2.x.
+    // PHPCS 2.x.
     require_once $phpcsDir . $ds . 'CodeSniffer.php';
 
     if (isset($vendorDir) && file_exists($vendorDir . $ds . 'autoload.php')) {

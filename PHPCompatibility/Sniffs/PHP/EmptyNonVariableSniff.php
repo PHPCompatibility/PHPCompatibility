@@ -54,19 +54,18 @@ class EmptyNonVariableSniff extends Sniff
     public function register()
     {
         // Set the token blacklist only once.
-        $tokenBlackList = array_unique(
-            array_merge(
-                \PHP_CodeSniffer_Tokens::$assignmentTokens,
-                \PHP_CodeSniffer_Tokens::$equalityTokens,
-                \PHP_CodeSniffer_Tokens::$comparisonTokens,
-                \PHP_CodeSniffer_Tokens::$operators,
-                \PHP_CodeSniffer_Tokens::$booleanOperators,
-                \PHP_CodeSniffer_Tokens::$castTokens,
-                array(T_OPEN_PARENTHESIS, T_STRING_CONCAT)
-            )
+        $tokenBlackList  = array(
+            T_OPEN_PARENTHESIS => T_OPEN_PARENTHESIS,
+            T_STRING_CONCAT    => T_STRING_CONCAT,
         );
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$assignmentTokens;
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$equalityTokens;
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$comparisonTokens;
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$operators;
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$booleanOperators;
+        $tokenBlackList += \PHP_CodeSniffer_Tokens::$castTokens;
 
-        $this->tokenBlackList = array_combine($tokenBlackList, $tokenBlackList);
+        $this->tokenBlackList = array_unique($tokenBlackList);
 
         return array(T_EMPTY);
     }

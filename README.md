@@ -27,18 +27,18 @@ Pull requests that check for compatibility issues in PHP 4 code - in particular 
 Requirements
 -------
 
-* PHP 5.3+ for use with PHP CodeSniffer 1.x and 2.x.
+* PHP 5.3+ for use with PHP CodeSniffer 2.x.
 * PHP 5.4+ for use with PHP CodeSniffer 3.x.
 
-PHP CodeSniffer: 1.5.6, 2.3.0+ or 3.0.2+.
+PHP CodeSniffer: 2.3.0+ or 3.0.2+.
 
 The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.4 or higher.
 
-PHP CodeSniffer 1.5.6 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 or later is required for full support, notices may be thrown on older versions.
+PHP CodeSniffer 2.3.0 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 or later is required for full support, notices may be thrown on older versions.
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
 
-Note: support for PHP CodeSniffer < 2.3.0 will be dropped in the near future.
+As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.
 
 
 Thank you

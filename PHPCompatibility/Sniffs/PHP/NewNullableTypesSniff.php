@@ -135,13 +135,13 @@ class NewNullableTypesSniff extends Sniff
 
         // Deal with namespaced class names.
         if ($tokens[$previous]['code'] === T_NS_SEPARATOR) {
-            $validTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
-            $validTokens[] = T_STRING;
-            $validTokens[] = T_NS_SEPARATOR;
+            $validTokens                 = \PHP_CodeSniffer_Tokens::$emptyTokens;
+            $validTokens[T_STRING]       = true;
+            $validTokens[T_NS_SEPARATOR] = true;
 
             $stackPtr--;
 
-            while (in_array($tokens[($stackPtr - 1)]['code'], $validTokens, true) === true) {
+            while (isset($validTokens[$tokens[($stackPtr - 1)]['code']]) === true) {
                 $stackPtr--;
             }
 

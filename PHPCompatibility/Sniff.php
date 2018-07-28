@@ -596,61 +596,10 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         if ($strict === false) {
             $validScopes[] = T_INTERFACE;
-
-            if (defined('T_TRAIT')) {
-                // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-                $validScopes[] = T_TRAIT;
-            }
+            $validScopes[] = T_TRAIT;
         }
 
         return $phpcsFile->hasCondition($stackPtr, $validScopes);
-    }
-
-
-    /**
-     * Verify whether a token is within a scoped use statement.
-     *
-     * PHPCS cross-version compatibility method.
-     *
-     * In PHPCS 1.x no conditions are set for a scoped use statement.
-     * This method works around that limitation.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
-     *
-     * @return bool True if within use scope, false otherwise.
-     */
-    public function inUseScope(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        static $isLowPHPCS, $ignoreTokens;
-
-        if (isset($isLowPHPCS) === false) {
-            $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.3.0', '<');
-        }
-        if (isset($ignoreTokens) === false) {
-            $ignoreTokens              = \PHP_CodeSniffer_Tokens::$emptyTokens;
-            $ignoreTokens[T_STRING]    = T_STRING;
-            $ignoreTokens[T_AS]        = T_AS;
-            $ignoreTokens[T_PUBLIC]    = T_PUBLIC;
-            $ignoreTokens[T_PROTECTED] = T_PROTECTED;
-            $ignoreTokens[T_PRIVATE]   = T_PRIVATE;
-        }
-
-        // PHPCS 2.0.
-        if ($isLowPHPCS === false) {
-            return $phpcsFile->hasCondition($stackPtr, T_USE);
-        } else {
-            // PHPCS 1.x.
-            $tokens         = $phpcsFile->getTokens();
-            $maybeCurlyOpen = $phpcsFile->findPrevious($ignoreTokens, ($stackPtr - 1), null, true);
-            if ($tokens[$maybeCurlyOpen]['code'] === T_OPEN_CURLY_BRACKET) {
-                $maybeUseStatement = $phpcsFile->findPrevious($ignoreTokens, ($maybeCurlyOpen - 1), null, true);
-                if ($tokens[$maybeUseStatement]['code'] === T_USE) {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 
 
@@ -1080,13 +1029,11 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $emptyTokens = array_flip(\PHP_CodeSniffer_Tokens::$emptyTokens); // PHPCS 1.x compat.
-
         $returnTypeHint = '';
         for ($i = ($colon + 1); $i <= $stackPtr; $i++) {
             // As of PHPCS 3.3.0+, all tokens are tokenized as "normal", so T_CALLABLE, T_SELF etc are
             // all possible, just exclude anything that's regarded as empty and the nullable indicator.
-            if (isset($emptyTokens[$tokens[$i]['code']])) {
+            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']])) {
                 continue;
             }
 
@@ -1531,8 +1478,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      */
     protected function isNumber(\PHP_CodeSniffer_File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $stringTokens  = array_flip(\PHP_CodeSniffer_Tokens::$heredocTokens); // Flipping for PHPCS 1.x compat.
-        $stringTokens += array_flip(\PHP_CodeSniffer_Tokens::$stringTokens); // Flipping for PHPCS 1.x compat.
+        $stringTokens  = \PHP_CodeSniffer_Tokens::$heredocTokens + \PHP_CodeSniffer_Tokens::$stringTokens;
 
         $validTokens            = array();
         $validTokens[T_LNUMBER] = true;

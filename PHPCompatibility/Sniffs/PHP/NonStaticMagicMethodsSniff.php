@@ -85,12 +85,8 @@ class NonStaticMagicMethodsSniff extends Sniff
         $targets = array(
             T_CLASS,
             T_INTERFACE,
+            T_TRAIT,
         );
-
-        if (defined('T_TRAIT')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-            $targets[] = T_TRAIT;
-        }
 
         if (defined('T_ANON_CLASS')) {
             // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound

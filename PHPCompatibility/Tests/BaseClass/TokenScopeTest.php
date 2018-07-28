@@ -131,48 +131,4 @@ class TokenScopeTest extends MethodTestFrame
             array('/* Case C5 */', T_FUNCTION, true), // function in anon class
         );
     }
-
-
-    /**
-     * testInUseScope
-     *
-     * @dataProvider dataInUseScope
-     *
-     * @covers \PHPCompatibility\Sniff::inUseScope
-     *
-     * @param string $commentString The comment which prefaces the target token in the test file.
-     * @param int    $targetType    The token type for the target token.
-     * @param string $expected      The expected boolean return value.
-     *
-     * @return void
-     */
-    public function testInUseScope($commentString, $targetType, $expected)
-    {
-        $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result   = $this->helperClass->inUseScope($this->phpcsFile, $stackPtr);
-        $this->assertSame($expected, $result);
-    }
-
-    /**
-     * dataInClassScope
-     *
-     * @see testInClassScope()
-     *
-     * @return array
-     */
-    public function dataInUseScope()
-    {
-        return array(
-            array('/* Case U1 */', T_STRING, false),
-            array('/* Case U2 */', T_AS, false),
-            array('/* Case U3 */', T_STRING, false),
-            array('/* Case U4 */', T_STRING, false),
-            array('/* Case U5 */', T_STRING, false),
-            array('/* Case U6 */', T_AS, true),
-            array('/* Case U7 */', T_PUBLIC, true),
-            array('/* Case U8 */', T_PROTECTED, true),
-            array('/* Case U9 */', T_PRIVATE, true),
-        );
-    }
-
 }

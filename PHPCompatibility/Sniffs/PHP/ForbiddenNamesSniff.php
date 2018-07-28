@@ -103,13 +103,6 @@ class ForbiddenNamesSniff extends Sniff
     );
 
     /**
-     * Whether PHPCS 1.x is used or not.
-     *
-     * @var bool
-     */
-    protected $isLowPHPCS = false;
-
-    /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
      * @var array
@@ -131,6 +124,7 @@ class ForbiddenNamesSniff extends Sniff
         T_AS,
         T_EXTENDS,
         T_INTERFACE,
+        T_TRAIT,
     );
 
     /**
@@ -140,20 +134,10 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.0', '<');
-
-        $this->allowedModifiers          = array_combine(
-            \PHP_CodeSniffer_Tokens::$scopeModifiers,
-            \PHP_CodeSniffer_Tokens::$scopeModifiers
-        );
+        $this->allowedModifiers          = \PHP_CodeSniffer_Tokens::$scopeModifiers;
         $this->allowedModifiers[T_FINAL] = T_FINAL;
 
         $tokens = $this->targetedTokens;
-
-        if (defined('T_TRAIT')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-            $tokens[] = T_TRAIT;
-        }
 
         if (defined('T_ANON_CLASS')) {
             // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
@@ -226,10 +210,6 @@ class ForbiddenNamesSniff extends Sniff
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
-                // Prevent duplicate messages: `const` is T_CONST in PHPCS 1.x and T_STRING in PHPCS 2.x.
-                if ($this->isLowPHPCS === true) {
-                    return;
-                }
                 $nextNonEmpty = $maybeUseNext;
             }
         }
@@ -241,7 +221,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_AS'
             && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
-            && $this->inUseScope($phpcsFile, $stackPtr) === true
+            && $phpcsFile->hasCondition($stackPtr, T_USE) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {
@@ -347,7 +327,6 @@ class ForbiddenNamesSniff extends Sniff
         /*
          * Special case for PHP versions where the target is not yet identified as
          * its own token, but presents as T_STRING.
-         * - namespace keyword in PHP < 5.3
          * - trait keyword in PHP < 5.4
          */
         if (version_compare(PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {

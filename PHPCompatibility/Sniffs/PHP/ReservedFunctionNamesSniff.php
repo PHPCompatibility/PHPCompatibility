@@ -39,11 +39,7 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
      */
     public function __construct()
     {
-        $scopeTokens = array(T_CLASS, T_INTERFACE);
-        if (defined('T_TRAIT')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_traitFound
-            $scopeTokens[] = T_TRAIT;
-        }
+        $scopeTokens = array(T_CLASS, T_INTERFACE, T_TRAIT);
         if (defined('T_ANON_CLASS')) {
             // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
             $scopeTokens[] = T_ANON_CLASS;
@@ -51,14 +47,6 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
 
         // Call the grand-parent constructor directly.
         \PHP_CodeSniffer_Standards_AbstractScopeSniff::__construct($scopeTokens, array(T_FUNCTION), true);
-
-        $phpcsVersion = PHPCSHelper::getVersion();
-
-        if (version_compare($phpcsVersion, '2.0.0', '<') === true) {
-            $this->magicMethods            = array_flip($this->magicMethods);
-            $this->methodsDoubleUnderscore = array_flip($this->methodsDoubleUnderscore);
-            $this->magicFunctions          = array_flip($this->magicFunctions);
-        }
 
         // Make sure debuginfo is included in the array. Upstream only includes it since 2.5.1.
         $this->magicMethods['debuginfo'] = true;
