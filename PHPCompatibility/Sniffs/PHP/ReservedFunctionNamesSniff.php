@@ -41,7 +41,6 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
     {
         $scopeTokens = array(T_CLASS, T_INTERFACE, T_TRAIT);
         if (defined('T_ANON_CLASS')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
             $scopeTokens[] = T_ANON_CLASS;
         }
 

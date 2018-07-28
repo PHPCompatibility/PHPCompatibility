@@ -140,7 +140,6 @@ class ForbiddenNamesSniff extends Sniff
         $tokens = $this->targetedTokens;
 
         if (defined('T_ANON_CLASS')) {
-            // phpcs:ignore PHPCompatibility.PHP.NewConstants.t_anon_classFound
             $tokens[] = T_ANON_CLASS;
         }
 
