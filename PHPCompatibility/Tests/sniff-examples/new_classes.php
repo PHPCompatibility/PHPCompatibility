@@ -246,9 +246,9 @@ try {
 } catch (UI\Exception\InvalidArgumentException $e) {
 } catch (UI\Exception\RuntimeException $e) {
 } catch (ArgumentCountError $e) {
+} catch (CompileError $e) {
+} catch (JsonException $e) {
 }
-
-
 
 // Multi-catch.
 try {
@@ -335,3 +335,5 @@ class TestThis {
 interface TestThat {
 	public function InterfaceMethodParamAndReturnTypeHint( XMLReader $a ) : \SplFileObject;
 }
+
+throw new JsonException();

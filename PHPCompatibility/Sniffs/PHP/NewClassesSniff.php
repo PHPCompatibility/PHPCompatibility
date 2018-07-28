@@ -535,6 +535,15 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+
+        'CompileError' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'JsonException' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
 
