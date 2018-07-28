@@ -462,6 +462,15 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+
+        'syslog.facility' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'syslog.ident' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
     /**

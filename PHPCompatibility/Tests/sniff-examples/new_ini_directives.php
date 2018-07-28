@@ -307,3 +307,9 @@ $test = ini_get('session.sid_length');
 
 ini_set('session.sid_bits_per_character', 1);
 $test = ini_get('session.sid_bits_per_character');
+
+ini_set('syslog.facility', 1);
+$test = ini_get('syslog.facility');
+
+ini_set('syslog.ident', 1);
+$test = ini_get('syslog.ident');
