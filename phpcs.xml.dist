@@ -13,11 +13,11 @@
     <!-- Exclude Composer vendor directory. -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
-	<!-- Strip the filepaths down to the relevant bit. -->
-	<arg name="basepath" value="./"/>
+    <!-- Strip the filepaths down to the relevant bit. -->
+    <arg name="basepath" value="./"/>
 
-	<!-- Check up to 8 files simultanously. -->
-	<arg name="parallel" value="8"/>
+    <!-- Check up to 8 files simultanously. -->
+    <arg name="parallel" value="8"/>
 
 
     <!--
@@ -50,18 +50,18 @@
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
     </rule>
 
-	<!-- Check that variable names are in camelCaps. -->
+    <!-- Check that variable names are in camelCaps. -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
 
-	<!-- Check that function and method names are in camelCaps. -->
-	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
-		<properties>
-			<!-- Allow for two adjacent capital letters for acronyms. -->
-			<property name="strict" value="false"/>
-		</properties>
-	</rule>
+    <!-- Check that function and method names are in camelCaps. -->
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+        <properties>
+            <!-- Allow for two adjacent capital letters for acronyms. -->
+            <property name="strict" value="false"/>
+        </properties>
+    </rule>
 
     <!-- PSR2 appears to ignore blank lines for superfluous whitespace and in several other places. Let's fix that. -->
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
