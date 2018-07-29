@@ -2941,6 +2941,67 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+
+        'CURLOPT_REQUEST_TARGET' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'FILTER_SANITIZE_ADD_SLASHES' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'JSON_THROW_ON_ERROR' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'MB_CASE_FOLD' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'MB_CASE_UPPER_SIMPLE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'MB_CASE_LOWER_SIMPLE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'MB_CASE_TITLE_SIMPLE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'MB_CASE_FOLD_SIMPLE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_SCHEMA_NAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_TABLE_NAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_COLUMN_NAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_DATATYPE_NAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_CONSTRAINT_NAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PGSQL_DIAG_SEVERITY_NONLOCALIZED' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'PASSWORD_ARGON2ID' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
 

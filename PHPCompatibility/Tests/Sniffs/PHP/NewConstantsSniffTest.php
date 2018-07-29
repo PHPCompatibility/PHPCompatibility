@@ -756,6 +756,22 @@ class NewConstantsSniffTest extends BaseSniffTest
             array('SODIUM_CRYPTO_SIGN_KEYPAIRBYTES', '7.1', array(693), '7.2'),
             array('SODIUM_CRYPTO_STREAM_NONCEBYTES', '7.1', array(694), '7.2'),
             array('SODIUM_CRYPTO_STREAM_KEYBYTES', '7.1', array(695), '7.2'),
+
+            array('CURLOPT_REQUEST_TARGET', '7.2', array(699), '7.3'),
+            array('FILTER_SANITIZE_ADD_SLASHES', '7.2', array(700), '7.3'),
+            array('JSON_THROW_ON_ERROR', '7.2', array(701), '7.3'),
+            array('MB_CASE_FOLD', '7.2', array(702), '7.3'),
+            array('MB_CASE_UPPER_SIMPLE', '7.2', array(703), '7.3'),
+            array('MB_CASE_LOWER_SIMPLE', '7.2', array(704), '7.3'),
+            array('MB_CASE_TITLE_SIMPLE', '7.2', array(705), '7.3'),
+            array('MB_CASE_FOLD_SIMPLE', '7.2', array(706), '7.3'),
+            array('PGSQL_DIAG_SCHEMA_NAME', '7.2', array(707), '7.3'),
+            array('PGSQL_DIAG_TABLE_NAME', '7.2', array(708), '7.3'),
+            array('PGSQL_DIAG_COLUMN_NAME', '7.2', array(709), '7.3'),
+            array('PGSQL_DIAG_DATATYPE_NAME', '7.2', array(710), '7.3'),
+            array('PGSQL_DIAG_CONSTRAINT_NAME', '7.2', array(711), '7.3'),
+            array('PGSQL_DIAG_SEVERITY_NONLOCALIZED', '7.2', array(712), '7.3'),
+            array('PASSWORD_ARGON2ID', '7.2', array(713), '7.3'),
         );
     }
 
