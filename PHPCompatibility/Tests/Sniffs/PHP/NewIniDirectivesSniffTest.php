@@ -185,6 +185,7 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
 
             array('syslog.facility', '7.3', array(311, 312), '7.2'),
             array('syslog.ident', '7.3', array(314, 315), '7.2'),
+            array('syslog.filter', '7.3', array(317, 318), '7.2'),
         );
     }
 
