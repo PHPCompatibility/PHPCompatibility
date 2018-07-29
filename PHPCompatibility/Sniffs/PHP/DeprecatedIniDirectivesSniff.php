@@ -224,6 +224,9 @@ class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.3' => false, // Soft deprecated, i.e. ignored.
             '7.3' => true,
         ),
+        'pdo_odbc.db2_instance_name' => array(
+            '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
+        ),
     );
 
     /**

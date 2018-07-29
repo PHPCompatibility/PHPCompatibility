@@ -180,3 +180,6 @@ $a = ini_get('birdstep.max_links');
 
 ini_set('opcache.inherited_hack', true);
 $a = ini_get('opcache.inherited_hack');
+
+ini_set('pdo_odbc.db2_instance_name', 'string');
+$a = ini_get('pdo_odbc.db2_instance_name');
