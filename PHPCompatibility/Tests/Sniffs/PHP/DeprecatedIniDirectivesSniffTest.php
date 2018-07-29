@@ -152,6 +152,8 @@ class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
 
             array('mbstring.func_overload', '7.2', array(166, 167), '7.1'),
             array('track_errors', '7.2', array(172, 173), '7.1'),
+
+            array('pdo_odbc.db2_instance_name', '7.3', array(184, 185), '7.2'),
         );
     }
 
