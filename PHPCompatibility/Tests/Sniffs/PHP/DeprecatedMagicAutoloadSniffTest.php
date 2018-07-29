@@ -13,6 +13,9 @@ use PHPCompatibility\PHPCSHelper;
 /**
  * __autoload deprecation for PHP 7.2 sniff test
  *
+ * @group deprecatedMagicAutoload
+ * @group functionDeclarations
+ *
  * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedMagicAutoloadSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
@@ -96,7 +99,7 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testIsNotAffected($testFile, $line, $isTrait)
+    public function testIsNotAffected($testFile, $line, $isTrait = false)
     {
         if ($isTrait === true && self::$recognizesTraitsOrInterfaces === false) {
             $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
@@ -117,15 +120,15 @@ class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
     public function dataIsNotAffected()
     {
         return array(
-            array(self::TEST_FILE, 8, false),
+            array(self::TEST_FILE, 8),
             array(self::TEST_FILE, 14, true),
             array(self::TEST_FILE, 18, true),
-            array(self::TEST_FILE, 24, false),
-            array(self::TEST_FILE_NAMESPACED, 5, false),
-            array(self::TEST_FILE_NAMESPACED, 10, false),
-            array(self::TEST_FILE_NAMESPACED, 16, true),
-            array(self::TEST_FILE_NAMESPACED, 20, true),
-            array(self::TEST_FILE_NAMESPACED, 26, false),
+            array(self::TEST_FILE, 24),
+            array(self::TEST_FILE_NAMESPACED, 5),
+            array(self::TEST_FILE_NAMESPACED, 10),
+            array(self::TEST_FILE_NAMESPACED, 16),
+            array(self::TEST_FILE_NAMESPACED, 20),
+            array(self::TEST_FILE_NAMESPACED, 26),
         );
     }
 }
