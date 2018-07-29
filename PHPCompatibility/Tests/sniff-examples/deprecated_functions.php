@@ -150,3 +150,17 @@ read_exif_data();
 
 // PHP 7.3.
 image2wbmp();
+mbregex_encoding();
+mbereg();
+mberegi();
+mbereg_replace();
+mberegi_replace();
+mbsplit();
+mbereg_match();
+mbereg_search();
+mbereg_search_pos();
+mbereg_search_regs();
+mbereg_search_init();
+mbereg_search_getregs();
+mbereg_search_getpos();
+mbereg_search_setpos();
