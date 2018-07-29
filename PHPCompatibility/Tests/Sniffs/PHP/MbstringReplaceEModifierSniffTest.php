@@ -59,6 +59,8 @@ class MbstringReplaceEModifierSniffTest extends BaseSniffTest
             array(24),
             array(25),
             array(26),
+            array(29),
+            array(30),
         );
     }
 

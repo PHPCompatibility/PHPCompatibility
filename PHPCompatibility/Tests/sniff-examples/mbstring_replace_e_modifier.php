@@ -24,3 +24,7 @@ mb_regex_set_options( 'im' . "$se" );
 mb_ereg_replace( $pattern, $replace, $subject, "e$m" );
 mb_eregi_replace( $pattern, $replace, $subject, "me$i" );
 mb_regex_set_options( 'im' . "{$se}e" );
+
+// Verify the sniff also pick up on the function aliases.
+mbereg_replace( $pattern, $replace, $subject, 'e' );
+mberegi_replace( $pattern, $replace, $subject, "me$i" );

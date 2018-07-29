@@ -36,6 +36,8 @@ class MbstringReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
         'mb_ereg_replace'      => 4,
         'mb_eregi_replace'     => 4,
         'mb_regex_set_options' => 1,
+        'mbereg_replace'       => 4, // Undocumented, but valid function alias.
+        'mberegi_replace'      => 4, // Undocumented, but valid function alias.
     );
 
 
