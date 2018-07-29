@@ -313,3 +313,6 @@ $test = ini_get('syslog.facility');
 
 ini_set('syslog.ident', 1);
 $test = ini_get('syslog.ident');
+
+ini_set('syslog.filter', 1);
+$test = ini_get('syslog.filter');

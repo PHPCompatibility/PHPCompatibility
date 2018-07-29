@@ -467,6 +467,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'syslog.filter' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'syslog.ident' => array(
             '7.2' => false,
             '7.3' => true,
