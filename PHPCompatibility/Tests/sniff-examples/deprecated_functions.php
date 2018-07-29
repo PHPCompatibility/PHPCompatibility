@@ -164,3 +164,5 @@ mbereg_search_init();
 mbereg_search_getregs();
 mbereg_search_getpos();
 mbereg_search_setpos();
+fgetss();
+gzgetss();

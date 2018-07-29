@@ -875,6 +875,14 @@ class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.3' => false,
             'alternative' => 'mb_ereg_search_setpos()',
         ),
+        'fgetss' => array(
+            '7.3' => false,
+            'alternative' => null,
+        ),
+        'gzgetss' => array(
+            '7.3' => false,
+            'alternative' => null,
+        ),
     );
 
 

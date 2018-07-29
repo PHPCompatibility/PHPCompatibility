@@ -69,6 +69,8 @@ class DeprecatedFunctionsSniffTest extends BaseSniffTest
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
             array('ldap_sort', '7.0', array(97), '5.6'),
+            array('fgetss', '7.3', array(167), '7.2'),
+            array('gzgetss', '7.3', array(168), '7.2'),
         );
     }
 
