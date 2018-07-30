@@ -10,7 +10,8 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=master)
 
-[![Tested Runtime Badge](http://php-eye.com/badge/phpcompatibility/php-compatibility/tested.svg?branch=dev-master)](http://php-eye.com/package/phpcompatibility/php-compatibility)
+[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
+[![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%20nightly-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
 
 
 This is a set of sniffs for [PHP CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
