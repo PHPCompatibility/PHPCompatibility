@@ -78,3 +78,22 @@ efg( true === &$b );
 foo(Bar::FOO & $a);
 $foo = self::FLAG_GETDATA & $flags ? 'SQL_CALC_FOUND_ROWS' : '';
 $handler->throwAt(E_ALL & $handler->thrownErrors, true);
+
+// Closures and passing by reference appear to allow declaring with references.
+$d = function ( &$a ) {};
+
+abc(function ($a, &$b, $c) {
+    return array($a,$b,$c);
+});
+
+abc(function ($a, $b, $c) {
+    return array($a,$b,&$c);
+});
+
+$d(&$a); // Bad: pass by reference.
+
+// From PHPCS native Generic.Functions.CallTimePassByReference test file.
+Hooks::run( 'SecondaryDataUpdates', array( $title, $old, $recursive, $parserOutput, &$updates ) );
+Hooks::run( 'SecondaryDataUpdates', [ $title, $old, $recursive, $parserOutput, &$updates ] );
+// Similar, but live coding, parse error.
+Hooks::run( 'SecondaryDataUpdates', [ $title, $old,

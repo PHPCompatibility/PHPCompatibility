@@ -74,9 +74,11 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      */
     public function register()
     {
-        return array(T_STRING);
-
-    }//end register()
+        return array(
+            T_STRING,
+            T_VARIABLE,
+        );
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -177,9 +179,31 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         $searchEndToken   = $parameter['end'] + 1;
         $nextVariable     = $searchStartToken;
         do {
-            $nextVariable = $phpcsFile->findNext(T_VARIABLE, ($nextVariable + 1), $searchEndToken);
+            $nextVariable = $phpcsFile->findNext(array(T_VARIABLE, T_OPEN_SHORT_ARRAY, T_CLOSURE), ($nextVariable + 1), $searchEndToken);
             if ($nextVariable === false) {
                 return false;
+            }
+
+            // Ignore anything within short array definition brackets.
+            if ($tokens[$nextVariable]['type'] === 'T_OPEN_SHORT_ARRAY'
+                && (isset($tokens[$nextVariable]['bracket_opener'])
+                    && $tokens[$nextVariable]['bracket_opener'] === $nextVariable)
+                && isset($tokens[$nextVariable]['bracket_closer'])
+            ) {
+                // Skip forward to the end of the short array definition.
+                $nextVariable = $tokens[$nextVariable]['bracket_closer'];
+                continue;
+            }
+
+            // Skip past closures passed as function parameters.
+            if ($tokens[$nextVariable]['type'] === 'T_CLOSURE'
+                && (isset($tokens[$nextVariable]['scope_condition'])
+                    && $tokens[$nextVariable]['scope_condition'] === $nextVariable)
+                && isset($tokens[$nextVariable]['scope_closer'])
+            ) {
+                // Skip forward to the end of the closure declaration.
+                $nextVariable = $tokens[$nextVariable]['scope_closer'];
+                continue;
             }
 
             // Make sure the variable belongs directly to this function call
