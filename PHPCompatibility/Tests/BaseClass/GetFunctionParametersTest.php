@@ -42,7 +42,18 @@ class GetFunctionParametersTest extends MethodTestFrame
      */
     public function testGetFunctionCallParameters($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
+        switch ($commentString[8]) {
+            case 'S':
+                $stackPtr = $this->getTargetToken($commentString, array(T_STRING));
+                break;
+            case 'A':
+                $stackPtr = $this->getTargetToken($commentString, array(T_ARRAY, T_OPEN_SHORT_ARRAY));
+                break;
+            case 'V':
+                $stackPtr = $this->getTargetToken($commentString, array(T_VARIABLE));
+                break;
+        }
+
         /*
          * Start/end token position values in the expected array are set as offsets
          * in relation to the target token.
@@ -289,6 +300,43 @@ class GetFunctionParametersTest extends MethodTestFrame
                         'raw'   => '\'~\'.function_call().\'~i\' => function ($match) {
             echo strlen($match[0]), \' matches for "b" found\', PHP_EOL;
         }',
+                    ),
+                ),
+            ),
+
+            // Function calling closure in variable.
+            array(
+                '/* Case V1 */',
+                array(
+                    1 => array(
+                        'start' => 2,
+                        'end'   => 3,
+                        'raw'   => '&$a',
+                    ),
+                    2 => array(
+                        'start' => 5,
+                        'end'   => 12,
+                        'raw'   => '(1 + 20)',
+                    ),
+                    3 => array(
+                        'start' => 14,
+                        'end'   => 20,
+                        'raw'   => '$a & $b',
+                    ),
+                ),
+            ),
+            array(
+                '/* Case V2 */',
+                array(
+                    1 => array(
+                        'start' => 2,
+                        'end'   => 4,
+                        'raw'   => '$a->property',
+                    ),
+                    2 => array(
+                        'start' => 6,
+                        'end'   => 12,
+                        'raw'   => '$b->call()',
                     ),
                 ),
             ),

@@ -59,3 +59,9 @@ preg_replace_callback_array(
     ],
     $subject
 );
+
+/* Case V1 */
+$closure(&$a, (1 + 20), $a & $b );
+
+/* Case V2 */
+self::$closureInStaticProperty($a->property, $b->call() );
