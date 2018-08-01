@@ -52,6 +52,9 @@ class NewGeneratorReturnSniffTest extends BaseSniffTest
             array(30),
             array(35),
             array(39),
+            array(64),
+            array(83),
+            array(101),
         );
     }
 
@@ -84,6 +87,8 @@ class NewGeneratorReturnSniffTest extends BaseSniffTest
             array(6),
             array(15),
             array(21),
+            array(53),
+            array(107),
         );
     }
 

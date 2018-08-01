@@ -27,6 +27,16 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewGeneratorReturnSniff extends Sniff
 {
+    /**
+     * Scope conditions within which a yield can exist.
+     *
+     * @var array
+     */
+    private $validConditions = array(
+        T_FUNCTION => T_FUNCTION,
+        T_CLOSURE  => T_CLOSURE,
+    );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -88,13 +98,20 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $function = $phpcsFile->getCondition($stackPtr, T_FUNCTION);
-        if ($function === false) {
-            // Try again, but now for a closure.
-            $function = $phpcsFile->getCondition($stackPtr, T_CLOSURE);
+        if (empty($tokens[$stackPtr]['conditions']) === true) {
+            return;
         }
 
-        if ($function === false) {
+        // Walk the condition from inner to outer to see if we can find a valid function/closure scope.
+        $conditions = array_reverse($tokens[$stackPtr]['conditions'], true);
+        foreach ($conditions as $ptr => $type) {
+            if (isset($this->validConditions[$type]) === true) {
+                $function = $ptr;
+                break;
+            }
+        }
+
+        if (isset($function) === false) {
             // Yield outside function scope, fatal error, but not our concern.
             return;
         }
@@ -104,16 +121,30 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $hasReturn = $phpcsFile->findNext(T_RETURN, ($tokens[$function]['scope_opener'] + 1), $tokens[$function]['scope_closer']);
-        if ($hasReturn === false) {
-            return;
+        $targets = array(T_RETURN, T_CLOSURE, T_FUNCTION, T_CLASS);
+        if (defined('T_ANON_CLASS')) {
+            $targets[] = T_ANON_CLASS;
         }
 
-        $phpcsFile->addError(
-            'Returning a final expression from a generator was not supported in PHP 5.6 or earlier',
-            $hasReturn,
-            'ReturnFound'
-        );
+        $current = $tokens[$function]['scope_opener'];
+
+        while (($current = $phpcsFile->findNext($targets, ($current + 1), $tokens[$function]['scope_closer'])) !== false) {
+            if ($tokens[$current]['code'] === T_RETURN) {
+                $phpcsFile->addError(
+                    'Returning a final expression from a generator was not supported in PHP 5.6 or earlier',
+                    $current,
+                    'ReturnFound'
+                );
+
+                return $tokens[$function]['scope_closer'];
+            }
+
+            // Found a nested scope in which return can exist without problems.
+            if (isset($tokens[$current]['scope_closer'])) {
+                // Skip past the nested scope.
+                $current = $tokens[$current]['scope_closer'];
+            }
+        }
 
         // Don't examine this function again.
         return $tokens[$function]['scope_closer'];
