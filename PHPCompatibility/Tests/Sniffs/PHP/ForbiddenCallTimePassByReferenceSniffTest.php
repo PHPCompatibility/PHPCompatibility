@@ -62,6 +62,7 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
             array(45), // Bad: call time pass by reference.
             array(49), // Bad: multiple call time pass by reference.
             array(71), // Bad: call time pass by reference.
+            array(93), // Bad: call time pass by reference.
         );
     }
 
@@ -131,6 +132,16 @@ class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
             array(78),
             array(79),
             array(80),
+
+            // References in combination with closures.
+            array(83),
+            array(85),
+            array(90),
+
+            // Reference within an array argument.
+            array(96),
+            array(97),
+            array(99),
         );
     }
 

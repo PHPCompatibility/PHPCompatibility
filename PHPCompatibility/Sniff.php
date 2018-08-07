@@ -304,7 +304,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Checks if a function call has parameters.
      *
-     * Expects to be passed the T_STRING stack pointer for the function call.
+     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
      * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer, it
@@ -328,7 +328,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         // Is this one of the tokens this function handles ?
-        if (in_array($tokens[$stackPtr]['code'], array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY), true) === false) {
+        if (in_array($tokens[$stackPtr]['code'], array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY, T_VARIABLE), true) === false) {
             return false;
         }
 
@@ -373,7 +373,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Count the number of parameters a function call has been passed.
      *
-     * Expects to be passed the T_STRING stack pointer for the function call.
+     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
      * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
@@ -401,7 +401,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Get information on all parameters passed to a function call.
      *
-     * Expects to be passed the T_STRING stack pointer for the function call.
+     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
      * Will return an multi-dimentional array with the start token pointer, end token
@@ -422,7 +422,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             return array();
         }
 
-        // Ok, we know we have a T_STRING, T_ARRAY or T_OPEN_SHORT_ARRAY with parameters
+        // Ok, we know we have a T_STRING, T_VARIABLE, T_ARRAY or T_OPEN_SHORT_ARRAY with parameters
         // and valid open & close brackets/parenthesis.
         $tokens = $phpcsFile->getTokens();
 
@@ -510,7 +510,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     /**
      * Get information on a specific parameter passed to a function call.
      *
-     * Expects to be passed the T_STRING stack pointer for the function call.
+     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
      * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
      *
      * Will return a array with the start token pointer, end token pointer and the raw value
