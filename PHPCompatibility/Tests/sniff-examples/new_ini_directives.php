@@ -316,3 +316,16 @@ $test = ini_get('syslog.ident');
 
 ini_set('syslog.filter', 1);
 $test = ini_get('syslog.filter');
+
+ini_set('hard_timeout', 1);
+$test = ini_get('hard_timeout');
+
+ini_set('session.trans_sid_hosts', 1);
+$test = ini_get('session.trans_sid_hosts');
+
+ini_set('session.trans_sid_tags', 1);
+$test = ini_get('session.trans_sid_tags');
+
+ini_set('url_rewriter.hosts', 1);
+$test = ini_get('url_rewriter.hosts');
+
