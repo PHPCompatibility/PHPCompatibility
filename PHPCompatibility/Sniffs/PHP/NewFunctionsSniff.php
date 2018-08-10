@@ -1283,6 +1283,22 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'sapi_windows_cp_set' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_get' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_is_utf8' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_conv' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
 
         'oci_register_taf_callback' => array(
             '7.1.6' => false,
