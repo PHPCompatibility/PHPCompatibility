@@ -379,6 +379,7 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('sapi_windows_cp_is_utf8', '7.0', array(464), '7.1'),
             array('sapi_windows_cp_conv', '7.0', array(465), '7.1'),
 
+            array('hash_hkdf', '7.1.1', array(466), '7.2', '7.1'),
             array('oci_register_taf_callback', '7.1.6', array(322), '7.2', '7.1'),
             array('oci_unregister_taf_callback', '7.1.8', array(323), '7.2', '7.1'),
 

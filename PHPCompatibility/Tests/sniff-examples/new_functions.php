@@ -463,3 +463,4 @@ sapi_windows_cp_set();
 sapi_windows_cp_get();
 sapi_windows_cp_is_utf8();
 sapi_windows_cp_conv();
+hash_hkdf();

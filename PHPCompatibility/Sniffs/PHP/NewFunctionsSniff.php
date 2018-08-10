@@ -1300,6 +1300,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'hash_hkdf' => array(
+            '7.1.1' => false,
+            '7.1.2' => true,
+        ),
         'oci_register_taf_callback' => array(
             '7.1.6' => false,
             '7.1.7' => true,
