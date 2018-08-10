@@ -329,3 +329,5 @@ $test = ini_get('session.trans_sid_tags');
 ini_set('url_rewriter.hosts', 1);
 $test = ini_get('url_rewriter.hosts');
 
+ini_set('session.cookie_samesite', 1);
+$test = ini_get('session.cookie_samesite');

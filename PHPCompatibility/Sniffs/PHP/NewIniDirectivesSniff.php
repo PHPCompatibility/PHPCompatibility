@@ -491,6 +491,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'session.cookie_samesite' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
     /**
