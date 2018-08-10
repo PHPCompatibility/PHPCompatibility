@@ -1275,6 +1275,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'pcntl_signal_get_handler' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
         'session_create_id' => array(
             '7.0' => false,
             '7.1' => true,

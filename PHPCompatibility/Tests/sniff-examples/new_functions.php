@@ -464,3 +464,4 @@ sapi_windows_cp_get();
 sapi_windows_cp_is_utf8();
 sapi_windows_cp_conv();
 hash_hkdf();
+pcntl_signal_get_handler();
