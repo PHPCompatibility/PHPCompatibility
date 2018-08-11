@@ -372,9 +372,15 @@ class NewFunctionsSniffTest extends BaseSniffTest
             array('curl_share_strerror', '7.0', array(316), '7.1'),
             array('is_iterable', '7.0', array(317), '7.1'),
             array('pcntl_async_signals', '7.0', array(318), '7.1'),
+            array('pcntl_signal_get_handler', '7.0', array(467), '7.1'),
             array('session_create_id', '7.0', array(319), '7.1'),
             array('session_gc', '7.0', array(320), '7.1'),
+            array('sapi_windows_cp_set', '7.0', array(462), '7.1'),
+            array('sapi_windows_cp_get', '7.0', array(463), '7.1'),
+            array('sapi_windows_cp_is_utf8', '7.0', array(464), '7.1'),
+            array('sapi_windows_cp_conv', '7.0', array(465), '7.1'),
 
+            array('hash_hkdf', '7.1.1', array(466), '7.2', '7.1'),
             array('oci_register_taf_callback', '7.1.6', array(322), '7.2', '7.1'),
             array('oci_unregister_taf_callback', '7.1.8', array(323), '7.2', '7.1'),
 

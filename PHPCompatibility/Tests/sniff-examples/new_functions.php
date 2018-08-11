@@ -458,3 +458,10 @@ sapi_add_request_header();
 socket_wsaprotocol_info_export();
 socket_wsaprotocol_info_import();
 socket_wsaprotocol_info_release();
+
+sapi_windows_cp_set();
+sapi_windows_cp_get();
+sapi_windows_cp_is_utf8();
+sapi_windows_cp_conv();
+hash_hkdf();
+pcntl_signal_get_handler();

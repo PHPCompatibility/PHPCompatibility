@@ -1275,6 +1275,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'pcntl_signal_get_handler' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
         'session_create_id' => array(
             '7.0' => false,
             '7.1' => true,
@@ -1283,7 +1287,27 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'sapi_windows_cp_set' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_get' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_is_utf8' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'sapi_windows_cp_conv' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
 
+        'hash_hkdf' => array(
+            '7.1.1' => false,
+            '7.1.2' => true,
+        ),
         'oci_register_taf_callback' => array(
             '7.1.6' => false,
             '7.1.7' => true,
