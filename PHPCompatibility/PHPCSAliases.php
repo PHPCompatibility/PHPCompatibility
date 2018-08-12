@@ -64,7 +64,7 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
             return;
         }
 
-        $file = realpath(__DIR__) . DIRECTORY_SEPARATOR . strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
+        $file = realpath(dirname(__DIR__)) . DIRECTORY_SEPARATOR . strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
 
         if (file_exists($file)) {
             include_once $file;

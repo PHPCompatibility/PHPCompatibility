@@ -41,7 +41,7 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
      * Also provide a custom autoloader for our abstract base classes as the PHPCS native autoloader
      * has trouble with them in combination with the PHPCompatibility custom unit test suite.
      */
-    include_once dirname(dirname(__DIR__)) . $ds . 'PHPCSAliases.php';
+    include_once dirname(__DIR__) . $ds . 'PHPCSAliases.php';
 
 } elseif ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'CodeSniffer.php')) {
     // PHPCS 2.x.
