@@ -454,11 +454,27 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.0' => true,
         ),
 
+        'hard_timeout' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
         'session.sid_length' => array(
             '7.0' => false,
             '7.1' => true,
         ),
         'session.sid_bits_per_character' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'session.trans_sid_hosts' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'session.trans_sid_tags' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
+        'url_rewriter.hosts' => array(
             '7.0' => false,
             '7.1' => true,
         ),

@@ -180,8 +180,12 @@ class NewIniDirectivesSniffTest extends BaseSniffTest
             array('session.lazy_write', '7.0', array(299, 300), '5.6'),
             array('zend.assertions', '7.0', array(302, 303), '5.6'),
 
+            array('hard_timeout', '7.1', array(320, 321), '7.0'),
             array('session.sid_length', '7.1', array(305, 306), '7.0'),
             array('session.sid_bits_per_character', '7.1', array(308, 309), '7.0'),
+            array('session.trans_sid_hosts', '7.1', array(323, 324), '7.0'),
+            array('session.trans_sid_tags', '7.1', array(326, 327), '7.0'),
+            array('url_rewriter.hosts', '7.1', array(329, 330), '7.0'),
 
             array('syslog.facility', '7.3', array(311, 312), '7.2'),
             array('syslog.ident', '7.3', array(314, 315), '7.2'),
