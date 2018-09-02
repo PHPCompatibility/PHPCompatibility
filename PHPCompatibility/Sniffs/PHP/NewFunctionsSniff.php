@@ -20,6 +20,25 @@ use PHPCompatibility\AbstractNewFeatureSniff;
  */
 class NewFunctionsSniff extends AbstractNewFeatureSniff
 {
+
+    /**
+     * A list of functions to whitelist, if any.
+     *
+     * This is intended for projects using backprorted functions such as via
+     * the `password_compat` library.
+     *
+     * This property can be set from the ruleset, like so:
+     * <rule ref="PHPCompatibility.PHP.NewFunctions">
+     *   <properties>
+     *     <property name="functionWhitelist" type="array" value="password_hash,password_get_info,password_needs_rehash,password_verify" />
+     *   </properties>
+     * </rule>
+     *
+     * @var array
+     */
+    public $functionWhitelist;
+
+
     /**
      * A list of new functions, not present in older versions.
      *
@@ -1864,6 +1883,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         $function   = $tokens[$stackPtr]['content'];
         $functionLc = strtolower($function);
 
+        if ($this->isWhiteListed($functionLc) === true) {
+            // Function is whitelisted.
+            return;
+        }
+
         if (isset($this->newFunctions[$functionLc]) === false) {
             return;
         }
@@ -1875,6 +1899,39 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
+
+
+    /**
+     * Is the current function being checked whitelisted ?
+     *
+     * Parsing the list late as it may be provided as a property, but also inline.
+     *
+     * @param string $content Content of the current token.
+     *
+     * @return bool
+     */
+    protected function isWhiteListed($content)
+    {
+        if (isset($this->functionWhitelist) === false) {
+            return false;
+        }
+
+        if (is_string($this->functionWhitelist) === true) {
+            if (strpos($this->functionWhitelist, ',') !== false) {
+                $this->functionWhitelist = explode(',', $this->functionWhitelist);
+            } else {
+                $this->functionWhitelist = (array) $this->functionWhitelist;
+            }
+        }
+
+        if (is_array($this->functionWhitelist) === true) {
+            $this->functionWhitelist = array_map('strtolower', $this->functionWhitelist);
+            return in_array($content, $this->functionWhitelist, true);
+        }
+
+        return false;
+
+    }//end isWhiteListed()
 
 
     /**
