@@ -22,6 +22,24 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 {
 
     /**
+     * A list of constants to whitelist, if any.
+     *
+     * This is intended for projects using backprorted constants such as via
+     * the `password_compat` library.
+     *
+     * This property can be set from the ruleset, like so:
+     * <rule ref="PHPCompatibility.PHP.NewConstants">
+     *   <properties>
+     *     <property name="constantWhitelist" type="array" value="PASSWORD_BCRYPT,PASSWORD_DEFAULT,PASSWORD_BECRYPT_DEFAULT_COST" />
+     *   </properties>
+     * </rule>
+     *
+     * @var array
+     */
+    public $constantWhitelist;
+
+
+    /**
      * A list of new PHP Constants, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
@@ -3030,6 +3048,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         $tokens       = $phpcsFile->getTokens();
         $constantName = $tokens[$stackPtr]['content'];
 
+        if ($this->isWhiteListed($constantName) === true) {
+            // Constant is whitelisted.
+            return;
+        }
+
         if (isset($this->newConstants[$constantName]) === false) {
             return;
         }
@@ -3044,6 +3067,38 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
     }//end process()
+
+
+    /**
+     * Is the current constant being checked whitelisted ?
+     *
+     * Parsing the list late as it may be provided as a property, but also inline.
+     *
+     * @param string $content Content of the current token.
+     *
+     * @return bool
+     */
+    protected function isWhiteListed($content)
+    {
+        if (isset($this->constantWhitelist) === false) {
+            return false;
+        }
+
+        if (is_string($this->constantWhitelist) === true) {
+            if (strpos($this->constantWhitelist, ',') !== false) {
+                $this->constantWhitelist = explode(',', $this->constantWhitelist);
+            } else {
+                $this->constantWhitelist = (array) $this->constantWhitelist;
+            }
+        }
+
+        if (is_array($this->constantWhitelist) === true) {
+            return in_array($content, $this->constantWhitelist, true);
+        }
+
+        return false;
+
+    }//end isWhiteListed()
 
 
     /**
