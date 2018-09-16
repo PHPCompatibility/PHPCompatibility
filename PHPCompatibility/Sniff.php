@@ -1628,6 +1628,89 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
 
     /**
+     * Determine whether the tokens between $start and $end together form a numberic calculation
+     * as recognized by PHP.
+     *
+     * The outcome of this function is reliable for `true`, `false` should be regarded as "undetermined".
+     *
+     * Mainly intended for examining variable assignments, function call parameters, array values
+     * where the start and end of the snippet to examine is very clear.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $start     Start of the snippet (inclusive), i.e. this
+     *                                         token will be examined as part of the snippet.
+     * @param int                   $end       End of the snippet (inclusive), i.e. this
+     *                                         token will be examined as part of the snippet.
+     *
+     * @return bool
+     */
+    protected function isNumericCalculation(\PHP_CodeSniffer_File $phpcsFile, $start, $end)
+    {
+        $arithmeticTokens = \PHP_CodeSniffer_Tokens::$arithmeticTokens;
+
+        // phpcs:disable PHPCompatibility.PHP.NewConstants.t_powFound
+        if (defined('T_POW') && isset($arithmeticTokens[T_POW]) === false) {
+            // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
+            $arithmeticTokens[T_POW] = T_POW;
+        }
+        // phpcs:enable
+
+        $skipTokens   = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $skipTokens[] = T_MINUS;
+        $skipTokens[] = T_PLUS;
+
+        // Find the first arithmetic operator, but skip past +/- signs before numbers.
+        $nextNonEmpty = ($start - 1);
+        do {
+            $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
+            $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+        } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
+
+        if ($arithmeticOperator === false) {
+            return false;
+        }
+
+        $tokens      = $phpcsFile->getTokens();
+        $subsetStart = $start;
+        $subsetEnd   = ($arithmeticOperator - 1);
+
+        while ($this->isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
+            && isset($tokens[($arithmeticOperator + 1)]) === true
+        ) {
+            // Recognize T_POW for PHPCS < 2.4.0 on low PHP versions.
+            if (defined('T_POW') === false
+                && $tokens[$arithmeticOperator]['code'] === T_MULTIPLY
+                && $tokens[($arithmeticOperator + 1)]['code'] === T_MULTIPLY
+                && isset($tokens[$arithmeticOperator + 2]) === true
+            ) {
+                // Move operator one forward to the second * in T_POW.
+                ++$arithmeticOperator;
+            }
+
+            $subsetStart  = ($arithmeticOperator + 1);
+            $nextNonEmpty = $arithmeticOperator;
+            do {
+                $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
+                $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+            } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
+
+            if ($arithmeticOperator === false) {
+                // Last calculation operator already reached.
+                if ($this->isNumber($phpcsFile, $subsetStart, $end, true) !== false) {
+                    return true;
+                }
+
+                return false;
+            }
+
+            $subsetEnd = ($arithmeticOperator - 1);
+        }
+
+        return false;
+    }
+
+
+    /**
      * Determine whether a T_OPEN/CLOSE_SHORT_ARRAY token is a list() construct.
      *
      * Note: A variety of PHPCS versions have bugs in the tokenizing of short arrays.
