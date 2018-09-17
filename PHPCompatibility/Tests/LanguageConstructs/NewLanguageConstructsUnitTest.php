@@ -39,76 +39,6 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     }
 
     /**
-     * testPow
-     *
-     * @return void
-     */
-    public function testPow()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 5, 'power operator (**) is not present in PHP version 5.5 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertNoViolation($file, 5);
-    }
-
-    /**
-     * testPowEquals
-     *
-     * @return void
-     */
-    public function testPowEquals()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 6, 'power assignment operator (**=) is not present in PHP version 5.5 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertNoViolation($file, 6);
-    }
-
-    /**
-     * testSpaceship
-     *
-     * @return void
-     */
-    public function testSpaceship()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertError($file, 12, 'spaceship operator (<=>) is not present in PHP version 5.6 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertNoViolation($file, 12);
-    }
-
-    /**
-     * Coalescing operator
-     *
-     * @return void
-     */
-    public function testCoalescing()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertError($file, 8, 'null coalescing operator (??) is not present in PHP version 5.6 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
-        $this->assertNoViolation($file, 8);
-    }
-
-    /**
-     * Coalesce equal operator
-     *
-     * @return void
-     */
-    public function testCoalesceEquals()
-    {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
-        $this->assertError($file, 10, 'null coalesce equal operator (??=) is not present in PHP version 7.2 or earlier');
-
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
-        $this->assertNoViolation($file, 10);
-    }
-
-    /**
      * Variadic functions using ...
      *
      * @return void
@@ -116,10 +46,10 @@ class NewLanguageConstructsSniffTest extends BaseSniffTest
     public function testEllipsis()
     {
         $file = $this->sniffFile(self::TEST_FILE, '5.5');
-        $this->assertError($file, 14, 'variadic functions using ... is not present in PHP version 5.5 or earlier');
+        $this->assertError($file, 5, 'variadic functions using ... is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(self::TEST_FILE, '5.6');
-        $this->assertNoViolation($file, 14);
+        $this->assertNoViolation($file, 5);
     }
 
 
