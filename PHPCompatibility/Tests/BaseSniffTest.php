@@ -108,6 +108,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
         $parts    = explode('\\', $class);
         $sniff    = array_pop($parts);
         $sniff    = str_replace('SniffTest', '', $sniff);
+        $sniff    = str_replace('UnitTest', '', $sniff);
         $category = array_pop($parts);
         return self::STANDARD_NAME . '.' . $category . '.' . $sniff;
     }
