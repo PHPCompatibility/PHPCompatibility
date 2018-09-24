@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClosure.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosure.
  *
  * PHP version 5.3
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClosure.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosure.
  *
  * Closures are available since PHP 5.3
  *

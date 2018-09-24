@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewGeneratorReturnSniff.
+ * \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff.
  *
  * PHP version 7.0
  *
@@ -9,13 +9,13 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Generators;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewGeneratorReturnSniff.
+ * \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff.
  *
  * As of PHP 7.0, a return statement can be used within a generator for a final expression to be returned.
  *

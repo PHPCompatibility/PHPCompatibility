@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

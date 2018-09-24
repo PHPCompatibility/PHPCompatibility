@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Operators;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *
  * @group forbiddenNegativeBitshift
+ * @group operators
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNegativeBitshiftSniff
+ * @covers \PHPCompatibility\Sniffs\Operators\ForbiddenNegativeBitshiftSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class ForbiddenNegativeBitshiftSniffTest extends BaseSniffTest
+class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_negative_bitshift.php';
 

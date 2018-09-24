@@ -1,28 +1,29 @@
 <?php
 /**
- * Non Static Magic Sniff test file
+ * Non Static Magic Methods Sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Non Static Magic Sniff tests
+ * Non Static Magic Methods Sniff tests
  *
  * @group nonStaticMagicMethods
+ * @group functionDeclarations
  * @group magicMethods
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class NonStaticMagicMethodsSniffTest extends BaseSniffTest
+class NonStaticMagicMethodsUnitTest extends BaseSniffTest
 {
     /**
      * Whether or not traits will be recognized in PHPCS.

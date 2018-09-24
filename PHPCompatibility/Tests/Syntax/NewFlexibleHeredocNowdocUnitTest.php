@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\Syntax;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;

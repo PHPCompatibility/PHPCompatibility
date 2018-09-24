@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,15 +15,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Checks for using break and continue outside of a looping structure.
  *
  * @group forbiddenBreakContinueOutsideLoop
- * @group breakContinue
+ * @group controlStructures
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoopSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueOutsideLoopSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ForbiddenBreakContinueOutsideLoopSniffTest extends BaseSniffTest
+class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_break_continue_outside_loop.php';
 

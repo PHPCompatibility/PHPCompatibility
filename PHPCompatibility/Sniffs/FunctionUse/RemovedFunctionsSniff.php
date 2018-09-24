@@ -1,24 +1,24 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class DeprecatedFunctionsSniff extends AbstractRemovedFeatureSniff
+class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated and removed functions with their alternatives.

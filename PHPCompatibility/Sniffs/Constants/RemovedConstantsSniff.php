@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedConstantsSniff.
+ * \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Constants;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedConstantsSniff.
+ * \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

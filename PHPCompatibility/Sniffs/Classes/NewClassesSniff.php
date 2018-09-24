@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClassesSniff.
+ * \PHPCompatibility\Sniffs\Classes\NewClassesSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,12 +8,12 @@
  * @copyright 2013 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClassesSniff.
+ * \PHPCompatibility\Sniffs\Classes\NewClassesSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility

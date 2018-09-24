@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -14,15 +14,15 @@ use PHPCompatibility\PHPCSHelper;
  * Discouraged use of continue within switch sniff test.
  *
  * @group discouragedSwitchContinue
- * @group breakContinue
+ * @group controlStructures
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DiscouragedSwitchContinueSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinueSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class DiscouragedSwitchContinueSniffTest extends BaseSniffTest
+class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/discouraged_switch_continue.php';
 

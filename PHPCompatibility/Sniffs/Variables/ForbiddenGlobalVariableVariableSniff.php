@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenGlobalVariableVariableSniff.
+ * \PHPCompatibility\Sniffs\Variables\ForbiddenGlobalVariableVariableSniff.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenGlobalVariableVariableSniff.
+ * \PHPCompatibility\Sniffs\Variables\ForbiddenGlobalVariableVariableSniff.
  *
  * Variable variables are forbidden with global
  *

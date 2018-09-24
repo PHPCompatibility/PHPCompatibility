@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\Lists;
+namespace PHPCompatibility\Tests\Lists;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * PHP 7.1 symmetric array destructuring sniff test file.
  *
- * @group shortList
- * @group listAssignments
+ * @group newShortList
+ * @group lists
  *
- * @covers \PHPCompatibility\Sniffs\Lists\ShortListSniff
+ * @covers \PHPCompatibility\Sniffs\Lists\NewShortListSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ShortListSniffTest extends BaseSniffTest
+class NewShortListUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'Sniffs/Lists/ShortListTestCases.inc';
 

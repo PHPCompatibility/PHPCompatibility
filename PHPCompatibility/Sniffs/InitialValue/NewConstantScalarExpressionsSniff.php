@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstantScalarExpressionsSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff.
  *
  * PHP version 5.6
  *
@@ -9,13 +9,13 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstantScalarExpressionsSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff.
  *
  * Since PHP 5.6, it is now possible to provide a scalar expression involving
  * numeric and string literals and/or constants in contexts where PHP previously

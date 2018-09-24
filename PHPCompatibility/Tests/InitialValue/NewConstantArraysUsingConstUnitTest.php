@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\InitialValue;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Constant arrays using the const keyword in PHP 5.6 sniff test file
  *
- * @group constantArraysUsingConst
- * @group constants
+ * @group newConstantArraysUsingConst
+ * @group initialValue
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingConstSniff
+ * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingConstSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ConstantArraysUsingConstSniffTest extends BaseSniffTest
+class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/constant_arrays_using_const.php';
 

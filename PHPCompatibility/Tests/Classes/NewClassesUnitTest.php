@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Classes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newClasses
  * @group classes
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewClassesSniff
+ * @covers \PHPCompatibility\Sniffs\Classes\NewClassesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class NewClassesSniffTest extends BaseSniffTest
+class NewClassesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_classes.php';

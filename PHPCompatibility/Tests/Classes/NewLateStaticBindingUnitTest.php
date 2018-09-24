@@ -5,22 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Classes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Late static binding sniff test file
  *
- * @group lateStaticBinding
+ * @group newLateStaticBinding
+ * @group classes
  *
- * @covers \PHPCompatibility\Sniffs\PHP\LateStaticBindingSniff
+ * @covers \PHPCompatibility\Sniffs\Classes\NewLateStaticBindingSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class LateStaticBindingSniffTest extends BaseSniffTest
+class NewLateStaticBindingUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/late_static_binding.php';
 

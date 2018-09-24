@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff.
  *
  * PHP version 7.1
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff.
  *
  * PHP version 7.1
  *
@@ -22,7 +22,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class MbstringReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
+class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

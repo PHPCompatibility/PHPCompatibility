@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ReservedFunctionNamesSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ReservedFunctionNamesSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff.
  *
  * All function and method names starting with double underscore are reserved by PHP.
  *

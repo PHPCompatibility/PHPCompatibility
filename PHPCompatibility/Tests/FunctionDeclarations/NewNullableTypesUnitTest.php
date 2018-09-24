@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,16 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New nullable type hints / return types sniff test file
  *
  * @group nullableTypes
+ * @group functionDeclarations
  * @group typeDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewNullableTypesSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewNullableTypesSniffTest extends BaseSniffTest
+class NewNullableTypesUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_nullable_types.php';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Koen Eelen <koen.eelen@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff.
  *
  * PHP version 7.0
  *
@@ -22,7 +22,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Koen Eelen <koen.eelen@cu.be>
  */
-class DeprecatedPHP4StyleConstructorsSniff extends Sniff
+class RemovedPHP4StyleConstructorsSniff extends Sniff
 {
 
     /**

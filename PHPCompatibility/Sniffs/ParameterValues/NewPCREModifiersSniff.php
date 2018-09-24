@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\PCRENewModifiers.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiers.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
-use PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff;
+use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\PCRENewModifiers.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiers.
  *
  * Check for usage of newly added regex modifiers for PCRE functions.
  *
@@ -20,7 +20,7 @@ use PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PCRENewModifiersSniff extends PregReplaceEModifierSniff
+class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
 {
 
     /**

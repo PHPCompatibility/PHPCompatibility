@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New array and string literal dereferencing sniff test.
  *
  * @group newArrayStringDereferencing
- * @group dereferencing
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewArrayStringDereferencingSniffTest extends BaseSniffTest
+class NewArrayStringDereferencingUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_array_string_dereferencing.php';
 

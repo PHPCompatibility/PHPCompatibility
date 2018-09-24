@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\IniDirectives;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newIniDirectives
  * @group iniDirectives
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewIniDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class NewIniDirectivesSniffTest extends BaseSniffTest
+class NewIniDirectivesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_ini_directives.php';

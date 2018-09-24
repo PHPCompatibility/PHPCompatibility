@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Lists;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Empty list() assignments have been removed in PHP 7.0 sniff test file
  *
  * @group forbiddenEmptyListAssignment
- * @group listAssignments
+ * @group lists
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenEmptyListAssignmentSniff
+ * @covers \PHPCompatibility\Sniffs\Lists\ForbiddenEmptyListAssignmentSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class ForbiddenEmptyListAssignmentSniffTest extends BaseSniffTest
+class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_empty_list_assignment.php';
 

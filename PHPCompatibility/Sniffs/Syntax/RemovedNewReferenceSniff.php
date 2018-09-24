@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff.
+ * \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff.
  *
  * PHP version 5.4
  *
@@ -10,12 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff.
+ * \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff.
  *
  * Discourages the use of assigning the return value of new by reference
  *
@@ -26,7 +26,7 @@ use PHPCompatibility\Sniff;
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class DeprecatedNewReferenceSniff extends Sniff
+class RemovedNewReferenceSniff extends Sniff
 {
 
     /**

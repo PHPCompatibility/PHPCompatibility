@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff.
+ * \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

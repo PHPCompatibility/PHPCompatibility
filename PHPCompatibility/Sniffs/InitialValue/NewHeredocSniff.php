@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff.
  *
  * PHP version 5.3
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\InitialValue;
 
-use PHPCompatibility\Sniffs\PHP\NewConstantScalarExpressionsSniff;
+use PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff.
  *
  * As of PHP 5.3.0, it's possible to initialize static variables, class properties
  * and constants declared using the `const` keyword, using the Heredoc syntax.
@@ -30,7 +30,7 @@ use PHPCompatibility\Sniffs\PHP\NewConstantScalarExpressionsSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewHeredocInitializeSniff extends NewConstantScalarExpressionsSniff
+class NewHeredocSniff extends NewConstantScalarExpressionsSniff
 {
 
     /**

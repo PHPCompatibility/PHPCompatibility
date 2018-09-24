@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\TypeCasts;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New type casts sniff tests
  *
  * @group newTypeCasts
- * @group typecasts
+ * @group typeCasts
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewTypeCastsSniff
+ * @covers \PHPCompatibility\Sniffs\TypeCasts\NewTypeCastsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewTypeCastsSniffTest extends BaseSniffTest
+class NewTypeCastsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_type_casts.php';
 

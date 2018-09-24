@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\UseDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New use group declaration sniff tests
  *
  * @group newGroupUseDeclarations
+ * @group useDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewGroupUseDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewGroupUseDeclarationsSniffTest extends BaseSniffTest
+class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_group_use_declarations.php';

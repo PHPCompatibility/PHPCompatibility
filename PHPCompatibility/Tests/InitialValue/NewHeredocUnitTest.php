@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\InitialValue;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -13,17 +13,16 @@ use PHPCompatibility\PHPCSHelper;
 /**
  * New initialize with heredoc in PHP 5.3 sniff test file
  *
- * @group newHeredocInitialize
- * @group constants
- * @group variables
+ * @group newHeredoc
+ * @group initialValue
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewHeredocInitializeSniff
+ * @covers \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewHeredocInitializeSniffTest extends BaseSniffTest
+class NewHeredocUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_heredoc_initialize.php';
 

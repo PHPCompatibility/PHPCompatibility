@@ -1,25 +1,25 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class NewScalarTypeDeclarationsSniff extends AbstractNewFeatureSniff
+class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
 
     /**

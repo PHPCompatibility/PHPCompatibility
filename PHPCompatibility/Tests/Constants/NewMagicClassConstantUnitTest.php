@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Constants;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newMagicClassConstant
  * @group constants
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewMagicClassConstantSniff
+ * @covers \PHPCompatibility\Sniffs\Constants\NewMagicClassConstantSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewMagicClassConstantSniffTest extends BaseSniffTest
+class NewMagicClassConstantUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_magic_class_constant.php';
 

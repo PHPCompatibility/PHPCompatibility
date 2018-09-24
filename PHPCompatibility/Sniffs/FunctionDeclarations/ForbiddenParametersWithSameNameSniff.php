@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenFunctionParametersWithSameName.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameName.
  *
  * PHP version 7.0
  *
@@ -9,13 +9,13 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenFunctionParametersWithSameName.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameName.
  *
  * Functions can not have multiple parameters with the same name since PHP 7.0
  *
@@ -25,7 +25,7 @@ use PHPCompatibility\PHPCSHelper;
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class ForbiddenFunctionParametersWithSameNameSniff extends Sniff
+class ForbiddenParametersWithSameNameSniff extends Sniff
 {
 
     /**

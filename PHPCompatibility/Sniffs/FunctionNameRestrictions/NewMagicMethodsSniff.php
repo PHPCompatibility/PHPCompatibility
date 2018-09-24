@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff.
  *
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
  *

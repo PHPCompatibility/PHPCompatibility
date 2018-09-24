@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\GetClassNullSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\ForbiddenGetClassNullSniff.
  *
  * PHP version 7.2
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\GetClassNullSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\ForbiddenGetClassNullSniff.
  *
  * Detect: Passing `null` to get_class() is no longer allowed as of PHP 7.2.
  * This will now result in an E_WARNING being thrown.
@@ -25,7 +25,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class GetClassNullSniff extends AbstractFunctionCallParameterSniff
+class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,16 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Removed hash algorithms sniff tests
  *
  * @group removedHashAlgorithms
+ * @group parameterValues
  * @group hashAlgorithms
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedHashAlgorithmsSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedHashAlgorithmsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class RemovedHashAlgorithmsSniffTest extends BaseSniffTest
+class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/removed_hash_algorithms.php';
 

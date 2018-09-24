@@ -5,22 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New function call trailing comma sniff tests
  *
- * @group newTrailingComma
+ * @group newFunctionCallTrailingComma
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewTrailingCommaSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewTrailingCommaSniffTest extends BaseSniffTest
+class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_trailing_comma.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\IconvEncodingSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedIconvEncodingSniff.
  *
  * PHP version 5.6
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\IconvEncodingSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedIconvEncodingSniff.
  *
  * Detect: "The iconv and mbstring configuration options related to encoding
  * have been deprecated in favour of default_charset."
@@ -28,7 +28,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class IconvEncodingSniff extends AbstractFunctionCallParameterSniff
+class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

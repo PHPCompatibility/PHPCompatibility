@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\FopenModeSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\FopenModeSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff.
  *
  * Detect: Changes in allowed values for the fopen() $mode parameter.
  *
@@ -20,7 +20,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class FopenModeSniff extends AbstractFunctionCallParameterSniff
+class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**
@@ -40,8 +40,8 @@ class FopenModeSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        // Version used here should be (above) the highest version from the `$newModes` array,
-        // i.e. the last PHP version in which a new mode was introduced.
+        // Version used here should be (above) the highest version from the `newModes` control,
+        // structure below, i.e. the last PHP version in which a new mode was introduced.
         return ($this->supportsBelow('7.1') === false);
     }
 

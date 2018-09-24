@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New execution directives test file
  *
  * @group newExecutionDirectives
- * @group executionDirectives
+ * @group controlStructures
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewExecutionDirectivesSniffTest extends BaseSniffTest
+class NewExecutionDirectivesUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_execution_directives.php';
 

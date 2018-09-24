@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Forbidden call time pass by reference sniff test
  *
  * @group forbiddenCallTimePassByReference
- * @group references
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenCallTimePassByReferenceSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\ForbiddenCallTimePassByReferenceSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenCallTimePassByReferenceSniffTest extends BaseSniffTest
+class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/call_time_pass_by_reference.php';
 

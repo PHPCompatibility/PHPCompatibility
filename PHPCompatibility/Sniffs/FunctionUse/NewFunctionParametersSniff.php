@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\NewFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\newFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\newFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

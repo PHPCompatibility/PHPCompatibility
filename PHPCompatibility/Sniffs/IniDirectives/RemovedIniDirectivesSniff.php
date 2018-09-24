@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedIniDirectivesSniff.
+ * \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,21 +8,21 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedIniDirectivesSniff.
+ * \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff.
  *
- * Discourages the use of deprecated INI directives through ini_set() or ini_get().
+ * Discourages the use of deprecated and removed INI directives through ini_set() or ini_get().
  *
  * @category  PHP
  * @package   PHPCompatibility
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2012 Cu.be Solutions bvba
  */
-class DeprecatedIniDirectivesSniff extends AbstractRemovedFeatureSniff
+class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated INI directives.

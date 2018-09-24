@@ -9,7 +9,7 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
@@ -26,7 +26,7 @@ use PHPCompatibility\PHPCSHelper;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ForbiddenClosureUseVariableNamesSniff extends Sniff
+class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 {
 
     /**

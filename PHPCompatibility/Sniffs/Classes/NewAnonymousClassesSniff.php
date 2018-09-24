@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewAnonymousClasses.
+ * \PHPCompatibility\Sniffs\Classes\NewAnonymousClasses.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewAnonymousClasses.
+ * \PHPCompatibility\Sniffs\Classes\NewAnonymousClasses.
  *
  * Anonymous classes are supported in PHP 7.0
  *

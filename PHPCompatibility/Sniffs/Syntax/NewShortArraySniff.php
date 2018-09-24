@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ShortArray.
+ * \PHPCompatibility\Sniffs\Syntax\NewShortArray.
  *
  * PHP version 5.4
  *
@@ -9,12 +9,12 @@
  * @author   Alex Miroshnikov <unknown@example.com>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ShortArray.
+ * \PHPCompatibility\Sniffs\Syntax\NewShortArray.
  *
  * Short array syntax is available since PHP 5.4
  *
@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Alex Miroshnikov <unknown@example.com>
  */
-class ShortArraySniff extends Sniff
+class NewShortArraySniff extends Sniff
 {
 
     /**

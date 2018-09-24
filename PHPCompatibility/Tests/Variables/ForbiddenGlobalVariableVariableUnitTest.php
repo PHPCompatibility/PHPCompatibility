@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Variables;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Global with variable variables have been removed in PHP 7.0 sniff test file
  *
  * @group forbiddenGlobalVariableVariable
- * @group variableVariables
+ * @group variables
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenGlobalVariableVariableSniff
+ * @covers \PHPCompatibility\Sniffs\Variables\ForbiddenGlobalVariableVariableSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class ForbiddenGlobalVariableVariableSniffTest extends BaseSniffTest
+class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_global_variable_variable.php';
 

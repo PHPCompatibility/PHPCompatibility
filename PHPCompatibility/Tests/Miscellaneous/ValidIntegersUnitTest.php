@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Miscellaneous;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Valid Integers Sniff tests
  *
  * @group validIntegers
+ * @group miscellaneous
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ValidIntegersSniff
+ * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ValidIntegersSniffTest extends BaseSniffTest
+class ValidIntegersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/valid_integers.php';

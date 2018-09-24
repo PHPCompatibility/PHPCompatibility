@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClassMemberAccessSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff.
  *
  * PHP version 5.4
  * PHP version 7.0
@@ -10,12 +10,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewClassMemberAccessSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff.
  *
  * PHP 5.4: Class member access on instantiation has been added, e.g. (new Foo)->bar().
  * PHP 7.0: Class member access on cloning has been added, e.g. (clone $foo)->bar().

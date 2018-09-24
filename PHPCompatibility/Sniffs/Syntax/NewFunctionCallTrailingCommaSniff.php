@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\TrailingCommaSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff.
  *
  * PHP version 7.3
  *
@@ -9,23 +9,20 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewTrailingCommaSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff.
  *
  * PHP version 7.3
- *
- * Note: trailing comma's in group use statements as introduced in PHP 7.2 is covered
- * by the `NewGroupUseDeclaration` sniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewTrailingCommaSniff extends Sniff
+class NewFunctionCallTrailingCommaSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

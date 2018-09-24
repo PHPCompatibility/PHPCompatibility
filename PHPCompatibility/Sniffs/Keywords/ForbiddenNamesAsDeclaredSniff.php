@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredClassSniff.
+ * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredClassSniff.
  *
  * PHP version 7.0+
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredClassSniff.
+ * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredClassSniff.
  *
  * Prohibits the use of some reserved keywords to name a class, interface, trait or namespace.
  * Emits errors for reserved words and warnings for soft-reserved words.

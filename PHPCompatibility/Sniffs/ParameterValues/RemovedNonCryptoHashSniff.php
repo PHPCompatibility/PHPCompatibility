@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\NonCryptoHashSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedNonCryptoHashSniff.
  *
  * PHP version 7.2
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\NonCryptoHashSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedNonCryptoHashSniff.
  *
  * Detect: "The hash_hmac(), hash_hmac_file(), hash_pbkdf2(), and hash_init()
  * (with HASH_HMAC) functions no longer accept non-cryptographic hashes."
@@ -25,7 +25,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NonCryptoHashSniff extends AbstractFunctionCallParameterSniff
+class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

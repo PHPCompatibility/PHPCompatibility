@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Negative string offsets as parameters sniff tests.
  *
- * @group negativeStringOffset
- * @group functionParameterValues
+ * @group newNegativeStringOffset
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\NegativeStringOffsetSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\NewNegativeStringOffsetSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NegativeStringOffsetSniffTest extends BaseSniffTest
+class NewNegativeStringOffsetUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/NegativeStringOffsetTestCases.inc';

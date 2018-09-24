@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -13,32 +13,33 @@ use PHPCompatibility\PHPCSHelper;
 /**
  * PHP 7.1 Forbidden variable names in closure use statements tests.
  *
- * @group forbiddenClosureUseVariableNames
+ * @group forbiddenVariableNamesInClosureUse
  * @group closures
+ * @group functionDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenClosureUseVariableNamesSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenVariableNamesInClosureUseSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
+class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_closure_use_variable_names.php';
 
     const TEST_FILE_LIVE_CODING = 'sniff-examples/forbidden_closure_use_variable_names.2.php';
 
     /**
-     * testForbiddenClosureUseVariableNames
+     * testForbiddenVariableNamesInClosureUse
      *
-     * @dataProvider dataForbiddenClosureUseVariableNames
+     * @dataProvider dataForbiddenVariableNamesInClosureUse
      *
      * @param int    $line    The line number.
      * @param string $varName Variable name which should be found.
      *
      * @return void
      */
-    public function testForbiddenClosureUseVariableNames($line, $varName)
+    public function testForbiddenVariableNamesInClosureUse($line, $varName)
     {
         $file = $this->sniffFile(self::TEST_FILE, '7.1');
         $this->assertError($file, $line, 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: ' . $varName);
@@ -47,11 +48,11 @@ class ForbiddenClosureUseVariableNamesSniffTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testForbiddenClosureUseVariableNames()
+     * @see testForbiddenVariableNamesInClosureUse()
      *
      * @return array
      */
-    public function dataForbiddenClosureUseVariableNames()
+    public function dataForbiddenVariableNamesInClosureUse()
     {
         return array(
             array(4, '$_SERVER'),

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff.
  *
  * PHP version 5.5
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewArrayStringDereferencingSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff.
  *
  * Array and string literals can now be dereferenced directly to access individual elements and characters.
  *

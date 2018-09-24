@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedHashAlgorithmsSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedHashAlgorithmsSniff.
  *
  * PHP version 5.4
  *
@@ -10,12 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedHashAlgorithmsSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedHashAlgorithmsSniff.
  *
  * Discourages the use of deprecated and removed hash algorithms.
  *

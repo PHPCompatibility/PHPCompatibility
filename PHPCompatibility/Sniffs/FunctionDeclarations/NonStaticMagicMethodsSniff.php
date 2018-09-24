@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff.
  *
  * PHP version 5.4
  *
@@ -10,12 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NonStaticMagicMethodsSniff.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff.
  *
  * Verifies the use of the correct visibility and static properties of magic methods.
  *

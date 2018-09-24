@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New PCRE regex modifiers sniff tests.
  *
- * @group PCRENewModifiers
+ * @group newPCREModifiers
+ * @group parameterValues
  * @group regexModifiers
  *
- * @covers \PHPCompatibility\Sniffs\PHP\PCRENewModifiersSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class PCRENewModifiersSniffTest extends BaseSniffTest
+class NewPCREModifiersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/pcre_new_modifiers.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff.
+ * \PHPCompatibility\Sniffs\Keywords\CaseSensitiveKeywordsSniff.
  *
  * PHP version 5.5
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff.
+ * \PHPCompatibility\Sniffs\Keywords\CaseSensitiveKeywordsSniff.
  *
  * Prior to PHP 5.5, cases existed where the self, parent, and static keywords
  * were treated in a case sensitive fashion.

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,16 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New return types test file
  *
  * @group newReturnTypeDeclarations
+ * @group functionDeclarations
  * @group typeDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewReturnTypeDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewReturnTypeDeclarationsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewReturnTypeDeclarationsSniffTest extends BaseSniffTest
+class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_return_type_declarations.php';
 

@@ -1,27 +1,27 @@
 <?php
 /**
- * Deprecated new reference sniff test file
+ * Removed new reference sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated new reference sniff tests
+ * Removed new reference sniff tests
  *
- * @group deprecatedNewReference
- * @group references
+ * @group removedNewReference
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedNewReferenceSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class DeprecatedNewReferenceSniffTest extends BaseSniffTest
+class RemovedNewReferenceUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/deprecated_new_reference.php';
 

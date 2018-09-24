@@ -1,27 +1,27 @@
 <?php
 /**
- * Deprecated ini directives sniff test file
+ * Removed ini directives sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\IniDirectives;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated ini directives sniff tests
+ * Removed ini directives sniff tests
  *
- * @group deprecatedIniDirectives
+ * @group removedIniDirectives
  * @group iniDirectives
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedIniDirectivesSniff
+ * @covers \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class DeprecatedIniDirectivesSniffTest extends BaseSniffTest
+class RemovedIniDirectivesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/deprecated_ini_directives.php';

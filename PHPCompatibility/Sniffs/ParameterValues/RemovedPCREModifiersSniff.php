@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff.
  *
  * PHP version 5.5
  *
@@ -10,12 +10,12 @@
  * @copyright 2014 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff.
  *
  * Check for usage of the `e` modifier with PCRE functions which is deprecated since PHP 5.5
  * and removed as of PHP 7.0.
@@ -27,7 +27,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @author    Wim Godden <wim.godden@cu.be>
  * @copyright 2014 Cu.be Solutions bvba
  */
-class PregReplaceEModifierSniff extends AbstractFunctionCallParameterSniff
+class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

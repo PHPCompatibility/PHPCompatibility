@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\Lists;
+namespace PHPCompatibility\Tests\Lists;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 

@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionUse;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Required Optional Parameter Sniff test file
  *
- * @group requiredOptionalFunctionParameters
- * @group functionParameters
+ * @group requiredToOptionalFunctionParameters
+ * @group functionUse
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RequiredOptionalFunctionParametersSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RequiredOptionalFunctionParametersSniffTest extends BaseSniffTest
+class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/required_optional_function_parameters.php';

@@ -1,19 +1,19 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewExecutionDirectivesSniff.
+ * \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

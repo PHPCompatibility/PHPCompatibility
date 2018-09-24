@@ -1,27 +1,28 @@
 <?php
 /**
- * ParameterShadowSuperGlobalsSniffTest
+ * ForbiddenParameterShadowSuperGlobalsSniffTest
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * ParameterShadowSuperGlobalsSniffTest
+ * ForbiddenParameterShadowSuperGlobalsSniffTest
  *
- * @group parameterShadowSuperGlobals
+ * @group forbiddenParameterShadowSuperGlobals
+ * @group functionDeclarations
  * @group superglobals
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ParameterShadowSuperGlobalsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParameterShadowSuperGlobalsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ParameterShadowSuperGlobalsSniffTest extends BaseSniffTest
+class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/parameter_shadow_superglobals.php';

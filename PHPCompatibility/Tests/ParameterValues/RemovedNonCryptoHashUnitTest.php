@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Use of non-cryptographic hashes sniff tests.
  *
- * @group nonCryptoHash
- * @group functionParameterValues
+ * @group removedNonCryptoHash
+ * @group parameterValues
+ * @group hashAlgorithms
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\NonCryptoHashSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedNonCryptoHashSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NonCryptoHashSniffTest extends BaseSniffTest
+class RemovedNonCryptoHashUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/NonCryptoHashTestCases.inc';

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionUse;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New Functions Parameter Sniff tests
  *
  * @group newFunctionParameters
- * @group functionParameters
+ * @group functionUse
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewFunctionParametersSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionUse\NewFunctionParametersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewFunctionParametersSniffTest extends BaseSniffTest
+class NewFunctionParametersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_function_parameter.php';

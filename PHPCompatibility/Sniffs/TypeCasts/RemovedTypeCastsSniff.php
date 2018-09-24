@@ -1,24 +1,24 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedTypeCastsSniff.
+ * \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\TypeCasts;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedTypeCastsSniff.
+ * \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class DeprecatedTypeCastsSniff extends AbstractRemovedFeatureSniff
+class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
 {
     /**
      * A list of deprecated and removed type casts with their alternatives.

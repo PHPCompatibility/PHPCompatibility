@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionUse;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Check for the PHP 5.3 changes in allowed usage of the argument functions.
  *
  * @group argumentFunctions
- * @group functions
+ * @group functionUse
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ArgumentFunctionsUsageSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionUse\ArgumentFunctionsUsageSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ArgumentFunctionsUsageSniffTest extends BaseSniffTest
+class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/argument_functions_usage.php';
 

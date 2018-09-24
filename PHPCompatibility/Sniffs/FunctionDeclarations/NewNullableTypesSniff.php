@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewNullableTypes.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypes.
  *
  * PHP version 7.1
  *
@@ -9,13 +9,13 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewNullableTypes.
+ * \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypes.
  *
  * Nullable type hints and return types are available since PHP 7.1.
  *

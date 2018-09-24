@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Allowed values for the fopen() $mode parameter sniff tests.
  *
- * @group fopenMode
- * @group functionParameterValues
+ * @group newFopenModes
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\FopenModeSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class FopenModeSniffTest extends BaseSniffTest
+class NewFopenModesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/FopenModeTestCases.inc';

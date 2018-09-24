@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Short array syntax sniff tests
  *
- * @group shortArray
- * @group arraySyntax
+ * @group newShortArray
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ShortArraySniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewShortArraySniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Alex Miroshnikov <unknown@example.com>
  */
-class ShortArraySniffTest extends BaseSniffTest
+class NewShortArrayUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/short_array.php';
 

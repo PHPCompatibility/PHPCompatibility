@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ArgumentFunctionsUsageSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\ArgumentFunctionsUsageSniff.
  *
  * PHP version 5.3
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ArgumentFunctionsUsageSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\ArgumentFunctionsUsageSniff.
  *
  * - Prior to PHP 5.3, these functions could not be used as a function call parameter.
  *

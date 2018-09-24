@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Parameter type of the array_reduce() $initial param sniff tests.
  *
- * @group arrayReduceInitialType
- * @group functionParameterValues
+ * @group newArrayReduceInitialType
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\ArrayReduceInitialTypeSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\NewArrayReduceInitialTypeSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ArrayReduceInitialTypeSniffTest extends BaseSniffTest
+class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/ArrayReduceInitialTypeTestCases.inc';

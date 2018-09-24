@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Miscellaneous;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Removed alternative PHP tags sniff test file
  *
  * @group removedAlternativePHPTags
+ * @group miscellaneous
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTagsSniff
+ * @covers \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTagsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RemovedAlternativePHPTagsSniffTest extends BaseSniffTest
+class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/removed_alternative_phptags.php';
 

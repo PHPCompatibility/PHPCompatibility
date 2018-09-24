@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTags.
+ * \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTags.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedAlternativePHPTags.
+ * \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTags.
  *
  * Check for usage of alternative PHP tags - removed in PHP 7.0.
  *

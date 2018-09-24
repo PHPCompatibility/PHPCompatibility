@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,16 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New hash algorithms sniff tests.
  *
  * @group newHashAlgorithms
+ * @group parameterValues
  * @group hashAlgorithms
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewHashAlgorithmsSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\NewHashAlgorithmsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewHashAlgorithmsSniffTest extends BaseSniffTest
+class NewHashAlgorithmsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_hash_algorithms.php';
 

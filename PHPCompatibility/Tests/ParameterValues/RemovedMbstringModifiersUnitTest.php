@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Deprecated Mbstring regex replace e modifier test file.
  *
- * @group mbstringReplaceEModifier
+ * @group removedMbstringModifiers
+ * @group parameterValues
  * @group regexModifiers
  *
- * @covers \PHPCompatibility\Sniffs\PHP\MbstringReplaceEModifierSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class MbstringReplaceEModifierSniffTest extends BaseSniffTest
+class RemovedMbstringModifiersUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/mbstring_replace_e_modifier.php';
 

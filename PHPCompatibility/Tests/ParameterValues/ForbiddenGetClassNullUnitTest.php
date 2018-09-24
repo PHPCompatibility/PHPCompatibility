@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Passing `null` to get_class() sniff tests.
  *
- * @group getClassNull
- * @group functionParameterValues
+ * @group forbiddenGetClassNull
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\GetClassNullSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\ForbiddenGetClassNullSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class GetClassNullSniffTest extends BaseSniffTest
+class ForbiddenGetClassNullUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/GetClassNullTestCases.inc';

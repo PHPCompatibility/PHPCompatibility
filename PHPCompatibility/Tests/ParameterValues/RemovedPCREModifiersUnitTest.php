@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * preg_replace() /e modifier sniff tests
  *
- * @group pregReplaceEModifier
+ * @group removedPCREModifiers
+ * @group parameterValues
  * @group regexModifiers
  *
- * @covers \PHPCompatibility\Sniffs\PHP\PregReplaceEModifierSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class PregReplaceEModifierSniffTest extends BaseSniffTest
+class RemovedPCREModifiersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/preg_replace_e_modifier.php';

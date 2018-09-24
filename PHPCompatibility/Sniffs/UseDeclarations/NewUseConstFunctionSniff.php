@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewUseConstFunctionSniff.
+ * \PHPCompatibility\Sniffs\UseDeclarations\NewUseConstFunctionSniff.
  *
  * PHP version 5.6
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\UseDeclarations;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewUseConstFunctionSniff.
+ * \PHPCompatibility\Sniffs\UseDeclarations\NewUseConstFunctionSniff.
  *
  * The use operator has been extended to support importing functions and
  * constants in addition to classes. This is achieved via the use function

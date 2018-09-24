@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Generators;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New generator return expressions in PHP 7.0 sniff test file
  *
  * @group newGeneratorReturn
+ * @group generators
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewGeneratorReturnSniff
+ * @covers \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewGeneratorReturnSniffTest extends BaseSniffTest
+class NewGeneratorReturnUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_generator_return.php';
 

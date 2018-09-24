@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Passing literal string $category to setlocale() sniff tests.
  *
- * @group setlocaleString
- * @group functionParameterValues
+ * @group removedSetlocaleString
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\SetlocaleStringSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedSetlocaleStringSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class SetlocaleStringSniffTest extends BaseSniffTest
+class RemovedSetlocaleStringUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/SetlocaleStringTestCases.inc';

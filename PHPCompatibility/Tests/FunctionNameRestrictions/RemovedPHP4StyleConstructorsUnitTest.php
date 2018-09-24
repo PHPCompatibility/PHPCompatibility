@@ -5,22 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * PHP4 style constructors sniff test
  *
- * @group deprecatedPHP4StyleConstructors
+ * @group removedPHP4StyleConstructors
+ * @group functionNameRestrictions
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedPHP4StyleConstructorsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Koen Eelen <koen.eelen@cu.be>
  */
-class DeprecatedPHP4StyleConstructorsSniffTest extends BaseSniffTest
+class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/deprecated_php4style_constructors.php';
 

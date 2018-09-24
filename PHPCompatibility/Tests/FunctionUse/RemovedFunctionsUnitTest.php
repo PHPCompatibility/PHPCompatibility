@@ -1,27 +1,27 @@
 <?php
 /**
- * Deprecated functions sniff test file
+ * Removed functions sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionUse;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated functions sniff tests
+ * Removed functions sniff tests
  *
- * @group deprecatedFunctions
- * @group functions
+ * @group removedFunctions
+ * @group functionUse
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedFunctionsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class DeprecatedFunctionsSniffTest extends BaseSniffTest
+class RemovedFunctionsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/deprecated_functions.php';

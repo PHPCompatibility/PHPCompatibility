@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -13,16 +13,16 @@ use PHPCompatibility\PHPCSHelper;
 /**
  * __autoload deprecation for PHP 7.2 sniff test
  *
- * @group deprecatedMagicAutoload
- * @group functionDeclarations
+ * @group removedMagicAutoload
+ * @group functionNameRestrictions
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedMagicAutoloadSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim.godden@cu.be>
  */
-class DeprecatedMagicAutoloadSniffTest extends BaseSniffTest
+class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/deprecated_magic_autoload.php';
     const TEST_FILE_NAMESPACED = 'sniff-examples/deprecated_magic_autoload_namespaced.php';

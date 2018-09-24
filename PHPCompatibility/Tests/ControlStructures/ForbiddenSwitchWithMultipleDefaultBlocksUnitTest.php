@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Switch statements can only have one default case in PHP 7.0
  *
  * @group forbiddenSwitchWithMultipleDefaultBlocks
+ * @group controlStructures
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenSwitchWithMultipleDefaultBlocksSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenSwitchWithMultipleDefaultBlocksSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenSwitchWithMultipleDefaultBlocksSniffTest extends BaseSniffTest
+class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_switch_with_multiple_default_blocks.php';
 

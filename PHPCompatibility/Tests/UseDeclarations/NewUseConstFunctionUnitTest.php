@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\UseDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New use const function in PHP 5.6 sniff test file
  *
  * @group newUseConstFunction
- * @group use
+ * @group useDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewUseConstFunctionSniff
+ * @covers \PHPCompatibility\Sniffs\UseDeclarations\NewUseConstFunctionSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewUseConstFunctionSniffTest extends BaseSniffTest
+class NewUseConstFunctionUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_use_const_function.php';
 

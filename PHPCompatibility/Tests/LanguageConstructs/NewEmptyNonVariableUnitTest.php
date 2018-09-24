@@ -5,22 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\LanguageConstructs;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Empty with non variable sniff test file
  *
- * @group emptyNonVariable
+ * @group newEmptyNonVariable
+ * @group languageConstructs
  *
- * @covers \PHPCompatibility\Sniffs\PHP\EmptyNonVariableSniff
+ * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class EmptyNonVariableSniffTest extends BaseSniffTest
+class NewEmptyNonVariableUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/empty_non_variable.php';
 

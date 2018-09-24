@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Interfaces;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newInterfaces
  * @group interfaces
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewInterfacesSniff
+ * @covers \PHPCompatibility\Sniffs\Interfaces\NewInterfacesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewInterfacesSniffTest extends BaseSniffTest
+class NewInterfacesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_interfaces.php';

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Keywords;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Forbidden names as function invocations sniff test file
  *
  * @group forbiddenNamesAsInvokedFunctions
- * @group reservedKeywords
+ * @group keywords
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsInvokedFunctionsSniff
+ * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsInvokedFunctionsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenNamesAsInvokedFunctionsSniffTest extends BaseSniffTest
+class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/forbidden_names_function_invocation.php';

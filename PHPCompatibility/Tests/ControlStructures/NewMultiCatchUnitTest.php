@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New catching multiple exception types sniff test file
  *
- * @group multiCatch
+ * @group newMultiCatch
+ * @group controlStructures
  * @group exceptions
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewMultiCatchSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatchSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewMultiCatchSniffTest extends BaseSniffTest
+class NewMultiCatchUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_multi_catch.php';
 

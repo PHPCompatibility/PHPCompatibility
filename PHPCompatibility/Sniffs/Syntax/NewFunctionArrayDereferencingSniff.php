@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewFunctionArrayDereferencingSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff.
  *
  * PHP version 5.4
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewFunctionArrayDereferencingSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff.
  *
  * PHP version 5.4
  *

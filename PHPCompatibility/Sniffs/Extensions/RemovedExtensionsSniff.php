@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,12 +8,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Extensions;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff.
+ * \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff.
  *
  * Discourages the use of removed extensions. Suggests alternative extensions if available
  *

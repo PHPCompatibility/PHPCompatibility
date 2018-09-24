@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Extensions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -16,13 +16,13 @@ use PHPCompatibility\PHPCSHelper;
  * @group removedExtensions
  * @group extensions
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedExtensionsSniff
+ * @covers \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class RemovedExtensionsSniffTest extends BaseSniffTest
+class RemovedExtensionsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/removed_extensions.php';

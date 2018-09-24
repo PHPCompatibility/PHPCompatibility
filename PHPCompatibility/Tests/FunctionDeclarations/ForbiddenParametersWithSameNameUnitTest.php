@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Functions can not have multiple parameters with the same name since PHP 7.0 sniff test
  *
- * @group forbiddenFunctionParametersWithSameName
+ * @group forbiddenParametersWithSameName
  * @group functionDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenFunctionParametersWithSameNameSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameNameSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class ForbiddenFunctionParametersWithSameNameSniffTest extends BaseSniffTest
+class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_function_parameters_with_same_name.php';
 

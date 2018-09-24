@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Keywords;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Forbidden names sniff test
  *
  * @group forbiddenNames
- * @group reservedKeywords
+ * @group keywords
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNamesSniff
+ * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenNamesSniffTest extends BaseSniffTest
+class ForbiddenNamesUnitTest extends BaseSniffTest
 {
 
     /**
@@ -41,7 +41,7 @@ class ForbiddenNamesSniffTest extends BaseSniffTest
         $filename = "sniff-examples/forbidden-names/$usecase.php";
 
         // Set the testVersion to the highest PHP version encountered in the
-        // \PHPCompatibility\Sniffs\PHP\ForbiddenNamesSniff::$invalidNames
+        // \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff::$invalidNames
         // list to catch all errors.
         $file = $this->sniffFile($filename, '5.5');
 

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Keywords;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New keywords sniff tests
  *
  * @group newKeywords
- * @group reservedKeywords
+ * @group keywords
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewKeywordsSniff
+ * @covers \PHPCompatibility\Sniffs\Keywords\NewKeywordsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class NewKeywordsSniffTest extends BaseSniffTest
+class NewKeywordsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_keywords.php';
 

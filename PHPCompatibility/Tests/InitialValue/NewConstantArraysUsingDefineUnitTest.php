@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\InitialValue;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Constant arrays using define in PHP 7.0 sniff test file
  *
- * @group constantArraysUsingDefine
- * @group constants
+ * @group newConstantArraysUsingDefine
+ * @group initialValue
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingDefineSniff
+ * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingDefineSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class ConstantArraysUsingDefineSniffTest extends BaseSniffTest
+class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/constant_arrays_using_define.php';
 

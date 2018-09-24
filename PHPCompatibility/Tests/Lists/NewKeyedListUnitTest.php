@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\Lists;
+namespace PHPCompatibility\Tests\Lists;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,7 +13,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * PHP 7.1 keyed lists sniff test file.
  *
  * @group newKeyedList
- * @group listAssignments
+ * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\NewKeyedListSniff
  *
@@ -21,7 +21,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewKeyedListSniffTest extends BaseSniffTest
+class NewKeyedListUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'Sniffs/Lists/NewKeyedListTestCases.inc';
 

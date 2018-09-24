@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DynamicAccessToStaticSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewDynamicAccessToStaticSniff.
  *
  * PHP version 5.3
  *
@@ -9,13 +9,13 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DynamicAccessToStaticSniff.
+ * \PHPCompatibility\Sniffs\Syntax\NewDynamicAccessToStaticSniff.
  *
  * As of PHP 5.3, static properties and methods as well as class constants
  * can be accessed using a dynamic (variable) class name.
@@ -26,7 +26,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class DynamicAccessToStaticSniff extends Sniff
+class NewDynamicAccessToStaticSniff extends Sniff
 {
 
     /**

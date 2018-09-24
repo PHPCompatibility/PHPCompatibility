@@ -1,19 +1,19 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\InternalInterfacesSniff.
+ * \PHPCompatibility\Sniffs\Interfaces\InternalInterfacesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\InternalInterfacesSniff.
+ * \PHPCompatibility\Sniffs\Interfaces\InternalInterfacesSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

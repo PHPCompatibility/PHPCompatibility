@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewMultiCatch.
+ * \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatch.
  *
  * PHP version 7.1
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewMultiCatch.
+ * \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatch.
  *
  * Catching multiple exception types in one statement is available since PHP 7.1.
  *

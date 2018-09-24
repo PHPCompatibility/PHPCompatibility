@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewLanguageConstructsSniff.
+ * \PHPCompatibility\Sniffs\LanguageConstructs\NewLanguageConstructsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,12 +8,12 @@
  * @copyright 2013 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\LanguageConstructs;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewLanguageConstructsSniff.
+ * \PHPCompatibility\Sniffs\LanguageConstructs\NewLanguageConstructsSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility

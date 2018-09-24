@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Classes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New Anonymous Classes Sniff tests
  *
  * @group newAnonymousClasses
- * @group closures
+ * @group classes
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewAnonymousClassesSniff
+ * @covers \PHPCompatibility\Sniffs\Classes\NewAnonymousClassesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewAnonymousClassesSniffTest extends BaseSniffTest
+class NewAnonymousClassesUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/new_anonymous_classes.php';

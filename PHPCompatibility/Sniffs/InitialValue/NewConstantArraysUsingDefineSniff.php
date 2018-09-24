@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingDefineSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingDefineSniff.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ConstantArraysUsingDefineSniff.
+ * \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingDefineSniff.
  *
  * Constant arrays using define in PHP 7.0
  *
@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Wim Godden <wim@cu.be>
  */
-class ConstantArraysUsingDefineSniff extends Sniff
+class NewConstantArraysUsingDefineSniff extends Sniff
 {
 
     /**

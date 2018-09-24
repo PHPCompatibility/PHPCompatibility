@@ -1,27 +1,27 @@
 <?php
 /**
- * VariableVariables sniff test file
+ * New Uniform Variable Syntax sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Variables;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * VariableVariables sniff test file
+ * New Uniform Variable Syntax sniff test file
  *
- * @group variableVariables
+ * @group newUniformVariableSyntax
  * @group variables
  *
- * @covers \PHPCompatibility\Sniffs\PHP\VariableVariablesSniff
+ * @covers \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntaxSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class VariableVariablesSniffTest extends BaseSniffTest
+class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/variable_variables.php';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArguments.
+ * \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArguments.
  *
  * PHP version 5.4
  *
@@ -10,12 +10,12 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArguments.
+ * \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArguments.
  *
  * Forbids variable arguments on break or continue statements.
  *

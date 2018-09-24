@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -17,15 +17,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *     continue $varname
  *
  * @group forbiddenBreakContinueVariableArguments
- * @group breakContinue
+ * @group controlStructures
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueVariableArgumentsSniff
+ * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArgumentsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class ForbiddenBreakContinueVariableArgumentsSniffTest extends BaseSniffTest
+class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/forbidden_break_continue_variable_argument.php';
     const ERROR_TYPE_VARIABLE = 'a variable argument';

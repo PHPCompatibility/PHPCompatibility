@@ -5,23 +5,24 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New type declarations test file
  *
- * @group newScalarTypeDeclarations
+ * @group newParamTypeDeclarations
+ * @group functionDeclarations
  * @group typeDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewScalarTypeDeclarationsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewScalarTypeDeclarationsSniffTest extends BaseSniffTest
+class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_scalar_type_declarations.php';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedMagicAutoloadSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff.
  *
  * PHP version 7.2
  *
@@ -9,18 +9,18 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DeprecatedMagicAutoloadSniff.
+ * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Wim Godden <wim.godden@cu.be>
  */
-class DeprecatedMagicAutoloadSniff extends Sniff
+class RemovedMagicAutoloadSniff extends Sniff
 {
     /**
      * Scopes to look for when testing using validDirectScope

@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New Closure Sniff tests
  *
  * @group newClosure
- * @group closures
+ * @group functionDeclarations
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewClosureSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosureSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class NewClosureSniffTest extends BaseSniffTest
+class NewClosureUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_closure.php';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\VariableVariables.
+ * \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntax.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\VariableVariables.
+ * \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntax.
  *
  * The interpretation of variable variables has changed in PHP 7.0.
  *
@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class VariableVariablesSniff extends Sniff
+class NewUniformVariableSyntaxSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

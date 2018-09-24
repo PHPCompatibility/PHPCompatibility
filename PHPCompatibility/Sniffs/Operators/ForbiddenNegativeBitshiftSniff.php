@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNegativeBitshift.
+ * \PHPCompatibility\Sniffs\Operators\ForbiddenNegativeBitshift.
  *
  * PHP version 7.0
  *
@@ -9,13 +9,13 @@
  * @author   Wim Godden <wim@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNegativeBitshift.
+ * \PHPCompatibility\Sniffs\Operators\ForbiddenNegativeBitshift.
  *
  * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *

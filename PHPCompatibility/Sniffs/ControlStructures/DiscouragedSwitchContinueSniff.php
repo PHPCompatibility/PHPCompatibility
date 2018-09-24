@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\DiscouragedSwitchContinue.
+ * \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinue.
  *
  * PHP version 7.3
  *
@@ -9,13 +9,13 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\DiscouragedSwitchContinue.
+ * \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinue.
  *
  * PHP 7.3 will throw a warning when continue is used to target a switch control structure.
  *

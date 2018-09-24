@@ -1,27 +1,27 @@
 <?php
 /**
- * Deprecated Iconv encoding types sniff test file.
+ * Deprecated/Removed Iconv encoding types sniff test file.
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Tests\ParameterValues;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated Iconv encoding types sniff tests.
+ * Deprecated/Removed Iconv encoding types sniff tests.
  *
- * @group iconvEncoding
- * @group functionParameterValues
+ * @group removedIconvEncoding
+ * @group parameterValues
  *
- * @covers \PHPCompatibility\Sniffs\FunctionParameters\IconvEncodingSniff
+ * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedIconvEncodingSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class IconvEncodingSniffTest extends BaseSniffTest
+class RemovedIconvEncodingUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'Sniffs/FunctionParameters/IconvEncodingTestCases.inc';

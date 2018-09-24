@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New class member access on instantiation in PHP 5.4 and on closing in PHP 7.0 sniff test file
  *
  * @group newClassMemberAccess
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewClassMemberAccessSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewClassMemberAccessSniffTest extends BaseSniffTest
+class NewClassMemberAccessUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_class_member_access.php';
 

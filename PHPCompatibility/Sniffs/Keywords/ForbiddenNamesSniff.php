@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesSniff.
+ * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff.
  *
  * @category  PHP
  * @package   PHPCompatibility
@@ -8,13 +8,13 @@
  * @copyright 2012 Cu.be Solutions bvba
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenNamesSniff.
+ * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff.
  *
  * Prohibits the use of reserved keywords as class, function, namespace or constant names.
  *

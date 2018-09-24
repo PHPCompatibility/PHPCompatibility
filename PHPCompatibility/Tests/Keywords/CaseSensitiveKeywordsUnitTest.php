@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Keywords;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group caseSensitiveKeywords
  * @group keywords
  *
- * @covers \PHPCompatibility\Sniffs\PHP\CaseSensitiveKeywordsSniff
+ * @covers \PHPCompatibility\Sniffs\Keywords\CaseSensitiveKeywordsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class CaseSensitiveKeywordsSniffTest extends BaseSniffTest
+class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/case_sensitive_keywords.php';
 

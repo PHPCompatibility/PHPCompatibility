@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\LanguageConstructs;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,14 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * New language constructs sniff tests
  *
  * @group newLanguageConstructs
+ * @group languageConstructs
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewLanguageConstructsSniff
+ * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewLanguageConstructsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class NewLanguageConstructsSniffTest extends BaseSniffTest
+class NewLanguageConstructsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_language_constructs.php';
 

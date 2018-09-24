@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionUse;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Removed Functions Parameter Sniff test file
  *
  * @group removedFunctionParameters
- * @group functionParameters
+ * @group functionUse
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedFunctionParametersSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionParametersSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class RemovedFunctionParametersSniffTest extends BaseSniffTest
+class RemovedFunctionParametersUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/removed_function_parameter.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Lists\ShortListSniff.
+ * \PHPCompatibility\Sniffs\Lists\NewShortListSniff.
  *
  * PHP version 7.1
  *
@@ -14,7 +14,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\Lists\ShortListSniff.
+ * \PHPCompatibility\Sniffs\Lists\NewShortListSniff.
  *
  * "The shorthand array syntax ([]) may now be used to destructure arrays for
  * assignments (including within foreach), as an alternative to the existing
@@ -26,7 +26,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ShortListSniff extends Sniff
+class NewShortListSniff extends Sniff
 {
 
     /**

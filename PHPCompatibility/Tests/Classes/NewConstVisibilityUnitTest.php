@@ -5,23 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Classes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * New const visibility sniff test file
  *
- * @group constVisibility
- * @group constants
+ * @group newConstVisibility
+ * @group classes
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewConstVisibilitySniff
+ * @covers \PHPCompatibility\Sniffs\Classes\NewConstVisibilitySniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewConstVisibilitySniffTest extends BaseSniffTest
+class NewConstVisibilityUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_const_visibility.php';
 

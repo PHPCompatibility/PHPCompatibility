@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Reserved function names sniff test.
  *
  * @group reservedFunctionNames
- * @group reservedKeywords
+ * @group functionNameRestrictions
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ReservedFunctionNamesSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ReservedFunctionNamesSniffTest extends BaseSniffTest
+class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/reserved_function_names.php';
 

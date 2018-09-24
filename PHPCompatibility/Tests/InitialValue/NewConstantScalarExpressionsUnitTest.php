@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\InitialValue;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -14,16 +14,15 @@ use PHPCompatibility\PHPCSHelper;
  * New constant scalar expressions in PHP 5.6 sniff test file.
  *
  * @group newConstantScalarExpressions
- * @group constants
- * @group variables
+ * @group initialValue
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewConstantScalarExpressionsSniff
+ * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewConstantScalarExpressionsSniffTest extends BaseSniffTest
+class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/new_constant_scalar_expressions.php';
 

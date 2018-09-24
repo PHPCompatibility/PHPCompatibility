@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstantsSniff.
+ * \PHPCompatibility\Sniffs\Constants\NewConstantsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Constants;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstantsSniff.
+ * \PHPCompatibility\Sniffs\Constants\NewConstantsSniff.
  *
  * @category PHP
  * @package  PHPCompatibility

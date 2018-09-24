@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\NegativeStringOffsetSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewNegativeStringOffsetSniff.
  *
  * PHP version 7.1
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\NegativeStringOffsetSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewNegativeStringOffsetSniff.
  *
  * Detect: negative string offsets as parameters passed to functions where this
  * was not allowed prior to PHP 7.1.
@@ -25,7 +25,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
+class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

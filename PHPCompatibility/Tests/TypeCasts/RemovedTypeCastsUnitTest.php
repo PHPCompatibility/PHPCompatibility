@@ -1,27 +1,27 @@
 <?php
 /**
- * Deprecated type casts sniff test file
+ * Deprecated/Removed type casts sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\TypeCasts;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated type casts sniff tests
+ * Deprecated/Removed type casts sniff tests
  *
- * @group deprecatedTypeCasts
- * @group typecasts
+ * @group removedTypeCasts
+ * @group typeCasts
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DeprecatedTypeCastsSniff
+ * @covers \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class DeprecatedTypeCastsSniffTest extends BaseSniffTest
+class RemovedTypeCastsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/deprecated_type_casts.php';

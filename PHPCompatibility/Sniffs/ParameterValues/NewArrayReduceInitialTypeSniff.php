@@ -1,18 +1,18 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\ArrayReduceInitialTypeSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewArrayReduceInitialTypeSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\FunctionParameters;
+namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionParameters\ArrayReduceInitialTypeSniff.
+ * \PHPCompatibility\Sniffs\ParameterValues\NewArrayReduceInitialTypeSniff.
  *
  * Detect: In PHP 5.2 and lower, the $initial parameter had to be an integer.
  *
@@ -20,7 +20,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
+class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

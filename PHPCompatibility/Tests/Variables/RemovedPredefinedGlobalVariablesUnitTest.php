@@ -1,27 +1,27 @@
 <?php
 /**
- * Removed global variables sniff test file
+ * Removed predefined global variables sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Variables;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed global variables sniff tests
+ * Removed predefined global variables sniff tests
  *
- * @group removedGlobalVariables
- * @group superglobals
+ * @group removedPredefinedGlobalVariables
+ * @group variables
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedGlobalVariablesSniff
+ * @covers \PHPCompatibility\Sniffs\Variables\RemovedPredefinedGlobalVariablesSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Wim Godden <wim@cu.be>
  */
-class RemovedGlobalVariablesSniffTest extends BaseSniffTest
+class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/removed_global_variables.php';
 

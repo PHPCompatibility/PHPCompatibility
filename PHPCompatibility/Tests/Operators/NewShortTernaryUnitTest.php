@@ -1,26 +1,27 @@
 <?php
 /**
- * Ternary Operators Sniff test file
+ * New Short Ternary Sniff test file
  *
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Operators;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Ternary Operators Sniff tests
+ * New Short Ternary Sniff tests
  *
- * @group ternaryOperators
+ * @group newShortTernary
+ * @group operators
  *
- * @covers \PHPCompatibility\Sniffs\PHP\TernaryOperatorsSniff
+ * @covers \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class TernaryOperatorsSniffTest extends BaseSniffTest
+class NewShortTernaryUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/ternary_operator.php';
 

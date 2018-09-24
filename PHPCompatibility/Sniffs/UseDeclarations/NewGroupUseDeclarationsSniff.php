@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewGroupUseDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Wim Godden <wim.godden@cu.be>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\UseDeclarations;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewGroupUseDeclarationsSniff.
+ * \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff.
  *
  * PHP version 7.0
  *

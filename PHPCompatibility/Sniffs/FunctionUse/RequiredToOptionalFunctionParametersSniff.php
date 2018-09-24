@@ -1,24 +1,24 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\RequiredOptionalFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractComplexVersionSniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\RequiredOptionalFunctionParametersSniff.
+ * \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff.
  *
  * @category PHP
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RequiredOptionalFunctionParametersSniff extends AbstractComplexVersionSniff
+class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSniff
 {
 
     /**

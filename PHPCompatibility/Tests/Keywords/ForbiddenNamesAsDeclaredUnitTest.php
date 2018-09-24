@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Keywords;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -13,15 +13,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Forbidden names as declared name for class, interface, trait or namespace.
  *
  * @group forbiddenNamesAsDeclared
- * @group reservedKeywords
+ * @group keywords
  *
- * @covers \PHPCompatibility\Sniffs\PHP\ForbiddenNamesAsDeclaredSniff
+ * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class ForbiddenNamesAsDeclaredSniffTest extends BaseSniffTest
+class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/forbidden_names_as_declared.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoop.
+ * \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueOutsideLoop.
  *
  * PHP version 7.0
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\ForbiddenBreakContinueOutsideLoop.
+ * \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueOutsideLoop.
  *
  * Forbids use of break or continue statements outside of looping structures.
  *

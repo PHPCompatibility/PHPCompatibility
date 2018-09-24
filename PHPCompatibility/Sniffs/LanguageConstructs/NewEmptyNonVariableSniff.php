@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\EmptyNonVariableSniff.
+ * \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff.
  *
  * PHP version 5.5
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\LanguageConstructs;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\EmptyNonVariableSniff.
+ * \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff.
  *
  * Verify that nothing but variables are passed to empty().
  *
@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class EmptyNonVariableSniff extends Sniff
+class NewEmptyNonVariableSniff extends Sniff
 {
 
     /**

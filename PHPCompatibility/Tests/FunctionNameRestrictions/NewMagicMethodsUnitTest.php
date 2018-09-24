@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
@@ -14,15 +14,16 @@ use PHPCompatibility\PHPCSHelper;
  * New Magic Methods Sniff tests.
  *
  * @group newMagicMethods
+ * @group functionNameRestrictions
  * @group magicMethods
  *
- * @covers \PHPCompatibility\Sniffs\PHP\NewMagicMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class NewMagicMethodsSniffTest extends BaseSniffTest
+class NewMagicMethodsUnitTest extends BaseSniffTest
 {
     /**
      * Whether or not traits will be recognized in PHPCS.

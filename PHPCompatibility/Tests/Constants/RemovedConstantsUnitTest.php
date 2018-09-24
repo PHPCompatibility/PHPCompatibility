@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Constants;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -15,13 +15,13 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group removedConstants
  * @group constants
  *
- * @covers \PHPCompatibility\Sniffs\PHP\RemovedConstantsSniff
+ * @covers \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class RemovedConstantsSniffTest extends BaseSniffTest
+class RemovedConstantsUnitTest extends BaseSniffTest
 {
 
     const TEST_FILE = 'sniff-examples/removed_constants.php';

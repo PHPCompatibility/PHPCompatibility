@@ -1,6 +1,6 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstVisibility.
+ * \PHPCompatibility\Sniffs\Classes\NewConstVisibility.
  *
  * PHP version 7.1
  *
@@ -9,12 +9,12 @@
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 
-namespace PHPCompatibility\Sniffs\PHP;
+namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 
 /**
- * \PHPCompatibility\Sniffs\PHP\NewConstVisibility.
+ * \PHPCompatibility\Sniffs\Classes\NewConstVisibility.
  *
  * Visibility for class constants is available since PHP 7.1.
  *

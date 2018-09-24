@@ -5,22 +5,23 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Sniffs\PHP;
+namespace PHPCompatibility\Tests\Syntax;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
  * Dynamic access to static methods and properties sniff test file
  *
- * @group dynamicAccessStatic
+ * @group newDynamicAccessToStatic
+ * @group syntax
  *
- * @covers \PHPCompatibility\Sniffs\PHP\DynamicAccessToStaticSniff
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewDynamicAccessToStaticSniff
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class DynamicAccessToStaticSniffTest extends BaseSniffTest
+class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
 {
     const TEST_FILE = 'sniff-examples/dynamic_access_to_static.php';
 
