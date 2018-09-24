@@ -5,7 +5,9 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests\Core;
+
+use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
  * Classname determination from double colon token function tests
@@ -13,20 +15,12 @@ namespace PHPCompatibility\Tests\BaseClass;
  * @group utilityGetFQClassNameFromDoubleColonToken
  * @group utilityFunctions
  *
- * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
+ * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class GetFQClassNameFromDoubleColonTokenTest extends MethodTestFrame
+class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
 {
-
-    /**
-     * The file name for the file containing the test cases within the
-     * `sniff-examples/utility-functions/` directory.
-     *
-     * @var string
-     */
-    protected $filename = 'get_fqclassname_from_double_colon_token.php';
 
     /**
      * testGetFQClassNameFromDoubleColonToken

@@ -5,9 +5,10 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests\Core;
 
 use PHPCompatibility\PHPCSHelper;
+use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
  * isClassProperty() function tests
@@ -15,20 +16,12 @@ use PHPCompatibility\PHPCSHelper;
  * @group utilityIsClassProperty
  * @group utilityFunctions
  *
- * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
+ * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class IsClassPropertyTest extends MethodTestFrame
+class IsClassPropertyUnitTest extends CoreMethodTestFrame
 {
-
-    /**
-     * The file name for the file containing the test cases within the
-     * `sniff-examples/utility-functions/` directory.
-     *
-     * @var string
-     */
-    protected $filename = 'is_class_property.php';
 
     /**
      * Whether or not traits will be recognized in PHPCS.

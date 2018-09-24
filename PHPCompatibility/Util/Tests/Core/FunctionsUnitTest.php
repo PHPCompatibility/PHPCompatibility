@@ -5,9 +5,10 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests\Core;
 
 use PHPCompatibility\PHPCSHelper;
+use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
 /**
  * Generic sniff functions sniff tests
@@ -19,7 +20,7 @@ use PHPCompatibility\PHPCSHelper;
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class FunctionsTest extends \PHPUnit_Framework_TestCase
+class FunctionsUnitTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -29,17 +30,6 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase
      */
     protected $helperClass;
 
-
-    /**
-     * Set up fixtures for this unit test.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        require_once __DIR__ . '/TestHelperPHPCompatibility.php';
-        parent::setUpBeforeClass();
-    }
 
     /**
      * Sets up this unit test.

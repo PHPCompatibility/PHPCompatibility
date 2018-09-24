@@ -5,7 +5,9 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests\Core;
+
+use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
  * Extended class name determination function tests
@@ -13,20 +15,12 @@ namespace PHPCompatibility\Tests\BaseClass;
  * @group utilityGetFQExtendedClassName
  * @group utilityFunctions
  *
- * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
+ * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class GetFQExtendedClassNameTest extends MethodTestFrame
+class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
 {
-
-    /**
-     * The file name for the file containing the test cases within the
-     * `sniff-examples/utility-functions/` directory.
-     *
-     * @var string
-     */
-    protected $filename = 'get_fqextended_classname.php';
 
     /**
      * testGetFQExtendedClassName

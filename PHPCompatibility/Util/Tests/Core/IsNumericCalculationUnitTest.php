@@ -5,7 +5,9 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests\Core;
+
+use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
  * isNumericCalculation() function tests
@@ -13,20 +15,12 @@ namespace PHPCompatibility\Tests\BaseClass;
  * @group utilityIsNumericCalculation
  * @group utilityFunctions
  *
- * @uses    \PHPCompatibility\Tests\BaseClass\MethodTestFrame
+ * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class IsNumericCalculationTest extends MethodTestFrame
+class IsNumericCalculationUnitTest extends CoreMethodTestFrame
 {
-
-    /**
-     * The file name for the file containing the test cases within the
-     * `sniff-examples/utility-functions/` directory.
-     *
-     * @var string
-     */
-    protected $filename = 'is_numeric_calculation.php';
 
     /**
      * testIsNumericCalculation
