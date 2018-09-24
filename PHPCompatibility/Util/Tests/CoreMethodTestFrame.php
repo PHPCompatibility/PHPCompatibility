@@ -5,9 +5,10 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests;
 
 use PHPCompatibility\PHPCSHelper;
+use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
@@ -16,23 +17,8 @@ use PHPCompatibility\PHPCSHelper;
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
+abstract class CoreMethodTestFrame extends \PHPUnit_Framework_TestCase
 {
-
-    /**
-     * The file name for the file containing the test cases within the $case_directory.
-     *
-     * @var string
-     */
-    protected $filename;
-
-    /**
-     * The path to the directory containing the test file for stand-alone method tests
-     * relative to this file.
-     *
-     * @var string
-     */
-    protected $testcasePath = '../sniff-examples/utility-functions/';
 
     /**
      * The \PHP_CodeSniffer_File object containing parsed contents of this file.
@@ -50,17 +36,6 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Set up fixtures for this unit test.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        require_once __DIR__ . '/TestHelperPHPCompatibility.php';
-        parent::setUpBeforeClass();
-    }
-
-    /**
      * Sets up this unit test.
      *
      * @return void
@@ -71,8 +46,12 @@ abstract class MethodTestFrame extends \PHPUnit_Framework_TestCase
 
         $this->helperClass = new TestHelperPHPCompatibility();
 
-        $filename = realpath(__DIR__) . DIRECTORY_SEPARATOR . $this->testcasePath . $this->filename;
-        $contents = file_get_contents($filename);
+        $FQClassName = get_class($this);
+        $parts       = explode('\\', $FQClassName);
+        $className   = array_pop($parts);
+        $subDir      = array_pop($parts);
+        $filename    = realpath(__DIR__) . DIRECTORY_SEPARATOR . $subDir . DIRECTORY_SEPARATOR . $className . '.inc';
+        $contents    = file_get_contents($filename);
 
         if (version_compare(PHPCSHelper::getVersion(), '2.99.99', '>')) {
             // PHPCS 3.x.

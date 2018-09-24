@@ -5,7 +5,7 @@
  * @package PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\BaseClass;
+namespace PHPCompatibility\Util\Tests;
 
 use PHPCompatibility\Sniff;
 
