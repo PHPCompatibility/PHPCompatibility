@@ -157,7 +157,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             }
 
         } catch (\Exception $e) {
-            $this->fail('An unexpected exception has been caught: ' . $e->getMessage());
+            $this->fail('An unexpected exception has been caught when loading file "' . $pathToFile . '" : ' . $e->getMessage());
             return false;
         }
 
