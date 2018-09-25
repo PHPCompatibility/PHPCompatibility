@@ -26,13 +26,13 @@
     <config name="testVersion" value="5.3-99.0"/>
     <rule ref="PHPCompatibility">
         <!-- Exclude PHP constants back-filled by PHPCS 2.3.0+. -->
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_trait_cFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_traitFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_insteadofFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_callableFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_finallyFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_yieldFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_ellipsisFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_trait_cFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_traitFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_insteadofFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_callableFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_finallyFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_yieldFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_ellipsisFound"/>
     </rule>
 
     <!--

@@ -31,7 +31,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      * prefix as one of the removed extensions.
      *
      * This property can be set from the ruleset, like so:
-     * <rule ref="PHPCompatibility.PHP.RemovedExtensions">
+     * <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
      *   <properties>
      *     <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function" />
      *   </properties>

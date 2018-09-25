@@ -64,13 +64,13 @@ mssql_bind();
 
 ereg();
 
-// @codingStandardsChangeSetting PHPCompatibility.PHP.RemovedExtensions functionWhitelist mysql_to_rfc3339
+// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist mysql_to_rfc3339
 mysql_to_rfc3339();
 
 // PHP 7.1 removed extensions:
 mcrypt_encrypt();
 
-// @codingStandardsChangeSetting PHPCompatibility.PHP.RemovedExtensions functionWhitelist ereg_convert,ereg_translate_to_preg
+// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist ereg_convert,ereg_translate_to_preg
 ereg_convert();
 ereg_translate_to_preg();
 ereg_replace(); // Non-whitelisted.
