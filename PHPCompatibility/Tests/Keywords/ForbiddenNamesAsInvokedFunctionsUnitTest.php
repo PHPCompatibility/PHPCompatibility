@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/forbidden_names_function_invocation.php';
-
     /**
      * testReservedKeyword
      *
@@ -41,14 +39,14 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
      */
     public function testReservedKeyword($keyword, $linesFunction, $linesMethod, $introducedIn, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $file  = $this->sniffFile(__FILE__, $introducedIn);
         $error = "'{$keyword}' is a reserved keyword introduced in PHP version {$introducedIn} and cannot be invoked as a function";
         $lines = array_merge($linesFunction, $linesMethod);
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -58,7 +56,7 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
         }
 
         // Test that method calls do not throw an error for PHP 7.0+.
-        $file = $this->sniffFile(self::TEST_FILE, '7.0-');
+        $file = $this->sniffFile(__FILE__, '7.0-');
         foreach ($linesMethod as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -105,7 +103,7 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High number beyond any newly introduced keywords.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High number beyond any newly introduced keywords.
         $this->assertNoViolation($file, $line);
     }
 
@@ -144,7 +142,7 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first introduced reserved word.
+        $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first introduced reserved word.
         $this->assertNoViolation($file);
     }
 

@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewListInForeachUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/ControlStructures/NewListInForeachUnitTest.inc';
 
     /**
      * testNewListInForeach
@@ -36,7 +35,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
      */
     public function testNewListInForeach($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'Unpacking nested arrays with list() in a foreach is not supported in PHP 5.4 or earlier.');
     }
 
@@ -69,7 +68,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -96,7 +95,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 }

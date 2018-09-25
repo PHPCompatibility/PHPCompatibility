@@ -24,7 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/removed_hash_algorithms.php';
 
     /**
      * testRemovedHashAlgorithms
@@ -40,10 +39,10 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testRemovedHashAlgorithms($algorithm, $removedIn, $line, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         $this->assertNoViolation($file, $line);
 
-        $file = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $file = $this->sniffFile(__FILE__, $removedIn);
         $this->assertError($file, $line, "The {$algorithm} hash algorithm is removed since PHP {$removedIn}");
     }
 
@@ -82,7 +81,7 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -110,7 +109,7 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3'); // Low version below the first removal.
+        $file = $this->sniffFile(__FILE__, '5.3'); // Low version below the first removal.
         $this->assertNoViolation($file);
     }
 

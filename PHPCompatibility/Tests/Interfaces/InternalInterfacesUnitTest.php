@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class InternalInterfacesUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/internal_interfaces.php';
 
     /**
      * Sniffed file
@@ -53,7 +52,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
         parent::setUp();
 
         // Sniff file without testVersion as all checks run independently of testVersion being set.
-        $this->sniffResult = $this->sniffFile(self::TEST_FILE);
+        $this->sniffResult = $this->sniffFile(__FILE__);
     }
 
     /**

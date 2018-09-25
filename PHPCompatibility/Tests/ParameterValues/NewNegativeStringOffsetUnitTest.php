@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewNegativeStringOffsetUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/NegativeStringOffsetTestCases.inc';
-
     /**
      * testNegativeStringOffset
      *
@@ -39,7 +37,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
      */
     public function testNegativeStringOffset($line, $paramName, $functionName)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file  = $this->sniffFile(__FILE__, '7.0');
         $error = sprintf(
             'Negative string offsets were not supported for the $%1$s parameter in %2$s() in PHP 7.0 or lower.',
             $paramName,
@@ -86,7 +84,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
 
         // No errors expected on the first 26 lines.
         for ($line = 1; $line <= 26; $line++) {
@@ -102,7 +100,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 }

@@ -25,8 +25,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class RemovedPCREModifiersUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/preg_replace_e_modifier.php';
-
     /**
      * testDeprecatedEModifier
      *
@@ -39,10 +37,10 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      */
     public function testDeprecatedEModifier($line, $functionName = 'preg_replace')
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertWarning($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5");
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, "{$functionName}() - /e modifier is deprecated since PHP 5.5 and removed since PHP 7.0");
     }
 
@@ -123,7 +121,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -187,7 +185,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file);
     }
 

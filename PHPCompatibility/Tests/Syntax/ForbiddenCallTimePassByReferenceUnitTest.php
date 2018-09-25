@@ -23,8 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/call_time_pass_by_reference.php';
-
 
     /**
      * testForbiddenCallTimePassByReference
@@ -37,10 +35,10 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      */
     public function testForbiddenCallTimePassByReference($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertWarning($file, $line, 'Using a call-time pass-by-reference is deprecated since PHP 5.3');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'Using a call-time pass-by-reference is deprecated since PHP 5.3 and prohibited since PHP 5.4');
     }
 
@@ -78,7 +76,7 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -153,7 +151,7 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file);
     }
 

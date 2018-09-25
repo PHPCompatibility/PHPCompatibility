@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/constant_arrays_using_define.php';
 
     /**
      * testConstantArraysUsingDefine
@@ -36,7 +35,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
      */
     public function testConstantArraysUsingDefine($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Constant arrays using define are not allowed in PHP 5.6 or earlier');
     }
 
@@ -67,7 +66,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -101,7 +100,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 

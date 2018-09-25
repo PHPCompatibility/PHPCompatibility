@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewClassMemberAccessUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_class_member_access.php';
 
     /**
      * testNewClassMemberAccess
@@ -36,7 +35,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function testNewClassMemberAccess($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Class member access on object instantiation was not supported in PHP 5.3 or earlier');
     }
 
@@ -86,7 +85,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function testCloneClassMemberAccess($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Class member access on object cloning was not supported in PHP 5.6 or earlier');
     }
 
@@ -114,7 +113,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
 
         // No errors expected on the first 37 lines.
         for ($line = 1; $line <= 37; $line++) {
@@ -130,7 +129,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 

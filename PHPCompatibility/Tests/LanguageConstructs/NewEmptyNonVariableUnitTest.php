@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewEmptyNonVariableUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/empty_non_variable.php';
 
     /**
      * testEmptyNonVariable
@@ -36,7 +35,7 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      */
     public function testEmptyNonVariable($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'Only variables can be passed to empty() prior to PHP 5.5.');
     }
 
@@ -91,7 +90,7 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -147,7 +146,7 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 

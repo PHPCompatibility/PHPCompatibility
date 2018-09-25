@@ -24,7 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedMbstringModifiersUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/mbstring_replace_e_modifier.php';
 
     /**
      * testMbstringEModifier
@@ -37,10 +36,10 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      */
     public function testMbstringEModifier($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3-7.1');
+        $file = $this->sniffFile(__FILE__, '5.3-7.1');
         $this->assertWarning($file, $line, 'The Mbstring regex "e" modifier is deprecated since PHP 7.1.');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertWarning($file, $line, 'The Mbstring regex "e" modifier is deprecated since PHP 7.1. Use mb_ereg_replace_callback() instead (PHP 5.4.1+).');
     }
 
@@ -77,7 +76,7 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -111,7 +110,7 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 

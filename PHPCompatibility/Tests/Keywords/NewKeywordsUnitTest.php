@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewKeywordsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_keywords.php';
 
     /**
      * Test allow_url_include
@@ -32,11 +31,11 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testDirMagicConstant()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 3, '__DIR__ magic constant is not present in PHP version 5.2 or earlier');
         $this->assertError($file, 122, '__DIR__ magic constant is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 3);
         $this->assertNoViolation($file, 122);
     }
@@ -48,11 +47,11 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testInsteadOf()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, 15, '"insteadof" keyword (for traits) is not present in PHP version 5.3 or earlier');
         $this->assertError($file, 16, '"insteadof" keyword (for traits) is not present in PHP version 5.3 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 15);
         $this->assertNoViolation($file, 16);
     }
@@ -64,10 +63,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testNamespaceKeyword()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 20, '"namespace" keyword is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 20);
     }
 
@@ -78,7 +77,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testNamespaceNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, 117);
     }
 
@@ -89,10 +88,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testNamespaceConstant()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 22, '__NAMESPACE__ magic constant is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 22);
     }
 
@@ -103,11 +102,11 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testTraitKeyword()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, 24, '"trait" keyword is not present in PHP version 5.3 or earlier');
         $this->assertError($file, 105, '"trait" keyword is not present in PHP version 5.3 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 24);
         $this->assertNoViolation($file, 105);
     }
@@ -119,10 +118,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testTraitConstant()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, 26, '__TRAIT__ magic constant is not present in PHP version 5.3 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 26);
     }
 
@@ -133,10 +132,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testUse()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 14, '"use" keyword (for traits/namespaces/anonymous functions) is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 14);
     }
 
@@ -151,10 +150,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testYield($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, '"yield" keyword (for generators) is not present in PHP version 5.4 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file, $line);
     }
 
@@ -180,7 +179,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testYieldNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 120);
     }
 
@@ -195,10 +194,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testYieldFrom($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, '"yield from" keyword (for generators) is not present in PHP version 5.6 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -224,11 +223,11 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testFinally()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, 9, '"finally" keyword (in exception handling) is not present in PHP version 5.4 or earlier');
         $this->assertError($file, 108, '"finally" keyword (in exception handling) is not present in PHP version 5.4 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file, 9);
         $this->assertNoViolation($file, 108);
     }
@@ -244,10 +243,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testConst($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, '"const" keyword is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -280,7 +279,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testConstNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -311,10 +310,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testCallable()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, 67, '"callable" keyword is not present in PHP version 5.3 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 67);
     }
 
@@ -325,10 +324,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testGoto()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 69, '"goto" keyword is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 69);
     }
 
@@ -339,11 +338,11 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testNowdoc()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 89, 'nowdoc functionality is not present in PHP version 5.2 or earlier');
         $this->assertError($file, 93, 'nowdoc functionality is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 89);
         $this->assertNoViolation($file, 93);
     }
@@ -355,10 +354,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testQuotedHeredoc()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 96, '(Double) quoted Heredoc identifier is not present in PHP version 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 96);
     }
 
@@ -369,7 +368,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testQuotedHeredocNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, 82);
     }
 
@@ -382,7 +381,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
     {
         if (PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION === 3) {
             // PHP 5.3 actually shows the warning.
-            $file = $this->sniffFile(self::TEST_FILE, '5.0');
+            $file = $this->sniffFile(__FILE__, '5.0');
             $this->assertError($file, 124, '"__halt_compiler" keyword is not present in PHP version 5.0 or earlier');
         } else {
             /*
@@ -391,7 +390,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
              * So testing that any violations created *after* the compiler is halted will
              * not be reported.
              */
-            $file = $this->sniffFile(self::TEST_FILE, '5.2');
+            $file = $this->sniffFile(__FILE__, '5.2');
             $this->assertNoViolation($file, 127);
         }
     }
@@ -404,7 +403,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
 

@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_global_variable_variable.php';
 
     /**
      * testGlobalVariableVariable
@@ -36,7 +35,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      */
     public function testGlobalVariableVariable($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Global with variable variables is not allowed since PHP 7.0');
     }
 
@@ -72,7 +71,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      */
     public function testGlobalNonBareVariable($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertWarning($file, $line, 'Global with anything other than bare variables is discouraged since PHP 7.0');
     }
 
@@ -117,7 +116,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -148,7 +147,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/optional_required_function_parameters.php';
-
     /**
      * testOptionalRequiredParameterDeprecated
      *
@@ -41,13 +39,13 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testOptionalRequiredParameterDeprecated($functionName, $parameterName, $softRequiredFrom, $lines, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $softRequiredFrom);
+        $file  = $this->sniffFile(__FILE__, $softRequiredFrom);
         $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is deprecated since PHP {$softRequiredFrom}";
         foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -83,13 +81,13 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testOptionalRecommendedParameter($functionName, $parameterName, $softRecommendedFrom, $lines, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $softRecommendedFrom);
+        $file  = $this->sniffFile(__FILE__, $softRecommendedFrom);
         $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing. Passing this parameter is strongly recommended since PHP {$softRecommendedFrom}";
         foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -121,7 +119,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest required/optional change.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest required/optional change.
         $this->assertNoViolation($file, $line);
     }
 
@@ -147,7 +145,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5'); // Version before earliest required/optional change.
+        $file = $this->sniffFile(__FILE__, '5.5'); // Version before earliest required/optional change.
         $this->assertNoViolation($file);
     }
 

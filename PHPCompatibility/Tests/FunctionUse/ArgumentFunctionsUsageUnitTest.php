@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/argument_functions_usage.php';
 
     /**
      * testArgumentFunctionsUseAsParameter
@@ -36,10 +35,10 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function testArgumentFunctionsUseAsParameter($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, '() could not be used in parameter lists prior to PHP 5.3.');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -74,7 +73,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesUseAsParameter($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -111,10 +110,10 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function testArgumentFunctionsUseOutsideFunctionScope($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0');
+        $file = $this->sniffFile(__FILE__, '5.0');
         $this->assertWarning($file, $line, '() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, '() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3. As of PHP 5.3, it is no longer supported at all.');
     }
 
@@ -146,7 +145,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesUseOutsideFunctionScope($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(__FILE__);
         $this->assertNoViolation($file, $line);
     }
 

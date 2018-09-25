@@ -24,7 +24,6 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_constant_scalar_expressions.php';
 
     /**
      * Error phrases.
@@ -84,7 +83,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
             return;
         }
 
-        $file    = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file    = $this->sniffFile(__FILE__, '5.5');
         $snippet = '';
         if (isset($this->errorPhrases[$type]) === true) {
             $snippet = $this->errorPhrases[$type];
@@ -210,7 +209,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
 
         // No errors expected on the first 120 lines.
         for ($line = 1; $line <= 120; $line++) {
@@ -226,7 +225,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

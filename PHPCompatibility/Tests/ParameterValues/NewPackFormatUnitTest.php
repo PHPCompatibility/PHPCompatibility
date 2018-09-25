@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewPackFormatUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/ParameterValues/NewPackFormatUnitTest.inc';
-
     /**
      * testNewPackFormat
      *
@@ -42,7 +40,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
      */
     public function testNewPackFormat($line, $code, $errorVersion, $okVersion, $displayVersion = null)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file  = $this->sniffFile(__FILE__, $errorVersion);
         $error = sprintf(
             'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower.',
             $code,
@@ -50,7 +48,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
         );
         $this->assertError($file, $line, $error);
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         $this->assertNoViolation($file, $line);
     }
 
@@ -87,7 +85,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
 
         // No errors expected on the first 6 lines.
         for ($line = 1; $line <= 6; $line++) {
@@ -103,7 +101,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 }

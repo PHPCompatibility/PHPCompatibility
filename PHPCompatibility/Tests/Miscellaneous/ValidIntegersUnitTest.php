@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class ValidIntegersUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/valid_integers.php';
-
     /**
      * testBinaryInteger
      *
@@ -41,11 +39,11 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function testBinaryInteger($line, $binary, $testNoViolation = true)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, "Binary integer literals were not present in PHP version 5.3 or earlier. Found: {$binary}");
 
         if ($testNoViolation === true) {
-            $file = $this->sniffFile(self::TEST_FILE, '5.4');
+            $file = $this->sniffFile(__FILE__, '5.4');
             $this->assertNoViolation($file, $line);
         }
     }
@@ -73,7 +71,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function testInvalidBinaryInteger()
     {
-        $file = $this->sniffFile(self::TEST_FILE); // Message will be shown independently of testVersion.
+        $file = $this->sniffFile(__FILE__); // Message will be shown independently of testVersion.
         $this->assertWarning($file, 4, 'Invalid binary integer detected. Found: 0b0123456');
     }
 
@@ -92,10 +90,10 @@ class ValidIntegersUnitTest extends BaseSniffTest
     {
         $error = "Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: {$octal}";
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertWarning($file, $line, $error);
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, $error);
     }
 
@@ -123,7 +121,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function testValidOctalInteger()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.0-99.0');
+        $file = $this->sniffFile(__FILE__, '4.0-99.0');
         $this->assertNoViolation($file, 6);
     }
 
@@ -137,11 +135,11 @@ class ValidIntegersUnitTest extends BaseSniffTest
     {
         $error = 'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: \'0xaa78b5\'';
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertWarning($file, 11, $error);
         $this->assertNoViolation($file, 12);
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, 11, $error);
         $this->assertNoViolation($file, 12);
     }

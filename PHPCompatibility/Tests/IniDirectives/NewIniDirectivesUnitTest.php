@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewIniDirectivesUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_ini_directives.php';
-
     /**
      * testNewIniDirectives
      *
@@ -43,12 +41,12 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
     public function testNewIniDirectives($iniName, $okVersion, $lines, $lastVersionBefore, $testVersion = null)
     {
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier";
         $this->assertError($file, $lines[0], $error);
         $this->assertWarning($file, $lines[1], $error);
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -213,12 +211,12 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
     public function testNewIniDirectivesWithAlternative($iniName, $okVersion, $alternative, $lines, $lastVersionBefore, $testVersion = null)
     {
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "INI directive '{$iniName}' is not present in PHP version {$lastVersionBefore} or earlier. This directive was previously called '{$alternative}'.";
         $this->assertError($file, $lines[0], $error);
         $this->assertWarning($file, $lines[1], $error);
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -251,7 +249,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
+        $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -280,7 +278,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
 

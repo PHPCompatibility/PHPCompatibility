@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewInterfacesUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_interfaces.php';
-
     /**
      * testNewInterface
      *
@@ -40,13 +38,13 @@ class NewInterfacesUnitTest extends BaseSniffTest
      */
     public function testNewInterface($interfaceName, $lastVersionBefore, $lines, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $file  = $this->sniffFile(__FILE__, $lastVersionBefore);
         $error = "The built-in interface {$interfaceName} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -90,7 +88,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      */
     public function testUnsupportedMethods($line, $methodName)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.1'); // Version in which the Serializable interface was introduced.
+        $file = $this->sniffFile(__FILE__, '5.1'); // Version in which the Serializable interface was introduced.
         $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See http://php.net/serializable");
     }
 
@@ -119,7 +117,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      */
     public function testCaseInsensitive()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0');
+        $file = $this->sniffFile(__FILE__, '5.0');
         $this->assertError($file, 20, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
         $this->assertError($file, 21, 'The built-in interface countable is not present in PHP version 5.0 or earlier');
         $this->assertError($file, 78, 'The built-in interface COUNTABLE is not present in PHP version 5.0 or earlier');
@@ -138,7 +136,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
+        $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

@@ -25,7 +25,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_break_continue_outside_loop.php';
 
     /**
      * testForbiddenBreakContinueOutsideLoop
@@ -39,10 +38,10 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      */
     public function testBreakContinueOutsideLoop($line, $found)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4'); // Arbitrary pre-PHP7 version.
+        $file = $this->sniffFile(__FILE__, '5.4'); // Arbitrary pre-PHP7 version.
         $this->assertWarning($file, $line, "Using '{$found}' outside of a loop or switch structure is invalid");
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, "Using '{$found}' outside of a loop or switch structure is invalid and will throw a fatal error since PHP 7.0");
     }
 
@@ -77,7 +76,7 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 

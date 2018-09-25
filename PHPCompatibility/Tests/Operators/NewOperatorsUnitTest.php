@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewOperatorsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'I:\000_GitHub\PHPCS\PHPCompatibility\PHPCompatibility\PHPCompatibility\Tests\Operators\NewOperatorsUnitTest.inc';
 
     /**
      * testPow
@@ -32,10 +31,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testPow()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertError($file, 3, 'power operator (**) is not present in PHP version 5.5 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, 3);
     }
 
@@ -46,10 +45,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testPowEquals()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertError($file, 4, 'power assignment operator (**=) is not present in PHP version 5.5 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, 4);
     }
 
@@ -60,10 +59,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testSpaceship()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, 9, 'spaceship operator (<=>) is not present in PHP version 5.6 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, 9);
     }
 
@@ -74,10 +73,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testCoalescing()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, 6, 'null coalescing operator (??) is not present in PHP version 5.6 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, 6);
     }
 
@@ -88,10 +87,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testCoalesceEquals()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertError($file, 7, 'null coalesce equal operator (??=) is not present in PHP version 7.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
+        $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file, 7);
     }
 
@@ -102,7 +101,7 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
 

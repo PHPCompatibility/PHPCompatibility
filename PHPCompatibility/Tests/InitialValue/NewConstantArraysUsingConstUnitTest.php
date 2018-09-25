@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/constant_arrays_using_const.php';
 
     /**
      * testConstantArraysUsingConst
@@ -36,7 +35,7 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
      */
     public function testConstantArraysUsingConst($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertError($file, $line, 'Constant arrays using the "const" keyword are not allowed in PHP 5.5 or earlier');
     }
 
@@ -74,7 +73,7 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file, $line);
     }
 
@@ -105,7 +104,7 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

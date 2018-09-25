@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/removed_global_variables.php';
 
     /**
      * testRemovedGlobalVariables
@@ -41,18 +40,18 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function testRemovedGlobalVariables($varName, $deprecatedIn, $removedIn, $lines, $alternative, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
-        $file  = $this->sniffFile(self::TEST_FILE, $deprecatedIn);
+        $file  = $this->sniffFile(__FILE__, $deprecatedIn);
         $error = "Global variable '$" . $varName . "' is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
         foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
-        $file  = $this->sniffFile(self::TEST_FILE, $removedIn);
+        $file  = $this->sniffFile(__FILE__, $removedIn);
         $error = "Global variable '$" . $varName . "' is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}; Use {$alternative} instead";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
@@ -93,10 +92,10 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function testDeprecatedPHPErrorMsg($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
 
-        $file  = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file  = $this->sniffFile(__FILE__, '7.2');
         $error = 'The variable \'$php_errormsg\' is deprecated since PHP 7.2; Use error_get_last() instead';
         $this->assertWarning($file, $line, $error);
     }
@@ -135,7 +134,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -221,7 +220,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Low version below the first deprecation.
+        $file = $this->sniffFile(__FILE__, '5.2'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
 

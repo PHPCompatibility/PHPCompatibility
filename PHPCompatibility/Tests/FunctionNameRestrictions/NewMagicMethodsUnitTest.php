@@ -71,9 +71,9 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
     protected function getTestFile($isTrait, $testVersion = null)
     {
         if ($isTrait === false) {
-            return $this->sniffFile('sniff-examples/new_magic_methods.php', $testVersion);
+            return $this->sniffFile(__DIR__ . '/NewMagicMethodsUnitTest.1.inc', $testVersion);
         } else {
-            return $this->sniffFile('sniff-examples/new_magic_methods_traits.php', $testVersion);
+            return $this->sniffFile(__DIR__ . '/NewMagicMethodsUnitTest.2.inc', $testVersion);
         }
     }
 

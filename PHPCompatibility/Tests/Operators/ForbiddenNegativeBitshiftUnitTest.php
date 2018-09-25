@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_negative_bitshift.php';
 
     /**
      * testForbiddenNegativeBitshift
@@ -36,7 +35,7 @@ class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
      */
     public function testForbiddenNegativeBitshift($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0');
     }
 
@@ -70,7 +69,7 @@ class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -101,7 +100,7 @@ class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

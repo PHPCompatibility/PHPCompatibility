@@ -24,9 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class RemovedTypeCastsUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/deprecated_type_casts.php';
-
-
     /**
      * testDeprecatedTypeCastWithAlternative
      *
@@ -44,13 +41,13 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function testDeprecatedTypeCastWithAlternative($castDescription, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "{$castDescription} is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
         foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
@@ -83,7 +80,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest deprecation.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest deprecation.
         $this->assertNoViolation($file, $line);
     }
 
@@ -110,7 +107,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1'); // Low version below the first deprecation.
+        $file = $this->sniffFile(__FILE__, '7.1'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
 

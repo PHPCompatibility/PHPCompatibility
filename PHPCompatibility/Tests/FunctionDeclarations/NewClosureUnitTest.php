@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewClosureUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_closure.php';
 
     /**
      * Test closures
@@ -36,10 +35,10 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testClosure($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, 'Closures / anonymous functions are not available in PHP 5.2 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4'); // Testing against 5.4 to get past 5.3/static notices.
+        $file = $this->sniffFile(__FILE__, '5.4'); // Testing against 5.4 to get past 5.3/static notices.
         $this->assertNoViolation($file, $line);
     }
 
@@ -72,7 +71,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, 6);
     }
 
@@ -88,7 +87,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testStaticClosure($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier');
     }
 
@@ -122,11 +121,11 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testThisInClosure($line, $testNoViolation = true)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Closures / anonymous functions did not have access to $this in PHP 5.3 or earlier');
 
         if ($testNoViolation === true) {
-            $file = $this->sniffFile(self::TEST_FILE, '5.4');
+            $file = $this->sniffFile(__FILE__, '5.4');
             $this->assertNoViolation($file, $line);
         }
     }
@@ -162,7 +161,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testThisInStaticClosure($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'Closures / anonymous functions declared as static do not have access to $this');
     }
 
@@ -189,7 +188,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesThisInStaticClosure()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, 41);
     }
 
@@ -201,7 +200,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testThisInClosureOutsideClass()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertWarning($file, 53, 'Closures / anonymous functions only have access to $this if used within a class or when bound to an object using bindTo(). Please verify.');
     }
 
@@ -217,7 +216,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesThisInClosureOutsideClass($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -249,10 +248,10 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testClassRefInClosure($line, $ref)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Closures / anonymous functions could not use "' . $ref . '::" in PHP 5.3 or earlier');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -285,7 +284,7 @@ class NewClosureUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesClassRefInClosure($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 

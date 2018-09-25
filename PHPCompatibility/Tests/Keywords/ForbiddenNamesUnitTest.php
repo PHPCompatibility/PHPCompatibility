@@ -38,7 +38,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     {
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples.
-        $filename = "sniff-examples/forbidden-names/$usecase.php";
+        $filename = __DIR__ . "/ForbiddenNames/$usecase.php";
 
         // Set the testVersion to the highest PHP version encountered in the
         // \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff::$invalidNames
@@ -47,7 +47,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
         $this->assertNoViolation($file, 2);
 
-        $lineCount = count(file($file->getFilename()));
+        $lineCount = count(file($filename));
         // Each line of the use case files (starting at line 3) exhibits an
         // error.
         for ($i = 3; $i < $lineCount; $i++) {
@@ -98,7 +98,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testCorrectUsageOfKeywords()
     {
-        $file = $this->sniffFile('sniff-examples/forbidden_names_correct_usage.php', '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 
@@ -115,7 +115,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testNotForbiddenInPHP7($usecase)
     {
-        $file = $this->sniffFile("sniff-examples/forbidden-names/$usecase.php", '7.0');
+        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.php", '7.0');
         $this->assertNoViolation($file);
     }
 
@@ -140,7 +140,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile('sniff-examples/forbidden-names/class.php', '4.4'); // Version number specific to the line being tested.
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.php', '4.4'); // Version number specific to the line being tested.
         $this->assertNoViolation($file, 3);
     }
 }

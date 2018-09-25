@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class AssignmentOrderUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/Lists/AssignmentOrderUnitTest.inc';
 
     /**
      * testAssignmentOrder
@@ -36,7 +35,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      */
     public function testAssignmentOrder($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'list() will assign variable from left-to-right since PHP 7.0. Ensure all variables in list() are unique to prevent unexpected results.');
     }
 
@@ -80,7 +79,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -111,7 +110,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 }

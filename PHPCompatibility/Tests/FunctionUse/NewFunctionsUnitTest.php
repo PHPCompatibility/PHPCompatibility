@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewFunctionsUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_functions.php';
-
     /**
      * testNewFunction
      *
@@ -43,13 +41,13 @@ class NewFunctionsUnitTest extends BaseSniffTest
     public function testNewFunction($functionName, $lastVersionBefore, $lines, $okVersion, $testVersion = null)
     {
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "The function {$functionName}() is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -538,7 +536,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.1'); // Low version below the first addition.
+        $file = $this->sniffFile(__FILE__, '5.1'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -567,7 +565,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond newest addition.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
 

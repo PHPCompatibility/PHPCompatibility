@@ -24,7 +24,7 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/Syntax/NewFlexibleHeredocNowdocUnitTest.%d.inc';
+    const TEST_FILE = 'NewFlexibleHeredocNowdocUnitTest.%d.inc';
 
     /**
      * Whether PHP 7.3+ is used.
@@ -99,7 +99,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
             return;
         }
 
-        $fileName = sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertError($file, $line, 'Heredoc/nowdoc with an indented closing marker is not supported in PHP 7.2 or earlier.');
@@ -155,7 +155,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
             return;
         }
 
-        $fileName = sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertError($file, $line, 'Having code - other than a semi-colon or new line - after the closing marker of a heredoc/nowdoc is not supported in PHP 7.2 or earlier.');
@@ -202,7 +202,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testForbiddenClosingMarkerInBody($line)
     {
-        $fileName = sprintf(self::TEST_FILE, 2);
+        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, 2);
 
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertError($file, $line, 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.');
@@ -247,7 +247,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $fileName = sprintf(self::TEST_FILE, 1);
+        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, 1);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertNoViolation($file);

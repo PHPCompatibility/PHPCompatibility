@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewConstVisibilityUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_const_visibility.php';
 
     /**
      * testConstVisibility
@@ -36,7 +35,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      */
     public function testConstVisibility($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Visibility indicators for class constants are not supported in PHP 7.0 or earlier.');
     }
 
@@ -76,7 +75,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -107,7 +106,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 

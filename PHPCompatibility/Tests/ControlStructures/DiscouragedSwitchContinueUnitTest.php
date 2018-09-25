@@ -24,7 +24,6 @@ use PHPCompatibility\PHPCSHelper;
  */
 class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/discouraged_switch_continue.php';
 
     /**
      * testDiscouragedSwitchContinue
@@ -37,7 +36,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      */
     public function testDiscouragedSwitchContinue($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
+        $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertWarning($file, $line, "Targeting a 'switch' control structure with a 'continue' statement is strongly discouraged and will throw a warning as of PHP 7.3.");
     }
 
@@ -90,7 +89,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
+        $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -141,7 +140,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertNoViolation($file);
     }
 

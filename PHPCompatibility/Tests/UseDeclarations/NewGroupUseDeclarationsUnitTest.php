@@ -24,9 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_group_use_declarations.php';
-
-
     /**
      * testGroupUseDeclaration
      *
@@ -38,7 +35,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      */
     public function testGroupUseDeclaration($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Group use declarations are not allowed in PHP 5.6 or earlier');
     }
 
@@ -75,7 +72,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      */
     public function testGroupUseTrailingComma($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertError($file, $line, 'Trailing comma\'s are not allowed in group use statements in PHP 7.1 or earlier');
     }
 
@@ -108,7 +105,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesTrailingComma($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -141,7 +138,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -176,7 +173,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertNoViolation($file);
     }
 

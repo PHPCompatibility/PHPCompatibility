@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_function_array_dereferencing.php';
 
     /**
      * testArrayDereferencing
@@ -36,7 +35,7 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
      */
     public function testArrayDereferencing($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Function array dereferencing is not present in PHP version 5.3 or earlier');
     }
 
@@ -69,7 +68,7 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -100,7 +99,7 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file);
     }
 

@@ -25,9 +25,9 @@ use PHPCompatibility\PHPCSHelper;
  */
 class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_closure_use_variable_names.php';
+    const TEST_FILE = 'ForbiddenVariableNamesInClosureUseUnitTest.1.inc';
 
-    const TEST_FILE_LIVE_CODING = 'sniff-examples/forbidden_closure_use_variable_names.2.php';
+    const TEST_FILE_LIVE_CODING = 'ForbiddenVariableNamesInClosureUseUnitTest.2.inc';
 
     /**
      * testForbiddenVariableNamesInClosureUse
@@ -41,7 +41,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testForbiddenVariableNamesInClosureUse($line, $varName)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.1');
         $this->assertError($file, $line, 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: ' . $varName);
     }
 
@@ -79,7 +79,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -123,7 +123,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->sniffFile(self::TEST_FILE_LIVE_CODING, '7.1');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE_LIVE_CODING, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -150,7 +150,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.0');
         $this->assertNoViolation($file);
     }
 

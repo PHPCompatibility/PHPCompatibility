@@ -71,9 +71,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     protected function getTestFile($isTrait, $testVersion = null)
     {
         if ($isTrait === false) {
-            return $this->sniffFile('sniff-examples/nonstatic_magic_methods.php', $testVersion);
+            return $this->sniffFile(__DIR__ . '/NonStaticMagicMethodsUnitTest.1.inc', $testVersion);
         } else {
-            return $this->sniffFile('sniff-examples/nonstatic_magic_methods_traits.php', $testVersion);
+            return $this->sniffFile(__DIR__ . '/NonStaticMagicMethodsUnitTest.2.inc', $testVersion);
         }
     }
 

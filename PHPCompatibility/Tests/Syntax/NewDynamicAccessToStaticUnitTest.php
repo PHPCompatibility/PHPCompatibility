@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/dynamic_access_to_static.php';
 
     /**
      * testDynamicAccessToStatic
@@ -36,7 +35,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
      */
     public function testDynamicAccessToStatic($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, 'Static class properties and methods, as well as class constants, could not be accessed using a dynamic (variable) classname in PHP 5.2 or earlier.');
     }
 
@@ -79,7 +78,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -112,7 +111,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
 

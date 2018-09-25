@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class ForbiddenGetClassNullUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/GetClassNullTestCases.inc';
-
     /**
      * testGetClassNull
      *
@@ -37,7 +35,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
      */
     public function testGetClassNull($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertError($file, $line, 'Passing "null" as the $object to get_class() is not allowed since PHP 7.2.');
     }
 
@@ -63,7 +61,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
 
         // No errors expected on the first 9 lines.
         for ($line = 1; $line <= 9; $line++) {
@@ -79,7 +77,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 }

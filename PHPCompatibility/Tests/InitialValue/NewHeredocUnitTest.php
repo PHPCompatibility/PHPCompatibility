@@ -24,7 +24,6 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewHeredocUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_heredoc_initialize.php';
 
     /**
      * Whether or not traits will be recognized in PHPCS.
@@ -68,7 +67,7 @@ class NewHeredocUnitTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, "Initializing {$type} using the Heredoc syntax was not supported in PHP 5.2 or earlier");
     }
 
@@ -115,7 +114,7 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -143,7 +142,7 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
 

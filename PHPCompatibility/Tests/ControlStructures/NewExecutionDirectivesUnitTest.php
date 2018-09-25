@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewExecutionDirectivesUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_execution_directives.php';
 
     /**
      * Sniffed file
@@ -42,7 +41,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
         parent::setUp();
 
         // Sniff file without testVersion for testing the version independent sniff features.
-        $this->sniffResult = $this->sniffFile(self::TEST_FILE);
+        $this->sniffResult = $this->sniffFile(__FILE__);
     }
 
     /**
@@ -61,21 +60,21 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     public function testNewExecutionDirective($directive, $lastVersionBefore, $lines, $okVersion, $conditionalVersion = null, $condition = null)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $file  = $this->sniffFile(__FILE__, $lastVersionBefore);
         $error = "Directive {$directive} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
         if (isset($conditionalVersion, $condition)) {
-            $file  = $this->sniffFile(self::TEST_FILE, $conditionalVersion);
+            $file  = $this->sniffFile(__FILE__, $conditionalVersion);
             $error = "Directive {$directive} is present in PHP version {$conditionalVersion} but will be disregarded unless PHP is compiled with {$condition}";
             foreach ($lines as $line) {
                 $this->assertWarning($file, $line, $error);
             }
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }

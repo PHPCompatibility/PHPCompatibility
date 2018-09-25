@@ -23,8 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewUseConstFunctionUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_use_const_function.php';
-
 
     /**
      * testNewUseConstFunction
@@ -37,7 +35,7 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      */
     public function testNewUseConstFunction($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertError($file, $line, 'Importing functions and constants through a "use" statement is not supported in PHP 5.5 or lower.');
     }
 
@@ -74,7 +72,7 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file, $line);
     }
 
@@ -111,7 +109,7 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

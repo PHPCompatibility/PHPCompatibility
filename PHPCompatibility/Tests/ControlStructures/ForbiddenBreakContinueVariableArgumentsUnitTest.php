@@ -27,10 +27,9 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_break_continue_variable_argument.php';
+
     const ERROR_TYPE_VARIABLE = 'a variable argument';
     const ERROR_TYPE_ZERO = '0 as an argument';
-
 
     /**
      * testBreakAndContinueVariableArgument
@@ -44,7 +43,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      */
     public function testBreakAndContinueVariableArgument($line, $errorType)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, "Using {$errorType} on break or continue is forbidden since PHP 5.4");
     }
 
@@ -89,7 +88,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -125,7 +124,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
 

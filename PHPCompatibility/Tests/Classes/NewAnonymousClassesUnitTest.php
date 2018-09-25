@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewAnonymousClassesUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_anonymous_classes.php';
-
     /**
      * Test anonymous classes
      *
@@ -33,7 +31,7 @@ class NewAnonymousClassesUnitTest extends BaseSniffTest
      */
     public function testAnonymousClasses()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, 4, 'Anonymous classes are not supported in PHP 5.6 or earlier');
     }
 
@@ -45,7 +43,7 @@ class NewAnonymousClassesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, 3);
     }
 
@@ -57,7 +55,7 @@ class NewAnonymousClassesUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 

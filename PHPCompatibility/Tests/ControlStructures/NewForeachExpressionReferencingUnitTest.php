@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/ControlStructures/NewForeachExpressionReferencingUnitTest.inc';
 
     /**
      * testNewForeachExpressionReferencing
@@ -36,7 +35,7 @@ class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
      */
     public function testNewForeachExpressionReferencing($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'Referencing $value is only possible if the iterated array is a variable in PHP 5.4 or earlier.');
     }
 
@@ -71,7 +70,7 @@ class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -103,7 +102,7 @@ class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 }

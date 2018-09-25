@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/reserved_function_names.php';
 
     /**
      * testReservedFunctionNames
@@ -36,7 +35,7 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
      */
     public function testReservedFunctionNames($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(__FILE__);
         $this->assertWarning($file, $line, ' is discouraged; PHP has reserved all method names with a double underscore prefix for future use.');
     }
 
@@ -89,7 +88,7 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE);
+        $file = $this->sniffFile(__FILE__);
         $this->assertNoViolation($file, $line);
     }
 

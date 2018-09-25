@@ -24,7 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_scalar_type_declarations.php';
 
     /**
      * testNewTypeDeclaration
@@ -42,11 +41,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function testNewTypeDeclaration($type, $lastVersionBefore, $line, $okVersion, $testNoViolation = true)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $file = $this->sniffFile(__FILE__, $lastVersionBefore);
         $this->assertError($file, $line, "'{$type}' type declaration is not present in PHP version {$lastVersionBefore} or earlier");
 
         if ($testNoViolation === true) {
-            $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+            $file = $this->sniffFile(__FILE__, $okVersion);
             $this->assertNoViolation($file, $line);
         }
     }
@@ -98,7 +97,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function testInvalidTypeDeclaration($type, $alternative, $line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.0'); // Lowest version in which this message will show.
+        $file = $this->sniffFile(__FILE__, '5.0'); // Lowest version in which this message will show.
         $this->assertError($file, $line, "'{$type}' is not a valid type declaration. Did you mean {$alternative} ?");
     }
 
@@ -131,7 +130,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function testInvalidSelfTypeDeclaration($line, $type)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Lowest version in which this message will show.
+        $file = $this->sniffFile(__FILE__, '5.2'); // Lowest version in which this message will show.
         $this->assertError($file, $line, "'$type' type cannot be used outside of class scope");
     }
 
@@ -167,11 +166,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function testTypeDeclaration($line, $testNoViolation = false)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.4');
+        $file = $this->sniffFile(__FILE__, '4.4');
         $this->assertError($file, $line, 'Type declarations were not present in PHP 4.4 or earlier');
 
         if ($testNoViolation === true) {
-            $file = $this->sniffFile(self::TEST_FILE, '5.0');
+            $file = $this->sniffFile(__FILE__, '5.0');
             $this->assertNoViolation($file, $line);
         }
     }
@@ -225,7 +224,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.4'); // Low version below the first addition.
+        $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 

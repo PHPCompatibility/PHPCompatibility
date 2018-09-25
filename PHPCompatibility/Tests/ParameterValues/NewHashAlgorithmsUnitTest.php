@@ -24,7 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewHashAlgorithmsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_hash_algorithms.php';
 
     /**
      * testNewHashAlgorithms
@@ -40,10 +39,10 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testNewHashAlgorithms($algorithm, $lastVersionBefore, $line, $okVersion)
     {
-        $file = $this->sniffFile(self::TEST_FILE, $lastVersionBefore);
+        $file = $this->sniffFile(__FILE__, $lastVersionBefore);
         $this->assertError($file, $line, "The {$algorithm} hash algorithm is not present in PHP version {$lastVersionBefore} or earlier");
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         $this->assertNoViolation($file, $line);
     }
 
@@ -89,7 +88,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Low version below the first addition.
+        $file = $this->sniffFile(__FILE__, '5.2'); // Low version below the first addition.
         $this->assertNoViolation($file, $line);
     }
 
@@ -117,7 +116,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0');  // High version beyond newest addition.
+        $file = $this->sniffFile(__FILE__, '99.0');  // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
 

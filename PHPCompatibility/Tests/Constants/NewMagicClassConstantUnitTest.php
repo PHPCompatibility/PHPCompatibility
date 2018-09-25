@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewMagicClassConstantUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_magic_class_constant.php';
 
     /**
      * testNewMagicClassConstant
@@ -36,7 +35,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function testNewMagicClassConstant($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'The magic class constant ClassName::class was not available in PHP 5.4 or earlier');
     }
 
@@ -67,7 +66,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -96,7 +95,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 

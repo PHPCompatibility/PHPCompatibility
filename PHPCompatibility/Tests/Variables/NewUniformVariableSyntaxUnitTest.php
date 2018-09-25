@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/variable_variables.php';
 
     /**
      * testVariableVariables
@@ -36,7 +35,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      */
     public function testVariableVariables($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Indirect access to variables, properties and methods will be evaluated strictly in left-to-right order since PHP 7.0. Use curly braces to remove ambiguity.');
     }
 
@@ -72,7 +71,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -117,7 +116,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

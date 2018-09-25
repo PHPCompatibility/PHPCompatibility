@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/deprecated_php4style_constructors.php';
 
     /**
      * Test PHP4 style constructors.
@@ -36,7 +35,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      */
     public function testIsDeprecated($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertWarning($file, $line, 'Use of deprecated PHP4 style class constructor is not supported since PHP 7');
     }
 
@@ -67,7 +66,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -94,7 +93,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/removed_alternative_phptags.php';
 
     /**
      * Whether or not ASP tags are on.
@@ -67,7 +66,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, "{$type} style opening tags have been removed in PHP 7.0. Found \"{$snippet}\"");
     }
 
@@ -110,7 +109,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
             return;
         }
 
-        $file    = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file    = $this->sniffFile(__FILE__, '7.0');
         $warning = "Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: {$snippet}";
         $this->assertWarning($file, $line, $warning);
     }
@@ -144,7 +143,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -170,7 +169,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

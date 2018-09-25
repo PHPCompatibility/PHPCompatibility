@@ -24,9 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/new_trailing_comma.php';
-
-
     /**
      * testTrailingComma
      *
@@ -39,7 +36,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      */
     public function testTrailingComma($line, $type = 'function calls')
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertError($file, $line, "Trailing comma's are not allowed in {$type} in PHP 7.2 or earlier");
     }
 
@@ -82,7 +79,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -116,7 +113,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
+        $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file);
     }
 

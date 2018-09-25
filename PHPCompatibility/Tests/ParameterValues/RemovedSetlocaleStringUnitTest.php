@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class RemovedSetlocaleStringUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/SetlocaleStringTestCases.inc';
-
     /**
      * testSetlocaleString
      *
@@ -37,10 +35,10 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      */
     public function testSetlocaleString($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.2');
+        $file = $this->sniffFile(__FILE__, '4.2');
         $this->assertWarning($file, $line, 'Passing the $category as a string to setlocale() has been deprecated since PHP 4.2; Pass one of the LC_* constants instead.');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Passing the $category as a string to setlocale() has been deprecated since PHP 4.2 and is removed since PHP 7.0; Pass one of the LC_* constants instead.');
     }
 
@@ -67,7 +65,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
 
         // No errors expected on the first 7 lines.
         for ($line = 1; $line <= 7; $line++) {
@@ -83,7 +81,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '4.1');
+        $file = $this->sniffFile(__FILE__, '4.1');
         $this->assertNoViolation($file);
     }
 }

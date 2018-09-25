@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/ArrayReduceInitialTypeTestCases.inc';
-
     /**
      * testArrayReduceInitialType
      *
@@ -39,7 +37,7 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
      */
     public function testArrayReduceInitialType($line, $isError = true)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file  = $this->sniffFile(__FILE__, '5.2');
         $error = 'Passing a non-integer as the value for $initial to array_reduce() is not supported in PHP 5.2 or lower.';
 
         if ($isError === true) {
@@ -77,7 +75,7 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
 
         // No errors expected on the first 14 lines.
         for ($line = 1; $line <= 14; $line++) {
@@ -93,7 +91,7 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
 }

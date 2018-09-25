@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewListReferenceAssignmentUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/Lists/NewListReferenceAssignmentUnitTest.inc';
 
     /**
      * testNewListReferenceAssignment
@@ -36,7 +35,7 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      */
     public function testNewListReferenceAssignment($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertError($file, $line, 'Reference assignments within list constructs are not supported in PHP 7.2 or earlier.');
     }
 
@@ -73,7 +72,7 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -110,7 +109,7 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.3');
+        $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file);
     }
 

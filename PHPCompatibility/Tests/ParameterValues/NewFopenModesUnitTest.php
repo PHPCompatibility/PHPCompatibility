@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewFopenModesUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/FopenModeTestCases.inc';
-
     /**
      * testFopenMode
      *
@@ -42,7 +40,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function testFopenMode($line, $mode, $errorVersion, $okVersion, $displayVersion = null)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file  = $this->sniffFile(__FILE__, $errorVersion);
         $error = sprintf(
             'Passing "%s" as the $mode to fopen() is not supported in PHP %s or lower.',
             $mode,
@@ -50,7 +48,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
         );
         $this->assertError($file, $line, $error);
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         $this->assertNoViolation($file, $line);
     }
 
@@ -84,7 +82,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2'); // Version below first new mode was added.
+        $file = $this->sniffFile(__FILE__, '5.2'); // Version below first new mode was added.
         $this->assertNoViolation($file, $line);
     }
 
@@ -112,7 +110,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1'); // Above last new mode added.
+        $file = $this->sniffFile(__FILE__, '7.1'); // Above last new mode added.
         $this->assertNoViolation($file);
     }
 }

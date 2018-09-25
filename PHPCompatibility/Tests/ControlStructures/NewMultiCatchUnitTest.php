@@ -24,7 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewMultiCatchUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_multi_catch.php';
 
     /**
      * testNewMultiCatch
@@ -37,7 +36,7 @@ class NewMultiCatchUnitTest extends BaseSniffTest
      */
     public function testNewMultiCatch($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Catching multiple exceptions within one statement is not supported in PHP 7.0 or earlier.');
     }
 
@@ -67,7 +66,7 @@ class NewMultiCatchUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -97,7 +96,7 @@ class NewMultiCatchUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 

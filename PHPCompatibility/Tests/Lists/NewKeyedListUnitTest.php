@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewKeyedListUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/Lists/NewKeyedListTestCases.inc';
 
     /**
      * testNewKeyedList
@@ -36,7 +35,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
      */
     public function testNewKeyedList($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Specifying keys in list constructs is not supported in PHP 7.0 or earlier.');
     }
 
@@ -85,7 +84,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -119,7 +118,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 

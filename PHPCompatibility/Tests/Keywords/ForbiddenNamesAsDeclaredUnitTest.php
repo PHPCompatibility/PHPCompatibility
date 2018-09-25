@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/forbidden_names_as_declared.php';
-
     /**
      * testReservedKeyword
      *
@@ -40,13 +38,13 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function testReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $file  = $this->sniffFile(__FILE__, $introducedIn);
         $error = "'{$keyword}' is a reserved keyword as of PHP version {$introducedIn} and should not be used to name a class, interface or trait or as part of a namespace";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -89,13 +87,13 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function testSoftReservedKeyword($keyword, $lines, $introducedIn, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $introducedIn);
+        $file  = $this->sniffFile(__FILE__, $introducedIn);
         $error = "'{$keyword}' is a soft reserved keyword as of PHP version {$introducedIn} and should not be used to name a class, interface or trait or as part of a namespace";
         foreach ($lines as $line) {
             $this->assertWarning($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -138,7 +136,7 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
         $this->testSoftReservedKeyword($keyword, $lines, $introducedIn, $okVersion);
 
         // Test hard reserved message.
-        $file  = $this->sniffFile(self::TEST_FILE, $soft2Hard);
+        $file  = $this->sniffFile(__FILE__, $soft2Hard);
         $error = "'{$keyword}' is a soft reserved keyword as of PHP version {$introducedIn} and a reserved keyword as of PHP version {$soft2Hard} and should not be used to name a class, interface or trait or as part of a namespace";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
@@ -171,7 +169,7 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High number beyond any newly introduced reserved words.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High number beyond any newly introduced reserved words.
         $this->assertNoViolation($file, $line);
     }
 
@@ -207,7 +205,7 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6'); // Low version below the first introduced reserved word.
+        $file = $this->sniffFile(__FILE__, '5.6'); // Low version below the first introduced reserved word.
         $this->assertNoViolation($file);
     }
 

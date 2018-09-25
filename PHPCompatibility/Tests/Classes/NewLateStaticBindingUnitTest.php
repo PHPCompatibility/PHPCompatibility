@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewLateStaticBindingUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/late_static_binding.php';
 
     /**
      * testLateStaticBinding
@@ -36,10 +35,10 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      */
     public function testLateStaticBinding($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, 'Late static binding is not supported in PHP 5.2 or earlier.');
 
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -70,7 +69,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      */
     public function testLateStaticBindingOutsideClassScope($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE); // Message will be shown independently of testVersion.
+        $file = $this->sniffFile(__FILE__); // Message will be shown independently of testVersion.
         $this->assertError($file, $line, 'Late static binding is not supported outside of class scope.');
     }
 
@@ -100,7 +99,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, $line);
     }
 

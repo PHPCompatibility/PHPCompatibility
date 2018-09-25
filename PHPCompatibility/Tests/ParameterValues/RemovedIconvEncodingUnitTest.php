@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class RemovedIconvEncodingUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'Sniffs/FunctionParameters/IconvEncodingTestCases.inc';
-
     /**
      * testIconvEncoding
      *
@@ -37,7 +35,7 @@ class RemovedIconvEncodingUnitTest extends BaseSniffTest
      */
     public function testIconvEncoding($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertWarning($file, $line, 'All previously accepted values for the $type parameter of iconv_set_encoding() have been deprecated since PHP 5.6.');
     }
 
@@ -67,7 +65,7 @@ class RemovedIconvEncodingUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
 
         // No errors expected on the first 10 lines.
         for ($line = 1; $line <= 10; $line++) {
@@ -83,7 +81,7 @@ class RemovedIconvEncodingUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 }

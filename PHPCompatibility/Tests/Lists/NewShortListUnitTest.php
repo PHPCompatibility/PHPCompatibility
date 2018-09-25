@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewShortListUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/Lists/ShortListTestCases.inc';
 
     /**
      * testShortList
@@ -36,7 +35,7 @@ class NewShortListUnitTest extends BaseSniffTest
      */
     public function testShortList($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'The shorthand list syntax "[]" to destructure arrays is not available in PHP 7.0 or earlier.');
     }
 
@@ -72,7 +71,7 @@ class NewShortListUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -102,7 +101,7 @@ class NewShortListUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
 

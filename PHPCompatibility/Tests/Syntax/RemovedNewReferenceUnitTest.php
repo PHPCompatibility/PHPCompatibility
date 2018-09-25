@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class RemovedNewReferenceUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/deprecated_new_reference.php';
 
     /**
      * testDeprecatedNewReference
@@ -36,10 +35,10 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
      */
     public function testDeprecatedNewReference($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertWarning($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3');
 
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3 and has been removed in PHP 7.0');
 
     }
@@ -69,7 +68,7 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, 8);
     }
 
@@ -81,7 +80,7 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file);
     }
 

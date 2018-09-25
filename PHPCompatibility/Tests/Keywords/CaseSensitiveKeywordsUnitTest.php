@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/case_sensitive_keywords.php';
 
     /**
      * testCaseSensitiveKeywords
@@ -37,7 +36,7 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      */
     public function testCaseSensitiveKeywords($line, $keyword)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, "The keyword '{$keyword}' was treated in a case-sensitive fashion in certain cases in PHP 5.4 or earlier. Use the lowercase version for consistent support.");
     }
 
@@ -72,7 +71,7 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -103,7 +102,7 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.5');
+        $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
 

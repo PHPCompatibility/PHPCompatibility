@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewShortArrayUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/short_array.php';
 
     /**
      * testViolation
@@ -37,7 +36,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
      */
     public function testViolation($lineOpen, $lineClose)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $lineOpen, 'Short array syntax (open) is available since 5.4');
         $this->assertError($file, $lineClose, 'Short array syntax (close) is available since 5.4');
     }
@@ -71,7 +70,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -99,7 +98,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.4');
+        $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file);
     }
 

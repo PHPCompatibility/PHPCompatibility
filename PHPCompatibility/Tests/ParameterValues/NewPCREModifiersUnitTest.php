@@ -25,8 +25,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class NewPCREModifiersUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/pcre_new_modifiers.php';
-
     /**
      * testPCRENewModifier
      *
@@ -43,13 +41,13 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
     public function testPCRENewModifier($modifier, $lastVersionBefore, $lines, $okVersion, $testVersion = null)
     {
         $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
-        $file         = $this->sniffFile(self::TEST_FILE, $errorVersion);
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "The PCRE regex modifier \"{$modifier}\" is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -81,7 +79,7 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -108,7 +106,7 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0');
+        $file = $this->sniffFile(__FILE__, '99.0');
         $this->assertNoViolation($file);
     }
 

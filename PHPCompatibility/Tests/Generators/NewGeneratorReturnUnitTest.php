@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewGeneratorReturnUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/new_generator_return.php';
 
     /**
      * testNewGeneratorReturn
@@ -36,7 +35,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      */
     public function testNewGeneratorReturn($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Returning a final expression from a generator was not supported in PHP 5.6 or earlier');
     }
 
@@ -71,7 +70,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, $line);
     }
 
@@ -101,7 +100,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 

@@ -24,8 +24,8 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedNamespacedAssertUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'Sniffs/FunctionNameRestrictions/RemovedNamespacedAssertUnitTest.1.inc';
-    const TEST_FILE_NAMESPACED = 'Sniffs/FunctionNameRestrictions/RemovedNamespacedAssertUnitTest.2.inc';
+    const TEST_FILE            = 'RemovedNamespacedAssertUnitTest.1.inc';
+    const TEST_FILE_NAMESPACED = 'RemovedNamespacedAssertUnitTest.2.inc';
 
     /**
      * Whether or not traits and interfaces will be properly scoped in PHPCS.
@@ -61,7 +61,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      */
     public function testIsDeprecated($testFile, $line)
     {
-        $file = $this->sniffFile($testFile, '7.3');
+        $file = $this->sniffFile(__DIR__ . '/' . $testFile, '7.3');
         $this->assertWarning($file, $line, 'Declaring a free-standing function called assert() is deprecated since PHP 7.3');
     }
 
@@ -98,7 +98,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->sniffFile($testFile, '7.3');
+        $file = $this->sniffFile(__DIR__ . '/' . $testFile, '7.3');
         $this->assertNoViolation($file, $line);
     }
 
@@ -132,7 +132,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.2');
         $this->assertNoViolation($file);
     }
 }

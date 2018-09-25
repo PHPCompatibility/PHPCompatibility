@@ -23,7 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class NewShortTernaryUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/ternary_operator.php';
 
     /**
      * testElvisOperator
@@ -36,7 +35,7 @@ class NewShortTernaryUnitTest extends BaseSniffTest
      */
     public function testElvisOperator($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, $line, 'Middle may not be omitted from ternary operators in PHP < 5.3');
     }
 
@@ -64,7 +63,7 @@ class NewShortTernaryUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, 5);
     }
 
@@ -76,7 +75,7 @@ class NewShortTernaryUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3');
+        $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
 

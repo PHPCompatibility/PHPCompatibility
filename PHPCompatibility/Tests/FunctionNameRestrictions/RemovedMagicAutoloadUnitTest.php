@@ -24,8 +24,8 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/deprecated_magic_autoload.php';
-    const TEST_FILE_NAMESPACED = 'sniff-examples/deprecated_magic_autoload_namespaced.php';
+    const TEST_FILE            = 'RemovedMagicAutoloadUnitTest.1.inc';
+    const TEST_FILE_NAMESPACED = 'RemovedMagicAutoloadUnitTest.2.inc';
 
     /**
      * Whether or not traits and interfaces will be recognized in PHPCS.
@@ -55,7 +55,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.1');
         $this->assertNoViolation($file);
     }
 
@@ -70,7 +70,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      */
     public function testIsDeprecated($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.2');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.2');
         $this->assertWarning($file, $line, 'Use of __autoload() function is deprecated since PHP 7.2');
     }
 
@@ -106,7 +106,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
             return;
         }
 
-        $file = $this->sniffFile($testFile, '7.2');
+        $file = $this->sniffFile(__DIR__ . '/' . $testFile, '7.2');
         $this->assertNoViolation($file, $line);
     }
 

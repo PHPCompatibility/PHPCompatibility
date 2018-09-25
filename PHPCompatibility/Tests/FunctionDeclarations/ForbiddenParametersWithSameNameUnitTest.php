@@ -23,8 +23,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  */
 class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
 {
-    const TEST_FILE = 'sniff-examples/forbidden_function_parameters_with_same_name.php';
-
 
     /**
      * testFunctionParametersWithSameName
@@ -37,7 +35,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
      */
     public function testFunctionParametersWithSameName($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Functions can not have multiple parameters with the same name since PHP 7.0');
     }
 
@@ -68,7 +66,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -95,7 +93,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
 

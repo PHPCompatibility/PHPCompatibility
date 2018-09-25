@@ -24,8 +24,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
 {
 
-    const TEST_FILE = 'sniff-examples/required_optional_function_parameters.php';
-
     /**
      * testRequiredOptionalParameter
      *
@@ -41,13 +39,13 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testRequiredOptionalParameter($functionName, $parameterName, $requiredUpTo, $lines, $okVersion)
     {
-        $file  = $this->sniffFile(self::TEST_FILE, $requiredUpTo);
+        $file  = $this->sniffFile(__FILE__, $requiredUpTo);
         $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing, but was required for PHP version {$requiredUpTo} and lower";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
 
-        $file = $this->sniffFile(self::TEST_FILE, $okVersion);
+        $file = $this->sniffFile(__FILE__, $okVersion);
         foreach ($lines as $line) {
             $this->assertNoViolation($file, $line);
         }
@@ -92,7 +90,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(self::TEST_FILE, '5.3'); // Version before earliest required/optional change.
+        $file = $this->sniffFile(__FILE__, '5.3'); // Version before earliest required/optional change.
         $this->assertNoViolation($file, $line);
     }
 
@@ -125,7 +123,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(self::TEST_FILE, '99.0'); // High version beyond latest required/optional change.
+        $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest required/optional change.
         $this->assertNoViolation($file);
     }
 
