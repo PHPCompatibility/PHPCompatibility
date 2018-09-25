@@ -24,8 +24,8 @@ $ds = DIRECTORY_SEPARATOR;
 $phpcsDir = getenv('PHPCS_DIR');
 
 // This may be a Composer install.
-if ($phpcsDir === false && is_dir(dirname(dirname(__DIR__)) . $ds . 'vendor' . $ds . 'squizlabs' . $ds . 'php_codesniffer')) {
-    $vendorDir = dirname(dirname(__DIR__)) . $ds . 'vendor';
+if ($phpcsDir === false && is_dir(__DIR__ . $ds . 'vendor' . $ds . 'squizlabs' . $ds . 'php_codesniffer')) {
+    $vendorDir = __DIR__ . $ds . 'vendor';
     $phpcsDir  = $vendorDir . $ds . 'squizlabs' . $ds . 'php_codesniffer';
 } elseif ($phpcsDir !== false) {
     $phpcsDir = realpath($phpcsDir);
@@ -41,7 +41,7 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
      * Also provide a custom autoloader for our abstract base classes as the PHPCS native autoloader
      * has trouble with them in combination with the PHPCompatibility custom unit test suite.
      */
-    include_once dirname(dirname(__DIR__)) . $ds . 'PHPCSAliases.php';
+    require_once __DIR__ . $ds . 'PHPCSAliases.php';
 
 } elseif ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'CodeSniffer.php')) {
     // PHPCS 2.x.
@@ -74,6 +74,6 @@ if (class_exists('PHPUnit\Runner\Version')
     class_alias('PHPUnit\Framework\TestCase', 'PHPUnit_Framework_TestCase');
 }
 
-require_once __DIR__ . $ds . 'BaseSniffTest.php';
-require_once __DIR__ . $ds . 'BaseClass' . $ds . 'MethodTestFrame.php';
+require_once __DIR__ . $ds . 'PHPCompatibility' . $ds . 'Tests' . $ds . 'BaseSniffTest.php';
+require_once __DIR__ . $ds . 'PHPCompatibility' . $ds . 'Util' . $ds . 'Tests' . $ds . 'CoreMethodTestFrame.php';
 unset($ds, $phpcsDir, $vendorDir);
