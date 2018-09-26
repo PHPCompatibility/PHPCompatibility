@@ -397,6 +397,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *            This list is automatically added to the $newClasses property
      *            in the `register()` method.}}
      *
+     * {@internal Helper to update this list: https://3v4l.org/MhlUp}}
+     *
      * @var array(string => array(string => bool))
      */
     protected $newExceptions = array(
@@ -406,6 +408,27 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '4.4' => false,
             '5.0' => true,
         ),
+        'DOMException' => array(
+            '5.0.2' => false,
+            '5.0.3' => true,
+        ),
+        'mysqli_sql_exception' => array(
+            '5.0.2' => false,
+            '5.0.3' => true,
+        ),
+        'ReflectionException' => array(
+            '5.0.2' => false,
+            '5.0.3' => true,
+        ),
+        'SoapFault' => array(
+            '5.0.2' => false,
+            '5.0.3' => true,
+        ),
+        'SQLiteException' => array(
+            '5.0.2' => false,
+            '5.0.3' => true,
+        ),
+
         'ErrorException' => array(
             '5.0' => false,
             '5.1' => true,
@@ -462,25 +485,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
-        'DOMException' => array(
-            '4.4' => false,
-            '5.0' => true,
-        ),
-        'mysqli_sql_exception' => array(
-            '4.4' => false,
-            '5.0' => true,
-        ),
         'PDOException' => array(
             '5.0' => false,
             '5.1' => true,
-        ),
-        'ReflectionException' => array(
-            '4.4' => false,
-            '5.0' => true,
-        ),
-        'SoapFault' => array(
-            '4.4' => false,
-            '5.0' => true,
         ),
 
         'PharException' => array(
@@ -494,8 +501,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'IntlException' => array(
-            '5.5.0' => false,
-            '5.5.1' => true,
+            '5.5' => false,
+            '5.6' => true,
         ),
 
         'Error' => array(
@@ -522,6 +529,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+        'ClosedGeneratorException' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
         'UI\Exception\InvalidArgumentException' => array(
             '5.6' => false,
             '7.0' => true,
@@ -534,6 +545,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'ArgumentCountError' => array(
             '7.0' => false,
             '7.1' => true,
+        ),
+
+        'SodiumException' => array(
+            '7.1' => false,
+            '7.2' => true,
         ),
 
         'CompileError' => array(
