@@ -27,11 +27,6 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically.",
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
-  "autoload" : {
-    "psr-4" : {
-      "PHPCompatibility\\" : "PHPCompatibility/"
-    }
-  },
   "scripts" : {
     "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
     "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
