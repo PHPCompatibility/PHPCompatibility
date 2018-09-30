@@ -57,8 +57,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
          * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
          */
         'T_COALESCE_EQUAL' => array(
-            '7.2' => false,
-            '7.3' => true,
+            '7.3' => false,
+            '7.4' => true,
             'description' => 'null coalesce equal operator (??=)',
         ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
     );
