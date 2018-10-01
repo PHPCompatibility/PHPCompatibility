@@ -9,6 +9,8 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_File as File;
+
 /**
  * \PHPCompatibility\AbstractComplexVersionSniff.
  *
@@ -31,7 +33,7 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
      *
      * @return void
      */
-    public function handleFeature(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo)
+    public function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
         $itemArray = $this->getItemArray($itemInfo);
         $errorInfo = $this->getErrorInfo($itemArray, $itemInfo);

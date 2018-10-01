@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff.
@@ -74,10 +76,10 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
      *
      * @return bool True if no heredoc (or assignment) is found, false otherwise.
      */
-    protected function isValidAssignment(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $end)
+    protected function isValidAssignment(File $phpcsFile, $stackPtr, $end)
     {
         $tokens = $phpcsFile->getTokens();
-        $next   = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
+        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
         if ($next === false || $tokens[$next]['code'] !== T_EQUAL) {
             // No value assigned.
             return true;

@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosure.
@@ -45,7 +47,7 @@ class NewClosureSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2')) {
             $phpcsFile->addError(
@@ -165,10 +167,10 @@ class NewClosureSniff extends Sniff
      *
      * @return bool
      */
-    protected function isClosureStatic(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isClosureStatic(File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
 
         return ($prevToken !== false && $tokens[$prevToken]['code'] === T_STATIC);
     }
@@ -184,7 +186,7 @@ class NewClosureSniff extends Sniff
      * @return int|false The stackPtr to the first $this usage if found or false if
      *                   $this is not used.
      */
-    protected function findThisUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $startToken, $endToken)
+    protected function findThisUsageInClosure(File $phpcsFile, $startToken, $endToken)
     {
         // Make sure the $startToken is valid.
         if ($startToken >= $endToken) {
@@ -210,7 +212,7 @@ class NewClosureSniff extends Sniff
      * @return int|false The stackPtr to the first classRef usage if found or false if
      *                   they are not used.
      */
-    protected function findClassRefUsageInClosure(\PHP_CodeSniffer_File $phpcsFile, $startToken, $endToken)
+    protected function findClassRefUsageInClosure(File $phpcsFile, $startToken, $endToken)
     {
         // Make sure the $startToken is valid.
         if ($startToken >= $endToken) {
@@ -225,7 +227,7 @@ class NewClosureSniff extends Sniff
         }
 
         // T_STATIC, make sure it is used as a class reference.
-        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($classRef + 1), $endToken, true);
+        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($classRef + 1), $endToken, true);
         if ($next === false || $tokens[$next]['code'] !== T_DOUBLE_COLON) {
             return false;
         }

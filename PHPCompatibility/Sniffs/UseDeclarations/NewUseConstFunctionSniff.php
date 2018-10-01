@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\UseDeclarations;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\UseDeclarations\NewUseConstFunctionSniff.
@@ -59,7 +61,7 @@ class NewUseConstFunctionSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.5') !== true) {
             return;
@@ -67,7 +69,7 @@ class NewUseConstFunctionSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             // Live coding.
             return;
@@ -79,7 +81,7 @@ class NewUseConstFunctionSniff extends Sniff
         }
 
         // `use const` and `use function` have to be followed by the function/constant name.
-        $functionOrConstName = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
+        $functionOrConstName = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
         if ($functionOrConstName === false
             // Identifies as T_AS or T_STRING, this covers both.
             || ($tokens[$functionOrConstName]['content'] === 'as'

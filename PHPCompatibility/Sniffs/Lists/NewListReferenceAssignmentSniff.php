@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniffs\Lists\NewKeyedListSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * Detect reference assignments in array destructuring using (short) list.
@@ -52,7 +53,7 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
      *
      * @return void
      */
-    protected function examineList(\PHP_CodeSniffer_File $phpcsFile, $opener, $closer)
+    protected function examineList(File $phpcsFile, $opener, $closer)
     {
         $start   = $opener;
         while (($start = $this->hasTargetInList($phpcsFile, $start, $closer)) !== false) {

@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Lists\NewKeyedListSniff.
@@ -97,7 +99,7 @@ class NewKeyedListSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->bowOutEarly() === true) {
             return;
@@ -113,7 +115,7 @@ class NewKeyedListSniff extends Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === T_LIST) {
-            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false
                 || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
                 || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
@@ -150,7 +152,7 @@ class NewKeyedListSniff extends Sniff
      *
      * @return void
      */
-    protected function examineList(\PHP_CodeSniffer_File $phpcsFile, $opener, $closer)
+    protected function examineList(File $phpcsFile, $opener, $closer)
     {
         $start = $opener;
         while (($start = $this->hasTargetInList($phpcsFile, $start, $closer)) !== false) {
@@ -175,7 +177,7 @@ class NewKeyedListSniff extends Sniff
      *
      * @return int|bool Stack pointer to the target token if encountered. False otherwise.
      */
-    protected function hasTargetInList(\PHP_CodeSniffer_File $phpcsFile, $start, $closer)
+    protected function hasTargetInList(File $phpcsFile, $start, $closer)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -190,7 +192,7 @@ class NewKeyedListSniff extends Sniff
 
             // Skip past nested list constructs.
             if ($tokens[$i]['code'] === T_LIST) {
-                $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($i + 1), null, true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
                 if ($nextNonEmpty !== false
                     && $tokens[$nextNonEmpty]['code'] === T_OPEN_PARENTHESIS
                     && isset($tokens[$nextNonEmpty]['parenthesis_closer']) === true

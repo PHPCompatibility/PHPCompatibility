@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionUse\ArgumentFunctionsUsageSniff.
@@ -65,7 +67,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens     = $phpcsFile->getTokens();
         $functionLc = strtolower($tokens[$stackPtr]['content']);
@@ -74,7 +76,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         // Next non-empty token should be the open parenthesis.
-        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
         if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
             return;
         }
@@ -86,7 +88,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
             T_NEW             => true,
         );
 
-        $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
             // Not a call to a PHP function.
             return;
@@ -135,12 +137,12 @@ class ArgumentFunctionsUsageSniff extends Sniff
             $throwError = true;
         } else {
             $opener       = key($tokens[$stackPtr]['nested_parenthesis']);
-            $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($opener - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
             if ($tokens[$prevNonEmpty]['code'] !== T_STRING) {
                 return;
             }
 
-            $prevPrevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+            $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
             if ($tokens[$prevPrevNonEmpty]['code'] === T_FUNCTION) {
                 return;
             }

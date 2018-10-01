@@ -10,6 +10,8 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionParametersSniff.
@@ -87,7 +89,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -117,7 +119,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         }
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis      = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
         $parameterOffsetFound = $parameterCount - 1;
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {

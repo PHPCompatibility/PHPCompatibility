@@ -11,6 +11,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Interfaces\NewInterfacesSniff.
@@ -148,7 +149,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -193,7 +194,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processClassToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processClassToken(File $phpcsFile, $stackPtr)
     {
         $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
@@ -257,7 +258,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processFunctionToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processFunctionToken(File $phpcsFile, $stackPtr)
     {
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
         if (empty($typeHints) || is_array($typeHints) === false) {
@@ -290,7 +291,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processReturnTypeToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processReturnTypeToken(File $phpcsFile, $stackPtr)
     {
         $returnTypeHint   = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
         $returnTypeHint   = ltrim($returnTypeHint, '\\');

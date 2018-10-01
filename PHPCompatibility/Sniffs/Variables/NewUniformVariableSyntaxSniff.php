@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntax.
@@ -45,7 +47,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -54,14 +56,14 @@ class NewUniformVariableSyntaxSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Verify that the next token is a square open bracket. If not, bow out.
-        $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
 
         if ($nextToken === false || $tokens[$nextToken]['code'] !== T_OPEN_SQUARE_BRACKET || isset($tokens[$nextToken]['bracket_closer']) === false) {
             return;
         }
 
         // The previous non-empty token has to be a $, -> or ::.
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
         if ($prevToken === false || in_array($tokens[$prevToken]['code'], array(T_DOLLAR, T_OBJECT_OPERATOR, T_DOUBLE_COLON), true) === false) {
             return;
         }
@@ -69,7 +71,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
         // For static object calls, it only applies when this is a function call.
         if ($tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
             $hasBrackets = $tokens[$nextToken]['bracket_closer'];
-            while (($hasBrackets = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false) {
+            while (($hasBrackets = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false) {
                 if ($tokens[$hasBrackets]['code'] === T_OPEN_SQUARE_BRACKET) {
                     if (isset($tokens[$hasBrackets]['bracket_closer'])) {
                         $hasBrackets = $tokens[$hasBrackets]['bracket_closer'];
@@ -90,7 +92,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
             }
 
             // Now let's also prevent false positives when used with self and static which still work fine.
-            $classToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
+            $classToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
             if ($classToken !== false) {
                 if ($tokens[$classToken]['code'] === T_STATIC || $tokens[$classToken]['code'] === T_SELF) {
                     return;

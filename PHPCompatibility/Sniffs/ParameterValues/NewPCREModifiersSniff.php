@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiers.
@@ -80,7 +81,7 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      *
      * @return void
      */
-    protected function examineModifiers(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $modifiers)
+    protected function examineModifiers(File $phpcsFile, $stackPtr, $functionName, $modifiers)
     {
         $error = 'The PCRE regex modifier "%s" is not present in PHP version %s or earlier';
 

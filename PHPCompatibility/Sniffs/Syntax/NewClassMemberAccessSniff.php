@@ -13,6 +13,8 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff.
@@ -52,7 +54,7 @@ class NewClassMemberAccessSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -75,23 +77,13 @@ class NewClassMemberAccessSniff extends Sniff
             return;
         }
 
-        $prevBeforeParenthesis = $phpcsFile->findPrevious(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
-            ($parenthesisOpener - 1),
-            null,
-            true
-        );
+        $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
         if ($prevBeforeParenthesis !== false && $tokens[$prevBeforeParenthesis]['code'] === T_STRING) {
             // This is most likely a function call with the new/cloned object as a parameter.
             return;
         }
 
-        $nextAfterParenthesis = $phpcsFile->findNext(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
-            ($parenthesisCloser + 1),
-            null,
-            true
-        );
+        $nextAfterParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($parenthesisCloser + 1), null, true);
         if ($nextAfterParenthesis === false) {
             // Live coding.
             return;

@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\LanguageConstructs;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff.
@@ -46,7 +48,7 @@ class NewEmptyNonVariableSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;
@@ -54,7 +56,7 @@ class NewEmptyNonVariableSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $open = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        $open = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
         if ($open === false
             || $tokens[$open]['code'] !== T_OPEN_PARENTHESIS
             || isset($tokens[$open]['parenthesis_closer']) === false

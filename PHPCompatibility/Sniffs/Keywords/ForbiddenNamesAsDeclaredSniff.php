@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredClassSniff.
@@ -117,7 +119,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -137,7 +139,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
         if (in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
-            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
                 $name = $tokens[$nextNonEmpty]['content'];
             } else {
@@ -173,7 +175,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             }
         } elseif ($tokenCode === T_STRING) {
             // Traits which are not yet tokenized as T_TRAIT.
-            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
                 return;
             }
@@ -198,7 +200,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                         break;
                     }
 
-                    $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
+                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
                 } while ($nextNonEmpty !== false);
             }
             unset($nextNonEmptyCode, $nextNonEmptyLc, $endOfStatement);

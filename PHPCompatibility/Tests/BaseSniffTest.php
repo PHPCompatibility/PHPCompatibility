@@ -7,7 +7,9 @@
 
 namespace PHPCompatibility\Tests;
 
+use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
 
 /**
  * BaseSniffTest
@@ -19,7 +21,7 @@ use PHPCompatibility\PHPCSHelper;
  * @package PHPCompatibility
  * @author  Jansen Price <jansen.price@gmail.com>
  */
-class BaseSniffTest extends \PHPUnit_Framework_TestCase
+class BaseSniffTest extends PHPUnit_TestCase
 {
     const STANDARD_NAME = 'PHPCompatibility';
 
@@ -173,7 +175,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return bool
      */
-    public function assertError(\PHP_CodeSniffer_File $file, $lineNumber, $expectedMessage)
+    public function assertError(File $file, $lineNumber, $expectedMessage)
     {
         $errors = $this->gatherErrors($file);
 
@@ -189,7 +191,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return bool
      */
-    public function assertWarning(\PHP_CodeSniffer_File $file, $lineNumber, $expectedMessage)
+    public function assertWarning(File $file, $lineNumber, $expectedMessage)
     {
         $warnings = $this->gatherWarnings($file);
 
@@ -235,7 +237,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return bool
      */
-    public function assertNoViolation(\PHP_CodeSniffer_File $file, $lineNumber = 0)
+    public function assertNoViolation(File $file, $lineNumber = 0)
     {
         $errors   = $this->gatherErrors($file);
         $warnings = $this->gatherWarnings($file);
@@ -279,7 +281,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function showViolations(\PHP_CodeSniffer_File $file)
+    public function showViolations(File $file)
     {
         $violations = array(
             'errors'   => $this->gatherErrors($file),
@@ -296,7 +298,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function gatherErrors(\PHP_CodeSniffer_File $file)
+    public function gatherErrors(File $file)
     {
         $foundErrors = $file->getErrors();
 
@@ -310,7 +312,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function gatherWarnings(\PHP_CodeSniffer_File $file)
+    public function gatherWarnings(File $file)
     {
         $foundWarnings = $file->getWarnings();
 

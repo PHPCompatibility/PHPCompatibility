@@ -9,6 +9,7 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_Exception as PHPCS_Exception;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
@@ -101,7 +102,7 @@ class PHPCSHelper
      *
      * @return string|null
      */
-    public static function getCommandLineData($phpcsFile, $key)
+    public static function getCommandLineData(File $phpcsFile, $key)
     {
         if (class_exists('\PHP_CodeSniffer\Config')) {
             // PHPCS 3.x.
@@ -218,7 +219,7 @@ class PHPCSHelper
      *
      * @return int
      */
-    public static function findEndOfStatement(\PHP_CodeSniffer_File $phpcsFile, $start, $ignore = null)
+    public static function findEndOfStatement(File $phpcsFile, $start, $ignore = null)
     {
         if (version_compare(self::getVersion(), '3.3.0', '>=') === true) {
             return $phpcsFile->findEndOfStatement($start, $ignore);
@@ -285,7 +286,7 @@ class PHPCSHelper
                 $i = $tokens[$i]['parenthesis_closer'];
             }
 
-            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
                 $lastNotEmpty = $i;
             }
         }//end for
@@ -316,7 +317,7 @@ class PHPCSHelper
      *
      * @return string|false
      */
-    public static function findExtendedClassName(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public static function findExtendedClassName(File $phpcsFile, $stackPtr)
     {
         if (version_compare(self::getVersion(), '3.1.0', '>=') === true) {
             return $phpcsFile->findExtendedClassName($stackPtr);
@@ -381,7 +382,7 @@ class PHPCSHelper
      *
      * @return array|false
      */
-    public static function findImplementedInterfaceNames(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public static function findImplementedInterfaceNames(File $phpcsFile, $stackPtr)
     {
         if (version_compare(self::getVersion(), '2.7.1', '>') === true) {
             return $phpcsFile->findImplementedInterfaceNames($stackPtr);
@@ -467,7 +468,7 @@ class PHPCSHelper
      * @throws \PHP_CodeSniffer_Exception If the specified $stackPtr is not of
      *                                    type T_FUNCTION or T_CLOSURE.
      */
-    public static function getMethodParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public static function getMethodParameters(File $phpcsFile, $stackPtr)
     {
         if (version_compare(self::getVersion(), '3.3.0', '>=') === true) {
             return $phpcsFile->getMethodParameters($stackPtr);
@@ -483,7 +484,7 @@ class PHPCSHelper
         if ($tokens[$stackPtr]['code'] !== T_FUNCTION
             && $tokens[$stackPtr]['code'] !== T_CLOSURE
         ) {
-            throw new \PHP_CodeSniffer_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
+            throw new PHPCS_Exception('$stackPtr must be of type T_FUNCTION or T_CLOSURE');
         }
 
         $opener = $tokens[$stackPtr]['parenthesis_opener'];

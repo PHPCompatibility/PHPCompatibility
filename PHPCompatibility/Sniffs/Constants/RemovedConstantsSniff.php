@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\Constants;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff.
@@ -314,7 +315,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens       = $phpcsFile->getTokens();
         $constantName = $tokens[$stackPtr]['content'];

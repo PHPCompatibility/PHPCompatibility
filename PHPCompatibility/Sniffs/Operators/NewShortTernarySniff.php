@@ -13,6 +13,8 @@
 namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff.
@@ -49,7 +51,7 @@ class NewShortTernarySniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.2') === false) {
             return;
@@ -59,7 +61,7 @@ class NewShortTernarySniff extends Sniff
 
         // Get next non-whitespace token, and check it isn't the related inline else
         // symbol, which is not allowed prior to PHP 5.3.
-        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
             $phpcsFile->addError(

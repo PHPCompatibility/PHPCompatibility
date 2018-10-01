@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypes.
@@ -60,7 +62,7 @@ class NewNullableTypesSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.0') === false) {
             return;
@@ -93,7 +95,7 @@ class NewNullableTypesSniff extends Sniff
      *
      * @return void
      */
-    protected function processFunctionDeclaration(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processFunctionDeclaration(File $phpcsFile, $stackPtr)
     {
         $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
 
@@ -121,7 +123,7 @@ class NewNullableTypesSniff extends Sniff
      *
      * @return void
      */
-    protected function processReturnType(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processReturnType(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -129,11 +131,11 @@ class NewNullableTypesSniff extends Sniff
             return;
         }
 
-        $previous = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         // Deal with namespaced class names.
         if ($tokens[$previous]['code'] === T_NS_SEPARATOR) {
-            $validTokens                 = \PHP_CodeSniffer_Tokens::$emptyTokens;
+            $validTokens                 = Tokens::$emptyTokens;
             $validTokens[T_STRING]       = true;
             $validTokens[T_NS_SEPARATOR] = true;
 
@@ -143,7 +145,7 @@ class NewNullableTypesSniff extends Sniff
                 $stackPtr--;
             }
 
-            $previous = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         }
 
         // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.

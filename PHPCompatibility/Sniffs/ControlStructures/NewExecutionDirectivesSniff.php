@@ -11,6 +11,8 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff.
@@ -66,7 +68,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $this->ignoreTokens          = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $this->ignoreTokens          = Tokens::$emptyTokens;
         $this->ignoreTokens[T_EQUAL] = T_EQUAL;
 
         return array(T_DECLARE);
@@ -82,7 +84,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -229,7 +231,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         if ($errorInfo['not_in_version'] !== '') {
             parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
@@ -257,12 +259,12 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    protected function addWarningOnInvalidValue(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $directive)
+    protected function addWarningOnInvalidValue(File $phpcsFile, $stackPtr, $directive)
     {
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if (isset(\PHP_CodeSniffer_Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
+        if (isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
             $value = $this->stripQuotes($value);
         }
 

@@ -7,8 +7,10 @@
 
 namespace PHPCompatibility\Util\Tests;
 
+use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
+use PHP_CodeSniffer_File as File;
 
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
@@ -17,7 +19,7 @@ use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-abstract class CoreMethodTestFrame extends \PHPUnit_Framework_TestCase
+abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 {
 
     /**
@@ -66,7 +68,7 @@ abstract class CoreMethodTestFrame extends \PHPUnit_Framework_TestCase
         } else {
             // PHPCS 2.x.
             $phpcs           = new \PHP_CodeSniffer();
-            $this->phpcsFile = new \PHP_CodeSniffer_File(
+            $this->phpcsFile = new File(
                 $filename,
                 array(),
                 array(),

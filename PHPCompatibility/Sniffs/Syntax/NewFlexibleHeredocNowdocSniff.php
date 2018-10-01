@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
 
 /**
  * New Flexible Heredoc Nowdoc.
@@ -62,7 +63,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         /*
          * Due to a tokenizer bug which gets hit when the PHP 7.3 heredoc/nowdoc syntax
@@ -89,7 +90,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      *
      * @return void
      */
-    protected function detectIndentedNonStandAloneClosingMarker(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function detectIndentedNonStandAloneClosingMarker(File $phpcsFile, $stackPtr)
     {
         $tokens            = $phpcsFile->getTokens();
         $indentError       = 'Heredoc/nowdoc with an indented closing marker is not supported in PHP 7.2 or earlier.';
@@ -176,7 +177,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      *
      * @return void
      */
-    protected function detectClosingMarkerInBody(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function detectClosingMarkerInBody(File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
         $error     = 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.';

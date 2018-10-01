@@ -7,6 +7,7 @@
 
 namespace PHPCompatibility\Util\Tests\Core;
 
+use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
@@ -20,7 +21,7 @@ use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
  * @package PHPCompatibility
  * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
-class FunctionsUnitTest extends \PHPUnit_Framework_TestCase
+class FunctionsUnitTest extends PHPUnit_TestCase
 {
 
     /**

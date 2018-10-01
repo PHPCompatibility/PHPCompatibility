@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff.
@@ -67,7 +69,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $tokens         = $phpcsFile->getTokens();
         $functionNameLc = strtolower($functionName);
@@ -79,7 +81,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 
         $optionsParam = $parameters[$this->targetFunctions[$functionNameLc]];
 
-        $stringToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$stringTokens, $optionsParam['start'], $optionsParam['end'] + 1);
+        $stringToken = $phpcsFile->findNext(Tokens::$stringTokens, $optionsParam['start'], $optionsParam['end'] + 1);
         if ($stringToken === false) {
             // No string token found in the options parameter, so skip it (e.g. variable passed in).
             return;
@@ -91,7 +93,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
         for ($i = $stringToken; $i <= $optionsParam['end']; $i++) {
-            if (isset(\PHP_CodeSniffer_Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
 

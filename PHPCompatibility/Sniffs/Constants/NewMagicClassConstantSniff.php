@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Constants;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Constants\NewMagicClassConstantSniff.
@@ -47,7 +49,7 @@ class NewMagicClassConstantSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;
@@ -59,7 +61,7 @@ class NewMagicClassConstantSniff extends Sniff
             return;
         }
 
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
         if ($prevToken === false || $tokens[$prevToken]['code'] !== T_DOUBLE_COLON) {
             return;
         }

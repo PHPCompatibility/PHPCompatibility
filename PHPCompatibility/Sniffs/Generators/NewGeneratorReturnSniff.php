@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Generators;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff.
@@ -84,7 +85,7 @@ class NewGeneratorReturnSniff extends Sniff
      *
      * @return void|int Void or a stack pointer to skip forward.
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.6') !== true) {
             return;
