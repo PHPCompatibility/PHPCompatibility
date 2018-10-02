@@ -8,7 +8,6 @@
 namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Discouraged use of continue within switch sniff test.

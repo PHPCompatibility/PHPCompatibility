@@ -12,7 +12,6 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinue.

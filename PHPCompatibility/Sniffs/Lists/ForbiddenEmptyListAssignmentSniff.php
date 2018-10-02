@@ -12,7 +12,6 @@
 namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\Lists\ForbiddenEmptyListAssignmentSniff.
