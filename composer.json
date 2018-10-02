@@ -8,7 +8,16 @@
   "authors" : [ {
     "name" : "Wim Godden",
     "role" : "lead"
-  } ],
+  },
+  {
+    "name" : "Juliette Reinders Folmer",
+    "role" : "lead"
+  },
+{
+    "name" : "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors",
+    "role" : "contributors"
+}
+    ],
   "support" : {
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
     "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
