@@ -46,7 +46,7 @@ jobs:
             - libxml2-utils
       script:
         # Check the code style of the code base.
-        - vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1
+        - vendor/bin/phpcs
 
         # Validate the xml file.
         # @link http://xmlsoft.org/xmllint.html
