@@ -1,8 +1,11 @@
 <?php
 /**
- * Removal of namespaced free-standing assert() declarations for PHP 7.3 sniff test.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;

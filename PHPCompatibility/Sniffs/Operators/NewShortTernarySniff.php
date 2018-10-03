@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.3
- *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Ben Selby <bselby@plus.net>
- * @copyright 2012 Ben Selby
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Operators;

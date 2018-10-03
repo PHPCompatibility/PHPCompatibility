@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedSetlocaleStringSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 4.2
- * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
