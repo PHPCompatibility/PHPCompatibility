@@ -8,7 +8,7 @@
  * @author   Jansen Price <jansen.price@gmail.com>
  */
 
-// This array is pulled from PHPCompatibility/Sniffs/PHP/ForbiddenNamesSniff.php
+// This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php
 $invalidNames = array(
     'abstract' => '5.0',
     'and' => 'all',
@@ -157,8 +157,8 @@ $tests = array(
 $path = realpath(dirname(__DIR__))
     . DIRECTORY_SEPARATOR . 'PHPCompatibility'
     . DIRECTORY_SEPARATOR . 'Tests'
-    . DIRECTORY_SEPARATOR . 'sniff-examples'
-    . DIRECTORY_SEPARATOR . 'forbidden-names';
+    . DIRECTORY_SEPARATOR . 'Keywords'
+    . DIRECTORY_SEPARATOR . 'ForbiddenNames';
 
 foreach ($tests as $name => $callback) {
     $filename = $path . DIRECTORY_SEPARATOR . $name . '.php';

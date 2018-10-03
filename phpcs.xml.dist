@@ -7,8 +7,8 @@
 
     <file>.</file>
 
-    <!-- Exclude test case code. -->
-    <exclude-pattern>*/Tests/sniff-examples/*</exclude-pattern>
+    <!-- Exclude ForbiddenNames test case code. -->
+    <exclude-pattern>*/PHPCompatibility/Tests/Keywords/ForbiddenNames/*\.php</exclude-pattern>
 
     <!-- Exclude Composer vendor directory. -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
@@ -26,13 +26,13 @@
     <config name="testVersion" value="5.3-99.0"/>
     <rule ref="PHPCompatibility">
         <!-- Exclude PHP constants back-filled by PHPCS 2.3.0+. -->
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_trait_cFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_traitFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_insteadofFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_callableFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_finallyFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_yieldFound"/>
-        <exclude name="PHPCompatibility.PHP.NewConstants.t_ellipsisFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_trait_cFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_traitFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_insteadofFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_callableFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_finallyFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_yieldFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_ellipsisFound"/>
     </rule>
 
     <!--
@@ -124,7 +124,8 @@
 
     <!-- No need to be as strict about comment punctuation for the unit tests. -->
     <rule ref="Generic.Commenting.DocComment.ShortNotCapital">
-        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
 
 
@@ -142,13 +143,19 @@
 
     <!-- No need to be as strict about file and class comment tags for the unit tests. -->
     <rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
-        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
     <rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
-        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
     <rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
-        <exclude-pattern>*/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
 
 </ruleset>

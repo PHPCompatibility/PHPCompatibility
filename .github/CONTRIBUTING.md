@@ -52,6 +52,30 @@ The communities behind these PHP frameworks/CMSes are strongly encouraged to mai
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
 
 
+Naming conventions and repository structure
+-----------------------
+
+### Regarding sniff names:
+* Per PHPCS convention, sniff files and class names have the `Sniff` suffix.
+* The name of sniffs relating to new PHP features should start with `New`.
+* The name of sniffs relating to deprecated or removed PHP features should start with `Removed` - as everything which has been deprecated is slated for removal in a later PHP version -.
+* Sniffs in the `ParameterValue` category which relate to a specific function, should have the function name and parameter name in the sniff name, like so: `NewFunctionnameParameternameSniff`.
+* All sniffs should be placed in a category which relates to the type of PHP construct the sniff is checking for.
+    Most existing categories will be clear cut, however, to prevent confusion, here is some additional information about some closely related categories:
+    - `FunctionDeclarations` should be used for sniffs relating to the actual function declaration statement, i.e. `function functionName($param) {`.
+    - `FunctionNameRestrictions` can be regarded as a sub-category of `FunctionDeclaration` in so far as that sniffs which check for invalid function names in certain contexts, should be placed here.
+    - `FunctionUse` should be used for sniffs inspecting calls to certain PHP functions.
+    - `ParameterValues` can be regarded as a sub-category of `FunctionUse` in so far as that sniffs which check for calls to specific PHP functions and subsequently inspect the _value_ of parameters passed to that function call, should be placed here.
+    Additionally:
+    - The `Miscellaneous` category should be avoided if at all possible and should only be used as a last resort.
+
+### About the unit tests:
+* Unit test files should be named the same as the sniff, replacing the `Sniff` suffix with `UnitTest`.
+* The test case file for the unit tests should be named the same as the unit test file, but should use the `.inc` file extension.
+    If several test case files are needed to test a sniff, the convention is to number the files starting with `1`, i.e. `SniffNameUnitTest.1.inc`, `SniffNameUnitTest.2.inc` etc.
+* Test case files should be placed in the same directory as the unit test file.
+
+
 Running the Sniff Tests
 -----------------------
 All the sniffs are fully tested with PHPUnit tests. In order to run the tests on the sniffs, the following installation steps are required.

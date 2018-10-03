@@ -191,13 +191,13 @@ This allows for more flexibility when, for instance, your project needs to compl
 
 At this moment, there is one sniff which has a property which can be set via the ruleset. More custom properties may become available in the future.
 
-The `PHPCompatibility.PHP.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
+The `PHPCompatibility.Extensions.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
 This might clash with userland functions using the same function prefix.
 
 To whitelist userland functions, you can pass a comma-delimited list of function names to the sniff.
 ```xml
     <!-- Whitelist the mysql_to_rfc3339() and mysql_another_function() functions. -->
-    <rule ref="PHPCompatibility.PHP.RemovedExtensions">
+    <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
         <properties>
             <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
         </properties>

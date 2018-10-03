@@ -107,7 +107,6 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
         $class    = get_class($this);
         $parts    = explode('\\', $class);
         $sniff    = array_pop($parts);
-        $sniff    = str_replace('SniffTest', '', $sniff);
         $sniff    = str_replace('UnitTest', '', $sniff);
         $category = array_pop($parts);
         return self::STANDARD_NAME . '.' . $category . '.' . $sniff;
@@ -116,22 +115,30 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
     /**
      * Sniff a file and return resulting file object.
      *
-     * @param string $filename         Filename to sniff.
+     * @param string $pathToFile       Absolute path to the file to sniff.
+     *                                 Allows for passing __FILE__ from the unit test
+     *                                 file. In that case, the test case file is presumed
+     *                                 to have the same name, but with an `inc` extension.
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
      *
      * @return \PHP_CodeSniffer_File|false File object.
      */
-    public function sniffFile($filename, $targetPhpVersion = 'none')
+    public function sniffFile($pathToFile, $targetPhpVersion = 'none')
     {
-        if (isset(self::$sniffFiles[$filename][$targetPhpVersion])) {
-            return self::$sniffFiles[$filename][$targetPhpVersion];
+        if (strpos($pathToFile, 'UnitTest.php') !== false) {
+            // Ok, so __FILE__ was passed, change the file extension.
+            $pathToFile = str_replace('UnitTest.php', 'UnitTest.inc', $pathToFile);
+        }
+        $pathToFile = realpath($pathToFile);
+
+        if (isset(self::$sniffFiles[$pathToFile][$targetPhpVersion])) {
+            return self::$sniffFiles[$pathToFile][$targetPhpVersion];
         }
 
         if ($targetPhpVersion !== 'none') {
             PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
-        $pathToFile = realpath(__DIR__) . DIRECTORY_SEPARATOR . $filename;
         try {
             if (class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
                 // PHPCS 3.x.
@@ -142,11 +149,11 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
                 $config->ignored   = array();
                 $ruleset           = new \PHP_CodeSniffer\Ruleset($config);
 
-                self::$sniffFiles[$filename][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
-                self::$sniffFiles[$filename][$targetPhpVersion]->process();
+                self::$sniffFiles[$pathToFile][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
+                self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
             } else {
                 // PHPCS 2.x.
-                self::$sniffFiles[$filename][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
+                self::$sniffFiles[$pathToFile][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
             }
 
         } catch (\Exception $e) {
@@ -154,7 +161,7 @@ class BaseSniffTest extends \PHPUnit_Framework_TestCase
             return false;
         }
 
-        return self::$sniffFiles[$filename][$targetPhpVersion];
+        return self::$sniffFiles[$pathToFile][$targetPhpVersion];
     }
 
     /**

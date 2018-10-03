@@ -1648,7 +1648,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
     {
         $arithmeticTokens = \PHP_CodeSniffer_Tokens::$arithmeticTokens;
 
-        // phpcs:disable PHPCompatibility.PHP.NewConstants.t_powFound
+        // phpcs:disable PHPCompatibility.Constants.NewConstants.t_powFound
         if (defined('T_POW') && isset($arithmeticTokens[T_POW]) === false) {
             // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
             $arithmeticTokens[T_POW] = T_POW;
