@@ -7,14 +7,194 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
 From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
-**IMPORTANT**: The 8.0.0 release contains a **breaking change**. Please read the v [8.0.0 changelog](CHANGELOG.md#800---2017-08-03) carefully before upgrading.
-
 <!-- Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/pull/506#discussion_r131650488 -->
 
 
 ## [Unreleased]
 
 _Nothing yet._
+
+## [9.0.0] - 2018-10-07
+
+**IMPORTANT**: This release contains **breaking changes**. Please read the below information carefully before upgrading!
+
+All sniffs have been placed in meaningful categories and a number of sniffs have been renamed to have more consistent, meaningful and future-proof names.
+
+Both the `PHPCompatibilityJoomla` [[GH](https://github.com/PHPCompatibility/PHPCompatibilityJoomla) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-joomla)] as well as the `PHPCompatibilityWP` [[GH](https://github.com/PHPCompatibility/PHPCompatibilityWP)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-wp)] rulesets have already been adjusted for this change and have released a new version which is compatible with this version of PHPCompatibility.
+
+Aside from those CMS-based rulesets, this project now also offers a number of polyfill-library specific rulesets, such as `PHPCompatibilityPasswordCompat` [[GH](https://github.com/PHPCompatibility/PHPCompatibilityPasswordCompat) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-passwordcompat)] for @ircmaxell's [`password_compat`](https://github.com/ircmaxell/password_compat) libary, `PHPCompatibilityParagonieRandomCompat` and `PHPCompatibilityParagonieSodiumCompat` [[GH](https://github.com/PHPCompatibility/PHPCompatibilityParagonie)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)] for the [Paragonie polyfills](https://github.com/paragonie?utf8=?&q=polyfill) and a number of rulesets related to various [polyfills offered by the Symfony project](https://github.com/symfony?utf8=?&q=polyfill) [[GH](https://github.com/PHPCompatibility/PHPCompatibilitySymfony)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)].
+
+If your project uses one of these polyfills, please consider using these special polyfill rulesets to prevent false positives.
+
+Also as of this version, [Juliette Reinders Folmer] is now officially a co-maintainer of this package.
+
+### Upgrade instructions
+
+* If you have `<exclude name="..."/>` directives in your own project's custom ruleset which relate to sniffs from the PHPCompatibility library, you will need to update your ruleset to use the new sniff names.
+* If you use the new [PHPCS 3.2+ inline annotations](https://github.com/squizlabs/PHP_CodeSniffer/releases/3.2.0), i.e. `// phpcs:ignore Standard.Category.SniffName`, in combination with PHPCompatibility sniff names, you will need to update these annotations.
+* If you use neither of the above, you should be fine and upgrading should be painless.
+
+### Overview of all the sniff renames:
+
+Old Category.SniffName | New Category.SniffName
+--- | ---
+**PHP**.ArgumentFunctionsUsage | **FunctionUse**.ArgumentFunctionsUsage
+**PHP**.CaseSensitiveKeywords | **Keywords**.CaseSensitiveKeywords
+**PHP**.ConstantArraysUsingConst | **InitialValue**.**New**ConstantArraysUsingConst
+**PHP**.ConstantArraysUsingDefine | **InitialValue**.**New**ConstantArraysUsingDefine
+**PHP**.**Deprecated**Functions | **FunctionUse**.**Removed**Functions
+**PHP**.**Deprecated**IniDirectives | **IniDirectives**.**Removed**IniDirectives
+**PHP**.**Deprecated**MagicAutoload | **FunctionNameRestrictions**.**Removed**MagicAutoload
+**PHP**.**Deprecated**NewReference | **Syntax**.**Removed**NewReference
+**PHP**.**Deprecated**PHP4StyleConstructors | **FunctionNameRestrictions**.**Removed**PHP4StyleConstructors
+**PHP**.**Deprecated**TypeCasts | **TypeCasts**.**Removed**TypeCasts
+**PHP**.DiscouragedSwitchContinue | **ControlStructures**.DiscouragedSwitchContinue
+**PHP**.DynamicAccessToStatic | **Syntax**.**New**DynamicAccessToStatic
+**PHP**.EmptyNonVariable | **LanguageConstructs**.**New**EmptyNonVariable
+**PHP**.ForbiddenBreakContinueOutsideLoop | **ControlStructures**.ForbiddenBreakContinueOutsideLoop
+**PHP**.ForbiddenBreakContinueVariableArguments | **ControlStructures**.ForbiddenBreakContinueVariableArguments
+**PHP**.ForbiddenCallTimePassByReference | **Syntax**.ForbiddenCallTimePassByReference
+**PHP**.Forbidden**ClosureUseVariableNames** | **FunctionDeclarations**.Forbidden**VariableNamesInClosureUse**
+**PHP**.ForbiddenEmptyListAssignment | **Lists**.ForbiddenEmptyListAssignment
+**PHP**.Forbidden**Function**ParametersWithSameName | **FunctionDeclarations**.ForbiddenParametersWithSameName
+**PHP**.ForbiddenGlobalVariableVariable | **Variables**.ForbiddenGlobalVariableVariable
+**PHP**.ForbiddenNames | **Keywords**.ForbiddenNames
+**PHP**.ForbiddenNamesAsDeclared | **Keywords**.ForbiddenNamesAsDeclared
+**PHP**.ForbiddenNamesAsInvokedFunctions | **Keywords**.ForbiddenNamesAsInvokedFunctions
+**PHP**.ForbiddenNegativeBitshift | **Operators**.ForbiddenNegativeBitshift
+**PHP**.ForbiddenSwitchWithMultipleDefaultBlocks | **ControlStructures**.ForbiddenSwitchWithMultipleDefaultBlocks
+**PHP**.InternalInterfaces | **Interfaces**.InternalInterfaces
+**PHP**.LateStaticBinding | **Classes**.**New**LateStaticBinding
+**PHP**.**MbstringReplaceE**Modifier | **ParameterValues**.**RemovedMbstring**Modifier**s**
+**PHP**.NewAnonymousClasses | **Classes**.NewAnonymousClasses
+**PHP**.NewArrayStringDereferencing | **Syntax**.NewArrayStringDereferencing
+**PHP**.NewClasses | **Classes**.NewClasses
+**PHP**.NewClassMemberAccess | **Syntax**.NewClassMemberAccess
+**PHP**.NewClosure | **FunctionDeclarations**.NewClosure
+**PHP**.NewConstants | **Constants**.NewConstants
+**PHP**.NewConstantScalarExpressions | **InitialValue**.NewConstantScalarExpressions
+**PHP**.NewConstVisibility | **Classes**.NewConstVisibility
+**PHP**.NewExecutionDirectives | **ControlStructures**.NewExecutionDirectives
+**PHP**.NewFunctionArrayDereferencing | **Syntax**.NewFunctionArrayDereferencing
+**PHP**.NewFunctionParameters | **FunctionUse**.NewFunctionParameters
+**PHP**.NewFunctions | **FunctionUse**.NewFunctions
+**PHP**.NewGeneratorReturn | **Generators**.NewGeneratorReturn
+**PHP**.NewGroupUseDeclarations | **UseDeclarations**.NewGroupUseDeclarations
+**PHP**.NewHashAlgorithms | **ParameterValues**.NewHashAlgorithms
+**PHP**.NewHeredoc**Initialize** | **InitialValue**.NewHeredoc
+**PHP**.NewIniDirectives | **IniDirectives**.NewIniDirectives
+**PHP**.NewInterfaces | **Interfaces**.NewInterfaces
+**PHP**.NewKeywords | **Keywords**.NewKeywords
+**PHP**.NewLanguageConstructs | **LanguageConstructs**.NewLanguageConstructs
+**PHP**.NewMagicClassConstant | **Constants**.NewMagicClassConstant
+**PHP**.NewMagicMethods | **FunctionNameRestrictions**.NewMagicMethods
+**PHP**.NewMultiCatch | **ControlStructures**.NewMultiCatch
+**PHP**.NewNullableTypes | **FunctionDeclarations**.NewNullableTypes
+**PHP**.NewReturnTypeDeclarations | **FunctionDeclarations**.NewReturnTypeDeclarations
+**PHP**.New**Scalar**TypeDeclarations | **FunctionDeclarations**.New**Param**TypeDeclarations
+**PHP**.NewTrailingComma | **Syntax**.New**FunctionCall**TrailingComma
+**PHP**.NewTypeCasts | **TypeCasts**.NewTypeCasts
+**PHP**.NewUseConstFunction | **UseDeclarations**.NewUseConstFunction
+**PHP**.NonStaticMagicMethods | **FunctionDeclarations**.NonStaticMagicMethods
+**PHP**.OptionalRequiredFunctionParameters | **FunctionUse**.Optional**To**RequiredFunctionParameters
+**PHP**.ParameterShadowSuperGlobals | **FunctionDeclarations**.**Forbidden**ParameterShadowSuperGlobals
+**PHP**.**PCRENew**Modifiers | **ParameterValues**.**NewPCRE**Modifiers
+**PHP**.**PregReplaceE**Modifier | **ParameterValues**.**RemovedPCRE**Modifier**s**
+**PHP**.RemovedAlternativePHPTags | **Miscellaneous**.RemovedAlternativePHPTags
+**PHP**.RemovedConstants | **Constants**.RemovedConstants
+**PHP**.RemovedExtensions | **Extensions**.RemovedExtensions
+**PHP**.RemovedFunctionParameters | **FunctionUse**.RemovedFunctionParameters
+**PHP**.RemovedGlobalVariables | **Variables**.Removed**Predefined**GlobalVariables
+**PHP**.RemovedHashAlgorithms | **ParameterValues**.RemovedHashAlgorithms
+**PHP**.ReservedFunctionNames | **FunctionNameRestrictions**.ReservedFunctionNames
+**PHP**.RequiredOptionalFunctionParameters | **FunctionUse**.Required**To**OptionalFunctionParameters
+**PHP**.ShortArray | **Syntax**.**New**ShortArray
+**PHP**.Ternary**Operators** | **Operators**.**NewShort**Ternary
+**PHP**.ValidIntegers | **Miscellaneous**.ValidIntegers
+**PHP**.**VariableVariables** | **Variables**.**NewUniformVariableSyntax**
+
+### Changelog for version 9.0.0
+
+See all related issues and PRs in the [9.0.0 milestone].
+
+### Added
+- :star2: New `PHPCompatibility.ControlStructures.NewForeachExpressionReferencing` sniff to detect referencing of `$value` within a `foreach()` when the iterated array is not a variable. This was not supported prior to PHP 5.5. [#664](https://github.com/PHPCompatibility/PHPCompatibility/pull/664)
+- :star2: New `PHPCompatibility.ControlStructures.NewListInForeach` sniff to detect unpacking nested arrays into separate variables via the `list()` construct in a `foreach()` statement. This was not supported prior to PHP 5.5. [#657](https://github.com/PHPCompatibility/PHPCompatibility/pull/657)
+- :star2: New `PHPCompatibility.FunctionNameRestrictions.RemovedNamespacedAssert` sniff to detect declaring a function called `assert()` within a namespace. This has been deprecated as of PHP 7.3. [#735](https://github.com/PHPCompatibility/PHPCompatibility/pull/735). Partially fixes [#718](https://github.com/PHPCompatibility/PHPCompatibility/issues/718).
+- :star2: New `PHPCompatibility.Lists.AssignmentOrder` sniff to detect `list()` constructs affected by the change in assignment order in PHP 7.0. [#656](https://github.com/PHPCompatibility/PHPCompatibility/pull/656)
+- :star2: New `PHPCompatibility.Lists.NewKeyedList` sniff to detect usage of keys in `list()`, support for which was added in PHP 7.1. [#655](https://github.com/PHPCompatibility/PHPCompatibility/pull/655). Fixes [#252](https://github.com/PHPCompatibility/PHPCompatibility/issues/252).
+- :star2: New `PHPCompatibility.Lists.NewListReferenceAssignment` sniff to detect reference assignments being used in `list()` constructs, support for which has been added in PHP 7.3. [#731](https://github.com/PHPCompatibility/PHPCompatibility/pull/731)
+- :star2: New `PHPCompatibility.Lists.NewShortList` sniff to detect the shorthand array syntax `[]` being used for symmetric array destructuring as introduced in PHP 7.1. [#654](https://github.com/PHPCompatibility/PHPCompatibility/pull/654). Fixes [#248](https://github.com/PHPCompatibility/PHPCompatibility/issues/248).
+- :star2: New `PHPCompatibility.Operators.NewOperators` sniff which checks for usage of the pow, pow equals, spaceship and coalesce (equals) operators. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738)
+    These checks were previously contained within the `PHPCompatibility.LanguageConstructs.NewLanguageConstructs` sniff.
+- :star2: New `PHPCompatibility.ParameterValues.ForbiddenGetClassNull` sniff to detect `null` being passed to `get_class()`, support for which has been removed in PHP 7.2 [#659](https://github.com/PHPCompatibility/PHPCompatibility/pull/659). Fixes [#557](https://github.com/PHPCompatibility/PHPCompatibility/issues/557).
+- :star2: New `PHPCompatibility.ParameterValues.NewArrayReduceInitialType` sniff to detect non-integers being passed as the `$initial` parameter to the `array_reduce()` function, which was not supported before PHP 5.3. [#666](https://github.com/PHPCompatibility/PHPCompatibility/pull/666). Fixes [#649](https://github.com/PHPCompatibility/PHPCompatibility/issues/649)
+- :star2: New `PHPCompatibility.ParameterValues.NewFopenModes` sniff to examine the `$mode` parameter passed to `fopen()` for modes not available in older PHP versions. [#658](https://github.com/PHPCompatibility/PHPCompatibility/pull/658)
+- :star2: New `PHPCompatibility.ParameterValues.NewNegativeStringOffset` sniff to detect negative string offsets being passed to string manipulation functions which was not supported before PHP 7.1. [#662](https://github.com/PHPCompatibility/PHPCompatibility/pull/662). Partially fixes [#253](https://github.com/PHPCompatibility/PHPCompatibility/issues/253).
+- :star2: New `PHPCompatibility.ParameterValues.NewPackFormats` sniff to examine the `$format` parameter passed to `pack()` for formats not available in older PHP versions. [#665](https://github.com/PHPCompatibility/PHPCompatibility/pull/665)
+- :star2: New `PHPCompatibility.ParameterValues.RemovedIconvEncoding` sniff to detect the PHP 5.6 deprecated encoding `$type`s being passed to `iconv_set_encoding()`. [#660](https://github.com/PHPCompatibility/PHPCompatibility/pull/660). Fixes [#475](https://github.com/PHPCompatibility/PHPCompatibility/issues/475).
+- :star2: New `PHPCompatibility.ParameterValues.RemovedNonCryptoHashes` sniff to detect non-cryptographic hash algorithms being passed to various `hash_*()` functions. This is no longer accepted as of PHP 7.2. [#663](https://github.com/PHPCompatibility/PHPCompatibility/pull/663). Fixes [#559](https://github.com/PHPCompatibility/PHPCompatibility/issues/559)
+- :star2: New `PHPCompatibility.ParameterValues.RemovedSetlocaleString` sniff to detect string literals being passed to the `$category` parameter of the `setlocale()` function. This behaviour was deprecated in PHP 4.2 and support has been removed in PHP 7.0. [#661](https://github.com/PHPCompatibility/PHPCompatibility/pull/661)
+- :star2: New `PHPCompatibility.Syntax.NewFlexibleHeredocNowdoc` sniff to detect the new heredoc/nowdoc format as allowed as of PHP 7.3. [#736](https://github.com/PHPCompatibility/PHPCompatibility/pull/736). Fixes [#705](https://github.com/PHPCompatibility/PHPCompatibility/issues/705).
+    Note: This sniff is only supported in combination with PHP_CodeSniffer 2.6.0 and higher.
+- :star: `PHPCompatibility.Classes.NewClasses` sniff: recognize the new `CompileError` and `JsonException` classes as introduced in PHP 7.3. [#676](https://github.com/PHPCompatibility/PHPCompatibility/pull/676)
+- :star: `PHPCompatibility.Constants.NewConstants` sniff: recognize new constants which are being introduced in PHP 7.3. [#678](https://github.com/PHPCompatibility/PHPCompatibility/pull/678)
+- :star: `PHPCompatibility.Constants.RemovedConstants` sniff: recognize constants which have been deprecated or removed in PHP 7.3. [#710](https://github.com/PHPCompatibility/PHPCompatibility/pull/710). Partially fixes [#718](https://github.com/PHPCompatibility/PHPCompatibility/issues/718).
+- :star: `PHPCompatibility.FunctionUse.NewFunctions` sniff: recognize various new functions being introduced in PHP 7.3. [#679](https://github.com/PHPCompatibility/PHPCompatibility/pull/679)
+- :star: `PHPCompatibility.FunctionUse.NewFunctions` sniff: recognize the `sapi_windows_*()`, `hash_hkdf()` and `pcntl_signal_get_handler()` functions as introduced in PHP 7.1. [#728](https://github.com/PHPCompatibility/PHPCompatibility/pull/728)
+- :star: `PHPCompatibility.FunctionUse.RemovedFunctionParameters` sniff: recognize the deprecation of the `$case_insensitive` parameter for the `define()` function in PHP 7.3. [#706](https://github.com/PHPCompatibility/PHPCompatibility/pull/706)
+- :star: `PHPCompatibility.FunctionUse.RemovedFunctions` sniff: recognize the PHP 7.3 deprecation of the `image2wbmp()`, `fgetss()` and `gzgetss()` functions, as well as the deprecation of undocumented Mbstring function aliases. [#681](https://github.com/PHPCompatibility/PHPCompatibility/pull/681), [#714](https://github.com/PHPCompatibility/PHPCompatibility/pull/714), [#720](https://github.com/PHPCompatibility/PHPCompatibility/pull/720). Partially fixes [#718](https://github.com/PHPCompatibility/PHPCompatibility/issues/718).
+- :star: `PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters` sniff: account for the second parameter for `array_push()` and `array_unshift()` becoming optional in PHP 7.3, as well as for the `$mode` parameter for a range of `ftp_*()` functions becoming optional. [#680](https://github.com/PHPCompatibility/PHPCompatibility/pull/680)
+- :star: `PHPCompatibility.IniDirectives.NewIniDirectives` sniff: recognize new `syslog` and `session` ini directives as introduced in PHP 7.3. [#702](https://github.com/PHPCompatibility/PHPCompatibility/pull/702), [#719](https://github.com/PHPCompatibility/PHPCompatibility/pull/719), [#730](https://github.com/PHPCompatibility/PHPCompatibility/pull/730)
+- :star: `PHPCompatibility.IniDirectives.NewIniDirectives` sniff: recognize some more ini directives which were introduced in PHP 7.1. [#727](https://github.com/PHPCompatibility/PHPCompatibility/pull/727)
+- :star: `PHPCompatibility.IniDirectives.RemovedIniDirectived` sniff: recognize ini directives removed in PHP 7.3. [#677](https://github.com/PHPCompatibility/PHPCompatibility/pull/677), [#717](https://github.com/PHPCompatibility/PHPCompatibility/pull/717). Partially fixes [#718](https://github.com/PHPCompatibility/PHPCompatibility/issues/718).
+- :star: New `isNumericCalculation()` and `isVariable()` utility methods to the `PHPCompatibility\Sniff` class. [#664](https://github.com/PHPCompatibility/PHPCompatibility/pull/664), [#666](https://github.com/PHPCompatibility/PHPCompatibility/pull/666)
+- :books: A section about the new sniff naming conventions to the `Contributing` file. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738)
+
+### Changed
+- :fire: All sniffs have been placed in meaningful categories and a number of sniffs have been renamed to have more consistent, meaningful and future-proof names. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738). Fixes [#601](https://github.com/PHPCompatibility/PHPCompatibility/issues/601), [#692](https://github.com/PHPCompatibility/PHPCompatibility/issues/692)
+    See the table at the top of this changelog for details of all the file renames.
+- :umbrella: The unit test files have been moved about as well. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738)
+    * The directory structure for these now mirrors the default directory structure used by PHPCS itself.
+    * The file names of the unit test files have been adjusted for the changes made in the sniffs.
+    * The unit test case files have been renamed and moved to the same directory as the actual test file they apply to.
+    * The `BaseSniffTest::sniffFile()` method has been adjusted to match. The signature of this method has changed. Where it previously expected a relative path to the unit test case file, it now expects an absolute path.
+    * The unit tests for the utility methods in the `PHPCompatibility\Sniff` class have been moved to a new `PHPCompatibility\Util\Tests\Core` subdirectory.
+    * The bootstrap file used for PHPUnit has been moved to the project root directory and renamed `phpunit-bootstrap.php`.
+- :twisted_rightwards_arrows: The `PHPCompatibility.LanguageConstructs.NewLanguageConstructs` sniff has been split into two sniffs. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738)
+    The `PHPCompatibility.LanguageConstructs.NewLanguageConstructs` sniff now contains just the checks for the namespace separator and the ellipsis.
+    The new `PHPCompatibility.Operators.NewOperators` sniff now contains the checks regarding the pow, pow equals, spaceship and coalesce (equals) operators.
+- :pushpin: The `PHPCompatibility.ParameterValues.RemovedMbstringModifiers` sniff will now also recognize removed regex modifiers when used within a function call to one of the undocumented Mbstring function aliases for the Mbstring regex functions. [#715](https://github.com/PHPCompatibility/PHPCompatibility/pull/715)
+- :pushpin: The `PHPCompatibility\Sniff::getFunctionCallParameter()` utility method now allows for closures called via a variable. [#723](https://github.com/PHPCompatibility/PHPCompatibility/pull/723)
+- :pencil2: `PHPCompatibility.Upgrade.LowPHPCS`: the minimum supported PHPCS version is now 2.3.0. [#699](https://github.com/PHPCompatibility/PHPCompatibility/pull/699)
+- :pencil2: Minor inline documentation improvements. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738)
+- :umbrella: Minor improvements to the unit tests for the `PHPCompatibility.FunctionNameRestrctions.RemovedMagicAutoload` sniff. [#716](https://github.com/PHPCompatibility/PHPCompatibility/pull/716)
+- :recycle: Minor other optimizations. [#698](https://github.com/PHPCompatibility/PHPCompatibility/pull/698), [#697](https://github.com/PHPCompatibility/PHPCompatibility/pull/697)
+- :wrench: Minor improvements to the build tools. [#701](https://github.com/PHPCompatibility/PHPCompatibility/pull/701)
+- :wrench: Removed some unnecessary inline annotations. [#700](https://github.com/PHPCompatibility/PHPCompatibility/pull/700)
+- :books: Replaced some of the badges in the Readme file. [#721](https://github.com/PHPCompatibility/PHPCompatibility/pull/721), [#722](https://github.com/PHPCompatibility/PHPCompatibility/pull/722)
+- :books: Composer: updated the list of package authors. [#739](https://github.com/PHPCompatibility/PHPCompatibility/pull/739)
+
+### Removed
+- :no_entry_sign: Support for PHP_CodeSniffer 1.x and low 2.x versions. The new minimum version of PHP_CodeSniffer to be able to use this library is 2.3.0. [#699](https://github.com/PHPCompatibility/PHPCompatibility/pull/699). Fixes [#691](https://github.com/PHPCompatibility/PHPCompatibility/issues/691).
+    The minimum _recommended_ version of PHP_CodeSniffer remains the same, i.e. 2.6.0.
+- :no_entry_sign: The `\PHPCompatibility\Sniff::inUseScope()` method has been removed as it is no longer needed now support for PHPCS 1.x has been dropped. [#699](https://github.com/PHPCompatibility/PHPCompatibility/pull/699)
+- :no_entry_sign: Composer: The `autoload` section has been removed from the `composer.json` file. [#738](https://github.com/PHPCompatibility/PHPCompatibility/pull/738). Fixes [#568](https://github.com/PHPCompatibility/PHPCompatibility/issues/568).
+    Autoloading for this library is done via the PHP_CodeSniffer default mechanism, enhanced with our own autoloader, so the Composer autoloader shouldn't be needed and was causing issues in a particular use-case.
+
+### Fixed
+- :bug: `PHPCompatibility.FunctionUse.NewFunctionParameters` sniff: The new `$mode` parameter of the `php_uname()` function was added in PHP 4.3, not in PHP 7.0 as was previously being reported.
+    The previous implementation of this check was based on an error in the PHP documentation. The error in the PHP documentation has been rectified and the sniff has followed suit. [#711](https://github.com/PHPCompatibility/PHPCompatibility/pull/711)
+- :bug: `PHPCompatibility.Generators.NewGeneratorReturn` sniff: The sniff would throw false positives for `return` statements in nested constructs and did not correctly detect the scope which should be examined. [#725](https://github.com/PHPCompatibility/PHPCompatibility/pull/725). Fixes [#724](https://github.com/PHPCompatibility/PHPCompatibility/pull/724).
+- :bug: `PHPCompatibility.Keywords.NewKeywords` sniff: PHP magic constants are case _in_sensitive. This sniff now accounts for this. [#707](https://github.com/PHPCompatibility/PHPCompatibility/pull/707)
+- :bug: Various bugs in the `PHPCompatibility.Syntax.ForbiddenCallTimePassByReference` sniff [#723](https://github.com/PHPCompatibility/PHPCompatibility/pull/723):
+    - Closures called via a variable will now also be examined. (false negative)
+    - References within arrays/closures passed as function call parameters would incorrectly trigger an error. (false positive)
+- :green_heart: Compatibility with PHPUnit 7.2. [#712](https://github.com/PHPCompatibility/PHPCompatibility/pull/712)
+
+### Credits
+Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
+
 
 ## [8.2.0] - 2018-07-17
 
@@ -947,7 +1127,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/8.2.0...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/9.0.0...HEAD
+[9.0.0]: https://github.com/wimg/PHPCompatibility/compare/8.2.0...9.0.0
 [8.2.0]: https://github.com/wimg/PHPCompatibility/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...8.1.0
 [8.0.1]: https://github.com/wimg/PHPCompatibility/compare/8.0.0...8.0.1
@@ -969,6 +1150,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[9.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/24
 [8.2.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/22
 [8.1.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/21
 [8.0.1 milestone]: https://github.com/wimg/PHPCompatibility/milestone/20
@@ -1001,6 +1183,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Gary Jones]: https://github.com/GaryJones
 [Jaap van Otterdijk]: https://github.com/jaapio
 [Jason Stallings]: https://github.com/octalmage
+[Jonathan Champ]: https://github.com/jrchamp
 [Jonathan Van Belle]: https://github.com/Grummfy
 [Juliette Reinders Folmer]: https://github.com/jrfnl
 [Ken Guest]: https://github.com/kenguest
