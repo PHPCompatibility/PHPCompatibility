@@ -9,6 +9,8 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_Tokens as Tokens;
+
 /**
  * \PHPCompatibility\PHPCSHelper
  *
@@ -122,7 +124,7 @@ class PHPCSHelper
      * Returns the position of the last non-whitespace token in a statement.
      *
      * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
-     * class and introduced in PHPCS 2.1.0.
+     * class and introduced in PHPCS 2.1.0 and improved in PHPCS 2.7.1 and 3.3.0.
      *
      * Once the minimum supported PHPCS version for this standard goes beyond
      * that, this method can be removed and calls to it replaced with
@@ -188,7 +190,7 @@ class PHPCSHelper
                 && ($i === $tokens[$i]['scope_opener']
                 || $i === $tokens[$i]['scope_condition'])
             ) {
-                if ($i === $start && isset(Util\Tokens::$scopeOpeners[$tokens[$i]['code']]) === true) {
+                if ($i === $start && isset(Tokens::$scopeOpeners[$tokens[$i]['code']]) === true) {
                     return $tokens[$i]['scope_closer'];
                 }
 
