@@ -9,6 +9,7 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
@@ -117,6 +118,85 @@ class PHPCSHelper
         }
 
         return null;
+    }
+
+
+    /**
+     * Returns the position of the first non-whitespace token in a statement.
+     *
+     * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
+     * class and introduced in PHPCS 2.1.0 and improved in PHPCS 2.7.1.
+     *
+     * Once the minimum supported PHPCS version for this standard goes beyond
+     * that, this method can be removed and calls to it replaced with
+     * `$phpcsFile->findStartOfStatement($start, $ignore)` calls.
+     *
+     * Last synced with PHPCS version: PHPCS 3.3.2 at commit 6ad28354c04b364c3c71a34e4a18b629cc3b231e}}
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
+     * @param int                   $start     The position to start searching from in the token stack.
+     * @param int|array             $ignore    Token types that should not be considered stop points.
+     *
+     * @return int
+     */
+    public static function findStartOfStatement(File $phpcsFile, $start, $ignore = null)
+    {
+        if (version_compare(self::getVersion(), '2.7.1', '>=') === true) {
+            return $phpcsFile->findStartOfStatement($start, $ignore);
+        }
+
+        $tokens    = $phpcsFile->getTokens();
+        $endTokens = Tokens::$blockOpeners;
+
+        $endTokens[T_COLON]            = true;
+        $endTokens[T_COMMA]            = true;
+        $endTokens[T_DOUBLE_ARROW]     = true;
+        $endTokens[T_SEMICOLON]        = true;
+        $endTokens[T_OPEN_TAG]         = true;
+        $endTokens[T_CLOSE_TAG]        = true;
+        $endTokens[T_OPEN_SHORT_ARRAY] = true;
+
+        if ($ignore !== null) {
+            $ignore = (array) $ignore;
+            foreach ($ignore as $code) {
+                if (isset($endTokens[$code]) === true) {
+                    unset($endTokens[$code]);
+                }
+            }
+        }
+
+        $lastNotEmpty = $start;
+
+        for ($i = $start; $i >= 0; $i--) {
+            if (isset($endTokens[$tokens[$i]['code']]) === true) {
+                // Found the end of the previous statement.
+                return $lastNotEmpty;
+            }
+
+            if (isset($tokens[$i]['scope_opener']) === true
+                && $i === $tokens[$i]['scope_closer']
+            ) {
+                // Found the end of the previous scope block.
+                return $lastNotEmpty;
+            }
+
+            // Skip nested statements.
+            if (isset($tokens[$i]['bracket_opener']) === true
+                && $i === $tokens[$i]['bracket_closer']
+            ) {
+                $i = $tokens[$i]['bracket_opener'];
+            } elseif (isset($tokens[$i]['parenthesis_opener']) === true
+                && $i === $tokens[$i]['parenthesis_closer']
+            ) {
+                $i = $tokens[$i]['parenthesis_opener'];
+            }
+
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
+                $lastNotEmpty = $i;
+            }
+        }//end for
+
+        return 0;
     }
 
 
