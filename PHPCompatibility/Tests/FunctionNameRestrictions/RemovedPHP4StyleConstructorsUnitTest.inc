@@ -28,3 +28,43 @@ namespace foobar {
         }
     }
 }
+
+class floo {
+    abstract public function floo();
+}
+
+interface MyInterface {
+    function MyInterface();
+}
+
+interface MySecondInterface {
+    function MySecondInterface();
+    function __construct();
+}
+
+$a = new class
+{
+    public function someThing($name) {}
+}
+
+class Nested {
+    public function getAnonymousClass() {
+        return new class() {
+            public function nested() {
+                echo 'In method nested!';
+            }
+        };
+    }
+}
+
+// Testing empty/invalid class name condition.
+class new {}
+
+// Testing empty/invalid function name condition.
+class InvalidSwitchFunctionName {
+	function switch() {}
+	function InvalidSwitchFunctionName() {}
+}
+
+// Must be last test: testing class without scope closer.
+class Something {
