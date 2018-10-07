@@ -14,7 +14,7 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%20nightly-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
 
 
-This is a set of sniffs for [PHP CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP version compatibility.
+This is a set of sniffs for [PHP CodeSniffer](http://pear.php.net/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
 It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
 
 
@@ -51,11 +51,16 @@ Thanks to all [contributors](https://github.com/PHPCompatibility/PHPCompatibilit
 Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
-:warning: Upgrading to PHPCompatibility 8.0.0 :warning:
+:warning: Upgrading to PHPCompatibility 9.0.0 :warning:
 --------
-As of version 8.0.0, the installation instructions have changed. For most users, this means they will have to run a one-time-only extra command, make a change to their Composer configuration and/or adjust their build scripts.
+This library has been reorganized. All sniffs have been placed in categories and a significant number of sniffs have been renamed.
 
-Please read the changelog for version [8.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/8.0.0) carefully before upgrading.
+If you use the complete `PHPCompatibility` standard without `exclude` directives in a custom ruleset and do not (yet) use the new-style PHP_CodeSniffer annotation as introduced in [PHP_CodeSniffer 3.2.0](https://github.com/squizlabs/PHP_CodeSniffer/releases/tag/3.2.0), this will have no noticeable effect and everything should work as before.
+
+However, if you do use `exclude` directives for PHPCompatibility sniffs in a custom ruleset or if you use the [new-style PHP_CodeSniffer inline annotations](https://github.com/squizlabs/PHP_CodeSniffer/releases/3.2.0), you will need to update these when upgrading. This should be a one-time only change.
+The changelog contains detailed information about all the sniff renames.
+
+Please read the changelog for version [9.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/9.0.0) carefully before upgrading.
 
 
 Installation in a Composer project (method 1)
@@ -137,20 +142,21 @@ Sniffing your code for compatibility with specific PHP version(s)
 * By default the report will be sent to the console, if you want to save the report to a file, add the following to the command line command: `--report-full=path/to/report-file`.
     For more information and other reporting options, check the [PHP CodeSniffer wiki](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
 
-More information can be found on Wim Godden's [blog](http://techblog.wimgodden.be/tag/codesniffer).
 
+### Using a framework/CMS/polyfill specific ruleset
 
-### Using a framework/CMS specific ruleset
+As of mid 2018, a limited set of framework/CMS specific rulesets is available. These rulesets are hosted in their own repositories.
+* `PHPCompatibilityJoomla` [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityJoomla) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-joomla)
+* `PHPCompatibilityWP` [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityWP) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-wp)
 
-As of mid 2018, a limited set of framework/CMS specific ruleset(s) is available.
+Since the autumn of 2018, there are also a number of PHP polyfill specific rulesets available:
+* `PHPCompatibilityPasswordCompat` [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityPasswordCompat) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-passwordcompat): accounts for @ircmaxell's [`password_compat`](https://github.com/ircmaxell/password_compat) polyfill library.
+* `PHPCompatibilityParagonie` [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityParagonie) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie): contains two rulesets which account for the Paragonie [`random_compat`](https://github.com/paragonie/random_compat) and [`sodium_compat`](https://github.com/paragonie/sodium_compat) polyfill libraries respectively.
+* `PHPCompatibilitySymfony` [GitHub](https://github.com/PHPCompatibility/PHPCompatibilitySymfony) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony): contains a number of rulesets which account for various PHP polyfill libraries offered by the Symfony project. For more details about the available rulesets, please check out the [README of the PHPCompatibilitySymfony](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/blob/master/README.md) repository.
 
-These ruleset are hosted in their own repositories:
-* PHPCompatibilityJoomla [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityJoomla)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-joomla)
-* PHPCompatibilityWP [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityWP)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-wp)
+If you want to make sure you have all PHPCompatibility rulesets available at any time, you can use the `PHPCompatibilityAll` package [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityAll) | [Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-all).
 
-If you want to make sure you have all PHPCompatibility rulesets available at any time, you can use the PHPCompatibilityAll package [GitHub](https://github.com/PHPCompatibility/PHPCompatibilityAll)|[Packagist](https://packagist.org/packages/phpcompatibility/phpcompatibility-all).
-
-**Note:** Framework/CMS specific ruleset do not set the minimum PHP version for your project, so you will still need to pass a `testVersion` to get the most accurate results.
+**IMPORTANT:** Framework/CMS/Polyfill specific rulesets do not set the minimum PHP version for your project, so you will still need to pass a `testVersion` to get the most accurate results.
 
 
 Using a custom ruleset
@@ -182,7 +188,7 @@ Other advanced options, such as changing the message type or severity of select 
 #### `testVersion` in the ruleset versus command-line
 
 In PHPCS 3.2.0 and lower, once you set the `testVersion` in the ruleset, you could not overrule it from the command-line anymore.
-Starting with PHPCS 3.3.0, the `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
+Starting with PHPCS 3.3.0, a `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
 
 This allows for more flexibility when, for instance, your project needs to comply with PHP `5.5-`, but you have a bootstrap file which needs to be compatible with PHP `5.2-`.
 

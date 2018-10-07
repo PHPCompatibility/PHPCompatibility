@@ -1,6 +1,6 @@
 {
   "name" : "phpcompatibility/php-compatibility",
-  "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
+  "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
   "type" : "phpcodesniffer-standard",
   "keywords" : [ "compatibility", "phpcs", "standards" ],
   "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
