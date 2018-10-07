@@ -7,17 +7,18 @@
   "license" : "LGPL-3.0-or-later",
   "authors" : [ {
     "name" : "Wim Godden",
-    "role" : "lead"
+    "role" : "lead",
+    "homepage" : "https://github.com/wimg"
   },
   {
     "name" : "Juliette Reinders Folmer",
-    "role" : "lead"
+    "role" : "lead",
+    "homepage" : "https://github.com/jrfnl"
   },
-{
-    "name" : "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors",
-    "role" : "contributors"
-}
-    ],
+  {
+    "name" : "Contributors",
+    "homepage" : "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
+  } ],
   "support" : {
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
     "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
