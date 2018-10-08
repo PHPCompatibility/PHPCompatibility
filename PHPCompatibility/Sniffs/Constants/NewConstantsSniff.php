@@ -2942,7 +2942,183 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
 
+        'CURLAUTH_GSSAPI' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLE_WEIRD_SERVER_REPLY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_CONTENT_LENGTH_DOWNLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_CONTENT_LENGTH_UPLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_HTTP_VERSION' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_PROTOCOL' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_PROXY_SSL_VERIFYRESULT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_SCHEME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_SIZE_DOWNLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_SIZE_UPLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_SPEED_DOWNLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_SPEED_UPLOAD_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_MAX_READ_SIZE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_ABSTRACT_UNIX_SOCKET' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_KEEP_SENDING_ON_ERROR' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PRE_PROXY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_CAINFO' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_CAPATH' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_CRLFILE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_KEYPASSWD' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_PINNEDPUBLICKEY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSLCERT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSLCERTTYPE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSL_CIPHER_LIST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSLKEY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSLKEYTYPE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSL_OPTIONS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSL_VERIFYHOST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSL_VERIFYPEER' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_SSLVERSION' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_TLSAUTH_PASSWORD' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_TLSAUTH_TYPE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_PROXY_TLSAUTH_USERNAME' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLOPT_REQUEST_TARGET' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_SOCKS5_AUTH' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_SUPPRESS_CONNECT_HEADERS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLPROXY_HTTPS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_DEFAULT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_NONE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_TLSv1_0' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_TLSv1_1' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_TLSv1_2' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_MAX_TLSv1_3' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_SSLVERSION_TLSv1_3' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_HTTPS_PROXY' => array(
             '7.2' => false,
             '7.3' => true,
         ),
