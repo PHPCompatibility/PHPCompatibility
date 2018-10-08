@@ -233,7 +233,6 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
                 }
             }
 
-            $identifier       = $tokens[$stackPtr]['content'];
             $quotedIdentifier = preg_quote($tokens[$stackPtr]['content'], '`');
 
             // Throw an error for each line in the body which starts with the identifier.
