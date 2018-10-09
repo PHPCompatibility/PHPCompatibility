@@ -402,31 +402,31 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => bool))
      */
     protected $newExceptions = array(
+        'com_exception' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'DOMException' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
         'Exception' => array(
             // According to the docs introduced in PHP 5.1, but this appears to be.
             // an error.  Class was introduced with try/catch keywords in PHP 5.0.
             '4.4' => false,
             '5.0' => true,
         ),
-        'DOMException' => array(
-            '5.0.2' => false,
-            '5.0.3' => true,
-        ),
-        'mysqli_sql_exception' => array(
-            '5.0.2' => false,
-            '5.0.3' => true,
-        ),
         'ReflectionException' => array(
-            '5.0.2' => false,
-            '5.0.3' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
         'SoapFault' => array(
-            '5.0.2' => false,
-            '5.0.3' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
         'SQLiteException' => array(
-            '5.0.2' => false,
-            '5.0.3' => true,
+            '4.4' => false,
+            '5.0' => true,
         ),
 
         'ErrorException' => array(
@@ -457,6 +457,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'mysqli_sql_exception' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
         'OutOfBoundsException' => array(
             '5.0' => false,
             '5.1' => true,
@@ -466,6 +470,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
         'OverflowException' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'PDOException' => array(
             '5.0' => false,
             '5.1' => true,
         ),
@@ -485,10 +493,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
-        'PDOException' => array(
-            '5.0' => false,
-            '5.1' => true,
-        ),
 
         'PharException' => array(
             '5.2' => false,
@@ -501,8 +505,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'IntlException' => array(
-            '5.5' => false,
-            '5.6' => true,
+            '5.4' => false,
+            '5.5' => true,
         ),
 
         'Error' => array(
