@@ -20,6 +20,7 @@ php:
   - 5.6
   - 7.0
   - 7.1
+  - 7.3
   - nightly
 
 env:
@@ -73,6 +74,10 @@ matrix:
       env: PHPCS_VERSION="2.7.*"
     - php: 7.2
       env: PHPCS_VERSION="3.0.2" COVERALLS_VERSION="^2.0"
+    # Note: PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
+    # While on PHPCS 2.x, the tests won't fail, on PHPCS 3.x < 3.3.1, they will.
+    - php: 7.3
+      env: PHPCS_VERSION="3.3.*"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
 
