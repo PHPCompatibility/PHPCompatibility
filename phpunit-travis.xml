@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="phpunit-bootstrap.php" colors="true" backupGlobals="true">
+<phpunit bootstrap="phpunit-bootstrap.php" colors="true" backupGlobals="true" convertWarningsToExceptions="false">
     <testsuites>
         <testsuite name="PHPCompatibility Utilities Tests">
             <directory suffix="UnitTest.php">./PHPCompatibility/Util/Tests/</directory>

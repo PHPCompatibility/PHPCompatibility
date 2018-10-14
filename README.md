@@ -37,6 +37,8 @@ The sniffs are designed to give the same results regardless of which PHP version
 
 PHP CodeSniffer 2.3.0 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 or later is required for full support, notices may be thrown on older versions.
 
+As PHP_CodeSniffer < 3.3.1 is not fully compatible with PHP 7.3, PHPCompatibility can't be either, so if using the sniffs on PHP 7.3, make sure you use PHP_CodeSniffer 3.3.1 or higher.
+
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
 
 As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.

@@ -145,17 +145,23 @@
     <rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
         <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
         <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/*\.php</exclude-pattern>
     </rule>
     <rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
         <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
         <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/*\.php</exclude-pattern>
     </rule>
     <rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
         <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
         <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCompatibility/Util/*\.php</exclude-pattern>
+    </rule>
+    <rule ref="PEAR.Commenting.ClassComment.MissingPackageTag">
+        <exclude-pattern>*/PHPCompatibility/Util/*\.php</exclude-pattern>
+    </rule>
+    <rule ref="PEAR.Commenting.ClassComment.MissingAuthorTag">
+        <exclude-pattern>*/PHPCompatibility/Util/*\.php</exclude-pattern>
     </rule>
 
 </ruleset>

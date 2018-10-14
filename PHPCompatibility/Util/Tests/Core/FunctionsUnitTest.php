@@ -138,11 +138,11 @@ class FunctionsUnitTest extends \PHPUnit_Framework_TestCase
     {
         if (method_exists($this, 'setExpectedException')) {
             $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
+                'PHPCompatibility\Util\TestVersionException',
                 sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion)
             );
         } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectException('PHPCompatibility\Util\TestVersionException');
             $this->expectExceptionMessage(sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion));
         }
 
@@ -186,11 +186,11 @@ class FunctionsUnitTest extends \PHPUnit_Framework_TestCase
     {
         if (method_exists($this, 'setExpectedException')) {
             $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
+                'PHPCompatibility\Util\TestVersionException',
                 sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion))
             );
         } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectException('PHPCompatibility\Util\TestVersionException');
             $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion)));
         }
 
