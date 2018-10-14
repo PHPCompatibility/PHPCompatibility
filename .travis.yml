@@ -20,6 +20,7 @@ php:
   - 5.6
   - 7.0
   - 7.1
+  - 7.3
   - nightly
 
 env:
@@ -73,6 +74,8 @@ matrix:
       env: PHPCS_VERSION="2.7.*"
     - php: 7.2
       env: PHPCS_VERSION="3.0.2" COVERALLS_VERSION="^2.0"
+    - php: 7.3
+      env: PHPCS_VERSION="3.2.*"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0"
 

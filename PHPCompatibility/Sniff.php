@@ -11,6 +11,7 @@
 namespace PHPCompatibility;
 
 use PHPCompatibility\PHPCSHelper;
+use PHPCompatibility\Util\TestVersionException;
 
 /**
  * \PHPCompatibility\Sniff.
@@ -130,9 +131,8 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                     $max = empty($matches[2]) ? '99.9' : $matches[2];
 
                     if (version_compare($min, $max, '>')) {
-                        trigger_error(
-                            "Invalid range in testVersion setting: '" . $testVersion . "'",
-                            E_USER_WARNING
+                        throw new TestVersionException(
+                            "Invalid range in testVersion setting: '" . $testVersion . "'"
                         );
                         return $default;
                     } else {
@@ -142,9 +142,8 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
                 }
             }
 
-            trigger_error(
-                "Invalid testVersion setting: '" . $testVersion . "'",
-                E_USER_WARNING
+            throw new TestVersionException(
+                "Invalid testVersion setting: '" . $testVersion . "'"
             );
             return $default;
         }
