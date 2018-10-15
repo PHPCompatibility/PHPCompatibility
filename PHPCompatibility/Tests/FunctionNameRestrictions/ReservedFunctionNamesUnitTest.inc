@@ -102,3 +102,13 @@ class ClassContainingClosure {
 		$a = function($c) {};
 	}
 }
+
+class Nested {
+    public function __getAnonymousClass() {
+        return new class() {
+            public function __nested() {
+                echo 'In method nested!';
+            }
+        };
+    }
+}
