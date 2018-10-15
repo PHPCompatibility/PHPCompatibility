@@ -159,5 +159,4 @@ class ArgumentFunctionsUsageSniff extends Sniff
             $data
         );
     }
-
 }

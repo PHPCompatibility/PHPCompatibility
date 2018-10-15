@@ -34,8 +34,7 @@ class NewMultiCatchSniff extends Sniff
     public function register()
     {
         return array(T_CATCH);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -71,7 +70,5 @@ class NewMultiCatchSniff extends Sniff
             $hasBitwiseOr,
             'Found'
         );
-
-    }//end process()
-
-}//end class
+    }
+}

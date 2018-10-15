@@ -183,8 +183,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         $this->removedExtensions = $this->arrayKeysToLowercase($this->removedExtensions);
 
         return array(T_STRING);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -248,8 +247,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
                 break;
             }
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -281,8 +279,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         }
 
         return false;
-
-    }//end isWhiteListed()
+    }
 
 
     /**
@@ -307,6 +304,4 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     {
         return "Extension '%s' is ";
     }
-
-
-}//end class
+}

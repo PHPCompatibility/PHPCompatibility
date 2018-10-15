@@ -88,5 +88,4 @@ class RemovedNamespacedAssertSniff extends Sniff
 
         $phpcsFile->addWarning('Declaring a free-standing function called assert() is deprecated since PHP 7.3.', $stackPtr, 'Found');
     }
-
 }

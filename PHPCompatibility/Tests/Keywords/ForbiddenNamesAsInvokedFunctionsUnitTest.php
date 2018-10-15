@@ -145,5 +145,4 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first introduced reserved word.
         $this->assertNoViolation($file);
     }
-
 }

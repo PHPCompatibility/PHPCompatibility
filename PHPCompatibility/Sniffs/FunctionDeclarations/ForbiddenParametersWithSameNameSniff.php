@@ -39,8 +39,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
             T_FUNCTION,
             T_CLOSURE,
         );
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -82,7 +81,5 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
                 'Found'
             );
         }
-
-    }//end process()
-
-}//end class
+    }
+}

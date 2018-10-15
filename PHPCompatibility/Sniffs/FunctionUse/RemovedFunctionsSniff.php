@@ -897,8 +897,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         $this->removedFunctions = $this->arrayKeysToLowercase($this->removedFunctions);
 
         return array(T_STRING);
-
-    }//end register()
+    }
 
 
     /**
@@ -942,8 +941,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'nameLc' => $functionLc,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -968,6 +966,4 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
     {
         return 'Function %s() is ';
     }
-
-
-}//end class
+}

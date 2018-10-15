@@ -148,5 +148,4 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.5'); // Version before earliest required/optional change.
         $this->assertNoViolation($file);
     }
-
 }

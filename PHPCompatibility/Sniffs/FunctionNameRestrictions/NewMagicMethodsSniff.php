@@ -83,8 +83,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         return array(T_FUNCTION);
-
-    }//end register()
+    }
 
 
     /**
@@ -114,8 +113,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
             'nameLc' => $functionNameLc,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -192,6 +190,4 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
 
         return $error;
     }
-
-
-}//end class
+}

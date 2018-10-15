@@ -125,5 +125,4 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw an error
      * independently of PHP version when late static binding is used outside of class scope.
      */
-
 }

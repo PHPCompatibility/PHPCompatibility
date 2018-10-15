@@ -237,8 +237,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -286,8 +285,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             'functionLc' => $functionLc,
         );
         $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -344,6 +342,4 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     {
         return str_replace("%s", "'%s'", parent::getAlternativeOptionTemplate());
     }
-
-
-}//end class
+}

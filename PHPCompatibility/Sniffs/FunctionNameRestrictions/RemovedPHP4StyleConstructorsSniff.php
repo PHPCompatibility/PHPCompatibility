@@ -33,7 +33,6 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
     public function register()
     {
         return array(T_CLASS);
-
     }
 
     /**

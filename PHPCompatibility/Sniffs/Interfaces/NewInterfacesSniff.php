@@ -128,8 +128,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         }
 
         return $targets;
-
-    }//end register()
+    }
 
 
     /**
@@ -171,8 +170,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 // Deliberately left empty.
                 break;
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -237,7 +235,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 }
             }
         }
-    }//end processClassToken()
+    }
 
 
     /**
@@ -325,6 +323,4 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     {
         return 'The built-in interface ' . parent::getErrorMsgTemplate();
     }
-
-
-}//end class
+}

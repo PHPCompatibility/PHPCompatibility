@@ -32,8 +32,7 @@ class NewLateStaticBindingSniff extends Sniff
     public function register()
     {
         return array(T_STATIC);
-
-    }//end register()
+    }
 
 
     /**
@@ -74,8 +73,5 @@ class NewLateStaticBindingSniff extends Sniff
                 'OutsideClassScope'
             );
         }
-
-    }//end process()
-
-
-}//end class
+    }
+}

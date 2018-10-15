@@ -110,4 +110,4 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             )
         );
     }
-}//end class
+}

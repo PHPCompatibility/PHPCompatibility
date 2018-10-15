@@ -57,7 +57,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             $tokens[] = constant($token);
         }
         return $tokens;
-    }//end register()
+    }
 
 
     /**
@@ -78,8 +78,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
             'name' => $tokenType,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -120,7 +119,6 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;
-
     }
 
 
@@ -138,5 +136,4 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
         $data[0] = $errorInfo['description'];
         return $data;
     }
-
-}//end class
+}

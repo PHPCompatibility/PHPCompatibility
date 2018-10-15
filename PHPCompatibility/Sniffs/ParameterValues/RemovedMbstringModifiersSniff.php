@@ -117,4 +117,4 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
             $phpcsFile->addWarning($error, $stackPtr, 'Deprecated');
         }
     }
-}//end class
+}

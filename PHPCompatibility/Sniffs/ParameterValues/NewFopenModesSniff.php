@@ -108,4 +108,4 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
             );
         }
     }
-}//end class
+}

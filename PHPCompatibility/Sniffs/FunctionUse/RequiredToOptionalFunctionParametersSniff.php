@@ -144,7 +144,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         $this->functionParameters = $this->arrayKeysToLowercase($this->functionParameters);
 
         return array(T_STRING);
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -199,8 +199,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -268,8 +267,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         $errorInfo['paramName'] = $itemArray['name'];
 
         return $errorInfo;
-
-    }//end getErrorInfo()
+    }
 
 
     /**
@@ -306,8 +304,5 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         );
 
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-
-    }//end addError()
-
-
-}//end class
+    }
+}

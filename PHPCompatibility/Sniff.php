@@ -181,7 +181,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         } else {
             return false;
         }
-    }//end supportsAbove()
+    }
 
 
     /**
@@ -208,7 +208,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         } else {
             return false;
         }
-    }//end supportsBelow()
+    }
 
 
     /**
@@ -1447,7 +1447,6 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         return ($number < 0);
-
     }
 
     /**
@@ -1957,4 +1956,4 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
 
         return true;
     }
-}//end class
+}

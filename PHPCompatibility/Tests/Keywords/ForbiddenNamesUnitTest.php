@@ -53,7 +53,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         for ($i = 3; $i < $lineCount; $i++) {
             $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
         }
-
     }
 
     /**

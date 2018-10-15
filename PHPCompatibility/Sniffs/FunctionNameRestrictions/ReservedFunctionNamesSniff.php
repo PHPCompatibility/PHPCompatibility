@@ -124,5 +124,4 @@ class ReservedFunctionNamesSniff extends \Generic_Sniffs_NamingConventions_Camel
             }
         }
     }
-
-}//end class
+}

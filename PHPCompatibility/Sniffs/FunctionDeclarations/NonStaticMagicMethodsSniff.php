@@ -93,8 +93,7 @@ class NonStaticMagicMethodsSniff extends Sniff
         }
 
         return $targets;
-
-    }//end register()
+    }
 
 
     /**
@@ -174,8 +173,5 @@ class NonStaticMagicMethodsSniff extends Sniff
             // Advance to next function.
             $functionPtr = $scopeCloser;
         }
-
-    }//end process()
-
-
-}//end class
+    }
+}

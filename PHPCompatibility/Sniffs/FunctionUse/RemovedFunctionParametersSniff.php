@@ -76,7 +76,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         $this->removedFunctionParameters = $this->arrayKeysToLowercase($this->removedFunctionParameters);
 
         return array(T_STRING);
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -130,8 +130,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -215,6 +214,4 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
         return $data;
     }
-
-
-}//end class
+}

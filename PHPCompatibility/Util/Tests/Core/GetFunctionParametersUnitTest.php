@@ -469,5 +469,4 @@ class GetFunctionParametersUnitTest extends CoreMethodTestFrame
             ),
         );
     }
-
 }

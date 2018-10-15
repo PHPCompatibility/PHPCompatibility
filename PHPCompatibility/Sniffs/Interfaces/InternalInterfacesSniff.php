@@ -53,8 +53,7 @@ class InternalInterfacesSniff extends Sniff
         }
 
         return $targets;
-
-    }//end register()
+    }
 
 
     /**
@@ -87,8 +86,5 @@ class InternalInterfacesSniff extends Sniff
                 $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             }
         }
-
-    }//end process()
-
-
-}//end class
+    }
+}

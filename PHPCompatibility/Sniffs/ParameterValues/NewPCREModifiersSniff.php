@@ -111,5 +111,4 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
     }
-
-}//end class
+}

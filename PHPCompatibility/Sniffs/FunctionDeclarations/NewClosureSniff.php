@@ -34,8 +34,7 @@ class NewClosureSniff extends Sniff
     public function register()
     {
         return array(T_CLOSURE);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -154,8 +153,7 @@ class NewClosureSniff extends Sniff
 
         // Prevent double reporting for nested closures.
         return $scopeEnd;
-
-    }//end process()
+    }
 
 
     /**
@@ -234,5 +232,4 @@ class NewClosureSniff extends Sniff
 
         return $classRef;
     }
-
-}//end class
+}

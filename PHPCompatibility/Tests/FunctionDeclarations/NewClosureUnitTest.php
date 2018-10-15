@@ -308,5 +308,4 @@ class NewClosureUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about the use of closures in PHP < 5.3 and about invalid usage of $this in closures for PHP 5.4+.
      */
-
 }

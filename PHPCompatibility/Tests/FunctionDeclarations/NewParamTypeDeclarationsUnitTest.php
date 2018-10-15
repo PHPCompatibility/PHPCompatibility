@@ -248,5 +248,4 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw errors
      * for invalid type hints and incorrect usage.
      */
-
 }

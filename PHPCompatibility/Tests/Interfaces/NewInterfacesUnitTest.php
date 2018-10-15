@@ -166,5 +166,4 @@ class NewInterfacesUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw an error
      * on invalid use of some magic methods for the Serializable Interface.
      */
-
 }

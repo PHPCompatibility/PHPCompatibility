@@ -38,7 +38,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             T_OPEN_SHORT_ARRAY,
             T_CONSTANT_ENCAPSED_STRING,
         );
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -102,7 +102,5 @@ class NewArrayStringDereferencingSniff extends Sniff
                 array($type)
             );
         }
-
-    }//end process()
-
-}//end class
+    }
+}

@@ -105,8 +105,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         );
 
         return $targets;
-
-    }//end register()
+    }
 
 
     /**
@@ -243,7 +242,5 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
             $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
-
-    }//end process()
-
-}//end class
+    }
+}

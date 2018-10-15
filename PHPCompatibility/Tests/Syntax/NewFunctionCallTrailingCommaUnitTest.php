@@ -116,5 +116,4 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file);
     }
-
 }

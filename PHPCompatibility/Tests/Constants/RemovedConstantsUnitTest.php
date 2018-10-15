@@ -273,5 +273,4 @@ class RemovedConstantsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.0'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
-
 }

@@ -48,8 +48,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
     public function register()
     {
         return array(T_BREAK, T_CONTINUE);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -96,7 +95,5 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
-
-    }//end process()
-
-}//end class
+    }
+}

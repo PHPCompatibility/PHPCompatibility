@@ -70,5 +70,4 @@ class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
             array('/* Case 17 */', '\Yet\More\Testing\SomeInterface'),
         );
     }
-
 }

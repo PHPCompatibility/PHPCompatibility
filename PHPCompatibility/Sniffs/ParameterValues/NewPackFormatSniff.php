@@ -119,4 +119,4 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
             }
         }
     }
-}//end class
+}

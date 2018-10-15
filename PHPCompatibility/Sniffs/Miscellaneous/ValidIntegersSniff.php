@@ -41,8 +41,7 @@ class ValidIntegersSniff extends Sniff
             T_LNUMBER, // Binary, octal integers.
             T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
         );
-
-    }//end register()
+    }
 
 
     /**
@@ -104,8 +103,7 @@ class ValidIntegersSniff extends Sniff
             );
             return;
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -218,5 +216,4 @@ class ValidIntegersSniff extends Sniff
 
         return false;
     }
-
-}//end class
+}

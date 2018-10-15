@@ -121,5 +121,4 @@ class NewKeyedListUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file);
     }
-
 }

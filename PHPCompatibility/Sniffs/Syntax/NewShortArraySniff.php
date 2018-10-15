@@ -38,7 +38,7 @@ class NewShortArraySniff extends Sniff
             T_OPEN_SHORT_ARRAY,
             T_CLOSE_SHORT_ARRAY,
         );
-    }//end register()
+    }
 
 
     /**
@@ -69,7 +69,5 @@ class NewShortArraySniff extends Sniff
         }
 
         $phpcsFile->addError($error, $stackPtr, 'Found', $data);
-
-    }//end process()
-
-}//end class
+    }
+}

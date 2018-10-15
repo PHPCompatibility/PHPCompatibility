@@ -72,5 +72,4 @@ class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
             array('/* Case 19 */', ''),
         );
     }
-
 }

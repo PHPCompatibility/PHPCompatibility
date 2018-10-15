@@ -114,7 +114,5 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
             $errorCode,
             $data
         );
-
-    }//end process()
-
-}//end class
+    }
+}

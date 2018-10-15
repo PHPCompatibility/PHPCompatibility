@@ -110,5 +110,4 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.1'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
-
 }

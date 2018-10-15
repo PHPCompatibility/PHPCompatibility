@@ -70,7 +70,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         $this->ignoreTokens[T_EQUAL] = T_EQUAL;
 
         return array(T_DECLARE);
-    }//end register()
+    }
 
 
     /**
@@ -133,8 +133,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
             $this->addWarningOnInvalidValue($phpcsFile, $valuePtr, $directiveContent);
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -245,8 +244,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
-
-    }//end addError()
+    }
 
 
     /**
@@ -290,7 +288,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
-    }//end addWarningOnInvalidValue()
+    }
 
 
     /**
@@ -331,6 +329,4 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         return in_array($value, $encodings, true);
     }
-
-
-}//end class
+}

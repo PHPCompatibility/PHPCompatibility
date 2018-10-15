@@ -98,5 +98,4 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertNoViolation($file);
     }
-
 }

@@ -103,5 +103,4 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
-
 }

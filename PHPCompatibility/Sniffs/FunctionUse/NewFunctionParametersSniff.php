@@ -847,7 +847,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         $this->newFunctionParameters = $this->arrayKeysToLowercase($this->newFunctionParameters);
 
         return array(T_STRING);
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -901,8 +901,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -986,6 +985,4 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         array_unshift($data, $itemInfo['name'], $errorInfo['paramName']);
         return $data;
     }
-
-
-}//end class
+}

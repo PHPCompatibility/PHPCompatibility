@@ -275,5 +275,4 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
         $file = $this->getTestFile(true, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
-
 }

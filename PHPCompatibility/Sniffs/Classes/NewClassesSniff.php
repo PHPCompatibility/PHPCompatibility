@@ -579,8 +579,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         }
 
         return $targets;
-
-    }//end register()
+    }
 
 
     /**
@@ -621,8 +620,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
                 $this->processSingularToken($phpcsFile, $stackPtr);
                 break;
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -665,8 +663,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'nameLc' => $classNameLc,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end processSingularToken()
+    }
 
 
     /**
@@ -821,6 +818,4 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     {
         return 'The built-in class ' . parent::getErrorMsgTemplate();
     }
-
-
-}//end class
+}

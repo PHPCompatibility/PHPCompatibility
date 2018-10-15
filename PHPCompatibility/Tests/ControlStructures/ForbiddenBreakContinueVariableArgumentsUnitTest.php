@@ -127,5 +127,4 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
-
 }

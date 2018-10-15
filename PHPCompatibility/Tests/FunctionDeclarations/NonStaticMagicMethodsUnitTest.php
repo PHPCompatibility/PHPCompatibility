@@ -448,5 +448,4 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
         $file = $this->getTestFile(true, '5.2');
         $this->assertNoViolation($file);
     }
-
 }

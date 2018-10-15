@@ -50,8 +50,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
         }
 
         return $tokens;
-
-    }//end register()
+    }
 
 
     /**
@@ -73,8 +72,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
             'description' => $this->deprecatedTypeCasts[$tokenType]['description'],
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -125,5 +123,4 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
         $data[0] = $itemInfo['description'];
         return $data;
     }
-
-}//end class
+}

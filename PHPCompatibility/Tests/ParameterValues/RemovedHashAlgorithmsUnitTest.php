@@ -112,5 +112,4 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.3'); // Low version below the first removal.
         $this->assertNoViolation($file);
     }
-
 }

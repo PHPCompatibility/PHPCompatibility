@@ -143,5 +143,4 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertNoViolation($file);
     }
-
 }

@@ -54,8 +54,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             T_OPEN_TAG_WITH_ECHO,
             T_INLINE_HTML,
         );
-
-    }//end register()
+    }
 
 
     /**
@@ -133,8 +132,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
                 $phpcsFile->addWarning($error, $stackPtr, 'MaybeASPOpenTagFound', $data);
             }
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -163,7 +161,5 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         }
 
         return $snippet;
-
-    }//end getSnippet()
-
-}//end class
+    }
+}

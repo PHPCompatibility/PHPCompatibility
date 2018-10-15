@@ -48,8 +48,7 @@ class NewNullableTypesSniff extends Sniff
         }
 
         return $tokens;
-
-    }//end register()
+    }
 
 
     /**
@@ -82,8 +81,7 @@ class NewNullableTypesSniff extends Sniff
         } else {
             $this->processReturnType($phpcsFile, $stackPtr);
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -159,5 +157,4 @@ class NewNullableTypesSniff extends Sniff
             );
         }
     }
-
-}//end class
+}

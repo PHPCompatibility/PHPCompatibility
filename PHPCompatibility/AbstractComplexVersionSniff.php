@@ -127,6 +127,4 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
     {
         return $data;
     }
-
-
-}//end class
+}

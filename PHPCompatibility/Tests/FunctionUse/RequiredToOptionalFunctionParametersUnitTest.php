@@ -126,5 +126,4 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond latest required/optional change.
         $this->assertNoViolation($file);
     }
-
 }

@@ -122,5 +122,4 @@ class GetFunctionParameterCountUnitTest extends CoreMethodTestFrame
             array('/* Case A16 */', 3),
         );
     }
-
 }

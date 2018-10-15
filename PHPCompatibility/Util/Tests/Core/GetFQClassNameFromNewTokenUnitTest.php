@@ -69,5 +69,4 @@ class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
             array('/* Case 16 */', ''),
         );
     }
-
 }

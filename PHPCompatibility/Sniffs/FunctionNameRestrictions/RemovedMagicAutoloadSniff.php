@@ -43,7 +43,7 @@ class RemovedMagicAutoloadSniff extends Sniff
     public function register()
     {
         return array(T_FUNCTION);
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -75,6 +75,5 @@ class RemovedMagicAutoloadSniff extends Sniff
         }
 
         $phpcsFile->addWarning('Use of __autoload() function is deprecated since PHP 7.2', $stackPtr, 'Found');
-    }//end process()
-
-}//end class
+    }
+}

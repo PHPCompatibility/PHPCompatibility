@@ -157,5 +157,4 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff operates
      *  independently of the testVersion.
      */
-
 }

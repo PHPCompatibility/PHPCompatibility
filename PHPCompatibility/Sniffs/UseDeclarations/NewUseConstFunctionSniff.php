@@ -97,5 +97,4 @@ class NewUseConstFunctionSniff extends Sniff
             'Found'
         );
     }
-
 }

@@ -56,8 +56,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             T_SR,
             T_SR_EQUAL,
         );
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -99,7 +98,5 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             'Found',
             array($phpcsFile->getTokensAsString($start, ($end - $start + 1)))
         );
-
-    }//end process()
-
-}//end class
+    }
+}

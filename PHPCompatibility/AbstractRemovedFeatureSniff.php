@@ -141,8 +141,5 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
         $data  = $this->filterErrorData($data, $itemInfo, $errorInfo);
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-    }//end addError()
-
-
-}//end class
+    }
+}

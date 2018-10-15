@@ -153,5 +153,4 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.0');
         $this->assertNoViolation($file);
     }
-
 }

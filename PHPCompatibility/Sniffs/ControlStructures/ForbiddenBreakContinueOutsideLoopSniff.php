@@ -61,8 +61,7 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
             T_BREAK,
             T_CONTINUE,
         );
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -105,7 +104,5 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
-
-    }//end process()
-
-}//end class
+    }
+}

@@ -102,8 +102,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
         $errorInfo['paramName'] = $itemArray['name'];
 
         return $errorInfo;
-
-    }//end getErrorInfo()
+    }
 
 
     /**
@@ -155,8 +154,5 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-    }//end addError()
-
-
-}//end class
+    }
+}

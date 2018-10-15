@@ -121,5 +121,4 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
-
 }

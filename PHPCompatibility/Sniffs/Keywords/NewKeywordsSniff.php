@@ -180,8 +180,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         }
 
         return $tokens;
-
-    }//end register()
+    }
 
 
     /**
@@ -281,8 +280,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
-
-    }//end process()
+    }
 
 
     /**
@@ -327,7 +325,6 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;
-
     }
 
 
@@ -364,6 +361,4 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $tokens = $phpcsFile->getTokens();
         return ($tokens[$stackPtr]['content'][3] !== '"');
     }
-
-
-}//end class
+}

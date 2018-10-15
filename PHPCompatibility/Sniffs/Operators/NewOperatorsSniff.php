@@ -135,7 +135,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             }
         }
         return $tokens;
-    }//end register()
+    }
 
 
     /**
@@ -179,8 +179,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             'name' => $tokenType,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -221,7 +220,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
         $errorInfo['description'] = $itemArray['description'];
 
         return $errorInfo;
-
     }
 
 
@@ -292,5 +290,4 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
         return false;
     }
-
-}//end class
+}
