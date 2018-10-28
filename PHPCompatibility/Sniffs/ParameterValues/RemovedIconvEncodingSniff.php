@@ -76,4 +76,4 @@ class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
             $parameters[1]['raw']
         );
     }
-}//end class
+}

@@ -35,8 +35,7 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
     public function register()
     {
         return array(T_SWITCH);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -75,6 +74,5 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
                 'Found'
             );
         }
-    }//end process()
-
-}//end class
+    }
+}

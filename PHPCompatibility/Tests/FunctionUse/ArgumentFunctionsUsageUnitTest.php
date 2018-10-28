@@ -170,5 +170,4 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about the use of these functions in the global scope independently of the PHP version.
      */
-
 }

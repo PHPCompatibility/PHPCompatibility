@@ -32,7 +32,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
     public function register()
     {
         return array(T_STRING);
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -89,6 +89,5 @@ class NewFunctionArrayDereferencingSniff extends Sniff
                 'Found'
             );
         }
-
-    }//end process()
-}//end class
+    }
+}

@@ -149,5 +149,4 @@ class ValidIntegersUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about invalid integers independently of the testVersion.
      */
-
 }

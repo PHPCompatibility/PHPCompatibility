@@ -37,8 +37,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
     public function register()
     {
         return array(T_USE);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -113,7 +112,5 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
                 }
             }
         }
-
-    }//end process()
-
-}//end class
+    }
+}

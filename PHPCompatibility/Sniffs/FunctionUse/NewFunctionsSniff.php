@@ -1828,8 +1828,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         $this->newFunctions = $this->arrayKeysToLowercase($this->newFunctions);
 
         return array(T_STRING);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -1873,8 +1872,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'nameLc' => $functionLc,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -1899,6 +1897,4 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
     {
         return 'The function %s() is not present in PHP version %s or earlier';
     }
-
-
-}//end class
+}

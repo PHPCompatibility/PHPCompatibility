@@ -505,8 +505,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -554,8 +553,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             'functionLc' => $functionLc,
         );
         $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -655,6 +653,4 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
         return $data;
     }
-
-
-}//end class
+}

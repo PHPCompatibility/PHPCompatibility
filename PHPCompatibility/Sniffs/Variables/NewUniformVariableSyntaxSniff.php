@@ -34,8 +34,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
     public function register()
     {
         return array(T_VARIABLE);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -106,8 +105,5 @@ class NewUniformVariableSyntaxSniff extends Sniff
             $stackPtr,
             'Found'
         );
-
-    }//end process()
-
-
-}//end class
+    }
+}

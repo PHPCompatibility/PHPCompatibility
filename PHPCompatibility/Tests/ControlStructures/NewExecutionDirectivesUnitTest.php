@@ -190,5 +190,4 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as the directive value checks are version independent.
      */
-
 }

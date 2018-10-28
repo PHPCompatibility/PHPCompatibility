@@ -109,8 +109,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
 
     /**
@@ -139,8 +138,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
             'name'   => $algo,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -165,6 +163,4 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
     {
         return 'The %s hash algorithm is not present in PHP version %s or earlier';
     }
-
-
-}//end class
+}

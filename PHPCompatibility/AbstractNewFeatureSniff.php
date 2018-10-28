@@ -103,6 +103,4 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
     }
-
-
-}//end class
+}

@@ -158,7 +158,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 $this->addMessage($phpcsFile, $error, $parameter['start'], $isError, $errorCode);
             }
         }
-    }//end process()
+    }
 
 
     /**
@@ -253,5 +253,4 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // This code should never be reached, but here in case of weird bugs.
         return false;
     }
-
-}//end class
+}

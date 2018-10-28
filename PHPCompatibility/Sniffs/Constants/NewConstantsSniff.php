@@ -3189,8 +3189,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -3218,8 +3217,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             'name' => $constantName,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -3244,6 +3242,4 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     {
         return 'The constant "%s" is not present in PHP version %s or earlier';
     }
-
-
-}//end class
+}

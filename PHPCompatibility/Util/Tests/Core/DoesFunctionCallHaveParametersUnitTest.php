@@ -77,5 +77,4 @@ class DoesFunctionCallHaveParametersUnitTest extends CoreMethodTestFrame
             array('/* Case A14 */', true),
         );
     }
-
 }

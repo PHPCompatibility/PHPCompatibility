@@ -144,7 +144,7 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         return $tokens;
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -305,8 +305,7 @@ class ForbiddenNamesSniff extends Sniff
             );
             $this->addError($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content'], $data);
         }
-
-    }//end processNonString()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -354,7 +353,7 @@ class ForbiddenNamesSniff extends Sniff
             );
             $this->addError($phpcsFile, $stackPtr, $defineNameLc, $data);
         }
-    }//end processString()
+    }
 
 
     /**
@@ -388,4 +387,4 @@ class ForbiddenNamesSniff extends Sniff
     {
         return in_array($token['code'], array(T_CLOSE_CURLY_BRACKET, T_SEMICOLON, T_COMMA), true);
     }
-}//end class
+}

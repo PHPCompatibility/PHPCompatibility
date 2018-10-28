@@ -40,7 +40,6 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
 
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, 'Assigning the return value of new by reference is deprecated in PHP 5.3 and has been removed in PHP 7.0');
-
     }
 
     /**
@@ -83,5 +82,4 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file);
     }
-
 }

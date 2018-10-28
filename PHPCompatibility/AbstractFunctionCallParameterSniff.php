@@ -174,4 +174,4 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     {
         return;
     }
-}//end class
+}

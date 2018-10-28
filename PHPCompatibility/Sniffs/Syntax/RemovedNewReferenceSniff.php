@@ -37,8 +37,7 @@ class RemovedNewReferenceSniff extends Sniff
     public function register()
     {
         return array(T_NEW);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -72,7 +71,5 @@ class RemovedNewReferenceSniff extends Sniff
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
-
-    }//end process()
-
-}//end class
+    }
+}

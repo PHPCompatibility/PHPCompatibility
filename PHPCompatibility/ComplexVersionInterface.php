@@ -72,6 +72,4 @@ interface ComplexVersionInterface
      * @return void
      */
     public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo);
-
-
-}//end interface
+}

@@ -54,8 +54,7 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
 
     /**
@@ -83,8 +82,7 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
             'name' => $algo,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -109,6 +107,4 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
     {
         return 'The %s hash algorithm is ';
     }
-
-
-}//end class
+}

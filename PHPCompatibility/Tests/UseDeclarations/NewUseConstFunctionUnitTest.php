@@ -112,5 +112,4 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file);
     }
-
 }

@@ -120,5 +120,4 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw a warning
      * on invalid use of the construct in pre-PHP 7 versions.
      */
-
 }

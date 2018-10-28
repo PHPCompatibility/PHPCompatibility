@@ -513,5 +513,4 @@ class FunctionsUnitTest extends \PHPUnit_Framework_TestCase
 
         return $method->invokeArgs($object, $parameters);
     }
-
 }

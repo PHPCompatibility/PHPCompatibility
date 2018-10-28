@@ -104,7 +104,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         }
 
         return $tokens;
-    }//end register()
+    }
 
 
     /**
@@ -144,7 +144,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
-    }//end process()
+    }
 
 
     /**
@@ -169,6 +169,4 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
     {
         return '%s return type is not present in PHP version %s or earlier';
     }
-
-
-}//end class
+}

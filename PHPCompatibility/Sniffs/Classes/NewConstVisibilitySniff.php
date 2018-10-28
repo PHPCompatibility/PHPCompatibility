@@ -34,8 +34,7 @@ class NewConstVisibilitySniff extends Sniff
     public function register()
     {
         return array(T_CONST);
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -73,7 +72,5 @@ class NewConstVisibilitySniff extends Sniff
             'Found',
             array($tokens[$prevToken]['content'])
         );
-
-    }//end process()
-
-}//end class
+    }
+}

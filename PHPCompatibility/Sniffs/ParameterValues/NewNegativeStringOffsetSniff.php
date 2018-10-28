@@ -122,4 +122,4 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
             );
         }
     }
-}//end class
+}

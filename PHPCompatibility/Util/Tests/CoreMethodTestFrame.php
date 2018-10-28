@@ -85,8 +85,7 @@ abstract class CoreMethodTestFrame extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->phpcsFile, $this->helperClass);
-
-    }//end tearDown()
+    }
 
 
     /**
@@ -138,5 +137,4 @@ abstract class CoreMethodTestFrame extends \PHPUnit_Framework_TestCase
 
         return $target;
     }
-
 }

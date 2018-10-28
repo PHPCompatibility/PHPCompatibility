@@ -99,7 +99,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
             T_FUNCTION,
             T_CLOSURE,
         );
-    }//end register()
+    }
 
 
     /**
@@ -166,7 +166,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
             }
         }
-    }//end process()
+    }
 
 
     /**
@@ -191,6 +191,4 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
     {
         return "'%s' type declaration is not present in PHP version %s or earlier";
     }
-
-
-}//end class
+}

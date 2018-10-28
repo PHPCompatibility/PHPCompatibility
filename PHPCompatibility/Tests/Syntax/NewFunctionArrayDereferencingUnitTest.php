@@ -102,5 +102,4 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file);
     }
-
 }

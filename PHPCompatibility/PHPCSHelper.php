@@ -209,8 +209,7 @@ class PHPCSHelper
         }//end for
 
         return ($phpcsFile->numTokens - 1);
-
-    }//end findEndOfStatement()
+    }
 
 
     /**
@@ -280,8 +279,7 @@ class PHPCSHelper
         }
 
         return $name;
-
-    }//end findExtendedClassName()
+    }
 
 
     /**
@@ -348,8 +346,7 @@ class PHPCSHelper
             $names = array_map('trim', $names);
             return $names;
         }
-
-    }//end findImplementedInterfaceNames()
+    }
 
 
     /**
@@ -568,6 +565,5 @@ class PHPCSHelper
         }//end for
 
         return $vars;
-
-    }//end getMethodParameters()
+    }
 }

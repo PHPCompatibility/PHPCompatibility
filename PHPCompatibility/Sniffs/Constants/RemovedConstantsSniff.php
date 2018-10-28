@@ -302,8 +302,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
     public function register()
     {
         return array(T_STRING);
-
-    }//end register()
+    }
 
 
     /**
@@ -332,8 +331,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'name' => $constantName,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -358,5 +356,4 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
     {
         return 'The constant "%s" is ';
     }
-
-}//end class
+}

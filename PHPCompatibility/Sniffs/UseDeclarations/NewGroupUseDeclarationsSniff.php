@@ -36,7 +36,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
         } else {
             return array(T_USE);
         }
-    }//end register()
+    }
 
 
     /**
@@ -99,6 +99,5 @@ class NewGroupUseDeclarationsSniff extends Sniff
                 'TrailingCommaFound'
             );
         }
-    }//end process()
-
-}//end class
+    }
+}

@@ -88,7 +88,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         $tokens[] = T_STRING;
 
         return $tokens;
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -174,6 +174,5 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
-    }//end process()
-
-}//end class
+    }
+}

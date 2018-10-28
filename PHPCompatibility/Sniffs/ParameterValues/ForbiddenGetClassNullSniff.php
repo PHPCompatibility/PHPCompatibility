@@ -76,4 +76,4 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
             'Found'
         );
     }
-}//end class
+}

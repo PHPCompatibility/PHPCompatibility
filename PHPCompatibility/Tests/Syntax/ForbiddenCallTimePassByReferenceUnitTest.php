@@ -154,5 +154,4 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file);
     }
-
 }

@@ -95,4 +95,4 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
             break;
         }
     }
-}//end class
+}

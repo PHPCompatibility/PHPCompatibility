@@ -223,5 +223,4 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '5.2'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
-
 }

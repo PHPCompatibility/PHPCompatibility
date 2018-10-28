@@ -90,8 +90,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     public function register()
     {
         return array(T_VARIABLE);
-
-    }//end register()
+    }
 
 
     /**
@@ -141,8 +140,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             'name' => $varName,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -300,6 +298,4 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         return true;
     }
-
-
-}//end class
+}

@@ -69,7 +69,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
         $tokens[] = T_CONSTANT_ENCAPSED_STRING;
 
         return $tokens;
-    }//end register()
+    }
 
 
     /**
@@ -119,8 +119,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
             'content' => $tokens[$stackPtr]['content'],
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-
-    }//end process()
+    }
 
 
     /**
@@ -194,6 +193,4 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
         $data[]  = $itemInfo['content'];
         return $data;
     }
-
-
-}//end class
+}

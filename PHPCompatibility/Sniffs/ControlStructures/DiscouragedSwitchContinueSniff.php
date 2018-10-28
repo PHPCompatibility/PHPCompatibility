@@ -219,5 +219,4 @@ class DiscouragedSwitchContinueSniff extends Sniff
 
         } while ($caseDefault < $switchCloser);
     }
-
 }

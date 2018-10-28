@@ -183,7 +183,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             $modifiers = substr($regex, $regexEndPos + 1);
             $this->examineModifiers($phpcsFile, $stackPtr, $functionName, $modifiers);
         }
-    }//end processRegexPattern()
+    }
 
 
     /**
@@ -214,5 +214,4 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
     }
-
-}//end class
+}

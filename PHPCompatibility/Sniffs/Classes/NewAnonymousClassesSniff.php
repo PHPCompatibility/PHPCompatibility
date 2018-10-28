@@ -51,7 +51,7 @@ class NewAnonymousClassesSniff extends Sniff
         }
 
         return array(T_NEW);
-    }//end register()
+    }
 
 
     /**
@@ -81,8 +81,5 @@ class NewAnonymousClassesSniff extends Sniff
             $stackPtr,
             'Found'
         );
-
-    }//end process()
-
-
-}//end class
+    }
+}

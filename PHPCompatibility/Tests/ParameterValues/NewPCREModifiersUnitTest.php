@@ -109,5 +109,4 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '99.0');
         $this->assertNoViolation($file);
     }
-
 }
