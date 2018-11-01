@@ -95,3 +95,21 @@ class MyClass {
 		/* Case 32 */
 		$varF = 'string';
 }
+
+$a = ( $foo == $bar ? new stdClass() :
+	new class() {
+		/* Case 33 */
+		public $var = true;
+
+		/* Case 34 */
+		public function something($var = false) {}
+	}
+);
+
+function_call( 'param', new class {
+	/* Case 35 */
+	public $year = 2017;
+
+	/* Case 36 */
+	public function __construct( $open, $post_id ) {}
+}, 10, 2 );

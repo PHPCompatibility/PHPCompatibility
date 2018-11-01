@@ -66,7 +66,7 @@ class RemovedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->checkForScopes) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->checkForScopes) !== false) {
             return;
         }
 
