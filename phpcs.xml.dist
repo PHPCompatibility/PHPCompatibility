@@ -130,30 +130,18 @@
     <rule ref="PEAR.Commenting">
         <!-- Exclude PEAR specific tag requirements. -->
         <exclude name="PEAR.Commenting.FileComment.MissingVersion" />
-        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
+        <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag" />
+        <exclude name="PEAR.Commenting.FileComment.MissingCategoryTag" />
         <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag" />
+        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag" />
+        <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag" />
+        <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag" />
         <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag" />
         <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag" />
+        <exclude name="PEAR.Commenting.ClassComment.MissingPackageTag" />
 
         <!-- Having a @see or @internal tag before the @category tag is fine. -->
         <exclude name="PEAR.Commenting.ClassComment.CategoryTagOrder"/>
-    </rule>
-
-    <!-- No need to be as strict about file and class comment tags for the unit tests. -->
-    <rule ref="PEAR.Commenting.FileComment.MissingCategoryTag">
-        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
-    </rule>
-    <rule ref="PEAR.Commenting.FileComment.MissingAuthorTag">
-        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
-    </rule>
-    <rule ref="PEAR.Commenting.ClassComment.MissingCategoryTag">
-        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Tests/*\.php</exclude-pattern>
-        <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
 
 </ruleset>
