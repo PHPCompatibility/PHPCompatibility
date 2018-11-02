@@ -27,7 +27,7 @@ class NewTypeCastsUnitTest extends BaseSniffTest
     /**
      * testNewTypeCasts
      *
-     * @dataProvider dataNewFunction
+     * @dataProvider dataNewTypeCasts
      *
      * @param string $castDescription   The type of type cast.
      * @param string $lastVersionBefore The PHP version just *before* the type cast was introduced.
@@ -56,15 +56,15 @@ class NewTypeCastsUnitTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testNewFunction()
+     * @see testNewTypeCasts()
      *
      * @return array
      */
-    public function dataNewFunction()
+    public function dataNewTypeCasts()
     {
         return array(
-            array('The unset cast', '4.4', array(8, 13, 15), '5.0'),
-            array('The binary cast', '5.2.0', array(9, 10, 14, 16), '5.3', '5.2'), // Test (global) namespaced function.
+            array('The unset cast', '4.4', array(8, 15, 17), '5.0'),
+            array('The binary cast', '5.2.0', array(9, 10, 11, 12, 16, 18), '5.3', '5.2'), // Test (global) namespaced function.
         );
     }
 
@@ -96,8 +96,7 @@ class NewTypeCastsUnitTest extends BaseSniffTest
         return array(
             array(4),
             array(5),
-            array(19),
-            array(20),
+            array(21),
         );
     }
 
