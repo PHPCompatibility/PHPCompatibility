@@ -23,6 +23,14 @@ use PHP_CodeSniffer_File as File;
  */
 class BaseSniffTest extends PHPUnit_TestCase
 {
+
+    /**
+     * The name of the standard as registered with PHPCS.
+     *
+     * @since 7.1.3
+     *
+     * @var string
+     */
     const STANDARD_NAME = 'PHPCompatibility';
 
     /**

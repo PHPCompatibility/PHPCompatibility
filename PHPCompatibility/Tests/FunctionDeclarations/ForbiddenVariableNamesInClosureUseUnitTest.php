@@ -25,8 +25,19 @@ use PHPCompatibility\PHPCSHelper;
  */
 class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {
+
+    /**
+     * The name of the main test case file.
+     *
+     * @var string
+     */
     const TEST_FILE = 'ForbiddenVariableNamesInClosureUseUnitTest.1.inc';
 
+    /**
+     * The name of a secondary test case file which similates live coding.
+     *
+     * @var string
+     */
     const TEST_FILE_LIVE_CODING = 'ForbiddenVariableNamesInClosureUseUnitTest.2.inc';
 
     /**

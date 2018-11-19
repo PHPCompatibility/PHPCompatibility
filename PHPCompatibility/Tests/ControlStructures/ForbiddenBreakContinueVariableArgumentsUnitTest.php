@@ -28,8 +28,19 @@ use PHPCompatibility\Tests\BaseSniffTest;
 class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {
 
+    /**
+     * Error message snippet for the variable argument error.
+     *
+     * @var string
+     */
     const ERROR_TYPE_VARIABLE = 'a variable argument';
-    const ERROR_TYPE_ZERO     = '0 as an argument';
+
+    /**
+     * Error message snippet for the zero argument error.
+     *
+     * @var string
+     */
+    const ERROR_TYPE_ZERO = '0 as an argument';
 
     /**
      * testBreakAndContinueVariableArgument
