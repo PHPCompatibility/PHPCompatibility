@@ -3314,6 +3314,22 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'STREAM_CRYPTO_PROTO_SSLv3' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'STREAM_CRYPTO_PROTO_TLSv1_0' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'STREAM_CRYPTO_PROTO_TLSv1_1' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'STREAM_CRYPTO_PROTO_TLSv1_2' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
     );
 
 

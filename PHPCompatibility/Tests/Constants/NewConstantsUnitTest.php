@@ -848,6 +848,10 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURL_VERSION_SPNEGO', '7.2', array(789), '7.3'),
             array('CURL_VERSION_SSPI', '7.2', array(790), '7.3'),
             array('CURL_VERSION_TLSAUTH_SRP', '7.2', array(791), '7.3'),
+            array('STREAM_CRYPTO_PROTO_SSLv3', '7.2', array(792), '7.3'),
+            array('STREAM_CRYPTO_PROTO_TLSv1_0', '7.2', array(793), '7.3'),
+            array('STREAM_CRYPTO_PROTO_TLSv1_1', '7.2', array(794), '7.3'),
+            array('STREAM_CRYPTO_PROTO_TLSv1_2', '7.2', array(795), '7.3'),
         );
     }
 
