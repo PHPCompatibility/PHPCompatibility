@@ -465,3 +465,11 @@ sapi_windows_cp_is_utf8();
 sapi_windows_cp_conv();
 hash_hkdf();
 pcntl_signal_get_handler();
+
+ldap_add_ext();
+ldap_bind_ext();
+ldap_delete_ext();
+ldap_mod_add_ext();
+ldap_mod_replace_ext();
+ldap_mod_del_ext();
+ldap_rename_ext();
