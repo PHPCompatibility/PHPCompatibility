@@ -3266,6 +3266,110 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'LDAP_CONTROL_MANAGEDSAIT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_PROXY_AUTHZ' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SUBENTRIES' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_VALUESRETURNFILTER' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_ASSERT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_PRE_READ' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_POST_READ' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SORTREQUEST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SORTRESPONSE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_PAGEDRESULTS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_AUTHZID_REQUEST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_AUTHZID_RESPONSE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SYNC' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SYNC_STATE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_SYNC_DONE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_DONTUSECOPY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_PASSWORDPOLICYREQUEST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_PASSWORDPOLICYRESPONSE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_INCREMENTAL_VALUES' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_DOMAIN_SCOPE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_PERMISSIVE_MODIFY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_SEARCH_OPTIONS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_TREE_DELETE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_X_EXTENDED_DN' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_VLVREQUEST' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'LDAP_CONTROL_VLVRESPONSE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'MB_CASE_FOLD' => array(
             '7.2' => false,
             '7.3' => true,
