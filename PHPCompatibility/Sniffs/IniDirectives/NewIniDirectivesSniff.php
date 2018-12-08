@@ -479,6 +479,12 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        // Introduced in PHP 7.1.25, 7.2.13, 7.3.0.
+        'imap.enable_insecure_rsh' => array(
+            '7.1.24' => false,
+            '7.1.25' => true,
+        ),
+
         'syslog.facility' => array(
             '7.2' => false,
             '7.3' => true,
