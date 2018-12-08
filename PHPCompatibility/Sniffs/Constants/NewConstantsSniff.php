@@ -2942,11 +2942,23 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
 
+        'CURLAUTH_BEARER' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLAUTH_GSSAPI' => array(
             '7.2' => false,
             '7.3' => true,
         ),
         'CURLE_WEIRD_SERVER_REPLY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_APPCONNECT_TIME_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_CONNECT_TIME_T' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -2958,7 +2970,19 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURLINFO_FILETIME_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLINFO_HTTP_VERSION' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_NAMELOOKUP_TIME_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_PRETRANSFER_TIME_T' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -2967,6 +2991,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
         'CURLINFO_PROXY_SSL_VERIFYRESULT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_REDIRECT_TIME_T' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -2990,11 +3018,43 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURLINFO_STARTTRANSFER_TIME_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLINFO_TOTAL_TIME_T' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_LOCK_DATA_CONNECT' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_LOCK_DATA_PSL' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURL_MAX_READ_SIZE' => array(
             '7.2' => false,
             '7.3' => true,
         ),
         'CURLOPT_ABSTRACT_UNIX_SOCKET' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_DISALLOW_USERNAME_IN_URL' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_DNS_SHUFFLE_ADDRESSES' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_HAPROXYPROTOCOL' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -3062,6 +3122,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURLOPT_PROXY_TLS13_CIPHERS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLOPT_PROXY_TLSAUTH_PASSWORD' => array(
             '7.2' => false,
             '7.3' => true,
@@ -3082,11 +3146,27 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURLOPT_SSH_COMPRESSION' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLOPT_SUPPRESS_CONNECT_HEADERS' => array(
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURLOPT_TIMEVALUE_LARGE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLOPT_TLS13_CIPHERS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURLPROXY_HTTPS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURLSSH_AUTH_GSSAPI' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -3118,7 +3198,63 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'CURL_VERSION_ASYNCHDNS' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_BROTLI' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_CONV' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_DEBUG' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_GSSAPI' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_GSSNEGOTIATE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'CURL_VERSION_HTTPS_PROXY' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_IDN' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_LARGEFILE' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_MULTI_SSL' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_NTLM' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_NTLM_WB' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_SPNEGO' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_SSPI' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'CURL_VERSION_TLSAUTH_SRP' => array(
             '7.2' => false,
             '7.3' => true,
         ),
