@@ -454,7 +454,7 @@ gmp_kronecker();
 ldap_exop_refresh();
 normalizer_get_raw_decomposition();
 openssl_pkey_derive();
-sapi_add_request_header();
+
 socket_wsaprotocol_info_export();
 socket_wsaprotocol_info_import();
 socket_wsaprotocol_info_release();

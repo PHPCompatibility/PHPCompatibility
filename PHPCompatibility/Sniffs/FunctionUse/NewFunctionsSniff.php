@@ -1826,10 +1826,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
-        'sapi_add_request_header' => array(
-            '7.2' => false,
-            '7.3' => true,
-        ),
         'socket_wsaprotocol_info_export' => array(
             '7.2' => false,
             '7.3' => true,
