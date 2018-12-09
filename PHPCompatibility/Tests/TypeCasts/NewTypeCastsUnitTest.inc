@@ -8,6 +8,8 @@
 (unset) $a;
 (binary) 1234;
 $binary = b"binary string";
+$binary = b"binary $string";
+$also_binary = b'124';
 
 // Verify space & case independency.
 (	unset	) $a;
@@ -16,5 +18,4 @@ $binary = b"binary string";
 ( BINARY ) 1234;
 
 // Just making sure / no false positives.
-$not_binary = b'124';
 $ordinary = 'b"something"';

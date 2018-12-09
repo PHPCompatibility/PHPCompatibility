@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\TypeCasts;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\TypeCasts\NewTypeCastsSniff.
@@ -62,11 +63,14 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
          *
          * - (binary) cast is incorrectly tokenized as T_STRING_CAST by PHP and PHPCS.
          * - b"something" binary cast is incorrectly tokenized as T_CONSTANT_ENCAPSED_STRING by PHP and PHPCS.
+         * - Since PHPCS 3.4.0, PHPCS *will* tokenize these correctly.
          *
          * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/1574
          */
-        $tokens[] = T_STRING_CAST;
-        $tokens[] = T_CONSTANT_ENCAPSED_STRING;
+        if (version_compare(PHPCSHelper::getVersion(), '3.4.0', '<') === true) {
+            $tokens[] = T_STRING_CAST;
+            $tokens[] = T_CONSTANT_ENCAPSED_STRING;
+        }
 
         return $tokens;
     }
@@ -99,7 +103,9 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
                     break;
 
                 case 'T_CONSTANT_ENCAPSED_STRING':
-                    if (strpos($tokenContent, 'b"') === 0 && substr($tokenContent, -1) === '"') {
+                    if ((strpos($tokenContent, 'b"') === 0 && substr($tokenContent, -1) === '"')
+                        || (strpos($tokenContent, "b'") === 0 && substr($tokenContent, -1) === "'")
+                    ) {
                         $tokenType = 'T_BINARY_CAST';
                     } else {
                         return;
