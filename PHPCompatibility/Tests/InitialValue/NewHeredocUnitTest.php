@@ -32,6 +32,12 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     protected static $recognizesTraits = true;
 
+    /**
+     * Whether or not the tests are run on PHPCS 2.5.1.
+     *
+     * @var bool
+     */
+    protected static $isPHPCS251 = false;
 
     /**
      * Set up skip condition.
@@ -43,6 +49,10 @@ class NewHeredocUnitTest extends BaseSniffTest
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
         if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
             self::$recognizesTraits = false;
+        }
+
+        if (version_compare(PHPCSHelper::getVersion(), '2.5.1', '=')) {
+            self::$isPHPCS251 = true;
         }
 
         parent::setUpBeforeClass();
@@ -64,6 +74,11 @@ class NewHeredocUnitTest extends BaseSniffTest
     {
         if ($isTrait === true && self::$recognizesTraits === false) {
             $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
+            return;
+        }
+
+        if (self::$isPHPCS251 === true) {
+            $this->markTestSkipped('PHPCS 2.5.1 contains a bug in the Tokenizer class affecting this sniff');
             return;
         }
 
