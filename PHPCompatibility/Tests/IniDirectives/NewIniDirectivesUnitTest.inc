@@ -331,3 +331,6 @@ $test = ini_get('url_rewriter.hosts');
 
 ini_set('session.cookie_samesite', 1);
 $test = ini_get('session.cookie_samesite');
+
+ini_set('imap.enable_insecure_rsh', 1);
+$test = ini_get('imap.enable_insecure_rsh');

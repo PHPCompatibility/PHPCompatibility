@@ -185,6 +185,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('session.trans_sid_tags', '7.1', array(326, 327), '7.0'),
             array('url_rewriter.hosts', '7.1', array(329, 330), '7.0'),
 
+            array('imap.enable_insecure_rsh', '7.2', array(335, 336), '7.1.24', '7.1'),
+
             array('syslog.facility', '7.3', array(311, 312), '7.2'),
             array('syslog.ident', '7.3', array(314, 315), '7.2'),
             array('syslog.filter', '7.3', array(317, 318), '7.2'),
