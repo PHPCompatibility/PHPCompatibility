@@ -1081,10 +1081,21 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             'T_ANON_CLASS' => true,
             'T_TRAIT'      => true,
         );
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $validScopes) === true) {
+
+        $scopePtr = $this->validDirectScope($phpcsFile, $stackPtr, $validScopes);
+        if ($scopePtr !== false) {
             // Make sure it's not a method parameter.
             if (empty($tokens[$stackPtr]['nested_parenthesis']) === true) {
                 return true;
+            } else {
+                $parenthesis = array_keys($tokens[$stackPtr]['nested_parenthesis']);
+                $deepestOpen = array_pop($parenthesis);
+                if ($deepestOpen < $scopePtr
+                    || isset($tokens[$deepestOpen]['parenthesis_owner']) === false
+                    || $tokens[$tokens[$deepestOpen]['parenthesis_owner']]['code'] !== T_FUNCTION
+                ) {
+                    return true;
+                }
             }
         }
 
@@ -1115,7 +1126,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
             'T_ANON_CLASS' => true,
             'T_INTERFACE'  => true,
         );
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $validScopes) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $validScopes) !== false) {
             return true;
         }
 
@@ -1137,7 +1148,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
      *                                           format to allow for newer token types.
      *                                           Value is irrelevant.
      *
-     * @return bool
+     * @return int|bool StackPtr to the scope if valid, false otherwise.
      */
     protected function validDirectScope(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $validScopes)
     {
@@ -1158,7 +1169,7 @@ abstract class Sniff implements \PHP_CodeSniffer_Sniff
         }
 
         if (isset($validScopes[$tokens[$ptr]['type']]) === true) {
-            return true;
+            return $ptr;
         }
 
         return false;

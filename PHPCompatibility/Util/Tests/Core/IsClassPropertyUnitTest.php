@@ -114,6 +114,10 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
             array('/* Case 30 */', true),
             array('/* Case 31 */', true),
             array('/* Case 32 */', true),
+            array('/* Case 33 */', true),
+            array('/* Case 34 */', false),
+            array('/* Case 35 */', true),
+            array('/* Case 36 */', false),
         );
     }
 }
