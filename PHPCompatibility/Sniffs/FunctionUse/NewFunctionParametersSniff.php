@@ -400,6 +400,90 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.5'  => true,
             ),
         ),
+        'ldap_add' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_compare' => array(
+            4 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_delete' => array(
+            2 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_list' => array(
+            8 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_mod_add' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_mod_del' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_mod_replace' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_modify_batch' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_parse_result' => array(
+            6 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_read' => array(
+            8 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_rename' => array(
+            5 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_search' => array(
+            8 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
         'memory_get_peak_usage' => array(
             0 => array(
                 'name' => 'real_usage',
