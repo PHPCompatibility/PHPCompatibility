@@ -1786,7 +1786,35 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+        'ldap_add_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_bind_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_delete_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
         'ldap_exop_refresh' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_mod_add_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_mod_replace_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_mod_del_ext' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'ldap_rename_ext' => array(
             '7.2' => false,
             '7.3' => true,
         ),
@@ -1795,10 +1823,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
         'openssl_pkey_derive' => array(
-            '7.2' => false,
-            '7.3' => true,
-        ),
-        'sapi_add_request_header' => array(
             '7.2' => false,
             '7.3' => true,
         ),

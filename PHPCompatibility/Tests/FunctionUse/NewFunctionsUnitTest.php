@@ -515,10 +515,17 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('ldap_exop_refresh', '7.2', array(454), '7.3'),
             array('normalizer_get_raw_decomposition', '7.2', array(455), '7.3'),
             array('openssl_pkey_derive', '7.2', array(456), '7.3'),
-            array('sapi_add_request_header', '7.2', array(457), '7.3'),
             array('socket_wsaprotocol_info_export', '7.2', array(458), '7.3'),
             array('socket_wsaprotocol_info_import', '7.2', array(459), '7.3'),
             array('socket_wsaprotocol_info_release', '7.2', array(460), '7.3'),
+
+            array('ldap_add_ext', '7.2', array(469), '7.3'),
+            array('ldap_bind_ext', '7.2', array(470), '7.3'),
+            array('ldap_delete_ext', '7.2', array(471), '7.3'),
+            array('ldap_mod_add_ext', '7.2', array(472), '7.3'),
+            array('ldap_mod_replace_ext', '7.2', array(473), '7.3'),
+            array('ldap_mod_del_ext', '7.2', array(474), '7.3'),
+            array('ldap_rename_ext', '7.2', array(475), '7.3'),
         );
     }
 
