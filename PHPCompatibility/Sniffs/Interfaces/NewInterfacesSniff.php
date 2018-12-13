@@ -210,6 +210,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         }
 
         foreach ($interfaces as $interface) {
+            $interface   = ltrim($interface, '\\');
             $interfaceLc = strtolower($interface);
 
             if (isset($this->newInterfaces[$interfaceLc]) === true) {
