@@ -87,10 +87,10 @@ class NewOperatorsUnitTest extends BaseSniffTest
      */
     public function testCoalesceEquals()
     {
-        $file = $this->sniffFile(__FILE__, '7.2');
-        $this->assertError($file, 7, 'null coalesce equal operator (??=) is not present in PHP version 7.2 or earlier');
-
         $file = $this->sniffFile(__FILE__, '7.3');
+        $this->assertError($file, 7, 'null coalesce equal operator (??=) is not present in PHP version 7.3 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertNoViolation($file, 7);
     }
 
