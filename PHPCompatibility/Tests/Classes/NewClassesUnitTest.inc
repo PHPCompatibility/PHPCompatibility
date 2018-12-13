@@ -337,3 +337,7 @@ interface TestThat {
 }
 
 throw new JsonException();
+$test = new SQLiteException();
+class MyClosedGeneratorException extends ClosedGeneratorException {}
+function SodiumExceptionTypeHint( SodiumException $a ) {}
+$test = new com_exception();
