@@ -9,8 +9,6 @@
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
-use PHPCompatibility\PHPCSHelper;
-
 /**
  * \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff.
  *

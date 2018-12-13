@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff.
