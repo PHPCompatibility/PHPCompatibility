@@ -11,6 +11,7 @@
     </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
+            <file>./PHPCompatibility/Sniff.php</file>
             <directory>./PHPCompatibility/Sniffs/</directory>
         </whitelist>
     </filter>
