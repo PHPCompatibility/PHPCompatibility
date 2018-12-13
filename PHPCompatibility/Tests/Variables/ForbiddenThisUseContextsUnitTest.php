@@ -15,14 +15,14 @@ use PHPCompatibility\Tests\BaseSniffTest;
 /**
  * New $this usage limitations sniff tests.
  *
- * @group newThisUsageLimitations
+ * @group forbiddenThisUseContexts
  * @group variables
  *
- * @covers \PHPCompatibility\Sniffs\Variables\newThisUsageLimitationsSniff
+ * @covers \PHPCompatibility\Sniffs\Variables\ForbiddenThisUseContextsSniff
  *
  * @since 9.1.0
  */
-class NewThisUsageLimitationsUnitTest extends BaseSniffTest
+class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
 {
 
     /**

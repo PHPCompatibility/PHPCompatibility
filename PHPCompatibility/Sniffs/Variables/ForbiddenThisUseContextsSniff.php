@@ -47,7 +47,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @since 9.1.0
  */
-class NewThisUsageLimitationsSniff extends Sniff
+class ForbiddenThisUseContextsSniff extends Sniff
 {
 
     /**
@@ -304,7 +304,7 @@ class NewThisUsageLimitationsSniff extends Sniff
      */
     protected function isThisUsedAsParameter(File $phpcsFile, $stackPtr)
     {
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) !== false) {
             return;
         }
 
@@ -362,7 +362,7 @@ class NewThisUsageLimitationsSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) === true) {
+        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) !== false) {
             $methodProps = $phpcsFile->getMethodProperties($stackPtr);
             if ($methodProps['is_static'] === false) {
                 return;
