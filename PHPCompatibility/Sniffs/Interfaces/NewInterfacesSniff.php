@@ -83,11 +83,19 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
 
+        'SessionIdInterface' => array(
+            '5.5.0' => false,
+            '5.5.1' => true,
+        ),
+
         'Throwable' => array(
             '5.6' => false,
             '7.0' => true,
         ),
-
+        'SessionUpdateTimestampHandlerInterface' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
     );
 
     /**

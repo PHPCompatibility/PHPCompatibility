@@ -33,13 +33,16 @@ class NewInterfacesUnitTest extends BaseSniffTest
      * @param string $lastVersionBefore The PHP version just *before* the class was introduced.
      * @param array  $lines             The line numbers in the test file which apply to this class.
      * @param string $okVersion         A PHP version in which the class was ok to be used.
+     * @param string $testVersion       Optional. A PHP version in which to test for the error if different
+     *                                  from the $lastVersionBefore.
      *
      * @return void
      */
-    public function testNewInterface($interfaceName, $lastVersionBefore, $lines, $okVersion)
+    public function testNewInterface($interfaceName, $lastVersionBefore, $lines, $okVersion, $testVersion = null)
     {
-        $file  = $this->sniffFile(__FILE__, $lastVersionBefore);
-        $error = "The built-in interface {$interfaceName} is not present in PHP version {$lastVersionBefore} or earlier";
+        $errorVersion = (isset($testVersion)) ? $testVersion : $lastVersionBefore;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "The built-in interface {$interfaceName} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
@@ -60,6 +63,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function dataNewInterface()
     {
         return array(
+            array('Reflector', '4.4', array(75), '5.0'),
+            array('Traversable', '4.4', array(35, 50, 60, 71, 79), '5.0'),
             array('Countable', '5.0', array(3, 17, 41), '5.1'),
             array('OuterIterator', '5.0', array(4, 42, 65), '5.1'),
             array('RecursiveIterator', '5.0', array(5, 43, 65), '5.1'),
@@ -69,10 +74,10 @@ class NewInterfacesUnitTest extends BaseSniffTest
             array('SplSubject', '5.0', array(12, 17, 47, 69), '5.1'),
             array('JsonSerializable', '5.3', array(13, 48), '5.4'),
             array('SessionHandlerInterface', '5.3', array(14, 49), '5.4'),
-            array('Traversable', '4.4', array(35, 50, 60, 71, 79), '5.0'),
             array('DateTimeInterface', '5.4', array(36, 51, 61, 80), '5.5'),
+            array('SessionIdInterface', '5.5.0', array(89), '5.6', '5.5'),
             array('Throwable', '5.6', array(37, 52, 62), '7.0'),
-            array('Reflector', '4.4', array(75), '5.0'),
+            array('SessionUpdateTimestampHandlerInterface', '5.6', array(90), '7.0'),
         );
     }
 

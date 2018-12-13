@@ -84,3 +84,7 @@ function($a):throwable {}
 function SeekableIteratorReturnTypeHint( $a ) : SomeNS\SeekableIterator {}
 function SessionHandlerInterfaceReturnTypeHint( $a ) : ?\MyNS\SessionHandlerInterface {}
 function SplSubjectReturnTypeHint( $a ) : \MyNS\SplSubject\AnotherInterface {}
+
+// More new interfaces.
+class MySessionIdInterface implements SessionIdInterface {}
+class MySessionUpdateTimestampHandlerInterface implements SessionUpdateTimestampHandlerInterface {}
