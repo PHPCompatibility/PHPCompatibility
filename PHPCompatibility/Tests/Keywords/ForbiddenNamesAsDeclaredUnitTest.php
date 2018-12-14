@@ -16,6 +16,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredSniff
+ * @covers \PHPCompatibility\Sniff::getDeclaredNamespaceName
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility

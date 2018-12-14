@@ -17,6 +17,7 @@ use PHPCompatibility\PHPCSHelper;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedNamespacedAssertSniff
+ * @covers \PHPCompatibility\Sniff::determineNamespace
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility

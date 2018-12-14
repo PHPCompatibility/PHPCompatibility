@@ -16,6 +16,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewForeachExpressionReferencingSniff
+ * @covers \PHPCompatibility\Sniff::isVariable
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility

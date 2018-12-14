@@ -17,6 +17,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group hashAlgorithms
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedHashAlgorithmsSniff
+ * @covers \PHPCompatibility\Sniff::getHashAlgorithmParameter
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility

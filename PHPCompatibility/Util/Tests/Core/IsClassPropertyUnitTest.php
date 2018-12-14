@@ -53,6 +53,7 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
      * @dataProvider dataIsClassProperty
      *
      * @covers \PHPCompatibility\Sniff::isClassProperty
+     * @covers \PHPCompatibility\Sniff::validDirectScope
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.

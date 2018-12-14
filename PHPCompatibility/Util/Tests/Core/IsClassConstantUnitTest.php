@@ -28,6 +28,7 @@ class IsClassConstantUnitTest extends CoreMethodTestFrame
      * @dataProvider dataIsClassConstant
      *
      * @covers \PHPCompatibility\Sniff::isClassConstant
+     * @covers \PHPCompatibility\Sniff::validDirectScope
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
