@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHP_CodeSniffer_Tokens as Tokens;
+
 /**
  * \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff.
  *
