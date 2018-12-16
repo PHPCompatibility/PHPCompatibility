@@ -3,7 +3,7 @@
 class MyCountable implements Countable {}
 class MyOuterIterator implements OuterIterator {}
 class MyRecursiveIterator implements RecursiveIterator {}
-class MySeekableIterator implements SeekableIterator {}
+class MySeekableIterator implements \SeekableIterator {}
 class MySerializable implements Serializable {
     public function __sleep() {}
     public function __wakeup() {}
@@ -26,7 +26,7 @@ class MyJsonSerializable implements myNameSpace\JsonSerializable {}
 
 // Test anonymous class support.
 $a = new class implements SeekableIterator {}
-$b = new class implements Serializable {
+$b = new class implements \Serializable {
     public function __sleep() {}
     public function __wakeup() {}
 }
