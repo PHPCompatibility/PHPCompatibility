@@ -14,6 +14,50 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+
+## [9.1.0] - 2018-12-16
+
+See all related issues and PRs in the [9.1.0 milestone].
+
+### Added
+- :star2: New `PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue` sniff to detect code which could be affected by the PHP 7.0 change in the values reported by `func_get_arg()`, `func_get_args()`, `debug_backtrace()` and exception backtraces. [#750](https://github.com/PHPCompatibility/PHPCompatibility/pull/750). Fixes [#585](https://github.com/PHPCompatibility/PHPCompatibility/pull/585).
+- :star2: New `PHPCompatibility.MethodUse.NewDirectCallsToClone` sniff to detect direct call to a `__clone()` magic method which wasn't allowed prior to PHP 7.0. [#743](https://github.com/PHPCompatibility/PHPCompatibility/pull/743). Fixes [#629](https://github.com/PHPCompatibility/PHPCompatibility/issues/629).
+- :star2: New `PHPCompatibility.Variables.ForbiddenThisUseContext` sniff to detect most of the inconsistencies surrounding the use of the `$this` variable, which were removed in PHP 7.1. [#762](https://github.com/PHPCompatibility/PHPCompatibility/pull/762), [#771](https://github.com/PHPCompatibility/PHPCompatibility/pull/771). Fixes [#262](https://github.com/PHPCompatibility/PHPCompatibility/issues/262) and [#740](https://github.com/PHPCompatibility/PHPCompatibility/issues/740).
+- :star: `NewClasses`: detection of more native PHP Exceptions. [#743](https://github.com/PHPCompatibility/PHPCompatibility/pull/743), [#753](https://github.com/PHPCompatibility/PHPCompatibility/pull/753)
+- :star: `NewConstants` : detection of the new PHP 7.3 Curl, Stream Crypto and LDAP constants and some more PHP 7.0 Tokenizer constants. [#752](https://github.com/PHPCompatibility/PHPCompatibility/pull/752), [#767](https://github.com/PHPCompatibility/PHPCompatibility/pull/767), [#778](https://github.com/PHPCompatibility/PHPCompatibility/pull/778)
+- :star: `NewFunctions` sniff: recognize (more) new LDAP functions as introduced in PHP 7.3. [#768](https://github.com/PHPCompatibility/PHPCompatibility/pull/768)
+- :star: `NewFunctionParameters` sniff: recognize the new `$serverctrls` parameter which was added to a number of LDAP functions in PHP 7.3. [#769](https://github.com/PHPCompatibility/PHPCompatibility/pull/769)
+- :star: `NewIniDirectives` sniff: recognize the new `imap.enable_insecure_rsh` ini directive as introduced in PHP 7.1.25, 7.2.13 and 7.3.0. [#770](https://github.com/PHPCompatibility/PHPCompatibility/pull/770)
+- :star: `NewInterfaces` sniff: recognize two more Session related interfaces which were introduced in PHP 5.5.1 and 7.0 respectively. [#748](https://github.com/PHPCompatibility/PHPCompatibility/pull/748)
+- :star: Duplicate of upstream `findStartOfStatement()` method to the `PHPCompatibility\PHPCSHelper` class to allow for PHPCS cross-version usage of that method. [#750](https://github.com/PHPCompatibility/PHPCompatibility/pull/750)
+
+### Changed
+- :pushpin: `RemovedPHP4StyleConstructors`: will now also detect PHP4-style constructors when declared in interfaces. [#751](https://github.com/PHPCompatibility/PHPCompatibility/pull/751)
+- :pushpin: `Sniff::validDirectScope()`: the return value of this method has changed. Previously it would always be a boolean. It will stil return `false` when no valid direct scope has been found, but it will now return the `stackPtr` to the scope token if a _valid_ direct scope was encountered. [#758](https://github.com/PHPCompatibility/PHPCompatibility/pull/758)
+- :rewind: `NewOperators` : updated the version number for `T_COALESCE_EQUAL`. [#746](https://github.com/PHPCompatibility/PHPCompatibility/pull/746)
+- :pencil: Minor improvement to an error message in the unit test suite. [#742](https://github.com/PHPCompatibility/PHPCompatibility/pull/742)
+- :recycle: Various code clean-up and improvements. [#745](https://github.com/PHPCompatibility/PHPCompatibility/pull/745), [#756](https://github.com/PHPCompatibility/PHPCompatibility/pull/756), [#774](https://github.com/PHPCompatibility/PHPCompatibility/pull/774)
+- :recycle: Various minor inline documentation fixes. [#749](https://github.com/PHPCompatibility/PHPCompatibility/pull/749), [#757](https://github.com/PHPCompatibility/PHPCompatibility/pull/757)
+- :umbrella: Improved code coverage recording. [#744](https://github.com/PHPCompatibility/PHPCompatibility/pull/744), [#776](https://github.com/PHPCompatibility/PHPCompatibility/pull/776)
+- :green_heart: Travis: build tests are now being run against PHP 7.3 as well. [#511](https://github.com/wimg/PHPCompatibility/pull/511)
+    Note: full PHP 7.3 support is only available in combination with PHP_CodeSniffer 2.9.2 or 3.3.1+ due to an incompatibility within PHP_CodeSniffer itself.
+
+### Fixed
+- :white_check_mark: Compatibility with the upcoming release of PHPCS 3.4.0. Deal with changed behaviour of the PHPCS `Tokenizer` regarding binary type casts. [#760](https://github.com/PHPCompatibility/PHPCompatibility/pull/760)
+- :bug: `InternalInterfaces`: false negative for implemented/extended interfaces prefixed with a namespace separator. [#775](https://github.com/PHPCompatibility/PHPCompatibility/pull/775)
+- :bug: `NewClasses`: the introduction version of various native PHP Exceptions has been corrected. [#743](https://github.com/PHPCompatibility/PHPCompatibility/pull/743), [#753](https://github.com/PHPCompatibility/PHPCompatibility/pull/753)
+- :bug: `NewInterfaces`: false negative for implemented/extended interfaces prefixed with a namespace separator. [#775](https://github.com/PHPCompatibility/PHPCompatibility/pull/775)
+- :bug: `RemovedPHP4StyleConstructors`: the sniff would examine methods in nested anonymous classes as if they were methods of the higher level class. [#751](https://github.com/PHPCompatibility/PHPCompatibility/pull/751)
+- :rewind: `RemovedPHP4StyleConstructors`: the sniff will no longer throw false positives for the first method in an anonymous class when used in combination with PHPCS 2.3.x. [#751](https://github.com/PHPCompatibility/PHPCompatibility/pull/751)
+- :rewind: `ReservedFunctionNames`: fixed incorrect error message text for methods in anonymous classes when used in combination with PHPCS 2.3.x. [#755](https://github.com/PHPCompatibility/PHPCompatibility/pull/755)
+- :bug: `ReservedFunctionNames`: prevent duplicate errors being thrown for methods in nested anonymous classes. [#755](https://github.com/PHPCompatibility/PHPCompatibility/pull/755)
+- :bug: `PHPCSHelper::findEndOfStatement()`: minor bug fix. [#749](https://github.com/PHPCompatibility/PHPCompatibility/pull/749)
+- :bug: `Sniff::isClassProperty()`: class properties for classes nested in conditions or function calls were not always recognized as class properties. [#758](https://github.com/PHPCompatibility/PHPCompatibility/pull/758)
+
+### Credits
+Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
+
+
 ## [9.0.0] - 2018-10-07
 
 **IMPORTANT**: This release contains **breaking changes**. Please read the below information carefully before upgrading!
@@ -372,10 +416,10 @@ See all related issues and PRs in the [8.0.1 milestone].
 - :star: `NewScalarTypeDeclarations` sniff: recognize PHP 7.2 `object` type declarion. [#499](https://github.com/wimg/PHPCompatibility/pull/499)
 
 ### Changed
-:pencil2: Improved clarity of the deprecated functions alternative in the error message. [#502](https://github.com/wimg/PHPCompatibility/pull/502)
+- :pencil2: Improved clarity of the deprecated functions alternative in the error message. [#502](https://github.com/wimg/PHPCompatibility/pull/502)
 
 ### Fixed
-:fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591).) [#503](https://github.com/wimg/PHPCompatibility/pull/503)
+- :fire_engine: Temporary hotfix for installed_paths (pending [upstream fix](https://github.com/squizlabs/PHP_CodeSniffer/issues/1591).) [#503](https://github.com/wimg/PHPCompatibility/pull/503)
 
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
@@ -1127,7 +1171,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/9.0.0...HEAD
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/9.1.0...HEAD
+[9.0.0]: https://github.com/wimg/PHPCompatibility/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/wimg/PHPCompatibility/compare/8.2.0...9.0.0
 [8.2.0]: https://github.com/wimg/PHPCompatibility/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...8.1.0
@@ -1150,6 +1195,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[9.1.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/25
 [9.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/24
 [8.2.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/22
 [8.1.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/21
