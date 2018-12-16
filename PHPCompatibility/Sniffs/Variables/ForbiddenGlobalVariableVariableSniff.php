@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Variables\ForbiddenGlobalVariableVariableSniff.
@@ -46,7 +48,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -69,11 +71,11 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
 
             if ($variable !== false) {
 
-                $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($variable - 1), $ptr, true);
+                $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($variable - 1), $ptr, true);
 
                 if ($prev !== false && $tokens[$prev]['type'] === 'T_DOLLAR') {
 
-                    $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
+                    $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
 
                     if ($next !== false
                         && in_array($tokens[$next]['code'], array(T_OPEN_SQUARE_BRACKET, T_OBJECT_OPERATOR, T_DOUBLE_COLON), true) === true
@@ -100,7 +102,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
             if ($errorThrown === false) {
                 $dollar = $phpcsFile->findNext(T_DOLLAR, $ptr, $varEnd);
                 if ($dollar !== false) {
-                    $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($dollar + 1), $varEnd, true);
+                    $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($dollar + 1), $varEnd, true);
                     if ($tokens[$next]['code'] === T_OPEN_CURLY_BRACKET) {
                         $phpcsFile->addWarning(
                             'Global with anything other than bare variables is discouraged since PHP 7.0. Found %s',

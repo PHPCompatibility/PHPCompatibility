@@ -9,6 +9,8 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_File as File;
+
 /**
  * \PHPCompatibility\ComplexVersionInterface.
  *
@@ -35,7 +37,7 @@ interface ComplexVersionInterface
      *
      * @return void
      */
-    public function handleFeature(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo);
+    public function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo);
 
 
     /**
@@ -71,5 +73,5 @@ interface ComplexVersionInterface
      *
      * @return void
      */
-    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo);
+    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo);
 }

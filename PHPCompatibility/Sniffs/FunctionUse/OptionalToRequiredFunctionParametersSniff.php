@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionUse\OptionalToRequiredFunctionParametersSniff.
@@ -117,7 +118,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      *
      * @return void
      */
-    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $error = 'The "%s" parameter for function %s() is missing. Passing this parameter is ';
         if ($errorInfo['optionalRecommended'] === '') {

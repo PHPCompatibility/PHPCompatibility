@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff.
@@ -49,7 +51,7 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.2') === false) {
             return;
@@ -57,7 +59,7 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
             || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
         ) {
@@ -71,7 +73,7 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
                 T_USE             => true,
             );
 
-            $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
                 // Not a function call.
                 return;
@@ -79,12 +81,7 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
         }
 
         $closer            = $tokens[$nextNonEmpty]['parenthesis_closer'];
-        $lastInParenthesis = $phpcsFile->findPrevious(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
-            ($closer - 1),
-            $nextNonEmpty,
-            true
-        );
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), $nextNonEmpty, true);
 
         if ($tokens[$lastInParenthesis]['code'] !== T_COMMA) {
             return;

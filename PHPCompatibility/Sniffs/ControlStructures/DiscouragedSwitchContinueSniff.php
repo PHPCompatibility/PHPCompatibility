@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinue.
@@ -71,8 +73,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
      */
     public function register()
     {
-        $this->acceptedLevelTokens += \PHP_CodeSniffer_Tokens::$arithmeticTokens;
-        $this->acceptedLevelTokens += \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $this->acceptedLevelTokens += Tokens::$arithmeticTokens;
+        $this->acceptedLevelTokens += Tokens::$emptyTokens;
 
         return array(\T_SWITCH);
     }
@@ -86,7 +88,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.3') === false) {
             return;
@@ -165,7 +167,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
                         continue 2;
                     }
 
-                    if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
+                    if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                         continue;
                     }
 

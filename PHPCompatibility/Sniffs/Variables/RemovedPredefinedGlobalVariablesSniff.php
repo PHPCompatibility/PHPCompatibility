@@ -11,6 +11,8 @@ namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Variables\RemovedPredefinedGlobalVariablesSniff.
@@ -102,7 +104,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('5.3') === false) {
             return;
@@ -122,7 +124,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Check for static usage of class properties shadowing the removed global variables.
         if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
-            $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
             if ($prevToken !== false && $tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
                 return;
             }
@@ -194,7 +196,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      *
      * @return bool
      */
-    private function isTargetPHPErrormsgVar(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $tokens)
+    private function isTargetPHPErrormsgVar(File $phpcsFile, $stackPtr, array $tokens)
     {
         $scopeStart = 0;
 
@@ -225,12 +227,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         /*
          * Now, let's do some additional checks.
          */
-        $nextNonEmpty = $phpcsFile->findNext(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
-            ($stackPtr + 1),
-            null,
-            true
-        );
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         // Is the variable being used as an array ?
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === T_OPEN_SQUARE_BRACKET) {
@@ -241,7 +238,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Is this a variable assignment ?
         if ($nextNonEmpty !== false
-            && isset(\PHP_CodeSniffer_Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
+            && isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
         ) {
             return false;
         }
@@ -282,15 +279,10 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
                 continue;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
-                ($i + 1),
-                null,
-                true
-            );
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
 
             if ($nextNonEmpty !== false
-                && isset(\PHP_CodeSniffer_Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
+                && isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
             ) {
                 return false;
             }

@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * List assignment order.
@@ -53,7 +55,7 @@ class AssignmentOrderSniff extends Sniff
      *                  examined, the stack pointer to the list closer to skip
      *                  passed any nested lists which don't need to be examined again.
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsAbove('7.0') === false) {
             return;
@@ -69,7 +71,7 @@ class AssignmentOrderSniff extends Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === T_LIST) {
-            $nextNonEmpty = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false
                 || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
                 || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
@@ -147,7 +149,7 @@ class AssignmentOrderSniff extends Sniff
             $varContent = '';
 
             for ($i = $nextStartPoint; $i < $nextStopPoint; $i++) {
-                if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
                     continue;
                 }
 

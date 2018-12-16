@@ -9,6 +9,8 @@
 
 namespace PHPCompatibility;
 
+use PHP_CodeSniffer_File as File;
+
 /**
  * \PHPCompatibility\AbstractRemovedFeatureSniff.
  *
@@ -109,7 +111,7 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
      *
      * @return void
      */
-    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $itemName = $this->getItemName($itemInfo, $errorInfo);
         $error    = $this->getErrorMsgTemplate();

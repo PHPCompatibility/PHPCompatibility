@@ -10,6 +10,8 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractComplexVersionSniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff.
@@ -155,7 +157,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -180,7 +182,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         }
 
         $parameterCount  = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
-        $openParenthesis = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
+        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
         if ($parameterCount === 0 && $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
@@ -293,7 +295,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      *
      * @return void
      */
-    public function addError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
         $error     = $this->getErrorMsgTemplate();
         $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']) . 'Missing';

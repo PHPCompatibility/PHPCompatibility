@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff.
@@ -57,7 +58,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         if (isset($parameters[2]) === false) {
             return;

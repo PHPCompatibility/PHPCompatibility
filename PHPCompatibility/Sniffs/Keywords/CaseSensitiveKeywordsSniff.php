@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Keywords\CaseSensitiveKeywordsSniff.
@@ -51,7 +52,7 @@ class CaseSensitiveKeywordsSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.4') === false) {
             return;

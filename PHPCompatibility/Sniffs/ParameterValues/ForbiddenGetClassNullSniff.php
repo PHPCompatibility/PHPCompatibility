@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\ParameterValues\ForbiddenGetClassNullSniff.
@@ -60,7 +61,7 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         if (isset($parameters[1]) === false) {
             return;

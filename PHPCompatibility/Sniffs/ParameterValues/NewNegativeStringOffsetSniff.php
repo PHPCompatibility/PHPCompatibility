@@ -12,6 +12,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\ParameterValues\NewNegativeStringOffsetSniff.
@@ -96,7 +97,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $functionLC = strtolower($functionName);
         foreach ($this->targetFunctions[$functionLC] as $pos => $name) {

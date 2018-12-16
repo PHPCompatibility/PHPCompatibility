@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff.
@@ -111,8 +113,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
      */
     public function setProperties()
     {
-        $this->safeOperands += \PHP_CodeSniffer_Tokens::$heredocTokens;
-        $this->safeOperands += \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $this->safeOperands += Tokens::$heredocTokens;
+        $this->safeOperands += Tokens::$emptyTokens;
     }
 
 
@@ -136,7 +138,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @return void|int Null or integer stack pointer to skip forward.
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->bowOutEarly() === true) {
             return;
@@ -224,14 +226,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
                 // Filter out late static binding and class properties.
                 if ($tokens[$stackPtr]['code'] === T_STATIC) {
-                    $next = $phpcsFile->findNext(
-                        \PHP_CodeSniffer_Tokens::$emptyTokens,
-                        ($stackPtr + 1),
-                        null,
-                        true,
-                        null,
-                        true
-                    );
+                    $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
                     if ($next === false || $tokens[$next]['code'] !== T_VARIABLE) {
                         // Late static binding.
                         return;
@@ -268,7 +263,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                         continue;
                     }
 
-                    $start = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($start + 1), $end, true);
+                    $start = $phpcsFile->findNext(Tokens::$emptyTokens, ($start + 1), $end, true);
                     if ($start === false
                         || ($tokens[$stackPtr]['code'] === T_CONST && $tokens[$start]['code'] !== T_STRING)
                         || ($tokens[$stackPtr]['code'] !== T_CONST && $tokens[$start]['code'] !== T_VARIABLE)
@@ -309,10 +304,10 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @return bool
      */
-    protected function isValidAssignment(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $end)
+    protected function isValidAssignment(File $phpcsFile, $stackPtr, $end)
     {
         $tokens = $phpcsFile->getTokens();
-        $next   = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
+        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
         if ($next === false || $tokens[$next]['code'] !== T_EQUAL) {
             // No value assigned.
             return true;
@@ -336,7 +331,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @return bool
      */
-    protected function isStaticValue(\PHP_CodeSniffer_File $phpcsFile, $tokens, $start, $end, $nestedArrays = 0)
+    protected function isStaticValue(File $phpcsFile, $tokens, $start, $end, $nestedArrays = 0)
     {
         $nextNonSimple = $phpcsFile->findNext($this->safeOperands, $start, ($end + 1), true);
         if ($nextNonSimple === false) {
@@ -360,12 +355,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             case T_PARENT:
             case T_SELF:
             case T_DOUBLE_COLON:
-                $nextNonEmpty = $phpcsFile->findNext(
-                    \PHP_CodeSniffer_Tokens::$emptyTokens,
-                    ($nextNonSimple + 1),
-                    ($end + 1),
-                    true
-                );
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonSimple + 1), ($end + 1), true);
 
                 if ($tokens[$nextNonSimple]['code'] === T_NAMESPACE) {
                     // Allow only `namespace\...`.
@@ -385,7 +375,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                         return false;
                     }
 
-                    $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextNonSimple - 1), null, true);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($nextNonSimple - 1), null, true);
                     // No need to worry about parent/self, that's handled above and
                     // the double colon is skipped over in that case.
                     if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['code'] !== T_STRING) {
@@ -448,12 +438,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                 ) {
                     $closer = $tokens[$nextNonSimple]['bracket_closer'];
                 } else {
-                    $maybeOpener = $phpcsFile->findNext(
-                        \PHP_CodeSniffer_Tokens::$emptyTokens,
-                        ($nextNonSimple + 1),
-                        ($end + 1),
-                        true
-                    );
+                    $maybeOpener = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonSimple + 1), ($end + 1), true);
                     if ($tokens[$maybeOpener]['code'] === T_OPEN_PARENTHESIS) {
                         $opener = $maybeOpener;
                         if (isset($tokens[$opener]['parenthesis_closer']) === true) {
@@ -486,7 +471,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @return void
      */
-    protected function throwError(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $type, $content = '')
+    protected function throwError(File $phpcsFile, $stackPtr, $type, $content = '')
     {
         $error     = static::ERROR_PHRASE;
         $phrase    = '';

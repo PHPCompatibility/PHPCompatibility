@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\UseDeclarations;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff.
@@ -48,7 +50,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.1') === false) {
             return;
@@ -64,7 +66,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
                 return;
             }
 
-            $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
+            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
             if ($prevToken === false || $tokens[$prevToken]['code'] !== T_NS_SEPARATOR) {
                 return;
             }
@@ -91,7 +93,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
             return;
         }
 
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($closeCurly - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closeCurly - 1), null, true);
         if ($tokens[$prevToken]['code'] === T_COMMA) {
             $phpcsFile->addError(
                 'Trailing comma\'s are not allowed in group use statements in PHP 7.1 or earlier',

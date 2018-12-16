@@ -10,6 +10,8 @@
 namespace PHPCompatibility;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\AbstractFunctionCallParameterSniff.
@@ -83,7 +85,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->bowOutEarly() === true) {
             return;
@@ -97,7 +99,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($this->isMethod === true) {
             if ($tokens[$prevNonEmpty]['code'] !== T_DOUBLE_COLON
@@ -154,7 +156,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    abstract public function processParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName, $parameters);
+    abstract public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters);
 
 
     /**
@@ -170,7 +172,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
      */
-    public function processNoParameters(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $functionName)
+    public function processNoParameters(File $phpcsFile, $stackPtr, $functionName)
     {
         return;
     }

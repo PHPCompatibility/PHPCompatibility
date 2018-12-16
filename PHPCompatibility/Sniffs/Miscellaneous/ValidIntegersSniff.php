@@ -10,6 +10,7 @@
 namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff.
@@ -53,7 +54,7 @@ class ValidIntegersSniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
@@ -164,7 +165,7 @@ class ValidIntegersSniff extends Sniff
      *
      * @return string
      */
-    private function getBinaryInteger(\PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
+    private function getBinaryInteger(File $phpcsFile, $tokens, $stackPtr)
     {
         $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
 

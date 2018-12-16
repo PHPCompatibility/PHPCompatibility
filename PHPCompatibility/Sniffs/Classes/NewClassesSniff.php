@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\Classes\NewClassesSniff.
@@ -611,7 +612,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -652,7 +653,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processSingularToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processSingularToken(File $phpcsFile, $stackPtr)
     {
         $tokens      = $phpcsFile->getTokens();
         $FQClassName = '';
@@ -697,7 +698,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processFunctionToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processFunctionToken(File $phpcsFile, $stackPtr)
     {
         // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
@@ -731,7 +732,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processCatchToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processCatchToken(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -797,7 +798,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    private function processReturnTypeToken(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    private function processReturnTypeToken(File $phpcsFile, $stackPtr)
     {
         $returnTypeHint   = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
         $returnTypeHint   = ltrim($returnTypeHint, '\\');

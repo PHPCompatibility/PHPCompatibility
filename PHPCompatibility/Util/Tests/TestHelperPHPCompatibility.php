@@ -8,6 +8,7 @@
 namespace PHPCompatibility\Util\Tests;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
 
 /**
  * Helper class to facilitate testing of the methods within the abstract \PHPCompatibility\Sniff class.
@@ -36,7 +37,7 @@ class TestHelperPHPCompatibility extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
     }
 
@@ -52,7 +53,7 @@ class TestHelperPHPCompatibility extends Sniff
      *
      * @return int|float|bool
      */
-    public function isNumber(\PHP_CodeSniffer_File $phpcsFile, $start, $end, $allowFloats = false)
+    public function isNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
         return parent::isNumber($phpcsFile, $start, $end, $allowFloats);
     }
@@ -68,7 +69,7 @@ class TestHelperPHPCompatibility extends Sniff
      *
      * @return bool
      */
-    public function isNumericCalculation(\PHP_CodeSniffer_File $phpcsFile, $start, $end)
+    public function isNumericCalculation(File $phpcsFile, $start, $end)
     {
         return parent::isNumericCalculation($phpcsFile, $start, $end);
     }

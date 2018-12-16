@@ -11,6 +11,8 @@
 namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Keywords\NewKeywordsSniff.
@@ -192,7 +194,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
@@ -245,8 +247,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($end + 1), null, true);
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($prevToken !== false
             && ($tokens[$prevToken]['code'] === T_DOUBLE_COLON
@@ -356,7 +358,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @return bool
      */
-    public function isNotQuoted(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function isNotQuoted(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         return ($tokens[$stackPtr]['content'][3] !== '"');

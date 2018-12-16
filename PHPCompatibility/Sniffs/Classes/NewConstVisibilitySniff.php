@@ -12,6 +12,8 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
+use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Classes\NewConstVisibility.
@@ -45,17 +47,17 @@ class NewConstVisibilitySniff extends Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.0') === false) {
             return;
         }
 
         $tokens    = $phpcsFile->getTokens();
-        $prevToken = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
 
         // Is the previous token a visibility indicator ?
-        if ($prevToken === false || isset(\PHP_CodeSniffer_Tokens::$scopeModifiers[$tokens[$prevToken]['code']]) === false) {
+        if ($prevToken === false || isset(Tokens::$scopeModifiers[$tokens[$prevToken]['code']]) === false) {
             return;
         }
 
