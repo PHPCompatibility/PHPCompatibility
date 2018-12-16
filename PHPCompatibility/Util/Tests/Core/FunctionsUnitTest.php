@@ -436,7 +436,7 @@ class FunctionsUnitTest extends PHPUnit_TestCase
      *
      * @dataProvider dataStripVariables
      *
-     * @covers \PHPCompatibility\Sniff::stripQuotes
+     * @covers \PHPCompatibility\Sniff::stripVariables
      *
      * @param string $input    The input string.
      * @param string $expected The expected function output.

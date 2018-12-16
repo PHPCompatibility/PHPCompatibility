@@ -65,3 +65,16 @@ namespace {
 new class {
     function something() {}
 }
+
+interface MyInterface {
+    /* Case I1 */
+    function something();
+}
+
+trait MyTrait {
+    /* Case T1 */
+    public $property;
+
+    /* Case T2 */
+    function something() {}
+}

@@ -16,6 +16,9 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewClassesSniff
+ * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
+ * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
+ * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility

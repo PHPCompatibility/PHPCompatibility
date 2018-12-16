@@ -16,6 +16,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group languageConstructs
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff
+ * @covers \PHPCompatibility\Sniff::isVariable
  *
  * @uses    \PHPCompatibility\Tests\BaseSniffTest
  * @package PHPCompatibility
