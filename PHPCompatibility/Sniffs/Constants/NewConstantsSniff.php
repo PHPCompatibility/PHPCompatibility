@@ -2148,10 +2148,19 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.0' => true,
         ),
         // Tokenizer:
+        'T_COALESCE' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
         'T_SPACESHIP' => array(
             '5.6' => false,
             '7.0' => true,
         ),
+        'T_YIELD_FROM' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+
         // Zlib:
         // The first three are in the PHP 5.4 changelog, but the Extension constant page says 7.0.
         'ZLIB_ENCODING_RAW' => array(

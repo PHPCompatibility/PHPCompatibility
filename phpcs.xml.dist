@@ -23,7 +23,7 @@
     <!--
         PHP cross version compatibility ;-).
     -->
-    <config name="testVersion" value="5.3-99.0"/>
+    <config name="testVersion" value="5.3-"/>
     <rule ref="PHPCompatibility">
         <!-- Exclude PHP constants back-filled by PHPCS 2.3.0+. -->
         <exclude name="PHPCompatibility.Constants.NewConstants.t_trait_cFound"/>
@@ -33,6 +33,12 @@
         <exclude name="PHPCompatibility.Constants.NewConstants.t_finallyFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_yieldFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_ellipsisFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_powFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_pow_equalFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_coalesceFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_spaceshipFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_yield_fromFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_coalesce_equalFound"/>
     </rule>
 
     <!--
