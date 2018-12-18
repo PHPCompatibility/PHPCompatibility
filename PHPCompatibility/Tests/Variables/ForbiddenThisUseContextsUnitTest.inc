@@ -87,6 +87,12 @@ class UnsetInMethod {
 	}
 }
 
+class MyBar implements ArrayAccess {
+    public function remove($name) {
+        unset($this[$name]); // OK.
+    }
+}
+
 // These should be flagged. New fatal error: Cannot unset $this.
 unset($this);
 unset($that, $theOther, $this, $somethingElse, $this); // Error x 2.

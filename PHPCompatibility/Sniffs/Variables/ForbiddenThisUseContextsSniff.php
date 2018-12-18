@@ -271,7 +271,8 @@ class ForbiddenThisUseContextsSniff extends Sniff
 
                     if ($afterThis !== false
                         && ($tokens[$afterThis]['code'] === T_OBJECT_OPERATOR
-                            || $tokens[$afterThis]['code'] === T_DOUBLE_COLON)
+                            || $tokens[$afterThis]['code'] === T_DOUBLE_COLON
+                            || $tokens[$afterThis]['code'] === T_OPEN_SQUARE_BRACKET)
                     ) {
                         $i = $afterThis;
                         continue;
