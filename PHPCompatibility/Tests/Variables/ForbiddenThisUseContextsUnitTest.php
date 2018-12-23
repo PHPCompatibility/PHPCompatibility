@@ -331,9 +331,9 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
     public function dataIncompatibleThisUsageUnset()
     {
         return array(
-            array(91),
-            array(92), // x2.
-            array(96),
+            array(97),
+            array(98), // x2.
+            array(102),
         );
     }
 
@@ -365,8 +365,9 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
         return array(
             array(83),
             array(86),
-            array(94),
-            array(95),
+            array(92),
+            array(100),
+            array(101),
         );
     }
 
@@ -396,8 +397,8 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
     public function dataIncompatibleThisUsageOutsideObjectContext()
     {
         return array(
-            array(140),
-            array(145),
+            array(146),
+            array(151),
         );
     }
 
@@ -427,14 +428,14 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
     public function dataNoFalsePositivesOutsideObjectContext()
     {
         return array(
-            array(103),
-            array(106),
-            array(111),
-            array(115),
-            array(120),
-            array(127),
-            array(132),
-            array(196), // Exception to the rule / static __call() magic method.
+            array(109),
+            array(112),
+            array(117),
+            array(121),
+            array(126),
+            array(133),
+            array(138),
+            array(202), // Exception to the rule / static __call() magic method.
         );
     }
 
@@ -449,7 +450,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.1');
 
         // No errors expected on the first 14 lines.
-        for ($line = 150; $line <= 205; $line++) {
+        for ($line = 156; $line <= 205; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
