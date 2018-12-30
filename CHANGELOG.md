@@ -14,6 +14,12 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.1.1] - 2018-12-31
+
+See all related issues and PRs in the [9.1.1 milestone].
+
+### Fixed
+- :bug: `ForbiddenThisUseContexts`: false positive for unsetting `$this['key']` on objects implementing `ArrayAccess`. [#781](https://github.com/PHPCompatibility/PHPCompatibility/pull/781). Fixes [#780](https://github.com/PHPCompatibility/PHPCompatibility/issues/780)
 
 ## [9.1.0] - 2018-12-16
 
@@ -611,7 +617,7 @@ See all related issues and PRs in the [7.1.4 milestone].
 - :star: `DeprecatedIniDirectives` sniff: recognize PHP 7.2 deprecated `mbstring.func_overload` directive. [#377](https://github.com/wimg/PHPCompatibility/pull/377)
 - :star: `NewClasses` sniff: check for the PHP 5.1 `libXMLError` class. [#412](https://github.com/wimg/PHPCompatibility/pull/412)
 - :star: `NewClasses` sniff: recognize all native PHP Exception classes. [#418](https://github.com/wimg/PHPCompatibility/pull/418)
-- :star: `NewClosures` sniff: check for closures being declared as static and closures using `$this`. Both of which was not supported pre-PHP 5.4. [#389](https://github.com/wimg/PHPCompatibility/pull/389). Fixes [#24](https://github.com/wimg/PHPCompatibility/issues/24).
+- :star: `NewClosure` sniff: check for closures being declared as static and closures using `$this`. Both of which was not supported pre-PHP 5.4. [#389](https://github.com/wimg/PHPCompatibility/pull/389). Fixes [#24](https://github.com/wimg/PHPCompatibility/issues/24).
 - :star: `NewFunctionParameters` sniff: recognize new `exclude_disabled` parameter for the `get_defined_functions()` function as introduced in PHP 7.0.15. [#375](https://github.com/wimg/PHPCompatibility/pull/375)
 - :star: `NewFunctions` sniff: recognize new PHP 7.2 socket related functions. [#376](https://github.com/wimg/PHPCompatibility/pull/376)
 - :star: `NewInterfaces` sniff: check for some more PHP native interfaces. [#411](https://github.com/wimg/PHPCompatibility/pull/411)
@@ -1083,6 +1089,7 @@ See all related issues and PRs in the [7.0 milestone].
 - :star2: New `ForbiddenNegativeBitshift` sniff to detect bitwise shifts by negative number which will throw an ArithmeticError in PHP 7.0. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
 - :star2: New `ForbiddenSwitchWithMultipleDefaultBlocks` sniff to detect switch statements with multiple default blocks which is not allowed since PHP 7.0. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
 - :star2: New `NewAnonymousClasses` sniff to detect anonymous classes as introduced in PHP 7.0. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
+- :star2: New `NewClosure` sniff to detect anonymous functions as introduced in PHP 5.3. Fixes [#35](https://github.com/wimg/PHPCompatibility/issues/35)
 - :star2: New `NewFunctionParameters` sniff to detect use of new parameters in build-in PHP functions. Initially only sniffing for the new PHP 7.0 function parameters and the new PHP 5.3+ `before_needle` parameter for the `strstr()` function. [#110](https://github.com/wimg/PHPCompatibility/pull/110), [#112](https://github.com/wimg/PHPCompatibility/pull/112). Fixes [#27](https://github.com/wimg/PHPCompatibility/issues/27).
 - :star2: New `NewGroupUseDeclarations` sniff to detect group use declarations as introduced in PHP 7.0. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
 - :star2: New `NewScalarReturnTypeDeclarations` sniff to detect scalar return type hints as introduced in PHP 7.0. [#110](https://github.com/wimg/PHPCompatibility/pull/110)
@@ -1171,8 +1178,9 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/9.1.0...HEAD
-[9.0.0]: https://github.com/wimg/PHPCompatibility/compare/9.0.0...9.1.0
+[Unreleased]: https://github.com/wimg/PHPCompatibility/compare/9.1.1...HEAD
+[9.1.1]: https://github.com/wimg/PHPCompatibility/compare/9.1.0...9.1.1
+[9.1.0]: https://github.com/wimg/PHPCompatibility/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/wimg/PHPCompatibility/compare/8.2.0...9.0.0
 [8.2.0]: https://github.com/wimg/PHPCompatibility/compare/8.1.0...8.2.0
 [8.1.0]: https://github.com/wimg/PHPCompatibility/compare/8.0.1...8.1.0
@@ -1195,6 +1203,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/wimg/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/wimg/PHPCompatibility/compare/5.5...5.6
 
+[9.1.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/27
 [9.1.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/25
 [9.0.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/24
 [8.2.0 milestone]: https://github.com/wimg/PHPCompatibility/milestone/22
