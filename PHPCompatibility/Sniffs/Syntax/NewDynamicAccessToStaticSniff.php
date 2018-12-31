@@ -38,7 +38,7 @@ class NewDynamicAccessToStaticSniff extends Sniff
     public function register()
     {
         return array(
-            T_DOUBLE_COLON,
+            \T_DOUBLE_COLON,
         );
     }
 
@@ -61,17 +61,17 @@ class NewDynamicAccessToStaticSniff extends Sniff
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         // Disregard `static::` as well. Late static binding is reported by another sniff.
-        if ($tokens[$prevNonEmpty]['code'] === T_SELF
-            || $tokens[$prevNonEmpty]['code'] === T_PARENT
-            || $tokens[$prevNonEmpty]['code'] === T_STATIC
+        if ($tokens[$prevNonEmpty]['code'] === \T_SELF
+            || $tokens[$prevNonEmpty]['code'] === \T_PARENT
+            || $tokens[$prevNonEmpty]['code'] === \T_STATIC
         ) {
             return;
         }
 
-        if ($tokens[$prevNonEmpty]['code'] === T_STRING) {
+        if ($tokens[$prevNonEmpty]['code'] === \T_STRING) {
             $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
 
-            if ($tokens[$prevPrevNonEmpty]['code'] !== T_OBJECT_OPERATOR) {
+            if ($tokens[$prevPrevNonEmpty]['code'] !== \T_OBJECT_OPERATOR) {
                 return;
             }
         }

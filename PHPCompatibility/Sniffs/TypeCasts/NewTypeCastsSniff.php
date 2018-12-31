@@ -69,8 +69,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
          * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/1574
          */
         if (version_compare(PHPCSHelper::getVersion(), '3.4.0', '<') === true) {
-            $tokens[] = T_STRING_CAST;
-            $tokens[] = T_CONSTANT_ENCAPSED_STRING;
+            $tokens[] = \T_STRING_CAST;
+            $tokens[] = \T_CONSTANT_ENCAPSED_STRING;
         }
 
         return $tokens;

@@ -36,9 +36,9 @@ class NewArrayStringDereferencingSniff extends Sniff
     public function register()
     {
         return array(
-            T_ARRAY,
-            T_OPEN_SHORT_ARRAY,
-            T_CONSTANT_ENCAPSED_STRING,
+            \T_ARRAY,
+            \T_OPEN_SHORT_ARRAY,
+            \T_CONSTANT_ENCAPSED_STRING,
         );
     }
 
@@ -60,12 +60,12 @@ class NewArrayStringDereferencingSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case T_CONSTANT_ENCAPSED_STRING:
+            case \T_CONSTANT_ENCAPSED_STRING:
                 $type = 'string literals';
                 $end  = $stackPtr;
                 break;
 
-            case T_ARRAY:
+            case \T_ARRAY:
                 if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
                     // Live coding.
                     return;
@@ -75,7 +75,7 @@ class NewArrayStringDereferencingSniff extends Sniff
                 }
                 break;
 
-            case T_OPEN_SHORT_ARRAY:
+            case \T_OPEN_SHORT_ARRAY:
                 if (isset($tokens[$stackPtr]['bracket_closer']) === false) {
                     // Live coding.
                     return;

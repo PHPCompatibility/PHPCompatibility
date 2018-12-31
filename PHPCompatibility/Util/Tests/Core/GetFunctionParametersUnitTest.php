@@ -38,13 +38,13 @@ class GetFunctionParametersUnitTest extends CoreMethodTestFrame
     {
         switch ($commentString[8]) {
             case 'S':
-                $stackPtr = $this->getTargetToken($commentString, array(T_STRING));
+                $stackPtr = $this->getTargetToken($commentString, array(\T_STRING));
                 break;
             case 'A':
-                $stackPtr = $this->getTargetToken($commentString, array(T_ARRAY, T_OPEN_SHORT_ARRAY));
+                $stackPtr = $this->getTargetToken($commentString, array(\T_ARRAY, \T_OPEN_SHORT_ARRAY));
                 break;
             case 'V':
-                $stackPtr = $this->getTargetToken($commentString, array(T_VARIABLE));
+                $stackPtr = $this->getTargetToken($commentString, array(\T_VARIABLE));
                 break;
         }
 
@@ -353,7 +353,7 @@ class GetFunctionParametersUnitTest extends CoreMethodTestFrame
      */
     public function testGetFunctionCallParameter($commentString, $paramPosition, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, array(T_STRING, T_ARRAY, T_OPEN_SHORT_ARRAY));
+        $stackPtr = $this->getTargetToken($commentString, array(\T_STRING, \T_ARRAY, \T_OPEN_SHORT_ARRAY));
         /*
          * Start/end token position values in the expected array are set as offsets
          * in relation to the target token.

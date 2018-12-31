@@ -34,7 +34,7 @@ class NewMultiCatchSniff extends Sniff
      */
     public function register()
     {
-        return array(T_CATCH);
+        return array(\T_CATCH);
     }
 
     /**
@@ -60,7 +60,7 @@ class NewMultiCatchSniff extends Sniff
             return;
         }
 
-        $hasBitwiseOr = $phpcsFile->findNext(T_BITWISE_OR, $token['parenthesis_opener'], $token['parenthesis_closer']);
+        $hasBitwiseOr = $phpcsFile->findNext(\T_BITWISE_OR, $token['parenthesis_opener'], $token['parenthesis_closer']);
 
         if ($hasBitwiseOr === false) {
             return;

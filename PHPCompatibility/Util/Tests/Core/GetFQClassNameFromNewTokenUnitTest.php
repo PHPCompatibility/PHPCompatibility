@@ -36,7 +36,7 @@ class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
      */
     public function testGetFQClassNameFromNewToken($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, T_NEW);
+        $stackPtr = $this->getTargetToken($commentString, \T_NEW);
         $result   = $this->helperClass->getFQClassNameFromNewToken($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

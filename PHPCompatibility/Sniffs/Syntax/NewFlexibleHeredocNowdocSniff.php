@@ -41,13 +41,13 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
     public function register()
     {
         $targets = array(
-            T_END_HEREDOC,
-            T_END_NOWDOC,
+            \T_END_HEREDOC,
+            \T_END_NOWDOC,
         );
 
-        if (version_compare(PHP_VERSION_ID, '70299', '>') === false) {
+        if (version_compare(\PHP_VERSION_ID, '70299', '>') === false) {
             // Start identifier of a PHP 7.3 flexible heredoc/nowdoc.
-            $targets[] = T_STRING;
+            $targets[] = \T_STRING;
         }
 
         return $targets;
@@ -75,7 +75,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        if ($this->supportsAbove('7.3') === true && $tokens[$stackPtr]['code'] !== T_STRING) {
+        if ($this->supportsAbove('7.3') === true && $tokens[$stackPtr]['code'] !== \T_STRING) {
             $this->detectClosingMarkerInBody($phpcsFile, $stackPtr);
         }
     }
@@ -98,7 +98,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
         $trailingError     = 'Having code - other than a semi-colon or new line - after the closing marker of a heredoc/nowdoc is not supported in PHP 7.2 or earlier.';
         $trailingErrorCode = 'ClosingMarkerNoNewLine';
 
-        if (version_compare(PHP_VERSION_ID, '70299', '>') === true) {
+        if (version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
 
             /*
              * Check for indented closing marker.
@@ -110,13 +110,13 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             /*
              * Check for tokens after the closing marker.
              */
-            $nextNonWhitespace = $phpcsFile->findNext(array(T_WHITESPACE, T_SEMICOLON), ($stackPtr + 1), null, true);
+            $nextNonWhitespace = $phpcsFile->findNext(array(\T_WHITESPACE, \T_SEMICOLON), ($stackPtr + 1), null, true);
             if ($tokens[$stackPtr]['line'] === $tokens[$nextNonWhitespace]['line']) {
                 $phpcsFile->addError($trailingError, $stackPtr, $trailingErrorCode);
             }
         } else {
             // For PHP < 7.3, we're only interested in T_STRING tokens.
-            if ($tokens[$stackPtr]['code'] !== T_STRING) {
+            if ($tokens[$stackPtr]['code'] !== \T_STRING) {
                 return;
             }
 
@@ -128,7 +128,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             $identifier = $matches[2];
 
             for ($i = ($stackPtr + 1); $i <= $phpcsFile->numTokens; $i++) {
-                if ($tokens[$i]['code'] !== T_ENCAPSED_AND_WHITESPACE) {
+                if ($tokens[$i]['code'] !== \T_ENCAPSED_AND_WHITESPACE) {
                     continue;
                 }
 
@@ -183,12 +183,12 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
         $error     = 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.';
         $errorCode = 'ClosingMarkerNoNewLine';
 
-        if (version_compare(PHP_VERSION_ID, '70299', '>') === true) {
-            $nextNonWhitespace = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true, null, true);
+        if (version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
+            $nextNonWhitespace = $phpcsFile->findNext(\T_WHITESPACE, ($stackPtr + 1), null, true, null, true);
             if ($nextNonWhitespace === false
-                || $tokens[$nextNonWhitespace]['code'] === T_SEMICOLON
-                || (($tokens[$nextNonWhitespace]['code'] === T_COMMA
-                    || $tokens[$nextNonWhitespace]['code'] === T_STRING_CONCAT)
+                || $tokens[$nextNonWhitespace]['code'] === \T_SEMICOLON
+                || (($tokens[$nextNonWhitespace]['code'] === \T_COMMA
+                    || $tokens[$nextNonWhitespace]['code'] === \T_STRING_CONCAT)
                     && $tokens[$nextNonWhitespace]['line'] !== $tokens[$stackPtr]['line'])
             ) {
                 // This is most likely a correctly identified closing marker.
@@ -196,7 +196,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             }
 
             // The real closing tag has to be before the next heredoc/nowdoc.
-            $nextHereNowDoc = $phpcsFile->findNext(array(T_START_HEREDOC, T_START_NOWDOC), ($stackPtr + 1));
+            $nextHereNowDoc = $phpcsFile->findNext(array(\T_START_HEREDOC, \T_START_NOWDOC), ($stackPtr + 1));
             if ($nextHereNowDoc === false) {
                 $nextHereNowDoc = null;
             }
@@ -204,9 +204,9 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             $identifier        = trim($tokens[$stackPtr]['content']);
             $realClosingMarker = $stackPtr;
 
-            while (($realClosingMarker = $phpcsFile->findNext(T_STRING, ($realClosingMarker + 1), $nextHereNowDoc, false, $identifier)) !== false) {
+            while (($realClosingMarker = $phpcsFile->findNext(\T_STRING, ($realClosingMarker + 1), $nextHereNowDoc, false, $identifier)) !== false) {
 
-                $prevNonWhitespace = $phpcsFile->findPrevious(T_WHITESPACE, ($realClosingMarker - 1), null, true);
+                $prevNonWhitespace = $phpcsFile->findPrevious(\T_WHITESPACE, ($realClosingMarker - 1), null, true);
                 if ($prevNonWhitespace === false
                     || $tokens[$prevNonWhitespace]['line'] === $tokens[$realClosingMarker]['line']
                 ) {
@@ -228,7 +228,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
                 $opener = $tokens[$stackPtr]['scope_opener'];
             } else {
                 // PHPCS < 3.0.2 did not add scope_* values for Nowdocs.
-                $opener = $phpcsFile->findPrevious(T_START_NOWDOC, ($stackPtr - 1));
+                $opener = $phpcsFile->findPrevious(\T_START_NOWDOC, ($stackPtr - 1));
                 if ($opener === false) {
                     return;
                 }

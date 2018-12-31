@@ -36,8 +36,8 @@ class IsNumericCalculationUnitTest extends CoreMethodTestFrame
      */
     public function testIsNumericCalculation($commentString, $isCalc)
     {
-        $start = ($this->getTargetToken($commentString, T_EQUAL) + 1);
-        $end   = ($this->getTargetToken($commentString, T_SEMICOLON) - 1);
+        $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
         $result = $this->helperClass->isNumericCalculation($this->phpcsFile, $start, $end);
         $this->assertSame($isCalc, $result);

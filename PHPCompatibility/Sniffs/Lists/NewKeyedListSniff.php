@@ -34,8 +34,8 @@ class NewKeyedListSniff extends Sniff
      * @var array
      */
     protected $sniffTargets =  array(
-        T_LIST             => T_LIST,
-        T_OPEN_SHORT_ARRAY => T_OPEN_SHORT_ARRAY,
+        \T_LIST             => \T_LIST,
+        \T_OPEN_SHORT_ARRAY => \T_OPEN_SHORT_ARRAY,
     );
 
     /**
@@ -44,7 +44,7 @@ class NewKeyedListSniff extends Sniff
      * @var array
      */
     protected $targetsInList = array(
-        T_DOUBLE_ARROW => T_DOUBLE_ARROW,
+        \T_DOUBLE_ARROW => \T_DOUBLE_ARROW,
     );
 
     /**
@@ -107,17 +107,17 @@ class NewKeyedListSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY
+        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY
             && $this->isShortList($phpcsFile, $stackPtr) === false
         ) {
             // Short array, not short list.
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] === T_LIST) {
+        if ($tokens[$stackPtr]['code'] === \T_LIST) {
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false
-                || $tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
+                || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
                 || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
             ) {
                 // Parse error or live coding.
@@ -191,15 +191,15 @@ class NewKeyedListSniff extends Sniff
             }
 
             // Skip past nested list constructs.
-            if ($tokens[$i]['code'] === T_LIST) {
+            if ($tokens[$i]['code'] === \T_LIST) {
                 $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
                 if ($nextNonEmpty !== false
-                    && $tokens[$nextNonEmpty]['code'] === T_OPEN_PARENTHESIS
+                    && $tokens[$nextNonEmpty]['code'] === \T_OPEN_PARENTHESIS
                     && isset($tokens[$nextNonEmpty]['parenthesis_closer']) === true
                 ) {
                     $i = $tokens[$nextNonEmpty]['parenthesis_closer'];
                 }
-            } elseif ($tokens[$i]['code'] === T_OPEN_SHORT_ARRAY
+            } elseif ($tokens[$i]['code'] === \T_OPEN_SHORT_ARRAY
                 && isset($tokens[$i]['bracket_closer'])
             ) {
                 $i = $tokens[$i]['bracket_closer'];

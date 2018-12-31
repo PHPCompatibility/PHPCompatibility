@@ -178,7 +178,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
          */
         if (empty($translate) === false) {
             $this->translateContentToToken = $translate;
-            $tokens[] = T_STRING;
+            $tokens[] = \T_STRING;
         }
 
         return $tokens;
@@ -228,8 +228,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
          * a multi-line "yield from" is tokenized as two tokens.
          */
         if ($tokenType === 'T_YIELD') {
-            $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($end + 1), null, true);
-            if ($tokens[$nextToken]['code'] === T_STRING
+            $nextToken = $phpcsFile->findNext(\T_WHITESPACE, ($end + 1), null, true);
+            if ($tokens[$nextToken]['code'] === \T_STRING
                 && $tokens[$nextToken]['content'] === 'from'
             ) {
                 $tokenType = 'T_YIELD_FROM';
@@ -251,8 +251,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($prevToken !== false
-            && ($tokens[$prevToken]['code'] === T_DOUBLE_COLON
-            || $tokens[$prevToken]['code'] === T_OBJECT_OPERATOR)
+            && ($tokens[$prevToken]['code'] === \T_DOUBLE_COLON
+            || $tokens[$prevToken]['code'] === \T_OBJECT_OPERATOR)
         ) {
             // Class property of the same name as one of the keywords. Ignore.
             return;

@@ -45,14 +45,14 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
     {
         // Set up a list of tokens to disregard when determining whether the list() is empty.
         // Only needs to be set up once.
-        $this->ignoreTokens                      = Tokens::$emptyTokens;
-        $this->ignoreTokens[T_COMMA]             = T_COMMA;
-        $this->ignoreTokens[T_OPEN_PARENTHESIS]  = T_OPEN_PARENTHESIS;
-        $this->ignoreTokens[T_CLOSE_PARENTHESIS] = T_CLOSE_PARENTHESIS;
+        $this->ignoreTokens                       = Tokens::$emptyTokens;
+        $this->ignoreTokens[\T_COMMA]             = \T_COMMA;
+        $this->ignoreTokens[\T_OPEN_PARENTHESIS]  = \T_OPEN_PARENTHESIS;
+        $this->ignoreTokens[\T_CLOSE_PARENTHESIS] = \T_CLOSE_PARENTHESIS;
 
         return array(
-            T_LIST,
-            T_OPEN_SHORT_ARRAY,
+            \T_LIST,
+            \T_OPEN_SHORT_ARRAY,
         );
     }
 
@@ -73,7 +73,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === T_OPEN_SHORT_ARRAY) {
+        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
             if ($this->isShortList($phpcsFile, $stackPtr) === false) {
                 return;
             }
@@ -82,7 +82,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
             $close = $tokens[$stackPtr]['bracket_closer'];
         } else {
             // T_LIST.
-            $open = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, false, null, true);
+            $open = $phpcsFile->findNext(\T_OPEN_PARENTHESIS, $stackPtr, null, false, null, true);
             if ($open === false || isset($tokens[$open]['parenthesis_closer']) === false) {
                 return;
             }

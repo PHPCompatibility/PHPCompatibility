@@ -33,7 +33,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**
@@ -55,7 +55,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
 
         // Next non-empty token should be the open parenthesis.
         $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== \T_OPEN_PARENTHESIS) {
             return;
         }
 
@@ -66,14 +66,14 @@ class NewFunctionArrayDereferencingSniff extends Sniff
 
         // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(T_DOUBLE_COLON, T_OBJECT_OPERATOR), true) === false) {
+        if ($prevToken !== false && in_array($tokens[$prevToken]['code'], array(\T_DOUBLE_COLON, \T_OBJECT_OPERATOR), true) === false) {
             $ignore = array(
-                T_FUNCTION  => true,
-                T_CONST     => true,
-                T_USE       => true,
-                T_NEW       => true,
-                T_CLASS     => true,
-                T_INTERFACE => true,
+                \T_FUNCTION  => true,
+                \T_CONST     => true,
+                \T_USE       => true,
+                \T_NEW       => true,
+                \T_CLASS     => true,
+                \T_INTERFACE => true,
             );
 
             if (isset($ignore[$tokens[$prevToken]['code']]) === true) {

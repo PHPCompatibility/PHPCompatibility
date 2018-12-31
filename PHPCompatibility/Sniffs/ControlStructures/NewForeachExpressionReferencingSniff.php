@@ -36,7 +36,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
      */
     public function register()
     {
-        return array(T_FOREACH);
+        return array(\T_FOREACH);
     }
 
     /**
@@ -63,7 +63,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
         $opener = $tokens[$stackPtr]['parenthesis_opener'];
         $closer = $tokens[$stackPtr]['parenthesis_closer'];
 
-        $asToken = $phpcsFile->findNext(T_AS, ($opener + 1), $closer);
+        $asToken = $phpcsFile->findNext(\T_AS, ($opener + 1), $closer);
         if ($asToken === false) {
             return;
         }
@@ -72,7 +72,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
          * Note: referencing $key is not allowed in any version, so this should only find referenced $values.
          * If it does find a referenced key, it would be a parse error anyway.
          */
-        $hasReference = $phpcsFile->findNext(T_BITWISE_AND, ($asToken + 1), $closer);
+        $hasReference = $phpcsFile->findNext(\T_BITWISE_AND, ($asToken + 1), $closer);
         if ($hasReference === false) {
             return;
         }

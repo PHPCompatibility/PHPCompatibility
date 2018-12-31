@@ -47,10 +47,10 @@ class InternalInterfacesSniff extends Sniff
         // Handle case-insensitivity of interface names.
         $this->internalInterfaces = $this->arrayKeysToLowercase($this->internalInterfaces);
 
-        $targets = array(T_CLASS);
+        $targets = array(\T_CLASS);
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = T_ANON_CLASS;
+            $targets[] = \T_ANON_CLASS;
         }
 
         return $targets;

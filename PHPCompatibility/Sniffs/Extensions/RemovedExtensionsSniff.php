@@ -184,7 +184,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         // Handle case-insensitivity of function names.
         $this->removedExtensions = $this->arrayKeysToLowercase($this->removedExtensions);
 
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**
@@ -203,7 +203,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         // Find the next non-empty token.
         $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
-        if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($tokens[$openBracket]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a function call.
             return;
         }
@@ -215,19 +215,19 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
         // Find the previous non-empty token.
         $search   = Tokens::$emptyTokens;
-        $search[] = T_BITWISE_AND;
+        $search[] = \T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
-        if ($tokens[$previous]['code'] === T_FUNCTION) {
+        if ($tokens[$previous]['code'] === \T_FUNCTION) {
             // It's a function definition, not a function call.
             return;
         }
 
-        if ($tokens[$previous]['code'] === T_NEW) {
+        if ($tokens[$previous]['code'] === \T_NEW) {
             // We are creating an object, not calling a function.
             return;
         }
 
-        if ($tokens[$previous]['code'] === T_OBJECT_OPERATOR) {
+        if ($tokens[$previous]['code'] === \T_OBJECT_OPERATOR) {
             // We are calling a method of an object.
             return;
         }

@@ -55,7 +55,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
         $phpcsVersion = PHPCSHelper::getVersion();
 
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare($phpcsVersion, '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
+        if (version_compare($phpcsVersion, '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
             self::$recognizesTraits = false;
         }
 

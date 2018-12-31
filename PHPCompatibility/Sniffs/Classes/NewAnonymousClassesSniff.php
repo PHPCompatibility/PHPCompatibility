@@ -38,7 +38,7 @@ class NewAnonymousClassesSniff extends Sniff
      * @var array
      */
     private $indicators = array(
-        T_CLASS => T_CLASS,
+        \T_CLASS => \T_CLASS,
     );
 
     /**
@@ -49,10 +49,10 @@ class NewAnonymousClassesSniff extends Sniff
     public function register()
     {
         if (defined('T_ANON_CLASS')) {
-            $this->indicators[T_ANON_CLASS] = T_ANON_CLASS;
+            $this->indicators[\T_ANON_CLASS] = \T_ANON_CLASS;
         }
 
-        return array(T_NEW);
+        return array(\T_NEW);
     }
 
 

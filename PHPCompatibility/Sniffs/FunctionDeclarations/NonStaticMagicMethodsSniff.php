@@ -84,13 +84,13 @@ class NonStaticMagicMethodsSniff extends Sniff
     public function register()
     {
         $targets = array(
-            T_CLASS,
-            T_INTERFACE,
-            T_TRAIT,
+            \T_CLASS,
+            \T_INTERFACE,
+            \T_TRAIT,
         );
 
         if (defined('T_ANON_CLASS')) {
-            $targets[] = T_ANON_CLASS;
+            $targets[] = \T_ANON_CLASS;
         }
 
         return $targets;
@@ -123,7 +123,7 @@ class NonStaticMagicMethodsSniff extends Sniff
         $functionPtr      = $stackPtr;
 
         // Find all the functions in this class or interface.
-        while (($functionToken = $phpcsFile->findNext(T_FUNCTION, $functionPtr, $classScopeCloser)) !== false) {
+        while (($functionToken = $phpcsFile->findNext(\T_FUNCTION, $functionPtr, $classScopeCloser)) !== false) {
             /*
              * Get the scope closer for this function in order to know how
              * to advance to the next function.

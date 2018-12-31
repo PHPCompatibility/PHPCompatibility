@@ -40,8 +40,8 @@ class NewDirectCallsToCloneSniff extends Sniff
     public function register()
     {
         return array(
-            T_DOUBLE_COLON,
-            T_OBJECT_OPERATOR,
+            \T_DOUBLE_COLON,
+            \T_OBJECT_OPERATOR,
         );
     }
 
@@ -65,7 +65,7 @@ class NewDirectCallsToCloneSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_STRING) {
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
             /*
              * Not a method call.
              *
@@ -83,7 +83,7 @@ class NewDirectCallsToCloneSniff extends Sniff
         }
 
         $nextNextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
-        if ($nextNextNonEmpty === false || $tokens[$nextNextNonEmpty]['code'] !== T_OPEN_PARENTHESIS) {
+        if ($nextNextNonEmpty === false || $tokens[$nextNextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a method call.
             return;
         }

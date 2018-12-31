@@ -73,8 +73,8 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
         $targetParam = $parameters[1];
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if ($tokens[$i]['code'] !== T_CONSTANT_ENCAPSED_STRING
-                && $tokens[$i]['code'] !== T_DOUBLE_QUOTED_STRING
+            if ($tokens[$i]['code'] !== \T_CONSTANT_ENCAPSED_STRING
+                && $tokens[$i]['code'] !== \T_DOUBLE_QUOTED_STRING
             ) {
                 continue;
             }

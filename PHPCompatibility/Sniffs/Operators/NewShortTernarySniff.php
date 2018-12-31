@@ -39,7 +39,7 @@ class NewShortTernarySniff extends Sniff
      */
     public function register()
     {
-        return array(T_INLINE_THEN);
+        return array(\T_INLINE_THEN);
     }
 
     /**
@@ -63,7 +63,7 @@ class NewShortTernarySniff extends Sniff
         // symbol, which is not allowed prior to PHP 5.3.
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
-        if ($next !== false && $tokens[$next]['code'] === T_INLINE_ELSE) {
+        if ($next !== false && $tokens[$next]['code'] === \T_INLINE_ELSE) {
             $phpcsFile->addError(
                 'Middle may not be omitted from ternary operators in PHP < 5.3',
                 $stackPtr,

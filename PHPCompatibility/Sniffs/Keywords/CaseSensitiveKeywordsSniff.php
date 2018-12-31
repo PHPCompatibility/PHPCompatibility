@@ -37,9 +37,9 @@ class CaseSensitiveKeywordsSniff extends Sniff
     public function register()
     {
         return array(
-            T_SELF,
-            T_STATIC,
-            T_PARENT,
+            \T_SELF,
+            \T_STATIC,
+            \T_PARENT,
         );
     }
 

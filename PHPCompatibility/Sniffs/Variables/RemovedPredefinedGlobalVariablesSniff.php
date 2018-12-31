@@ -91,7 +91,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(T_VARIABLE);
+        return array(\T_VARIABLE);
     }
 
 
@@ -125,7 +125,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         // Check for static usage of class properties shadowing the removed global variables.
         if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
             $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-            if ($prevToken !== false && $tokens[$prevToken]['code'] === T_DOUBLE_COLON) {
+            if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
                 return;
             }
         }
@@ -203,9 +203,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         /*
          * If the variable is detected within the scope of a function/closure, limit the checking.
          */
-        $function = $phpcsFile->getCondition($stackPtr, T_CLOSURE);
+        $function = $phpcsFile->getCondition($stackPtr, \T_CLOSURE);
         if ($function === false) {
-            $function = $phpcsFile->getCondition($stackPtr, T_FUNCTION);
+            $function = $phpcsFile->getCondition($stackPtr, \T_FUNCTION);
         }
 
         // It could also be a function param, which is not in the function scope.
@@ -213,8 +213,8 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             $nestedParentheses = $tokens[$stackPtr]['nested_parenthesis'];
             $parenthesisCloser = end($nestedParentheses);
             if (isset($tokens[$parenthesisCloser]['parenthesis_owner'])
-                && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_FUNCTION
-                    || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === T_CLOSURE)
+                && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_FUNCTION
+                    || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_CLOSURE)
             ) {
                 $function = $tokens[$parenthesisCloser]['parenthesis_owner'];
             }
@@ -230,7 +230,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         // Is the variable being used as an array ?
-        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === T_OPEN_SQUARE_BRACKET) {
+        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_SQUARE_BRACKET) {
             // The PHP native variable is a string, so this is probably not it
             // (except for array access to string, but why would you in this case ?).
             return false;
@@ -266,7 +266,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Walk back and see if there is an assignment to the variable within the same scope.
         for ($i = ($stackPtr - 1); $i >= $scopeStart; $i--) {
-            if ($tokens[$i]['code'] === T_CLOSE_CURLY_BRACKET
+            if ($tokens[$i]['code'] === \T_CLOSE_CURLY_BRACKET
                 && isset($tokens[$i]['scope_condition'])
                 && isset($skipPast[$tokens[$tokens[$i]['scope_condition']]['type']])
             ) {
@@ -275,7 +275,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
                 continue;
             }
 
-            if ($tokens[$i]['code'] !== T_VARIABLE || $tokens[$i]['content'] !== '$php_errormsg') {
+            if ($tokens[$i]['code'] !== \T_VARIABLE || $tokens[$i]['content'] !== '$php_errormsg') {
                 continue;
             }
 

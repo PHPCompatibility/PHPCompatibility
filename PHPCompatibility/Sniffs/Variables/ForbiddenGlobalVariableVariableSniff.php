@@ -36,7 +36,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
      */
     public function register()
     {
-        return array(T_GLOBAL);
+        return array(\T_GLOBAL);
     }
 
     /**
@@ -55,7 +55,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
         }
 
         $tokens         = $phpcsFile->getTokens();
-        $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_CLOSE_TAG), ($stackPtr + 1));
+        $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr + 1));
         if ($endOfStatement === false) {
             // No semi-colon - live coding.
             return;
@@ -63,9 +63,9 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
 
         for ($ptr = ($stackPtr + 1); $ptr <= $endOfStatement; $ptr++) {
             $errorThrown = false;
-            $nextComma   = $phpcsFile->findNext(T_COMMA, $ptr, $endOfStatement, false, null, true);
+            $nextComma   = $phpcsFile->findNext(\T_COMMA, $ptr, $endOfStatement, false, null, true);
             $varEnd      = ($nextComma === false) ? $endOfStatement : $nextComma;
-            $variable    = $phpcsFile->findNext(T_VARIABLE, $ptr, $varEnd);
+            $variable    = $phpcsFile->findNext(\T_VARIABLE, $ptr, $varEnd);
             $varString   = trim($phpcsFile->getTokensAsString($ptr, ($varEnd - $ptr)));
             $data        = array($varString);
 
@@ -78,7 +78,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
                     $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
 
                     if ($next !== false
-                        && in_array($tokens[$next]['code'], array(T_OPEN_SQUARE_BRACKET, T_OBJECT_OPERATOR, T_DOUBLE_COLON), true) === true
+                        && in_array($tokens[$next]['code'], array(\T_OPEN_SQUARE_BRACKET, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON), true) === true
                     ) {
                         $phpcsFile->addError(
                             'Global with variable variables is not allowed since PHP 7.0. Found %s',
@@ -100,10 +100,10 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
             }
 
             if ($errorThrown === false) {
-                $dollar = $phpcsFile->findNext(T_DOLLAR, $ptr, $varEnd);
+                $dollar = $phpcsFile->findNext(\T_DOLLAR, $ptr, $varEnd);
                 if ($dollar !== false) {
                     $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($dollar + 1), $varEnd, true);
-                    if ($tokens[$next]['code'] === T_OPEN_CURLY_BRACKET) {
+                    if ($tokens[$next]['code'] === \T_OPEN_CURLY_BRACKET) {
                         $phpcsFile->addWarning(
                             'Global with anything other than bare variables is discouraged since PHP 7.0. Found %s',
                             $dollar,

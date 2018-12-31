@@ -37,8 +37,8 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
     public function register()
     {
         return array(
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
     }
 

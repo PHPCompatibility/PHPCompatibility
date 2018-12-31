@@ -43,7 +43,7 @@ class RemovedMagicAutoloadSniff extends Sniff
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(\T_FUNCTION);
     }
 
     /**

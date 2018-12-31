@@ -80,11 +80,11 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
     {
         $tokens = $phpcsFile->getTokens();
         $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
-        if ($next === false || $tokens[$next]['code'] !== T_EQUAL) {
+        if ($next === false || $tokens[$next]['code'] !== \T_EQUAL) {
             // No value assigned.
             return true;
         }
 
-        return ($phpcsFile->findNext(T_START_HEREDOC, ($next + 1), $end, false, null, true) === false);
+        return ($phpcsFile->findNext(\T_START_HEREDOC, ($next + 1), $end, false, null, true) === false);
     }
 }

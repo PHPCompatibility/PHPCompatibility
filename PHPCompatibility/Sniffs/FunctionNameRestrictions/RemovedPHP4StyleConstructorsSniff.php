@@ -35,8 +35,8 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
     public function register()
     {
         return array(
-            T_CLASS,
-            T_INTERFACE,
+            \T_CLASS,
+            \T_INTERFACE,
         );
     }
 
@@ -75,7 +75,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         }
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== T_STRING) {
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
             // Anonymous class in combination with PHPCS 2.3.x.
             return;
         }
@@ -92,7 +92,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
-        while (($nextFunc = $phpcsFile->findNext(T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
             $functionScopeCloser = $nextFunc;
             if (isset($tokens[$nextFunc]['scope_closer'])) {
                 // Normal (non-interface, non-abstract) method.

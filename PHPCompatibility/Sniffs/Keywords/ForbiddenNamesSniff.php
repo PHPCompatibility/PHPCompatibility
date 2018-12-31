@@ -116,16 +116,16 @@ class ForbiddenNamesSniff extends Sniff
      * @var array
      */
     protected $targetedTokens = array(
-        T_CLASS,
-        T_FUNCTION,
-        T_NAMESPACE,
-        T_STRING,
-        T_CONST,
-        T_USE,
-        T_AS,
-        T_EXTENDS,
-        T_INTERFACE,
-        T_TRAIT,
+        \T_CLASS,
+        \T_FUNCTION,
+        \T_NAMESPACE,
+        \T_STRING,
+        \T_CONST,
+        \T_USE,
+        \T_AS,
+        \T_EXTENDS,
+        \T_INTERFACE,
+        \T_TRAIT,
     );
 
     /**
@@ -135,13 +135,13 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->allowedModifiers          = Tokens::$scopeModifiers;
-        $this->allowedModifiers[T_FINAL] = T_FINAL;
+        $this->allowedModifiers           = Tokens::$scopeModifiers;
+        $this->allowedModifiers[\T_FINAL] = \T_FINAL;
 
         $tokens = $this->targetedTokens;
 
         if (defined('T_ANON_CLASS')) {
-            $tokens[] = T_ANON_CLASS;
+            $tokens[] = \T_ANON_CLASS;
         }
 
         return $tokens;
@@ -221,7 +221,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_AS'
             && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
-            && $phpcsFile->hasCondition($stackPtr, T_USE) === true
+            && $phpcsFile->hasCondition($stackPtr, \T_USE) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {
@@ -250,12 +250,12 @@ class ForbiddenNamesSniff extends Sniff
          * Deal with nested namespaces.
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_NAMESPACE') {
-            if ($tokens[$stackPtr + 1]['code'] === T_NS_SEPARATOR) {
+            if ($tokens[$stackPtr + 1]['code'] === \T_NS_SEPARATOR) {
                 // Not a namespace declaration, but use of, i.e. namespace\someFunction();
                 return;
             }
 
-            $endToken      = $phpcsFile->findNext(array(T_SEMICOLON, T_OPEN_CURLY_BRACKET), ($stackPtr + 1), null, false, null, true);
+            $endToken      = $phpcsFile->findNext(array(\T_SEMICOLON, \T_OPEN_CURLY_BRACKET), ($stackPtr + 1), null, false, null, true);
             $namespaceName = trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
             if (empty($namespaceName) === true) {
                 return;
@@ -328,7 +328,7 @@ class ForbiddenNamesSniff extends Sniff
          * its own token, but presents as T_STRING.
          * - trait keyword in PHP < 5.4
          */
-        if (version_compare(PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {
+        if (version_compare(\PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {
             $this->processNonString($phpcsFile, $stackPtr, $tokens);
             return;
         }
@@ -386,6 +386,6 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function isEndOfUseStatement($token)
     {
-        return in_array($token['code'], array(T_CLOSE_CURLY_BRACKET, T_SEMICOLON, T_COMMA), true);
+        return in_array($token['code'], array(\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA), true);
     }
 }

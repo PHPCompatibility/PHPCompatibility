@@ -34,10 +34,10 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
     public function register()
     {
         return array(
-            T_STRING,
-            T_VARIABLE,
-            T_ISSET,
-            T_UNSET,
+            \T_STRING,
+            \T_VARIABLE,
+            \T_ISSET,
+            \T_UNSET,
         );
     }
 
@@ -60,17 +60,17 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($tokens[$nextNonEmpty]['code'] !== T_OPEN_PARENTHESIS
+        if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
         ) {
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] === T_STRING) {
+        if ($tokens[$stackPtr]['code'] === \T_STRING) {
             $ignore = array(
-                T_FUNCTION        => true,
-                T_CONST           => true,
-                T_USE             => true,
+                \T_FUNCTION        => true,
+                \T_CONST           => true,
+                \T_USE             => true,
             );
 
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
@@ -83,18 +83,18 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
         $closer            = $tokens[$nextNonEmpty]['parenthesis_closer'];
         $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), $nextNonEmpty, true);
 
-        if ($tokens[$lastInParenthesis]['code'] !== T_COMMA) {
+        if ($tokens[$lastInParenthesis]['code'] !== \T_COMMA) {
             return;
         }
 
         $data = array();
         switch ($tokens[$stackPtr]['code']) {
-            case T_ISSET:
+            case \T_ISSET:
                 $data[]    = 'calls to isset()';
                 $errorCode = 'FoundInIsset';
                 break;
 
-            case T_UNSET:
+            case \T_UNSET:
                 $data[]    = 'calls to unset()';
                 $errorCode = 'FoundInUnset';
                 break;

@@ -41,8 +41,8 @@ class IsNumberUnitTest extends CoreMethodTestFrame
      */
     public function testIsNumber($commentString, $allowFloats, $isNumber, $isPositiveNumber, $isNegativeNumber)
     {
-        $start = ($this->getTargetToken($commentString, T_EQUAL) + 1);
-        $end   = ($this->getTargetToken($commentString, T_SEMICOLON) - 1);
+        $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
         $result = $this->helperClass->isNumber($this->phpcsFile, $start, $end, $allowFloats);
         $this->assertSame($isNumber, $result);

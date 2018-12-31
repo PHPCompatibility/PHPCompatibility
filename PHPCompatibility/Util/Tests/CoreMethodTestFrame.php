@@ -52,7 +52,7 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
         $parts       = explode('\\', $FQClassName);
         $className   = array_pop($parts);
         $subDir      = array_pop($parts);
-        $filename    = realpath(__DIR__) . DIRECTORY_SEPARATOR . $subDir . DIRECTORY_SEPARATOR . $className . '.inc';
+        $filename    = realpath(__DIR__) . \DIRECTORY_SEPARATOR . $subDir . \DIRECTORY_SEPARATOR . $className . '.inc';
         $contents    = file_get_contents($filename);
 
         if (version_compare(PHPCSHelper::getVersion(), '2.99.99', '>')) {
@@ -103,7 +103,7 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
     {
         $start   = ($this->phpcsFile->numTokens - 1);
         $comment = $this->phpcsFile->findPrevious(
-            T_COMMENT,
+            \T_COMMENT,
             $start,
             null,
             false,
@@ -115,7 +115,7 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 
         // Limit the token finding to between this and the next case comment.
         for ($i = ($comment + 1); $i < $end; $i++) {
-            if ($tokens[$i]['code'] !== T_COMMENT) {
+            if ($tokens[$i]['code'] !== \T_COMMENT) {
                 continue;
             }
 

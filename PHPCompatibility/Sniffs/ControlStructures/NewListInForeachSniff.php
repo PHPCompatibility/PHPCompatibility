@@ -33,7 +33,7 @@ class NewListInForeachSniff extends Sniff
      */
     public function register()
     {
-        return array(T_FOREACH);
+        return array(\T_FOREACH);
     }
 
     /**
@@ -60,12 +60,12 @@ class NewListInForeachSniff extends Sniff
         $opener = $tokens[$stackPtr]['parenthesis_opener'];
         $closer = $tokens[$stackPtr]['parenthesis_closer'];
 
-        $asToken = $phpcsFile->findNext(T_AS, ($opener + 1), $closer);
+        $asToken = $phpcsFile->findNext(\T_AS, ($opener + 1), $closer);
         if ($asToken === false) {
             return;
         }
 
-        $hasList = $phpcsFile->findNext(array(T_LIST, T_OPEN_SHORT_ARRAY), ($asToken + 1), $closer);
+        $hasList = $phpcsFile->findNext(array(\T_LIST, \T_OPEN_SHORT_ARRAY), ($asToken + 1), $closer);
         if ($hasList === false) {
             return;
         }

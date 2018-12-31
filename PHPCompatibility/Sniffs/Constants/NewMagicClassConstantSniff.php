@@ -37,7 +37,7 @@ class NewMagicClassConstantSniff extends Sniff
      */
     public function register()
     {
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**
@@ -62,7 +62,7 @@ class NewMagicClassConstantSniff extends Sniff
         }
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($prevToken === false || $tokens[$prevToken]['code'] !== T_DOUBLE_COLON) {
+        if ($prevToken === false || $tokens[$prevToken]['code'] !== \T_DOUBLE_COLON) {
             return;
         }
 

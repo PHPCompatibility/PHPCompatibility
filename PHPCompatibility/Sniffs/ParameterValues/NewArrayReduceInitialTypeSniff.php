@@ -40,12 +40,12 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
      * @var array
      */
     private $variableValueTokens = array(
-        T_VARIABLE,
-        T_STRING,
-        T_SELF,
-        T_PARENT,
-        T_STATIC,
-        T_DOUBLE_QUOTED_STRING,
+        \T_VARIABLE,
+        \T_STRING,
+        \T_SELF,
+        \T_PARENT,
+        \T_STATIC,
+        \T_DOUBLE_QUOTED_STRING,
     );
 
 

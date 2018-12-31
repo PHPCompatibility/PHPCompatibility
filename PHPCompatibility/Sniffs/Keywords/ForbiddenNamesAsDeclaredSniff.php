@@ -38,9 +38,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      * @var array
      */
     protected $forbiddenTokens = array(
-        T_NULL  => '7.0',
-        T_TRUE  => '7.0',
-        T_FALSE => '7.0',
+        \T_NULL  => '7.0',
+        \T_TRUE  => '7.0',
+        \T_FALSE => '7.0',
     );
 
     /**
@@ -99,11 +99,11 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         $this->allForbiddenNames = array_merge($this->forbiddenNames, $this->softReservedNames);
 
         $targets = array(
-            T_CLASS,
-            T_INTERFACE,
-            T_TRAIT,
-            T_NAMESPACE,
-            T_STRING, // Compat for PHPCS < 2.4.0 and PHP < 5.3.
+            \T_CLASS,
+            \T_INTERFACE,
+            \T_TRAIT,
+            \T_NAMESPACE,
+            \T_STRING, // Compat for PHPCS < 2.4.0 and PHP < 5.3.
         );
 
         return $targets;
@@ -133,7 +133,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         // For string tokens we only care about 'trait' as that is the only one
         // which may not be correctly recognized as it's own token.
         // This only happens in older versions of PHP where the token doesn't exist yet as a keyword.
-        if ($tokenCode === T_STRING && $tokenContentLc !== 'trait') {
+        if ($tokenCode === \T_STRING && $tokenContentLc !== 'trait') {
             return;
         }
 
@@ -157,7 +157,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                 return;
             }
 
-        } elseif ($tokenCode === T_NAMESPACE) {
+        } elseif ($tokenCode === \T_NAMESPACE) {
             $namespaceName = $this->getDeclaredNamespaceName($phpcsFile, $stackPtr);
 
             if ($namespaceName === false || $namespaceName === '') {
@@ -173,7 +173,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                     break;
                 }
             }
-        } elseif ($tokenCode === T_STRING) {
+        } elseif ($tokenCode === \T_STRING) {
             // Traits which are not yet tokenized as T_TRAIT.
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
             if ($nextNonEmpty === false) {
@@ -182,11 +182,11 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
             $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
 
-            if ($nextNonEmptyCode !== T_STRING && isset($this->forbiddenTokens[$nextNonEmptyCode]) === true) {
+            if ($nextNonEmptyCode !== \T_STRING && isset($this->forbiddenTokens[$nextNonEmptyCode]) === true) {
                 $name   = $tokens[$nextNonEmpty]['content'];
                 $nameLc = strtolower($tokens[$nextNonEmpty]['content']);
-            } elseif ($nextNonEmptyCode === T_STRING) {
-                $endOfStatement = $phpcsFile->findNext(array(T_SEMICOLON, T_OPEN_CURLY_BRACKET), ($stackPtr + 1));
+            } elseif ($nextNonEmptyCode === \T_STRING) {
+                $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_OPEN_CURLY_BRACKET), ($stackPtr + 1));
                 if ($endOfStatement === false) {
                     return;
                 }

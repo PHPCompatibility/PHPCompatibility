@@ -39,10 +39,10 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      * @var array
      */
     private $inclusiveStopPoints = array(
-        T_COLON        => true,
-        T_COMMA        => true,
-        T_DOUBLE_ARROW => true,
-        T_SEMICOLON    => true,
+        \T_COLON        => true,
+        \T_COMMA        => true,
+        \T_DOUBLE_ARROW => true,
+        \T_SEMICOLON    => true,
     );
 
     /**
@@ -53,10 +53,10 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
     public function register()
     {
         return array(
-            T_SL,
-            T_SL_EQUAL,
-            T_SR,
-            T_SR_EQUAL,
+            \T_SL,
+            \T_SL_EQUAL,
+            \T_SR,
+            \T_SR_EQUAL,
         );
     }
 
@@ -80,7 +80,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
         // Determine the start and end of the part of the statement we need to examine.
         $start = ($stackPtr + 1);
         $next  = $phpcsFile->findNext(Tokens::$emptyTokens, $start, null, true);
-        if ($next !== false && $tokens[$next]['code'] === T_OPEN_PARENTHESIS) {
+        if ($next !== false && $tokens[$next]['code'] === \T_OPEN_PARENTHESIS) {
             $start = ($next + 1);
         }
 

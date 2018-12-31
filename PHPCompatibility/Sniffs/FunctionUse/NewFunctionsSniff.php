@@ -1852,7 +1852,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         // Handle case-insensitivity of function names.
         $this->newFunctions = $this->arrayKeysToLowercase($this->newFunctions);
 
-        return array(T_STRING);
+        return array(\T_STRING);
     }
 
     /**
@@ -1869,18 +1869,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $ignore = array(
-            T_DOUBLE_COLON    => true,
-            T_OBJECT_OPERATOR => true,
-            T_FUNCTION        => true,
-            T_CONST           => true,
+            \T_DOUBLE_COLON    => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_FUNCTION        => true,
+            \T_CONST           => true,
         );
 
-        $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
             // Not a call to a PHP function.
             return;
 
-        } elseif ($tokens[$prevToken]['code'] === T_NS_SEPARATOR && $tokens[$prevToken - 1]['code'] === T_STRING) {
+        } elseif ($tokens[$prevToken]['code'] === \T_NS_SEPARATOR && $tokens[$prevToken - 1]['code'] === \T_STRING) {
             // Namespaced function.
             return;
         }

@@ -69,8 +69,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * @var array
      */
     private $noneFunctionCallIndicators = array(
-        T_DOUBLE_COLON    => true,
-        T_OBJECT_OPERATOR => true,
+        \T_DOUBLE_COLON    => true,
+        \T_OBJECT_OPERATOR => true,
     );
 
     /**
@@ -79,8 +79,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * @var array
      */
     private $plusPlusMinusMinus = array(
-        T_DEC => true,
-        T_INC => true,
+        \T_DEC => true,
+        \T_INC => true,
     );
 
     /**
@@ -89,10 +89,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * @var array
      */
     private $ignoreForStartOfStatement = array(
-        T_COMMA,
-        T_DOUBLE_ARROW,
-        T_OPEN_SQUARE_BRACKET,
-        T_OPEN_PARENTHESIS,
+        \T_COMMA,
+        \T_DOUBLE_ARROW,
+        \T_OPEN_SQUARE_BRACKET,
+        \T_OPEN_PARENTHESIS,
     );
 
     /**
@@ -103,8 +103,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     public function register()
     {
         return array(
-            T_FUNCTION,
-            T_CLOSURE,
+            \T_FUNCTION,
+            \T_CLOSURE,
         );
     }
 
@@ -152,7 +152,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            if ($tokens[$i]['code'] !== T_STRING) {
+            if ($tokens[$i]['code'] !== \T_STRING) {
                 continue;
             }
 
@@ -167,7 +167,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Ok, so is this really a function call to one of the PHP native functions ?
              */
             $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
-            if ($next === false || $tokens[$next]['code'] !== T_OPEN_PARENTHESIS) {
+            if ($next === false || $tokens[$next]['code'] !== \T_OPEN_PARENTHESIS) {
                 // Live coding, parse error or not a function call.
                 continue;
             }
@@ -179,9 +179,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 }
 
                 // Check for namespaced functions, ie: \foo\bar() not \bar().
-                if ($tokens[ $prev ]['code'] === T_NS_SEPARATOR) {
+                if ($tokens[ $prev ]['code'] === \T_NS_SEPARATOR) {
                     $pprev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-                    if ($pprev !== false && $tokens[ $pprev ]['code'] === T_STRING) {
+                    if ($pprev !== false && $tokens[ $pprev ]['code'] === \T_STRING) {
                         continue;
                     }
                 }
@@ -201,7 +201,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         case 'debug_backtrace':
                         case 'debug_print_backtrace':
                             $hasIgnoreArgs = $phpcsFile->findNext(
-                                T_STRING,
+                                \T_STRING,
                                 $paramOne['start'],
                                 ($paramOne['end'] + 1),
                                 false,
@@ -225,7 +225,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                          *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
                          */
                         case 'func_get_arg':
-                            $number = $phpcsFile->findNext(T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
+                            $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
                             if ($number !== false) {
                                 $argNumber = $tokens[$number]['content'];
 
@@ -246,17 +246,17 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * {@internal Note: This does not take offset calculations into account!
                  *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
                  */
-                if ($prev !== false && $tokens[$prev]['code'] === T_OPEN_PARENTHESIS) {
+                if ($prev !== false && $tokens[$prev]['code'] === \T_OPEN_PARENTHESIS) {
 
                     $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
                     if ($maybeFunctionCall !== false
-                        && $tokens[$maybeFunctionCall]['code'] === T_STRING
+                        && $tokens[$maybeFunctionCall]['code'] === \T_STRING
                         && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
                         || $tokens[$maybeFunctionCall]['content'] === 'array_splice')
                     ) {
                         $parentFuncParamTwo = $this->getFunctionCallParameter($phpcsFile, $maybeFunctionCall, 2);
                         $number             = $phpcsFile->findNext(
-                            T_LNUMBER,
+                            \T_LNUMBER,
                             $parentFuncParamTwo['start'],
                             ($parentFuncParamTwo['end'] + 1)
                         );
@@ -288,7 +288,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     true
                 );
 
-                if ($tokens[$afterParenthesis]['code'] === T_OPEN_SQUARE_BRACKET
+                if ($tokens[$afterParenthesis]['code'] === \T_OPEN_SQUARE_BRACKET
                     && isset($tokens[$afterParenthesis]['bracket_closer'])
                 ) {
                     $afterStackFrame = $phpcsFile->findNext(
@@ -298,11 +298,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         true
                     );
 
-                    if ($tokens[$afterStackFrame]['code'] === T_OPEN_SQUARE_BRACKET
+                    if ($tokens[$afterStackFrame]['code'] === \T_OPEN_SQUARE_BRACKET
                         && isset($tokens[$afterStackFrame]['bracket_closer'])
                     ) {
                         $arrayIndex = $phpcsFile->findNext(
-                            T_CONSTANT_ENCAPSED_STRING,
+                            \T_CONSTANT_ENCAPSED_STRING,
                             ($afterStackFrame + 1),
                             $tokens[$afterStackFrame]['bracket_closer']
                         );
@@ -336,7 +336,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
-                if ($tokens[$j]['code'] !== T_VARIABLE) {
+                if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
 
@@ -388,12 +388,12 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     break;
                 }
 
-                if ($tokens[$afterVar]['code'] === T_OPEN_SQUARE_BRACKET
+                if ($tokens[$afterVar]['code'] === \T_OPEN_SQUARE_BRACKET
                     && isset($tokens[$afterVar]['bracket_closer'])
                 ) {
                     // Skip past array access on the variable.
                     while (($afterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($tokens[$afterVar]['bracket_closer'] + 1), null, true)) !== false) {
-                        if ($tokens[$afterVar]['code'] !== T_OPEN_SQUARE_BRACKET
+                        if ($tokens[$afterVar]['code'] !== \T_OPEN_SQUARE_BRACKET
                             || isset($tokens[$afterVar]['bracket_closer']) === false
                         ) {
                             break;

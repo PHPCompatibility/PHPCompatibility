@@ -36,7 +36,7 @@ class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
      */
     public function testGetFQExtendedClassName($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, array(T_CLASS, T_INTERFACE));
+        $stackPtr = $this->getTargetToken($commentString, array(\T_CLASS, \T_INTERFACE));
         $result   = $this->helperClass->getFQExtendedClassName($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

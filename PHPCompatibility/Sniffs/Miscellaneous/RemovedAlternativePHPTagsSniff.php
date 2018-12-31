@@ -45,15 +45,15 @@ class RemovedAlternativePHPTagsSniff extends Sniff
      */
     public function register()
     {
-        if (version_compare(PHP_VERSION_ID, '70000', '<') === true) {
+        if (version_compare(\PHP_VERSION_ID, '70000', '<') === true) {
             // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
             $this->aspTags = (bool) ini_get('asp_tags');
         }
 
         return array(
-            T_OPEN_TAG,
-            T_OPEN_TAG_WITH_ECHO,
-            T_INLINE_HTML,
+            \T_OPEN_TAG,
+            \T_OPEN_TAG_WITH_ECHO,
+            \T_INLINE_HTML,
         );
     }
 
@@ -81,7 +81,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             return;
         }
 
-        if ($openTag['code'] === T_OPEN_TAG || $openTag['code'] === T_OPEN_TAG_WITH_ECHO) {
+        if ($openTag['code'] === \T_OPEN_TAG || $openTag['code'] === \T_OPEN_TAG_WITH_ECHO) {
 
             if ($content === '<%' || $content === '<%=') {
                 $data      = array(
@@ -102,7 +102,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         }
         // Account for incorrect script open tags.
         // The "(?:<s)?" in the regex is to work-around a bug in the tokenizer in PHP 5.2.
-        elseif ($openTag['code'] === T_INLINE_HTML
+        elseif ($openTag['code'] === \T_INLINE_HTML
             && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found     = $match[1];
@@ -124,7 +124,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         }
 
         // If we're still here, we can't be sure if what we find was really intended as ASP open tags.
-        if ($openTag['code'] === T_INLINE_HTML && $this->aspTags === false) {
+        if ($openTag['code'] === \T_INLINE_HTML && $this->aspTags === false) {
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');

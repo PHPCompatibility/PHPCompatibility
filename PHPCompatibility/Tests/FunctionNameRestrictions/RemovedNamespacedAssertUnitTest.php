@@ -44,7 +44,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
     {
         // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are
         // not recognized and the scope condition for interfaces will not be set.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(PHP_VERSION_ID, '50400', '<')) {
+        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
             self::$recognizesTraitsAndInterfaces = false;
         }
         parent::setUpBeforeClass();
