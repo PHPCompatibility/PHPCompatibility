@@ -473,3 +473,6 @@ ldap_mod_add_ext();
 ldap_mod_replace_ext();
 ldap_mod_del_ext();
 ldap_rename_ext();
+
+oci_set_call_timeout();
+oci_set_db_operation();
