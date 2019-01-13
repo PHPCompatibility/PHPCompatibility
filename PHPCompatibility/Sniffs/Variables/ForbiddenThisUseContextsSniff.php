@@ -98,7 +98,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     public function register()
     {
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $this->ooScopeTokens['T_ANON_CLASS'] = \T_ANON_CLASS;
         }
 

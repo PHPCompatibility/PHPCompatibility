@@ -178,7 +178,7 @@ abstract class Sniff implements PHPCS_Sniff
         $testVersion = $this->getTestVersion();
         $testVersion = $testVersion[1];
 
-        if (is_null($testVersion)
+        if (\is_null($testVersion)
             || version_compare($testVersion, $phpVersion) >= 0
         ) {
             return true;
@@ -205,7 +205,7 @@ abstract class Sniff implements PHPCS_Sniff
         $testVersion = $this->getTestVersion();
         $testVersion = $testVersion[0];
 
-        if (is_null($testVersion) === false
+        if (\is_null($testVersion) === false
             && version_compare($testVersion, $phpVersion) <= 0
         ) {
             return true;
@@ -332,7 +332,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Is this one of the tokens this function handles ?
-        if (in_array($tokens[$stackPtr]['code'], array(\T_STRING, \T_ARRAY, \T_OPEN_SHORT_ARRAY, \T_VARIABLE), true) === false) {
+        if (\in_array($tokens[$stackPtr]['code'], array(\T_STRING, \T_ARRAY, \T_OPEN_SHORT_ARRAY, \T_VARIABLE), true) === false) {
             return false;
         }
 
@@ -398,7 +398,7 @@ abstract class Sniff implements PHPCS_Sniff
             return 0;
         }
 
-        return count($this->getFunctionCallParameters($phpcsFile, $stackPtr));
+        return \count($this->getFunctionCallParameters($phpcsFile, $stackPtr));
     }
 
 
@@ -446,7 +446,7 @@ abstract class Sniff implements PHPCS_Sniff
 
         // Which nesting level is the one we are interested in ?
         if (isset($tokens[$opener]['nested_parenthesis'])) {
-            $nestedParenthesisCount += count($tokens[$opener]['nested_parenthesis']);
+            $nestedParenthesisCount += \count($tokens[$opener]['nested_parenthesis']);
         }
 
         $parameters = array();
@@ -479,7 +479,7 @@ abstract class Sniff implements PHPCS_Sniff
             // Ignore comma's at a lower nesting level.
             if ($tokens[$nextComma]['type'] === 'T_COMMA'
                 && isset($tokens[$nextComma]['nested_parenthesis'])
-                && count($tokens[$nextComma]['nested_parenthesis']) !== $nestedParenthesisCount
+                && \count($tokens[$nextComma]['nested_parenthesis']) !== $nestedParenthesisCount
             ) {
                 continue;
             }
@@ -594,7 +594,7 @@ abstract class Sniff implements PHPCS_Sniff
     public function inClassScope(File $phpcsFile, $stackPtr, $strict = true)
     {
         $validScopes = array(\T_CLASS);
-        if (defined('T_ANON_CLASS') === true) {
+        if (\defined('T_ANON_CLASS') === true) {
             $validScopes[] = \T_ANON_CLASS;
         }
 
@@ -688,7 +688,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         $extends = PHPCSHelper::findExtendedClassName($phpcsFile, $stackPtr);
-        if (empty($extends) || is_string($extends) === false) {
+        if (empty($extends) || \is_string($extends) === false) {
             return '';
         }
 
@@ -726,7 +726,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Nothing to do if 'parent' or 'static' as we don't know how far the class tree extends.
-        if (in_array($tokens[$stackPtr - 1]['code'], array(\T_PARENT, \T_STATIC), true)) {
+        if (\in_array($tokens[$stackPtr - 1]['code'], array(\T_PARENT, \T_STATIC), true)) {
             return '';
         }
 
@@ -945,7 +945,7 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
+        if (\defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
             return $stackPtr;
         }
 
@@ -1045,7 +1045,7 @@ abstract class Sniff implements PHPCS_Sniff
                 continue;
             }
 
-            if (defined('T_NULLABLE') === false && $tokens[$i]['code'] === \T_INLINE_THEN) {
+            if (\defined('T_NULLABLE') === false && $tokens[$i]['code'] === \T_INLINE_THEN) {
                 // Old PHPCS.
                 continue;
             }
@@ -1205,7 +1205,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
-        if (empty($parameters) || is_array($parameters) === false) {
+        if (empty($parameters) || \is_array($parameters) === false) {
             return array();
         }
 
@@ -1663,7 +1663,7 @@ abstract class Sniff implements PHPCS_Sniff
         $arithmeticTokens = Tokens::$arithmeticTokens;
 
         // phpcs:disable PHPCompatibility.Constants.NewConstants.t_powFound
-        if (defined('T_POW') && isset($arithmeticTokens[\T_POW]) === false) {
+        if (\defined('T_POW') && isset($arithmeticTokens[\T_POW]) === false) {
             // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
             $arithmeticTokens[\T_POW] = \T_POW;
         }
@@ -1692,7 +1692,7 @@ abstract class Sniff implements PHPCS_Sniff
             && isset($tokens[($arithmeticOperator + 1)]) === true
         ) {
             // Recognize T_POW for PHPCS < 2.4.0 on low PHP versions.
-            if (defined('T_POW') === false
+            if (\defined('T_POW') === false
                 && $tokens[$arithmeticOperator]['code'] === \T_MULTIPLY
                 && $tokens[($arithmeticOperator + 1)]['code'] === \T_MULTIPLY
                 && isset($tokens[$arithmeticOperator + 2]) === true
@@ -1921,7 +1921,7 @@ abstract class Sniff implements PHPCS_Sniff
 
         // Check if the variable found is at the right level. Deeper levels are always an error.
         if (isset($tokens[$hasVariable]['nested_parenthesis'])
-            && count($tokens[$hasVariable]['nested_parenthesis']) !== $targetNestingLevel
+            && \count($tokens[$hasVariable]['nested_parenthesis']) !== $targetNestingLevel
         ) {
                 return false;
         }

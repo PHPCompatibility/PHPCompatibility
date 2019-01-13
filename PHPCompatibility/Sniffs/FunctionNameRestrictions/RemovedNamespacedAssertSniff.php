@@ -50,7 +50,7 @@ class RemovedNamespacedAssertSniff extends Sniff
     public function register()
     {
         // Enrich the scopes list.
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $this->scopes[] = \T_ANON_CLASS;
         }
 

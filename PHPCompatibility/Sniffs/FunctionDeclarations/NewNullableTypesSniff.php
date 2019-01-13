@@ -45,7 +45,7 @@ class NewNullableTypesSniff extends Sniff
             \T_CLOSURE,
         );
 
-        if (defined('T_RETURN_TYPE')) {
+        if (\defined('T_RETURN_TYPE')) {
             $tokens[] = \T_RETURN_TYPE;
         }
 
@@ -99,7 +99,7 @@ class NewNullableTypesSniff extends Sniff
     {
         $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
 
-        if (empty($params) === false && is_array($params)) {
+        if (empty($params) === false && \is_array($params)) {
             foreach ($params as $param) {
                 if ($param['nullable_type'] === true) {
                     $phpcsFile->addError(
@@ -149,8 +149,8 @@ class NewNullableTypesSniff extends Sniff
         }
 
         // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
-        if ((defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
-            || (defined('T_NULLABLE') === false && $tokens[$previous]['code'] === \T_INLINE_THEN)
+        if ((\defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
+            || (\defined('T_NULLABLE') === false && $tokens[$previous]['code'] === \T_INLINE_THEN)
         ) {
             $phpcsFile->addError(
                 'Nullable return types are not supported in PHP 7.0 or earlier.',

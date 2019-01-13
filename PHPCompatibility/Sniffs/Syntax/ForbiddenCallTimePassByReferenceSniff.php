@@ -113,7 +113,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             true
         );
 
-        if ($prevNonEmpty !== false && in_array($tokens[$prevNonEmpty]['type'], array('T_FUNCTION', 'T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
+        if ($prevNonEmpty !== false && \in_array($tokens[$prevNonEmpty]['type'], array('T_FUNCTION', 'T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             return;
         }
 
@@ -129,14 +129,14 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
         // Get the function call parameters.
         $parameters = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
-        if (count($parameters) === 0) {
+        if (\count($parameters) === 0) {
             return;
         }
 
         // Which nesting level is the one we are interested in ?
         $nestedParenthesisCount = 1;
         if (isset($tokens[$openBracket]['nested_parenthesis'])) {
-            $nestedParenthesisCount = count($tokens[$openBracket]['nested_parenthesis']) + 1;
+            $nestedParenthesisCount = \count($tokens[$openBracket]['nested_parenthesis']) + 1;
         }
 
         foreach ($parameters as $parameter) {
@@ -206,7 +206,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             // Make sure the variable belongs directly to this function call
             // and is not inside a nested function call or array.
             if (isset($tokens[$nextVariable]['nested_parenthesis']) === false
-                || (count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
+                || (\count($tokens[$nextVariable]['nested_parenthesis']) !== $nestingLevel)
             ) {
                 continue;
             }

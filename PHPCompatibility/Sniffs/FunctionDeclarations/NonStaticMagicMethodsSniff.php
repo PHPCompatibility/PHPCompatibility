@@ -89,7 +89,7 @@ class NonStaticMagicMethodsSniff extends Sniff
             \T_TRAIT,
         );
 
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $targets[] = \T_ANON_CLASS;
         }
 

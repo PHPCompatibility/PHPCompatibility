@@ -79,7 +79,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
 
         $nestingLevel = 0;
         if ($asToken !== ($opener + 1) && isset($tokens[$opener + 1]['nested_parenthesis'])) {
-            $nestingLevel = count($tokens[$opener + 1]['nested_parenthesis']);
+            $nestingLevel = \count($tokens[$opener + 1]['nested_parenthesis']);
         }
 
         if ($this->isVariable($phpcsFile, ($opener + 1), $asToken, $nestingLevel) === true) {

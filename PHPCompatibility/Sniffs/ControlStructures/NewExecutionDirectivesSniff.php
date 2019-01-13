@@ -196,7 +196,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         if (empty($versionArray) === false) {
             foreach ($versionArray as $version => $present) {
-                if (is_string($present) === true && $this->supportsBelow($version) === true) {
+                if (\is_string($present) === true && $this->supportsBelow($version) === true) {
                     // We cannot test for compilation option (ok, except by scraping the output of phpinfo...).
                     $errorInfo['conditional_version'] = $version;
                     $errorInfo['condition']           = $present;
@@ -270,11 +270,11 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         $isError = false;
         if (isset($this->newDirectives[$directive]['valid_values'])) {
-            if (in_array($value, $this->newDirectives[$directive]['valid_values']) === false) {
+            if (\in_array($value, $this->newDirectives[$directive]['valid_values']) === false) {
                 $isError = true;
             }
         } elseif (isset($this->newDirectives[$directive]['valid_value_callback'])) {
-            $valid = call_user_func(array($this, $this->newDirectives[$directive]['valid_value_callback']), $value);
+            $valid = \call_user_func(array($this, $this->newDirectives[$directive]['valid_value_callback']), $value);
             if ($valid === false) {
                 $isError = true;
             }
@@ -324,11 +324,11 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             $encodings = mb_list_encodings();
         }
 
-        if (empty($encodings) || is_array($encodings) === false) {
+        if (empty($encodings) || \is_array($encodings) === false) {
             // If we can't test the encoding, let it pass through.
             return true;
         }
 
-        return in_array($value, $encodings, true);
+        return \in_array($value, $encodings, true);
     }
 }

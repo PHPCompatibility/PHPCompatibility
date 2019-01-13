@@ -37,7 +37,7 @@ class PHPCSHelper
      */
     public static function getVersion()
     {
-        if (defined('\PHP_CodeSniffer\Config::VERSION')) {
+        if (\defined('\PHP_CodeSniffer\Config::VERSION')) {
             // PHPCS 3.x.
             return \PHP_CodeSniffer\Config::VERSION;
         } else {

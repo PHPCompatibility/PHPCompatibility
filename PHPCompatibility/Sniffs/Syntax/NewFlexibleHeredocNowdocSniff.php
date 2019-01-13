@@ -152,7 +152,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
                  * Check for tokens after the closing marker.
                  */
                 // Remove the identifier.
-                $afterMarker = substr($trimmed, strlen($identifier));
+                $afterMarker = substr($trimmed, \strlen($identifier));
                 // Remove a potential semi-colon at the beginning of what's left of the string.
                 $afterMarker = ltrim($afterMarker, ';');
                 // Remove new line characters at the end of the string.

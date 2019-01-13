@@ -66,7 +66,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
 
         // Get all parameters from method signature.
         $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
-        if (empty($parameters) || is_array($parameters) === false) {
+        if (empty($parameters) || \is_array($parameters) === false) {
             return;
         }
 
@@ -75,7 +75,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
             $paramNames[] = strtolower($param['name']);
         }
 
-        if (count($paramNames) !== count(array_unique($paramNames))) {
+        if (\count($paramNames) !== \count(array_unique($paramNames))) {
             $phpcsFile->addError(
                 'Functions can not have multiple parameters with the same name since PHP 7.0',
                 $stackPtr,

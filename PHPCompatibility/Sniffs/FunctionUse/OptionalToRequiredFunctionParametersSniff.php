@@ -151,7 +151,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
             }
 
             // Remove the last 'and' from the message.
-            $error = substr($error, 0, (strlen($error) - 5));
+            $error = substr($error, 0, (\strlen($error) - 5));
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);

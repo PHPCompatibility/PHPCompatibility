@@ -267,7 +267,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             return false;
         }
 
-        if (is_string($this->functionWhitelist) === true) {
+        if (\is_string($this->functionWhitelist) === true) {
             if (strpos($this->functionWhitelist, ',') !== false) {
                 $this->functionWhitelist = explode(',', $this->functionWhitelist);
             } else {
@@ -275,9 +275,9 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             }
         }
 
-        if (is_array($this->functionWhitelist) === true) {
+        if (\is_array($this->functionWhitelist) === true) {
             $this->functionWhitelist = array_map('strtolower', $this->functionWhitelist);
-            return in_array($content, $this->functionWhitelist, true);
+            return \in_array($content, $this->functionWhitelist, true);
         }
 
         return false;

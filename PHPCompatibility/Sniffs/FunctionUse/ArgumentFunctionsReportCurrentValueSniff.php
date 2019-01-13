@@ -267,7 +267,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         }
 
                         // Slice starts at a named argument, but we know which params are being accessed.
-                        $paramNamesSubset = array_slice($paramNames, $tokens[$number]['content']);
+                        $paramNamesSubset = \array_slice($paramNames, $tokens[$number]['content']);
                     }
                 }
             }
@@ -348,11 +348,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         continue;
                     }
                 } elseif ($foundFunctionName === 'func_get_args' && isset($paramNamesSubset)) {
-                    if (in_array($tokens[$j]['content'], $paramNamesSubset, true) === false) {
+                    if (\in_array($tokens[$j]['content'], $paramNamesSubset, true) === false) {
                         // Different param than the ones requested by func_get_args().
                         continue;
                     }
-                } elseif (in_array($tokens[$j]['content'], $paramNames, true) === false) {
+                } elseif (\in_array($tokens[$j]['content'], $paramNames, true) === false) {
                     // Variable is not one of the function parameters.
                     continue;
                 }

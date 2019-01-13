@@ -132,7 +132,7 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
         }
 
         // Remove the last 'and' from the message.
-        $error = substr($error, 0, (strlen($error) - 5));
+        $error = substr($error, 0, (\strlen($error) - 5));
 
         if ($errorInfo['alternative'] !== '') {
             $error .= $this->getAlternativeOptionTemplate();

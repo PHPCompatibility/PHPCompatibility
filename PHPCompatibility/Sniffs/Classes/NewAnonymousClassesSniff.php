@@ -48,7 +48,7 @@ class NewAnonymousClassesSniff extends Sniff
      */
     public function register()
     {
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $this->indicators[\T_ANON_CLASS] = \T_ANON_CLASS;
         }
 

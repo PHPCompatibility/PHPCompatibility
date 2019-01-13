@@ -170,7 +170,7 @@ class AssignmentOrderSniff extends Sniff
         }
 
         // Verify that all variables used in the list() construct are unique.
-        if (count($listVars) !== count(array_unique($listVars))) {
+        if (\count($listVars) !== \count(array_unique($listVars))) {
             $phpcsFile->addError(
                 'list() will assign variable from left-to-right since PHP 7.0. Ensure all variables in list() are unique to prevent unexpected results.',
                 $stackPtr,

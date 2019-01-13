@@ -171,7 +171,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                 // Which nesting level is the one we are interested in ?
                 $nestedParenthesisCount = 1;
                 if (isset($tokens[$opener]['nested_parenthesis'])) {
-                    $nestedParenthesisCount += count($tokens[$opener]['nested_parenthesis']);
+                    $nestedParenthesisCount += \count($tokens[$opener]['nested_parenthesis']);
                 }
 
                 foreach ($params as $param) {
@@ -249,7 +249,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
                 $targetNestingLevel = 0;
                 if (isset($tokens[$stackPtr]['nested_parenthesis']) === true) {
-                    $targetNestingLevel = count($tokens[$stackPtr]['nested_parenthesis']);
+                    $targetNestingLevel = \count($tokens[$stackPtr]['nested_parenthesis']);
                 }
 
                 // Examine each variable/constant in multi-declarations.
@@ -522,7 +522,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             // Check if a comma is at the nesting level we're targetting.
             $nestingLevel = 0;
             if (isset($tokens[$endPtr]['nested_parenthesis']) === true) {
-                $nestingLevel = count($tokens[$endPtr]['nested_parenthesis']);
+                $nestingLevel = \count($tokens[$endPtr]['nested_parenthesis']);
             }
             if ($nestingLevel > $targetLevel) {
                 return $endPtr;

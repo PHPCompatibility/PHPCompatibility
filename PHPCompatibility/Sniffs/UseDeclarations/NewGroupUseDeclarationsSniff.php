@@ -33,7 +33,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
      */
     public function register()
     {
-        if (defined('T_OPEN_USE_GROUP')) {
+        if (\defined('T_OPEN_USE_GROUP')) {
             return array(\T_OPEN_USE_GROUP);
         } else {
             return array(\T_USE);
@@ -84,7 +84,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
         }
 
         $closers = array(\T_CLOSE_CURLY_BRACKET);
-        if (defined('T_CLOSE_USE_GROUP')) {
+        if (\defined('T_CLOSE_USE_GROUP')) {
             $closers[] = \T_CLOSE_USE_GROUP;
         }
 

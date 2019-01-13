@@ -246,7 +246,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         // Is this a function param shadowing the PHP native one ?
         if ($function !== false) {
             $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $function);
-            if (is_array($parameters) === true && empty($parameters) === false) {
+            if (\is_array($parameters) === true && empty($parameters) === false) {
                 foreach ($parameters as $param) {
                     if ($param['name'] === '$php_errormsg') {
                         return false;

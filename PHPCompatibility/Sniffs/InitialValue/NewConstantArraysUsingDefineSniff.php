@@ -80,12 +80,12 @@ class NewConstantArraysUsingDefineSniff extends Sniff
 
         $targetNestingLevel = 0;
         if (isset($tokens[$secondParam['start']]['nested_parenthesis'])) {
-            $targetNestingLevel = count($tokens[$secondParam['start']]['nested_parenthesis']);
+            $targetNestingLevel = \count($tokens[$secondParam['start']]['nested_parenthesis']);
         }
 
         $array = $phpcsFile->findNext(array(\T_ARRAY, \T_OPEN_SHORT_ARRAY), $secondParam['start'], ($secondParam['end'] + 1));
         if ($array !== false) {
-            if ((isset($tokens[$array]['nested_parenthesis']) === false && $targetNestingLevel === 0) || count($tokens[$array]['nested_parenthesis']) === $targetNestingLevel) {
+            if ((isset($tokens[$array]['nested_parenthesis']) === false && $targetNestingLevel === 0) || \count($tokens[$array]['nested_parenthesis']) === $targetNestingLevel) {
                 $phpcsFile->addError(
                     'Constant arrays using define are not allowed in PHP 5.6 or earlier',
                     $array,

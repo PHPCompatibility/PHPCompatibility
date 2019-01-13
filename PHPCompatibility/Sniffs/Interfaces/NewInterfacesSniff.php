@@ -128,11 +128,11 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             \T_CLOSURE,
         );
 
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $targets[] = \T_ANON_CLASS;
         }
 
-        if (defined('T_RETURN_TYPE')) {
+        if (\defined('T_RETURN_TYPE')) {
             $targets[] = \T_RETURN_TYPE;
         }
 
@@ -198,7 +198,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     {
         $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
-        if (is_array($interfaces) === false || $interfaces === array()) {
+        if (\is_array($interfaces) === false || $interfaces === array()) {
             return;
         }
 
@@ -262,7 +262,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     private function processFunctionToken(File $phpcsFile, $stackPtr)
     {
         $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
-        if (empty($typeHints) || is_array($typeHints) === false) {
+        if (empty($typeHints) || \is_array($typeHints) === false) {
             return;
         }
 

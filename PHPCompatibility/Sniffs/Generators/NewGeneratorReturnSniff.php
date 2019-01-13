@@ -69,7 +69,7 @@ class NewGeneratorReturnSniff extends Sniff
             $targets[] = \T_STRING;
         }
 
-        if (defined('T_YIELD_FROM')) {
+        if (\defined('T_YIELD_FROM')) {
             $targets[] = \T_YIELD_FROM;
         }
 
@@ -123,7 +123,7 @@ class NewGeneratorReturnSniff extends Sniff
         }
 
         $targets = array(\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS);
-        if (defined('T_ANON_CLASS')) {
+        if (\defined('T_ANON_CLASS')) {
             $targets[] = \T_ANON_CLASS;
         }
 

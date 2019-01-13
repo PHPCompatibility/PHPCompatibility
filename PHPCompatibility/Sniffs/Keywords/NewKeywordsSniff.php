@@ -164,7 +164,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $tokens    = array();
         $translate = array();
         foreach ($this->newKeywords as $token => $versions) {
-            if (defined($token)) {
+            if (\defined($token)) {
                 $tokens[] = constant($token);
             }
             if (isset($versions['content'])) {
@@ -272,7 +272,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         ) {
             // Skip based on token scope condition.
             if (isset($this->newKeywords[$tokenType]['condition'])
-                && call_user_func(array($this, $this->newKeywords[$tokenType]['condition']), $phpcsFile, $stackPtr) === true
+                && \call_user_func(array($this, $this->newKeywords[$tokenType]['condition']), $phpcsFile, $stackPtr) === true
             ) {
                 return;
             }
