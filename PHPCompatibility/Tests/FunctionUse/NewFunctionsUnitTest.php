@@ -526,6 +526,9 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('ldap_mod_replace_ext', '7.2', array(473), '7.3'),
             array('ldap_mod_del_ext', '7.2', array(474), '7.3'),
             array('ldap_rename_ext', '7.2', array(475), '7.3'),
+
+            array('oci_set_call_timeout', '7.2.13', array(477), '7.3', '7.2'),
+            array('oci_set_db_operation', '7.2.13', array(478), '7.3', '7.2'),
         );
     }
 
