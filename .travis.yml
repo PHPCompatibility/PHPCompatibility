@@ -68,10 +68,6 @@ matrix:
       env: PHPCS_VERSION="2.3.0" PHPUNIT_VERSION="^7.0"
     - php: "7.4snapshot"
       env: PHPCS_VERSION="dev-master" LINT=1 PHPUNIT_VERSION="^7.0"
-    - php: nightly
-      env: PHPCS_VERSION="2.3.0" PHPUNIT_VERSION="^7.0"
-    - php: nightly
-      env: PHPCS_VERSION="dev-master" LINT=1 PHPUNIT_VERSION="^7.0"
 
     # Test against a variation of PHPCS 2.x and 3.x versions.
     - php: 5.5
@@ -91,14 +87,11 @@ matrix:
     - php: 7.3
       env: PHPCS_VERSION="3.3.*" PHPUNIT_VERSION="^7.0"
     - php: "7.4snapshot"
-      env: PHPCS_VERSION="3.4.*" PHPUNIT_VERSION="^7.0"
-    - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0" PHPUNIT_VERSION="^7.0"
 
   allow_failures:
     # Allow failures for unstable builds.
     - php: "7.4snapshot"
-    - php: nightly
 
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.
