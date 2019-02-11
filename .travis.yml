@@ -64,6 +64,10 @@ matrix:
       env: PHPCS_VERSION="2.3.0" PHPUNIT_VERSION="^7.0"
     - php: 7.2
       env: PHPCS_VERSION="dev-master" LINT=1 PHPUNIT_VERSION="^7.0"
+    - php: "7.4snapshot"
+      env: PHPCS_VERSION="2.3.0" PHPUNIT_VERSION="^7.0"
+    - php: "7.4snapshot"
+      env: PHPCS_VERSION="dev-master" LINT=1 PHPUNIT_VERSION="^7.0"
     - php: nightly
       env: PHPCS_VERSION="2.3.0" PHPUNIT_VERSION="^7.0"
     - php: nightly
@@ -86,11 +90,14 @@ matrix:
     # While on PHPCS 2.x, the tests won't fail, on PHPCS 3.x < 3.3.1, they will.
     - php: 7.3
       env: PHPCS_VERSION="3.3.*" PHPUNIT_VERSION="^7.0"
+    - php: "7.4snapshot"
+      env: PHPCS_VERSION="3.4.*" PHPUNIT_VERSION="^7.0"
     - php: nightly
       env: PHPCS_VERSION=">=2.0,<3.0" PHPUNIT_VERSION="^7.0"
 
   allow_failures:
     # Allow failures for unstable builds.
+    - php: "7.4snapshot"
     - php: nightly
 
 before_install:
