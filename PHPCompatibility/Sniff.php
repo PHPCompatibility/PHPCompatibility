@@ -299,9 +299,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function arrayKeysToLowercase($array)
     {
-        $keys = array_keys($array);
-        $keys = array_map('strtolower', $keys);
-        return array_combine($keys, $array);
+        return array_change_key_case($array, CASE_LOWER);
     }
 
 
