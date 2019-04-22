@@ -491,9 +491,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
-                if ($afterVar !== false
-                    && isset(Tokens::$assignmentTokens[$tokens[$afterVar]['code']])
-                ) {
+                if (isset(Tokens::$assignmentTokens[$tokens[$afterVar]['code']])) {
                     // Variable is being assigned something.
                     $scanResult    = 'error';
                     $variableToken = $j;
