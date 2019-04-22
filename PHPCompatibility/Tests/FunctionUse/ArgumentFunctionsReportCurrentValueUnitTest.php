@@ -30,8 +30,8 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      *
      * @dataProvider dataValueChanged
      *
-     * @param array  $line         The line number where a warning is expected.
-     * @param string $functionName The name of the function to which the warning applies.
+     * @param array  $line         The line number where an error is expected.
+     * @param string $functionName The name of the function to which the error applies.
      * @param string $variableName The variable which was detected as having been changed.
      *
      * @return void
