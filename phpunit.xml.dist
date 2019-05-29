@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit bootstrap="phpunit-bootstrap.php" colors="true" backupGlobals="true">
     <testsuites>
         <testsuite name="PHPCompatibility Utilities Tests">
@@ -9,5 +8,15 @@
             <directory suffix="UnitTest.php">./PHPCompatibility/Tests/</directory>
         </testsuite>
     </testsuites>
-</phpunit>
 
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <file>./PHPCompatibility/Sniff.php</file>
+            <directory>./PHPCompatibility/Sniffs/</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
+</phpunit>
