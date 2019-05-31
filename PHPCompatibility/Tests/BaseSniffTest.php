@@ -237,7 +237,7 @@ class BaseSniffTest extends PHPUnit_TestCase
      *
      * @return bool
      */
-    public function assertNoViolation(File $file, $lineNumber = 0)
+    public function assertNoViolation(File $file, $lineNumber = null)
     {
         $errors   = $this->gatherErrors($file);
         $warnings = $this->gatherWarnings($file);
@@ -246,7 +246,7 @@ class BaseSniffTest extends PHPUnit_TestCase
             return $this->assertTrue(true);
         }
 
-        if ($lineNumber === 0) {
+        if (is_null($lineNumber)) {
             $failMessage = 'Failed asserting no violations in file. Found ' . \count($errors) . ' errors and ' . \count($warnings) . ' warnings.';
             $allMessages = $errors + $warnings;
             // TODO: Update the fail message to give the tester some
