@@ -27,7 +27,7 @@ class MyOtherClass extends MyClass {
 
 // Class/interface type declaration - PHP 5.0+
 function foo(stdClass $a) {}
-
+function foo(DateInterval ...$a) {} // Combined with splat, PHP 5.6+.
 
 // Class/interface type declaration with self keyword - PHP 5.2+
 class MyClass {

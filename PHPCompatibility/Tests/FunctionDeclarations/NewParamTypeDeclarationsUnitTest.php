@@ -198,6 +198,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array(24),
             array(25),
             array(29, true),
+            array(30, true),
             array(34),
             array(37),
             array(41),
