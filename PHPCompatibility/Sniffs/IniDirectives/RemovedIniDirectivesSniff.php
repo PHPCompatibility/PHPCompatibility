@@ -228,6 +228,37 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'pdo_odbc.db2_instance_name' => array(
             '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
         ),
+
+        'ibase.allow_persistent' => array(
+            '7.4' => true,
+        ),
+        'ibase.max_persistent' => array(
+            '7.4' => true,
+        ),
+        'ibase.max_links' => array(
+            '7.4' => true,
+        ),
+        'ibase.default_db' => array(
+            '7.4' => true,
+        ),
+        'ibase.default_user' => array(
+            '7.4' => true,
+        ),
+        'ibase.default_password' => array(
+            '7.4' => true,
+        ),
+        'ibase.default_charset' => array(
+            '7.4' => true,
+        ),
+        'ibase.timestampformat' => array(
+            '7.4' => true,
+        ),
+        'ibase.dateformat' => array(
+            '7.4' => true,
+        ),
+        'ibase.timeformat' => array(
+            '7.4' => true,
+        ),
     );
 
     /**

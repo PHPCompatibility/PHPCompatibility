@@ -266,6 +266,17 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('opcache.fast_shutdown', '7.2', array(175, 176), '7.1'),
 
             array('birdstep.max_links', '7.3', array(178, 179), '7.2'),
+
+            array('ibase.allow_persistent', '7.4', array(187, 188), '7.3'),
+            array('ibase.max_persistent', '7.4', array(190, 191), '7.3'),
+            array('ibase.max_links', '7.4', array(193, 194), '7.3'),
+            array('ibase.default_db', '7.4', array(196, 197), '7.3'),
+            array('ibase.default_user', '7.4', array(199, 200), '7.3'),
+            array('ibase.default_password', '7.4', array(202, 203), '7.3'),
+            array('ibase.default_charset', '7.4', array(205, 206), '7.3'),
+            array('ibase.timestampformat', '7.4', array(208, 209), '7.3'),
+            array('ibase.dateformat', '7.4', array(211, 212), '7.3'),
+            array('ibase.timeformat', '7.4', array(214, 215), '7.3'),
         );
     }
 
