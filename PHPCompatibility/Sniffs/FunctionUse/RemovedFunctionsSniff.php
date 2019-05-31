@@ -884,6 +884,199 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.3' => false,
             'alternative' => null,
         ),
+
+        'ibase_add_user' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_affected_rows' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_backup' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_add' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_cancel' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_close' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_create' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_echo' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_get' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_import' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_info' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_blob_open' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_close' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_commit_ret' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_commit' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_connect' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_db_info' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_delete_user' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_drop_db' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_errcode' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_errmsg' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_execute' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_fetch_assoc' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_fetch_object' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_fetch_row' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_field_info' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_free_event_handler' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_free_query' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_free_result' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_gen_id' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_maintain_db' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_modify_user' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_name_result' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_num_fields' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_num_params' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_param_info' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_pconnect' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_prepare' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_query' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_restore' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_rollback_ret' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_rollback' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_server_info' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_service_attach' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_service_detach' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_set_event_handler' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_trans' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'ibase_wait_event' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
     );
 
 
