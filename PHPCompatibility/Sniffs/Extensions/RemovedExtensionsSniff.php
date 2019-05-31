@@ -112,7 +112,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         ),
         'mcve' => array(
             '5.1' => true,
-            'alternative' => 'pecl/mvce',
+            'alternative' => 'pecl/mcve',
         ),
         'ming' => array(
             '5.3' => true,

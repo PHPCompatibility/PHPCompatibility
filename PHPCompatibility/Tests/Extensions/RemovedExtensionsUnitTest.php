@@ -127,7 +127,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array('dio', '5.1', 'pecl/dio', array(14), '5.0'),
             array('fdf', '5.3', 'pecl/fdf', array(20), '5.2'),
             array('ingres', '5.1', 'pecl/ingres', array(26), '5.0'),
-            array('mcve', '5.1', 'pecl/mvce', array(30), '5.0'),
+            array('mcve', '5.1', 'pecl/mcve', array(30), '5.0'),
             array('ming', '5.3', 'pecl/ming', array(32), '5.2'),
             array('ncurses', '5.3', 'pecl/ncurses', array(40), '5.2'),
             array('oracle', '5.1', 'oci8 or pdo_oci', array(42), '5.0'),
