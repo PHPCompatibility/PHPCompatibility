@@ -97,6 +97,10 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             '5.2' => true,
             'alternative' => null,
         ),
+        'ibase' => array(
+            '7.4' => true,
+            'alternative' => 'pecl/ibase',
+        ),
         'ingres' => array(
             '5.1' => true,
             'alternative' => 'pecl/ingres',
