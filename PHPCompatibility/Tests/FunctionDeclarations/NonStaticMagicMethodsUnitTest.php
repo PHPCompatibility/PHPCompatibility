@@ -87,7 +87,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      * @param string $desiredVisibility The visibility the method should have.
      * @param string $testVisibility    The visibility the method actually has in the test.
      * @param int    $line              The line number.
-     * @param bool   $isTrait           Whether the test relates to method in a trait.
+     * @param bool   $isTrait           Whether the test relates to a method in a trait.
      *
      * @return void
      */
