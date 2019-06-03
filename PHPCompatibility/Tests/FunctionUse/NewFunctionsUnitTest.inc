@@ -476,3 +476,5 @@ ldap_rename_ext();
 
 oci_set_call_timeout();
 oci_set_db_operation();
+
+mb_str_split();
