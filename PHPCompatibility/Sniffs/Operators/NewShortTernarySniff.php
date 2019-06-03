@@ -14,7 +14,6 @@ namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff.
@@ -57,18 +56,14 @@ class NewShortTernarySniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
-        // Get next non-whitespace token, and check it isn't the related inline else
-        // symbol, which is not allowed prior to PHP 5.3.
-        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-
-        if ($next !== false && $tokens[$next]['code'] === \T_INLINE_ELSE) {
-            $phpcsFile->addError(
-                'Middle may not be omitted from ternary operators in PHP < 5.3',
-                $stackPtr,
-                'MiddleMissing'
-            );
+        if ($this->isShortTernary($phpcsFile, $stackPtr) === false) {
+            return;
         }
+
+        $phpcsFile->addError(
+            'Middle may not be omitted from ternary operators in PHP < 5.3',
+            $stackPtr,
+            'MiddleMissing'
+        );
     }
 }
