@@ -529,6 +529,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('oci_set_call_timeout', '7.2.13', array(477), '7.3', '7.2'),
             array('oci_set_db_operation', '7.2.13', array(478), '7.3', '7.2'),
+
+            array('mb_str_split', '7.3', array(480), '7.4'),
         );
     }
 
