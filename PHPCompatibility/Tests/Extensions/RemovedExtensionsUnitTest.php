@@ -74,7 +74,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array('msql', '5.3', array(36), '5.2'),
             array('mssql', '7.0', array(63), '5.6'),
             array('ovrimos', '5.1', array(44), '5.0'),
-            array('pfpro_', '5.3', array(46), '5.2'),
+            array('pfpro_', '5.1', array(46), '5.0'),
             array('sqlite', '5.4', array(48), '5.3'),
             // array('sybase', '7.0', array(xx), '5.6'), sybase_ct ???
             array('yp', '5.1', array(54), '5.0'),
