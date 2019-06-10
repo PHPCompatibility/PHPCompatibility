@@ -134,6 +134,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array('oracle', '5.1', 'oci8 or pdo_oci', array(42), '5.0'),
             array('sybase', '5.3', 'sybase_ct', array(50), '5.2'),
             array('w32api', '5.1', 'pecl/ffi', array(52), '5.0'),
+            array('wddx', '7.4', 'pecl/wddx', array(79), '7.3'),
         );
     }
 
@@ -224,7 +225,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array(58), // Function declaration.
             array(59), // Class instantiation.
             array(60), // Method call.
-            array(81), // Live coding.
+            array(82), // Live coding.
         );
 
         // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
