@@ -216,3 +216,10 @@ ibase_service_detach();
 ibase_set_event_handler();
 ibase_trans();
 ibase_wait_event();
+
+// Pfpro extension - PHP 5.1
+pfpro_cleanup();
+pfpro_init();
+pfpro_process_raw();
+pfpro_process();
+pfpro_version();
