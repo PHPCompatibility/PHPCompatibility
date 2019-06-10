@@ -213,3 +213,24 @@ $a = ini_get('ibase.dateformat');
 
 ini_set('ibase.timeformat', '%Y-%m-%d');
 $a = ini_get('ibase.timeformat');
+
+ini_set('pfpro.defaulthost', 'string');
+$a = ini_get('pfpro.defaulthost');
+
+ini_set('pfpro.defaultport', 'string');
+$a = ini_get('pfpro.defaultport');
+
+ini_set('pfpro.defaulttimeout', 'string');
+$a = ini_get('pfpro.defaulttimeout');
+
+ini_set('pfpro.proxyaddress', 'string');
+$a = ini_get('pfpro.proxyaddress');
+
+ini_set('pfpro.proxyport', 'string');
+$a = ini_get('pfpro.proxyport');
+
+ini_set('pfpro.proxylogon', 'string');
+$a = ini_get('pfpro.proxylogon');
+
+ini_set('pfpro.proxypassword', 'string');
+$a = ini_get('pfpro.proxypassword');
