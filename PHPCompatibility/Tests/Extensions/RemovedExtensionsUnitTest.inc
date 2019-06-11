@@ -43,7 +43,7 @@ oracle();
 
 ovrimos();
 
-pfpro();
+pfpro_init();
 
 sqlite();
 
