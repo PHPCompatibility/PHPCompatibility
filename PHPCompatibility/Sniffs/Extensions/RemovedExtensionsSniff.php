@@ -147,7 +147,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             '5.1' => true,
             'alternative' => null,
         ),
-        'pfpro' => array(
+        'pfpro_' => array(
             '5.3' => true,
             'alternative' => null,
         ),
