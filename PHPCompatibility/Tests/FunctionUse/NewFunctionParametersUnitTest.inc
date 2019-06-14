@@ -66,7 +66,7 @@ parse_url($url, PHP_URL_PATH);
 pg_lo_create($database, $id);
 pg_lo_import($database, '/tmp/lob.dat', $id);
 preg_replace( '`[A-Z]([a-z]+)`', '$1', $subject , -1 , $count );
-preg_replace_callback( '`[A-Z]([a-z]+)`' , $callback , $subject , -1 , $count );
+preg_replace_callback( '`[A-Z]([a-z]+)`' , $callback , $subject , -1 , $count, $flags );
 round(1.55, 1, PHP_ROUND_HALF_EVEN);
 sem_acquire( $sem_identifier, true );
 session_regenerate_id (true);
@@ -115,3 +115,4 @@ ldap_parse_result( $link, $result, &$errcode, &$matcheddn, &$errmsg, &$referrals
 ldap_read( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
 ldap_rename( $link_identifier, $dn, $newrdn, $newparent, $deleteoldrdn, $serverctrls );
 ldap_search( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
+preg_replace_callback_array($patterns_and_callbacks, $subject, $limit, $count, $flags);

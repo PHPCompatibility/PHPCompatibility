@@ -164,7 +164,9 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             array('pg_select', 'result_type', '7.0', array(101), '7.1'),
             array('php_uname', 'mode', '4.2', array(104), '4.3'),
             array('preg_replace', 'count', '5.0', array(68), '5.1'),
-            array('preg_replace_callback', 'count', '5.0', array(69), '5.1'),
+            array('preg_replace_callback', 'count', '5.0', array(69), '7.4'), // OK version > version in which last parameter was added to the function.
+            array('preg_replace_callback', 'flags', '7.3', array(69), '7.4'),
+            array('preg_replace_callback_array', 'flags', '7.3', array(118), '7.4'),
             array('round', 'mode', '5.2', array(70), '5.3'),
             array('sem_acquire', 'nowait', '5.6', array(71), '7.0'),
             array('session_regenerate_id', 'delete_old_session', '5.0', array(72), '5.1'),
