@@ -341,3 +341,4 @@ $test = new SQLiteException();
 class MyClosedGeneratorException extends ClosedGeneratorException {}
 function SodiumExceptionTypeHint( SodiumException $a ) {}
 $test = new com_exception();
+$test = new ReflectionReference;
