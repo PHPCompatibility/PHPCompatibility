@@ -531,6 +531,11 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('oci_set_db_operation', '7.2.13', array(478), '7.3', '7.2'),
 
             array('mb_str_split', '7.3', array(480), '7.4'),
+            array('get_mangled_object_vars', '7.3', array(481), '7.4'),
+            array('openssl_x509_verify', '7.3', array(482), '7.4'),
+            array('pcntl_unshare', '7.3', array(483), '7.4'),
+            array('sapi_windows_set_ctrl_handler', '7.3', array(484), '7.4'),
+            array('sapi_windows_generate_ctrl_event', '7.3', array(485), '7.4'),
         );
     }
 
