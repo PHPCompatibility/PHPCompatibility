@@ -478,3 +478,8 @@ oci_set_call_timeout();
 oci_set_db_operation();
 
 mb_str_split();
+get_mangled_object_vars();
+openssl_x509_verify();
+pcntl_unshare();
+sapi_windows_set_ctrl_handler();
+sapi_windows_generate_ctrl_event();

@@ -1850,7 +1850,27 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
 
+        'get_mangled_object_vars' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'mb_str_split' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'openssl_x509_verify' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'pcntl_unshare' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'sapi_windows_set_ctrl_handler' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'sapi_windows_generate_ctrl_event' => array(
             '7.3' => false,
             '7.4' => true,
         ),
