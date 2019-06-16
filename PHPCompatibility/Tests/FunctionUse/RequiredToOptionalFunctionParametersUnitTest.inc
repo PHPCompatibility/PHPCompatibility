@@ -30,3 +30,7 @@ ftp_nb_get( $ftp_stream, $local_file, $remote_file); // PHP 7.3+
 ftp_nb_put( $ftp_stream, $remote_file,$local_file); // PHP 7.3+
 ftp_put( $ftp_stream, $remote_file, $local_file); // PHP 7.3+
 ftp_put ( $ftp_stream, $remote_file, $local_file,$mode,$startpos); // OK.
+
+array_merge($arrays); // OK.
+array_merge(); // PHP 7.4+
+array_merge_recursive(); // PHP 7.4+

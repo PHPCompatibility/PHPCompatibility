@@ -34,6 +34,20 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      * @var array
      */
     protected $functionParameters = array(
+        'array_merge' => array(
+            0 => array(
+                'name' => 'array(s) to merge',
+                '7.3'  => true,
+                '7.4'  => false,
+            ),
+        ),
+        'array_merge_recursive' => array(
+            0 => array(
+                'name' => 'array(s) to merge',
+                '7.3'  => true,
+                '7.4'  => false,
+            ),
+        ),
         'array_push' => array(
             1 => array(
                 'name' => 'element to push',
