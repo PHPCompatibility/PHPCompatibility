@@ -3444,6 +3444,151 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+
+        'MB_ONIGURUMA_VERSION' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'SO_LABEL' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'SO_PEERLABEL' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'SO_LISTENQLIMIT' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'SO_LISTENQLEN' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'SO_USER_COOKIE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'PHP_WINDOWS_EVENT_CTRL_C' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'PHP_WINDOWS_EVENT_CTRL_BREAK' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_ARTICLE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_ASIDE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_AUDIO' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_BDI' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_CANVAS' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_COMMAND' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_DATALIST' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_DETAILS' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_DIALOG' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_FIGCAPTION' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_FIGURE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_FOOTER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_HEADER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_HGROUP' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_MAIN' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_MARK' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_MENUITEM' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_METER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_NAV' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_OUTPUT' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_PROGRESS' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_SECTION' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_SOURCE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_SUMMARY' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_TEMPLATE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_TIME' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_TRACK' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'TIDY_TAG_VIDEO' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
 
