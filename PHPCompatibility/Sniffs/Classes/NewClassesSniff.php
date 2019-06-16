@@ -565,6 +565,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.2' => false,
             '7.3' => true,
         ),
+
+        'ReflectionReference' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
 

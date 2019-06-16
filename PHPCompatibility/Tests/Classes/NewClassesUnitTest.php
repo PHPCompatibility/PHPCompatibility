@@ -194,6 +194,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('SodiumException', '7.1', array(342), '7.2'),
             array('CompileError', '7.2', array(249), '7.3'),
             array('JsonException', '7.2', array(250, 339), '7.3'),
+            array('ReflectionReference', '7.3', array(344), '7.4'),
         );
     }
 
