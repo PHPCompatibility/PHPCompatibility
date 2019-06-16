@@ -41,7 +41,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
         'T_ELLIPSIS' => array(
             '5.5' => false,
             '5.6' => true,
-            'description' => 'variadic functions using ...',
+            'description' => 'the ... spread operator',
         ),
     );
 

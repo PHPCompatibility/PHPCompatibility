@@ -46,7 +46,7 @@ class NewLanguageConstructsUnitTest extends BaseSniffTest
     public function testEllipsis()
     {
         $file = $this->sniffFile(__FILE__, '5.5');
-        $this->assertError($file, 5, 'variadic functions using ... is not present in PHP version 5.5 or earlier');
+        $this->assertError($file, 5, 'the ... spread operator is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, 5);
