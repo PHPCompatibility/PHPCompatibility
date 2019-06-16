@@ -54,6 +54,11 @@
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
     </rule>
 
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
+        <exclude-pattern>*/PHPCSAliases\.php</exclude-pattern>
+    </rule>
+
     <!-- Check that variable names are in camelCaps. -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
