@@ -709,6 +709,18 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.0'  => false,
                 '5.1'  => true,
             ),
+            5 => array(
+                'name' => 'flags',
+                '7.3'  => false,
+                '7.4'  => true,
+            ),
+        ),
+        'preg_replace_callback_array' => array(
+            4 => array(
+                'name' => 'flags',
+                '7.3'  => false,
+                '7.4'  => true,
+            ),
         ),
         'round' => array(
             2 => array(
