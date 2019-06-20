@@ -75,5 +75,7 @@ ereg_convert();
 ereg_translate_to_preg();
 ereg_replace(); // Non-whitelisted.
 
+ibase_trans();
+
 // Don't throw errors during live code review.
 ereg($a, $b

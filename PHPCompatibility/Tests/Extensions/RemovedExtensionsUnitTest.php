@@ -126,6 +126,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array('dbx', '5.1', 'pecl/dbx', array(12), '5.0'),
             array('dio', '5.1', 'pecl/dio', array(14), '5.0'),
             array('fdf', '5.3', 'pecl/fdf', array(20), '5.2'),
+            array('ibase', '7.4', 'pecl/ibase', array(78), '7.3'),
             array('ingres', '5.1', 'pecl/ingres', array(26), '5.0'),
             array('mcve', '5.1', 'pecl/mcve', array(30), '5.0'),
             array('ming', '5.3', 'pecl/ming', array(32), '5.2'),
@@ -223,7 +224,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array(58), // Function declaration.
             array(59), // Class instantiation.
             array(60), // Method call.
-            array(78), // Live coding.
+            array(81), // Live coding.
         );
 
         // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
