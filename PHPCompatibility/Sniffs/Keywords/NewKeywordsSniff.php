@@ -178,7 +178,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
          */
         if (empty($translate) === false) {
             $this->translateContentToToken = $translate;
-            $tokens[] = \T_STRING;
+            $tokens[]                      = \T_STRING;
         }
 
         return $tokens;

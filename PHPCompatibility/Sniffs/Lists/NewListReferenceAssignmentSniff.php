@@ -55,7 +55,7 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
      */
     protected function examineList(File $phpcsFile, $opener, $closer)
     {
-        $start   = $opener;
+        $start = $opener;
         while (($start = $this->hasTargetInList($phpcsFile, $start, $closer)) !== false) {
             $phpcsFile->addError(
                 'Reference assignments within list constructs are not supported in PHP 7.2 or earlier.',
