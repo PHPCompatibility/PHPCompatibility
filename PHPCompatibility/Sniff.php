@@ -299,7 +299,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function arrayKeysToLowercase($array)
     {
-        return array_change_key_case($array, CASE_LOWER);
+        return array_change_key_case($array, \CASE_LOWER);
     }
 
 
@@ -1490,7 +1490,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     protected function isNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $stringTokens  = Tokens::$heredocTokens + Tokens::$stringTokens;
+        $stringTokens = Tokens::$heredocTokens + Tokens::$stringTokens;
 
         $validTokens             = array();
         $validTokens[\T_LNUMBER] = true;

@@ -29,7 +29,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {
 
     const ERROR_TYPE_VARIABLE = 'a variable argument';
-    const ERROR_TYPE_ZERO = '0 as an argument';
+    const ERROR_TYPE_ZERO     = '0 as an argument';
 
     /**
      * testBreakAndContinueVariableArgument

@@ -122,6 +122,17 @@
         <severity>0</severity>
     </rule>
 
+    <!-- Align the equal operator in assignment blocks. -->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <properties>
+            <property name="maxPadding" value="25"/>
+        </properties>
+    </rule>
+
+	<rule ref="PEAR.Files.IncludingFile">
+        <exclude-pattern>*/phpunit-bootstrap\.php</exclude-pattern>
+	</rule>
+
 
     <!--
         Inline Documentation check.
