@@ -287,6 +287,12 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ibase_set_event_handler', '7.4', array(216), '7.3'),
             array('ibase_trans', '7.4', array(217), '7.3'),
             array('ibase_wait_event', '7.4', array(218), '7.3'),
+
+            array('pfpro_cleanup', '5.1', array(221), '5.0'),
+            array('pfpro_init', '5.1', array(222), '5.0'),
+            array('pfpro_process_raw', '5.1', array(223), '5.0'),
+            array('pfpro_process', '5.1', array(224), '5.0'),
+            array('pfpro_version', '5.1', array(225), '5.0'),
         );
     }
 

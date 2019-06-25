@@ -152,7 +152,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
         'pfpro_' => array(
-            '5.3' => true,
+            '5.1' => true,
             'alternative' => null,
         ),
         'sqlite' => array(

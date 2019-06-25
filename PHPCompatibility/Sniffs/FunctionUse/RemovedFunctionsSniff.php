@@ -34,6 +34,28 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.0.5' => true,
             'alternative' => null,
         ),
+
+        'pfpro_cleanup' => array(
+            '5.1' => true,
+            'alternative' => null,
+        ),
+        'pfpro_init' => array(
+            '5.1' => true,
+            'alternative' => null,
+        ),
+        'pfpro_process_raw' => array(
+            '5.1' => true,
+            'alternative' => null,
+        ),
+        'pfpro_process' => array(
+            '5.1' => true,
+            'alternative' => null,
+        ),
+        'pfpro_version' => array(
+            '5.1' => true,
+            'alternative' => null,
+        ),
+
         'call_user_method' => array(
             '5.3' => false,
             '7.0' => true,

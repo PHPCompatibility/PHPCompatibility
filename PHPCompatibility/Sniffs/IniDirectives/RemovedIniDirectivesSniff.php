@@ -38,6 +38,27 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.1'         => true,
             'alternative' => 'fbsql.batchsize',
         ),
+        'pfpro.defaulthost' => array(
+            '5.1' => true,
+        ),
+        'pfpro.defaultport' => array(
+            '5.1' => true,
+        ),
+        'pfpro.defaulttimeout' => array(
+            '5.1' => true,
+        ),
+        'pfpro.proxyaddress' => array(
+            '5.1' => true,
+        ),
+        'pfpro.proxyport' => array(
+            '5.1' => true,
+        ),
+        'pfpro.proxylogon' => array(
+            '5.1' => true,
+        ),
+        'pfpro.proxypassword' => array(
+            '5.1' => true,
+        ),
 
         'ifx.allow_persistent' => array(
             '5.2.1' => true,

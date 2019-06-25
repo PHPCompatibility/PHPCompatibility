@@ -277,6 +277,14 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('ibase.timestampformat', '7.4', array(208, 209), '7.3'),
             array('ibase.dateformat', '7.4', array(211, 212), '7.3'),
             array('ibase.timeformat', '7.4', array(214, 215), '7.3'),
+
+            array('pfpro.defaulthost', '5.1', array(217, 218), '5.0'),
+            array('pfpro.defaultport', '5.1', array(220, 221), '5.0'),
+            array('pfpro.defaulttimeout', '5.1', array(223, 224), '5.0'),
+            array('pfpro.proxyaddress', '5.1', array(226, 227), '5.0'),
+            array('pfpro.proxyport', '5.1', array(229, 230), '5.0'),
+            array('pfpro.proxylogon', '5.1', array(232, 233), '5.0'),
+            array('pfpro.proxypassword', '5.1', array(235, 236), '5.0'),
         );
     }
 
