@@ -1144,7 +1144,7 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @param \PHP_CodeSniffer_File $phpcsFile   Instance of phpcsFile.
      * @param int                   $stackPtr    The position in the stack of the
-     *                                           T_CONST token to verify.
+     *                                           token to verify.
      * @param array                 $validScopes Array of token types.
      *                                           Keys should be the token types in string
      *                                           format to allow for newer token types.

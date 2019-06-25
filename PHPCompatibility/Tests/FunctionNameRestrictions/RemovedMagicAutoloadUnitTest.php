@@ -112,9 +112,9 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataIsDeprecated
+     * dataIsNotAffected
      *
-     * @see testIsDeprecated()
+     * @see testIsNotAffected()
      *
      * @return array
      */

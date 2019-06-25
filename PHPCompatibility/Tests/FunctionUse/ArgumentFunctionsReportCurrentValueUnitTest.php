@@ -77,7 +77,7 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNeedsInspection
      *
-     * @param array  $line         The line number where a warning is expected.
+     * @param int    $line         The line number where a warning is expected.
      * @param string $functionName The name of the function to which the warning applies.
      * @param string $variableName The variable which was detected as having been used.
      *
@@ -131,7 +131,7 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         $cases = array();
-        // No errors expected on the first 76 lines.
+        // No errors expected on the first 81 lines.
         for ($line = 1; $line <= 81; $line++) {
             $cases[] = array($line);
         }
