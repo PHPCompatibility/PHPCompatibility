@@ -108,7 +108,7 @@ class ValidIntegersSniff extends Sniff
 
 
     /**
-     * Could the current token an potentially be a binary integer ?
+     * Could the current token potentially be a binary integer ?
      *
      * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.

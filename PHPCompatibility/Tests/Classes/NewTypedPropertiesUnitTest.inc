@@ -51,7 +51,7 @@ class PHP74Example {
     private static self $instance;
 
     // Note: The RFC does not explicitely mention this syntax.
-    // @tod This needs verification once the alpha is out.
+    // @todo This needs verification once the alpha is out.
     static bool $bool = true;
 
     // Test reversed keyword order.

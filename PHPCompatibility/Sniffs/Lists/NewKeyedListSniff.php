@@ -73,7 +73,7 @@ class NewKeyedListSniff extends Sniff
     /**
      * Prepare the $allTargets array only once.
      *
-     * @return array
+     * @return void
      */
     public function setUpAllTargets()
     {

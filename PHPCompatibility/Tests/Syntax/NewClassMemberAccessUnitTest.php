@@ -10,7 +10,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New class member access on instantiation in PHP 5.4 and on closing in PHP 7.0 sniff test file
+ * New class member access on instantiation in PHP 5.4 and on cloning in PHP 7.0 sniff test file
  *
  * @group newClassMemberAccess
  * @group syntax

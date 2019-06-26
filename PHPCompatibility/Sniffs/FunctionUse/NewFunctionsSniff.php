@@ -1746,12 +1746,12 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
-        // Introduced in 7.2.14 and 7.3.1 similtanously.
+        // Introduced in 7.2.14 and 7.3.1 simultanously.
         'oci_set_call_timeout' => array(
             '7.2.13' => false,
             '7.2.14' => true,
         ),
-        // Introduced in 7.2.14 and 7.3.1 similtanously.
+        // Introduced in 7.2.14 and 7.3.1 simultanously.
         'oci_set_db_operation' => array(
             '7.2.13' => false,
             '7.2.14' => true,
