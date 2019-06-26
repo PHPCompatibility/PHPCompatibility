@@ -483,3 +483,4 @@ openssl_x509_verify();
 pcntl_unshare();
 sapi_windows_set_ctrl_handler();
 sapi_windows_generate_ctrl_event();
+password_algos();

@@ -536,6 +536,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('pcntl_unshare', '7.3', array(483), '7.4'),
             array('sapi_windows_set_ctrl_handler', '7.3', array(484), '7.4'),
             array('sapi_windows_generate_ctrl_event', '7.3', array(485), '7.4'),
+            array('password_algos', '7.3', array(486), '7.4'),
         );
     }
 

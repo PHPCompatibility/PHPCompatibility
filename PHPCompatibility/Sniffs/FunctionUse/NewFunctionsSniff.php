@@ -1862,6 +1862,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'password_algos' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'pcntl_unshare' => array(
             '7.3' => false,
             '7.4' => true,
