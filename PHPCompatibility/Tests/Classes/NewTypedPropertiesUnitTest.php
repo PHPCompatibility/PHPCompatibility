@@ -50,21 +50,22 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     public function dataNewTypedProperties()
     {
         return array(
-            array(22),
             array(23),
             array(24),
-            array(27),
-            array(30),
-            array(33),
+            array(25),
+            array(28),
+            array(31),
             array(34),
-            array(37),
-            array(40),
-            array(48),
-            array(50),
-            array(54),
-            array(59),
-            array(60),
-            array(61),
+            array(35),
+            array(38),
+            array(41),
+            array(49),
+            array(51),
+            array(55),
+            array(58),
+            array(63),
+            array(64),
+            array(65),
         );
     }
 
@@ -78,7 +79,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '7.3');
 
-        for ($line = 1; $line < 18; $line++) {
+        for ($line = 1; $line < 19; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -110,9 +111,9 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     public function dataInvalidPropertyType()
     {
         return array(
-            array(59, 'void'),
-            array(60, 'callable'),
-            array(61, 'callable'),
+            array(63, 'void'),
+            array(64, 'callable'),
+            array(65, 'callable'),
         );
     }
 
