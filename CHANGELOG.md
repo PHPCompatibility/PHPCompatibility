@@ -14,6 +14,58 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.2.0] - 2019-06-28
+
+See all related issues and PRs in the [9.2.0 milestone].
+
+To keep informed of the progress of covering "_everything PHP 7.4_" in PHPCompatibility, please subscribe to issue [#808](https://github.com/PHPCompatibility/PHPCompatibility/issues/808).
+
+### Added
+- :star2: New `PHPCompatibility.Classes.ForbiddenAbstractPrivateMethods` sniff to detect methods declared as both `private` as well as `abstract`. This was allowed between PHP 5.0.0 and 5.0.4, but disallowed in PHP 5.1 as the behaviour of `private` and `abstract` are mutually exclusive. [#822](https://github.com/PHPCompatibility/PHPCompatibility/pull/822)
+- :star2: New `PHPCompatibility.Classes.NewTypedProperties` sniff to detect PHP 7.4 typed property declarations. [#801](https://github.com/PHPCompatibility/PHPCompatibility/pull/801), [#829](https://github.com/PHPCompatibility/PHPCompatibility/pull/829)
+- :star2: New `PHPCompatibility.Classes.RemovedOrphanedParent` sniff to detect the use of the `parent` keyword in classes without a parent (non-extended classes). This code pattern is deprecated in PHP 7.4 and will become a compile-error in PHP 8.0. [#818](https://github.com/PHPCompatibility/PHPCompatibility/pull/818)
+- :star2: New `PHPCompatibility.FunctionDeclarations.NewExceptionsFromToString` sniff to detect throwing exceptions from `__toString()` methods. This would previously result in a fatal error, but will be allowed as of PHP 7.4. [#814](https://github.com/PHPCompatibility/PHPCompatibility/pull/814)
+- :star2: New `PHPCompatibility.FunctionDeclarations.ForbiddenToStringParameters` sniff to detect `__toString()` function declarations expecting parameters. This was disallowed in PHP 5.3. [#815](https://github.com/PHPCompatibility/PHPCompatibility/pull/815)
+- :star2: New `PHPCompatibility.MethodUse.ForbiddenToStringParameters` sniff to detect direct calls to `__toString()` magic methods passing parameters. This was disallowed in PHP 5.3. [#830](https://github.com/PHPCompatibility/PHPCompatibility/pull/830)
+- :star2: New `PHPCompatibility.Operators.ChangedConcatOperatorPrecedence` sniff to detect code affected by the upcoming change in operator precedence for the concatenation operator. The concatenation operator precedence will be lowered in PHP 8.0, with deprecation notices for code affected being thrown in PHP 7.4. [#805](https://github.com/PHPCompatibility/PHPCompatibility/pull/805)
+- :star2: New `PHPCompatibility.Operators.RemovedTernaryAssociativity` sniff to detect code relying on left-associativity of the ternary operator. This behaviour will be deprecated in PHP 7.4 and removed in PHP 8.0. [#810](https://github.com/PHPCompatibility/PHPCompatibility/pull/810)
+- :star2: New `PHPCompatibility.Syntax.NewArrayUnpacking` sniff to detect the use of the spread operator to unpack arrays when declaring a new array, as introduced in PHP 7.4. [#804](https://github.com/PHPCompatibility/PHPCompatibility/pull/804)
+- :star: `PHPCompatibility.Classes.NewClasses` sniff: recognize the new `ReflectionReference` class as introduced in PHP 7.4. [#820](https://github.com/PHPCompatibility/PHPCompatibility/pull/820)
+- :star: `PHPCompatibility.Constants.NewConstants` sniff: detection of the new PHP 7.4 Core (Standard), MBString, Socket and Tidy constants. [#821](https://github.com/PHPCompatibility/PHPCompatibility/pull/821)
+- :star: `PHPCompatibility.FunctionUse.NewFunctions` sniff: detect usage of the new PHP 7.4 `get_mangled_object_vars()`, `mb_str_split()`, `openssl_x509_verify()`, `password_algos()`, `pcntl_unshare()`, `sapi_windows_set_ctrl_handler()` and `sapi_windows_generate_ctrl_event()` functions. [#811](https://github.com/PHPCompatibility/PHPCompatibility/pull/811), [#819](https://github.com/PHPCompatibility/PHPCompatibility/pull/819), [#827](https://github.com/PHPCompatibility/PHPCompatibility/pull/827)
+- :star: `PHPCompatibility.FunctionUse.NewFunctions` sniff: recognize the new OCI functions as introduced in PHP 7.2.14 and PHP 7.3.1. [#786](https://github.com/PHPCompatibility/PHPCompatibility/pull/786)
+- :star: `PHPCompatibility.FunctionUse.RemovedFunctions` sniff: recognize the PHP 7.4 deprecated `ldap_control_paged_result_response()` and `ldap_control_paged_result()` functions. [#831](https://github.com/PHPCompatibility/PHPCompatibility/pull/831)
+- :star: `PHPCompatibility.FunctionUse.RemovedFunctions` sniff: recognize the `Payflow Pro/pfpro` functions as removed in PHP 5.1. [#823](https://github.com/PHPCompatibility/PHPCompatibility/pull/823)
+- :star: `PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters` sniff: account for the parameters for `array_merge()` and `array_merge_recursive()` becoming optional in PHP 7.4. [#817](https://github.com/PHPCompatibility/PHPCompatibility/pull/817)
+- :star: `PHPCompatibility.IniDirectives.RemovedIniDirectives` sniff: recognize the `Payflow Pro/pfpro` ini directives as removed in PHP 5.1. [#823](https://github.com/PHPCompatibility/PHPCompatibility/pull/823)
+- :star: Recognize the `interbase/Firebird` extension functionality which will be removed in PHP 7.4 (moved to PECL) in the `RemovedConstants`, `RemovedExtensions`, `RemovedFunctions` and `RemovedIniDirectives` sniffs. [#807](https://github.com/PHPCompatibility/PHPCompatibility/pull/807)
+- :star: Recognize the `wddx` extension functionality which will be removed in PHP 7.4 (moved to PECL) in the `RemovedExtensions` and `RemovedFunctions` sniffs. [#826](https://github.com/PHPCompatibility/PHPCompatibility/pull/826)
+- :star: New `isShortTernary()` and `isUnaryPlusMinus()` utility methods to the `PHPCompatibility\Sniff` class. [#810](https://github.com/PHPCompatibility/PHPCompatibility/pull/810), [#805](https://github.com/PHPCompatibility/PHPCompatibility/pull/805)
+
+### Changed
+- :pencil2: The `PHPCompatibility.Extensions.RemovedExtensions` sniff will now only report on the removed `Payflow Pro` extension when a function uses `pfpro_` as a prefix. Previously, it used the `pfpro` prefix (without underscore) for detection. [#812](https://github.com/PHPCompatibility/PHPCompatibility/pull/812)
+- :pencil2: The error message thrown when the `T_ELLIPSIS` token, i.e. the spread operator, is detected. [#803](https://github.com/PHPCompatibility/PHPCompatibility/pull/803)
+    PHP 7.4 adds a third use-case for the spread operator. The adjusted error message accounts for this.
+- :umbrella: `PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations` is now also tested with parameters using the splat operator. [#802](https://github.com/PHPCompatibility/PHPCompatibility/pull/802)
+- :books: The documentation now uses the GitHub repo of `PHP_CodeSniffer` as the canonical entry point for `PHP_CodeSniffer`. Previously, it would point to the PEAR package. [#788](https://github.com/PHPCompatibility/PHPCompatibility/pull/788)
+- :books: The links in the changelog now all point to the `PHPCompatibility/PHPCompatibility` repo and no longer to the (deprecated) `wimg/PHPCompatibility` repo. [#828](https://github.com/PHPCompatibility/PHPCompatibility/pull/828)
+- :recycle: Various minor inline documentation improvements. [#825](https://github.com/PHPCompatibility/PHPCompatibility/pull/825)
+- :wrench: Various performance optimizations and code simplifications. [#783](https://github.com/PHPCompatibility/PHPCompatibility/pull/783), [#784](https://github.com/PHPCompatibility/PHPCompatibility/pull/784), [#795](https://github.com/PHPCompatibility/PHPCompatibility/pull/795), [#813](https://github.com/PHPCompatibility/PHPCompatibility/pull/813)
+- :green_heart: Travis: build tests are now being run against PHP 7.4 (unstable) as well. [#790](https://github.com/PHPCompatibility/PHPCompatibility/pull/790)
+    Note: the builds are currently not (yet) tested against PHP 8.0 (unstable) as there is no compatible PHPUnit version available (yet).
+- :wrench: Travis: The build script has been refactored to use [stages](https://docs.travis-ci.com/user/build-stages/) to get the most relevant results faster. Additionally some more tweaks have been made to improve and/or simplify the build script. [#798](https://github.com/PHPCompatibility/PHPCompatibility/pull/798)
+- :wrench: Build/PHPCS: warnings are no longer allowed for the PHPCompatibility native code. [#800](https://github.com/PHPCompatibility/PHPCompatibility/pull/800)
+- :wrench: Build/PHPCS: added variable assignment alignment check and file include check to the PHPCompatibility native CS configuration. [#824](https://github.com/PHPCompatibility/PHPCompatibility/pull/824)
+- :wrench: The minimum version for the recommended `DealerDirect/phpcodesniffer-composer-installer` Composer plugin has been upped to `0.5.0`. [#791](https://github.com/PHPCompatibility/PHPCompatibility/pull/791)
+
+### Fixed
+- :bug: The `PHPCompatibility.Extensions.RemovedExtensions` sniff contained a typo in the alternative recommended for the removed `mcve` extension. [#806](https://github.com/PHPCompatibility/PHPCompatibility/pull/806)
+- :bug: The `PHPCompatibility.Extensions.RemovedExtensions` sniff listed the wrong removal version number for the `Payflow Pro/pfpro` extension (PHP 5.3 instead of the correct 5.1). [#823](https://github.com/PHPCompatibility/PHPCompatibility/pull/823)
+
+### Credits
+Thanks go out to [Yılmaz] and [Tim Millwood] for their contribution to this version. :clap:
+
+
 ## [9.1.1] - 2018-12-31
 
 See all related issues and PRs in the [9.1.1 milestone].
@@ -1178,7 +1230,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.1...HEAD
+[Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.2.0...HEAD
+[9.2.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.1...9.2.0
 [9.1.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.0...9.1.1
 [9.1.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.0.0...9.1.0
 [9.0.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/8.2.0...9.0.0
@@ -1203,6 +1256,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[9.2.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/28
 [9.1.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/27
 [9.1.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/25
 [9.0.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/24
@@ -1253,5 +1307,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Ryan Neufeld]: https://github.com/ryanneufeld
 [Sam Van der Borght]: https://github.com/samvdb
 [Tadas Juozapaitis]: https://github.com/kasp3r
+[Tim Millwood]: https://github.com/timmillwood
+[Yılmaz]: https://github.com/edigu
 [Yoshiaki Yoshida]: https://github.com/kakakakakku
  
