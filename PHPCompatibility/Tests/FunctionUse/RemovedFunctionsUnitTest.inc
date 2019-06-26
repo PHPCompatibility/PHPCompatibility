@@ -223,3 +223,11 @@ pfpro_init();
 pfpro_process_raw();
 pfpro_process();
 pfpro_version();
+
+// PHP 7.4.
+wddx_add_vars();
+wddx_deserialize();
+wddx_packet_end();
+wddx_packet_start();
+wddx_serialize_value();
+wddx_serialize_vars();

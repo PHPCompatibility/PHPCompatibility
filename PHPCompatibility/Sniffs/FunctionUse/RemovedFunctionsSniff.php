@@ -920,6 +920,30 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => true,
             'alternative' => null,
         ),
+        'wddx_add_vars' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'wddx_deserialize' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'wddx_packet_end' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'wddx_packet_start' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'wddx_serialize_value' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
+        'wddx_serialize_vars' => array(
+            '7.4' => true,
+            'alternative' => null,
+        ),
     );
 
 

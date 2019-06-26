@@ -172,6 +172,10 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             '5.1' => true,
             'alternative' => 'pecl/ffi',
         ),
+        'wddx' => array(
+            '7.4' => true,
+            'alternative' => 'pecl/wddx',
+        ),
         'yp' => array(
             '5.1' => true,
             'alternative' => null,

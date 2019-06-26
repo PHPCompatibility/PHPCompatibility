@@ -293,6 +293,13 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('pfpro_process_raw', '5.1', array(223), '5.0'),
             array('pfpro_process', '5.1', array(224), '5.0'),
             array('pfpro_version', '5.1', array(225), '5.0'),
+
+            array('wddx_add_vars', '7.4', array(228), '7.3'),
+            array('wddx_deserialize', '7.4', array(229), '7.3'),
+            array('wddx_packet_end', '7.4', array(230), '7.3'),
+            array('wddx_packet_start', '7.4', array(231), '7.3'),
+            array('wddx_serialize_value', '7.4', array(232), '7.3'),
+            array('wddx_serialize_vars', '7.4', array(233), '7.3'),
         );
     }
 
