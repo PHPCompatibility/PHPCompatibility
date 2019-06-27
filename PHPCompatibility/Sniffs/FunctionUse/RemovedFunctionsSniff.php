@@ -920,6 +920,14 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => true,
             'alternative' => null,
         ),
+        'ldap_control_paged_result_response' => array(
+            '7.4' => false,
+            'alternative' => 'ldap_search()',
+        ),
+        'ldap_control_paged_result' => array(
+            '7.4' => false,
+            'alternative' => 'ldap_search()',
+        ),
         'wddx_add_vars' => array(
             '7.4' => true,
             'alternative' => null,

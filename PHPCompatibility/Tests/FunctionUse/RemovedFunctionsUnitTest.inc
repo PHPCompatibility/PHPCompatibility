@@ -231,3 +231,5 @@ wddx_packet_end();
 wddx_packet_start();
 wddx_serialize_value();
 wddx_serialize_vars();
+ldap_control_paged_result_response();
+ldap_control_paged_result();
