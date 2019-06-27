@@ -11,7 +11,8 @@ class PHP73Example {
     // Intentional parse error.
     $invalidProperty;
 
-    public function method($param) {
+    // Typed function parameter, not property.
+    public function method(?int $param) {
         $localVar = 'abc';
     }
 }
@@ -52,6 +53,9 @@ class PHP74Example {
     // Note: The RFC does not explicitely mention this syntax.
     // @tod This needs verification once the alpha is out.
     static bool $bool = true;
+
+    // Test reversed keyword order.
+    static public int $int = 0;
 }
 
 // Invalid property types.
