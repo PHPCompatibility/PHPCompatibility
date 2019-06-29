@@ -26,6 +26,13 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
 {
 
     /**
+     * Total number of lines in the test case file (including blank lines at the end).
+     *
+     * @var int
+     */
+    protected $totalLines = 127;
+
+    /**
      * Lines on which to expect errors.
      *
      * @var array
@@ -101,12 +108,10 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $file     = $this->sniffFile(__FILE__, '7.4');
-        $tokens   = $file->getTokens();
-        $lastLine = $tokens[($file->numTokens - 1)]['line'];
-        $exclude  = array_flip($this->problemLines);
+        $file    = $this->sniffFile(__FILE__, '7.4');
+        $exclude = array_flip($this->problemLines);
 
-        for ($line = 1; $line <= $lastLine; $line++) {
+        for ($line = 1; $line <= $this->totalLines; $line++) {
             if (isset($exclude[$line])) {
                 continue;
             }
