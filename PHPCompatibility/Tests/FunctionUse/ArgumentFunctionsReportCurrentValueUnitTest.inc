@@ -482,6 +482,29 @@ function nonDecimalIntegers( $named ) {
     $args = array_slice( func_get_args(), 0B0 ); // Error.
 }
 
+function php74NumericLiteralsWithUnderscoress( $n0, $n1, $n2, $n3, $n4, $n5, $n6, $n7, $n8, $n9, $n10, $n11, $n12, $n13, $n14, $n15, $n16, $n17 ) {
+    $n16 = 10;
+    $args = func_get_arg(1_7); // OK, param changed is not targetted.
+    $args = func_get_arg(0_21); // OK, param changed is not targetted.
+    $args = func_get_arg(0x1_1); // OK, param changed is not targetted.
+    $args = func_get_arg(0b10_001); // OK, param changed is not targetted.
+
+    $args = array_slice( func_get_args(), 1_7 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = array_slice( func_get_args(), 0_21 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = array_slice( func_get_args(), 0x1_1 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = array_slice( func_get_args(), 0b10_001 ); // OK, param changed is not one of the ones targetted by array_slice.
+
+    $args = func_get_arg(1_6); // Error.
+    $args = func_get_arg(0_20); // Error.
+    $args = func_get_arg(0x1_0); // Error.
+    $args = func_get_arg(0b10_000); // Error.
+
+    $args = array_slice( func_get_args(), 1_6 ); // Error.
+    $args = array_slice( func_get_args(), 0_20 ); // Error.
+    $args = array_slice( func_get_args(), 0x1_0 ); // Error.
+    $args = array_slice( func_get_args(), 0b10_000 ); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
