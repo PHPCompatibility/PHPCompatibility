@@ -28,6 +28,9 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) or true (removed).
      * If's sufficient to list the first version where the constant was deprecated/removed.
      *
+     * Optional, the array can contain an `alternative` key listing an alternative constant
+     * to be used instead.
+     *
      * Note: PHP Constants are case-sensitive!
      *
      * @var array(string => array(string => bool|string|null))
@@ -293,6 +296,10 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.3' => false,
         ),
 
+        'FILTER_SANITIZE_MAGIC_QUOTES' => array(
+            '7.4'         => false,
+            'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
+        ),
         'IBASE_BKP_CONVERT' => array(
             '7.4' => true,
         ),
