@@ -732,6 +732,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => false,
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
         ),
+        'ezmlm_hash' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
         'get_magic_quotes_gpc' => array(
             '7.4' => false,
             'alternative' => null,
