@@ -237,3 +237,5 @@ recode_file();
 recode_string();
 recode();
 is_real();
+get_magic_quotes_gpc();
+get_magic_quotes_runtime();

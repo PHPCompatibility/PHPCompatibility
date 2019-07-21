@@ -728,6 +728,14 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
 
+        'get_magic_quotes_gpc' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
+        'get_magic_quotes_runtime' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
         'is_real' => array(
             '7.4' => false,
             'alternative' => 'is_float()',
