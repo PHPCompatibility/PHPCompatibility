@@ -132,6 +132,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             array('ming', '5.3', 'pecl/ming', array(32), '5.2'),
             array('ncurses', '5.3', 'pecl/ncurses', array(40), '5.2'),
             array('oracle', '5.1', 'oci8 or pdo_oci', array(42), '5.0'),
+            array('recode', '7.4', 'iconv or mbstring', array(80), '7.3'),
             array('sybase', '5.3', 'sybase_ct', array(50), '5.2'),
             array('w32api', '5.1', 'pecl/ffi', array(52), '5.0'),
             array('wddx', '7.4', 'pecl/wddx', array(79), '7.3'),
