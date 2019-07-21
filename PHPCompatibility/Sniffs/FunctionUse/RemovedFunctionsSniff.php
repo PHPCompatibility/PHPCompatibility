@@ -736,6 +736,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => false,
             'alternative' => null,
         ),
+        'hebrevc' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
         'is_real' => array(
             '7.4' => false,
             'alternative' => 'is_float()',

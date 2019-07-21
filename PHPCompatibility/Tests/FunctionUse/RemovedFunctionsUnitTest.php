@@ -70,6 +70,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('gzgetss', '7.3', array(168), '7.2'),
             array('get_magic_quotes_gpc', '7.4', array(240), '7.3'),
             array('get_magic_quotes_runtime', '7.4', array(241), '7.3'),
+            array('hebrevc', '7.4', array(242), '7.3'),
         );
     }
 
