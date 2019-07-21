@@ -728,6 +728,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
 
+        'is_real' => array(
+            '7.4' => false,
+            'alternative' => 'is_float()',
+        ),
         'ibase_add_user' => array(
             '7.4' => true,
             'alternative' => null,

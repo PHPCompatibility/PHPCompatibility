@@ -184,7 +184,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mbereg_search_getpos', '7.3', 'mb_ereg_search_getpos()', array(165), '7.2'),
             array('mbereg_search_setpos', '7.3', 'mb_ereg_search_setpos()', array(166), '7.2'),
 
-            array('ldap_control_paged_result_response', '7.4', 'ldap_search()', array(234), '7.3'),
+            array('is_real', '7.4', 'is_float()', array(239), '7.3'),
+            array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
         );
     }

@@ -236,3 +236,4 @@ ldap_control_paged_result();
 recode_file();
 recode_string();
 recode();
+is_real();
