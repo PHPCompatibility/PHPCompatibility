@@ -35,6 +35,11 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'unset()',
             'description' => 'unset',
         ),
+        'T_DOUBLE_CAST' => array(
+            '7.4'         => false,
+            'alternative' => '(float)',
+            'description' => 'real',
+        ),
     );
 
 
@@ -67,6 +72,12 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
+
+        // Special case `T_DOUBLE_CAST` as the same token is used for (float) and (double) casts.
+        if ($tokenType === 'T_DOUBLE_CAST' && strpos($tokens[$stackPtr]['content'], 'real') === false) {
+            // Float/double casts, not (real) cast.
+            return;
+        }
 
         $itemInfo = array(
             'name'        => $tokenType,
