@@ -150,6 +150,13 @@ before_install:
       phpenv config-rm xdebug.ini || echo 'No xdebug config.'
     fi
 
+  # On stable PHPCS versions, allow for PHP deprecation notices.
+  # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
+  - |
+    if [[ "$TRAVIS_BUILD_STAGE_NAME" != "Sniff" && $PHPCS_VERSION != "dev-master" ]]; then
+      echo 'error_reporting = E_ALL & ~E_DEPRECATED' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    fi
+
   # Allow for testing with different PHP ini configurations.
   - |
     if [[ "$CUSTOM_INI" == 1 ]]; then
