@@ -308,6 +308,53 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
 
 
     /**
+     * testRemovedFunctionWithAlternative
+     *
+     * @dataProvider dataRemovedFunctionWithAlternative
+     *
+     * @param string $functionName   Name of the function.
+     * @param string $removedIn      The PHP version in which the function was removed.
+     * @param string $alternative    An alternative function.
+     * @param array  $lines          The line numbers in the test file which apply to this function.
+     * @param string $okVersion      A PHP version in which the function was still valid.
+     * @param string $removedVersion Optional PHP version to test removed message with -
+     *                               if different from the $removedIn version.
+     *
+     * @return void
+     */
+    public function testRemovedFunctionWithAlternative($functionName, $removedIn, $alternative, $lines, $okVersion, $removedVersion = null)
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "Function {$functionName}() is removed since PHP {$removedIn}; Use {$alternative} instead";
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedFunctionWithAlternative()
+     *
+     * @return array
+     */
+    public function dataRemovedFunctionWithAlternative()
+    {
+        return array(
+            array('recode_file', '7.4', 'the iconv or mbstring extension', array(236), '7.3'),
+            array('recode_string', '7.4', 'the iconv or mbstring extension', array(237), '7.3'),
+            array('recode', '7.4', 'the iconv or mbstring extension', array(238), '7.3'),
+        );
+    }
+
+
+    /**
      * testDeprecatedRemovedFunction
      *
      * @dataProvider dataDeprecatedRemovedFunction
