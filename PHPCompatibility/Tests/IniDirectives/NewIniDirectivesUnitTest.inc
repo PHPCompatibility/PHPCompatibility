@@ -337,3 +337,120 @@ $test = ini_get('imap.enable_insecure_rsh');
 
 ini_set('zend.exception_ignore_args', 1);
 $test = ini_get('zend.exception_ignore_args');
+
+ini_set('opcache.cache_id', 1);
+$test = ini_get('opcache.cache_id');
+
+ini_set('opcache.enable', 1);
+$test = ini_get('opcache.enable');
+
+ini_set('opcache.enable_cli', 1);
+$test = ini_get('opcache.enable_cli');
+
+ini_set('opcache.memory_consumption', 1);
+$test = ini_get('opcache.memory_consumption');
+
+ini_set('opcache.interned_strings_buffer', 1);
+$test = ini_get('opcache.interned_strings_buffer');
+
+ini_set('opcache.max_accelerated_files', 1);
+$test = ini_get('opcache.max_accelerated_files');
+
+ini_set('opcache.max_wasted_percentage', 1);
+$test = ini_get('opcache.max_wasted_percentage');
+
+ini_set('opcache.use_cwd', 1);
+$test = ini_get('opcache.use_cwd');
+
+ini_set('opcache.validate_timestamps', 1);
+$test = ini_get('opcache.validate_timestamps');
+
+ini_set('opcache.revalidate_freq', 1);
+$test = ini_get('opcache.revalidate_freq');
+
+ini_set('opcache.revalidate_path', 1);
+$test = ini_get('opcache.revalidate_path');
+
+ini_set('opcache.save_comments', 1);
+$test = ini_get('opcache.save_comments');
+
+ini_set('opcache.load_comments', 1);
+$test = ini_get('opcache.load_comments');
+
+ini_set('opcache.fast_shutdown', 1);
+$test = ini_get('opcache.fast_shutdown');
+
+ini_set('opcache.enable_file_override', 1);
+$test = ini_get('opcache.enable_file_override');
+
+ini_set('opcache.optimization_level', 1);
+$test = ini_get('opcache.optimization_level');
+
+ini_set('opcache.inherited_hack', 1);
+$test = ini_get('opcache.inherited_hack');
+
+ini_set('opcache.dups_fix', 1);
+$test = ini_get('opcache.dups_fix');
+
+ini_set('opcache.blacklist_filename', 1);
+$test = ini_get('opcache.blacklist_filename');
+
+ini_set('opcache.max_file_size', 1);
+$test = ini_get('opcache.max_file_size');
+
+ini_set('opcache.consistency_checks', 1);
+$test = ini_get('opcache.consistency_checks');
+
+ini_set('opcache.force_restart_timeout', 1);
+$test = ini_get('opcache.force_restart_timeout');
+
+ini_set('opcache.error_log', 1);
+$test = ini_get('opcache.error_log');
+
+ini_set('opcache.log_verbosity_level', 1);
+$test = ini_get('opcache.log_verbosity_level');
+
+ini_set('opcache.preferred_memory_model', 1);
+$test = ini_get('opcache.preferred_memory_model');
+
+ini_set('opcache.protect_memory', 1);
+$test = ini_get('opcache.protect_memory');
+
+ini_set('opcache.mmap_base', 1);
+$test = ini_get('opcache.mmap_base');
+
+ini_set('opcache.restrict_api', 1);
+$test = ini_get('opcache.restrict_api');
+
+ini_set('opcache.file_update_protection', 1);
+$test = ini_get('opcache.file_update_protection');
+
+ini_set('opcache.huge_code_pages', 1);
+$test = ini_get('opcache.huge_code_pages');
+
+ini_set('opcache.lockfile_path', 1);
+$test = ini_get('opcache.lockfile_path');
+
+ini_set('opcache.opt_debug_level', 1);
+$test = ini_get('opcache.opt_debug_level');
+
+ini_set('opcache.file_cache', 1);
+$test = ini_get('opcache.file_cache');
+
+ini_set('opcache.file_cache_only', 1);
+$test = ini_get('opcache.file_cache_only');
+
+ini_set('opcache.file_cache_consistency_checks', 1);
+$test = ini_get('opcache.file_cache_consistency_checks');
+
+ini_set('opcache.file_cache_fallback', 1);
+$test = ini_get('opcache.file_cache_fallback');
+
+ini_set('opcache.validate_permission', 1);
+$test = ini_get('opcache.validate_permission');
+
+ini_set('opcache.validate_root', 1);
+$test = ini_get('opcache.validate_root');
+
+ini_set('opcache.preload', 1);
+$test = ini_get('opcache.preload');
