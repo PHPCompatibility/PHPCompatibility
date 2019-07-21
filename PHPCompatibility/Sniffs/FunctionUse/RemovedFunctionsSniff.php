@@ -748,6 +748,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => false,
             'alternative' => 'is_float()',
         ),
+        'money_format' => array(
+            '7.4' => false,
+            'alternative' => 'NumberFormatter::formatCurrency()',
+        ),
         'ibase_add_user' => array(
             '7.4' => true,
             'alternative' => null,

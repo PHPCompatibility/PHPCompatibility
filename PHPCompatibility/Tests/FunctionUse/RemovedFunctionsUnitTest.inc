@@ -241,3 +241,5 @@ get_magic_quotes_gpc();
 get_magic_quotes_runtime();
 hebrevc($str));
 convert_cyr_string($str, 'k', 'i');
+money_format();
+
