@@ -243,4 +243,5 @@ hebrevc($str));
 convert_cyr_string($str, 'k', 'i');
 money_format();
 ezmlm_hash();
+restore_include_path();
 

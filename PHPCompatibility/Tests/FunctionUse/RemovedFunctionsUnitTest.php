@@ -191,6 +191,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('convert_cyr_string', '7.4', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
             array('is_real', '7.4', 'is_float()', array(239), '7.3'),
             array('money_format', '7.4', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
+            array('restore_include_path', '7.4', "ini_restore('include_path')", array(246), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
         );
