@@ -928,6 +928,18 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => false,
             'alternative' => 'ldap_search()',
         ),
+        'recode_file' => array(
+            '7.4' => true,
+            'alternative' => 'the iconv or mbstring extension',
+        ),
+        'recode_string' => array(
+            '7.4' => true,
+            'alternative' => 'the iconv or mbstring extension',
+        ),
+        'recode' => array(
+            '7.4' => true,
+            'alternative' => 'the iconv or mbstring extension',
+        ),
         'wddx_add_vars' => array(
             '7.4' => true,
             'alternative' => null,

@@ -155,6 +155,10 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             '5.1' => true,
             'alternative' => null,
         ),
+        'recode' => array(
+            '7.4' => true,
+            'alternative' => 'iconv or mbstring',
+        ),
         'sqlite' => array(
             '5.4' => true,
             'alternative' => null,

@@ -77,6 +77,7 @@ ereg_replace(); // Non-whitelisted.
 
 ibase_trans();
 wddx_deserialize();
+recode();
 
 // Don't throw errors during live code review.
 ereg($a, $b

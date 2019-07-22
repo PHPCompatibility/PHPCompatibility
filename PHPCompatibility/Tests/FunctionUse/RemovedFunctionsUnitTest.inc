@@ -233,3 +233,6 @@ wddx_serialize_value();
 wddx_serialize_vars();
 ldap_control_paged_result_response();
 ldap_control_paged_result();
+recode_file();
+recode_string();
+recode();
