@@ -81,6 +81,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
     {
         return array(
             array(5),
+            array(9),
             array(10),
         );
     }
