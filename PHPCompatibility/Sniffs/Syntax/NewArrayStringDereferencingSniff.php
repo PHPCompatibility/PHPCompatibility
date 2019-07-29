@@ -16,18 +16,26 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff.
+ * As of PHP 5.5, array and string literals can now be dereferenced directly to
+ * access individual elements and characters.
  *
- * Array and string literals can now be dereferenced directly to access individual elements and characters.
+ * As of PHP 7.0, this also works when using curly braces for the dereferencing.
+ * While unclear, this most likely has to do with the Uniform Variable Syntax changes.
  *
  * PHP version 5.5
+ * PHP version 7.0
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @link https://wiki.php.net/rfc/constdereference
+ * @link https://wiki.php.net/rfc/uniform_variable_syntax
+ *
+ * @internal The reason for splitting the logic of this sniff into different methods is
+ *           to allow re-use of the logic by the PHP 7.4 RemovedCurlyBraceArrayAccess sniff.
+ *
+ * @since 9.3.0 Now also detects dereferencing using curly braces.
  */
 class NewArrayStringDereferencingSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -53,10 +61,61 @@ class NewArrayStringDereferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.4') === false) {
+        if ($this->supportsBelow('5.6') === false) {
             return;
         }
 
+        $dereferencing = $this->isArrayStringDereferencing($phpcsFile, $stackPtr);
+        if (empty($dereferencing)) {
+            return;
+        }
+
+        $tokens     = $phpcsFile->getTokens();
+        $supports54 = $this->supportsBelow('5.4');
+
+        foreach ($dereferencing['braces'] as $openBrace => $closeBrace) {
+            if ($supports54 === true
+                && ($tokens[$openBrace]['type'] === 'T_OPEN_SQUARE_BRACKET'
+                    || $tokens[$openBrace]['type'] === 'T_OPEN_SHORT_ARRAY') // Work around bug #1381 in PHPCS 2.8.1 and lower.
+            ) {
+                $phpcsFile->addError(
+                    'Direct array dereferencing of %s is not present in PHP version 5.4 or earlier',
+                    $openBrace,
+                    'Found',
+                    array($dereferencing['type'])
+                );
+
+                continue;
+            }
+
+            // PHP 7.0 Array/string dereferencing using curly braces.
+            if ($tokens[$openBrace]['type'] === 'T_OPEN_CURLY_BRACKET') {
+                $phpcsFile->addError(
+                    'Direct array dereferencing of %s using curly braces is not present in PHP version 5.6 or earlier',
+                    $openBrace,
+                    'FoundUsingCurlies',
+                    array($dereferencing['type'])
+                );
+            }
+        }
+    }
+
+
+    /**
+     * Check if this string/array is being dereferenced.
+     *
+     * @since 9.3.0 Logic split off from the process method.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
+     *
+     * @return array Array containing the type of access and stack pointers to the
+     *               open/close braces involved in the array/string dereferencing;
+     *               or an empty array if no array/string dereferencing was detected.
+     */
+    public function isArrayStringDereferencing(File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
@@ -68,7 +127,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             case \T_ARRAY:
                 if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
                     // Live coding.
-                    return;
+                    return array();
                 } else {
                     $type = 'arrays';
                     $end  = $tokens[$stackPtr]['parenthesis_closer'];
@@ -78,7 +137,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             case \T_OPEN_SHORT_ARRAY:
                 if (isset($tokens[$stackPtr]['bracket_closer']) === false) {
                     // Live coding.
-                    return;
+                    return array();
                 } else {
                     $type = 'arrays';
                     $end  = $tokens[$stackPtr]['bracket_closer'];
@@ -88,21 +147,45 @@ class NewArrayStringDereferencingSniff extends Sniff
 
         if (isset($type, $end) === false) {
             // Shouldn't happen, but for some reason did.
-            return;
+            return array();
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+        $braces = array();
 
-        if ($nextNonEmpty !== false
-            && ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET'
-                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SHORT_ARRAY') // Work around bug #1381 in PHPCS 2.8.1 and lower.
-        ) {
-            $phpcsFile->addError(
-                'Direct array dereferencing of %s is not present in PHP version 5.4 or earlier',
-                $nextNonEmpty,
-                'Found',
-                array($type)
-            );
+        do {
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+            if ($nextNonEmpty === false) {
+                break;
+            }
+
+            if ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET'
+                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_CURLY_BRACKET' // PHP 7.0+.
+                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SHORT_ARRAY' // Work around bug #1381 in PHPCS 2.8.1 and lower.
+            ) {
+                if (isset($tokens[$nextNonEmpty]['bracket_closer']) === false) {
+                    // Live coding or parse error.
+                    break;
+                }
+
+                $braces[$nextNonEmpty] = $tokens[$nextNonEmpty]['bracket_closer'];
+
+                // Continue, just in case there is nested array access, i.e. `array(1, 2, 3)[$i][$j];`.
+                $end = $tokens[$nextNonEmpty]['bracket_closer'];
+                continue;
+            }
+
+            // If we're still here, we've reached the end of the variable.
+            break;
+
+        } while (true);
+
+        if (empty($braces)) {
+            return array();
         }
+
+        return array(
+            'type'   => $type,
+            'braces' => $braces,
+        );
     }
 }
