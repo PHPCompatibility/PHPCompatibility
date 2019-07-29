@@ -42,7 +42,7 @@ try {
 (new $foo())->bar;
 (new foo)[0];
 
-$a = (new Foo( array(1, array(4, 5), 3) ))[1][0];
+$a = (new Foo( array(1, array(4, 5), 3) ))[1][0]; // Should give two errors.
 
 var_dump((new Bar)->y);
 $closure = function() {return (new $x)->y;};
@@ -103,3 +103,16 @@ $b = (clone $foo)->bar();
 echo (clone $iterable)[20];
 
 $date1 = (clone ($_date1 <= $_date2 ? $_date1 : $_date2))->format('Y');
+
+/*
+ * PHP 7.0: class member access on instantiation using curly braces.
+ * This "silently" started working in PHP 7.0. See: https://3v4l.org/KsEgH
+ */
+(new foo){0};
+$a = (new Foo( array(1, array(4, 5), 3) )){1}{0}; // Should give two errors.
+
+echo (clone $iterable){20};
+
+// Mixing access with square brackets and curly braces.
+$a = (new Foo( array(1, array(4, 5), 3) )){1}[0]; // Should give two errors (depending on supported PHP version).
+$a = (clone $iterable)[1]{0}; // Should give two errors (depending on supported PHP version).
