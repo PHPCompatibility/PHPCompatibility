@@ -849,10 +849,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
-        'datefmt_get_calendar_object' => array(
-            '5.4' => false,
-            '5.5' => true,
-        ),
         'intlcal_create_instance' => array(
             '5.4' => false,
             '5.5' => true,
