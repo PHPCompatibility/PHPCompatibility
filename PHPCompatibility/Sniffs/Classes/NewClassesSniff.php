@@ -805,7 +805,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      */
     private function processReturnTypeToken(File $phpcsFile, $stackPtr)
     {
-        $returnTypeHint   = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
+        $returnTypeHint = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
+        if (empty($returnTypeHint)) {
+            return;
+        }
+
         $returnTypeHint   = ltrim($returnTypeHint, '\\');
         $returnTypeHintLc = strtolower($returnTypeHint);
 
