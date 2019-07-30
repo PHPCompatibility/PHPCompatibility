@@ -2091,4 +2091,84 @@ abstract class Sniff implements PHPCS_Sniff
 
         return false;
     }
+
+    /**
+     * Get the complete contents of a multi-line text string.
+     *
+     * N.B.: This is a back-fill for a new method which is expected to go into
+     * PHP_CodeSniffer 3.5.0.
+     * Once that method has been merged into PHPCS, this one should be moved
+     * to the PHPCSHelper.php file.
+     *
+     * @since 9.3.0
+     *
+     * @codeCoverageIgnore Method as pulled upstream is accompanied by unit tests.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
+     * @param int                   $stackPtr    Pointer to the first text string token
+     *                                           of a multi-line text string or to a
+     *                                           Nowdoc/Heredoc opener.
+     * @param bool                  $stripQuotes Optional. Whether to strip text delimiter
+     *                                           quotes off the resulting text string.
+     *                                           Defaults to true.
+     *
+     * @return string
+     *
+     * @throws \PHP_CodeSniffer_Exception If the specified position is not a
+     *                                    valid text string token or if the
+     *                                    token is not the first text string token.
+     */
+    public function getCompleteTextString(File $phpcsFile, $stackPtr, $stripQuotes = true)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Must be the start of a text string token.
+        if ($tokens[$stackPtr]['code'] !== \T_START_HEREDOC
+            && $tokens[$stackPtr]['code'] !== \T_START_NOWDOC
+            && $tokens[$stackPtr]['code'] !== \T_CONSTANT_ENCAPSED_STRING
+            && $tokens[$stackPtr]['code'] !== \T_DOUBLE_QUOTED_STRING
+        ) {
+            throw new PHPCS_Exception('$stackPtr must be of type T_START_HEREDOC, T_START_NOWDOC, T_CONSTANT_ENCAPSED_STRING or T_DOUBLE_QUOTED_STRING');
+        }
+
+        if ($tokens[$stackPtr]['code'] === \T_CONSTANT_ENCAPSED_STRING
+            || $tokens[$stackPtr]['code'] === \T_DOUBLE_QUOTED_STRING
+        ) {
+            $prev = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
+            if ($tokens[$stackPtr]['code'] === $tokens[$prev]['code']) {
+                throw new PHPCS_Exception('$stackPtr must be the start of the text string');
+            }
+        }
+
+        switch ($tokens[$stackPtr]['code']) {
+            case \T_START_HEREDOC:
+                $stripQuotes = false;
+                $targetType  = \T_HEREDOC;
+                $current     = ($stackPtr + 1);
+                break;
+
+            case \T_START_NOWDOC:
+                $stripQuotes = false;
+                $targetType  = \T_NOWDOC;
+                $current     = ($stackPtr + 1);
+                break;
+
+            default:
+                $targetType = $tokens[$stackPtr]['code'];
+                $current    = $stackPtr;
+                break;
+        }
+
+        $string = '';
+        do {
+            $string .= $tokens[$current]['content'];
+            ++$current;
+        } while ($tokens[$current]['code'] === $targetType);
+
+        if ($stripQuotes === true) {
+            return $this->stripQuotes($string);
+        }
+
+        return $string;
+    }
 }
