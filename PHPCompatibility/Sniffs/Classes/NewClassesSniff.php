@@ -570,6 +570,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'WeakReference' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
 
