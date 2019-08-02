@@ -195,6 +195,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('CompileError', '7.2', array(249), '7.3'),
             array('JsonException', '7.2', array(250, 339), '7.3'),
             array('ReflectionReference', '7.3', array(344), '7.4'),
+            array('WeakReference', '7.3', array(345), '7.4'),
         );
     }
 
