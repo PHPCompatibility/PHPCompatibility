@@ -31,7 +31,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      *
      * @param string $castDescription   The type of type cast.
      * @param string $deprecatedIn      The PHP version in which the function was deprecated.
-     * @param string $alternative       An alternative function.
+     * @param string $alternative       An alternative type cast.
      * @param array  $lines             The line numbers in the test file which apply to this function.
      * @param string $okVersion         A PHP version in which the function was still valid.
      * @param string $deprecatedVersion Optional PHP version to test deprecation message with -

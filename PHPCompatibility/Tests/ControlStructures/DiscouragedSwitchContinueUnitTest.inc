@@ -27,7 +27,7 @@ while ($foo) {
         case 2:
             continue (1); // Invalid.
         case 3:
-            continue 0; // Invalid. The fact that 0 is not the concern of this sniff.
+            continue 0; // Invalid. The fact that 0 is forbidden, is not the concern of this sniff.
         case 4:
             continue $var; // Undetermined. Outside the scope of this sniff.
         case 5:

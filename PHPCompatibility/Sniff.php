@@ -1277,7 +1277,7 @@ abstract class Sniff implements PHPCS_Sniff
      * Determine whether an arbitrary T_STRING token is the use of a global constant.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the function call token.
+     * @param int                   $stackPtr  The position of the T_STRING token.
      *
      * @return bool
      */

@@ -326,7 +326,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
      * @param int                   $end          The end of the value definition (inclusive),
      *                                            i.e. this token will be examined as part of
      *                                            the snippet.
-     * @param bool                  $nestedArrays Optional. Array nesting level when examining
+     * @param int                   $nestedArrays Optional. Array nesting level when examining
      *                                            the content of an array.
      *
      * @return bool
