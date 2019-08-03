@@ -28,10 +28,19 @@ env:
     # Lowest supported PHPCS version.
     - PHPCS_VERSION="2.3.0"
 
+# Define the stages used.
+# For non-PRs, only the sniff and quicktest stages are run.
+# For pull requests and merges, the full script is run (skipping quicktest).
+# Note: for pull requests, "master" is (currently) the base branch name.
+# See: https://docs.travis-ci.com/user/conditions-v1
 stages:
-  - sniff
-  - test
-  - coverage
+  - name: sniff
+  - name: quicktest
+    if: type = push AND branch != master
+  - name: test
+    if: branch = master
+  - name: coverage
+    if: branch = master
 
 jobs:
   fast_finish: true
@@ -54,6 +63,30 @@ jobs:
 
         # Check the code-style consistency of the xml files.
         - diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml")
+
+    #### QUICK TEST STAGE ####
+    # This is a much quicker test which only runs the unit tests and linting against the low/high
+    # supported PHP/PHPCS combinations.
+    # These are basically the same builds as in the Coverage stage, but then without doing
+    # the code-coverage.
+    - stage: quicktest
+      php: 7.3
+      env: PHPCS_VERSION="dev-master" LINT=1
+    - php: 7.3
+      env: PHPCS_VERSION="2.3.0"
+    # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
+    - php: 7.2
+      env: PHPCS_VERSION="3.0.2" LINT=1
+
+    # PHPCS 3.x cannot be run on PHP 5.3.
+    - php: 5.4
+      env: PHPCS_VERSION="dev-master" LINT=1
+    - php: 5.3
+      dist: precise
+      env: PHPCS_VERSION=">=2.0,<3.0" LINT=1
+    - php: 5.3
+      dist: precise
+      env: PHPCS_VERSION="2.3.0"
 
     #### TEST STAGE ####
     # In addition to the matrix defined above, test against a variation of PHPCS 2.x and 3.x versions.
@@ -157,7 +190,7 @@ script:
 
   # Run the unit tests.
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Test" ]]; then
+    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Quicktest" || "$TRAVIS_BUILD_STAGE_NAME" == "Test" ]]; then
       if [[ $PHPUNIT_VERSION == "travis" ]]; then
         phpunit --no-coverage
       else
