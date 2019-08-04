@@ -31,7 +31,8 @@ use PHP_CodeSniffer_File as File;
  * @category Upgrade
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
- */
+ * @since    8.2.0
+*/
 class LowPHPCSSniff extends Sniff
 {
     /**
@@ -39,18 +40,24 @@ class LowPHPCSSniff extends Sniff
      *
      * Users on PHPCS versions below this will see an ERROR message.
      *
+     * @since 8.2.0
+     * @since 9.3.0 Changed from $minSupportedVersion property to a constant.
+     *
      * @var string
      */
-    protected $minSupportedVersion = '2.3.0';
+    const MIN_SUPPORTED_VERSION = '2.3.0';
 
     /**
      * The minimum recommended PHPCS version.
      *
      * Users on PHPCS versions below this will see a WARNING.
      *
+     * @since 8.2.0
+     * @since 9.3.0 Changed from $minRecommendedVersion property to a constant.
+     *
      * @var string
      */
-    protected $minRecommendedVersion = '2.6.0';
+    const MIN_RECOMMENDED_VERSION = '2.6.0';
 
     /**
      * Keep track of whether this sniff needs to actually run.
@@ -59,6 +66,8 @@ class LowPHPCSSniff extends Sniff
      * version is detected or once the error/warning has been thrown,
      * to make sure that the notice will only be thrown once per run.
      *
+     * @since 8.2.0
+     *
      * @var bool
      */
     private $examine = true;
@@ -66,6 +75,8 @@ class LowPHPCSSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 8.2.0
      *
      * @return array
      */
@@ -78,6 +89,8 @@ class LowPHPCSSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -96,29 +109,29 @@ class LowPHPCSSniff extends Sniff
         $phpcsVersion = PHPCSHelper::getVersion();
 
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
-        if (version_compare($phpcsVersion, $this->minRecommendedVersion, '>=')) {
+        if (version_compare($phpcsVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
             $this->examine = false;
             return ($phpcsFile->numTokens + 1);
         }
 
-        if (version_compare($phpcsVersion, $this->minSupportedVersion, '<')) {
+        if (version_compare($phpcsVersion, self::MIN_SUPPORTED_VERSION, '<')) {
             $isError      = true;
             $message      = "IMPORTANT: Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is %s. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation. The recommended version of PHP_CodeSniffer for PHPCompatibility is %s or higher.";
-            $errorCode    = 'Unsupported_' . $this->stringToErrorCode($this->minSupportedVersion);
+            $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
             $replacements = array(
-                $this->minSupportedVersion,
+                self::MIN_SUPPORTED_VERSION,
                 $phpcsVersion,
-                $this->minRecommendedVersion,
+                self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
             );
         } else {
             $isError      = false;
             $message      = "IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP_CodeSniffer %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation to version %s or higher.";
-            $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode($this->minRecommendedVersion);
+            $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
             $replacements = array(
-                $this->minRecommendedVersion,
+                self::MIN_RECOMMENDED_VERSION,
                 $phpcsVersion,
-                $this->minRecommendedVersion,
+                self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
             );
         }
@@ -150,8 +163,11 @@ class LowPHPCSSniff extends Sniff
          * of PHPCompatibility would go beyond that, the below code should be adjusted.}}
          */
         $reportWidth = PHPCSHelper::getCommandLineData($phpcsFile, 'reportWidth');
+        if (empty($reportWidth)) {
+            $reportWidth = 80;
+        }
         $showSources = PHPCSHelper::getCommandLineData($phpcsFile, 'showSources');
-        if ($showSources === true && version_compare($phpcsVersion, '2.3.0', '>=')) {
+        if ($showSources === true) {
             $reportWidth += 6;
         }
 
