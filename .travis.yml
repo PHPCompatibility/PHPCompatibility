@@ -63,6 +63,11 @@ jobs:
         # Check the code-style consistency of the xml files.
         - diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml")
 
+        # Check that the sniffs available are feature complete.
+        # For now, just check that all sniffs have unit tests.
+        # At a later stage the documentation check can be activated.
+        - composer check-complete
+
     #### QUICK TEST STAGE ####
     # This is a much quicker test which only runs the unit tests and linting against the low/high
     # supported PHP/PHPCS combinations.
@@ -179,9 +184,16 @@ before_install:
     if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" ]]; then
       composer require --no-update php-coveralls/php-coveralls:${COVERALLS_VERSION}
     fi
-  # --no-dev makes sure the Travis provided version of PHPUnit is used whenever possible for better stability.
   # --prefer-dist will allow for optimal use of the travis caching ability.
-  - composer install --no-dev --prefer-dist --no-suggest
+  - |
+    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Sniff" ]]; then
+      composer install --prefer-dist --no-suggest
+    else
+      # Remove devtools as it would block testing on old PHPCS versions (< 3.0).
+      composer remove --dev phpcsstandards/phpcsdevtools --no-update
+      # --no-dev makes sure the Travis provided version of PHPUnit is used whenever possible for better stability.
+      composer install --no-dev --prefer-dist --no-suggest
+    fi
 
 before_script:
   - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" ]]; then mkdir -p build/logs; fi

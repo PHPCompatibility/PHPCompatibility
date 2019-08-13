@@ -28,7 +28,8 @@
     "squizlabs/php_codesniffer" : "^2.3 || ^3.0.2"
   },
   "require-dev" : {
-    "phpunit/phpunit": "~4.5 || ^5.0 || ^6.0 || ^7.0"
+    "phpunit/phpunit": "~4.5 || ^5.0 || ^6.0 || ^7.0",
+    "phpcsstandards/phpcsdevtools": "^1.0"
   },
   "conflict": {
     "squizlabs/php_codesniffer": "2.6.2"
@@ -38,7 +39,17 @@
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
   "scripts" : {
-    "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
-    "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
+    "post-install-cmd": [
+      "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
+    ],
+    "post-update-cmd" : [
+      "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
+    ],
+    "check-complete": [
+      "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness -q ./PHPCompatibility"
+    ],
+    "check-complete-strict": [
+      "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness ./PHPCompatibility"
+    ]
   }
 }
