@@ -68,7 +68,6 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         ],
     ];
 
-
     /**
      * Tokens to ignore when trying to find the value for the directive.
      *

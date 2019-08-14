@@ -29,6 +29,7 @@ use PHPCSUtils\Utils\Conditions;
  */
 class NewGeneratorReturnSniff extends Sniff
 {
+
     /**
      * Scope conditions within which a yield can exist.
      *

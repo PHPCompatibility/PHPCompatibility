@@ -27,6 +27,7 @@ use PHPCSUtils\Utils\PassedParameters;
  */
 class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of removed function parameters, which were present in older versions.
      *

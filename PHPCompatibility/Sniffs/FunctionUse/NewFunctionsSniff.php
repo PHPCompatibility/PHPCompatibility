@@ -26,6 +26,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class NewFunctionsSniff extends AbstractNewFeatureSniff
 {
+
     /**
      * A list of new functions, not present in older versions.
      *

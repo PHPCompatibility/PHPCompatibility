@@ -27,6 +27,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

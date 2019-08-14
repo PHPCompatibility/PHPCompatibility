@@ -33,6 +33,7 @@ use PHPCSUtils\Utils\Numbers;
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {
+
     /**
      * Error types this sniff handles for forbidden break/continue arguments.
      *

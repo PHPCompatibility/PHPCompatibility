@@ -73,7 +73,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
         ],
     ];
 
-
     /**
      * A list of new operators which are not recognized in older PHPCS versions.
      *

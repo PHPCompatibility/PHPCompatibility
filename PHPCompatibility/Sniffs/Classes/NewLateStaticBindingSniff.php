@@ -33,6 +33,7 @@ use PHPCSUtils\Utils\Conditions;
  */
 class NewLateStaticBindingSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

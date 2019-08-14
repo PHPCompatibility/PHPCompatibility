@@ -34,6 +34,7 @@ use PHPCSUtils\Utils\Scopes;
  */
 class RemovedMagicAutoloadSniff extends Sniff
 {
+
     /**
      * Scopes to look for when testing using validDirectScope.
      *

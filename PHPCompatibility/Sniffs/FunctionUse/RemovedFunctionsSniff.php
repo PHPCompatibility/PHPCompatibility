@@ -29,6 +29,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of deprecated and removed functions with their alternatives.
      *

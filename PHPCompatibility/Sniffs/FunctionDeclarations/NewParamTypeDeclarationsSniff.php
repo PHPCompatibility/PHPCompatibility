@@ -112,7 +112,6 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
         ],
     ];
 
-
     /**
      * Invalid types
      *

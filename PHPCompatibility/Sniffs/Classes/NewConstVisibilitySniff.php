@@ -27,6 +27,7 @@ use PHPCSUtils\Utils\Scopes;
  */
 class NewConstVisibilitySniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

@@ -28,6 +28,7 @@ use PHPCSUtils\Utils\GetTokensAsString;
  */
 class ForbiddenNegativeBitshiftSniff extends Sniff
 {
+
     /**
      * Potential end tokens for which the end pointer has to be set back by one.
      *

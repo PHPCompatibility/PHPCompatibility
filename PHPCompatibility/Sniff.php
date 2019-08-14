@@ -62,7 +62,6 @@ abstract class Sniff implements PHPCS_Sniff
         'hash'           => 1,
     ];
 
-
     /**
      * List of functions which take an ini directive as parameter (always the first parameter).
      *

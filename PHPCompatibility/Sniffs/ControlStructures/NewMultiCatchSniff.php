@@ -26,6 +26,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class NewMultiCatchSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

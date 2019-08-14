@@ -25,6 +25,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 {
+
     /**
      * A list of new hash algorithms, not present in older versions.
      *

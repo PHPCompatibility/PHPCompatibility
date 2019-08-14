@@ -27,6 +27,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of deprecated and removed type casts with their alternatives.
      *
