@@ -3445,6 +3445,15 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
 
+        'CURL_VERSION_ALTSVC' => array(
+            '7.3.5' => false,
+            '7.3.6' => true,
+        ),
+        'CURL_VERSION_CURLDEBUG' => array(
+            '7.3.5' => false,
+            '7.3.6' => true,
+        ),
+
         'MB_ONIGURUMA_VERSION' => array(
             '7.3' => false,
             '7.4' => true,
