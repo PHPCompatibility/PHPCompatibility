@@ -150,19 +150,24 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__sleep', 'public', 'private', 155),
             array('__toString', 'public', 'protected', 156),
 
+            // PHP 7.4: __(un)serialize()
+            array('__serialize', 'public', 'protected', 179),
+            array('__unserialize', 'public', 'private', 180),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
             // Trait.
-            array('__get', 'public', 'private', 32, true),
-            array('__set', 'public', 'protected', 33, true),
-            array('__isset', 'public', 'private', 34, true),
-            array('__unset', 'public', 'protected', 35, true),
-            array('__call', 'public', 'private', 36, true),
-            array('__callStatic', 'public', 'protected', 37, true),
-            array('__sleep', 'public', 'private', 38, true),
-            array('__toString', 'public', 'protected', 39, true),
-
+            array('__get', 'public', 'private', 36, true),
+            array('__set', 'public', 'protected', 37, true),
+            array('__isset', 'public', 'private', 38, true),
+            array('__unset', 'public', 'protected', 39, true),
+            array('__call', 'public', 'private', 40, true),
+            array('__callStatic', 'public', 'protected', 41, true),
+            array('__sleep', 'public', 'private', 42, true),
+            array('__toString', 'public', 'protected', 43, true),
+            array('__serialize', 'public', 'private', 44, true),
+            array('__unserialize', 'public', 'protected', 45, true),
         );
     }
 
@@ -229,16 +234,21 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__unset', 164),
             array('__call', 165),
 
+            // PHP 7.4: __(un)serialize()
+            array('__serialize', 185),
+            array('__unserialize', 186),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
             // Trait.
-            array('__get', 44, true),
-            array('__set', 45, true),
-            array('__isset', 46, true),
-            array('__unset', 47, true),
-            array('__call', 48, true),
-
+            array('__get', 50, true),
+            array('__set', 51, true),
+            array('__isset', 52, true),
+            array('__unset', 53, true),
+            array('__call', 54, true),
+            array('__serialize', 57, true),
+            array('__unserialize', 58, true),
         );
     }
 
@@ -294,8 +304,8 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
              * nonstatic_magic_methods_traits.php
              */
             // Trait.
-            array('__callStatic', 49, true),
-            array('__set_state', 50, true),
+            array('__callStatic', 55, true),
+            array('__set_state', 56, true),
 
         );
     }
@@ -404,6 +414,10 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(143),
             array(144),
 
+            // PHP 7.4: __(un)serialize()
+            array(173),
+            array(174),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
@@ -417,9 +431,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(11, true),
             array(12, true),
             array(13, true),
+            array(14, true),
+            array(15, true),
             // Normal trait.
-            array(18, true),
-            array(19, true),
             array(20, true),
             array(21, true),
             array(22, true),
@@ -428,7 +442,10 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(25, true),
             array(26, true),
             array(27, true),
-
+            array(28, true),
+            array(29, true),
+            array(30, true),
+            array(31, true),
         );
     }
 

@@ -73,6 +73,14 @@ class NonStaticMagicMethodsSniff extends Sniff
         '__set_state' => array(
             'static'     => true,
         ),
+        '__serialize' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__unserialize' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
     );
 
 
