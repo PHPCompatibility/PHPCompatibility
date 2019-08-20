@@ -884,6 +884,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURL_VERSION_ALTSVC', '7.3.5', array(860), '7.4', '7.3'),
             array('CURL_VERSION_CURLDEBUG', '7.3.5', array(861), '7.4', '7.3'),
 
+            array('IMG_FILTER_SCATTER', '7.3', array(863), '7.4'),
             array('MB_ONIGURUMA_VERSION', '7.3', array(824), '7.4'),
             array('SO_LABEL', '7.3', array(825), '7.4'),
             array('SO_PEERLABEL', '7.3', array(826), '7.4'),
