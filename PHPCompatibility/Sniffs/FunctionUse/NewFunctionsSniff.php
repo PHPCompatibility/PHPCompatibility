@@ -1854,6 +1854,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'imagecreatefromtga' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'mb_str_split' => array(
             '7.3' => false,
             '7.4' => true,
