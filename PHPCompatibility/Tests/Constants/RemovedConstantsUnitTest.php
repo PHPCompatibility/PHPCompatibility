@@ -163,6 +163,8 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('CURLCLOSEPOLICY_CALLBACK', '5.6', array(13), '5.5'),
             array('CURLCLOSEPOLICY_OLDEST', '5.6', array(14), '5.5'),
             array('PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT', '7.0', array(15), '5.6'),
+            array('T_CHARACTER', '7.0', array(139), '5.6'),
+            array('T_BAD_CHARACTER', '7.0', array(140), '5.6'),
             array('PHPDBG_FILE', '7.3', array(69), '7.2'),
             array('PHPDBG_METHOD', '7.3', array(70), '7.2'),
             array('PHPDBG_LINENO', '7.3', array(71), '7.2'),

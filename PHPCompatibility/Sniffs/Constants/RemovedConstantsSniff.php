@@ -63,6 +63,12 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT' => array(
             '7.0' => true,
         ),
+        'T_CHARACTER' => array(
+            '7.0' => true,
+        ),
+        'T_BAD_CHARACTER' => array(
+            '7.0' => true,
+        ),
 
         'INTL_IDNA_VARIANT_2003' => array(
             '7.2' => false,
