@@ -892,6 +892,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('SO_USER_COOKIE', '7.3', array(829), '7.4'),
             array('PHP_WINDOWS_EVENT_CTRL_C', '7.3', array(830), '7.4'),
             array('PHP_WINDOWS_EVENT_CTRL_BREAK', '7.3', array(831), '7.4'),
+            array('T_BAD_CHARACTER', '7.3', array(862), '7.4'),
             array('TIDY_TAG_ARTICLE', '7.3', array(832), '7.4'),
             array('TIDY_TAG_ASIDE', '7.3', array(833), '7.4'),
             array('TIDY_TAG_AUDIO', '7.3', array(834), '7.4'),
