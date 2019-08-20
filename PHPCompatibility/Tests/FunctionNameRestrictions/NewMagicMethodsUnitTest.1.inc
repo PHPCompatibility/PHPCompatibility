@@ -67,3 +67,14 @@ $a = new class
     public function __invoke($x) {}
     public function __debugInfo() {}
 }
+
+/*
+ * PHP 7.4: new (un)serialize magic methods.
+ */
+function __serialize() {} // OK, not in OO scope.
+function __unserialize($data) {} // OK, not in OO scope.
+
+class PHP74NewMagic {
+    public function __serialize() {}
+    public function __unserialize($data) {}
+}

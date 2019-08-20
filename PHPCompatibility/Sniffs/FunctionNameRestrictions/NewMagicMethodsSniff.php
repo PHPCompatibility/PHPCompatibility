@@ -73,6 +73,15 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
             '5.2'     => true,
             'message' => 'The method %s() was not truly magical in PHP version %s and earlier. The associated magic functionality will only be called when directly combined with echo or print.',
         ),
+
+        '__serialize' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        '__unserialize' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
 

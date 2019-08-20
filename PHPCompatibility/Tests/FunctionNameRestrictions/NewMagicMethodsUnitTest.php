@@ -120,7 +120,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
     public function dataNewMagicMethod()
     {
         return array(
-            // File: new_magic_methods.php.
+            // File: NewMagicMethodsUnitTest.1.inc.
             array('__get', '4.4', array(22, 34, 61), '5.0'),
             array('__isset', '5.0', array(23, 35, 62), '5.1'),
             array('__unset', '5.0', array(24, 36, 63), '5.1'),
@@ -128,8 +128,10 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             array('__callStatic', '5.2', array(27, 39, 66), '5.3'),
             array('__invoke', '5.2', array(28, 40, 67), '5.3'),
             array('__debugInfo', '5.5', array(29, 41, 68), '5.6'),
+            array('__serialize', '7.3', array(78), '7.4'),
+            array('__unserialize', '7.3', array(79), '7.4'),
 
-            // File: new_magic_methods_traits.php.
+            // File: NewMagicMethodsUnitTest.2.inc.
             array('__get', '4.4', array(5), '5.0', true),
             array('__isset', '5.0', array(6), '5.1', true),
             array('__unset', '5.0', array(7), '5.1', true),
@@ -137,6 +139,8 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             array('__callStatic', '5.2', array(10), '5.3', true),
             array('__invoke', '5.2', array(11), '5.3', true),
             array('__debugInfo', '5.5', array(12), '5.6', true),
+            array('__serialize', '7.3', array(13), '7.4', true),
+            array('__unserialize', '7.3', array(14), '7.4', true),
         );
     }
 
@@ -175,12 +179,12 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
     public function dataChangedToStringMethod()
     {
         return array(
-            // File: new_magic_methods.php.
+            // File: NewMagicMethodsUnitTest.1.inc.
             array(26),
             array(38),
             array(65),
 
-            // File: new_magic_methods_traits.php.
+            // File: NewMagicMethodsUnitTest.2.inc.
             array(9, true),
         );
     }
@@ -256,6 +260,8 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             array(52),
             array(53),
             array(54),
+            array(74),
+            array(75),
         );
     }
 
@@ -267,11 +273,11 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // File: new_magic_methods.php.
+        // File: NewMagicMethodsUnitTest.1.inc.
         $file = $this->getTestFile(false, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
 
-        // File: new_magic_methods_traits.php.
+        // File: NewMagicMethodsUnitTest.2.inc.
         $file = $this->getTestFile(true, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
