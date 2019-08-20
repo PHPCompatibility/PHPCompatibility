@@ -3482,6 +3482,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'PASSWORD_ARGON2_PROVIDER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'PHP_WINDOWS_EVENT_CTRL_C' => array(
             '7.3' => false,
             '7.4' => true,

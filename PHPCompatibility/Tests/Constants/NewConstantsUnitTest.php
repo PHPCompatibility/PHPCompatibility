@@ -891,6 +891,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('SO_LISTENQLIMIT', '7.3', array(827), '7.4'),
             array('SO_LISTENQLEN', '7.3', array(828), '7.4'),
             array('SO_USER_COOKIE', '7.3', array(829), '7.4'),
+            array('PASSWORD_ARGON2_PROVIDER', '7.3', array(864), '7.4'),
             array('PHP_WINDOWS_EVENT_CTRL_C', '7.3', array(830), '7.4'),
             array('PHP_WINDOWS_EVENT_CTRL_BREAK', '7.3', array(831), '7.4'),
             array('T_BAD_CHARACTER', '7.3', array(862), '7.4'),
