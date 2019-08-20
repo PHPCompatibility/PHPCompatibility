@@ -74,6 +74,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
             array('sha3-256', '7.0', 31, '7.1'),
             array('sha3-384', '7.0', 32, '7.1'),
             array('sha3-512', '7.0', 33, '7.1'),
+            array('crc32c', '7.3', 34, '7.4'),
         );
     }
 
