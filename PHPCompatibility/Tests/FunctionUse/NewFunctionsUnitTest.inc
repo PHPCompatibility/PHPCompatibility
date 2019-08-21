@@ -485,3 +485,10 @@ sapi_windows_set_ctrl_handler();
 sapi_windows_generate_ctrl_event();
 password_algos();
 imagecreatefromtga();
+
+opcache_compile_file();
+opcache_get_configuration();
+opcache_get_status();
+opcache_invalidate();
+opcache_reset();
+opcache_is_script_cached();
