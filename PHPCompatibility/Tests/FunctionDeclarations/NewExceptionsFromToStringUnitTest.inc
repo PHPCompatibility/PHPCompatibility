@@ -98,3 +98,62 @@ function IrrelevantTryCatchOutsideFunctionScope() {
         // ...
     }
 }
+
+// Issue #863 Uncaught exception thrown from called function/method. Detect via docblock.
+class NoDocblock {
+    public function __toString() {
+        return $obj->methodThrowingException('should not trigger the sniff');
+    }
+}
+
+class DocblockNoThrows {
+    /**
+     * Convert to string.
+     *
+     * @internal Some internal note.
+     * @todo     Remove exception.
+     * @random   Just testing that other tags are correctly ignored.
+     * @codeCoverageIgnore
+     */
+    public function __toString() {
+        return $obj->methodThrowingException('should not trigger the sniff');
+    }
+}
+
+class DetectBasedOnDocblock {
+    /**
+     * Convert to string.
+     *
+     * @todo   Remove exception.
+     * @throws SomeException
+     */
+    public function __toString() {
+        return $obj->methodThrowingException('should trigger the sniff');
+    }
+}
+
+class DetectBasedOnIncorrectDocblock {
+    /**
+     * Convert to string.
+     *
+     * @throws SomeException
+     */
+    public function __toString() {
+        return $obj->method_call();
+    }
+}
+
+class CaughtExceptionButDocblockStillSaysThrows {
+    /**
+     * Convert to string.
+     *
+     * @throws SomeException
+     */
+    public function __toString() {
+        try {
+            throw new \LogicException('');
+        } catch (\Exception $e) {
+            // ...
+        }
+    }
+}

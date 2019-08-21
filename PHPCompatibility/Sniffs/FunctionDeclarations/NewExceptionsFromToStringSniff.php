@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * As of PHP 7.4, throwing exceptions from a __toString() method is allowed.
@@ -39,6 +40,20 @@ class NewExceptionsFromToStringSniff extends Sniff
     );
 
     /**
+     * Tokens which should be ignore when they preface a function declaration
+     * when trying to find the docblock (if any).
+     *
+     * Array will be added to in the register() method.
+     *
+     * @since 9.3.0
+     *
+     * @var array
+     */
+    private $docblockIgnoreTokens = array(
+        \T_WHITESPACE => \T_WHITESPACE,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 9.2.0
@@ -47,6 +62,12 @@ class NewExceptionsFromToStringSniff extends Sniff
      */
     public function register()
     {
+        // Enhance the array of tokens to ignore for finding the docblock.
+        $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
+        if (isset(Tokens::$phpcsCommentTokens)) {
+            $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
+        }
+
         return array(\T_FUNCTION);
     }
 
@@ -87,8 +108,9 @@ class NewExceptionsFromToStringSniff extends Sniff
         /*
          * Examine the content of the function.
          */
-        $error    = 'Throwing exceptions from __toString() was not allowed prior to PHP 7.4';
-        $throwPtr = $tokens[$stackPtr]['scope_opener'];
+        $error       = 'Throwing exceptions from __toString() was not allowed prior to PHP 7.4';
+        $throwPtr    = $tokens[$stackPtr]['scope_opener'];
+        $errorThrown = false;
 
         do {
             $throwPtr = $phpcsFile->findNext(\T_THROW, ($throwPtr + 1), $tokens[$stackPtr]['scope_closer']);
@@ -113,7 +135,35 @@ class NewExceptionsFromToStringSniff extends Sniff
 
             if ($inTryCatch === false) {
                 $phpcsFile->addError($error, $throwPtr, 'Found');
+                $errorThrown = true;
             }
         } while (true);
+
+        if ($errorThrown === true) {
+            // We've already thrown an error for this method, no need to examine the docblock.
+            return;
+        }
+
+        /*
+         * Check whether the function has a docblock and if so, whether it contains a @throws tag.
+         *
+         * @internal This can be partially replaced by the findCommentAboveFunction()
+         *           utility function in due time.
+         */
+        $commentEnd = $phpcsFile->findPrevious($this->docblockIgnoreTokens, ($stackPtr - 1), null, true);
+        if ($commentEnd === false || $tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
+            return;
+        }
+
+        $commentStart = $tokens[$commentEnd]['comment_opener'];
+        foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
+            if ($tokens[$tag]['content'] !== '@throws') {
+                continue;
+            }
+
+            // Found a throws tag.
+            $phpcsFile->addError($error, $stackPtr, 'ThrowsTagFoundInDocblock');
+            break;
+        }
     }
 }
