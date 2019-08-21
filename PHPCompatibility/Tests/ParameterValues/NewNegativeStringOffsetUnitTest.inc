@@ -31,7 +31,7 @@ mb_ereg_search_setpos(
 	// phpcs:ignore Standard.Category.Sniff -- for reasons.
 );
 
-mb_ereg_search_setpos( -     100);
+MB_ereg_search_setpos( -     100);
 
 $a = file_get_contents($filename, true, $context, -1024, 1024 );
 $a = grapheme_extract($haystack, $size, $extract_type, -10 );
@@ -44,5 +44,5 @@ $a = mb_strpos($haystack, $needle, -5 );
 $a = stripos($haystack, $needle, -42 );
 $a = strpos($haystack, $needle, -30 );
 $a = substr_count($haystack, $needle, -20, -10 );
-$a = substr_count($haystack, $needle, -20, 10 );
+$a = Substr_Count($haystack, $needle, -20, 10 );
 $a = substr_count($haystack, $needle, 20, -+-+-10 );

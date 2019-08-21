@@ -57,7 +57,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
     {
         return array(
             array(28, 'position', 'mb_ereg_search_setpos'),
-            array(34, 'position', 'mb_ereg_search_setpos'),
+            array(34, 'position', 'MB_ereg_search_setpos'),
             array(36, 'offset', 'file_get_contents'),
             array(37, 'start', 'grapheme_extract'),
             array(38, 'offset', 'grapheme_stripos'),
@@ -71,7 +71,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
             array(45, 'offset', 'strpos'),
             array(46, 'offset', 'substr_count'),
             array(46, 'length', 'substr_count'),
-            array(47, 'offset', 'substr_count'),
+            array(47, 'offset', 'Substr_Count'),
             array(48, 'length', 'substr_count'),
         );
     }
