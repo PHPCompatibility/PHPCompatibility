@@ -29,6 +29,15 @@ Please make sure that your pull request contains unit tests covering what's bein
 * All code should comply with the PHPCompatibility coding standards.
     The [ruleset used by PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/phpcs.xml.dist) is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
 
+### Typical sources of information about changes in PHP
+* The [PHP RFC wiki](https://wiki.php.net/rfc)
+* The [UPGRADING](https://github.com/php/php-src/blob/master/UPGRADING) document of each release
+* The [NEWS](https://github.com/php/php-src/blob/master/NEWS) document of each release
+* The [Migrating from PHP x.x.x to PHP x.x.x section](https://www.php.net/manual/en/appendices.php) in the manual for each release (once published)
+* The [Changelog](https://www.php.net/manual/en/doc.changelog.php) in the manual
+* The [PHP manual](https://www.php.net/manual/en/index.php) in general
+* The [PHP source code](https://github.com/php/php-src) in general
+
 ### Framework/CMS specific rulesets
 
 Since mid 2018, framework/CMS/polyfill specific rulesets will be accepted to be hosted in separate repositories in the PHPCompatibility organisation. If you are interested in adding a ruleset for a framework/CMS/PHP polyfill library, you can request a repository for it by [opening an issue](https://github.com/PHPCompatibility/PHPCompatibility/issues/new) in this repo.
@@ -98,7 +107,7 @@ In order to run the tests on the sniffs, the following installation steps are re
 4. To get the unit tests running with a non-Composer-based install, you need to set an environment variable so the PHPCompatibility unit test suite will know where to find PHPCS.
 
     The most flexible way to do this, is by setting this variable in a custom `phpunit.xml` file.
-    
+
     1. Copy the existing `phpunit.xml.dist` file in the root directory of the PHPCompatibility repository and name it `phpunit.xml`.
     2. Add the following snippet to the new file, replacing the value `/path/to/PHPCS` with the path to the directory in which you installed PHP CodeSniffer on your system:
     ```xml
