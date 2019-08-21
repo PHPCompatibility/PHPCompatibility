@@ -32,7 +32,7 @@ class NewExceptionsFromToStringSniff extends Sniff
      *
      * @var array
      */
-    public $ooScopeTokens = array(
+    protected $ooScopeTokens = array(
         'T_CLASS'      => true,
         'T_TRAIT'      => true,
         'T_ANON_CLASS' => true,
