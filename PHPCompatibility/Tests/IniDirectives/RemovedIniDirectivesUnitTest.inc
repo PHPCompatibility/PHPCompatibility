@@ -237,3 +237,6 @@ $a = ini_get('pfpro.proxypassword');
 
 ini_set('allow_url_include', 'On');
 $a = ini_get('allow_url_include');
+
+ini_set('opcache.load_comments', 'On');
+$a = ini_get('opcache.load_comments');

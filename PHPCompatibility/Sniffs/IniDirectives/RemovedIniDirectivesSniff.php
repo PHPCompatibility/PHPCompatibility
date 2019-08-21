@@ -204,6 +204,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'xsl.security_prefs' => array(
             '7.0' => true,
         ),
+        'opcache.load_comments' => array(
+            '7.0' => true,
+        ),
 
         'mcrypt.algorithms_dir' => array(
             '7.1' => false,

@@ -258,6 +258,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
 
             array('asp_tags', '7.0', array(83, 84), '5.6'),
             array('xsl.security_prefs', '7.0', array(86, 87), '5.6'),
+            array('opcache.load_comments', '7.0', array(241, 242), '5.6'),
 
             array('session.entropy_file', '7.1', array(141, 142), '7.0'),
             array('session.entropy_length', '7.1', array(144, 145), '7.0'),
