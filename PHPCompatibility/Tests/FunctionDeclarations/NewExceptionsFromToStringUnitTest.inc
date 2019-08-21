@@ -59,3 +59,42 @@ $anon = new class() {
         return $this->foo;
     }
 };
+
+// Issue #863 Exception in try/catch.
+class CaughtException {
+    public function __toString() {
+        try {
+            throw new \LogicException('should not trigger the sniff');
+        } catch (\Exception $e) {
+            // ...
+        }
+    }
+}
+
+class CaughtAndUnCaughtException {
+    public function __toString() {
+        try {
+            throw new \LogicException('should not trigger the sniff');
+        } catch (\Exception $e) {
+            // ...
+            throw new \RuntimeException('should trigger the sniff');
+        }
+
+        throw $obj->methodThrowingException('should trigger the sniff');
+    }
+}
+
+function IrrelevantTryCatchOutsideFunctionScope() {
+    try {
+        $anon = new class() {
+            public function __toString() {
+                if ( is_int($this->foo) ) {
+                    throw new Exception('Foo is int');
+                }
+                return $this->foo;
+            }
+        }
+    } catch (\Exception $e) {
+        // ...
+    }
+}

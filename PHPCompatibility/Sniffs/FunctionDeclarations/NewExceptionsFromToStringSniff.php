@@ -84,17 +84,36 @@ class NewExceptionsFromToStringSniff extends Sniff
             return;
         }
 
-        $hasThrow = $phpcsFile->findNext(\T_THROW, ($tokens[$stackPtr]['scope_opener'] + 1), $tokens[$stackPtr]['scope_closer']);
+        /*
+         * Examine the content of the function.
+         */
+        $error    = 'Throwing exceptions from __toString() was not allowed prior to PHP 7.4';
+        $throwPtr = $tokens[$stackPtr]['scope_opener'];
 
-        if ($hasThrow === false) {
-            // No exception is being thrown.
-            return;
-        }
+        do {
+            $throwPtr = $phpcsFile->findNext(\T_THROW, ($throwPtr + 1), $tokens[$stackPtr]['scope_closer']);
+            if ($throwPtr === false) {
+                break;
+            }
 
-        $phpcsFile->addError(
-            'Throwing exceptions from __toString() was not allowed prior to PHP 7.4',
-            $hasThrow,
-            'Found'
-        );
+            $conditions = $tokens[$throwPtr]['conditions'];
+            $conditions = array_reverse($conditions, true);
+            $inTryCatch = false;
+            foreach ($conditions as $ptr => $type) {
+                if ($type === \T_TRY) {
+                    $inTryCatch = true;
+                    break;
+                }
+
+                if ($ptr === $stackPtr) {
+                    // Don't check the conditions outside the function scope.
+                    break;
+                }
+            }
+
+            if ($inTryCatch === false) {
+                $phpcsFile->addError($error, $throwPtr, 'Found');
+            }
+        } while (true);
     }
 }

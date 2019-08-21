@@ -84,6 +84,9 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
             array(39),
             array(48, true),
             array(57),
+            array(80),
+            array(83),
+            array(92),
         );
     }
 
@@ -117,6 +120,13 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 34; $line++) {
             $cases[] = array($line);
         }
+
+        // No false positive for try/catch.
+        for ($line = 64; $line <= 79; $line++) {
+            $cases[] = array($line);
+        }
+
+        $cases[] = array(90);
 
         return $cases;
     }
