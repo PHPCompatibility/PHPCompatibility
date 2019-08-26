@@ -191,6 +191,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('syslog.ident', '7.3', array(314, 315), '7.2'),
             array('syslog.filter', '7.3', array(317, 318), '7.2'),
             array('session.cookie_samesite', '7.3', array(332, 333), '7.2'),
+
+            array('zend.exception_ignore_args', '7.4', array(338, 339), '7.3'),
         );
     }
 

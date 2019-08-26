@@ -334,3 +334,6 @@ $test = ini_get('session.cookie_samesite');
 
 ini_set('imap.enable_insecure_rsh', 1);
 $test = ini_get('imap.enable_insecure_rsh');
+
+ini_set('zend.exception_ignore_args', 1);
+$test = ini_get('zend.exception_ignore_args');
