@@ -250,6 +250,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
         ),
 
+        'allow_url_include' => array(
+            '7.4' => false,
+        ),
         'ibase.allow_persistent' => array(
             '7.4' => true,
         ),

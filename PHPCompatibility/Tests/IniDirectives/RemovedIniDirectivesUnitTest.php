@@ -152,6 +152,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('track_errors', '7.2', array(172, 173), '7.1'),
 
             array('pdo_odbc.db2_instance_name', '7.3', array(184, 185), '7.2'),
+
+            array('allow_url_include', '7.4', array(238, 239), '7.3'),
         );
     }
 

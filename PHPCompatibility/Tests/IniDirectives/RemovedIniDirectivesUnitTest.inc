@@ -234,3 +234,6 @@ $a = ini_get('pfpro.proxylogon');
 
 ini_set('pfpro.proxypassword', 'string');
 $a = ini_get('pfpro.proxypassword');
+
+ini_set('allow_url_include', 'On');
+$a = ini_get('allow_url_include');
