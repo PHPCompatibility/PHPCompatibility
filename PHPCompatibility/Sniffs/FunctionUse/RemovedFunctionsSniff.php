@@ -728,6 +728,38 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
 
+        'convert_cyr_string' => array(
+            '7.4' => false,
+            'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
+        ),
+        'ezmlm_hash' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
+        'get_magic_quotes_gpc' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
+        'get_magic_quotes_runtime' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
+        'hebrevc' => array(
+            '7.4' => false,
+            'alternative' => null,
+        ),
+        'is_real' => array(
+            '7.4' => false,
+            'alternative' => 'is_float()',
+        ),
+        'money_format' => array(
+            '7.4' => false,
+            'alternative' => 'NumberFormatter::formatCurrency()',
+        ),
+        'restore_include_path' => array(
+            '7.4' => false,
+            'alternative' => "ini_restore('include_path')",
+        ),
         'ibase_add_user' => array(
             '7.4' => true,
             'alternative' => null,

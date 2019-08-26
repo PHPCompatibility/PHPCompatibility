@@ -68,6 +68,10 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ldap_sort', '7.0', array(97), '5.6'),
             array('fgetss', '7.3', array(167), '7.2'),
             array('gzgetss', '7.3', array(168), '7.2'),
+            array('ezmlm_hash', '7.4', array(245), '7.3'),
+            array('get_magic_quotes_gpc', '7.4', array(240), '7.3'),
+            array('get_magic_quotes_runtime', '7.4', array(241), '7.3'),
+            array('hebrevc', '7.4', array(242), '7.3'),
         );
     }
 
@@ -184,7 +188,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mbereg_search_getpos', '7.3', 'mb_ereg_search_getpos()', array(165), '7.2'),
             array('mbereg_search_setpos', '7.3', 'mb_ereg_search_setpos()', array(166), '7.2'),
 
-            array('ldap_control_paged_result_response', '7.4', 'ldap_search()', array(234), '7.3'),
+            array('convert_cyr_string', '7.4', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
+            array('is_real', '7.4', 'is_float()', array(239), '7.3'),
+            array('money_format', '7.4', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
+            array('restore_include_path', '7.4', "ini_restore('include_path')", array(246), '7.3'),
+            array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
         );
     }
