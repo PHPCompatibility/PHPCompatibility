@@ -30,7 +30,6 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      * @var array
      */
     protected $targetFunctions = array(
-        'preg_replace'                => true,
         'preg_filter'                 => true,
         'preg_grep'                   => true,
         'preg_match_all'              => true,
