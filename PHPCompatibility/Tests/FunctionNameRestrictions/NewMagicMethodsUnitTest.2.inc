@@ -12,4 +12,6 @@ trait MyTrait
     public function __debugInfo() {}
     public function __serialize() {}
     public function __unserialize($data) {}
+    public function __construct() {}
+    public function __destruct() {}
 }

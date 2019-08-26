@@ -34,6 +34,14 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => int|string|null))
      */
     protected $newMagicMethods = array(
+        '__construct' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        '__destruct' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
         '__get' => array(
             '4.4' => false,
             '5.0' => true,
