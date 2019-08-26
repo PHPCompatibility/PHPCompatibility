@@ -113,7 +113,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     {
         return array(
             /*
-             * nonstatic_magic_methods.php
+             * File: NonStaticMagicMethodsUnitTest.1.inc.
              */
             // Class.
             array('__get', 'public', 'private', 32),
@@ -161,7 +161,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__set_state', 'public', 'protected', 204),
 
             /*
-             * nonstatic_magic_methods_traits.php
+             * File: NonStaticMagicMethodsUnitTest.2.inc.
              */
             // Trait.
             array('__get', 'public', 'private', 36, true),
@@ -211,7 +211,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     {
         return array(
             /*
-             * nonstatic_magic_methods.php
+             * File: NonStaticMagicMethodsUnitTest.1.inc.
              */
             // Class.
             array('__get', 44),
@@ -251,7 +251,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__debugInfo', 212),
             array('__invoke', 213),
             /*
-             * nonstatic_magic_methods_traits.php
+             * File: NonStaticMagicMethodsUnitTest.2.inc.
              */
             // Trait.
             array('__get', 50, true),
@@ -298,7 +298,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     {
         return array(
             /*
-             * nonstatic_magic_methods.php
+             * File: NonStaticMagicMethodsUnitTest.1.inc.
              */
             // Class.
             array('__callStatic', 49),
@@ -313,7 +313,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__set_state', 167),
 
             /*
-             * nonstatic_magic_methods_traits.php
+             * File: NonStaticMagicMethodsUnitTest.2.inc.
              */
             // Trait.
             array('__callStatic', 55, true),
@@ -355,7 +355,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     {
         return array(
             /*
-             * nonstatic_magic_methods.php
+             * File: NonStaticMagicMethodsUnitTest.1.inc.
              */
             // Plain class.
             array(5),
@@ -438,7 +438,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(196),
 
             /*
-             * nonstatic_magic_methods_traits.php
+             * File: NonStaticMagicMethodsUnitTest.2.inc.
              */
             // Plain trait.
             array(5, true),
@@ -476,11 +476,11 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // File: nonstatic_magic_methods.php.
+        // File: NonStaticMagicMethodsUnitTest.1.inc.
         $file = $this->getTestFile(false, '5.2');
         $this->assertNoViolation($file);
 
-        // File: nonstatic_magic_methods_traits.php.
+        // File: NonStaticMagicMethodsUnitTest.2.inc.
         $file = $this->getTestFile(true, '5.2');
         $this->assertNoViolation($file);
     }
