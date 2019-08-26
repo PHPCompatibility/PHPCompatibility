@@ -66,6 +66,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('INTL_IDNA_VARIANT_2003', '7.2', array(16), '7.1'),
             array('FILTER_FLAG_SCHEME_REQUIRED', '7.3', array(73), '7.2'),
             array('FILTER_FLAG_HOST_REQUIRED', '7.3', array(74), '7.2'),
+            array('CURLPIPE_HTTP1', '7.4', array(138), '7.3'),
         );
     }
 

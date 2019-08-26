@@ -296,6 +296,9 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.3' => false,
         ),
 
+        'CURLPIPE_HTTP1' => array(
+            '7.4' => false,
+        ),
         'FILTER_SANITIZE_MAGIC_QUOTES' => array(
             '7.4'         => false,
             'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
