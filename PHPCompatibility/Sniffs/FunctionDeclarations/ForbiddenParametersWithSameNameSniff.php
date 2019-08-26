@@ -72,7 +72,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
 
         $paramNames = array();
         foreach ($parameters as $param) {
-            $paramNames[] = strtolower($param['name']);
+            $paramNames[] = $param['name'];
         }
 
         if (\count($paramNames) !== \count(array_unique($paramNames))) {
