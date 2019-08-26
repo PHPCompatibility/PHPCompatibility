@@ -65,6 +65,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
     {
         return array(
             array('The unset cast', '7.2', 'unset()', array(8, 11, 12), '7.1'),
+            array('The real cast', '7.4', '(float)', array(15, 16), '7.3'),
         );
     }
 
@@ -96,6 +97,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
         return array(
             array(4),
             array(5),
+            array(17),
         );
     }
 
