@@ -99,6 +99,10 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'crc32c' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
 

@@ -31,3 +31,4 @@ hash_hmac('sha3-224');
 hash_init('sha3-256');
 hash_pbkdf2('sha3-384');
 hash('sha3-512');
+hash('crc32c');
