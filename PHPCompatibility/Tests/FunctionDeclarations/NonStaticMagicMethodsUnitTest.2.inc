@@ -11,6 +11,8 @@ trait PlainTrait
     function __sleep() {}
     function __toString() {}
     static function __set_state($properties) {}
+    function __serialize() {}
+    function __unserialize($data) {}
 }
 
 trait NormalTrait
@@ -25,6 +27,8 @@ trait NormalTrait
     public function __sleep() {}
     public function __toString() {}
     public static function __set_state($properties) {}
+    public function __serialize() {}
+    public function __unserialize($data) {}
 }
 
 trait WrongVisibilityTrait
@@ -37,6 +41,8 @@ trait WrongVisibilityTrait
     protected static function __callStatic($name, $arguments) {}
     private function __sleep() {}
     protected function __toString() {}
+    private function __serialize() {}
+    protected function __unserialize($data) {}
 }
 
 trait WrongStaticTrait
@@ -48,5 +54,7 @@ trait WrongStaticTrait
     static function __call($name, $arguments) {}
     function __callStatic($name, $arguments) {}
     function __set_state($properties) {}
+    public static function __serialize() {}
+    static public function __unserialize($data) {}
 }
 
