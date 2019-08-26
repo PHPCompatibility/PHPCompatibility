@@ -40,6 +40,16 @@ class NonStaticMagicMethodsSniff extends Sniff
      * @var array(string)
      */
     protected $magicMethods = array(
+        '__construct' => array(
+            'static' => false,
+        ),
+        '__destruct' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__clone' => array(
+            'static'     => false,
+        ),
         '__get' => array(
             'visibility' => 'public',
             'static'     => false,
@@ -71,7 +81,16 @@ class NonStaticMagicMethodsSniff extends Sniff
             'visibility' => 'public',
         ),
         '__set_state' => array(
+            'visibility' => 'public',
             'static'     => true,
+        ),
+        '__debuginfo' => array(
+            'visibility' => 'public',
+            'static'     => false,
+        ),
+        '__invoke' => array(
+            'visibility' => 'public',
+            'static'     => false,
         ),
         '__serialize' => array(
             'visibility' => 'public',
