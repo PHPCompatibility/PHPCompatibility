@@ -1016,7 +1016,7 @@ abstract class Sniff implements PHPCS_Sniff
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the return type token.
      *
-     * @return string|false The name of the return type token.
+     * @return string The name of the return type token.
      */
     public function getReturnTypeHintName(File $phpcsFile, $stackPtr)
     {
@@ -1028,7 +1028,7 @@ abstract class Sniff implements PHPCS_Sniff
             || ($tokens[$colon]['code'] !== \T_COLON && $tokens[$colon]['code'] !== \T_INLINE_ELSE)
         ) {
             // Shouldn't happen, just in case.
-            return;
+            return '';
         }
 
         $returnTypeHint = '';
