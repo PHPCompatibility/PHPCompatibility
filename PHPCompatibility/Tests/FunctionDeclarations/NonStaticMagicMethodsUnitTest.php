@@ -154,6 +154,12 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__serialize', 'public', 'protected', 179),
             array('__unserialize', 'public', 'private', 180),
 
+            // More magic methods.
+            array('__destruct', 'public', 'private', 201),
+            array('__debugInfo', 'public', 'protected', 202),
+            array('__invoke', 'public', 'private', 203),
+            array('__set_state', 'public', 'protected', 204),
+
             /*
              * nonstatic_magic_methods_traits.php
              */
@@ -238,6 +244,12 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__serialize', 185),
             array('__unserialize', 186),
 
+            // More magic methods.
+            array('__construct', 209),
+            array('__destruct', 210),
+            array('__clone', 211),
+            array('__debugInfo', 212),
+            array('__invoke', 213),
             /*
              * nonstatic_magic_methods_traits.php
              */
@@ -417,6 +429,13 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             // PHP 7.4: __(un)serialize()
             array(173),
             array(174),
+
+            // More magic methods.
+            array(192),
+            array(193),
+            array(194),
+            array(195),
+            array(196),
 
             /*
              * nonstatic_magic_methods_traits.php
