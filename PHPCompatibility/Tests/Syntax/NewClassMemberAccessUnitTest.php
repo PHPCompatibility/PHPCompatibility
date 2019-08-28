@@ -29,14 +29,21 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewClassMemberAccess
      *
-     * @param int $line The line number.
+     * @param int  $line            The line number.
+     * @param bool $skipNoViolation Optional. Whether or not to test for no violation.
+     *                              Defaults to false.
      *
      * @return void
      */
-    public function testNewClassMemberAccess($line)
+    public function testNewClassMemberAccess($line, $skipNoViolation = false)
     {
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'Class member access on object instantiation was not supported in PHP 5.3 or earlier');
+
+        if ($skipNoViolation === false) {
+            $file = $this->sniffFile(__FILE__, '5.4');
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
@@ -59,7 +66,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
             array(51),
             array(52),
             array(54),
-            array(57),
+            array(58),
             array(60),
             array(61),
             array(62),
@@ -68,11 +75,45 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
             array(76),
             array(79),
             array(82),
-            array(86),
+            array(87),
             array(91),
             array(96),
+            array(117, true),
         );
     }
+
+
+    /**
+     * testNewClassMemberAccessUsingCurlies
+     *
+     * @dataProvider dataNewClassMemberAccessUsingCurlies
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNewClassMemberAccessUsingCurlies($line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.6');
+        $this->assertError($file, $line, 'Class member access on object instantiation using curly braces was not supported in PHP 5.6 or earlier');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewClassMemberAccessUsingCurlies()
+     *
+     * @return array
+     */
+    public function dataNewClassMemberAccessUsingCurlies()
+    {
+        return array(
+            array(111),
+            array(112), // Error x 2.
+            array(117),
+        );
+    }
+
 
     /**
      * testCloneClassMemberAccess
@@ -102,6 +143,8 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
             array(101),
             array(103),
             array(105),
+            array(114),
+            array(118), // Error x 2.
         );
     }
 
