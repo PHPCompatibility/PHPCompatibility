@@ -3454,6 +3454,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3.6' => true,
         ),
 
+        'IMG_FILTER_SCATTER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'MB_ONIGURUMA_VERSION' => array(
             '7.3' => false,
             '7.4' => true,
@@ -3475,6 +3479,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ),
         'SO_USER_COOKIE' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'PASSWORD_ARGON2_PROVIDER' => array(
             '7.3' => false,
             '7.4' => true,
         ),
