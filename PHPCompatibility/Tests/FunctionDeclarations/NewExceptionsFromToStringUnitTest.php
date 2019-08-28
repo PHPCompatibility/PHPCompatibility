@@ -84,6 +84,12 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
             array(39),
             array(48, true),
             array(57),
+            array(80),
+            array(83),
+            array(92),
+            array(130),
+            array(141),
+            array(152),
         );
     }
 
@@ -117,6 +123,24 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 34; $line++) {
             $cases[] = array($line);
         }
+
+        $cases[] = array(37);
+        $cases[] = array(46);
+        $cases[] = array(55);
+
+        // No false positive for try/catch.
+        for ($line = 64; $line <= 79; $line++) {
+            $cases[] = array($line);
+        }
+
+        $cases[] = array(90);
+
+        // No false positive for docblock check.
+        for ($line = 103; $line <= 122; $line++) {
+            $cases[] = array($line);
+        }
+
+        $cases[] = array(154);
 
         return $cases;
     }
