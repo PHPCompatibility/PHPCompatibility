@@ -5,8 +5,6 @@
  */
 class MyOkClass
 {
-    public function __construct() {}
-    public function __destruct() {}
     public function __call($name, $arguments) {}
     public function __set($name, $value) {}
     public function __sleep() {}
@@ -19,6 +17,8 @@ class MyOkClass
  */
 class MyClass
 {
+    public function __construct() {}
+    public function __destruct() {}
     public function __get($name) {}
     public function __isset($name) {}
     public function __unset($name) {}

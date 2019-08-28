@@ -121,6 +121,8 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
     {
         return array(
             // File: NewMagicMethodsUnitTest.1.inc.
+            array('__construct', '4.4', array(20), '5.0'),
+            array('__destruct', '4.4', array(21), '5.0'),
             array('__get', '4.4', array(22, 34, 61), '5.0'),
             array('__isset', '5.0', array(23, 35, 62), '5.1'),
             array('__unset', '5.0', array(24, 36, 63), '5.1'),
@@ -141,6 +143,8 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             array('__debugInfo', '5.5', array(12), '5.6', true),
             array('__serialize', '7.3', array(13), '7.4', true),
             array('__unserialize', '7.3', array(14), '7.4', true),
+            array('__construct', '4.4', array(15), '5.0', true),
+            array('__destruct', '4.4', array(16), '5.0', true),
         );
     }
 
@@ -220,8 +224,6 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             array(10),
             array(11),
             array(12),
-            array(13),
-            array(14),
         );
     }
 
