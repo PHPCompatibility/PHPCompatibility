@@ -32,7 +32,7 @@ use PHP_CodeSniffer_File as File;
  * @package  PHPCompatibility
  * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  * @since    8.2.0
-*/
+ */
 class LowPHPCSSniff extends Sniff
 {
     /**
