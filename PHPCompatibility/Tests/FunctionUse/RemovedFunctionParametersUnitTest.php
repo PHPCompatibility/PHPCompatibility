@@ -157,9 +157,17 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedParameter()
     {
-        return array(
+        $data = array(
             array('define', 'case_insensitive', '7.3', array(15), '7.2'),
+            array('curl_version', 'age', '7.4', array(20), '7.3'),
+            array('curl_version', 'age', '7.4', array(21), '7.3'),
         );
+
+        if (\CURLVERSION_NOW !== 4) {
+            $data[] = array('curl_version', 'age', '7.4', array(19), '7.3');
+        }
+
+        return $data;
     }
 
 
@@ -187,11 +195,19 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
+        $data = array(
             array(4),
             array(5),
             array(14),
+            array(17),
+            array(18),
         );
+
+        if (\CURLVERSION_NOW === 4) {
+            $data[] = array(19);
+        }
+
+        return $data;
     }
 
 

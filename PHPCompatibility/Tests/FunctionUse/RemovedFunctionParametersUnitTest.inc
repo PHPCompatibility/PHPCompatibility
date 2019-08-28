@@ -13,3 +13,9 @@ ldap_next_attribute( $link_identifier, $result_entry_identifier, $ber_identifier
 
 define('CONSTANT', 'foo'); // OK.
 define( 'CONSTANT', 'foo', true, );
+
+curl_version(); // OK.
+curl_version( CURLVERSION_NOW ); // OK.
+curl_version( 4 ); // OK when on Curl version 4.
+curl_version( 10505678 );
+curl_version( $age );

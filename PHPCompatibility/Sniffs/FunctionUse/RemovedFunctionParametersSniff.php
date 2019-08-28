@@ -29,9 +29,22 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      * The index is the location of the parameter in the parameter list, starting at 0 !
      * If's sufficient to list the first version where the function parameter was deprecated/removed.
      *
+     * The optional `callback` key can be used to pass a method name which should be called for an
+     * additional check. The method will be passed the parameter info and should return true
+     * if the notice should be thrown or false otherwise.
+     *
+     * @since 9.3.0 Optional `callback` key.
+     *
      * @var array
      */
     protected $removedFunctionParameters = array(
+        'curl_version' => array(
+            0 => array(
+                'name'     => 'age',
+                '7.4'      => false,
+                'callback' => 'curlVersionInvalidValue',
+            ),
+        ),
         'define' => array(
             2 => array(
                 'name' => 'case_insensitive',
@@ -113,7 +126,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        $parameters     = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        $parameterCount = \count($parameters);
         if ($parameterCount === 0) {
             return;
         }
@@ -124,6 +138,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
+                if (isset($parameterDetails['callback']) && method_exists($this, $parameterDetails['callback'])) {
+                    if ($this->{$parameterDetails['callback']}($phpcsFile, $parameters[($offset + 1)]) === false) {
+                        continue;
+                    }
+                }
+
                 $itemInfo = array(
                     'name'   => $function,
                     'nameLc' => $functionLc,
@@ -155,7 +175,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('name');
+        return array('name', 'callback');
     }
 
 
@@ -215,5 +235,36 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         array_shift($data);
         array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
         return $data;
+    }
+
+    /**
+     * Check whether curl_version() was passed the default CURLVERSION_NOW.
+     *
+     * @since 9.3.0
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param array                 $parameter Parameter info array.
+     *
+     * @return bool True if the value was not CURLVERSION_NOW, false otherwise.
+     */
+    protected function curlVersionInvalidValue(File $phpcsFile, array $parameter)
+    {
+        $tokens = $phpcsFile->getTokens();
+        $raw    = '';
+        for ($i = $parameter['start']; $i <= $parameter['end']; $i++) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                continue;
+            }
+
+            $raw .= $tokens[$i]['content'];
+        }
+
+        if ($raw !== 'CURLVERSION_NOW'
+            && $raw !== (string) \CURLVERSION_NOW
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
