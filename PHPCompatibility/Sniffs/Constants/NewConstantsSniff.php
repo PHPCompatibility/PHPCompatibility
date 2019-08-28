@@ -3486,6 +3486,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'T_BAD_CHARACTER' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'TIDY_TAG_ARTICLE' => array(
             '7.3' => false,
             '7.4' => true,
