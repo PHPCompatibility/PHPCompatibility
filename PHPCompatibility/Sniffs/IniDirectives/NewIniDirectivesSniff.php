@@ -427,6 +427,130 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
+        'opcache.enable' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.enable_cli' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.memory_consumption' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.interned_strings_buffer' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.max_accelerated_files' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.max_wasted_percentage' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.use_cwd' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.validate_timestamps' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.revalidate_freq' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.revalidate_path' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.save_comments' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.load_comments' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.fast_shutdown' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.enable_file_override' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.optimization_level' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.inherited_hack' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.dups_fix' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.blacklist_filename' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.max_file_size' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.consistency_checks' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.force_restart_timeout' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.error_log' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.log_verbosity_level' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.preferred_memory_model' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.protect_memory' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.mmap_base' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.restrict_api' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.file_update_protection' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.huge_code_pages' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.lockfile_path' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'opcache.opt_debug_level' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
 
         'session.use_strict_mode' => array(
             '5.5.1' => false,
@@ -453,6 +577,31 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         'zend.assertions' => array(
             '5.6' => false,
             '7.0' => true,
+        ),
+        'opcache.file_cache' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'opcache.file_cache_only' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'opcache.file_cache_consistency_checks' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'opcache.file_cache_fallback' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ), // Windows only.
+
+        'opcache.validate_permission' => array(
+            '7.0.13' => false,
+            '7.0.14' => true,
+        ),
+        'opcache.validate_root' => array(
+            '7.0.13' => false,
+            '7.0.14' => true,
         ),
 
         'hard_timeout' => array(
@@ -503,6 +652,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
 
+        'opcache.cache_id' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'opcache.preload' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'zend.exception_ignore_args' => array(
             '7.3' => false,
             '7.4' => true,
