@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\Extensions;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Test the RemovedExtensions sniff.
@@ -222,22 +221,16 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array(
+        return array(
             array(57), // Not a function call.
             array(58), // Function declaration.
             array(59), // Class instantiation.
             array(60), // Method call.
+            array(68), // Whitelisted function.
+            array(74), // Whitelisted function array.
+            array(75), // Whitelisted function array.
             array(82), // Live coding.
         );
-
-        // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
-        if (version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
-            $data[] = array(68); // Whitelisted function.
-            $data[] = array(74); // Whitelisted function array.
-            $data[] = array(75); // Whitelisted function array.
-        }
-
-        return $data;
     }
 
 
