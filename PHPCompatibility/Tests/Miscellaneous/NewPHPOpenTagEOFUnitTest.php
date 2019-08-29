@@ -35,56 +35,6 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
 
 
     /**
-     * Whether or not the sniff can reliably run or if tests should be skipped.
-     *
-     * @var bool
-     */
-    protected static $shouldSkip = false;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        $phpcsVersion  = PHPCSHelper::getVersion();
-        $shortOpenTags = (bool) ini_get('short_open_tag');
-
-        /*
-         * When using PHPCS 2.5.1 or lower combined with PHP 5.3 with the short_open_tag
-         * INI setting set to `On`, we run into a PHPCS Tokenizer issue which will
-         * cause the tests to fail.
-         */
-        if ($shortOpenTags === true
-            && version_compare($phpcsVersion, '2.6.0', '<')
-            && version_compare(\PHP_VERSION_ID, '50400', '<')
-        ) {
-            self::$shouldSkip = true;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        if (self::$shouldSkip === true) {
-            $this->markTestSkipped('Tests can not be run on PHP 5.3 with short_open_tag=On in combination with PHPCS < 2.6.0');
-            return;
-        }
-
-        parent::setUp();
-    }
-
-
-    /**
      * Test detection of stand alone PHP open tag at end of file.
      *
      * @dataProvider dataNewPHPOpenTagEOF
