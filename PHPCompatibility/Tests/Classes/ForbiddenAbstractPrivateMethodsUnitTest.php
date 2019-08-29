@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\Classes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Test the ForbiddenAbstractPrivateMethods sniff.
@@ -25,24 +24,6 @@ use PHPCompatibility\PHPCSHelper;
  */
 class ForbiddenAbstractPrivateMethodsUnitTest extends BaseSniffTest
 {
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public function setUp()
-    {
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, both abstract classes
-        // as well as traits are not recognized, so the tests would never pass.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            $this->markTestSkipped('Traits and abstract classes are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
-        parent::setUp();
-    }
-
 
     /**
      * testForbiddenAbstractPrivateMethods.
