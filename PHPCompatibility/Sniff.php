@@ -1362,8 +1362,6 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function isUseOfGlobalConstant(File $phpcsFile, $stackPtr)
     {
-        static $isLowPHPCS, $isLowPHP;
-
         $tokens = $phpcsFile->getTokens();
 
         // Check for the existence of the token.
@@ -1374,16 +1372,6 @@ abstract class Sniff implements PHPCS_Sniff
         // Is this one of the tokens this function handles ?
         if ($tokens[$stackPtr]['code'] !== \T_STRING) {
             return false;
-        }
-
-        // Check for older PHP, PHPCS version so we can compensate for misidentified tokens.
-        if (isset($isLowPHPCS, $isLowPHP) === false) {
-            $isLowPHP   = false;
-            $isLowPHPCS = false;
-            if (version_compare(\PHP_VERSION_ID, '50400', '<')) {
-                $isLowPHP   = true;
-                $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.4.0', '<');
-            }
         }
 
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
@@ -1418,13 +1406,7 @@ abstract class Sniff implements PHPCS_Sniff
         );
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false
-            && (isset($tokensToIgnore[$tokens[$prev]['type']]) === true
-                || ($tokens[$prev]['code'] === \T_STRING
-                    && (($isLowPHPCS === true
-                        && $tokens[$prev]['content'] === 'trait')
-                    || ($isLowPHP === true
-                        && $tokens[$prev]['content'] === 'insteadof'))))
+        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['type']]) === true
         ) {
             // Not the use of a constant.
             return false;
