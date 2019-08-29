@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
@@ -110,21 +109,12 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === true) {
-            $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
-            $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
-        } else {
-            if (version_compare(PHPCSHelper::getVersion(), '2.3.4', '>=')) {
-                return;
-            }
-
-            // Deal with PHPCS 2.3.0-2.3.3 which do not yet set the parenthesis properly for declare statements.
-            $openParenthesis = $phpcsFile->findNext(\T_OPEN_PARENTHESIS, ($stackPtr + 1), null, false, null, true);
-            if ($openParenthesis === false || isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
-                return;
-            }
-            $closeParenthesis = $tokens[$openParenthesis]['parenthesis_closer'];
+        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
+            return;
         }
+
+        $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
+        $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
 
         $directivePtr = $phpcsFile->findNext(\T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
         if ($directivePtr === false) {
