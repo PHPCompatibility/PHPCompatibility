@@ -365,16 +365,6 @@ class ForbiddenNamesSniff extends Sniff
     {
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
 
-        /*
-         * Special case for PHP versions where the target is not yet identified as
-         * its own token, but presents as T_STRING.
-         * - trait keyword in PHP < 5.4
-         */
-        if (version_compare(\PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {
-            $this->processNonString($phpcsFile, $stackPtr, $tokens);
-            return;
-        }
-
         // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
         if ($tokenContentLc !== 'define' && $tokenContentLc !== 'defined') {
             return;
