@@ -25,7 +25,7 @@ env:
     # `master`, i.e PHPCS 3.x.
     - PHPCS_VERSION="dev-master" LINT=1
     # Lowest supported PHPCS version.
-    - PHPCS_VERSION="2.3.0"
+    - PHPCS_VERSION="2.6.0"
 
 # Define the stages used.
 # For non-PRs, only the sniff and quicktest stages are run.
@@ -72,28 +72,25 @@ jobs:
       php: 7.4
       env: PHPCS_VERSION="dev-master" LINT=1
     - php: 7.3
-      env: PHPCS_VERSION="2.3.0"
+      env: PHPCS_VERSION="2.6.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
       env: PHPCS_VERSION="3.0.2" LINT=1
 
-    # PHPCS 3.x cannot be run on PHP 5.3.
     - php: 5.4
       env: PHPCS_VERSION="dev-master" LINT=1
-    - php: 5.3
-      dist: precise
-      env: PHPCS_VERSION=">=2.0,<3.0" LINT=1
-    - php: 5.3
-      dist: precise
-      env: PHPCS_VERSION="2.3.0"
+    - php: 5.4
+      env: PHPCS_VERSION=">=2.6,<3.0"
+    - php: 5.4
+      env: PHPCS_VERSION="2.6.0"
 
     #### TEST STAGE ####
     # In addition to the matrix defined above, test against a variation of PHPCS 2.x and 3.x versions.
     - stage: test
       php: 5.4
-      env: PHPCS_VERSION="2.3.0" LINT=1
+      env: PHPCS_VERSION="3.0.2" LINT=1
     - php: 5.5
-      env: PHPCS_VERSION="2.4.*"
+      env: PHPCS_VERSION="2.7.*"
     - php: 5.5
       env: PHPCS_VERSION="3.2.*"
     - php: 5.6
@@ -101,7 +98,7 @@ jobs:
     - php: 7.0
       env: PHPCS_VERSION="2.6.*"
     - php: 7.1
-      env: PHPCS_VERSION="2.7.*"
+      env: PHPCS_VERSION="3.1.*"
     - php: 7.2
       env: PHPCS_VERSION="3.3.*"
     # Note: PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
@@ -111,9 +108,9 @@ jobs:
     - php: 7.3
       env: PHPCS_VERSION="dev-master"
     - php: 7.4
-      env: PHPCS_VERSION=">=2.0,<3.0" LINT=1
+      env: PHPCS_VERSION=">=2.6,<3.0" LINT=1
     - php: 7.4
-      env: PHPCS_VERSION="2.3.0"
+      env: PHPCS_VERSION="2.6.0"
 
     #### CODE COVERAGE STAGE ####
     # N.B.: Coverage is only checked on the lowest and highest stable PHP versions for all PHPCS versions.
@@ -127,20 +124,17 @@ jobs:
       php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
     - php: 7.3
-      env: PHPCS_VERSION="2.3.0" COVERALLS_VERSION="^2.0"
+      env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^2.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
       env: PHPCS_VERSION="3.0.2" COVERALLS_VERSION="^2.0"
 
-    # PHPCS 3.x cannot be run on PHP 5.3.
     - php: 5.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^1.0"
-    - php: 5.3
-      dist: precise
-      env: PHPCS_VERSION=">=2.0,<3.0" LINT=1 COVERALLS_VERSION="^1.0" CUSTOM_INI=1
-    - php: 5.3
-      dist: precise
-      env: PHPCS_VERSION="2.3.0" COVERALLS_VERSION="^1.0"
+    - php: 5.4
+      env: PHPCS_VERSION=">=2.6,<3.0" COVERALLS_VERSION="^1.0" CUSTOM_INI=1
+    - php: 5.4
+      env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^1.0"
 
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.
