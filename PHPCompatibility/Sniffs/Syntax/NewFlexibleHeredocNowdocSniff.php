@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
@@ -69,12 +68,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        /*
-         * Due to a tokenizer bug which gets hit when the PHP 7.3 heredoc/nowdoc syntax
-         * is used, this part of the sniff cannot possibly work on PHPCS < 2.6.0.
-         * See upstream issue #928.
-         */
-        if ($this->supportsBelow('7.2') === true && version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
+        if ($this->supportsBelow('7.2') === true) {
             $this->detectIndentedNonStandAloneClosingMarker($phpcsFile, $stackPtr);
         }
 
