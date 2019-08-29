@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility\Util\Tests\Core;
 
-use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
@@ -23,30 +22,6 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  */
 class TokenScopeUnitTest extends CoreMethodTestFrame
 {
-
-    /**
-     * Whether or not traits will be recognized in PHPCS.
-     *
-     * @var bool
-     */
-    protected static $recognizesTraits = true;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
 
     /**
      * testTokenHasScope
@@ -125,17 +100,11 @@ class TokenScopeUnitTest extends CoreMethodTestFrame
      * @param int    $targetType    The token type for the target token.
      * @param string $expected      The expected boolean return value.
      * @param bool   $strict        The value for the $strict parameter to pass to the function call.
-     * @param bool   $maybeSkip     Whether the test relates to a trait/interface.
      *
      * @return void
      */
-    public function testInClassScope($commentString, $targetType, $expected, $strict = true, $maybeSkip = false)
+    public function testInClassScope($commentString, $targetType, $expected, $strict = true)
     {
-        if ($maybeSkip === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized and interfaces not scoped on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
         $stackPtr = $this->getTargetToken($commentString, $targetType);
         $result   = $this->helperClass->inClassScope($this->phpcsFile, $stackPtr, $strict);
         $this->assertSame($expected, $result);
@@ -157,11 +126,11 @@ class TokenScopeUnitTest extends CoreMethodTestFrame
             array('/* Case C4 */', \T_FUNCTION, true), // Function in namespaced class.
             array('/* Case C5 */', \T_FUNCTION, true), // Function in anon class.
             array('/* Case I1 */', \T_FUNCTION, false), // Function in interface / strict.
-            array('/* Case I1 */', \T_FUNCTION, true, false, true), // Function in interface.
-            array('/* Case T1 */', \T_VARIABLE, false, true, true), // Property in trait / strict.
-            array('/* Case T1 */', \T_VARIABLE, true, false, true), // Property in trait.
-            array('/* Case T2 */', \T_FUNCTION, false, true, true), // Function in trait / strict.
-            array('/* Case T2 */', \T_FUNCTION, true, false, true), // Function in trait.
+            array('/* Case I1 */', \T_FUNCTION, true, false), // Function in interface.
+            array('/* Case T1 */', \T_VARIABLE, false), // Property in trait / strict.
+            array('/* Case T1 */', \T_VARIABLE, true, false), // Property in trait.
+            array('/* Case T2 */', \T_FUNCTION, false), // Function in trait / strict.
+            array('/* Case T2 */', \T_FUNCTION, true, false), // Function in trait.
         );
     }
 }
