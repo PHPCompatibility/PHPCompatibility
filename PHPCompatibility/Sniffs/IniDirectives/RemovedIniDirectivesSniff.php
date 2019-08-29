@@ -26,7 +26,7 @@ use PHP_CodeSniffer_File as File;
 class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {
     /**
-     * A list of deprecated INI directives.
+     * A list of deprecated/removed INI directives.
      *
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the ini directive was deprecated/removed.

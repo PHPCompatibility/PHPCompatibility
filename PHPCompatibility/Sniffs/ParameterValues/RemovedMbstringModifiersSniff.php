@@ -59,8 +59,6 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Process the parameters of a matched function.
      *
-     * This method has to be made concrete in child classes.
-     *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.
      * @param string                $functionName The token content (function name) which was matched.

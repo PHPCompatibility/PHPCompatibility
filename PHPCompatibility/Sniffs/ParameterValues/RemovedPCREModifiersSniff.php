@@ -125,7 +125,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
 
     /**
-     * Analyse a potential regex pattern for usage of the /e modifier.
+     * Analyse a potential regex pattern for use of the /e modifier.
      *
      * @param array                 $pattern      Array containing the start and end token
      *                                            pointer of the potential regex pattern and
