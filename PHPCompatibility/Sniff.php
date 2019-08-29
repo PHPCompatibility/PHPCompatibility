@@ -1047,10 +1047,9 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         /*
-         * - `self`, `parent` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
-         * - Return types are not recognized at all in PHPCS < 2.4.0.
-         * - The T_RETURN_TYPE token is defined, but no longer in use since PHPCS 3.3.0+.
-         *   The token will now be tokenized as T_STRING.
+         * - Prior to PHPCS 3.3.0, the return type would mostly be tokenized as T_RETURN_TYPE.
+         *   As of PHPCS 3.3.0, the T_RETURN_TYPE token is defined, but no longer in use.
+         *   The token will now be tokenized as T_STRING, T_SELF or T_CALLABLE.
          * - An `array` (return) type declaration was tokenized as `T_ARRAY_HINT` in PHPCS 2.3.3 - 3.2.3
          *   to prevent confusing sniffs looking for array declarations.
          *   As of PHPCS 3.3.0 `array` as a type declaration will be tokenized as `T_STRING`.
@@ -1059,7 +1058,6 @@ abstract class Sniff implements PHPCS_Sniff
             \T_CALLABLE,
             \T_SELF,
             \T_PARENT,
-            \T_ARRAY, // PHPCS < 2.4.0.
             \T_STRING,
         );
 
