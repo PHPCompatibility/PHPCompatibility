@@ -44,17 +44,17 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
             'description' => 'power operator (**)',
-        ), // Identified in PHP < 5.6 icw PHPCS < 2.4.0 as T_MULTIPLY + T_MULTIPLY.
+        ),
         'T_POW_EQUAL' => array(
             '5.5' => false,
             '5.6' => true,
             'description' => 'power assignment operator (**=)',
-        ), // Identified in PHP < 5.6 icw PHPCS < 2.6.0 as T_MULTIPLY + T_MUL_EQUAL.
+        ),
         'T_SPACESHIP' => array(
             '5.6' => false,
             '7.0' => true,
             'description' => 'spaceship operator (<=>)',
-        ), // Identified in PHP < 7.0 icw PHPCS < 2.5.1 as T_IS_SMALLER_OR_EQUAL + T_GREATER_THAN.
+        ),
         'T_COALESCE' => array(
             '5.6' => false,
             '7.0' => true,
@@ -78,9 +78,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * @var array(string => int)
      */
     protected $newOperatorsPHPCSCompat = array(
-        'T_POW'            => \T_MULTIPLY,
-        'T_POW_EQUAL'      => \T_MUL_EQUAL,
-        'T_SPACESHIP'      => \T_GREATER_THAN,
         'T_COALESCE'       => \T_INLINE_THEN,
         'T_COALESCE_EQUAL' => \T_EQUAL,
     );
@@ -105,18 +102,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => string))
      */
     protected $PHPCSCompatTranslate = array(
-        'T_MULTIPLY' => array(
-            'before'     => 'T_MULTIPLY',
-            'real_token' => 'T_POW',
-        ),
-        'T_MUL_EQUAL' => array(
-            'before'     => 'T_MULTIPLY',
-            'real_token' => 'T_POW_EQUAL',
-        ),
-        'T_GREATER_THAN' => array(
-            'before'     => 'T_IS_SMALLER_OR_EQUAL',
-            'real_token' => 'T_SPACESHIP',
-        ),
         'T_INLINE_THEN' => array(
             'callback'   => 'isTCoalesce',
             'real_token' => 'T_COALESCE',
