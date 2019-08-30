@@ -27,6 +27,8 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      * The index is the location of the parameter in the parameter list, starting at 0 !
      * If's sufficient to list the last version in which the parameter was not yet required.
      *
+     * @since 8.1.0
+     *
      * @var array
      */
     protected $functionParameters = array(
@@ -50,6 +52,8 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
      *
+     * @since 8.1.0
+     *
      * @param array $errorInfo Detail information about an item.
      *
      * @return bool
@@ -64,6 +68,8 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 8.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -105,6 +111,8 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in

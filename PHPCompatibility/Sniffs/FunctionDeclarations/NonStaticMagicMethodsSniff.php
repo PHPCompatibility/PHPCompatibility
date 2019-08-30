@@ -30,6 +30,10 @@ class NonStaticMagicMethodsSniff extends Sniff
      * When a method does not have a specific requirement for either visibility or static,
      * do *not* add the key.
      *
+     * @since 5.5
+     * @since 5.6 The array format has changed to allow the sniff to also verify the
+     *            use of the correct visibility for a magic method.
+     *
      * @var array(string)
      */
     protected $magicMethods = array(
@@ -99,6 +103,10 @@ class NonStaticMagicMethodsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     * @since 5.6   Now also checks traits.
+     * @since 7.1.4 Now also checks anonymous classes.
+     *
      * @return array
      */
     public function register()
@@ -119,6 +127,8 @@ class NonStaticMagicMethodsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

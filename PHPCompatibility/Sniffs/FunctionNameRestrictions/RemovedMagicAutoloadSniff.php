@@ -23,6 +23,8 @@ class RemovedMagicAutoloadSniff extends Sniff
     /**
      * Scopes to look for when testing using validDirectScope
      *
+     * @since 8.1.0
+     *
      * @var array
      */
     private $checkForScopes = array(
@@ -36,6 +38,8 @@ class RemovedMagicAutoloadSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.1.0
+     *
      * @return array
      */
     public function register()
@@ -45,6 +49,8 @@ class RemovedMagicAutoloadSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

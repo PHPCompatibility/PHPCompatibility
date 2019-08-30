@@ -25,6 +25,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the class appears.
      *
+     * @since 5.5
+     *
      * @var array(string => array(string => bool))
      */
     protected $newClasses = array(
@@ -395,6 +397,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * {@internal Helper to update this list: https://3v4l.org/MhlUp}}
      *
+     * @since 7.1.4
+     *
      * @var array(string => array(string => bool))
      */
     protected $newExceptions = array(
@@ -575,6 +579,17 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     * @since 7.0.3 - Now also targets the `class` keyword to detect extended classes.
+     *              - Now also targets double colons to detect static class use.
+     * @since 7.1.4 - Now also targets anonymous classes to detect extended classes.
+     *              - Now also targets functions/closures to detect new classes used
+     *                as parameter type declarations.
+     *              - Now also targets the `catch` control structure to detect new
+     *                exception classes being caught.
+     * @since 8.2.0 Now also targets the `T_RETURN_TYPE` token to detect new classes used
+     *              as return type declarations.
+     *
      * @return array
      */
     public function register()
@@ -609,6 +624,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -650,6 +667,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test for when a token resulting in a singular class name is encountered.
+     *
+     * @since 7.1.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -696,6 +715,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new classes when used as a parameter type declaration.
      *
+     * @since 7.1.4
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack passed in $tokens.
@@ -729,6 +750,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * Processes this test for when a catch token is encountered.
      *
      * - Detect exceptions when used in a catch statement.
+     *
+     * @since 7.1.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -796,6 +819,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new classes when used as a return type declaration.
      *
+     * @since 8.2.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack passed in $tokens.
@@ -828,6 +853,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -840,6 +867,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

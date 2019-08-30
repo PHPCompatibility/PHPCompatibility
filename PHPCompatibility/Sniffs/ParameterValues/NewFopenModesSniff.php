@@ -22,6 +22,8 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
     /**
      * Functions to check for.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     protected $targetFunctions = array(
@@ -31,6 +33,8 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
+     *
+     * @since 9.0.0
      *
      * @return bool
      */
@@ -44,6 +48,8 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

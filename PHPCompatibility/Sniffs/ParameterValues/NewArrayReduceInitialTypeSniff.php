@@ -22,6 +22,8 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
     /**
      * Functions to check for.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     protected $targetFunctions = array(
@@ -31,6 +33,8 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
     /**
      * Tokens which, for the purposes of this sniff, indicate that there is
      * a variable element to the value passed.
+     *
+     * @since 9.0.0
      *
      * @var array
      */
@@ -47,6 +51,8 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 9.0.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -57,6 +63,8 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

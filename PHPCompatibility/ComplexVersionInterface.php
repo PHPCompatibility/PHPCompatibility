@@ -27,6 +27,8 @@ interface ComplexVersionInterface
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error/warning for an item.
      *
+     * @since 7.1.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in
      *                                         the stack.
@@ -40,6 +42,8 @@ interface ComplexVersionInterface
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -49,6 +53,8 @@ interface ComplexVersionInterface
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -60,6 +66,8 @@ interface ComplexVersionInterface
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 7.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in

@@ -24,6 +24,8 @@ class NewKeyedListSniff extends Sniff
     /**
      * Tokens which represent the start of a list construct.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     protected $sniffTargets =  array(
@@ -33,6 +35,8 @@ class NewKeyedListSniff extends Sniff
 
     /**
      * The token(s) within the list construct which is being targeted.
+     *
+     * @since 9.0.0
      *
      * @var array
      */
@@ -46,6 +50,8 @@ class NewKeyedListSniff extends Sniff
      *
      * Set by the setUpAllTargets() method which is called from within register().
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     protected $allTargets;
@@ -53,6 +59,8 @@ class NewKeyedListSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 9.0.0
      *
      * @return array
      */
@@ -66,6 +74,8 @@ class NewKeyedListSniff extends Sniff
     /**
      * Prepare the $allTargets array only once.
      *
+     * @since 9.0.0
+     *
      * @return void
      */
     public function setUpAllTargets()
@@ -76,6 +86,8 @@ class NewKeyedListSniff extends Sniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 9.0.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -85,6 +97,8 @@ class NewKeyedListSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -139,6 +153,8 @@ class NewKeyedListSniff extends Sniff
     /**
      * Examine the contents of a list construct to determine whether an error needs to be thrown.
      *
+     * @since 9.0.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $opener    The position of the list open token.
      * @param int                   $closer    The position of the list close token.
@@ -162,6 +178,8 @@ class NewKeyedListSniff extends Sniff
      * Check whether a certain target token exists within a list construct.
      *
      * Skips past nested list constructs, so these can be examined based on their own token.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $start     The position of the list open token or a token

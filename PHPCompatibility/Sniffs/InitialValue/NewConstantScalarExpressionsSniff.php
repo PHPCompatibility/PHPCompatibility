@@ -29,12 +29,16 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Error message.
      *
+     * @since 8.2.0
+     *
      * @var string
      */
     const ERROR_PHRASE = 'Constant scalar expressions are not allowed %s in PHP 5.5 or earlier.';
 
     /**
      * Partial error phrases to be used in combination with the error message constant.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -49,6 +53,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
      * Tokens which were allowed to be used in these declarations prior to PHP 5.6.
      *
      * This list will be enriched in the setProperties() method.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -82,6 +88,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.2.0
+     *
      * @return array
      */
     public function register()
@@ -102,6 +110,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Make some adjustments to the $safeOperands property.
      *
+     * @since 8.2.0
+     *
      * @return void
      */
     public function setProperties()
@@ -114,6 +124,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -124,6 +136,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -289,6 +303,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Is a value declared and is the value declared valid pre-PHP 5.6 ?
      *
+     * @since 8.2.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
      *                                         stack passed in $tokens.
@@ -312,6 +328,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
     /**
      * Is a value declared and is the value declared constant as accepted in PHP 5.5 and lower ?
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param array                 $tokens       The token stack of the current file.
@@ -457,6 +475,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
     /**
      * Throw an error if a scalar expression is found.
      *
+     * @since 8.2.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the token to link the error to.
      * @param string                $type      Type of usage found.
@@ -491,6 +511,8 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * Checks whether a certain part of a declaration needs to be skipped over or
      * if it is the real end of the declaration.
+     *
+     * @since 8.2.0
      *
      * @param array $tokens      Token stack of the current file.
      * @param int   $endPtr      The token to examine as a candidate end pointer.

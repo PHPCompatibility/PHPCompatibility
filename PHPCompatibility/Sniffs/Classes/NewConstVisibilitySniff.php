@@ -24,6 +24,8 @@ class NewConstVisibilitySniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.7
+     *
      * @return array
      */
     public function register()
@@ -33,6 +35,8 @@ class NewConstVisibilitySniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

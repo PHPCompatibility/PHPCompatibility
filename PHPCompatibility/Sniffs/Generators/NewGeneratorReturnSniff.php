@@ -24,6 +24,8 @@ class NewGeneratorReturnSniff extends Sniff
     /**
      * Scope conditions within which a yield can exist.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     private $validConditions = array(
@@ -34,6 +36,8 @@ class NewGeneratorReturnSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 8.2.0
      *
      * @return array
      */
@@ -71,6 +75,8 @@ class NewGeneratorReturnSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

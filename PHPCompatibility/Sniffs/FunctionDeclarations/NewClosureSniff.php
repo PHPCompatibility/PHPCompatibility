@@ -24,6 +24,8 @@ class NewClosureSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.0
+     *
      * @return array
      */
     public function register()
@@ -33,6 +35,13 @@ class NewClosureSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
+     * @since 7.1.4 - Added check for closure being declared as static < 5.4.
+     *              - Added check for use of `$this` variable in class context < 5.4.
+     *              - Added check for use of `$this` variable in static closures (unsupported).
+     *              - Added check for use of `$this` variable outside class context (unsupported).
+     * @since 8.2.0 Added check for use of `self`/`static`/`parent` < 5.4.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -155,6 +164,8 @@ class NewClosureSniff extends Sniff
     /**
      * Check whether the closure is declared as static.
      *
+     * @since 7.1.4
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
@@ -172,6 +183,8 @@ class NewClosureSniff extends Sniff
 
     /**
      * Check if the code within a closure uses the $this variable.
+     *
+     * @since 7.1.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile  The file being scanned.
      * @param int                   $startToken The position within the closure to continue searching from.
@@ -198,6 +211,8 @@ class NewClosureSniff extends Sniff
 
     /**
      * Check if the code within a closure uses "self/parent/static".
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile  The file being scanned.
      * @param int                   $startToken The position within the closure to continue searching from.

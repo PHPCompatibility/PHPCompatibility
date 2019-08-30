@@ -25,6 +25,8 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.0
+     *
      * @return array
      */
     public function register()
@@ -36,6 +38,10 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
+     * @since 7.0.8 The message is downgraded from error to warning as - for now - support
+     *              for PHP4-style constructors is just deprecated, not yet removed.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

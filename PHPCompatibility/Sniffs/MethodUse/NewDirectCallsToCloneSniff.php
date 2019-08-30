@@ -33,6 +33,8 @@ class NewDirectCallsToCloneSniff extends Sniff
     /**
      * Tokens which indicate class internal use.
      *
+     * @since 9.3.2
+     *
      * @var array
      */
     protected $classInternal = array(

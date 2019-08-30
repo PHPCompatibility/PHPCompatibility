@@ -37,6 +37,8 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 
     /**
      * Overload the constructor to work round various PHPCS cross-version compatibility issues.
+     *
+     * @since 8.2.0
      */
     public function __construct()
     {
@@ -55,6 +57,8 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 
     /**
      * Processes the tokens within the scope.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being processed.
      * @param int                   $stackPtr  The position where this token was
@@ -120,6 +124,8 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 
     /**
      * Processes the tokens outside the scope.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being processed.
      * @param int                   $stackPtr  The position where this token was

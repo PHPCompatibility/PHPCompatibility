@@ -26,6 +26,9 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      *
      * Array key is the error code. Array value will be used as part of the error message.
      *
+     * @since 7.0.5
+     * @since 7.1.0 Changed from class constants to property.
+     *
      * @var array
      */
     private $errorTypes = array(
@@ -36,6 +39,8 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -45,6 +50,8 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

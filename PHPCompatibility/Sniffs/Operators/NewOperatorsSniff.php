@@ -25,6 +25,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the operator appears.
      *
+     * @since 5.6
+     *
      * @var array(string => array(string => bool|string))
      */
     protected $newOperators = array(
@@ -61,6 +63,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      *
      * The array lists an alternative token to listen for.
      *
+     * @since 7.0.3
+     *
      * @var array(string => int)
      */
     protected $newOperatorsPHPCSCompat = array(
@@ -85,6 +89,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      *
      * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
      * translation list with the current tokens.}}
+     *
+     * @since 7.0.3
      *
      * @var array(string => array(string => string))
      */
@@ -114,6 +120,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.6
+     *
      * @return array
      */
     public function register()
@@ -132,6 +140,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.6
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -177,6 +187,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -190,6 +202,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -200,6 +214,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -218,6 +234,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     /**
      * Filter the error data before it's passed to PHPCS.
      *
+     * @since 7.1.0
+     *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.
      * @param array $errorInfo Detail information about an item this error message applies to.
@@ -233,6 +251,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
     /**
      * Callback function to determine whether a T_EQUAL token is really a T_COALESCE_EQUAL token.
+     *
+     * @since 7.1.2
      *
      * @param array $tokens   The token stack.
      * @param int   $stackPtr The current position in the token stack.
@@ -260,6 +280,8 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
     /**
      * Callback function to determine whether a T_INLINE_THEN token is really a T_COALESCE token.
+     *
+     * @since 7.1.2
      *
      * @param array $tokens   The token stack.
      * @param int   $stackPtr The current position in the token stack.

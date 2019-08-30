@@ -27,6 +27,9 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
     /**
      * Register the tokens to listen for.
      *
+     * @since 7.0.0
+     * @since 7.1.3 Allows for closures.
+     *
      * @return array
      */
     public function register()
@@ -39,6 +42,8 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 
     /**
      * Processes the test.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token.

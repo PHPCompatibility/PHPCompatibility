@@ -28,6 +28,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
     /**
      * List of tokens which can not be used as class, interface, trait names or as part of a namespace.
      *
+     * @since 7.0.8
+     *
      * @var array
      */
     protected $forbiddenTokens = array(
@@ -38,6 +40,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
     /**
      * T_STRING keywords to recognize as forbidden names.
+     *
+     * @since 7.0.8
      *
      * @var array
      */
@@ -60,6 +64,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      * Using any of these keywords to name a class, interface, trait or namespace
      * is highly discouraged since they may be used in future versions of PHP.
      *
+     * @since 7.0.8
+     *
      * @var array
      */
     protected $softReservedNames = array(
@@ -76,6 +82,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      * word.
      * Set from the `register()` method.
      *
+     * @since 7.0.8
+     *
      * @var array
      */
     private $allForbiddenNames = array();
@@ -83,6 +91,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.8
      *
      * @return array
      */
@@ -105,6 +115,8 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.8
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

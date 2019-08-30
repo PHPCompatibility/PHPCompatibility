@@ -27,12 +27,16 @@ class RemovedAlternativePHPTagsSniff extends Sniff
     /**
      * Whether ASP tags are enabled or not.
      *
+     * @since 7.0.4
+     *
      * @var bool
      */
     private $aspTags = false;
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.4
      *
      * @return array
      */
@@ -53,6 +57,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -131,6 +137,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
     /**
      * Get a snippet from a HTML token.
+     *
+     * @since 7.0.4
      *
      * @param string $content The content of the HTML token.
      * @param string $startAt Partial string to use as a starting point for the snippet.

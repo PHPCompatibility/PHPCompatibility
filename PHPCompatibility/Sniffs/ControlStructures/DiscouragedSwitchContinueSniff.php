@@ -25,6 +25,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Token codes of control structures which can be targeted using continue.
      *
+     * @since 8.2.0
+     *
      * @var array
      */
     protected $loopStructures = array(
@@ -38,6 +40,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Tokens which start a new case within a switch.
      *
+     * @since 8.2.0
+     *
      * @var array
      */
     protected $caseTokens = array(
@@ -49,6 +53,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
      * Token codes which are accepted to determine the level for the continue.
      *
      * This array is enriched with the arithmetic operators in the register() method.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -62,6 +68,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.2.0
+     *
      * @return array
      */
     public function register()
@@ -74,6 +82,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

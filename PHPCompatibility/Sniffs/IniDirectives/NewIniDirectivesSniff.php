@@ -24,6 +24,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the ini directive appears.
      *
+     * @since 5.5
+     * @since 7.0.3 Support for 'alternative' has been added.
+     *
      * @var array(string)
      */
     protected $newIniDirectives = array(
@@ -662,6 +665,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -671,6 +676,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -721,6 +728,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -734,6 +743,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -744,6 +755,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -771,6 +784,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -781,6 +796,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param string $error     The error message which was created.
      * @param array  $itemInfo  Base information about the item this error message applies to.
@@ -800,6 +817,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.

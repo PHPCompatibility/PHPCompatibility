@@ -33,6 +33,9 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * The callback function should return `true` if the condition is met and the
      * error should *not* be thrown.
      *
+     * @since 5.5
+     * @since 7.0.3 Support for 'condition' has been added.
+     *
      * @var array(string => array(string => bool|string))
      */
     protected $newKeywords = array(
@@ -144,6 +147,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * Will be set up from the register() method.
      *
+     * @since 7.0.5
+     *
      * @var array(string => string)
      */
     protected $translateContentToToken = array();
@@ -151,6 +156,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 5.5
      *
      * @return array
      */
@@ -182,6 +189,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -283,6 +292,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -295,6 +306,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @since 7.1.0
      *
      * @return array
      */
@@ -310,6 +323,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -327,6 +342,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
     /**
      * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.
@@ -346,6 +363,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * A double quoted identifier will have the opening quote on position 3
      * in the string: `<<<"ID"`.
+     *
+     * @since 8.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in

@@ -29,6 +29,8 @@ class NewArrayUnpackingSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 9.2.0
+     *
      * @return array
      */
     public function register()
@@ -41,6 +43,8 @@ class NewArrayUnpackingSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

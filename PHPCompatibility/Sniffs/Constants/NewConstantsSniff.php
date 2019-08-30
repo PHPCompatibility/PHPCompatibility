@@ -27,6 +27,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      *
      * Note: PHP Constants are case-sensitive!
      *
+     * @since 8.1.0
+     *
      * @var array(string => array(string => bool))
      */
     protected $newConstants = array(
@@ -3681,6 +3683,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.1.0
+     *
      * @return array
      */
     public function register()
@@ -3690,6 +3694,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -3720,6 +3726,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 8.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -3732,6 +3740,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 8.1.0
      *
      * @return string
      */

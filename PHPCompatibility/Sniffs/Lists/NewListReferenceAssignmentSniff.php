@@ -23,6 +23,8 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
     /**
      * The token(s) within the list construct which is being targeted.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     protected $targetsInList = array(
@@ -31,6 +33,8 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
+     *
+     * @since 9.0.0
      *
      * @return bool
      */
@@ -41,6 +45,8 @@ class NewListReferenceAssignmentSniff extends NewKeyedListSniff
 
     /**
      * Examine the contents of a list construct to determine whether an error needs to be thrown.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $opener    The position of the list open token.

@@ -28,6 +28,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      * Near duplicate of Tokens::$assignmentTokens + Tokens::$equalityTokens.
      * Copied in for PHPCS cross-version compatibility.
      *
+     * @since 8.1.0
+     *
      * @var array
      */
     private $assignOrCompare = array(
@@ -61,6 +63,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -73,6 +77,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -149,6 +155,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
     /**
      * Determine whether a parameter is passed by reference.
+     *
+     * @since 7.0.6 Split off from the `process()` method.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param array                 $parameter    Information on the current parameter

@@ -30,6 +30,8 @@ class RemovedNamespacedAssertSniff extends Sniff
     /**
      * Scopes in which an `assert` function can be declared without issue.
      *
+     * @since 9.0.0
+     *
      * @var array
      */
     private $scopes = array(
@@ -41,6 +43,8 @@ class RemovedNamespacedAssertSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 9.0.0
      *
      * @return array
      */
@@ -56,6 +60,8 @@ class RemovedNamespacedAssertSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
