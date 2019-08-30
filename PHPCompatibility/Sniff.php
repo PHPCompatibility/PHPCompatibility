@@ -799,6 +799,9 @@ abstract class Sniff implements PHPCS_Sniff
      *                       I.e. should always start with a `\`.
      *
      * @return bool True if namespaced, false if global.
+     *
+     * @throws \PHP_CodeSniffer_Exception If the name in the passed parameter
+     *                                    is not fully qualified.
      */
     public function isNamespaced($FQName)
     {
