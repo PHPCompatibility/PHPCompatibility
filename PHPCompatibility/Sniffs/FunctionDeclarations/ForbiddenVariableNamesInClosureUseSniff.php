@@ -16,12 +16,15 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * PHP 7.1 Forbidden variable names in closure use statements.
+ * Detect variable names forbidden to be used in closure `use` statements.
  *
- * Variables bound to a closure via the use construct cannot use the same name
- * as any superglobals, $this, or any parameter since PHP 7.1.
+ * Variables bound to a closure via the `use` construct cannot use the same name
+ * as any superglobals, `$this`, or any parameter since PHP 7.1.
  *
  * PHP version 7.1
+ *
+ * @link https://www.php.net/manual/en/migration71.incompatible.php#migration71.incompatible.lexical-names
+ * @link https://www.php.net/manual/en/functions.anonymous.php
  */
 class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 {

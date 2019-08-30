@@ -16,6 +16,12 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect classes which implement PHP native interfaces intended only for PHP internal use.
+ *
+ * PHP version 5.0+
+ *
+ * @link https://www.php.net/manual/en/class.traversable.php
+ * @link https://www.php.net/manual/en/class.throwable.php
+ * @link https://www.php.net/manual/en/class.datetimeinterface.php
  */
 class InternalInterfacesSniff extends Sniff
 {

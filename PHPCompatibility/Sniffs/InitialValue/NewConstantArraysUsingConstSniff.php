@@ -14,9 +14,13 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Constant arrays using the const keyword in PHP 5.6
+ * Detect declaration of constants using the `const` keyword with a (constant) array value
+ * as supported since PHP 5.6.
  *
  * PHP version 5.6
+ *
+ * @link https://wiki.php.net/rfc/const_scalar_exprs
+ * @link https://www.php.net/manual/en/language.constants.syntax.php
  */
 class NewConstantArraysUsingConstSniff extends Sniff
 {

@@ -15,10 +15,15 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * The special ClassName::class constant is available as of PHP 5.5.0, and allows for
- * fully qualified class name resolution at compile.
+ * Detect usage of the magic `::class` constant introduced in PHP 5.5.
+ *
+ * The special `ClassName::class` constant is available as of PHP 5.5.0, and allows
+ * for fully qualified class name resolution at compile time.
  *
  * PHP version 5.5
+ *
+ * @link https://wiki.php.net/rfc/class_name_scalars
+ * @link https://www.php.net/manual/en/language.oop5.constants.php#example-186
  */
 class NewMagicClassConstantSniff extends Sniff
 {

@@ -15,9 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Detect trailing comma's in function calls, isset() and unset() as allowed since PHP 7.3.
+ * Detect trailing comma's in function calls, `isset()` and `unset()` as allowed since PHP 7.3.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.trailing-commas
+ * @link https://wiki.php.net/rfc/trailing-comma-function-calls
  */
 class NewFunctionCallTrailingCommaSniff extends Sniff
 {

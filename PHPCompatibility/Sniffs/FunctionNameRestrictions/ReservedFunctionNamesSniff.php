@@ -18,6 +18,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * All function and method names starting with double underscore are reserved by PHP.
  *
+ * PHP version All
+ *
  * {@internal Extends an upstream sniff to benefit from the properties contained therein.
  *            The properties are lists of valid PHP magic function and method names, which
  *            should be ignored for the purposes of this sniff.
@@ -29,8 +31,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *            prevents hard to debug issues of errors not being reported from the upstream sniff
  *            if this library is used in combination with other rulesets.}}
  *
+ * @link https://www.php.net/manual/en/language.oop5.magic.php
+ *
  * @since 8.2.0 This was previously, since 7.0.3, checked by the upstream sniff.
- * @since 9.3.2 The sniff will now ignore functions marked as @deprecated by design.
+ * @since 9.3.2 The sniff will now ignore functions marked as `@deprecated` by design.
  */
 class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 {

@@ -15,6 +15,8 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
+ * Detect function array dereferencing as introduced in PHP 5.4.
+ *
  * PHP 5.4 supports direct array dereferencing on the return of a method/function call.
  *
  * As of PHP 7.0, this also works when using curly braces for the dereferencing.
@@ -23,6 +25,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 5.4
  * PHP version 7.0
  *
+ * @link https://www.php.net/manual/en/language.types.array.php#example-63
+ * @link https://www.php.net/manual/en/migration54.new-features.php
  * @link https://wiki.php.net/rfc/functionarraydereferencing
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *

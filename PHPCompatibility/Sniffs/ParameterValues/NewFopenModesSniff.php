@@ -14,7 +14,11 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Detect: Changes in allowed values for the fopen() $mode parameter.
+ * Check for valid values for the `fopen()` `$mode` parameter.
+ *
+ * PHP version 5.2+
+ *
+ * @link https://www.php.net/manual/en/function.fopen.php#refsect1-function.fopen-changelog
  */
 class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 {

@@ -15,9 +15,17 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Forbids variable arguments on break or continue statements.
+ * Detects using 0 and variable numeric arguments on `break` and `continue` statements.
+ *
+ * This sniff checks for:
+ * - Using `break` and/or `continue` with a variable as the numeric argument.
+ * - Using `break` and/or `continue` with a zero - 0 - as the numeric argument.
  *
  * PHP version 5.4
+ *
+ * @link https://www.php.net/manual/en/migration54.incompatible.php
+ * @link https://www.php.net/manual/en/control-structures.break.php
+ * @link https://www.php.net/manual/en/control-structures.continue.php
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {

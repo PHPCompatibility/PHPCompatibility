@@ -15,6 +15,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of new PHP native global constants.
+ *
+ * PHP version All
  */
 class NewConstantsSniff extends AbstractNewFeatureSniff
 {

@@ -16,6 +16,14 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Detect use of new PHP keywords.
+ *
+ * PHP version All
+ *
+ * @link https://wiki.php.net/rfc/heredoc-with-double-quotes
+ * @link https://wiki.php.net/rfc/horizontalreuse (traits)
+ * @link https://wiki.php.net/rfc/generators
+ * @link https://wiki.php.net/rfc/finally
+ * @link https://wiki.php.net/rfc/generator-delegation
  */
 class NewKeywordsSniff extends AbstractNewFeatureSniff
 {

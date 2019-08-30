@@ -27,6 +27,9 @@ use PHP_CodeSniffer_File as File;
  * This sniff adds an explicit error/warning for users of the standard
  * using a PHPCS version below the recommended version.
  *
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/688
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/835
+ *
  * @since 8.2.0
  */
 class LowPHPCSSniff extends Sniff

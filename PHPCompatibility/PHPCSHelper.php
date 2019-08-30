@@ -21,6 +21,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * Those classes cannot be aliased as they don't represent the same object.
  * This class provides helper methods for functions which were contained in
  * one of these classes and which are used within the PHPCompatibility library.
+ *
+ * Additionally, this class contains some duplicates of PHPCS native methods.
+ * These methods have received bug fixes or improved functionality between the
+ * lowest supported PHPCS version and the latest PHPCS stable version and
+ * to provide the same results cross-version, PHPCompatibility needs to use
+ * the up-to-date versions of these methods.
  */
 class PHPCSHelper
 {

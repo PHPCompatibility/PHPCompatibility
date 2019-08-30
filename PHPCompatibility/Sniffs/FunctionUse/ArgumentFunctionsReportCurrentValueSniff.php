@@ -20,10 +20,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * instead of the original since PHP 7.0.
  *
  * `func_get_arg()`, `func_get_args()`, `debug_backtrace()` and exception backtraces
- * will no longer report the original value that was passed to a parameter, but will
- * instead provide the current value (which might have been modified).
+ * will no longer report the original parameter value as was passed to the function,
+ * but will instead provide the current value (which might have been modified).
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameter-modified
  *
  * @since 9.1.0
  */

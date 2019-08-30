@@ -15,6 +15,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect calls to new native PHP functions.
+ *
+ * PHP version All
  */
 class NewFunctionsSniff extends AbstractNewFeatureSniff
 {

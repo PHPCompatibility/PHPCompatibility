@@ -15,9 +15,11 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Variable variables are forbidden with global
+ * Detect use of `global` with variable variables, support for which has been removed in PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://wiki.php.net/rfc/uniform_variable_syntax#global_keyword_takes_only_simple_variables
  */
 class ForbiddenGlobalVariableVariableSniff extends Sniff
 {

@@ -15,6 +15,12 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
+ *
+ * PHP version 5.0+
+ *
+ * @link https://www.php.net/manual/en/language.oop5.magic.php
+ * @link https://wiki.php.net/rfc/closures#additional_goodyinvoke
+ * @link https://wiki.php.net/rfc/debug-info
  */
 class NewMagicMethodsSniff extends AbstractNewFeatureSniff
 {

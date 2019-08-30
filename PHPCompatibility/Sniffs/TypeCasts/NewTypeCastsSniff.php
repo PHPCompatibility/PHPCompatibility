@@ -16,6 +16,10 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of newly introduced type casts.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
  */
 class NewTypeCastsSniff extends AbstractNewFeatureSniff
 {

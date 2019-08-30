@@ -14,7 +14,14 @@ use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Check for usage of newly added regex modifiers for PCRE functions.
+ * Check for the use of newly added regex modifiers for PCRE functions.
+ *
+ * Initially just checks for the PHP 7.2 new `J` modifier.
+ *
+ * PHP version 7.2+
+ *
+ * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
+ * @link https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.pcre
  */
 class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
 {

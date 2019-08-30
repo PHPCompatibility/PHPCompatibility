@@ -15,6 +15,10 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect calls to deprecated/removed native PHP functions.
+ *
+ * Suggests alternative if available.
+ *
+ * PHP version All
  */
 class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 {

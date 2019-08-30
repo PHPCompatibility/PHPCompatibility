@@ -15,9 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * "You can now specify keys in list(), or its new shorthand [] syntax. "
+ * Since PHP 7.1, you can specify keys in `list()`, or its new shorthand `[]` syntax.
  *
  * PHP version 7.1
+ *
+ * @link https://wiki.php.net/rfc/list_keys
+ * @link https://www.php.net/manual/en/function.list.php
  */
 class NewKeyedListSniff extends Sniff
 {

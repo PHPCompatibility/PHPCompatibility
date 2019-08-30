@@ -14,16 +14,20 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Removed Namespaced Assert.
+ * Detect declaration of a namespaced function called `assert()`.
  *
  * As of PHP 7.3, a compile-time deprecation warning will be thrown when a function
  * called `assert()` is declared. In PHP 8 this will become a compile-error.
  *
  * Methods are unaffected.
- * Global, non-namespaced, assert() function declarations were always a fatal
+ * Global, non-namespaced, `assert()` function declarations were always a fatal
  * "function already declared" error, so not the concern of this sniff.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.deprecated.php#migration73.deprecated.core.assert
+ * @link https://wiki.php.net/rfc/deprecations_php_7_3#defining_a_free-standing_assert_function
+ * @link https://www.php.net/manual/en/function.assert.php
  */
 class RemovedNamespacedAssertSniff extends Sniff
 {

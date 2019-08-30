@@ -15,9 +15,13 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * As of PHP 7.0, a return statement can be used within a generator for a final expression to be returned.
+ * As of PHP 7.0, a `return` statement can be used within a generator for a final expression to be returned.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.generator-return-expressions
+ * @link https://wiki.php.net/rfc/generator-return-expressions
+ * @link https://www.php.net/manual/en/language.generators.syntax.php
  */
 class NewGeneratorReturnSniff extends Sniff
 {

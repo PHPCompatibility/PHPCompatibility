@@ -15,10 +15,14 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
+ * Detect dynamic access to static methods and properties, as well as class constants.
+ *
  * As of PHP 5.3, static properties and methods as well as class constants
  * can be accessed using a dynamic (variable) class name.
  *
  * PHP version 5.3
+ *
+ * @link https://www.php.net/manual/en/migration53.new-features.php
  */
 class NewDynamicAccessToStaticSniff extends Sniff
 {

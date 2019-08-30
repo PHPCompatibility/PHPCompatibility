@@ -15,6 +15,12 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of new PHP language constructs.
+ *
+ * PHP version All
+ *
+ * @link https://wiki.php.net/rfc/namespaceseparator
+ * @link https://wiki.php.net/rfc/variadics
+ * @link https://wiki.php.net/rfc/argument_unpacking
  */
 class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
 {

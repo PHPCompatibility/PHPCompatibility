@@ -15,8 +15,10 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * PHP 5.4: Class member access on instantiation has been added, e.g. (new Foo)->bar().
- * PHP 7.0: Class member access on cloning has been added, e.g. (clone $foo)->bar().
+ * Detect class member access on object instantiation/cloning.
+ *
+ * PHP 5.4: Class member access on instantiation has been added, e.g. `(new Foo)->bar()`.
+ * PHP 7.0: Class member access on cloning has been added, e.g. `(clone $foo)->bar()`.
  *
  * As of PHP 7.0, class member access on instantiation also works when using curly braces.
  * While unclear, this most likely has to do with the Uniform Variable Syntax changes.
@@ -24,11 +26,14 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 5.4
  * PHP version 7.0
  *
+ * @link https://www.php.net/manual/en/language.oop5.basic.php#example-177
+ * @link https://www.php.net/manual/en/language.oop5.cloning.php#language.oop5.traits.properties.example
+ * @link https://www.php.net/manual/en/migration54.new-features.php
  * @link https://wiki.php.net/rfc/instance-method-call
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *
  * {@internal The reason for splitting the logic of this sniff into different methods is
- *            to allow re-use of the logic by the PHP 7.4 RemovedCurlyBraceArrayAccess sniff.}}
+ *            to allow re-use of the logic by the PHP 7.4 `RemovedCurlyBraceArrayAccess` sniff.}}
  *
  * @since 9.3.0 Now also detects class member access on instantiation using curly braces.
  */

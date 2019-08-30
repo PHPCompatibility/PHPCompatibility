@@ -17,13 +17,15 @@ use PHP_CodeSniffer_File as File;
 /**
  * PHP 7.0 introduced a Unicode codepoint escape sequence.
  *
- * Strings containing a literal \u{ followed by an invalid sequence will cause a fatal error as of PHP 7.0.
+ * Strings containing a literal `\u{` followed by an invalid sequence will cause a
+ * fatal error as of PHP 7.0.
  *
  * PHP version 7.0
  *
- * @link https://wiki.php.net/rfc/unicode_escape
  * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.unicode-codepoint-escape-syntax
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.strings.unicode-escapes
+ * @link https://wiki.php.net/rfc/unicode_escape
+ * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
  *
  * @since 9.3.0
  */

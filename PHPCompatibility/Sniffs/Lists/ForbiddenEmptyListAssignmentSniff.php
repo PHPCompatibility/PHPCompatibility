@@ -15,9 +15,13 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Empty list() assignments have been removed in PHP 7.0
+ * Support for empty `list()` expressions has been removed in PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.list.empty
+ * @link https://wiki.php.net/rfc/abstract_syntax_tree#changes_to_list
+ * @link https://www.php.net/manual/en/function.list.php
  */
 class ForbiddenEmptyListAssignmentSniff extends Sniff
 {

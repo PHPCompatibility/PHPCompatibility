@@ -15,6 +15,12 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of deprecated/removed type casts.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
+ * @link https://wiki.php.net/rfc/deprecations_php_7_2#unset_cast
+ * @link https://wiki.php.net/rfc/deprecations_php_7_4#the_real_type
  */
 class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
 {

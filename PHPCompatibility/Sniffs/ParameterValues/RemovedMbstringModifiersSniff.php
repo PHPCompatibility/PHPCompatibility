@@ -17,7 +17,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * Check for use of deprecated and removed regex modifiers for MbString regex functions.
  *
+ * Initially just checks for the PHP 7.1 deprecated `e` modifier.
+ *
  * PHP version 7.1
+ *
+ * @link https://wiki.php.net/rfc/deprecate_mb_ereg_replace_eval_option
+ * @link https://www.php.net/manual/en/function.mb-regex-set-options.php
  */
 class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 {

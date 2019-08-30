@@ -14,10 +14,13 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Detect: Passing `null` to get_class() is no longer allowed as of PHP 7.2.
- * This will now result in an E_WARNING being thrown.
+ * Detect: Passing `null` to `get_class()` is no longer allowed as of PHP 7.2.
+ * This will now result in an `E_WARNING` being thrown.
  *
  * PHP version 7.2
+ *
+ * @link https://wiki.php.net/rfc/get_class_disallow_null_parameter
+ * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
  */
 class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 {

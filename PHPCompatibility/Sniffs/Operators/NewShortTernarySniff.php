@@ -14,10 +14,15 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
+ * Detect usage of the short ternary (elvis) operator as introduced in PHP 5.3.
+ *
  * Performs checks on ternary operators, specifically that the middle expression
  * is not omitted for versions that don't support this.
  *
  * PHP version 5.3
+ *
+ * @link https://www.php.net/manual/en/migration53.new-features.php
+ * @link https://www.php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary
  */
 class NewShortTernarySniff extends Sniff
 {

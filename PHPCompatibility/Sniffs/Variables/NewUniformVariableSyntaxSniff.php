@@ -18,6 +18,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * The interpretation of variable variables has changed in PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
+ * @link https://wiki.php.net/rfc/uniform_variable_syntax
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {

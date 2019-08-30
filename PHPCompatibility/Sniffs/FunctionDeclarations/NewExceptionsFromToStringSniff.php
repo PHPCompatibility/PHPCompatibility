@@ -15,11 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * As of PHP 7.4, throwing exceptions from a __toString() method is allowed.
- *
- * @link https://wiki.php.net/rfc/tostring_exceptions
+ * As of PHP 7.4, throwing exceptions from a `__toString()` method is allowed.
  *
  * PHP version 7.4
+ *
+ * @link https://wiki.php.net/rfc/tostring_exceptions
+ * @link https://www.php.net/manual/en/language.oop5.magic.php#object.tostring
  *
  * @since 9.2.0
  */

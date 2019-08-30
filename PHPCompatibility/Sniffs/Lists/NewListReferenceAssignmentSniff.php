@@ -17,6 +17,10 @@ use PHP_CodeSniffer_File as File;
  * Detect reference assignments in array destructuring using (short) list.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.destruct-reference
+ * @link https://wiki.php.net/rfc/list_reference_assignment
+ * @link https://www.php.net/manual/en/function.list.php
  */
 class NewListReferenceAssignmentSniff extends NewKeyedListSniff
 {

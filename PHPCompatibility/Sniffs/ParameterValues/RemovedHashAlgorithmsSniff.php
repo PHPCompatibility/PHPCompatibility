@@ -14,9 +14,11 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Discourages the use of deprecated and removed hash algorithms.
+ * Detect the use of deprecated and removed hash algorithms.
  *
  * PHP version 5.4
+ *
+ * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
  */
 class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 {

@@ -16,6 +16,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Detect use of new function parameters in calls to native PHP functions.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/doc.changelog.php
  */
 class NewFunctionParametersSniff extends AbstractNewFeatureSniff
 {
