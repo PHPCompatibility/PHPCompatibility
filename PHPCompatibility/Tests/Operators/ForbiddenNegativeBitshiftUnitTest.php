@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group operators
  *
  * @covers \PHPCompatibility\Sniffs\Operators\ForbiddenNegativeBitshiftSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Wim Godden <wim@cu.be>
  */
 class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
 {

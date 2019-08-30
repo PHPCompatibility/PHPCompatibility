@@ -15,15 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntax.
- *
  * The interpretation of variable variables has changed in PHP 7.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {

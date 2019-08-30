@@ -15,18 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\PHPCSHelper
- *
  * PHPCS cross-version compatibility helper class.
  *
  * A number of PHPCS classes were split up into several classes in PHPCS 3.x
  * Those classes cannot be aliased as they don't represent the same object.
  * This class provides helper methods for functions which were contained in
  * one of these classes and which are used within the PHPCompatibility library.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class PHPCSHelper
 {

@@ -20,10 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Koen Eelen <koen.eelen@cu.be>
  */
 class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
 {

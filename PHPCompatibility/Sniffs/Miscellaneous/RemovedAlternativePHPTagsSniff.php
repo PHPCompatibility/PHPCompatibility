@@ -14,15 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTags.
- *
  * Check for usage of alternative PHP tags - removed in PHP 7.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  *
  * Based on `Generic_Sniffs_PHP_DisallowAlternativePHPTags` by Juliette Reinders Folmer
  * which was merged into PHPCS 2.7.0.

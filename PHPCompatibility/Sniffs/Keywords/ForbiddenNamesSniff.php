@@ -15,14 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff.
- *
  * Prohibits the use of reserved keywords as class, function, namespace or constant names.
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class ForbiddenNamesSniff extends Sniff
 {

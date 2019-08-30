@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewClassMemberAccessUnitTest extends BaseSniffTest
 {

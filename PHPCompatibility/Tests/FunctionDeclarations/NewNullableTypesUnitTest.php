@@ -21,10 +21,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypesSniff
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewNullableTypesUnitTest extends BaseSniffTest
 {

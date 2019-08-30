@@ -14,13 +14,9 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\NewReturnTypeDeclarationsSniff.
+ * Detect and verify the use of return type declarations in function declarations.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
  */
 class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {

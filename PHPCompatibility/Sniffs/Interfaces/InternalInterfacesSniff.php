@@ -15,11 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Interfaces\InternalInterfacesSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect classes which implement PHP native interfaces intended only for PHP internal use.
  */
 class InternalInterfacesSniff extends Sniff
 {

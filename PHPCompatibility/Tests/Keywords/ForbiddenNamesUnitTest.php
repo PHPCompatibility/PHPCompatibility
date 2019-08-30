@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class ForbiddenNamesUnitTest extends BaseSniffTest
 {

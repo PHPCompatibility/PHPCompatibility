@@ -16,8 +16,6 @@ use PHP_CodeSniffer_Standards_AbstractScopeSniff as PHPCS_AbstractScopeSniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff.
- *
  * All function and method names starting with double underscore are reserved by PHP.
  *
  * {@internal Extends an upstream sniff to benefit from the properties contained therein.
@@ -30,10 +28,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *            Extending the upstream sniff instead of including it via the ruleset, however,
  *            prevents hard to debug issues of errors not being reported from the upstream sniff
  *            if this library is used in combination with other rulesets.}}
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 {

@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group miscellaneous
  *
  * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ValidIntegersUnitTest extends BaseSniffTest
 {

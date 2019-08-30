@@ -14,11 +14,7 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
+ * Detect calls to deprecated/removed native PHP functions.
  */
 class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 {

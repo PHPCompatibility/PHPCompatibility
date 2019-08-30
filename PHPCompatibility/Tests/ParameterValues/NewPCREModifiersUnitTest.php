@@ -20,10 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group regexModifiers
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiersSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewPCREModifiersUnitTest extends BaseSniffTest
 {

@@ -14,15 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatch.
- *
  * Catching multiple exception types in one statement is available since PHP 7.1.
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewMultiCatchSniff extends Sniff
 {

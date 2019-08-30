@@ -13,11 +13,7 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\AbstractComplexVersionSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Abstract base class for sniffs based on complex arrays with PHP version information.
  */
 abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersionInterface
 {

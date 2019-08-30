@@ -15,18 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredClassSniff.
- *
  * Prohibits the use of some reserved keywords to name a class, interface, trait or namespace.
  * Emits errors for reserved words and warnings for soft-reserved words.
  *
  * @see http://php.net/manual/en/reserved.other-reserved-words.php
  *
  * PHP version 7.0+
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ForbiddenNamesAsDeclaredSniff extends Sniff
 {

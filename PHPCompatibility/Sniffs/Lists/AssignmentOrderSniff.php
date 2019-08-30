@@ -21,10 +21,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * This affects all list constructs where non-unique variables are used.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class AssignmentOrderSniff extends Sniff
 {

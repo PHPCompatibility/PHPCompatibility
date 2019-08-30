@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group iniDirectives
  *
  * @covers \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewIniDirectivesUnitTest extends BaseSniffTest
 {

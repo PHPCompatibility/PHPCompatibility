@@ -18,10 +18,6 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityTokenScope
  * @group utilityFunctions
- *
- * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class TokenScopeUnitTest extends CoreMethodTestFrame
 {

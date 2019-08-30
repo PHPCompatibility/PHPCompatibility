@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewConstVisibilitySniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewConstVisibilityUnitTest extends BaseSniffTest
 {

@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group initialValue
  *
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingDefineSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Wim Godden <wim@cu.be>
  */
 class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
 {

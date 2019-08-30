@@ -14,13 +14,7 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff.
- *
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewMagicMethodsSniff extends AbstractNewFeatureSniff
 {

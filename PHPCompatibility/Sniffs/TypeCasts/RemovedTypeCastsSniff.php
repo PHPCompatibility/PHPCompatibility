@@ -14,11 +14,7 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect use of deprecated/removed type casts.
  */
 class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
 {

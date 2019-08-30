@@ -17,10 +17,6 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityIsClassConstant
  * @group utilityFunctions
- *
- * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class IsClassConstantUnitTest extends CoreMethodTestFrame
 {

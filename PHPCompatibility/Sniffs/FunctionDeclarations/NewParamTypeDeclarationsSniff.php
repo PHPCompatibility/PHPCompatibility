@@ -15,11 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
+ * Detect and verify the use of parameter type declarations in function declarations.
  */
 class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {

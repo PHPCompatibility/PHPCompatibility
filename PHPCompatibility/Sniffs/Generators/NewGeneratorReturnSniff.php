@@ -15,15 +15,9 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff.
- *
  * As of PHP 7.0, a return statement can be used within a generator for a final expression to be returned.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewGeneratorReturnSniff extends Sniff
 {

@@ -13,11 +13,7 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\AbstractNewFeatureSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Base class for new feature sniffs.
  */
 abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 {

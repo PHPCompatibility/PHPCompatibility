@@ -14,17 +14,10 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff.
- *
  * Performs checks on ternary operators, specifically that the middle expression
  * is not omitted for versions that don't support this.
  *
  * PHP version 5.3
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Ben Selby <bselby@plus.net>
- * @copyright 2012 Ben Selby
  */
 class NewShortTernarySniff extends Sniff
 {

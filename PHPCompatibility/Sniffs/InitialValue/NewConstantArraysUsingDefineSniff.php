@@ -14,15 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingDefineSniff.
- *
  * Constant arrays using define in PHP 7.0
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim@cu.be>
  */
 class NewConstantArraysUsingDefineSniff extends Sniff
 {

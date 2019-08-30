@@ -21,10 +21,6 @@ use PHPCompatibility\PHPCSHelper;
  * @group magicMethods
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NonStaticMagicMethodsUnitTest extends BaseSniffTest
 {

@@ -15,11 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Interfaces\NewInterfacesSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect use of new PHP native interfaces and unsupported interface methods.
  */
 class NewInterfacesSniff extends AbstractNewFeatureSniff
 {

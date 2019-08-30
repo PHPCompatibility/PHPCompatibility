@@ -14,15 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingConstSniff.
- *
  * Constant arrays using the const keyword in PHP 5.6
  *
  * PHP version 5.6
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewConstantArraysUsingConstSniff extends Sniff
 {

@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedConstantsUnitTest extends BaseSniffTest
 {

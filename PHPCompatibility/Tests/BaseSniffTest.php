@@ -19,10 +19,6 @@ use PHP_CodeSniffer_File as File;
  *
  * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
  * warnings.
- *
- * @uses    \PHPUnit_Framework_TestCase
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class BaseSniffTest extends PHPUnit_TestCase
 {
