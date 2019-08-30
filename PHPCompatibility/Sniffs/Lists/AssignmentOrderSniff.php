@@ -25,6 +25,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.list.order
  * @link https://wiki.php.net/rfc/abstract_syntax_tree#changes_to_list
  * @link https://www.php.net/manual/en/function.list.php
+ *
+ * @since 9.0.0
  */
 class AssignmentOrderSniff extends Sniff
 {

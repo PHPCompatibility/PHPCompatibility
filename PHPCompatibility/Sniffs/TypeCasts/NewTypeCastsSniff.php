@@ -20,6 +20,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version All
  *
  * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
+ *
+ * @since 8.0.1
  */
 class NewTypeCastsSniff extends AbstractNewFeatureSniff
 {

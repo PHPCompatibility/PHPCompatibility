@@ -22,6 +22,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://wiki.php.net/rfc/integer_semantics
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.integers.negative-bitshift
+ *
+ * @since 7.0.0
  */
 class ForbiddenNegativeBitshiftSniff extends Sniff
 {

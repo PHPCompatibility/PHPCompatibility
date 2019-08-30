@@ -31,6 +31,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * deprecated/removed extensions have been added to the RemovedFunctions sniff.}}
  *
  * PHP version All
+ *
+ * @since 5.5
+ * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  */
 class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {

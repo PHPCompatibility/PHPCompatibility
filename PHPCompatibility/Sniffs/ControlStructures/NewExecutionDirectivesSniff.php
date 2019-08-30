@@ -31,6 +31,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/control-structures.declare.php
  * @link https://wiki.php.net/rfc/scalar_type_hints_v5#strict_types_declare_directive
+ *
+ * @since 7.0.3
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
  */
 class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 {

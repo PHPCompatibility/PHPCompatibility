@@ -21,6 +21,8 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.break-continue
  * @link https://www.php.net/manual/en/control-structures.break.php
  * @link https://www.php.net/manual/en/control-structures.continue.php
+ *
+ * @since 7.0.7
  */
 class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
 {

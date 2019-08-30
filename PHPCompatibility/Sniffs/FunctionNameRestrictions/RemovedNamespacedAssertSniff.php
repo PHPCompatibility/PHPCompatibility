@@ -28,6 +28,8 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/migration73.deprecated.php#migration73.deprecated.core.assert
  * @link https://wiki.php.net/rfc/deprecations_php_7_3#defining_a_free-standing_assert_function
  * @link https://www.php.net/manual/en/function.assert.php
+ *
+ * @since 9.0.0
  */
 class RemovedNamespacedAssertSniff extends Sniff
 {

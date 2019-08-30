@@ -22,6 +22,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.5
  *
  * @link https://www.php.net/manual/en/migration55.incompatible.php#migration55.incompatible.self-parent-static
+ *
+ * @since 7.1.4
  */
 class CaseSensitiveKeywordsSniff extends Sniff
 {

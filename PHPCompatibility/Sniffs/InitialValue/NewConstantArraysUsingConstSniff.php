@@ -21,6 +21,9 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://wiki.php.net/rfc/const_scalar_exprs
  * @link https://www.php.net/manual/en/language.constants.syntax.php
+ *
+ * @since 7.1.4
+ * @since 9.0.0 Renamed from `ConstantArraysUsingConstSniff` to `NewConstantArraysUsingConstSniff`.
  */
 class NewConstantArraysUsingConstSniff extends Sniff
 {

@@ -28,6 +28,10 @@ use PHP_CodeSniffer_File as File;
  * @link https://wiki.php.net/rfc/iterable
  * @link https://wiki.php.net/rfc/void_return_type
  * @link https://wiki.php.net/rfc/object-typehint
+ *
+ * @since 7.0.0
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
+ * @since 7.1.2 Renamed from `NewScalarReturnTypeDeclarationsSniff` to `NewReturnTypeDeclarationsSniff`.
  */
 class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {

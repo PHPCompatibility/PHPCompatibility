@@ -21,6 +21,9 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.define-array
  * @link https://www.php.net/manual/en/language.constants.syntax.php
+ *
+ * @since 7.0.0
+ * @since 9.0.0 Renamed from `ConstantArraysUsingDefineSniff` to `NewConstantArraysUsingDefineSniff`.
  */
 class NewConstantArraysUsingDefineSniff extends Sniff
 {

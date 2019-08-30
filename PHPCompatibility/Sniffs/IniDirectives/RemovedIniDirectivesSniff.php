@@ -20,6 +20,13 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/ini.list.php
  * @link https://www.php.net/manual/en/ini.core.php
+ *
+ * @since 5.5
+ * @since 7.0.0 This sniff now throws a warning (deprecated) or an error (removed) depending
+ *              on the `testVersion` set. Previously it would always throw a warning.
+ * @since 7.0.1 The sniff will now only throw warnings for `ini_get()`.
+ * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `DeprecatedIniDirectivesSniff` to `RemovedIniDirectivesSniff`.
  */
 class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {

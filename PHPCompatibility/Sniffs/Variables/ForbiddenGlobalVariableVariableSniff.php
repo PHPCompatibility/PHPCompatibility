@@ -20,6 +20,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/uniform_variable_syntax#global_keyword_takes_only_simple_variables
+ *
+ * @since 7.0.0
  */
 class ForbiddenGlobalVariableVariableSniff extends Sniff
 {

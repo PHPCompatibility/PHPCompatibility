@@ -27,6 +27,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * lowest supported PHPCS version and the latest PHPCS stable version and
  * to provide the same results cross-version, PHPCompatibility needs to use
  * the up-to-date versions of these methods.
+ *
+ * @since 8.0.0
+ * @since 8.2.0 The duplicate PHPCS methods have been moved from the `Sniff`
+ *              base class to this class.
  */
 class PHPCSHelper
 {

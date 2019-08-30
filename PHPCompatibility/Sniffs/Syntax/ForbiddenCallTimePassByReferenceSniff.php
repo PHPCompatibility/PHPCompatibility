@@ -23,6 +23,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://wiki.php.net/rfc/calltimebyref
  * @link https://www.php.net/manual/en/language.references.pass.php
+ *
+ * @since 5.5
+ * @since 7.0.8 This sniff now throws a warning (deprecated) or an error (removed) depending
+ *              on the `testVersion` set. Previously it would always throw an error.
  */
 class ForbiddenCallTimePassByReferenceSniff extends Sniff
 {

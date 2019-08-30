@@ -22,6 +22,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 7.2
  *
  * @link https://www.php.net/manual/en/migration72.incompatible.php#migration72.incompatible.hash-functions
+ *
+ * @since 9.0.0
  */
 class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
 {

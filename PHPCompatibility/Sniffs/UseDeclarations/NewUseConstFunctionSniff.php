@@ -26,6 +26,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.use
  * @link https://wiki.php.net/rfc/use_function
  * @link https://www.php.net/manual/en/language.namespaces.importing.php
+ *
+ * @since 7.1.4
  */
 class NewUseConstFunctionSniff extends Sniff
 {

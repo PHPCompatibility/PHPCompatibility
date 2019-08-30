@@ -24,6 +24,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://wiki.php.net/rfc/class_name_scalars
  * @link https://www.php.net/manual/en/language.oop5.constants.php#example-186
+ *
+ * @since 7.1.4
+ * @since 7.1.5 Removed the incorrect checks against invalid usage of the constant.
  */
 class NewMagicClassConstantSniff extends Sniff
 {

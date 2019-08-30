@@ -22,6 +22,9 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.3
  *
  * @link https://www.php.net/manual/en/language.oop5.magic.php
+ *
+ * @since 5.5
+ * @since 5.6 Now extends the base `Sniff` class.
  */
 class NonStaticMagicMethodsSniff extends Sniff
 {

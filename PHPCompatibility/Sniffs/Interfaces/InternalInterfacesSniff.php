@@ -22,6 +22,8 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/class.traversable.php
  * @link https://www.php.net/manual/en/class.throwable.php
  * @link https://www.php.net/manual/en/class.datetimeinterface.php
+ *
+ * @since 7.0.3
  */
 class InternalInterfacesSniff extends Sniff
 {

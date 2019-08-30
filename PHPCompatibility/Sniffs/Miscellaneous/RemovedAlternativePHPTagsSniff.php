@@ -23,6 +23,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://wiki.php.net/rfc/remove_alternative_php_tags
  * @link https://www.php.net/manual/en/language.basic-syntax.phptags.php
+ *
+ * @since 7.0.4
  */
 class RemovedAlternativePHPTagsSniff extends Sniff
 {

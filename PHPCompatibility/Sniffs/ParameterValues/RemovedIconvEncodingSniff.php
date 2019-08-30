@@ -26,6 +26,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/migration56.deprecated.php#migration56.deprecated.iconv-mbstring-encoding
  * @link https://wiki.php.net/rfc/default_encoding
+ *
+ * @since 9.0.0
  */
 class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
 {

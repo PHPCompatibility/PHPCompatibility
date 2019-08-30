@@ -21,6 +21,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://wiki.php.net/rfc/class_const_visibility
  * @link https://www.php.net/manual/en/language.oop5.constants.php#language.oop5.basic.class.this
+ *
+ * @since 7.0.7
  */
 class NewConstVisibilitySniff extends Sniff
 {

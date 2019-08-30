@@ -21,6 +21,9 @@ use PHP_CodeSniffer_File as File;
  * PHP version All
  *
  * @link https://www.php.net/manual/en/doc.changelog.php
+ *
+ * @since 8.1.0
+ * @since 9.0.0 Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.
  */
 class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFunctionParametersSniff
 {

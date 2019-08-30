@@ -34,6 +34,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/functions.anonymous.php
  * @link https://wiki.php.net/rfc/closures
  * @link https://wiki.php.net/rfc/closures/object-extension
+ *
+ * @since 7.0.0
  */
 class NewClosureSniff extends Sniff
 {

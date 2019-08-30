@@ -29,6 +29,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/migration53.new-features.php
  * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc
+ *
+ * @since 7.1.4
+ * @since 8.2.0 Now extends the NewConstantScalarExpressionsSniff instead of the base Sniff class.
+ * @since 9.0.0 Renamed from `NewHeredocInitializeSniff` to `NewHeredocSniff`.
  */
 class NewHeredocSniff extends NewConstantScalarExpressionsSniff
 {

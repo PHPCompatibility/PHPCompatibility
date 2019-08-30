@@ -23,6 +23,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 5.3
  *
  * @link https://www.php.net/manual/en/migration53.new-features.php
+ *
+ * @since 8.1.0
+ * @since 9.0.0 Renamed from `DynamicAccessToStaticSniff` to `NewDynamicAccessToStaticSniff`.
  */
 class NewDynamicAccessToStaticSniff extends Sniff
 {

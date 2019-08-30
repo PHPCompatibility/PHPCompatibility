@@ -29,6 +29,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://wiki.php.net/rfc/group_use_declarations
  * @link https://wiki.php.net/rfc/list-syntax-trailing-commas
  * @link https://www.php.net/manual/en/language.namespaces.importing.php#language.namespaces.importing.group
+ *
+ * @since 7.0.0
+ * @since 8.0.1 Now also checks for trailing comma's in group `use` declarations.
  */
 class NewGroupUseDeclarationsSniff extends Sniff
 {

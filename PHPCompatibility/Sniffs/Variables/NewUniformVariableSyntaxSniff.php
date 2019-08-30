@@ -21,6 +21,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
+ *
+ * @since 7.1.2
+ * @since 9.0.0 Renamed from `VariableVariablesSniff` to `NewUniformVariableSyntaxSniff`.
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {

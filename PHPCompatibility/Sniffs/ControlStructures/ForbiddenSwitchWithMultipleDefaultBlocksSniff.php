@@ -20,6 +20,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://wiki.php.net/rfc/switch.default.multiple
  * @link https://www.php.net/manual/en/control-structures.switch.php
+ *
+ * @since 7.0.0
  */
 class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
 {

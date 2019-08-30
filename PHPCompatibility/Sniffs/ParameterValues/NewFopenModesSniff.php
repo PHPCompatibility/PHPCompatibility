@@ -19,6 +19,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.2+
  *
  * @link https://www.php.net/manual/en/function.fopen.php#refsect1-function.fopen-changelog
+ *
+ * @since 9.0.0
  */
 class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 {

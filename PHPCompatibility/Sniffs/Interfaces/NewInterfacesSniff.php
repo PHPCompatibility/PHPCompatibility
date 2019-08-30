@@ -18,6 +18,11 @@ use PHP_CodeSniffer_File as File;
  * Detect use of new PHP native interfaces and unsupported interface methods.
  *
  * PHP version 5.0+
+ *
+ * @since 7.0.3
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
+ * @since 7.1.4 Now also detects new interfaces when used as parameter type declarations.
+ * @since 8.2.0 Now also detects new interfaces when used as return type declarations.
  */
 class NewInterfacesSniff extends AbstractNewFeatureSniff
 {

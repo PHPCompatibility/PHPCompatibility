@@ -18,6 +18,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Base class from which all PHPCompatibility sniffs extend.
+ *
+ * @since 5.6
  */
 abstract class Sniff implements PHPCS_Sniff
 {

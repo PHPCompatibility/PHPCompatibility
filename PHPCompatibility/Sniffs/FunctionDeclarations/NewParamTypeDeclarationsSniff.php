@@ -38,6 +38,10 @@ use PHP_CodeSniffer_File as File;
  * @link https://wiki.php.net/rfc/scalar_type_hints_v5
  * @link https://wiki.php.net/rfc/iterable
  * @link https://wiki.php.net/rfc/object-typehint
+ *
+ * @since 7.0.0
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `NewScalarTypeDeclarationsSniff` to `NewParamTypeDeclarationsSniff`.
  */
 class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {

@@ -22,6 +22,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.5
  *
  * @link https://www.php.net/manual/en/control-structures.foreach.php
+ *
+ * @since 9.0.0
  */
 class NewForeachExpressionReferencingSniff extends Sniff
 {

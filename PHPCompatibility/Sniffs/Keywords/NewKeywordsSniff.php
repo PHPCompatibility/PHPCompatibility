@@ -24,6 +24,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://wiki.php.net/rfc/generators
  * @link https://wiki.php.net/rfc/finally
  * @link https://wiki.php.net/rfc/generator-delegation
+ *
+ * @since 5.5
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  */
 class NewKeywordsSniff extends AbstractNewFeatureSniff
 {

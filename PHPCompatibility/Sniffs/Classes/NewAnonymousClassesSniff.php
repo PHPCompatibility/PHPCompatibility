@@ -21,6 +21,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/language.oop5.anonymous.php
  * @link https://wiki.php.net/rfc/anonymous_classes
+ *
+ * @since 7.0.0
  */
 class NewAnonymousClassesSniff extends Sniff
 {

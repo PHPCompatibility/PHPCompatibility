@@ -25,6 +25,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/migration71.incompatible.php#migration71.incompatible.lexical-names
  * @link https://www.php.net/manual/en/functions.anonymous.php
+ *
+ * @since 7.1.4
  */
 class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 {

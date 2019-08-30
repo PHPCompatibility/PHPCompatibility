@@ -14,6 +14,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Abstract base class for sniffs based on complex arrays with PHP version information.
+ *
+ * @since 7.1.0
  */
 abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersionInterface
 {

@@ -21,6 +21,10 @@ use PHP_CodeSniffer_File as File;
  * @link https://wiki.php.net/rfc/namespaceseparator
  * @link https://wiki.php.net/rfc/variadics
  * @link https://wiki.php.net/rfc/argument_unpacking
+ *
+ * @since 5.6
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
+ * @since 9.0.0 Detection for new operator tokens has been moved to the `NewOperators` sniff.
  */
 class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
 {

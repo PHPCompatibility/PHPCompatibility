@@ -26,6 +26,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/migration54.incompatible.php
  * @link https://www.php.net/manual/en/control-structures.break.php
  * @link https://www.php.net/manual/en/control-structures.continue.php
+ *
+ * @since 5.5
+ * @since 5.6 Now extends the base `Sniff` class.
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {

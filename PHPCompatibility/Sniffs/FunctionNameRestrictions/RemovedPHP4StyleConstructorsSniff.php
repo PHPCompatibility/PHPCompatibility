@@ -30,6 +30,11 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/migration70.deprecated.php#migration70.deprecated.php4-constructors
  * @link https://wiki.php.net/rfc/remove_php4_constructors
  * @link https://www.php.net/manual/en/language.oop5.decon.php
+ *
+ * @since 7.0.0
+ * @since 7.0.8 This sniff now throws a warning instead of an error as the functionality is
+ *              only deprecated (for now).
+ * @since 9.0.0 Renamed from `DeprecatedPHP4StyleConstructorsSniff` to `RemovedPHP4StyleConstructorsSniff`.
  */
 class RemovedPHP4StyleConstructorsSniff extends Sniff
 {

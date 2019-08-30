@@ -21,6 +21,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://wiki.php.net/rfc/get_class_disallow_null_parameter
  * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
+ *
+ * @since 9.0.0
  */
 class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 {

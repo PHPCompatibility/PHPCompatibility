@@ -25,6 +25,10 @@ use PHP_CodeSniffer_File as File;
  * - Try/catch statements to detect new exception classes being caught.
  *
  * PHP version All
+ *
+ * @since 5.5
+ * @since 5.6   Now extends the base `Sniff` class.
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` class.
  */
 class NewClassesSniff extends AbstractNewFeatureSniff
 {

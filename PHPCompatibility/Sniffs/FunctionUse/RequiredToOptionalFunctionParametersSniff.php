@@ -22,6 +22,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version All
  *
  * @link https://www.php.net/manual/en/doc.changelog.php
+ *
+ * @since 7.0.3
+ * @since 7.1.0 Now extends the `AbstractComplexVersionSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `RequiredOptionalFunctionParametersSniff` to `RequiredToOptionalFunctionParametersSniff`.
  */
 class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSniff
 {

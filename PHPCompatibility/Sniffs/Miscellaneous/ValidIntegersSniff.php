@@ -29,6 +29,9 @@ use PHP_CodeSniffer_File as File;
  * @link https://wiki.php.net/rfc/binnotation4ints
  * @link https://wiki.php.net/rfc/remove_hex_support_in_numeric_strings
  * @link https://www.php.net/manual/en/language.types.integer.php
+ *
+ * @since 7.0.3
+ * @since 7.0.8 This sniff now throws a warning instead of an error for invalid binary integers.
  */
 class ValidIntegersSniff extends Sniff
 {

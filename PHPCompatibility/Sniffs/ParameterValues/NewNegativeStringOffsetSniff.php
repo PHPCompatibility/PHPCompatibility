@@ -20,6 +20,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 7.1
  *
  * @link https://wiki.php.net/rfc/negative-string-offsets
+ *
+ * @since 9.0.0
  */
 class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
 {

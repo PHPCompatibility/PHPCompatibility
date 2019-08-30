@@ -27,6 +27,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.heredoc
  * @link https://wiki.php.net/rfc/flexible_heredoc_nowdoc_syntaxes
+ *
+ * @since 9.0.0
  */
 class NewFlexibleHeredocNowdocSniff extends Sniff
 {

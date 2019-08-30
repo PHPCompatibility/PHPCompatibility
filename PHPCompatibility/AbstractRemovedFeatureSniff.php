@@ -14,6 +14,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Base class for removed feature sniffs.
+ *
+ * @since 7.1.0
  */
 abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
 {

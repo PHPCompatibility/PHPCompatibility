@@ -24,6 +24,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
  * @link https://www.php.net/manual/en/function.setlocale.php#refsect1-function.setlocale-changelog
+ *
+ * @since 9.0.0
  */
 class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
 {

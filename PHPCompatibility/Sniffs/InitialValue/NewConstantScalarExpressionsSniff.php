@@ -27,6 +27,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.const-scalar-exprs
  * @link https://wiki.php.net/rfc/const_scalar_exprs
+ *
+ * @since 8.2.0
  */
 class NewConstantScalarExpressionsSniff extends Sniff
 {

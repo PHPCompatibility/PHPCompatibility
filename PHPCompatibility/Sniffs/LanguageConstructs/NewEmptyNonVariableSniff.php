@@ -23,6 +23,11 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *
  * @link https://wiki.php.net/rfc/empty_isset_exprs
  * @link https://www.php.net/manual/en/function.empty.php
+ *
+ * @since 7.0.4
+ * @since 9.0.0 The "is the parameter a variable" determination has been abstracted out
+ *              and moved to a separate method `Sniff::isVariable()`.
+ * @since 9.0.0 Renamed from `EmptyNonVariableSniff` to `NewEmptyNonVariableSniff`.
  */
 class NewEmptyNonVariableSniff extends Sniff
 {

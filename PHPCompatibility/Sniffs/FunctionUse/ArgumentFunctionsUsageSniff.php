@@ -28,6 +28,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 5.3
  *
  * @link https://www.php.net/manual/en/migration53.incompatible.php
+ *
+ * @since 8.2.0
  */
 class ArgumentFunctionsUsageSniff extends Sniff
 {

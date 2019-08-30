@@ -28,6 +28,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://github.com/php/php-src/commit/04e3523b7d095341f65ed5e71a3cac82fca690e4
  *       (actual implementation which is different from the RFC).
  * @link https://www.php.net/manual/en/control-structures.switch.php
+ *
+ * @since 8.2.0
  */
 class DiscouragedSwitchContinueSniff extends Sniff
 {

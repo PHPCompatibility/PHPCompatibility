@@ -19,6 +19,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.4+
  *
  * @link https://www.php.net/manual/en/function.pack.php#refsect1-function.pack-changelog
+ *
+ * @since 9.0.0
  */
 class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
 {

@@ -20,6 +20,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/migration53.other.php#migration53.other
  * @link https://www.php.net/manual/en/function.array-reduce.php#refsect1-function.array-reduce-changelog
+ *
+ * @since 9.0.0
  */
 class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
 {

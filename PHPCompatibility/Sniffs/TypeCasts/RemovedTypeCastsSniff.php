@@ -21,6 +21,9 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#unset_cast
  * @link https://wiki.php.net/rfc/deprecations_php_7_4#the_real_type
+ *
+ * @since 8.0.1
+ * @since 9.0.0 Renamed from `DeprecatedTypeCastsSniff` to `RemovedTypeCastsSniff`.
  */
 class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
 {

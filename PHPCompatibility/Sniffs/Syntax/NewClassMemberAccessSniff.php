@@ -35,6 +35,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * {@internal The reason for splitting the logic of this sniff into different methods is
  *            to allow re-use of the logic by the PHP 7.4 `RemovedCurlyBraceArrayAccess` sniff.}}
  *
+ * @since 8.2.0
  * @since 9.3.0 Now also detects class member access on instantiation using curly braces.
  */
 class NewClassMemberAccessSniff extends Sniff

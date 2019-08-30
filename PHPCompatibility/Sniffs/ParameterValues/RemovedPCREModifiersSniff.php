@@ -29,6 +29,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://wiki.php.net/rfc/remove_preg_replace_eval_modifier
  * @link https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
  * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
+ *
+ * @since 5.6
+ * @since 7.0.8 This sniff now throws a warning (deprecated) or an error (removed) depending
+ *              on the `testVersion` set. Previously it would always throw an error.
+ * @since 8.2.0 Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `PregReplaceEModifierSniff` to `RemovedPCREModifiersSniff`.
  */
 class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {

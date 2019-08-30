@@ -21,6 +21,8 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/migration55.new-features.php#migration55.new-features.foreach-list
  * @link https://wiki.php.net/rfc/foreachlist
  * @link https://www.php.net/manual/en/control-structures.foreach.php#control-structures.foreach.list
+ *
+ * @since 9.0.0
  */
 class NewListInForeachSniff extends Sniff
 {

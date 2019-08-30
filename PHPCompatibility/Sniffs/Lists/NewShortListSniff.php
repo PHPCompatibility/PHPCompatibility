@@ -24,6 +24,8 @@ use PHP_CodeSniffer_File as File;
  *
  * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.symmetric-array-destructuring
  * @link https://wiki.php.net/rfc/short_list_syntax
+ *
+ * @since 9.0.0
  */
 class NewShortListSniff extends Sniff
 {

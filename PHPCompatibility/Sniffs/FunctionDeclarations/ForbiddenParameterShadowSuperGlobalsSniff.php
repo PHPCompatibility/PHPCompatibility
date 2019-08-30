@@ -22,6 +22,8 @@ use PHP_CodeSniffer_File as File;
  * PHP version 5.4
  *
  * @link https://www.php.net/manual/en/migration54.incompatible.php
+ *
+ * @since 7.0.0
  */
 class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 {
