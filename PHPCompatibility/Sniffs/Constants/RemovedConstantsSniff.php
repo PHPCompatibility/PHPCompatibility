@@ -33,7 +33,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      *
      * Note: PHP Constants are case-sensitive!
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $removedConstants = array(
         // Disabled since PHP 5.3.0 due to thread safety issues.

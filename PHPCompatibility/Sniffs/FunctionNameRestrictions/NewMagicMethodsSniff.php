@@ -31,7 +31,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not magic) or true (magic).
      * If's sufficient to list the first version where the method became magic.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $newMagicMethods = array(
         '__construct' => array(

@@ -49,7 +49,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the extension was deprecated/removed.
      *
-     * @var array(string|null)
+     * @var array(string => array(string => bool|string|null))
      */
     protected $removedExtensions = array(
         'activescript' => array(

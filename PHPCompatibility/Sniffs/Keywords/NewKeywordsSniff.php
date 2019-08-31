@@ -38,7 +38,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * The callback function should return `true` if the condition is met and the
      * error should *not* be thrown.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $newKeywords = array(
         'T_HALT_COMPILER' => array(

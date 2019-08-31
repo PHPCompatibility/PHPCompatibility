@@ -32,7 +32,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the variable was deprecated/removed.
      *
-     * @var array(string|null)
+     * @var array(string => array(string => bool|string))
      */
     protected $removedGlobalVariables = array(
         'HTTP_POST_VARS' => array(
