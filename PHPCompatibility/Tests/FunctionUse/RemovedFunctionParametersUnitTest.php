@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed Functions Parameter Sniff test file
+ * Test the RemovedFunctionParameters sniff.
  *
  * @group removedFunctionParameters
  * @group functionUse

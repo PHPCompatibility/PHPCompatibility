@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
+ * Test the ForbiddenNegativeBitshift sniff.
  *
  * @group forbiddenNegativeBitshift
  * @group operators

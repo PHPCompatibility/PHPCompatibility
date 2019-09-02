@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New execution directives test file
+ * Test the NewExecutionDirectives sniff.
  *
  * @group newExecutionDirectives
  * @group controlStructures

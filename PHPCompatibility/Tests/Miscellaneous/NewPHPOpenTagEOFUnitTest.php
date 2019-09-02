@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New support for PHP open tag at end of file sniff tests.
+ * Test the NewPHPOpenTagEOF sniff.
  *
  * @group newPHPOpenTagEOF
  * @group miscellaneous

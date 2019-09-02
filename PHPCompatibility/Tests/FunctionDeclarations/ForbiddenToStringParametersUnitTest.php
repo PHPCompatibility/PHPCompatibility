@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Forbidden parameters passed to __toString() sniff tests.
+ * Test the ForbiddenToStringParameters sniff.
  *
  * @group newForbiddenToStringParameters
  * @group functionDeclarations

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Interfaces;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Interfaces Sniff tests
+ * Test the NewInterfaces sniff.
  *
  * @group newInterfaces
  * @group interfaces

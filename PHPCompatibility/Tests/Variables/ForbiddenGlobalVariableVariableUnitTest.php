@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Variables;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Global with variable variables have been removed in PHP 7.0 sniff test file
+ * Test the ForbiddenGlobalVariableVariable sniff.
  *
  * @group forbiddenGlobalVariableVariable
  * @group variables

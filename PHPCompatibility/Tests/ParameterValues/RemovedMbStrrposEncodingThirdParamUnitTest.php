@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed mb_strrpos() encoding as third parameter Sniff tests
+ * Test the RemovedMbStrrposEncodingThirdParam sniff.
  *
  * @group removedMbStrrposEncodingThirdParam
  * @group parameterValues

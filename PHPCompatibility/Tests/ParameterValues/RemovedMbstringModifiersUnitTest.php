@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated Mbstring regex replace e modifier test file.
+ * Test the RemovedMbstringModifiers sniff.
  *
  * @group removedMbstringModifiers
  * @group parameterValues

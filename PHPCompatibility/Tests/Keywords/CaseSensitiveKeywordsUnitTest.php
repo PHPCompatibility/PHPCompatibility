@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Keywords;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * self, parent and static were sometimes treated case sensitively prior to PHP 5.5.
+ * Test the CaseSensitiveKeywords sniff.
  *
  * @group caseSensitiveKeywords
  * @group keywords

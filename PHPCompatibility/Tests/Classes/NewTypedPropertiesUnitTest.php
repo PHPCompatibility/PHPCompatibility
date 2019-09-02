@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Typed Properties Sniff tests
+ * Test the NewTypedProperties sniff.
  *
  * @group newTypedProperties
  * @group classes

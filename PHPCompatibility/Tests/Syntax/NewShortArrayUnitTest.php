@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Short array syntax sniff tests
+ * Test the NewShortArray sniff.
  *
  * @group newShortArray
  * @group syntax

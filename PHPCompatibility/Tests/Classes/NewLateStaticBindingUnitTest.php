@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Late static binding sniff test file
+ * Test the NewLateStaticBinding sniff.
  *
  * @group newLateStaticBinding
  * @group classes

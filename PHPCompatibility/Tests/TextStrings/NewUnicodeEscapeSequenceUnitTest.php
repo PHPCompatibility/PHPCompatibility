@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\TextStrings;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Unicode Escape Sequence Sniff tests
+ * Test the NewUnicodeEscapeSequence sniff.
  *
  * @group newUnicodeEscapeSequence
  * @group textStrings

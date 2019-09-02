@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New PCRE regex modifiers sniff tests.
+ * Test the NewPCREModifiers sniff.
  *
  * @group newPCREModifiers
  * @group parameterValues

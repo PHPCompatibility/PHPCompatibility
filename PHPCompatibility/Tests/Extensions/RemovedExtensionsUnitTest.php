@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Removed extensions sniff tests
+ * Test the RemovedExtensions sniff.
  *
  * @group removedExtensions
  * @group extensions

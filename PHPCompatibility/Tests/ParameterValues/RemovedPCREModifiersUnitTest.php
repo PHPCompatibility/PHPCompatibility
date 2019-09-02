@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * preg_replace() /e modifier sniff tests
+ * Test the RemovedPCREModifiers sniff.
  *
  * @group removedPCREModifiers
  * @group parameterValues

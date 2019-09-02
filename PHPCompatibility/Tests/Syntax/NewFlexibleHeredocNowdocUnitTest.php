@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Use of flexible heredoc/nowdoc syntax and identifiers in heredoc/nowdoc body tests.
+ * Test the NewFlexibleHeredocNowdoc sniff.
  *
  * @group newFlexibleHeredocNowdoc
  * @group syntax

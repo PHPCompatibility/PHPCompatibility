@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Passing literal string $category to setlocale() sniff tests.
+ * Test the RemovedSetlocaleString sniff.
  *
  * @group removedSetlocaleString
  * @group parameterValues

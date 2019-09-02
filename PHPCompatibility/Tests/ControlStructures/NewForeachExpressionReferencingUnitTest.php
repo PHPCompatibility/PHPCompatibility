@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 5.5 referencing expressions in foreach sniff test file.
+ * Test the NewForeachExpressionReferencing sniff.
  *
  * @group newForeachExpressionReferencing
  * @group controlStructures

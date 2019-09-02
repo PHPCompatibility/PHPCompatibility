@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New operators sniff tests
+ * Test the NewOperators sniff.
  *
  * @group newOperators
  * @group operators

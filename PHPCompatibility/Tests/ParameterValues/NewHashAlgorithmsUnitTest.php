@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New hash algorithms sniff tests.
+ * Test the NewHashAlgorithms sniff.
  *
  * @group newHashAlgorithms
  * @group parameterValues

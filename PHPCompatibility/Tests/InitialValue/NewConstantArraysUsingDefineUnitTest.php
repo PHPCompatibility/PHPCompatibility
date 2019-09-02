@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\InitialValue;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Constant arrays using define in PHP 7.0 sniff test file
+ * Test the NewConstantArraysUsingDefine sniff.
  *
  * @group newConstantArraysUsingDefine
  * @group initialValue

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\LanguageConstructs;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New language constructs sniff tests
+ * Test the NewLanguageConstructs sniff.
  *
  * @group newLanguageConstructs
  * @group languageConstructs

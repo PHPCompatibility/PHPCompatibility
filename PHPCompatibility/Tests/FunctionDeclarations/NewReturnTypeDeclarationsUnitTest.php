@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New return types test file
+ * Test the NewReturnTypeDeclarations sniff.
  *
  * @group newReturnTypeDeclarations
  * @group functionDeclarations

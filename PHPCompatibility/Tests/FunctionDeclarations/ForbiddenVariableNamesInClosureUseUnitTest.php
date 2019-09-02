@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * PHP 7.1 Forbidden variable names in closure use statements tests.
+ * Test the ForbiddenVariableNamesInClosureUse sniff.
  *
  * @group forbiddenVariableNamesInClosureUse
  * @group closures

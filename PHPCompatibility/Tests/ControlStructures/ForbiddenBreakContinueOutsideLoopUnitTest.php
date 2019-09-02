@@ -13,9 +13,7 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden break and continue outside loop sniff test.
- *
- * Checks for using break and continue outside of a looping structure.
+ * Test the ForbiddenBreakContinueOutsideLoop sniff.
  *
  * @group forbiddenBreakContinueOutsideLoop
  * @group controlStructures

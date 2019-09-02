@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Generators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New generator return expressions in PHP 7.0 sniff test file
+ * Test the NewGeneratorReturn sniff.
  *
  * @group newGeneratorReturn
  * @group generators

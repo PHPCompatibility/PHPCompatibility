@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Short Ternary Sniff tests
+ * Test the NewShortTernary sniff.
  *
  * @group newShortTernary
  * @group operators

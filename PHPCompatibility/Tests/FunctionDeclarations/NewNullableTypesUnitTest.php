@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New nullable type hints / return types sniff test file
+ * Test the NewNullableTypes sniff.
  *
  * @group nullableTypes
  * @group functionDeclarations

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\TypeCasts;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New type casts sniff tests
+ * Test the NewTypeCasts sniff.
  *
  * @group newTypeCasts
  * @group typeCasts

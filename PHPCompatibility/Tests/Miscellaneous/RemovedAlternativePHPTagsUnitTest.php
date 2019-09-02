@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Miscellaneous;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed alternative PHP tags sniff test file
+ * Test the RemovedAlternativePHPTags sniff.
  *
  * @group removedAlternativePHPTags
  * @group miscellaneous

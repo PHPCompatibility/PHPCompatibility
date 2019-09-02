@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\TypeCasts;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated/Removed type casts sniff tests
+ * Test the RemovedTypeCasts sniff.
  *
  * @group removedTypeCasts
  * @group typeCasts

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Variables;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Uniform Variable Syntax sniff test file
+ * Test the NewUniformVariableSyntax sniff.
  *
  * @group newUniformVariableSyntax
  * @group variables

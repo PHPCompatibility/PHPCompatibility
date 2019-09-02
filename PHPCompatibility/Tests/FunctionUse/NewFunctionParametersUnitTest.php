@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Functions Parameter Sniff tests
+ * Test the NewFunctionParameters sniff.
  *
  * @group newFunctionParameters
  * @group functionUse

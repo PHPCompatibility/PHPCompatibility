@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Optional Required Parameter Sniff test file
+ * Test the OptionalToRequiredFunctionParameters sniff.
  *
  * @group optionalToRequiredFunctionParameters
  * @group functionUse

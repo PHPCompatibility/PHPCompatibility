@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Dynamic access to static methods and properties sniff test file
+ * Test the NewDynamicAccessToStatic sniff.
  *
  * @group newDynamicAccessToStatic
  * @group syntax

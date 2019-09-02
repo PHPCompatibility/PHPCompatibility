@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\MethodUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden parameters passed to __toString() sniff tests.
+ * Test the ForbiddenToStringParameters sniff.
  *
  * @group newForbiddenToStringParameters
  * @group methodUse

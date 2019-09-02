@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed use of parent within a class without parent sniff tests.
+ * Test the RemovedOrphanedParent sniff.
  *
  * @group newRemovedOrphanedParent
  * @group classes

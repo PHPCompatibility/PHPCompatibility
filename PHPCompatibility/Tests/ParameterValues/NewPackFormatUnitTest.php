@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Use of new pack() formats sniff tests.
+ * Test the NewPackFormat sniff.
  *
  * @group newPackFormat
  * @group parameterValues

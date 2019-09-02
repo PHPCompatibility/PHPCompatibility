@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New constant scalar expressions in PHP 5.6 sniff test file.
+ * Test the NewConstantScalarExpressions sniff.
  *
  * @group newConstantScalarExpressions
  * @group initialValue

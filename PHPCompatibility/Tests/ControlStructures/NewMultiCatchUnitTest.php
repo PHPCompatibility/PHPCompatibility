@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New catching multiple exception types sniff test file
+ * Test the NewMultiCatch sniff.
  *
  * @group newMultiCatch
  * @group controlStructures

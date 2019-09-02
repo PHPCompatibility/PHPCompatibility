@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Negative string offsets as parameters sniff tests.
+ * Test the NewNegativeStringOffset sniff.
  *
  * @group newNegativeStringOffset
  * @group parameterValues

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Lists;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 7.1 keyed lists sniff test file.
+ * Test the NewKeyedList sniff.
  *
  * @group newKeyedList
  * @group lists

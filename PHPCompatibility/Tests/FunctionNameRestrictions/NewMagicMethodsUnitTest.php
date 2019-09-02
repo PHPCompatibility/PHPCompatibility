@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New Magic Methods Sniff tests.
+ * Test the NewMagicMethods sniff.
  *
  * @group newMagicMethods
  * @group functionNameRestrictions

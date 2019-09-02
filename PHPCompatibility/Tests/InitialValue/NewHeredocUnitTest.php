@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New initialize with heredoc in PHP 5.3 sniff test file
+ * Test the NewHeredoc sniff.
  *
  * @group newHeredoc
  * @group initialValue

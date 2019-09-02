@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * __autoload deprecation for PHP 7.2 sniff test
+ * Test the RemovedMagicAutoload sniff.
  *
  * @group removedMagicAutoload
  * @group functionNameRestrictions

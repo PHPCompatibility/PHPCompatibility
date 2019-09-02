@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New function call trailing comma sniff tests
+ * Test the NewFunctionCallTrailingComma sniff.
  *
  * @group newFunctionCallTrailingComma
  * @group syntax

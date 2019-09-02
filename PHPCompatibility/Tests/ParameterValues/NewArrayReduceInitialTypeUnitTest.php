@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Parameter type of the array_reduce() $initial param sniff tests.
+ * Test the NewArrayReduceInitialType sniff.
  *
  * @group newArrayReduceInitialType
  * @group parameterValues

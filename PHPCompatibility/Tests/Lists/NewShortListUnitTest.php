@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Lists;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 7.1 symmetric array destructuring sniff test file.
+ * Test the NewShortList sniff.
  *
  * @group newShortList
  * @group lists

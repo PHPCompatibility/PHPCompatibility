@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Variables;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed predefined global variables sniff tests
+ * Test the RemovedPredefinedGlobalVariables sniff.
  *
  * @group removedPredefinedGlobalVariables
  * @group variables

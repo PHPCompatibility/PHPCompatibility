@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\UseDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New use group declaration sniff tests
+ * Test the NewGroupUseDeclarations sniff.
  *
  * @group newGroupUseDeclarations
  * @group useDeclarations

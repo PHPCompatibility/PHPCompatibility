@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Check for the PHP 5.3 changes in allowed usage of the argument functions.
+ * Test the ArgumentFunctionsUsage sniff.
  *
  * @group argumentFunctions
  * @group functionUse

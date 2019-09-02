@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed Ternary Associativity sniff tests.
+ * Test the RemovedTernaryAssociativity sniff.
  *
  * @group removedTernaryAssociativity
  * @group operators

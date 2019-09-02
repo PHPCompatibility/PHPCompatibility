@@ -15,7 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * BaseSniffTest
+ * Base sniff test class file.
  *
  * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
  * warnings.

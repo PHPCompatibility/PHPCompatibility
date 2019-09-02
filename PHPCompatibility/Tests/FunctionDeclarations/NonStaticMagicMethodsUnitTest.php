@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Non Static Magic Methods Sniff tests
+ * Test the NonStaticMagicMethods sniff.
  *
  * @group nonStaticMagicMethods
  * @group functionDeclarations

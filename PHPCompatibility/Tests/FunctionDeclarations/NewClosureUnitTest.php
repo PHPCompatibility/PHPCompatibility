@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Closure Sniff tests
+ * Test the NewClosure sniff.
  *
  * @group newClosure
  * @group functionDeclarations

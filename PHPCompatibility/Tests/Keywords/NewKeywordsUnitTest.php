@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Keywords;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New keywords sniff tests
+ * Test the NewKeywords sniff.
  *
  * @group newKeywords
  * @group keywords

@@ -15,7 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Sniffs\Upgrade\LowPHPCSSniff;
 
 /**
- * Test throwing the PHPCS Upgrade notice.
+ * Test the LowPHPCS sniff.
  *
  * @group lowPHPCS
  * @group upgrade
