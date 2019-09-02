@@ -21,6 +21,8 @@ use PHPCompatibility\PHPCSHelper;
  * @group magicMethods
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff
+ *
+ * @since 7.0.4
  */
 class NewMagicMethodsUnitTest extends BaseSniffTest
 {

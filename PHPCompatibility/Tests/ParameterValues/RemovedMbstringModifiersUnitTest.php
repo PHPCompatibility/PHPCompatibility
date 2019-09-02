@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group regexModifiers
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff
+ *
+ * @since 7.0.5
  */
 class RemovedMbstringModifiersUnitTest extends BaseSniffTest
 {

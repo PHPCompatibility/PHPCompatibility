@@ -22,6 +22,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
+ *
+ * @since 5.5
  */
 class NewClassesUnitTest extends BaseSniffTest
 {

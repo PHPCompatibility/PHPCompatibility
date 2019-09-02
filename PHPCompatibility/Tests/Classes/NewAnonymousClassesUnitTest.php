@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewAnonymousClassesSniff
+ *
+ * @since 7.0.0
  */
 class NewAnonymousClassesUnitTest extends BaseSniffTest
 {

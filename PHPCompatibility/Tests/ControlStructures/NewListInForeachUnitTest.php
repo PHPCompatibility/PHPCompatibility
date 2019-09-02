@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewListInForeachSniff
+ *
+ * @since 9.0.0
  */
 class NewListInForeachUnitTest extends BaseSniffTest
 {

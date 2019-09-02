@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewDynamicAccessToStaticSniff
+ *
+ * @since 8.1.0
  */
 class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
 {

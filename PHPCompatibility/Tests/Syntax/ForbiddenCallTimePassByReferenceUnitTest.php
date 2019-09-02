@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\ForbiddenCallTimePassByReferenceSniff
+ *
+ * @since 5.5
  */
 class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
 {

@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff
+ *
+ * @since 7.0.3
  */
 class NewExecutionDirectivesUnitTest extends BaseSniffTest
 {

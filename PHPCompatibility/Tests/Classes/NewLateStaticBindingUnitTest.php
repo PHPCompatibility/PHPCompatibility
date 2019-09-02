@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewLateStaticBindingSniff
+ *
+ * @since 7.0.3
  */
 class NewLateStaticBindingUnitTest extends BaseSniffTest
 {

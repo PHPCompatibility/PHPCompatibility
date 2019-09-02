@@ -21,6 +21,8 @@ use PHPCompatibility\PHPCSHelper;
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedNamespacedAssertSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 9.0.0
  */
 class RemovedNamespacedAssertUnitTest extends BaseSniffTest
 {

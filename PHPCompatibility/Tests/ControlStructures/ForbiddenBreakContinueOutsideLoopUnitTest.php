@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueOutsideLoopSniff
+ *
+ * @since 7.0.7
  */
 class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
 {

@@ -19,6 +19,14 @@ use PHP_CodeSniffer_File as File;
  *
  * Adds PHPCS sniffing logic and custom assertions for PHPCS errors and
  * warnings.
+ *
+ * @since 5.5
+ * @since 7.0.4 Caches sniff results per file and testVersion.
+ * @since 7.1.3 Compatible with PHPUnit 6.
+ * @since 7.1.3 Limits the sniff run to the actual sniff being tested.
+ * @since 8.0.0 Compatible with PHP_CodeSniffer 3+.
+ * @since 8.2.0 Allows for sniffs in multiple categories.
+ * @since 9.0.0 Dropped support for PHP_CodeSniffer 1.x.
  */
 class BaseSniffTest extends PHPUnit_TestCase
 {

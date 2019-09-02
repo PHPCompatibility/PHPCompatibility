@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinueSniff
+ *
+ * @since 8.2.0
  */
 class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
 {

@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewConstVisibilitySniff
+ *
+ * @since 7.0.7
  */
 class NewConstVisibilityUnitTest extends BaseSniffTest
 {

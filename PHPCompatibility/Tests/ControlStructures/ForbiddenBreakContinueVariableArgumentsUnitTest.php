@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArgumentsSniff
+ *
+ * @since 5.5
  */
 class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {

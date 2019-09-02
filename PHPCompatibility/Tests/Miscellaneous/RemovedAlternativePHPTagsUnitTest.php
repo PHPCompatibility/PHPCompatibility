@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group miscellaneous
  *
  * @covers \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTagsSniff
+ *
+ * @since 7.0.4
  */
 class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
 {

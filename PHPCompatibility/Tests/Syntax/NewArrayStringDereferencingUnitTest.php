@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff
+ *
+ * @since 7.1.4
  */
 class NewArrayStringDereferencingUnitTest extends BaseSniffTest
 {

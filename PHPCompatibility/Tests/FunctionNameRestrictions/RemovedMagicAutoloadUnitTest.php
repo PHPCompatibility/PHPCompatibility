@@ -21,6 +21,8 @@ use PHPCompatibility\PHPCSHelper;
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 8.1.0
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {

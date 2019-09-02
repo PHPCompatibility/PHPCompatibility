@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group typeCasts
  *
  * @covers \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff
+ *
+ * @since 8.0.1
  */
 class RemovedTypeCastsUnitTest extends BaseSniffTest
 {

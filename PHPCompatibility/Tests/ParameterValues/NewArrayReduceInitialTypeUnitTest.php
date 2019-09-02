@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group parameterValues
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewArrayReduceInitialTypeSniff
+ *
+ * @since 9.0.0
  */
 class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
 {

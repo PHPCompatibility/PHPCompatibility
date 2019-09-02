@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff
+ *
+ * @since 8.2.0
  */
 class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {

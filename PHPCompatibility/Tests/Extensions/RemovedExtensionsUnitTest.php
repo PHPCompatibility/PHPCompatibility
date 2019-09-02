@@ -20,6 +20,8 @@ use PHPCompatibility\PHPCSHelper;
  * @group extensions
  *
  * @covers \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff
+ *
+ * @since 5.5
  */
 class RemovedExtensionsUnitTest extends BaseSniffTest
 {

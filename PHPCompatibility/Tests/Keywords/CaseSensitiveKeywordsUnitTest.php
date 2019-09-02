@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\CaseSensitiveKeywordsSniff
+ *
+ * @since 7.1.4
  */
 class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
 {

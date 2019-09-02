@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameNameSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
 {

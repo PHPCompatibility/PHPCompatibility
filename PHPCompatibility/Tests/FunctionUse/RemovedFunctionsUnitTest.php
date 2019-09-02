@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionUse
  *
  * @covers \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff
+ *
+ * @since 5.5
  */
 class RemovedFunctionsUnitTest extends BaseSniffTest
 {

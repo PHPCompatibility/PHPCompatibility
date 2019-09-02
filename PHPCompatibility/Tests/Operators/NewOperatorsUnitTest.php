@@ -19,6 +19,9 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group operators
  *
  * @covers \PHPCompatibility\Sniffs\Operators\NewOperatorsSniff
+ *
+ * @since 9.0.0 Detection of new operators was originally included in the
+ *              NewLanguageConstructSniff (since 5.6).
  */
 class NewOperatorsUnitTest extends BaseSniffTest
 {

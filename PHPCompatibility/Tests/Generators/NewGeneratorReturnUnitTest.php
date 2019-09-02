@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group generators
  *
  * @covers \PHPCompatibility\Sniffs\Generators\NewGeneratorReturnSniff
+ *
+ * @since 8.2.0
  */
 class NewGeneratorReturnUnitTest extends BaseSniffTest
 {

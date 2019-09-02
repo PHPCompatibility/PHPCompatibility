@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\AssignmentOrderSniff
+ *
+ * @since 9.0.0
  */
 class AssignmentOrderUnitTest extends BaseSniffTest
 {

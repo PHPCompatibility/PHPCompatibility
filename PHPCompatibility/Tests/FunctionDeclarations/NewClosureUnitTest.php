@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosureSniff
+ *
+ * @since 7.0.0
  */
 class NewClosureUnitTest extends BaseSniffTest
 {

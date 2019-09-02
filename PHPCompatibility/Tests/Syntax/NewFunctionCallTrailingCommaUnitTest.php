@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff
+ *
+ * @since 8.2.0
  */
 class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
 {

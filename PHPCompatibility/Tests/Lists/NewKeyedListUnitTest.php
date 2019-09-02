@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\NewKeyedListSniff
+ *
+ * @since 9.0.0
  */
 class NewKeyedListUnitTest extends BaseSniffTest
 {

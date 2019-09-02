@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group interfaces
  *
  * @covers \PHPCompatibility\Sniffs\Interfaces\InternalInterfacesSniff
+ *
+ * @since 7.0.3
  */
 class InternalInterfacesUnitTest extends BaseSniffTest
 {

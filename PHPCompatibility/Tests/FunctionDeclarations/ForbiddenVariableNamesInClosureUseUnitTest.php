@@ -21,6 +21,8 @@ use PHPCompatibility\PHPCSHelper;
  * @group functionDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenVariableNamesInClosureUseSniff
+ *
+ * @since 7.1.4
  */
 class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {

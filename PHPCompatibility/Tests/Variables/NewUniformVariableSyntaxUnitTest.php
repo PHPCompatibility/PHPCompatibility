@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group variables
  *
  * @covers \PHPCompatibility\Sniffs\Variables\NewUniformVariableSyntaxSniff
+ *
+ * @since 7.1.2
  */
 class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
 {

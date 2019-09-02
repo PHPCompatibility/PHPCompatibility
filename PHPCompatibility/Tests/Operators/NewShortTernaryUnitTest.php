@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group operators
  *
  * @covers \PHPCompatibility\Sniffs\Operators\NewShortTernarySniff
+ *
+ * @since 7.0.0
  */
 class NewShortTernaryUnitTest extends BaseSniffTest
 {

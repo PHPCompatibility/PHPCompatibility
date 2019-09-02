@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff
+ *
+ * @since 5.5
  */
 class RemovedNewReferenceUnitTest extends BaseSniffTest
 {

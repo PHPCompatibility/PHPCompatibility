@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group superglobals
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParameterShadowSuperGlobalsSniff
+ *
+ * @since 7.0.3
  */
 class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
 {

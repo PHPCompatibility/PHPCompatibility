@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group exceptions
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatchSniff
+ *
+ * @since 7.0.7
  */
 class NewMultiCatchUnitTest extends BaseSniffTest
 {

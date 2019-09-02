@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewForeachExpressionReferencingSniff
  * @covers \PHPCompatibility\Sniff::isVariable
+ *
+ * @since 9.0.0
  */
 class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
 {

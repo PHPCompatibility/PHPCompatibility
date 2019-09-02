@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenSwitchWithMultipleDefaultBlocksSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
 {

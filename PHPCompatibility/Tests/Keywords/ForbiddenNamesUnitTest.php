@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff
+ *
+ * @since 5.5
  */
 class ForbiddenNamesUnitTest extends BaseSniffTest
 {

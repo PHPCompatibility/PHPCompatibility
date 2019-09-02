@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\NewKeywordsSniff
+ *
+ * @since 5.5
  */
 class NewKeywordsUnitTest extends BaseSniffTest
 {

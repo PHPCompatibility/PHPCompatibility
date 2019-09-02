@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group typeDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff
+ *
+ * @since 7.0.0
  */
 class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {

@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group parameterValues
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff
+ *
+ * @since 9.0.0
  */
 class NewFopenModesUnitTest extends BaseSniffTest
 {

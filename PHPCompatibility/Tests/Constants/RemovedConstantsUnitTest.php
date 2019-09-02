@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff
+ *
+ * @since 8.1.0
  */
 class RemovedConstantsUnitTest extends BaseSniffTest
 {

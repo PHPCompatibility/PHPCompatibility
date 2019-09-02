@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewShortArraySniff
+ *
+ * @since 7.0.0
  */
 class NewShortArrayUnitTest extends BaseSniffTest
 {

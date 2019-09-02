@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\NewMagicClassConstantSniff
+ *
+ * @since 7.1.4
  */
 class NewMagicClassConstantUnitTest extends BaseSniffTest
 {

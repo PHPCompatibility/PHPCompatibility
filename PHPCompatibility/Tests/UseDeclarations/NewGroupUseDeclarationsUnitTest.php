@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group useDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff
+ *
+ * @since 7.0.0
  */
 class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
 {

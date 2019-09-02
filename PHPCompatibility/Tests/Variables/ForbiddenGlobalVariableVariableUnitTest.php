@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group variables
  *
  * @covers \PHPCompatibility\Sniffs\Variables\ForbiddenGlobalVariableVariableSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
 {

@@ -20,6 +20,8 @@ use PHPCompatibility\PHPCSHelper;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewFlexibleHeredocNowdocSniff
+ *
+ * @since 9.0.0
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {

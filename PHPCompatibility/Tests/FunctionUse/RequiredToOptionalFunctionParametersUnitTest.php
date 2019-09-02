@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionUse
  *
  * @covers \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff
+ *
+ * @since 7.0.3
  */
 class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
 {

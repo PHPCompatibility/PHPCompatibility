@@ -20,6 +20,8 @@ use PHPCompatibility\PHPCSHelper;
  * @group initialValue
  *
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff
+ *
+ * @since 7.1.4
  */
 class NewHeredocUnitTest extends BaseSniffTest
 {

@@ -21,6 +21,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewHashAlgorithmsSniff
  * @covers \PHPCompatibility\Sniff::getHashAlgorithmParameter
+ *
+ * @since 7.0.7
  */
 class NewHashAlgorithmsUnitTest extends BaseSniffTest
 {

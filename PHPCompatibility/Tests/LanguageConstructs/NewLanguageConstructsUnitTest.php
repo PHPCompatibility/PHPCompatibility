@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group languageConstructs
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewLanguageConstructsSniff
+ *
+ * @since 5.6
  */
 class NewLanguageConstructsUnitTest extends BaseSniffTest
 {

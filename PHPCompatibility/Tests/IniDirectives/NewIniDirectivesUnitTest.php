@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group iniDirectives
  *
  * @covers \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff
+ *
+ * @since 5.5
  */
 class NewIniDirectivesUnitTest extends BaseSniffTest
 {

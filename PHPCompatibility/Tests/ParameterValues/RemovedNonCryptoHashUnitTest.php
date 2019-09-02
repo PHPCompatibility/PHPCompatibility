@@ -20,6 +20,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group hashAlgorithms
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedNonCryptoHashSniff
+ *
+ * @since 9.0.0
  */
 class RemovedNonCryptoHashUnitTest extends BaseSniffTest
 {

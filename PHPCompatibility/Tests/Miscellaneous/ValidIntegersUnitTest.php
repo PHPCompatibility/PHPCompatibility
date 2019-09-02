@@ -19,6 +19,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group miscellaneous
  *
  * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
+ *
+ * @since 7.0.3
  */
 class ValidIntegersUnitTest extends BaseSniffTest
 {
