@@ -1,11 +1,14 @@
 #!/usr/bin/env php
 <?php
 /**
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
+ *
  * This script is used to generate the test case specimens for the forbidden-names Sniff.
  *
- * @category Tests
- * @package  PHPCompatibility
- * @author   Jansen Price <jansen.price@gmail.com>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 // This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php

@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParameterShadowSuperGlobalsSniff
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.4
- *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Declan Kelly <declankelly90@gmail.com>
- * @copyright 2015 Declan Kelly
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;

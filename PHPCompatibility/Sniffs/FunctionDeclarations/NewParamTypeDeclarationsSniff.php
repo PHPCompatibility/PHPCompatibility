@@ -1,10 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;

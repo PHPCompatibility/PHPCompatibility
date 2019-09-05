@@ -1,12 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Syntax\NewShortArray.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.4
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Alex Miroshnikov <unknown@example.com>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Syntax;

@@ -1,8 +1,11 @@
 <?php
 /**
- * Negative string offsets as parameters sniff test file.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests\ParameterValues;

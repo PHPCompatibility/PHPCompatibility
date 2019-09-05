@@ -1,12 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 7.2
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
@@ -16,6 +15,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff.
+ *
+ * PHP version 7.2
  *
  * @category PHP
  * @package  PHPCompatibility

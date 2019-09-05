@@ -1,14 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Syntax\ForbiddenCallTimePassByReference.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.4
- *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Gary Rogers <gmrwebde@gmail.com>
- * @author    Florian Grandel <jerico.dev@gmail.com>
- * @copyright 2009 Florian Grandel
+ * @copyright 2009-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Syntax;

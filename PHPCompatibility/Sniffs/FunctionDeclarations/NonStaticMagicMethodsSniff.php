@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.4
- *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
@@ -19,6 +17,8 @@ use PHP_CodeSniffer_File as File;
  * \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff.
  *
  * Verifies the use of the correct visibility and static properties of magic methods.
+ *
+ * PHP version 5.3
  *
  * @category  PHP
  * @package   PHPCompatibility
