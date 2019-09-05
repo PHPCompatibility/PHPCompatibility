@@ -50,8 +50,6 @@ Thank you
 ---------
 Thanks to all [contributors](https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors) for their valuable contributions.
 
-[![WPEngine](https://cu.be/img/wpengine.png)](https://wpengine.com)
-
 Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
@@ -216,6 +214,17 @@ To whitelist userland functions, you can pass a comma-delimited list of function
 
 This property was added in PHPCompatibility version 7.0.1.
 As of PHPCompatibility version 8.0.0, this custom property is only supported in combination with PHP CodeSniffer > 2.6.0 due to an upstream bug (which was fixed in PHPCS 2.6.0).
+
+Projects using PHPCompatibility
+-------------------------------
+There are hundreds of public projects using PHPCompatibility or extending on top of it. A short list of some that you might know or have a look at :
+* [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
+* [VFAC/PHP7Compatibility](https://vfac.fr/projects/php7compatibility) - a Docker container to check PHP7 Compatibility
+* [grumphp-php-compatibility](https://github.com/wunderio/grumphp-php-compatibility) - A plugin for [GrumPHP](https://github.com/phpro/grumphp)
+* [google-api-php-client](https://github.com/googleapis/google-api-php-client) - Google's official PHP API client
+* A lot of open source projects' coding standards, such as the [Wordpress-Coding-Standards](https://github.com/WordPress/WordPress-Coding-Standards) 
+* A lot of company coding standards, such as [Acquia](https://github.com/acquia/coding-standards-php), [Automattic](https://github.com/Automattic/VIP-Coding-Standards) and [Yoast](https://github.com/Yoast/yoastcs)
+
 
 
 License
