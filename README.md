@@ -6,9 +6,9 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![License](https://poser.pugx.org/phpcompatibility/php-compatibility/license.png)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/PHPCompatibility/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
 
-[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibility.svg?branch=master)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
-[![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=master)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=master)
+[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibility.svg?branch=develop)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
+[![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
 [![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%20nightly-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
@@ -215,16 +215,15 @@ To whitelist userland functions, you can pass a comma-delimited list of function
 This property was added in PHPCompatibility version 7.0.1.
 As of PHPCompatibility version 8.0.0, this custom property is only supported in combination with PHP CodeSniffer > 2.6.0 due to an upstream bug (which was fixed in PHPCS 2.6.0).
 
-Projects using PHPCompatibility
--------------------------------
+Projects extending on PHPCompatibility
+--------------------------------------
 There are hundreds of public projects using PHPCompatibility or extending on top of it. A short list of some that you might know or have a look at :
 * [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
 * [VFAC/PHP7Compatibility](https://vfac.fr/projects/php7compatibility) - a Docker container to check PHP7 Compatibility
 * [grumphp-php-compatibility](https://github.com/wunderio/grumphp-php-compatibility) - A plugin for [GrumPHP](https://github.com/phpro/grumphp)
-* [google-api-php-client](https://github.com/googleapis/google-api-php-client) - Google's official PHP API client
-* A lot of open source projects' coding standards, such as the [Wordpress-Coding-Standards](https://github.com/WordPress/WordPress-Coding-Standards) 
-* A lot of company coding standards, such as [Acquia](https://github.com/acquia/coding-standards-php), [Automattic](https://github.com/Automattic/VIP-Coding-Standards) and [Yoast](https://github.com/Yoast/yoastcs)
-
+* PHPCompatibility Checker WordPress plugin : [Wordpress site](https://wordpress.org/plugins/php-compatibility-checker/) and [Github](https://github.com/wpengine/phpcompat/)
+* [WordPress Tide project](https://wptide.org/)
+* [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#788c81b6)
 
 
 License
