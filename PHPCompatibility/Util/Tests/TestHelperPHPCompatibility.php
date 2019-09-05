@@ -15,6 +15,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Helper class to facilitate testing of the methods within the abstract \PHPCompatibility\Sniff class.
+ *
+ * @since 7.0.3
  */
 class TestHelperPHPCompatibility extends Sniff
 {

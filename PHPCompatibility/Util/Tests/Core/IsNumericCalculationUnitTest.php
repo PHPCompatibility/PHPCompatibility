@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityIsNumericCalculation
  * @group utilityFunctions
+ *
+ * @since 9.0.0
  */
 class IsNumericCalculationUnitTest extends CoreMethodTestFrame
 {

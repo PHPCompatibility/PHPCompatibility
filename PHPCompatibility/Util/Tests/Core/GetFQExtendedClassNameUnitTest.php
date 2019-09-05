@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityGetFQExtendedClassName
  * @group utilityFunctions
+ *
+ * @since 7.0.3
  */
 class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
 {

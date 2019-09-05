@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityGetFunctionParameters
  * @group utilityFunctions
+ *
+ * @since 7.0.5
  */
 class GetFunctionParametersUnitTest extends CoreMethodTestFrame
 {

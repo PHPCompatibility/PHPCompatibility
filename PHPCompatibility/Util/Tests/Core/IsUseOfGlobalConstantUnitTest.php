@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityIsUseOfGlobalConstant
  * @group utilityFunctions
+ *
+ * @since 8.1.0
  */
 class IsUseOfGlobalConstantUnitTest extends CoreMethodTestFrame
 {

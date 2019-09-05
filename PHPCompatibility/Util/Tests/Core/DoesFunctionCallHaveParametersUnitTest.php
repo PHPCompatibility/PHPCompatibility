@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityDoesFunctionCallHaveParameters
  * @group utilityFunctions
+ *
+ * @since 7.0.3
  */
 class DoesFunctionCallHaveParametersUnitTest extends CoreMethodTestFrame
 {

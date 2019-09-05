@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityIsShortList
  * @group utilityFunctions
+ *
+ * @since 8.2.0
  */
 class IsShortListUnitTest extends CoreMethodTestFrame
 {

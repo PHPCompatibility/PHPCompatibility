@@ -19,6 +19,8 @@ use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
  *
  * @group utilityMiscFunctions
  * @group utilityFunctions
+ *
+ * @since 7.0.6
  */
 class FunctionsUnitTest extends PHPUnit_TestCase
 {

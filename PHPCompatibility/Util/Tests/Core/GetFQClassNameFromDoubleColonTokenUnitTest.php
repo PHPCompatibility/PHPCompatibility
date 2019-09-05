@@ -17,6 +17,8 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityGetFQClassNameFromDoubleColonToken
  * @group utilityFunctions
+ *
+ * @since 7.0.5
  */
 class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
 {
