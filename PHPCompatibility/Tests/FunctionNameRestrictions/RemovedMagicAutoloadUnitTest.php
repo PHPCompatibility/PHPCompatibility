@@ -28,7 +28,20 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {
-    const TEST_FILE            = 'RemovedMagicAutoloadUnitTest.1.inc';
+
+    /**
+     * The name of the main test case file.
+     *
+     * @var string
+     */
+    const TEST_FILE = 'RemovedMagicAutoloadUnitTest.1.inc';
+
+    /**
+     * The name of a secondary test case file to test against false positives
+     * for namespaced function declarations.
+     *
+     * @var string
+     */
     const TEST_FILE_NAMESPACED = 'RemovedMagicAutoloadUnitTest.2.inc';
 
     /**

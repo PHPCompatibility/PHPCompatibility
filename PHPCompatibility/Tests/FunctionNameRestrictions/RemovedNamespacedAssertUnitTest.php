@@ -28,7 +28,19 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedNamespacedAssertUnitTest extends BaseSniffTest
 {
-    const TEST_FILE            = 'RemovedNamespacedAssertUnitTest.1.inc';
+
+    /**
+     * The name of the primary test case file containing code in the global namespace.
+     *
+     * @var string
+     */
+    const TEST_FILE = 'RemovedNamespacedAssertUnitTest.1.inc';
+
+    /**
+     * The name of a secondary test case file containing code in a unscoped namespace.
+     *
+     * @var string
+     */
     const TEST_FILE_NAMESPACED = 'RemovedNamespacedAssertUnitTest.2.inc';
 
     /**

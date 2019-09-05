@@ -27,6 +27,16 @@ use PHP_CodeSniffer_Tokens as Tokens;
 abstract class Sniff implements PHPCS_Sniff
 {
 
+    /**
+     * Regex to match variables in a double quoted string.
+     *
+     * This matches plain variables, but also more complex variables, such
+     * as $obj->prop, self::prop and $var[].
+     *
+     * @since 7.1.2
+     *
+     * @var string
+     */
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
 
     /**

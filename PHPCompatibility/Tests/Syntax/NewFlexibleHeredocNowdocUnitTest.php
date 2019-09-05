@@ -27,6 +27,12 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {
+
+    /**
+     * Sprintf template for the names of the numbered test case files.
+     *
+     * @var string
+     */
     const TEST_FILE = 'NewFlexibleHeredocNowdocUnitTest.%d.inc';
 
     /**
