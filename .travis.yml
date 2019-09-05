@@ -36,11 +36,11 @@ env:
 stages:
   - name: sniff
   - name: quicktest
-    if: type = push AND branch != master
+    if: type = push AND branch NOT IN (master, develop)
   - name: test
-    if: branch = master
+    if: branch IN (master, develop)
   - name: coverage
-    if: branch = master
+    if: branch IN (master, develop)
 
 jobs:
   fast_finish: true
