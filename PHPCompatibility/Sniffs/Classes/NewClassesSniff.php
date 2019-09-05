@@ -699,7 +699,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
     /**
      * Processes this test for when a function token is encountered.
      *
-     * - Detect new classes when used as a type hint.
+     * - Detect new classes when used as a parameter type declaration.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in

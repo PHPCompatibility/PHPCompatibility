@@ -100,7 +100,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         $data = $tokens[$stackPtr]['content'];
 
         /*
-         * Check for usage of the functions in the global scope.
+         * Check for use of the functions in the global scope.
          *
          * As PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
@@ -118,7 +118,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         /*
-         * Check for usage of the functions as a parameter in a function call.
+         * Check for use of the functions as a parameter in a function call.
          */
         if ($this->supportsBelow('5.2') === false) {
             return;

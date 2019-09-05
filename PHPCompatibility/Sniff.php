@@ -32,7 +32,7 @@ abstract class Sniff implements PHPCS_Sniff
     /**
      * List of superglobals as an array of strings.
      *
-     * Used by the ParameterShadowSuperGlobals and ForbiddenClosureUseVariableNames sniffs.
+     * Used by the ForbiddenParameterShadowSuperGlobals and ForbiddenClosureUseVariableNames sniffs.
      *
      * @var array
      */

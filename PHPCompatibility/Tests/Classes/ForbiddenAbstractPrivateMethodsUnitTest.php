@@ -49,7 +49,7 @@ class ForbiddenAbstractPrivateMethodsUnitTest extends BaseSniffTest
      *
      * @dataProvider dataForbiddenAbstractPrivateMethods
      *
-     * @param int $line The line number where a warning is expected.
+     * @param int $line The line number where an error is expected.
      *
      * @return void
      */
