@@ -47,7 +47,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      * {@internal The data providers are run before the setUpClass method is run, so
      * we can't use that method for this skip condition.}}
      *
-     * @return void
+     * @return bool True if PHPCS is running on PHP 7.3 or higher. False otherwise.
      */
     public static function getSetSkipCondition()
     {
