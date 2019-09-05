@@ -1,11 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Extensions;
@@ -49,7 +49,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the extension was deprecated/removed.
      *
-     * @var array(string|null)
+     * @var array(string => array(string => bool|string|null))
      */
     protected $removedExtensions = array(
         'activescript' => array(

@@ -26,6 +26,11 @@ use PHPCompatibility\PHPCSHelper;
 class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
 {
 
+    /**
+     * Sprintf template for the names of the numbered test case files.
+     *
+     * @var string
+     */
     const TEST_FILE = 'NewPHPOpenTagEOFUnitTest.%d.inc';
 
 

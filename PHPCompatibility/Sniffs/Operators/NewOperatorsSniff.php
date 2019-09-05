@@ -1,11 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Operators\NewOperatorsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Operators;
@@ -30,7 +30,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $newOperators = array(
         'T_POW' => array(
@@ -53,10 +53,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             '7.0' => true,
             'description' => 'null coalescing operator (??)',
         ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
-        /*
-         * Was slated for 7.2, but still not implemented. PHPCS however does already tokenize it.
-         * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
-         */
         'T_COALESCE_EQUAL' => array(
             '7.3' => false,
             '7.4' => true,

@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.4
- * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Syntax;
@@ -29,8 +27,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://wiki.php.net/rfc/instance-method-call
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *
- * @internal The reason for splitting the logic of this sniff into different methods is
- *           to allow re-use of the logic by the PHP 7.4 RemovedCurlyBraceArrayAccess sniff.
+ * {@internal The reason for splitting the logic of this sniff into different methods is
+ *            to allow re-use of the logic by the PHP 7.4 RemovedCurlyBraceArrayAccess sniff.}}
  *
  * @since 9.3.0 Now also detects class member access on instantiation using curly braces.
  */

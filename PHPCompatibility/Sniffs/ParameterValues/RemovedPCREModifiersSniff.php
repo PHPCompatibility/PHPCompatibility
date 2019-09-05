@@ -1,13 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.5
- *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2014 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
@@ -125,7 +123,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
 
     /**
-     * Analyse a potential regex pattern for usage of the /e modifier.
+     * Analyse a potential regex pattern for use of the /e modifier.
      *
      * @param array                 $pattern      Array containing the start and end token
      *                                            pointer of the potential regex pattern and

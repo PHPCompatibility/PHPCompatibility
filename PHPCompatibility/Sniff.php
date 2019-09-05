@@ -1,11 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2014 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility;
@@ -27,12 +27,22 @@ use PHP_CodeSniffer_Tokens as Tokens;
 abstract class Sniff implements PHPCS_Sniff
 {
 
+    /**
+     * Regex to match variables in a double quoted string.
+     *
+     * This matches plain variables, but also more complex variables, such
+     * as $obj->prop, self::prop and $var[].
+     *
+     * @since 7.1.2
+     *
+     * @var string
+     */
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
 
     /**
      * List of superglobals as an array of strings.
      *
-     * Used by the ParameterShadowSuperGlobals and ForbiddenClosureUseVariableNames sniffs.
+     * Used by the ForbiddenParameterShadowSuperGlobals and ForbiddenClosureUseVariableNames sniffs.
      *
      * @var array
      */
@@ -799,6 +809,9 @@ abstract class Sniff implements PHPCS_Sniff
      *                       I.e. should always start with a `\`.
      *
      * @return bool True if namespaced, false if global.
+     *
+     * @throws \PHP_CodeSniffer_Exception If the name in the passed parameter
+     *                                    is not fully qualified.
      */
     public function isNamespaced($FQName)
     {

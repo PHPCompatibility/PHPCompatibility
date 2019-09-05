@@ -1,11 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category  PHP
  * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\IniDirectives;
@@ -26,7 +26,7 @@ use PHP_CodeSniffer_File as File;
 class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {
     /**
-     * A list of deprecated INI directives.
+     * A list of deprecated/removed INI directives.
      *
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the ini directive was deprecated/removed.

@@ -1,10 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\TypeCasts;
@@ -27,7 +28,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) or true (removed) and an alternative function.
      * If no alternative exists, it is NULL, i.e, the function should just not be used.
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $deprecatedTypeCasts = array(
         'T_UNSET_CAST' => array(

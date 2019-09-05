@@ -1,8 +1,11 @@
 <?php
 /**
- * NewFlexibleHeredocNowdocSniff test file.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests\Syntax;
@@ -24,6 +27,12 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {
+
+    /**
+     * Sprintf template for the names of the numbered test case files.
+     *
+     * @var string
+     */
     const TEST_FILE = 'NewFlexibleHeredocNowdocUnitTest.%d.inc';
 
     /**
@@ -47,7 +56,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      * {@internal The data providers are run before the setUpClass method is run, so
      * we can't use that method for this skip condition.}}
      *
-     * @return void
+     * @return bool True if PHPCS is running on PHP 7.3 or higher. False otherwise.
      */
     public static function getSetSkipCondition()
     {

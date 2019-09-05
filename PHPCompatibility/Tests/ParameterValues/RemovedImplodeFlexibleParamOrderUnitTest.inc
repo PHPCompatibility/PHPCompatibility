@@ -51,3 +51,18 @@ implode( compact( $piece1, $piece2, $piece3 ), $glue );
 // Special cased PHP native constants.
 implode( $pieces, PHP_EOL );
 implode( $pieces, DIRECTORY_SEPARATOR );
+
+// Issue #890 - Hardening for ternary as part of second param.
+$defaults = [
+    'class'    => implode(
+        ' ',
+        array_filter( [ 'a' => $type === 'a' ? '-' : '|', ] )
+    ),
+];
+
+// Efficiency, second param doesn't even need to be examined here.
+implode( ( $type === 'a' ? '-' : '|' ), (array) $pieces );
+
+// Recognize array casts.
+implode( $glue, (array) $object ); // OK.
+implode( (array) $object, $glue ); // Error.

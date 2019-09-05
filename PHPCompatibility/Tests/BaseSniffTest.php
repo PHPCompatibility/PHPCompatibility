@@ -1,8 +1,11 @@
 <?php
 /**
- * Base sniff test class file.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests;
@@ -23,6 +26,14 @@ use PHP_CodeSniffer_File as File;
  */
 class BaseSniffTest extends PHPUnit_TestCase
 {
+
+    /**
+     * The name of the standard as registered with PHPCS.
+     *
+     * @since 7.1.3
+     *
+     * @var string
+     */
     const STANDARD_NAME = 'PHPCompatibility';
 
     /**
@@ -207,6 +218,9 @@ class BaseSniffTest extends PHPUnit_TestCase
      * @param string $expectedMessage Expected message (assertContains).
      *
      * @return bool
+     *
+     * @throws \Exception When no issues of a certain type where found on a line
+     *                    for which issues of that type where expected.
      */
     private function assertForType($issues, $type, $lineNumber, $expectedMessage)
     {

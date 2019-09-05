@@ -1,12 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionUse\ArgumentFunctionsUsageSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * PHP version 5.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
@@ -100,7 +99,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         $data = $tokens[$stackPtr]['content'];
 
         /*
-         * Check for usage of the functions in the global scope.
+         * Check for use of the functions in the global scope.
          *
          * As PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
@@ -118,7 +117,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         /*
-         * Check for usage of the functions as a parameter in a function call.
+         * Check for use of the functions as a parameter in a function call.
          */
         if ($this->supportsBelow('5.2') === false) {
             return;

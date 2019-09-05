@@ -1,10 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
@@ -31,7 +32,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not magic) or true (magic).
      * If's sufficient to list the first version where the method became magic.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $newMagicMethods = array(
         '__construct' => array(

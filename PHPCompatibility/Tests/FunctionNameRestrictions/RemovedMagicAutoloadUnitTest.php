@@ -1,8 +1,11 @@
 <?php
 /**
- * __autoload deprecation for PHP 7.2 sniff test
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;
@@ -25,7 +28,20 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {
-    const TEST_FILE            = 'RemovedMagicAutoloadUnitTest.1.inc';
+
+    /**
+     * The name of the main test case file.
+     *
+     * @var string
+     */
+    const TEST_FILE = 'RemovedMagicAutoloadUnitTest.1.inc';
+
+    /**
+     * The name of a secondary test case file to test against false positives
+     * for namespaced function declarations.
+     *
+     * @var string
+     */
     const TEST_FILE_NAMESPACED = 'RemovedMagicAutoloadUnitTest.2.inc';
 
     /**

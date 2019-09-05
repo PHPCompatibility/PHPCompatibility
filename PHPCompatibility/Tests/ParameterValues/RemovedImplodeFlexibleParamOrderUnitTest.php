@@ -66,6 +66,7 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
             array(49, 'implode'),
             array(52, 'implode'),
             array(53, 'implode'),
+            array(68, 'implode'),
         );
     }
 
@@ -73,16 +74,39 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
     /**
      * testNoFalsePositives
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = array();
 
         // No errors expected on the first 27 lines.
         for ($line = 1; $line <= 27; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = array($line);
         }
+
+        $data[] = array(57);
+        $data[] = array(64);
+        $data[] = array(67);
+
+        return $data;
     }
 
 

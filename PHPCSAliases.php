@@ -1,12 +1,14 @@
 <?php
 /**
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
+ *
  * PHPCS cross-version compatibility helper.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
-
 
 /*
  * Alias a number of PHPCS 3.x classes to their PHPCS 2.x equivalents.

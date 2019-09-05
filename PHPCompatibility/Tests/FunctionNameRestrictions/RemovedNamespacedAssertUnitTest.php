@@ -1,8 +1,11 @@
 <?php
 /**
- * Removal of namespaced free-standing assert() declarations for PHP 7.3 sniff test.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @package PHPCompatibility
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;
@@ -25,7 +28,19 @@ use PHPCompatibility\PHPCSHelper;
  */
 class RemovedNamespacedAssertUnitTest extends BaseSniffTest
 {
-    const TEST_FILE            = 'RemovedNamespacedAssertUnitTest.1.inc';
+
+    /**
+     * The name of the primary test case file containing code in the global namespace.
+     *
+     * @var string
+     */
+    const TEST_FILE = 'RemovedNamespacedAssertUnitTest.1.inc';
+
+    /**
+     * The name of a secondary test case file containing code in a unscoped namespace.
+     *
+     * @var string
+     */
     const TEST_FILE_NAMESPACED = 'RemovedNamespacedAssertUnitTest.2.inc';
 
     /**

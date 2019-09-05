@@ -283,9 +283,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
     /**
      * Determine whether a T_STRING is a constant being dereferenced using curly brace syntax.
      *
-     * @internal Note: the first braces for array access to a constant, for some unknown reason,
-     *           can never be curlies, but have to be square brackets.
-     *           Subsequent braces can be curlies.
+     * {@internal Note: the first braces for array access to a constant, for some unknown reason,
+     *            can never be curlies, but have to be square brackets.
+     *            Subsequent braces can be curlies.}}
      *
      * @since 9.3.0
      *

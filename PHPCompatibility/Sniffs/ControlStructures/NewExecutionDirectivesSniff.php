@@ -1,10 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\ControlStructures\NewExecutionDirectivesSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
@@ -31,7 +32,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      * If the execution order is conditional, add the condition as a string to the version nr.
      * If's sufficient to list the first version where the execution directive appears.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string|array))
      */
     protected $newDirectives = array(
         'ticks' => array(

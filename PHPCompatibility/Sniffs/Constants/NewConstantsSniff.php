@@ -1,10 +1,11 @@
 <?php
 /**
- * \PHPCompatibility\Sniffs\Constants\NewConstantsSniff.
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
  *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * @package   PHPCompatibility
+ * @copyright 2012-2019 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
 namespace PHPCompatibility\Sniffs\Constants;
@@ -30,7 +31,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      *
      * Note: PHP Constants are case-sensitive!
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array(string => array(string => bool))
      */
     protected $newConstants = array(
         'E_STRICT' => array(
