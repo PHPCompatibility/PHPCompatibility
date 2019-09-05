@@ -15,11 +15,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\TypeCasts\NewTypeCastsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect use of newly introduced type casts.
  */
 class NewTypeCastsSniff extends AbstractNewFeatureSniff
 {

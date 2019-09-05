@@ -20,10 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredSniff
  * @covers \PHPCompatibility\Sniff::getDeclaredNamespaceName
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
 {

@@ -20,10 +20,6 @@ use PHPCompatibility\PHPCSHelper;
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewFlexibleHeredocNowdocSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {

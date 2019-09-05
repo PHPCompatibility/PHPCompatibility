@@ -15,13 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedMbstringModifiersSniff.
+ * Check for use of deprecated and removed regex modifiers for MbString regex functions.
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 {

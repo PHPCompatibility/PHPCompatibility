@@ -14,16 +14,9 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedHashAlgorithmsSniff.
- *
  * Discourages the use of deprecated and removed hash algorithms.
  *
  * PHP version 5.4
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 {

@@ -15,13 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff.
+ * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Koen Eelen <koen.eelen@cu.be>
  */
 class RemovedPHP4StyleConstructorsSniff extends Sniff
 {

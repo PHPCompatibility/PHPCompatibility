@@ -14,17 +14,11 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedSetlocaleStringSniff.
- *
  * Detect: Support for the category parameter passed as a string has been removed.
  * Only LC_* constants can be used as of this version [7.0.0].
  *
  * PHP version 4.2
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
 {

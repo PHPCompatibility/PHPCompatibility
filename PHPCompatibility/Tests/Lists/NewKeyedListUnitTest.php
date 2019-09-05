@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\NewKeyedListSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewKeyedListUnitTest extends BaseSniffTest
 {

@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\ForbiddenEmptyListAssignmentSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Wim Godden <wim@cu.be>
  */
 class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
 {

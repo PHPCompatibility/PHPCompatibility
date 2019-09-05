@@ -14,14 +14,7 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff.
- *
  * Discourages the use of deprecated and removed INI directives through ini_set() or ini_get().
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {

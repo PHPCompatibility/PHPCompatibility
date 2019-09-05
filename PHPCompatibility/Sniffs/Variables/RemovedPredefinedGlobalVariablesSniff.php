@@ -16,13 +16,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Variables\RemovedPredefinedGlobalVariablesSniff.
- *
  * Discourages the use of removed global variables. Suggests alternative extensions if available
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
  */
 class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 {

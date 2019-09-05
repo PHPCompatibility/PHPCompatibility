@@ -15,15 +15,9 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameName.
- *
  * Functions can not have multiple parameters with the same name since PHP 7.0
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim@cu.be>
  */
 class ForbiddenParametersWithSameNameSniff extends Sniff
 {

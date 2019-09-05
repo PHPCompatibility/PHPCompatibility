@@ -15,15 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinue.
- *
  * PHP 7.3 will throw a warning when continue is used to target a switch control structure.
  *
  * PHP version 7.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class DiscouragedSwitchContinueSniff extends Sniff
 {

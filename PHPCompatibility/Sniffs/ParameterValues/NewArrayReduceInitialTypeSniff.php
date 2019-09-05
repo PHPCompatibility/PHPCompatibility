@@ -14,13 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\NewArrayReduceInitialTypeSniff.
- *
  * Detect: In PHP 5.2 and lower, the $initial parameter had to be an integer.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
 {

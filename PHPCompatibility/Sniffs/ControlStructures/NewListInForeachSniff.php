@@ -17,10 +17,6 @@ use PHP_CodeSniffer_File as File;
  * Detect unpacking nested arrays with list() in a foreach().
  *
  * PHP version 5.5
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewListInForeachSniff extends Sniff
 {

@@ -14,12 +14,7 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Classes\NewClassesSniff.
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
+ * Detect use of new PHP native classes.
  */
 class NewClassesSniff extends AbstractNewFeatureSniff
 {

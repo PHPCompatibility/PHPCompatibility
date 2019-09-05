@@ -15,16 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArguments.
- *
  * Forbids variable arguments on break or continue statements.
  *
  * PHP version 5.4
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {

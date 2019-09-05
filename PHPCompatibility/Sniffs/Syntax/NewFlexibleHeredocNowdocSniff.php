@@ -24,10 +24,6 @@ use PHP_CodeSniffer_File as File;
  *   start of any of its lines.
  *
  * PHP version 7.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewFlexibleHeredocNowdocSniff extends Sniff
 {

@@ -14,13 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff.
+ * Detect declaration of the magic __autoload() method.
  *
  * PHP version 7.2
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim.godden@cu.be>
  */
 class RemovedMagicAutoloadSniff extends Sniff
 {

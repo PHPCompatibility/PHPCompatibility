@@ -17,10 +17,6 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityGetFQExtendedClassName
  * @group utilityFunctions
- *
- * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
 {

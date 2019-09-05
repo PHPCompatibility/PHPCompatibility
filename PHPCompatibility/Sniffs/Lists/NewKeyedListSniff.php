@@ -15,15 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Lists\NewKeyedListSniff.
- *
  * "You can now specify keys in list(), or its new shorthand [] syntax. "
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewKeyedListSniff extends Sniff
 {

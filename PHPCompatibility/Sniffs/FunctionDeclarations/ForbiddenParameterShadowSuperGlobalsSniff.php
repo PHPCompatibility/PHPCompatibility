@@ -15,18 +15,11 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParameterShadowSuperGlobalsSniff
- *
  * Discourages use of superglobals as parameters for functions.
  *
  * {@internal List of superglobals is maintained in the parent class.}}
  *
  * PHP version 5.4
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Declan Kelly <declankelly90@gmail.com>
- * @copyright 2015 Declan Kelly
  */
 class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 {

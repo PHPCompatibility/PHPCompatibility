@@ -17,10 +17,6 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Set up and Tear down methods for testing methods in the Sniff.php file.
- *
- * @uses    \PHPUnit_Framework_TestCase
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 {

@@ -22,10 +22,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * as any superglobals, $this, or any parameter since PHP 7.1.
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 {

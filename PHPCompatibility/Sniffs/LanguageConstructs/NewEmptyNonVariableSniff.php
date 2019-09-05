@@ -15,15 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff.
- *
  * Verify that nothing but variables are passed to empty().
  *
  * PHP version 5.5
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewEmptyNonVariableSniff extends Sniff
 {

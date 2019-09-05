@@ -15,16 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff.
- *
  * Discourages the use of assigning the return value of new by reference
  *
  * PHP version 5.4
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class RemovedNewReferenceSniff extends Sniff
 {

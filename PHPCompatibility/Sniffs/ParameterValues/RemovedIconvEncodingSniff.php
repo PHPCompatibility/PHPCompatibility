@@ -14,8 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedIconvEncodingSniff.
- *
  * Detect: "The iconv and mbstring configuration options related to encoding
  * have been deprecated in favour of default_charset."
  *
@@ -23,10 +21,6 @@ use PHP_CodeSniffer_File as File;
  * only the iconv function is handled.}}
  *
  * PHP version 5.6
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
 {

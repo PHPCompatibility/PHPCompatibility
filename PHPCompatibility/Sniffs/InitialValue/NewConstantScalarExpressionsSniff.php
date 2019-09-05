@@ -16,18 +16,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff.
- *
  * Since PHP 5.6, it is now possible to provide a scalar expression involving
  * numeric and string literals and/or constants in contexts where PHP previously
  * expected a static value, such as constant and property declarations and
  * default function arguments.
  *
  * PHP version 5.6
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewConstantScalarExpressionsSniff extends Sniff
 {

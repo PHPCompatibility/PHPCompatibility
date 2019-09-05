@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group interfaces
  *
  * @covers \PHPCompatibility\Sniffs\Interfaces\InternalInterfacesSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class InternalInterfacesUnitTest extends BaseSniffTest
 {

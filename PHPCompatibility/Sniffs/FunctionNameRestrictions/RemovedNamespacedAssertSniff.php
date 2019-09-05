@@ -24,10 +24,6 @@ use PHP_CodeSniffer_File as File;
  * "function already declared" error, so not the concern of this sniff.
  *
  * PHP version 7.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedNamespacedAssertSniff extends Sniff
 {

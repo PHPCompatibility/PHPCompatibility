@@ -20,10 +20,6 @@ use PHP_CodeSniffer_File as File;
  * can be referenced (i.e. if it is a variable).
  *
  * PHP version 5.5
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewForeachExpressionReferencingSniff extends Sniff
 {
