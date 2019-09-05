@@ -133,17 +133,40 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
 
         $targetParam = $parameters[1];
         $start       = $targetParam['start'];
+        $end         = ($targetParam['end'] + 1);
         $isOnlyText  = true;
 
-        $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $targetParam['start'], ($targetParam['end'] + 1));
-        if ($hasTernary !== false) {
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
+        if ($firstNonEmpty === false) {
+            // Parse error. Shouldn't be possible.
+            return;
+        }
+
+        if ($tokens[$firstNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
+            $start = ($firstNonEmpty + 1);
+            $end   = $tokens[$firstNonEmpty]['parenthesis_closer'];
+        }
+
+        $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $start, $end);
+        if ($hasTernary !== false
+            && isset($tokens[$start]['nested_parenthesis'], $tokens[$hasTernary]['nested_parenthesis'])
+            && count($tokens[$start]['nested_parenthesis']) === count($tokens[$hasTernary]['nested_parenthesis'])
+        ) {
             $start = ($hasTernary + 1);
         }
 
-        for ($i = $start; $i <= $targetParam['end']; $i++) {
+        for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
+            if (isset(Tokens::$emptyTokens[$tokenCode])) {
+                continue;
+            }
+
             if ($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']])) {
+                continue;
+            }
+
+            if ($hasTernary !== false && $tokenCode === \T_INLINE_ELSE) {
                 continue;
             }
 
@@ -151,7 +174,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
                 $isOnlyText = false;
             }
 
-            if ($tokenCode === \T_ARRAY || $tokenCode === \T_OPEN_SHORT_ARRAY) {
+            if ($tokenCode === \T_ARRAY || $tokenCode === \T_OPEN_SHORT_ARRAY || $tokenCode === \T_ARRAY_CAST) {
                 $this->throwNotice($phpcsFile, $stackPtr, $functionName);
                 return;
             }
@@ -160,7 +183,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
                 /*
                  * Check for specific functions which return an array (i.e. $pieces).
                  */
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), ($targetParam['end'] + 1), true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), $end, true);
                 if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
                     continue;
                 }
@@ -204,22 +227,38 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         /*
          * Examine the second parameter.
          */
+
         $targetParam = $parameters[2];
         $start       = $targetParam['start'];
+        $end         = ($targetParam['end'] + 1);
 
-        $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $targetParam['start'], ($targetParam['end'] + 1));
-        if ($hasTernary !== false) {
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
+        if ($firstNonEmpty === false) {
+            // Parse error. Shouldn't be possible.
+            return;
+        }
+
+        if ($tokens[$firstNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
+            $start = ($firstNonEmpty + 1);
+            $end   = $tokens[$firstNonEmpty]['parenthesis_closer'];
+        }
+
+        $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $start, $end);
+        if ($hasTernary !== false
+            && isset($tokens[$start]['nested_parenthesis'], $tokens[$hasTernary]['nested_parenthesis'])
+            && count($tokens[$start]['nested_parenthesis']) === count($tokens[$hasTernary]['nested_parenthesis'])
+        ) {
             $start = ($hasTernary + 1);
         }
 
-        for ($i = $start; $i <= $targetParam['end']; $i++) {
+        for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
             if (isset(Tokens::$emptyTokens[$tokenCode])) {
                 continue;
             }
 
-            if ($tokenCode === \T_ARRAY || $tokenCode === \T_OPEN_SHORT_ARRAY) {
+            if ($tokenCode === \T_ARRAY || $tokenCode === \T_OPEN_SHORT_ARRAY || $tokenCode === \T_ARRAY_CAST) {
                 // Found an array, $pieces is second.
                 return;
             }
