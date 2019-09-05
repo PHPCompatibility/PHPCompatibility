@@ -207,6 +207,9 @@ class BaseSniffTest extends PHPUnit_TestCase
      * @param string $expectedMessage Expected message (assertContains).
      *
      * @return bool
+     *
+     * @throws \Exception When no issues of a certain type where found on a line
+     *                    for which issues of that type where expected.
      */
     private function assertForType($issues, $type, $lineNumber, $expectedMessage)
     {
