@@ -29,7 +29,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the interface appears.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool))
      */
     protected $newInterfaces = array(
         'Traversable' => array(

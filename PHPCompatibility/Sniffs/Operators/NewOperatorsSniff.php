@@ -30,7 +30,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
      *
-     * @var array(string => array(string => int|string|null))
+     * @var array(string => array(string => bool|string))
      */
     protected $newOperators = array(
         'T_POW' => array(

@@ -30,7 +30,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      *
      * Note: PHP Constants are case-sensitive!
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array(string => array(string => bool))
      */
     protected $newConstants = array(
         'E_STRICT' => array(
