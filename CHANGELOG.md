@@ -14,6 +14,20 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.3.1] - 2019-09-06
+
+See all related issues and PRs in the [9.3.1 milestone].
+
+### Changed
+- :recycle: A whole slew of code documentation fixes. [#892](https://github.com/PHPCompatibility/PHPCompatibility/pull/892), [#895](https://github.com/PHPCompatibility/PHPCompatibility/pull/895), [#896](https://github.com/PHPCompatibility/PHPCompatibility/pull/896), [#897](https://github.com/PHPCompatibility/PHPCompatibility/pull/897), [#898](https://github.com/PHPCompatibility/PHPCompatibility/pull/898), [#899](https://github.com/PHPCompatibility/PHPCompatibility/pull/899), [#900](https://github.com/PHPCompatibility/PHPCompatibility/pull/900)
+- :wrench: Travis: minor tweaks to the build script. [#893](https://github.com/PHPCompatibility/PHPCompatibility/pull/893)
+
+### Fixed
+- :bug: `PHPCompatibility.ParameterValues.RemovedImplodeFlexibleParamOrder`: false positive when an array item in the second parameter contained a ternary. [#891](https://github.com/PHPCompatibility/PHPCompatibility/pull/891). Fixes [#890](https://github.com/PHPCompatibility/PHPCompatibility/issues/890)
+- :bug: `PHPCompatibility.ParameterValues.RemovedImplodeFlexibleParamOrder`: will now take array casts into account when determining which parameter is `$pieces`. [#891](https://github.com/PHPCompatibility/PHPCompatibility/pull/891).
+- :bug: `PHPCompatibility.ParameterValues.RemovedImplodeFlexibleParamOrder`: hardening of the logic to not examine the second parameter when the first is just and only a text string (`$glue`). [#891](https://github.com/PHPCompatibility/PHPCompatibility/pull/891).
+
+
 ## [9.3.0] - 2019-08-29
 
 See all related issues and PRs in the [9.3.0 milestone].
@@ -1306,7 +1320,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 
-[Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.0...HEAD
+[Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[9.3.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.0...9.3.1
 [9.3.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.2.0...9.3.0
 [9.2.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.1...9.2.0
 [9.1.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.0...9.1.1
@@ -1333,6 +1348,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[9.3.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/30
 [9.3.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/29
 [9.2.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/28
 [9.1.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/27
