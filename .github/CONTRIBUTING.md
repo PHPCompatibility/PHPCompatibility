@@ -20,7 +20,7 @@ Pull requests
 
 Contributions in the form of pull requests are very welcome.
 
-To start contributing, fork the repository, create a new branch in your fork, make your intended changes and pull the branch against the `master` branch of this repository.
+To start contributing, fork the repository, create a new branch in your fork, make your intended changes and pull the branch against the `develop` branch of this repository.
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
