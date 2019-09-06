@@ -17,6 +17,20 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 This is a set of sniffs for [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
 It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
 
+* [PHP Version Support](#php-version-support)
+* [Requirements](#requirements)
+* [Thank you](#thank-you)
+* [Upgrading to PHPCompatibility 9.0.0](#warning-upgrading-to-phpcompatibility-900-warning)
+* [Installation in a Composer project (method 1)](#installation-in-a-composer-project-method-1)
+* [Installation via a git check-out to an arbitrary directory (method 2)](#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2)
+* [Sniffing your code for compatibility with specific PHP version(s)](#sniffing-your-code-for-compatibility-with-specific-php-versions)
+    + [Using a framework/CMS/polyfill specific ruleset](#using-a-frameworkcmspolyfill-specific-ruleset)
+* [Using a custom ruleset](#using-a-custom-ruleset)
+    + [`testVersion` in the ruleset versus command-line](#testversion-in-the-ruleset-versus-command-line)
+    + [PHPCompatibility specific options](#phpcompatibility-specific-options)
+* [Projects extending PHPCompatibility](#projects-extending-phpcompatibility)
+* [Contributing](#contributing)
+* [License](#license)
 
 PHP Version Support
 -------
@@ -187,7 +201,7 @@ You can also set the `testVersion` from within the ruleset:
 
 Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
 
-#### `testVersion` in the ruleset versus command-line
+### `testVersion` in the ruleset versus command-line
 
 In PHPCS 3.2.0 and lower, once you set the `testVersion` in the ruleset, you could not overrule it from the command-line anymore.
 Starting with PHPCS 3.3.0, a `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
@@ -195,7 +209,7 @@ Starting with PHPCS 3.3.0, a `testVersion` set via the command-line will overrul
 This allows for more flexibility when, for instance, your project needs to comply with PHP `5.5-`, but you have a bootstrap file which needs to be compatible with PHP `5.2-`.
 
 
-#### PHPCompatibility specific options
+### PHPCompatibility specific options
 
 At this moment, there is one sniff which has a property which can be set via the ruleset. More custom properties may become available in the future.
 
@@ -215,7 +229,7 @@ To whitelist userland functions, you can pass a comma-delimited list of function
 This property was added in PHPCompatibility version 7.0.1.
 As of PHPCompatibility version 8.0.0, this custom property is only supported in combination with PHP CodeSniffer > 2.6.0 due to an upstream bug (which was fixed in PHPCS 2.6.0).
 
-Projects extending on PHPCompatibility
+Projects extending PHPCompatibility
 --------------------------------------
 There are hundreds of public projects using PHPCompatibility or extending on top of it. A short list of some that you might know or have a look at :
 * [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
@@ -225,6 +239,9 @@ There are hundreds of public projects using PHPCompatibility or extending on top
 * [WordPress Tide project](https://wptide.org/)
 * [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#788c81b6)
 
+Contributing
+-------
+Contributions are very welcome. Please read the [CONTRIBUTING](.github/CONTRIBUTING.md) documentation to get started.
 
 License
 -------
