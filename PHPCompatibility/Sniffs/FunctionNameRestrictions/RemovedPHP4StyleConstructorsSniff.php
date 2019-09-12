@@ -91,14 +91,9 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
-            // Anonymous class in combination with PHPCS 2.3.x.
-            return;
-        }
-
-        $scopeCloser = $class['scope_closer'];
-        $className   = $tokens[$nextNonEmpty]['content'];
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true); // Will never return false.
+        $scopeCloser  = $class['scope_closer'];
+        $className    = $tokens[$nextNonEmpty]['content'];
 
         if (empty($className) || \is_string($className) === false) {
             return;
