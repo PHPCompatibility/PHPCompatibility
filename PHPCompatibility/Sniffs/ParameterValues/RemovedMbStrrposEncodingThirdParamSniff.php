@@ -111,7 +111,7 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
         }
 
         if (isset($parameters[4]) === true) {
-            // Encoding set as fourth parameter set.
+            // Encoding set as fourth parameter.
             return;
         }
 
