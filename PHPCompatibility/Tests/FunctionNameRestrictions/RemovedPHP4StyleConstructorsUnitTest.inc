@@ -62,8 +62,23 @@ class new {}
 
 // Testing empty/invalid function name condition.
 class InvalidSwitchFunctionName {
-	function switch() {}
-	function InvalidSwitchFunctionName() {}
+    function switch() {}
+    function InvalidSwitchFunctionName() {}
+}
+
+// Simple test of the docblock skipping code.
+class bar {
+    /**
+     * This
+     * docblock
+     * should
+     * be
+     * skipped
+     * over.
+     */
+    function __construct() {
+        echo 'I am the real constructor';
+    }
 }
 
 // Must be last test: testing class without scope closer.
