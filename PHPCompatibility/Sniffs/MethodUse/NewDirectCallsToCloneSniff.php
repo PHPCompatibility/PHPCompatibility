@@ -31,6 +31,17 @@ class NewDirectCallsToCloneSniff extends Sniff
 {
 
     /**
+     * Tokens which indicate class internal use.
+     *
+     * @var array
+     */
+    protected $classInternal = array(
+        T_PARENT => true,
+        T_SELF   => true,
+        T_STATIC => true,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 9.1.0
@@ -85,6 +96,12 @@ class NewDirectCallsToCloneSniff extends Sniff
         $nextNextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
         if ($nextNextNonEmpty === false || $tokens[$nextNextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a method call.
+            return;
+        }
+
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prevNonEmpty === false || isset($this->classInternal[$tokens[$prevNonEmpty]['code']])) {
+            // Class internal call to __clone().
             return;
         }
 

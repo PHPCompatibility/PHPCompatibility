@@ -50,11 +50,8 @@ class NewDirectCallsToCloneUnitTest extends BaseSniffTest
     public function dataDirectCallToClone()
     {
         return array(
-            array(23),
-            array(24),
-            array(25),
-            array(29),
-            array(30),
+            array(33),
+            array(34),
         );
     }
 
@@ -83,15 +80,13 @@ class NewDirectCallsToCloneUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(14),
-        );
+        $cases = array();
+        // No errors expected on the first 29 lines.
+        for ($line = 1; $line <= 29; $line++) {
+            $cases[] = array($line);
+        }
+
+        return $cases;
     }
 
 
