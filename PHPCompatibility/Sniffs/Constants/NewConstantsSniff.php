@@ -2832,6 +2832,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'SODIUM_CRYPTO_PWHASH_ALG_ARGON2ID13' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'SODIUM_CRYPTO_PWHASH_ALG_DEFAULT' => array(
             '7.1' => false,
             '7.2' => true,
