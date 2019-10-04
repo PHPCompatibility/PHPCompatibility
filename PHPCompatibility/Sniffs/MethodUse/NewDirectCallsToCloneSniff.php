@@ -36,9 +36,9 @@ class NewDirectCallsToCloneSniff extends Sniff
      * @var array
      */
     protected $classInternal = array(
-        T_PARENT => true,
-        T_SELF   => true,
-        T_STATIC => true,
+        \T_PARENT => true,
+        \T_SELF   => true,
+        \T_STATIC => true,
     );
 
     /**
