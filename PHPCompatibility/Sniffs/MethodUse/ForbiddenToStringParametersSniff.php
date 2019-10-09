@@ -76,7 +76,7 @@ class ForbiddenToStringParametersSniff extends Sniff
         }
 
         if (strtolower($tokens[$nextNonEmpty]['content']) !== '__tostring') {
-            // Not a call to the __clone() method.
+            // Not a call to the __toString() method.
             return;
         }
 

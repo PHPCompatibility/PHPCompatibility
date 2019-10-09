@@ -40,7 +40,7 @@ class NewExceptionsFromToStringSniff extends Sniff
     );
 
     /**
-     * Tokens which should be ignore when they preface a function declaration
+     * Tokens which should be ignored when they preface a function declaration
      * when trying to find the docblock (if any).
      *
      * Array will be added to in the register() method.

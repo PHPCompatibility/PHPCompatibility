@@ -87,7 +87,7 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         $cases = array();
-        // No errors expected on the first 21 lines.
+        // No errors expected on the first 35 lines.
         for ($line = 1; $line <= 35; $line++) {
             $cases[] = array($line);
         }
