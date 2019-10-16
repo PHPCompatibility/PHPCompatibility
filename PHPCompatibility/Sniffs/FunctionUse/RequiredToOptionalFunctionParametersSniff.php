@@ -177,6 +177,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
+            \T_NEW             => true,
         );
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
