@@ -14,13 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\NewPackFormatSniff.
- *
  * Detect: Changes in the allowed values for $format passed to pack().
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
 {

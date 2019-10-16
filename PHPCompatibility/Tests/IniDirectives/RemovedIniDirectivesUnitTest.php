@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group iniDirectives
  *
  * @covers \PHPCompatibility\Sniffs\IniDirectives\RemovedIniDirectivesSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class RemovedIniDirectivesUnitTest extends BaseSniffTest
 {

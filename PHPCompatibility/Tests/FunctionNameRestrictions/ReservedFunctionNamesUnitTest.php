@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {
@@ -155,6 +151,9 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
             array(98),
             array(101),
             array(102),
+
+            array(124),
+            array(135),
         );
     }
 

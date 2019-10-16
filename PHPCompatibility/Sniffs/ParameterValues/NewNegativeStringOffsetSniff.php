@@ -14,16 +14,10 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\NewNegativeStringOffsetSniff.
- *
  * Detect: negative string offsets as parameters passed to functions where this
  * was not allowed prior to PHP 7.1.
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
 {

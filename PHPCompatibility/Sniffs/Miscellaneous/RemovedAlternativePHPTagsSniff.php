@@ -14,15 +14,9 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Miscellaneous\RemovedAlternativePHPTags.
- *
  * Check for usage of alternative PHP tags - removed in PHP 7.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  *
  * Based on `Generic_Sniffs_PHP_DisallowAlternativePHPTags` by Juliette Reinders Folmer
  * which was merged into PHPCS 2.7.0.
@@ -122,7 +116,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             return;
         }
 
-        // If we're still here, we can't be sure if what we find was really intended as ASP open tags.
+        // If we're still here, we can't be sure if what we found was really intended as ASP open tags.
         if ($openTag['code'] === \T_INLINE_HTML && $this->aspTags === false) {
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';

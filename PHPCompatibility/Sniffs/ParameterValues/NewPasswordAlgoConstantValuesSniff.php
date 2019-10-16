@@ -34,7 +34,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      * Functions to check for.
      *
      * Key is the function name, value the 1-based parameter position of
-     * the $encoding parameter.
+     * the $algo parameter.
      *
      * @since 9.3.0
      *

@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group languageConstructs
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewLanguageConstructsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewLanguageConstructsUnitTest extends BaseSniffTest
 {

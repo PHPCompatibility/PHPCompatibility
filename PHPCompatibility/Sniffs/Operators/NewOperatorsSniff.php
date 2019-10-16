@@ -14,12 +14,7 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Operators\NewOperatorsSniff.
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
+ * Detect use of new PHP operators.
  */
 class NewOperatorsSniff extends AbstractNewFeatureSniff
 {
@@ -28,7 +23,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * A list of new operators, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
-     * If's sufficient to list the first version where the keyword appears.
+     * If's sufficient to list the first version where the operator appears.
      *
      * @var array(string => array(string => bool|string))
      */
@@ -221,7 +216,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
 
     /**
-     * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     * Filter the error data before it's passed to PHPCS.
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.
@@ -247,7 +242,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     private function isTCoalesceEqual($tokens, $stackPtr)
     {
         if ($tokens[$stackPtr]['code'] !== \T_EQUAL || isset($tokens[($stackPtr - 1)]) === false) {
-            // Function called for wrong token or token has no predecesor.
+            // Function called for wrong token or token has no predecessor.
             return false;
         }
 
@@ -274,7 +269,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     private function isTCoalesce($tokens, $stackPtr)
     {
         if ($tokens[$stackPtr]['code'] !== \T_INLINE_THEN || isset($tokens[($stackPtr - 1)]) === false) {
-            // Function called for wrong token or token has no predecesor.
+            // Function called for wrong token or token has no predecessor.
             return false;
         }
 

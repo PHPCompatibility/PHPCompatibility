@@ -14,13 +14,7 @@ use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\NewPCREModifiers.
- *
  * Check for usage of newly added regex modifiers for PCRE functions.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
 {

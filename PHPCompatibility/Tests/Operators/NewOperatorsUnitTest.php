@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group operators
  *
  * @covers \PHPCompatibility\Sniffs\Operators\NewOperatorsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Jansen Price <jansen.price@gmail.com>
  */
 class NewOperatorsUnitTest extends BaseSniffTest
 {

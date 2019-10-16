@@ -15,13 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff.
+ * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Koen Eelen <koen.eelen@cu.be>
  */
 class RemovedPHP4StyleConstructorsSniff extends Sniff
 {
@@ -91,7 +87,13 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
-        while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext(array(\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG), ($nextFunc + 1), $scopeCloser)) !== false) {
+            // Skip over docblocks.
+            if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
+                $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
             $functionScopeCloser = $nextFunc;
             if (isset($tokens[$nextFunc]['scope_closer'])) {
                 // Normal (non-interface, non-abstract) method.

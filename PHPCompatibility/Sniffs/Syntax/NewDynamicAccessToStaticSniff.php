@@ -15,16 +15,10 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Syntax\NewDynamicAccessToStaticSniff.
- *
  * As of PHP 5.3, static properties and methods as well as class constants
  * can be accessed using a dynamic (variable) class name.
  *
  * PHP version 5.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewDynamicAccessToStaticSniff extends Sniff
 {

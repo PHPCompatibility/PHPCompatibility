@@ -20,10 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group exceptions
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewMultiCatchSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewMultiCatchUnitTest extends BaseSniffTest
 {

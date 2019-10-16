@@ -14,11 +14,7 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\NewHashAlgorithmsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect the use of newly introduced hash algorithms.
  */
 class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 {

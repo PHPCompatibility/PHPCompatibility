@@ -35,7 +35,7 @@ class ForbiddenToStringParametersSniff extends Sniff
      *
      * @var array
      */
-    public $ooScopeTokens = array(
+    protected $ooScopeTokens = array(
         'T_CLASS'      => true,
         'T_INTERFACE'  => true,
         'T_TRAIT'      => true,

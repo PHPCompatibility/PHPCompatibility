@@ -14,14 +14,7 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff.
- *
  * Discourages the use of new INI directives through ini_set() or ini_get().
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2013 Cu.be Solutions bvba
  */
 class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {

@@ -18,10 +18,6 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @group utilityIsClassProperty
  * @group utilityFunctions
- *
- * @uses    \PHPCompatibility\Util\Tests\CoreMethodTestFrame
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class IsClassPropertyUnitTest extends CoreMethodTestFrame
 {

@@ -14,6 +14,28 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.3.2] - 2019-10-16
+
+See all related issues and PRs in the [9.3.2 milestone].
+
+### Added
+- :star: `PHPCompatibility.Constants.NewConstants` sniff: detection of the PHP 7.2 `SODIUM_CRYPTO_PWHASH_ALG_ARGON2ID13` constant. [#915](https://github.com/PHPCompatibility/PHPCompatibility/pull/915)
+- :books: Readme: a list of projects which are build upon or extend PHPCompatibility. [#904](https://github.com/PHPCompatibility/PHPCompatibility/pull/904)
+
+### Changed
+- :pushpin: `PHPCompatibility.FunctionNameRestrictions.RemovedPHP4StyleConstructors`: minor efficiency fix to make the sniff faster. [#912](https://github.com/PHPCompatibility/PHPCompatibility/pull/912)
+- :pushpin: `PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames`: functions marked as `@deprecated` in the function docblock will now be ignored by this sniff. [#917](https://github.com/PHPCompatibility/PHPCompatibility/pull/917)
+- :pencil: `PHPCompatibility.FunctionDeclarations.ForbiddenToStringParameters`: the `$ooScopeTokens` property is now `protected`, it should never have been `public` in the first place. [#907](https://github.com/PHPCompatibility/PHPCompatibility/pull/907)
+- :recycle: More code documentation fixes. [#903](https://github.com/PHPCompatibility/PHPCompatibility/pull/903), [#916](https://github.com/PHPCompatibility/PHPCompatibility/pull/916)
+- :books: Readme/Contributing: various tweaks. [#904](https://github.com/PHPCompatibility/PHPCompatibility/pull/904), [#905](https://github.com/PHPCompatibility/PHPCompatibility/pull/905)
+
+### Fixed
+- :bug: `PHPCompatibility.FunctionUse.OptionalToRequiredFunctionParameters`: false positive when a class is instantiated which has the same name as one of the affected functions. [#914](https://github.com/PHPCompatibility/PHPCompatibility/pull/914)
+- :bug: `PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters`: false positive when a class is instantiated which has the same name as one of the affected functions. [#914](https://github.com/PHPCompatibility/PHPCompatibility/pull/914)
+- :bug: `PHPCompatibility.MethodUse.NewDirectCallsToClone`: false positive on calling `__clone()` from within the class being cloned [#910](https://github.com/PHPCompatibility/PHPCompatibility/pull/910)
+- :bug: `PHPCompatibility.Miscellaneous.ValidIntegers`: binary numbers using an uppercase `B` were not always recognized correctly. [#909](https://github.com/PHPCompatibility/PHPCompatibility/pull/909)
+
+
 ## [9.3.1] - 2019-09-06
 
 See all related issues and PRs in the [9.3.1 milestone].
@@ -72,7 +94,7 @@ The `10.0.0` release is expected around the same time as the release of PHP 7.4 
 - :star: `PHPCompatibility.FunctionUse.RemovedFunctions` sniff: recognize the PHP 7.4 deprecated `convert_cyr_string()()`, `ezmlm_hash()`, `get_magic_quotes_gpc()`, `get_magic_quotes_runtime()`, `hebrevc()`, `is_real()`, `money_format()` and `restore_include_path()` functions. [#847](https://github.com/PHPCompatibility/PHPCompatibility/pull/847)
 - :star: `PHPCompatibility.IniDirectives.NewIniDirectives` sniff: detect use of the new PHP 7.4 `zend.exception_ignore_args` ini directive. [#871](https://github.com/PHPCompatibility/PHPCompatibility/pull/871)
 - :star: `PHPCompatibility.IniDirectives.RemovedIniDirectives` sniff: detect use of the `allow_url_include` ini directive which is deprecated as of PHP 7.4. [#870](https://github.com/PHPCompatibility/PHPCompatibility/pull/870)
-- :star: `PHPCompatibility.IniDirectives.RemovedIniDirectives` sniff: detection of use of the `opcache.load_comments` directive which was removed in PHP 7.0. [#v](https://github.com/PHPCompatibility/PHPCompatibility/pull/883)
+- :star: `PHPCompatibility.IniDirectives.RemovedIniDirectives` sniff: detection of use of the `opcache.load_comments` directive which was removed in PHP 7.0. [#883](https://github.com/PHPCompatibility/PHPCompatibility/pull/883)
 - :star: `PHPCompatibility.ParameterValues.NewHashAlgorithms`: recognize use of the new PHP 7.4 `crc32c` hash algorithm. [#872](https://github.com/PHPCompatibility/PHPCompatibility/pull/872)
 - :star: `PHPCompatibility.TypeCasts.RemovedTypeCasts` sniff: detect usage of the `(real)` type cast which will be deprecated in PHP 7.4. [#844](https://github.com/PHPCompatibility/PHPCompatibility/pull/844)
 - :star: Recognize the `recode` extension functionality which will be removed in PHP 7.4 (moved to PECL) in the `RemovedExtensions` and `RemovedFunctions` sniffs. [#841](https://github.com/PHPCompatibility/PHPCompatibility/pull/841)
@@ -1321,6 +1343,7 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 [Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[9.3.2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.1...9.3.2
 [9.3.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.0...9.3.1
 [9.3.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.2.0...9.3.0
 [9.2.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.1.1...9.2.0
@@ -1348,6 +1371,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[9.3.2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/31
 [9.3.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/30
 [9.3.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/29
 [9.2.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/28

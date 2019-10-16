@@ -15,7 +15,8 @@ class ABC {
 }
 
 /*
- * These should be flagged.
+ * These are class internal calls to __clone(), this is fine.
+ * See: https://github.com/PHPCompatibility/PHPCompatibility/issues/629#issuecomment-532607809
  */
 class DEF {
     function something()
@@ -26,5 +27,8 @@ class DEF {
     }
 }
 
+/*
+ * These should be flagged.
+ */
 $a = (new ABC()) ->  /* comment */ __clone();
 StaticClass::__clone();

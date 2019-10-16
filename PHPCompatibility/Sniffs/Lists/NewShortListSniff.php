@@ -14,17 +14,11 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Lists\NewShortListSniff.
- *
  * "The shorthand array syntax ([]) may now be used to destructure arrays for
  * assignments (including within foreach), as an alternative to the existing
  * list() syntax, which is still supported."
  *
  * PHP version 7.1
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewShortListSniff extends Sniff
 {

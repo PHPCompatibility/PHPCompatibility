@@ -13,15 +13,11 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\ComplexVersionInterface.
+ * Complex Version Interface.
  *
  * Interface to be implemented by sniffs using a multi-dimensional array of
  * PHP features (functions, classes etc) being sniffed for with version
  * information in sub-arrays.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 interface ComplexVersionInterface
 {

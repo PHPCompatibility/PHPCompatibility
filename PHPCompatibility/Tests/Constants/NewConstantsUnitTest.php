@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\NewConstantsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewConstantsUnitTest extends BaseSniffTest
 {
@@ -730,6 +726,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('SODIUM_CRYPTO_GENERICHASH_KEYBYTES_MIN', '7.1', array(664), '7.2'),
             array('SODIUM_CRYPTO_GENERICHASH_KEYBYTES_MAX', '7.1', array(665), '7.2'),
             array('SODIUM_CRYPTO_PWHASH_ALG_ARGON2I13', '7.1', array(666), '7.2'),
+            array('SODIUM_CRYPTO_PWHASH_ALG_ARGON2ID13', '7.1', array(865), '7.2'),
             array('SODIUM_CRYPTO_PWHASH_ALG_DEFAULT', '7.1', array(667), '7.2'),
             array('SODIUM_CRYPTO_PWHASH_SALTBYTES', '7.1', array(668), '7.2'),
             array('SODIUM_CRYPTO_PWHASH_STRPREFIX', '7.1', array(669), '7.2'),

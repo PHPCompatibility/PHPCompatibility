@@ -14,11 +14,7 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Constants\RemovedConstantsSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect use of deprecated and/or removed PHP native global constants.
  */
 class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 {

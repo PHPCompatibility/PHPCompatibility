@@ -15,15 +15,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionDeclarations\NewClosure.
- *
  * Closures are available since PHP 5.3
  *
  * PHP version 5.3
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim@cu.be>
  */
 class NewClosureSniff extends Sniff
 {

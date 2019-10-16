@@ -15,17 +15,10 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff.
- *
  * Check for usage of the `e` modifier with PCRE functions which is deprecated since PHP 5.5
  * and removed as of PHP 7.0.
  *
  * PHP version 5.5
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2014 Cu.be Solutions bvba
  */
 class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {

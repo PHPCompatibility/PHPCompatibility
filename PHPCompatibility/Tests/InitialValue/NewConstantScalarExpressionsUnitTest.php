@@ -20,10 +20,6 @@ use PHPCompatibility\PHPCSHelper;
  * @group initialValue
  *
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
 {

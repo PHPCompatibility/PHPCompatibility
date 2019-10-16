@@ -19,10 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group typeCasts
  *
  * @covers \PHPCompatibility\Sniffs\TypeCasts\RemovedTypeCastsSniff
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class RemovedTypeCastsUnitTest extends BaseSniffTest
 {

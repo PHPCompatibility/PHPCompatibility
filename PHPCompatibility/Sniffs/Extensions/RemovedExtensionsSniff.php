@@ -15,14 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Extensions\RemovedExtensionsSniff.
- *
  * Discourages the use of removed extensions. Suggests alternative extensions if available
- *
- * @category  PHP
- * @package   PHPCompatibility
- * @author    Wim Godden <wim.godden@cu.be>
- * @copyright 2012 Cu.be Solutions bvba
  */
 class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {

@@ -20,10 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff
  * @covers \PHPCompatibility\Sniff::isVariable
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
  */
 class NewEmptyNonVariableUnitTest extends BaseSniffTest
 {

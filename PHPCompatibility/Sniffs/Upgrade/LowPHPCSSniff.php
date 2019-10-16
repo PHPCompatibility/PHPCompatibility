@@ -15,8 +15,6 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * \PHPCompatibility\Sniffs\Upgrade\LowPHPCSSniff.
- *
  * Add a notification for users of low PHPCS versions.
  *
  * Originally PHPCompatibility supported PHPCS 1.5.x, 2.x and since PHPCompatibility 8.0.0, 3.x.
@@ -29,10 +27,7 @@ use PHP_CodeSniffer_File as File;
  * This sniff adds an explicit error/warning for users of the standard
  * using a PHPCS version below the recommended version.
  *
- * @category Upgrade
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
- * @since    8.2.0
+ * @since 8.2.0
  */
 class LowPHPCSSniff extends Sniff
 {

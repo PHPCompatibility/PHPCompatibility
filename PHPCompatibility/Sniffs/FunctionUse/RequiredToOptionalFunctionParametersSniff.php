@@ -15,11 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff.
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Juliette Reinders Folmer <phpcompatibility_nospam@adviesenzo.nl>
+ * Detect missing required function parameters in calls to native PHP functions.
  */
 class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSniff
 {
@@ -181,6 +177,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
+            \T_NEW             => true,
         );
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);

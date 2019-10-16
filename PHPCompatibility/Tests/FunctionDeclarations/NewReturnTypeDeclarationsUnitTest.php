@@ -21,10 +21,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewReturnTypeDeclarationsSniff
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
- *
- * @uses    \PHPCompatibility\Tests\BaseSniffTest
- * @package PHPCompatibility
- * @author  Wim Godden <wim@cu.be>
  */
 class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 {

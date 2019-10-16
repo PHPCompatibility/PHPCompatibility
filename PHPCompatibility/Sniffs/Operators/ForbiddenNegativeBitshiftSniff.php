@@ -16,15 +16,9 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * \PHPCompatibility\Sniffs\Operators\ForbiddenNegativeBitshift.
- *
  * Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0.
  *
  * PHP version 7.0
- *
- * @category PHP
- * @package  PHPCompatibility
- * @author   Wim Godden <wim@cu.be>
  */
 class ForbiddenNegativeBitshiftSniff extends Sniff
 {
