@@ -98,9 +98,9 @@ $a = new class {
 $b = function ($a) {};
 
 class ClassContainingClosure {
-	public function methodContainingClosure() {
-		$a = function($c) {};
-	}
+    public function methodContainingClosure() {
+        $a = function($c) {};
+    }
 }
 
 class Nested {
@@ -111,4 +111,26 @@ class Nested {
             }
         };
     }
+}
+
+/**
+ * Function description.
+ *
+ * @since 1.2.3
+ * @deprecated 2.3.4
+ *
+ * @return void
+ */
+function __deprecatedFunction() {}
+
+class Deprecated {
+    /**
+     * Function description.
+     *
+     * @since 1.2.3
+     * @deprecated 2.3.4
+     *
+     * @return void
+     */
+    public static function __deprecatedMethod() {}
 }

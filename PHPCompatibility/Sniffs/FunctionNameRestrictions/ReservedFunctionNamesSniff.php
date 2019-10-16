@@ -28,6 +28,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *            Extending the upstream sniff instead of including it via the ruleset, however,
  *            prevents hard to debug issues of errors not being reported from the upstream sniff
  *            if this library is used in combination with other rulesets.}}
+ *
+ * @since 8.2.0 This was previously, since 7.0.3, checked by the upstream sniff.
+ * @since 9.3.2 The sniff will now ignore functions marked as @deprecated by design.
  */
 class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
 {
@@ -77,6 +80,15 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
             return;
         }
 
+        if ($this->isFunctionDeprecated($phpcsFile, $stackPtr) === true) {
+            /*
+             * Deprecated functions don't have to comply with the naming conventions,
+             * otherwise functions deprecated in favour of a function with a compliant
+             * name would still trigger an error.
+             */
+            return;
+        }
+
         $methodName = $phpcsFile->getDeclarationName($stackPtr);
         if ($methodName === null) {
             // Ignore closures.
@@ -117,6 +129,15 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
      */
     protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
     {
+        if ($this->isFunctionDeprecated($phpcsFile, $stackPtr) === true) {
+            /*
+             * Deprecated functions don't have to comply with the naming conventions,
+             * otherwise functions deprecated in favour of a function with a compliant
+             * name would still trigger an error.
+             */
+            return;
+        }
+
         $functionName = $phpcsFile->getDeclarationName($stackPtr);
         if ($functionName === null) {
             // Ignore closures.
@@ -135,5 +156,40 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
                 );
             }
         }
+    }
+
+
+    /**
+     * Check whether a function has been marked as deprecated via a @deprecated tag
+     * in the function docblock.
+     *
+     * @since 9.3.2
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a T_FUNCTION
+     *                                               token in the stack.
+     *
+     * @return bool
+     */
+    private function isFunctionDeprecated(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+        $find   = Tokens::$methodPrefixes;
+        $find[] = \T_WHITESPACE;
+
+        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+        if ($tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
+            // Function doesn't have a doc comment or is using the wrong type of comment.
+            return false;
+        }
+
+        $commentStart = $tokens[$commentEnd]['comment_opener'];
+        foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
+            if ($tokens[$tag]['content'] === '@deprecated') {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
