@@ -2684,6 +2684,22 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'SODIUM_BASE64_VARIANT_ORIGINAL' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_BASE64_VARIANT_ORIGINAL_NO_PADDING' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_BASE64_VARIANT_URLSAFE' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'SODIUM_CRYPTO_AEAD_AES256GCM_KEYBYTES' => array(
             '7.1' => false,
             '7.2' => true,
@@ -2729,6 +2745,22 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_ABYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_KEYBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_NSECBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_NPUBBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_ABYTES' => array(
             '7.1' => false,
             '7.2' => true,
         ),
@@ -2921,6 +2953,38 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'SODIUM_CRYPTO_SECRETBOX_NONCEBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_ABYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_HEADERBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_KEYBYTES' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_MESSAGEBYTES_MAX' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_MESSAGE' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_PUSH' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_REKEY' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'SODIUM_CRYPTO_SECRETSTREAM_XCHACHA20POLY1305_TAG_FINAL' => array(
             '7.1' => false,
             '7.2' => true,
         ),
