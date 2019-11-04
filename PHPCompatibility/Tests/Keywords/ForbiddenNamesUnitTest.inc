@@ -208,6 +208,10 @@ isset( $foo );
 // print
 print "Hello world!";
 
+// require
+require __DIR__ . '/path/to/file.php';
+require( $file );
+
 // require_once
 require_once __DIR__ . '/path/to/file.php';
 require_once( $file );

@@ -79,6 +79,7 @@ class ForbiddenNamesSniff extends Sniff
         'private'       => '5.0',
         'protected'     => '5.0',
         'public'        => '5.0',
+        'require'       => 'all',
         'require_once'  => 'all',
         'return'        => 'all',
         'static'        => 'all',
