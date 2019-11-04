@@ -168,3 +168,56 @@ namespace Foo\Bar\Baz {}
 use function MyFunctionName;
 use function MyFunctionName as func;
 use const MyCONSTANT;
+
+// list
+list( $a, $b, $c ) = $array;
+
+// die
+die();
+
+// echo
+echo "Hello World!";
+
+$str = "Hello World!";
+echo $str;
+
+// empty
+empty($foo);
+
+// eval
+eval( 'echo "Hello World!";' );
+
+// exit
+exit( 'Exit Message' );
+exit(1);
+
+// include
+include __DIR__ . '/path/to/file.php';
+include( $file );
+
+// include_once
+include_once __DIR__ . '/path/to/file.php';
+include_once( $file );
+
+// interface
+interface FoobarInterface {}
+
+// isset
+isset( $foo );
+
+// print
+print "Hello world!";
+
+// require_once
+require_once __DIR__ . '/path/to/file.php';
+require_once( $file );
+
+// return
+return;
+return $foo;
+
+// unset
+unset( $foo );
+
+// yield
+yield $item;
