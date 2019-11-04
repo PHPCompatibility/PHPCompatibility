@@ -52,6 +52,7 @@ use Foobar as print;
 use Foobar as private;
 use Foobar as protected;
 use Foobar as public;
+use Foobar as require;
 use Foobar as require_once;
 use Foobar as return;
 use Foobar as static;

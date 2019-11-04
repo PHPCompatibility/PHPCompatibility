@@ -52,6 +52,7 @@ namespace Foo\print\Bar;
 namespace Foo\private\Bar;
 namespace Foo\protected\Bar;
 namespace Foo\public\Bar;
+namespace Foo\require\Bar;
 namespace Foo\require_once\Bar;
 namespace Foo\return\Bar;
 namespace Foo\static\Bar;

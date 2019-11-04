@@ -52,6 +52,7 @@ const print = 1;
 const private = 1;
 const protected = 1;
 const public = 1;
+const require = 1;
 const require_once = 1;
 const return = 1;
 const static = 1;

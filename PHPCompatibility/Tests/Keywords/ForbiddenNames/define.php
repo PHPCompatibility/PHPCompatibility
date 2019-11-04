@@ -52,6 +52,7 @@ define('print', 1);
 define('private', 1);
 define('protected', 1);
 define('public', 1);
+define('require', 1);
 define('require_once', 1);
 define('return', 1);
 define('static', 1);

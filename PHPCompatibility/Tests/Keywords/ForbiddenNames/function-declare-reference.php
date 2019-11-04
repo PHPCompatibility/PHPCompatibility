@@ -52,6 +52,7 @@ function &print() { };
 function &private() { };
 function &protected() { };
 function &public() { };
+function &require() { };
 function &require_once() { };
 function &return() { };
 function &static() { };

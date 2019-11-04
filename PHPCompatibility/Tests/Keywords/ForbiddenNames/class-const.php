@@ -51,6 +51,7 @@ class Foobar { const PRINT = 1; }
 class Foobar { const PRIVATE = 1; }
 class Foobar { const PROTECTED = 1; }
 class Foobar { const PUBLIC = 1; }
+class Foobar { const REQUIRE = 1; }
 class Foobar { const REQUIRE_ONCE = 1; }
 class Foobar { const RETURN = 1; }
 class Foobar { const STATIC = 1; }

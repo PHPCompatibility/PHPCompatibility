@@ -52,6 +52,7 @@ class Foobar { use const print }
 class Foobar { use const private }
 class Foobar { use const protected }
 class Foobar { use const public }
+class Foobar { use const require }
 class Foobar { use const require_once }
 class Foobar { use const return }
 class Foobar { use const static }

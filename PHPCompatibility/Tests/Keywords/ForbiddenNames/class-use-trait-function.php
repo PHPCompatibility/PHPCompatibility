@@ -52,6 +52,7 @@ class Foobar { use function print }
 class Foobar { use function private }
 class Foobar { use function protected }
 class Foobar { use function public }
+class Foobar { use function require }
 class Foobar { use function require_once }
 class Foobar { use function return }
 class Foobar { use function static }

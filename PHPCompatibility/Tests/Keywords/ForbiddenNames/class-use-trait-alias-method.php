@@ -48,6 +48,7 @@ class Foobar { use BazTrait { oldfunction as namespace } }
 class Foobar { use BazTrait { oldfunction as new } }
 class Foobar { use BazTrait { oldfunction as or } }
 class Foobar { use BazTrait { oldfunction as print } }
+class Foobar { use BazTrait { oldfunction as require } }
 class Foobar { use BazTrait { oldfunction as require_once } }
 class Foobar { use BazTrait { oldfunction as return } }
 class Foobar { use BazTrait { oldfunction as static } }

@@ -52,6 +52,7 @@ class print {}
 class private {}
 class protected {}
 class public {}
+class require {}
 class require_once {}
 class return {}
 class static {}

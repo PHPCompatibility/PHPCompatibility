@@ -52,6 +52,7 @@ interface print {}
 interface private {}
 interface protected {}
 interface public {}
+interface require {}
 interface require_once {}
 interface return {}
 interface static {}

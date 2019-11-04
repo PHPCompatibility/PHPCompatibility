@@ -52,6 +52,7 @@ use print;
 use private;
 use protected;
 use public;
+use require;
 use require_once;
 use return;
 use static;

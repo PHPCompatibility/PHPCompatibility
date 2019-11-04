@@ -52,6 +52,7 @@ class Foobar { use BazTrait { oldfunction as final print } }
 class Foobar { use BazTrait { oldfunction as final private } }
 class Foobar { use BazTrait { oldfunction as final protected } }
 class Foobar { use BazTrait { oldfunction as final public } }
+class Foobar { use BazTrait { oldfunction as final require } }
 class Foobar { use BazTrait { oldfunction as final require_once } }
 class Foobar { use BazTrait { oldfunction as final return } }
 class Foobar { use BazTrait { oldfunction as final static } }

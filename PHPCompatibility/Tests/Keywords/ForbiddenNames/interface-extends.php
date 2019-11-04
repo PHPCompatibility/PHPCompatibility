@@ -52,6 +52,7 @@ interface Foobar extends print {}
 interface Foobar extends private {}
 interface Foobar extends protected {}
 interface Foobar extends public {}
+interface Foobar extends require {}
 interface Foobar extends require_once {}
 interface Foobar extends return {}
 interface Foobar extends static {}

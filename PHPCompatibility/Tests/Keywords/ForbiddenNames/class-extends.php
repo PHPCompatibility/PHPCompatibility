@@ -52,6 +52,7 @@ class Foobar extends print {}
 class Foobar extends private {}
 class Foobar extends protected {}
 class Foobar extends public {}
+class Foobar extends require {}
 class Foobar extends require_once {}
 class Foobar extends return {}
 class Foobar extends static {}

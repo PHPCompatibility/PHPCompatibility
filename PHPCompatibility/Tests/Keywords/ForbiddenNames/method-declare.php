@@ -52,6 +52,7 @@ class Foobar { function print() { } };
 class Foobar { function private() { } };
 class Foobar { function protected() { } };
 class Foobar { function public() { } };
+class Foobar { function require() { } };
 class Foobar { function require_once() { } };
 class Foobar { function return() { } };
 class Foobar { function static() { } };

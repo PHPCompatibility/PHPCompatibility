@@ -52,6 +52,7 @@ trait print {}
 trait private {}
 trait protected {}
 trait public {}
+trait require {}
 trait require_once {}
 trait return {}
 trait static {}

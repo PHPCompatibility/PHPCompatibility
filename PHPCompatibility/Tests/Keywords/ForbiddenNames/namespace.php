@@ -52,6 +52,7 @@ namespace print;
 namespace private;
 namespace protected;
 namespace public;
+namespace require;
 namespace require_once;
 namespace return;
 namespace static;
