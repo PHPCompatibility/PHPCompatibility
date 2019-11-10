@@ -14,6 +14,21 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.3.3] - 2019-11-11
+
+See all related issues and PRs in the [9.3.3 milestone].
+
+### Added
+- :star: `PHPCompatibility.Constants.NewConstants` sniff: detection of yet more (undocumented) PHP 7.2 Sodium constants. [#924](https://github.com/PHPCompatibility/PHPCompatibility/pull/924)
+- :star: `PHPCompatibility.Keywords.ForbiddenNames` sniff: detect the use of more reserved keywords which are not allowed to be used to name certain constructs. [#923](https://github.com/PHPCompatibility/PHPCompatibility/pull/923). Fixes [#922](https://github.com/PHPCompatibility/PHPCompatibility/issues/922)
+
+### Fixed
+- :bug: `PHPCompatibility.FunctionNameRestrictions.RemovedPHP4StyleConstructors`: false positive detecting PHP4-style constructors when declared in interfaces. The class implementing the interface will not have the same name as the interface, so the actual method would not be regarded as a PHP4 style constructor. [#921](https://github.com/PHPCompatibility/PHPCompatibility/pull/921)
+
+### Credits
+Thanks go out to [Nikhil] for their contribution to this version. :clap:
+
+
 ## [9.3.2] - 2019-10-16
 
 See all related issues and PRs in the [9.3.2 milestone].
@@ -24,15 +39,15 @@ See all related issues and PRs in the [9.3.2 milestone].
 
 ### Changed
 - :pushpin: `PHPCompatibility.FunctionNameRestrictions.RemovedPHP4StyleConstructors`: minor efficiency fix to make the sniff faster. [#912](https://github.com/PHPCompatibility/PHPCompatibility/pull/912)
-- :pushpin: `PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames`: functions marked as `@deprecated` in the function docblock will now be ignored by this sniff. [#917](https://github.com/PHPCompatibility/PHPCompatibility/pull/917)
+- :pushpin: `PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames`: functions marked as `@deprecated` in the function docblock will now be ignored by this sniff. [#917](https://github.com/PHPCompatibility/PHPCompatibility/pull/917). Fixes [#911](https://github.com/PHPCompatibility/PHPCompatibility/issues/911)
 - :pencil: `PHPCompatibility.FunctionDeclarations.ForbiddenToStringParameters`: the `$ooScopeTokens` property is now `protected`, it should never have been `public` in the first place. [#907](https://github.com/PHPCompatibility/PHPCompatibility/pull/907)
 - :recycle: More code documentation fixes. [#903](https://github.com/PHPCompatibility/PHPCompatibility/pull/903), [#916](https://github.com/PHPCompatibility/PHPCompatibility/pull/916)
 - :books: Readme/Contributing: various tweaks. [#904](https://github.com/PHPCompatibility/PHPCompatibility/pull/904), [#905](https://github.com/PHPCompatibility/PHPCompatibility/pull/905)
 
 ### Fixed
-- :bug: `PHPCompatibility.FunctionUse.OptionalToRequiredFunctionParameters`: false positive when a class is instantiated which has the same name as one of the affected functions. [#914](https://github.com/PHPCompatibility/PHPCompatibility/pull/914)
+- :bug: `PHPCompatibility.FunctionUse.OptionalToRequiredFunctionParameters`: false positive when a class is instantiated which has the same name as one of the affected functions. [#914](https://github.com/PHPCompatibility/PHPCompatibility/pull/914). Fixes [#913](https://github.com/PHPCompatibility/PHPCompatibility/issues/913)
 - :bug: `PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters`: false positive when a class is instantiated which has the same name as one of the affected functions. [#914](https://github.com/PHPCompatibility/PHPCompatibility/pull/914)
-- :bug: `PHPCompatibility.MethodUse.NewDirectCallsToClone`: false positive on calling `__clone()` from within the class being cloned [#910](https://github.com/PHPCompatibility/PHPCompatibility/pull/910)
+- :bug: `PHPCompatibility.MethodUse.NewDirectCallsToClone`: false positive on calling `__clone()` from within the class being cloned [#910](https://github.com/PHPCompatibility/PHPCompatibility/pull/910). Fixes [#629 (comment)](https://github.com/PHPCompatibility/PHPCompatibility/issues/629#issuecomment-532607809)
 - :bug: `PHPCompatibility.Miscellaneous.ValidIntegers`: binary numbers using an uppercase `B` were not always recognized correctly. [#909](https://github.com/PHPCompatibility/PHPCompatibility/pull/909)
 
 
@@ -1419,6 +1434,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Mark Clements]: https://github.com/MarkMaldaba
 [Michael Babker]: https://github.com/mbabker
 [Nick Pack]: https://github.com/nickpack
+[Nikhil]: https://github.com/Nikschavan
 [Oliver Klee]: https://github.com/oliverklee
 [Remko van Bezooijen]: https://github.com/emkookmer
 [Rowan Collins]: https://github.com/IMSoP
