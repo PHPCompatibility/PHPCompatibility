@@ -31,7 +31,6 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
     {
         return array(
             \T_CLASS,
-            \T_INTERFACE,
         );
     }
 
