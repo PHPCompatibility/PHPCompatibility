@@ -26,6 +26,11 @@ foreach (array(1,2,3) as $number) {
     break;
 }
 
+foreach ([[1, 2], [2, 3]] as list($a, $b)) {
+  assert(is_numeric($a));
+  assert(is_numeric($b));
+}
+
 //callable
 function doThing(callable $callback) {
 }
