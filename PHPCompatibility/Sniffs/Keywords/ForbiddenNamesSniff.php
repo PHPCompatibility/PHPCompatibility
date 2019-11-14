@@ -240,6 +240,23 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         /*
+         * Deal with foreach ( ... as list() ).
+         */
+        elseif ($tokens[$stackPtr]['type'] === 'T_AS'
+            && isset($tokens[$stackPtr]['nested_parenthesis']) === true
+            && $tokens[$nextNonEmpty]['code'] === \T_LIST
+        ) {
+            $parentheses = array_reverse($tokens[$stackPtr]['nested_parenthesis'], true);
+            foreach ($parentheses as $open => $close) {
+                if (isset($tokens[$open]['parenthesis_owner'])
+                    && $tokens[$tokens[$open]['parenthesis_owner']]['code'] === \T_FOREACH
+                ) {
+                    return;
+                }
+            }
+        }
+
+        /*
          * Deal with functions declared to return by reference.
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_FUNCTION'

@@ -171,6 +171,10 @@ use const MyCONSTANT;
 
 // list
 list( $a, $b, $c ) = $array;
+foreach ($array as list($key, $value)) {}
+foreach ([[1, 2], [2, 3]] as list($a, $b)):
+    // Do something.
+endforeach;
 
 // die
 die();
