@@ -14,6 +14,17 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.3.4] - 2019-11-15
+
+See all related issues and PRs in the [9.3.4 milestone].
+
+### Fixed
+- :bug: `PHPCompatibility.Keywords.ForbiddenNames`: false positive for list when used in a `foreach()` condition. [#930](https://github.com/PHPCompatibility/PHPCompatibility/pull/930). Fixes [#928](https://github.com/PHPCompatibility/PHPCompatibility/issues/928), [#929](https://github.com/PHPCompatibility/PHPCompatibility/pull/929)
+
+### Credits
+Thanks go out to [Sergii Bondarenko] for their contribution to this version. :clap:
+
+
 ## [9.3.3] - 2019-11-11
 
 See all related issues and PRs in the [9.3.3 milestone].
@@ -1358,6 +1369,8 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 [Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[9.3.4]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.3...9.3.4
+[9.3.3]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.2...9.3.3
 [9.3.2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.1...9.3.2
 [9.3.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.0...9.3.1
 [9.3.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.2.0...9.3.0
@@ -1386,6 +1399,8 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[9.3.4 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/33
+[9.3.3 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/32
 [9.3.2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/31
 [9.3.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/30
 [9.3.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/29
@@ -1440,6 +1455,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Rowan Collins]: https://github.com/IMSoP
 [Ryan Neufeld]: https://github.com/ryanneufeld
 [Sam Van der Borght]: https://github.com/samvdb
+[Sergii Bondarenko]: https://github.com/BR0kEN-
 [Tadas Juozapaitis]: https://github.com/kasp3r
 [Tim Millwood]: https://github.com/timmillwood
 [Yılmaz]: https://github.com/edigu
