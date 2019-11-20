@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Util\Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 use PHP_CodeSniffer_File as File;
@@ -24,7 +24,7 @@ use PHP_CodeSniffer_File as File;
  * @since 7.0.5 Renamed from `BaseAbstractClassMethodTest` to `CoreMethodTestFrame`.
  * @since 7.1.2 No longer extends the `BaseSniffTest` class.
  */
-abstract class CoreMethodTestFrame extends PHPUnit_TestCase
+abstract class CoreMethodTestFrame extends TestCase
 {
 
     /**
@@ -49,14 +49,16 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
     /**
      * Sets up this unit test.
      *
+     * @before
+     *
      * @since 7.0.3
+     * @since 10.0.0 Renamed the method from `setUp()` to `setUpPHPCS()` and now using
+     *               the `@before` annotation to allow for PHPUnit cross-version compatibility.
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUpPHPCS()
     {
-        parent::setUp();
-
         $this->helperClass = new TestHelperPHPCompatibility();
 
         $FQClassName = \get_class($this);
@@ -93,11 +95,15 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
     /**
      * Clean up after finished test.
      *
+     * @after
+     *
      * @since 7.0.3
+     * @since 10.0.0 Renamed the method from `tearDown()` to `resetPHPCS()` and now using
+     *               the `@after` annotation to allow for PHPUnit cross-version compatibility.
      *
      * @return void
      */
-    public function tearDown()
+    public function resetPHPCS()
     {
         unset($this->phpcsFile, $this->helperClass);
     }

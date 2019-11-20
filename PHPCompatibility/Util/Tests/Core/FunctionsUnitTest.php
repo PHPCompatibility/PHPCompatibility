@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Util\Tests\Core;
 
-use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
@@ -22,7 +22,7 @@ use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
  *
  * @since 7.0.6
  */
-class FunctionsUnitTest extends PHPUnit_TestCase
+class FunctionsUnitTest extends TestCase
 {
 
     /**
@@ -36,24 +36,24 @@ class FunctionsUnitTest extends PHPUnit_TestCase
     /**
      * Sets up this unit test.
      *
+     * @before
+     *
      * @return void
      */
-    protected function setUp()
+    protected function setUpHelper()
     {
-        parent::setUp();
-
         $this->helperClass = new TestHelperPHPCompatibility();
     }
 
     /**
      * Clean up after finished test.
      *
+     * @after
+     *
      * @return void
      */
-    protected function tearDown()
+    protected function resetTestVersion()
     {
-        parent::tearDown();
-
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
         PHPCSHelper::setConfigData('testVersion', null, true);
     }

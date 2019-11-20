@@ -46,11 +46,13 @@ class InternalInterfacesUnitTest extends BaseSniffTest
     /**
      * Set up the test file for this unit test.
      *
+     * @before
+     *
      * @return void
      */
-    protected function setUp()
+    protected function setUpPHPCS()
     {
-        parent::setUp();
+        parent::setUpPHPCS();
 
         // Sniff file without testVersion as all checks run independently of testVersion being set.
         $this->sniffResult = $this->sniffFile(__FILE__);

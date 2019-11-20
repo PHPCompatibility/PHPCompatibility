@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="phpunit-bootstrap.php" colors="true" backupGlobals="true">
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/8.5/phpunit.xsd"
+        bootstrap="./phpunit-bootstrap.php"
+        backupGlobals="true"
+        colors="true"
+        verbose="false"
+        convertWarningsToExceptions="true"
+    >
     <testsuites>
         <testsuite name="PHPCompatibility Utilities Tests">
             <directory suffix="UnitTest.php">./PHPCompatibility/Util/Tests/</directory>
