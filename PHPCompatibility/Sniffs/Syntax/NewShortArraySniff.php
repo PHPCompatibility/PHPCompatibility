@@ -53,7 +53,7 @@ class NewShortArraySniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
 
-        $error = '%s is available since 5.4';
+        $error = '%s is not supported in PHP 5.3 or lower';
         $data  = array();
 
         if ($token['type'] === 'T_OPEN_SHORT_ARRAY') {

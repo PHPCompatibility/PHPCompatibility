@@ -36,8 +36,8 @@ class NewShortArrayUnitTest extends BaseSniffTest
     public function testViolation($lineOpen, $lineClose)
     {
         $file = $this->sniffFile(__FILE__, '5.3');
-        $this->assertError($file, $lineOpen, 'Short array syntax (open) is available since 5.4');
-        $this->assertError($file, $lineClose, 'Short array syntax (close) is available since 5.4');
+        $this->assertError($file, $lineOpen, 'Short array syntax (open) is not supported in PHP 5.3 or lower');
+        $this->assertError($file, $lineClose, 'Short array syntax (close) is not supported in PHP 5.3 or lower');
     }
 
     /**
