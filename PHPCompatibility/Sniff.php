@@ -19,6 +19,7 @@ use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
@@ -593,7 +594,7 @@ abstract class Sniff implements PHPCS_Sniff
             return '';
         }
 
-        $extends = PHPCSHelper::findExtendedClassName($phpcsFile, $stackPtr);
+        $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $stackPtr);
         if (empty($extends) || \is_string($extends) === false) {
             return '';
         }
