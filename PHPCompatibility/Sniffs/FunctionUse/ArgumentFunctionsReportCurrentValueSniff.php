@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCFile;
 
 /**
  * Functions inspecting function arguments report the current parameter value
@@ -336,7 +337,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * being assigned to one of the parameters, i.e.:
              * `$param = func_get_args();`.
              */
-            $startOfStatement = PHPCSHelper::findStartOfStatement($phpcsFile, $i, $this->ignoreForStartOfStatement);
+            $startOfStatement = BCFile::findStartOfStatement($phpcsFile, $i, $this->ignoreForStartOfStatement);
 
             /*
              * Ok, so we've found one of the target functions in the right scope.
