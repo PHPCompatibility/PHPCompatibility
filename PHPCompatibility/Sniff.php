@@ -15,6 +15,7 @@ use PHP_CodeSniffer_Exception as PHPCS_Exception;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Namespaces;
@@ -136,11 +137,11 @@ abstract class Sniff implements PHPCS_Sniff
         static $arrTestVersions = array();
 
         $default     = array(null, null);
-        $testVersion = trim(PHPCSHelper::getConfigData('testVersion'));
+        $testVersion = trim(Helper::getConfigData('testVersion'));
 
         // Case-sensitivity tolerance.
         if (empty($testVersion) === true) {
-            $testVersion = trim(PHPCSHelper::getConfigData('testversion'));
+            $testVersion = trim(Helper::getConfigData('testversion'));
         }
 
         if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
