@@ -30,12 +30,26 @@ $ds = DIRECTORY_SEPARATOR;
 // Get the PHPCS dir from an environment variable.
 $phpcsDir = getenv('PHPCS_DIR');
 
+// Get the PHPCSUtils dir from an environment variable.
+$phpcsUtilsDir = getenv('PHPCSUTILS_DIR');
+
 // This may be a Composer install.
-if ($phpcsDir === false && is_dir(__DIR__ . $ds . 'vendor' . $ds . 'squizlabs' . $ds . 'php_codesniffer')) {
+if (is_dir(__DIR__ . $ds . 'vendor')) {
     $vendorDir = __DIR__ . $ds . 'vendor';
-    $phpcsDir  = $vendorDir . $ds . 'squizlabs' . $ds . 'php_codesniffer';
-} elseif ($phpcsDir !== false) {
+    if ($phpcsDir === false && is_dir($vendorDir . $ds . 'squizlabs' . $ds . 'php_codesniffer')) {
+        $phpcsDir = $vendorDir . $ds . 'squizlabs' . $ds . 'php_codesniffer';
+    }
+    if ($phpcsUtilsDir === false && is_dir($vendorDir . $ds . 'phpcsstandards' . $ds . 'phpcsutils')) {
+        $phpcsUtilsDir = $vendorDir . $ds . 'phpcsstandards' . $ds . 'phpcsutils';
+    }
+}
+
+if ($phpcsDir !== false) {
     $phpcsDir = realpath($phpcsDir);
+}
+
+if ($phpcsUtilsDir !== false) {
+    $phpcsUtilsDir = realpath($phpcsUtilsDir);
 }
 
 // Try and load the PHPCS autoloader.
@@ -72,6 +86,22 @@ https://is.gd/PHPCompatibilityContrib
     die(1);
 }
 
+// Try and load the PHPCSUtils autoloader.
+if ($phpcsUtilsDir !== false && file_exists($phpcsUtilsDir . $ds . 'phpcsutils-autoload.php')) {
+    require_once $phpcsUtilsDir . $ds . 'phpcsutils-autoload.php';
+} else {
+    echo 'Uh oh... can\'t find PHPCSUtils.
+
+If you use Composer, please run `composer install --prefer-source`.
+Otherwise, make sure you set a `PHPCSUTILS_DIR` environment variable in your phpunit.xml file
+pointing to the PHPCSUtils directory.
+
+Please read the contributors guidelines for more information:
+https://is.gd/PHPCompatibilityContrib
+';
+
+    die(1);
+}
 
 // PHPUnit cross version compatibility.
 if (class_exists('PHPUnit_Framework_TestCase') === true
