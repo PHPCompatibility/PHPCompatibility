@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Detect classes which implement PHP native interfaces intended only for PHP internal use.
@@ -76,7 +76,7 @@ class InternalInterfacesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
+        $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
         if (\is_array($interfaces) === false || $interfaces === array()) {
             return;
