@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Upgrade;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Add a notification for users of low PHPCS versions.
@@ -106,7 +107,7 @@ class LowPHPCSSniff extends Sniff
             return ($phpcsFile->numTokens + 1);
         }
 
-        $phpcsVersion = PHPCSHelper::getVersion();
+        $phpcsVersion = Helper::getVersion();
 
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
         if (version_compare($phpcsVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {

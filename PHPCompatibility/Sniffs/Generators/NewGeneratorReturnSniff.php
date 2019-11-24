@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Generators;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * As of PHP 7.0, a `return` statement can be used within a generator for a final expression to be returned.
@@ -67,7 +67,7 @@ class NewGeneratorReturnSniff extends Sniff
          * For PHPCS 3.1.0+, we also need to look for T_YIELD_FROM.
          */
         if (version_compare(\PHP_VERSION_ID, '50500', '<') === true
-            && version_compare(PHPCSHelper::getVersion(), '3.1.0', '<') === true
+            && version_compare(Helper::getVersion(), '3.1.0', '<') === true
         ) {
             $targets[] = \T_STRING;
         }

@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\TypeCasts;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Detect use of newly introduced type casts.
@@ -75,7 +75,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
          *
          * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/1574
          */
-        if (version_compare(PHPCSHelper::getVersion(), '3.4.0', '<') === true) {
+        if (version_compare(Helper::getVersion(), '3.4.0', '<') === true) {
             $tokens[] = \T_STRING_CAST;
             $tokens[] = \T_CONSTANT_ENCAPSED_STRING;
         }

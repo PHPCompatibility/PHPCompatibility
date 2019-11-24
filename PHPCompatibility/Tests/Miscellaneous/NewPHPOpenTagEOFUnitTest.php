@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Tests\Miscellaneous;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the NewPHPOpenTagEOF sniff.
@@ -177,7 +177,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
         );
 
         // In PHPCS 2.x, the `Internal.NoCodeFound` error will come through, even when unit testing.
-        if (version_compare(PHPCSHelper::getVersion(), '3.0.0', '>')) {
+        if (version_compare(Helper::getVersion(), '3.0.0', '>')) {
             $data[] = array(4);
         }
 
