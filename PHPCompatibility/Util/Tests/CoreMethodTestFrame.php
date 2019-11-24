@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Util\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Base class to use when testing utility methods.
@@ -68,7 +68,7 @@ abstract class CoreMethodTestFrame extends TestCase
         $filename    = realpath(__DIR__) . \DIRECTORY_SEPARATOR . $subDir . \DIRECTORY_SEPARATOR . $className . '.inc';
         $contents    = file_get_contents($filename);
 
-        if (version_compare(PHPCSHelper::getVersion(), '2.99.99', '>')) {
+        if (version_compare(Helper::getVersion(), '2.99.99', '>')) {
             // PHPCS 3.x.
             $config            = new \PHP_Codesniffer\Config();
             $config->standards = array('PHPCompatibility');
