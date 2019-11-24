@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCFile;
 
 /**
  * Bitwise shifts by negative number will throw an ArithmeticError since PHP 7.0.
@@ -89,7 +89,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             $start = ($next + 1);
         }
 
-        $end = PHPCSHelper::findEndOfStatement($phpcsFile, $start);
+        $end = BCFile::findEndOfStatement($phpcsFile, $start);
         if (isset($this->inclusiveStopPoints[$tokens[$end]['code']]) === true) {
             --$end;
         }
