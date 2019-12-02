@@ -11,7 +11,7 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%20nightly-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
 
 
 This is a set of sniffs for [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
@@ -54,6 +54,8 @@ PHP CodeSniffer 2.3.0 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 o
 For running the sniffs on PHP 7.3, it is recommended to use PHP_CodeSniffer 3.3.1+, or, if needs be, PHP_CodeSniffer 2.9.2.
 PHP_CodeSniffer < 2.9.2/3.3.1 is not fully compatible with PHP 7.3, which effectively means that PHPCompatibility can't be either.
 While the sniffs will still work in _most_ cases, you can expect PHP warnings to be thrown.
+
+For running the sniffs on PHP 7.4, it is recommended to use PHP_CodeSniffer 3.5.0+.
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
 
