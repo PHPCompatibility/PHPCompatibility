@@ -69,7 +69,7 @@ jobs:
     # These are basically the same builds as in the Coverage stage, but then without doing
     # the code-coverage.
     - stage: quicktest
-      php: "7.4snapshot"
+      php: 7.4
       env: PHPCS_VERSION="dev-master" LINT=1
     - php: 7.3
       env: PHPCS_VERSION="2.3.0"
@@ -110,9 +110,9 @@ jobs:
       env: PHPCS_VERSION="3.4.*" LINT=1
     - php: 7.3
       env: PHPCS_VERSION="dev-master"
-    - php: "7.4snapshot"
+    - php: 7.4
       env: PHPCS_VERSION=">=2.0,<3.0" LINT=1
-    - php: "7.4snapshot"
+    - php: 7.4
       env: PHPCS_VERSION="2.3.0"
 
     #### CODE COVERAGE STAGE ####
@@ -124,7 +124,7 @@ jobs:
     # would be preferred.
     # Docs: https://docs.travis-ci.com/user/languages/php/#custom-php-configuration
     - stage: coverage
-      php: "7.4snapshot"
+      php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
     - php: 7.3
       env: PHPCS_VERSION="2.3.0" COVERALLS_VERSION="^2.0"
