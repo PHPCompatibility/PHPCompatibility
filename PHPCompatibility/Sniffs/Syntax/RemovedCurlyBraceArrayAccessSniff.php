@@ -286,7 +286,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      *
      * {@internal Note: the first braces for array access to a constant, for some unknown reason,
      *            can never be curlies, but have to be square brackets.
-     *            Subsequent braces can be curlies.}}
+     *            Subsequent braces can be curlies.}
      *
      * @since 9.3.0
      *

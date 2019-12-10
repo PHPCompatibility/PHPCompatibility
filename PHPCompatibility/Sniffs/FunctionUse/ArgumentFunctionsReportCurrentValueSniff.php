@@ -238,7 +238,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                          * higher than the number of named parameters.
                          *
                          * {@internal Note: This does not take calculations into account!
-                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
+                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                          */
                         case 'func_get_arg':
                             $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
@@ -260,7 +260,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * In that case, we can ignore it.
                  *
                  * {@internal Note: This does not take offset calculations into account!
-                 *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
+                 *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                  */
                 if ($prev !== false && $tokens[$prev]['code'] === \T_OPEN_PARENTHESIS) {
 

@@ -150,7 +150,7 @@ class NewExceptionsFromToStringSniff extends Sniff
          * Check whether the function has a docblock and if so, whether it contains a @throws tag.
          *
          * {@internal This can be partially replaced by the findCommentAboveFunction()
-         *            utility function in due time.}}
+         *            utility function in due time.}
          */
         $commentEnd = $phpcsFile->findPrevious($this->docblockIgnoreTokens, ($stackPtr - 1), null, true);
         if ($commentEnd === false || $tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {

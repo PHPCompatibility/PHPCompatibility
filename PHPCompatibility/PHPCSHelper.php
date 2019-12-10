@@ -145,7 +145,7 @@ class PHPCSHelper
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->findStartOfStatement($start, $ignore)` calls.
      *
-     * Last synced with PHPCS version: PHPCS 3.3.2 at commit 6ad28354c04b364c3c71a34e4a18b629cc3b231e}}
+     * Last synced with PHPCS version: PHPCS 3.3.2 at commit 6ad28354c04b364c3c71a34e4a18b629cc3b231e}
      *
      * @since 9.1.0
      *
@@ -226,7 +226,7 @@ class PHPCSHelper
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->findEndOfStatement($start, $ignore)` calls.
      *
-     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit f5d899dcb5c534a1c3cca34668624517856ba823}}
+     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit f5d899dcb5c534a1c3cca34668624517856ba823}
      *
      * @since 8.2.0
      *
@@ -327,7 +327,7 @@ class PHPCSHelper
      * that, this method can be removed and calls to it replaced with
      * `$phpcsFile->findExtendedClassName($stackPtr)` calls.
      *
-     * Last synced with PHPCS version: PHPCS 3.1.0-alpha at commit a9efcc9b0703f3f9f4a900623d4e97128a6aafc6}}
+     * Last synced with PHPCS version: PHPCS 3.1.0-alpha at commit a9efcc9b0703f3f9f4a900623d4e97128a6aafc6}
      *
      * @since 7.1.4
      * @since 8.2.0 Moved from the `Sniff` class to this class.
@@ -395,7 +395,7 @@ class PHPCSHelper
      * in PHPCS 2.8.0, so only defer to upstream for higher versions.
      * Once the minimum supported PHPCS version for this sniff library goes beyond
      * that, this method can be removed and calls to it replaced with
-     * `$phpcsFile->findImplementedInterfaceNames($stackPtr)` calls.}}
+     * `$phpcsFile->findImplementedInterfaceNames($stackPtr)` calls.}
      *
      * @since 7.0.3
      * @since 8.2.0 Moved from the `Sniff` class to this class.
@@ -480,7 +480,7 @@ class PHPCSHelper
      * {@internal Duplicate of same method as contained in the `\PHP_CodeSniffer_File`
      * class.
      *
-     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit 53a28408d345044c0360c2c1b4a2aaebf4a3b8c9}}
+     * Last synced with PHPCS version: PHPCS 3.3.0-alpha at commit 53a28408d345044c0360c2c1b4a2aaebf4a3b8c9}
      *
      * @since 7.0.3
      * @since 8.2.0 Moved from the `Sniff` class to this class.

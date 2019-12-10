@@ -32,7 +32,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * @link https://www.php.net/manual/en/language.types.array.php#example-63
  *
  * {@internal The reason for splitting the logic of this sniff into different methods is
- *            to allow re-use of the logic by the PHP 7.4 `RemovedCurlyBraceArrayAccess` sniff.}}
+ *            to allow re-use of the logic by the PHP 7.4 `RemovedCurlyBraceArrayAccess` sniff.}
  *
  * @since 7.1.4
  * @since 9.3.0 Now also detects dereferencing using curly braces.

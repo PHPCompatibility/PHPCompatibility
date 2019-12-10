@@ -32,7 +32,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      *
      * {@internal The PHPCS `findEndOfStatement()` method is not completely consistent
      * in how it returns the statement end. This is just a simple way to bypass
-     * the inconsistency for our purposes.}}
+     * the inconsistency for our purposes.}
      *
      * @since 8.2.0
      *
