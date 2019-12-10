@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Function parameters function tests
+ * Tests for the `doesFunctionCallHaveParameters()` utility function.
  *
  * @group utilityDoesFunctionCallHaveParameters
  * @group utilityFunctions

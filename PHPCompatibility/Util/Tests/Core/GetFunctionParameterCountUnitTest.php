@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Function parameters count function tests
+ * Tests for the `getFunctionCallParameterCount()` utility function.
  *
  * @group utilityGetFunctionParameterCount
  * @group utilityFunctions

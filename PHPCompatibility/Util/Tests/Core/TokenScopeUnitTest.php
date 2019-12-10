@@ -14,7 +14,7 @@ use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Token scope function tests
+ * Tests for the `tokenHasScope()` and `inClassScope()` utility functions.
  *
  * @group utilityTokenScope
  * @group utilityFunctions

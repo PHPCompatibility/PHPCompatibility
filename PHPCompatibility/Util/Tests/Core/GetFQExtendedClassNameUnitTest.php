@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Extended class name determination function tests
+ * Tests for the `getFQExtendedClassName()` utility function.
  *
  * @group utilityGetFQExtendedClassName
  * @group utilityFunctions

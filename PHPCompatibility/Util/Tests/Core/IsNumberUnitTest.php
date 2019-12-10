@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * isNumber(), isPositiveNumber() and isNegativeNumber() function tests
+ * Tests for the `isNumber()`, `isPositiveNumber()` and `isNegativeNumber()` utility functions.
  *
  * @group utilityIsNumber
  * @group utilityFunctions

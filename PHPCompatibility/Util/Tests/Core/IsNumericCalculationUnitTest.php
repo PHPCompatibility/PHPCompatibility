@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * isNumericCalculation() function tests
+ * Tests for the `isNumericCalculation()` utility function.
  *
  * @group utilityIsNumericCalculation
  * @group utilityFunctions

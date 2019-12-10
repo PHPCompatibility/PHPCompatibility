@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Function parameters retrieval function tests
+ * Tests for the `getFunctionCallParameters()` and `getFunctionCallParameter()` utility functions.
  *
  * @group utilityGetFunctionParameters
  * @group utilityFunctions

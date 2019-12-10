@@ -13,7 +13,7 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * isClassConstant() function tests
+ * Tests for the `isClassConstant()` utility function.
  *
  * @group utilityIsClassConstant
  * @group utilityFunctions
