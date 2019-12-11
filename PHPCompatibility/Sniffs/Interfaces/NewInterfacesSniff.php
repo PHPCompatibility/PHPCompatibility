@@ -103,8 +103,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      */
     protected $unsupportedMethods = array(
         'Serializable' => array(
-            '__sleep'  => 'http://php.net/serializable',
-            '__wakeup' => 'http://php.net/serializable',
+            '__sleep'  => 'https://www.php.net/serializable',
+            '__wakeup' => 'https://www.php.net/serializable',
         ),
     );
 

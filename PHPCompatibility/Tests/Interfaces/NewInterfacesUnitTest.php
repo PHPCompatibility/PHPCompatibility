@@ -96,7 +96,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function testUnsupportedMethods($line, $methodName)
     {
         $file = $this->sniffFile(__FILE__, '5.1'); // Version in which the Serializable interface was introduced.
-        $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See http://php.net/serializable");
+        $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See https://www.php.net/serializable");
     }
 
     /**
