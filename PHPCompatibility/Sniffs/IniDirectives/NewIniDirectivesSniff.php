@@ -658,6 +658,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
 
+        'ffi.enable' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'ffi.preload' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'opcache.cache_id' => array(
             '7.3' => false,
             '7.4' => true,

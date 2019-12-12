@@ -454,3 +454,9 @@ $test = ini_get('opcache.validate_root');
 
 ini_set('opcache.preload', 1);
 $test = ini_get('opcache.preload');
+
+ini_set('ffi.enable', 1);
+$test = ini_get('ffi.enable');
+
+ini_set('ffi.preload', 1);
+$test = ini_get('ffi.preload');
