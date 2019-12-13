@@ -112,7 +112,6 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             \T_INTERFACE,
             \T_TRAIT,
             \T_NAMESPACE,
-            \T_STRING, // Compat for PHPCS < 2.4.0 and PHP < 5.3.
         );
 
         return $targets;
@@ -136,17 +135,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             return;
         }
 
-        $tokens         = $phpcsFile->getTokens();
-        $tokenCode      = $tokens[$stackPtr]['code'];
-        $tokenType      = $tokens[$stackPtr]['type'];
-        $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
-
-        // For string tokens we only care about 'trait' as that is the only one
-        // which may not be correctly recognized as it's own token.
-        // This only happens in older versions of PHP where the token doesn't exist yet as a keyword.
-        if ($tokenCode === \T_STRING && $tokenContentLc !== 'trait') {
-            return;
-        }
+        $tokens    = $phpcsFile->getTokens();
+        $tokenCode = $tokens[$stackPtr]['code'];
+        $tokenType = $tokens[$stackPtr]['type'];
 
         if (\in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
             // Check for the declared name being a name which is not tokenized as T_STRING.
@@ -184,37 +175,6 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                     break;
                 }
             }
-        } elseif ($tokenCode === \T_STRING) {
-            // Traits which are not yet tokenized as T_TRAIT.
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-            if ($nextNonEmpty === false) {
-                return;
-            }
-
-            $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
-
-            if ($nextNonEmptyCode !== \T_STRING && isset($this->forbiddenTokens[$nextNonEmptyCode]) === true) {
-                $name   = $tokens[$nextNonEmpty]['content'];
-                $nameLc = strtolower($tokens[$nextNonEmpty]['content']);
-            } elseif ($nextNonEmptyCode === \T_STRING) {
-                $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_OPEN_CURLY_BRACKET), ($stackPtr + 1));
-                if ($endOfStatement === false) {
-                    return;
-                }
-
-                do {
-                    $nextNonEmptyLc = strtolower($tokens[$nextNonEmpty]['content']);
-
-                    if (isset($this->allForbiddenNames[$nextNonEmptyLc]) === true) {
-                        $name   = $tokens[$nextNonEmpty]['content'];
-                        $nameLc = $nextNonEmptyLc;
-                        break;
-                    }
-
-                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $endOfStatement, true);
-                } while ($nextNonEmpty !== false);
-            }
-            unset($nextNonEmptyCode, $nextNonEmptyLc, $endOfStatement);
         }
 
         if (isset($name, $nameLc) === false) {
