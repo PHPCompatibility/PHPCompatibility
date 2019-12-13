@@ -119,17 +119,12 @@ class NonStaticMagicMethodsSniff extends Sniff
      */
     public function register()
     {
-        $targets = array(
+        return array(
             \T_CLASS,
+            \T_ANON_CLASS,
             \T_INTERFACE,
             \T_TRAIT,
         );
-
-        if (\defined('T_ANON_CLASS')) {
-            $targets[] = \T_ANON_CLASS;
-        }
-
-        return $targets;
     }
 
 

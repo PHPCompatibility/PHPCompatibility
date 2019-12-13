@@ -638,15 +638,12 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         $targets = array(
             \T_NEW,
             \T_CLASS,
+            \T_ANON_CLASS,
             \T_DOUBLE_COLON,
             \T_FUNCTION,
             \T_CLOSURE,
             \T_CATCH,
         );
-
-        if (\defined('T_ANON_CLASS')) {
-            $targets[] = \T_ANON_CLASS;
-        }
 
         if (\defined('T_RETURN_TYPE')) {
             $targets[] = \T_RETURN_TYPE;

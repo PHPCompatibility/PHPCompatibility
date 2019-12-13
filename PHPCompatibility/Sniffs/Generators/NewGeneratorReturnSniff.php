@@ -127,11 +127,7 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $targets = array(\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS);
-        if (\defined('T_ANON_CLASS')) {
-            $targets[] = \T_ANON_CLASS;
-        }
-
+        $targets = array(\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS, \T_ANON_CLASS);
         $current = $tokens[$function]['scope_opener'];
 
         while (($current = $phpcsFile->findNext($targets, ($current + 1), $tokens[$function]['scope_closer'])) !== false) {

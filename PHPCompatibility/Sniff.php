@@ -637,10 +637,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function inClassScope(File $phpcsFile, $stackPtr, $strict = true)
     {
-        $validScopes = array(\T_CLASS);
-        if (\defined('T_ANON_CLASS') === true) {
-            $validScopes[] = \T_ANON_CLASS;
-        }
+        $validScopes = array(\T_CLASS, \T_ANON_CLASS);
 
         if ($strict === false) {
             $validScopes[] = \T_INTERFACE;
@@ -687,7 +684,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Bow out if the next token is the class keyword.
-        if ($tokens[$start]['type'] === 'T_ANON_CLASS' || $tokens[$start]['code'] === \T_CLASS) {
+        if ($tokens[$start]['code'] === \T_ANON_CLASS || $tokens[$start]['code'] === \T_CLASS) {
             return '';
         }
 
@@ -729,8 +726,8 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         if ($tokens[$stackPtr]['code'] !== \T_CLASS
-            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
-            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
+            && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS
+            && $tokens[$stackPtr]['code'] !== \T_INTERFACE
         ) {
             return '';
         }
