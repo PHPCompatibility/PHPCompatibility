@@ -1007,7 +1007,7 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (\defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
+        if ($tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
             return $stackPtr;
         }
 

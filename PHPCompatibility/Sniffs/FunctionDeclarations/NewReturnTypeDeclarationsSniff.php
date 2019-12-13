@@ -110,16 +110,11 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $tokens = array(
+        return array(
             \T_FUNCTION,
             \T_CLOSURE,
+            \T_RETURN_TYPE,
         );
-
-        if (\defined('T_RETURN_TYPE')) {
-            $tokens[] = \T_RETURN_TYPE;
-        }
-
-        return $tokens;
     }
 
 
@@ -155,7 +150,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         }
         // Handle class name based return types.
         elseif ($tokens[$stackPtr]['code'] === \T_STRING
-            || (\defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE)
+            || $tokens[$stackPtr]['code'] === \T_RETURN_TYPE
         ) {
             $itemInfo = array(
                 'name'   => 'Class name',

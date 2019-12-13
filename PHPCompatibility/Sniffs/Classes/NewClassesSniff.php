@@ -635,7 +635,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         // Add the Exception classes to the Classes list.
         $this->newClasses = array_merge($this->newClasses, $this->newExceptions);
 
-        $targets = array(
+        return array(
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
@@ -643,13 +643,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             \T_FUNCTION,
             \T_CLOSURE,
             \T_CATCH,
+            \T_RETURN_TYPE,
         );
-
-        if (\defined('T_RETURN_TYPE')) {
-            $targets[] = \T_RETURN_TYPE;
-        }
-
-        return $targets;
     }
 
 

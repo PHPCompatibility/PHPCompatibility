@@ -41,16 +41,11 @@ class NewNullableTypesSniff extends Sniff
      */
     public function register()
     {
-        $tokens = array(
+        return array(
             \T_FUNCTION,
             \T_CLOSURE,
+            \T_RETURN_TYPE,
         );
-
-        if (\defined('T_RETURN_TYPE')) {
-            $tokens[] = \T_RETURN_TYPE;
-        }
-
-        return $tokens;
     }
 
 
