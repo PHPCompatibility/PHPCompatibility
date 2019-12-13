@@ -214,7 +214,6 @@ class ForbiddenNamesSniff extends Sniff
         /*
          * Deal with anonymous classes - `class` before a reserved keyword is sometimes
          * misidentified as `T_ANON_CLASS`.
-         * In PHPCS < 2.3.4 these were tokenized as T_CLASS no matter what.
          */
         if ($tokens[$stackPtr]['code'] === \T_ANON_CLASS || $tokens[$stackPtr]['code'] === \T_CLASS) {
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);

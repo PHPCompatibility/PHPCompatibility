@@ -31,7 +31,7 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
-     * {@internal Not sniffing for T_NULLABLE which was introduced in PHPCS 2.7.2
+     * {@internal Not sniffing for T_NULLABLE which was introduced in PHPCS 2.8.0
      * as in that case we can't distinguish between parameter type hints and
      * return type hints for the error message.}
      *
@@ -150,7 +150,7 @@ class NewNullableTypesSniff extends Sniff
             $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         }
 
-        // T_NULLABLE token was introduced in PHPCS 2.7.2. Before that it identified as T_INLINE_THEN.
+        // T_NULLABLE token was introduced in PHPCS 2.8.0. Before that it identified as T_INLINE_THEN.
         if ((\defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
             || (\defined('T_NULLABLE') === false && $tokens[$previous]['code'] === \T_INLINE_THEN)
         ) {

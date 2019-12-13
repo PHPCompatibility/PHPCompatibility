@@ -62,7 +62,7 @@ class NewGeneratorReturnSniff extends Sniff
          * Also, as of PHPCS 3.1.0, the PHPCS tokenizer adds a new T_YIELD_FROM
          * token.
          *
-         * So for PHP 5.3-5.4 icw PHPCS < 3.1.0, we need to look for T_STRING with content "yield".
+         * So for PHP 5.4 icw PHPCS < 3.1.0, we need to look for T_STRING with content "yield".
          * For PHP 5.5+ we need to look for T_YIELD.
          * For PHPCS 3.1.0+, we also need to look for T_YIELD_FROM.
          */

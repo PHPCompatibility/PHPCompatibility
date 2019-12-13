@@ -1108,7 +1108,7 @@ abstract class Sniff implements PHPCS_Sniff
             }
 
             if (\defined('T_NULLABLE') === false && $tokens[$i]['code'] === \T_INLINE_THEN) {
-                // Old PHPCS.
+                // PHPCS < 2.8.0.
                 continue;
             }
 
@@ -1123,7 +1123,7 @@ abstract class Sniff implements PHPCS_Sniff
      * Check whether a T_VARIABLE token is a class property declaration.
      *
      * Compatibility layer for PHPCS cross-version compatibility
-     * as PHPCS 2.4.0 - 2.7.1 does not have good enough support for
+     * as PHPCS < 2.7.1 does not have good enough support for
      * anonymous classes. Along the same lines, the`getMemberProperties()`
      * method does not support the `var` prefix.
      *

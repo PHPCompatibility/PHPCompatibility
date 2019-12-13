@@ -232,8 +232,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         /*
          * Special case: distinguish between `yield` and `yield from`.
          *
-         * PHPCS currently (at least up to v 3.0.1) does not backfill for the
-         * `yield` nor the `yield from` keywords.
+         * PHPCS did not backfill for the `yield` nor the `yield from` keywords prior to PHPCS 3.1.0.
          * See: https://github.com/squizlabs/PHP_CodeSniffer/issues/1524
          *
          * In PHP < 5.5, both `yield` as well as `from` are tokenized as T_STRING.
