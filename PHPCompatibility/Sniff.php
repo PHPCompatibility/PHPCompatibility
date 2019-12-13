@@ -1972,10 +1972,9 @@ abstract class Sniff implements PHPCS_Sniff
         if (isset($tokens[$parentOpener]['bracket_closer']) === true
             && $tokens[$parentOpener]['bracket_closer'] > $closer
         ) {
-            // Work around tokenizer issue in PHPCS 2.0 - 2.7.
+            // Work around tokenizer issue in PHPCS < 2.8.0.
             $phpcsVersion = PHPCSHelper::getVersion();
-            if ((version_compare($phpcsVersion, '2.0', '>') === true
-                && version_compare($phpcsVersion, '2.8', '<') === true)
+            if ((version_compare($phpcsVersion, '2.8.0', '<') === true)
                 && $tokens[$parentOpener]['code'] === \T_OPEN_SQUARE_BRACKET
             ) {
                 $nextNonEmpty = $phpcsFile->findNext(
