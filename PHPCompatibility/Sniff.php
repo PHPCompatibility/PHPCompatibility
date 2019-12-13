@@ -1729,12 +1729,9 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $arithmeticTokens = Tokens::$arithmeticTokens;
 
-        // phpcs:disable PHPCompatibility.Constants.NewConstants.t_powFound
-        if (\defined('T_POW') && isset($arithmeticTokens[\T_POW]) === false) {
-            // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
-            $arithmeticTokens[\T_POW] = \T_POW;
-        }
-        // phpcs:enable
+        // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
+        // phpcs:ignore PHPCompatibility.Constants.NewConstants.t_powFound
+        $arithmeticTokens[\T_POW] = \T_POW;
 
         $skipTokens   = Tokens::$emptyTokens;
         $skipTokens[] = \T_MINUS;
@@ -1758,16 +1755,6 @@ abstract class Sniff implements PHPCS_Sniff
         while ($this->isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
             && isset($tokens[($arithmeticOperator + 1)]) === true
         ) {
-            // Recognize T_POW for PHPCS < 2.4.0 on low PHP versions.
-            if (\defined('T_POW') === false
-                && $tokens[$arithmeticOperator]['code'] === \T_MULTIPLY
-                && $tokens[($arithmeticOperator + 1)]['code'] === \T_MULTIPLY
-                && isset($tokens[$arithmeticOperator + 2]) === true
-            ) {
-                // Move operator one forward to the second * in T_POW.
-                ++$arithmeticOperator;
-            }
-
             $subsetStart  = ($arithmeticOperator + 1);
             $nextNonEmpty = $arithmeticOperator;
             do {
