@@ -350,42 +350,6 @@ class FunctionsUnitTest extends TestCase
 
 
     /**
-     * testStripQuotes
-     *
-     * @dataProvider dataStripQuotes
-     *
-     * @covers \PHPCompatibility\Sniff::stripQuotes
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     *
-     * @return void
-     */
-    public function testStripQuotes($input, $expected)
-    {
-        $this->assertSame($expected, $this->helperClass->stripQuotes($input));
-    }
-
-    /**
-     * dataStripQuotes
-     *
-     * @see testStripQuotes()
-     *
-     * @return array
-     */
-    public function dataStripQuotes()
-    {
-        return array(
-            array('"dir_name"', 'dir_name'),
-            array("'soap.wsdl_cache'", 'soap.wsdl_cache'),
-            array('"arbitrary-\'string\" with\' quotes within"', 'arbitrary-\'string\" with\' quotes within'),
-            array('"\'quoted_name\'"', "'quoted_name'"),
-            array("'\"quoted\" start of string'", '"quoted" start of string'),
-        );
-    }
-
-
-    /**
      * testArrayKeysToLowercase
      *
      * @dataProvider dataArrayKeysToLowercase
