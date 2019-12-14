@@ -1308,31 +1308,4 @@ abstract class Sniff implements PHPCS_Sniff
 
         return true;
     }
-
-    /**
-     * Get the complete contents of a multi-line text string.
-     *
-     * @since      9.3.0
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\TextStrings::getCompleteTextString()} instead.
-     *
-     * @codeCoverageIgnore Method as pulled upstream is accompanied by unit tests.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $stackPtr    Pointer to the first text string token
-     *                                           of a multi-line text string or to a
-     *                                           Nowdoc/Heredoc opener.
-     * @param bool                  $stripQuotes Optional. Whether to strip text delimiter
-     *                                           quotes off the resulting text string.
-     *                                           Defaults to true.
-     *
-     * @return string
-     *
-     * @throws \PHP_CodeSniffer_Exception If the specified position is not a
-     *                                    valid text string token or if the
-     *                                    token is not the first text string token.
-     */
-    public function getCompleteTextString(File $phpcsFile, $stackPtr, $stripQuotes = true)
-    {
-        return TextStrings::getCompleteTextString($phpcsFile, $stackPtr, $stripQuotes);
-    }
 }
