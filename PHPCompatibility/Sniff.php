@@ -695,38 +695,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Check whether the direct wrapping scope of a token is within a limited set of
-     * acceptable tokens.
-     *
-     * Used to check, for instance, if a T_CONST is a class constant.
-     *
-     * @since      7.1.4
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Scopes::validDirectScope()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile   Instance of phpcsFile.
-     * @param int                   $stackPtr    The position in the stack of the
-     *                                           token to verify.
-     * @param array                 $validScopes Array of token types.
-     *                                           Keys should be the token types in string
-     *                                           format to allow for newer token types.
-     *                                           Value is irrelevant.
-     *
-     * @return int|bool StackPtr to the scope if valid, false otherwise.
-     */
-    protected function validDirectScope(File $phpcsFile, $stackPtr, $validScopes)
-    {
-        $types = array();
-        foreach ($validScopes as $type => $ignore) {
-            if (defined($type)) {
-                $types[] = constant($type);
-            }
-        }
-
-        return Scopes::validDirectScope($phpcsFile, $stackPtr, $types);
-    }
-
-
-    /**
      * Get an array of just the type hints from a function declaration.
      *
      * Expects to be passed T_FUNCTION or T_CLOSURE token.
