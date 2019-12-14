@@ -1,50 +1,50 @@
 <?php
 
-/* Case 1 */
+/* test 1 */
 new DateTime;
 
 
 namespace MyTesting;
 
-/* Case 2 */
+/* test 2 */
 new namespace\DateTime();
-/* Case 3 */
+/* test 3 */
 new DateTime;
-/* Case 4 */
+/* test 4 */
 new \DateTime();
-/* Case 5 */
+/* test 5 */
 new anotherNS\DateTime();
-/* Case 6 */
+/* test 6 */
 new \FQNS\DateTime();
 
 
 namespace AnotherTesting {
-    /* Case 7 */
+    /* test 7 */
     new namespace\DateTime();
-    /* Case 8 */
+    /* test 8 */
     new DateTime;
-    /* Case 9 */
+    /* test 9 */
     new \DateTime();
-    /* Case 10 */
+    /* test 10 */
     new anotherNS\DateTime();
-    /* Case 11 */
+    /* test 11 */
     new \FQNS\DateTime();
 }
 
-/* Case 12 */
+/* test 12 */
 new DateTime;
-/* Case 13 */
+/* test 13 */
 new \DateTime;
-/* Case 14 */
+/* test 14 */
 new \AnotherTesting\DateTime();
 
 
 // Variant on issue #205.
 $className = 'DateTime';
-/* Case 15 */
+/* test 15 */
 new $className;
 
 
 // Issue #338 - no infinite loop on unfinished code.
-/* Case 16 */
+/* test 16 */
 $var = new

@@ -40,7 +40,7 @@ class TokenScopeUnitTest extends CoreMethodTestFrame
     public function testInClassScope($commentString, $targetType, $expected, $strict = true)
     {
         $stackPtr = $this->getTargetToken($commentString, $targetType);
-        $result   = $this->helperClass->inClassScope($this->phpcsFile, $stackPtr, $strict);
+        $result   = self::$helperClass->inClassScope(self::$phpcsFile, $stackPtr, $strict);
         $this->assertSame($expected, $result);
     }
 
@@ -54,17 +54,17 @@ class TokenScopeUnitTest extends CoreMethodTestFrame
     public function dataInClassScope()
     {
         return array(
-            array('/* Case C1 */', \T_VARIABLE, true), // $property
-            array('/* Case C2 */', \T_FUNCTION, true), // Function in class.
-            array('/* Case C3 */', \T_FUNCTION, false), // Global function.
-            array('/* Case C4 */', \T_FUNCTION, true), // Function in namespaced class.
-            array('/* Case C5 */', \T_FUNCTION, true), // Function in anon class.
-            array('/* Case I1 */', \T_FUNCTION, false), // Function in interface / strict.
-            array('/* Case I1 */', \T_FUNCTION, true, false), // Function in interface.
-            array('/* Case T1 */', \T_VARIABLE, false), // Property in trait / strict.
-            array('/* Case T1 */', \T_VARIABLE, true, false), // Property in trait.
-            array('/* Case T2 */', \T_FUNCTION, false), // Function in trait / strict.
-            array('/* Case T2 */', \T_FUNCTION, true, false), // Function in trait.
+            array('/* test C1 */', \T_VARIABLE, true), // $property
+            array('/* test C2 */', \T_FUNCTION, true), // Function in class.
+            array('/* test C3 */', \T_FUNCTION, false), // Global function.
+            array('/* test C4 */', \T_FUNCTION, true), // Function in namespaced class.
+            array('/* test C5 */', \T_FUNCTION, true), // Function in anon class.
+            array('/* test I1 */', \T_FUNCTION, false), // Function in interface / strict.
+            array('/* test I1 */', \T_FUNCTION, true, false), // Function in interface.
+            array('/* test T1 */', \T_VARIABLE, false), // Property in trait / strict.
+            array('/* test T1 */', \T_VARIABLE, true, false), // Property in trait.
+            array('/* test T2 */', \T_FUNCTION, false), // Function in trait / strict.
+            array('/* test T2 */', \T_FUNCTION, true, false), // Function in trait.
         );
     }
 }

@@ -38,7 +38,7 @@ class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
     public function testGetFQClassNameFromDoubleColonToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, \T_DOUBLE_COLON);
-        $result   = $this->helperClass->getFQClassNameFromDoubleColonToken($this->phpcsFile, $stackPtr);
+        $result   = self::$helperClass->getFQClassNameFromDoubleColonToken(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -52,25 +52,25 @@ class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
     public function dataGetFQClassNameFromDoubleColonToken()
     {
         return array(
-            array('/* Case 1 */', '\DateTime'),
-            array('/* Case 2 */', '\DateTime'),
-            array('/* Case 3 */', '\DateTime'),
-            array('/* Case 4 */', '\DateTime'),
-            array('/* Case 5 */', '\DateTime'),
-            array('/* Case 6 */', '\AnotherNS\DateTime'),
-            array('/* Case 7 */', '\FQNS\DateTime'),
-            array('/* Case 8 */', '\DateTime'),
-            array('/* Case 9 */', '\AnotherNS\DateTime'),
-            array('/* Case 10 */', '\Testing\DateTime'),
-            array('/* Case 11 */', '\Testing\DateTime'),
-            array('/* Case 12 */', '\Testing\DateTime'),
-            array('/* Case 13 */', '\Testing\MyClass'),
-            array('/* Case 14 */', ''),
-            array('/* Case 15 */', ''),
-            array('/* Case 16 */', '\MyClass'),
-            array('/* Case 17 */', ''),
-            array('/* Case 18 */', ''),
-            array('/* Case 19 */', ''),
+            array('/* test 1 */', '\DateTime'),
+            array('/* test 2 */', '\DateTime'),
+            array('/* test 3 */', '\DateTime'),
+            array('/* test 4 */', '\DateTime'),
+            array('/* test 5 */', '\DateTime'),
+            array('/* test 6 */', '\AnotherNS\DateTime'),
+            array('/* test 7 */', '\FQNS\DateTime'),
+            array('/* test 8 */', '\DateTime'),
+            array('/* test 9 */', '\AnotherNS\DateTime'),
+            array('/* test 10 */', '\Testing\DateTime'),
+            array('/* test 11 */', '\Testing\DateTime'),
+            array('/* test 12 */', '\Testing\DateTime'),
+            array('/* test 13 */', '\Testing\MyClass'),
+            array('/* test 14 */', ''),
+            array('/* test 15 */', ''),
+            array('/* test 16 */', '\MyClass'),
+            array('/* test 17 */', ''),
+            array('/* test 18 */', ''),
+            array('/* test 19 */', ''),
         );
     }
 }
