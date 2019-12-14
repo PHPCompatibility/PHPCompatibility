@@ -319,21 +319,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Make all top level array keys in an array lowercase.
-     *
-     * @since 7.1.0
-     *
-     * @param array $array Initial array.
-     *
-     * @return array Same array, but with all lowercase top level keys.
-     */
-    public function arrayKeysToLowercase($array)
-    {
-        return array_change_key_case($array, \CASE_LOWER);
-    }
-
-
-    /**
      * Checks if a function call has parameters.
      *
      * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.

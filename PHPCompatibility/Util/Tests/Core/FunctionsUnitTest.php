@@ -350,49 +350,6 @@ class FunctionsUnitTest extends TestCase
 
 
     /**
-     * testArrayKeysToLowercase
-     *
-     * @dataProvider dataArrayKeysToLowercase
-     *
-     * @covers \PHPCompatibility\Sniff::arrayKeysToLowercase
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     *
-     * @return void
-     */
-    public function testArrayKeysToLowercase($input, $expected)
-    {
-        $this->assertSame($expected, $this->helperClass->arrayKeysToLowercase($input));
-    }
-
-    /**
-     * dataArrayKeysToLowercase
-     *
-     * @see testArrayKeysToLowercase()
-     *
-     * @return array
-     */
-    public function dataArrayKeysToLowercase()
-    {
-        return array(
-            array(
-                array(
-                    'UPPERCASE' => true,
-                    'MIXEDcase' => false,
-                    'lowercase' => '123',
-                ),
-                array(
-                    'uppercase' => true,
-                    'mixedcase' => false,
-                    'lowercase' => '123',
-                ),
-            ),
-        );
-    }
-
-
-    /**
      * testStripVariables
      *
      * @dataProvider dataStripVariables
