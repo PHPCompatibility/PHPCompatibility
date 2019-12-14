@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Abstract private methods are not allowed since PHP 5.1.
@@ -28,19 +30,6 @@ use PHP_CodeSniffer_File as File;
  */
 class ForbiddenAbstractPrivateMethodsSniff extends Sniff
 {
-
-    /**
-     * Valid scopes to check for abstract private methods.
-     *
-     * @since 9.2.0
-     *
-     * @var array
-     */
-    public $ooScopeTokens = array(
-        'T_CLASS'      => true,
-        'T_TRAIT'      => true,
-        'T_ANON_CLASS' => true,
-    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -71,7 +60,7 @@ class ForbiddenAbstractPrivateMethodsSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) === false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
             // Function, not method.
             return;
         }

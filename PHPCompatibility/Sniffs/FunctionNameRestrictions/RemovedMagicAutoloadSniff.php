@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect declaration of the magic `__autoload()` method.
@@ -38,11 +39,11 @@ class RemovedMagicAutoloadSniff extends Sniff
      * @var array
      */
     private $checkForScopes = array(
-        'T_CLASS'      => true,
-        'T_ANON_CLASS' => true,
-        'T_INTERFACE'  => true,
-        'T_TRAIT'      => true,
-        'T_NAMESPACE'  => true,
+        \T_CLASS      => \T_CLASS,
+        \T_ANON_CLASS => \T_ANON_CLASS,
+        \T_INTERFACE  => \T_INTERFACE,
+        \T_TRAIT      => \T_TRAIT,
+        \T_NAMESPACE  => \T_NAMESPACE,
     );
 
     /**
@@ -80,7 +81,7 @@ class RemovedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->checkForScopes) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, $this->checkForScopes) !== false) {
             return;
         }
 
