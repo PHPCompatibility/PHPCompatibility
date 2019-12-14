@@ -72,7 +72,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->targetFunctions = $this->arrayKeysToLowercase($this->targetFunctions);
+        $this->targetFunctions = \array_change_key_case($this->targetFunctions, \CASE_LOWER);
 
         return array(\T_STRING);
     }

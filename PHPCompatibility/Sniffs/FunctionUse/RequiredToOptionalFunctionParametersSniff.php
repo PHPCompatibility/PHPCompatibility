@@ -168,7 +168,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->functionParameters = $this->arrayKeysToLowercase($this->functionParameters);
+        $this->functionParameters = \array_change_key_case($this->functionParameters, \CASE_LOWER);
 
         return array(\T_STRING);
     }

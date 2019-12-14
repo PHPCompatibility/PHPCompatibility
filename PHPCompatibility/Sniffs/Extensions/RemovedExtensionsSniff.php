@@ -211,7 +211,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->removedExtensions = $this->arrayKeysToLowercase($this->removedExtensions);
+        $this->removedExtensions = \array_change_key_case($this->removedExtensions, \CASE_LOWER);
 
         return array(\T_STRING);
     }

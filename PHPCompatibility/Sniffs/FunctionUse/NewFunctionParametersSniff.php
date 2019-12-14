@@ -951,7 +951,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->newFunctionParameters = $this->arrayKeysToLowercase($this->newFunctionParameters);
+        $this->newFunctionParameters = \array_change_key_case($this->newFunctionParameters, \CASE_LOWER);
 
         return array(\T_STRING);
     }
