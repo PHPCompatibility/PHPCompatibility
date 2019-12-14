@@ -18,7 +18,6 @@ use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
-use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
@@ -1308,25 +1307,6 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         return true;
-    }
-
-    /**
-     * Determine whether a T_MINUS/T_PLUS token is a unary operator.
-     *
-     * @since      9.2.0
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Operators::isUnaryPlusMinus()} instead.
-     *
-     * @codeCoverageIgnore Method as pulled upstream is accompanied by unit tests.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the plus/minus token.
-     *
-     * @return bool True if the token passed is a unary operator.
-     *              False otherwise or if the token is not a T_PLUS/T_MINUS token.
-     */
-    public static function isUnaryPlusMinus(File $phpcsFile, $stackPtr)
-    {
-        return Operators::isUnaryPlusMinus($phpcsFile, $stackPtr);
     }
 
     /**
