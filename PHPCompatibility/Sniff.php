@@ -695,29 +695,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Check whether a T_VARIABLE token is a class property declaration.
-     *
-     * Compatibility layer for PHPCS cross-version compatibility
-     * as PHPCS < 2.7.1 does not have good enough support for
-     * anonymous classes. Along the same lines, the`getMemberProperties()`
-     * method does not support the `var` prefix.
-     *
-     * @since      7.1.4
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Scopes::isOOProperty()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int                   $stackPtr  The position in the stack of the
-     *                                         T_VARIABLE token to verify.
-     *
-     * @return bool
-     */
-    public function isClassProperty(File $phpcsFile, $stackPtr)
-    {
-        return Scopes::isOOProperty($phpcsFile, $stackPtr);
-    }
-
-
-    /**
      * Check whether a T_CONST token is a class constant declaration.
      *
      * @since      7.1.4
