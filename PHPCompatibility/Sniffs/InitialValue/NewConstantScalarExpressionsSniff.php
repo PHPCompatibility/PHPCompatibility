@@ -15,6 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect constant scalar expressions being used to set an initial value.
@@ -229,7 +230,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
                 // Filter out non-property declarations.
                 if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-                    if ($this->isClassProperty($phpcsFile, $stackPtr) === false) {
+                    if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
                         return;
                     }
 
@@ -247,7 +248,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                         return;
                     }
 
-                    if ($this->isClassProperty($phpcsFile, $next) === true) {
+                    if (Scopes::isOOProperty($phpcsFile, $next) === true) {
                         // Class properties are examined based on the T_VARIABLE token.
                         return;
                     }

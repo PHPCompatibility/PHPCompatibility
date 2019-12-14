@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect the use of removed global variables. Suggests alternatives if available.
@@ -134,7 +135,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        if ($this->isClassProperty($phpcsFile, $stackPtr) === true) {
+        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === true) {
             // Ok, so this was a class property declaration, not our concern.
             return;
         }

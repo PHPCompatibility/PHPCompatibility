@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Typed class property declarations are available since PHP 7.4.
@@ -69,7 +70,7 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->isClassProperty($phpcsFile, $stackPtr) === false) {
+        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
             return;
         }
 
