@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCFile;
+use PHPCSUtils\Utils\Operators;
 
 /**
  * The left-associativity of the ternary operator is deprecated in PHP 7.4 and
@@ -123,7 +124,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
             if ($tokens[$i]['code'] === \T_INLINE_THEN) {
                 ++$ternaryCount;
 
-                if ($this->isShortTernary($phpcsFile, $i) === true) {
+                if (Operators::isShortTernary($phpcsFile, $i) === true) {
                     ++$shortTernaryCount;
                 }
 
