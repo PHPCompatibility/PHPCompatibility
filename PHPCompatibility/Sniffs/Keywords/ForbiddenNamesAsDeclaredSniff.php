@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Namespaces;
 
 /**
  * Detects the use of some reserved keywords to name a class, interface, trait or namespace.
@@ -160,7 +161,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             }
 
         } elseif ($tokenCode === \T_NAMESPACE) {
-            $namespaceName = $this->getDeclaredNamespaceName($phpcsFile, $stackPtr);
+            $namespaceName = Namespaces::getDeclaredName($phpcsFile, $stackPtr);
 
             if ($namespaceName === false || $namespaceName === '') {
                 return;
