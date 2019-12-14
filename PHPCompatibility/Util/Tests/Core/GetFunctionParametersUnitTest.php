@@ -61,6 +61,10 @@ class GetFunctionParametersUnitTest extends CoreMethodTestFrame
         }
 
         $result = $this->helperClass->getFunctionCallParameters($this->phpcsFile, $stackPtr);
+        foreach ($result as $key => $value) {
+            unset($result[$key]['clean']); // This key is new in PHPCSUtils.
+        }
+
         $this->assertSame($expected, $result);
     }
 
@@ -365,6 +369,8 @@ class GetFunctionParametersUnitTest extends CoreMethodTestFrame
         $expected['end']   += $stackPtr;
 
         $result = $this->helperClass->getFunctionCallParameter($this->phpcsFile, $stackPtr, $paramPosition);
+        unset($result['clean']); // This key is new in PHPCSUtils.
+
         $this->assertSame($expected, $result);
     }
 
