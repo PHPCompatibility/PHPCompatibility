@@ -528,7 +528,7 @@ abstract class Sniff implements PHPCS_Sniff
             $name = substr($name, 10);
         }
 
-        $namespace = $this->determineNamespace($phpcsFile, $stackPtr);
+        $namespace = Namespaces::determineNamespace($phpcsFile, $stackPtr);
 
         if ($namespace === '') {
             return '\\' . $name;

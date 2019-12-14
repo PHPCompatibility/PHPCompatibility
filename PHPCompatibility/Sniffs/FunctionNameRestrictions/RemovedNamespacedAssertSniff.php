@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Namespaces;
 
 /**
  * Detect declaration of a namespaced function called `assert()`.
@@ -87,7 +88,7 @@ class RemovedNamespacedAssertSniff extends Sniff
             return;
         }
 
-        if ($this->determineNamespace($phpcsFile, $stackPtr) === '') {
+        if (Namespaces::determineNamespace($phpcsFile, $stackPtr) === '') {
             // Not a namespaced function declaration. This may be a parse error, but not our concern.
             return;
         }

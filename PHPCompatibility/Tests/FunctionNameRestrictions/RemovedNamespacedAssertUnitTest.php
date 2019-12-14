@@ -19,7 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedNamespacedAssertSniff
- * @covers \PHPCompatibility\Sniff::determineNamespace
  *
  * @since 9.0.0
  */

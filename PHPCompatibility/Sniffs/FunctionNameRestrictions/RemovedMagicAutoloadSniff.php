@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Namespaces;
 
 /**
  * Detect declaration of the magic `__autoload()` method.
@@ -83,7 +84,7 @@ class RemovedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        if ($this->determineNamespace($phpcsFile, $stackPtr) !== '') {
+        if (Namespaces::determineNamespace($phpcsFile, $stackPtr) !== '') {
             return;
         }
 
