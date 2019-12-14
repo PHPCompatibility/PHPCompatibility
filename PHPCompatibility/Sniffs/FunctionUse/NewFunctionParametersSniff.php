@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect use of new function parameters in calls to native PHP functions.
@@ -1007,7 +1008,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
             }
         }
 
-        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        $parameterCount = PassedParameters::getParameterCount($phpcsFile, $stackPtr);
         if ($parameterCount === 0) {
             return;
         }
