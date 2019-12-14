@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -333,7 +334,7 @@ class ForbiddenNamesSniff extends Sniff
         if ((($tokens[$stackPtr]['type'] === 'T_FUNCTION'
                 && $this->inClassScope($phpcsFile, $stackPtr, false) === true)
             || ($tokens[$stackPtr]['type'] === 'T_CONST'
-                && $this->isClassConstant($phpcsFile, $stackPtr) === true
+                && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
                 && $nextContentLc !== 'class'))
             && $this->supportsBelow('5.6') === false
         ) {

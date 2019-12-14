@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Visibility for class constants is available since PHP 7.1.
@@ -64,7 +65,7 @@ class NewConstVisibilitySniff extends Sniff
         }
 
         // Is this a class constant ?
-        if ($this->isClassConstant($phpcsFile, $stackPtr) === false) {
+        if (Scopes::isOOConstant($phpcsFile, $stackPtr) === false) {
             // This may be a constant declaration in the global namespace with visibility,
             // but that would throw a parse error, i.e. not our concern.
             return;
