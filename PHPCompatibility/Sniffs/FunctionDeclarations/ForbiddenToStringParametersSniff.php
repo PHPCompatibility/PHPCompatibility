@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * As of PHP 5.3, the __toString() magic method can no longer accept arguments.
@@ -84,7 +84,7 @@ class ForbiddenToStringParametersSniff extends Sniff
             return;
         }
 
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             // Function declared without parameters.
             return;

@@ -10,13 +10,13 @@
 
 namespace PHPCompatibility;
 
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_Exception as PHPCS_Exception;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -997,7 +997,7 @@ abstract class Sniff implements PHPCS_Sniff
             return array();
         }
 
-        $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || \is_array($parameters) === false) {
             return array();
         }

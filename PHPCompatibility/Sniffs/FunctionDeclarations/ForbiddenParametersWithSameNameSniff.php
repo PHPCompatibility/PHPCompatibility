@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Functions can not have multiple parameters with the same name since PHP 7.0.
@@ -67,7 +67,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
         }
 
         // Get all parameters from method signature.
-        $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || \is_array($parameters) === false) {
             return;
         }

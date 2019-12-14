@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect constant scalar expressions being used to set an initial value.
@@ -163,7 +163,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
         switch ($tokens[$stackPtr]['type']) {
             case 'T_FUNCTION':
             case 'T_CLOSURE':
-                $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+                $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
                 if (empty($params)) {
                     // No parameters.
                     return;

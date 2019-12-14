@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect and verify the use of parameter type declarations in function declarations.
@@ -153,7 +153,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        $paramNames = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($paramNames)) {
             return;
         }

@@ -11,10 +11,10 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCFile;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Functions inspecting function arguments report the current parameter value
@@ -151,7 +151,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         $scopeCloser = $tokens[$stackPtr]['scope_closer'];
 
         // Does the function declaration have parameters ?
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             // No named arguments found, so no risk of them being changed.
             return;

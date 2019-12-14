@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect using `$this` in incompatible contexts.
@@ -307,7 +307,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
             return;
         }
 
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             return;
         }

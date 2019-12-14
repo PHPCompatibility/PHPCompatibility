@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect the use of superglobals as parameters for functions, support for which was removed in PHP 5.4.
@@ -61,7 +61,7 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
         }
 
         // Get all parameters from function signature.
-        $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || \is_array($parameters) === false) {
             return;
         }
