@@ -15,7 +15,6 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
-use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Namespaces;
@@ -315,34 +314,6 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         return preg_replace(self::REGEX_COMPLEX_VARS, '', $string);
-    }
-
-
-    /**
-     * Verify whether a token is within a scoped condition.
-     *
-     * If the optional $validScopes parameter has been passed, the function
-     * will check that the token has at least one condition which is of a
-     * type defined in $validScopes.
-     *
-     * @since      7.0.5  Largely split off from the `inClassScope()` method.
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Conditions::getCondition()}
-     *                    or {@see PHPCSUtils\Utils\Conditions::hasCondition()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $stackPtr    The position of the token.
-     * @param array|int             $validScopes Optional. Array of valid scopes
-     *                                           or int value of a valid scope.
-     *                                           Pass the T_.. constant(s) for the
-     *                                           desired scope to this parameter.
-     *
-     * @return bool Without the optional $scopeTypes: True if within a scope, false otherwise.
-     *              If the $scopeTypes are set: True if *one* of the conditions is a
-     *              valid scope, false otherwise.
-     */
-    public function tokenHasScope(File $phpcsFile, $stackPtr, $validScopes = null)
-    {
-        return (Conditions::getCondition($phpcsFile, $stackPtr, $validScopes) !== false);
     }
 
 
