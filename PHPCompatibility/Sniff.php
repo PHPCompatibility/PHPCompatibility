@@ -319,58 +319,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Get information on all parameters passed to a function call.
-     *
-     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
-     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
-     *
-     * Will return an multi-dimentional array with the start token pointer, end token
-     * pointer and raw parameter value for all parameters. Index will be 1-based.
-     * If no parameters are found, will return an empty array.
-     *
-     * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
-     * it will tokenize the values / key/value pairs contained in the array call.
-     *
-     * @since      7.0.5  Split off from the `getFunctionCallParameterCount()` method.
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\PassedParameters::getParameters()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the function call token.
-     *
-     * @return array
-     */
-    public function getFunctionCallParameters(File $phpcsFile, $stackPtr)
-    {
-        return PassedParameters::getParameters($phpcsFile, $stackPtr);
-    }
-
-
-    /**
-     * Get information on a specific parameter passed to a function call.
-     *
-     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
-     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
-     *
-     * Will return a array with the start token pointer, end token pointer and the raw value
-     * of the parameter at a specific offset.
-     * If the specified parameter is not found, will return false.
-     *
-     * @since      7.0.5
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\PassedParameters::getParameter()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $stackPtr    The position of the function call token.
-     * @param int                   $paramOffset The 1-based index position of the parameter to retrieve.
-     *
-     * @return array|false
-     */
-    public function getFunctionCallParameter(File $phpcsFile, $stackPtr, $paramOffset)
-    {
-        return PassedParameters::getParameter($phpcsFile, $stackPtr, $paramOffset);
-    }
-
-
-    /**
      * Verify whether a token is within a scoped condition.
      *
      * If the optional $validScopes parameter has been passed, the function
