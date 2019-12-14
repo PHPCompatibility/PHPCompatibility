@@ -1221,27 +1221,6 @@ abstract class Sniff implements PHPCS_Sniff
     }
 
 
-
-    /**
-     * Determine whether a ternary is a short ternary, i.e. without "middle".
-     *
-     * @since      9.2.0
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Operators::isShortTernary()} instead.
-     *
-     * @codeCoverageIgnore Method as pulled upstream is accompanied by unit tests.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the ternary operator
-     *                                         in the stack.
-     *
-     * @return bool True if short ternary, or false otherwise.
-     */
-    public function isShortTernary(File $phpcsFile, $stackPtr)
-    {
-        return Operators::isShortTernary($phpcsFile, $stackPtr);
-    }
-
-
     /**
      * Determine whether a T_OPEN/CLOSE_SHORT_ARRAY token is a list() construct.
      *
