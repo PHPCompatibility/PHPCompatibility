@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -97,7 +98,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         // Differentiate between an array of patterns passed and a single pattern.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === \T_ARRAY || $tokens[$nextNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY)) {
-            $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
+            $arrayValues = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
             if ($functionNameLc === 'preg_replace_callback_array') {
                 // For preg_replace_callback_array(), the patterns will be in the array keys.
                 foreach ($arrayValues as $value) {

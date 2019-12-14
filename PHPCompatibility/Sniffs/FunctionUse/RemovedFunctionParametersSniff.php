@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect use of deprecated/removed function parameters in calls to native PHP functions.
@@ -152,7 +153,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
             }
         }
 
-        $parameters     = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        $parameters     = PassedParameters::getParameters($phpcsFile, $stackPtr);
         $parameterCount = \count($parameters);
         if ($parameterCount === 0) {
             return;

@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect constant scalar expressions being used to set an initial value.
@@ -408,7 +409,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             case \T_OPEN_SHORT_ARRAY:
                 ++$nestedArrays;
 
-                $arrayItems = $this->getFunctionCallParameters($phpcsFile, $nextNonSimple);
+                $arrayItems = PassedParameters::getParameters($phpcsFile, $nextNonSimple);
                 if (empty($arrayItems) === false) {
                     foreach ($arrayItems as $item) {
                         // Check for a double arrow, but only if it's for this array item, not for a nested array.

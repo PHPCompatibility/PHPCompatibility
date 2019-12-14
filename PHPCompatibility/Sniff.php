@@ -971,7 +971,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Get the parameter from the function call which should contain the algorithm name.
-        $algoParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
+        $algoParam = PassedParameters::getParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
         if ($algoParam === false) {
             return false;
         }

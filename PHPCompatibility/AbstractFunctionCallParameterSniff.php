@@ -13,6 +13,7 @@ namespace PHPCompatibility;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Abstract class to use as a base for examining the parameter values passed to function calls.
@@ -138,7 +139,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             }
         }
 
-        $parameters = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
 
         if (empty($parameters)) {
             return $this->processNoParameters($phpcsFile, $stackPtr, $function);

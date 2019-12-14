@@ -15,6 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -209,7 +210,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Address some special cases.
              */
             if ($foundFunctionName !== 'func_get_args') {
-                $paramOne = $this->getFunctionCallParameter($phpcsFile, $i, 1);
+                $paramOne = PassedParameters::getParameter($phpcsFile, $i, 1);
                 if ($paramOne !== false) {
                     switch ($foundFunctionName) {
                         /*
@@ -272,7 +273,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
                         || $tokens[$maybeFunctionCall]['content'] === 'array_splice')
                     ) {
-                        $parentFuncParamTwo = $this->getFunctionCallParameter($phpcsFile, $maybeFunctionCall, 2);
+                        $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
                         $number             = $phpcsFile->findNext(
                             \T_LNUMBER,
                             $parentFuncParamTwo['start'],

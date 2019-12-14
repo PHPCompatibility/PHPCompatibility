@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -371,7 +372,7 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         // Retrieve the define(d) constant name.
-        $firstParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        $firstParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 1);
         if ($firstParam === false) {
             return;
         }

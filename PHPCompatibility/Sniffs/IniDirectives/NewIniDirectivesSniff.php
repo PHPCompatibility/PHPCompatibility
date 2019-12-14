@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -726,7 +727,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $iniToken = $this->getFunctionCallParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
+        $iniToken = PassedParameters::getParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
         if ($iniToken === false) {
             return;
         }
