@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Lists;
 
 /**
  * Since PHP 7.1, you can specify keys in `list()`, or its new shorthand `[]` syntax.
@@ -120,7 +121,7 @@ class NewKeyedListSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY
-            && $this->isShortList($phpcsFile, $stackPtr) === false
+            && Lists::isShortList($phpcsFile, $stackPtr) === false
         ) {
             // Short array, not short list.
             return;

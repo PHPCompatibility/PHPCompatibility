@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Lists;
 
 /**
  * Detect short list syntax for symmetric array destructuring.
@@ -60,7 +61,7 @@ class NewShortListSniff extends Sniff
             return;
         }
 
-        if ($this->isShortList($phpcsFile, $stackPtr) === false) {
+        if (Lists::isShortList($phpcsFile, $stackPtr) === false) {
             return;
         }
 
