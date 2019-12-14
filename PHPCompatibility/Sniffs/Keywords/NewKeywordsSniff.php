@@ -38,14 +38,17 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * If's sufficient to list the last version which did not contain the keyword.
      *
      * Description will be used as part of the error message.
-     * Condition is the name of a callback method within this class or the parent class
-     * which checks whether the token complies with a certain condition.
+     * Callback should be a callback which checks whether the token complies
+     * with a certain condition.
      * The callback function will be passed the $phpcsFile and the $stackPtr.
      * The callback function should return `true` if the condition is met and the
      * error should *not* be thrown.
      *
      * @since 5.5
-     * @since 7.0.3 Support for 'condition' has been added.
+     * @since 7.0.3  Support for `condition` has been added.
+     * @since 10.0.0 The `condition` index used to allow only for callback methods in this or the
+     *               parent class. This index has been renamed to `callback` and now expect
+     *               one of the PHP accepted callback formats.
      *
      * @var array(string => array(string => bool|string))
      */
@@ -59,7 +62,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"const" keyword',
-            'condition'   => 'isClassConstant', // Keyword is only new when not in class context.
+            'callback'    => '\PHPCSUtils\Utils\Scopes::isOOConstant', // Keyword is only new when not in class context.
         ),
         'T_CALLABLE' => array(
             '5.3'         => false,
@@ -116,7 +119,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             '5.2'         => false,
             '5.3'         => true,
             'description' => '(Double) quoted Heredoc identifier',
-            'condition'   => 'isNotQuoted', // Heredoc is only new with quoted identifier.
+            'callback'    => array(__CLASS__, 'isNotQuoted'), // Heredoc is only new with quoted identifier.
         ),
         'T_TRAIT' => array(
             '5.3'         => false,
@@ -284,9 +287,9 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
                 || $tokens[$prevToken]['type'] !== 'T_CLASS'
                 || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
         ) {
-            // Skip based on token scope condition.
-            if (isset($this->newKeywords[$tokenType]['condition'])
-                && \call_user_func(array($this, $this->newKeywords[$tokenType]['condition']), $phpcsFile, $stackPtr) === true
+            // Skip based on the output of a specific callback.
+            if (isset($this->newKeywords[$tokenType]['callback'])
+                && \call_user_func($this->newKeywords[$tokenType]['callback'], $phpcsFile, $stackPtr) === true
             ) {
                 return;
             }
@@ -325,7 +328,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
     {
         return array(
             'description',
-            'condition',
+            'callback',
             'content',
         );
     }
@@ -376,13 +379,16 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @since 8.0.0
      *
+     * @since 10.0.0 This function is now a static function (to allow it to be set
+     *               as a callback from a class property).
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack passed in $tokens.
      *
      * @return bool
      */
-    public function isNotQuoted(File $phpcsFile, $stackPtr)
+    public static function isNotQuoted(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         return ($tokens[$stackPtr]['content'][3] !== '"');
