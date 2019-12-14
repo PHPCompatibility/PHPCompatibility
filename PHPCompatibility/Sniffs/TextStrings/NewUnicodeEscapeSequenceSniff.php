@@ -84,7 +84,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
             }
 
             try {
-                $textString = $this->getCompleteTextString($phpcsFile, $start, false);
+                $textString = TextStrings::getCompleteTextString($phpcsFile, $start, false);
             } catch (PHPCS_Exception $e) {
                 // Something went wrong determining the start of the text string.
                 return;
