@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
@@ -168,7 +169,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         $regex = '';
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
             if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
-                $content = $this->stripQuotes($tokens[$i]['content']);
+                $content = TextStrings::stripQuotes($tokens[$i]['content']);
                 if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                     $content = $this->stripVariables($content);
                 }
@@ -179,7 +180,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
         // Deal with multi-line regexes which were broken up in several string tokens.
         if ($tokens[$pattern['start']]['line'] !== $tokens[$pattern['end']]['line']) {
-            $regex = $this->stripQuotes($regex);
+            $regex = TextStrings::stripQuotes($regex);
         }
 
         if ($regex === '') {

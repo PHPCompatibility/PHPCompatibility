@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for valid integer types and values.
@@ -211,7 +212,9 @@ class ValidIntegersSniff extends Sniff
     {
         $token = $tokens[$stackPtr];
 
-        if ($token['code'] === \T_CONSTANT_ENCAPSED_STRING && preg_match('`^0x[a-f0-9]+$`iD', $this->stripQuotes($token['content'])) === 1) {
+        if ($token['code'] === \T_CONSTANT_ENCAPSED_STRING
+            && preg_match('`^0x[a-f0-9]+$`iD', TextStrings::stripQuotes($token['content'])) === 1
+        ) {
             return true;
         }
 

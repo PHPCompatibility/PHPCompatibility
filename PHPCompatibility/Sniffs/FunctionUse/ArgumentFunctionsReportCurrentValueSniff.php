@@ -15,6 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Functions inspecting function arguments report the current parameter value
@@ -324,7 +325,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                             $tokens[$afterStackFrame]['bracket_closer']
                         );
 
-                        if ($arrayIndex !== false && $this->stripQuotes($tokens[$arrayIndex]['content']) !== 'args') {
+                        if ($arrayIndex !== false
+                            && TextStrings::stripQuotes($tokens[$arrayIndex]['content']) !== 'args'
+                        ) {
                             continue;
                         }
                     }

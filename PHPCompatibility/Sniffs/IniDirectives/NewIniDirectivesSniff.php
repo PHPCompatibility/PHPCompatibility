@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Detect the use of new INI directives through `ini_set()` or `ini_get()`.
@@ -730,7 +731,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $filteredToken = $this->stripQuotes($iniToken['raw']);
+        $filteredToken = TextStrings::stripQuotes($iniToken['raw']);
         if (isset($this->newIniDirectives[$filteredToken]) === false) {
             return;
         }

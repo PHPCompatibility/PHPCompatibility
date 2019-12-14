@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\TextStrings;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_Exception as PHPCS_Exception;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * PHP 7.0 introduced a Unicode codepoint escape sequence.
@@ -99,7 +100,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
             }
         }
 
-        $content = $this->stripQuotes($tokens[$stackPtr]['content']);
+        $content = TextStrings::stripQuotes($tokens[$stackPtr]['content']);
         $count   = preg_match_all('`(?<!\\\\)\\\\u\{([^}\n\r]*)(\})?`', $content, $matches, \PREG_SET_ORDER);
         if ($count === false || $count === 0) {
             return;

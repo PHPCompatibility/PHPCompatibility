@@ -1064,7 +1064,7 @@ abstract class Sniff implements PHPCS_Sniff
 
         // Algorithm is a text string, so we need to remove the quotes.
         $algo = strtolower(trim($algoParam['raw']));
-        $algo = $this->stripQuotes($algo);
+        $algo = TextStrings::stripQuotes($algo);
 
         return $algo;
     }
@@ -1357,7 +1357,7 @@ abstract class Sniff implements PHPCS_Sniff
                 }
 
                 $nextNonEmpty  = --$i;
-                $content       = $this->stripQuotes($content);
+                $content       = TextStrings::stripQuotes($content);
                 $stringContent = $content;
             }
 

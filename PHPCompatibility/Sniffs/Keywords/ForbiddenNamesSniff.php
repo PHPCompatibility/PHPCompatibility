@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Detects the use of reserved keywords as class, function, namespace or constant names.
@@ -375,7 +376,7 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        $defineName   = $this->stripQuotes($firstParam['raw']);
+        $defineName   = TextStrings::stripQuotes($firstParam['raw']);
         $defineNameLc = strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
