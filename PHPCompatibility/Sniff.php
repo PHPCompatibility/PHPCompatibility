@@ -319,33 +319,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Count the number of parameters a function call has been passed.
-     *
-     * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
-     * If passed a T_STRING which is *not* a function call, the behaviour is unreliable.
-     *
-     * Extra feature: If passed an T_ARRAY or T_OPEN_SHORT_ARRAY stack pointer,
-     * it will return the number of values in the array.
-     *
-     * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/111
-     * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/114
-     * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/151
-     *
-     * @since      7.0.3
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\PassedParameters::getParameterCount()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the function call token.
-     *
-     * @return int
-     */
-    public function getFunctionCallParameterCount(File $phpcsFile, $stackPtr)
-    {
-        return PassedParameters::getParameterCount($phpcsFile, $stackPtr);
-    }
-
-
-    /**
      * Get information on all parameters passed to a function call.
      *
      * Expects to be passed the T_STRING or T_VARIABLE stack pointer for the function call.
