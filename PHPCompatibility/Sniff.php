@@ -695,24 +695,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Check whether a T_CONST token is a class constant declaration.
-     *
-     * @since      7.1.4
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Scopes::isOOConstant()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int                   $stackPtr  The position in the stack of the
-     *                                         T_CONST token to verify.
-     *
-     * @return bool
-     */
-    public function isClassConstant(File $phpcsFile, $stackPtr)
-    {
-        return Scopes::isOOConstant($phpcsFile, $stackPtr);
-    }
-
-
-    /**
      * Check whether the direct wrapping scope of a token is within a limited set of
      * acceptable tokens.
      *
