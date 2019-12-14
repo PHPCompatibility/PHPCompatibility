@@ -16,7 +16,6 @@ use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Operators;
@@ -1218,26 +1217,6 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         return false;
-    }
-
-
-    /**
-     * Determine whether a T_OPEN/CLOSE_SHORT_ARRAY token is a list() construct.
-     *
-     * Note: A variety of PHPCS versions have bugs in the tokenizing of short arrays.
-     * In that case, the tokens are identified as T_OPEN/CLOSE_SQUARE_BRACKET.
-     *
-     * @since      8.2.0
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Lists::isShortList()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the function call token.
-     *
-     * @return bool
-     */
-    public function isShortList(File $phpcsFile, $stackPtr)
-    {
-        return Lists::isShortList($phpcsFile, $stackPtr);
     }
 
 
