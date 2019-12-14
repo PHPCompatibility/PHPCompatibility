@@ -562,27 +562,6 @@ abstract class Sniff implements PHPCS_Sniff
 
 
     /**
-     * Get the complete namespace name for a namespace declaration.
-     *
-     * For hierarchical namespaces, the name will be composed of several tokens,
-     * i.e. MyProject\Sub\Level which will be returned together as one string.
-     *
-     * @since      7.0.3
-     * @deprecated 10.0.0 Use {@see PHPCSUtils\Utils\Namespaces::getDeclaredName()} instead.
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int|bool              $stackPtr  The position of a T_NAMESPACE token.
-     *
-     * @return string|false Namespace name or false if not a namespace declaration.
-     *                      Namespace name can be an empty string for global namespace declaration.
-     */
-    public function getDeclaredNamespaceName(File $phpcsFile, $stackPtr)
-    {
-        return Namespaces::getDeclaredName($phpcsFile, $stackPtr);
-    }
-
-
-    /**
      * Get the stack pointer for a return type token for a given function.
      *
      * Compatible layer for older PHPCS versions which don't recognize
