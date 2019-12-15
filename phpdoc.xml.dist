@@ -13,28 +13,10 @@
 
 	<transformer>
 		<target>build/docs/output</target>
-		<!--
-		<external-class-documentation>
-			<prefix>PHPCompatibility</prefix>
-			<uri>http://phpcompatibility.com/docs/{CLASS}.html</uri>
-		</external-class-documentation>
-		-->
 	</transformer>
-
-	<!--
-	<transformations>
-		<template name="checkstyle" />
-	</transformations>
-	-->
 
 	<logging>
 		<level>debug</level>
-		<!--
-		<paths>
-			<default>{APP_ROOT}/data/log/{DATE}.log</default>
-			<errors>{APP_ROOT}/data/log/{DATE}.errors.log</errors>
-		</paths>
-		-->
 	</logging>
 
 </phpdoc>
