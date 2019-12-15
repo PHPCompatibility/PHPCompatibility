@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+	<title>PHPCompatibility</title>
+
+	<files>
+		<file>PHPCompatibility/*</file>
+		<directory>PHPCompatibility/Sniffs/</directory>
+	</files>
+
+	<parser>
+		<target>build/docs/structure</target>
+	</parser>
+
+	<transformer>
+		<target>build/docs/output</target>
+		<!--
+		<external-class-documentation>
+			<prefix>PHPCompatibility</prefix>
+			<uri>http://phpcompatibility.com/docs/{CLASS}.html</uri>
+		</external-class-documentation>
+		-->
+	</transformer>
+
+	<!--
+	<transformations>
+		<template name="checkstyle" />
+	</transformations>
+	-->
+
+	<logging>
+		<level>debug</level>
+		<!--
+		<paths>
+			<default>{APP_ROOT}/data/log/{DATE}.log</default>
+			<errors>{APP_ROOT}/data/log/{DATE}.errors.log</errors>
+		</paths>
+		-->
+	</logging>
+
+</phpdoc>

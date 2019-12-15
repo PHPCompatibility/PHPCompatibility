@@ -1,8 +1,10 @@
 .idea/*
 /vendor/
+/build/
 composer.phar
 composer.lock
 .phpcs.xml
 phpcs.xml
+phpdoc.xml
 phpunit.xml
 *~
