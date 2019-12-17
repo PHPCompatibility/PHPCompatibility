@@ -1049,7 +1049,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         $itemInfo = array(
             'name'   => $function,
             'nameLc' => $functionLc,
-            'removed'=> 'removed',
+            'removed' => 'removed',
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
