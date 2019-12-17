@@ -79,6 +79,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
         $itemInfo = array(
             'name'        => $tokenType,
             'description' => $this->deprecatedTypeCasts[$tokenType]['description'],
+            'deprecated'  => 'deprecated'
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }

@@ -249,6 +249,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
             if (strpos($functionLc, $extension) === 0) {
                 $itemInfo = array(
                     'name'   => $extension,
+                    'removed' => 'removed'
                 );
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
                 break;
