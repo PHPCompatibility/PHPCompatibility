@@ -145,7 +145,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                     'name'   => $function,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
-                    'removed'=> 'removed'
+                    'removed'=> 'removed',
                 );
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }

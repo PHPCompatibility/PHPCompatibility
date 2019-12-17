@@ -135,7 +135,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         // Still here, so throw an error/warning.
         $itemInfo = array(
             'name' => $varName,
-            'removed' => 'removed'
+            'removed' => 'removed',
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }

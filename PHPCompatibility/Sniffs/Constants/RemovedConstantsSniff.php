@@ -530,7 +530,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 
         $itemInfo = array(
             'name' => $constantName,
-            'removed' => "removed"
+            'removed' => "removed",
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }

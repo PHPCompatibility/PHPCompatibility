@@ -72,7 +72,7 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 
         $itemInfo = array(
             'name' => $algo,
-            'removed' => 'removed'
+            'removed' => 'removed',
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
