@@ -392,6 +392,6 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      */
     protected function getAlternativeOptionTemplate()
     {
-        return str_replace("%s", "'%s'", parent::getAlternativeOptionTemplate());
+        return str_replace('%s', "'%s'", parent::getAlternativeOptionTemplate());
     }
 }
