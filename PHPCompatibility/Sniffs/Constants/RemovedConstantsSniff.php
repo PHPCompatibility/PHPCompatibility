@@ -15,6 +15,10 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of deprecated and/or removed PHP native global constants.
+ *
+ * PHP version All
+ *
+ * @since 8.1.0
  */
 class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 {

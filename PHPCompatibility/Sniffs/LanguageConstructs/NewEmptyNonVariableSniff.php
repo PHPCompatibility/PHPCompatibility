@@ -17,7 +17,17 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * Verify that nothing but variables are passed to empty().
  *
+ * Prior to PHP 5.5, `empty()` only supported variables; anything else resulted in a parse error.
+ *
  * PHP version 5.5
+ *
+ * @link https://wiki.php.net/rfc/empty_isset_exprs
+ * @link https://www.php.net/manual/en/function.empty.php
+ *
+ * @since 7.0.4
+ * @since 9.0.0 The "is the parameter a variable" determination has been abstracted out
+ *              and moved to a separate method `Sniff::isVariable()`.
+ * @since 9.0.0 Renamed from `EmptyNonVariableSniff` to `NewEmptyNonVariableSniff`.
  */
 class NewEmptyNonVariableSniff extends Sniff
 {

@@ -16,7 +16,15 @@ use PHP_CodeSniffer_File as File;
 /**
  * Verifies the use of the correct visibility and static properties of magic methods.
  *
+ * The requirements have always existed, but as of PHP 5.3, a warning will be thrown
+ * when magic methods have the wrong modifiers.
+ *
  * PHP version 5.3
+ *
+ * @link https://www.php.net/manual/en/language.oop5.magic.php
+ *
+ * @since 5.5
+ * @since 5.6 Now extends the base `Sniff` class.
  */
 class NonStaticMagicMethodsSniff extends Sniff
 {

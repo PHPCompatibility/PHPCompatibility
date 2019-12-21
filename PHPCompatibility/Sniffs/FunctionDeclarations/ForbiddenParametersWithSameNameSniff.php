@@ -18,6 +18,10 @@ use PHP_CodeSniffer_File as File;
  * Functions can not have multiple parameters with the same name since PHP 7.0
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameters
+ *
+ * @since 7.0.0
  */
 class ForbiddenParametersWithSameNameSniff extends Sniff
 {

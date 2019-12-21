@@ -15,6 +15,15 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
+ *
+ * Specifically when those function parameters used to be optional in older PHP versions.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/doc.changelog.php
+ *
+ * @since 8.1.0
+ * @since 9.0.0 Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.
  */
 class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFunctionParametersSniff
 {

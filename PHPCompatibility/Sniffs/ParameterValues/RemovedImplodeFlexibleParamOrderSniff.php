@@ -15,13 +15,14 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Passing the $glue and $pieces parameters to implode() in reverse order has been
- * deprecated in PHP 7.4.
- *
- * @link https://wiki.php.net/rfc/deprecations_php_7_4#implode_parameter_order_mix
- * @link https://php.net/manual/en/function.implode.php
+ * Passing the `$glue` and `$pieces` parameters to `implode()` in reverse order has
+ * been deprecated in PHP 7.4.
  *
  * PHP version 7.4
+ *
+ * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.implode-reverse-parameters
+ * @link https://wiki.php.net/rfc/deprecations_php_7_4#implode_parameter_order_mix
+ * @link https://php.net/manual/en/function.implode.php
  *
  * @since 9.3.0
  */

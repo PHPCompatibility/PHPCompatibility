@@ -15,12 +15,18 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * List assignment order.
+ * Detect code affected by the changed list assignment order in PHP 7.0+.
  *
- * The list() construct no longer assigns variables in reverse order.
+ * The `list()` construct no longer assigns variables in reverse order.
  * This affects all list constructs where non-unique variables are used.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.list.order
+ * @link https://wiki.php.net/rfc/abstract_syntax_tree#changes_to_list
+ * @link https://www.php.net/manual/en/function.list.php
+ *
+ * @since 9.0.0
  */
 class AssignmentOrderSniff extends Sniff
 {

@@ -16,7 +16,20 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Discourages the use of removed global variables. Suggests alternative extensions if available
+ * Detect the use of removed global variables. Suggests alternatives if available.
+ *
+ * PHP version 5.3+
+ *
+ * @link https://wiki.php.net/rfc/deprecations_php_7_2#php_errormsg
+ *
+ * @since 5.5   Introduced `LongArrays` sniff.
+ * @since 7.0   Introduced `RemovedGlobalVariables` sniff.
+ * @since 7.0.7 The `LongArrays` sniff now throws a warning for deprecated and an error for removed.
+ *              Previously the `LongArrays` sniff would always throw a warning.
+ * @since 7.1.0 The `RemovedGlobalVariables` sniff now extends the `AbstractNewFeatureSniff`
+ *              instead of the base `Sniff` class.
+ * @since 7.1.3 Merged the `LongArrays` sniff into the `RemovedGlobalVariables` sniff.
+ * @since 9.0.0 Renamed from `RemovedGlobalVariablesSniff` to `RemovedPredefinedGlobalVariablesSniff`.
  */
 class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 {

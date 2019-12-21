@@ -15,9 +15,21 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * PHP 7.3 will throw a warning when continue is used to target a switch control structure.
+ * Detect use of `continue` in `switch` control structures.
+ *
+ * As of PHP 7.3, PHP will throw a warning when `continue` is used to target a `switch`
+ * control structure.
+ * The sniff takes numeric arguments used with `continue` into account.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.incompatible.php#migration73.incompatible.core.continue-targeting-switch
+ * @link https://wiki.php.net/rfc/continue_on_switch_deprecation
+ * @link https://github.com/php/php-src/commit/04e3523b7d095341f65ed5e71a3cac82fca690e4
+ *       (actual implementation which is different from the RFC).
+ * @link https://www.php.net/manual/en/control-structures.switch.php
+ *
+ * @since 8.2.0
  */
 class DiscouragedSwitchContinueSniff extends Sniff
 {

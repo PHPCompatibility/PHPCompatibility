@@ -18,6 +18,8 @@ use PHP_CodeSniffer_File as File;
  * Interface to be implemented by sniffs using a multi-dimensional array of
  * PHP features (functions, classes etc) being sniffed for with version
  * information in sub-arrays.
+ *
+ * @since 7.1.0
  */
 interface ComplexVersionInterface
 {

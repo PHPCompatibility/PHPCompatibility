@@ -16,6 +16,8 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Abstract class to use as a base for examining the parameter values passed to function calls.
+ *
+ * @since 8.2.0
  */
 abstract class AbstractFunctionCallParameterSniff extends Sniff
 {

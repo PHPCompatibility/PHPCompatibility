@@ -15,6 +15,16 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of new PHP operators.
+ *
+ * PHP version All
+ *
+ * @link https://wiki.php.net/rfc/pow-operator
+ * @link https://wiki.php.net/rfc/combined-comparison-operator
+ * @link https://wiki.php.net/rfc/isset_ternary
+ * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
+ *
+ * @since 9.0.0 Detection of new operators was originally included in the
+ *              `NewLanguageConstruct` sniff (since 5.6).
  */
 class NewOperatorsSniff extends AbstractNewFeatureSniff
 {

@@ -14,7 +14,17 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Discourages the use of new INI directives through ini_set() or ini_get().
+ * Detect the use of new INI directives through `ini_set()` or `ini_get()`.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/ini.list.php
+ * @link https://www.php.net/manual/en/ini.core.php
+ *
+ * @since 5.5
+ * @since 7.0.7 When a new directive is used with `ini_set()`, the sniff will now throw an error
+ *              instead of a warning.
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  */
 class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {

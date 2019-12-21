@@ -25,6 +25,8 @@ use PHP_CodeSniffer_File as File;
  * This sniff adds an explicit error/warning for users of the standard
  * using a PHP version below the recommended version.
  *
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/835
+ *
  * @since 9.3.0
  */
 class LowPHPSniff extends Sniff

@@ -15,6 +15,13 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect calls to new native PHP functions.
+ *
+ * PHP version All
+ *
+ * @since 5.5
+ * @since 5.6   Now extends the base `Sniff` class instead of the upstream
+ *              `Generic.PHP.ForbiddenFunctions` sniff.
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  */
 class NewFunctionsSniff extends AbstractNewFeatureSniff
 {

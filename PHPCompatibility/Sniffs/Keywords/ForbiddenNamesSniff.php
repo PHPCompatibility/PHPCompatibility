@@ -15,7 +15,13 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Prohibits the use of reserved keywords as class, function, namespace or constant names.
+ * Detects the use of reserved keywords as class, function, namespace or constant names.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/reserved.keywords.php
+ *
+ * @since 5.5
  */
 class ForbiddenNamesSniff extends Sniff
 {

@@ -17,6 +17,12 @@ use PHP_CodeSniffer_File as File;
  * Catching multiple exception types in one statement is available since PHP 7.1.
  *
  * PHP version 7.1
+ *
+ * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.mulit-catch-exception-handling
+ * @link https://wiki.php.net/rfc/multiple-catch
+ * @link https://www.php.net/manual/en/language.exceptions.php#language.exceptions.catch
+ *
+ * @since 7.0.7
  */
 class NewMultiCatchSniff extends Sniff
 {

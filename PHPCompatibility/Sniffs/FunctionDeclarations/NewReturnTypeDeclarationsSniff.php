@@ -16,7 +16,22 @@ use PHP_CodeSniffer_File as File;
 /**
  * Detect and verify the use of return type declarations in function declarations.
  *
- * PHP version 7.0
+ * Return type declarations are available since PHP 7.0.
+ * - Since PHP 7.1, the `iterable` and `void` pseudo-types are available.
+ * - Since PHP 7.2, the generic `object` type is available.
+ *
+ * PHP version 7.0+
+ *
+ * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.return-type-declarations
+ * @link https://www.php.net/manual/en/functions.returning-values.php#functions.returning-values.type-declaration
+ * @link https://wiki.php.net/rfc/return_types
+ * @link https://wiki.php.net/rfc/iterable
+ * @link https://wiki.php.net/rfc/void_return_type
+ * @link https://wiki.php.net/rfc/object-typehint
+ *
+ * @since 7.0.0
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
+ * @since 7.1.2 Renamed from `NewScalarReturnTypeDeclarationsSniff` to `NewReturnTypeDeclarationsSniff`.
  */
 class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {

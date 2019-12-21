@@ -15,9 +15,14 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Anonymous classes are supported in PHP 7.0
+ * Anonymous classes are supported since PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/language.oop5.anonymous.php
+ * @link https://wiki.php.net/rfc/anonymous_classes
+ *
+ * @since 7.0.0
  */
 class NewAnonymousClassesSniff extends Sniff
 {

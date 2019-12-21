@@ -15,10 +15,10 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Removed mb_strrpos() with encoding as 3rd argument.
+ * Detect passing `$encoding` to `mb_strrpos()` as 3rd argument.
  *
- * The encoding parameter was moved from the third position to the fourth in PHP 5.2.0.
- * For backward compatibility, encoding could be specified as the third parameter, but doing
+ * The `$encoding` parameter was moved from the third position to the fourth in PHP 5.2.0.
+ * For backward compatibility, `$encoding` could be specified as the third parameter, but doing
  * so is deprecated and will be removed in the future.
  *
  * Between PHP 5.2 and PHP 7.3, this was a deprecation in documentation only.
@@ -29,8 +29,9 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * PHP version 5.2
  * PHP version 7.4
  *
+ * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.mbstring
  * @link https://wiki.php.net/rfc/deprecations_php_7_4#mb_strrpos_with_encoding_as_3rd_argument
- * @link https://github.com/php/php-src/commit/39e756e7fe7b08092b4a75cf253442cba826e910
+ * @link https://www.php.net/manual/en/function.mb-strrpos.php
  *
  * @since 9.3.0
  */

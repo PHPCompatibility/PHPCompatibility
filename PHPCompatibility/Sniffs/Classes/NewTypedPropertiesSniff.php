@@ -15,10 +15,11 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Typed properties are available since PHP 7.4.
+ * Typed class property declarations are available since PHP 7.4.
  *
  * PHP version 7.4
  *
+ * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties
  * @link https://wiki.php.net/rfc/typed_properties_v2
  *
  * @since 9.2.0

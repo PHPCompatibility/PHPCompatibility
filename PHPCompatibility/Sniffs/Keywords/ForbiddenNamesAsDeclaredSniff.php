@@ -15,12 +15,18 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Prohibits the use of some reserved keywords to name a class, interface, trait or namespace.
+ * Detects the use of some reserved keywords to name a class, interface, trait or namespace.
+ *
  * Emits errors for reserved words and warnings for soft-reserved words.
  *
- * @see http://php.net/manual/en/reserved.other-reserved-words.php
- *
  * PHP version 7.0+
+ *
+ * @link https://www.php.net/manual/en/reserved.other-reserved-words.php
+ * @link https://wiki.php.net/rfc/reserve_more_types_in_php_7
+ *
+ * @since 7.0.8
+ * @since 7.1.4 This sniff now throws a warning (soft reserved) or an error (reserved) depending
+ *              on the `testVersion` set. Previously it would always throw an error.
  */
 class ForbiddenNamesAsDeclaredSniff extends Sniff
 {

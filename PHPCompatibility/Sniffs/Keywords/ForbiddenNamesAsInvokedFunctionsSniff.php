@@ -16,6 +16,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Prohibits the use of reserved keywords invoked as functions.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/reserved.keywords.php
+ *
+ * @since 5.5
  */
 class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 {

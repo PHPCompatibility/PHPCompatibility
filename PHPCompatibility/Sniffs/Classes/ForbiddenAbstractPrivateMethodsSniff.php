@@ -17,12 +17,12 @@ use PHP_CodeSniffer_File as File;
  * Abstract private methods are not allowed since PHP 5.1.
  *
  * Abstract private methods were supported between PHP 5.0.0 and PHP 5.0.4, but
- * were then disallowed on the grounds that the behaviours of private and abstract
+ * were then disallowed on the grounds that the behaviours of `private` and `abstract`
  * are mutually exclusive.
  *
- * @link https://www.php.net/manual/en/migration51.oop.php#migration51.oop-methods
- *
  * PHP version 5.1
+ *
+ * @link https://www.php.net/manual/en/migration51.oop.php#migration51.oop-methods
  *
  * @since 9.2.0
  */
