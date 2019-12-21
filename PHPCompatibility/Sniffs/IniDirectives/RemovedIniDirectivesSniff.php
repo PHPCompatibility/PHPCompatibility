@@ -36,6 +36,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the ini directive was deprecated/removed.
      *
+     * @since 5.5
+     * @since 7.0.3 Support for 'alternative' has been added.
+     *
      * @var array(string)
      */
     protected $deprecatedIniDirectives = array(
@@ -296,6 +299,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -305,6 +310,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -355,6 +362,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -367,6 +376,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -389,6 +400,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -399,6 +412,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Get the error message template for suggesting an alternative for a specific sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

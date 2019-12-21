@@ -45,6 +45,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      * If the execution order is conditional, add the condition as a string to the version nr.
      * If's sufficient to list the first version where the execution directive appears.
      *
+     * @since 7.0.3
+     *
      * @var array(string => array(string => bool|string|array))
      */
     protected $newDirectives = array(
@@ -70,6 +72,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Tokens to ignore when trying to find the value for the directive.
      *
+     * @since 7.0.3
+     *
      * @var array
      */
     protected $ignoreTokens = array();
@@ -77,6 +81,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.3
      *
      * @return array
      */
@@ -91,6 +97,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -155,6 +163,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
      *
+     * @since 7.1.0
+     *
      * @param array $errorInfo Detail information about an item.
      *
      * @return bool
@@ -167,6 +177,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @since 7.1.0
      *
      * @param array $itemInfo Base information about the item.
      *
@@ -181,6 +193,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -194,6 +208,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -225,6 +241,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -235,6 +253,11 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 7.0.3
+     * @since 7.1.0 This method now overloads the method from the `AbstractNewFeatureSniff` class.
+     *              - Renamed from `maybeAddError()` to `addError()`.
+     *              - Changed visibility from `protected` to `public`.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in
@@ -265,6 +288,9 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Generates a error or warning for this sniff.
+     *
+     * @since 7.0.3
+     * @since 7.0.6 Renamed from `addErrorOnInvalidValue()` to `addWarningOnInvalidValue()`.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the execution directive value
@@ -312,6 +338,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * Callback function to test whether the value for an execution directive is valid.
      *
+     * @since 7.0.3
+     *
      * @param mixed $value The value to test.
      *
      * @return bool
@@ -326,6 +354,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      * Check whether a value is a valid encoding.
      *
      * Callback function to test whether the value for an execution directive is valid.
+     *
+     * @since 7.0.3
      *
      * @param mixed $value The value to test.
      *

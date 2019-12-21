@@ -31,6 +31,8 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the hash algorithm appears.
      *
+     * @since 7.0.7
+     *
      * @var array(string => array(string => bool))
      */
     protected $newAlgorithms = array(
@@ -113,6 +115,8 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.7
+     *
      * @return array
      */
     public function register()
@@ -123,6 +127,8 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -153,6 +159,8 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -165,6 +173,8 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

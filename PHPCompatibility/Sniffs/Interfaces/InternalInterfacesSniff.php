@@ -33,6 +33,8 @@ class InternalInterfacesSniff extends Sniff
      *
      * The array lists : the error message to use.
      *
+     * @since 7.0.3
+     *
      * @var array(string => string)
      */
     protected $internalInterfaces = array(
@@ -44,6 +46,8 @@ class InternalInterfacesSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.3
      *
      * @return array
      */
@@ -64,6 +68,8 @@ class InternalInterfacesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in

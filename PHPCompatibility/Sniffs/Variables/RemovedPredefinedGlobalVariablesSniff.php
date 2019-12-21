@@ -40,6 +40,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the variable was deprecated/removed.
      *
+     * @since 5.5
+     * @since 7.0
+     *
      * @var array(string => array(string => bool|string))
      */
     protected $removedGlobalVariables = array(
@@ -95,6 +98,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     * @since 7.0
+     *
      * @return array
      */
     public function register()
@@ -105,6 +111,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
+     * @since 7.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -156,6 +165,8 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -169,6 +180,8 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -179,6 +192,8 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Filter the error message before it's passed to PHPCS.
+     *
+     * @since 8.1.0
      *
      * @param string $error     The error message which was created.
      * @param array  $itemInfo  Base information about the item this error message applies to.
@@ -196,6 +211,8 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Run some additional checks for the `$php_errormsg` variable.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

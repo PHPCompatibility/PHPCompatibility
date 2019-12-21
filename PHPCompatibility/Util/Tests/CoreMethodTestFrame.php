@@ -30,12 +30,16 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
     /**
      * The \PHP_CodeSniffer_File object containing parsed contents of this file.
      *
+     * @since 7.0.3
+     *
      * @var \PHP_CodeSniffer_File
      */
     protected $phpcsFile;
 
     /**
      * A wrapper for the abstract PHPCompatibility sniff.
+     *
+     * @since 7.0.3
      *
      * @var \PHPCompatibility\Sniff
      */
@@ -44,6 +48,8 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 
     /**
      * Sets up this unit test.
+     *
+     * @since 7.0.3
      *
      * @return void
      */
@@ -87,6 +93,8 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
     /**
      * Clean up after finished test.
      *
+     * @since 7.0.3
+     *
      * @return void
      */
     public function tearDown()
@@ -97,6 +105,9 @@ abstract class CoreMethodTestFrame extends PHPUnit_TestCase
 
     /**
      * Get the token pointer for a target token based on a specific comment found on the line before.
+     *
+     * @since 7.1.3
+     * @since 8.1.0 New `$tokenContent` parameter.
      *
      * @param string    $commentString The comment to look for.
      * @param int|array $tokenType     The type of token(s) to look for.

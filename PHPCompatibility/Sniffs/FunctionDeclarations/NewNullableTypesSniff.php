@@ -35,6 +35,8 @@ class NewNullableTypesSniff extends Sniff
      * as in that case we can't distinguish between parameter type hints and
      * return type hints for the error message.}}
      *
+     * @since 7.0.7
+     *
      * @return array
      */
     public function register()
@@ -54,6 +56,8 @@ class NewNullableTypesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -88,6 +92,8 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Process this test for function tokens.
      *
+     * @since 7.0.7
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
@@ -115,6 +121,8 @@ class NewNullableTypesSniff extends Sniff
 
     /**
      * Process this test for return type tokens.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

@@ -42,6 +42,9 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Functions to check for.
      *
+     * @since 7.0.1
+     * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
+     *
      * @var array
      */
     protected $targetFunctions = array(
@@ -51,6 +54,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Regex bracket delimiters.
+     *
+     * @since 7.0.5 This array was originally contained within the `process()` method.
      *
      * @var array
      */
@@ -64,6 +69,10 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 5.6
+     * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
+     *              logic superfluous now the sniff extends the abstract.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.
@@ -123,6 +132,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -133,6 +144,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Analyse a potential regex pattern for use of the /e modifier.
+     *
+     * @since 7.1.2 This logic was originally contained within the `process()` method.
      *
      * @param array                 $pattern      Array containing the start and end token
      *                                            pointer of the potential regex pattern and
@@ -197,6 +210,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Examine the regex modifier string.
+     *
+     * @since 8.2.0 Split off from the `processRegexPattern()` method.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the

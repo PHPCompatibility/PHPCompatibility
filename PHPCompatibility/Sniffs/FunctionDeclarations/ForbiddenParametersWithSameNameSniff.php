@@ -29,6 +29,9 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.0
+     * @since 7.1.3 Allows for closures.
+     *
      * @return array
      */
     public function register()
@@ -41,6 +44,8 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

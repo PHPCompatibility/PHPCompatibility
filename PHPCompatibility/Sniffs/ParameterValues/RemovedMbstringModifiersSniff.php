@@ -38,6 +38,9 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
      *
      * Key is the function name, value the parameter position of the options parameter.
      *
+     * @since 7.0.5
+     * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
+     *
      * @var array
      */
     protected $targetFunctions = array(
@@ -52,6 +55,8 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -64,6 +69,10 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 7.0.5
+     * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
+     *              logic superfluous now the sniff extends the abstract.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

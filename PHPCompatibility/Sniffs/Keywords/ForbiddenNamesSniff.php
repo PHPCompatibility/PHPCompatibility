@@ -30,6 +30,8 @@ class ForbiddenNamesSniff extends Sniff
      * A list of keywords that can not be used as function, class and namespace name or constant name.
      * Mentions since which version it's not allowed.
      *
+     * @since 5.5
+     *
      * @var array(string => string)
      */
     protected $invalidNames = array(
@@ -110,6 +112,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * A list of keywords that can follow use statements.
      *
+     * @since 7.0.1
+     *
      * @var array(string => string)
      */
     protected $validUseNames = array(
@@ -120,12 +124,16 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
+     * @since 7.1.4
+     *
      * @var array
      */
     private $allowedModifiers = array();
 
     /**
      * Targeted tokens.
+     *
+     * @since 5.5
      *
      * @var array
      */
@@ -145,6 +153,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -163,6 +173,8 @@ class ForbiddenNamesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -186,6 +198,8 @@ class ForbiddenNamesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -342,6 +356,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
+     * @since 5.5
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
      *                                         stack passed in $tokens.
@@ -391,6 +407,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Add the error message.
      *
+     * @since 7.1.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
      *                                         stack passed in $tokens.
@@ -410,6 +428,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Check if the current token code is for a token which can be considered
      * the end of a (partial) use statement.
+     *
+     * @since 7.0.8
      *
      * @param int $token The current token information.
      *

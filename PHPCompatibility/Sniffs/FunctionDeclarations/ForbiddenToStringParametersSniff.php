@@ -33,6 +33,7 @@ class ForbiddenToStringParametersSniff extends Sniff
      * Valid scopes for the __toString() method to live in.
      *
      * @since 9.2.0
+     * @since 9.3.2 Visibility changed from `public` to `protected`.
      *
      * @var array
      */

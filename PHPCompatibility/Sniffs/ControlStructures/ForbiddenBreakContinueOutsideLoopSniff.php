@@ -30,6 +30,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
     /**
      * Token codes of control structure in which usage of break/continue is valid.
      *
+     * @since 7.0.7
+     *
      * @var array
      */
     protected $validLoopStructures = array(
@@ -43,6 +45,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
     /**
      * Token codes which did not correctly get a condition assigned in older PHPCS versions.
      *
+     * @since 7.0.7
+     *
      * @var array
      */
     protected $backCompat = array(
@@ -52,6 +56,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.7
      *
      * @return array
      */
@@ -65,6 +71,8 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

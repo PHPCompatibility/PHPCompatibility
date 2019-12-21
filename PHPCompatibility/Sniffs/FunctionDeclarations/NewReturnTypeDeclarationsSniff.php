@@ -42,6 +42,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
      *
+     * @since 7.0.0
+     *
      * @var array(string => array(string => bool))
      */
     protected $newTypes = array(
@@ -101,6 +103,9 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.0
+     * @since 7.1.2 Now also checks based on the function and closure keywords.
+     *
      * @return array
      */
     public function register()
@@ -120,6 +125,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -161,6 +168,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -173,6 +182,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

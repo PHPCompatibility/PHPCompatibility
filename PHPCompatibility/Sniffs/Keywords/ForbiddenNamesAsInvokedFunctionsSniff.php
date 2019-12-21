@@ -29,6 +29,8 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     /**
      * List of tokens to register.
      *
+     * @since 5.5
+     *
      * @var array
      */
     protected $targetedTokens = array(
@@ -58,6 +60,8 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      * as its own token and for PHPCS versions which change the token to
      * T_STRING when used in a method call.
      *
+     * @since 5.5
+     *
      * @var array
      */
     protected $targetedStringTokens = array(
@@ -82,6 +86,8 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -94,6 +100,8 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

@@ -38,6 +38,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      * The index is the location of the parameter in the parameter list, starting at 0 !
      * If's sufficient to list the last version in which the parameter was still required.
      *
+     * @since 7.0.3
+     *
      * @var array
      */
     protected $functionParameters = array(
@@ -159,6 +161,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.3
+     *
      * @return array
      */
     public function register()
@@ -171,6 +175,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -229,6 +235,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
      *
+     * @since 7.1.0
+     *
      * @param array $errorInfo Detail information about an item.
      *
      * @return bool
@@ -241,6 +249,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
 
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @since 7.1.0
      *
      * @param array $itemInfo Base information about the item.
      *
@@ -255,6 +265,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -265,6 +277,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -297,6 +311,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -307,6 +323,8 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 7.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in

@@ -50,6 +50,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *   </properties>
      * </rule>
      *
+     * @since 7.0.2
+     *
      * @var array
      */
     public $functionWhitelist;
@@ -59,6 +61,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the extension was deprecated/removed.
+     *
+     * @since 5.5
      *
      * @var array(string => array(string => bool|string|null))
      */
@@ -200,6 +204,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -212,6 +218,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -280,6 +288,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *
      * Parsing the list late as it may be provided as a property, but also inline.
      *
+     * @since 7.0.2
+     *
      * @param string $content Content of the current token.
      *
      * @return bool
@@ -310,6 +320,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -322,6 +334,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

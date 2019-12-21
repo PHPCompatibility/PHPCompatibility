@@ -55,6 +55,8 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
      * {@internal When `installed_paths` is set via the ruleset, this autoloader
      * is needed to run the sniffs.
      * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1591} }}
+     *
+     * @since 8.0.0
      */
     spl_autoload_register(function ($class) {
         // Only try & load our own classes.

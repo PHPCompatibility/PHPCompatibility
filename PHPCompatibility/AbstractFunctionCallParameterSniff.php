@@ -28,6 +28,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * the method called is of the right class/object.
      * Checking that is outside of the scope of this abstract sniff.
      *
+     * @since 8.2.0
+     *
      * @var bool False (default) if the sniff is looking for function calls.
      *           True if the sniff is looking for method calls.
      */
@@ -35,6 +37,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
 
     /**
      * Functions the sniff is looking for. Should be defined in the child class.
+     *
+     * @since 8.2.0
      *
      * @var array The only requirement for this array is that the top level
      *            array keys are the names of the functions you're looking for.
@@ -46,6 +50,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     /**
      * List of tokens which when they preceed the $stackPtr indicate that this
      * is not a function call.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -62,6 +68,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.2.0
+     *
      * @return array
      */
     public function register()
@@ -75,6 +83,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -133,6 +143,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * If the check done in a child class is not specific to one PHP version,
      * this function should return `false`.
      *
@@ -145,6 +157,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * Process the parameters of a matched function.
      *
      * This method has to be made concrete in child classes.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.
@@ -162,6 +176,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      *
      * Defaults to doing nothing. Can be overloaded in child classes to handle functions
      * were parameters are expected, but none found.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

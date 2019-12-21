@@ -34,6 +34,8 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      * in how it returns the statement end. This is just a simple way to bypass
      * the inconsistency for our purposes.}}
      *
+     * @since 8.2.0
+     *
      * @var array
      */
     private $inclusiveStopPoints = array(
@@ -45,6 +47,9 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
+     * @since 8.2.0 Now registers all bitshift tokens, not just bitshift right (`T_SR`).
      *
      * @return array
      */
@@ -60,6 +65,8 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

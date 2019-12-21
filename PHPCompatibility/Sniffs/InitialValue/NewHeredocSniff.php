@@ -40,12 +40,16 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
     /**
      * Error message.
      *
+     * @since 8.2.0
+     *
      * @var string
      */
     const ERROR_PHRASE = 'Initializing %s using the Heredoc syntax was not supported in PHP 5.2 or earlier';
 
     /**
      * Partial error phrases to be used in combination with the error message constant.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -60,6 +64,8 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -70,6 +76,8 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
 
     /**
      * Is a value declared and does the declared value not contain an heredoc ?
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

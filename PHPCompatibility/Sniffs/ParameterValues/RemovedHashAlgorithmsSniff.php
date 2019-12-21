@@ -32,6 +32,8 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the hash algorithm was deprecated/removed.
      *
+     * @since 7.0.7
+     *
      * @var array(string => array(string => bool))
      */
     protected $removedAlgorithms = array(
@@ -46,6 +48,8 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -56,6 +60,8 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -85,6 +91,8 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -97,6 +105,8 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

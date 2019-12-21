@@ -36,6 +36,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * A list of functions that, when called, can behave differently in PHP 7
      * when dealing with parameters of the function they're called in.
      *
+     * @since 9.1.0
+     *
      * @var array
      */
     protected $changedFunctions = array(
@@ -47,6 +49,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Tokens to look out for to allow us to skip past nested scoped structures.
+     *
+     * @since 9.1.0
      *
      * @var array
      */
@@ -68,6 +72,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * Similarly, as constants won't have parentheses, those don't need to be checked
      * for either.
      *
+     * @since 9.1.0
+     *
      * @var array
      */
     private $noneFunctionCallIndicators = array(
@@ -78,6 +84,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     /**
      * The tokens for variable incrementing/decrementing.
      *
+     * @since 9.1.0
+     *
      * @var array
      */
     private $plusPlusMinusMinus = array(
@@ -87,6 +95,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Tokens to ignore when determining the start of a statement.
+     *
+     * @since 9.1.0
      *
      * @var array
      */
@@ -100,6 +110,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 9.1.0
+     *
      * @return array
      */
     public function register()
@@ -112,6 +124,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
