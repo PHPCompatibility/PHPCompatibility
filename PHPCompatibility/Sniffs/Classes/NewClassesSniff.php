@@ -396,6 +396,14 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'ReflectionReference' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'WeakReference' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
     );
 
     /**
@@ -577,15 +585,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'JsonException' => array(
             '7.2' => false,
             '7.3' => true,
-        ),
-
-        'ReflectionReference' => array(
-            '7.3' => false,
-            '7.4' => true,
-        ),
-        'WeakReference' => array(
-            '7.3' => false,
-            '7.4' => true,
         ),
     );
 
