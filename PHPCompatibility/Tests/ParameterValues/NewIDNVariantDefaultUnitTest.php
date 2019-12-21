@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New default value for the IDN $variant parameter Sniff tests.
+ * Test the NewIDNVariantDefault sniff.
  *
  * @group newIDNVariantDefault
  * @group parameterValues

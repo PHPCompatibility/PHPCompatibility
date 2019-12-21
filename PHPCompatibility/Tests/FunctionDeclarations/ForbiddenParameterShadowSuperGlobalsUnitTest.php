@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * ForbiddenParameterShadowSuperGlobalsSniffTest
+ * Test the ForbiddenParameterShadowSuperGlobals sniff.
  *
  * @group forbiddenParameterShadowSuperGlobals
  * @group functionDeclarations
  * @group superglobals
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParameterShadowSuperGlobalsSniff
+ *
+ * @since 7.0.3
  */
 class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
 {

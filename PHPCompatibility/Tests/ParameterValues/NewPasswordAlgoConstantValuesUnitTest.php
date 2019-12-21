@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New password hash algorithm constant values tests.
+ * Test the NewPasswordAlgoConstantValues sniff.
  *
  * @group newPasswordAlgoConstantValues
  * @group parameterValues

@@ -13,12 +13,16 @@ namespace PHPCompatibility\Tests\Variables;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed predefined global variables sniff tests
+ * Test the RemovedPredefinedGlobalVariables sniff.
  *
  * @group removedPredefinedGlobalVariables
  * @group variables
  *
  * @covers \PHPCompatibility\Sniffs\Variables\RemovedPredefinedGlobalVariablesSniff
+ *
+ * @since 5.5   Introduced as LongArraysSniffTest.
+ * @since 7.0   RemovedVariablesSniffTest.
+ * @since 7.1.3 Merged to one sniff & test.
  */
 class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
 {

@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New array and string literal dereferencing sniff test.
+ * Test the NewArrayStringDereferencing sniff.
  *
  * @group newArrayStringDereferencing
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff
+ *
+ * @since 7.1.4
  */
 class NewArrayStringDereferencingUnitTest extends BaseSniffTest
 {

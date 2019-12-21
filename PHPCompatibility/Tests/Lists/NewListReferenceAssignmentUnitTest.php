@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Lists;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 7.3 list reference assignments sniff test file.
+ * Test the NewListReferenceAssignment sniff.
  *
  * @group newListReferenceAssignment
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\NewListReferenceAssignmentSniff
+ *
+ * @since 9.0.0
  */
 class NewListReferenceAssignmentUnitTest extends BaseSniffTest
 {

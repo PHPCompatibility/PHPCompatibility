@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP4 style constructors sniff test
+ * Test the RemovedPHP4StyleConstructors sniff.
  *
  * @group removedPHP4StyleConstructors
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 7.0.0
  */
 class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
 {

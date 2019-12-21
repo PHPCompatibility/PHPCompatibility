@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Lists;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Empty list() assignments have been removed in PHP 7.0 sniff test file
+ * Test the ForbiddenEmptyListAssignment sniff.
  *
  * @group forbiddenEmptyListAssignment
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\ForbiddenEmptyListAssignmentSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
 {

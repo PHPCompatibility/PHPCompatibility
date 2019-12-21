@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Removal of namespaced free-standing assert() declarations for PHP 7.3 sniff test.
+ * Test the RemovedNamespacedAssert sniff.
  *
  * @group removedNamespacedAssert
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedNamespacedAssertSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 9.0.0
  */
 class RemovedNamespacedAssertUnitTest extends BaseSniffTest
 {

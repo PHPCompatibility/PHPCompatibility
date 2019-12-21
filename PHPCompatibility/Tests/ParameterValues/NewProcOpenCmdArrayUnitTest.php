@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New passing $allowable_tags as an array to strip_tags() tests.
+ * Test the NewProcOpenCmdArray sniff.
  *
  * @group newProcOpenCmdArray
  * @group parameterValues

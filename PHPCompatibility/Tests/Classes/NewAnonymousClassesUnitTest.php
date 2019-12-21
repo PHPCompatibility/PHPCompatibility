@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Anonymous Classes Sniff tests
+ * Test the NewAnonymousClasses sniff.
  *
  * @group newAnonymousClasses
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewAnonymousClassesSniff
+ *
+ * @since 7.0.0
  */
 class NewAnonymousClassesUnitTest extends BaseSniffTest
 {

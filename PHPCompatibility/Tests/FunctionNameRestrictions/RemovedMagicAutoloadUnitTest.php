@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * __autoload deprecation for PHP 7.2 sniff test
+ * Test the RemovedMagicAutoload sniff.
  *
  * @group removedMagicAutoload
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 8.1.0
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {

@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Non Static Magic Methods Sniff tests
+ * Test the NonStaticMagicMethods sniff.
  *
  * @group nonStaticMagicMethods
  * @group functionDeclarations
  * @group magicMethods
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NonStaticMagicMethodsSniff
+ *
+ * @since 5.5
  */
 class NonStaticMagicMethodsUnitTest extends BaseSniffTest
 {

@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\IniDirectives;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New ini directives sniff tests
+ * Test the NewIniDirectives sniff.
  *
  * @group newIniDirectives
  * @group iniDirectives
  *
  * @covers \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff
+ *
+ * @since 5.5
  */
 class NewIniDirectivesUnitTest extends BaseSniffTest
 {

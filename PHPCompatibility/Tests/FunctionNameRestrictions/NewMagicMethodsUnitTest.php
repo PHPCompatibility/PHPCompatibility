@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New Magic Methods Sniff tests.
+ * Test the NewMagicMethods sniff.
  *
  * @group newMagicMethods
  * @group functionNameRestrictions
  * @group magicMethods
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff
+ *
+ * @since 7.0.4
  */
 class NewMagicMethodsUnitTest extends BaseSniffTest
 {

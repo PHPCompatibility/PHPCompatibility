@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Deprecated/Removed Iconv encoding types sniff tests.
+ * Test the RemovedIconvEncoding sniff.
  *
  * @group removedIconvEncoding
  * @group parameterValues
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedIconvEncodingSniff
+ *
+ * @since 9.0.0
  */
 class RemovedIconvEncodingUnitTest extends BaseSniffTest
 {

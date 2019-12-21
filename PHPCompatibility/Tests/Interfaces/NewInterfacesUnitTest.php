@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Interfaces;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Interfaces Sniff tests
+ * Test the NewInterfaces sniff.
  *
  * @group newInterfaces
  * @group interfaces
@@ -22,6 +22,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
+ *
+ * @since 7.0.3
  */
 class NewInterfacesUnitTest extends BaseSniffTest
 {

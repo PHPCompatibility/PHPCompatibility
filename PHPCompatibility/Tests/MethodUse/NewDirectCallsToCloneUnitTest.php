@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\MethodUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New direct calls to __clone() sniff tests.
+ * Test the NewDirectCallsToClone sniff.
  *
  * @group newDirectCallsToClone
  * @group methodUse

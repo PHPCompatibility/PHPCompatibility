@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New type declarations test file
+ * Test the NewParamTypeDeclarations sniff.
  *
  * @group newParamTypeDeclarations
  * @group functionDeclarations
  * @group typeDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewParamTypeDeclarationsSniff
+ *
+ * @since 7.0.0
  */
 class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {

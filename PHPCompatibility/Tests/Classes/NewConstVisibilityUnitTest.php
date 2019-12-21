@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New const visibility sniff test file
+ * Test the NewConstVisibility sniff.
  *
  * @group newConstVisibility
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewConstVisibilitySniff
+ *
+ * @since 7.0.7
  */
 class NewConstVisibilityUnitTest extends BaseSniffTest
 {

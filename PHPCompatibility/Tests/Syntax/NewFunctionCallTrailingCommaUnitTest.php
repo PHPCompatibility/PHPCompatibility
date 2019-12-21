@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New function call trailing comma sniff tests
+ * Test the NewFunctionCallTrailingComma sniff.
  *
  * @group newFunctionCallTrailingComma
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewFunctionCallTrailingCommaSniff
+ *
+ * @since 8.2.0
  */
 class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
 {

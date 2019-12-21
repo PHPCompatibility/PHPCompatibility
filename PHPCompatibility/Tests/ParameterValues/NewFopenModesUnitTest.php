@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Allowed values for the fopen() $mode parameter sniff tests.
+ * Test the NewFopenModes sniff.
  *
  * @group newFopenModes
  * @group parameterValues
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewFopenModesSniff
+ *
+ * @since 9.0.0
  */
 class NewFopenModesUnitTest extends BaseSniffTest
 {

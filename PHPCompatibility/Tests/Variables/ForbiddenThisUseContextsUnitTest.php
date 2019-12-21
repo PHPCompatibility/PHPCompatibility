@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Variables;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New $this usage limitations sniff tests.
+ * Test the ForbiddenThisUseContexts sniff.
  *
  * @group forbiddenThisUseContexts
  * @group variables

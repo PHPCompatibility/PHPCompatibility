@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\InitialValue;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Constant arrays using the const keyword in PHP 5.6 sniff test file
+ * Test the NewConstantArraysUsingConst sniff.
  *
  * @group newConstantArraysUsingConst
  * @group initialValue
  *
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantArraysUsingConstSniff
+ *
+ * @since 7.1.4
  */
 class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
 {

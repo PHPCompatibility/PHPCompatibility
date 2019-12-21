@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New htmlentities(), htmlspecialchars() encoding default tests.
+ * Test the NewHTMLEntitiesEncoding sniff.
  *
  * @group newHTMLEntitiesEncodingDefault
  * @group parameterValues

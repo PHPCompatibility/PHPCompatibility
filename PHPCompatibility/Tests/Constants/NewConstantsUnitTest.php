@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Constants;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Constants Sniff tests
+ * Test the NewConstants sniff.
  *
  * @group newConstants
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\NewConstantsSniff
+ *
+ * @since 8.1.0
  */
 class NewConstantsUnitTest extends BaseSniffTest
 {
