@@ -13,10 +13,12 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * isShortList() function tests
+ * Tests for the `isShortList()` utility function.
  *
  * @group utilityIsShortList
  * @group utilityFunctions
+ *
+ * @since 8.2.0
  */
 class IsShortListUnitTest extends CoreMethodTestFrame
 {
