@@ -57,7 +57,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     public $functionWhitelist;
 
     /**
-     * A list of removed extensions with their alternative, if any
+     * A list of removed extensions with their alternative, if any.
      *
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the extension was deprecated/removed.

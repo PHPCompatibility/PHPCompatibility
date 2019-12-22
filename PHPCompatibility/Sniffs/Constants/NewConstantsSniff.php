@@ -29,7 +29,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the constant appears.
      *
-     * Note: PHP Constants are case-sensitive!
+     * Note: PHP constants are case-sensitive!
      *
      * @since 8.1.0
      *

@@ -92,7 +92,7 @@ class RemovedNamespacedAssertSniff extends Sniff
         }
 
         if ($this->determineNamespace($phpcsFile, $stackPtr) === '') {
-            // Not a namespaced function declaration. Parse error, but not our concern.
+            // Not a namespaced function declaration. This may be a parse error, but not our concern.
             return;
         }
 
