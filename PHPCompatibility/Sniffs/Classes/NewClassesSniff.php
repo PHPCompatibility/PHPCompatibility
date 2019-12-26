@@ -427,9 +427,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * {@internal Classes listed here do not need to be added to the $newClasses
      *            property as well.
      *            This list is automatically added to the $newClasses property
-     *            in the `register()` method.}}
+     *            in the `register()` method.}
      *
-     * {@internal Helper to update this list: https://3v4l.org/MhlUp}}
+     * {@internal Helper to update this list: https://3v4l.org/MhlUp}
      *
      * @since 7.1.4
      *

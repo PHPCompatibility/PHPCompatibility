@@ -159,7 +159,7 @@ class LowPHPCSSniff extends Sniff
          * it should be. A patch for that is included in the same upstream PR.
          *
          * If/when the upstream PR has been merged and the minimum supported/recommended version
-         * of PHPCompatibility would go beyond that, the below code should be adjusted.}}
+         * of PHPCompatibility would go beyond that, the below code should be adjusted.}
          */
         $reportWidth = PHPCSHelper::getCommandLineData($phpcsFile, 'reportWidth');
         if (empty($reportWidth)) {

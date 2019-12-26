@@ -29,7 +29,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  *            the logic in this sniff is largely the same as used upstream.
  *            Extending the upstream sniff instead of including it via the ruleset, however,
  *            prevents hard to debug issues of errors not being reported from the upstream sniff
- *            if this library is used in combination with other rulesets.}}
+ *            if this library is used in combination with other rulesets.}
  *
  * @link https://www.php.net/manual/en/language.oop5.magic.php
  *

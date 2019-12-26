@@ -28,7 +28,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * (since PHPCompatibility 7.0.2).
  *
  * {@internal This sniff is a candidate for removal once all functions from all
- * deprecated/removed extensions have been added to the RemovedFunctions sniff.}}
+ * deprecated/removed extensions have been added to the RemovedFunctions sniff.}
  *
  * PHP version All
  *

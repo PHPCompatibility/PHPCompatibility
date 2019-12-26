@@ -98,7 +98,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * PHP and PHPCS versions.
      *
      * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
-     * translation list with the current tokens.}}
+     * translation list with the current tokens.}
      *
      * @since 7.0.3
      *

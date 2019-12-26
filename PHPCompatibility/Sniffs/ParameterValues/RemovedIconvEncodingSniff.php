@@ -20,7 +20,7 @@ use PHP_CodeSniffer_File as File;
  * deprecated in favour of default_charset."
  *
  * {@internal It is unclear which mbstring functions should be targetted, so for now,
- * only the iconv function is handled.}}
+ * only the iconv function is handled.}
  *
  * PHP version 5.6
  *

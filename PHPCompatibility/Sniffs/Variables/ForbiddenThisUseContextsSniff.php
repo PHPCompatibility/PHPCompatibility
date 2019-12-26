@@ -39,7 +39,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * - `get_defined_vars()` always doesn't show value of variable `$this`.
  * - Always show true `$this` value in magic method `__call()`.
  *   {@internal This could possibly be covered. Similar logic as "outside object context",
- *   but with function name check and supportsBelow('7.0').}}
+ *   but with function name check and supportsBelow('7.0').}
  *
  * PHP version 7.1
  *

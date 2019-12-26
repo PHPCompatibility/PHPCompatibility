@@ -33,7 +33,7 @@ class NewNullableTypesSniff extends Sniff
      *
      * {@internal Not sniffing for T_NULLABLE which was introduced in PHPCS 2.7.2
      * as in that case we can't distinguish between parameter type hints and
-     * return type hints for the error message.}}
+     * return type hints for the error message.}
      *
      * @since 7.0.7
      *
