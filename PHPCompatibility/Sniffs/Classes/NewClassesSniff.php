@@ -396,6 +396,18 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'FFI' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'FFI\CData' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'FFI\CType' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'ReflectionReference' => array(
             '7.3' => false,
             '7.4' => true,
@@ -585,6 +597,15 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'JsonException' => array(
             '7.2' => false,
             '7.3' => true,
+        ),
+
+        'FFI\Exception' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'FFI\ParserException' => array(
+            '7.3' => false,
+            '7.4' => true,
         ),
     );
 
