@@ -30,7 +30,7 @@ use PHP_CodeSniffer_File as File;
 class RemovedMagicAutoloadSniff extends Sniff
 {
     /**
-     * Scopes to look for when testing using validDirectScope
+     * Scopes to look for when testing using validDirectScope.
      *
      * @since 8.1.0
      *

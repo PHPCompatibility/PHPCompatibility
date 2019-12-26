@@ -27,7 +27,7 @@ use PHP_CodeSniffer_Tokens as Tokens;
 class NewFunctionParametersSniff extends AbstractNewFeatureSniff
 {
     /**
-     * A list of new functions, not present in older versions.
+     * A list of functions which have new parameters, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
      * The index is the location of the parameter in the parameter list, starting at 0 !

@@ -296,7 +296,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_NAMESPACE') {
             if ($tokens[$stackPtr + 1]['code'] === \T_NS_SEPARATOR) {
-                // Not a namespace declaration, but use of, i.e. namespace\someFunction();
+                // Not a namespace declaration, but use of, i.e. `namespace\someFunction();`.
                 return;
             }
 

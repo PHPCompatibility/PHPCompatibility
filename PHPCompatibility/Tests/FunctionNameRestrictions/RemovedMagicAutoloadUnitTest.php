@@ -108,7 +108,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      *
      * @dataProvider dataIsNotAffected
      *
-     * @param string $testFile The file to test
+     * @param string $testFile The file to test.
      * @param int    $line     The line number where the error should occur.
      * @param bool   $isTrait  Whether the test relates to a method in a trait.
      *
