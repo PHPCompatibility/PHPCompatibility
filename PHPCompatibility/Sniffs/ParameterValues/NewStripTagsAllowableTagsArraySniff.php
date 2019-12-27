@@ -15,11 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * As of PHP 7.4, strip_tags() now also accepts an array of allowed tags.
+ * As of PHP 7.4, `strip_tags()` now also accepts an array of `$allowable_tags`.
  *
  * PHP version 7.4
  *
- * @link https://github.com/php/php-src/blob/3775d47eee38f3b34f800a0b23f840ec7a94e4c7/UPGRADING#L301-L303
+ * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.standard.strip-tags
+ * @link https://www.php.net/manual/en/function.strip-tags.php
  *
  * @since 9.3.0
  */

@@ -14,15 +14,22 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Switch statements can not have multiple default blocks since PHP 7.0
+ * Switch statements can not have multiple default blocks since PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://wiki.php.net/rfc/switch.default.multiple
+ * @link https://www.php.net/manual/en/control-structures.switch.php
+ *
+ * @since 7.0.0
  */
 class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
      *
      * @return array
      */
@@ -33,6 +40,8 @@ class ForbiddenSwitchWithMultipleDefaultBlocksSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

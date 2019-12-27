@@ -13,12 +13,15 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New operators sniff tests
+ * Test the NewOperators sniff.
  *
  * @group newOperators
  * @group operators
  *
  * @covers \PHPCompatibility\Sniffs\Operators\NewOperatorsSniff
+ *
+ * @since 9.0.0 Detection of new operators was originally included in the
+ *              NewLanguageConstructSniff (since 5.6).
  */
 class NewOperatorsUnitTest extends BaseSniffTest
 {

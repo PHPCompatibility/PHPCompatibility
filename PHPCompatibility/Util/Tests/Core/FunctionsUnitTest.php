@@ -15,10 +15,12 @@ use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
 /**
- * Generic sniff functions sniff tests
+ * Tests for various stand-alone utility functions.
  *
  * @group utilityMiscFunctions
  * @group utilityFunctions
+ *
+ * @since 7.0.6
  */
 class FunctionsUnitTest extends PHPUnit_TestCase
 {

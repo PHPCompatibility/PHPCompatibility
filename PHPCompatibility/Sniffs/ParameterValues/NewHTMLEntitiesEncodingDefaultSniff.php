@@ -14,12 +14,13 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * As of PHP 5.4, the default character set for htmlspecialchars(), htmlentities()
- * and html_entity_decode() is now UTF-8, instead of ISO-8859-1.
+ * As of PHP 5.4, the default character set for `htmlspecialchars()`, `htmlentities()`
+ * and `html_entity_decode()` is now `UTF-8`, instead of `ISO-8859-1`.
  *
  * PHP version 5.4
  *
  * @link https://www.php.net/manual/en/migration54.other.php
+ * @link https://www.php.net/manual/en/function.html-entity-decode.php#refsect1-function.html-entity-decode-changelog
  * @link https://www.php.net/manual/en/function.htmlentities.php#refsect1-function.htmlentities-changelog
  * @link https://www.php.net/manual/en/function.htmlspecialchars.php#refsect1-function.htmlspecialchars-changelog
  *

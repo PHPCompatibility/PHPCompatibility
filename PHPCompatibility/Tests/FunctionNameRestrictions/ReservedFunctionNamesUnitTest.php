@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Reserved function names sniff test.
+ * Test the ReservedFunctionNames sniff.
  *
  * @group reservedFunctionNames
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\ReservedFunctionNamesSniff
+ *
+ * @since 8.2.0
  */
 class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {

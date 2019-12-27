@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Discouraged use of continue within switch sniff test.
+ * Test the DiscouragedSwitchContinue sniff.
  *
  * @group discouragedSwitchContinue
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\DiscouragedSwitchContinueSniff
+ *
+ * @since 8.2.0
  */
 class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
 {

@@ -20,10 +20,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * instead of the original since PHP 7.0.
  *
  * `func_get_arg()`, `func_get_args()`, `debug_backtrace()` and exception backtraces
- * will no longer report the original value that was passed to a parameter, but will
- * instead provide the current value (which might have been modified).
+ * will no longer report the original parameter value as was passed to the function,
+ * but will instead provide the current value (which might have been modified).
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameter-modified
  *
  * @since 9.1.0
  */
@@ -33,6 +35,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     /**
      * A list of functions that, when called, can behave differently in PHP 7
      * when dealing with parameters of the function they're called in.
+     *
+     * @since 9.1.0
      *
      * @var array
      */
@@ -45,6 +49,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Tokens to look out for to allow us to skip past nested scoped structures.
+     *
+     * @since 9.1.0
      *
      * @var array
      */
@@ -66,6 +72,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      * Similarly, as constants won't have parentheses, those don't need to be checked
      * for either.
      *
+     * @since 9.1.0
+     *
      * @var array
      */
     private $noneFunctionCallIndicators = array(
@@ -76,6 +84,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     /**
      * The tokens for variable incrementing/decrementing.
      *
+     * @since 9.1.0
+     *
      * @var array
      */
     private $plusPlusMinusMinus = array(
@@ -85,6 +95,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Tokens to ignore when determining the start of a statement.
+     *
+     * @since 9.1.0
      *
      * @var array
      */
@@ -98,6 +110,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 9.1.0
+     *
      * @return array
      */
     public function register()
@@ -110,6 +124,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -222,7 +238,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                          * higher than the number of named parameters.
                          *
                          * {@internal Note: This does not take calculations into account!
-                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
+                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                          */
                         case 'func_get_arg':
                             $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
@@ -244,7 +260,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * In that case, we can ignore it.
                  *
                  * {@internal Note: This does not take offset calculations into account!
-                 *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}}
+                 *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                  */
                 if ($prev !== false && $tokens[$prev]['code'] === \T_OPEN_PARENTHESIS) {
 

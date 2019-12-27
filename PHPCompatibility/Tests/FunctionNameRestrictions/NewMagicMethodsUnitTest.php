@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New Magic Methods Sniff tests.
+ * Test the NewMagicMethods sniff.
  *
  * @group newMagicMethods
  * @group functionNameRestrictions
  * @group magicMethods
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\NewMagicMethodsSniff
+ *
+ * @since 7.0.4
  */
 class NewMagicMethodsUnitTest extends BaseSniffTest
 {
@@ -60,7 +62,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      * openers/closers when run on PHP 5.3 or lower.
      * In a 'normal' situation you won't often find classes, interfaces and traits all
      * mixed in one file anyway, so this issue for which this is a work-around,
-     * should not cause real world issues anyway.}}
+     * should not cause real world issues anyway.}
      *
      * @param bool   $isTrait     Whether to load the class/interface test file or the trait test file.
      * @param string $testVersion Value of 'testVersion' to set on PHPCS object.

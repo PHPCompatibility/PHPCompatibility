@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\Sniffs\Upgrade\LowPHPSniff;
 
 /**
- * Test throwing the PHP Upgrade notice.
+ * Test the LowPHP sniff.
  *
  * @group lowPHP
  * @group upgrade

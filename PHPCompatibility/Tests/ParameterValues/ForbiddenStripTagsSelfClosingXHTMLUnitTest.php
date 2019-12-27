@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden self closing XHTML tags in strip_tags() tests.
+ * Test the ForbiddenStripTagsSelfClosingXHTML sniff.
  *
  * @group forbiddenStripTagsSelfClosingXHTML
  * @group parameterValues

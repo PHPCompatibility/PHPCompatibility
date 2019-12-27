@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\UseDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New use group declaration sniff tests
+ * Test the NewGroupUseDeclarations sniff.
  *
  * @group newGroupUseDeclarations
  * @group useDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\UseDeclarations\NewGroupUseDeclarationsSniff
+ *
+ * @since 7.0.0
  */
 class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
 {

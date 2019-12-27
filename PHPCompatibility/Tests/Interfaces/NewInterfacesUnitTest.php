@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Interfaces;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Interfaces Sniff tests
+ * Test the NewInterfaces sniff.
  *
  * @group newInterfaces
  * @group interfaces
@@ -22,6 +22,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
+ *
+ * @since 7.0.3
  */
 class NewInterfacesUnitTest extends BaseSniffTest
 {
@@ -96,7 +98,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function testUnsupportedMethods($line, $methodName)
     {
         $file = $this->sniffFile(__FILE__, '5.1'); // Version in which the Serializable interface was introduced.
-        $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See http://php.net/serializable");
+        $this->assertError($file, $line, "Classes that implement interface Serializable do not support the method {$methodName}(). See https://www.php.net/serializable");
     }
 
     /**

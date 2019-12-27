@@ -14,13 +14,25 @@ use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Check for usage of newly added regex modifiers for PCRE functions.
+ * Check for the use of newly added regex modifiers for PCRE functions.
+ *
+ * Initially just checks for the PHP 7.2 new `J` modifier.
+ *
+ * PHP version 7.2+
+ *
+ * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
+ * @link https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.pcre
+ *
+ * @since 8.2.0
+ * @since 9.0.0 Renamed from `PCRENewModifiersSniff` to `NewPCREModifiersSniff`.
  */
 class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
 {
 
     /**
      * Functions to check for.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -41,6 +53,8 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      * The key should be the modifier (case-sensitive!).
      * The value should be the PHP version in which the modifier was introduced.
      *
+     * @since 8.2.0
+     *
      * @var array
      */
     protected $newModifiers = array(
@@ -54,6 +68,8 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -66,6 +82,8 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
 
     /**
      * Examine the regex modifier string.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the

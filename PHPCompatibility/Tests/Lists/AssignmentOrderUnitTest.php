@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Lists;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 7.0 assignment order change sniff test file.
+ * Test the AssignmentOrder sniff.
  *
  * @group assignmentOrder
  * @group lists
  *
  * @covers \PHPCompatibility\Sniffs\Lists\AssignmentOrderSniff
+ *
+ * @since 9.0.0
  */
 class AssignmentOrderUnitTest extends BaseSniffTest
 {

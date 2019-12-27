@@ -14,11 +14,12 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * The default value for the $variant parameter has changed from INTL_IDNA_VARIANT_2003
- * to INTL_IDNA_VARIANT_UTS46.
+ * The default value for the `$variant` parameter has changed from `INTL_IDNA_VARIANT_2003`
+ * to `INTL_IDNA_VARIANT_UTS46` in PHP 7.4.
  *
  * PHP version 7.4
  *
+ * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.intl
  * @link https://wiki.php.net/rfc/deprecate-and-remove-intl_idna_variant_2003
  * @link https://www.php.net/manual/en/function.idn-to-ascii.php
  * @link https://www.php.net/manual/en/function.idn-to-utf8.php

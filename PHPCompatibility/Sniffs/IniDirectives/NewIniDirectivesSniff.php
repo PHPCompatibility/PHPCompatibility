@@ -14,7 +14,17 @@ use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Discourages the use of new INI directives through ini_set() or ini_get().
+ * Detect the use of new INI directives through `ini_set()` or `ini_get()`.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/ini.list.php
+ * @link https://www.php.net/manual/en/ini.core.php
+ *
+ * @since 5.5
+ * @since 7.0.7 When a new directive is used with `ini_set()`, the sniff will now throw an error
+ *              instead of a warning.
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  */
 class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {
@@ -23,6 +33,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the ini directive appears.
+     *
+     * @since 5.5
+     * @since 7.0.3 Support for 'alternative' has been added.
      *
      * @var array(string)
      */
@@ -645,6 +658,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
 
+        'ffi.enable' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'ffi.preload' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
         'opcache.cache_id' => array(
             '7.3' => false,
             '7.4' => true,
@@ -662,6 +683,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -671,6 +694,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -721,6 +746,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -734,6 +761,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -744,6 +773,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -771,6 +802,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -781,6 +814,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param string $error     The error message which was created.
      * @param array  $itemInfo  Base information about the item this error message applies to.
@@ -800,6 +835,8 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 
     /**
      * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.

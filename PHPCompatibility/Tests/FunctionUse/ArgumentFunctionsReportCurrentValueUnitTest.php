@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Argument Functions Report Current Value sniff tests.
+ * Test the ArgumentFunctionsReportCurrentValue sniff.
  *
  * @group argumentFunctionsReportCurrentValue
  * @group functionUse

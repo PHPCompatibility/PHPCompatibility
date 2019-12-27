@@ -15,11 +15,12 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * As of PHP 7.4, throwing exceptions from a __toString() method is allowed.
- *
- * @link https://wiki.php.net/rfc/tostring_exceptions
+ * As of PHP 7.4, throwing exceptions from a `__toString()` method is allowed.
  *
  * PHP version 7.4
+ *
+ * @link https://wiki.php.net/rfc/tostring_exceptions
+ * @link https://www.php.net/manual/en/language.oop5.magic.php#object.tostring
  *
  * @since 9.2.0
  */
@@ -30,6 +31,7 @@ class NewExceptionsFromToStringSniff extends Sniff
      * Valid scopes for the __toString() method to live in.
      *
      * @since 9.2.0
+     * @since 9.3.0 Visibility changed from `public` to `protected`.
      *
      * @var array
      */
@@ -148,7 +150,7 @@ class NewExceptionsFromToStringSniff extends Sniff
          * Check whether the function has a docblock and if so, whether it contains a @throws tag.
          *
          * {@internal This can be partially replaced by the findCommentAboveFunction()
-         *            utility function in due time.}}
+         *            utility function in due time.}
          */
         $commentEnd = $phpcsFile->findPrevious($this->docblockIgnoreTokens, ($stackPtr - 1), null, true);
         if ($commentEnd === false || $tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {

@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Short array syntax sniff tests
+ * Test the NewShortArray sniff.
  *
  * @group newShortArray
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewShortArraySniff
+ *
+ * @since 7.0.0
  */
 class NewShortArrayUnitTest extends BaseSniffTest
 {
@@ -36,8 +38,8 @@ class NewShortArrayUnitTest extends BaseSniffTest
     public function testViolation($lineOpen, $lineClose)
     {
         $file = $this->sniffFile(__FILE__, '5.3');
-        $this->assertError($file, $lineOpen, 'Short array syntax (open) is available since 5.4');
-        $this->assertError($file, $lineClose, 'Short array syntax (close) is available since 5.4');
+        $this->assertError($file, $lineOpen, 'Short array syntax (open) is not supported in PHP 5.3 or lower');
+        $this->assertError($file, $lineClose, 'Short array syntax (close) is not supported in PHP 5.3 or lower');
     }
 
     /**

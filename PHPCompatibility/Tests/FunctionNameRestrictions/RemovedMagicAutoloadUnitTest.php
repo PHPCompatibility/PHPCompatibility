@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * __autoload deprecation for PHP 7.2 sniff test
+ * Test the RemovedMagicAutoload sniff.
  *
  * @group removedMagicAutoload
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff
  * @covers \PHPCompatibility\Sniff::determineNamespace
+ *
+ * @since 8.1.0
  */
 class RemovedMagicAutoloadUnitTest extends BaseSniffTest
 {
@@ -106,7 +108,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      *
      * @dataProvider dataIsNotAffected
      *
-     * @param string $testFile The file to test
+     * @param string $testFile The file to test.
      * @param int    $line     The line number where the error should occur.
      * @param bool   $isTrait  Whether the test relates to a method in a trait.
      *

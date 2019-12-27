@@ -14,12 +14,14 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Use of flexible heredoc/nowdoc syntax and identifiers in heredoc/nowdoc body tests.
+ * Test the NewFlexibleHeredocNowdoc sniff.
  *
  * @group newFlexibleHeredocNowdoc
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\NewFlexibleHeredocNowdocSniff
+ *
+ * @since 9.0.0
  */
 class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
 {
@@ -50,7 +52,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      * Set up skip condition based on used PHP version.
      *
      * {@internal The data providers are run before the setUpClass method is run, so
-     * we can't use that method for this skip condition.}}
+     * we can't use that method for this skip condition.}
      *
      * @return bool True if PHPCS is running on PHP 7.3 or higher. False otherwise.
      */

@@ -18,11 +18,18 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * Visibility for class constants is available since PHP 7.1.
  *
  * PHP version 7.1
+ *
+ * @link https://wiki.php.net/rfc/class_const_visibility
+ * @link https://www.php.net/manual/en/language.oop5.constants.php#language.oop5.basic.class.this
+ *
+ * @since 7.0.7
  */
 class NewConstVisibilitySniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.7
      *
      * @return array
      */
@@ -33,6 +40,8 @@ class NewConstVisibilitySniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

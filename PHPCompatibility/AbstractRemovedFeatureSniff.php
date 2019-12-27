@@ -14,6 +14,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Base class for removed feature sniffs.
+ *
+ * @since 7.1.0
  */
 abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
 {
@@ -21,6 +23,8 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
+     *
+     * @since 7.1.0
      *
      * @param array $errorInfo Detail information about an item.
      *
@@ -37,6 +41,8 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
      *
      * By default, removed feature version arrays, contain an additional 'alternative' array key.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -47,6 +53,8 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -88,6 +96,8 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
     /**
      * Get the error message template for suggesting an alternative for a specific sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getAlternativeOptionTemplate()
@@ -98,6 +108,8 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 7.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in

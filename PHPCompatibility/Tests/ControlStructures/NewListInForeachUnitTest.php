@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * PHP 5.5 list() in foreach sniff test file.
+ * Test the NewListInForeach sniff.
  *
  * @group newListInForeach
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewListInForeachSniff
+ *
+ * @since 9.0.0
  */
 class NewListInForeachUnitTest extends BaseSniffTest
 {

@@ -15,6 +15,23 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Check for valid integer types and values.
+ *
+ * Checks:
+ * - PHP 5.4 introduced binary integers.
+ * - PHP 7.0 removed tolerance for invalid octals. These were truncated prior to PHP 7
+ *   and give a parse error since PHP 7.
+ * - PHP 7.0 removed support for recognizing hexadecimal numeric strings as numeric.
+ *   Type juggling and recognition was inconsistent prior to PHP 7. As of PHP 7, they
+ *   are no longer treated as numeric.
+ *
+ * PHP version 5.4+
+ *
+ * @link https://wiki.php.net/rfc/binnotation4ints
+ * @link https://wiki.php.net/rfc/remove_hex_support_in_numeric_strings
+ * @link https://www.php.net/manual/en/language.types.integer.php
+ *
+ * @since 7.0.3
+ * @since 7.0.8 This sniff now throws a warning instead of an error for invalid binary integers.
  */
 class ValidIntegersSniff extends Sniff
 {
@@ -22,12 +39,16 @@ class ValidIntegersSniff extends Sniff
     /**
      * Whether PHPCS is run on a PHP < 5.4.
      *
+     * @since 7.0.3
+     *
      * @var bool
      */
     protected $isLowPHPVersion = false;
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.3
      *
      * @return array
      */
@@ -44,6 +65,8 @@ class ValidIntegersSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -107,6 +130,8 @@ class ValidIntegersSniff extends Sniff
     /**
      * Could the current token potentially be a binary integer ?
      *
+     * @since 7.0.3
+     *
      * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
@@ -133,6 +158,8 @@ class ValidIntegersSniff extends Sniff
     /**
      * Is the current token an invalid binary integer ?
      *
+     * @since 7.0.3
+     *
      * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
@@ -154,6 +181,8 @@ class ValidIntegersSniff extends Sniff
 
     /**
      * Retrieve the content of the tokens which together look like a binary integer.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param array                 $tokens    Token stack.
@@ -180,6 +209,8 @@ class ValidIntegersSniff extends Sniff
     /**
      * Is the current token an invalid octal integer ?
      *
+     * @since 7.0.3
+     *
      * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.
      *
@@ -198,6 +229,8 @@ class ValidIntegersSniff extends Sniff
 
     /**
      * Is the current token a hexidecimal numeric string ?
+     *
+     * @since 7.0.3
      *
      * @param array $tokens   Token stack.
      * @param int   $stackPtr The current position in the token stack.

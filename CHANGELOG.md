@@ -14,6 +14,29 @@ From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
 
 _Nothing yet._
 
+## [9.3.5] - 2019-12-27
+
+See all related issues and PRs in the [9.3.5 milestone].
+
+### Added
+- :star: `PHPCompatibility.Classes.NewClasses` sniff: recognize the new `FFI` extension related classes as introduced in PHP 7.4. [#949](https://github.com/PHPCompatibility/PHPCompatibility/pull/949)
+- :star: `PHPCompatibility.IniDirectives.NewIniDirectives` sniff: detect use of the new `FFI` extension related ini directives as introduced in PHP 7.4. [#949](https://github.com/PHPCompatibility/PHPCompatibility/pull/949)
+
+### Changed
+- :pencil: `PHPCompatibility.Syntax.NewShortArray`: improved clarity of the error message and made it consistent with other error messages in this standard. [#934](https://github.com/PHPCompatibility/PHPCompatibility/pull/934)
+- :pencil: `PHPCompatibility.Interfaces.NewInterfaces`: updated the URL which is mentioned in select error messages. [#942](https://github.com/PHPCompatibility/PHPCompatibility/pull/942)
+- :recycle: Another slew of code documentation fixes. [#937](https://github.com/PHPCompatibility/PHPCompatibility/pull/937), [#939](https://github.com/PHPCompatibility/PHPCompatibility/pull/939), [#940](https://github.com/PHPCompatibility/PHPCompatibility/pull/940), [#941](https://github.com/PHPCompatibility/PHPCompatibility/pull/941), [#943](https://github.com/PHPCompatibility/PHPCompatibility/pull/943), [#944](https://github.com/PHPCompatibility/PHPCompatibility/pull/944), [#951](https://github.com/PHPCompatibility/PHPCompatibility/pull/951), [#950](https://github.com/PHPCompatibility/PHPCompatibility/pull/950). Fixes [#734](https://github.com/PHPCompatibility/PHPCompatibility/issues/734).
+- :green_heart: Travis: various tweaks. The builds against PHP 7.4 are no longer allowed to fail. [#935](https://github.com/PHPCompatibility/PHPCompatibility/pull/935), [#938](https://github.com/PHPCompatibility/PHPCompatibility/pull/938)
+    For running the sniffs on PHP 7.4, it is recommended to use PHP_CodeSniffer 3.5.0+ as PHP_CodeSniffer itself is
+    not compatible with PHP 7.4 until version 3.5.0.
+
+### Fixed
+- :bug: `PHPCompatibility.Classes.NewClasses`: two new PHP 7.4 classes were being checked as if they were Exceptions. [#945](https://github.com/PHPCompatibility/PHPCompatibility/pull/945)
+
+### Credits
+Thanks go out to [William Entriken] for their contribution to this version. :clap:
+
+
 ## [9.3.4] - 2019-11-15
 
 See all related issues and PRs in the [9.3.4 milestone].
@@ -1369,6 +1392,7 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 [Unreleased]: https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[9.3.5]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.4...9.3.5
 [9.3.4]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.3...9.3.4
 [9.3.3]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.2...9.3.3
 [9.3.2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.1...9.3.2
@@ -1399,6 +1423,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[9.3.5 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/34
 [9.3.4 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/33
 [9.3.3 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/32
 [9.3.2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/31
@@ -1458,5 +1483,6 @@ See all related issues and PRs in the [5.5 milestone].
 [Sergii Bondarenko]: https://github.com/BR0kEN-
 [Tadas Juozapaitis]: https://github.com/kasp3r
 [Tim Millwood]: https://github.com/timmillwood
+[William Entriken]: https://github.com/fulldecent
 [Yılmaz]: https://github.com/edigu
 [Yoshiaki Yoshida]: https://github.com/kakakakakku

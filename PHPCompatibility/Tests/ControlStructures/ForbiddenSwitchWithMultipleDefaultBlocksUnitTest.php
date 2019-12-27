@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Switch statements can only have one default case in PHP 7.0
+ * Test the ForbiddenSwitchWithMultipleDefaultBlocks sniff.
  *
  * @group forbiddenSwitchWithMultipleDefaultBlocks
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenSwitchWithMultipleDefaultBlocksSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
 {

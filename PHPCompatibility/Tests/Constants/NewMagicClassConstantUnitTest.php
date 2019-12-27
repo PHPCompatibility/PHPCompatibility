@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Constants;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New magic ::class constant sniff test file.
+ * Test the NewMagicClassConstant sniff.
  *
  * @group newMagicClassConstant
  * @group constants
  *
  * @covers \PHPCompatibility\Sniffs\Constants\NewMagicClassConstantSniff
+ *
+ * @since 7.1.4
  */
 class NewMagicClassConstantUnitTest extends BaseSniffTest
 {

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Classes Sniff tests
+ * Test the NewClasses sniff.
  *
  * @group newClasses
  * @group classes
@@ -22,6 +22,8 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
  * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
+ *
+ * @since 5.5
  */
 class NewClassesUnitTest extends BaseSniffTest
 {
@@ -150,6 +152,11 @@ class NewClassesUnitTest extends BaseSniffTest
             array('ReflectionType', '5.6', array(308), '7.0'),
             array('ReflectionGenerator', '5.6', array(309), '7.0'),
             array('ReflectionClassConstant', '7.0', array(306), '7.1'),
+            array('FFI', '7.3', array(346), '7.4'),
+            array('FFI\CData', '7.3', array(347), '7.4'),
+            array('FFI\CType', '7.3', array(347), '7.4'),
+            array('ReflectionReference', '7.3', array(344), '7.4'),
+            array('WeakReference', '7.3', array(345), '7.4'),
 
             array('DATETIME', '5.1', array(146), '5.2'),
             array('datetime', '5.1', array(147, 320), '5.2'),
@@ -193,8 +200,8 @@ class NewClassesUnitTest extends BaseSniffTest
             array('SodiumException', '7.1', array(342), '7.2'),
             array('CompileError', '7.2', array(249), '7.3'),
             array('JsonException', '7.2', array(250, 339), '7.3'),
-            array('ReflectionReference', '7.3', array(344), '7.4'),
-            array('WeakReference', '7.3', array(345), '7.4'),
+            array('FFI\Exception', '7.3', array(349), '7.4'),
+            array('FFI\ParserException', '7.3', array(349), '7.4'),
         );
     }
 

@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Keywords;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden names as function invocations sniff test file
+ * Test the ForbiddenNamesAsInvokedFunctions sniff.
  *
  * @group forbiddenNamesAsInvokedFunctions
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsInvokedFunctionsSniff
+ *
+ * @since 5.5
  */
 class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
 {

@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed flexible parameter order for implode() sniff tests.
+ * Test the RemovedImplodeFlexibleParamOrder sniff.
  *
  * @group removedImplodeFlexibleParamOrder
  * @group parameterValues

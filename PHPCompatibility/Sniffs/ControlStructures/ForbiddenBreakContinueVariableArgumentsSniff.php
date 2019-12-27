@@ -15,9 +15,20 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Forbids variable arguments on break or continue statements.
+ * Detects using 0 and variable numeric arguments on `break` and `continue` statements.
+ *
+ * This sniff checks for:
+ * - Using `break` and/or `continue` with a variable as the numeric argument.
+ * - Using `break` and/or `continue` with a zero - 0 - as the numeric argument.
  *
  * PHP version 5.4
+ *
+ * @link https://www.php.net/manual/en/migration54.incompatible.php
+ * @link https://www.php.net/manual/en/control-structures.break.php
+ * @link https://www.php.net/manual/en/control-structures.continue.php
+ *
+ * @since 5.5
+ * @since 5.6 Now extends the base `Sniff` class.
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {
@@ -25,6 +36,9 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      * Error types this sniff handles for forbidden break/continue arguments.
      *
      * Array key is the error code. Array value will be used as part of the error message.
+     *
+     * @since 7.0.5
+     * @since 7.1.0 Changed from class constants to property.
      *
      * @var array
      */
@@ -36,6 +50,8 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -45,6 +61,8 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

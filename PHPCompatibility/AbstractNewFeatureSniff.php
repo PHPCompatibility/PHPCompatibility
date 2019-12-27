@@ -14,6 +14,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Base class for new feature sniffs.
+ *
+ * @since 7.1.0
  */
 abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 {
@@ -21,6 +23,8 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
+     *
+     * @since 7.1.0
      *
      * @param array $errorInfo Detail information about an item.
      *
@@ -34,6 +38,8 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -66,6 +72,8 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -76,6 +84,8 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 
     /**
      * Generates the error or warning for this item.
+     *
+     * @since 7.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in

@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\IniDirectives;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New ini directives sniff tests
+ * Test the NewIniDirectives sniff.
  *
  * @group newIniDirectives
  * @group iniDirectives
  *
  * @covers \PHPCompatibility\Sniffs\IniDirectives\NewIniDirectivesSniff
+ *
+ * @since 5.5
  */
 class NewIniDirectivesUnitTest extends BaseSniffTest
 {
@@ -229,6 +231,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('syslog.filter', '7.3', array(317, 318), '7.2'),
             array('session.cookie_samesite', '7.3', array(332, 333), '7.2'),
 
+            array('ffi.enable', '7.4', array(458, 459), '7.3'),
+            array('ffi.preload', '7.4', array(461, 462), '7.3'),
             array('opcache.cache_id', '7.4', array(341, 342), '7.3'),
             array('opcache.preload', '7.4', array(455, 456), '7.3'),
             array('zend.exception_ignore_args', '7.4', array(338, 339), '7.3'),

@@ -14,14 +14,14 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Using "parent" inside a class without parent is deprecated since PHP 7.4.
+ * Using `parent` inside a class without parent is deprecated since PHP 7.4.
  *
  * This will throw a compile-time error in the future. Currently an error will only
  * be generated if/when the parent is accessed at run-time.
  *
- * @link https://github.com/php/php-src/blob/42cc58ff7b2fee1c17a00dc77a4873552ffb577f/UPGRADING#L303
- *
  * PHP version 7.4
+ *
+ * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.parent
  *
  * @since 9.2.0
  */

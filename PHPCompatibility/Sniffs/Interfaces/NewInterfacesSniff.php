@@ -16,6 +16,13 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of new PHP native interfaces and unsupported interface methods.
+ *
+ * PHP version 5.0+
+ *
+ * @since 7.0.3
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
+ * @since 7.1.4 Now also detects new interfaces when used as parameter type declarations.
+ * @since 8.2.0 Now also detects new interfaces when used as return type declarations.
  */
 class NewInterfacesSniff extends AbstractNewFeatureSniff
 {
@@ -25,6 +32,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the interface appears.
+     *
+     * @since 7.0.3
      *
      * @var array(string => array(string => bool))
      */
@@ -99,17 +108,21 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     /**
      * A list of methods which cannot be used in combination with particular interfaces.
      *
+     * @since 7.0.3
+     *
      * @var array(string => array(string => string))
      */
     protected $unsupportedMethods = array(
         'Serializable' => array(
-            '__sleep'  => 'http://php.net/serializable',
-            '__wakeup' => 'http://php.net/serializable',
+            '__sleep'  => 'https://www.php.net/serializable',
+            '__wakeup' => 'https://www.php.net/serializable',
         ),
     );
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.3
      *
      * @return array
      */
@@ -139,6 +152,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -184,6 +199,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * - Detect classes implementing the new interfaces.
      * - Detect classes implementing the new interfaces with unsupported functions.
+     *
+     * @since 7.1.4 Split off from the `process()` method.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -250,6 +267,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new interfaces when used as a type hint.
      *
+     * @since 7.1.4
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack passed in $tokens.
@@ -283,6 +302,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * - Detect new interfaces when used as a return type declaration.
      *
+     * @since 8.2.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack passed in $tokens.
@@ -315,6 +336,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -327,6 +350,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

@@ -15,17 +15,24 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Discourages use of superglobals as parameters for functions.
+ * Detect the use of superglobals as parameters for functions, support for which was removed in PHP 5.4.
  *
- * {@internal List of superglobals is maintained in the parent class.}}
+ * {@internal List of superglobals is maintained in the parent class.}
  *
  * PHP version 5.4
+ *
+ * @link https://www.php.net/manual/en/migration54.incompatible.php
+ *
+ * @since 7.0.0
  */
 class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 {
 
     /**
      * Register the tokens to listen for.
+     *
+     * @since 7.0.0
+     * @since 7.1.3 Allows for closures.
      *
      * @return array
      */
@@ -39,6 +46,8 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 
     /**
      * Processes the test.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token.

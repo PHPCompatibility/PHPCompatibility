@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Keywords;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden names sniff test
+ * Test the ForbiddenNames sniff.
  *
  * @group forbiddenNames
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff
+ *
+ * @since 5.5
  */
 class ForbiddenNamesUnitTest extends BaseSniffTest
 {

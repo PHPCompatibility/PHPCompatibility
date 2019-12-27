@@ -16,9 +16,15 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Nullable type hints and return types are available since PHP 7.1.
+ * Nullable parameter type declarations and return types are available since PHP 7.1.
  *
  * PHP version 7.1
+ *
+ * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.nullable-types
+ * @link https://wiki.php.net/rfc/nullable_types
+ * @link https://www.php.net/manual/en/functions.arguments.php#example-146
+ *
+ * @since 7.0.7
  */
 class NewNullableTypesSniff extends Sniff
 {
@@ -27,7 +33,9 @@ class NewNullableTypesSniff extends Sniff
      *
      * {@internal Not sniffing for T_NULLABLE which was introduced in PHPCS 2.7.2
      * as in that case we can't distinguish between parameter type hints and
-     * return type hints for the error message.}}
+     * return type hints for the error message.}
+     *
+     * @since 7.0.7
      *
      * @return array
      */
@@ -48,6 +56,8 @@ class NewNullableTypesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -82,6 +92,8 @@ class NewNullableTypesSniff extends Sniff
     /**
      * Process this test for function tokens.
      *
+     * @since 7.0.7
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
@@ -109,6 +121,8 @@ class NewNullableTypesSniff extends Sniff
 
     /**
      * Process this test for return type tokens.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

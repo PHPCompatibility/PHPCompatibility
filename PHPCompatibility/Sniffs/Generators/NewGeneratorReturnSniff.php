@@ -15,14 +15,22 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * As of PHP 7.0, a return statement can be used within a generator for a final expression to be returned.
+ * As of PHP 7.0, a `return` statement can be used within a generator for a final expression to be returned.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.generator-return-expressions
+ * @link https://wiki.php.net/rfc/generator-return-expressions
+ * @link https://www.php.net/manual/en/language.generators.syntax.php
+ *
+ * @since 8.2.0
  */
 class NewGeneratorReturnSniff extends Sniff
 {
     /**
      * Scope conditions within which a yield can exist.
+     *
+     * @since 9.0.0
      *
      * @var array
      */
@@ -34,6 +42,8 @@ class NewGeneratorReturnSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 8.2.0
      *
      * @return array
      */
@@ -71,6 +81,8 @@ class NewGeneratorReturnSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

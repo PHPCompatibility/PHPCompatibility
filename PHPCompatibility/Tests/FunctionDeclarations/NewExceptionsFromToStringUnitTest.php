@@ -14,7 +14,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * Exceptions from __toString() sniff tests.
+ * Test the NewExceptionsFromToString sniff.
  *
  * @group newExceptionsFromToString
  * @group functionDeclarations

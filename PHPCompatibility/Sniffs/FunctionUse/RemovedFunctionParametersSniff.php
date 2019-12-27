@@ -16,6 +16,13 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Detect use of deprecated/removed function parameters in calls to native PHP functions.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/doc.changelog.php
+ *
+ * @since 7.0.0
+ * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  */
 class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 {
@@ -30,6 +37,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      * additional check. The method will be passed the parameter info and should return true
      * if the notice should be thrown or false otherwise.
      *
+     * @since 7.0.0
+     * @since 7.0.2 Visibility changed from `public` to `protected`.
      * @since 9.3.0 Optional `callback` key.
      *
      * @var array
@@ -80,6 +89,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 7.0.0
+     *
      * @return array
      */
     public function register()
@@ -92,6 +103,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -155,6 +168,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -168,6 +183,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 7.1.0
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -178,6 +195,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -196,6 +215,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the item name to be used for the creation of the error code.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo  Base information about the item.
      * @param array $errorInfo Detail information about an item.
      *
@@ -210,6 +231,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the error message template for this sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     protected function getErrorMsgTemplate()
@@ -220,6 +243,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Filter the error data before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.

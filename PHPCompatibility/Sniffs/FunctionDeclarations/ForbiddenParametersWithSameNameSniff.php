@@ -15,15 +15,22 @@ use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Functions can not have multiple parameters with the same name since PHP 7.0
+ * Functions can not have multiple parameters with the same name since PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameters
+ *
+ * @since 7.0.0
  */
 class ForbiddenParametersWithSameNameSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
+     * @since 7.1.3 Allows for closures.
      *
      * @return array
      */
@@ -37,6 +44,8 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

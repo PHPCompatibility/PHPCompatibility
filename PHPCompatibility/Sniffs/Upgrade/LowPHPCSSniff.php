@@ -27,6 +27,9 @@ use PHP_CodeSniffer_File as File;
  * This sniff adds an explicit error/warning for users of the standard
  * using a PHPCS version below the recommended version.
  *
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/688
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/835
+ *
  * @since 8.2.0
  */
 class LowPHPCSSniff extends Sniff
@@ -112,7 +115,7 @@ class LowPHPCSSniff extends Sniff
 
         if (version_compare($phpcsVersion, self::MIN_SUPPORTED_VERSION, '<')) {
             $isError      = true;
-            $message      = "IMPORTANT: Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is %s. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation. The recommended version of PHP_CodeSniffer for PHPCompatibility is %s or higher.";
+            $message      = 'IMPORTANT: Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is %s. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation. The recommended version of PHP_CodeSniffer for PHPCompatibility is %s or higher.';
             $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
             $replacements = array(
                 self::MIN_SUPPORTED_VERSION,
@@ -122,7 +125,7 @@ class LowPHPCSSniff extends Sniff
             );
         } else {
             $isError      = false;
-            $message      = "IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP_CodeSniffer %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation to version %s or higher.";
+            $message      = 'IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP_CodeSniffer %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation to version %s or higher.';
             $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
             $replacements = array(
                 self::MIN_RECOMMENDED_VERSION,
@@ -156,7 +159,7 @@ class LowPHPCSSniff extends Sniff
          * it should be. A patch for that is included in the same upstream PR.
          *
          * If/when the upstream PR has been merged and the minimum supported/recommended version
-         * of PHPCompatibility would go beyond that, the below code should be adjusted.}}
+         * of PHPCompatibility would go beyond that, the below code should be adjusted.}
          */
         $reportWidth = PHPCSHelper::getCommandLineData($phpcsFile, 'reportWidth');
         if (empty($reportWidth)) {

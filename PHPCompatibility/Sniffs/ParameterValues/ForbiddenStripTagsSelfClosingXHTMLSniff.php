@@ -14,7 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Since PHP 5.3.4, strip_tags() ignores self-closing XHTML tags in allowable_tags
+ * Since PHP 5.3.4, `strip_tags()` ignores self-closing XHTML tags in allowable_tags
  *
  * PHP version 5.3.4
  *

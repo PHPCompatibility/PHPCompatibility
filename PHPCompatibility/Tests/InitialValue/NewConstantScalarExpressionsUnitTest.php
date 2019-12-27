@@ -14,12 +14,14 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * New constant scalar expressions in PHP 5.6 sniff test file.
+ * Test the NewConstantScalarExpressions sniff.
  *
  * @group newConstantScalarExpressions
  * @group initialValue
  *
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff
+ *
+ * @since 8.2.0
  */
 class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
 {

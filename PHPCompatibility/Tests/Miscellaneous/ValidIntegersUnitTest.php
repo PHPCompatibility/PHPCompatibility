@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Miscellaneous;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Valid Integers Sniff tests
+ * Test the ValidIntegers sniff.
  *
  * @group validIntegers
  * @group miscellaneous
  *
  * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
+ *
+ * @since 7.0.3
  */
 class ValidIntegersUnitTest extends BaseSniffTest
 {

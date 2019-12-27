@@ -8,6 +8,8 @@
  * @copyright 2012-2019 PHPCompatibility Contributors
  * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
+ *
+ * @since 8.0.0
  */
 
 /*
@@ -19,11 +21,11 @@
  * {@internal The PHPCS file have been reorganized in PHPCS 3.x, quite
  * a few "old" classes have been split and spread out over several "new"
  * classes. In other words, this will only work for a limited number
- * of classes.}}
+ * of classes.}
  *
  * {@internal The `class_exists` wrappers are needed to play nice with other
  * external PHPCS standards creating cross-version compatibility in the same
- * manner.}}
+ * manner.}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
     if (interface_exists('\PHP_CodeSniffer_Sniff') === false) {
@@ -52,7 +54,9 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
      *
      * {@internal When `installed_paths` is set via the ruleset, this autoloader
      * is needed to run the sniffs.
-     * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1591} }}
+     * Upstream issue: {@link https://github.com/squizlabs/PHP_CodeSniffer/issues/1591} }
+     *
+     * @since 8.0.0
      */
     spl_autoload_register(function ($class) {
         // Only try & load our own classes.

@@ -21,14 +21,15 @@ use PHP_CodeSniffer_File as File;
  * > `<? php` and resulted in a syntax error (with short_open_tag=1) or was
  * > interpreted as a literal `<?php` string (with short_open_tag=0).
  *
- * @internal Due to an issue with the Tokenizer, this sniff will not work correctly
- *           on PHP 5.3 in combination with PHPCS < 2.6.0 when short_open_tag is `On`.
- *           As this is causing "Undefined offset" notices, there is nothing we can
- *           do to work-around this.
- *
- * @link https://github.com/php/php-src/blob/30de357fa14480468132bbc22a272aeb91789ba8/UPGRADING#L37-L40
+ * {@internal Due to an issue with the Tokenizer, this sniff will not work correctly
+ *            on PHP 5.3 in combination with PHPCS < 2.6.0 when short_open_tag is `On`.
+ *            As this is causing "Undefined offset" notices, there is nothing we can
+ *            do to work-around this.}
  *
  * PHP version 7.4
+ *
+ * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.core.php-tag
+ * @link https://github.com/php/php-src/blob/30de357fa14480468132bbc22a272aeb91789ba8/UPGRADING#L37-L40
  *
  * @since 9.3.0
  */

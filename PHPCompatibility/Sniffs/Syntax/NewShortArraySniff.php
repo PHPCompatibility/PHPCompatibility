@@ -14,15 +14,23 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Short array syntax is available since PHP 5.4
+ * Detect use of short array syntax which is available since PHP 5.4.
  *
  * PHP version 5.4
+ *
+ * @link https://wiki.php.net/rfc/shortsyntaxforarrays
+ * @link https://www.php.net/manual/en/language.types.array.php#language.types.array.syntax
+ *
+ * @since 7.0.0
+ * @since 9.0.0 Renamed from `ShortArraySniff` to `NewShortArraySniff`.
  */
 class NewShortArraySniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
      *
      * @return array
      */
@@ -37,6 +45,8 @@ class NewShortArraySniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -53,7 +63,7 @@ class NewShortArraySniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
 
-        $error = '%s is available since 5.4';
+        $error = '%s is not supported in PHP 5.3 or lower';
         $data  = array();
 
         if ($token['type'] === 'T_OPEN_SHORT_ARRAY') {

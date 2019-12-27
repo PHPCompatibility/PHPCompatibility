@@ -19,11 +19,12 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * The left-associativity of the ternary operator is deprecated in PHP 7.4 and
  * removed in PHP 8.0.
  *
- * @link https://wiki.php.net/rfc/ternary_associativity
- * @link https://github.com/php/php-src/pull/4017
- *
  * PHP version 7.4
  * PHP version 8.0
+ *
+ * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.nested-ternary
+ * @link https://wiki.php.net/rfc/ternary_associativity
+ * @link https://github.com/php/php-src/pull/4017
  *
  * @since 9.2.0
  */

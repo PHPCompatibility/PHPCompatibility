@@ -16,6 +16,14 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect classes which implement PHP native interfaces intended only for PHP internal use.
+ *
+ * PHP version 5.0+
+ *
+ * @link https://www.php.net/manual/en/class.traversable.php
+ * @link https://www.php.net/manual/en/class.throwable.php
+ * @link https://www.php.net/manual/en/class.datetimeinterface.php
+ *
+ * @since 7.0.3
  */
 class InternalInterfacesSniff extends Sniff
 {
@@ -24,6 +32,8 @@ class InternalInterfacesSniff extends Sniff
      * A list of PHP internal interfaces, not intended to be implemented by userland classes.
      *
      * The array lists : the error message to use.
+     *
+     * @since 7.0.3
      *
      * @var array(string => string)
      */
@@ -36,6 +46,8 @@ class InternalInterfacesSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.3
      *
      * @return array
      */
@@ -56,6 +68,8 @@ class InternalInterfacesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.3
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in

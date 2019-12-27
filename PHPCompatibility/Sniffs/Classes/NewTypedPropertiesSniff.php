@@ -15,10 +15,11 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Typed properties are available since PHP 7.4.
+ * Typed class property declarations are available since PHP 7.4.
  *
  * PHP version 7.4
  *
+ * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties
  * @link https://wiki.php.net/rfc/typed_properties_v2
  *
  * @since 9.2.0
@@ -28,6 +29,8 @@ class NewTypedPropertiesSniff extends Sniff
 
     /**
      * Valid property modifier keywords.
+     *
+     * @since 9.2.0
      *
      * @var array
      */
@@ -43,6 +46,8 @@ class NewTypedPropertiesSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 9.2.0
+     *
      * @return array
      */
     public function register()
@@ -52,6 +57,8 @@ class NewTypedPropertiesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

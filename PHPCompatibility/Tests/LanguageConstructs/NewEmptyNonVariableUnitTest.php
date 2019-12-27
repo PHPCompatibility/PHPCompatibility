@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\LanguageConstructs;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Empty with non variable sniff test file
+ * Test the NewEmptyNonVariable sniff.
  *
  * @group newEmptyNonVariable
  * @group languageConstructs
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff
  * @covers \PHPCompatibility\Sniff::isVariable
+ *
+ * @since 7.0.4
  */
 class NewEmptyNonVariableUnitTest extends BaseSniffTest
 {

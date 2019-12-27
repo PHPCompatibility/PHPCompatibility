@@ -13,16 +13,14 @@ namespace PHPCompatibility\Tests\ControlStructures;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden break and continue variable arguments sniff test
- *
- * Checks for using break and continue with a variable afterwards
- *     break $varname
- *     continue $varname
+ * Test the ForbiddenBreakContinueVariableArguments sniff.
  *
  * @group forbiddenBreakContinueVariableArguments
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\ForbiddenBreakContinueVariableArgumentsSniff
+ *
+ * @since 5.5
  */
 class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
 {

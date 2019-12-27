@@ -20,9 +20,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4.
  *
- * @link https://wiki.php.net/rfc/deprecate_curly_braces_array_access
- *
  * PHP version 7.4
+ *
+ * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.array-string-access-curly-brace
+ * @link https://wiki.php.net/rfc/deprecate_curly_braces_array_access
  *
  * @since 9.3.0
  */
@@ -285,7 +286,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      *
      * {@internal Note: the first braces for array access to a constant, for some unknown reason,
      *            can never be curlies, but have to be square brackets.
-     *            Subsequent braces can be curlies.}}
+     *            Subsequent braces can be curlies.}
      *
      * @since 9.3.0
      *

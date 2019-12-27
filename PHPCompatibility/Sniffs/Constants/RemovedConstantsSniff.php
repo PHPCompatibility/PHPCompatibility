@@ -15,6 +15,10 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of deprecated and/or removed PHP native global constants.
+ *
+ * PHP version All
+ *
+ * @since 8.1.0
  */
 class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 {
@@ -29,6 +33,8 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      * to be used instead.
      *
      * Note: PHP Constants are case-sensitive!
+     *
+     * @since 8.1.0
      *
      * @var array(string => array(string => bool|string))
      */
@@ -498,6 +504,8 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.1.0
+     *
      * @return array
      */
     public function register()
@@ -508,6 +516,8 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -538,6 +548,8 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 8.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -550,6 +562,8 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 8.1.0
      *
      * @return string
      */

@@ -14,15 +14,23 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Detect unpacking nested arrays with list() in a foreach().
+ * Detect unpacking nested arrays with `list()` in a `foreach()` as available since PHP 5.5.
  *
  * PHP version 5.5
+ *
+ * @link https://www.php.net/manual/en/migration55.new-features.php#migration55.new-features.foreach-list
+ * @link https://wiki.php.net/rfc/foreachlist
+ * @link https://www.php.net/manual/en/control-structures.foreach.php#control-structures.foreach.list
+ *
+ * @since 9.0.0
  */
 class NewListInForeachSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 9.0.0
      *
      * @return array
      */
@@ -33,6 +41,8 @@ class NewListInForeachSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

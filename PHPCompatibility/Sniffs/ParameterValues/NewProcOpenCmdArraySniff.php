@@ -15,14 +15,15 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * As of PHP 7.4, proc_open() now also accepts an array instead of a string for the command.
+ * As of PHP 7.4, `proc_open()` now also accepts an array instead of a string for the command.
  *
  * In that case, the process will be opened directly (without going through a shell) and
  * PHP will take care of any necessary argument escaping.
  *
  * PHP version 7.4
  *
- * @link https://github.com/php/php-src/blob/3775d47eee38f3b34f800a0b23f840ec7a94e4c7/UPGRADING#L323-L327
+ * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.standard.proc-open
+ * @link https://www.php.net/manual/en/function.proc-open.php
  *
  * @since 9.3.0
  */

@@ -18,11 +18,19 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * The interpretation of variable variables has changed in PHP 7.0.
  *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
+ * @link https://wiki.php.net/rfc/uniform_variable_syntax
+ *
+ * @since 7.1.2
+ * @since 9.0.0 Renamed from `VariableVariablesSniff` to `NewUniformVariableSyntaxSniff`.
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.1.2
      *
      * @return array
      */
@@ -33,6 +41,8 @@ class NewUniformVariableSyntaxSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.1.2
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

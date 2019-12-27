@@ -17,11 +17,19 @@ use PHP_CodeSniffer_File as File;
  * Catching multiple exception types in one statement is available since PHP 7.1.
  *
  * PHP version 7.1
+ *
+ * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.mulit-catch-exception-handling
+ * @link https://wiki.php.net/rfc/multiple-catch
+ * @link https://www.php.net/manual/en/language.exceptions.php#language.exceptions.catch
+ *
+ * @since 7.0.7
  */
 class NewMultiCatchSniff extends Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.7
      *
      * @return array
      */
@@ -32,6 +40,8 @@ class NewMultiCatchSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.7
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token

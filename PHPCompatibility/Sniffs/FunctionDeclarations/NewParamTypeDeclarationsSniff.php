@@ -16,6 +16,32 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect and verify the use of parameter type declarations in function declarations.
+ *
+ * Parameter type declarations - class/interface names only - is available since PHP 5.0.
+ * - Since PHP 5.1, the `array` keyword can be used.
+ * - Since PHP 5.2, `self` and `parent` can be used. Previously, those were interpreted as
+ *   class names.
+ * - Since PHP 5.4, the `callable` keyword.
+ * - Since PHP 7.0, scalar type declarations are available.
+ * - Since PHP 7.1, the `iterable` pseudo-type is available.
+ * - Since PHP 7.2, the generic `object` type is available.
+ *
+ * Additionally, this sniff does a cursory check for typical invalid type declarations,
+ * such as:
+ * - `boolean` (should be `bool`), `integer` (should be `int`) and `static`.
+ * - `self`/`parent` as type declaration used outside class context throws a fatal error since PHP 7.0.
+ *
+ * PHP version 5.0+
+ *
+ * @link https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration
+ * @link https://wiki.php.net/rfc/callable
+ * @link https://wiki.php.net/rfc/scalar_type_hints_v5
+ * @link https://wiki.php.net/rfc/iterable
+ * @link https://wiki.php.net/rfc/object-typehint
+ *
+ * @since 7.0.0
+ * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `NewScalarTypeDeclarationsSniff` to `NewParamTypeDeclarationsSniff`.
  */
 class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 {
@@ -25,6 +51,9 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
+     *
+     * @since 7.0.0
+     * @since 7.0.3 Now lists all param type declarations, not just the PHP 7+ scalar ones.
      *
      * @var array(string => array(string => bool))
      */
@@ -77,6 +106,8 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      *
      * The array lists : the invalid type hint => what was probably intended/alternative.
      *
+     * @since 7.0.3
+     *
      * @var array(string => string)
      */
     protected $invalidTypes = array(
@@ -88,6 +119,9 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
+     * @since 7.1.3 Now also checks closures.
      *
      * @return array
      */
@@ -102,6 +136,13 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
+     * @since 7.0.3 - Added check for non-scalar type declarations.
+     *              - Added check for invalid type declarations.
+     *              - Added check for usage of `self` type declaration outside
+     *                class scope.
+     * @since 8.2.0 Added check for `parent` type declaration outside class scope.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -170,6 +211,8 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -182,6 +225,8 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */

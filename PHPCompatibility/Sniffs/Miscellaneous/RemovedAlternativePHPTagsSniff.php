@@ -14,12 +14,17 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Check for usage of alternative PHP tags - removed in PHP 7.0.
+ * Check for use of alternative PHP tags, support for which was removed in PHP 7.0.
+ *
+ * {@internal Based on `Generic.PHP.DisallowAlternativePHPTags` by Juliette Reinders Folmer
+ * (with permission) which was merged into PHPCS 2.7.0.}
  *
  * PHP version 7.0
  *
- * Based on `Generic_Sniffs_PHP_DisallowAlternativePHPTags` by Juliette Reinders Folmer
- * which was merged into PHPCS 2.7.0.
+ * @link https://wiki.php.net/rfc/remove_alternative_php_tags
+ * @link https://www.php.net/manual/en/language.basic-syntax.phptags.php
+ *
+ * @since 7.0.4
  */
 class RemovedAlternativePHPTagsSniff extends Sniff
 {
@@ -27,12 +32,16 @@ class RemovedAlternativePHPTagsSniff extends Sniff
     /**
      * Whether ASP tags are enabled or not.
      *
+     * @since 7.0.4
+     *
      * @var bool
      */
     private $aspTags = false;
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.4
      *
      * @return array
      */
@@ -53,6 +62,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -131,6 +142,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
     /**
      * Get a snippet from a HTML token.
+     *
+     * @since 7.0.4
      *
      * @param string $content The content of the HTML token.
      * @param string $startAt Partial string to use as a starting point for the snippet.

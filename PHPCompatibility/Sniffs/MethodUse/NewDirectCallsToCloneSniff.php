@@ -15,15 +15,16 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Detect direct calls to the __clone() magic method which is allowed since PHP 7.0.
+ * Detect direct calls to the `__clone()` magic method, which is allowed since PHP 7.0.
  *
- * "Doing calls like $obj->__clone() is now allowed. This was the only magic method
+ * "Doing calls like `$obj->__clone()` is now allowed. This was the only magic method
  *  that had a compile-time check preventing some calls to it, which doesn't make sense.
  *  If we allow all other magic methods to be called, there's no reason to forbid this one."
  *
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/abstract_syntax_tree#directly_calling_clone_is_allowed
+ * @link https://www.php.net/manual/en/language.oop5.cloning.php
  *
  * @since 9.1.0
  */
@@ -32,6 +33,8 @@ class NewDirectCallsToCloneSniff extends Sniff
 
     /**
      * Tokens which indicate class internal use.
+     *
+     * @since 9.3.2
      *
      * @var array
      */

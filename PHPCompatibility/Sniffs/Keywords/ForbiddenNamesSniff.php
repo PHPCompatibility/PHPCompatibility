@@ -15,7 +15,13 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Prohibits the use of reserved keywords as class, function, namespace or constant names.
+ * Detects the use of reserved keywords as class, function, namespace or constant names.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/reserved.keywords.php
+ *
+ * @since 5.5
  */
 class ForbiddenNamesSniff extends Sniff
 {
@@ -23,6 +29,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * A list of keywords that can not be used as function, class and namespace name or constant name.
      * Mentions since which version it's not allowed.
+     *
+     * @since 5.5
      *
      * @var array(string => string)
      */
@@ -104,6 +112,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * A list of keywords that can follow use statements.
      *
+     * @since 7.0.1
+     *
      * @var array(string => string)
      */
     protected $validUseNames = array(
@@ -114,12 +124,16 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
+     * @since 7.1.4
+     *
      * @var array
      */
     private $allowedModifiers = array();
 
     /**
      * Targeted tokens.
+     *
+     * @since 5.5
      *
      * @var array
      */
@@ -139,6 +153,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -157,6 +173,8 @@ class ForbiddenNamesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -180,6 +198,8 @@ class ForbiddenNamesSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -276,7 +296,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_NAMESPACE') {
             if ($tokens[$stackPtr + 1]['code'] === \T_NS_SEPARATOR) {
-                // Not a namespace declaration, but use of, i.e. namespace\someFunction();
+                // Not a namespace declaration, but use of, i.e. `namespace\someFunction();`.
                 return;
             }
 
@@ -336,6 +356,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
+     * @since 5.5
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
      *                                         stack passed in $tokens.
@@ -385,6 +407,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Add the error message.
      *
+     * @since 7.1.0
+     *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
      *                                         stack passed in $tokens.
@@ -404,6 +428,8 @@ class ForbiddenNamesSniff extends Sniff
     /**
      * Check if the current token code is for a token which can be considered
      * the end of a (partial) use statement.
+     *
+     * @since 7.0.8
      *
      * @param int $token The current token information.
      *

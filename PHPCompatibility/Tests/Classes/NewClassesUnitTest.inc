@@ -343,3 +343,7 @@ function SodiumExceptionTypeHint( SodiumException $a ) {}
 $test = new com_exception();
 $test = new ReflectionReference;
 function DateTimeReturnTypeHint( $a ) : WeakReference {}
+FFI::load(__DIR__ . "/dummy.h");
+function FFITypeHints( FFI\CData $a, FFI\CType $b );
+try {
+} catch ( FFI\Exception | FFI\ParserException $e ) {}

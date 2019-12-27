@@ -15,15 +15,29 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * PHP 7.3 will throw a warning when continue is used to target a switch control structure.
+ * Detect use of `continue` in `switch` control structures.
+ *
+ * As of PHP 7.3, PHP will throw a warning when `continue` is used to target a `switch`
+ * control structure.
+ * The sniff takes numeric arguments used with `continue` into account.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.incompatible.php#migration73.incompatible.core.continue-targeting-switch
+ * @link https://wiki.php.net/rfc/continue_on_switch_deprecation
+ * @link https://github.com/php/php-src/commit/04e3523b7d095341f65ed5e71a3cac82fca690e4
+ *       (actual implementation which is different from the RFC).
+ * @link https://www.php.net/manual/en/control-structures.switch.php
+ *
+ * @since 8.2.0
  */
 class DiscouragedSwitchContinueSniff extends Sniff
 {
 
     /**
      * Token codes of control structures which can be targeted using continue.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -38,6 +52,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Tokens which start a new case within a switch.
      *
+     * @since 8.2.0
+     *
      * @var array
      */
     protected $caseTokens = array(
@@ -49,6 +65,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
      * Token codes which are accepted to determine the level for the continue.
      *
      * This array is enriched with the arithmetic operators in the register() method.
+     *
+     * @since 8.2.0
      *
      * @var array
      */
@@ -62,6 +80,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.2.0
+     *
      * @return array
      */
     public function register()
@@ -74,6 +94,8 @@ class DiscouragedSwitchContinueSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.2.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

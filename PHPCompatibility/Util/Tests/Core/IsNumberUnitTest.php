@@ -13,10 +13,12 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * isNumber(), isPositiveNumber() and isNegativeNumber() function tests
+ * Tests for the `isNumber()`, `isPositiveNumber()` and `isNegativeNumber()` utility functions.
  *
  * @group utilityIsNumber
  * @group utilityFunctions
+ *
+ * @since 8.2.0
  */
 class IsNumberUnitTest extends CoreMethodTestFrame
 {
@@ -61,7 +63,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
      * {@internal Case I13 is not tested here on purpose as the result depends on the
      * `testVersion` which we don't use in the utility tests.
      * For a `testVersion` with a minimum of PHP 7.0, the result will be false.
-     * For a `testVersion` which includes any PHP 5 version, the result will be true.}}
+     * For a `testVersion` which includes any PHP 5 version, the result will be true.}
      *
      * @return array
      */

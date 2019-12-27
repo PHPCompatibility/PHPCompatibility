@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Use of non-cryptographic hashes sniff tests.
+ * Test the RemovedNonCryptoHash sniff.
  *
  * @group removedNonCryptoHash
  * @group parameterValues
  * @group hashAlgorithms
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedNonCryptoHashSniff
+ *
+ * @since 9.0.0
  */
 class RemovedNonCryptoHashUnitTest extends BaseSniffTest
 {

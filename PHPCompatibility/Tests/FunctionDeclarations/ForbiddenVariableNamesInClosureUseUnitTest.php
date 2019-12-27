@@ -14,13 +14,15 @@ use PHPCompatibility\Tests\BaseSniffTest;
 use PHPCompatibility\PHPCSHelper;
 
 /**
- * PHP 7.1 Forbidden variable names in closure use statements tests.
+ * Test the ForbiddenVariableNamesInClosureUse sniff.
  *
  * @group forbiddenVariableNamesInClosureUse
  * @group closures
  * @group functionDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenVariableNamesInClosureUseSniff
+ *
+ * @since 7.1.4
  */
 class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {

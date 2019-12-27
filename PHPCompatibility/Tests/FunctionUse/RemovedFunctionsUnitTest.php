@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\FunctionUse;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed functions sniff tests
+ * Test the RemovedFunctions sniff.
  *
  * @group removedFunctions
  * @group functionUse
  *
  * @covers \PHPCompatibility\Sniffs\FunctionUse\RemovedFunctionsSniff
+ *
+ * @since 5.5
  */
 class RemovedFunctionsUnitTest extends BaseSniffTest
 {

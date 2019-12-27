@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Iconv/MbString charset/encoding default tests.
+ * Test the NewIconvMbstringCharsetDefault sniff.
  *
  * @group newIconvMbstringCharsetDefault
  * @group parameterValues

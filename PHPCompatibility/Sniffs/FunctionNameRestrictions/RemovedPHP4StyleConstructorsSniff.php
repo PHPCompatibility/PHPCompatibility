@@ -17,13 +17,32 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0.
  *
+ * PHP 4 style constructors - methods that have the same name as the class they are defined in -
+ * are deprecated as of PHP 7.0.0, and will be removed in the future.
+ * PHP 7 will emit `E_DEPRECATED` if a PHP 4 constructor is the only constructor defined
+ * within a class. Classes that implement a `__construct()` method are unaffected.
+ *
+ * Note: Methods with the same name as the class they are defined in _within a namespace_
+ * are not recognized as constructors anyway and therefore outside the scope of this sniff.
+ *
  * PHP version 7.0
+ *
+ * @link https://www.php.net/manual/en/migration70.deprecated.php#migration70.deprecated.php4-constructors
+ * @link https://wiki.php.net/rfc/remove_php4_constructors
+ * @link https://www.php.net/manual/en/language.oop5.decon.php
+ *
+ * @since 7.0.0
+ * @since 7.0.8 This sniff now throws a warning instead of an error as the functionality is
+ *              only deprecated (for now).
+ * @since 9.0.0 Renamed from `DeprecatedPHP4StyleConstructorsSniff` to `RemovedPHP4StyleConstructorsSniff`.
  */
 class RemovedPHP4StyleConstructorsSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.0.0
      *
      * @return array
      */
@@ -36,6 +55,10 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.0.0
+     * @since 7.0.8 The message is downgraded from error to warning as - for now - support
+     *              for PHP4-style constructors is just deprecated, not yet removed.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

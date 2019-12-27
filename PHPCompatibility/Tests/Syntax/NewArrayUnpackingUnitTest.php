@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * New Array Unpacking Sniff tests
+ * Test the NewArrayUnpacking sniff.
  *
  * @group newArrayUnpacking
  * @group syntax

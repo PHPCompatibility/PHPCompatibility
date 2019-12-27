@@ -17,7 +17,18 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * Check for use of deprecated and removed regex modifiers for MbString regex functions.
  *
+ * Initially just checks for the PHP 7.1 deprecated `e` modifier.
+ *
  * PHP version 7.1
+ *
+ * @link https://wiki.php.net/rfc/deprecate_mb_ereg_replace_eval_option
+ * @link https://www.php.net/manual/en/function.mb-regex-set-options.php
+ *
+ * @since 7.0.5
+ * @since 7.0.8 This sniff now throws a warning instead of an error as the functionality is
+ *              only deprecated (for now).
+ * @since 8.2.0 Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `MbstringReplaceEModifierSniff` to `RemovedMbstringModifiersSniff`.
  */
 class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 {
@@ -26,6 +37,9 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
      * Functions to check for.
      *
      * Key is the function name, value the parameter position of the options parameter.
+     *
+     * @since 7.0.5
+     * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
      *
      * @var array
      */
@@ -41,6 +55,8 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -53,6 +69,10 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 7.0.5
+     * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
+     *              logic superfluous now the sniff extends the abstract.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

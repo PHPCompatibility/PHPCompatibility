@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Operators;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Changed Concat Operator Precendence Sniff tests
+ * Test the ChangedConcatOperatorPrecedence sniff.
  *
  * @group changedConcatOperatorPrecedence
  * @group operators

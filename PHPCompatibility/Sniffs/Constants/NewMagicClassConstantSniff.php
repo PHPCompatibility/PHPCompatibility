@@ -15,16 +15,26 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * The special ClassName::class constant is available as of PHP 5.5.0, and allows for
- * fully qualified class name resolution at compile.
+ * Detect usage of the magic `::class` constant introduced in PHP 5.5.
+ *
+ * The special `ClassName::class` constant is available as of PHP 5.5.0, and allows
+ * for fully qualified class name resolution at compile time.
  *
  * PHP version 5.5
+ *
+ * @link https://wiki.php.net/rfc/class_name_scalars
+ * @link https://www.php.net/manual/en/language.oop5.constants.php#example-186
+ *
+ * @since 7.1.4
+ * @since 7.1.5 Removed the incorrect checks against invalid usage of the constant.
  */
 class NewMagicClassConstantSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 7.1.4
      *
      * @return array
      */
@@ -35,6 +45,8 @@ class NewMagicClassConstantSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 7.1.4
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

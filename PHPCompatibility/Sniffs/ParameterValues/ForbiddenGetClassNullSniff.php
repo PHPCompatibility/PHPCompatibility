@@ -14,16 +14,23 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Detect: Passing `null` to get_class() is no longer allowed as of PHP 7.2.
- * This will now result in an E_WARNING being thrown.
+ * Detect: Passing `null` to `get_class()` is no longer allowed as of PHP 7.2.
+ * This will now result in an `E_WARNING` being thrown.
  *
  * PHP version 7.2
+ *
+ * @link https://wiki.php.net/rfc/get_class_disallow_null_parameter
+ * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
+ *
+ * @since 9.0.0
  */
 class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**
      * Functions to check for.
+     *
+     * @since 9.0.0
      *
      * @var array
      */
@@ -35,6 +42,8 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 9.0.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -45,6 +54,8 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.

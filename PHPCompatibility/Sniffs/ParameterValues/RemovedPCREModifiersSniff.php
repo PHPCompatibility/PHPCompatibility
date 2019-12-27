@@ -15,16 +15,35 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Check for usage of the `e` modifier with PCRE functions which is deprecated since PHP 5.5
+ * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
+ *
+ * Initially just checks for the `e` modifier, which was deprecated since PHP 5.5
  * and removed as of PHP 7.0.
  *
+ * {@internal If and when this sniff would need to start checking for other modifiers, a minor
+ * refactor will be needed as all references to the `e` modifier are currently hard-coded.}
+ *
  * PHP version 5.5
+ * PHP version 7.0
+ *
+ * @link https://wiki.php.net/rfc/remove_preg_replace_eval_modifier
+ * @link https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
+ * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
+ *
+ * @since 5.6
+ * @since 7.0.8 This sniff now throws a warning (deprecated) or an error (removed) depending
+ *              on the `testVersion` set. Previously it would always throw an error.
+ * @since 8.2.0 Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
+ * @since 9.0.0 Renamed from `PregReplaceEModifierSniff` to `RemovedPCREModifiersSniff`.
  */
 class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**
      * Functions to check for.
+     *
+     * @since 7.0.1
+     * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
      *
      * @var array
      */
@@ -35,6 +54,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Regex bracket delimiters.
+     *
+     * @since 7.0.5 This array was originally contained within the `process()` method.
      *
      * @var array
      */
@@ -48,6 +69,10 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Process the parameters of a matched function.
+     *
+     * @since 5.6
+     * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
+     *              logic superfluous now the sniff extends the abstract.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the stack.
@@ -107,6 +132,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
     /**
      * Do a version check to determine if this sniff needs to run at all.
      *
+     * @since 8.2.0
+     *
      * @return bool
      */
     protected function bowOutEarly()
@@ -117,6 +144,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Analyse a potential regex pattern for use of the /e modifier.
+     *
+     * @since 7.1.2 This logic was originally contained within the `process()` method.
      *
      * @param array                 $pattern      Array containing the start and end token
      *                                            pointer of the potential regex pattern and
@@ -181,6 +210,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
     /**
      * Examine the regex modifier string.
+     *
+     * @since 8.2.0 Split off from the `processRegexPattern()` method.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                   $stackPtr     The position of the current token in the

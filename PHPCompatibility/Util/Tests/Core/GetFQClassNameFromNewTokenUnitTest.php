@@ -13,10 +13,12 @@ namespace PHPCompatibility\Util\Tests\Core;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
- * Classname determination function tests
+ * Tests for the `getFQClassNameFromNewToken()` utility function.
  *
  * @group utilityGetFQClassNameFromNewToken
  * @group utilityFunctions
+ *
+ * @since 7.0.3
  */
 class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
 {

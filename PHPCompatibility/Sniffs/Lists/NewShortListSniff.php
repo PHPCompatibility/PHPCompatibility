@@ -14,17 +14,26 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * "The shorthand array syntax ([]) may now be used to destructure arrays for
- * assignments (including within foreach), as an alternative to the existing
- * list() syntax, which is still supported."
+ * Detect short list syntax for symmetric array destructuring.
+ *
+ * "The shorthand array syntax (`[]`) may now be used to destructure arrays for
+ * assignments (including within `foreach`), as an alternative to the existing
+ * `list()` syntax, which is still supported."
  *
  * PHP version 7.1
+ *
+ * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.symmetric-array-destructuring
+ * @link https://wiki.php.net/rfc/short_list_syntax
+ *
+ * @since 9.0.0
  */
 class NewShortListSniff extends Sniff
 {
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 9.0.0
      *
      * @return array
      */
@@ -35,6 +44,8 @@ class NewShortListSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the

@@ -17,12 +17,13 @@ use PHP_CodeSniffer_Tokens as Tokens;
 /**
  * The constant value of the password hash algorithm constants has changed in PHP 7.4.
  *
- * Applications correctly using the constants PASSWORD_DEFAULT, PASSWORD_BCRYPT,
- * PASSWORD_ARGON2I, and PASSWORD_ARGON2ID will continue to function correctly.
- * Using an int will still work, but will produce a deprecation warning.
+ * Applications using the constants `PASSWORD_DEFAULT`, `PASSWORD_BCRYPT`,
+ * `PASSWORD_ARGON2I`, and `PASSWORD_ARGON2ID` will continue to function correctly.
+ * Using an integer will still work, but will produce a deprecation warning.
  *
  * PHP version 7.4
  *
+ * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.core.password-algorithm-constants
  * @link https://wiki.php.net/rfc/password_registry
  *
  * @since 9.3.0

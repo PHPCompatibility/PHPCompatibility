@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden call time pass by reference sniff test
+ * Test the ForbiddenCallTimePassByReference sniff.
  *
  * @group forbiddenCallTimePassByReference
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\ForbiddenCallTimePassByReferenceSniff
+ *
+ * @since 5.5
  */
 class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
 {

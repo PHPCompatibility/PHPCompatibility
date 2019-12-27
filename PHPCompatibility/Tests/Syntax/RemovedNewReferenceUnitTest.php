@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed new reference sniff tests
+ * Test the RemovedNewReference sniff.
  *
  * @group removedNewReference
  * @group syntax
  *
  * @covers \PHPCompatibility\Sniffs\Syntax\RemovedNewReferenceSniff
+ *
+ * @since 5.5
  */
 class RemovedNewReferenceUnitTest extends BaseSniffTest
 {

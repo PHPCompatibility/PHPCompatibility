@@ -14,21 +14,29 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 
 /**
- * Removed Namespaced Assert.
+ * Detect declaration of a namespaced function called `assert()`.
  *
  * As of PHP 7.3, a compile-time deprecation warning will be thrown when a function
  * called `assert()` is declared. In PHP 8 this will become a compile-error.
  *
  * Methods are unaffected.
- * Global, non-namespaced, assert() function declarations were always a fatal
+ * Global, non-namespaced, `assert()` function declarations were always a fatal
  * "function already declared" error, so not the concern of this sniff.
  *
  * PHP version 7.3
+ *
+ * @link https://www.php.net/manual/en/migration73.deprecated.php#migration73.deprecated.core.assert
+ * @link https://wiki.php.net/rfc/deprecations_php_7_3#defining_a_free-standing_assert_function
+ * @link https://www.php.net/manual/en/function.assert.php
+ *
+ * @since 9.0.0
  */
 class RemovedNamespacedAssertSniff extends Sniff
 {
     /**
      * Scopes in which an `assert` function can be declared without issue.
+     *
+     * @since 9.0.0
      *
      * @var array
      */
@@ -41,6 +49,8 @@ class RemovedNamespacedAssertSniff extends Sniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 9.0.0
      *
      * @return array
      */
@@ -56,6 +66,8 @@ class RemovedNamespacedAssertSniff extends Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 9.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -80,7 +92,7 @@ class RemovedNamespacedAssertSniff extends Sniff
         }
 
         if ($this->determineNamespace($phpcsFile, $stackPtr) === '') {
-            // Not a namespaced function declaration. Parse error, but not our concern.
+            // Not a namespaced function declaration. This may be a parse error, but not our concern.
             return;
         }
 

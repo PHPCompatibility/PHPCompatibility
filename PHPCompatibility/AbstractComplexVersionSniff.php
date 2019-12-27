@@ -14,6 +14,8 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Abstract base class for sniffs based on complex arrays with PHP version information.
+ *
+ * @since 7.1.0
  */
 abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersionInterface
 {
@@ -22,6 +24,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
     /**
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error/warning for an item.
+     *
+     * @since 7.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the relevant token in
@@ -44,6 +48,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
      *
+     * @since 7.1.0
+     *
      * @param array $errorInfo Detail information about an item.
      *
      * @return bool
@@ -53,6 +59,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
 
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
+     *
+     * @since 7.1.0
      *
      * @return array
      */
@@ -66,6 +74,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
      * Retrieve a subset of an item array containing only the array keys which
      * contain PHP version information.
      *
+     * @since 7.1.0
+     *
      * @param array $itemArray Version and other information about an item.
      *
      * @return array Array with only the version information.
@@ -78,6 +88,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
 
     /**
      * Get the item name to be used for the creation of the error code and in the error message.
+     *
+     * @since 7.1.0
      *
      * @param array $itemInfo  Base information about the item.
      * @param array $errorInfo Detail information about an item.
@@ -93,6 +105,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
     /**
      * Get the error message template for a specific sniff.
      *
+     * @since 7.1.0
+     *
      * @return string
      */
     abstract protected function getErrorMsgTemplate();
@@ -100,6 +114,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
 
     /**
      * Allow for concrete child classes to filter the error message before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param string $error     The error message which was created.
      * @param array  $itemInfo  Base information about the item this error message applies to.
@@ -115,6 +131,8 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
 
     /**
      * Allow for concrete child classes to filter the error data before it's passed to PHPCS.
+     *
+     * @since 7.1.0
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.

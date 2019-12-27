@@ -13,7 +13,7 @@ namespace PHPCompatibility\Tests\Syntax;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Removed curly brace syntax for array access sniff tests.
+ * Test the RemovedCurlyBraceArrayAccess sniff.
  *
  * @group removedCurlyBraceArrayAccess
  * @group syntax

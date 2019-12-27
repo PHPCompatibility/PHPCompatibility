@@ -17,7 +17,6 @@ php:
   - 7.0
   - 7.1
   - 7.2
-  - "7.4snapshot"
 
 env:
   global:
@@ -70,7 +69,7 @@ jobs:
     # These are basically the same builds as in the Coverage stage, but then without doing
     # the code-coverage.
     - stage: quicktest
-      php: 7.3
+      php: 7.4
       env: PHPCS_VERSION="dev-master" LINT=1
     - php: 7.3
       env: PHPCS_VERSION="2.3.0"
@@ -109,8 +108,12 @@ jobs:
     # While on PHPCS 2.x, the tests won't fail, on PHPCS 3.x < 3.3.1, they will.
     - php: 7.3
       env: PHPCS_VERSION="3.4.*" LINT=1
-    - php: "7.4snapshot"
-      env: PHPCS_VERSION=">=2.0,<3.0"
+    - php: 7.3
+      env: PHPCS_VERSION="dev-master"
+    - php: 7.4
+      env: PHPCS_VERSION=">=2.0,<3.0" LINT=1
+    - php: 7.4
+      env: PHPCS_VERSION="2.3.0"
 
     #### CODE COVERAGE STAGE ####
     # N.B.: Coverage is only checked on the lowest and highest stable PHP versions for all PHPCS versions.
@@ -121,7 +124,7 @@ jobs:
     # would be preferred.
     # Docs: https://docs.travis-ci.com/user/languages/php/#custom-php-configuration
     - stage: coverage
-      php: 7.3
+      php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
     - php: 7.3
       env: PHPCS_VERSION="2.3.0" COVERALLS_VERSION="^2.0"
@@ -138,10 +141,6 @@ jobs:
     - php: 5.3
       dist: precise
       env: PHPCS_VERSION="2.3.0" COVERALLS_VERSION="^1.0"
-
-  allow_failures:
-    # Allow failures for unstable builds.
-    - php: "7.4snapshot"
 
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.

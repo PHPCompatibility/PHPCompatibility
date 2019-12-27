@@ -16,6 +16,12 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of newly introduced type casts.
+ *
+ * PHP version All
+ *
+ * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
+ *
+ * @since 8.0.1
  */
 class NewTypeCastsSniff extends AbstractNewFeatureSniff
 {
@@ -25,6 +31,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
      *
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the keyword appears.
+     *
+     * @since 8.0.1
      *
      * @var array(string => array(string => bool|string))
      */
@@ -44,6 +52,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
 
     /**
      * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 8.0.1
      *
      * @return array
      */
@@ -76,6 +86,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.0.1
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in
@@ -129,6 +141,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 8.0.1
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -142,6 +156,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
     /**
      * Get an array of the non-PHP-version array keys used in a sub-array.
      *
+     * @since 8.0.1
+     *
      * @return array
      */
     protected function getNonVersionArrayKeys()
@@ -152,6 +168,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
+     *
+     * @since 8.0.1
      *
      * @param array $itemArray Version and other information about the item.
      * @param array $itemInfo  Base information about the item.
@@ -170,6 +188,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
     /**
      * Filter the error message before it's passed to PHPCS.
      *
+     * @since 8.0.1
+     *
      * @param string $error     The error message which was created.
      * @param array  $itemInfo  Base information about the item this error message applies to.
      * @param array  $errorInfo Detail information about an item this error message applies to.
@@ -184,6 +204,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
 
     /**
      * Filter the error data before it's passed to PHPCS.
+     *
+     * @since 8.0.1
      *
      * @param array $data      The error data array which was created.
      * @param array $itemInfo  Base information about the item this error message applies to.

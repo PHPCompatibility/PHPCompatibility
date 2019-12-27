@@ -15,6 +15,10 @@ use PHP_CodeSniffer_File as File;
 
 /**
  * Detect use of new PHP native global constants.
+ *
+ * PHP version All
+ *
+ * @since 8.1.0
  */
 class NewConstantsSniff extends AbstractNewFeatureSniff
 {
@@ -25,7 +29,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the constant appears.
      *
-     * Note: PHP Constants are case-sensitive!
+     * Note: PHP constants are case-sensitive!
+     *
+     * @since 8.1.0
      *
      * @var array(string => array(string => bool))
      */
@@ -3681,6 +3687,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 8.1.0
+     *
      * @return array
      */
     public function register()
@@ -3690,6 +3698,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 8.1.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -3720,6 +3730,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 8.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -3732,6 +3744,8 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 8.1.0
      *
      * @return string
      */

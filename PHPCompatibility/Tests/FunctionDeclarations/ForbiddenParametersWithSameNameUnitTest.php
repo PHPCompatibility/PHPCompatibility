@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\FunctionDeclarations;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Functions can not have multiple parameters with the same name since PHP 7.0 sniff test
+ * Test the ForbiddenParametersWithSameName sniff.
  *
  * @group forbiddenParametersWithSameName
  * @group functionDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\ForbiddenParametersWithSameNameSniff
+ *
+ * @since 7.0.0
  */
 class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
 {

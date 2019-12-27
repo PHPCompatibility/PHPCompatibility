@@ -13,12 +13,14 @@ namespace PHPCompatibility\Tests\ParameterValues;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Passing `null` to get_class() sniff tests.
+ * Test the ForbiddenGetClassNull sniff.
  *
  * @group forbiddenGetClassNull
  * @group parameterValues
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\ForbiddenGetClassNullSniff
+ *
+ * @since 9.0.0
  */
 class ForbiddenGetClassNullUnitTest extends BaseSniffTest
 {

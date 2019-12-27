@@ -13,13 +13,15 @@ namespace PHPCompatibility\Tests\Keywords;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Forbidden names as declared name for class, interface, trait or namespace.
+ * Test the ForbiddenNamesAsDeclared sniff.
  *
  * @group forbiddenNamesAsDeclared
  * @group keywords
  *
  * @covers \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesAsDeclaredSniff
  * @covers \PHPCompatibility\Sniff::getDeclaredNamespaceName
+ *
+ * @since 7.0.8
  */
 class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
 {

@@ -15,7 +15,25 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Discourages the use of removed extensions. Suggests alternative extensions if available
+ * Detect the use of deprecated and/or removed PHP extensions.
+ *
+ * This sniff examines function calls made and flags function calls to functions
+ * prefixed with the dedicated prefix from a deprecated/removed native PHP extension.
+ *
+ * Suggests alternative extensions if available.
+ *
+ * As userland functions may be prefixed with a prefix also used by a native
+ * PHP extension, the sniff offers the ability to whitelist specific functions
+ * from being flagged by this sniff via a property in a custom ruleset
+ * (since PHPCompatibility 7.0.2).
+ *
+ * {@internal This sniff is a candidate for removal once all functions from all
+ * deprecated/removed extensions have been added to the RemovedFunctions sniff.}
+ *
+ * PHP version All
+ *
+ * @since 5.5
+ * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  */
 class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {
@@ -32,15 +50,19 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *   </properties>
      * </rule>
      *
+     * @since 7.0.2
+     *
      * @var array
      */
     public $functionWhitelist;
 
     /**
-     * A list of removed extensions with their alternative, if any
+     * A list of removed extensions with their alternative, if any.
      *
      * The array lists : version number with false (deprecated) and true (removed).
      * If's sufficient to list the first version where the extension was deprecated/removed.
+     *
+     * @since 5.5
      *
      * @var array(string => array(string => bool|string|null))
      */
@@ -182,6 +204,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     /**
      * Returns an array of tokens this test wants to listen for.
      *
+     * @since 5.5
+     *
      * @return array
      */
     public function register()
@@ -194,6 +218,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 5.5
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -262,6 +288,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *
      * Parsing the list late as it may be provided as a property, but also inline.
      *
+     * @since 7.0.2
+     *
      * @param string $content Content of the current token.
      *
      * @return bool
@@ -292,6 +320,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
     /**
      * Get the relevant sub-array for a specific item from a multi-dimensional array.
      *
+     * @since 7.1.0
+     *
      * @param array $itemInfo Base information about the item.
      *
      * @return array Version and other information about the item.
@@ -304,6 +334,8 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
     /**
      * Get the error message template for this sniff.
+     *
+     * @since 7.1.0
      *
      * @return string
      */
