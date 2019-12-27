@@ -1,7 +1,7 @@
 PHP Compatibility Coding Standard for PHP CodeSniffer
 =====================================================
 [![Latest Stable Version](https://poser.pugx.org/phpcompatibility/php-compatibility/v/stable.png)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/php-compatibility/v/unstable.png)](https://packagist.org/packages/phpcompatibility/php-compatibility)
+[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/php-compatibility#dev-develop)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
 [![License](https://poser.pugx.org/phpcompatibility/php-compatibility/license.png)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/PHPCompatibility/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
