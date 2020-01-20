@@ -566,11 +566,15 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array(134),
             array(135),
             array(136),
-            // array(137), // Not yet accounted for in the code, uncomment when fixed.
+            array(137),
             array(138),
             array(139),
             array(140),
             array(141),
+            array(249),
+            array(250),
+            array(251),
+            array(252),
         );
     }
 

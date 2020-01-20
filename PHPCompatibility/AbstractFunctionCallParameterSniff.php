@@ -58,10 +58,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
     private $ignoreTokens = array(
         \T_DOUBLE_COLON    => true,
         \T_OBJECT_OPERATOR => true,
-        \T_FUNCTION        => true,
         \T_NEW             => true,
-        \T_CONST           => true,
-        \T_USE             => true,
     );
 
 
@@ -107,6 +104,14 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             return;
         }
 
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextToken === false
+            || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
+            || isset($tokens[$nextToken]['parenthesis_owner']) === true
+        ) {
+            return;
+        }
+
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($this->isMethod === true) {
@@ -122,11 +127,14 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
                 return;
             }
 
-            if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
-                && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING
-            ) {
-                // Namespaced function.
-                return;
+            if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
+                $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+                if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                    || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+                ) {
+                    // Namespaced function.
+                    return;
+                }
             }
         }
 

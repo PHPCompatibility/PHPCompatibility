@@ -245,3 +245,8 @@ money_format();
 ezmlm_hash();
 restore_include_path();
 
+// These calls should *not* trigger an error.
+$myobject -> php_check_syntax (); // Method, not the native PHP function.
+myNamespace \ /*comment*/ php_check_syntax(); // Namespaced function, not the native PHP function.
+namespace\php_check_syntax(); // Namespaced function, not the native PHP function.
+$obj = new php_check_syntax /*comment*/ (); // Class not method.
