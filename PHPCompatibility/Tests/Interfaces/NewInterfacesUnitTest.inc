@@ -88,3 +88,22 @@ function SplSubjectReturnTypeHint( $a ) : \MyNS\SplSubject\AnotherInterface {}
 // More new interfaces.
 class MySessionIdInterface implements SessionIdInterface {}
 class MySessionUpdateTimestampHandlerInterface implements SessionUpdateTimestampHandlerInterface {}
+
+try {
+} catch (Throwable $e) {
+}
+
+// Multi-catch.
+try {
+} catch (Throwable | \RuntimeException $e) {
+}
+
+// Global namespace, should throw error.
+try {
+} catch (\Throwable $e) {
+}
+
+// Namespaced, should be ignored.
+try {
+} catch (\My\Except\Throwable $e) {
+}

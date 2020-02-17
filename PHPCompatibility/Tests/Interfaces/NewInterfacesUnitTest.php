@@ -80,7 +80,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             array('SessionHandlerInterface', '5.3', array(14, 49), '5.4'),
             array('DateTimeInterface', '5.4', array(36, 51, 61, 80), '5.5'),
             array('SessionIdInterface', '5.5.0', array(89), '5.6', '5.5'),
-            array('Throwable', '5.6', array(37, 52, 62), '7.0'),
+            array('Throwable', '5.6', array(37, 52, 62, 93, 98, 103), '7.0'),
             array('SessionUpdateTimestampHandlerInterface', '5.6', array(90), '7.0'),
         );
     }
@@ -167,6 +167,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             array(84),
             array(85),
             array(86),
+            array(108),
         );
     }
 
