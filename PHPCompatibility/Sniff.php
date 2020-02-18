@@ -114,7 +114,8 @@ abstract class Sniff implements PHPCS_Sniff
      * would be treated as invalid, and ignored.
      *
      * @since 7.0.0
-     * @since 7.1.3 Now allows for partial ranges such as `5.2-`.
+     * @since 7.1.3  Now allows for partial ranges such as `5.2-`.
+     * @since 10.0.0 Will allow for "testVersion" config in lowercase.
      *
      * @return array $arrTestVersions will hold an array containing min/max version
      *               of PHP that we are checking against (see above).  If only a
@@ -129,6 +130,11 @@ abstract class Sniff implements PHPCS_Sniff
 
         $default     = array(null, null);
         $testVersion = trim(PHPCSHelper::getConfigData('testVersion'));
+
+        // Case-sensitivity tolerance.
+        if (empty($testVersion) === true) {
+            $testVersion = trim(PHPCSHelper::getConfigData('testversion'));
+        }
 
         if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
 

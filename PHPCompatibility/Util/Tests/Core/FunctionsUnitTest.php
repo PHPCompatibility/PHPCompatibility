@@ -56,6 +56,7 @@ class FunctionsUnitTest extends PHPUnit_TestCase
 
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
         PHPCSHelper::setConfigData('testVersion', null, true);
+        PHPCSHelper::setConfigData('testversion', null, true);
     }
 
 
@@ -77,10 +78,34 @@ class FunctionsUnitTest extends PHPUnit_TestCase
             PHPCSHelper::setConfigData('testVersion', $testVersion, true);
         }
 
-        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
+        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
 
         // Verify that the caching of the function results is working correctly.
-        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'GetTestVersion'));
+        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
+    }
+
+    /**
+     * testGetTestVersionCaseLowercase
+     *
+     * @dataProvider dataGetTestVersion
+     *
+     * @covers \PHPCompatibility\Sniff::getTestVersion
+     *
+     * @param string $testVersion The testVersion as normally set via the command line or ruleset.
+     * @param string $expected    The expected testVersion array.
+     *
+     * @return void
+     */
+    public function testGetTestVersionCaseLowercase($testVersion, $expected)
+    {
+        if (isset($testVersion)) {
+            PHPCSHelper::setConfigData('testversion', $testVersion, true);
+        }
+
+        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
+
+        // Verify that the caching of the function results is working correctly.
+        $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
     }
 
     /**
