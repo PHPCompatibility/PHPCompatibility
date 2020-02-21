@@ -35,7 +35,7 @@ class PHP74Example {
     public ?string $nullableStr = null;
 
     // The type applies to all properties in one declaration
-    public float $x, $y;
+    public float $a, $b;
 
     // Additional tests not from the RFC.
     public int $x = 10,
@@ -51,7 +51,6 @@ class PHP74Example {
     private static self $instance;
 
     // Note: The RFC does not explicitely mention this syntax.
-    // @todo This needs verification once the alpha is out.
     static bool $bool = true;
 
     // Test reversed keyword order.
