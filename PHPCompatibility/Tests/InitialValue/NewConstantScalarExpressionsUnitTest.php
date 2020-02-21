@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\InitialValue;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Test the NewConstantScalarExpressions sniff.
@@ -38,52 +37,21 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
         'default'  => 'in default function arguments',
     );
 
-    /**
-     * Whether or not traits will be recognized in PHPCS.
-     *
-     * @var bool
-     */
-    protected static $recognizesTraits = true;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        $phpcsVersion = PHPCSHelper::getVersion();
-
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare($phpcsVersion, '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
 
     /**
      * testNewConstantScalarExpressions
      *
      * @dataProvider dataNewConstantScalarExpressions
      *
-     * @param int    $line    The line number.
-     * @param string $type    Error type.
-     * @param string $extra   Extra snippet which will be part of the error message.
-     *                        Only needed when testing several errors on the same line.
-     * @param bool   $isTrait Whether the test relates to a method in a trait.
+     * @param int    $line  The line number.
+     * @param string $type  Error type.
+     * @param string $extra Extra snippet which will be part of the error message.
+     *                      Only needed when testing several errors on the same line.
      *
      * @return void
      */
-    public function testNewConstantScalarExpressions($line, $type, $extra = '', $isTrait = false)
+    public function testNewConstantScalarExpressions($line, $type, $extra = '')
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
         $file    = $this->sniffFile(__FILE__, '5.5');
         $snippet = '';
         if (isset($this->errorPhrases[$type]) === true) {
@@ -159,10 +127,10 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
             array(193, 'property'),
             array(195, 'default'),
 
-            array(202, 'property', '', true),
-            array(203, 'property', '', true),
-            array(208, 'property', '', true),
-            array(210, 'default', ''), // In a trait, but approached from function token, so will be fine.
+            array(202, 'property'),
+            array(203, 'property'),
+            array(208, 'property'),
+            array(210, 'default'),
 
             array(216, 'default', '$a = 5 * MINUTEINSECONDS'),
             array(216, 'default', '$b = [ \'a\', 1 + 2 ]'),

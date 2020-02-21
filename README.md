@@ -11,7 +11,7 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 5.3 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.3%20|%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
 
 
 This is a set of sniffs for [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
@@ -42,24 +42,20 @@ Pull requests that check for compatibility issues in PHP 4 code - in particular 
 Requirements
 -------
 
-* PHP 5.3+ for use with PHP CodeSniffer 2.x.
-* PHP 5.4+ for use with PHP CodeSniffer 3.x.
+* PHP 5.4+
+* PHP CodeSniffer: 2.6.0+ or 3.0.2+.
 
-PHP CodeSniffer: 2.3.0+ or 3.0.2+.
-
-The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get reasonably consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on PHP 5.4 or higher.
-
-PHP CodeSniffer 2.3.0 is required for 90% of the sniffs, PHP CodeSniffer 2.6.0 or later is required for full support, notices may be thrown on older versions.
+The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
 
 For running the sniffs on PHP 7.3, it is recommended to use PHP_CodeSniffer 3.3.1+, or, if needs be, PHP_CodeSniffer 2.9.2.
 PHP_CodeSniffer < 2.9.2/3.3.1 is not fully compatible with PHP 7.3, which effectively means that PHPCompatibility can't be either.
 While the sniffs will still work in _most_ cases, you can expect PHP warnings to be thrown.
 
-For running the sniffs on PHP 7.4, it is recommended to use PHP_CodeSniffer 3.5.0+.
+For running the sniffs on PHP 7.4, it is recommended to use PHP_CodeSniffer 3.5.0+ for the same reasons.
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
-
 As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.
+As of version 10.0.0, support for PHP < 5.4 and PHP CodeSniffer < 2.6.0 has been dropped.
 
 
 Thank you
@@ -227,9 +223,6 @@ To whitelist userland functions, you can pass a comma-delimited list of function
         </properties>
     </rule>
 ```
-
-This property was added in PHPCompatibility version 7.0.1.
-As of PHPCompatibility version 8.0.0, this custom property is only supported in combination with PHP CodeSniffer > 2.6.0 due to an upstream bug (which was fixed in PHPCS 2.6.0).
 
 Projects extending PHPCompatibility
 --------------------------------------

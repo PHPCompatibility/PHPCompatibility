@@ -44,11 +44,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
      */
     public function register()
     {
-        if (\defined('T_OPEN_USE_GROUP')) {
-            return array(\T_OPEN_USE_GROUP);
-        } else {
-            return array(\T_USE);
-        }
+        return array(\T_OPEN_USE_GROUP);
     }
 
 
@@ -70,24 +66,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
 
-        // Deal with PHPCS pre-2.6.0.
-        if ($token['code'] === \T_USE) {
-            $hasCurlyBrace = $phpcsFile->findNext(\T_OPEN_CURLY_BRACKET, ($stackPtr + 1), null, false, null, true);
-            if ($hasCurlyBrace === false) {
-                return;
-            }
-
-            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($hasCurlyBrace - 1), null, true);
-            if ($prevToken === false || $tokens[$prevToken]['code'] !== \T_NS_SEPARATOR) {
-                return;
-            }
-
-            $stackPtr = $hasCurlyBrace;
-        }
-
-        // Still here ? In that case, it is a group use statement.
         if ($this->supportsBelow('5.6') === true) {
             $phpcsFile->addError(
                 'Group use declarations are not allowed in PHP 5.6 or earlier',
@@ -96,12 +75,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
             );
         }
 
-        $closers = array(\T_CLOSE_CURLY_BRACKET);
-        if (\defined('T_CLOSE_USE_GROUP')) {
-            $closers[] = \T_CLOSE_USE_GROUP;
-        }
-
-        $closeCurly = $phpcsFile->findNext($closers, ($stackPtr + 1), null, false, null, true);
+        $closeCurly = $phpcsFile->findNext(\T_CLOSE_USE_GROUP, ($stackPtr + 1), null, false, null, true);
         if ($closeCurly === false) {
             return;
         }

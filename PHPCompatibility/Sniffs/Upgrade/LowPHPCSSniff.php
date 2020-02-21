@@ -19,6 +19,7 @@ use PHP_CodeSniffer_File as File;
  *
  * Originally PHPCompatibility supported PHPCS 1.5.x, 2.x and since PHPCompatibility 8.0.0, 3.x.
  * Support for PHPCS < 2.3.0 has been dropped in PHPCompatibility 9.0.0.
+ * Support for PHPCS < 2.6.0 has been dropped in PHPCompatibility 10.0.0.
  *
  * The standard will - up to a point - still work for users of lower
  * PHPCS versions, but will give less accurate results and may throw
@@ -44,7 +45,7 @@ class LowPHPCSSniff extends Sniff
      *
      * @var string
      */
-    const MIN_SUPPORTED_VERSION = '2.3.0';
+    const MIN_SUPPORTED_VERSION = '2.6.0';
 
     /**
      * The minimum recommended PHPCS version.
@@ -56,7 +57,7 @@ class LowPHPCSSniff extends Sniff
      *
      * @var string
      */
-    const MIN_RECOMMENDED_VERSION = '2.6.0';
+    const MIN_RECOMMENDED_VERSION = '3.1.0';
 
     /**
      * Keep track of whether this sniff needs to actually run.

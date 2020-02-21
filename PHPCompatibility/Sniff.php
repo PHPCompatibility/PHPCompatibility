@@ -637,10 +637,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function inClassScope(File $phpcsFile, $stackPtr, $strict = true)
     {
-        $validScopes = array(\T_CLASS);
-        if (\defined('T_ANON_CLASS') === true) {
-            $validScopes[] = \T_ANON_CLASS;
-        }
+        $validScopes = array(\T_CLASS, \T_ANON_CLASS);
 
         if ($strict === false) {
             $validScopes[] = \T_INTERFACE;
@@ -687,7 +684,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Bow out if the next token is the class keyword.
-        if ($tokens[$start]['type'] === 'T_ANON_CLASS' || $tokens[$start]['code'] === \T_CLASS) {
+        if ($tokens[$start]['code'] === \T_ANON_CLASS || $tokens[$start]['code'] === \T_CLASS) {
             return '';
         }
 
@@ -729,8 +726,8 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         if ($tokens[$stackPtr]['code'] !== \T_CLASS
-            && $tokens[$stackPtr]['type'] !== 'T_ANON_CLASS'
-            && $tokens[$stackPtr]['type'] !== 'T_INTERFACE'
+            && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS
+            && $tokens[$stackPtr]['code'] !== \T_INTERFACE
         ) {
             return '';
         }
@@ -1010,7 +1007,7 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (\defined('T_RETURN_TYPE') && $tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
+        if ($tokens[$stackPtr]['code'] === \T_RETURN_TYPE) {
             return $stackPtr;
         }
 
@@ -1047,10 +1044,9 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         /*
-         * - `self`, `parent` and `callable` are not being recognized as return types in PHPCS < 2.6.0.
-         * - Return types are not recognized at all in PHPCS < 2.4.0.
-         * - The T_RETURN_TYPE token is defined, but no longer in use since PHPCS 3.3.0+.
-         *   The token will now be tokenized as T_STRING.
+         * - Prior to PHPCS 3.3.0, the return type would mostly be tokenized as T_RETURN_TYPE.
+         *   As of PHPCS 3.3.0, the T_RETURN_TYPE token is defined, but no longer in use.
+         *   The token will now be tokenized as T_STRING, T_SELF or T_CALLABLE.
          * - An `array` (return) type declaration was tokenized as `T_ARRAY_HINT` in PHPCS 2.3.3 - 3.2.3
          *   to prevent confusing sniffs looking for array declarations.
          *   As of PHPCS 3.3.0 `array` as a type declaration will be tokenized as `T_STRING`.
@@ -1059,7 +1055,6 @@ abstract class Sniff implements PHPCS_Sniff
             \T_CALLABLE,
             \T_SELF,
             \T_PARENT,
-            \T_ARRAY, // PHPCS < 2.4.0.
             \T_STRING,
         );
 
@@ -1113,7 +1108,7 @@ abstract class Sniff implements PHPCS_Sniff
             }
 
             if (\defined('T_NULLABLE') === false && $tokens[$i]['code'] === \T_INLINE_THEN) {
-                // Old PHPCS.
+                // PHPCS < 2.8.0.
                 continue;
             }
 
@@ -1128,7 +1123,7 @@ abstract class Sniff implements PHPCS_Sniff
      * Check whether a T_VARIABLE token is a class property declaration.
      *
      * Compatibility layer for PHPCS cross-version compatibility
-     * as PHPCS 2.4.0 - 2.7.1 does not have good enough support for
+     * as PHPCS < 2.7.1 does not have good enough support for
      * anonymous classes. Along the same lines, the`getMemberProperties()`
      * method does not support the `var` prefix.
      *
@@ -1364,8 +1359,6 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function isUseOfGlobalConstant(File $phpcsFile, $stackPtr)
     {
-        static $isLowPHPCS, $isLowPHP;
-
         $tokens = $phpcsFile->getTokens();
 
         // Check for the existence of the token.
@@ -1376,16 +1369,6 @@ abstract class Sniff implements PHPCS_Sniff
         // Is this one of the tokens this function handles ?
         if ($tokens[$stackPtr]['code'] !== \T_STRING) {
             return false;
-        }
-
-        // Check for older PHP, PHPCS version so we can compensate for misidentified tokens.
-        if (isset($isLowPHPCS, $isLowPHP) === false) {
-            $isLowPHP   = false;
-            $isLowPHPCS = false;
-            if (version_compare(\PHP_VERSION_ID, '50400', '<')) {
-                $isLowPHP   = true;
-                $isLowPHPCS = version_compare(PHPCSHelper::getVersion(), '2.4.0', '<');
-            }
         }
 
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
@@ -1420,13 +1403,7 @@ abstract class Sniff implements PHPCS_Sniff
         );
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false
-            && (isset($tokensToIgnore[$tokens[$prev]['type']]) === true
-                || ($tokens[$prev]['code'] === \T_STRING
-                    && (($isLowPHPCS === true
-                        && $tokens[$prev]['content'] === 'trait')
-                    || ($isLowPHP === true
-                        && $tokens[$prev]['content'] === 'insteadof'))))
+        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['type']]) === true
         ) {
             // Not the use of a constant.
             return false;
@@ -1749,12 +1726,9 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $arithmeticTokens = Tokens::$arithmeticTokens;
 
-        // phpcs:disable PHPCompatibility.Constants.NewConstants.t_powFound
-        if (\defined('T_POW') && isset($arithmeticTokens[\T_POW]) === false) {
-            // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
-            $arithmeticTokens[\T_POW] = \T_POW;
-        }
-        // phpcs:enable
+        // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
+        // phpcs:ignore PHPCompatibility.Constants.NewConstants.t_powFound
+        $arithmeticTokens[\T_POW] = \T_POW;
 
         $skipTokens   = Tokens::$emptyTokens;
         $skipTokens[] = \T_MINUS;
@@ -1778,16 +1752,6 @@ abstract class Sniff implements PHPCS_Sniff
         while ($this->isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
             && isset($tokens[($arithmeticOperator + 1)]) === true
         ) {
-            // Recognize T_POW for PHPCS < 2.4.0 on low PHP versions.
-            if (\defined('T_POW') === false
-                && $tokens[$arithmeticOperator]['code'] === \T_MULTIPLY
-                && $tokens[($arithmeticOperator + 1)]['code'] === \T_MULTIPLY
-                && isset($tokens[$arithmeticOperator + 2]) === true
-            ) {
-                // Move operator one forward to the second * in T_POW.
-                ++$arithmeticOperator;
-            }
-
             $subsetStart  = ($arithmeticOperator + 1);
             $nextNonEmpty = $arithmeticOperator;
             do {
@@ -1972,10 +1936,9 @@ abstract class Sniff implements PHPCS_Sniff
         if (isset($tokens[$parentOpener]['bracket_closer']) === true
             && $tokens[$parentOpener]['bracket_closer'] > $closer
         ) {
-            // Work around tokenizer issue in PHPCS 2.0 - 2.7.
+            // Work around tokenizer issue in PHPCS < 2.8.0.
             $phpcsVersion = PHPCSHelper::getVersion();
-            if ((version_compare($phpcsVersion, '2.0', '>') === true
-                && version_compare($phpcsVersion, '2.8', '<') === true)
+            if ((version_compare($phpcsVersion, '2.8.0', '<') === true)
                 && $tokens[$parentOpener]['code'] === \T_OPEN_SQUARE_BRACKET
             ) {
                 $nextNonEmpty = $phpcsFile->findNext(

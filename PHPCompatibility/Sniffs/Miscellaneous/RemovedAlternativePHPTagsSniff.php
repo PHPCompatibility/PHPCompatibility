@@ -105,9 +105,8 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             }
         }
         // Account for incorrect script open tags.
-        // The "(?:<s)?" in the regex is to work-around a bug in the tokenizer in PHP 5.2.
         elseif ($openTag['code'] === \T_INLINE_HTML
-            && preg_match('`((?:<s)?cript (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
+            && preg_match('`(<script (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found     = $match[1];
             $data      = array(

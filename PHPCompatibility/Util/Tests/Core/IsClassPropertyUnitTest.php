@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility\Util\Tests\Core;
 
-use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
@@ -25,30 +24,6 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
 {
 
     /**
-     * Whether or not traits will be recognized in PHPCS.
-     *
-     * @var bool
-     */
-    protected static $recognizesTraits = true;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
-
-    /**
      * testIsClassProperty
      *
      * @dataProvider dataIsClassProperty
@@ -58,17 +33,11 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
-     * @param bool   $isTrait       Whether the test relates to a variable in a trait.
      *
      * @return void
      */
-    public function testIsClassProperty($commentString, $expected, $isTrait = false)
+    public function testIsClassProperty($commentString, $expected)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
         $stackPtr = $this->getTargetToken($commentString, \T_VARIABLE);
         $result   = $this->helperClass->isClassProperty($this->phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
@@ -104,12 +73,12 @@ class IsClassPropertyUnitTest extends CoreMethodTestFrame
             array('/* Case 18 */', false),
             array('/* Case 19 */', false),
             array('/* Case 20 */', false),
-            array('/* Case 21 */', true, true),
-            array('/* Case 22 */', true, true),
-            array('/* Case 23 */', true, true),
-            array('/* Case 24 */', true, true),
-            array('/* Case 25 */', false, true),
-            array('/* Case 26 */', false, true),
+            array('/* Case 21 */', true),
+            array('/* Case 22 */', true),
+            array('/* Case 23 */', true),
+            array('/* Case 24 */', true),
+            array('/* Case 25 */', false),
+            array('/* Case 26 */', false),
             array('/* Case 27 */', true),
             array('/* Case 28 */', true),
             array('/* Case 29 */', true),

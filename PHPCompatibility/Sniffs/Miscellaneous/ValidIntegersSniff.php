@@ -37,15 +37,6 @@ class ValidIntegersSniff extends Sniff
 {
 
     /**
-     * Whether PHPCS is run on a PHP < 5.4.
-     *
-     * @since 7.0.3
-     *
-     * @var bool
-     */
-    protected $isLowPHPVersion = false;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.3
@@ -54,8 +45,6 @@ class ValidIntegersSniff extends Sniff
      */
     public function register()
     {
-        $this->isLowPHPVersion = version_compare(\PHP_VERSION_ID, '50400', '<');
-
         return array(
             \T_LNUMBER, // Binary, octal integers.
             \T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
@@ -82,11 +71,7 @@ class ValidIntegersSniff extends Sniff
         if ($this->couldBeBinaryInteger($tokens, $stackPtr) === true) {
             if ($this->supportsBelow('5.3')) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
-                if ($this->isLowPHPVersion === false) {
-                    $data = array($token['content']);
-                } else {
-                    $data = array($this->getBinaryInteger($phpcsFile, $tokens, $stackPtr));
-                }
+                $data  = array($token['content']);
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
             }
 
@@ -145,14 +130,7 @@ class ValidIntegersSniff extends Sniff
             return false;
         }
 
-        if ($this->isLowPHPVersion === false) {
-            return (preg_match('`^0b[0-1]+$`iD', $token['content']) === 1);
-        }
-        // Pre-5.4, binary strings are tokenized as T_LNUMBER (0) + T_STRING ("b01010101").
-        // At this point, we don't yet care whether it's a valid binary int, that's a separate check.
-        else {
-            return($token['content'] === '0' && $tokens[$stackPtr + 1]['code'] === \T_STRING && preg_match('`^b[0-9]+$`iD', $tokens[$stackPtr + 1]['content']) === 1);
-        }
+        return (preg_match('`^0b[0-1]+$`iD', $token['content']) === 1);
     }
 
     /**
@@ -171,12 +149,8 @@ class ValidIntegersSniff extends Sniff
             return false;
         }
 
-        if ($this->isLowPHPVersion === false) {
-            // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
-            return ($tokens[$stackPtr + 1]['code'] === \T_LNUMBER);
-        } else {
-            return (preg_match('`^b[0-1]+$`iD', $tokens[$stackPtr + 1]['content']) === 0);
-        }
+        // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
+        return ($tokens[$stackPtr + 1]['code'] === \T_LNUMBER);
     }
 
     /**
@@ -193,15 +167,11 @@ class ValidIntegersSniff extends Sniff
      */
     private function getBinaryInteger(File $phpcsFile, $tokens, $stackPtr)
     {
-        $length = 2; // PHP < 5.4 T_LNUMBER + T_STRING.
-
-        if ($this->isLowPHPVersion === false) {
-            $i = $stackPtr;
-            while ($tokens[$i]['code'] === \T_LNUMBER) {
-                $i++;
-            }
-            $length = ($i - $stackPtr);
+        $i = $stackPtr;
+        while ($tokens[$i]['code'] === \T_LNUMBER) {
+            $i++;
         }
+        $length = ($i - $stackPtr);
 
         return $phpcsFile->getTokensAsString($stackPtr, $length);
     }

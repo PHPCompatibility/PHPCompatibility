@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Test the NonStaticMagicMethods sniff.
@@ -26,58 +25,6 @@ use PHPCompatibility\PHPCSHelper;
  */
 class NonStaticMagicMethodsUnitTest extends BaseSniffTest
 {
-    /**
-     * Whether or not traits will be recognized in PHPCS.
-     *
-     * @var bool
-     */
-    protected static $recognizesTraits = true;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
-
-    /**
-     * Get the correct test file.
-     *
-     * (@internal
-     * The test file has been split into two:
-     * - one covering classes and interfaces
-     * - one covering traits
-     *
-     * This is to avoid test failing because PHPCS < 2.4.0 gets confused about the scope
-     * openers/closers when run on PHP 5.3 or lower.
-     * In a 'normal' situation you won't often find classes, interfaces and traits all
-     * mixed in one file anyway, so this issue for which this is a work-around,
-     * should not cause real world issues anyway.}
-     *
-     * @param bool   $isTrait     Whether to load the class/interface test file or the trait test file.
-     * @param string $testVersion Value of 'testVersion' to set on PHPCS object.
-     *
-     * @return \PHP_CodeSniffer_File File object|false
-     */
-    protected function getTestFile($isTrait, $testVersion = null)
-    {
-        if ($isTrait === false) {
-            return $this->sniffFile(__DIR__ . '/NonStaticMagicMethodsUnitTest.1.inc', $testVersion);
-        } else {
-            return $this->sniffFile(__DIR__ . '/NonStaticMagicMethodsUnitTest.2.inc', $testVersion);
-        }
-    }
-
 
     /**
      * testWrongMethodVisibility
@@ -88,18 +35,12 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      * @param string $desiredVisibility The visibility the method should have.
      * @param string $testVisibility    The visibility the method actually has in the test.
      * @param int    $line              The line number.
-     * @param bool   $isTrait           Whether the test relates to a method in a trait.
      *
      * @return void
      */
-    public function testWrongMethodVisibility($methodName, $desiredVisibility, $testVisibility, $line, $isTrait = false)
+    public function testWrongMethodVisibility($methodName, $desiredVisibility, $testVisibility, $line)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
-        $file = $this->getTestFile($isTrait, '5.3-99.0');
+        $file = $this->sniffFile(__FILE__, '5.3-99.0');
         $this->assertError($file, $line, "Visibility for magic method {$methodName} must be {$desiredVisibility}. Found: {$testVisibility}");
     }
 
@@ -113,9 +54,6 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     public function dataWrongMethodVisibility()
     {
         return array(
-            /*
-             * File: NonStaticMagicMethodsUnitTest.1.inc.
-             */
             // Class.
             array('__get', 'public', 'private', 32),
             array('__set', 'public', 'protected', 33),
@@ -161,20 +99,17 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__invoke', 'public', 'private', 203),
             array('__set_state', 'public', 'protected', 204),
 
-            /*
-             * File: NonStaticMagicMethodsUnitTest.2.inc.
-             */
             // Trait.
-            array('__get', 'public', 'private', 36, true),
-            array('__set', 'public', 'protected', 37, true),
-            array('__isset', 'public', 'private', 38, true),
-            array('__unset', 'public', 'protected', 39, true),
-            array('__call', 'public', 'private', 40, true),
-            array('__callStatic', 'public', 'protected', 41, true),
-            array('__sleep', 'public', 'private', 42, true),
-            array('__toString', 'public', 'protected', 43, true),
-            array('__serialize', 'public', 'private', 44, true),
-            array('__unserialize', 'public', 'protected', 45, true),
+            array('__get', 'public', 'private', 250),
+            array('__set', 'public', 'protected', 251),
+            array('__isset', 'public', 'private', 252),
+            array('__unset', 'public', 'protected', 253),
+            array('__call', 'public', 'private', 254),
+            array('__callStatic', 'public', 'protected', 255),
+            array('__sleep', 'public', 'private', 256),
+            array('__toString', 'public', 'protected', 257),
+            array('__serialize', 'public', 'private', 258),
+            array('__unserialize', 'public', 'protected', 259),
         );
     }
 
@@ -186,18 +121,12 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @param string $methodName Method name.
      * @param int    $line       The line number.
-     * @param bool   $isTrait    Whether the test relates to a method in a trait.
      *
      * @return void
      */
-    public function testWrongStaticMethod($methodName, $line, $isTrait = false)
+    public function testWrongStaticMethod($methodName, $line)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
-        $file = $this->getTestFile($isTrait, '5.3-99.0');
+        $file = $this->sniffFile(__FILE__, '5.3-99.0');
         $this->assertError($file, $line, "Magic method {$methodName} cannot be defined as static.");
     }
 
@@ -211,9 +140,6 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     public function dataWrongStaticMethod()
     {
         return array(
-            /*
-             * File: NonStaticMagicMethodsUnitTest.1.inc.
-             */
             // Class.
             array('__get', 44),
             array('__set', 45),
@@ -251,17 +177,15 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__clone', 211),
             array('__debugInfo', 212),
             array('__invoke', 213),
-            /*
-             * File: NonStaticMagicMethodsUnitTest.2.inc.
-             */
+
             // Trait.
-            array('__get', 50, true),
-            array('__set', 51, true),
-            array('__isset', 52, true),
-            array('__unset', 53, true),
-            array('__call', 54, true),
-            array('__serialize', 57, true),
-            array('__unserialize', 58, true),
+            array('__get', 264),
+            array('__set', 265),
+            array('__isset', 266),
+            array('__unset', 267),
+            array('__call', 268),
+            array('__serialize', 271),
+            array('__unserialize', 272),
         );
     }
 
@@ -273,18 +197,12 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @param string $methodName Method name.
      * @param int    $line       The line number.
-     * @param bool   $isTrait    Whether the test relates to a method in a trait.
      *
      * @return void
      */
-    public function testWrongNonStaticMethod($methodName, $line, $isTrait = false)
+    public function testWrongNonStaticMethod($methodName, $line)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
-        $file = $this->getTestFile($isTrait, '5.3-99.0');
+        $file = $this->sniffFile(__FILE__, '5.3-99.0');
         $this->assertError($file, $line, "Magic method {$methodName} must be defined as static.");
     }
 
@@ -298,9 +216,6 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     public function dataWrongNonStaticMethod()
     {
         return array(
-            /*
-             * File: NonStaticMagicMethodsUnitTest.1.inc.
-             */
             // Class.
             array('__callStatic', 49),
             array('__set_state', 50),
@@ -313,12 +228,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array('__callStatic', 166),
             array('__set_state', 167),
 
-            /*
-             * File: NonStaticMagicMethodsUnitTest.2.inc.
-             */
             // Trait.
-            array('__callStatic', 55, true),
-            array('__set_state', 56, true),
+            array('__callStatic', 269),
+            array('__set_state', 270),
 
         );
     }
@@ -329,19 +241,13 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param int  $line    The line number.
-     * @param bool $isTrait Whether to load the class/interface test file or the trait test file.
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives($line, $isTrait = false)
+    public function testNoFalsePositives($line)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
-        $file = $this->getTestFile($isTrait, '5.3-99.0');
+        $file = $this->sniffFile(__FILE__, '5.3-99.0');
         $this->assertNoViolation($file, $line);
     }
 
@@ -355,9 +261,6 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         return array(
-            /*
-             * File: NonStaticMagicMethodsUnitTest.1.inc.
-             */
             // Plain class.
             array(5),
             array(6),
@@ -438,34 +341,32 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(195),
             array(196),
 
-            /*
-             * File: NonStaticMagicMethodsUnitTest.2.inc.
-             */
             // Plain trait.
-            array(5, true),
-            array(6, true),
-            array(7, true),
-            array(8, true),
-            array(9, true),
-            array(10, true),
-            array(11, true),
-            array(12, true),
-            array(13, true),
-            array(14, true),
-            array(15, true),
+            array(219),
+            array(220),
+            array(221),
+            array(222),
+            array(223),
+            array(224),
+            array(225),
+            array(226),
+            array(227),
+            array(228),
+            array(229),
+
             // Normal trait.
-            array(20, true),
-            array(21, true),
-            array(22, true),
-            array(23, true),
-            array(24, true),
-            array(25, true),
-            array(26, true),
-            array(27, true),
-            array(28, true),
-            array(29, true),
-            array(30, true),
-            array(31, true),
+            array(234),
+            array(235),
+            array(236),
+            array(237),
+            array(238),
+            array(239),
+            array(240),
+            array(241),
+            array(242),
+            array(243),
+            array(244),
+            array(245),
         );
     }
 
@@ -477,12 +378,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        // File: NonStaticMagicMethodsUnitTest.1.inc.
-        $file = $this->getTestFile(false, '5.2');
-        $this->assertNoViolation($file);
-
-        // File: NonStaticMagicMethodsUnitTest.2.inc.
-        $file = $this->getTestFile(true, '5.2');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file);
     }
 }

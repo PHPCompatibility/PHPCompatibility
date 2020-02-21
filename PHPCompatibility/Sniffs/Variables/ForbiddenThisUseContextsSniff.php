@@ -61,9 +61,10 @@ class ForbiddenThisUseContextsSniff extends Sniff
      * @var array
      */
     private $ooScopeTokens = array(
-        'T_CLASS'     => \T_CLASS,
-        'T_INTERFACE' => \T_INTERFACE,
-        'T_TRAIT'     => \T_TRAIT,
+        'T_CLASS'      => \T_CLASS,
+        'T_ANON_CLASS' => \T_ANON_CLASS,
+        'T_INTERFACE'  => \T_INTERFACE,
+        'T_TRAIT'      => \T_TRAIT,
     );
 
     /**
@@ -99,10 +100,6 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     public function register()
     {
-        if (\defined('T_ANON_CLASS')) {
-            $this->ooScopeTokens['T_ANON_CLASS'] = \T_ANON_CLASS;
-        }
-
         $this->skipOverScopes += $this->ooScopeTokens;
 
         return array(

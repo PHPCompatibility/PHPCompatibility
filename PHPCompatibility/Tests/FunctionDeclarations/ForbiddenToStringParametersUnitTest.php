@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 
 /**
  * Test the ForbiddenToStringParameters sniff.
@@ -27,46 +26,16 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
 {
 
     /**
-     * Whether or not traits will be recognized in PHPCS.
-     *
-     * @var bool
-     */
-    protected static $recognizesTraits = true;
-
-
-    /**
-     * Set up skip condition.
-     *
-     * @return void
-     */
-    public static function setUpBeforeClass()
-    {
-        // When using PHPCS 2.3.4 or lower combined with PHP 5.3 or lower, traits are not recognized.
-        if (version_compare(PHPCSHelper::getVersion(), '2.4.0', '<') && version_compare(\PHP_VERSION_ID, '50400', '<')) {
-            self::$recognizesTraits = false;
-        }
-
-        parent::setUpBeforeClass();
-    }
-
-
-    /**
      * testForbiddenToStringParameters.
      *
      * @dataProvider dataForbiddenToStringParameters
      *
-     * @param int  $line    The line number where a warning is expected.
-     * @param bool $isTrait Whether the test relates to a method in a trait.
+     * @param int $line The line number where a warning is expected.
      *
      * @return void
      */
-    public function testForbiddenToStringParameters($line, $isTrait = false)
+    public function testForbiddenToStringParameters($line)
     {
-        if ($isTrait === true && self::$recognizesTraits === false) {
-            $this->markTestSkipped('Traits are not recognized on PHPCS < 2.4.0 in combination with PHP < 5.4');
-            return;
-        }
-
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertError($file, $line, 'The __toString() magic method can no longer accept arguments since PHP 5.3');
     }
@@ -84,7 +53,7 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
             array(17),
             array(21),
             array(25),
-            array(31, true),
+            array(31),
             array(37),
         );
     }

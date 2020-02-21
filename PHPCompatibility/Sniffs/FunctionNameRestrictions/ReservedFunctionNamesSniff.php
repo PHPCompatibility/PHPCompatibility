@@ -46,16 +46,10 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
      */
     public function __construct()
     {
-        $scopeTokens = array(\T_CLASS, \T_INTERFACE, \T_TRAIT);
-        if (\defined('T_ANON_CLASS')) {
-            $scopeTokens[] = \T_ANON_CLASS;
-        }
+        $scopeTokens = array(\T_CLASS, \T_ANON_CLASS, \T_INTERFACE, \T_TRAIT);
 
         // Call the grand-parent constructor directly.
         PHPCS_AbstractScopeSniff::__construct($scopeTokens, array(\T_FUNCTION), true);
-
-        // Make sure debuginfo is included in the array. Upstream only includes it since 2.5.1.
-        $this->magicMethods['debuginfo'] = true;
     }
 
 

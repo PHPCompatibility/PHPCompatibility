@@ -139,6 +139,7 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected $targetedTokens = array(
         \T_CLASS,
+        \T_ANON_CLASS,
         \T_FUNCTION,
         \T_NAMESPACE,
         \T_STRING,
@@ -162,13 +163,7 @@ class ForbiddenNamesSniff extends Sniff
         $this->allowedModifiers           = Tokens::$scopeModifiers;
         $this->allowedModifiers[\T_FINAL] = \T_FINAL;
 
-        $tokens = $this->targetedTokens;
-
-        if (\defined('T_ANON_CLASS')) {
-            $tokens[] = \T_ANON_CLASS;
-        }
-
-        return $tokens;
+        return $this->targetedTokens;
     }
 
     /**
@@ -219,11 +214,10 @@ class ForbiddenNamesSniff extends Sniff
         /*
          * Deal with anonymous classes - `class` before a reserved keyword is sometimes
          * misidentified as `T_ANON_CLASS`.
-         * In PHPCS < 2.3.4 these were tokenized as T_CLASS no matter what.
          */
-        if ($tokens[$stackPtr]['type'] === 'T_ANON_CLASS' || $tokens[$stackPtr]['type'] === 'T_CLASS') {
+        if ($tokens[$stackPtr]['code'] === \T_ANON_CLASS || $tokens[$stackPtr]['code'] === \T_CLASS) {
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-            if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['type'] === 'T_NEW') {
+            if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
                 return;
             }
         }
@@ -369,16 +363,6 @@ class ForbiddenNamesSniff extends Sniff
     public function processString(File $phpcsFile, $stackPtr, $tokens)
     {
         $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
-
-        /*
-         * Special case for PHP versions where the target is not yet identified as
-         * its own token, but presents as T_STRING.
-         * - trait keyword in PHP < 5.4
-         */
-        if (version_compare(\PHP_VERSION_ID, '50400', '<') && $tokenContentLc === 'trait') {
-            $this->processNonString($phpcsFile, $stackPtr, $tokens);
-            return;
-        }
 
         // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
         if ($tokenContentLc !== 'define' && $tokenContentLc !== 'defined') {

@@ -23,13 +23,9 @@
     <!--
         PHP cross version compatibility ;-).
     -->
-    <config name="testVersion" value="5.3-"/>
+    <config name="testVersion" value="5.4-"/>
     <rule ref="PHPCompatibility">
-        <!-- Exclude PHP constants back-filled by PHPCS 2.3.0+. -->
-        <exclude name="PHPCompatibility.Constants.NewConstants.t_trait_cFound"/>
-        <exclude name="PHPCompatibility.Constants.NewConstants.t_traitFound"/>
-        <exclude name="PHPCompatibility.Constants.NewConstants.t_insteadofFound"/>
-        <exclude name="PHPCompatibility.Constants.NewConstants.t_callableFound"/>
+        <!-- Exclude PHP constants back-filled by PHPCS 2.6.0+. -->
         <exclude name="PHPCompatibility.Constants.NewConstants.t_finallyFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_yieldFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_ellipsisFound"/>
