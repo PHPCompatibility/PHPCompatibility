@@ -138,6 +138,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             \T_FUNCTION,
             \T_CLOSURE,
             \T_RETURN_TYPE,
+            \T_CATCH,
         );
     }
 
@@ -177,6 +178,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
             case 'T_RETURN_TYPE':
                 $this->processReturnTypeToken($phpcsFile, $stackPtr);
+                break;
+
+            case 'T_CATCH':
+                $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
 
             default:
@@ -322,6 +327,74 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             'nameLc' => $returnTypeHintLc,
         );
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+    }
+
+
+    /**
+     * Processes this test for when a catch token is encountered.
+     *
+     * - Detect interfaces (Throwable) when used in a catch statement.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processCatchToken(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Bow out during live coding.
+        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
+            return;
+        }
+
+        $opener = $tokens[$stackPtr]['parenthesis_opener'];
+        $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
+        $name   = '';
+        $listen = array(
+            // Parts of a (namespaced) class name.
+            \T_STRING              => true,
+            \T_NS_SEPARATOR        => true,
+            // End/split tokens.
+            \T_VARIABLE            => false,
+            \T_BITWISE_OR          => false,
+            \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
+        );
+
+        for ($i = ($opener + 1); $i < $closer; $i++) {
+            if (isset($listen[$tokens[$i]['code']]) === false) {
+                continue;
+            }
+
+            if ($listen[$tokens[$i]['code']] === true) {
+                $name .= $tokens[$i]['content'];
+                continue;
+            } else {
+                if (empty($name) === true) {
+                    // Weird, we should have a name by the time we encounter a variable or |.
+                    // So this may be the closer.
+                    continue;
+                }
+
+                $name   = ltrim($name, '\\');
+                $nameLC = strtolower($name);
+
+                if (isset($this->newInterfaces[$nameLC]) === true) {
+                    $itemInfo = array(
+                        'name'   => $name,
+                        'nameLc' => $nameLC,
+                    );
+                    $this->handleFeature($phpcsFile, $i, $itemInfo);
+                }
+
+                // Reset for a potential multi-catch.
+                $name = '';
+            }
+        }
     }
 
 
