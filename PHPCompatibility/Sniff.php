@@ -18,7 +18,6 @@ use PHPCompatibility\Helpers\TestVersionTrait;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
-use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -42,27 +41,6 @@ abstract class Sniff implements PHPCS_Sniff
      * @var string
      */
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
-
-    /**
-     * List of functions using hash algorithm as parameter (always the first parameter).
-     *
-     * Used by the new/removed hash algorithm sniffs.
-     * Key is the function name, value is the 1-based parameter position in the function call.
-     *
-     * @since 5.5
-     * @since 7.0.7 Moved from the `RemovedHashAlgorithms` sniff to the base `Sniff` class.
-     *
-     * @var array
-     */
-    protected $hashAlgoFunctions = [
-        'hash_file'      => 1,
-        'hash_hmac_file' => 1,
-        'hash_hmac'      => 1,
-        'hash_init'      => 1,
-        'hash_pbkdf2'    => 1,
-        'hash'           => 1,
-    ];
-
 
     /**
      * Add a PHPCS message to the output stack as either a warning or an error.
@@ -557,52 +535,6 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         return $typeHints;
-    }
-
-
-    /**
-     * Get the hash algorithm name from the parameter in a hash function call.
-     *
-     * @since 7.0.7 Logic was originally contained in the `RemovedHashAlgorithms` sniff.
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile Instance of phpcsFile.
-     * @param int                         $stackPtr  The position of the T_STRING function token.
-     *
-     * @return string|false The algorithm name without quotes if this was a relevant hash
-     *                      function call or false if it was not.
-     */
-    public function getHashAlgorithmParameter(File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
-            return false;
-        }
-
-        if ($tokens[$stackPtr]['code'] !== \T_STRING) {
-            return false;
-        }
-
-        $functionName   = $tokens[$stackPtr]['content'];
-        $functionNameLc = \strtolower($functionName);
-
-        // Bow out if not one of the functions we're targetting.
-        if (isset($this->hashAlgoFunctions[$functionNameLc]) === false) {
-            return false;
-        }
-
-        // Get the parameter from the function call which should contain the algorithm name.
-        $algoParam = PassedParameters::getParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
-        if ($algoParam === false) {
-            return false;
-        }
-
-        // Algorithm is a text string, so we need to remove the quotes.
-        $algo = \strtolower(\trim($algoParam['raw']));
-        $algo = TextStrings::stripQuotes($algo);
-
-        return $algo;
     }
 
 
