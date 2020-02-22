@@ -216,10 +216,7 @@ before_script:
 
 script:
   # Lint all PHP files against parse errors.
-  - |
-    if [[ "$LINT" == "1" ]]; then
-      if find -L . -path ./vendor -prune -o -path ./PHPCompatibility/Tests/Keywords/ForbiddenNames -prune -o -name "*.php" -exec php -l {} \; | grep "^[Parse error|Fatal error]"; then exit 1; fi
-    fi
+  - if [[ "$LINT" == "1" ]]; then composer lint; fi
 
   # Run the unit tests.
   - |
