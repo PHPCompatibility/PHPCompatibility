@@ -147,9 +147,12 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 'name' => $tokens[$stackPtr]['content'],
             );
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+
+            return;
         }
+
         // Handle class name based return types.
-        elseif ($tokens[$stackPtr]['code'] === \T_STRING
+        if ($tokens[$stackPtr]['code'] === \T_STRING
             || $tokens[$stackPtr]['code'] === \T_RETURN_TYPE
         ) {
             $itemInfo = array(
