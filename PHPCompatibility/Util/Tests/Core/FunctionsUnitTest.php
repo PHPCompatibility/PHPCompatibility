@@ -128,15 +128,8 @@ class FunctionsUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
-        if (method_exists($this, 'setExpectedException')) {
-            $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
-                sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion)
-            );
-        } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage(sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion));
-        }
+        $message = sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
+        $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, array(null, null));
     }
@@ -171,15 +164,8 @@ class FunctionsUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        if (method_exists($this, 'setExpectedException')) {
-            $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
-                sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion))
-            );
-        } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion)));
-        }
+        $message = sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion));
+        $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, array(null, null));
     }
@@ -480,6 +466,38 @@ class FunctionsUnitTest extends TestCase
             array('"This is { $great}"', '"This is { }"'),
             array('"This is the return value of getName(): {getName()}"', '"This is the return value of getName(): {getName()}"'),
         );
+    }
+
+
+    /**
+     * Helper function for testing PHP warnings.
+     *
+     * @since 10.0.0
+     *
+     * @param string $message The warning message to expect.
+     *
+     * @return void
+     */
+    public function phpWarningTestHelper($message)
+    {
+        if (method_exists($this, 'expectWarning')) {
+            // PHPUnit 9.0+.
+            $this->expectWarning();
+            $this->expectWarningMessage($message);
+
+            return;
+        }
+
+        if (\method_exists($this, 'expectException') && class_exists('PHPUnit\Framework\Error\Warning')) {
+            // PHPUnit 5.7/6/7/8.
+            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectExceptionMessage($message);
+
+            return;
+        }
+
+        // PHPUnit 4/5.7.
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning', $message);
     }
 
 
