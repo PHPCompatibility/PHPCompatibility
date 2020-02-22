@@ -36,16 +36,24 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
     /**
      * Set up skip condition.
      *
+     * @beforeClass
+     *
+     * @since 7.0.4
+     * @since 10.0.0 Renamed the method from `setUpBeforeClass()` to `setUpSkipCondition()` and
+     *               now using the `@beforeClass` annotation to allow for
+     *               PHPUnit cross-version compatibility.
+     *
      * @return void
      */
-    public static function setUpBeforeClass()
+    public static function setUpSkipCondition()
     {
+        // Run the parent `@beforeClass` method.
+        parent::resetSniffFiles();
+
         if (version_compare(\PHP_VERSION_ID, '70000', '<')) {
             // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
             self::$aspTags = (bool) ini_get('asp_tags');
         }
-
-        parent::setUpBeforeClass();
     }
 
 

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 
@@ -28,7 +28,7 @@ use PHP_CodeSniffer_File as File;
  * @since 8.2.0 Allows for sniffs in multiple categories.
  * @since 9.0.0 Dropped support for PHP_CodeSniffer 1.x.
  */
-class BaseSniffTest extends PHPUnit_TestCase
+class BaseSniffTest extends TestCase
 {
 
     /**
@@ -61,26 +61,35 @@ class BaseSniffTest extends PHPUnit_TestCase
     public static $sniffFiles = array();
 
     /**
-     * Sets up this unit test.
+     * Reset the sniff file cache before/after each test class.
+     *
+     * @beforeClass
+     * @afterClass
      *
      * @since 7.0.4
+     * @since 10.0.0 Renamed the method from `setUpBeforeClass()` to `resetSniffFiles()` and
+     *               now using the `@beforeClass`/`@afterClass` annotations to allow for
+     *               PHPUnit cross-version compatibility.
      *
      * @return void
      */
-    public static function setUpBeforeClass()
+    public static function resetSniffFiles()
     {
         self::$sniffFiles = array();
-        parent::setUpBeforeClass();
     }
 
     /**
      * Sets up this unit test.
      *
+     * @before
+     *
      * @since 5.5
+     * @since 10.0.0 Renamed the method from `setUp()` to `setUpPHPCS()` and now using
+     *               the `@before` annotation to allow for PHPUnit cross-version compatibility.
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUpPHPCS()
     {
         if (class_exists('\PHP_CodeSniffer') === true) {
             /*
@@ -97,33 +106,23 @@ class BaseSniffTest extends PHPUnit_TestCase
 
             self::$phpcs->setIgnorePatterns(array());
         }
-
-        parent::setUp();
     }
 
     /**
-     * Tear down after each test.
+     * Reset the testVersion after each test.
+     *
+     * @after
      *
      * @since 5.5
+     * @since 10.0.0 Renamed the method from `tearDwon()` to `resetTestVersion()` and now using
+     *               the `@after` annotation to allow for PHPUnit cross-version compatibility.
      *
      * @return void
      */
-    public function tearDown()
+    public function resetTestVersion()
     {
         // Reset the targetPhpVersion.
         PHPCSHelper::setConfigData('testVersion', null, true);
-    }
-
-    /**
-     * Tear down after each test.
-     *
-     * @since 7.0.4
-     *
-     * @return void
-     */
-    public static function tearDownAfterClass()
-    {
-        self::$sniffFiles = array();
     }
 
     /**
@@ -265,11 +264,15 @@ class BaseSniffTest extends PHPUnit_TestCase
         }
 
         $insteadMessagesString = implode(', ', $insteadFoundMessages);
-        return $this->assertContains(
-            $expectedMessage,
-            $insteadMessagesString,
-            "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString."
-        );
+
+        $msg = "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString.";
+
+        if (method_exists($this, 'assertStringContainsString') === false) {
+            // PHPUnit < 7.
+            return $this->assertContains($expectedMessage, $insteadMessagesString, $msg);
+        }
+
+        return $this->assertStringContainsString($expectedMessage, $insteadMessagesString, $msg);
     }
 
     /**

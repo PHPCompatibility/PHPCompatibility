@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Util\Tests\Core;
 
-use PHPUnit_Framework_TestCase as PHPUnit_TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
 
@@ -22,7 +22,7 @@ use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
  *
  * @since 7.0.6
  */
-class FunctionsUnitTest extends PHPUnit_TestCase
+class FunctionsUnitTest extends TestCase
 {
 
     /**
@@ -36,24 +36,24 @@ class FunctionsUnitTest extends PHPUnit_TestCase
     /**
      * Sets up this unit test.
      *
+     * @before
+     *
      * @return void
      */
-    protected function setUp()
+    protected function setUpHelper()
     {
-        parent::setUp();
-
         $this->helperClass = new TestHelperPHPCompatibility();
     }
 
     /**
      * Clean up after finished test.
      *
+     * @after
+     *
      * @return void
      */
-    protected function tearDown()
+    protected function resetTestVersion()
     {
-        parent::tearDown();
-
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
         PHPCSHelper::setConfigData('testVersion', null, true);
     }
@@ -128,15 +128,8 @@ class FunctionsUnitTest extends PHPUnit_TestCase
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
-        if (method_exists($this, 'setExpectedException')) {
-            $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
-                sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion)
-            );
-        } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage(sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion));
-        }
+        $message = sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
+        $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, array(null, null));
     }
@@ -171,15 +164,8 @@ class FunctionsUnitTest extends PHPUnit_TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        if (method_exists($this, 'setExpectedException')) {
-            $this->setExpectedException(
-                'PHPUnit_Framework_Error_Warning',
-                sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion))
-            );
-        } else {
-            $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage(sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion)));
-        }
+        $message = sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion));
+        $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, array(null, null));
     }
@@ -480,6 +466,38 @@ class FunctionsUnitTest extends PHPUnit_TestCase
             array('"This is { $great}"', '"This is { }"'),
             array('"This is the return value of getName(): {getName()}"', '"This is the return value of getName(): {getName()}"'),
         );
+    }
+
+
+    /**
+     * Helper function for testing PHP warnings.
+     *
+     * @since 10.0.0
+     *
+     * @param string $message The warning message to expect.
+     *
+     * @return void
+     */
+    public function phpWarningTestHelper($message)
+    {
+        if (method_exists($this, 'expectWarning')) {
+            // PHPUnit 9.0+.
+            $this->expectWarning();
+            $this->expectWarningMessage($message);
+
+            return;
+        }
+
+        if (\method_exists($this, 'expectException') && class_exists('PHPUnit\Framework\Error\Warning')) {
+            // PHPUnit 5.7/6/7/8.
+            $this->expectException('PHPUnit\Framework\Error\Warning');
+            $this->expectExceptionMessage($message);
+
+            return;
+        }
+
+        // PHPUnit 4/5.7.
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning', $message);
     }
 
 

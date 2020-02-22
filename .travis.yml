@@ -165,8 +165,10 @@ before_install:
   - export XMLLINT_INDENT="    "
 
   # Toggle the PHPUnit versions if necessary, depending on the known Travis configurations.
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} > "7.1" ]]; then export PHPUNIT_VERSION="^7.0"; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} < "5.5" ]]; then export PHPUNIT_VERSION="~4.5"; fi
+
+  # Work around bug in Travis PHP 7.2 image which contains PHPUnit 9.x while PHPUnit 9.x needs PHP 7.3.
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then export PHPUNIT_VERSION="~8.5"; fi
 
   # Set up test environment using Composer.
   - composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
