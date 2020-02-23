@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -88,8 +90,11 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             $targetNestingLevel = \count($tokens[$secondParam['start']]['nested_parenthesis']);
         }
 
-        $array = $phpcsFile->findNext([\T_ARRAY, \T_OPEN_SHORT_ARRAY], $secondParam['start'], ($secondParam['end'] + 1));
-        if ($array !== false) {
+        $array = $phpcsFile->findNext(Collections::$arrayTokensBC, $secondParam['start'], ($secondParam['end'] + 1));
+        if ($array !== false
+            && ($tokens[$array]['code'] === \T_ARRAY
+                || Arrays::isShortArray($phpcsFile, $array) === true)
+        ) {
             if ((isset($tokens[$array]['nested_parenthesis']) === false && $targetNestingLevel === 0) || \count($tokens[$array]['nested_parenthesis']) === $targetNestingLevel) {
                 $phpcsFile->addError(
                     'Constant arrays using define are not allowed in PHP 5.6 or earlier',
