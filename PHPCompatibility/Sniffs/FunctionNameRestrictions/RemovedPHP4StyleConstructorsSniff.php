@@ -12,7 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 
 /**
@@ -87,22 +88,20 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
+        $class  = $tokens[$stackPtr];
 
-        $class = $tokens[$stackPtr];
-
-        if (isset($class['scope_closer']) === false) {
+        if (isset($class['scope_opener'], $class['scope_closer']) === false) {
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true); // Will never return false.
-        $scopeCloser  = $class['scope_closer'];
-        $className    = $tokens[$nextNonEmpty]['content'];
+        $scopeCloser = $class['scope_closer'];
+        $className   = ObjectDeclarations::getName($phpcsFile, $stackPtr);
 
         if (empty($className) || \is_string($className) === false) {
             return;
         }
 
-        $nextFunc            = $stackPtr;
+        $nextFunc            = $class['scope_opener'];
         $classNameLc         = strtolower($className);
         $newConstructorFound = false;
         $oldConstructorFound = false;
@@ -120,7 +119,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
                 $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
             }
 
-            $funcName = $phpcsFile->getDeclarationName($nextFunc);
+            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
             if (empty($funcName) || \is_string($funcName) === false) {
                 $nextFunc = $functionScopeCloser;
                 continue;
