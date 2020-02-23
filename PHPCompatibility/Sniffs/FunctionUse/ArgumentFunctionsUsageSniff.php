@@ -15,6 +15,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -112,7 +113,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
          * As PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
          */
-        if ($phpcsFile->hasCondition($stackPtr, [\T_FUNCTION, \T_CLOSURE]) === false) {
+        if (Conditions::hasCondition($phpcsFile, $stackPtr, Collections::functionDeclarationTokens()) === false) {
             $isError = false;
             $message = 'Use of %s() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.';
 
