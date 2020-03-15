@@ -34,6 +34,9 @@
   "conflict": {
     "squizlabs/php_codesniffer": "2.6.2"
   },
+  "replace": {
+    "wimg/php-compatibility": "*"
+  },
   "suggest" : {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.6 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically.",
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
