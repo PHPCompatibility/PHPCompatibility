@@ -117,6 +117,10 @@ jobs:
     - php: 7.4
       env: PHPCS_VERSION="2.6.0"
 
+    # And start testing against the upcoming PHPCS 4.x release.
+    - php: 7.4
+      env: PHPCS_VERSION="4.0.x-dev@dev"
+
     #### CODE COVERAGE STAGE ####
     # N.B.: Coverage is only checked on the lowest and highest stable PHP versions for all PHPCS versions.
     # These builds are left out off the "test" stage so as not to duplicate test runs.
@@ -140,6 +144,10 @@ jobs:
       env: PHPCS_VERSION=">=2.6,<3.0" COVERALLS_VERSION="^1.0" CUSTOM_INI=1
     - php: 5.4
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^1.0"
+
+  allow_failures:
+    # Allow failures for unstable builds.
+    - env: PHPCS_VERSION="4.0.x-dev@dev"
 
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.
