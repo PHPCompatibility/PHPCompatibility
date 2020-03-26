@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect use of new function parameters in calls to native PHP functions.
@@ -951,7 +952,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->newFunctionParameters = $this->arrayKeysToLowercase($this->newFunctionParameters);
+        $this->newFunctionParameters = \array_change_key_case($this->newFunctionParameters, \CASE_LOWER);
 
         return array(\T_STRING);
     }
@@ -1007,7 +1008,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
             }
         }
 
-        $parameterCount = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        $parameterCount = PassedParameters::getParameterCount($phpcsFile, $stackPtr);
         if ($parameterCount === 0) {
             return;
         }

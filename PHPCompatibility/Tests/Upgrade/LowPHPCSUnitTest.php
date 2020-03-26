@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Tests\Upgrade;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Sniffs\Upgrade\LowPHPCSSniff;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the LowPHPCS sniff.
@@ -55,7 +55,7 @@ class LowPHPCSUnitTest extends BaseSniffTest
 
         // Sniff file without testVersion as all checks run independently of testVersion being set.
         $this->sniffResult  = $this->sniffFile(__FILE__);
-        $this->phpcsVersion = PHPCSHelper::getVersion();
+        $this->phpcsVersion = Helper::getVersion();
     }
 
 

@@ -11,9 +11,11 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect constant scalar expressions being used to set an initial value.
@@ -163,7 +165,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
         switch ($tokens[$stackPtr]['type']) {
             case 'T_FUNCTION':
             case 'T_CLOSURE':
-                $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+                $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
                 if (empty($params)) {
                     // No parameters.
                     return;
@@ -228,7 +230,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
                 // Filter out non-property declarations.
                 if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-                    if ($this->isClassProperty($phpcsFile, $stackPtr) === false) {
+                    if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
                         return;
                     }
 
@@ -246,7 +248,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                         return;
                     }
 
-                    if ($this->isClassProperty($phpcsFile, $next) === true) {
+                    if (Scopes::isOOProperty($phpcsFile, $next) === true) {
                         // Class properties are examined based on the T_VARIABLE token.
                         return;
                     }
@@ -408,7 +410,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             case \T_OPEN_SHORT_ARRAY:
                 ++$nestedArrays;
 
-                $arrayItems = $this->getFunctionCallParameters($phpcsFile, $nextNonSimple);
+                $arrayItems = PassedParameters::getParameters($phpcsFile, $nextNonSimple);
                 if (empty($arrayItems) === false) {
                     foreach ($arrayItems as $item) {
                         // Check for a double arrow, but only if it's for this array item, not for a nested array.

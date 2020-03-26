@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect the use of call time pass by reference.
@@ -132,7 +133,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
         }
 
         // Get the function call parameters.
-        $parameters = $this->getFunctionCallParameters($phpcsFile, $stackPtr);
+        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
         if (\count($parameters) === 0) {
             return;
         }

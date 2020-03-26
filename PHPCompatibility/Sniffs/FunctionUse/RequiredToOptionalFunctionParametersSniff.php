@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractComplexVersionSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
@@ -168,7 +169,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->functionParameters = $this->arrayKeysToLowercase($this->functionParameters);
+        $this->functionParameters = \array_change_key_case($this->functionParameters, \CASE_LOWER);
 
         return array(\T_STRING);
     }
@@ -209,7 +210,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
             return;
         }
 
-        $parameterCount  = $this->getFunctionCallParameterCount($phpcsFile, $stackPtr);
+        $parameterCount  = PassedParameters::getParameterCount($phpcsFile, $stackPtr);
         $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.

@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Namespaces;
 
 /**
  * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0.
@@ -72,7 +73,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
             return;
         }
 
-        if ($this->determineNamespace($phpcsFile, $stackPtr) !== '') {
+        if (Namespaces::determineNamespace($phpcsFile, $stackPtr) !== '') {
             /*
              * Namespaced methods with the same name as the class are treated as
              * regular methods, so we can bow out if we're in a namespace.

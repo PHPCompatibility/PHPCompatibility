@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Detect use of new PHP native interfaces and unsupported interface methods.
@@ -129,8 +129,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of interface names.
-        $this->newInterfaces      = $this->arrayKeysToLowercase($this->newInterfaces);
-        $this->unsupportedMethods = $this->arrayKeysToLowercase($this->unsupportedMethods);
+        $this->newInterfaces      = \array_change_key_case($this->newInterfaces, \CASE_LOWER);
+        $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
         return array(
             \T_CLASS,
@@ -207,7 +207,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      */
     private function processClassToken(File $phpcsFile, $stackPtr)
     {
-        $interfaces = PHPCSHelper::findImplementedInterfaceNames($phpcsFile, $stackPtr);
+        $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
         if (\is_array($interfaces) === false || $interfaces === array()) {
             return;

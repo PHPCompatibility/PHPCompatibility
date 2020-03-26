@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for use of deprecated and removed regex modifiers for MbString regex functions.
@@ -110,7 +111,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
                 continue;
             }
 
-            $content = $this->stripQuotes($tokens[$i]['content']);
+            $content = TextStrings::stripQuotes($tokens[$i]['content']);
             if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                 $content = $this->stripVariables($content);
             }

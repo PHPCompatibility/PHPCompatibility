@@ -11,9 +11,10 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect the use of removed global variables. Suggests alternatives if available.
@@ -134,7 +135,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        if ($this->isClassProperty($phpcsFile, $stackPtr) === true) {
+        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === true) {
             // Ok, so this was a class property declaration, not our concern.
             return;
         }
@@ -270,7 +271,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         // Is this a function param shadowing the PHP native one ?
         if ($function !== false) {
-            $parameters = PHPCSHelper::getMethodParameters($phpcsFile, $function);
+            $parameters = FunctionDeclarations::getParameters($phpcsFile, $function);
             if (\is_array($parameters) === true && empty($parameters) === false) {
                 foreach ($parameters as $param) {
                     if ($param['name'] === '$php_errormsg') {

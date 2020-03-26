@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Operators;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Operators;
 
 /**
  * Detect code affected by the change in operator precedence of concatenation in PHP 8.0.
@@ -86,7 +87,7 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
             return;
         }
 
-        if ($this->isUnaryPlusMinus($phpcsFile, $stackPtr) === true) {
+        if (Operators::isUnaryPlusMinus($phpcsFile, $stackPtr) === true) {
             return;
         }
 

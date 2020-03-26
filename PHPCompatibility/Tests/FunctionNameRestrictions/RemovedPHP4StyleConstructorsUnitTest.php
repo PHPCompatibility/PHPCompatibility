@@ -19,7 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedPHP4StyleConstructorsSniff
- * @covers \PHPCompatibility\Sniff::determineNamespace
  *
  * @since 7.0.0
  */

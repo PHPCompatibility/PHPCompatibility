@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * As of PHP 7.4, throwing exceptions from a `__toString()` method is allowed.
@@ -26,20 +28,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
  */
 class NewExceptionsFromToStringSniff extends Sniff
 {
-
-    /**
-     * Valid scopes for the __toString() method to live in.
-     *
-     * @since 9.2.0
-     * @since 9.3.0 Visibility changed from `public` to `protected`.
-     *
-     * @var array
-     */
-    protected $ooScopeTokens = array(
-        'T_CLASS'      => true,
-        'T_TRAIT'      => true,
-        'T_ANON_CLASS' => true,
-    );
 
     /**
      * Tokens which should be ignored when they preface a function declaration
@@ -102,7 +90,7 @@ class NewExceptionsFromToStringSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) === false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
             // Function, not method.
             return;
         }

@@ -11,8 +11,10 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * As of PHP 5.3, the __toString() magic method can no longer accept arguments.
@@ -28,21 +30,6 @@ use PHP_CodeSniffer_File as File;
  */
 class ForbiddenToStringParametersSniff extends Sniff
 {
-
-    /**
-     * Valid scopes for the __toString() method to live in.
-     *
-     * @since 9.2.0
-     * @since 9.3.2 Visibility changed from `public` to `protected`.
-     *
-     * @var array
-     */
-    protected $ooScopeTokens = array(
-        'T_CLASS'      => true,
-        'T_INTERFACE'  => true,
-        'T_TRAIT'      => true,
-        'T_ANON_CLASS' => true,
-    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -79,12 +66,12 @@ class ForbiddenToStringParametersSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) === false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
             // Function, not method.
             return;
         }
 
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             // Function declared without parameters.
             return;

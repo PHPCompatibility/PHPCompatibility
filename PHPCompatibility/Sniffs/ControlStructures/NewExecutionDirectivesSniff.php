@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for valid execution directives set with `declare()`.
@@ -295,7 +296,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         $value = $tokens[$stackPtr]['content'];
         if (isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
-            $value = $this->stripQuotes($value);
+            $value = TextStrings::stripQuotes($value);
         }
 
         $isError = false;

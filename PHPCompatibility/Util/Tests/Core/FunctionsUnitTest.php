@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Util\Tests\Core;
 
 use PHPUnit\Framework\TestCase;
-use PHPCompatibility\PHPCSHelper;
 use PHPCompatibility\Util\Tests\TestHelperPHPCompatibility;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Tests for various stand-alone utility functions.
@@ -55,8 +55,8 @@ class FunctionsUnitTest extends TestCase
     protected function resetTestVersion()
     {
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
-        PHPCSHelper::setConfigData('testVersion', null, true);
-        PHPCSHelper::setConfigData('testversion', null, true);
+        Helper::setConfigData('testVersion', null, true);
+        Helper::setConfigData('testversion', null, true);
     }
 
 
@@ -75,7 +75,7 @@ class FunctionsUnitTest extends TestCase
     public function testGetTestVersion($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
@@ -99,7 +99,7 @@ class FunctionsUnitTest extends TestCase
     public function testGetTestVersionCaseLowercase($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHPCSHelper::setConfigData('testversion', $testVersion, true);
+            Helper::setConfigData('testversion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
@@ -240,7 +240,7 @@ class FunctionsUnitTest extends TestCase
     public function testSupportsAbove($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsAbove($phpVersion));
@@ -285,7 +285,7 @@ class FunctionsUnitTest extends TestCase
     public function testSupportsBelow($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            PHPCSHelper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));
@@ -345,85 +345,6 @@ class FunctionsUnitTest extends TestCase
             array('soap.wsdl_cache', 'soap_wsdl_cache'), // No dot.
             array('arbitrary-string with space', 'arbitrary_string_with_space'), // No dashes, no spaces.
             array('^%*&%*€à?', '____________'), // No non alpha-numeric characters.
-        );
-    }
-
-
-    /**
-     * testStripQuotes
-     *
-     * @dataProvider dataStripQuotes
-     *
-     * @covers \PHPCompatibility\Sniff::stripQuotes
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     *
-     * @return void
-     */
-    public function testStripQuotes($input, $expected)
-    {
-        $this->assertSame($expected, $this->helperClass->stripQuotes($input));
-    }
-
-    /**
-     * dataStripQuotes
-     *
-     * @see testStripQuotes()
-     *
-     * @return array
-     */
-    public function dataStripQuotes()
-    {
-        return array(
-            array('"dir_name"', 'dir_name'),
-            array("'soap.wsdl_cache'", 'soap.wsdl_cache'),
-            array('"arbitrary-\'string\" with\' quotes within"', 'arbitrary-\'string\" with\' quotes within'),
-            array('"\'quoted_name\'"', "'quoted_name'"),
-            array("'\"quoted\" start of string'", '"quoted" start of string'),
-        );
-    }
-
-
-    /**
-     * testArrayKeysToLowercase
-     *
-     * @dataProvider dataArrayKeysToLowercase
-     *
-     * @covers \PHPCompatibility\Sniff::arrayKeysToLowercase
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected function output.
-     *
-     * @return void
-     */
-    public function testArrayKeysToLowercase($input, $expected)
-    {
-        $this->assertSame($expected, $this->helperClass->arrayKeysToLowercase($input));
-    }
-
-    /**
-     * dataArrayKeysToLowercase
-     *
-     * @see testArrayKeysToLowercase()
-     *
-     * @return array
-     */
-    public function dataArrayKeysToLowercase()
-    {
-        return array(
-            array(
-                array(
-                    'UPPERCASE' => true,
-                    'MIXEDcase' => false,
-                    'lowercase' => '123',
-                ),
-                array(
-                    'uppercase' => true,
-                    'mixedcase' => false,
-                    'lowercase' => '123',
-                ),
-            ),
         );
     }
 

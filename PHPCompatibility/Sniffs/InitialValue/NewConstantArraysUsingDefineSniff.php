@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect declaration of constants using `define()` with a (constant) array value
@@ -77,7 +78,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             return;
         }
 
-        $secondParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 2);
+        $secondParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 2);
         if (isset($secondParam['start'], $secondParam['end']) === false) {
             return;
         }

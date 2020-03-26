@@ -13,6 +13,9 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Detects the use of reserved keywords as class, function, namespace or constant names.
@@ -331,7 +334,7 @@ class ForbiddenNamesSniff extends Sniff
         if ((($tokens[$stackPtr]['type'] === 'T_FUNCTION'
                 && $this->inClassScope($phpcsFile, $stackPtr, false) === true)
             || ($tokens[$stackPtr]['type'] === 'T_CONST'
-                && $this->isClassConstant($phpcsFile, $stackPtr) === true
+                && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
                 && $nextContentLc !== 'class'))
             && $this->supportsBelow('5.6') === false
         ) {
@@ -370,12 +373,12 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         // Retrieve the define(d) constant name.
-        $firstParam = $this->getFunctionCallParameter($phpcsFile, $stackPtr, 1);
+        $firstParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 1);
         if ($firstParam === false) {
             return;
         }
 
-        $defineName   = $this->stripQuotes($firstParam['raw']);
+        $defineName   = TextStrings::stripQuotes($firstParam['raw']);
         $defineNameLc = strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {

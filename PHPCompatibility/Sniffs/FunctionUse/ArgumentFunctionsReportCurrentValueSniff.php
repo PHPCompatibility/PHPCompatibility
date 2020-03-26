@@ -11,9 +11,12 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCFile;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Functions inspecting function arguments report the current parameter value
@@ -150,7 +153,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         $scopeCloser = $tokens[$stackPtr]['scope_closer'];
 
         // Does the function declaration have parameters ?
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             // No named arguments found, so no risk of them being changed.
             return;
@@ -207,7 +210,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Address some special cases.
              */
             if ($foundFunctionName !== 'func_get_args') {
-                $paramOne = $this->getFunctionCallParameter($phpcsFile, $i, 1);
+                $paramOne = PassedParameters::getParameter($phpcsFile, $i, 1);
                 if ($paramOne !== false) {
                     switch ($foundFunctionName) {
                         /*
@@ -270,7 +273,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
                         || $tokens[$maybeFunctionCall]['content'] === 'array_splice')
                     ) {
-                        $parentFuncParamTwo = $this->getFunctionCallParameter($phpcsFile, $maybeFunctionCall, 2);
+                        $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
                         $number             = $phpcsFile->findNext(
                             \T_LNUMBER,
                             $parentFuncParamTwo['start'],
@@ -323,7 +326,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                             $tokens[$afterStackFrame]['bracket_closer']
                         );
 
-                        if ($arrayIndex !== false && $this->stripQuotes($tokens[$arrayIndex]['content']) !== 'args') {
+                        if ($arrayIndex !== false
+                            && TextStrings::stripQuotes($tokens[$arrayIndex]['content']) !== 'args'
+                        ) {
                             continue;
                         }
                     }
@@ -336,7 +341,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * being assigned to one of the parameters, i.e.:
              * `$param = func_get_args();`.
              */
-            $startOfStatement = PHPCSHelper::findStartOfStatement($phpcsFile, $i, $this->ignoreForStartOfStatement);
+            $startOfStatement = BCFile::findStartOfStatement($phpcsFile, $i, $this->ignoreForStartOfStatement);
 
             /*
              * Ok, so we've found one of the target functions in the right scope.

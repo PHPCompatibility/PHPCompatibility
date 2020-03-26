@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Base sniff test class file.
@@ -122,7 +122,7 @@ class BaseSniffTest extends TestCase
     public function resetTestVersion()
     {
         // Reset the targetPhpVersion.
-        PHPCSHelper::setConfigData('testVersion', null, true);
+        Helper::setConfigData('testVersion', null, true);
     }
 
     /**
@@ -171,7 +171,7 @@ class BaseSniffTest extends TestCase
         }
 
         if ($targetPhpVersion !== 'none') {
-            PHPCSHelper::setConfigData('testVersion', $targetPhpVersion, true);
+            Helper::setConfigData('testVersion', $targetPhpVersion, true);
         }
 
         try {

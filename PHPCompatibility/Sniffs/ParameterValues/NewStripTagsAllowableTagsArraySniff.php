@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * As of PHP 7.4, `strip_tags()` now also accepts an array of `$allowable_tags`.
@@ -116,7 +117,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                 return;
             }
 
-            $items = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
+            $items = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
 
             if (empty($items)) {
                 return;

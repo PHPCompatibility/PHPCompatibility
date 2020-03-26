@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Operators;
 
 /**
  * Detect usage of the short ternary (elvis) operator as introduced in PHP 5.3.
@@ -60,7 +61,7 @@ class NewShortTernarySniff extends Sniff
             return;
         }
 
-        if ($this->isShortTernary($phpcsFile, $stackPtr) === false) {
+        if (Operators::isShortTernary($phpcsFile, $stackPtr) === false) {
             return;
         }
 

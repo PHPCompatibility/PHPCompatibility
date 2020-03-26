@@ -80,7 +80,7 @@ jobs:
       env: PHPCS_VERSION="2.6.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
-      env: PHPCS_VERSION="3.0.2" LINT=1
+      env: PHPCS_VERSION="3.1.0" LINT=1
 
     - php: 5.4
       env: PHPCS_VERSION="dev-master" LINT=1
@@ -93,7 +93,7 @@ jobs:
     # In addition to the matrix defined above, test against a variation of PHPCS 2.x and 3.x versions.
     - stage: test
       php: 5.4
-      env: PHPCS_VERSION="3.0.2" LINT=1
+      env: PHPCS_VERSION="3.1.0" LINT=1
     - php: 5.5
       env: PHPCS_VERSION="2.7.*"
     - php: 5.5
@@ -136,7 +136,7 @@ jobs:
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^2.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
-      env: PHPCS_VERSION="3.0.2" COVERALLS_VERSION="^2.0"
+      env: PHPCS_VERSION="3.1.0" COVERALLS_VERSION="^2.0"
 
     - php: 5.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^1.0"

@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Lists;
 
 /**
  * Support for empty `list()` expressions has been removed in PHP 7.0.
@@ -79,7 +80,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
-            if ($this->isShortList($phpcsFile, $stackPtr) === false) {
+            if (Lists::isShortList($phpcsFile, $stackPtr) === false) {
                 return;
             }
 

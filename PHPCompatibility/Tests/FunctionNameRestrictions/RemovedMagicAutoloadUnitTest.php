@@ -19,7 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group functionNameRestrictions
  *
  * @covers \PHPCompatibility\Sniffs\FunctionNameRestrictions\RemovedMagicAutoloadSniff
- * @covers \PHPCompatibility\Sniff::determineNamespace
  *
  * @since 8.1.0
  */

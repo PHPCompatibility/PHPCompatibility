@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
@@ -96,7 +98,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         // Differentiate between an array of patterns passed and a single pattern.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
         if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === \T_ARRAY || $tokens[$nextNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY)) {
-            $arrayValues = $this->getFunctionCallParameters($phpcsFile, $nextNonEmpty);
+            $arrayValues = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
             if ($functionNameLc === 'preg_replace_callback_array') {
                 // For preg_replace_callback_array(), the patterns will be in the array keys.
                 foreach ($arrayValues as $value) {
@@ -168,7 +170,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         $regex = '';
         for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
             if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
-                $content = $this->stripQuotes($tokens[$i]['content']);
+                $content = TextStrings::stripQuotes($tokens[$i]['content']);
                 if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                     $content = $this->stripVariables($content);
                 }
@@ -179,7 +181,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
         // Deal with multi-line regexes which were broken up in several string tokens.
         if ($tokens[$pattern['start']]['line'] !== $tokens[$pattern['end']]['line']) {
-            $regex = $this->stripQuotes($regex);
+            $regex = TextStrings::stripQuotes($regex);
         }
 
         if ($regex === '') {

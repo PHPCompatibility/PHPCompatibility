@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Detect usage of non-cryptographic hashes.
@@ -95,7 +96,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
 
         $targetParam = $parameters[1];
 
-        if (isset($this->disabledCryptos[$this->stripQuotes($targetParam['raw'])]) === false) {
+        if (isset($this->disabledCryptos[TextStrings::stripQuotes($targetParam['raw'])]) === false) {
             return;
         }
 

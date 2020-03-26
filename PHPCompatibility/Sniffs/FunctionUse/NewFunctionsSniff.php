@@ -1928,7 +1928,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
     public function register()
     {
         // Handle case-insensitivity of function names.
-        $this->newFunctions = $this->arrayKeysToLowercase($this->newFunctions);
+        $this->newFunctions = \array_change_key_case($this->newFunctions, \CASE_LOWER);
 
         return array(\T_STRING);
     }

@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Nullable parameter type declarations and return types are available since PHP 7.1.
@@ -97,7 +97,7 @@ class NewNullableTypesSniff extends Sniff
      */
     protected function processFunctionDeclaration(File $phpcsFile, $stackPtr)
     {
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
 
         if (empty($params) === false && \is_array($params)) {
             foreach ($params as $param) {

@@ -11,9 +11,11 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect using `$this` in incompatible contexts.
@@ -52,22 +54,6 @@ class ForbiddenThisUseContextsSniff extends Sniff
 {
 
     /**
-     * OO scope tokens.
-     *
-     * Duplicate of Tokens::$ooScopeTokens array in PHPCS which was added in 3.1.0.
-     *
-     * @since 9.1.0
-     *
-     * @var array
-     */
-    private $ooScopeTokens = array(
-        'T_CLASS'      => \T_CLASS,
-        'T_ANON_CLASS' => \T_ANON_CLASS,
-        'T_INTERFACE'  => \T_INTERFACE,
-        'T_TRAIT'      => \T_TRAIT,
-    );
-
-    /**
      * Scopes to skip over when examining the contents of functions.
      *
      * @since 9.1.0
@@ -75,8 +61,8 @@ class ForbiddenThisUseContextsSniff extends Sniff
      * @var array
      */
     private $skipOverScopes = array(
-        'T_FUNCTION' => true,
-        'T_CLOSURE'  => true,
+        \T_FUNCTION => true,
+        \T_CLOSURE  => true,
     );
 
     /**
@@ -100,7 +86,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     public function register()
     {
-        $this->skipOverScopes += $this->ooScopeTokens;
+        $this->skipOverScopes += BCTokens::ooScopeTokens();
 
         return array(
             \T_FUNCTION,
@@ -303,11 +289,11 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     protected function isThisUsedAsParameter(File $phpcsFile, $stackPtr)
     {
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) !== false) {
             return;
         }
 
-        $params = PHPCSHelper::getMethodParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($params)) {
             return;
         }
@@ -361,7 +347,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
             return;
         }
 
-        if ($this->validDirectScope($phpcsFile, $stackPtr, $this->ooScopeTokens) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) !== false) {
             $methodProps = $phpcsFile->getMethodProperties($stackPtr);
             if ($methodProps['is_static'] === false) {
                 return;
@@ -378,7 +364,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
         }
 
         for ($i = ($tokens[$stackPtr]['scope_opener'] + 1); $i < $tokens[$stackPtr]['scope_closer']; $i++) {
-            if (isset($this->skipOverScopes[$tokens[$i]['type']])) {
+            if (isset($this->skipOverScopes[$tokens[$i]['code']])) {
                 if (isset($tokens[$i]['scope_closer']) === false) {
                     // Live coding or parse error, will only lead to inaccurate results.
                     return;

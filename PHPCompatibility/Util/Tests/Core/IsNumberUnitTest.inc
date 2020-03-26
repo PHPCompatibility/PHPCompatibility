@@ -6,31 +6,31 @@
  * The below should *NOT* be recognized as numbers.
  */
  
-/* Case 1 */
+/* test 1 */
 $a = [];
 
-/* Case 2 */
+/* test 2 */
 $a = - $b;
 
-/* Case 4 */
+/* test 4 */
 $a = +;
 
-/* Case 5 */
+/* test 5 */
 $a = new SomeClass;
 
-/* Case 6 */
+/* test 6 */
 $a = 1-;
 
-/* Case 7 */
+/* test 7 */
 $a = 1.23-;
 
-/* Case 8 */
+/* test 8 */
 $a = 1.23 - 1;
 
-/* Case 9 */
+/* test 9 */
 $a = 5 * 8;
 
-/* Case 10 */
+/* test 10 */
 $a = '10 things' . ' or nothing';
 
 /*
@@ -39,25 +39,25 @@ $a = '10 things' . ' or nothing';
  * The below should be recognized as numbers (integers).
  */
 
-/* Case ZI1 */
+/* test ZI1 */
 $a = 0;
 
-/* Case ZI2 */
+/* test ZI2 */
 $a = +0;
 
-/* Case ZI3 */
+/* test ZI3 */
 $a = - false;
 
-/* Case ZI4 */
+/* test ZI4 */
 $a = '0';
 
-/* Case ZI5 */
+/* test ZI5 */
 $a = - '        0 things';
 
-/* Case ZI6 */
+/* test ZI6 */
 $a = null;
 
-/* Case ZI7 */
+/* test ZI7 */
 $a = - 'not a numeric string';
 
 
@@ -67,10 +67,10 @@ $a = - 'not a numeric string';
  * The below should be recognized as numbers (integers).
  */
 
-/* Case ZF1 */
+/* test ZF1 */
 $a = 0.0;
 
-/* Case ZF2 */
+/* test ZF2 */
 $a = - 0.0000000000;
 
 
@@ -80,61 +80,61 @@ $a = - 0.0000000000;
  * The below should be recognized as negative numbers (integers).
  */
 
-/* Case I1 */
+/* test I1 */
 $a = 1;
 
-/* Case I2 */
+/* test I2 */
 $a = -10;
 
-/* Case I3 */
+/* test I3 */
 $a = /* */     +          10;
 
-/* Case I4 */
+/* test I4 */
 $a = - /* comment */ 10;
 
-/* Case I5 */
+/* test I5 */
 $a = +
     // comment
 	10;
 
-/* Case I6 */
+/* test I6 */
 $a = '10';
 
-/* Case I7 */
+/* test I7 */
 $a = +  /* comment */ "10";
 
-/* Case I8 */
+/* test I8 */
 $a = - '10 barbary lane'; // PHP 7.1+: Non well-formed numeric value, but will still work.
 
-/* Case I9 */
+/* test I9 */
 $a = <<<EOT
 10
 EOT;
 
-/* Case I10 */
+/* test I10 */
 // PHP will only look at the first line!
 $a = - <<<'EOT'
 1
 0
 EOT;
 
-/* Case I11 */
+/* test I11 */
 $a = '        10 barbary lane';
 
-/* Case I12 */
+/* test I12 */
 $a = + '
         10 barbary lane';
 
-/* Case I13 */
+/* test I13 */
 $a = - '0xCC00F9'; // Though the behaviour is different between PHP 5 vs PHP 7.
 
-/* Case I14 */
+/* test I14 */
 $a = - true;
 
-/* Case I15 */
+/* test I15 */
 $a = + '  0123 things';
 
-/* Case I16 */
+/* test I16 */
 $a = -+-+10;
 
 /*
@@ -143,39 +143,39 @@ $a = -+-+10;
  * The below should be recognized as numbers (floats).
  */
 
-/* Case F1 */
+/* test F1 */
 $a = 1.23;
 
-/* Case F2 */
+/* test F2 */
 $a = -10.123;
 
-/* Case F3 */
+/* test F3 */
 $a = +          10.123;
 
-/* Case F4 */
+/* test F4 */
 $a = - /* comment */ 10.123;
 
-/* Case F5 */
+/* test F5 */
 $a = +
     // phpcs:ignore Standard.Category.Sniff -- testing handling of PHPCS annotations.
 	10.123;
 
-/* Case F6 */
+/* test F6 */
 $a = '10.123';
 
-/* Case F7 */
+/* test F7 */
 $a = +  /* comment */ "10.123";
 
-/* Case F8 */
+/* test F8 */
 $a = - '10E3 barbary lane'; // PHP 7.1+: Non well-formed numeric value, but will still work.
 
-/* Case F9 */
+/* test F9 */
 $a = - '10e8 barbary lane'; // PHP 7.1+: Non well-formed numeric value, but will still work.
 
-/* Case F10 */
+/* test F10 */
 $a = <<<EOT
 10.123
 EOT;
 
-/* Case F11 */
+/* test F11 */
 $a = +'0.123';

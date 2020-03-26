@@ -40,7 +40,7 @@ class IsNumericCalculationUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
-        $result = $this->helperClass->isNumericCalculation($this->phpcsFile, $start, $end);
+        $result = self::$helperClass->isNumericCalculation(self::$phpcsFile, $start, $end);
         $this->assertSame($isCalc, $result);
     }
 
@@ -54,19 +54,19 @@ class IsNumericCalculationUnitTest extends CoreMethodTestFrame
     public function dataIsNumericCalculation()
     {
         return array(
-            array('/* Case A1 */', false),
-            array('/* Case A2 */', false),
-            array('/* Case A3 */', false),
-            array('/* Case A4 */', false),
-            array('/* Case A5 */', false),
+            array('/* test A1 */', false),
+            array('/* test A2 */', false),
+            array('/* test A3 */', false),
+            array('/* test A4 */', false),
+            array('/* test A5 */', false),
 
-            array('/* Case B1 */', true),
-            array('/* Case B2 */', true),
-            array('/* Case B3 */', true),
-            array('/* Case B4 */', true),
-            array('/* Case B5 */', true),
-            array('/* Case B6 */', true),
-            array('/* Case B7 */', true),
+            array('/* test B1 */', true),
+            array('/* test B2 */', true),
+            array('/* test B3 */', true),
+            array('/* test B4 */', true),
+            array('/* test B5 */', true),
+            array('/* test B6 */', true),
+            array('/* test B7 */', true),
         );
     }
 }

@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Upgrade;
 
 use PHPCompatibility\Sniff;
-use PHPCompatibility\PHPCSHelper;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Add a notification for users of low PHPCS versions.
@@ -106,7 +106,7 @@ class LowPHPCSSniff extends Sniff
             return ($phpcsFile->numTokens + 1);
         }
 
-        $phpcsVersion = PHPCSHelper::getVersion();
+        $phpcsVersion = Helper::getVersion();
 
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
         if (version_compare($phpcsVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
@@ -162,11 +162,11 @@ class LowPHPCSSniff extends Sniff
          * If/when the upstream PR has been merged and the minimum supported/recommended version
          * of PHPCompatibility would go beyond that, the below code should be adjusted.}
          */
-        $reportWidth = PHPCSHelper::getCommandLineData($phpcsFile, 'reportWidth');
+        $reportWidth = Helper::getCommandLineData($phpcsFile, 'reportWidth');
         if (empty($reportWidth)) {
             $reportWidth = 80;
         }
-        $showSources = PHPCSHelper::getCommandLineData($phpcsFile, 'showSources');
+        $showSources = Helper::getCommandLineData($phpcsFile, 'showSources');
         if ($showSources === true) {
             $reportWidth += 6;
         }
