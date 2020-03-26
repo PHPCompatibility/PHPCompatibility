@@ -152,14 +152,14 @@ jobs:
 before_install:
   # Speed up build time by disabling Xdebug when its not needed.
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" != "Coverage" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" != "Coverage" ]]; then
       phpenv config-rm xdebug.ini || echo 'No xdebug config.'
     fi
 
   # On stable PHPCS versions, allow for PHP deprecation notices.
   # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" != "Sniff" && $PHPCS_VERSION != "dev-master" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" != "Sniff" && $PHPCS_VERSION != "dev-master" ]]; then
       echo 'error_reporting = E_ALL & ~E_DEPRECATED' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     fi
 
@@ -181,16 +181,16 @@ before_install:
   # Set up test environment using Composer.
   - composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" != "Sniff" && $PHPUNIT_VERSION != "travis" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" != "Sniff" && $PHPUNIT_VERSION != "travis" ]]; then
       composer require --no-update phpunit/phpunit:${PHPUNIT_VERSION}
     fi
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
       composer require --no-update php-coveralls/php-coveralls:${COVERALLS_VERSION}
     fi
   # --prefer-dist will allow for optimal use of the travis caching ability.
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Sniff" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Sniff" ]]; then
       composer install --prefer-dist --no-suggest
     else
       # Remove devtools as it would block testing on old PHPCS versions (< 3.0).
@@ -200,7 +200,7 @@ before_install:
     fi
 
 before_script:
-  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" ]]; then mkdir -p build/logs; fi
+  - if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then mkdir -p build/logs; fi
   - phpenv rehash
 
 script:
@@ -212,13 +212,13 @@ script:
 
   # Run the unit tests.
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Quicktest" || "$TRAVIS_BUILD_STAGE_NAME" == "Test" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Quicktest" || "${TRAVIS_BUILD_STAGE_NAME^}" == "Test" ]]; then
       if [[ $PHPUNIT_VERSION == "travis" ]]; then
         phpunit --no-coverage
       else
         vendor/bin/phpunit --no-coverage
       fi
-    elif [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" ]]; then
+    elif [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
       if [[ $PHPUNIT_VERSION == "travis" ]]; then
         phpunit
       else
@@ -228,10 +228,10 @@ script:
 
 after_success:
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" && $COVERALLS_VERSION == "^1.0" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" && $COVERALLS_VERSION == "^1.0" ]]; then
       php vendor/bin/coveralls -v -x build/logs/clover.xml
     fi
   - |
-    if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Coverage" && $COVERALLS_VERSION == "^2.0" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" && $COVERALLS_VERSION == "^2.0" ]]; then
       php vendor/bin/php-coveralls -v -x build/logs/clover.xml
     fi
