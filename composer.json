@@ -45,6 +45,15 @@
     "post-update-cmd" : [
       "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
     ],
+    "test": [
+      "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
+    ],
+    "coverage": [
+      "@php ./vendor/phpunit/phpunit/phpunit"
+    ],
+    "coverage-local": [
+      "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/logs"
+    ],
     "check-complete": [
       "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness -q ./PHPCompatibility"
     ],

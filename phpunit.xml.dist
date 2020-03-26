@@ -7,6 +7,7 @@
         colors="true"
         verbose="false"
         convertWarningsToExceptions="true"
+        forceCoversAnnotation="true"
     >
     <testsuites>
         <testsuite name="PHPCompatibility Utilities Tests">
@@ -18,7 +19,7 @@
     </testsuites>
 
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
+        <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="false">
             <file>./PHPCompatibility/Sniff.php</file>
             <directory>./PHPCompatibility/Sniffs/</directory>
         </whitelist>

@@ -4,6 +4,7 @@ composer.phar
 composer.lock
 .phpcs.xml
 phpcs.xml
+/build/
 phpunit.xml
 .phpunit.result.cache
 *~
