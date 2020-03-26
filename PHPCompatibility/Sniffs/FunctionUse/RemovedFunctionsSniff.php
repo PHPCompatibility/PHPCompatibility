@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Detect calls to deprecated/removed native PHP functions.
@@ -1044,27 +1045,40 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
-            \T_DOUBLE_COLON    => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_FUNCTION        => true,
-            \T_CLASS           => true,
-            \T_CONST           => true,
-            \T_USE             => true,
-            \T_NS_SEPARATOR    => true,
-        );
-
-        $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
-            // Not a call to a PHP function.
-            return;
-        }
-
         $function   = $tokens[$stackPtr]['content'];
         $functionLc = strtolower($function);
 
         if (isset($this->removedFunctions[$functionLc]) === false) {
             return;
+        }
+
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextToken === false
+            || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
+            || isset($tokens[$nextToken]['parenthesis_owner']) === true
+        ) {
+            return;
+        }
+
+        $ignore = array(
+            \T_DOUBLE_COLON    => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_NEW             => true,
+        );
+
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
+            // Not a call to a PHP function.
+            return;
+
+        } elseif ($tokens[$prevToken]['code'] === \T_NS_SEPARATOR) {
+            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
+            if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced function.
+                return;
+            }
         }
 
         $itemInfo = array(
