@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Arrays;
 
 /**
  * Detect use of short array syntax which is available since PHP 5.4.
@@ -36,10 +38,7 @@ class NewShortArraySniff extends Sniff
      */
     public function register()
     {
-        return array(
-            \T_OPEN_SHORT_ARRAY,
-            \T_CLOSE_SHORT_ARRAY,
-        );
+        return Collections::$shortArrayTokensBC;
     }
 
 
@@ -60,15 +59,19 @@ class NewShortArraySniff extends Sniff
             return;
         }
 
+        if (Arrays::isShortArray($phpcsFile, $stackPtr) === false) {
+            return;
+        }
+
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
 
         $error = '%s is not supported in PHP 5.3 or lower';
         $data  = array();
 
-        if ($token['type'] === 'T_OPEN_SHORT_ARRAY') {
+        if ($token['code'] === \T_OPEN_SHORT_ARRAY || $token['code'] === \T_OPEN_SQUARE_BRACKET) {
             $data[] = 'Short array syntax (open)';
-        } elseif ($token['type'] === 'T_CLOSE_SHORT_ARRAY') {
+        } elseif ($token['code'] === \T_CLOSE_SHORT_ARRAY || $token['code'] === \T_CLOSE_SQUARE_BRACKET) {
             $data[] = 'Short array syntax (close)';
         }
 

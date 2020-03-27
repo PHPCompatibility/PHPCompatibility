@@ -17,3 +17,9 @@ $arr[] = [
     'A',
     'B'
 ];
+
+// Direct array dereferencing (tokenizer bug in older PHPCS versions).
+echo [ 1,2,3 ][0]; // Error x1 (not 2).
+
+// Short list, not short array.
+[$a, $b] = $array;
