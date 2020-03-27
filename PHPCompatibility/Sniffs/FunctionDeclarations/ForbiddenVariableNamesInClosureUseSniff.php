@@ -82,6 +82,12 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             return;
         }
 
+        $useParams = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($useParams)) {
+            // No parameters imported. Parse error.
+            return;
+        }
+
         $closurePtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true);
         if ($closurePtr === false || $tokens[$closurePtr]['code'] !== \T_CLOSURE) {
             return;
@@ -90,22 +96,21 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
         // Get the parameters declared by the closure.
         $closureParams = FunctionDeclarations::getParameters($phpcsFile, $closurePtr);
 
+        /*
+         * Examine the imported closure use variables.
+         */
         $errorMsg = 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: %s';
 
-        for ($i = ($nextNonEmpty + 1); $i < $tokens[$nextNonEmpty]['parenthesis_closer']; $i++) {
-            if ($tokens[$i]['code'] !== \T_VARIABLE) {
-                continue;
-            }
-
-            $variableName = $tokens[$i]['content'];
+        foreach ($useParams as $useVar) {
+            $variableName = $useVar['name'];
 
             if ($variableName === '$this') {
-                $phpcsFile->addError($errorMsg, $i, 'FoundThis', array($variableName));
+                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundThis', array($variableName));
                 continue;
             }
 
             if (Variables::isSuperglobalName($variableName) === true) {
-                $phpcsFile->addError($errorMsg, $i, 'FoundSuperglobal', array($variableName));
+                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundSuperglobal', array($variableName));
                 continue;
             }
 
@@ -113,7 +118,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             if (empty($closureParams) === false) {
                 foreach ($closureParams as $param) {
                     if ($param['name'] === $variableName) {
-                        $phpcsFile->addError($errorMsg, $i, 'FoundShadowParam', array($variableName));
+                        $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundShadowParam', array($variableName));
                         continue 2;
                     }
                 }
