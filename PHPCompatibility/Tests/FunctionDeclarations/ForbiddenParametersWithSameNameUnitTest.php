@@ -53,6 +53,8 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
             array(3),
             array(7),
             array(11),
+            array(14),
+            array(18),
         );
     }
 
@@ -84,7 +86,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
         return array(
             array(5),
             array(9),
-            array(14),
+            array(22),
         );
     }
 
