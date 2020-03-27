@@ -13,11 +13,10 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detect the use of superglobals as parameters for functions, support for which was removed in PHP 5.4.
- *
- * {@internal List of superglobals is maintained in the parent class.}
  *
  * PHP version 5.4
  *
@@ -67,7 +66,7 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
         }
 
         foreach ($parameters as $param) {
-            if (isset($this->superglobals[$param['name']]) === true) {
+            if (Variables::isSuperglobalName($param['name']) === true) {
                 $error     = 'Parameter shadowing super global (%s) causes fatal error since PHP 5.4';
                 $errorCode = $this->stringToErrorCode(substr($param['name'], 1)) . 'Found';
                 $data      = array($param['name']);
