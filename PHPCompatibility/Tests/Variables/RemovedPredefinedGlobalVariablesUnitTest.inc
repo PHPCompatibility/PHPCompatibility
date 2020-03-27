@@ -23,7 +23,7 @@ class TestClass {
     var $HTTP_SERVER_VARS;
     private $HTTP_COOKIE_VARS;
     protected $HTTP_SESSION_VARS;
-    public $HTTP_POST_FILES;
+    public static $HTTP_POST_FILES;
     var $HTTP_RAW_POST_DATA;
 
     function testing() {
@@ -167,3 +167,7 @@ trait ABC {
 }
 
 echo $php_errormsg; // OK - uses the value from the assignment on line 37.
+
+// Use of a static class property outside class context works perfectly fine.
+echo $a::$HTTP_ENV_VARS; // OK.
+echo TestClass::$HTTP_POST_FILES; // OK.

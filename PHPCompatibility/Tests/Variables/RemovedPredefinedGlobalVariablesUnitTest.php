@@ -212,6 +212,9 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             array(165),
             array(169),
 
+            // Static property use outside class context.
+            array(172),
+            array(173),
         );
     }
 

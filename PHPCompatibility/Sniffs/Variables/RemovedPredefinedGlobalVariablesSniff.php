@@ -141,11 +141,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         }
 
         // Check for static usage of class properties shadowing the removed global variables.
-        if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
-            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-            if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
-                return;
-            }
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
+            return;
         }
 
         // Do some additional checks for the $php_errormsg variable.
