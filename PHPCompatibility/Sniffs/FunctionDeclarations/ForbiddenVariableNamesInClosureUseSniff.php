@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -61,24 +62,8 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
-        // Verify this use statement is used with a closure - if so, it has to have parenthesis before it.
-        $previousNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($previousNonEmpty === false || $tokens[$previousNonEmpty]['code'] !== \T_CLOSE_PARENTHESIS
-            || isset($tokens[$previousNonEmpty]['parenthesis_opener']) === false
-        ) {
-            return;
-        }
-
-        // ... and (a variable within) parenthesis after it.
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
-            return;
-        }
-
-        if (isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false) {
-            // Live coding.
+        if (UseStatements::isClosureUse($phpcsFile, $stackPtr) === false) {
+            // Import or trait use statement.
             return;
         }
 
@@ -88,13 +73,15 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             return;
         }
 
-        $closurePtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($tokens[$previousNonEmpty]['parenthesis_opener'] - 1), null, true);
-        if ($closurePtr === false || $tokens[$closurePtr]['code'] !== \T_CLOSURE) {
-            return;
-        }
-
-        // Get the parameters declared by the closure.
-        $closureParams = FunctionDeclarations::getParameters($phpcsFile, $closurePtr);
+        /*
+         * Get the parameters declared by the closure.
+         *
+         * No defensive coding needed as if this wasn't a closure, we'd have bowed out at the
+         * UseStatements::isClosureUse() check.
+         */
+        $tokens        = $phpcsFile->getTokens();
+        $prevNonEmpty  = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $closureParams = FunctionDeclarations::getParameters($phpcsFile, $tokens[$prevNonEmpty]['parenthesis_owner']);
 
         /*
          * Examine the imported closure use variables.
