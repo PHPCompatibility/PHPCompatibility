@@ -65,3 +65,10 @@ function foo(parent $a) {} // Invalid - not within a class.
 namespace test {
     function foo(parent $a) {} // Invalid - not within a class.
 }
+
+class Bar {
+    function baz() {
+        $c = function (self $a) {}; // Ok.
+        function foo(self $a) {} // Invalid - not within class scope.
+    }
+}

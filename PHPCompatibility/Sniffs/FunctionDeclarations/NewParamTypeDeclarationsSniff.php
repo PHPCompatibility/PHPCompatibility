@@ -12,7 +12,10 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect and verify the use of parameter type declarations in function declarations.
@@ -159,6 +162,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
         }
 
         $supportsPHP4 = $this->supportsBelow('4.4');
+        $tokens       = $phpcsFile->getTokens();
 
         foreach ($paramNames as $param) {
             if ($param['type_hint'] === '') {
@@ -185,7 +189,9 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 // Only throw this error for PHP 5.2+ as before that the "type hint not supported" error
                 // will be thrown.
                 if (($typeHint === 'self' || $typeHint === 'parent')
-                    && $this->inClassScope($phpcsFile, $stackPtr, false) === false
+                    && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
+                        || ($tokens[$stackPtr]['code'] === \T_FUNCTION
+                        && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
                     && $this->supportsAbove('5.2') !== false
                 ) {
                     $phpcsFile->addError(
