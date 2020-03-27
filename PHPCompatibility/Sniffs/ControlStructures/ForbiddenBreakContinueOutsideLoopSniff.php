@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Conditions;
 
 /**
  * Detect using `break` and/or `continue` statements outside of a looping structure.
@@ -35,11 +36,11 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      * @var array
      */
     protected $validLoopStructures = array(
-        \T_FOR     => true,
-        \T_FOREACH => true,
-        \T_WHILE   => true,
-        \T_DO      => true,
-        \T_SWITCH  => true,
+        \T_FOR     => \T_FOR,
+        \T_FOREACH => \T_FOREACH,
+        \T_WHILE   => \T_WHILE,
+        \T_DO      => \T_DO,
+        \T_SWITCH  => \T_SWITCH,
     );
 
     /**
@@ -70,23 +71,18 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
-
         // Check if the break/continue is within a valid loop structure.
-        if (empty($token['conditions']) === false) {
-            foreach ($token['conditions'] as $tokenCode) {
-                if (isset($this->validLoopStructures[$tokenCode]) === true) {
-                    return;
-                }
-            }
+        if (Conditions::getCondition($phpcsFile, $stackPtr, $this->validLoopStructures) !== false) {
+            return;
         }
 
         // If we're still here, no valid loop structure container has been found, so throw an error.
+        $tokens = $phpcsFile->getTokens();
+
         $error     = "Using '%s' outside of a loop or switch structure is invalid";
         $isError   = false;
         $errorCode = 'Found';
-        $data      = array($token['content']);
+        $data      = array($tokens[$stackPtr]['content']);
 
         if ($this->supportsAbove('7.0')) {
             $error    .= ' and will throw a fatal error since PHP 7.0';
