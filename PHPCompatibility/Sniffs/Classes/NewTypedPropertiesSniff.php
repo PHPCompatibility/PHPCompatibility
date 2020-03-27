@@ -12,8 +12,8 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
-use PHPCSUtils\Utils\Scopes;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Typed class property declarations are available since PHP 7.4.
@@ -27,22 +27,6 @@ use PHPCSUtils\Utils\Scopes;
  */
 class NewTypedPropertiesSniff extends Sniff
 {
-
-    /**
-     * Valid property modifier keywords.
-     *
-     * @since 9.2.0
-     *
-     * @var array
-     */
-    private $modifierKeywords = array(
-        \T_PRIVATE   => \T_PRIVATE,
-        \T_PROTECTED => \T_PROTECTED,
-        \T_PUBLIC    => \T_PUBLIC,
-        \T_STATIC    => \T_STATIC,
-        \T_VAR       => \T_VAR,
-    );
-
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -70,28 +54,15 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
+        try {
+            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Not a class property.
             return;
         }
 
-        $find  = $this->modifierKeywords;
-        $find += array(
-            \T_SEMICOLON          => \T_SEMICOLON,
-            \T_OPEN_CURLY_BRACKET => \T_OPEN_CURLY_BRACKET,
-        );
-
-        $tokens   = $phpcsFile->getTokens();
-        $modifier = $phpcsFile->findPrevious($find, ($stackPtr - 1));
-        if ($modifier === false
-            || $tokens[$modifier]['code'] === \T_SEMICOLON
-            || $tokens[$modifier]['code'] === \T_OPEN_CURLY_BRACKET
-        ) {
-            // Parse error. Ignore.
-            return;
-        }
-
-        $type = $phpcsFile->findNext(Tokens::$emptyTokens, ($modifier + 1), null, true);
-        if ($tokens[$type]['code'] === \T_VARIABLE) {
+        if ($properties['type'] === '') {
+            // Not a typed property.
             return;
         }
 
@@ -99,27 +70,23 @@ class NewTypedPropertiesSniff extends Sniff
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
                 'Typed properties are not supported in PHP 7.3 or earlier',
-                $type,
+                $properties['type_token'],
                 'Found'
             );
         }
 
         if ($this->supportsAbove('7.4') === true) {
-            // Examine the type to verify it's valid.
-            if ($tokens[$type]['type'] === 'T_NULLABLE'
-                // Needed to support PHPCS < 3.5.0 which doesn't correct to the nullable token type yet.
-                || $tokens[$type]['code'] === \T_INLINE_THEN
-            ) {
-                $type = $phpcsFile->findNext(Tokens::$emptyTokens, ($type + 1), null, true);
+            $type = $properties['type'];
+            if ($properties['nullable_type'] === true) {
+                $type = ltrim($type, '?');
             }
 
-            $content = $tokens[$type]['content'];
-            if ($content === 'void' || $content === 'callable') {
+            if ($type === 'void' || $type === 'callable') {
                 $phpcsFile->addError(
                     '%s is not supported as a type declaration for properties',
-                    $type,
+                    $properties['type_token'],
                     'InvalidType',
-                    array($content)
+                    array($type)
                 );
             }
         }
