@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Conditions;
 
 /**
  * Using `parent` inside a class without parent is deprecated since PHP 7.4.
@@ -32,12 +33,14 @@ class RemovedOrphanedParentSniff extends Sniff
      * Class scopes to check the class declaration.
      *
      * @since 9.2.0
+     * @since 10.0.0 - Changed to `private`, should never have been public in the first place.
+     *               - Now uses token constants instead of token type strings.
      *
      * @var array
      */
-    public $classScopeTokens = array(
-        'T_CLASS'      => true,
-        'T_ANON_CLASS' => true,
+    private $classScopeTokens = array(
+        \T_CLASS      => \T_CLASS,
+        \T_ANON_CLASS => \T_ANON_CLASS,
     );
 
     /**
@@ -69,32 +72,13 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
-        if (empty($tokens[$stackPtr]['conditions']) === true) {
-            // Use within the global namespace. Not our concern.
-            return;
-        }
-
-        /*
-         * Find the class within which this parent keyword is used.
-         */
-        $conditions = $tokens[$stackPtr]['conditions'];
-        $conditions = array_reverse($conditions, true);
-        $classPtr   = false;
-
-        foreach ($conditions as $ptr => $type) {
-            if (isset($this->classScopeTokens[$tokens[$ptr]['type']])) {
-                $classPtr = $ptr;
-                break;
-            }
-        }
-
+        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, $this->classScopeTokens);
         if ($classPtr === false) {
             // Use outside of a class scope. Not our concern.
             return;
         }
 
+        $tokens = $phpcsFile->getTokens();
         if (isset($tokens[$classPtr]['scope_opener']) === false) {
             // No scope opener known. Probably a parse error.
             return;
