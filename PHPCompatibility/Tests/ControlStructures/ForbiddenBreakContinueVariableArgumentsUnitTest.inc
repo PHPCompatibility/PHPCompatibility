@@ -86,11 +86,11 @@ for ($i = 0; $i < 20; $i++) {
 
         // Bad: Break/continue with a closure.
         if ($i == 10) {
-            break function () { return 1; }; // Bad.
+            break function () { return 1; }(); // Bad.
         }
 
         if ($i < 11) {
-            continue function () { return 1; }; // Bad.
+            continue function () { return 1; }(); // Bad.
         }
 
         // Bad: Break/continue with a namespaced function call.

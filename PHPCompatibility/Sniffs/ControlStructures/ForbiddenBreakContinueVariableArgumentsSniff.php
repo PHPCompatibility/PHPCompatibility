@@ -49,6 +49,18 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
     );
 
     /**
+     * Tokens indicating this is definitely a variable argument.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    private $varArgTokens = array(
+        \T_VARIABLE => \T_VARIABLE,
+        \T_CLOSURE  => \T_CLOSURE,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 5.5
@@ -81,7 +93,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
         $nextSemicolonToken = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr), null, false);
         $errorType          = '';
         for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
-            if ($tokens[$curToken]['type'] === 'T_STRING') {
+            if ($tokens[$curToken]['code'] === \T_STRING) {
                 // If the next non-whitespace token after the string
                 // is an opening parenthesis then it's a function call.
                 $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, $curToken + 1, null, true);
@@ -89,12 +101,15 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
                     $errorType = 'variableArgument';
                     break;
                 }
+            }
 
-            } elseif (\in_array($tokens[$curToken]['type'], array('T_VARIABLE', 'T_FUNCTION', 'T_CLOSURE'), true)) {
+            if (isset($this->varArgTokens[$tokens[$curToken]['code']]) === true) {
                 $errorType = 'variableArgument';
                 break;
 
-            } elseif ($tokens[$curToken]['code'] === \T_LNUMBER) {
+            }
+
+            if ($tokens[$curToken]['code'] === \T_LNUMBER) {
                 $numberInfo = Numbers::getCompleteNumber($phpcsFile, $curToken);
                 if ($numberInfo['decimal'] === '0') {
                     $errorType = 'zeroArgument';
