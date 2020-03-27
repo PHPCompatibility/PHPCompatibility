@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Numbers;
 
 /**
  * Detects using 0 and variable numeric arguments on `break` and `continue` statements.
@@ -93,9 +94,12 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
                 $errorType = 'variableArgument';
                 break;
 
-            } elseif ($tokens[$curToken]['type'] === 'T_LNUMBER' && $tokens[$curToken]['content'] === '0') {
-                $errorType = 'zeroArgument';
-                break;
+            } elseif ($tokens[$curToken]['code'] === \T_LNUMBER) {
+                $numberInfo = Numbers::getCompleteNumber($phpcsFile, $curToken);
+                if ($numberInfo['decimal'] === '0') {
+                    $errorType = 'zeroArgument';
+                    break;
+                }
             }
         }
 

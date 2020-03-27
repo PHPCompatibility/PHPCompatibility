@@ -126,3 +126,41 @@ for ($x=0;$x<5;$x++):
     continue ?> <?php
     print 0;
 endfor;
+
+// Break/continue with non-decimal zero value.
+for ($y = 0; $y < 8; $y++) {
+   if ($y == 1) {
+       break 0x0; // Bad: zero.
+   }
+
+   if ($y == 2) {
+       break 0x1;
+   }
+
+   if ($y == 3) {
+       continue 00; // Bad: zero.
+   }
+
+   if ($y == 4) {
+       continue 01;
+   }
+
+   if ($y == 5) {
+       continue 0b0; // Bad: zero.
+   }
+
+   if ($y == 6) {
+       continue 0b1;
+   }
+}
+
+// Break/continue with PHP 7.4 numeric literals.
+for ($y = 0; $y < 8; $y++) {
+   if ($y == 3) {
+       continue 0_0; // Bad: zero.
+   }
+
+   if ($y == 4) {
+       continue 0_1;
+   }
+}
