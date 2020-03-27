@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
@@ -30,16 +32,20 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.0
-     * @since 7.1.3 Allows for closures.
+     * @since 7.1.3  Allows for closures.
+     * @since 10.0.0 Allows for PHP 7.4+ arrow functions.
      *
      * @return array
      */
     public function register()
     {
-        return array(
+        $targets  = array(
             \T_FUNCTION,
             \T_CLOSURE,
         );
+        $targets += Collections::arrowFunctionTokensBC();
+
+        return $targets;
     }
 
     /**
@@ -67,8 +73,13 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
         }
 
         // Get all parameters from method signature.
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-        if (empty($parameters) || \is_array($parameters) === false) {
+        try {
+            $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+            if (empty($parameters)) {
+                return;
+            }
+        } catch (RuntimeException $e) {
+            // Most likely a T_STRING which wasn't an arrow function.
             return;
         }
 
