@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\Conditions;
 
 /**
  * Detect use of late static binding as introduced in PHP 5.3.
@@ -98,7 +100,7 @@ class NewLateStaticBindingSniff extends Sniff
                 break;
         }
 
-        $inClass = $this->inClassScope($phpcsFile, $stackPtr, false);
+        $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
 
         if ($inClass === true && $this->supportsBelow('5.2') === true) {
             $phpcsFile->addError(
