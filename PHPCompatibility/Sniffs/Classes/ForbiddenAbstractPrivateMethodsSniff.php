@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -65,7 +66,7 @@ class ForbiddenAbstractPrivateMethodsSniff extends Sniff
             return;
         }
 
-        $properties = $phpcsFile->getMethodProperties($stackPtr);
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         if ($properties['scope'] !== 'private' || $properties['is_abstract'] !== true) {
             return;
         }
