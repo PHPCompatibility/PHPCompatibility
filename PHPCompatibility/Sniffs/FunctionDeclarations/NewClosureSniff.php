@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 
 /**
@@ -249,7 +250,7 @@ class NewClosureSniff extends Sniff
         }
 
         $tokens   = $phpcsFile->getTokens();
-        $classRef = $phpcsFile->findNext(array(\T_SELF, \T_PARENT, \T_STATIC), $startToken, $endToken);
+        $classRef = $phpcsFile->findNext(Collections::$OOHierarchyKeywords, $startToken, $endToken);
 
         if ($classRef === false || $tokens[$classRef]['code'] !== \T_STATIC) {
             return $classRef;
