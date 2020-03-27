@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detect variable names forbidden to be used in closure `use` statements.
@@ -103,7 +104,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
                 continue;
             }
 
-            if (isset($this->superglobals[$variableName]) === true) {
+            if (Variables::isSuperglobalName($variableName) === true) {
                 $phpcsFile->addError($errorMsg, $i, 'FoundSuperglobal', array($variableName));
                 continue;
             }
