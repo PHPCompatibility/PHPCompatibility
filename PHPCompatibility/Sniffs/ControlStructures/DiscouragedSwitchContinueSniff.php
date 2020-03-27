@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\Numbers;
 
 /**
@@ -87,7 +88,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
      */
     public function register()
     {
-        $this->acceptedLevelTokens += Tokens::$arithmeticTokens;
+        $this->acceptedLevelTokens += BCTokens::arithmeticTokens();
         $this->acceptedLevelTokens += Tokens::$emptyTokens;
 
         return array(\T_SWITCH);
