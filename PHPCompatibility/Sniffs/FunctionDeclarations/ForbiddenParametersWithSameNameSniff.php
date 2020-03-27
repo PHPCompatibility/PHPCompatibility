@@ -78,10 +78,10 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
 
         $paramNames = array();
         foreach ($parameters as $param) {
-            $paramNames[] = $param['name'];
+            $paramNames[$param['name']] = true;
         }
 
-        if (\count($paramNames) !== \count(array_unique($paramNames))) {
+        if (\count($parameters) !== \count($paramNames)) {
             $phpcsFile->addError(
                 'Functions can not have multiple parameters with the same name since PHP 7.0',
                 $stackPtr,
