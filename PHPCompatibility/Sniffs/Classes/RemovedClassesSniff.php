@@ -203,7 +203,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
         $this->removedExceptions = \array_change_key_case($this->removedExceptions, \CASE_LOWER);
 
         // Add the Exception classes to the Classes list.
-        $this->removedClasses = array_merge($this->removedClasses, $this->removedExceptions);
+        $this->removedClasses = \array_merge($this->removedClasses, $this->removedExceptions);
 
         return [
             \T_NEW,
@@ -291,8 +291,8 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $className   = substr($FQClassName, 1); // Remove global namespace indicator.
-        $classNameLc = strtolower($className);
+        $className   = \substr($FQClassName, 1); // Remove global namespace indicator.
+        $classNameLc = \strtolower($className);
 
         if (isset($this->removedClasses[$classNameLc]) === false) {
             return;
@@ -329,7 +329,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
 
         foreach ($typeHints as $hint) {
 
-            $typeHintLc = strtolower($hint);
+            $typeHintLc = \strtolower($hint);
 
             if (isset($this->removedClasses[$typeHintLc]) === true) {
                 $itemInfo = [
@@ -392,8 +392,8 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
                     continue;
                 }
 
-                $name   = ltrim($name, '\\');
-                $nameLC = strtolower($name);
+                $name   = \ltrim($name, '\\');
+                $nameLC = \strtolower($name);
 
                 if (isset($this->removedExceptions[$nameLC]) === true) {
                     $itemInfo = [
@@ -430,8 +430,8 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $returnTypeHint   = ltrim($returnTypeHint, '\\');
-        $returnTypeHintLc = strtolower($returnTypeHint);
+        $returnTypeHint   = \ltrim($returnTypeHint, '\\');
+        $returnTypeHintLc = \strtolower($returnTypeHint);
 
         if (isset($this->removedClasses[$returnTypeHintLc]) === false) {
             return;

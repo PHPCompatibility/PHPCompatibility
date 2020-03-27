@@ -48,7 +48,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
         $this->assertNoViolation($file, 2);
 
-        $lineCount = \count(file($filename));
+        $lineCount = \count(\file($filename));
         // Each line of the use case files (starting at line 3) exhibits an
         // error.
         for ($i = 3; $i < $lineCount; $i++) {

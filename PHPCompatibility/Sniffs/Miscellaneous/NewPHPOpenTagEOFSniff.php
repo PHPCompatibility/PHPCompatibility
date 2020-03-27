@@ -54,14 +54,14 @@ class NewPHPOpenTagEOFSniff extends Sniff
             \T_OPEN_TAG_WITH_ECHO,
         ];
 
-        $this->shortOpenTags = (bool) ini_get('short_open_tag');
+        $this->shortOpenTags = (bool) \ini_get('short_open_tag');
         if ($this->shortOpenTags === false) {
             $targets[] = \T_INLINE_HTML;
         } else {
             $targets[] = \T_STRING;
         }
 
-        if (version_compare(\PHP_VERSION_ID, '70399', '>')) {
+        if (\version_compare(\PHP_VERSION_ID, '70399', '>')) {
             $targets[] = \T_OPEN_TAG;
         }
 
@@ -115,7 +115,7 @@ class NewPHPOpenTagEOFSniff extends Sniff
 
             case \T_OPEN_TAG_WITH_ECHO:
                 // PHP 5.4+.
-                if (rtrim($contents) === '<?=') {
+                if (\rtrim($contents) === '<?=') {
                     $error = true;
                 }
                 break;

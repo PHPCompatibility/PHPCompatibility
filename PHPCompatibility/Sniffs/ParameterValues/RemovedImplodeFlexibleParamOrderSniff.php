@@ -152,7 +152,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $start, $end);
         if ($hasTernary !== false
             && isset($tokens[$start]['nested_parenthesis'], $tokens[$hasTernary]['nested_parenthesis'])
-            && count($tokens[$start]['nested_parenthesis']) === count($tokens[$hasTernary]['nested_parenthesis'])
+            && \count($tokens[$start]['nested_parenthesis']) === \count($tokens[$hasTernary]['nested_parenthesis'])
         ) {
             $start = ($hasTernary + 1);
         }
@@ -190,9 +190,9 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
                     continue;
                 }
 
-                $nameLc = strtolower($tokens[$i]['content']);
+                $nameLc = \strtolower($tokens[$i]['content']);
                 if (isset($this->arrayFunctions[$nameLc]) === false
-                    && (strpos($nameLc, 'array_') !== 0
+                    && (\strpos($nameLc, 'array_') !== 0
                     || isset($this->arrayFunctionExceptions[$nameLc]) === true)
                 ) {
                     continue;
@@ -248,7 +248,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         $hasTernary = $phpcsFile->findNext(\T_INLINE_THEN, $start, $end);
         if ($hasTernary !== false
             && isset($tokens[$start]['nested_parenthesis'], $tokens[$hasTernary]['nested_parenthesis'])
-            && count($tokens[$start]['nested_parenthesis']) === count($tokens[$hasTernary]['nested_parenthesis'])
+            && \count($tokens[$start]['nested_parenthesis']) === \count($tokens[$hasTernary]['nested_parenthesis'])
         ) {
             $start = ($hasTernary + 1);
         }

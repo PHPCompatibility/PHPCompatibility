@@ -114,7 +114,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         if ($functionLC === 'iconv_mime_encode') {
             // Special case the iconv_mime_encode() function.
             return $this->processIconvMimeEncode($phpcsFile, $stackPtr, $functionName, $parameters);
@@ -125,7 +125,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         }
 
         $paramName = '$encoding';
-        if (strpos($functionLC, 'iconv_') === 0) {
+        if (\strpos($functionLC, 'iconv_') === 0) {
             $paramName = '$charset';
         } elseif ($functionLC === 'mb_convert_encoding') {
             $paramName = '$from_encoding';
@@ -157,7 +157,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
     {
         $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
 
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         if (isset($parameters[$this->targetFunctions[$functionLC]]) === false) {
             $phpcsFile->addError(
                 $error,
@@ -184,8 +184,8 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             || $tokens[$firstNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY
         ) {
             // Note: the item names are treated case-sensitively in PHP, so match on exact case.
-            $hasInputCharset  = preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);
-            $hasOutputCharset = preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['clean']);
+            $hasInputCharset  = \preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);
+            $hasOutputCharset = \preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['clean']);
             if ($hasInputCharset === 1 && $hasOutputCharset === 1) {
                 // Both input as well as output charset are set.
                 return;

@@ -121,7 +121,7 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
     {
         $file  = $this->sniffFile(__FILE__, '5.4-7.0');
         $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6';
-        $error = sprintf($error, $missing);
+        $error = \sprintf($error, $missing);
 
         if ($type === 'error') {
             $this->assertError($file, $line, $error);

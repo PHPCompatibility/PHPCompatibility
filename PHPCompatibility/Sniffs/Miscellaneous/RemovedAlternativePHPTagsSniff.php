@@ -47,9 +47,9 @@ class RemovedAlternativePHPTagsSniff extends Sniff
      */
     public function register()
     {
-        if (version_compare(\PHP_VERSION_ID, '70000', '<') === true) {
+        if (\version_compare(\PHP_VERSION_ID, '70000', '<') === true) {
             // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
-            $this->aspTags = (bool) ini_get('asp_tags');
+            $this->aspTags = (bool) \ini_get('asp_tags');
         }
 
         return [
@@ -79,7 +79,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
         $tokens  = $phpcsFile->getTokens();
         $openTag = $tokens[$stackPtr];
-        $content = trim($openTag['content']);
+        $content = \trim($openTag['content']);
 
         if ($content === '' || $content === '<?php') {
             return;
@@ -94,7 +94,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
                 ];
                 $errorCode = 'ASPOpenTagFound';
 
-            } elseif (strpos($content, '<script ') !== false) {
+            } elseif (\strpos($content, '<script ') !== false) {
                 $data      = [
                     'Script',
                     $content,
@@ -106,7 +106,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         }
         // Account for incorrect script open tags.
         elseif ($openTag['code'] === \T_INLINE_HTML
-            && preg_match('`(<script (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
+            && \preg_match('`(<script (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found     = $match[1];
             $data      = [
@@ -128,7 +128,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
 
         // If we're still here, we can't be sure if what we found was really intended as ASP open tags.
         if ($openTag['code'] === \T_INLINE_HTML && $this->aspTags === false) {
-            if (strpos($content, '<%') !== false) {
+            if (\strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');
                 $data    = ['<%' . $snippet];
@@ -155,13 +155,13 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         $startPos = 0;
 
         if ($startAt !== '') {
-            $startPos = strpos($content, $startAt);
+            $startPos = \strpos($content, $startAt);
             if ($startPos !== false) {
                 $startPos += \strlen($startAt);
             }
         }
 
-        $snippet = substr($content, $startPos, $length);
+        $snippet = \substr($content, $startPos, $length);
         if ((\strlen($content) - $startPos) > $length) {
             $snippet .= '...';
         }

@@ -86,7 +86,7 @@ class NewArrayUnpackingSniff extends Sniff
 
         $nestingLevel = 0;
         if (isset($tokens[($opener + 1)]['nested_parenthesis'])) {
-            $nestingLevel = count($tokens[($opener + 1)]['nested_parenthesis']);
+            $nestingLevel = \count($tokens[($opener + 1)]['nested_parenthesis']);
         }
 
         $find              = $this->arrayTokens;
@@ -119,7 +119,7 @@ class NewArrayUnpackingSniff extends Sniff
 
             // Ensure this is not function call variable unpacking.
             if (isset($tokens[$i]['nested_parenthesis'])
-                && count($tokens[$i]['nested_parenthesis']) > $nestingLevel
+                && \count($tokens[$i]['nested_parenthesis']) > $nestingLevel
             ) {
                 continue;
             }

@@ -87,7 +87,7 @@ class NewUseConstFunctionSniff extends Sniff
             return;
         }
 
-        if (isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === false) {
+        if (isset($this->validUseNames[\strtolower($tokens[$nextNonEmpty]['content'])]) === false) {
             // Not a `use const` or `use function` statement.
             return;
         }

@@ -62,7 +62,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
         $tokens = [];
         foreach ($this->newTypeCasts as $token => $versions) {
             if (\defined($token)) {
-                $tokens[] = constant($token);
+                $tokens[] = \constant($token);
             }
         }
 
@@ -75,7 +75,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
          *
          * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/1574
          */
-        if (version_compare(Helper::getVersion(), '3.4.0', '<') === true) {
+        if (\version_compare(Helper::getVersion(), '3.4.0', '<') === true) {
             $tokens[] = \T_STRING_CAST;
             $tokens[] = \T_CONSTANT_ENCAPSED_STRING;
         }
@@ -105,7 +105,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
             $tokenContent = $tokens[$stackPtr]['content'];
             switch ($tokenType) {
                 case 'T_STRING_CAST':
-                    if (preg_match('`^\(\s*binary\s*\)$`i', $tokenContent) !== 1) {
+                    if (\preg_match('`^\(\s*binary\s*\)$`i', $tokenContent) !== 1) {
                         return;
                     }
 
@@ -113,8 +113,8 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
                     break;
 
                 case 'T_CONSTANT_ENCAPSED_STRING':
-                    if ((strpos($tokenContent, 'b"') === 0 && substr($tokenContent, -1) === '"')
-                        || (strpos($tokenContent, "b'") === 0 && substr($tokenContent, -1) === "'")
+                    if ((\strpos($tokenContent, 'b"') === 0 && \substr($tokenContent, -1) === '"')
+                        || (\strpos($tokenContent, "b'") === 0 && \substr($tokenContent, -1) === "'")
                     ) {
                         $tokenType = 'T_BINARY_CAST';
                     } else {

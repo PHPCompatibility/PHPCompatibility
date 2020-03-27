@@ -128,7 +128,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
     public function process(File $phpcsFile, $stackPtr)
     {
         $functionName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        $functionNameLc = strtolower($functionName);
+        $functionNameLc = \strtolower($functionName);
 
         if (isset($this->newMagicMethods[$functionNameLc]) === false) {
             return;

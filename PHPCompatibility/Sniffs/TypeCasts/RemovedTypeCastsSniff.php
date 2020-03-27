@@ -64,7 +64,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
     {
         $tokens = [];
         foreach ($this->deprecatedTypeCasts as $token => $versions) {
-            $tokens[] = constant($token);
+            $tokens[] = \constant($token);
         }
 
         return $tokens;
@@ -88,7 +88,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
         $tokenType = $tokens[$stackPtr]['type'];
 
         // Special case `T_DOUBLE_CAST` as the same token is used for (float) and (double) casts.
-        if ($tokenType === 'T_DOUBLE_CAST' && strpos($tokens[$stackPtr]['content'], 'real') === false) {
+        if ($tokenType === 'T_DOUBLE_CAST' && \strpos($tokens[$stackPtr]['content'], 'real') === false) {
             // Float/double casts, not (real) cast.
             return;
         }

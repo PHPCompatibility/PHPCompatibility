@@ -75,7 +75,7 @@ class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         if (isset($parameters[$this->targetFunctions[$functionLC]]) === true) {
             return;
         }

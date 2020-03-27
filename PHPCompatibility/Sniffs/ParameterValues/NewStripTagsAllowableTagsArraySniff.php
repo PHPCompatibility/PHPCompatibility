@@ -98,7 +98,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
         }
 
         if ($this->supportsAbove('7.4') === true) {
-            if (strpos($targetParam['clean'], '>') === false) {
+            if (\strpos($targetParam['clean'], '>') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;
             }
@@ -119,7 +119,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                     }
 
                     if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
-                        && strpos($tokens[$i]['content'], '>') !== false
+                        && \strpos($tokens[$i]['content'], '>') !== false
                     ) {
                         $phpcsFile->addWarning(
                             'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',

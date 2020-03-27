@@ -182,8 +182,8 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
             }
 
             // Strip off potential nullable indication.
-            $typeHint = ltrim($param['type_hint'], '?');
-            $typeHint = strtolower($typeHint);
+            $typeHint = \ltrim($param['type_hint'], '?');
+            $typeHint = \strtolower($typeHint);
 
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
@@ -209,7 +209,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                     $phpcsFile->addError(
                         "'%s' type cannot be used outside of class scope",
                         $param['token'],
-                        ucfirst($typeHint) . 'OutsideClassScopeFound',
+                        \ucfirst($typeHint) . 'OutsideClassScopeFound',
                         [$typeHint]
                     );
                 }

@@ -94,7 +94,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         if (isset($parameters[$this->targetFunctions[$functionLC]]) === false) {
             return;
         }

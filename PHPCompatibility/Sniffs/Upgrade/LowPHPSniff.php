@@ -99,15 +99,15 @@ class LowPHPSniff extends Sniff
             return ($phpcsFile->numTokens + 1);
         }
 
-        $phpVersion = phpversion();
+        $phpVersion = \phpversion();
 
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
-        if (version_compare($phpVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
+        if (\version_compare($phpVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
             $this->examine = false;
             return ($phpcsFile->numTokens + 1);
         }
 
-        if (version_compare($phpVersion, self::MIN_SUPPORTED_VERSION, '<')) {
+        if (\version_compare($phpVersion, self::MIN_SUPPORTED_VERSION, '<')) {
             $isError      = true;
             $message      = 'IMPORTANT: Please be advised that the minimum PHP version the PHPCompatibility standard supports is %s. You are currently using PHP %s. Please upgrade your PHP installation. The recommended version of PHP for PHPCompatibility is %s or higher.';
             $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
@@ -165,7 +165,7 @@ class LowPHPSniff extends Sniff
         }
 
         $messageWidth  = ($reportWidth - 15); // 15 is length of " # | WARNING | ".
-        $delimiterLine = str_repeat('-', ($messageWidth));
+        $delimiterLine = \str_repeat('-', ($messageWidth));
         $disableNotice = 'To disable this notice, add --exclude=PHPCompatibility.Upgrade.LowPHP to your command or add <exclude name="PHPCompatibility.Upgrade.LowPHP.%s"/> to your custom ruleset. ';
         $thankYou      = 'Thank you for using PHPCompatibility!';
 

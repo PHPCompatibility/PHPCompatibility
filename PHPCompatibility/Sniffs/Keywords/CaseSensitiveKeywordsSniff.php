@@ -59,7 +59,7 @@ class CaseSensitiveKeywordsSniff extends Sniff
         }
 
         $tokens         = $phpcsFile->getTokens();
-        $tokenContentLC = strtolower($tokens[$stackPtr]['content']);
+        $tokenContentLC = \strtolower($tokens[$stackPtr]['content']);
 
         if ($tokenContentLC !== $tokens[$stackPtr]['content']) {
             $phpcsFile->addError(

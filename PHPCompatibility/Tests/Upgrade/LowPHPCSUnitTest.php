@@ -66,13 +66,13 @@ class LowPHPCSUnitTest extends BaseSniffTest
      */
     public function testUpgradeNotice()
     {
-        if (version_compare($this->phpcsVersion, LowPHPCSSniff::MIN_SUPPORTED_VERSION, '<')) {
+        if (\version_compare($this->phpcsVersion, LowPHPCSSniff::MIN_SUPPORTED_VERSION, '<')) {
             $this->assertError(
                 $this->sniffResult,
                 1,
                 'Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is ' . LowPHPCSSniff::MIN_SUPPORTED_VERSION
             );
-        } elseif (version_compare($this->phpcsVersion, LowPHPCSSniff::MIN_RECOMMENDED_VERSION, '<')) {
+        } elseif (\version_compare($this->phpcsVersion, LowPHPCSSniff::MIN_RECOMMENDED_VERSION, '<')) {
             $this->assertWarning(
                 $this->sniffResult,
                 1,

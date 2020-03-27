@@ -39,7 +39,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
     public function testNegativeStringOffset($line, $paramName, $functionName)
     {
         $file  = $this->sniffFile(__FILE__, '7.0');
-        $error = sprintf(
+        $error = \sprintf(
             'Negative string offsets were not supported for the $%1$s parameter in %2$s() in PHP 7.0 or lower.',
             $paramName,
             $functionName

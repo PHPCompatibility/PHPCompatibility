@@ -107,7 +107,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
     public function register()
     {
         // Do the list merge only once.
-        $this->allForbiddenNames = array_merge($this->forbiddenNames, $this->softReservedNames);
+        $this->allForbiddenNames = \array_merge($this->forbiddenNames, $this->softReservedNames);
 
         $targets = [
             \T_CLASS,
@@ -147,7 +147,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                 return;
             }
 
-            $nameLc = strtolower($name);
+            $nameLc = \strtolower($name);
             if (isset($this->allForbiddenNames[$nameLc]) === false) {
                 return;
             }
@@ -160,9 +160,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
                 return;
             }
 
-            $namespaceParts = explode('\\', $namespaceName);
+            $namespaceParts = \explode('\\', $namespaceName);
             foreach ($namespaceParts as $namespacePart) {
-                $partLc = strtolower($namespacePart);
+                $partLc = \strtolower($namespacePart);
                 if (isset($this->allForbiddenNames[$partLc]) === true) {
                     $name   = $namespacePart;
                     $nameLc = $partLc;

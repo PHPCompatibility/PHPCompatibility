@@ -42,7 +42,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
     public function testFopenMode($line, $mode, $errorVersion, $okVersion, $displayVersion = null)
     {
         $file  = $this->sniffFile(__FILE__, $errorVersion);
-        $error = sprintf(
+        $error = \sprintf(
             'Passing "%s" as the $mode to fopen() is not supported in PHP %s or lower.',
             $mode,
             isset($displayVersion) ? $displayVersion : $errorVersion

@@ -78,7 +78,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             */
         ];
 
-        if (version_compare(Helper::getVersion(), '3.5.3', '!=')) {
+        if (\version_compare(Helper::getVersion(), '3.5.3', '!=')) {
             $data[] = [212];
             $data[] = [218];
         }

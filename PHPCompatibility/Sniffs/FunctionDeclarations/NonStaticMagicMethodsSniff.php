@@ -152,7 +152,7 @@ class NonStaticMagicMethodsSniff extends Sniff
         }
 
         $methodName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        $methodNameLc = strtolower($methodName);
+        $methodNameLc = \strtolower($methodName);
 
         if (isset($this->magicMethods[$methodNameLc]) === false) {
             // Not one of the magic methods we're looking for.

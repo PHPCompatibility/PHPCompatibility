@@ -83,8 +83,8 @@ class InternalInterfacesSniff extends Sniff
         }
 
         foreach ($interfaces as $interface) {
-            $interface   = ltrim($interface, '\\');
-            $interfaceLc = strtolower($interface);
+            $interface   = \ltrim($interface, '\\');
+            $interfaceLc = \strtolower($interface);
             if (isset($this->internalInterfaces[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
                 $errorCode = $this->stringToErrorCode($interfaceLc) . 'Found';

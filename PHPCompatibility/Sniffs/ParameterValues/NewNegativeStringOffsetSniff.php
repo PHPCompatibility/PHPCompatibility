@@ -102,7 +102,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         foreach ($this->targetFunctions[$functionLC] as $pos => $name) {
             if (isset($parameters[$pos]) === false) {
                 continue;

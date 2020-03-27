@@ -37,7 +37,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
      */
     public function testNewNumericLiteralSeparator($line)
     {
-        if (version_compare(Helper::getVersion(), '3.5.3', '==')) {
+        if (\version_compare(Helper::getVersion(), '3.5.3', '==')) {
             $this->markTestSkipped('PHPCS 3.5.3 is not supported for this sniff');
         }
 
@@ -69,7 +69,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
-        if (version_compare(\PHP_VERSION_ID, '70399', '>') || version_compare(Helper::getVersion(), '3.5.3', '<')) {
+        if (\version_compare(\PHP_VERSION_ID, '70399', '>') || \version_compare(Helper::getVersion(), '3.5.3', '<')) {
             $data[] = [41];
         }
 
@@ -120,7 +120,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
-        if (version_compare(\PHP_VERSION_ID, '70399', '<=') && version_compare(Helper::getVersion(), '3.5.3', '>')) {
+        if (\version_compare(\PHP_VERSION_ID, '70399', '<=') && \version_compare(Helper::getVersion(), '3.5.3', '>')) {
             $data[] = [41];
         }
 

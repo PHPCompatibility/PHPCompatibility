@@ -138,8 +138,8 @@ class NewClassMemberAccessSniff extends Sniff
             return [];
         }
 
-        $parenthesisCloser = end($tokens[$stackPtr]['nested_parenthesis']);
-        $parenthesisOpener = key($tokens[$stackPtr]['nested_parenthesis']);
+        $parenthesisCloser = \end($tokens[$stackPtr]['nested_parenthesis']);
+        $parenthesisOpener = \key($tokens[$stackPtr]['nested_parenthesis']);
 
         if (isset($tokens[$parenthesisOpener]['parenthesis_owner']) === true) {
             // If there is an owner, these parentheses are for a different purpose.

@@ -109,12 +109,12 @@ class LowPHPCSSniff extends Sniff
         $phpcsVersion = Helper::getVersion();
 
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
-        if (version_compare($phpcsVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
+        if (\version_compare($phpcsVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
             $this->examine = false;
             return ($phpcsFile->numTokens + 1);
         }
 
-        if (version_compare($phpcsVersion, self::MIN_SUPPORTED_VERSION, '<')) {
+        if (\version_compare($phpcsVersion, self::MIN_SUPPORTED_VERSION, '<')) {
             $isError      = true;
             $message      = 'IMPORTANT: Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is %s. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation. The recommended version of PHP_CodeSniffer for PHPCompatibility is %s or higher.';
             $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
@@ -172,7 +172,7 @@ class LowPHPCSSniff extends Sniff
         }
 
         $messageWidth  = ($reportWidth - 15); // 15 is length of " # | WARNING | ".
-        $delimiterLine = str_repeat('-', ($messageWidth));
+        $delimiterLine = \str_repeat('-', ($messageWidth));
         $disableNotice = 'To disable this notice, add --exclude=PHPCompatibility.Upgrade.LowPHPCS to your command or add <exclude name="PHPCompatibility.Upgrade.LowPHPCS.%s"/> to your custom ruleset. ';
         $thankYou      = 'Thank you for using PHPCompatibility!';
 

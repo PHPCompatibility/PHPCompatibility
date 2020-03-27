@@ -113,7 +113,7 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
             }
 
             foreach ($this->newFormats as $pattern => $versionArray) {
-                if (preg_match($pattern, $content, $matches) !== 1) {
+                if (\preg_match($pattern, $content, $matches) !== 1) {
                     continue;
                 }
 

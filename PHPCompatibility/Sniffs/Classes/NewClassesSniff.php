@@ -988,7 +988,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         $this->newExceptions = \array_change_key_case($this->newExceptions, \CASE_LOWER);
 
         // Add the Exception classes to the Classes list.
-        $this->newClasses = array_merge($this->newClasses, $this->newExceptions);
+        $this->newClasses = \array_merge($this->newClasses, $this->newExceptions);
 
         return [
             \T_NEW,
@@ -1076,8 +1076,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $className   = substr($FQClassName, 1); // Remove global namespace indicator.
-        $classNameLc = strtolower($className);
+        $className   = \substr($FQClassName, 1); // Remove global namespace indicator.
+        $classNameLc = \strtolower($className);
 
         if (isset($this->newClasses[$classNameLc]) === false) {
             return;
@@ -1114,7 +1114,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
 
         foreach ($typeHints as $hint) {
 
-            $typeHintLc = strtolower($hint);
+            $typeHintLc = \strtolower($hint);
 
             if (isset($this->newClasses[$typeHintLc]) === true) {
                 $itemInfo = [
@@ -1177,8 +1177,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
                     continue;
                 }
 
-                $name   = ltrim($name, '\\');
-                $nameLC = strtolower($name);
+                $name   = \ltrim($name, '\\');
+                $nameLC = \strtolower($name);
 
                 if (isset($this->newExceptions[$nameLC]) === true) {
                     $itemInfo = [
@@ -1215,8 +1215,8 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $returnTypeHint   = ltrim($returnTypeHint, '\\');
-        $returnTypeHintLc = strtolower($returnTypeHint);
+        $returnTypeHint   = \ltrim($returnTypeHint, '\\');
+        $returnTypeHintLc = \strtolower($returnTypeHint);
 
         if (isset($this->newClasses[$returnTypeHintLc]) === false) {
             return;

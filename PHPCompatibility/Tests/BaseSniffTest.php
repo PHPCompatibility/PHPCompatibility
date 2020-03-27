@@ -101,7 +101,7 @@ class BaseSniffTest extends TestCase
      */
     protected function setUpPHPCS()
     {
-        if (class_exists('\PHP_CodeSniffer') === true) {
+        if (\class_exists('\PHP_CodeSniffer') === true) {
             /*
              * PHPCS 2.x.
              */
@@ -145,10 +145,10 @@ class BaseSniffTest extends TestCase
     protected function getSniffCode()
     {
         $class    = \get_class($this);
-        $parts    = explode('\\', $class);
-        $sniff    = array_pop($parts);
-        $sniff    = str_replace('UnitTest', '', $sniff);
-        $category = array_pop($parts);
+        $parts    = \explode('\\', $class);
+        $sniff    = \array_pop($parts);
+        $sniff    = \str_replace('UnitTest', '', $sniff);
+        $category = \array_pop($parts);
         return self::STANDARD_NAME . '.' . $category . '.' . $sniff;
     }
 
@@ -170,18 +170,18 @@ class BaseSniffTest extends TestCase
      */
     public function sniffFile($pathToFile, $targetPhpVersion = 'none')
     {
-        if (strpos($pathToFile, 'UnitTest.php') !== false) {
+        if (\strpos($pathToFile, 'UnitTest.php') !== false) {
             // Ok, so __FILE__ was passed, change the file extension.
-            $pathToFile = str_replace('UnitTest.php', 'UnitTest.inc', $pathToFile);
+            $pathToFile = \str_replace('UnitTest.php', 'UnitTest.inc', $pathToFile);
         }
-        $pathToFile = realpath($pathToFile);
+        $pathToFile = \realpath($pathToFile);
 
         if (isset(self::$sniffFiles[$pathToFile][$targetPhpVersion])) {
             return self::$sniffFiles[$pathToFile][$targetPhpVersion];
         }
 
         try {
-            if (class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
+            if (\class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
                 // PHPCS 3.x, 4.x.
                 $config            = new \PHP_CodeSniffer\Config();
                 $config->cache     = false;
@@ -281,11 +281,11 @@ class BaseSniffTest extends TestCase
             $insteadFoundMessages[] = $issue['message'];
         }
 
-        $insteadMessagesString = implode(', ', $insteadFoundMessages);
+        $insteadMessagesString = \implode(', ', $insteadFoundMessages);
 
         $msg = "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString.";
 
-        if (method_exists($this, 'assertStringContainsString') === false) {
+        if (\method_exists($this, 'assertStringContainsString') === false) {
             // PHPUnit < 7.
             return $this->assertContains($expectedMessage, $insteadMessagesString, $msg);
         }
@@ -334,7 +334,7 @@ class BaseSniffTest extends TestCase
         }
 
         $failMessage = "Failed asserting no standards violation on line $lineNumber. Found: \n"
-            . implode("\n", $encounteredMessages);
+            . \implode("\n", $encounteredMessages);
         $this->assertCount(0, $encounteredMessages, $failMessage);
     }
 

@@ -54,7 +54,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
             self::$php73plus = false;
             // When using PHP 7.3+, the closing marker will be misidentified if the
             // body contains the heredoc/nowdoc identifier.
-            if (version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
+            if (\version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
                 self::$php73plus = true;
             }
         }
@@ -76,7 +76,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testIndentedHeredocNowdoc($fileNumber, $line, $skipNoViolation = false)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertError($file, $line, 'Heredoc/nowdoc with an indented closing marker is not supported in PHP 7.2 or earlier.');
@@ -127,7 +127,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testCodeAfterHeredocNowdoc($fileNumber, $line, $skipNoViolation = false)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertError($file, $line, 'Having code - other than a semi-colon or new line - after the closing marker of a heredoc/nowdoc is not supported in PHP 7.2 or earlier.');
@@ -174,7 +174,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testForbiddenClosingMarkerInBody($line)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, 2);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, 2);
 
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertError($file, $line, 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.');
@@ -219,7 +219,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives()
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, 1);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, 1);
 
         $file = $this->sniffFile($fileName, '7.2');
         $this->assertNoViolation($file);

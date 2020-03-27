@@ -134,7 +134,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
         $tokens = [];
         foreach ($this->newOperators as $token => $versions) {
             if (\defined($token)) {
-                $tokens[] = constant($token);
+                $tokens[] = \constant($token);
             } elseif (isset($this->newOperatorsPHPCSCompat[$token])) {
                 $tokens[] = $this->newOperatorsPHPCSCompat[$token];
             }

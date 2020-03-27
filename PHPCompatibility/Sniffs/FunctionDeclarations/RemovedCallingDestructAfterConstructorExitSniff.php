@@ -69,7 +69,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        if (strtolower($name) !== '__construct') {
+        if (\strtolower($name) !== '__construct') {
             // The rule only applies to constructors. Bow out.
             return;
         }

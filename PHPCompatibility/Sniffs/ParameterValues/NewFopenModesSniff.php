@@ -87,13 +87,13 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 continue;
             }
 
-            if (strpos($tokens[$i]['content'], 'c+') !== false && $this->supportsBelow('5.2.5')) {
+            if (\strpos($tokens[$i]['content'], 'c+') !== false && $this->supportsBelow('5.2.5')) {
                 $errors['cplusFound'] = [
                     'c+',
                     '5.2.5',
                     $targetParam['clean'],
                 ];
-            } elseif (strpos($tokens[$i]['content'], 'c') !== false && $this->supportsBelow('5.2.5')) {
+            } elseif (\strpos($tokens[$i]['content'], 'c') !== false && $this->supportsBelow('5.2.5')) {
                 $errors['cFound'] = [
                     'c',
                     '5.2.5',
@@ -101,7 +101,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 ];
             }
 
-            if (strpos($tokens[$i]['content'], 'e') !== false && $this->supportsBelow('7.0.15')) {
+            if (\strpos($tokens[$i]['content'], 'e') !== false && $this->supportsBelow('7.0.15')) {
                 $errors['eFound'] = [
                     'e',
                     '7.0.15',

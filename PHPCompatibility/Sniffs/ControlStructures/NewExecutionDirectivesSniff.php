@@ -126,7 +126,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         if (isset($this->newDirectives[$directiveContent]) === false) {
             $error = 'Declare can only be used with the directives %s. Found: %s';
             $data  = [
-                implode(', ', array_keys($this->newDirectives)),
+                \implode(', ', \array_keys($this->newDirectives)),
                 $directiveContent,
             ];
 
@@ -335,7 +335,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     protected function isNumeric($value)
     {
-        return is_numeric($value);
+        return \is_numeric($value);
     }
 
 
@@ -353,8 +353,8 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
     protected function validEncoding($value)
     {
         static $encodings;
-        if (isset($encodings) === false && function_exists('mb_list_encodings')) {
-            $encodings = mb_list_encodings();
+        if (isset($encodings) === false && \function_exists('mb_list_encodings')) {
+            $encodings = \mb_list_encodings();
         }
 
         if (empty($encodings) || \is_array($encodings) === false) {

@@ -125,7 +125,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
                 continue;
             }
 
-            if (strtolower($funcName) === '__construct') {
+            if (\strtolower($funcName) === '__construct') {
                 $newConstructorFound = true;
             }
 

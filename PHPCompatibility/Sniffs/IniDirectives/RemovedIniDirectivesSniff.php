@@ -623,7 +623,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }
@@ -706,6 +706,6 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      */
     protected function getAlternativeOptionTemplate()
     {
-        return str_replace('%s', "'%s'", parent::getAlternativeOptionTemplate());
+        return \str_replace('%s', "'%s'", parent::getAlternativeOptionTemplate());
     }
 }

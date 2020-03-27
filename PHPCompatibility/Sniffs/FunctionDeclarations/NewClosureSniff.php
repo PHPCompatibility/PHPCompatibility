@@ -134,7 +134,7 @@ class NewClosureSniff extends Sniff
                         'Closures / anonymous functions could not use "%s::" in PHP 5.3 or earlier',
                         $usesClassRef,
                         'ClassRefFound',
-                        [strtolower($tokens[$usesClassRef]['content'])]
+                        [\strtolower($tokens[$usesClassRef]['content'])]
                     );
 
                     $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, ($usesClassRef + 1), $scopeEnd);
