@@ -36,3 +36,9 @@ class ezcReflectionMethod extends ReflectionMethod {
     use ezcReflectionReturnInfo { sayHello as private myPrivateHello; };
     /* ... */
 }
+
+// Live coding.
+$f = function ($param) use
+
+// Live coding.
+$f = function ($param) use ($param
