@@ -39,7 +39,7 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
     public function testParameterShadowSuperGlobal($superglobal, $line)
     {
         $file = $this->sniffFile(__FILE__, '5.4');
-        $this->assertError($file, $line, "Parameter shadowing super global ({$superglobal}) causes fatal error since PHP 5.4");
+        $this->assertError($file, $line, "Parameter shadowing super global ({$superglobal}) causes a fatal error since PHP 5.4");
     }
 
     /**
@@ -64,6 +64,7 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
             array('$GLOBALS', 20),
             array('$_SERVER', 21),
             array('$_GET', 22),
+            array('$_ENV', 25),
         );
     }
 

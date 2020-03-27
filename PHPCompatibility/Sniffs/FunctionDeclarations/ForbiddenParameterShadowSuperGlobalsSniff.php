@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Variables;
 
@@ -31,16 +33,20 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
      * Register the tokens to listen for.
      *
      * @since 7.0.0
-     * @since 7.1.3 Allows for closures.
+     * @since 7.1.3  Allows for closures.
+     * @since 10.0.0 Allows for PHP 7.4+ arrow functions.
      *
      * @return array
      */
     public function register()
     {
-        return array(
+        $targets  = array(
             \T_FUNCTION,
             \T_CLOSURE,
         );
+        $targets += Collections::arrowFunctionTokensBC();
+
+        return $targets;
     }
 
     /**
@@ -59,15 +65,20 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
             return;
         }
 
-        // Get all parameters from function signature.
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-        if (empty($parameters) || \is_array($parameters) === false) {
+        try {
+            // Get all parameters from the function signature.
+            $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+            if (empty($parameters)) {
+                return;
+            }
+        } catch (RuntimeException $e) {
+            // Most likely a T_STRING which wasn't an arrow function.
             return;
         }
 
         foreach ($parameters as $param) {
             if (Variables::isSuperglobalName($param['name']) === true) {
-                $error     = 'Parameter shadowing super global (%s) causes fatal error since PHP 5.4';
+                $error     = 'Parameter shadowing super global (%s) causes a fatal error since PHP 5.4';
                 $errorCode = $this->stringToErrorCode(substr($param['name'], 1)) . 'Found';
                 $data      = array($param['name']);
 

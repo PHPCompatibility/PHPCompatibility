@@ -9,7 +9,7 @@ function testingE( $_FILES ) {}
 function testingF( $_COOKIE ) {}
 function testingG( $_SESSION ) {}
 function testingH( $_REQUEST ) {}
-function testingI( $_ENV ) {}
+class Foo { function testingI( $_ENV ) {} }
 
 // This should be ok.
 function testingJ( $globals ) {}
@@ -20,3 +20,6 @@ function testingL( $POST ) {}
 function ( $GLOBALS ) {}
 function( $_SERVER ) {}
 function($_GET) {}
+
+// Arrow functions: these should be flagged.
+$arrow = fn( $_ENV ) => $_ENV['key'];
