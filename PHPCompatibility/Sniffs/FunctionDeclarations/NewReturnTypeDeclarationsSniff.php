@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
@@ -105,16 +107,20 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.0
-     * @since 7.1.2 Now also checks based on the function and closure keywords.
+     * @since 7.1.2  Now also checks based on the function and closure keywords.
+     * @since 10.0.0 Now also checks PHP 7.4+ arrow functions.
      *
      * @return array
      */
     public function register()
     {
-        return array(
+        $targets  = array(
             \T_FUNCTION,
             \T_CLOSURE,
         );
+        $targets += Collections::arrowFunctionTokensBC();
+
+        return $targets;
     }
 
 
@@ -131,7 +137,13 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        try {
+            $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // This must have been a T_STRING which wasn't an arrow function.
+            return;
+        }
+
         if ($properties['return_type'] === '') {
             // No return type found.
             return;

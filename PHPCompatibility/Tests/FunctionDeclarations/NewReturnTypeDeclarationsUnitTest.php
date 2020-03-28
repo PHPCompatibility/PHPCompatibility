@@ -70,6 +70,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             array('Class name', '5.6', 14, '7.0'),
             array('Class name', '5.6', 15, '7.0'),
             array('Class name', '5.6', 37, '7.0'),
+            array('int', '5.6', 43, '7.0'),
 
             array('iterable', '7.0', 18, '7.1'),
             array('void', '7.0', 19, '7.1'),
@@ -108,6 +109,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
         return array(
             array(25),
             array(26),
+            array(42),
         );
     }
 
