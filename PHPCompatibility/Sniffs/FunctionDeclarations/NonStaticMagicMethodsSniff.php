@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -150,7 +151,7 @@ class NonStaticMagicMethodsSniff extends Sniff
             return;
         }
 
-        $methodName   = $phpcsFile->getDeclarationName($stackPtr);
+        $methodName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         $methodNameLc = strtolower($methodName);
 
         if (isset($this->magicMethods[$methodNameLc]) === false) {
@@ -158,7 +159,7 @@ class NonStaticMagicMethodsSniff extends Sniff
             return;
         }
 
-        $methodProperties = $phpcsFile->getMethodProperties($stackPtr);
+        $methodProperties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         $errorCodeBase    = $this->stringToErrorCode($methodNameLc);
 
         if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
