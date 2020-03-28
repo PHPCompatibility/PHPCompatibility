@@ -162,7 +162,9 @@ class NonStaticMagicMethodsSniff extends Sniff
         $methodProperties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         $errorCodeBase    = $this->stringToErrorCode($methodNameLc);
 
-        if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
+        if (isset($this->magicMethods[$methodNameLc]['visibility'])
+            && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']
+        ) {
             $error     = 'Visibility for magic method %s must be %s. Found: %s';
             $errorCode = $errorCodeBase . 'MethodVisibility';
             $data      = array(
@@ -174,7 +176,9 @@ class NonStaticMagicMethodsSniff extends Sniff
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
 
-        if (isset($this->magicMethods[$methodNameLc]['static']) && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']) {
+        if (isset($this->magicMethods[$methodNameLc]['static'])
+            && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']
+        ) {
             $error     = 'Magic method %s cannot be defined as static.';
             $errorCode = $errorCodeBase . 'MethodStatic';
             $data      = array($methodName);
