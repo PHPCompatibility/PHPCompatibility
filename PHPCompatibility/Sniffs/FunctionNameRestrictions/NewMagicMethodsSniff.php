@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
@@ -125,14 +127,14 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $functionName   = $phpcsFile->getDeclarationName($stackPtr);
+        $functionName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         $functionNameLc = strtolower($functionName);
 
         if (isset($this->newMagicMethods[$functionNameLc]) === false) {
             return;
         }
 
-        if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
             return;
         }
 
