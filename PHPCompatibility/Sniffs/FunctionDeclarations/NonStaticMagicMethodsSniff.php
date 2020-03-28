@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Verifies the use of the correct visibility and static properties of magic methods.
@@ -112,18 +113,16 @@ class NonStaticMagicMethodsSniff extends Sniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 5.5
-     * @since 5.6   Now also checks traits.
-     * @since 7.1.4 Now also checks anonymous classes.
+     * @since 5.6    Now also checks traits.
+     * @since 7.1.4  Now also checks anonymous classes.
+     * @since 10.0.0 Switch to check based on T_FUNCTION token instead of OO construct token.
      *
      * @return array
      */
     public function register()
     {
         return array(
-            \T_CLASS,
-            \T_ANON_CLASS,
-            \T_INTERFACE,
-            \T_TRAIT,
+            \T_FUNCTION,
         );
     }
 
@@ -146,66 +145,45 @@ class NonStaticMagicMethodsSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
-        if (isset($tokens[$stackPtr]['scope_closer']) === false) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
+            // Not a method.
             return;
         }
 
-        $classScopeCloser = $tokens[$stackPtr]['scope_closer'];
-        $functionPtr      = $stackPtr;
+        $methodName   = $phpcsFile->getDeclarationName($stackPtr);
+        $methodNameLc = strtolower($methodName);
 
-        // Find all the functions in this class or interface.
-        while (($functionToken = $phpcsFile->findNext(\T_FUNCTION, $functionPtr, $classScopeCloser)) !== false) {
-            /*
-             * Get the scope closer for this function in order to know how
-             * to advance to the next function.
-             * If no body of function (e.g. for interfaces), there is
-             * no closing curly brace; advance the pointer differently.
-             */
-            if (isset($tokens[$functionToken]['scope_closer'])) {
-                $scopeCloser = $tokens[$functionToken]['scope_closer'];
-            } else {
-                $scopeCloser = ($functionToken + 1);
+        if (isset($this->magicMethods[$methodNameLc]) === false) {
+            // Not one of the magic methods we're looking for.
+            return;
+        }
+
+        $methodProperties = $phpcsFile->getMethodProperties($stackPtr);
+        $errorCodeBase    = $this->stringToErrorCode($methodNameLc);
+
+        if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
+            $error     = 'Visibility for magic method %s must be %s. Found: %s';
+            $errorCode = $errorCodeBase . 'MethodVisibility';
+            $data      = array(
+                $methodName,
+                $this->magicMethods[$methodNameLc]['visibility'],
+                $methodProperties['scope'],
+            );
+
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+        }
+
+        if (isset($this->magicMethods[$methodNameLc]['static']) && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']) {
+            $error     = 'Magic method %s cannot be defined as static.';
+            $errorCode = $errorCodeBase . 'MethodStatic';
+            $data      = array($methodName);
+
+            if ($this->magicMethods[$methodNameLc]['static'] === true) {
+                $error     = 'Magic method %s must be defined as static.';
+                $errorCode = $errorCodeBase . 'MethodNonStatic';
             }
 
-            $methodName   = $phpcsFile->getDeclarationName($functionToken);
-            $methodNameLc = strtolower($methodName);
-            if (isset($this->magicMethods[$methodNameLc]) === false) {
-                $functionPtr = $scopeCloser;
-                continue;
-            }
-
-            $methodProperties = $phpcsFile->getMethodProperties($functionToken);
-            $errorCodeBase    = $this->stringToErrorCode($methodNameLc);
-
-            if (isset($this->magicMethods[$methodNameLc]['visibility']) && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']) {
-                $error     = 'Visibility for magic method %s must be %s. Found: %s';
-                $errorCode = $errorCodeBase . 'MethodVisibility';
-                $data      = array(
-                    $methodName,
-                    $this->magicMethods[$methodNameLc]['visibility'],
-                    $methodProperties['scope'],
-                );
-
-                $phpcsFile->addError($error, $functionToken, $errorCode, $data);
-            }
-
-            if (isset($this->magicMethods[$methodNameLc]['static']) && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']) {
-                $error     = 'Magic method %s cannot be defined as static.';
-                $errorCode = $errorCodeBase . 'MethodStatic';
-                $data      = array($methodName);
-
-                if ($this->magicMethods[$methodNameLc]['static'] === true) {
-                    $error     = 'Magic method %s must be defined as static.';
-                    $errorCode = $errorCodeBase . 'MethodNonStatic';
-                }
-
-                $phpcsFile->addError($error, $functionToken, $errorCode, $data);
-            }
-
-            // Advance to next function.
-            $functionPtr = $scopeCloser;
+            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
     }
 }
