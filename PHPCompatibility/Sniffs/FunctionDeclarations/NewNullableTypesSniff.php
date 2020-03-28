@@ -44,7 +44,6 @@ class NewNullableTypesSniff extends Sniff
         return array(
             \T_FUNCTION,
             \T_CLOSURE,
-            \T_RETURN_TYPE,
         );
     }
 
@@ -66,40 +65,11 @@ class NewNullableTypesSniff extends Sniff
             return;
         }
 
-        $tokens    = $phpcsFile->getTokens();
-        $tokenCode = $tokens[$stackPtr]['code'];
-
-        if ($tokenCode === \T_FUNCTION || $tokenCode === \T_CLOSURE) {
-            $this->processFunctionDeclaration($phpcsFile, $stackPtr);
-
-            // Deal with older PHPCS version which don't recognize return type hints
-            // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
-            $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
-            if ($returnTypeHint !== false) {
-                $this->processReturnType($phpcsFile, $returnTypeHint);
-            }
-        } else {
-            $this->processReturnType($phpcsFile, $stackPtr);
-        }
-    }
-
-
-    /**
-     * Process this test for function tokens.
-     *
-     * @since 7.0.7
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
-     *
-     * @return void
-     */
-    protected function processFunctionDeclaration(File $phpcsFile, $stackPtr)
-    {
+        /*
+         * Check parameter type declarations.
+         */
         $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-
-        if (empty($params) === false && \is_array($params)) {
+        if (empty($params) === false) {
             foreach ($params as $param) {
                 if ($param['nullable_type'] === true) {
                     $phpcsFile->addError(
@@ -111,53 +81,18 @@ class NewNullableTypesSniff extends Sniff
                 }
             }
         }
-    }
 
-
-    /**
-     * Process this test for return type tokens.
-     *
-     * @since 7.0.7
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
-     *
-     * @return void
-     */
-    protected function processReturnType(File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        if (isset($tokens[($stackPtr - 1)]['code']) === false) {
-            return;
-        }
-
-        $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-
-        // Deal with namespaced class names.
-        if ($tokens[$previous]['code'] === \T_NS_SEPARATOR) {
-            $validTokens                  = Tokens::$emptyTokens;
-            $validTokens[\T_STRING]       = true;
-            $validTokens[\T_NS_SEPARATOR] = true;
-
-            $stackPtr--;
-
-            while (isset($validTokens[$tokens[($stackPtr - 1)]['code']]) === true) {
-                $stackPtr--;
-            }
-
-            $previous = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        }
-
-        // T_NULLABLE token was introduced in PHPCS 2.8.0. Before that it identified as T_INLINE_THEN.
-        if ((\defined('T_NULLABLE') === true && $tokens[$previous]['type'] === 'T_NULLABLE')
-            || (\defined('T_NULLABLE') === false && $tokens[$previous]['code'] === \T_INLINE_THEN)
-        ) {
+        /*
+         * Check return type declarations.
+         */
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        if ($properties['nullable_return_type'] === true) {
+            $nullPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($properties['return_type_token'] - 1), null, true);
             $phpcsFile->addError(
-                'Nullable return types are not supported in PHP 7.0 or earlier.',
-                $stackPtr,
-                'returnTypeFound'
+                'Nullable return types are not supported in PHP 7.0 or earlier. Found: %s',
+                $nullPtr,
+                'returnTypeFound',
+                array($properties['return_type'])
             );
         }
     }

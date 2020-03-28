@@ -20,7 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group typeDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypesSniff
- * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  *
  * @since 7.0.7
  */
