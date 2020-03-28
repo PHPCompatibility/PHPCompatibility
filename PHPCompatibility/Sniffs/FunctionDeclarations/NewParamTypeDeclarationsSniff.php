@@ -12,7 +12,9 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -124,16 +126,20 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.0
-     * @since 7.1.3 Now also checks closures.
+     * @since 7.1.3  Now also checks closures.
+     * @since 10.0.0 Now also checks PHP 7.4+ arrow functions.
      *
      * @return array
      */
     public function register()
     {
-        return array(
+        $targets  = array(
             \T_FUNCTION,
             \T_CLOSURE,
         );
+        $targets += Collections::arrowFunctionTokensBC();
+
+        return $targets;
     }
 
 
@@ -156,7 +162,13 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        try {
+            $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Most likely a T_STRING which wasn't an arrow function.
+            return;
+        }
+
         if (empty($paramNames)) {
             return;
         }

@@ -83,6 +83,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array('parent', '5.1', 66, '5.2', false),
             array('self', '5.1', 71, '5.2'),
             array('self', '5.1', 72, '5.2', false),
+            array('parent', '5.1', 73, '5.2', false),
+            array('int', '5.6', 78, '7.0'),
+            array('callable', '5.3', 80, '5.4'),
         );
     }
 
@@ -117,6 +120,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array('boolean', 'bool', 20),
             array('integer', 'int', 21),
             array('static', 'self', 25),
+            array('integer', 'int', 81),
         );
     }
 
@@ -182,6 +186,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
     {
         return array(
             array(71),
+            array(73),
         );
     }
 
@@ -246,6 +251,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array(66),
             array(71),
             array(72),
+            array(73),
+            array(78),
+            array(79),
+            array(80),
+            array(81),
         );
     }
 
@@ -277,6 +287,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
         return array(
             array(48),
             array(49),
+            array(82),
         );
     }
 
