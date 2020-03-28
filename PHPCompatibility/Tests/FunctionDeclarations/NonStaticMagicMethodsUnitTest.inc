@@ -271,3 +271,9 @@ trait WrongStaticTrait
     public static function __serialize() {}
     static public function __unserialize($data) {}
 }
+
+class Nested {
+    public function something() {
+        function __get() {} // This is a global function, not a method.
+    }
+}

@@ -367,6 +367,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             array(243),
             array(244),
             array(245),
+
+            // Nested function.
+            array(277),
         );
     }
 
