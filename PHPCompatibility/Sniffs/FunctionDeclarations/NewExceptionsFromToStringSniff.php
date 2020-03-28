@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -54,9 +55,7 @@ class NewExceptionsFromToStringSniff extends Sniff
     {
         // Enhance the array of tokens to ignore for finding the docblock.
         $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
-        if (isset(Tokens::$phpcsCommentTokens)) {
-            $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
-        }
+        $this->docblockIgnoreTokens += BCTokens::phpcsCommentTokens();
 
         return array(\T_FUNCTION);
     }
@@ -84,13 +83,13 @@ class NewExceptionsFromToStringSniff extends Sniff
             return;
         }
 
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);
+        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         if (strtolower($functionName) !== '__tostring') {
             // Not the right function.
             return;
         }
 
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
             // Function, not method.
             return;
         }
