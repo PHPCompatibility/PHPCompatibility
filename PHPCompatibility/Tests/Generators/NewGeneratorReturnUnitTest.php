@@ -90,6 +90,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
             array(21),
             array(53),
             array(107),
+            array(119),
         );
     }
 

@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Generators;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\Conditions;
 
@@ -102,6 +103,19 @@ class NewGeneratorReturnSniff extends Sniff
         if ($tokens[$stackPtr]['code'] === \T_STRING
             && $tokens[$stackPtr]['content'] !== 'yield'
         ) {
+            return;
+        }
+
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prevNonEmpty !== false
+            && ($tokens[$prevNonEmpty]['type'] === 'T_FN_ARROW'
+            || $tokens[$prevNonEmpty]['code'] === \T_DOUBLE_ARROW)
+        ) {
+            /*
+             * Yield in an arrow function, which can only contain one expression.
+             * And as `yield` can not be used within an array declaration or a foreach expression,
+             * just checking for the double arrow should be sufficient.
+             */
             return;
         }
 

@@ -79,7 +79,7 @@ function xrange($start, $limit, $step = 1) {
             yield $i;
         }
     }
-    
+
     return 100; // Not OK.
 }
 
@@ -106,9 +106,15 @@ function nestedClosureReturn() {
 	$a = function() {
 		return 10; // OK.
 	};
-	
+
 	$a();
 
 	yield 20;
 }
 
+function notAGeneratorNestedArrowGenerator($a) {
+    $arrow1 = fn($i) => yield $i++;
+    $arrow2 = fn($array) => yield from $array;
+
+    return $arrow1($a); // OK.
+}
