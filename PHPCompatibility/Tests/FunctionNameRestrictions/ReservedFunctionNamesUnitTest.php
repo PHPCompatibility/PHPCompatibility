@@ -26,18 +26,19 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
 {
 
     /**
-     * testReservedFunctionNames
+     * Test that double underscore prefixed functions/methods which aren't reserved names trigger an error.
      *
      * @dataProvider dataReservedFunctionNames
      *
-     * @param int $line The line number.
+     * @param int    $line The line number.
+     * @param string $type Either 'function' or 'method'.
      *
      * @return void
      */
-    public function testReservedFunctionNames($line)
+    public function testReservedFunctionNames($line, $type)
     {
         $file = $this->sniffFile(__FILE__);
-        $this->assertWarning($file, $line, ' is discouraged; PHP has reserved all method names with a double underscore prefix for future use.');
+        $this->assertWarning($file, $line, " is discouraged; PHP has reserved all $type names with a double underscore prefix for future use.");
     }
 
     /**
@@ -50,39 +51,39 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
     public function dataReservedFunctionNames()
     {
         return array(
-            array(20),
-            array(21),
-            array(22),
+            array(20, 'method'),
+            array(21, 'method'),
+            array(22, 'method'),
 
-            array(25),
-            array(26),
-            array(27),
-            array(28),
-            array(29),
-            array(30),
-            array(31),
-            array(32),
-            array(33),
-            array(34),
-            array(35),
-            array(37),
-            array(38),
-            array(39),
-            array(41),
-            array(42),
+            array(25, 'function'),
+            array(26, 'function'),
+            array(27, 'function'),
+            array(28, 'function'),
+            array(29, 'function'),
+            array(30, 'function'),
+            array(31, 'function'),
+            array(32, 'function'),
+            array(33, 'function'),
+            array(34, 'function'),
+            array(35, 'function'),
+            array(37, 'function'),
+            array(38, 'function'),
+            array(39, 'function'),
+            array(41, 'function'),
+            array(42, 'function'),
 
-            array(92),
-            array(93),
-            array(94),
+            array(92, 'method'),
+            array(93, 'method'),
+            array(94, 'method'),
 
-            array(107),
-            array(109),
+            array(107, 'method'),
+            array(109, 'method'),
         );
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify the sniff doesn't throw false positives.
      *
      * @dataProvider dataNoFalsePositives
      *

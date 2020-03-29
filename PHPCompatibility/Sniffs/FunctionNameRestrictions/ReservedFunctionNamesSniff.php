@@ -153,7 +153,7 @@ class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
             $magicPart = strtolower(substr($functionName, 2));
             if (isset($this->magicFunctions[$magicPart]) === false) {
                 $phpcsFile->addWarning(
-                    'Function name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use.',
+                    'Function name "%s" is discouraged; PHP has reserved all function names with a double underscore prefix for future use.',
                     $stackPtr,
                     'FunctionDoubleUnderscore',
                     array($functionName)
