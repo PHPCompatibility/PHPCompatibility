@@ -40,12 +40,6 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
     if (class_exists('\PHP_CodeSniffer_Exception') === false) {
         class_alias('PHP_CodeSniffer\Exceptions\RuntimeException', '\PHP_CodeSniffer_Exception');
     }
-    if (class_exists('\PHP_CodeSniffer_Standards_AbstractScopeSniff') === false) {
-        class_alias('PHP_CodeSniffer\Sniffs\AbstractScopeSniff', '\PHP_CodeSniffer_Standards_AbstractScopeSniff');
-    }
-    if (class_exists('\Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff') === false) {
-        class_alias('PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff', '\Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff');
-    }
 
     define('PHPCOMPATIBILITY_PHPCS_ALIASES_SET', true);
 

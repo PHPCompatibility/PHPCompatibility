@@ -10,158 +10,118 @@
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
-use Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff as PHPCS_CamelCapsFunctionNameSniff;
+use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Standards_AbstractScopeSniff as PHPCS_AbstractScopeSniff;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * All function and method names starting with double underscore are reserved by PHP.
  *
  * PHP version All
  *
- * {@internal Extends an upstream sniff to benefit from the properties contained therein.
- *            The properties are lists of valid PHP magic function and method names, which
- *            should be ignored for the purposes of this sniff.
- *            As this sniff is not PHP version specific, we don't need access to the utility
- *            methods in the PHPCompatibility\Sniff, so extending the upstream sniff is fine.
- *            As the upstream sniff checks the same (and more, but we don't need the rest),
- *            the logic in this sniff is largely the same as used upstream.
- *            Extending the upstream sniff instead of including it via the ruleset, however,
- *            prevents hard to debug issues of errors not being reported from the upstream sniff
- *            if this library is used in combination with other rulesets.}
- *
  * @link https://www.php.net/manual/en/language.oop5.magic.php
  *
- * @since 8.2.0 This was previously, since 7.0.3, checked by the upstream sniff.
- * @since 9.3.2 The sniff will now ignore functions marked as `@deprecated` by design.
+ * @since 8.2.0  This was previously, since 7.0.3, checked by the upstream sniff.
+ * @since 9.3.2  The sniff will now ignore functions marked as `@deprecated` by design.
+ * @since 10.0.0 The sniff no longer extends the upstream `Generic.NamingConventions.CamelCapsFunctionName`
+ *               sniff and has been completely rewritten using PHPCSUtils.
  */
-class ReservedFunctionNamesSniff extends PHPCS_CamelCapsFunctionNameSniff
+class ReservedFunctionNamesSniff implements PHPCS_Sniff
 {
 
     /**
-     * Overload the constructor to work round various PHPCS cross-version compatibility issues.
+     * Returns an array of tokens this test wants to listen for.
      *
-     * @since 8.2.0
+     * @since 10.0.0
+     *
+     * @return array
      */
-    public function __construct()
+    public function register()
     {
-        $scopeTokens = array(\T_CLASS, \T_ANON_CLASS, \T_INTERFACE, \T_TRAIT);
-
-        // Call the grand-parent constructor directly.
-        PHPCS_AbstractScopeSniff::__construct($scopeTokens, array(\T_FUNCTION), true);
+        return array(
+            \T_FUNCTION,
+        );
     }
 
-
     /**
-     * Processes the tokens within the scope.
+     * Processes this test, when one of its tokens is encountered.
      *
-     * @since 8.2.0
+     * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being processed.
-     * @param int                   $stackPtr  The position where this token was
-     *                                         found.
-     * @param int                   $currScope The position of the current scope.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processTokenWithinScope(File $phpcsFile, $stackPtr, $currScope)
+    public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
+        if (empty($functionName) === true) {
+            return;
+        }
+
+        if (preg_match('|^__[^_]|', $functionName) !== 1) {
+            // Name doesn't start with double underscore.
+            return;
+        }
+
+        if ($this->isFunctionDeprecated($phpcsFile, $stackPtr) === true) {
+            /*
+             * Deprecated functions don't have to comply with the naming conventions,
+             * otherwise functions deprecated in favour of a function with a compliant
+             * name would still trigger an error.
+             */
+            return;
+        }
+
+        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
 
         /*
-         * Determine if this is a function which needs to be examined.
-         * The `processTokenWithinScope()` is called for each valid scope a method is in,
-         * so for nested classes, we need to make sure we only examine the token for
-         * the lowest level valid scope.
+         * Check functions declared in the global namespace.
          */
-        $conditions = $tokens[$stackPtr]['conditions'];
-        end($conditions);
-        $deepestScope = key($conditions);
-        if ($deepestScope !== $currScope) {
-            return;
-        }
-
-        if ($this->isFunctionDeprecated($phpcsFile, $stackPtr) === true) {
-            /*
-             * Deprecated functions don't have to comply with the naming conventions,
-             * otherwise functions deprecated in favour of a function with a compliant
-             * name would still trigger an error.
-             */
-            return;
-        }
-
-        $methodName = $phpcsFile->getDeclarationName($stackPtr);
-        if ($methodName === null) {
-            // Ignore closures.
-            return;
-        }
-
-        // Is this a magic method. i.e., is prefixed with "__" ?
-        if (preg_match('|^__[^_]|', $methodName) > 0) {
-            $magicPart = strtolower(substr($methodName, 2));
-            if (isset($this->magicMethods[$magicPart]) === false
-                && isset($this->methodsDoubleUnderscore[$magicPart]) === false
-            ) {
-                $className         = '[anonymous class]';
-                $scopeNextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($currScope + 1), null, true);
-                if ($scopeNextNonEmpty !== false && $tokens[$scopeNextNonEmpty]['code'] === \T_STRING) {
-                    $className = $tokens[$scopeNextNonEmpty]['content'];
-                }
-
-                $phpcsFile->addWarning(
-                    'Method name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use.',
-                    $stackPtr,
-                    'MethodDoubleUnderscore',
-                    array($className . '::' . $methodName)
-                );
+        if ($ooPtr === false) {
+            if (FunctionDeclarations::isMagicFunctionName($functionName) === true) {
+                return;
             }
-        }
-    }
 
+            $phpcsFile->addWarning(
+                'Function name "%s" is discouraged; PHP has reserved all function names with a double underscore prefix for future use.',
+                $stackPtr,
+                'FunctionDoubleUnderscore',
+                array($functionName)
+            );
 
-    /**
-     * Processes the tokens outside the scope.
-     *
-     * @since 8.2.0
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being processed.
-     * @param int                   $stackPtr  The position where this token was
-     *                                         found.
-     *
-     * @return void
-     */
-    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
-    {
-        if ($this->isFunctionDeprecated($phpcsFile, $stackPtr) === true) {
-            /*
-             * Deprecated functions don't have to comply with the naming conventions,
-             * otherwise functions deprecated in favour of a function with a compliant
-             * name would still trigger an error.
-             */
             return;
         }
 
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);
-        if ($functionName === null) {
-            // Ignore closures.
+        /*
+         * Check method declarations.
+         */
+        if (FunctionDeclarations::isMagicMethodName($functionName) === true) {
             return;
         }
 
-        // Is this a magic function. i.e., it is prefixed with "__".
-        if (preg_match('|^__[^_]|', $functionName) > 0) {
-            $magicPart = strtolower(substr($functionName, 2));
-            if (isset($this->magicFunctions[$magicPart]) === false) {
-                $phpcsFile->addWarning(
-                    'Function name "%s" is discouraged; PHP has reserved all function names with a double underscore prefix for future use.',
-                    $stackPtr,
-                    'FunctionDoubleUnderscore',
-                    array($functionName)
-                );
-            }
+        if (FunctionDeclarations::isPHPDoubleUnderscoreMethod($phpcsFile, $stackPtr) === true) {
+            return;
         }
-    }
 
+        $className = ObjectDeclarations::getName($phpcsFile, $ooPtr);
+        if (empty($className)) {
+            $className = '[anonymous class]';
+        }
+
+        $phpcsFile->addWarning(
+            'Method name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use.',
+            $stackPtr,
+            'MethodDoubleUnderscore',
+            array($className . '::' . $functionName)
+        );
+    }
 
     /**
      * Check whether a function has been marked as deprecated via a @deprecated tag
