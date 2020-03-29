@@ -123,6 +123,7 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
             array(19),
 
             array(40),
+            array(46),
             array(50),
             array(51),
             array(52),

@@ -43,7 +43,7 @@ function __my_function() {}
 
 interface Foo
 {
-    function __call() {}
+    function __call();
 }
 
 class Magic_Case_Test {
