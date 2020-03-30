@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\MethodUse;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect direct calls to the `__clone()` magic method, which is allowed since PHP 7.0.
@@ -30,19 +31,6 @@ use PHP_CodeSniffer_Tokens as Tokens;
  */
 class NewDirectCallsToCloneSniff extends Sniff
 {
-
-    /**
-     * Tokens which indicate class internal use.
-     *
-     * @since 9.3.2
-     *
-     * @var array
-     */
-    protected $classInternal = array(
-        \T_PARENT => true,
-        \T_SELF   => true,
-        \T_STATIC => true,
-    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -103,7 +91,9 @@ class NewDirectCallsToCloneSniff extends Sniff
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevNonEmpty === false || isset($this->classInternal[$tokens[$prevNonEmpty]['code']])) {
+        if ($prevNonEmpty === false
+            || isset(Collections::$OOHierarchyKeywords[$tokens[$prevNonEmpty]['code']])
+        ) {
             // Class internal call to __clone().
             return;
         }
