@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect usage of `self`, `parent` and `static` and verify they are lowercase.
@@ -37,11 +38,7 @@ class CaseSensitiveKeywordsSniff extends Sniff
      */
     public function register()
     {
-        return array(
-            \T_SELF,
-            \T_STATIC,
-            \T_PARENT,
-        );
+        return Collections::$OOHierarchyKeywords;
     }
 
     /**
