@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
 
 /**
  * Passing the `$glue` and `$pieces` parameters to `implode()` in reverse order has
@@ -277,11 +278,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
                 return;
             }
 
-            if ($tokenCode === \T_CONSTANT_ENCAPSED_STRING
-                || $tokenCode === \T_DOUBLE_QUOTED_STRING
-                || $tokenCode === \T_HEREDOC
-                || $tokenCode === \T_NOWDOC
-            ) {
+            if (isset(BCTokens::textStringTokens()[$tokenCode]) === true) {
                 $this->throwNotice($phpcsFile, $stackPtr, $functionName);
                 return;
             }
