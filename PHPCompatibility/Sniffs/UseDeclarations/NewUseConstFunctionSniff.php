@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\UseDeclarations;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\UseStatements;
 
 /**
  * Detect importing constants and functions via a `use` statement.
@@ -71,6 +72,10 @@ class NewUseConstFunctionSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('5.5') !== true) {
+            return;
+        }
+
+        if (UseStatements::isImportUse($phpcsFile, $stackPtr) === false) {
             return;
         }
 
