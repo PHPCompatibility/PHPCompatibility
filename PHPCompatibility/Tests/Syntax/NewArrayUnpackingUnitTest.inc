@@ -37,6 +37,9 @@ $arr8 = [...arrGen()];
 // Unpacking array by reference is not supported in PHP 7.4, but not our concern, throw an error anyway.
 $arr2 = [...&$arr1];
 
+// Short list, not short array. Parse error. Ignore.
+[$a, ...$b] = $array;
+
 // Intentional parse error. This has to be the last test in the file.
 $arr5 = array(
     ...$arr1,

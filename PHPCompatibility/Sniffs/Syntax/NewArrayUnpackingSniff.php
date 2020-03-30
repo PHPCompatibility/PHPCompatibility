@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
@@ -29,6 +30,19 @@ class NewArrayUnpackingSniff extends Sniff
 {
 
     /**
+     * Array target tokens.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    private $arrayTokens = array(
+        \T_ARRAY               => \T_ARRAY,
+        \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
+        \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
+    );
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 9.2.0
@@ -37,10 +51,7 @@ class NewArrayUnpackingSniff extends Sniff
      */
     public function register()
     {
-        return array(
-            \T_ARRAY,
-            \T_OPEN_SHORT_ARRAY,
-        );
+        return $this->arrayTokens;
     }
 
     /**
@@ -60,65 +71,49 @@ class NewArrayUnpackingSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-
         /*
          * Determine the array opener & closer.
          */
-        $closer = $phpcsFile->numTokens;
-        if ($tokens[$stackPtr]['code'] === \T_ARRAY) {
-            if (isset($tokens[$stackPtr]['parenthesis_opener']) === false) {
-                return;
-            }
-
-            $opener = $tokens[$stackPtr]['parenthesis_opener'];
-
-            if (isset($tokens[$opener]['parenthesis_closer'])) {
-                $closer = $tokens[$opener]['parenthesis_closer'];
-            }
-        } else {
-            // Short array syntax.
-            $opener = $stackPtr;
-
-            if (isset($tokens[$stackPtr]['bracket_closer'])) {
-                $closer = $tokens[$stackPtr]['bracket_closer'];
-            }
+        $openClose = Arrays::getOpenClose($phpcsFile, $stackPtr);
+        if ($openClose === false) {
+            // Parse error, live coding or short list, not short array.
+            return;
         }
+
+        $opener = $openClose['opener'];
+        $closer = $openClose['closer'];
+        $tokens = $phpcsFile->getTokens();
 
         $nestingLevel = 0;
         if (isset($tokens[($opener + 1)]['nested_parenthesis'])) {
             $nestingLevel = count($tokens[($opener + 1)]['nested_parenthesis']);
         }
 
+        $find              = $this->arrayTokens;
+        $find[\T_ELLIPSIS] = \T_ELLIPSIS;
+
         for ($i = $opener; $i < $closer;) {
-            $i = $phpcsFile->findNext(array(\T_ELLIPSIS, \T_OPEN_SHORT_ARRAY, \T_ARRAY), ($i + 1), $closer);
+            $i = $phpcsFile->findNext($find, ($i + 1), $closer);
             if ($i === false) {
                 return;
             }
 
-            if ($tokens[$i]['code'] === \T_OPEN_SHORT_ARRAY) {
-                if (isset($tokens[$i]['bracket_closer']) === false) {
-                    // Live coding, unfinished nested array, handle this when the array opener
-                    // of the nested array is passed.
-                    return;
-                }
-
+            if (isset($tokens[$i]['bracket_closer']) === true) {
                 // Skip over nested short arrays. These will be handled when the array opener
                 // of the nested array is passed.
                 $i = $tokens[$i]['bracket_closer'];
                 continue;
             }
 
-            if ($tokens[$i]['code'] === \T_ARRAY) {
-                if (isset($tokens[$i]['parenthesis_closer']) === false) {
-                    // Live coding, unfinished nested array, handle this when the array opener
-                    // of the nested array is passed.
-                    return;
-                }
-
+            if (isset($tokens[$i]['parenthesis_closer']) === true) {
                 // Skip over nested long arrays. These will be handled when the array opener
                 // of the nested array is passed.
                 $i = $tokens[$i]['parenthesis_closer'];
+                continue;
+            }
+
+            if ($tokens[$i]['code'] !== \T_ELLIPSIS) {
+                // Shouldn't be possible. Live coding or parse error.
                 continue;
             }
 
