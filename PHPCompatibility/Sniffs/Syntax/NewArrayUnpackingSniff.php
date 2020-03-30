@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
  * Using the spread operator for unpacking arrays in array expressions is available since PHP 7.4.
@@ -130,7 +131,7 @@ class NewArrayUnpackingSniff extends Sniff
 
             // Ok, found one.
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
-            $snippet      = trim($phpcsFile->getTokensAsString($i, (($nextNonEmpty - $i) + 1)));
+            $snippet      = GetTokensAsString::compact($phpcsFile, $i, $nextNonEmpty, true);
             $phpcsFile->addError(
                 'Array unpacking within array declarations using the spread operator is not supported in PHP 7.3 or earlier. Found: %s',
                 $i,
