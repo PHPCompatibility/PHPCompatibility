@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect passing a string literal as `$category` to `setlocale()`.
@@ -85,9 +86,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
                 return;
             }
 
-            if ($tokens[$i]['code'] !== \T_CONSTANT_ENCAPSED_STRING
-                && $tokens[$i]['code'] !== \T_DOUBLE_QUOTED_STRING
-            ) {
+            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
 
