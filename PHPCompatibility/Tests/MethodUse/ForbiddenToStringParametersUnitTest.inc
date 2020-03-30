@@ -1,7 +1,7 @@
 <?php
 
 // This is fine.
-$obj = new MyClass();
+$obj->notToString($param);
 $obj->__toString();
 $obj::__toString();
 MyClass::__toString(
@@ -23,7 +23,7 @@ echo __toString($param);
 echo Some\NameSp\__toString($param);
 echo namespace\__toString($param);
 MyClass::__TOSTRING; // Constant, not method.
-$obj->property; // Property, not method.
+$obj->__tostring; // Property, not method.
 
 class Bar {
 	public function foo() {

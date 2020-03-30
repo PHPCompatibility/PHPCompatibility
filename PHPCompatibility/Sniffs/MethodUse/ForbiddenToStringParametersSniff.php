@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\MethodUse;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * As of PHP 5.3, the `__toString()` magic method can no longer be passed arguments.
@@ -81,15 +82,7 @@ class ForbiddenToStringParametersSniff extends Sniff
             return;
         }
 
-        $openParens = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
-        if ($openParens === false || $tokens[$openParens]['code'] !== \T_OPEN_PARENTHESIS) {
-            // Not a method call.
-            return;
-        }
-
-        $closeParens = $phpcsFile->findNext(Tokens::$emptyTokens, ($openParens + 1), null, true);
-        if ($closeParens === false || $tokens[$closeParens]['code'] === \T_CLOSE_PARENTHESIS) {
-            // Not a method call.
+        if (PassedParameters::hasParameters($phpcsFile, $nextNonEmpty) === false) {
             return;
         }
 
