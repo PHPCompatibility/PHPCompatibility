@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
 
 /**
  * Detect passing `$encoding` to `mb_strrpos()` as 3rd argument.
@@ -48,20 +49,6 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      */
     protected $targetFunctions = [
         'mb_strrpos' => true,
-    ];
-
-    /**
-     * Tokens which should be recognized as text.
-     *
-     * @since 9.3.0
-     *
-     * @var array
-     */
-    private $textStringTokens = [
-        \T_CONSTANT_ENCAPSED_STRING,
-        \T_DOUBLE_QUOTED_STRING,
-        \T_HEREDOC,
-        \T_NOWDOC,
     ];
 
     /**
@@ -128,7 +115,7 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
             return;
         }
 
-        $hasString = $phpcsFile->findNext($this->textStringTokens, $targetParam['start'], ($targetParam['end'] + 1));
+        $hasString = $phpcsFile->findNext(BCTokens::textStringTokens(), $targetParam['start'], ($targetParam['end'] + 1));
         if ($hasString === false) {
             // No text strings found. Undetermined.
             return;
