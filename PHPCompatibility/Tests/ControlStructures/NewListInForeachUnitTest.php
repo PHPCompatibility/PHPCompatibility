@@ -54,6 +54,8 @@ class NewListInForeachUnitTest extends BaseSniffTest
             array(17),
             array(18),
             array(19),
+            array(22),
+            array(23),
         );
     }
 
@@ -85,6 +87,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
         return array(
             array(6),
             array(7),
+            array(26),
         );
     }
 

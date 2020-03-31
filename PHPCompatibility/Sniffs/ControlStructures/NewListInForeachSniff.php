@@ -75,6 +75,13 @@ class NewListInForeachSniff extends Sniff
             return;
         }
 
+        /*
+         * @internal No need to check for short array vs short list as if this token is found after the `as`
+         * in a `foreach`, it will always be a short list.
+         * Also not affected by any known tokenizer bugs which would tokenize the open bracket as
+         * `T_OPEN_SQUARE_BRACKET`.
+         */
+
         $phpcsFile->addError(
             'Unpacking nested arrays with list() in a foreach is not supported in PHP 5.4 or earlier.',
             $hasList,
