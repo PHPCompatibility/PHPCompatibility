@@ -13,6 +13,8 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\Numbers;
 
 /**
  * Detect use of `continue` in `switch` control structures.
@@ -86,7 +88,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
      */
     public function register()
     {
-        $this->acceptedLevelTokens += Tokens::$arithmeticTokens;
+        $this->acceptedLevelTokens += BCTokens::arithmeticTokens();
         $this->acceptedLevelTokens += Tokens::$emptyTokens;
 
         return array(\T_SWITCH);
@@ -177,16 +179,22 @@ class DiscouragedSwitchContinueSniff extends Sniff
                 $nextSemicolon = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($continue + 1), $caseCloser);
                 $codeString    = '';
                 for ($i = ($continue + 1); $i < $nextSemicolon; $i++) {
+                    $content = $tokens[$i]['content'];
                     if (isset($this->acceptedLevelTokens[$tokens[$i]['code']]) === false) {
                         // Function call/variable or other token which make numeric level impossible to determine.
                         continue 2;
+                    } elseif ($tokens[$i]['code'] === \T_LNUMBER) {
+                        // Deal with potential PHP 7.4 numeric literals with underscores.
+                        $numberInfo = Numbers::getCompleteNumber($phpcsFile, $i);
+                        $content    = $numberInfo['decimal'];
+                        $i          = $numberInfo['last_token'];
                     }
 
                     if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                         continue;
                     }
 
-                    $codeString .= $tokens[$i]['content'];
+                    $codeString .= $content;
                 }
 
                 $level = null;

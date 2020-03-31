@@ -189,3 +189,37 @@ while ($foo)
             }
         }
     }
+
+/*
+ * Test with PHP 7.4 numeric literals with underscore and non-decimal continue values.
+ * The chances of these ever being encountered in the wild are slim to none, but the sniff
+ * should handle them correctly.
+ */
+switch ($foo) {
+    case $bar:
+        switch ($ten) {
+            case 'normal_decimal_ten':
+                continue 10;
+            case 'decimal_ten':
+                continue 1_0;
+            case 'hex_sixteen':
+                continue 0x10;
+            case 'hex_sixteen_php74':
+                continue 0x1_0;
+            case 'octal_one':
+                continue 01; // Warning.
+            case 'octal_one_php74':
+                continue 0_1; // Warning.
+            case 'octal_ten':
+                continue 012;
+            case 'octal_ten_php74':
+                continue 0_12;
+            case 'binary_two':
+                continue 0b1_0; // Warning.
+            case 'binary_ten':
+                continue 0b1010;
+            case 'binary_ten_php74':
+                continue 0b10_10;
+        }
+        break;
+}

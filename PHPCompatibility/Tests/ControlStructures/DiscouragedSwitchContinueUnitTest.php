@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the DiscouragedSwitchContinue sniff.
@@ -49,7 +50,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      */
     public function dataDiscouragedSwitchContinue()
     {
-        return array(
+        $data = array(
             array(16),
             array(24),
             array(28),
@@ -66,6 +67,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             array(120),
             array(149),
             array(174),
+            array(210),
 
             /*
             @todo: False negatives. Unscoped control structure within case.
@@ -75,6 +77,13 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             array(184),
             */
         );
+
+        if (version_compare(Helper::getVersion(), '3.5.3', '!=')) {
+            $data[] = array(212);
+            $data[] = array(218);
+        }
+
+        return $data;
     }
 
 
@@ -129,6 +138,15 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             array(164),
             array(176),
             array(188),
+            array(188),
+            array(202),
+            array(204),
+            array(206),
+            array(208),
+            array(214),
+            array(216),
+            array(220),
+            array(222),
         );
     }
 
