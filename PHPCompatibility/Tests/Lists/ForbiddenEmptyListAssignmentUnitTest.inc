@@ -22,6 +22,10 @@ list( ${$drink} ) = $infoArray;
 [ /*comment*/ /*another comment*/ ] = $infoArray;
 [$x, [], $y] = $a;
 
+// Test handling of tokenizer issue in older PHPCS versions.
+if (true) {}
+[,[],] = $infoArray;
+
 // Parse errors. Ignore.
 list(,(),) = $infoArray;
 [,(),] = $infoArray;

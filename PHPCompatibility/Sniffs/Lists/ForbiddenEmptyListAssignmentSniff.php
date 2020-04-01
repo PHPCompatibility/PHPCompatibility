@@ -55,6 +55,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
         return array(
             \T_LIST,
             \T_OPEN_SHORT_ARRAY,
+            \T_OPEN_SQUARE_BRACKET,
         );
     }
 
@@ -77,7 +78,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
+        if ($tokens[$stackPtr]['code'] !== \T_LIST) {
             if (Lists::isShortList($phpcsFile, $stackPtr) === false) {
                 return;
             }

@@ -60,6 +60,7 @@ class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
             array(21),
             array(22),
             array(23),
+            array(27),
         );
     }
 
@@ -94,9 +95,9 @@ class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
             array(14),
             array(15),
             array(16),
-            array(26),
-            array(27),
             array(30),
+            array(31),
+            array(34),
         );
     }
 
