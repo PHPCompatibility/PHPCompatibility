@@ -68,8 +68,9 @@ class NewKeyedListUnitTest extends BaseSniffTest
             array(42), // x2.
             array(46),
             array(48),
-            array(58),
+            array(54),
             array(62),
+            array(66),
         );
     }
 

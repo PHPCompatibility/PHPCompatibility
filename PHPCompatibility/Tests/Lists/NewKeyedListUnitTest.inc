@@ -49,6 +49,10 @@ list(
 		list($x2, $y2),
 ) = $points;
 
+// Test handling of tokenizer issue in older PHPCS versions.
+if (true) {}
+["id" => $id1, "name" => &$name1] = $data;
+
 /*
  * Invalid syntaxes.
  */

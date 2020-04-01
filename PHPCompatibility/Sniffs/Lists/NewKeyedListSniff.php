@@ -35,8 +35,9 @@ class NewKeyedListSniff extends Sniff
      * @var array
      */
     protected $sniffTargets =  array(
-        \T_LIST             => \T_LIST,
-        \T_OPEN_SHORT_ARRAY => \T_OPEN_SHORT_ARRAY,
+        \T_LIST                => \T_LIST,
+        \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
+        \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
     );
 
     /**
@@ -120,7 +121,7 @@ class NewKeyedListSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY
+        if ($tokens[$stackPtr]['code'] !== \T_LIST
             && Lists::isShortList($phpcsFile, $stackPtr) === false
         ) {
             // Short array, not short list.
