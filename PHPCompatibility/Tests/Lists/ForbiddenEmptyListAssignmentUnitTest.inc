@@ -4,7 +4,6 @@ list() = 5;
 list(, ,) = 5;
 list(/*comment*/) = 5;
 list( /*comment*/ /*another comment*/ ) = 5;
-list(,(),) = 5;
 list($x, list(), $y) = $a;
 
 /*
@@ -21,8 +20,11 @@ list( ${$drink} ) = $infoArray;
 [, ,] = 5;
 [/*comment*/] = 5;
 [ /*comment*/ /*another comment*/ ] = 5;
-[,(),] = 5;
 [$x, [], $y] = $a;
+
+// Parse errors. Ignore.
+list(,(),) = 5;
+[,(),] = 5;
 
 // Don't trigger on unfinished code during live code review.
 list(

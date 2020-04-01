@@ -55,13 +55,11 @@ class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
             array(5),
             array(6),
             array(7),
-            array(8),
+            array(19),
             array(20),
             array(21),
             array(22),
             array(23),
-            array(24),
-            array(25),
         );
     }
 
@@ -91,12 +89,14 @@ class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         return array(
+            array(12),
             array(13),
             array(14),
             array(15),
             array(16),
-            array(17),
-            array(28),
+            array(26),
+            array(27),
+            array(30),
         );
     }
 

@@ -51,8 +51,6 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
         // Only needs to be set up once.
         $this->ignoreTokens                       = Tokens::$emptyTokens;
         $this->ignoreTokens[\T_COMMA]             = \T_COMMA;
-        $this->ignoreTokens[\T_OPEN_PARENTHESIS]  = \T_OPEN_PARENTHESIS;
-        $this->ignoreTokens[\T_CLOSE_PARENTHESIS] = \T_CLOSE_PARENTHESIS;
 
         return array(
             \T_LIST,
