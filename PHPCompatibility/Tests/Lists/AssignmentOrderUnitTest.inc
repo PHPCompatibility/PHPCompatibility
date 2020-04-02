@@ -43,3 +43,7 @@ list($b => $a, $a => $b, 'field' => $c) = ['name' => 1, 'id' => 2, 'field' => 3]
 
 // Don't get confused when some of the entries are empty.
 list( , $a, , $b, , $a, ,) = array[1, 2, 3, 4, 5, 6, 7, 8];
+
+// Test handling of specific tokenizer issue.
+if (true) {}
+[$a, [$b, $a]] = array(1, array(2, 3));

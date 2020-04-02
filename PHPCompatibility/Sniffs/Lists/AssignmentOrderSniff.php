@@ -44,6 +44,7 @@ class AssignmentOrderSniff extends Sniff
         return array(
             \T_LIST,
             \T_OPEN_SHORT_ARRAY,
+            \T_OPEN_SQUARE_BRACKET,
         );
     }
 
@@ -69,7 +70,7 @@ class AssignmentOrderSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY
+        if ($tokens[$stackPtr]['code'] !== \T_LIST
             && Lists::isShortList($phpcsFile, $stackPtr) === false
         ) {
             // Short array, not short list.
@@ -115,6 +116,8 @@ class AssignmentOrderSniff extends Sniff
         $stopPoints = array(\T_COMMA);
         if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
             $stopPoints[] = \T_CLOSE_SHORT_ARRAY;
+        } elseif ($tokens[$stackPtr]['code'] === \T_OPEN_SQUARE_BRACKET) {
+            $stopPoints[] = \T_CLOSE_SQUARE_BRACKET;
         } else {
             $stopPoints[] = \T_CLOSE_PARENTHESIS;
         }
