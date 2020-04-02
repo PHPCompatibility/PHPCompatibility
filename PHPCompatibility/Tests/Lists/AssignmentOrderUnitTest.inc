@@ -47,3 +47,6 @@ list( , $a, , $b, , $a, ,) = array[1, 2, 3, 4, 5, 6, 7, 8];
 // Test handling of specific tokenizer issue.
 if (true) {}
 [$a, [$b, $a]] = array(1, array(2, 3));
+
+// Test handling of list vars with differing whitespace.
+list( $a [ 'key' ], $b [ 'key' ], list($a['key'], $b['key'])) = $array;

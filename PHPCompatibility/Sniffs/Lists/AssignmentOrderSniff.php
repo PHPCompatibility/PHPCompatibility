@@ -12,7 +12,8 @@ namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Lists;
 
 /**
@@ -68,90 +69,18 @@ class AssignmentOrderSniff extends Sniff
             return;
         }
 
-        $openClose = Lists::getOpenClose($phpcsFile, $stackPtr);
-        if ($openClose === false) {
+        try {
+            $listVars = $this->getAssignedVars($phpcsFile, $stackPtr);
+            $closer   = Lists::getOpenClose($phpcsFile, $stackPtr)['closer'];
+
+            if (empty($listVars)) {
+                // Empty list, not our concern.
+                return ($closer + 1);
+            }
+
+        } catch (RuntimeException $e) {
             // Parse error, live coding, real square brackets or short array, not short list.
             return;
-        }
-
-        $opener = $openClose['opener'];
-        $closer = $openClose['closer'];
-        $tokens = $phpcsFile->getTokens();
-
-        /*
-         * OK, so we have the opener & closer, now we need to check all the variables in the
-         * list() to see if there are duplicates as that's the problem.
-         */
-        $hasVars = $phpcsFile->findNext(array(\T_VARIABLE, \T_DOLLAR), ($opener + 1), $closer);
-        if ($hasVars === false) {
-            // Empty list, not our concern.
-            return ($closer + 1);
-        }
-
-        // Set the variable delimiters based on the list type being examined.
-        $stopPoints = array(\T_COMMA);
-        if ($tokens[$stackPtr]['code'] === \T_OPEN_SHORT_ARRAY) {
-            $stopPoints[] = \T_CLOSE_SHORT_ARRAY;
-        } elseif ($tokens[$stackPtr]['code'] === \T_OPEN_SQUARE_BRACKET) {
-            $stopPoints[] = \T_CLOSE_SQUARE_BRACKET;
-        } else {
-            $stopPoints[] = \T_CLOSE_PARENTHESIS;
-        }
-
-        $listVars      = array();
-        $lastStopPoint = $opener;
-
-        /*
-         * Create a list of all variables used within the `list()` construct.
-         * We're not concerned with whether these are nested or not, as any duplicate
-         * variable name used will be problematic, independent of nesting.
-         */
-        do {
-            $nextStopPoint = $phpcsFile->findNext($stopPoints, ($lastStopPoint + 1), $closer);
-            if ($nextStopPoint === false) {
-                $nextStopPoint = $closer;
-            }
-
-            // Also detect this in PHP 7.1 keyed lists.
-            $hasDoubleArrow = $phpcsFile->findNext(\T_DOUBLE_ARROW, ($lastStopPoint + 1), $nextStopPoint);
-            if ($hasDoubleArrow !== false) {
-                $lastStopPoint = $hasDoubleArrow;
-            }
-
-            // Find the start of the variable, allowing for variable variables.
-            $nextStartPoint = $phpcsFile->findNext(array(\T_VARIABLE, \T_DOLLAR), ($lastStopPoint + 1), $nextStopPoint);
-            if ($nextStartPoint === false) {
-                // Skip past empty bits in the list, i.e. `list( $a, , ,)`.
-                $lastStopPoint = $nextStopPoint;
-                continue;
-            }
-
-            /*
-             * Gather the content of all non-empty tokens to determine the "variable name".
-             * Variable name in this context includes array or object property syntaxes, such
-             * as `$a['name']` and `$b->property`.
-             */
-            $varContent = '';
-
-            for ($i = $nextStartPoint; $i < $nextStopPoint; $i++) {
-                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
-                    continue;
-                }
-
-                $varContent .= $tokens[$i]['content'];
-            }
-
-            if ($varContent !== '') {
-                $listVars[] = $varContent;
-            }
-
-            $lastStopPoint = $nextStopPoint;
-
-        } while ($lastStopPoint < $closer);
-
-        if (empty($listVars)) {
-            // Shouldn't be possible, but just in case.
-            return ($closer + 1);
         }
 
         // Verify that all variables used in the list() construct are unique.
@@ -163,6 +92,63 @@ class AssignmentOrderSniff extends Sniff
             );
         }
 
+        // Only examine each list once. Nested lists are examined with the encompassing list.
         return ($closer + 1);
+    }
+
+
+    /**
+     * Retrieve the variables being assigned to in a list construct.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of a list-like token.
+     *
+     * @return array Array with the variables being assigned to as values and the corresponding
+     *               stack pointer to the start of each variable as keys.
+     *
+     * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the specified $stackPtr is not of
+     *                                                      type T_LIST, T_OPEN_SHORT_ARRAY or
+     *                                                      T_OPEN_SQUARE_BRACKET.
+     */
+    protected function getAssignedVars($phpcsFile, $stackPtr)
+    {
+        try {
+            $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Parse error, live coding, real square brackets or short array, not short list.
+            throw $e;
+        }
+
+        $listVars = array();
+        foreach ($assignments as $assign) {
+            if ($assign['is_empty'] === true) {
+                continue;
+            }
+
+            if ($assign['is_nested_list'] === true) {
+                /*
+                 * Recurse into the nested list and get the variables.
+                 * No need to `catch` any errors as only lists can be nested in lists.
+                 */
+                $listVars += $this->getAssignedVars($phpcsFile, $assign['assignment_token']);
+                continue;
+            }
+
+            /*
+             * Ok, so this must be a "normal" assignment in the list.
+             * Make sure that differences in whitespace will not confuse the variable comparison
+             * we need to do later.
+             */
+            $varNoEmpties = GetTokensAsString::noEmpties(
+                $phpcsFile,
+                $assign['assignment_token'],
+                $assign['assignment_end_token']
+            );
+            $listVars[$assign['assignment_token']] = $varNoEmpties;
+        }
+
+        return $listVars;
     }
 }
