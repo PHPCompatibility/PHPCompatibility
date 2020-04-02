@@ -68,39 +68,15 @@ class AssignmentOrderSniff extends Sniff
             return;
         }
 
+        $openClose = Lists::getOpenClose($phpcsFile, $stackPtr);
+        if ($openClose === false) {
+            // Parse error, live coding, real square brackets or short array, not short list.
+            return;
+        }
+
+        $opener = $openClose['opener'];
+        $closer = $openClose['closer'];
         $tokens = $phpcsFile->getTokens();
-
-        if ($tokens[$stackPtr]['code'] !== \T_LIST
-            && Lists::isShortList($phpcsFile, $stackPtr) === false
-        ) {
-            // Short array, not short list.
-            return;
-        }
-
-        if ($tokens[$stackPtr]['code'] === \T_LIST) {
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-            if ($nextNonEmpty === false
-                || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
-                || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
-            ) {
-                // Parse error or live coding.
-                return;
-            }
-
-            $opener = $nextNonEmpty;
-            $closer = $tokens[$nextNonEmpty]['parenthesis_closer'];
-        } else {
-            // Short list syntax.
-            $opener = $stackPtr;
-
-            if (isset($tokens[$stackPtr]['bracket_closer'])) {
-                $closer = $tokens[$stackPtr]['bracket_closer'];
-            }
-        }
-
-        if (isset($opener, $closer) === false) {
-            return;
-        }
 
         /*
          * OK, so we have the opener & closer, now we need to check all the variables in the
