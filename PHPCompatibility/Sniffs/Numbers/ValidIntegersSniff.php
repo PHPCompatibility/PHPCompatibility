@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Utils\Numbers;
 
 /**
  * Check for valid integer types and values.
@@ -28,7 +30,7 @@ use PHP_CodeSniffer_File as File;
  *
  * @since 7.0.3
  * @since 7.0.8  This sniff now throws a warning instead of an error for invalid binary integers.
- * @since 10.0.0 - The sniff has been moved from the `Miscellaneous` category to `Numbers.
+ * @since 10.0.0 - The sniff has been moved from the `Miscellaneous` category to `Numbers`.
  *               - The check for hexadecimal numeric strings has been split off to its own sniff.
  */
 class ValidIntegersSniff extends Sniff
@@ -107,7 +109,7 @@ class ValidIntegersSniff extends Sniff
      */
     private function couldBeBinaryInteger($tokenContent)
     {
-        return (preg_match('`^0b[0-1]+$`iD', $tokenContent) === 1);
+        return Numbers::isBinaryInt($tokenContent);
     }
 
     /**
@@ -145,12 +147,11 @@ class ValidIntegersSniff extends Sniff
     private function getBinaryInteger(File $phpcsFile, $tokens, $stackPtr)
     {
         $i = $stackPtr;
-        while ($tokens[$i]['code'] === \T_LNUMBER) {
+        while ($tokens[($i + 1)]['code'] === \T_LNUMBER) {
             $i++;
         }
-        $length = ($i - $stackPtr);
 
-        return $phpcsFile->getTokensAsString($stackPtr, $length);
+        return GetTokensAsString::normal($phpcsFile, $stackPtr, $i);
     }
 
     /**
