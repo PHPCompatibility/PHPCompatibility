@@ -15,6 +15,7 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -225,20 +226,22 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     {
         $scopeStart = 0;
 
+        $validOwners = array(
+            \T_CLOSURE,
+            \T_FUNCTION,
+        );
+
         /*
          * If the variable is detected within the scope of a function/closure, limit the checking.
          */
-        $function = Conditions::getLastCondition($phpcsFile, $stackPtr, array(\T_CLOSURE, \T_FUNCTION));
+        $function = Conditions::getLastCondition($phpcsFile, $stackPtr, $validOwners);
 
         // It could also be a function param, which is not in the function scope.
         if ($function === false && isset($tokens[$stackPtr]['nested_parenthesis']) === true) {
-            $nestedParentheses = $tokens[$stackPtr]['nested_parenthesis'];
-            $parenthesisCloser = end($nestedParentheses);
-            if (isset($tokens[$parenthesisCloser]['parenthesis_owner'])
-                && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_FUNCTION
-                    || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_CLOSURE)
-            ) {
-                $function = $tokens[$parenthesisCloser]['parenthesis_owner'];
+            $lastOwner = Parentheses::lastOwnerIn($phpcsFile, $stackPtr, $validOwners);
+            if ($lastOwner !== false) {
+                // Function declaration parameter shadowing the name of the reserved var.
+                return false;
             }
         }
 
