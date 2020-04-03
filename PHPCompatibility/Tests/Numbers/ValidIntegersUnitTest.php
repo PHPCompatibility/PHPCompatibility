@@ -50,7 +50,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataBinaryInteger
+     * Data Provider.
      *
      * @see testBinaryInteger()
      *
@@ -62,6 +62,8 @@ class ValidIntegersUnitTest extends BaseSniffTest
             array(3, '0b001001101', true),
             array(4, '0b01', false),
             array(11, '0B10001', true),
+            array(14, '0b00100_1101', true),
+            array(19, '0b01', false),
         );
     }
 
@@ -69,12 +71,34 @@ class ValidIntegersUnitTest extends BaseSniffTest
     /**
      * testInvalidBinaryInteger
      *
+     * @dataProvider dataInvalidBinaryInteger
+     *
+     * @param int    $line   Line number where the error should occur.
+     * @param string $binary (Start of) Binary number as a string.
+     *
      * @return void
      */
-    public function testInvalidBinaryInteger()
+    public function testInvalidBinaryInteger($line, $binary)
     {
         $file = $this->sniffFile(__FILE__); // Message will be shown independently of testVersion.
-        $this->assertWarning($file, 4, 'Invalid binary integer detected. Found: 0b0123456');
+        $this->assertWarning($file, $line, "Invalid binary integer detected. Found: {$binary}");
+    }
+
+    /**
+     * Data Provider.
+     *
+     * @see testInvalidBinaryInteger()
+     *
+     * @return array
+     */
+    public function dataInvalidBinaryInteger()
+    {
+        return array(
+            array(4, '0b0123456'),
+
+            // Depending on PHP version the message will show the complete number or just the first part.
+            array(19, '0b012'),
+        );
     }
 
 
@@ -100,7 +124,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataInvalidOctalInteger
+     * Data Provider.
      *
      * @see testInvalidOctalInteger()
      *
@@ -112,6 +136,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
             array(7, '08'),
             array(8, '038'),
             array(9, '091'),
+            array(16, '03_8'),
         );
     }
 
@@ -119,12 +144,31 @@ class ValidIntegersUnitTest extends BaseSniffTest
     /**
      * testValidOctalInteger
      *
+     * @dataProvider dataValidOctalInteger
+     *
+     * @param int $line Line number where the error should occur.
+     *
      * @return void
      */
-    public function testValidOctalInteger()
+    public function testValidOctalInteger($line)
     {
         $file = $this->sniffFile(__FILE__, '4.0-99.0');
-        $this->assertNoViolation($file, 6);
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data Provider.
+     *
+     * @see testValidOctalInteger()
+     *
+     * @return array
+     */
+    public function dataValidOctalInteger()
+    {
+        return array(
+            array(6),
+            array(15),
+        );
     }
 
 
