@@ -122,6 +122,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             array(141),
             array(151), // False positive!
             array(156),
+            array(179),
         );
     }
 
@@ -215,6 +216,8 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             // Static property use outside class context.
             array(172),
             array(173),
+
+            array(176),
         );
     }
 

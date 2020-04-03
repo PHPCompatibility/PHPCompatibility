@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Variables;
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
@@ -227,10 +228,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         /*
          * If the variable is detected within the scope of a function/closure, limit the checking.
          */
-        $function = $phpcsFile->getCondition($stackPtr, \T_CLOSURE);
-        if ($function === false) {
-            $function = $phpcsFile->getCondition($stackPtr, \T_FUNCTION);
-        }
+        $function = Conditions::getLastCondition($phpcsFile, $stackPtr, array(\T_CLOSURE, \T_FUNCTION));
 
         // It could also be a function param, which is not in the function scope.
         if ($function === false && isset($tokens[$stackPtr]['nested_parenthesis']) === true) {

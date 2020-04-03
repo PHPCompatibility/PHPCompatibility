@@ -171,3 +171,11 @@ echo $php_errormsg; // OK - uses the value from the assignment on line 37.
 // Use of a static class property outside class context works perfectly fine.
 echo $a::$HTTP_ENV_VARS; // OK.
 echo TestClass::$HTTP_POST_FILES; // OK.
+
+function nesting() {
+    $php_errormsg = error_get_last(); // OK.
+
+    function nested() {
+        echo $php_errormsg; // Bad.
+    }
+}
