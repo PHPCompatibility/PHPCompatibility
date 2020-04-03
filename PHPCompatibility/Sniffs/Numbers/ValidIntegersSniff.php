@@ -67,7 +67,7 @@ class ValidIntegersSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
 
-        if ($this->couldBeBinaryInteger($token['content']) === true) {
+        if (Numbers::isBinaryInt($token['content']) === true) {
             if ($this->supportsBelow('5.3')) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
                 $data  = array($token['content']);
@@ -97,21 +97,6 @@ class ValidIntegersSniff extends Sniff
         }
     }
 
-
-    /**
-     * Could the current token potentially be a binary integer ?
-     *
-     * @since 7.0.3
-     *
-     * @param string $tokenContent The content of the current numeric token to examine.
-     *
-     * @return bool
-     */
-    private function couldBeBinaryInteger($tokenContent)
-    {
-        return Numbers::isBinaryInt($tokenContent);
-    }
-
     /**
      * Is the current token an invalid binary integer ?
      *
@@ -124,10 +109,6 @@ class ValidIntegersSniff extends Sniff
      */
     private function isInvalidBinaryInteger($tokens, $stackPtr)
     {
-        if ($this->couldBeBinaryInteger($tokens[$stackPtr]['content']) === false) {
-            return false;
-        }
-
         // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
         return ($tokens[$stackPtr + 1]['code'] === \T_LNUMBER);
     }
