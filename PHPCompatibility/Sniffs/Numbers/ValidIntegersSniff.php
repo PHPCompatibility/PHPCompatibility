@@ -12,7 +12,6 @@ namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for valid integer types and values.
@@ -21,18 +20,16 @@ use PHPCSUtils\Utils\TextStrings;
  * - PHP 5.4 introduced binary integers.
  * - PHP 7.0 removed tolerance for invalid octals. These were truncated prior to PHP 7
  *   and give a parse error since PHP 7.
- * - PHP 7.0 removed support for recognizing hexadecimal numeric strings as numeric.
- *   Type juggling and recognition was inconsistent prior to PHP 7. As of PHP 7, they
- *   are no longer treated as numeric.
  *
  * PHP version 5.4+
  *
  * @link https://wiki.php.net/rfc/binnotation4ints
- * @link https://wiki.php.net/rfc/remove_hex_support_in_numeric_strings
  * @link https://www.php.net/manual/en/language.types.integer.php
  *
  * @since 7.0.3
- * @since 7.0.8 This sniff now throws a warning instead of an error for invalid binary integers.
+ * @since 7.0.8  This sniff now throws a warning instead of an error for invalid binary integers.
+ * @since 10.0.0 - The sniff has been moved from the `Miscellaneous` category to `Numbers.
+ *               - The check for hexadecimal numeric strings has been split off to its own sniff.
  */
 class ValidIntegersSniff extends Sniff
 {
@@ -47,8 +44,7 @@ class ValidIntegersSniff extends Sniff
     public function register()
     {
         return array(
-            \T_LNUMBER, // Binary, octal integers.
-            \T_CONSTANT_ENCAPSED_STRING, // Hex numeric string.
+            \T_LNUMBER,
         );
     }
 
@@ -85,7 +81,6 @@ class ValidIntegersSniff extends Sniff
         }
 
         $isError = $this->supportsAbove('7.0');
-        $data    = array( $token['content'] );
 
         if ($this->isInvalidOctalInteger($tokens, $stackPtr) === true) {
             $this->addMessage(
@@ -94,19 +89,7 @@ class ValidIntegersSniff extends Sniff
                 $stackPtr,
                 $isError,
                 'InvalidOctalIntegerFound',
-                $data
-            );
-            return;
-        }
-
-        if ($this->isHexidecimalNumericString($tokens, $stackPtr) === true) {
-            $this->addMessage(
-                $phpcsFile,
-                'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: %s',
-                $stackPtr,
-                $isError,
-                'HexNumericStringFound',
-                $data
+                array($token['content'])
             );
             return;
         }
@@ -126,10 +109,6 @@ class ValidIntegersSniff extends Sniff
     private function couldBeBinaryInteger($tokens, $stackPtr)
     {
         $token = $tokens[$stackPtr];
-
-        if ($token['code'] !== \T_LNUMBER) {
-            return false;
-        }
 
         return (preg_match('`^0b[0-1]+$`iD', $token['content']) === 1);
     }
@@ -191,30 +170,7 @@ class ValidIntegersSniff extends Sniff
     {
         $token = $tokens[$stackPtr];
 
-        if ($token['code'] === \T_LNUMBER && preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $token['content']) === 1) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Is the current token a hexidecimal numeric string ?
-     *
-     * @since 7.0.3
-     *
-     * @param array $tokens   Token stack.
-     * @param int   $stackPtr The current position in the token stack.
-     *
-     * @return bool
-     */
-    private function isHexidecimalNumericString($tokens, $stackPtr)
-    {
-        $token = $tokens[$stackPtr];
-
-        if ($token['code'] === \T_CONSTANT_ENCAPSED_STRING
-            && preg_match('`^0x[a-f0-9]+$`iD', TextStrings::stripQuotes($token['content'])) === 1
-        ) {
+        if (preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $token['content']) === 1) {
             return true;
         }
 
