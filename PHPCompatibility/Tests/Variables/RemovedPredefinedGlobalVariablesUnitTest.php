@@ -117,10 +117,8 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             array(110),
             array(111),
             array(126),
-            array(127),
             array(140),
             array(141),
-            array(151), // False positive!
             array(156),
             array(179),
         );
@@ -201,6 +199,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             array(118),
             array(121),
             array(123),
+            array(127),
             array(130),
             array(132),
             array(133),
@@ -210,6 +209,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
             array(146),
             array(147),
             array(150),
+            array(151),
             array(165),
             array(169),
 

@@ -278,6 +278,29 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
                     }
                 }
             }
+
+            // Has this variable been imported via a closure `use` ?
+            if ($tokens[$function]['code'] === \T_CLOSURE
+                && isset($tokens[$function]['parenthesis_closer'])
+            ) {
+                $hasUse = $phpcsFile->findNext(
+                    Tokens::$emptyTokens,
+                    ($tokens[$function]['parenthesis_closer'] + 1),
+                    null,
+                    true
+                );
+
+                if ($hasUse !== false && $tokens[$hasUse]['code'] === \T_USE) {
+                    $useParameters = FunctionDeclarations::getParameters($phpcsFile, $hasUse);
+                    if (\is_array($useParameters) === true && empty($useParameters) === false) {
+                        foreach ($useParameters as $param) {
+                            if ($param['name'] === '$php_errormsg') {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         $skipPast = array(

@@ -124,7 +124,7 @@ $a = function ( $php_errormsg ) // OK, param.
 };
 
 $f = function () use (&$php_errormsg) { // Bad.
-	echo $php_errormsg; // Bad.
+	echo $php_errormsg; // OK, uses imported var. Error will be on imported var, not here.
 };
 
 $php_errormsg = error_get_last(); // OK.
@@ -148,7 +148,7 @@ function something_else()
 	}
 
 	$f = function () use (&$php_errormsg) { // OK, uses the value from the above assignment.
-		echo $php_errormsg; // OK, but for now gives false positive.
+		echo $php_errormsg; // OK, uses imported var.
 	};
 
 	$a = function ()
