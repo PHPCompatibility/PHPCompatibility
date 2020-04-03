@@ -65,7 +65,7 @@ class ValidIntegersSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $token  = $tokens[$stackPtr];
 
-        if ($this->couldBeBinaryInteger($tokens, $stackPtr) === true) {
+        if ($this->couldBeBinaryInteger($token['content']) === true) {
             if ($this->supportsBelow('5.3')) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
                 $data  = array($token['content']);
@@ -82,7 +82,7 @@ class ValidIntegersSniff extends Sniff
 
         $isError = $this->supportsAbove('7.0');
 
-        if ($this->isInvalidOctalInteger($tokens, $stackPtr) === true) {
+        if ($this->isInvalidOctalInteger($token['content']) === true) {
             $this->addMessage(
                 $phpcsFile,
                 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s',
@@ -101,16 +101,13 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param array $tokens   Token stack.
-     * @param int   $stackPtr The current position in the token stack.
+     * @param string $tokenContent The content of the current numeric token to examine.
      *
      * @return bool
      */
-    private function couldBeBinaryInteger($tokens, $stackPtr)
+    private function couldBeBinaryInteger($tokenContent)
     {
-        $token = $tokens[$stackPtr];
-
-        return (preg_match('`^0b[0-1]+$`iD', $token['content']) === 1);
+        return (preg_match('`^0b[0-1]+$`iD', $tokenContent) === 1);
     }
 
     /**
@@ -125,7 +122,7 @@ class ValidIntegersSniff extends Sniff
      */
     private function isInvalidBinaryInteger($tokens, $stackPtr)
     {
-        if ($this->couldBeBinaryInteger($tokens, $stackPtr) === false) {
+        if ($this->couldBeBinaryInteger($tokens[$stackPtr]['content']) === false) {
             return false;
         }
 
@@ -161,19 +158,12 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param array $tokens   Token stack.
-     * @param int   $stackPtr The current position in the token stack.
+     * @param string $tokenContent The content of the current numeric token to examine.
      *
      * @return bool
      */
-    private function isInvalidOctalInteger($tokens, $stackPtr)
+    private function isInvalidOctalInteger($tokenContent)
     {
-        $token = $tokens[$stackPtr];
-
-        if (preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $token['content']) === 1) {
-            return true;
-        }
-
-        return false;
+        return (preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $tokenContent) === 1);
     }
 }
