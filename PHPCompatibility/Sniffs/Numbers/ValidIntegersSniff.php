@@ -8,7 +8,7 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Sniffs\Miscellaneous;
+namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;

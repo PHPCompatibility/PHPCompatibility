@@ -8,7 +8,7 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Miscellaneous;
+namespace PHPCompatibility\Tests\Numbers;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -16,9 +16,9 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Test the ValidIntegers sniff.
  *
  * @group validIntegers
- * @group miscellaneous
+ * @group numbers
  *
- * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
+ * @covers \PHPCompatibility\Sniffs\Numbers\ValidIntegersSniff
  *
  * @since 7.0.3
  */
@@ -158,7 +158,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function dataHexNumericString()
     {
-        // phpcs:disable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
+        // phpcs:disable PHPCompatibility.Numbers.ValidIntegers.HexNumericStringFound
         return array(
             array(11, '0xaa78b5'),
             array(15, '0Xbb99EF'),
