@@ -29,3 +29,7 @@ foreach ($data as [$id, $name]) {}
 
 // List does not contain variables.
 [42] = [1];
+
+// Test specific buggy tokenizer issue.
+if (true) {}
+[$id1, $name1] = $data[0];
