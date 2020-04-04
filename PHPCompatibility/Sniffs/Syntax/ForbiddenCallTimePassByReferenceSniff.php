@@ -156,19 +156,33 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        $find = array(
+            \T_VARIABLE,
+            \T_ARRAY,
+            \T_OPEN_SHORT_ARRAY,
+            \T_CLOSURE,
+        );
+
         $searchStartToken = $parameter['start'] - 1;
         $searchEndToken   = $parameter['end'] + 1;
         $nextVariable     = $searchStartToken;
         do {
-            $nextVariable = $phpcsFile->findNext(array(\T_VARIABLE, \T_OPEN_SHORT_ARRAY, \T_CLOSURE), ($nextVariable + 1), $searchEndToken);
+            $nextVariable = $phpcsFile->findNext($find, ($nextVariable + 1), $searchEndToken);
             if ($nextVariable === false) {
                 return false;
             }
 
+            // Ignore anything within long array definition brackets.
+            if ($tokens[$nextVariable]['type'] === 'T_ARRAY'
+                && isset($tokens[$nextVariable]['parenthesis_closer'])
+            ) {
+                // Skip forward to the end of the short array definition.
+                $nextVariable = $tokens[$nextVariable]['parenthesis_closer'];
+                continue;
+            }
+
             // Ignore anything within short array definition brackets.
             if ($tokens[$nextVariable]['type'] === 'T_OPEN_SHORT_ARRAY'
-                && (isset($tokens[$nextVariable]['bracket_opener'])
-                    && $tokens[$nextVariable]['bracket_opener'] === $nextVariable)
                 && isset($tokens[$nextVariable]['bracket_closer'])
             ) {
                 // Skip forward to the end of the short array definition.
@@ -178,8 +192,6 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
             // Skip past closures passed as function parameters.
             if ($tokens[$nextVariable]['type'] === 'T_CLOSURE'
-                && (isset($tokens[$nextVariable]['scope_condition'])
-                    && $tokens[$nextVariable]['scope_condition'] === $nextVariable)
                 && isset($tokens[$nextVariable]['scope_closer'])
             ) {
                 // Skip forward to the end of the closure declaration.
