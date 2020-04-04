@@ -60,41 +60,46 @@ class ValidIntegersSniff extends Sniff
      * @param int                   $stackPtr  The position of the current token in
      *                                         the stack.
      *
-     * @return void
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
+        $tokens     = $phpcsFile->getTokens();
+        $numberInfo = Numbers::getCompleteNumber($phpcsFile, $stackPtr);
 
-        if (Numbers::isBinaryInt($token['content']) === true) {
+        if (Numbers::isBinaryInt($numberInfo['content']) === true) {
             if ($this->supportsBelow('5.3')) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
-                $data  = array($token['content']);
+                $data  = array($numberInfo['orig_content']);
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
             }
 
-            if ($this->isInvalidBinaryInteger($tokens, $stackPtr) === true) {
+            if ($this->isInvalidBinaryInteger($tokens, $numberInfo['last_token']) === true) {
                 $error = 'Invalid binary integer detected. Found: %s';
                 $data  = array($this->getBinaryInteger($phpcsFile, $tokens, $stackPtr));
                 $phpcsFile->addWarning($error, $stackPtr, 'InvalidBinaryIntegerFound', $data);
             }
-            return;
+
+            // If this was a PHP 7.4 numeric literal, no need to scan subsequent parts of the number again.
+            return $numberInfo['last_token'];
         }
 
         $isError = $this->supportsAbove('7.0');
 
-        if ($this->isInvalidOctalInteger($token['content']) === true) {
+        if ($this->isInvalidOctalInteger($numberInfo['content']) === true) {
             $this->addMessage(
                 $phpcsFile,
                 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s',
                 $stackPtr,
                 $isError,
                 'InvalidOctalIntegerFound',
-                array($token['content'])
+                array($numberInfo['orig_content'])
             );
-            return;
         }
+
+        // If this was a PHP 7.4 numeric literal, no need to scan subsequent parts of the number again.
+        return $numberInfo['last_token'];
     }
 
     /**
@@ -109,8 +114,20 @@ class ValidIntegersSniff extends Sniff
      */
     private function isInvalidBinaryInteger($tokens, $stackPtr)
     {
+        $next = $tokens[$stackPtr + 1];
+
         // If it's an invalid binary int, the token will be split into two T_LNUMBER tokens.
-        return ($tokens[$stackPtr + 1]['code'] === \T_LNUMBER);
+        if ($next['code'] === \T_LNUMBER) {
+            return true;
+        }
+
+        if ($next['code'] === \T_STRING
+            && \preg_match(Numbers::REGEX_NUMLIT_STRING, $next['content'])
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
