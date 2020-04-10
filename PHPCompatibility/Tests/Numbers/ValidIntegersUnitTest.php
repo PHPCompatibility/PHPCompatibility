@@ -8,7 +8,7 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Miscellaneous;
+namespace PHPCompatibility\Tests\Numbers;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
@@ -16,9 +16,9 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * Test the ValidIntegers sniff.
  *
  * @group validIntegers
- * @group miscellaneous
+ * @group numbers
  *
- * @covers \PHPCompatibility\Sniffs\Miscellaneous\ValidIntegersSniff
+ * @covers \PHPCompatibility\Sniffs\Numbers\ValidIntegersSniff
  *
  * @since 7.0.3
  */
@@ -50,7 +50,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataBinaryInteger
+     * Data Provider.
      *
      * @see testBinaryInteger()
      *
@@ -61,7 +61,9 @@ class ValidIntegersUnitTest extends BaseSniffTest
         return array(
             array(3, '0b001001101', true),
             array(4, '0b01', false),
-            array(14, '0B10001', true),
+            array(11, '0B10001', true),
+            array(14, '0b00100_1101', true),
+            array(19, '0b01', false),
         );
     }
 
@@ -69,12 +71,34 @@ class ValidIntegersUnitTest extends BaseSniffTest
     /**
      * testInvalidBinaryInteger
      *
+     * @dataProvider dataInvalidBinaryInteger
+     *
+     * @param int    $line   Line number where the error should occur.
+     * @param string $binary (Start of) Binary number as a string.
+     *
      * @return void
      */
-    public function testInvalidBinaryInteger()
+    public function testInvalidBinaryInteger($line, $binary)
     {
         $file = $this->sniffFile(__FILE__); // Message will be shown independently of testVersion.
-        $this->assertWarning($file, 4, 'Invalid binary integer detected. Found: 0b0123456');
+        $this->assertWarning($file, $line, "Invalid binary integer detected. Found: {$binary}");
+    }
+
+    /**
+     * Data Provider.
+     *
+     * @see testInvalidBinaryInteger()
+     *
+     * @return array
+     */
+    public function dataInvalidBinaryInteger()
+    {
+        return array(
+            array(4, '0b0123456'),
+
+            // Depending on PHP version the message will show the complete number or just the first part.
+            array(19, '0b012'),
+        );
     }
 
 
@@ -100,7 +124,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataInvalidOctalInteger
+     * Data Provider.
      *
      * @see testInvalidOctalInteger()
      *
@@ -112,6 +136,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
             array(7, '08'),
             array(8, '038'),
             array(9, '091'),
+            array(16, '03_8'),
         );
     }
 
@@ -119,68 +144,31 @@ class ValidIntegersUnitTest extends BaseSniffTest
     /**
      * testValidOctalInteger
      *
+     * @dataProvider dataValidOctalInteger
+     *
+     * @param int $line Line number where the error should occur.
+     *
      * @return void
      */
-    public function testValidOctalInteger()
+    public function testValidOctalInteger($line)
     {
         $file = $this->sniffFile(__FILE__, '4.0-99.0');
-        $this->assertNoViolation($file, 6);
-    }
-
-
-    /**
-     * testHexNumericString
-     *
-     * @dataProvider dataHexNumericString
-     *
-     * @param int    $line Line number where the error should occur.
-     * @param string $hex  Hexidecminal number as a string.
-     *
-     * @return void
-     */
-    public function testHexNumericString($line, $hex)
-    {
-        $error = "The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: '{$hex}'";
-
-        $file = $this->sniffFile(__FILE__, '5.6');
-        $this->assertWarning($file, $line, $error);
-
-        $file = $this->sniffFile(__FILE__, '7.0');
-        $this->assertError($file, $line, $error);
+        $this->assertNoViolation($file, $line);
     }
 
     /**
-     * Data provider.
+     * Data Provider.
      *
-     * @see testHexNumericString()
+     * @see testValidOctalInteger()
      *
      * @return array
      */
-    public function dataHexNumericString()
+    public function dataValidOctalInteger()
     {
-        // phpcs:disable PHPCompatibility.Miscellaneous.ValidIntegers.HexNumericStringFound
         return array(
-            array(11, '0xaa78b5'),
-            array(15, '0Xbb99EF'),
+            array(6),
+            array(15),
         );
-        // phpcs:enable
-    }
-
-
-    /**
-     * testHexNumericString.
-     *
-     * @dataProvider dataHexNumericString
-     *
-     * @return void
-     */
-    public function testNoFalsePositivesHexNumericString()
-    {
-        $file = $this->sniffFile(__FILE__, '5.6');
-        $this->assertNoViolation($file, 12);
-
-        $file = $this->sniffFile(__FILE__, '7.0');
-        $this->assertNoViolation($file, 12);
     }
 
 
