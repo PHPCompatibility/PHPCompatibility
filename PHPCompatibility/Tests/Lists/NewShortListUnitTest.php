@@ -57,6 +57,7 @@ class NewShortListUnitTest extends BaseSniffTest
             array(23),
             array(25), // x2.
             array(28),
+            array(35),
         );
     }
 
