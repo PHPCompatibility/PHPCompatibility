@@ -69,9 +69,10 @@ class NewTypedPropertiesSniff extends Sniff
         // Still here ? In that case, this will be a typed property.
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
-                'Typed properties are not supported in PHP 7.3 or earlier',
+                'Typed properties are not supported in PHP 7.3 or earlier. Found: %s',
                 $properties['type_token'],
-                'Found'
+                'Found',
+                array($properties['type'])
             );
         }
 
