@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Warns for non-magic behaviour of magic methods prior to becoming magic.
@@ -80,14 +82,6 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
             '5.6' => true,
         ),
 
-        // Special case - only became properly magical in 5.2.0,
-        // before that it was only called for echo and print.
-        '__tostring' => array(
-            '5.1'     => false,
-            '5.2'     => true,
-            'message' => 'The method %s() was not truly magical in PHP version %s and earlier. The associated magic functionality will only be called when directly combined with echo or print.',
-        ),
-
         '__serialize' => array(
             '7.3' => false,
             '7.4' => true,
@@ -95,6 +89,14 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
         '__unserialize' => array(
             '7.3' => false,
             '7.4' => true,
+        ),
+
+        // Special case - only became properly magical in 5.2.0,
+        // before that it was only called for echo and print.
+        '__tostring' => array(
+            '5.1'     => false,
+            '5.2'     => true,
+            'message' => 'The method %s() was not truly magical in PHP version %s and earlier. The associated magic functionality will only be called when directly combined with echo or print.',
         ),
     );
 
@@ -125,14 +127,14 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $functionName   = $phpcsFile->getDeclarationName($stackPtr);
+        $functionName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         $functionNameLc = strtolower($functionName);
 
         if (isset($this->newMagicMethods[$functionNameLc]) === false) {
             return;
         }
 
-        if ($this->inClassScope($phpcsFile, $stackPtr, false) === false) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
             return;
         }
 
