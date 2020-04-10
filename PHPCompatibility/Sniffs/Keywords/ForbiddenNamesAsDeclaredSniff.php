@@ -12,7 +12,8 @@ namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 
 /**
@@ -138,18 +139,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
 
         $tokens    = $phpcsFile->getTokens();
         $tokenCode = $tokens[$stackPtr]['code'];
-        $tokenType = $tokens[$stackPtr]['type'];
 
-        if (\in_array($tokenType, array('T_CLASS', 'T_INTERFACE', 'T_TRAIT'), true)) {
-            // Check for the declared name being a name which is not tokenized as T_STRING.
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-            if ($nextNonEmpty !== false && isset($this->forbiddenTokens[$tokens[$nextNonEmpty]['code']]) === true) {
-                $name = $tokens[$nextNonEmpty]['content'];
-            } else {
-                // Get the declared name if it's a T_STRING.
-                $name = $phpcsFile->getDeclarationName($stackPtr);
-            }
-            unset($nextNonEmpty);
+        if (isset(BCTokens::ooScopeTokens()[$tokenCode]) === true) {
+            $name = ObjectDeclarations::getName($phpcsFile, $stackPtr);
 
             if (isset($name) === false || \is_string($name) === false || $name === '') {
                 return;
@@ -159,8 +151,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             if (isset($this->allForbiddenNames[$nameLc]) === false) {
                 return;
             }
+        }
 
-        } elseif ($tokenCode === \T_NAMESPACE) {
+        if ($tokenCode === \T_NAMESPACE) {
             $namespaceName = Namespaces::getDeclaredName($phpcsFile, $stackPtr);
 
             if ($namespaceName === false || $namespaceName === '') {
