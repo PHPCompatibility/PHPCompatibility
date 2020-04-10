@@ -81,6 +81,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array('object', '7.1', 60, '7.2'),
             array('parent', '5.1', 63, '5.2', false),
             array('parent', '5.1', 66, '5.2', false),
+            array('self', '5.1', 71, '5.2'),
+            array('self', '5.1', 72, '5.2', false),
+            array('parent', '5.1', 73, '5.2', false),
+            array('int', '5.6', 78, '7.0'),
+            array('callable', '5.3', 80, '5.4'),
         );
     }
 
@@ -115,6 +120,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array('boolean', 'bool', 20),
             array('integer', 'int', 21),
             array('static', 'self', 25),
+            array('integer', 'int', 81),
         );
     }
 
@@ -125,7 +131,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      * @dataProvider dataInvalidSelfTypeDeclaration
      *
      * @param int    $line Line number on which to expect an error.
-     * @param string $type The invalid type which should eb expected.
+     * @param string $type The invalid type which should be expected.
      *
      * @return void
      */
@@ -149,6 +155,38 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array(44, 'self'),
             array(63, 'parent'),
             array(66, 'parent'),
+            array(72, 'self'),
+        );
+    }
+
+
+    /**
+     * testInvalidSelfTypeDeclaration
+     *
+     * @dataProvider dataInvalidSelfTypeDeclarationNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidSelfTypeDeclarationNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidSelfTypeDeclarationNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataInvalidSelfTypeDeclarationNoFalsePositives()
+    {
+        return array(
+            array(71),
+            array(73),
         );
     }
 
@@ -211,6 +249,13 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             array(60),
             array(63),
             array(66),
+            array(71),
+            array(72),
+            array(73),
+            array(78),
+            array(79),
+            array(80),
+            array(81),
         );
     }
 
@@ -242,6 +287,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
         return array(
             array(48),
             array(49),
+            array(82),
         );
     }
 

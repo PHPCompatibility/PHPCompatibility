@@ -65,3 +65,18 @@ function foo(parent $a) {} // Invalid - not within a class.
 namespace test {
     function foo(parent $a) {} // Invalid - not within a class.
 }
+
+class Bar {
+    function baz() {
+        $c = function (self $a) {}; // Ok.
+        function foo(self $a) {} // Invalid - not within class scope.
+        $arrow = fn(parent $a) => $a->prop; // Ok.
+    }
+}
+
+// PHP 7.4 arrow functions.
+$arrow = fn(int $a) => $a * 10;
+$arrow = fn(\FQN\ClassName $b) => $b::method();
+$arrow = fn(callable $a) => $a();
+$arrow = fn(integer $a) => $a . 'test';
+$arrow = fn($a) => $a * 10; // OK.
