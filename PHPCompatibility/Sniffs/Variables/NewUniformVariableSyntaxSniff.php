@@ -93,16 +93,6 @@ class NewUniformVariableSyntaxSniff extends Sniff
                     return;
                 }
             }
-
-            // Now let's also prevent false positives when used with self and static which still work fine.
-            $classToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
-            if ($classToken !== false) {
-                if ($tokens[$classToken]['code'] === \T_STATIC || $tokens[$classToken]['code'] === \T_SELF) {
-                    return;
-                } elseif ($tokens[$classToken]['code'] === \T_STRING && $tokens[$classToken]['content'] === 'self') {
-                    return;
-                }
-            }
         }
 
         $phpcsFile->addError(

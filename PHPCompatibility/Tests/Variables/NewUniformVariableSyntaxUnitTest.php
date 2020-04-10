@@ -55,8 +55,11 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
             array(6),
             array(7),
             array(8),
-            array(37),
-            array(38),
+            array(33),
+            array(34),
+            array(35),
+            array(40),
+            array(41),
         );
     }
 
@@ -103,9 +106,8 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
             array(26),
             array(27),
             array(28),
-            array(29),
-            array(32),
             array(42),
+            array(45),
         );
     }
 

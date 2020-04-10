@@ -26,10 +26,13 @@ echo myClass::hello();
 echo ${$obj->getName()};
 echo $obj->{$obj->$hello}();
 echo $obj->{myClass::$foo}();
-echo new self::$transport[$cap_string]();
-class fooBar {
+
+// Uh oh, these were false negatives. Reporting them now.
+class fooBar extends Bar{
     function foo() {
+        echo new self::$transport[$cap_string]();
         echo static::$transport[$cap_string]();
+        echo parent::$transport[$cap_string]();
     }
 }
 
