@@ -56,6 +56,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
             array(13, 13),
             array(14, 14),
             array(16, 19),
+            array(22, 22),
         );
     }
 
@@ -88,6 +89,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
             array(5),
             array(6),
             array(7),
+            array(25),
         );
     }
 
