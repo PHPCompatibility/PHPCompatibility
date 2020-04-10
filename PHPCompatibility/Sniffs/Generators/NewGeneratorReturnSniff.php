@@ -12,7 +12,9 @@ namespace PHPCompatibility\Sniffs\Generators;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
+use PHPCSUtils\Utils\Conditions;
 
 /**
  * As of PHP 7.0, a `return` statement can be used within a generator for a final expression to be returned.
@@ -104,20 +106,21 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        if (empty($tokens[$stackPtr]['conditions']) === true) {
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($prevNonEmpty !== false
+            && ($tokens[$prevNonEmpty]['type'] === 'T_FN_ARROW'
+            || $tokens[$prevNonEmpty]['code'] === \T_DOUBLE_ARROW)
+        ) {
+            /*
+             * Yield in an arrow function, which can only contain one expression.
+             * And as `yield` can not be used within an array declaration or a foreach expression,
+             * just checking for the double arrow should be sufficient.
+             */
             return;
         }
 
-        // Walk the condition from inner to outer to see if we can find a valid function/closure scope.
-        $conditions = array_reverse($tokens[$stackPtr]['conditions'], true);
-        foreach ($conditions as $ptr => $type) {
-            if (isset($this->validConditions[$type]) === true) {
-                $function = $ptr;
-                break;
-            }
-        }
-
-        if (isset($function) === false) {
+        $function = Conditions::getLastCondition($phpcsFile, $stackPtr, $this->validConditions);
+        if ($function === false) {
             // Yield outside function scope, fatal error, but not our concern.
             return;
         }
