@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -54,9 +55,7 @@ class NewExceptionsFromToStringSniff extends Sniff
     {
         // Enhance the array of tokens to ignore for finding the docblock.
         $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
-        if (isset(Tokens::$phpcsCommentTokens)) {
-            $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
-        }
+        $this->docblockIgnoreTokens += BCTokens::phpcsCommentTokens();
 
         return array(\T_FUNCTION);
     }
@@ -84,13 +83,13 @@ class NewExceptionsFromToStringSniff extends Sniff
             return;
         }
 
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);
+        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         if (strtolower($functionName) !== '__tostring') {
             // Not the right function.
             return;
         }
 
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
             // Function, not method.
             return;
         }
@@ -103,30 +102,22 @@ class NewExceptionsFromToStringSniff extends Sniff
         $errorThrown = false;
 
         do {
-            $throwPtr = $phpcsFile->findNext(\T_THROW, ($throwPtr + 1), $tokens[$stackPtr]['scope_closer']);
+            $throwPtr = $phpcsFile->findNext([\T_THROW, \T_TRY], ($throwPtr + 1), $tokens[$stackPtr]['scope_closer']);
             if ($throwPtr === false) {
                 break;
             }
 
-            $conditions = $tokens[$throwPtr]['conditions'];
-            $conditions = array_reverse($conditions, true);
-            $inTryCatch = false;
-            foreach ($conditions as $ptr => $type) {
-                if ($type === \T_TRY) {
-                    $inTryCatch = true;
-                    break;
-                }
-
-                if ($ptr === $stackPtr) {
-                    // Don't check the conditions outside the function scope.
-                    break;
-                }
+            if ($tokens[$throwPtr]['code'] === \T_TRY
+                && isset($tokens[$throwPtr]['scope_closer']) === true
+            ) {
+                // Skip over the try part of try/catch statements.
+                $throwPtr = $tokens[$throwPtr]['scope_closer'];
+                continue;
             }
 
-            if ($inTryCatch === false) {
-                $phpcsFile->addError($error, $throwPtr, 'Found');
-                $errorThrown = true;
-            }
+            $phpcsFile->addError($error, $throwPtr, 'Found');
+            $errorThrown = true;
+
         } while (true);
 
         if ($errorThrown === true) {
