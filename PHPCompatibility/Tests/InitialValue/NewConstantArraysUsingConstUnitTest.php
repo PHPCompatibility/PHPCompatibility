@@ -94,6 +94,8 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
             array(38),
             array(40),
             array(42),
+            array(46),
+            array(47),
         );
     }
 

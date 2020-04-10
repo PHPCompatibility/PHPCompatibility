@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Arrays;
 
 /**
  * Detect declaration of constants using the `const` keyword with a (constant) array value
@@ -58,23 +60,24 @@ class NewConstantArraysUsingConstSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        $find   = array(
-            \T_ARRAY            => \T_ARRAY,
-            \T_OPEN_SHORT_ARRAY => \T_OPEN_SHORT_ARRAY,
-        );
+        $find   = Collections::$arrayTokens;
 
         while (($hasArray = $phpcsFile->findNext($find, ($stackPtr + 1), null, false, null, true)) !== false) {
-            $phpcsFile->addError(
-                'Constant arrays using the "const" keyword are not allowed in PHP 5.5 or earlier',
-                $hasArray,
-                'Found'
-            );
+            if ($tokens[$hasArray]['code'] === \T_ARRAY
+                || Arrays::isShortArray($phpcsFile, $hasArray) === true
+            ) {
+                $phpcsFile->addError(
+                    'Constant arrays using the "const" keyword are not allowed in PHP 5.5 or earlier',
+                    $hasArray,
+                    'Found'
+                );
+            }
 
             // Skip past the content of the array.
             $stackPtr = $hasArray;
-            if ($tokens[$hasArray]['code'] === \T_OPEN_SHORT_ARRAY && isset($tokens[$hasArray]['bracket_closer'])) {
+            if (isset($tokens[$hasArray]['bracket_closer'])) {
                 $stackPtr = $tokens[$hasArray]['bracket_closer'];
-            } elseif ($tokens[$hasArray]['code'] === \T_ARRAY && isset($tokens[$hasArray]['parenthesis_closer'])) {
+            } elseif (isset($tokens[$hasArray]['parenthesis_closer'])) {
                 $stackPtr = $tokens[$hasArray]['parenthesis_closer'];
             }
         }

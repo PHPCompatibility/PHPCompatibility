@@ -41,3 +41,7 @@ const MULTI_A = 1,
     MULTI_F = array(
         ['c', 'd'],
     );
+
+// Constant array dereferencing.
+const DEREF = OTHER['key'];
+const DEREF = 'string'[2];
