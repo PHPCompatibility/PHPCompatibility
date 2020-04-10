@@ -50,14 +50,10 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
     public function dataNewUseConstFunction()
     {
         return array(
-            array(48),
-            array(49),
-            array(50),
-            array(51),
-            array(54),
-            array(58),
-            array(62),
-            array(66),
+            array(29),
+            array(30),
+            array(31),
+            array(32),
         );
     }
 
@@ -90,15 +86,15 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
             array(7),
             array(8),
             array(9),
-            array(12),
-            array(16),
-            array(22),
-            array(28),
-            array(34),
-            array(40),
-            array(72),
-            array(73),
-            array(74),
+            array(15),
+            array(19),
+            array(24),
+            array(37),
+            array(38),
+            array(39),
+            array(45),
+            array(46),
+            array(51),
         );
     }
 
