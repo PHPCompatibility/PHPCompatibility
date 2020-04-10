@@ -23,7 +23,7 @@ class TestClass {
     var $HTTP_SERVER_VARS;
     private $HTTP_COOKIE_VARS;
     protected $HTTP_SESSION_VARS;
-    public $HTTP_POST_FILES;
+    public static $HTTP_POST_FILES;
     var $HTTP_RAW_POST_DATA;
 
     function testing() {
@@ -124,7 +124,7 @@ $a = function ( $php_errormsg ) // OK, param.
 };
 
 $f = function () use (&$php_errormsg) { // Bad.
-	echo $php_errormsg; // Bad.
+	echo $php_errormsg; // OK, uses imported var. Error will be on imported var, not here.
 };
 
 $php_errormsg = error_get_last(); // OK.
@@ -148,7 +148,7 @@ function something_else()
 	}
 
 	$f = function () use (&$php_errormsg) { // OK, uses the value from the above assignment.
-		echo $php_errormsg; // OK, but for now gives false positive.
+		echo $php_errormsg; // OK, uses imported var.
 	};
 
 	$a = function ()
@@ -167,3 +167,15 @@ trait ABC {
 }
 
 echo $php_errormsg; // OK - uses the value from the assignment on line 37.
+
+// Use of a static class property outside class context works perfectly fine.
+echo $a::$HTTP_ENV_VARS; // OK.
+echo TestClass::$HTTP_POST_FILES; // OK.
+
+function nesting() {
+    $php_errormsg = error_get_last(); // OK.
+
+    function nested() {
+        echo $php_errormsg; // Bad.
+    }
+}

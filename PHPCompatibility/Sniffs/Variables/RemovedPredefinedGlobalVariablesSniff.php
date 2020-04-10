@@ -13,7 +13,9 @@ namespace PHPCompatibility\Sniffs\Variables;
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -141,11 +143,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         }
 
         // Check for static usage of class properties shadowing the removed global variables.
-        if ($this->inClassScope($phpcsFile, $stackPtr, false) === true) {
-            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-            if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
-                return;
-            }
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
+            return;
         }
 
         // Do some additional checks for the $php_errormsg variable.
@@ -226,23 +226,22 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     {
         $scopeStart = 0;
 
+        $validOwners = array(
+            \T_CLOSURE,
+            \T_FUNCTION,
+        );
+
         /*
          * If the variable is detected within the scope of a function/closure, limit the checking.
          */
-        $function = $phpcsFile->getCondition($stackPtr, \T_CLOSURE);
-        if ($function === false) {
-            $function = $phpcsFile->getCondition($stackPtr, \T_FUNCTION);
-        }
+        $function = Conditions::getLastCondition($phpcsFile, $stackPtr, $validOwners);
 
         // It could also be a function param, which is not in the function scope.
         if ($function === false && isset($tokens[$stackPtr]['nested_parenthesis']) === true) {
-            $nestedParentheses = $tokens[$stackPtr]['nested_parenthesis'];
-            $parenthesisCloser = end($nestedParentheses);
-            if (isset($tokens[$parenthesisCloser]['parenthesis_owner'])
-                && ($tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_FUNCTION
-                    || $tokens[$tokens[$parenthesisCloser]['parenthesis_owner']]['code'] === \T_CLOSURE)
-            ) {
-                $function = $tokens[$parenthesisCloser]['parenthesis_owner'];
+            $lastOwner = Parentheses::lastOwnerIn($phpcsFile, $stackPtr, $validOwners);
+            if ($lastOwner !== false) {
+                // Function declaration parameter shadowing the name of the reserved var.
+                return false;
             }
         }
 
@@ -276,6 +275,29 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
                 foreach ($parameters as $param) {
                     if ($param['name'] === '$php_errormsg') {
                         return false;
+                    }
+                }
+            }
+
+            // Has this variable been imported via a closure `use` ?
+            if ($tokens[$function]['code'] === \T_CLOSURE
+                && isset($tokens[$function]['parenthesis_closer'])
+            ) {
+                $hasUse = $phpcsFile->findNext(
+                    Tokens::$emptyTokens,
+                    ($tokens[$function]['parenthesis_closer'] + 1),
+                    null,
+                    true
+                );
+
+                if ($hasUse !== false && $tokens[$hasUse]['code'] === \T_USE) {
+                    $useParameters = FunctionDeclarations::getParameters($phpcsFile, $hasUse);
+                    if (\is_array($useParameters) === true && empty($useParameters) === false) {
+                        foreach ($useParameters as $param) {
+                            if ($param['name'] === '$php_errormsg') {
+                                return false;
+                            }
+                        }
                     }
                 }
             }
