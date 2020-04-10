@@ -63,8 +63,6 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
             array(34),
             array(35),
             array(38),
-            array(42),
-            array(43),
         );
     }
 
@@ -72,15 +70,40 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
     /**
      * Verify the sniff doesn't throw false positives.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param array $line The line number on which the error should occur.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.3');
+        $this->assertNoViolation($file, $line);
+    }
 
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = array();
         for ($line = 1; $line < 7; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = array($line);
         }
+
+        // Short list.
+        $data[] = array(41);
+
+        // Don't report for live coding.
+        $data[] = array(45);
+        $data[] = array(46);
+
+        return $data;
     }
 
 
