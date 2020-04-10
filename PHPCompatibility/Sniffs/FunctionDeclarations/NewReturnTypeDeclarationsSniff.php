@@ -12,6 +12,9 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect and verify the use of return type declarations in function declarations.
@@ -104,17 +107,20 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.0
-     * @since 7.1.2 Now also checks based on the function and closure keywords.
+     * @since 7.1.2  Now also checks based on the function and closure keywords.
+     * @since 10.0.0 Now also checks PHP 7.4+ arrow functions.
      *
      * @return array
      */
     public function register()
     {
-        return array(
+        $targets  = array(
             \T_FUNCTION,
             \T_CLOSURE,
-            \T_RETURN_TYPE,
         );
+        $targets += Collections::arrowFunctionTokensBC();
+
+        return $targets;
     }
 
 
@@ -131,35 +137,36 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Deal with older PHPCS version which don't recognize return type hints
-        // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
-        if ($tokens[$stackPtr]['code'] === \T_FUNCTION || $tokens[$stackPtr]['code'] === \T_CLOSURE) {
-            $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
-            if ($returnTypeHint !== false) {
-                $stackPtr = $returnTypeHint;
-            }
+        try {
+            $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // This must have been a T_STRING which wasn't an arrow function.
+            return;
         }
 
-        if (isset($this->newTypes[$tokens[$stackPtr]['content']]) === true) {
+        if ($properties['return_type'] === '') {
+            // No return type found.
+            return;
+        }
+
+        $returnType      = $properties['return_type'];
+        $returnTypeToken = $properties['return_type_token'];
+        $returnTypeEnd   = $properties['return_type_end_token'];
+
+        if (isset($this->newTypes[$returnType]) === true) {
             $itemInfo = array(
-                'name' => $tokens[$stackPtr]['content'],
+                'name' => $returnType,
             );
-            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
 
             return;
         }
 
         // Handle class name based return types.
-        if ($tokens[$stackPtr]['code'] === \T_STRING
-            || $tokens[$stackPtr]['code'] === \T_RETURN_TYPE
-        ) {
-            $itemInfo = array(
-                'name'   => 'Class name',
-            );
-            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-        }
+        $itemInfo = array(
+            'name'   => 'Class name',
+        );
+        $this->handleFeature($phpcsFile, $returnTypeEnd, $itemInfo);
     }
 
 

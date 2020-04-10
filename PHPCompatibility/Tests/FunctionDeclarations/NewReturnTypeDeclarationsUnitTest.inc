@@ -37,3 +37,7 @@ function fooInterspersedWithComments($a) :
 	Baz
 {
 }
+
+// PHP 7.4 arrow functions.
+$arrow = fn($a) => $a * 10;
+$arrow = fn($a) : int => $a * 10;
