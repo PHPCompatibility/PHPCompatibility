@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Variables;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
  * Detect use of `global` with variable variables, support for which has been removed in PHP 7.0.
@@ -67,7 +68,7 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
             $nextComma   = $phpcsFile->findNext(\T_COMMA, $ptr, $endOfStatement, false, null, true);
             $varEnd      = ($nextComma === false) ? $endOfStatement : $nextComma;
             $variable    = $phpcsFile->findNext(\T_VARIABLE, $ptr, $varEnd);
-            $varString   = trim($phpcsFile->getTokensAsString($ptr, ($varEnd - $ptr)));
+            $varString   = GetTokensAsString::noEmpties($phpcsFile, $ptr, ($varEnd - 1));
             $data        = array($varString);
 
             if ($variable !== false) {
