@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCFile;
+use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
  * Bitwise shifts by negative number will throw an ArithmeticError since PHP 7.0.
@@ -103,7 +104,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             'Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0. Found: %s',
             $stackPtr,
             'Found',
-            array($phpcsFile->getTokensAsString($start, ($end - $start + 1)))
+            array(GetTokensAsString::compact($phpcsFile, $start, ($end - $start + 1), true))
         );
     }
 }
