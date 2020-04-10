@@ -27,20 +27,6 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
 {
 
     /**
-     * The name of the main test case file.
-     *
-     * @var string
-     */
-    const TEST_FILE = 'ForbiddenVariableNamesInClosureUseUnitTest.1.inc';
-
-    /**
-     * The name of a secondary test case file which similates live coding.
-     *
-     * @var string
-     */
-    const TEST_FILE_LIVE_CODING = 'ForbiddenVariableNamesInClosureUseUnitTest.2.inc';
-
-    /**
      * testForbiddenVariableNamesInClosureUse
      *
      * @dataProvider dataForbiddenVariableNamesInClosureUse
@@ -52,7 +38,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testForbiddenVariableNamesInClosureUse($line, $varName)
     {
-        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertError($file, $line, 'Variables bound to a closure via the use construct cannot use the same name as superglobals, $this, or a declared parameter since PHP 7.1. Found: ' . $varName);
     }
 
@@ -90,7 +76,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.1');
+        $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
     }
 
@@ -114,35 +100,6 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
             array(32),
             array(33),
             array(36),
-        );
-    }
-
-
-    /**
-     * testNoFalsePositivesLiveCoding
-     *
-     * @dataProvider dataNoFalsePositivesLiveCoding
-     *
-     * @param int $line The line number.
-     *
-     * @return void
-     */
-    public function testNoFalsePositivesLiveCoding($line)
-    {
-        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE_LIVE_CODING, '7.1');
-        $this->assertNoViolation($file, $line);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testNoFalsePositivesLiveCoding()
-     *
-     * @return array
-     */
-    public function dataNoFalsePositivesLiveCoding()
-    {
-        return array(
             array(41),
             array(44),
         );
@@ -156,7 +113,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.0');
+        $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
 }
