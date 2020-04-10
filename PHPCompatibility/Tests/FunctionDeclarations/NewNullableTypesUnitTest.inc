@@ -81,3 +81,6 @@ function testTypeDeclarationsInterspersedWithComments(
 	Baz
 {
 }
+
+// PHP 7.4 arrow functions with nullable types.
+$arrow = fn(?int $a): ?\bool => $a > 10;

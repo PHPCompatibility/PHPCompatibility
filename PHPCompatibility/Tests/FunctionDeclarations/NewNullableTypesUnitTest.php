@@ -20,7 +20,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group typeDeclarations
  *
  * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\NewNullableTypesSniff
- * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
  *
  * @since 7.0.7
  */
@@ -64,6 +63,7 @@ class NewNullableTypesUnitTest extends BaseSniffTest
 
             array(63),
             array(77),
+            array(86),
         );
     }
 
@@ -108,6 +108,7 @@ class NewNullableTypesUnitTest extends BaseSniffTest
             array(64),
             array(68),
             array(74),
+            array(86),
         );
     }
 
