@@ -64,6 +64,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
             array(18),
             array(19),
             array(23),
+            array(38),
         );
     }
 

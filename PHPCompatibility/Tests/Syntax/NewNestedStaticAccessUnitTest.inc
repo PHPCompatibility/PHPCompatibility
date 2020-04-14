@@ -33,3 +33,6 @@ echo $bar::($foo['bar'])::$baz;
 // Still not supported.
 self::MY_CONSTANT::$baz;
 Foo::MY_CONSTANT::$baz;
+
+// Issue #1016.
+echo Foo::bar()::baz();
