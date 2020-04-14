@@ -44,6 +44,10 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * The callback function should return `true` if the condition is met and the
      * error should *not* be thrown.
      *
+     * {@internal This list does not contain `T_FN` as that token is not reliably
+     * sniffable in a PHP/PHPCS cross-version compatible manner.
+     * The separate `Syntax.NewArrowFunction` sniff reports on that token.}
+     *
      * @since 5.5
      * @since 7.0.3  Support for `condition` has been added.
      * @since 10.0.0 The `condition` index used to allow only for callback methods in this or the
