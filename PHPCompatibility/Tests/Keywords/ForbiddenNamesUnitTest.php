@@ -63,38 +63,45 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function usecaseProvider()
     {
-        return [
+        $testCaseTypes = [
             // Declarations.
-            ['namespace'],
-            ['nested-namespace'],
-            ['class'],
-            ['interface'],
-            ['trait'],
-            ['function-declare'],
-            ['function-declare-reference'],
-            ['method-declare'],
-            ['const'],
-            ['class-const'],
-            ['define'],
+            'namespace',
+            'nested-namespace',
+            'class',
+            'interface',
+            'trait',
+            'function-declare',
+            'function-declare-reference',
+            'method-declare',
+            'const',
+            'class-const',
+            'define',
 
             // Aliases.
-            ['use-as'],
-            ['use-function-as'],
-            ['use-const-as'],
-            ['multi-use-as'],
-            ['multi-use-function-as'],
-            ['multi-use-const-as'],
-            ['group-use-as'],
-            ['group-use-function-as'],
-            ['group-use-const-as'],
-            ['group-use-function-as-in-group'],
-            ['group-use-const-as-in-group'],
-            ['class-use-trait-alias-method'],
-            ['class-use-trait-alias-public-method'],
-            ['class-use-trait-alias-protected-method'],
-            ['class-use-trait-alias-private-method'],
-            ['class-use-trait-alias-final-method'],
+            'use-as',
+            'use-function-as',
+            'use-const-as',
+            'multi-use-as',
+            'multi-use-function-as',
+            'multi-use-const-as',
+            'group-use-as',
+            'group-use-function-as',
+            'group-use-const-as',
+            'group-use-function-as-in-group',
+            'group-use-const-as-in-group',
+            'class-use-trait-alias-method',
+            'class-use-trait-alias-public-method',
+            'class-use-trait-alias-protected-method',
+            'class-use-trait-alias-private-method',
+            'class-use-trait-alias-final-method',
         ];
+
+        $data = [];
+        foreach ($testCaseTypes as $type) {
+            $data[$type] = [$type];
+        }
+
+        return $data;
     }
 
 
@@ -134,8 +141,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     public function usecaseProviderPHP7()
     {
         return [
-            ['method-declare'],
-            ['class-const'],
+            'method-declare' => ['method-declare'],
+            'class-const'    => ['class-const'],
         ];
     }
 
