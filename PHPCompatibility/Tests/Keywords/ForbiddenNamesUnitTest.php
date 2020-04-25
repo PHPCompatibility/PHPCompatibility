@@ -112,7 +112,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testCorrectUsageOfKeywords()
     {
-        $file = $this->sniffFile(__FILE__, '5.5');
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.1.inc', '5.5');
         $this->assertNoViolation($file);
     }
 
