@@ -369,10 +369,8 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function processString(File $phpcsFile, $stackPtr, $tokens)
     {
-        $tokenContentLc = \strtolower($tokens[$stackPtr]['content']);
-
-        // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
-        if ($tokenContentLc !== 'define' && $tokenContentLc !== 'defined') {
+        // Look for function calls to `define()`.
+        if (\strtolower($tokens[$stackPtr]['content']) !== 'define') {
             return;
         }
 
