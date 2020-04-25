@@ -11,9 +11,6 @@
 
     <file>.</file>
 
-    <!-- Exclude ForbiddenNames test case code. -->
-    <exclude-pattern>*/PHPCompatibility/Tests/Keywords/ForbiddenNames/*\.php</exclude-pattern>
-
     <!-- Exclude Composer vendor directory. -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
 

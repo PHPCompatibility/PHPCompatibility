@@ -181,14 +181,14 @@ $path = realpath(dirname(__DIR__))
     . DIRECTORY_SEPARATOR . 'ForbiddenNames';
 
 foreach ($tests as $name => $callback) {
-    $filename = $path . DIRECTORY_SEPARATOR . $name . '.php';
+    $filename = $path . DIRECTORY_SEPARATOR . $name . '.inc';
     echo "Creating file '$filename'\n";
     file_put_contents($filename, "<?php\n" . $callback('Baz'));
 }
 
 foreach (array_keys($invalidNames) as $name) {
     foreach ($tests as $testname => $callback) {
-        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.php';
+        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.inc';
         file_put_contents($filename, $callback($name), FILE_APPEND);
     }
 }
