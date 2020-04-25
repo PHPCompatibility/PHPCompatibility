@@ -106,18 +106,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
 
     /**
-     * testCorrectUsageOfKeywords
-     *
-     * @return void
-     */
-    public function testCorrectUsageOfKeywords()
-    {
-        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.1.inc', '5.5');
-        $this->assertNoViolation($file);
-    }
-
-
-    /**
      * testNotForbiddenInPHP7
      *
      * @dataProvider usecaseProviderPHP7
@@ -159,5 +147,35 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         $this->assertNoViolation($file, 3); // Keyword: abstract.
         $this->assertNoViolation($file, 8); // Keyword: callable.
         $this->assertNoViolation($file, 10); // Keyword: catch.
+    }
+
+
+    /**
+     * Test that correct use of the keywords doesn't trigger false positives, as well as
+     * use of incorrectly named constructs.
+     *
+     * @dataProvider dataCorrectUsageOfKeywords
+     *
+     * @param string $path Path to the test case file which shouldn't trigger any errors.
+     *
+     * @return void
+     */
+    public function testCorrectUsageOfKeywords($path)
+    {
+        $file = $this->sniffFile($path, '5.5');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function dataCorrectUsageOfKeywords()
+    {
+        return [
+            'correct-use'                   => [__DIR__ . '/ForbiddenNamesUnitTest.1.inc'],
+            'incorrect-use-but-not-checked' => [__DIR__ . '/ForbiddenNamesUnitTest.2.inc'],
+        ];
     }
 }
