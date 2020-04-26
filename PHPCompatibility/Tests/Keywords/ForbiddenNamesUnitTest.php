@@ -66,13 +66,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         return [
             ['namespace'],
             ['nested-namespace'],
-            ['use'],
             ['use-as'],
             ['class'],
-            ['class-extends'],
-            ['class-use-trait'],
-            ['class-use-trait-const'],
-            ['class-use-trait-function'],
             ['class-use-trait-alias-method'],
             ['class-use-trait-alias-public-method'],
             ['class-use-trait-alias-protected-method'],
@@ -86,7 +81,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             ['class-const'],
             ['define'],
             ['interface'],
-            ['interface-extends'],
         ];
     }
 
