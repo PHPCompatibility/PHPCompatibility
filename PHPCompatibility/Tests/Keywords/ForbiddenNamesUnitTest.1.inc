@@ -3,6 +3,10 @@
 //namespace
 namespace FooTest;
 
+// Nested namespace declarations.
+namespace Foo\Bar\Baz;
+namespace Foo\Bar\Baz {}
+
 // abstract
 abstract class FoobarAbstract { }
 
@@ -59,11 +63,20 @@ declare(ticks=1);
 declare(ticks=1):
 enddeclare;
 
+// die
+die();
+
 // do, while and endwhile
 do {
 } while (false);
 while (false):
 endwhile;
+
+// echo
+echo "Hello World!";
+
+$str = "Hello World!";
+echo $str;
 
 // if else and elseif
 if (true) {
@@ -74,6 +87,16 @@ if (true) {
 // endif
 if (true):
 endif;
+
+// empty
+empty($foo);
+
+// eval
+eval( 'echo "Hello World!";' );
+
+// exit
+exit( 'Exit Message' );
+exit(1);
 
 // extends, final, private, protected, public
 class FooExtends extends \Exception {
@@ -91,6 +114,7 @@ endfor;
 
 // function
 function abcdef() {}
+function &mySayHello() {}
 
 // global
 global $a;
@@ -98,6 +122,14 @@ global $a;
 // goto
 goto a;
 a:
+
+// include
+include __DIR__ . '/path/to/file.php';
+include( $file );
+
+// include_once
+include_once __DIR__ . '/path/to/file.php';
+include_once( $file );
 
 // interface and implements
 interface FooInterface {}
@@ -108,16 +140,47 @@ if ($b instanceof FoobarClass) {}
 
 // TODO: insteadof
 
+// isset
+isset( $foo );
+
+// list
+list( $a, $b, $c ) = $array;
+foreach ($array as list($key, $value)) {}
+foreach ([[1, 2], [2, 3]] as list($a, $b)):
+    // Do something.
+endforeach;
+
 // or
 $c = 1 or 2;
+
+// print
+print "Hello world!";
+
+// require
+require __DIR__ . '/path/to/file.php';
+require( $file );
+
+// require_once
+require_once __DIR__ . '/path/to/file.php';
+require_once( $file );
+
+// return
+return;
+return $foo;
 
 // throw
 if (false) {
     throw new Exception("foo");
 }
 
+// unset
+unset( $foo );
+
 // xor
 $d = 1 xor 2;
+
+// yield
+yield $item;
 
 // Issue #117: Traits: alias method with changed visibility.
 class MyClass1 {
@@ -152,15 +215,8 @@ class MyClass4 {
     use HelloWorld { sayHello as final myFinalHello; }
 }
 
-// Functions declared to return by reference.
-function &mySayHello() {}
-
 // Anonymous classes.
 $a = new class {}
-
-// Nested namespace declarations.
-namespace Foo\Bar\Baz;
-namespace Foo\Bar\Baz {}
 
 /**
  * Issue #124/#126: Valid use statements with function or const (PHP 5.6+).
@@ -168,64 +224,3 @@ namespace Foo\Bar\Baz {}
 use function MyFunctionName;
 use function MyFunctionName as func;
 use const MyCONSTANT;
-
-// list
-list( $a, $b, $c ) = $array;
-foreach ($array as list($key, $value)) {}
-foreach ([[1, 2], [2, 3]] as list($a, $b)):
-    // Do something.
-endforeach;
-
-// die
-die();
-
-// echo
-echo "Hello World!";
-
-$str = "Hello World!";
-echo $str;
-
-// empty
-empty($foo);
-
-// eval
-eval( 'echo "Hello World!";' );
-
-// exit
-exit( 'Exit Message' );
-exit(1);
-
-// include
-include __DIR__ . '/path/to/file.php';
-include( $file );
-
-// include_once
-include_once __DIR__ . '/path/to/file.php';
-include_once( $file );
-
-// interface
-interface FoobarInterface {}
-
-// isset
-isset( $foo );
-
-// print
-print "Hello world!";
-
-// require
-require __DIR__ . '/path/to/file.php';
-require( $file );
-
-// require_once
-require_once __DIR__ . '/path/to/file.php';
-require_once( $file );
-
-// return
-return;
-return $foo;
-
-// unset
-unset( $foo );
-
-// yield
-yield $item;
