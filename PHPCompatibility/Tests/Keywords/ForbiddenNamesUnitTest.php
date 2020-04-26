@@ -64,15 +64,11 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     public function usecaseProvider()
     {
         return [
+            // Declarations.
             ['namespace'],
             ['nested-namespace'],
-            ['use-as'],
             ['class'],
-            ['class-use-trait-alias-method'],
-            ['class-use-trait-alias-public-method'],
-            ['class-use-trait-alias-protected-method'],
-            ['class-use-trait-alias-private-method'],
-            ['class-use-trait-alias-final-method'],
+            ['interface'],
             ['trait'],
             ['function-declare'],
             ['function-declare-reference'],
@@ -80,7 +76,14 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             ['const'],
             ['class-const'],
             ['define'],
-            ['interface'],
+
+            // Aliases.
+            ['use-as'],
+            ['class-use-trait-alias-method'],
+            ['class-use-trait-alias-public-method'],
+            ['class-use-trait-alias-protected-method'],
+            ['class-use-trait-alias-private-method'],
+            ['class-use-trait-alias-final-method'],
         ];
     }
 

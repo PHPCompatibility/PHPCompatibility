@@ -92,36 +92,20 @@ $invalidNames = [
 echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
 
 $tests = [
+    /*
+     * Reserved names being used in a declaration.
+     */
     'namespace'                              => function ($name) {
         return "namespace $name;\n";
     },
     'nested-namespace'                       => function ($name) {
         return "namespace Foo\\{$name}\\Bar;\n";
     },
-    'use-as'                                 => function ($name) {
-        return "use Foobar as $name;\n";
-    },
     'class'                                  => function ($name) {
         return "class $name {}\n";
     },
-    'class-use-trait-alias-method'           => function ($name) {
-        if (in_array($name, ['public', 'protected', 'private', 'final'], true) === true) {
-            return '';
-        } else {
-            return "class Foobar { use BazTrait { oldfunction as $name } }\n";
-        }
-    },
-    'class-use-trait-alias-public-method'    => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as public $name } }\n";
-    },
-    'class-use-trait-alias-protected-method' => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as protected $name } }\n";
-    },
-    'class-use-trait-alias-private-method'   => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as private $name } }\n";
-    },
-    'class-use-trait-alias-final-method'     => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as final $name } }\n";
+    'interface'                              => function ($name) {
+        return "interface $name {}\n";
     },
     'trait'                                  => function ($name) {
         return "trait $name {}\n";
@@ -151,8 +135,31 @@ $tests = [
     'define'                                 => function ($name) {
         return "define('$name', 1);\n";
     },
-    'interface'                              => function ($name) {
-        return "interface $name {}\n";
+
+    /*
+     * Reserved names being used as an alias.
+     */
+    'use-as'                                 => function ($name) {
+        return "use Foobar as $name;\n";
+    },
+    'class-use-trait-alias-method'           => function ($name) {
+        if (in_array($name, array('public', 'protected', 'private', 'final'), true) === true) {
+            return '';
+        } else {
+            return "class Foobar { use BazTrait { oldfunction as $name } }\n";
+        }
+    },
+    'class-use-trait-alias-public-method'    => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as public $name } }\n";
+    },
+    'class-use-trait-alias-protected-method' => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as protected $name } }\n";
+    },
+    'class-use-trait-alias-private-method'   => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as private $name } }\n";
+    },
+    'class-use-trait-alias-final-method'     => function ($name) {
+        return "class Foobar { use BazTrait { oldfunction as final $name } }\n";
     },
 ];
 
