@@ -1,20 +1,29 @@
 <?php
 
-//namespace
+// namespace
 namespace FooTest;
+namespace\function_call();
 
 // Nested namespace declarations.
 namespace Foo\Bar\Baz;
 namespace Foo\Bar\Baz {}
 
+// Scoped global namespace.
+namespace {
+    // Do something.
+}
+
 // abstract
-abstract class FoobarAbstract { }
+abstract class FoobarAbstract {
+    abstract function foo() {}
+}
 
 // and
 $a = 1 and 2;
 
 // array
 $exampleArray = array(1, 2);
+function typehint(array $param) : array {}
 
 // foreach, endforeach, use and as
 foreach (array() as $item):
@@ -30,7 +39,7 @@ foreach (array(1,2,3) as $number) {
     break;
 }
 
-//callable
+// callable
 function doThing(callable $callback) {
 }
 
@@ -42,10 +51,10 @@ switch ($a):
         break;
 endswitch;
 
-// try and catch
-// TODO: add finally (PHP 5.5)
+// try, catch and finally
 try {
 } catch (Exception $e) {
+} finally {
 }
 
 // class
@@ -98,7 +107,7 @@ eval( 'echo "Hello World!";' );
 exit( 'Exit Message' );
 exit(1);
 
-// extends, final, private, protected, public
+// extends, final, private, protected, public, var
 class FooExtends extends \Exception {
     private $fooPrivate;
     protected $fooProtected;
@@ -115,6 +124,7 @@ endfor;
 // function
 function abcdef() {}
 function &mySayHello() {}
+$closure = function() {};
 
 // global
 global $a;
@@ -132,13 +142,23 @@ include_once __DIR__ . '/path/to/file.php';
 include_once( $file );
 
 // interface and implements
-interface FooInterface {}
+interface FooInterface  {
+    public $prop;
+    public function name() {}
+}
 class FooImplements implements FooInterface {}
 
 // instanceof
 if ($b instanceof FoobarClass) {}
 
-// TODO: insteadof
+// insteadof, use, as
+class WithTraits {
+    use A, B {
+        B::smallTalk insteadof A;
+        A::bigTalk insteadof B;
+        B::bigTalk as talk;
+    }
+}
 
 // isset
 isset( $foo );
@@ -155,6 +175,7 @@ $c = 1 or 2;
 
 // print
 print "Hello world!";
+print($var);
 
 // require
 require __DIR__ . '/path/to/file.php';
@@ -168,9 +189,26 @@ require_once( $file );
 return;
 return $foo;
 
+// static
+class staticClass {
+    public static $prop;
+
+    static protected function staticFn() {
+        static $varA, $varB;
+
+        static::method_name();
+    }
+}
+
 // throw
 if (false) {
     throw new Exception("foo");
+}
+
+// trait
+trait InjectMe {
+    public $prop;
+    public function name() {}
 }
 
 // unset
@@ -181,6 +219,11 @@ $d = 1 xor 2;
 
 // yield
 yield $item;
+yield from $array;
+
+// Magic constants
+echo __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__;
+var_dump(__DIR__, __FILE__);
 
 // Issue #117: Traits: alias method with changed visibility.
 class MyClass1 {
@@ -216,7 +259,8 @@ class MyClass4 {
 }
 
 // Anonymous classes.
-$a = new class {}
+$a = new class {};
+$a = new class extends FooBar implements SomeInterface {};
 
 /**
  * Issue #124/#126: Valid use statements with function or const (PHP 5.6+).
@@ -224,3 +268,6 @@ $a = new class {}
 use function MyFunctionName;
 use function MyFunctionName as func;
 use const MyCONSTANT;
+
+// Closure use should be ignored.
+$closure = function () use ($a) {};
