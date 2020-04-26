@@ -70,6 +70,7 @@ class ForbiddenNamesSniff extends Sniff
         'extends'       => 'all',
         'final'         => '5.0',
         'finally'       => '5.5',
+        'fn'            => '7.4',
         'for'           => 'all',
         'foreach'       => 'all',
         'function'      => 'all',
@@ -109,8 +110,10 @@ class ForbiddenNamesSniff extends Sniff
         '__dir__'       => '5.3',
         '__file__'      => 'all',
         '__function__'  => 'all',
+        '__line__'      => 'all',
         '__method__'    => 'all',
         '__namespace__' => '5.3',
+        '__trait__'     => '5.4',
     ];
 
     /**

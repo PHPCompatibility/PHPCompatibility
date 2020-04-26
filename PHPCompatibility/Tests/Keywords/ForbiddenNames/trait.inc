@@ -31,6 +31,7 @@ trait Exit {}
 trait Extends {}
 trait Final {}
 trait Finally {}
+trait Fn {}
 trait For {}
 trait Foreach {}
 trait Function {}
@@ -70,5 +71,7 @@ trait __CLASS__ {}
 trait __DIR__ {}
 trait __FILE__ {}
 trait __FUNCTION__ {}
+trait __LINE__ {}
 trait __METHOD__ {}
 trait __NAMESPACE__ {}
+trait __TRAIT__ {}

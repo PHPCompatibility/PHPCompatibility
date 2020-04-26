@@ -31,6 +31,7 @@ class Foobar { function exit() { } }
 class Foobar { function extends() { } }
 class Foobar { function final() { } }
 class Foobar { function finally() { } }
+class Foobar { function fn() { } }
 class Foobar { function for() { } }
 class Foobar { function foreach() { } }
 class Foobar { function function() { } }
@@ -70,5 +71,7 @@ class Foobar { function __class__() { } }
 class Foobar { function __dir__() { } }
 class Foobar { function __file__() { } }
 class Foobar { function __function__() { } }
+class Foobar { function __line__() { } }
 class Foobar { function __method__() { } }
 class Foobar { function __namespace__() { } }
+class Foobar { function __trait__() { } }

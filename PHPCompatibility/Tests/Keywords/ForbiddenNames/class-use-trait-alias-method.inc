@@ -30,6 +30,7 @@ class Foobar { use BazTrait { oldfunction as eval; } }
 class Foobar { use BazTrait { oldfunction as exit; } }
 class Foobar { use BazTrait { oldfunction as extends; } }
 class Foobar { use BazTrait { oldfunction as finally; } }
+class Foobar { use BazTrait { oldfunction as fn; } }
 class Foobar { use BazTrait { oldfunction as for; } }
 class Foobar { use BazTrait { oldfunction as foreach; } }
 class Foobar { use BazTrait { oldfunction as function; } }
@@ -66,5 +67,7 @@ class Foobar { use BazTrait { oldfunction as __CLASS__; } }
 class Foobar { use BazTrait { oldfunction as __DIR__; } }
 class Foobar { use BazTrait { oldfunction as __FILE__; } }
 class Foobar { use BazTrait { oldfunction as __FUNCTION__; } }
+class Foobar { use BazTrait { oldfunction as __LINE__; } }
 class Foobar { use BazTrait { oldfunction as __METHOD__; } }
 class Foobar { use BazTrait { oldfunction as __NAMESPACE__; } }
+class Foobar { use BazTrait { oldfunction as __TRAIT__; } }

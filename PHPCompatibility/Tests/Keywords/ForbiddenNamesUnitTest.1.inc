@@ -117,6 +117,9 @@ class FooExtends extends \Exception {
     }
 }
 
+// fn
+$arrow = fn($a) : int => rand(0,10) * $a;
+
 // for and endfor
 for ($i = 0; $i < 2; $i++):
 endfor;
@@ -222,8 +225,8 @@ yield $item;
 yield from $array;
 
 // Magic constants
-echo __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__;
-var_dump(__DIR__, __FILE__);
+echo __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__, __TRAIT_;
+var_dump(__DIR__, __FILE__, __LINE__);
 
 // Issue #117: Traits: alias method with changed visibility.
 class MyClass1 {

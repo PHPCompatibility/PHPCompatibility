@@ -44,7 +44,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         // Set the testVersion to the highest PHP version encountered in the
         // \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff::$invalidNames
         // list to catch all errors.
-        $file = $this->sniffFile($filename, '5.5');
+        $file = $this->sniffFile($filename, '7.4');
 
         $this->assertNoViolation($file, 2);
 
@@ -71,9 +71,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             'interface',
             'trait',
             'function-declare',
-            'method-declare',
             'const',
-            'class-const',
             'define',
 
             // Aliases.
@@ -101,9 +99,36 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
 
     /**
-     * testNotForbiddenInPHP7
+     * Test that reserved names trigger an error when used as method/class const name
+     * in combination with PHP 5.
      *
-     * @dataProvider usecaseProviderPHP7
+     * @dataProvider usecaseProviderPHP5vs7
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
+     */
+    public function testForbiddenInPHP5($usecase)
+    {
+        $filename = __DIR__ . "/ForbiddenNames/$usecase.inc";
+        $file     = $this->sniffFile($filename, '5.6-');
+
+        $this->assertNoViolation($file, 2);
+
+        $lineCount = \count(\file($filename));
+        // Each line of the use case files (starting at line 3) exhibits an
+        // error.
+        for ($i = 3; $i < $lineCount; $i++) {
+            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+        }
+    }
+
+    /**
+     * Test that reserved names do NOT trigger an error when used as method/class const name
+     * in combination with PHP 7.
+     *
+     * @dataProvider usecaseProviderPHP5vs7
      *
      * @param string $usecase Partial filename of the test case file covering
      *                        a specific use case.
@@ -112,7 +137,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testNotForbiddenInPHP7($usecase)
     {
-        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.inc", '7.0');
+        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.inc", '7.0-');
         $this->assertNoViolation($file);
     }
 
@@ -121,7 +146,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function usecaseProviderPHP7()
+    public function usecaseProviderPHP5vs7()
     {
         return [
             'method-declare' => ['method-declare'],
@@ -209,7 +234,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testCorrectUsageOfKeywords($path)
     {
-        $file = $this->sniffFile($path, '5.5');
+        $file = $this->sniffFile($path, '7.4');
         $this->assertNoViolation($file);
     }
 

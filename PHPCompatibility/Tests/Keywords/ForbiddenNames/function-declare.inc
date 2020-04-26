@@ -31,6 +31,7 @@ function exit() { }
 function extends() { }
 function final() { }
 function finally() { }
+function fn() { }
 function for() { }
 function foreach() { }
 function function() { }
@@ -70,5 +71,7 @@ function __CLASS__() { }
 function __DIR__() { }
 function __FILE__() { }
 function __FUNCTION__() { }
+function __LINE__() { }
 function __METHOD__() { }
 function __NAMESPACE__() { }
+function __TRAIT__() { }

@@ -31,6 +31,7 @@ interface Exit {}
 interface Extends {}
 interface Final {}
 interface Finally {}
+interface Fn {}
 interface For {}
 interface Foreach {}
 interface Function {}
@@ -70,5 +71,7 @@ interface __CLASS__ {}
 interface __DIR__ {}
 interface __FILE__ {}
 interface __FUNCTION__ {}
+interface __LINE__ {}
 interface __METHOD__ {}
 interface __NAMESPACE__ {}
+interface __TRAIT__ {}
