@@ -148,13 +148,16 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositives
+     * Test that no false positives are thrown for a keyword on a version in which the keyword wasn't reserved.
      *
      * @return void
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.inc', '4.4'); // Version number specific to the line being tested.
-        $this->assertNoViolation($file, 3);
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.inc', '4.4'); // Version number specific to the lines being tested.
+        // Just a sample of the lines which should give no violation.
+        $this->assertNoViolation($file, 3); // Keyword: abstract.
+        $this->assertNoViolation($file, 8); // Keyword: callable.
+        $this->assertNoViolation($file, 10); // Keyword: catch.
     }
 }
