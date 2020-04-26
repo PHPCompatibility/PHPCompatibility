@@ -136,6 +136,48 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
 
     /**
+     * Test some specific code samples trigger the correct errors on the correct lines.
+     *
+     * @dataProvider dataSpecificCodeSamples
+     *
+     * @param int    $line    Line number of which to expect an error.
+     * @param string $keyword Keyword which triggered the error.
+     *
+     * @return void
+     */
+    public function testSpecificCodeSamples($line, $keyword)
+    {
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc');
+        $this->assertError($file, $line, "Function name, class name, namespace name or constant name can not be reserved keyword '$keyword'");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function dataSpecificCodeSamples()
+    {
+        return [
+            [8, 'for'],
+            [8, 'list'],
+            [8, 'foreach'],
+            [11, 'as'],
+            [12, 'private'],
+            [16, 'or'],
+            [17, 'list'],
+            [18, 'die'],
+            [24, 'as'],
+            [25, 'finally'],
+            [30, 'class'],
+            [34, 'exit'],
+            [39, 'interface'],
+            [51, 'switch'],
+        ];
+    }
+
+
+    /**
      * Test that no false positives are thrown for a keyword on a version in which the keyword wasn't reserved.
      *
      * @return void
