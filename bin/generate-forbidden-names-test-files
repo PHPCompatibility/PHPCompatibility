@@ -111,14 +111,14 @@ $tests = [
         return "trait $name {}\n";
     },
     'function-declare'                       => function ($name) {
-        return "function $name() { };\n";
+        return "function $name() { }\n";
     },
     'function-declare-reference'             => function ($name) {
-        return "function &$name() { };\n";
+        return "function &$name() { }\n";
     },
     // Only pre-PHP 7!
     'method-declare'                         => function ($name) {
-        return "class Foobar { function $name() { } };\n";
+        return "class Foobar { function $name() { } }\n";
     },
     'const'                                  => function ($name) {
         return "const $name = 1;\n";
@@ -146,20 +146,20 @@ $tests = [
         if (in_array($name, array('public', 'protected', 'private', 'final'), true) === true) {
             return '';
         } else {
-            return "class Foobar { use BazTrait { oldfunction as $name } }\n";
+            return "class Foobar { use BazTrait { oldfunction as $name; } }\n";
         }
     },
     'class-use-trait-alias-public-method'    => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as public $name } }\n";
+        return "class Foobar { use BazTrait { oldfunction as public $name; } }\n";
     },
     'class-use-trait-alias-protected-method' => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as protected $name } }\n";
+        return "class Foobar { use BazTrait { oldfunction as protected $name; } }\n";
     },
     'class-use-trait-alias-private-method'   => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as private $name } }\n";
+        return "class Foobar { use BazTrait { oldfunction as private $name; } }\n";
     },
     'class-use-trait-alias-final-method'     => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as final $name } }\n";
+        return "class Foobar { use BazTrait { oldfunction as final $name; } }\n";
     },
 ];
 
