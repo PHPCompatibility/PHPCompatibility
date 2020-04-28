@@ -153,7 +153,6 @@ class ForbiddenNamesSniff extends Sniff
         \T_CONST,
         \T_USE,
         \T_AS,
-        \T_EXTENDS,
         \T_INTERFACE,
         \T_TRAIT,
     ];
