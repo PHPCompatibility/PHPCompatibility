@@ -13,7 +13,9 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
@@ -145,10 +147,10 @@ class ForbiddenNamesSniff extends Sniff
      * @var array
      */
     protected $targetedTokens = [
+        \T_NAMESPACE,
         \T_CLASS,
         \T_ANON_CLASS,
         \T_FUNCTION,
-        \T_NAMESPACE,
         \T_STRING,
         \T_CONST,
         \T_USE,
@@ -187,6 +189,12 @@ class ForbiddenNamesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        switch ($tokens[$stackPtr]['type']) {
+            case 'T_NAMESPACE':
+                $this->processNamespaceDeclaration($phpcsFile, $stackPtr);
+                return;
+        }
+
         /*
          * We distinguish between the class, function and namespace names vs the define statements.
          */
@@ -194,6 +202,48 @@ class ForbiddenNamesSniff extends Sniff
             $this->processString($phpcsFile, $stackPtr, $tokens);
         } else {
             $this->processNonString($phpcsFile, $stackPtr, $tokens);
+        }
+    }
+
+    /**
+     * Processes namespace declarations.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processNamespaceDeclaration(File $phpcsFile, $stackPtr)
+    {
+        $type = Namespaces::getType($phpcsFile, $stackPtr);
+        if ($type === 'operator') {
+            return;
+        }
+
+        $endOfStatement = $phpcsFile->findNext(Collections::namespaceDeclarationClosers(), ($stackPtr + 1));
+        if ($endOfStatement === false) {
+            // Live coding or parse error.
+            return;
+        }
+
+        $tokens = $phpcsFile->getTokens();
+        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), ($endOfStatement + 1), true);
+        if ($next === $endOfStatement || $tokens[$next]['code'] === \T_NS_SEPARATOR) {
+            // Declaration of global namespace. I.e.: namespace {} or use as non-scoped operator.
+            return;
+        }
+
+        for ($i = $next; $i < $endOfStatement; $i++) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true
+                || $tokens[$i]['code'] === \T_NS_SEPARATOR
+            ) {
+                continue;
+            }
+
+            $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
         }
     }
 
@@ -289,39 +339,6 @@ class ForbiddenNamesSniff extends Sniff
             }
 
             $nextNonEmpty = $maybeUseNext;
-        }
-
-        /*
-         * Deal with nested namespaces.
-         */
-        elseif ($tokens[$stackPtr]['type'] === 'T_NAMESPACE') {
-            if ($tokens[$stackPtr + 1]['code'] === \T_NS_SEPARATOR) {
-                // Not a namespace declaration, but use of, i.e. `namespace\someFunction();`.
-                return;
-            }
-
-            $endToken      = $phpcsFile->findNext([\T_SEMICOLON, \T_OPEN_CURLY_BRACKET], ($stackPtr + 1), null, false, null, true);
-            $namespaceName = \trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
-            if (empty($namespaceName) === true) {
-                return;
-            }
-
-            $namespaceParts = \explode('\\', $namespaceName);
-            foreach ($namespaceParts as $namespacePart) {
-                $partLc = \strtolower($namespacePart);
-                if (isset($this->invalidNames[$partLc]) === false) {
-                    continue;
-                }
-
-                // Find the token position of the part which matched.
-                for ($i = ($stackPtr + 1); $i < $endToken; $i++) {
-                    if ($tokens[$i]['content'] === $namespacePart) {
-                        $nextNonEmpty = $i;
-                        break;
-                    }
-                }
-            }
-            unset($i, $namespacePart, $partLc);
         }
 
         $nextContentLc = \strtolower($tokens[$nextNonEmpty]['content']);
