@@ -396,12 +396,7 @@ class ForbiddenNamesSniff extends Sniff
         if ($this->invalidNames[$name] === 'all'
             || $this->supportsAbove($this->invalidNames[$name])
         ) {
-            $data = [
-                $name,
-                $this->invalidNames[$name],
-            ];
-
-            $this->addError($phpcsFile, $stackPtr, $name, $data);
+            $this->addError($phpcsFile, $stackPtr, $name);
         }
     }
 
@@ -409,19 +404,31 @@ class ForbiddenNamesSniff extends Sniff
      * Add the error message.
      *
      * @since 7.1.0
+     * @since 10.0.0 Removed the $data parameter.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of the current token in the
      *                                               stack passed in $tokens.
-     * @param string                      $content   The token content found.
-     * @param array                       $data      The data to pass into the error message.
+     * @param string                      $name      The declaration/alias name found in lowercase.
      *
      * @return void
      */
-    protected function addError(File $phpcsFile, $stackPtr, $content, $data)
+    protected function addError(File $phpcsFile, $stackPtr, $name)
     {
         $error     = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
-        $errorCode = MessageHelper::stringToErrorCode($content, true) . 'Found';
+        $errorCode = MessageHelper::stringToErrorCode($name, true) . 'Found';
+
+        // Display the magic constants in uppercase.
+        $msgName = $name;
+        if ($name[0] === '_' && $name[1] === '_') {
+            $msgName = \strtoupper($name);
+        }
+
+        $data = [
+            $msgName,
+            $this->invalidNames[$name],
+        ];
+
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
     }
 
