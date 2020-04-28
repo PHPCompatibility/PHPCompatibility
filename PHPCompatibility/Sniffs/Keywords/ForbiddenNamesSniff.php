@@ -21,6 +21,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
+use PHPCSUtils\Utils\UseStatements;
 
 /**
  * Detects the use of reserved keywords as class, function, namespace or constant names.
@@ -121,18 +122,6 @@ class ForbiddenNamesSniff extends Sniff
     ];
 
     /**
-     * A list of keywords that can follow use statements.
-     *
-     * @since 7.0.1
-     *
-     * @var array(string => string)
-     */
-    protected $validUseNames = [
-        'const'    => true,
-        'function' => true,
-    ];
-
-    /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
      * @since 7.1.4
@@ -156,8 +145,8 @@ class ForbiddenNamesSniff extends Sniff
         \T_FUNCTION,
         \T_CONST,
         \T_STRING, // Function calls to `define()`.
-        \T_ANON_CLASS,
         \T_USE,
+        \T_ANON_CLASS,
         \T_AS,
     ];
 
@@ -212,6 +201,15 @@ class ForbiddenNamesSniff extends Sniff
 
             case 'T_STRING':
                 $this->processString($phpcsFile, $stackPtr);
+                return;
+
+            case 'T_USE':
+                $type = UseStatements::getType($phpcsFile, $stackPtr);
+
+                if ($type === 'import') {
+                    $this->processUseImportStatement($phpcsFile, $stackPtr);
+                }
+
                 return;
         }
 
@@ -388,6 +386,45 @@ class ForbiddenNamesSniff extends Sniff
     }
 
     /**
+     * Processes alias declarations in import use statements.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processUseImportStatement(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
+        if ($endOfStatement === false) {
+            // Live coding or parse error.
+            return;
+        }
+
+        $current = ($stackPtr + 1);
+        while ($current < $endOfStatement) {
+            $asPtr = $phpcsFile->findNext(\T_AS, $current, $endOfStatement);
+            if ($asPtr === false) {
+                break;
+            }
+
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($asPtr + 1), $endOfStatement, true);
+            if ($nextNonEmpty === false) {
+                break;
+            }
+
+            $this->checkName($phpcsFile, $nextNonEmpty, $tokens[$nextNonEmpty]['content']);
+
+            $current = ($nextNonEmpty + 1);
+        }
+    }
+
+    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 5.5
@@ -415,20 +452,6 @@ class ForbiddenNamesSniff extends Sniff
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
                 return;
-            }
-        }
-
-        /*
-         * PHP 5.6 allows for use const and use function, but only if followed by the function/constant name.
-         * - `use function HelloWorld` => move to the next token (HelloWorld) to verify.
-         * - `use const HelloWorld` => move to the next token (HelloWorld) to verify.
-         */
-        elseif ($tokens[$stackPtr]['type'] === 'T_USE'
-            && isset($this->validUseNames[\strtolower($tokens[$nextNonEmpty]['content'])]) === true
-        ) {
-            $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
-            if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
-                $nextNonEmpty = $maybeUseNext;
             }
         }
 
