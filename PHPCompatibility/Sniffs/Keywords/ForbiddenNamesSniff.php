@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -152,8 +153,8 @@ class ForbiddenNamesSniff extends Sniff
         \T_CLASS,
         \T_INTERFACE,
         \T_TRAIT,
-        \T_ANON_CLASS,
         \T_FUNCTION,
+        \T_ANON_CLASS,
         \T_STRING,
         \T_CONST,
         \T_USE,
@@ -199,6 +200,10 @@ class ForbiddenNamesSniff extends Sniff
             case 'T_INTERFACE':
             case 'T_TRAIT':
                 $this->processOODeclaration($phpcsFile, $stackPtr);
+                return;
+
+            case 'T_FUNCTION':
+                $this->processFunctionDeclaration($phpcsFile, $stackPtr);
                 return;
         }
 
@@ -272,6 +277,34 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
+        $this->checkName($phpcsFile, $stackPtr, $name);
+    }
+
+    /**
+     * Processes function and method declarations.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processFunctionDeclaration(File $phpcsFile, $stackPtr)
+    {
+        /*
+         * Deal with PHP 7 relaxing the rules.
+         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
+         * of classes, interfaces and traits."
+         */
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
+            && $this->supportsBelow('5.6') === false
+        ) {
+            return;
+        }
+
+        $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         $this->checkName($phpcsFile, $stackPtr, $name);
     }
 
@@ -354,21 +387,6 @@ class ForbiddenNamesSniff extends Sniff
             }
         }
 
-        /*
-         * Deal with functions declared to return by reference.
-         */
-        elseif ($tokens[$stackPtr]['type'] === 'T_FUNCTION'
-            && $tokens[$nextNonEmpty]['type'] === 'T_BITWISE_AND'
-        ) {
-            $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
-            if ($maybeUseNext === false) {
-                // Live coding.
-                return;
-            }
-
-            $nextNonEmpty = $maybeUseNext;
-        }
-
         $nextContentLc = \strtolower($tokens[$nextNonEmpty]['content']);
 
         /*
@@ -376,11 +394,9 @@ class ForbiddenNamesSniff extends Sniff
          * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
          * of classes, interfaces and traits, except that class may not be used as constant name."
          */
-        if ((($tokens[$stackPtr]['type'] === 'T_FUNCTION'
-                && Scopes::isOOMethod($phpcsFile, $stackPtr) === true)
-            || ($tokens[$stackPtr]['type'] === 'T_CONST'
+        if (($tokens[$stackPtr]['type'] === 'T_CONST'
                 && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
-                && $nextContentLc !== 'class'))
+                && $nextContentLc !== 'class')
             && $this->supportsBelow('5.6') === false
         ) {
             return;
