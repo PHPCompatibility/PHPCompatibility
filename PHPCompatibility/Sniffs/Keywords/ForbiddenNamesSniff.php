@@ -155,8 +155,8 @@ class ForbiddenNamesSniff extends Sniff
         \T_TRAIT,
         \T_FUNCTION,
         \T_CONST,
+        \T_STRING, // Function calls to `define()`.
         \T_ANON_CLASS,
-        \T_STRING,
         \T_USE,
         \T_AS,
     ];
@@ -209,14 +209,16 @@ class ForbiddenNamesSniff extends Sniff
             case 'T_CONST':
                 $this->processConstDeclaration($phpcsFile, $stackPtr);
                 return;
+
+            case 'T_STRING':
+                $this->processString($phpcsFile, $stackPtr);
+                return;
         }
 
         /*
          * We distinguish between the class, function and namespace names vs the define statements.
          */
-        if ($tokens[$stackPtr]['type'] === 'T_STRING') {
-            $this->processString($phpcsFile, $stackPtr, $tokens);
-        } else {
+        if ($tokens[$stackPtr]['type'] !== 'T_STRING') {
             $this->processNonString($phpcsFile, $stackPtr, $tokens);
         }
     }
@@ -354,6 +356,38 @@ class ForbiddenNamesSniff extends Sniff
     }
 
     /**
+     * Processes constant declarations via a function call to `define()`.
+     *
+     * @since 5.5
+     * @since 10.0.0 - Removed the $tokens parameter.
+     *               - Visibility changed from `public` to `protected`.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processString(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Look for function calls to `define()`.
+        if (\strtolower($tokens[$stackPtr]['content']) !== 'define') {
+            return;
+        }
+
+        // Retrieve the define(d) constant name.
+        $firstParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 1);
+        if ($firstParam === false) {
+            return;
+        }
+
+        $defineName = TextStrings::stripQuotes($firstParam['clean']);
+        $this->checkName($phpcsFile, $stackPtr, $defineName);
+    }
+
+    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 5.5
@@ -433,36 +467,6 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
-    }
-
-    /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @since 5.5
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
-     * @param array                       $tokens    The stack of tokens that make up
-     *                                               the file.
-     *
-     * @return void
-     */
-    public function processString(File $phpcsFile, $stackPtr, $tokens)
-    {
-        // Look for function calls to `define()`.
-        if (\strtolower($tokens[$stackPtr]['content']) !== 'define') {
-            return;
-        }
-
-        // Retrieve the define(d) constant name.
-        $firstParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 1);
-        if ($firstParam === false) {
-            return;
-        }
-
-        $defineName = TextStrings::stripQuotes($firstParam['clean']);
-        $this->checkName($phpcsFile, $stackPtr, $defineName);
     }
 
     /**
