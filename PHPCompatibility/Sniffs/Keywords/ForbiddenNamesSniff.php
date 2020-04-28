@@ -33,6 +33,7 @@ use PHPCSUtils\Utils\UseStatements;
  * @link https://www.php.net/manual/en/reserved.keywords.php
  *
  * @since 5.5
+ * @since 10.0.0 Strictly checks declarations and aliases only.
  */
 class ForbiddenNamesSniff extends Sniff
 {
@@ -148,7 +149,7 @@ class ForbiddenNamesSniff extends Sniff
         \T_CONST,
         \T_STRING, // Function calls to `define()`.
         \T_USE,
-        \T_ANON_CLASS,
+        \T_ANON_CLASS, // Only for a specific tokenizer issue.
     ];
 
     /**
@@ -247,13 +248,25 @@ class ForbiddenNamesSniff extends Sniff
                 }
 
                 return;
-        }
 
-        /*
-         * We distinguish between the class, function and namespace names vs the define statements.
-         */
-        if ($tokens[$stackPtr]['type'] !== 'T_STRING') {
-            $this->processNonString($phpcsFile, $stackPtr, $tokens);
+            case 'T_ANON_CLASS':
+                /*
+                 * Deal with anonymous classes - `class` before a reserved keyword is sometimes
+                 * misidentified as `T_ANON_CLASS`.
+                 */
+                $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+                if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
+                    return;
+                }
+
+                // Ok, so this isn't really an anonymous class.
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+                if ($nextNonEmpty === false) {
+                    return;
+                }
+
+                $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
+                return;
         }
     }
 
@@ -522,40 +535,6 @@ class ForbiddenNamesSniff extends Sniff
 
             $current = $nextNonEmpty;
         } while ($current !== false && $current < $closer);
-    }
-
-    /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @since 5.5
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
-     * @param array                       $tokens    The stack of tokens that make up
-     *                                               the file.
-     *
-     * @return void
-     */
-    public function processNonString(File $phpcsFile, $stackPtr, $tokens)
-    {
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false) {
-            return;
-        }
-
-        /*
-         * Deal with anonymous classes - `class` before a reserved keyword is sometimes
-         * misidentified as `T_ANON_CLASS`.
-         */
-        if ($tokens[$stackPtr]['code'] === \T_ANON_CLASS || $tokens[$stackPtr]['code'] === \T_CLASS) {
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-            if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
-                return;
-            }
-        }
-
-        $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
     }
 
     /**
