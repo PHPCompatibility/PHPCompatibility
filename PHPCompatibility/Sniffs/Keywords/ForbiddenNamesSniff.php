@@ -325,9 +325,6 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         $nextContentLc = \strtolower($tokens[$nextNonEmpty]['content']);
-        if (isset($this->invalidNames[$nextContentLc]) === false) {
-            return;
-        }
 
         /*
          * Deal with PHP 7 relaxing the rules.
@@ -344,13 +341,7 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
-            $data = [
-                $tokens[$nextNonEmpty]['content'],
-                $this->invalidNames[$nextContentLc],
-            ];
-            $this->addError($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content'], $data);
-        }
+        $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
     }
 
     /**
@@ -379,18 +370,40 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        $defineName   = TextStrings::stripQuotes($firstParam['clean']);
-        $defineNameLc = \strtolower($defineName);
-
-        if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
-            $data = [
-                $defineName,
-                $this->invalidNames[$defineNameLc],
-            ];
-            $this->addError($phpcsFile, $stackPtr, $defineNameLc, $data);
-        }
+        $defineName = TextStrings::stripQuotes($firstParam['clean']);
+        $this->checkName($phpcsFile, $stackPtr, $defineName);
     }
 
+    /**
+     * Check whether a particular name is a reserved keyword.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param string                      $name      The declaration/alias name found.
+     *
+     * @return void
+     */
+    protected function checkName(File $phpcsFile, $stackPtr, $name)
+    {
+        $name = \strtolower($name);
+        if (isset($this->invalidNames[$name]) === false) {
+            return;
+        }
+
+        if ($this->invalidNames[$name] === 'all'
+            || $this->supportsAbove($this->invalidNames[$name])
+        ) {
+            $data = [
+                $name,
+                $this->invalidNames[$name],
+            ];
+
+            $this->addError($phpcsFile, $stackPtr, $name, $data);
+        }
+    }
 
     /**
      * Add the error message.
