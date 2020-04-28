@@ -154,9 +154,9 @@ class ForbiddenNamesSniff extends Sniff
         \T_INTERFACE,
         \T_TRAIT,
         \T_FUNCTION,
+        \T_CONST,
         \T_ANON_CLASS,
         \T_STRING,
-        \T_CONST,
         \T_USE,
         \T_AS,
     ];
@@ -204,6 +204,10 @@ class ForbiddenNamesSniff extends Sniff
 
             case 'T_FUNCTION':
                 $this->processFunctionDeclaration($phpcsFile, $stackPtr);
+                return;
+
+            case 'T_CONST':
+                $this->processConstDeclaration($phpcsFile, $stackPtr);
                 return;
         }
 
@@ -309,6 +313,47 @@ class ForbiddenNamesSniff extends Sniff
     }
 
     /**
+     * Processes global/class constant declarations using the `const` keyword.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processConstDeclaration(File $phpcsFile, $stackPtr)
+    {
+        $namePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($namePtr === false) {
+            // Live coding or parse error.
+            return;
+        }
+
+        $tokens = $phpcsFile->getTokens();
+        $name   = $tokens[$namePtr]['content'];
+        $nameLc = \strtolower($name);
+        if (isset($this->invalidNames[$nameLc]) === false) {
+            return;
+        }
+
+        /*
+         * Deal with PHP 7 relaxing the rules.
+         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
+         * of classes, interfaces and traits, except that class may not be used as constant name."
+         */
+        if ($nameLc !== 'class'
+            && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
+            && $this->supportsBelow('5.6') === false
+        ) {
+            return;
+        }
+
+        $this->checkName($phpcsFile, $namePtr, $name);
+    }
+
+    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 5.5
@@ -385,21 +430,6 @@ class ForbiddenNamesSniff extends Sniff
                     return;
                 }
             }
-        }
-
-        $nextContentLc = \strtolower($tokens[$nextNonEmpty]['content']);
-
-        /*
-         * Deal with PHP 7 relaxing the rules.
-         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
-         * of classes, interfaces and traits, except that class may not be used as constant name."
-         */
-        if (($tokens[$stackPtr]['type'] === 'T_CONST'
-                && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
-                && $nextContentLc !== 'class')
-            && $this->supportsBelow('5.6') === false
-        ) {
-            return;
         }
 
         $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
