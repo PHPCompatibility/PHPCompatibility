@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
@@ -149,14 +150,14 @@ class ForbiddenNamesSniff extends Sniff
     protected $targetedTokens = [
         \T_NAMESPACE,
         \T_CLASS,
+        \T_INTERFACE,
+        \T_TRAIT,
         \T_ANON_CLASS,
         \T_FUNCTION,
         \T_STRING,
         \T_CONST,
         \T_USE,
         \T_AS,
-        \T_INTERFACE,
-        \T_TRAIT,
     ];
 
     /**
@@ -192,6 +193,12 @@ class ForbiddenNamesSniff extends Sniff
         switch ($tokens[$stackPtr]['type']) {
             case 'T_NAMESPACE':
                 $this->processNamespaceDeclaration($phpcsFile, $stackPtr);
+                return;
+
+            case 'T_CLASS':
+            case 'T_INTERFACE':
+            case 'T_TRAIT':
+                $this->processOODeclaration($phpcsFile, $stackPtr);
                 return;
         }
 
@@ -245,6 +252,27 @@ class ForbiddenNamesSniff extends Sniff
 
             $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
         }
+    }
+
+    /**
+     * Processes class/trait/interface declarations.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processOODeclaration(File $phpcsFile, $stackPtr)
+    {
+        $name = ObjectDeclarations::getName($phpcsFile, $stackPtr);
+        if (isset($name) === false || $name === '') {
+            return;
+        }
+
+        $this->checkName($phpcsFile, $stackPtr, $name);
     }
 
     /**
