@@ -75,3 +75,16 @@ class __LINE__ {}
 class __METHOD__ {}
 class __NAMESPACE__ {}
 class __TRAIT__ {}
+class null {}
+class true {}
+class false {}
+class bool {}
+class int {}
+class float {}
+class string {}
+class iterable {}
+class void {}
+class object {}
+class resource {}
+class mixed {}
+class numeric {}

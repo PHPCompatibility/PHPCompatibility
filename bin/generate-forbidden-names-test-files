@@ -6,11 +6,12 @@
  * This script is used to generate the test case specimens for the forbidden-names Sniff.
  *
  * @package   PHPCompatibility
- * @copyright 2012-2019 PHPCompatibility Contributors
+ * @copyright 2012-2020 PHPCompatibility Contributors
  * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  *
  * @since 5.5
+ * @since 10.0.0 Includes the "other" reserved keywords in the generated files.
  */
 
 // This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php
@@ -90,6 +91,40 @@ $invalidNames = [
     '__METHOD__'    => 'all',
     '__NAMESPACE__' => '5.3',
     '__TRAIT__'     => '5.4',
+];
+
+// This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php
+$otherInvalidNames = [
+    'null'     => '7.0',
+    'true'     => '7.0',
+    'false'    => '7.0',
+    'bool'     => '7.0',
+    'int'      => '7.0',
+    'float'    => '7.0',
+    'string'   => '7.0',
+    'iterable' => '7.1',
+    'void'     => '7.1',
+    'object'   => '7.2',
+
+    // Soft reserved.
+    'resource' => '7.0',
+    'mixed'    => '7.0',
+    'numeric'  => '7.0',
+];
+
+// The "other" reserved names are fine to use for function or constant names, so should only be injected in select tests.
+$testsForOtherInvalidNames = [
+    // Declarations.
+    'namespace'        => true,
+    'nested-namespace' => true,
+    'class'            => true,
+    'interface'        => true,
+    'trait'            => true,
+
+    // Aliases.
+    'use-as'           => true,
+    'multi-use-as'     => true,
+    'group-use-as'     => true,
 ];
 
 echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
@@ -205,6 +240,17 @@ foreach ($tests as $name => $callback) {
 
 foreach (array_keys($invalidNames) as $name) {
     foreach ($tests as $testname => $callback) {
+        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.inc';
+        file_put_contents($filename, $callback($name), FILE_APPEND);
+    }
+}
+
+foreach (array_keys($otherInvalidNames) as $name) {
+    foreach ($tests as $testname => $callback) {
+        if (isset($testsForOtherInvalidNames[$testname]) === false) {
+            continue;
+        }
+
         $filename = $path . DIRECTORY_SEPARATOR . $testname . '.inc';
         file_put_contents($filename, $callback($name), FILE_APPEND);
     }

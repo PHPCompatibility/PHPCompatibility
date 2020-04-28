@@ -26,6 +26,27 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 {
 
     /**
+     * Test case files containing tests for the "other" reserved keywords.
+     *
+     * This array should be kept in sync with the same in the "generate-forbidden-names-test-files" script.
+     *
+     * @var array
+     */
+    private $testsForOtherInvalidNames = [
+        // Declarations.
+        'namespace'        => true,
+        'nested-namespace' => true,
+        'class'            => true,
+        'interface'        => true,
+        'trait'            => true,
+
+        // Aliases.
+        'use-as'           => true,
+        'multi-use-as'     => true,
+        'group-use-as'     => true,
+    ];
+
+    /**
      * testForbiddenNames
      *
      * @dataProvider usecaseProvider
@@ -48,11 +69,29 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
         $this->assertNoViolation($file, 2);
 
-        $lineCount = \count(\file($filename));
-        // Each line of the use case files (starting at line 3) exhibits an
-        // error.
-        for ($i = 3; $i < $lineCount; $i++) {
+        $lineCount            = \count(\file($filename));
+        $fullReservedLineEnd  = $lineCount;
+        $otherReservedLineEnd = $lineCount;
+        if (isset($this->testsForOtherInvalidNames[$usecase]) === true) {
+            $fullReservedLineEnd  = ($lineCount - 13);
+            $otherReservedLineEnd = ($lineCount - 3);
+        }
+
+        // Each line of the use case files (starting at line 3) exhibits an error.
+        for ($i = 3; $i <= $fullReservedLineEnd; $i++) {
             $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+        }
+
+        if (isset($this->testsForOtherInvalidNames[$usecase]) === true) {
+            // The error message for "other" reserved keywords is slightly different.
+            for ($i = ($fullReservedLineEnd + 1); $i <= $otherReservedLineEnd; $i++) {
+                $this->assertError($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+            }
+
+            // Other "soft" reserved are a warning.
+            for ($i = ($otherReservedLineEnd + 1); $i <= $lineCount; $i++) {
+                $this->assertWarning($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+            }
         }
     }
 
@@ -219,6 +258,22 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         $this->assertNoViolation($file, 3); // Keyword: abstract.
         $this->assertNoViolation($file, 8); // Keyword: callable.
         $this->assertNoViolation($file, 10); // Keyword: catch.
+    }
+
+
+    /**
+     * Test that no false positives are thrown for one of the "other" keywords on a version
+     * in which the keyword wasn't reserved.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesOtherReserved()
+    {
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.inc', '-5.6');
+
+        // Some "other" reserved keywords.
+        $this->assertNoViolation($file, 81); // Keyword: bool.
+        $this->assertNoViolation($file, 86); // Keyword: void.
     }
 
 
