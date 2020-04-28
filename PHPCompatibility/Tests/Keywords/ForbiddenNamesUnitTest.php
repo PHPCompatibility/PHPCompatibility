@@ -79,6 +79,16 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
             // Aliases.
             ['use-as'],
+            ['use-function-as'],
+            ['use-const-as'],
+            ['multi-use-as'],
+            ['multi-use-function-as'],
+            ['multi-use-const-as'],
+            ['group-use-as'],
+            ['group-use-function-as'],
+            ['group-use-const-as'],
+            ['group-use-function-as-in-group'],
+            ['group-use-const-as-in-group'],
             ['class-use-trait-alias-method'],
             ['class-use-trait-alias-public-method'],
             ['class-use-trait-alias-protected-method'],
