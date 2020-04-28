@@ -336,7 +336,7 @@ class ForbiddenNamesSniff extends Sniff
          * of classes, interfaces and traits, except that class may not be used as constant name."
          */
         if ((($tokens[$stackPtr]['type'] === 'T_FUNCTION'
-                && $this->inClassScope($phpcsFile, $stackPtr, false) === true)
+                && Scopes::isOOMethod($phpcsFile, $stackPtr) === true)
             || ($tokens[$stackPtr]['type'] === 'T_CONST'
                 && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
                 && $nextContentLc !== 'class'))
