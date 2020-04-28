@@ -1,5 +1,5 @@
 <?php
-class Foobar { function Baz() { } }
+class Foobar { function baz() { } }
 class Foobar { function abstract() { } }
 class Foobar { function and() { } }
 class Foobar { function array() { } }
@@ -66,9 +66,9 @@ class Foobar { function var() { } }
 class Foobar { function while() { } }
 class Foobar { function xor() { } }
 class Foobar { function yield() { } }
-class Foobar { function __CLASS__() { } }
-class Foobar { function __DIR__() { } }
-class Foobar { function __FILE__() { } }
-class Foobar { function __FUNCTION__() { } }
-class Foobar { function __METHOD__() { } }
-class Foobar { function __NAMESPACE__() { } }
+class Foobar { function __class__() { } }
+class Foobar { function __dir__() { } }
+class Foobar { function __file__() { } }
+class Foobar { function __function__() { } }
+class Foobar { function __method__() { } }
+class Foobar { function __namespace__() { } }

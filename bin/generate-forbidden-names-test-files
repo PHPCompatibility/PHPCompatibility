@@ -99,25 +99,30 @@ $tests = [
         return "namespace $name;\n";
     },
     'nested-namespace'                       => function ($name) {
+        $name = ucfirst($name);
         return "namespace Foo\\{$name}\\Bar;\n";
     },
     'class'                                  => function ($name) {
         return "class $name {}\n";
     },
     'interface'                              => function ($name) {
+        $name = ucfirst($name);
         return "interface $name {}\n";
     },
     'trait'                                  => function ($name) {
+        $name = ucfirst($name);
         return "trait $name {}\n";
     },
     'function-declare'                       => function ($name) {
         return "function $name() { }\n";
     },
     'function-declare-reference'             => function ($name) {
+        $name = strtolower($name);
         return "function &$name() { }\n";
     },
     // Only pre-PHP 7!
     'method-declare'                         => function ($name) {
+        $name = strtolower($name);
         return "class Foobar { function $name() { } }\n";
     },
     'const'                                  => function ($name) {
@@ -133,6 +138,7 @@ $tests = [
         }
     },
     'define'                                 => function ($name) {
+        $name = strtoupper($name);
         return "define('$name', 1);\n";
     },
 
@@ -140,6 +146,7 @@ $tests = [
      * Reserved names being used as an alias.
      */
     'use-as'                                 => function ($name) {
+        $name = ucfirst($name);
         return "use Foobar as $name;\n";
     },
     'use-function-as'                        => function ($name) {

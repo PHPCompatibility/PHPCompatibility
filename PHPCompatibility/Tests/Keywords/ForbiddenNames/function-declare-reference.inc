@@ -1,5 +1,5 @@
 <?php
-function &Baz() { }
+function &baz() { }
 function &abstract() { }
 function &and() { }
 function &array() { }
@@ -66,9 +66,9 @@ function &var() { }
 function &while() { }
 function &xor() { }
 function &yield() { }
-function &__CLASS__() { }
-function &__DIR__() { }
-function &__FILE__() { }
-function &__FUNCTION__() { }
-function &__METHOD__() { }
-function &__NAMESPACE__() { }
+function &__class__() { }
+function &__dir__() { }
+function &__file__() { }
+function &__function__() { }
+function &__method__() { }
+function &__namespace__() { }
