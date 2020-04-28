@@ -19,11 +19,31 @@ use My\{
 };
 
 class Foo {
+    // Test trait method aliases with visibility modifiers.
+    // Note: tests with _only_ the modifiers, without alias, are included in the `1.inc` file.
+    use FooTraitPublic {
+        oldFunctionA as public endWhile; // Error.
+        oldFunctionB as public public; // Error.
+    }
+    use FooTraitProtected {
+        oldFunctionA as protected endFor; // Error.
+        oldFunctionB as protected protected; // Error.
+    }
+    use FooTraitPrivate {
+        oldFunctionA as private endSwitch; // Error.
+        oldFunctionB as private private; // Error.
+    }
+    use FooTraitFinal {
+        oldFunctionA as final endDeclare; // Error.
+        oldFunctionB as final final; // Error.
+    }
+
     // Test trait use with multiple statements, including `as` as alias.
     use BazTrait {
         oldfunctionA as private as; // Error.
         oldfunctionB as final finally; // Error.
         oldfunctionC as public; // OK.
+        oldfunctionD as as; // Error.
     }
 
     // Test `class` as class constant name.
@@ -51,3 +71,6 @@ trait FooTrait {
         B::bigTalk as Switch; // Error.
     }
 }
+
+// Test function delared to return by reference.
+function &trait() {}

@@ -71,7 +71,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             'interface',
             'trait',
             'function-declare',
-            'function-declare-reference',
             'method-declare',
             'const',
             'class-const',
@@ -90,10 +89,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             'group-use-function-as-in-group',
             'group-use-const-as-in-group',
             'class-use-trait-alias-method',
-            'class-use-trait-alias-public-method',
-            'class-use-trait-alias-protected-method',
-            'class-use-trait-alias-private-method',
-            'class-use-trait-alias-final-method',
         ];
 
         $data = [];
@@ -167,12 +162,22 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             [16, 'or'],
             [17, 'list'],
             [18, 'die'],
-            [24, 'as'],
-            [25, 'finally'],
-            [30, 'class'],
-            [34, 'exit'],
-            [39, 'interface'],
-            [51, 'switch'],
+            [25, 'endwhile'],
+            [26, 'public'],
+            [29, 'endfor'],
+            [30, 'protected'],
+            [33, 'endswitch'],
+            [34, 'private'],
+            [37, 'enddeclare'],
+            [38, 'final'],
+            [43, 'as'],
+            [44, 'finally'],
+            [46, 'as'],
+            [50, 'class'],
+            [54, 'exit'],
+            [59, 'interface'],
+            [71, 'switch'],
+            [76, 'trait'],
         ];
     }
 

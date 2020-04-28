@@ -116,10 +116,6 @@ $tests = [
     'function-declare'                       => function ($name) {
         return "function $name() { }\n";
     },
-    'function-declare-reference'             => function ($name) {
-        $name = strtolower($name);
-        return "function &$name() { }\n";
-    },
     // Only pre-PHP 7!
     'method-declare'                         => function ($name) {
         $name = strtolower($name);
@@ -189,18 +185,6 @@ $tests = [
         } else {
             return "class Foobar { use BazTrait { oldfunction as $name; } }\n";
         }
-    },
-    'class-use-trait-alias-public-method'    => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as public $name; } }\n";
-    },
-    'class-use-trait-alias-protected-method' => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as protected $name; } }\n";
-    },
-    'class-use-trait-alias-private-method'   => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as private $name; } }\n";
-    },
-    'class-use-trait-alias-final-method'     => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as final $name; } }\n";
     },
 ];
 
