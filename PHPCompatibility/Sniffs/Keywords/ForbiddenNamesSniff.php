@@ -13,7 +13,9 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
@@ -147,7 +149,6 @@ class ForbiddenNamesSniff extends Sniff
         \T_STRING, // Function calls to `define()`.
         \T_USE,
         \T_ANON_CLASS,
-        \T_AS,
     ];
 
     /**
@@ -206,8 +207,43 @@ class ForbiddenNamesSniff extends Sniff
             case 'T_USE':
                 $type = UseStatements::getType($phpcsFile, $stackPtr);
 
+                if ($type === 'closure') {
+                    // Not interested in closure use.
+                    return;
+                }
+
                 if ($type === 'import') {
                     $this->processUseImportStatement($phpcsFile, $stackPtr);
+                    return;
+                }
+
+                if ($type === 'trait') {
+                    $this->processUseTraitStatement($phpcsFile, $stackPtr);
+                    return;
+                }
+
+                /*
+                 * When keywords are used in trait import statements, it sometimes confuses the PHPCS tokenizer
+                 * and the 'conditions' aren't always correctly set, so we need to do an additional check for
+                 * the last condition potentially being a previous trait T_USE.
+                 */
+                $traitScopes = BCTokens::ooScopeTokens();
+                unset($traitScopes[\T_INTERFACE]);
+
+                if (Conditions::hasCondition($phpcsFile, $stackPtr, $traitScopes) === false) {
+                    return;
+                }
+
+                $current = $stackPtr;
+                do {
+                    $current = Conditions::getLastCondition($phpcsFile, $current);
+                    if ($current === false) {
+                        return;
+                    }
+                } while ($tokens[$current]['code'] === \T_USE);
+
+                if (isset($traitScopes[$tokens[$current]['code']]) === true) {
+                    $this->processUseTraitStatement($phpcsFile, $stackPtr);
                 }
 
                 return;
@@ -425,6 +461,70 @@ class ForbiddenNamesSniff extends Sniff
     }
 
     /**
+     * Processes alias declarations in trait use statements.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     *
+     * @return void
+     */
+    protected function processUseTraitStatement(File $phpcsFile, $stackPtr)
+    {
+        $tokens    = $phpcsFile->getTokens();
+        $openCurly = $phpcsFile->findNext([\T_OPEN_CURLY_BRACKET, \T_SEMICOLON], ($stackPtr + 1));
+        if ($openCurly === false || $tokens[$openCurly]['code'] === \T_SEMICOLON) {
+            return;
+        }
+
+        // OK, so we have an open curly, do we have a closer too ?.
+        if (isset($tokens[$openCurly]['bracket_closer']) === false) {
+            return;
+        }
+
+        $current = $stackPtr;
+        $closer  = $tokens[$openCurly]['bracket_closer'];
+        do {
+            $asPtr = $phpcsFile->findNext(\T_AS, ($current + 1), $closer);
+            if ($asPtr === false) {
+                break;
+            }
+
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($asPtr + 1), $closer, true);
+            if ($nextNonEmpty === false) {
+                break;
+            }
+
+            /*
+             * Deal with visibility modifiers.
+             * - `use HelloWorld { sayHello as protected; }` => valid.
+             * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
+             */
+            if (isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true) {
+                $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $closer, true);
+                if ($maybeUseNext === false) {
+                    // Reached the end of the use statement.
+                    break;
+                }
+
+                if ($tokens[$maybeUseNext]['code'] === \T_SEMICOLON) {
+                    // Reached the end of a sub-statement.
+                    $current = $maybeUseNext;
+                    continue;
+                }
+
+                $nextNonEmpty = $maybeUseNext;
+            }
+
+            $this->checkName($phpcsFile, $nextNonEmpty, $tokens[$nextNonEmpty]['content']);
+
+            $current = $nextNonEmpty;
+        } while ($current !== false && $current < $closer);
+    }
+
+    /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 5.5
@@ -452,40 +552,6 @@ class ForbiddenNamesSniff extends Sniff
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
                 return;
-            }
-        }
-
-        /*
-         * Deal with visibility modifiers.
-         * - `use HelloWorld { sayHello as protected; }` => valid, bow out.
-         * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
-         */
-        elseif ($tokens[$stackPtr]['type'] === 'T_AS'
-            && isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true
-            && $phpcsFile->hasCondition($stackPtr, \T_USE) === true
-        ) {
-            $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
-            if ($maybeUseNext === false || $this->isEndOfUseStatement($tokens[$maybeUseNext]) === true) {
-                return;
-            }
-
-            $nextNonEmpty = $maybeUseNext;
-        }
-
-        /*
-         * Deal with foreach ( ... as list() ).
-         */
-        elseif ($tokens[$stackPtr]['type'] === 'T_AS'
-            && isset($tokens[$stackPtr]['nested_parenthesis']) === true
-            && $tokens[$nextNonEmpty]['code'] === \T_LIST
-        ) {
-            $parentheses = \array_reverse($tokens[$stackPtr]['nested_parenthesis'], true);
-            foreach ($parentheses as $open => $close) {
-                if (isset($tokens[$open]['parenthesis_owner'])
-                    && $tokens[$tokens[$open]['parenthesis_owner']]['code'] === \T_FOREACH
-                ) {
-                    return;
-                }
             }
         }
 
@@ -548,21 +614,5 @@ class ForbiddenNamesSniff extends Sniff
         ];
 
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-    }
-
-
-    /**
-     * Check if the current token code is for a token which can be considered
-     * the end of a (partial) use statement.
-     *
-     * @since 7.0.8
-     *
-     * @param int $token The current token information.
-     *
-     * @return bool
-     */
-    protected function isEndOfUseStatement($token)
-    {
-        return \in_array($token['code'], [\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA], true);
     }
 }
