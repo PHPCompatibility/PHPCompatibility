@@ -382,7 +382,7 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        $defineName   = TextStrings::stripQuotes($firstParam['raw']);
+        $defineName   = TextStrings::stripQuotes($firstParam['clean']);
         $defineNameLc = \strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
