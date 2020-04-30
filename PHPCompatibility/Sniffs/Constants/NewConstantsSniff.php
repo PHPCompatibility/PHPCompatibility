@@ -6418,6 +6418,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             'extension' => 'tidy',
         ),
 
+        'FILTER_VALIDATE_BOOL' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
         'OPENSSL_ENCODING_DER' => array(
             '7.4' => false,
             '8.0' => true,
