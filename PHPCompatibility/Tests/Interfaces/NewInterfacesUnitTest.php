@@ -82,6 +82,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             array('SessionIdInterface', '5.5.0', array(89), '5.6', '5.5'),
             array('Throwable', '5.6', array(37, 52, 62, 93, 98, 103), '7.0'),
             array('SessionUpdateTimestampHandlerInterface', '5.6', array(90), '7.0'),
+            array('Stringable', '7.4', array(112), '8.0'),
         );
     }
 

@@ -111,6 +111,11 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+
+        'Stringable' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
     /**
