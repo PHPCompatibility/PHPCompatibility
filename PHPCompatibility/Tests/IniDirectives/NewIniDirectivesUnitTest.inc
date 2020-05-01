@@ -463,3 +463,9 @@ $test = ini_get('ffi.preload');
 
 ini_set('opcache.preload_user', 1);
 $test = ini_get('opcache.preload_user');
+
+ini_set('phpdbg.path', 1);
+$test = ini_get('phpdbg.path');
+
+ini_set('phpdbg.eol', 1);
+$test = ini_get('phpdbg.eol');

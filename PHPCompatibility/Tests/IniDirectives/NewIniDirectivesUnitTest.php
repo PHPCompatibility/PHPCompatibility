@@ -204,8 +204,11 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
 
             array('mysqli.rollback_on_cached_plink', '5.6', array(290, 291), '5.5'),
 
+            array('phpdbg.path', '7.0', array(467, 468), '5.6.2', '5.6'),
+
             array('assert.exception', '7.0', array(293, 294), '5.6'),
             array('pcre.jit', '7.0', array(296, 297), '5.6'),
+            array('phpdbg.eol', '7.0', array(470, 471), '5.6'),
             array('session.lazy_write', '7.0', array(299, 300), '5.6'),
             array('zend.assertions', '7.0', array(302, 303), '5.6'),
             array('opcache.file_cache', '7.0', array(437, 438), '5.6'),
