@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Traits\RemovedExtensionsTrait;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -28,6 +29,7 @@ use PHPCSUtils\Utils\MessageHelper;
 class RemovedConstantsSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
+    use RemovedExtensionsTrait;
 
     /**
      * A list of removed PHP Constants.
@@ -38,9 +40,14 @@ class RemovedConstantsSniff extends Sniff
      * Optional, the array can contain an `alternative` key listing an alternative constant
      * to be used instead.
      *
+     * The optional `extension` key should be used to list the name of the extension
+     * the constant comes from if this constant is part of a removed extension and should
+     * match the array in the RemovedExtensionsTrait.
+     *
      * Note: PHP Constants are case-sensitive!
      *
      * @since 8.1.0
+     * @since 10.0.0 Support for 'extension' has been added.
      *
      * @var array(string => array(string => bool|string))
      */

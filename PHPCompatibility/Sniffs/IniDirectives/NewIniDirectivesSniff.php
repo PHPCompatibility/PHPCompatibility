@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Traits\NewExtensionsTrait;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -36,6 +37,7 @@ use PHPCSUtils\Utils\TextStrings;
 class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
+    use NewExtensionsTrait;
 
     /**
      * List of functions which take an ini directive as parameter (always the first parameter).
@@ -66,8 +68,13 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the ini directive appears.
      *
+     * The optional `extension` key should be used to list the name of the extension
+     * the ini directive comes from if this ini is part of a new extension and should
+     * match the array in the NewExtensionsTrait.
+     *
      * @since 5.5
-     * @since 7.0.3 Support for 'alternative' has been added.
+     * @since 7.0.3  Support for 'alternative' has been added.
+     * @since 10.0.0 Support for 'extension' has been added.
      *
      * @var array(string)
      */

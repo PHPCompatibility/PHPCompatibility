@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Traits\RemovedExtensionsTrait;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
@@ -42,6 +43,7 @@ use PHPCSUtils\Utils\Variables;
 class RemovedClassesSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
+    use RemovedExtensionsTrait;
 
     /**
      * A list of deprecated/removed classes, not present in older versions.

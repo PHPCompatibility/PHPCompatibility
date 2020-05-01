@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Traits\NewExtensionsTrait;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
@@ -44,6 +45,7 @@ use PHPCSUtils\Utils\Variables;
 class NewClassesSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
+    use NewExtensionsTrait;
 
     /**
      * A list of new classes, not present in older versions.
@@ -51,7 +53,12 @@ class NewClassesSniff extends Sniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the class appears.
      *
+     * The optional `extension` key should be used to list the name of the extension
+     * the ini directive comes from if this ini is part of a new extension and should
+     * match the array in the NewExtensionsTrait.
+     *
      * @since 5.5
+     * @since 10.0.0 Support for 'extension' has been added.
      *
      * @var array(string => array(string => bool))
      */
@@ -806,6 +813,10 @@ class NewClassesSniff extends Sniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the class appears.
      *
+     * The optional `extension` key should be used to list the name of the extension
+     * the ini directive comes from if this ini is part of a new extension and should
+     * match the array in the NewExtensionsTrait.
+     *
      * {@internal Classes listed here do not need to be added to the $newClasses
      *            property as well.
      *            This list is automatically added to the $newClasses property
@@ -814,6 +825,7 @@ class NewClassesSniff extends Sniff
      * {@internal Helper to update this list: https://3v4l.org/MhlUp}
      *
      * @since 7.1.4
+     * @since 10.0.0 Support for 'extension' has been added.
      *
      * @var array(string => array(string => bool))
      */

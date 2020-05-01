@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Traits\NewExtensionsTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
@@ -37,6 +38,7 @@ use PHPCSUtils\Utils\Variables;
 class NewInterfacesSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
+    use NewExtensionsTrait;
 
     /**
      * A list of new interfaces, not present in older versions.
@@ -44,7 +46,12 @@ class NewInterfacesSniff extends Sniff
      * The array lists : version number with false (not present) or true (present).
      * If's sufficient to list the first version where the interface appears.
      *
+     * The optional `extension` key should be used to list the name of the extension
+     * the interface comes from if this interface is part of a new extension and should
+     * match the array in the NewExtensionsTrait.
+     *
      * @since 7.0.3
+     * @since 10.0.0 Support for 'extension' has been added.
      *
      * @var array(string => array(string => bool))
      */
