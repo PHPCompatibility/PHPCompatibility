@@ -1125,30 +1125,37 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
-        'opcache_compile_file' => array(
-            '5.4' => false,
-            '5.5' => true,
-        ),
         'opcache_get_configuration' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'opcache',
         ),
         'opcache_get_status' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'opcache',
         ),
         'opcache_invalidate' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'opcache',
         ),
         'opcache_reset' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'opcache',
+        ),
+
+        'opcache_compile_file' => array(
+            '5.5.4'     => false,
+            '5.5.5'     => true,
+            'extension' => 'opcache',
         ),
 
         'opcache_is_script_cached' => array(
-            '5.5.10' => false,
-            '5.5.11' => true,
+            '5.5.10'    => false,
+            '5.5.11'    => true,
+            'extension' => 'opcache',
         ),
 
         'gmp_root' => array(

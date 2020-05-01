@@ -330,12 +330,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('intlz_to_date_time_zone', '5.4', array(275), '5.5'),
             array('intlz_get_error_code', '5.4', array(276), '5.5'),
             array('intlz_get_error_message', '5.4', array(277), '5.5'),
-            array('opcache_compile_file', '5.4', array(489), '5.5'),
             array('opcache_get_configuration', '5.4', array(490), '5.5'),
             array('opcache_get_status', '5.4', array(491), '5.5'),
             array('opcache_invalidate', '5.4', array(492), '5.5'),
             array('opcache_reset', '5.4', array(493), '5.5'),
 
+            array('opcache_compile_file', '5.5.4', array(489), '5.6', '5.5'),
             array('opcache_is_script_cached', '5.5.10', array(494), '5.6', '5.5'),
 
             array('gmp_root', '5.5', array(279), '5.6'),

@@ -460,3 +460,6 @@ $test = ini_get('ffi.enable');
 
 ini_set('ffi.preload', 1);
 $test = ini_get('ffi.preload');
+
+ini_set('opcache.preload_user', 1);
+$test = ini_get('opcache.preload_user');
