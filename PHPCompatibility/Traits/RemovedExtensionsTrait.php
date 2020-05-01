@@ -30,7 +30,141 @@ trait RemovedExtensionsTrait
      * @var array(string => array(string => bool|string|null))
      */
     public $removedExtensions = [
-
+        'cpdf' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/pdflib',
+        ],
+        'crack' => [
+            '5.0'         => true,
+            'alternative' => 'pecl/crack',
+        ],
+        'dbase' => [
+            '5.3'         => true,
+            'alternative' => 'pecl/dbase',
+        ],
+        'dbx' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/dbx',
+        ],
+        'dio' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/dio',
+        ],
+        'ereg' => [
+            '5.3'         => false,
+            '7.0'         => true,
+            'alternative' => 'pcre',
+        ],
+        'fam' => [
+            '5.1' => true,
+        ],
+        'fbsql' => [
+            '5.3'         => true,
+            'alternative' => 'pecl/fbsql',
+        ],
+        'fdf' => [
+            '5.3'         => true,
+            'alternative' => 'pecl/fdf',
+        ],
+        'filepro' => [
+            '5.2'         => true,
+            'alternative' => 'pecl/filepro',
+        ],
+        'hwapi' => [
+            '5.2'         => true,
+            'alternative' => 'pecl/hwapi',
+        ],
+        'ibase' => [
+            '7.4'         => true,
+            'alternative' => 'pecl/ibase',
+        ],
+        'ifx' => [
+            '5.2.1'       => true,
+            'alternative' => 'pecl/ifx',
+        ],
+        'ingres' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/ingres',
+        ],
+        'ircg' => [
+            '5.1' => true,
+        ],
+        'mcrypt' => [
+            '7.1'         => false,
+            '7.2'         => true,
+            'alternative' => 'the sodium or openssl extensions (preferred) or pecl/mcrypt',
+        ],
+        'mcve' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/mcve',
+        ],
+        'mimetype' => [
+            '5.3'         => true,
+            'alternative' => 'fileinfo',
+        ],
+        'ming' => [
+            '5.3'         => true,
+            'alternative' => 'pecl/ming',
+        ],
+        'mnogosearch' => [
+            '5.1' => true,
+        ],
+        'msession' => [
+            '5.1.3'       => true,
+            'alternative' => 'pecl/msession',
+        ],
+        'msql' => [
+            '5.3' => true,
+        ],
+        'mssql' => [
+            '7.0' => true,
+        ],
+        'mysql' => [
+            '5.5'         => false,
+            '7.0'         => true,
+            'alternative' => 'mysqli',
+        ],
+        'ncurses' => [
+            '5.3'         => true,
+            'alternative' => 'pecl/ncurses',
+        ],
+        'oracle' => [
+            '5.1'         => true,
+            'alternative' => 'oci8 or pdo_oci',
+        ],
+        'ovrimos' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/ovrimos',
+        ],
+        'pfpro' => [
+            '5.1' => true,
+        ],
+        'recode' => [
+            '7.4'         => true,
+            'alternative' => 'iconv or mbstring',
+        ],
+        'sqlite' => [
+            '5.4'         => true,
+            'alternative' => 'sqlite3, PDO sqlite or pecl/sqlite',
+        ],
+        /*
+         * This also covers sybase_ct.
+         * The sybase extension was removed in 5.3, sybase_ct in 7.0 but function names were identical.
+         */
+        'sybase' => [
+            '7.0' => true,
+        ],
+        'w32api' => [
+            '5.1'         => true,
+            'alternative' => 'pecl/ffi',
+        ],
+        'wddx' => [
+            '7.4'         => true,
+            'alternative' => 'pecl/wddx',
+        ],
+        'yp' => [
+            '5.1' => true,
+        ],
     ];
 
     /**
