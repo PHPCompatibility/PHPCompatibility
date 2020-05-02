@@ -257,6 +257,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
 
             array('zend.ze1_compatibility_mode', '5.3', array(36, 37), '5.2'),
 
+            array('phar.extract_list', '5.4', array(244, 245), '5.3'),
+
             array('asp_tags', '7.0', array(83, 84), '5.6'),
             array('xsl.security_prefs', '7.0', array(86, 87), '5.6'),
             array('opcache.load_comments', '7.0', array(241, 242), '5.6'),

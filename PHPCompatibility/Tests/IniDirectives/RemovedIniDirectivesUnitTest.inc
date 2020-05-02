@@ -240,3 +240,6 @@ $a = ini_get('allow_url_include');
 
 ini_set('opcache.load_comments', 'On');
 $a = ini_get('opcache.load_comments');
+
+ini_set('phar.extract_list', 1);
+$test = ini_get('phar.extract_list');

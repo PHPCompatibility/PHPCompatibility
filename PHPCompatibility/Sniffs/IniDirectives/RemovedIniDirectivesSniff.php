@@ -140,6 +140,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.4'         => true,
             'alternative' => 'zend.script_encoding',
         ),
+        'phar.extract_list' => array(
+            '5.4' => true,
+        ),
         'register_globals' => array(
             '5.3' => false,
             '5.4' => true,
