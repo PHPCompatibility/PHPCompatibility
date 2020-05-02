@@ -64,6 +64,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
     public function dataNewFunction()
     {
         return array(
+            array('readline_callback_handler_install', '5.0', array(511), '5.1'),
+            array('readline_callback_handler_remove', '5.0', array(512), '5.1'),
+            array('readline_callback_read_char', '5.0', array(513), '5.1'),
+            array('readline_on_new_line', '5.0', array(514), '5.1'),
+            array('readline_redisplay', '5.0', array(515), '5.1'),
+
             array('array_fill_keys', '5.1', array(12), '5.2'),
             array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.
             array('error_get_last', '5.1', array(14), '5.2'),

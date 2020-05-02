@@ -497,6 +497,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('PASSWORD_BCRYPT', '5.4', array(696), '5.5'),
             array('PASSWORD_DEFAULT', '5.4', array(697), '5.5'),
             array('PASSWORD_BCRYPT_DEFAULT_COST', '5.4', array(698), '5.5'),
+            array('READLINE_LIB', '5.4', array(882), '5.5'),
             array('LIBXML_SCHEMA_CREATE', '5.5.1', array(438), '5.6', '5.5'),
             array('CURL_SSLVERSION_TLSv1_0', '5.5.18', array(439), '5.6', '5.5'),
             array('CURL_SSLVERSION_TLSv1_1', '5.5.18', array(440), '5.6', '5.5'),

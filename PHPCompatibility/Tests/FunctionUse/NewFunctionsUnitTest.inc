@@ -507,3 +507,9 @@ phpdbg_start_oplog();
 
 gc_status();
 php_ini_loaded_file();
+
+readline_callback_handler_install();
+readline_callback_handler_remove();
+readline_callback_read_char();
+readline_on_new_line();
+readline_redisplay();
