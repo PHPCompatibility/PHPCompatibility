@@ -70,6 +70,162 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1' => true,
             'alternative' => null,
         ),
+        'm_checkstatus' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_completeauthorizations' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_connect' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_connectionerror' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_deletetrans' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_destroyconn' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_destroyengine' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_getcell' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_getcellbynum' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_getcommadelimited' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_getheader' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_initconn' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_initengine' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_iscommadelimited' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_maxconntimeout' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_monitor' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_numcolumns' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_numrows' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_parsecommadelimited' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_responsekeys' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_responseparam' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_returnstatus' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setblocking' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setdropfile' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setip' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setssl_cafile' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setssl_files' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_setssl' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_settimeout' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_sslcert_gen_hash' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_transactionssent' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_transinqueue' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_transkeyval' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_transnew' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_transsend' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_uwait' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_validateidentifier' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_verifyconnection' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'm_verifysslcert' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
 
         'ncurses_addch' => array(
             '5.3'       => true,

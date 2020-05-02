@@ -39,6 +39,27 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      * @var array(string => array(string => bool|string))
      */
     protected $removedConstants = array(
+        'M_PENDING' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'M_DONE' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'M_ERROR' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'M_FAIL' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+        'M_SUCCESS' => array(
+            '5.1'       => true,
+            'extension' => 'mcve',
+        ),
+
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
             '5.3' => true,
