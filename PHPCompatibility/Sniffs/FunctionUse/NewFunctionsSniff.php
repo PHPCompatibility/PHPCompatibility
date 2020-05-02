@@ -94,10 +94,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
-        'sys_get_temp_dir' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
         'timezone_abbreviations_list' => array(
             '5.1' => false,
             '5.2' => true,
@@ -283,6 +279,16 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'zip_read' => array(
             '5.1' => false,
             '5.2' => true,
+        ),
+
+        'sys_get_temp_dir' => array(
+            '5.2.0' => false,
+            '5.2.1' => true,
+        ),
+
+        'php_ini_loaded_file' => array(
+            '5.2.3' => false,
+            '5.2.4' => true,
         ),
 
         'array_replace' => array(
@@ -2037,6 +2043,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
         'socket_wsaprotocol_info_release' => array(
+            '7.2' => false,
+            '7.3' => true,
+        ),
+        'gc_status' => array(
             '7.2' => false,
             '7.3' => true,
         ),

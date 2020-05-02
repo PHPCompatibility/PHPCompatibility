@@ -903,7 +903,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'zend_logo_guid' => array(
             '5.5' => true,
-            'alternative' => null,
+            'alternative' => 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"',
         ),
         'datefmt_set_timezone_id' => array(
             '5.5' => false,

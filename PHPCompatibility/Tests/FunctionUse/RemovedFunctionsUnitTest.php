@@ -402,7 +402,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('php_logo_guid', '5.5', array(32), '5.4'),
             array('php_egg_logo_guid', '5.5', array(33), '5.4'),
             array('php_real_logo_guid', '5.5', array(34), '5.4'),
-            array('zend_logo_guid', '5.5', array(35), '5.4'),
             array('imagepsbbox', '7.0', array(90), '5.6'),
             array('imagepsencodefont', '7.0', array(91), '5.6'),
             array('imagepsextendfont', '7.0', array(92), '5.6'),
@@ -517,6 +516,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function dataRemovedFunctionWithAlternative()
     {
         return array(
+            array('zend_logo_guid', '5.5', 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"', array(35), '5.4'),
+
             array('recode_file', '7.4', 'the iconv or mbstring extension', array(236), '7.3'),
             array('recode_string', '7.4', 'the iconv or mbstring extension', array(237), '7.3'),
             array('recode', '7.4', 'the iconv or mbstring extension', array(238), '7.3'),
