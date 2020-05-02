@@ -727,6 +727,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3' => false,
             '5.4' => true,
         ),
+        'gzdecode' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
 
         'array_column' => array(
             '5.4' => false,
@@ -1489,6 +1493,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'imagesetclip' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'inflate_get_read_len' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+        'inflate_get_status' => array(
             '7.1' => false,
             '7.2' => true,
         ),
