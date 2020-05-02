@@ -47,7 +47,9 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('alternative');
+        $keys   = parent::getNonVersionArrayKeys();
+        $keys[] = 'alternative';
+        return $keys;
     }
 
 
