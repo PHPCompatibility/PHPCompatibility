@@ -1232,12 +1232,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ),
 
         'random_bytes' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'csprng',
         ),
         'random_int' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'csprng',
         ),
         'error_clear_last' => array(
             '5.6' => false,
