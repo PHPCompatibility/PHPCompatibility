@@ -400,6 +400,12 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.1' => true,
         ),
 
+        'HashContext' => array(
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'hash',
+        ),
+
         'FFI' => array(
             '7.3'       => false,
             '7.4'       => true,
