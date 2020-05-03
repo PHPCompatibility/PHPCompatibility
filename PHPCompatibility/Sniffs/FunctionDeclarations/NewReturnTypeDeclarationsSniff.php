@@ -22,6 +22,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * Return type declarations are available since PHP 7.0.
  * - Since PHP 7.1, the `iterable` and `void` pseudo-types are available.
  * - Since PHP 7.2, the generic `object` type is available.
+ * - Since PHP 8.0, `static` is allowed to be used as a return type.
  *
  * PHP version 7.0+
  *
@@ -31,6 +32,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/iterable
  * @link https://wiki.php.net/rfc/void_return_type
  * @link https://wiki.php.net/rfc/object-typehint
+ * @link https://wiki.php.net/rfc/static_return_type
  *
  * @since 7.0.0
  * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -99,6 +101,11 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         'object' => array(
             '7.1' => false,
             '7.2' => true,
+        ),
+
+        'static' => array(
+            '7.4' => false,
+            '8.0' => true,
         ),
     );
 
