@@ -579,11 +579,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('magic_quotes_runtime', '5.3', '7.0', array(23), '5.2'),
             array('set_magic_quotes_runtime', '5.3', '7.0', array(27), '5.2'),
             array('sql_regcase', '5.3', '7.0', array(31), '5.2'),
-            array('mcrypt_ecb', '5.5', '7.0', array(37), '5.4'),
-            array('mcrypt_cbc', '5.5', '7.0', array(38), '5.4'),
-            array('mcrypt_cfb', '5.5', '7.0', array(39), '5.4'),
-            array('mcrypt_ofb', '5.5', '7.0', array(40), '5.4'),
-
         );
     }
 
@@ -645,6 +640,10 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('eregi', '5.3', '7.0', 'preg_match()', array(9), '5.2'),
             array('eregi_replace', '5.3', '7.0', 'preg_replace()', array(10), '5.2'),
             array('mcrypt_generic_end', '5.3', '7.0', 'mcrypt_generic_deinit()', array(12), '5.2'),
+            array('mcrypt_ecb', '5.5', '7.0', 'mcrypt_decrypt()/mcrypt_encrypt()', array(37), '5.4'),
+            array('mcrypt_cbc', '5.5', '7.0', 'mcrypt_decrypt()/mcrypt_encrypt()', array(38), '5.4'),
+            array('mcrypt_cfb', '5.5', '7.0', 'mcrypt_decrypt()/mcrypt_encrypt()', array(39), '5.4'),
+            array('mcrypt_ofb', '5.5', '7.0', 'mcrypt_decrypt()/mcrypt_encrypt()', array(40), '5.4'),
             array('mysql_db_query', '5.3', '7.0', 'mysqli::select_db() and mysqli::query()', array(13), '5.2'),
             array('mysql_escape_string', '5.3', '7.0', 'mysqli::real_escape_string()', array(14), '5.2'),
             array('mysqli_bind_param', '5.3', '5.4', 'mysqli_stmt::bind_param()', array(16), '5.2'),
