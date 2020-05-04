@@ -20,7 +20,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * Initially just checks for the PHP 7.1 deprecated `e` modifier.
  *
- * PHP version 7.1
+ * PHP version 7.1+
  *
  * @link https://wiki.php.net/rfc/deprecate_mb_ereg_replace_eval_option
  * @link https://www.php.net/manual/en/function.mb-regex-set-options.php
@@ -62,8 +62,8 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        // Version used here should be the highest version from the `$newModifiers` array,
-        // i.e. the last PHP version in which a new modifier was introduced.
+        // Version used here should be the lowest version, i.e the version in which the
+        // first modifier being detected by this sniff was removed.
         return ($this->supportsAbove('7.1') === false);
     }
 
@@ -123,14 +123,24 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
         }
 
         if (strpos($options, 'e') !== false) {
-            $error = 'The Mbstring regex "e" modifier is deprecated since PHP 7.1.';
+            $error   = 'The Mbstring regex "e" modifier is deprecated since PHP 7.1';
+            $code    = 'Deprecated';
+            $isError = false;
+
+            if ($this->supportsAbove('8.0') === true) {
+                $error  .= ' and removed since PHP 8.0';
+                $code    = 'Removed';
+                $isError = true;
+            }
+
+            $error .= '.';
 
             // The alternative mb_ereg_replace_callback() function is only available since 5.4.1.
             if ($this->supportsBelow('5.4.1') === false) {
                 $error .= ' Use mb_ereg_replace_callback() instead (PHP 5.4.1+).';
             }
 
-            $phpcsFile->addWarning($error, $stackPtr, 'Deprecated');
+            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
         }
     }
 }
