@@ -49,6 +49,19 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
                 '5.6'  => 'recommended',
             ),
         ),
+        'gmmktime' => array(
+            1 => array(
+                'name' => 'hour',
+                '8.0'  => true,
+            ),
+        ),
+        'mktime' => array(
+            0 => array(
+                'name' => 'hour',
+                '5.1'  => false,
+                '8.0'  => true,
+            ),
+        ),
         'parse_str' => array(
             1 => array(
                 'name' => 'result',
@@ -165,7 +178,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
             }
 
             // Remove the last 'and' from the message.
-            $error = substr($error, 0, (\strlen($error) - 5));
+            $error = \substr($error, 0, (\strlen($error) - 5));
         }
 
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);

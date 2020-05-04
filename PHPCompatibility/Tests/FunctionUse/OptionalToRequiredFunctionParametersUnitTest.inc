@@ -9,3 +9,11 @@ crypt( $str ); // Recommended.
 
 // Prevent false positive on new. Issue #913.
 $crypt = new Crypt('password');
+
+// OK.
+gmmktime($hour, $minute, $second);
+mktime($hour);
+
+// Not OK.
+gmmktime();
+mktime();
