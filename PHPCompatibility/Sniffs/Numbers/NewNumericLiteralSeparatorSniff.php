@@ -79,7 +79,7 @@ class NewNumericLiteralSeparatorSniff extends Sniff
             // Skip past the parts we've already taken into account to prevent double reporting.
             return ($numberInfo['last_token'] + 1);
         } catch (RuntimeException $e) {
-            // Running on an unsupport PHPCS version.
+            // Running on an unsupported PHPCS version.
             return;
         }
     }
