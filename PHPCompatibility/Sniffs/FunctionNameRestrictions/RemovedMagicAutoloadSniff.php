@@ -16,11 +16,12 @@ use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\Scopes;
 
 /**
- * Detect declaration of the magic `__autoload()` method.
+ * Detect declaration of the magic `__autoload()` function.
  *
- * This method has been deprecated in PHP 7.2 in favour of `spl_autoload_register()`.
+ * This functionality has been deprecated in PHP 7.2 and removed in PHP 8.0 in favour of `spl_autoload_register()`.
  *
  * PHP version 7.2
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration72.deprecated.php#migration72.deprecated.__autoload-method
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#autoload
@@ -89,6 +90,16 @@ class RemovedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        $phpcsFile->addWarning('Use of __autoload() function is deprecated since PHP 7.2', $stackPtr, 'Found');
+        $error   = 'Specifying an autoloader using an __autoload() function is deprecated since PHP 7.2';
+        $code    = 'Deprecated';
+        $isError = false;
+
+        if ($this->supportsAbove('8.0') === true) {
+            $error  .= ' and no longer supported since PHP 8.0';
+            $code    = 'Removed';
+            $isError = true;
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
     }
 }

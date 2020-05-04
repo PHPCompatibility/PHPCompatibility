@@ -52,28 +52,31 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
     }
 
     /**
-     * Test __autoload deprecation.
+     * Test detection of __autoload declarations for which support has been deprecated/removed.
      *
-     * @dataProvider dataIsDeprecated
+     * @dataProvider dataRemovedMagicAutoload
      *
      * @param int $line The line number where the error should occur.
      *
      * @return void
      */
-    public function testIsDeprecated($line)
+    public function testRemovedMagicAutoload($line)
     {
         $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.2');
-        $this->assertWarning($file, $line, 'Use of __autoload() function is deprecated since PHP 7.2');
+        $this->assertWarning($file, $line, 'Specifying an autoloader using an __autoload() function is deprecated since PHP 7.2');
+
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '8.0');
+        $this->assertError($file, $line, 'Specifying an autoloader using an __autoload() function is deprecated since PHP 7.2 and no longer supported since PHP 8.0');
     }
 
     /**
-     * dataIsDeprecated
+     * Data provider.
      *
-     * @see testIsDeprecated()
+     * @see testRemovedMagicAutoload()
      *
      * @return array
      */
-    public function dataIsDeprecated()
+    public function dataRemovedMagicAutoload()
     {
         return array(
             array(3),
