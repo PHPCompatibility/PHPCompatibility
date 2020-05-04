@@ -55,6 +55,12 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
                 '8.0'  => true,
             ),
         ),
+        'mb_parse_str' => array(
+            1 => array(
+                'name' => 'result',
+                '8.0'  => true,
+            ),
+        ),
         'mktime' => array(
             0 => array(
                 'name' => 'hour',

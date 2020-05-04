@@ -17,3 +17,6 @@ mktime($hour);
 // Not OK.
 gmmktime();
 mktime();
+
+mb_parse_str($encoded_string, $result); // Ok.
+mb_parse_str($encoded_string); // Not ok.

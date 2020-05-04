@@ -154,6 +154,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
     {
         return array(
             array('gmmktime', 'hour', '8.0', array(18), '7.4'),
+            array('mb_parse_str', 'result', '8.0', array(22), '7.4'),
         );
     }
 
@@ -228,6 +229,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
             array(4),
             array(14),
             array(15),
+            array(21),
         );
     }
 
