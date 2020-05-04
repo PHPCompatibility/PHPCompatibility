@@ -4057,6 +4057,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'create_function' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'an anonymous function',
         ),
         'each' => array(
