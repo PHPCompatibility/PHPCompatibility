@@ -9,3 +9,6 @@ get_class();
 
 // Not OK.
 get_class(null);
+get_class(
+    null // Comment.
+);

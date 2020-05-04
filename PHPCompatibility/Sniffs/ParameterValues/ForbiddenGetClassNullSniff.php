@@ -71,7 +71,7 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ($parameters[1]['raw'] !== 'null') {
+        if ($parameters[1]['clean'] !== 'null') {
             return;
         }
 

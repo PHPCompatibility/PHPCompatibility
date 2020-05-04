@@ -41,7 +41,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataGetClassNull
+     * Data provider.
      *
      * @see testGetClassNull()
      *
@@ -51,6 +51,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
     {
         return array(
             array(11),
+            array(12),
         );
     }
 
