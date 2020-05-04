@@ -15,12 +15,13 @@ use PHP_CodeSniffer_File as File;
 use PHPCSUtils\Utils\Conditions;
 
 /**
- * Using `parent` inside a class without parent is deprecated since PHP 7.4.
+ * Using `parent` inside a class without parent is deprecated since PHP 7.4 and removed in PHP 8.0.
  *
- * This will throw a compile-time error in the future. Currently an error will only
+ * This will throw a compile-time error in PHP 8.0. In PHP 7.4 an error will only
  * be generated if/when the parent is accessed at run-time.
  *
  * PHP version 7.4
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.parent
  *
@@ -90,10 +91,16 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $phpcsFile->addError(
-            'Using "parent" inside a class without parent is deprecated since PHP 7.4',
-            $stackPtr,
-            'Deprecated'
-        );
+        $error   = 'Using "parent" inside a class without parent is deprecated since PHP 7.4';
+        $code    = 'Deprecated';
+        $isError = false;
+
+        if ($this->supportsAbove('8.0') === true) {
+            $error  .= ' and removed since PHP 8.0';
+            $code    = 'Removed';
+            $isError = true;
+        }
+
+        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
     }
 }

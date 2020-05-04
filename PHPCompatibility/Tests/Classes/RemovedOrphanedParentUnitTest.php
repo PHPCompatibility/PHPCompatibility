@@ -37,7 +37,10 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
     public function testRemovedOrphanedParent($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertError($file, $line, 'Using "parent" inside a class without parent is deprecated since PHP 7.4');
+        $this->assertWarning($file, $line, 'Using "parent" inside a class without parent is deprecated since PHP 7.4');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Using "parent" inside a class without parent is deprecated since PHP 7.4 and removed since PHP 8.0');
     }
 
     /**
