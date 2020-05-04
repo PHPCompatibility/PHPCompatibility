@@ -167,8 +167,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ociwritetemporarylob', '5.4', 'OCI-Lob::writeTemporary()', array(89), '5.3'),
 
             array('__autoload', '7.2', 'SPL autoload', array(589), '7.1'),
-            array('gmp_random', '7.2', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
-
             array('mbregex_encoding', '7.3', 'mb_regex_encoding()', array(153), '7.2'),
             array('mbereg', '7.3', 'mb_ereg()', array(154), '7.2'),
             array('mberegi', '7.3', 'mb_eregi()', array(155), '7.2'),
@@ -1432,6 +1430,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('read_exif_data', '7.2', '8.0', 'exif_read_data()', array(149), '7.1'),
             array('jpeg2wbmp', '7.2', '8.0', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
             array('png2wbmp', '7.2', '8.0', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
+            array('gmp_random', '7.2', '8.0', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
 
             array('image2wbmp', '7.3', '8.0', 'imagewbmp()', array(152), '7.2'),
         );

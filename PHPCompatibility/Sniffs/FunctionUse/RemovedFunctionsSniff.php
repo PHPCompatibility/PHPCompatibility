@@ -4069,6 +4069,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'gmp_random' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
         ),
         'read_exif_data' => array(
