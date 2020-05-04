@@ -83,6 +83,9 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             ['fgetcsv', 'length', '5.0', [39], '5.1'],
             ['xmlwriter_write_element', 'content', '5.2.2', [41], '5.3', '5.2'],
             ['xmlwriter_write_element_ns', 'content', '5.2.2', [42], '5.3', '5.2'],
+            ['imagepolygon', 'num_points', '7.4', [45], '8.0'],
+            ['imageopenpolygon', 'num_points', '7.4', [46], '8.0'],
+            ['imagefilledpolygon', 'num_points', '7.4', [47], '8.0'],
         ];
     }
 
@@ -122,6 +125,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             [32],
             [34],
             [38],
+            [44],
         ];
     }
 

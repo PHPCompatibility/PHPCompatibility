@@ -40,3 +40,8 @@ fgetcsv($handle); // PHP 5.1+.
 
 xmlwriter_write_element($xmlwriter, $name); // PHP 5.2.3+.
 xmlwriter_write_element_ns($xmlwriter, $prefix, $name, $uri); // PHP 5.2.3+.
+
+imagepolygon($image, $points, $num_points, $color); // OK.
+imagepolygon($image, $points, $color); // PHP 8.0+.
+imageopenpolygon($image, $points, $color); // PHP 8.0+.
+imagefilledpolygon($image, $points, $color); // PHP 8.0+.

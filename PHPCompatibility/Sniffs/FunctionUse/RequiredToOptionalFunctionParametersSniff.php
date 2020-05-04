@@ -149,6 +149,33 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 '7.1'  => false,
             ],
         ],
+        'imagepolygon' => [
+            /*
+             * $num_points is actually at position 2, but has another required parameter after it,
+             * so we need to detect on the last parameter.
+             */
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'imageopenpolygon' => [
+            // Note from imagepolygon applies here too.
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'imagefilledpolygon' => [
+            // Note from imagepolygon applies here too.
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
         'preg_match_all' => [
             2 => [
                 'name' => 'matches',
