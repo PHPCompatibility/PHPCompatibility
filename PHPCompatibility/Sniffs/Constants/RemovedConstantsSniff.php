@@ -39,6 +39,150 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      * @var array(string => array(string => bool|string))
      */
     protected $removedConstants = array(
+        'F_DUPFD' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_GETFD' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_GETFL' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_GETLK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_GETOWN' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_RDLCK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_SETFL' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_SETLK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_SETLKW' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_SETOWN' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_UNLCK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'F_WRLCK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_APPEND' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_ASYNC' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_CREAT' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_EXCL' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_NDELAY' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_NOCTTY' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_NONBLOCK' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_RDONLY' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_RDWR' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_SYNC' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_TRUNC' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'O_WRONLY' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IRGRP' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IROTH' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IRUSR' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IRWXG' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IRWXO' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IRWXU' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IWGRP' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IWOTH' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IWUSR' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IXGRP' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IXOTH' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'S_IXUSR' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
         'M_PENDING' => array(
             '5.1'       => true,
             'extension' => 'mcve',
