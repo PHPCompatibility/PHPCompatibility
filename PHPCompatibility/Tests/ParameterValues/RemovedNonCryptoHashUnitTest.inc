@@ -17,3 +17,7 @@ hash_hmac('fnv1a32');
 hash_hmac_file("fnv164");
 hash_pbkdf2('fnv1a64');
 hash_init( 'joaat', 1);
+hash_pbkdf2(
+    'adler32' // Comment.
+);
+hash_init( 'crc32b', HASH_HMAC /*comment*/);

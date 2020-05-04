@@ -96,14 +96,14 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
 
         $targetParam = $parameters[1];
 
-        if (isset($this->disabledCryptos[TextStrings::stripQuotes($targetParam['raw'])]) === false) {
+        if (isset($this->disabledCryptos[TextStrings::stripQuotes($targetParam['clean'])]) === false) {
             return;
         }
 
         if (\strtolower($functionName) === 'hash_init'
             && (isset($parameters[2]) === false
-            || ($parameters[2]['raw'] !== 'HASH_HMAC'
-                && $parameters[2]['raw'] !== (string) \HASH_HMAC))
+            || ($parameters[2]['clean'] !== 'HASH_HMAC'
+                && $parameters[2]['clean'] !== (string) \HASH_HMAC))
         ) {
             // For hash_init(), these hashes are only disabled with HASH_HMAC set.
             return;
@@ -115,7 +115,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             $this->stringToErrorCode($functionName),
             [
                 $functionName,
-                $targetParam['raw'],
+                $targetParam['clean'],
             ]
         );
     }

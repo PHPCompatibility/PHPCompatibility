@@ -60,6 +60,8 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
             [17, 'hash_hmac_file'],
             [18, 'hash_pbkdf2'],
             [19, 'hash_init'],
+            [20, 'hash_pbkdf2'],
+            [23, 'hash_init'],
         ];
     }
 
