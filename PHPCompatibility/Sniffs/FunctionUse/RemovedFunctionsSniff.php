@@ -4071,6 +4071,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'read_exif_data' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'exif_read_data()',
         ),
 
