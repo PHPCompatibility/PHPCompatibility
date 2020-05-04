@@ -1971,6 +1971,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 
         'INTL_IDNA_VARIANT_2003' => array(
             '7.2' => false,
+            '8.0' => true,
         ),
 
         'MCRYPT_MODE_ECB' => array(
