@@ -40,6 +40,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
     protected $deprecatedTypeCasts = array(
         'T_UNSET_CAST' => array(
             '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'unset()',
             'description' => 'unset',
         ),
