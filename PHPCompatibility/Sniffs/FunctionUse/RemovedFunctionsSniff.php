@@ -4086,58 +4086,72 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'mbregex_encoding' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_regex_encoding()',
         ),
         'mbereg' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg()',
         ),
         'mberegi' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_eregi()',
         ),
         'mbereg_replace' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_replace()',
         ),
         'mberegi_replace' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_eregi_replace()',
         ),
         'mbsplit' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_split()',
         ),
         'mbereg_match' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_match()',
         ),
         'mbereg_search' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search()',
         ),
         'mbereg_search_pos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_pos()',
         ),
         'mbereg_search_regs' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_regs()',
         ),
         'mbereg_search_init' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_init()',
         ),
         'mbereg_search_getregs' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_getregs()',
         ),
         'mbereg_search_getpos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_getpos()',
         ),
         'mbereg_search_setpos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_setpos()',
         ),
         'fgetss' => array(
