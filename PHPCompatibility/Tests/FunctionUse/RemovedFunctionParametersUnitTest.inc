@@ -19,3 +19,6 @@ curl_version( CURLVERSION_NOW ); // OK.
 curl_version( 4 ); // OK when on Curl version 4.
 curl_version( 10505678 );
 curl_version( $age );
+
+mb_decode_numericentity($str, $convmap); // OK.
+mb_decode_numericentity($str, $convmap, $encoding, $is_hex); // Error.

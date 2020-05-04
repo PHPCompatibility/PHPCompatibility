@@ -66,6 +66,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
         return array(
             array('ldap_first_attribute', 'ber_identifier', '5.2.4', array(11), '5.2', '5.3'),
             array('ldap_next_attribute', 'ber_identifier', '5.2.4', array(12), '5.2', '5.3'),
+            array('mb_decode_numericentity', 'is_hex', '8.0', array(24), '7.4'),
         );
     }
 
@@ -202,6 +203,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             array(14),
             array(17),
             array(18),
+            array(23),
         );
 
         if (\CURLVERSION_NOW === 4) {

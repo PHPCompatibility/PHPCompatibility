@@ -78,6 +78,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '5.2.4' => true,
             ),
         ),
+        'mb_decode_numericentity' => array(
+            3 => array(
+                'name' => 'is_hex',
+                '8.0'  => true,
+            ),
+        ),
         'mktime' => array(
             6 => array(
                 'name' => 'is_dst',
