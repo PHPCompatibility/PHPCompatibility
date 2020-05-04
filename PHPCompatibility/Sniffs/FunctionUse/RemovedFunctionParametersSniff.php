@@ -55,7 +55,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         'define' => array(
             2 => array(
                 'name' => 'case_insensitive',
-                '7.3'  => false, // Slated for removal in PHP 8.0.0.
+                '7.3'  => false,
+                '8.0'  => true,
             ),
         ),
         'gmmktime' => array(

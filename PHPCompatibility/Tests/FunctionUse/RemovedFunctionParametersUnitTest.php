@@ -116,6 +116,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
         return array(
             array('mktime', 'is_dst', '5.1', '7.0', array(8), '5.0'),
             array('gmmktime', 'is_dst', '5.1', '7.0', array(9), '5.0'),
+            array('define', 'case_insensitive', '7.3', '8.0', array(15), '7.2'),
         );
     }
 
@@ -159,7 +160,6 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
     public function dataDeprecatedParameter()
     {
         $data = array(
-            array('define', 'case_insensitive', '7.3', array(15), '7.2'),
             array('curl_version', 'age', '7.4', array(20), '7.3'),
             array('curl_version', 'age', '7.4', array(21), '7.3'),
         );
