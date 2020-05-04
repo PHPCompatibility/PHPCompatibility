@@ -61,9 +61,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataOptionalRequiredParameterDeprecated()
     {
-        return array(
-            array('parse_str', 'result', '7.2', array(7), '7.1'),
-        );
+        return array();
     }
 
 
@@ -112,6 +110,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
     {
         return array(
             array('mktime', 'hour', '5.1', '8.0', array(19), '5.0'),
+            array('parse_str', 'result', '7.2', '8.0', array(7), '7.1'),
         );
     }
 

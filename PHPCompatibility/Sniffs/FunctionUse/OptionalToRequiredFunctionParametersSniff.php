@@ -72,6 +72,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
             1 => array(
                 'name' => 'result',
                 '7.2'  => false,
+                '8.0'  => true,
             ),
         ),
     );
