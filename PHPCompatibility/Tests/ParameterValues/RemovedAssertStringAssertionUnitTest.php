@@ -37,9 +37,12 @@ class RemovedAssertStringAssertionUnitTest extends BaseSniffTest
     public function testRemovedAssertStringAssertion($line)
     {
         $file  = $this->sniffFile(__FILE__, '7.2');
-        $error = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2.';
-
+        $error = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2';
         $this->assertWarning($file, $line, $error);
+
+        $file  = $this->sniffFile(__FILE__, '8.0');
+        $error = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2 and removed since PHP 8.0';
+        $this->assertError($file, $line, $error);
     }
 
     /**

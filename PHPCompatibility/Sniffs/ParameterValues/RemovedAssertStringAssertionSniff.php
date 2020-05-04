@@ -17,12 +17,19 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 /**
  * Detect the use of assertions passed as a string.
  *
+ * PHP 7.2:
  * > Usage of a string as the assertion became deprecated. It now emits an E_DEPRECATED
  * > notice when both assert.active and zend.assertions are set to 1.
  *
+ * PHP 8.0:
+ * > assert() will no longer evaluate string arguments, instead they will be treated
+ * > like any other argument. `assert($a == $b)` should be used instead of `assert('$a == $b')`.
+ *
  * PHP version 7.2
+ * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#assert_with_string_argument
+ * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L350-L354
  * @link https://www.php.net/manual/en/function.assert.php#refsect1-function.assert-changelog
  *
  * @since 10.0.0
@@ -107,9 +114,18 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
             return;
         }
 
-        $error = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2. Found: %s';
-        $data  = array($targetParam['clean']);
+        $error   = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2%s. Found: %s';
+        $isError = false;
+        $data    = array(
+            '',
+            $targetParam['clean'],
+        );
 
-        $phpcsFile->addWarning($error, $targetParam['start'], 'Found', $data);
+        if ($this->supportsAbove('8.0') === true) {
+            $data[0] = ' and removed since PHP 8.0';
+            $isError = true;
+        }
+
+        $this->addMessage($phpcsFile, $error, $targetParam['start'], $isError, 'Found', $data);
     }
 }
