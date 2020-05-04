@@ -2259,6 +2259,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         ),
         'FILTER_SANITIZE_MAGIC_QUOTES' => array(
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
         ),
         'IBASE_BKP_CONVERT' => array(
