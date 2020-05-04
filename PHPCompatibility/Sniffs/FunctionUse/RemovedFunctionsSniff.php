@@ -4045,10 +4045,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'jpeg2wbmp' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'imagecreatefromjpeg() and imagewbmp()',
         ),
         'png2wbmp' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
         ),
         '__autoload' => array(
@@ -4077,6 +4079,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 
         'image2wbmp' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'imagewbmp()',
         ),
         'mbregex_encoding' => array(
