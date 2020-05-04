@@ -40,9 +40,13 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTest
         $error = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
         $this->assertWarning($file, $line, $error);
 
-        $file   = $this->sniffFile(__FILE__, '7.4');
-        $error .= ' and hard deprecated since PHP 7.4.';
-        $this->assertWarning($file, $line, $error);
+        $file    = $this->sniffFile(__FILE__, '7.4');
+        $error74 = $error . ' and hard deprecated since PHP 7.4.';
+        $this->assertWarning($file, $line, $error74);
+
+        $file    = $this->sniffFile(__FILE__, '8.0');
+        $error80 = $error . ', hard deprecated since PHP 7.4 and removed since PHP 8.0';
+        $this->assertError($file, $line, $error80);
     }
 
     /**
