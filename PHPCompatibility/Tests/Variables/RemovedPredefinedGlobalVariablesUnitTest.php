@@ -85,15 +85,15 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
 
 
     /**
-     * testDeprecatedPHPErrorMsg
+     * testDeprecatedRemovedPHPErrorMsg
      *
-     * @dataProvider dataDeprecatedPHPErrorMsg
+     * @dataProvider dataDeprecatedRemovedPHPErrorMsg
      *
      * @param array $line The line number in the test file where a warning is expected.
      *
      * @return void
      */
-    public function testDeprecatedPHPErrorMsg($line)
+    public function testDeprecatedRemovedPHPErrorMsg($line)
     {
         $file = $this->sniffFile(__FILE__, '7.1');
         $this->assertNoViolation($file, $line);
@@ -101,6 +101,10 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
         $file  = $this->sniffFile(__FILE__, '7.2');
         $error = 'The variable \'$php_errormsg\' is deprecated since PHP 7.2; Use error_get_last() instead';
         $this->assertWarning($file, $line, $error);
+
+        $file  = $this->sniffFile(__FILE__, '8.0');
+        $error = 'The variable \'$php_errormsg\' is deprecated since PHP 7.2 and removed since PHP 8.0; Use error_get_last() instead';
+        $this->assertError($file, $line, $error);
     }
 
     /**
@@ -110,7 +114,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedPHPErrorMsg()
+    public function dataDeprecatedRemovedPHPErrorMsg()
     {
         return array(
             array(101),
