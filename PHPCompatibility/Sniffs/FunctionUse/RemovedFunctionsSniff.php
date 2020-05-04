@@ -2820,6 +2820,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'ldap_sort' => array(
             '7.0' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'mcrypt_generic_end' => array(
