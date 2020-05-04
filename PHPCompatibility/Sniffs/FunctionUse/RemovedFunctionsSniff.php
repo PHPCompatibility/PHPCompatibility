@@ -4062,7 +4062,8 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'each' => array(
             '7.2' => false,
-            'alternative' => 'a foreach loop',
+            '8.0' => true,
+            'alternative' => 'a foreach loop or ArrayIterator',
         ),
         'gmp_random' => array(
             '7.2' => false,
