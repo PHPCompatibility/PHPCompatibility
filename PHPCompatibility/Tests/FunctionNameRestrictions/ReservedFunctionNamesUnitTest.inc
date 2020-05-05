@@ -141,3 +141,12 @@ function & __returnByRef() {} // Error.
 class Ref {
     public function &__returnByRef() {} // Error.
 }
+
+// Verify that nested functions are correctly seen as declared in the global namespace.
+class Nesting extends \SoapClient {
+    public function thisIsOk() {
+        function __autoload($class) {} // OK.
+        function __isset() {} // Error.
+        function __getLastResponse() {} // Error.
+    }
+}
