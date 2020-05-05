@@ -134,3 +134,10 @@ class Deprecated {
      */
     public static function __deprecatedMethod() {}
 }
+
+// Verify that functions declared as return by reference are recognized correctly.
+function & __returnByRef() {} // Error.
+
+class Ref {
+    public function &__returnByRef() {} // Error.
+}

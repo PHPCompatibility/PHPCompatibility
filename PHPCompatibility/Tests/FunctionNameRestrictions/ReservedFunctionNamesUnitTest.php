@@ -78,6 +78,9 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
 
             array(107, 'method'),
             array(109, 'method'),
+
+            array(139, 'function'),
+            array(142, 'method'),
         );
     }
 
