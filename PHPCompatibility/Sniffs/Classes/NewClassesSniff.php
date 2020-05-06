@@ -207,8 +207,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         'finfo' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
         ),
         'Collator' => array(
             '5.2' => false,
