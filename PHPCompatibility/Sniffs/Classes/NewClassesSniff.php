@@ -212,28 +212,34 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'fileinfo',
         ),
         'Collator' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'NumberFormatter' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'Locale' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'Normalizer' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'MessageFormatter' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'IntlDateFormatter' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'Phar' => array(
             '5.2'       => false,
@@ -304,8 +310,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'ResourceBundle' => array(
-            '5.3.1' => false,
-            '5.3.2' => true,
+            '5.3.1'     => false,
+            '5.3.2'     => true,
+            'extension' => 'intl',
         ),
 
         'CallbackFilterIterator' => array(
@@ -329,12 +336,14 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'Transliterator' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'intl',
         ),
         'Spoofchecker' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'intl',
         ),
 
         'Generator' => array(
@@ -350,32 +359,49 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'IntlCalendar' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'IntlGregorianCalendar' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'IntlTimeZone' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'IntlBreakIterator' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'IntlRuleBasedBreakIterator' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'IntlCodePointBreakIterator' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
+        ),
+        'IntlPartsIterator' => array(
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
+        ),
+        'IntlIterator' => array(
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'UConverter' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
 
         'GMP' => array(
@@ -384,8 +410,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'IntlChar' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'intl',
         ),
         'ReflectionType' => array(
             '5.6' => false,
@@ -554,8 +581,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'IntlException' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
 
         'Error' => array(
