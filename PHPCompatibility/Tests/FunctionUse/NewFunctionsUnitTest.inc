@@ -527,3 +527,16 @@ hash_update_file();
 hash_update_stream();
 hash_update();
 hash();
+
+openssl_cipher_iv_length();
+openssl_decrypt();
+openssl_dh_compute_key();
+openssl_digest();
+openssl_encrypt();
+openssl_get_cipher_methods();
+openssl_get_curve_names();
+openssl_get_md_methods();
+openssl_pkcs12_export_to_file();
+openssl_pkcs12_export();
+openssl_pkcs12_read();
+openssl_pkcs7_read();
