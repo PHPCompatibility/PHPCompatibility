@@ -79,6 +79,13 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 '7.3'  => false,
             ),
         ),
+        'fgetcsv' => array(
+            1 => array(
+                'name' => 'length',
+                '5.0'  => true,
+                '5.1'  => false,
+            ),
+        ),
         'ftp_fget' => array(
             3 => array(
                 'name' => 'mode',
