@@ -1158,6 +1158,10 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['mysqli_embedded_server_end', '7.4', [1147], '7.3'],
             ['mysqli_embedded_server_start', '7.4', [1148], '7.3'],
 
+            ['recode_file', '7.4', [236], '7.3'],
+            ['recode_string', '7.4', [237], '7.3'],
+            ['recode', '7.4', [238], '7.3'],
+
             ['oci_internal_debug', '8.0', [1178], '7.4'],
             ['xmlrpc_decode_request', '8.0', [1158], '7.4'],
             ['xmlrpc_decode', '8.0', [1159], '7.4'],
@@ -1218,10 +1222,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     {
         return [
             ['zend_logo_guid', '5.5', 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"', [35], '5.4'],
-
-            ['recode_file', '7.4', 'the iconv or mbstring extension', [236], '7.3'],
-            ['recode_string', '7.4', 'the iconv or mbstring extension', [237], '7.3'],
-            ['recode', '7.4', 'the iconv or mbstring extension', [238], '7.3'],
 
             ['imap_header', '8.0', 'imap_headerinfo()', [1216], '7.4'],
         ];

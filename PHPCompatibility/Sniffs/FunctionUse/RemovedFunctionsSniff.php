@@ -4557,19 +4557,16 @@ class RemovedFunctionsSniff extends Sniff
             'alternative' => 'ldap_search()',
         ],
         'recode_file' => [
-            '7.4'         => true,
-            'alternative' => 'the iconv or mbstring extension',
-            'extension'   => 'recode',
+            '7.4'       => true,
+            'extension' => 'recode',
         ],
         'recode_string' => [
-            '7.4'         => true,
-            'alternative' => 'the iconv or mbstring extension',
-            'extension'   => 'recode',
+            '7.4'       => true,
+            'extension' => 'recode',
         ],
         'recode' => [
-            '7.4'         => true,
-            'alternative' => 'the iconv or mbstring extension',
-            'extension'   => 'recode',
+            '7.4'       => true,
+            'extension' => 'recode',
         ],
         'wddx_add_vars' => [
             '7.4'       => true,
