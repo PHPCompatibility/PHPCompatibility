@@ -104,6 +104,14 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.2.1' => true,
         ),
 
+        'mime_magic.debug' => array(
+            '5.3'       => true,
+            'extension' => 'mimetype',
+        ),
+        'mime_magic.magicfile' => array(
+            '5.3'       => true,
+            'extension' => 'mimetype',
+        ),
         'zend.ze1_compatibility_mode' => array(
             '5.3' => true,
         ),

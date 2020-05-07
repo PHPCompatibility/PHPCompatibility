@@ -255,6 +255,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('ifx.nullformat', '5.2.1', array(119, 120), '5.2', '5.3'),
             array('ifx.textasvarchar', '5.2.1', array(122, 123), '5.2', '5.3'),
 
+            array('mime_magic.debug', '5.3', array(247, 248), '5.2'),
+            array('mime_magic.magicfile', '5.3', array(250, 251), '5.2'),
             array('zend.ze1_compatibility_mode', '5.3', array(36, 37), '5.2'),
 
             array('phar.extract_list', '5.4', array(244, 245), '5.3'),
