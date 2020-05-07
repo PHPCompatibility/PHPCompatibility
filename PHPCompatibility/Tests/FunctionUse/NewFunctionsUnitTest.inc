@@ -572,3 +572,6 @@ lchgrp();
 lchown();
 realpath_cache_get();
 realpath_cache_size();
+
+enchant_broker_get_dict_path();
+enchant_broker_set_dict_path();

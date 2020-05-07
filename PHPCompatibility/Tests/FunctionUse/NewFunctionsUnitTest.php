@@ -253,6 +253,9 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_get_cipher_methods', '5.2', array(536), '5.3'),
             array('openssl_get_md_methods', '5.2', array(538), '5.3'),
 
+            array('enchant_broker_get_dict_path', '5.3.0', array(576), '5.4', '5.3'),
+            array('enchant_broker_set_dict_path', '5.3.0', array(577), '5.4', '5.3'),
+
             array('realpath_cache_get', '5.3.1', array(573), '5.4', '5.3'),
             array('realpath_cache_size', '5.3.1', array(574), '5.4', '5.3'),
 

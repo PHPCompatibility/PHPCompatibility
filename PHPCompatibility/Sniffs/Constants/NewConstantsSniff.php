@@ -789,6 +789,17 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.2' => false,
             '5.3' => true,
         ),
+        // Enchant:
+        'ENCHANT_MYSPELL' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'enchant',
+        ),
+        'ENCHANT_ISPELL' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'enchant',
+        ),
         // GD:
         'IMG_FILTER_PIXELATE' => array(
             '5.2' => false,
