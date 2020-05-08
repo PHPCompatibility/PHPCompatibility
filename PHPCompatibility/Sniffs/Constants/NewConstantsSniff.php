@@ -2098,6 +2098,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+        // DateTime:
+        'DATE_RFC3339_EXTENDED' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
         // JSON:
         'JSON_ERROR_INVALID_PROPERTY_NAME' => array(
             '5.6'       => false,
@@ -2464,6 +2469,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         'CURLSSLOPT_NO_REVOKE' => array(
             '7.0.6' => false,
             '7.0.7' => true,
+        ),
+
+        'DATE_RFC7231' => array(
+            '7.0.18' => false,
+            '7.0.19' => true,
         ),
 
         'PHP_FD_SETSIZE' => array(

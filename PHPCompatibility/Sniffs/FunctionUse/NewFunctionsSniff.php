@@ -74,6 +74,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'date_default_timezone_get' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'date_default_timezone_set' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'strptime' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
         'readline_callback_handler_install' => array(
             '5.0' => false,
             '5.1' => true,
@@ -95,6 +107,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
 
+        'date_sun_info' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+        ),
         'hash_algos' => array(
             '5.1.1'     => false,
             '5.1.2'     => true,
@@ -146,6 +162,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'hash',
         ),
 
+        'timezone_name_from_abbr' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
+
         'array_fill_keys' => array(
             '5.1' => false,
             '5.2' => true,
@@ -162,6 +183,46 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
+        'date_create' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_date_set' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_format' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_isodate_set' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_modify' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_offset_get' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_parse' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_time_set' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_timezone_get' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'date_timezone_set' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
         'timezone_abbreviations_list' => array(
             '5.1' => false,
             '5.2' => true,
@@ -170,7 +231,19 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
-        'timezone_name_from_abbr' => array(
+        'timezone_name_get' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'timezone_offset_get' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'timezone_open' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'timezone_transitions_get' => array(
             '5.1' => false,
             '5.2' => true,
         ),
@@ -464,11 +537,31 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2' => false,
             '5.3' => true,
         ),
+        'date_interval_create_from_date_string' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'date_interval_format' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
         'date_parse_from_format' => array(
             '5.2' => false,
             '5.3' => true,
         ),
         'date_sub' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'date_timestamp_get' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'date_timestamp_set' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'timezone_location_get' => array(
             '5.2' => false,
             '5.3' => true,
         ),
@@ -904,6 +997,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'curl_unescape' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'date_create_immutable_from_format' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'date_create_immutable' => array(
             '5.4' => false,
             '5.5' => true,
         ),
