@@ -676,3 +676,6 @@ grapheme_strstr();
 grapheme_substr();
 idn_to_ascii();
 idn_to_utf8();
+mb_encoding_aliases();
+mb_ereg_replace_callback();
+mb_strstr();
