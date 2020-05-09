@@ -686,3 +686,7 @@ imagesetinterpolation();
 imagewebp();
 imap_fetchmime();
 imap_savebody();
+gmp_export();
+gmp_import();
+gmp_random_bits();
+gmp_random_range();
