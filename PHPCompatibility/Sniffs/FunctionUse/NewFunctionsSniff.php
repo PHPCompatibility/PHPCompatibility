@@ -46,6 +46,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'imageconvolution' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
         'iterator_count' => array(
             '5.0' => false,
             '5.1' => true,
@@ -263,14 +267,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
-        'imagegrabscreen' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'imagegrabwindow' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
         'libxml_disable_entity_loader' => array(
             '5.1' => false,
             '5.2' => true,
@@ -443,6 +439,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2.1' => true,
         ),
 
+        'imagegrabscreen' => array(
+            '5.2.1' => false,
+            '5.2.2' => true,
+        ),
+        'imagegrabwindow' => array(
+            '5.2.1' => false,
+            '5.2.2' => true,
+        ),
         'openssl_pkcs12_export_to_file' => array(
             '5.2.1' => false,
             '5.2.2' => true,
@@ -1358,6 +1362,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3' => false,
             '5.4' => true,
         ),
+        'imagecreatefromwebp' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
+        'imagewebp' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
         'stream_set_chunk_size' => array(
             '5.3' => false,
             '5.4' => true,
@@ -1553,6 +1565,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
+        'imageaffine' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
         'imageaffinematrixconcat' => array(
             '5.4' => false,
             '5.5' => true,
@@ -1578,6 +1594,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'imagescale' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'imagesetinterpolation' => array(
             '5.4' => false,
             '5.5' => true,
         ),

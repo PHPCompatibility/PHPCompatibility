@@ -679,3 +679,8 @@ idn_to_utf8();
 mb_encoding_aliases();
 mb_ereg_replace_callback();
 mb_strstr();
+imageaffine();
+imageconvolution();
+imagecreatefromwebp();
+imagesetinterpolation();
+imagewebp();
