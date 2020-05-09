@@ -684,3 +684,5 @@ imageconvolution();
 imagecreatefromwebp();
 imagesetinterpolation();
 imagewebp();
+imap_fetchmime();
+imap_savebody();
