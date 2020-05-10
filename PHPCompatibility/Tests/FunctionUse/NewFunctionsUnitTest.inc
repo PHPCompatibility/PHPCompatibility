@@ -693,3 +693,5 @@ gmp_random_range();
 pcntl_errno();
 pcntl_get_last_error();
 pcntl_strerror();
+posix_access();
+posix_mknod();
