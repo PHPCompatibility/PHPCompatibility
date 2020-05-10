@@ -57,6 +57,36 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'spl',
         ),
+        'ob_tidyhandler' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidy_access_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidy_config_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidy_error_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidy_get_output' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidy_warning_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
 
         'fputcsv' => array(
             '5.0' => false,

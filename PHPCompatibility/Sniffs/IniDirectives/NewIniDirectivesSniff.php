@@ -135,12 +135,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'tidy.clean_output' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
         ),
         'tidy.default_config' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
         ),
         'zend.ze1_compatibility_mode' => array(
             '4.4' => false,
