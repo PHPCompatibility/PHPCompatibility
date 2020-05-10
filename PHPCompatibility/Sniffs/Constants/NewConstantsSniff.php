@@ -2332,6 +2332,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         // Tokenizer:
+        'T_CALLABLE' => array(
+            '5.3' => false,
+            '5.4' => true,
+        ),
         'T_INSTEADOF' => array(
             '5.3' => false,
             '5.4' => true,
@@ -4528,6 +4532,15 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+        'T_COALESCE_EQUAL' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+        'T_FN' => array(
+            '7.3' => false,
+            '7.4' => true,
+        ),
+
         'TIDY_TAG_ARTICLE' => array(
             '7.3'       => false,
             '7.4'       => true,

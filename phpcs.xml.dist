@@ -35,6 +35,7 @@
         <exclude name="PHPCompatibility.Constants.NewConstants.t_spaceshipFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_yield_fromFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.t_coalesce_equalFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.t_fnFound"/>
     </rule>
 
     <!--
