@@ -803,44 +803,54 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // JSON:
         'JSON_ERROR_CTRL_CHAR' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_DEPTH' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_NONE' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_STATE_MISMATCH' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_SYNTAX' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_FORCE_OBJECT' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_HEX_TAG' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_HEX_AMP' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_HEX_APOS' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         'JSON_HEX_QUOT' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'json',
         ),
         // LDAP:
         'LDAP_OPT_NETWORK_TIMEOUT' => array(
@@ -1124,12 +1134,14 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
         // JSON:
         'JSON_ERROR_UTF8' => array(
-            '5.3.2' => false,
-            '5.3.3' => true,
+            '5.3.2'     => false,
+            '5.3.3'     => true,
+            'extension' => 'json',
         ),
         'JSON_NUMERIC_CHECK' => array(
-            '5.3.2' => false,
-            '5.3.3' => true,
+            '5.3.2'     => false,
+            '5.3.3'     => true,
+            'extension' => 'json',
         ),
 
         'DEBUG_BACKTRACE_IGNORE_ARGS' => array(
@@ -1456,24 +1468,29 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // Json:
         'JSON_PRETTY_PRINT' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         'JSON_UNESCAPED_SLASHES' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         'JSON_UNESCAPED_UNICODE' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         'JSON_BIGINT_AS_STRING' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         'JSON_OBJECT_AS_ARRAY' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         // Snmp:
         'SNMP_OID_OUTPUT_SUFFIX' => array(
@@ -1690,20 +1707,24 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // JSON:
         'JSON_ERROR_RECURSION' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_INF_OR_NAN' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_UNSUPPORTED_TYPE' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'json',
         ),
         'JSON_PARTIAL_OUTPUT_ON_ERROR' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'json',
         ),
         // MySQLi
         'MYSQLI_SERVER_PUBLIC_KEY' => array(
@@ -2021,8 +2042,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
 
         'JSON_PRESERVE_ZERO_FRACTION' => array(
-            '5.6.5' => false,
-            '5.6.6' => true,
+            '5.6.5'     => false,
+            '5.6.6'     => true,
+            'extension' => 'json',
         ),
 
         'MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT' => array(
@@ -2065,12 +2087,14 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // JSON:
         'JSON_ERROR_INVALID_PROPERTY_NAME' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'json',
         ),
         'JSON_ERROR_UTF16' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'json',
         ),
         // LibXML:
         'LIBXML_BIGLINES' => array(
@@ -2458,8 +2482,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // Json:
         'JSON_UNESCAPED_LINE_TERMINATORS' => array(
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'json',
         ),
         // LDAP:
         'LDAP_OPT_X_SASL_NOCANON' => array(
@@ -2641,12 +2666,14 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
         // JSON:
         'JSON_INVALID_UTF8_IGNORE' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'json',
         ),
         'JSON_INVALID_UTF8_SUBSTITUTE' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'json',
         ),
 
         // LDAP:
@@ -3344,8 +3371,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
         'JSON_THROW_ON_ERROR' => array(
-            '7.2' => false,
-            '7.3' => true,
+            '7.2'       => false,
+            '7.3'       => true,
+            'extension' => 'json',
         ),
         'LDAP_CONTROL_MANAGEDSAIT' => array(
             '7.2' => false,
