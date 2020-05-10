@@ -210,7 +210,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
-        'ming_setSWFCompression' => array(
+        'ming_setswfcompression' => array(
             '5.1' => false,
             '5.2' => true,
         ),
