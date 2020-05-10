@@ -76,6 +76,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('readline_redisplay', '5.0', array(515), '5.1'),
             array('posix_access', '5.0', array(696), '5.1'),
             array('posix_mknod', '5.0', array(697), '5.1'),
+            array('time_sleep_until', '5.0', array(699), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
@@ -93,6 +94,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('lchgrp', '5.1.2', array(571), '5.2', '5.1'),
             array('lchown', '5.1.2', array(572), '5.2', '5.1'),
             array('timezone_name_from_abbr', '5.1.2', array(20), '5.2', '5.1'),
+            array('sys_getloadavg', '5.1.2', array(698), '5.2', '5.1'),
 
             array('array_fill_keys', '5.1', array(12), '5.2'),
             array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.

@@ -695,3 +695,5 @@ pcntl_get_last_error();
 pcntl_strerror();
 posix_access();
 posix_mknod();
+sys_getloadavg();
+time_sleep_until();
