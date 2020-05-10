@@ -740,7 +740,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         'sem_acquire' => array(
             1 => array(
                 'name'  => 'nowait',
-                '5.6'   => false,
+                '5.6.0' => false,
                 '5.6.1' => true,
             ),
         ),

@@ -169,7 +169,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             array('preg_replace_callback', 'flags', '7.3', array(69), '7.4'),
             array('preg_replace_callback_array', 'flags', '7.3', array(118), '7.4'),
             array('round', 'mode', '5.2', array(70), '5.3'),
-            array('sem_acquire', 'nowait', '5.6', array(71), '7.0'),
+            array('sem_acquire', 'nowait', '5.6.0', array(71), '7.0', '5.6'),
             array('session_regenerate_id', 'delete_old_session', '5.0', array(72), '5.1'),
             array('session_set_cookie_params', 'httponly', '5.1', array(73), '5.2'),
             array('session_set_save_handler', 'create_sid', '5.5.0', array(74), '7.0', '5.5'), // OK version > version in which last parameter was added to the function.
