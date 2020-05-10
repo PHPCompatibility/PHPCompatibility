@@ -690,3 +690,6 @@ gmp_export();
 gmp_import();
 gmp_random_bits();
 gmp_random_range();
+pcntl_errno();
+pcntl_get_last_error();
+pcntl_strerror();
