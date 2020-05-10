@@ -697,3 +697,6 @@ posix_access();
 posix_mknod();
 sys_getloadavg();
 time_sleep_until();
+class_implements();
+class_parents();
+spl_classes();

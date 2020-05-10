@@ -64,11 +64,16 @@ class NewFunctionsUnitTest extends BaseSniffTest
     public function dataNewFunction()
     {
         return array(
+            array('class_implements', '4.4', array(700), '5.0'),
+            array('class_parents', '4.4', array(701), '5.0'),
+            array('spl_classes', '4.4', array(702), '5.0'),
+
             array('date_default_timezone_get', '5.0', array(548), '5.1'),
             array('date_default_timezone_set', '5.0', array(549), '5.1'),
             array('strptime', '5.0', array(563), '5.1'),
             array('fputcsv', '5.0', array(570), '5.1'),
             array('imageconvolution', '5.0', array(683), '5.1'),
+            array('iterator_apply', '5.0', array(35), '5.1'),
             array('readline_callback_handler_install', '5.0', array(511), '5.1'),
             array('readline_callback_handler_remove', '5.0', array(512), '5.1'),
             array('readline_callback_read_char', '5.0', array(513), '5.1'),
@@ -130,7 +135,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_csr_get_subject', '5.1', array(32), '5.2'),
             array('openssl_pkey_get_details', '5.1', array(33), '5.2'),
             array('spl_object_hash', '5.1', array(34), '5.2'),
-            array('iterator_apply', '5.1', array(35), '5.2'),
             array('preg_last_error', '5.1', array(36), '5.2'),
             array('pg_field_table', '5.1', array(37), '5.2'),
             array('posix_initgroups', '5.1', array(38), '5.2'),
