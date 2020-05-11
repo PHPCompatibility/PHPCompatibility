@@ -285,6 +285,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1.2' => false,
             '5.1.3' => true,
         ),
+        'curl_setopt_array' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
 
         'array_fill_keys' => array(
             '5.1' => false,
