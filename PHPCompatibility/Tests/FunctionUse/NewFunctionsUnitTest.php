@@ -391,6 +391,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
             array('stream_set_read_buffer', '5.3.2', array(708), '5.4', '5.3'),
+            array('fastcgi_finish_request', '5.3.2', array(730), '5.4', '5.3'),
 
             array('pcntl_errno', '5.3.3', array(693), '5.4', '5.3'),
             array('pcntl_get_last_error', '5.3.3', array(694), '5.4', '5.3'),

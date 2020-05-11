@@ -1508,6 +1508,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3.2' => false,
             '5.3.3' => true,
         ),
+        'fastcgi_finish_request' => array(
+            '5.3.2'     => false,
+            '5.3.3'     => true,
+            'extension' => 'fastcgi',
+        ),
 
         'pcntl_errno' => array(
             '5.3.3' => false,
