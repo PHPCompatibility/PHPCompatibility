@@ -262,6 +262,46 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'dio',
         ),
+        'fam_cancel_monitor' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_close' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_monitor_collection' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_monitor_directory' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_monitor_file' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_next_event' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_open' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_pending' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_resume_monitor' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'fam_suspend_monitor' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
 
         'ncurses_addch' => array(
             '5.3'       => true,

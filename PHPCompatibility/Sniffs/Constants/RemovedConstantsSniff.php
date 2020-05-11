@@ -203,6 +203,42 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'mcve',
         ),
+        'FAMChanged' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMDeleted' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMStartExecuting' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMStopExecuting' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMCreated' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMMoved' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMAcknowledge' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMExists' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
+        'FAMEndExist' => array(
+            '5.1'       => true,
+            'extension' => 'fam',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
