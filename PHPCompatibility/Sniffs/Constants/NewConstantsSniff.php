@@ -2389,6 +2389,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.4.8' => true,
         ),
 
+        'SO_REUSEPORT' => array(
+            '5.4.9' => false,
+            '5.4.10' => true,
+        ),
+
         // Filter:
         'FILTER_VALIDATE_MAC' => array(
             '5.4' => false,
