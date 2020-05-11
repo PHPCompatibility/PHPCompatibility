@@ -545,6 +545,30 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
+        'snmp_set_oid_output_format' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'snmp2_get' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'snmp2_getnext' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'snmp2_real_walk' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'snmp2_set' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
+        'snmp2_walk' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
 
         'sys_get_temp_dir' => array(
             '5.2.0' => false,

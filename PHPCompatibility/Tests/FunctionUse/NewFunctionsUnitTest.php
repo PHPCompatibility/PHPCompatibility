@@ -178,6 +178,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('zip_open', '5.1', array(62), '5.2'),
             array('zip_read', '5.1', array(63), '5.2'),
             array('stream_notification_callback', '5.1', array(706), '5.2'),
+            array('snmp_set_oid_output_format', '5.1', array(723), '5.2'),
+            array('snmp2_get', '5.1', array(724), '5.2'),
+            array('snmp2_getnext', '5.1', array(725), '5.2'),
+            array('snmp2_real_walk', '5.1', array(726), '5.2'),
+            array('snmp2_set', '5.1', array(727), '5.2'),
+            array('snmp2_walk', '5.1', array(728), '5.2'),
 
             array('sys_get_temp_dir', '5.2.0', array(17), '5.3', '5.2'),
             array('stream_socket_shutdown', '5.2.0', array(21), '5.3', '5.2'),
