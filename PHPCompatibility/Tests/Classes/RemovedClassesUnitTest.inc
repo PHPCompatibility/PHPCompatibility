@@ -55,3 +55,10 @@ class TypeHints {
 echo \SWFText::$property;
 echo \SWFTextField::method_call();
 echo \SWFVideoStream::CLASS_CONSTANT;
+
+$closure = function() : HW_API {};
+$closure = function() : \HW_API_Object {};
+$closure = function() : ?\HW_API_Attribute {};
+$closure = function() : ?HW_API_Error {};
+$obj = new HW_API_Content;
+echo HW_API_Reason::$property;

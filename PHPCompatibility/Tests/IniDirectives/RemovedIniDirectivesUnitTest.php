@@ -243,6 +243,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
     public function dataRemovedDirectives()
     {
         return array(
+            array('hwapi.allow_persistent', '5.2', array(253, 254), '5.1'),
+
             array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.2', '5.3'),
             array('ifx.blobinfile', '5.2.1', array(95, 96), '5.2', '5.3'),
             array('ifx.byteasvarchar', '5.2.1', array(98, 99), '5.2', '5.3'),
