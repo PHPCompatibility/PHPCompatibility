@@ -3325,6 +3325,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.0.7' => true,
         ),
 
+        'DNS_CAA' => array(
+            '7.0.15' => false,
+            '7.0.16' => true, // ... and 7.1.2.
+        ),
+
         'DATE_RFC7231' => array(
             '7.0.18' => false,
             '7.0.19' => true,

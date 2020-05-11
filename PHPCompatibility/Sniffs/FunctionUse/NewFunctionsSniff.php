@@ -209,6 +209,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'inet_ntop' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'inet_pton' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
