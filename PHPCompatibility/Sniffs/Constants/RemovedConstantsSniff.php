@@ -239,6 +239,70 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'fam',
         ),
+        'YPERR_ACCESS' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_BADARGS' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_BADDB' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_BUSY' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_DOMAIN' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_KEY' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_MAP' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_NODOM' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_NOMORE' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_PMAP' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_RESRC' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_RPC' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_YPBIND' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_YPERR' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_YPSERV' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'YPERR_VERS' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(

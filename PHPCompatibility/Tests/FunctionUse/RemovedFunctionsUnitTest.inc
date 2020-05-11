@@ -527,3 +527,15 @@ hwapi_attribute_new();
 hwapi_content_new();
 hwapi_hgcsp();
 hwapi_object_new();
+
+// PHP 5.1 YP/NIS extension.
+yp_all();
+yp_cat();
+yp_err_string();
+yp_errno();
+yp_first();
+yp_get_default_domain();
+yp_master();
+yp_match();
+yp_next();
+yp_order();
