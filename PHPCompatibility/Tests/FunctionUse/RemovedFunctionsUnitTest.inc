@@ -539,3 +539,26 @@ yp_master();
 yp_match();
 yp_next();
 yp_order();
+
+// PHP 5.1 Mnogosearch extension.
+udm_add_search_limit();
+udm_alloc_agent_array();
+udm_alloc_agent();
+udm_api_version();
+udm_cat_list();
+udm_cat_path();
+udm_check_charset();
+udm_clear_search_limits();
+udm_crc32();
+udm_errno();
+udm_error();
+udm_find();
+udm_free_agent();
+udm_free_ispell_data();
+udm_free_res();
+udm_get_doc_count();
+udm_get_res_field();
+udm_get_res_param();
+udm_hash32();
+udm_load_ispell_data();
+udm_set_agent_param();
