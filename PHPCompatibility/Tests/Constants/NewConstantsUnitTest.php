@@ -757,6 +757,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('ZLIB_NO_FLUSH', '5.6', array(517), '7.0'),
             array('ZLIB_PARTIAL_FLUSH', '5.6', array(518), '7.0'),
             array('ZLIB_SYNC_FLUSH', '5.6', array(519), '7.0'),
+            array('LDAP_OPT_X_TLS_REQUIRE_CERT', '5.6', array(1058), '7.0'),
 
             array('CURL_HTTP_VERSION_2', '7.0.6', array(520), '7.1', '7.0'),
             array('CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE', '7.0.6', array(521), '7.1', '7.0'),

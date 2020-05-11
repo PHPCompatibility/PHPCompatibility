@@ -124,6 +124,8 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             array('ldap_add', 'serverctrls', '7.2', array(106), '7.3'),
             array('ldap_compare', 'serverctrls', '7.2', array(107), '7.3'),
             array('ldap_delete', 'serverctrls', '7.2', array(108), '7.3'),
+            array('ldap_exop', 'serverctrls', '7.2', array(121), '7.3'),
+            array('ldap_exop_passwd', 'serverctrls', '7.2', array(122), '7.3'),
             array('ldap_list', 'serverctrls', '7.2', array(109), '7.3'),
             array('ldap_mod_add', 'serverctrls', '7.2', array(110), '7.3'),
             array('ldap_mod_del', 'serverctrls', '7.2', array(111), '7.3'),

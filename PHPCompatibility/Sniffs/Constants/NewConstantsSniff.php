@@ -3114,6 +3114,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+        // LDAP:
+        'LDAP_OPT_X_TLS_REQUIRE_CERT' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
 
         'CURL_HTTP_VERSION_2' => array(
             '7.0.6' => false,
