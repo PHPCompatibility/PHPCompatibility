@@ -96,6 +96,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('stream_wrapper_unregister', '5.0', array(712), '5.1'),
             array('inet_ntop', '5.0', array(721), '5.1'),
             array('inet_pton', '5.0', array(722), '5.1'),
+            array('apache_reset_timeout', '5.0', array(729), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
