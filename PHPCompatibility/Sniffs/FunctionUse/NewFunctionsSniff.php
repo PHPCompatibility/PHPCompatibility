@@ -2491,6 +2491,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.1' => false,
             '7.2' => true,
         ),
+        'ftp_mlsd' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
         'hash_hmac_algos' => array(
             '7.1'       => false,
             '7.2'       => true,

@@ -627,6 +627,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('stream_isatty', '7.1', array(333), '7.2'),
             array('sapi_windows_vt100_support', '7.1', array(334), '7.2'),
             array('ftp_append', '7.1', array(335), '7.2'),
+            array('ftp_mlsd', '7.1', array(720), '7.2'),
             array('imagebmp', '7.1', array(336), '7.2'),
             array('imagecreatefrombmp', '7.1', array(337), '7.2'),
             array('imagegetclip', '7.1', array(338), '7.2'),
