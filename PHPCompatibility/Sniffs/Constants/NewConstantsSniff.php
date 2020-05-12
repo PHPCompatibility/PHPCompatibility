@@ -1295,6 +1295,262 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
+        // Filter:
+        'INPUT_POST' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_GET' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_COOKIE' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_ENV' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_SERVER' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_SESSION' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'INPUT_REQUEST' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_NONE' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_REQUIRE_SCALAR' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_REQUIRE_ARRAY' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FORCE_ARRAY' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_NULL_ON_FAILURE' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_INT' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_BOOLEAN' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_FLOAT' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_REGEXP' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_URL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_EMAIL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_VALIDATE_IP' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_DEFAULT' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_UNSAFE_RAW' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_STRING' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_STRIPPED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_ENCODED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_SPECIAL_CHARS' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_EMAIL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_URL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_NUMBER_INT' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_NUMBER_FLOAT' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_SANITIZE_MAGIC_QUOTES' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_CALLBACK' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ALLOW_OCTAL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ALLOW_HEX' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_STRIP_LOW' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_STRIP_HIGH' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ENCODE_LOW' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ENCODE_HIGH' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ENCODE_AMP' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_NO_ENCODE_QUOTES' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_EMPTY_STRING_NULL' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ALLOW_FRACTION' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ALLOW_THOUSAND' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_ALLOW_SCIENTIFIC' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_PATH_REQUIRED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_QUERY_REQUIRED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_SCHEME_REQUIRED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_HOST_REQUIRED' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_IPV4' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_IPV6' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_NO_RES_RANGE' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
+        'FILTER_FLAG_NO_PRIV_RANGE' => array(
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
+        ),
 
         // Curl:
         'CURLOPT_TCP_NODELAY' => array(
@@ -1930,6 +2186,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // OpenSSL:
         'OPENSSL_TLSEXT_SERVER_NAME' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'FILTER_FLAG_STRIP_BACKTICK' => array(
             '5.3.1' => false,
             '5.3.2' => true,
         ),
@@ -2932,6 +3192,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.0' => true,
         ),
         'FILTER_VALIDATE_DOMAIN' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'FILTER_FLAG_HOSTNAME' => array(
             '5.6' => false,
             '7.0' => true,
         ),
