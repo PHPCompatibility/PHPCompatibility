@@ -428,6 +428,91 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'mnogosearch',
         ),
 
+        'msession_connect' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_count' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_create' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_destroy' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_disconnect' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_find' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_get_array' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_get_data' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_get' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_inc' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_list' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_listvar' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_lock' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_plugin' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_randstr' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_set_array' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_set_data' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_set' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_timeout' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_uniq' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+        'msession_unlock' => array(
+            '5.1.3'     => true,
+            'extension' => 'msession',
+        ),
+
         'hwapi_attribute_new' => array(
             '5.2'       => true,
             'extension' => 'hwapi',
