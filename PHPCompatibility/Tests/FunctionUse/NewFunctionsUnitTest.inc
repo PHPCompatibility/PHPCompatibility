@@ -729,3 +729,8 @@ snmp2_walk();
 apache_reset_timeout();
 fastcgi_finish_request();
 htmlspecialchars_decode();
+array_diff_key();
+array_diff_ukey();
+array_intersect_key();
+array_intersect_ukey();
+array_product();

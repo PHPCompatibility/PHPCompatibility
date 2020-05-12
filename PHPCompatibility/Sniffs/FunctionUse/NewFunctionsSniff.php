@@ -225,6 +225,26 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'array_diff_key' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'array_diff_ukey' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'array_intersect_key' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'array_intersect_ukey' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'array_product' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
