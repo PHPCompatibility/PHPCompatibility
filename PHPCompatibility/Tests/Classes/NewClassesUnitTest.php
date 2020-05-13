@@ -89,6 +89,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('SoapHeader', '4.4', array(366), '5.0'),
             array('SoapParam', '4.4', array(368), '5.0'),
             array('SoapVar', '4.4', array(369), '5.0'),
+            array('COMPersistHelper', '4.4', array(371), '5.0'),
 
             array('SimpleXMLElement', '5.0.0', array(310), '5.1', '5.0'),
             array('libXMLError', '5.0', array(61, 101, 141), '5.1'),

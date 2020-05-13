@@ -3778,6 +3778,31 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
+        // COM:
+        'VT_I8' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'VT_UI8' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'DISP_E_DIVBYZERO' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'DISP_E_OVERFLOW' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'DISP_E_BADINDEX' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
+        'MK_E_UNAVAILABLE' => array(
+            '5.6' => false,
+            '7.0' => true,
+        ),
 
         'CURL_HTTP_VERSION_2' => array(
             '7.0.6' => false,

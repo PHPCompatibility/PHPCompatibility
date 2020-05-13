@@ -367,3 +367,5 @@ function processA(
     SoapHeader $header) {}
 function processB(SoapParam $param) {}
 function processC() : SoapVar {}
+
+$com = new COMPersistHelper;

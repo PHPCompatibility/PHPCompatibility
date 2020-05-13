@@ -153,6 +153,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'soap',
         ),
+        'COMPersistHelper' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
 
         'SimpleXMLElement' => array(
             '5.0.0' => false,
