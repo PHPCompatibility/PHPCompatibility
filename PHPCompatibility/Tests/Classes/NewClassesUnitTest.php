@@ -231,8 +231,6 @@ class NewClassesUnitTest extends BaseSniffTest
             array('ParseError', '5.6', array(244), '7.0'),
             array('TypeError', '5.6', array(245), '7.0'),
             array('ClosedGeneratorException', '5.6', array(341), '7.0'),
-            array('UI\Exception\InvalidArgumentException', '5.6', array(192, 210, 246, 322), '7.0'),
-            array('UI\Exception\RuntimeException', '5.6', array(188, 199, 247), '7.0'),
             array('ArgumentCountError', '7.0', array(248), '7.1'),
             array('HashContext', '7.1', array(350), '7.2'),
             array('SodiumException', '7.1', array(342), '7.2'),

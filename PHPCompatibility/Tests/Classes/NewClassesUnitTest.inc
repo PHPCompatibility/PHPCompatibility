@@ -185,18 +185,18 @@ function(myNameSpace\IntlTimeZone $a) {} // Ok.
  */
 throw new DomainException($msg);
 throw new ReflectionException($msg);
-throw new UI\Exception\RuntimeException($msg);
+
 
 class MyException extends Exception {}
 class MyException extends UnexpectedValueException {}
-class MyException extends UI\Exception\InvalidArgumentException {}
+
 
 ErrorException::static_method();
 LengthException::static_method();
 OverflowException::CLASS_CONSTANT;
 UnderflowException::CLASS_CONSTANT;
 PDOException::$static_property;
-UI\Exception\RuntimeException::$static_property;
+
 
 new class extends BadFunctionCallException {}
 new class extends mysqli_sql_exception {}
@@ -207,7 +207,7 @@ class MyExceptionHandler {
     function ExceptionTypeHint( BadMethodCallException $e ) {}
     function ExceptionTypeHint( RangeException $e ) {}
     function ExceptionTypeHint( ArithmeticError $e ) {}
-    function ExceptionTypeHint( UI\Exception\InvalidArgumentException $e ) {}
+
 }
 
 // New exceptions as type hints in anonymous functions.
@@ -243,8 +243,8 @@ try {
 } catch (DivisionByZeroError $e) {
 } catch (ParseError $e) {
 } catch (TypeError $e) {
-} catch (UI\Exception\InvalidArgumentException $e) {
-} catch (UI\Exception\RuntimeException $e) {
+
+
 } catch (ArgumentCountError $e) {
 } catch (CompileError $e) {
 } catch (JsonException $e) {
@@ -319,7 +319,7 @@ function DateTimeReturnTypeHint( $a ) : DateTime {}
 function DateTimeNullableReturnTypeHint( $a ) : ?DateTime {}
 function GlobalNSLcDateTimeReturnTypeHint( $a ) : \datetime {}
 function GlobalNSDateTimeNullableReturnTypeHint( $a ) : ?\DateTime {}
-function UIExceptionReturnTypeHint( $e ): UI\Exception\InvalidArgumentException {}
+
 
 // Test against false positives for return type declarations.
 function NsDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime {}
