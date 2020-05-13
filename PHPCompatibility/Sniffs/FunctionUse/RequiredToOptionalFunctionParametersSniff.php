@@ -163,6 +163,20 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 '5.6'  => false,
             ),
         ),
+        'xmlwriter_write_element' => array(
+            2 => array(
+                'name'  => 'content',
+                '5.2.2' => true,
+                '5.2.3' => false,
+            ),
+        ),
+        'xmlwriter_write_element_ns' => array(
+            4 => array(
+                'name'  => 'content',
+                '5.2.2' => true,
+                '5.2.3' => false,
+            ),
+        ),
     );
 
 

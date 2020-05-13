@@ -365,6 +365,192 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'hash',
         ),
 
+        'xmlwriter_end_attribute' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_cdata' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_comment' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_document' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_dtd_attlist' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_dtd_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_dtd' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_pi' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_flush' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_open_memory' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_open_uri' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_output_memory' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_set_indent_string' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_set_indent' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_attribute_ns' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_attribute' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_cdata' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_comment' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_document' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_dtd_attlist' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_dtd_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_dtd' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_element_ns' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_start_pi' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_text' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_attribute_ns' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_attribute' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_cdata' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_comment' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_dtd_attlist' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_dtd_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_dtd' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_element_ns' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_element' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_pi' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
+        ),
+
         'imap_savebody' => array(
             '5.1.2' => false,
             '5.1.3' => true,
@@ -532,24 +718,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'xmlwriter_full_end_element' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'xmlwriter',
         ),
         'xmlwriter_write_raw' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'xmlwriter_start_dtd_entity' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'xmlwriter_end_dtd_entity' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'xmlwriter_write_dtd_entity' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'xmlwriter',
         ),
         'filter_has_var' => array(
             '5.1'       => false,
@@ -672,6 +848,21 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'stream_socket_shutdown' => array(
             '5.2.0' => false,
             '5.2.1' => true,
+        ),
+        'xmlwriter_start_dtd_entity' => array(
+            '5.2.0'       => false,
+            '5.2.1'       => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_end_dtd_entity' => array(
+            '5.2.0'       => false,
+            '5.2.1'       => true,
+            'extension' => 'xmlwriter',
+        ),
+        'xmlwriter_write_dtd_entity' => array(
+            '5.2.0'       => false,
+            '5.2.1'       => true,
+            'extension' => 'xmlwriter',
         ),
 
         'imagegrabscreen' => array(

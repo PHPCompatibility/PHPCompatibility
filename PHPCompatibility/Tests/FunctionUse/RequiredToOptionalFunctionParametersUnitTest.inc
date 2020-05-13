@@ -37,3 +37,6 @@ array_merge_recursive(); // PHP 7.4+
 
 fgetcsv($handle $length); // OK.
 fgetcsv($handle); // PHP 5.1+.
+
+xmlwriter_write_element($xmlwriter, $name); // PHP 5.2.3+.
+xmlwriter_write_element_ns($xmlwriter, $prefix, $name, $uri); // PHP 5.2.3+.
