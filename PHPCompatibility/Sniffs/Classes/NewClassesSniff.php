@@ -88,6 +88,46 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'tidy',
         ),
+        'Reflection' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionClass' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionExtension' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionFunction' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionMethod' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionObject' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionParameter' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionProperty' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
+        ),
 
         'SimpleXMLElement' => array(
             '5.0.0' => false,
@@ -215,8 +255,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'spl',
         ),
         'ReflectionFunctionAbstract' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'reflection',
         ),
         'ZipArchive' => array(
             '5.1' => false,
@@ -363,8 +404,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'spl',
         ),
         'ReflectionZendExtension' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'reflection',
         ),
         'SessionHandler' => array(
             '5.3' => false,
@@ -454,17 +496,25 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'intl',
         ),
         'ReflectionType' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'reflection',
         ),
         'ReflectionGenerator' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'reflection',
         ),
 
         'ReflectionClassConstant' => array(
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'reflection',
+        ),
+        'ReflectionNamedType' => array(
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'reflection',
         ),
 
         'HashContext' => array(
@@ -489,8 +539,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'ffi',
         ),
         'ReflectionReference' => array(
-            '7.3' => false,
-            '7.4' => true,
+            '7.3'       => false,
+            '7.4'       => true,
+            'extension' => 'reflection',
         ),
         'WeakReference' => array(
             '7.3' => false,
@@ -531,8 +582,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'ReflectionException' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'reflection',
         ),
         'SoapFault' => array(
             '4.4' => false,
