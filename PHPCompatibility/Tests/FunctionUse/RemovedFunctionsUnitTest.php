@@ -333,6 +333,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('udm_hash32', '5.1', array(562), '5.0'),
             array('udm_load_ispell_data', '5.1', array(563), '5.0'),
             array('udm_set_agent_param', '5.1', array(564), '5.0'),
+            array('w32api_deftype', '5.1', array(598), '5.0'),
+            array('w32api_init_dtype', '5.1', array(599), '5.0'),
+            array('w32api_invoke_function', '5.1', array(600), '5.0'),
+            array('w32api_register_function', '5.1', array(601), '5.0'),
+            array('w32api_set_call_method', '5.1', array(602), '5.0'),
 
             array('msession_connect', '5.1.3', array(567), '5.1', '5.2'),
             array('msession_count', '5.1.3', array(568), '5.1', '5.2'),

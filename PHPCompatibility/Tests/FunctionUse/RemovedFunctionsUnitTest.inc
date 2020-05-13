@@ -593,3 +593,10 @@ crack_check();
 crack_closedict();
 crack_getlastmessage();
 crack_opendict();
+
+// PHP 5.1 W32API extension.
+w32api_deftype();
+w32api_init_dtype();
+w32api_invoke_function();
+w32api_register_function();
+w32api_set_call_method();

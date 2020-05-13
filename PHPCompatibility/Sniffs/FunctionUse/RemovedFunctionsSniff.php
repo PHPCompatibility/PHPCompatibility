@@ -444,6 +444,26 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'mnogosearch',
         ),
+        'w32api_deftype' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'w32api_init_dtype' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'w32api_invoke_function' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'w32api_register_function' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'w32api_set_call_method' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,

@@ -675,6 +675,46 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'mnogosearch',
         ),
+        'DC_MICROSOFT' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_BORLAND' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_CALL_CDECL' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_CALL_STD' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_RETVAL_MATH4' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_RETVAL_MATH8' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_CALL_STD_BO' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_CALL_STD_MS' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_CALL_STD_M8' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
+        'DC_FLAG_ARGPTR' => array(
+            '5.1'       => true,
+            'extension' => 'w32api',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
