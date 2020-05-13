@@ -1594,6 +1594,107 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        // LibXML:
+        'LIBXML_COMPACT' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_DOTTED_VERSION' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_DTDATTR' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_DTDLOAD' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_DTDVALID' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_ERR_ERROR' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_ERR_FATAL' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_ERR_NONE' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_ERR_WARNING' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOBLANKS' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOCDATA' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOEMPTYTAG' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOENT' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOERROR' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NONET' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOWARNING' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NOXMLDECL' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_NSCLEAN' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_VERSION' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'LIBXML_XINCLUDE' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
 
         // Date/Time:
         'DATE_ATOM' => array(
@@ -2287,8 +2388,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
         // Libxml:
         'LIBXML_PARSEHUGE' => array(
-            '5.2.11' => false,
-            '5.2.12' => true,
+            '5.2.11'    => false,
+            '5.2.12'    => true,
+            'extension' => 'libxml',
         ),
 
         // Core:
@@ -2523,8 +2625,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // Libxml:
         'LIBXML_LOADED_VERSION' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'libxml',
         ),
         // Math:
         'PHP_ROUND_HALF_UP' => array(
@@ -2942,16 +3045,19 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // LibXML:
         'LIBXML_HTML_NODEFDTD' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'libxml',
         ),
         'LIBXML_HTML_NOIMPLIED' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'libxml',
         ),
         'LIBXML_PEDANTIC' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'libxml',
         ),
         // OpenSSL:
         'OPENSSL_CIPHER_AES_128_CBC' => array(
@@ -3611,8 +3717,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
         // Libxml:
         'LIBXML_SCHEMA_CREATE' => array(
-            '5.5.1' => false,
-            '5.5.2' => true,
+            '5.5.1'     => false,
+            '5.5.2'     => true,
+            'extension' => 'libxml',
         ),
 
         // Curl:
@@ -3844,8 +3951,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // LibXML:
         'LIBXML_BIGLINES' => array(
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'libxml',
         ),
         // PCRE:
         'PREG_JIT_STACKLIMIT_ERROR' => array(

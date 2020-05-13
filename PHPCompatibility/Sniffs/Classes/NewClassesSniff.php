@@ -254,8 +254,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
 
         'libXMLError' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
         ),
         'PDO' => array(
             '5.0'       => false,
