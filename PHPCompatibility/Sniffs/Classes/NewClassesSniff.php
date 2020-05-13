@@ -151,8 +151,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
         'XMLReader' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'xmlreader',
         ),
 
         'SplFileInfo' => array(
