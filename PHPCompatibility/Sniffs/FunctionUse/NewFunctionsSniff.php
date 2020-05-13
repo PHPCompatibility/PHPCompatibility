@@ -97,6 +97,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'soap',
         ),
+        'dom_import_simplexml' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
 
         'interface_exists' => array(
             '5.0.1' => false,

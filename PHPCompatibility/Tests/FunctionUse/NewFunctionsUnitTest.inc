@@ -738,3 +738,4 @@ interface_exists();
 property_exists();
 is_soap_fault();
 use_soap_error_handler();
+dom_import_simplexml ();

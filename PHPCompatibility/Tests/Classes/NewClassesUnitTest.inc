@@ -369,3 +369,22 @@ function processB(SoapParam $param) {}
 function processC() : SoapVar {}
 
 $com = new COMPersistHelper;
+
+$a = new DOMAttr();
+$a = new DOMCdataSection;
+$a = new DOMCharacterData();
+$a = new DOMComment;
+$a = new DOMDocument();
+$a = new DOMDocumentFragment;
+$a = new DOMDocumentType();
+$a = new DOMElement;
+$a = new DOMEntity();
+$a = new DOMEntityReference;
+$a = new DOMImplementation();
+$a = new DOMNamedNodeMap;
+$a = new DOMNode();
+$a = new DOMNodeList;
+$a = new DOMNotation();
+$a = new DOMProcessingInstruction;
+$a = new DOMText();
+$a = new DOMXPath;
