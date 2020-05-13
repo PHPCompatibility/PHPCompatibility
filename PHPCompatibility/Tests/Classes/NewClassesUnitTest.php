@@ -108,8 +108,8 @@ class NewClassesUnitTest extends BaseSniffTest
             array('DOMProcessingInstruction', '4.4', array(388), '5.0'),
             array('DOMText', '4.4', array(389), '5.0'),
             array('DOMXPath', '4.4', array(390), '5.0'),
+            array('SimpleXMLElement', '4.4', array(310), '5.0'),
 
-            array('SimpleXMLElement', '5.0.0', array(310), '5.1', '5.0'),
             array('libXMLError', '5.0', array(61, 101, 141), '5.1'),
             array('PDO', '5.0', array(314), '5.1'),
             array('PDOStatement', '5.0', array(315), '5.1'),
