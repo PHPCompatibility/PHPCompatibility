@@ -360,3 +360,10 @@ function MyReflectionType () : ReflectionNamedType {}
 function MyReflectionObject () : \ReflectionObject {}
 $param = new ReflectionParameter;
 echo ReflectionProperty::$prop;
+
+$soap = new SoapClient();
+class MySoapServer extends SoapServer() {}
+function processA(
+    SoapHeader $header) {}
+function processB(SoapParam $param) {}
+function processC() : SoapVar {}

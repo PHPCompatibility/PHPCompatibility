@@ -829,6 +829,392 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'tidy',
         ),
+        // Soap:
+        'SOAP_1_1' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_1_2' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_PERSISTENCE_SESSION' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_PERSISTENCE_REQUEST' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_FUNCTIONS_ALL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ENCODED' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_LITERAL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_RPC' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_DOCUMENT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ACTOR_NEXT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ACTOR_NONE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ACTOR_UNLIMATERECEIVER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_COMPRESSION_ACCEPT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_COMPRESSION_GZIP' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_COMPRESSION_DEFLATE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_AUTHENTICATION_BASIC' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_AUTHENTICATION_DIGEST' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'UNKNOWN_TYPE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_STRING' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_BOOLEAN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_DECIMAL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_FLOAT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_DOUBLE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_DURATION' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_DATETIME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_TIME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_DATE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_GYEARMONTH' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_GYEAR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_GMONTHDAY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_GDAY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_GMONTH' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_HEXBINARY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_BASE64BINARY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ANYURI' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_QNAME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NOTATION' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NORMALIZEDSTRING' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_TOKEN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_LANGUAGE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NMTOKEN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NAME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NCNAME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ID' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_IDREF' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_IDREFS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ENTITY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ENTITIES' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_INTEGER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NONPOSITIVEINTEGER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NEGATIVEINTEGER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_LONG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_INT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_SHORT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_BYTE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NONNEGATIVEINTEGER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_UNSIGNEDLONG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_UNSIGNEDINT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_UNSIGNEDSHORT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_UNSIGNEDBYTE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_POSITIVEINTEGER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NMTOKENS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ANYTYPE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_ANYXML' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'APACHE_MAP' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ENC_OBJECT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_ENC_ARRAY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_1999_TIMEINSTANT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_NAMESPACE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'XSD_1999_NAMESPACE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_SINGLE_ELEMENT_ARRAYS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_WAIT_ONE_WAY_CALLS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SOAP_USE_XSI_ARRAY_TYPE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'WSDL_CACHE_NONE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'WSDL_CACHE_DISK' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'WSDL_CACHE_MEMORY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'WSDL_CACHE_BOTH' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
 
         'SORT_LOCALE_STRING' => array(
             '5.0.1' => false,
@@ -2953,20 +3339,24 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // Soap:
         'SOAP_SSL_METHOD_TLS' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'soap',
         ),
         'SOAP_SSL_METHOD_SSLv2' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'soap',
         ),
         'SOAP_SSL_METHOD_SSLv3' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'soap',
         ),
         'SOAP_SSL_METHOD_SSLv23' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'soap',
         ),
         // Tokenizer:
         'T_FINALLY' => array(

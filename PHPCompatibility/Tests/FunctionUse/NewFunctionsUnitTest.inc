@@ -736,3 +736,5 @@ array_intersect_ukey();
 array_product();
 interface_exists();
 property_exists();
+is_soap_fault();
+use_soap_error_handler();

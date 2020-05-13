@@ -128,6 +128,31 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'reflection',
         ),
+        'SoapClient' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SoapServer' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SoapHeader' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SoapParam' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'SoapVar' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
 
         'SimpleXMLElement' => array(
             '5.0.0' => false,
@@ -587,8 +612,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'reflection',
         ),
         'SoapFault' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
         ),
         'SQLiteException' => array(
             '4.4' => false,
