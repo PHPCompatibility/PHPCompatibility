@@ -45,6 +45,23 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
      * @var array(string => array(string => bool|string|null))
      */
     protected $removedFunctions = array(
+        'crack_check' => array(
+            '5.0'       => true,
+            'extension' => 'crack',
+        ),
+        'crack_closedict' => array(
+            '5.0'       => true,
+            'extension' => 'crack',
+        ),
+        'crack_getlastmessage' => array(
+            '5.0'       => true,
+            'extension' => 'crack',
+        ),
+        'crack_opendict' => array(
+            '5.0'       => true,
+            'extension' => 'crack',
+        ),
+
         'php_check_syntax' => array(
             '5.0.5' => true,
             'alternative' => null,

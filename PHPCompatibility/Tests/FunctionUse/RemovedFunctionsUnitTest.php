@@ -239,6 +239,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function dataRemovedFunction()
     {
         return array(
+            array('crack_check', '5.0', array(592), '4.4'),
+            array('crack_closedict', '5.0', array(593), '4.4'),
+            array('crack_getlastmessage', '5.0', array(594), '4.4'),
+            array('crack_opendict', '5.0', array(595), '4.4'),
+
             array('m_checkstatus', '5.1', array(417), '5.0'),
             array('m_completeauthorizations', '5.1', array(418), '5.0'),
             array('m_connect', '5.1', array(419), '5.0'),

@@ -243,6 +243,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
     public function dataRemovedDirectives()
     {
         return array(
+            array('crack.default_dictionary', '5.0', array(256, 257), '4.4'),
+
             array('hwapi.allow_persistent', '5.2', array(253, 254), '5.1'),
 
             array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.2', '5.3'),
@@ -344,7 +346,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '5.0'); // Low version below the first deprecation.
+        $file = $this->sniffFile(__FILE__, '4.4'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
 }
