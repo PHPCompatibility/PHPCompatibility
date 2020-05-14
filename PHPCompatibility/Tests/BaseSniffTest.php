@@ -21,12 +21,13 @@ use PHPCSUtils\BackCompat\Helper;
  * warnings.
  *
  * @since 5.5
- * @since 7.0.4 Caches sniff results per file and testVersion.
- * @since 7.1.3 Compatible with PHPUnit 6.
- * @since 7.1.3 Limits the sniff run to the actual sniff being tested.
- * @since 8.0.0 Compatible with PHP_CodeSniffer 3+.
- * @since 8.2.0 Allows for sniffs in multiple categories.
- * @since 9.0.0 Dropped support for PHP_CodeSniffer 1.x.
+ * @since 7.0.4  Caches sniff results per file and testVersion.
+ * @since 7.1.3  Compatible with PHPUnit 6.
+ * @since 7.1.3  Limits the sniff run to the actual sniff being tested.
+ * @since 8.0.0  Compatible with PHP_CodeSniffer 3+.
+ * @since 8.2.0  Allows for sniffs in multiple categories.
+ * @since 9.0.0  Dropped support for PHP_CodeSniffer 1.x.
+ * @since 10.0.0 Updated for preliminary support of PHP_CodeSniffer 4.
  */
 class BaseSniffTest extends TestCase
 {
@@ -59,6 +60,15 @@ class BaseSniffTest extends TestCase
      * @var array
      */
     public static $sniffFiles = array();
+
+    /**
+     * Last PHPCS config instance used, if any. (PHPCS > 3)
+     *
+     * @since 10.0.0
+     *
+     * @var \PHP_CodeSniffer\Config
+     */
+    public static $lastConfig = null;
 
     /**
      * Reset the sniff file cache before/after each test class.
@@ -122,7 +132,7 @@ class BaseSniffTest extends TestCase
     public function resetTestVersion()
     {
         // Reset the targetPhpVersion.
-        Helper::setConfigData('testVersion', null, true);
+        Helper::setConfigData('testVersion', null, true, self::$lastConfig);
     }
 
     /**
@@ -170,24 +180,33 @@ class BaseSniffTest extends TestCase
             return self::$sniffFiles[$pathToFile][$targetPhpVersion];
         }
 
-        if ($targetPhpVersion !== 'none') {
-            Helper::setConfigData('testVersion', $targetPhpVersion, true);
-        }
-
         try {
             if (class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
-                // PHPCS 3.x.
+                // PHPCS 3.x, 4.x.
                 $config            = new \PHP_CodeSniffer\Config();
                 $config->cache     = false;
                 $config->standards = array(self::STANDARD_NAME);
                 $config->sniffs    = array($this->getSniffCode());
                 $config->ignored   = array();
-                $ruleset           = new \PHP_CodeSniffer\Ruleset($config);
+
+                if ($targetPhpVersion !== 'none') {
+                    Helper::setConfigData('testVersion', $targetPhpVersion, true, $config);
+                }
+
+                self::$lastConfig = $config;
+
+                $ruleset = new \PHP_CodeSniffer\Ruleset($config);
 
                 self::$sniffFiles[$pathToFile][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
                 self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
             } else {
                 // PHPCS 2.x.
+                self::$lastConfig = null;
+
+                if ($targetPhpVersion !== 'none') {
+                    Helper::setConfigData('testVersion', $targetPhpVersion, true);
+                }
+
                 self::$sniffFiles[$pathToFile][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
             }
 
