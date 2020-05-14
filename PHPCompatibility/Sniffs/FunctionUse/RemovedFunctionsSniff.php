@@ -464,6 +464,294 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'w32api',
         ),
+        'cpdf_add_annotation' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_add_outline' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_arc' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_begin_text' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_circle' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_clip' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_close' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_closepath_fill_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_closepath_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_closepath' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_continue_text' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_curveto' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_end_text' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_fill_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_fill' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_finalize_page' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_finalize' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_global_set_document_limits' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_import_jpeg' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_lineto' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_moveto' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_newpath' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_open' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_output_buffer' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_page_init' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_place_inline_image' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_rect' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_restore' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_rlineto' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_rmoveto' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_rotate_text' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_rotate' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_save_to_file' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_save' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_scale' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_action_url' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_char_spacing' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_creator' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_current_page' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_font_directories' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_font_map_file' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_font' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_horiz_scaling' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_keywords' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_leading' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_page_animation' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_subject' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_text_matrix' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_text_pos' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_text_rendering' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_text_rise' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_title' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_viewer_preferences' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_set_word_spacing' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setdash' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setflat' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setgray_fill' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setgray_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setgray' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setlinecap' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setlinejoin' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setlinewidth' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setmiterlimit' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setrgbcolor_fill' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setrgbcolor_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_setrgbcolor' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_show_xy' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_show' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_stringwidth' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_stroke' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_text' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'cpdf_translate' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,
