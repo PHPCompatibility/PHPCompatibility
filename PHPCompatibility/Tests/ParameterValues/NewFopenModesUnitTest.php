@@ -96,11 +96,17 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(6),
-        );
+        $data = array();
+
+        // No errors expected on the first 6 lines.
+        for ($line = 1; $line <= 6; $line++) {
+            $data[] = array($line);
+        }
+
+        $data[] = array(15);
+        $data[] = array(16);
+
+        return $data;
     }
 
 
