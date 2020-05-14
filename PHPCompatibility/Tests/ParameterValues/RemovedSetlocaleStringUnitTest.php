@@ -62,16 +62,38 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
     /**
      * testNoFalsePositives
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = array();
 
         // No errors expected on the first 7 lines.
         for ($line = 1; $line <= 7; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = array($line);
         }
+
+        $data[] = array(13);
+        $data[] = array(14);
+
+        return $data;
     }
 
 
