@@ -752,6 +752,130 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'cpdf',
         ),
+        'ircg_channel_mode' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_disconnect' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_eval_ecmascript_params' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_fetch_error_msg' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_get_username' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_html_encode' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_ignore_add' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_ignore_del' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_invite' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_is_conn_alive' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_join' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_kick' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_list' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_lookup_format_messages' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_lusers' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_msg' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_names' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_nick' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_nickname_escape' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_nickname_unescape' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_notice' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_oper' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_part' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_pconnect' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_register_format_messages' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_set_current' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_set_file' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_set_on_die' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_topic' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_who' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
+        'ircg_whois' => array(
+            '5.1'       => true,
+            'extension' => 'ircg',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,
