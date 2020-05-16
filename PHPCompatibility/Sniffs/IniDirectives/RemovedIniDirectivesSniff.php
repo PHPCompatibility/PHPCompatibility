@@ -508,6 +508,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
         'mbstring.func_overload' => array(
             '7.2' => false,
+            '8.0' => true,
         ),
         'sql.safe_mode' => array(
             '7.2' => true,
