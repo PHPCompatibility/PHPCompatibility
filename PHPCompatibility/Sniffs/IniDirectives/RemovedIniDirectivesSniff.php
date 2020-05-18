@@ -55,6 +55,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'fbsql.batchSize' => array(
             '5.1'         => true,
             'alternative' => 'fbsql.batchsize',
+            'extension'   => 'fbsql',
         ),
         'pfpro.defaulthost' => array(
             '5.1' => true,
@@ -127,6 +128,54 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
         'zend.ze1_compatibility_mode' => array(
             '5.3' => true,
+        ),
+        'fbsql.allow_persistent' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.generate_warnings' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.autocommit' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.max_persistent' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.max_links' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.max_connections' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.max_results' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.default_host' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.default_user' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.default_password' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.default_database' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql.default_database_password' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
         ),
 
         'allow_call_time_pass_reference' => array(
