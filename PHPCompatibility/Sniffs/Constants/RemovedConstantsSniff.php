@@ -1666,6 +1666,18 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'fbsql',
         ),
+        'MSQL_ASSOC' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'MSQL_NUM' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'MSQL_BOTH' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
 
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,

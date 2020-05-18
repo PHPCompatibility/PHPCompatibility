@@ -270,6 +270,10 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mime_magic.debug', '5.3', array(247, 248), '5.2'),
             array('mime_magic.magicfile', '5.3', array(250, 251), '5.2'),
             array('zend.ze1_compatibility_mode', '5.3', array(36, 37), '5.2'),
+            array('msql.allow_persistent', '5.3', array(316, 317), '5.2'),
+            array('msql.max_persistent', '5.3', array(319, 320), '5.2'),
+            array('msql.max_links', '5.3', array(322, 323), '5.2'),
+
             array('fbsql.allow_persistent', '5.3', array(262, 263), '5.2'),
             array('fbsql.generate_warnings', '5.3', array(265, 266), '5.2'),
             array('fbsql.autocommit', '5.3', array(268, 269), '5.2'),
