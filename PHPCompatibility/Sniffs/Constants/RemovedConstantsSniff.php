@@ -1707,6 +1707,54 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'T_BAD_CHARACTER' => array(
             '7.0' => true,
         ),
+        'MSSQL_ASSOC' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'MSSQL_NUM' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'MSSQL_BOTH' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLTEXT' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLVARCHAR' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLCHAR' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLINT1' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLINT2' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLINT4' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLBIT' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLFLT4' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'SQLFLT8' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
 
         'INTL_IDNA_VARIANT_2003' => array(
             '7.2' => false,

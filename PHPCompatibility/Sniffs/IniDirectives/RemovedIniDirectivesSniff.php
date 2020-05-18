@@ -326,6 +326,66 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'opcache.load_comments' => array(
             '7.0' => true,
         ),
+        'mssql.allow_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.max_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.max_links' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.min_error_severity' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.min_message_severity' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.compatibility_mode' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.connect_timeout' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.timeout' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.textsize' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.textlimit' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.batchsize' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.datetimeconvert' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.secure_connection' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.max_procs' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql.charset' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
 
         'mcrypt.algorithms_dir' => array(
             '7.1'       => false,

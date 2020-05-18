@@ -321,3 +321,48 @@ $test = ini_get('msql.max_persistent');
 
 ini_set('msql.max_links', 0);
 $test = ini_get('msql.max_links');
+
+ini_set('mssql.allow_persistent', 0);
+$test = ini_get('mssql.allow_persistent');
+
+ini_set('mssql.max_persistent', 0);
+$test = ini_get('mssql.max_persistent');
+
+ini_set('mssql.max_links', 0);
+$test = ini_get('mssql.max_links');
+
+ini_set('mssql.min_error_severity', 0);
+$test = ini_get('mssql.min_error_severity');
+
+ini_set('mssql.min_message_severity', 0);
+$test = ini_get('mssql.min_message_severity');
+
+ini_set('mssql.compatibility_mode', 0);
+$test = ini_get('mssql.compatibility_mode');
+
+ini_set('mssql.connect_timeout', 0);
+$test = ini_get('mssql.connect_timeout');
+
+ini_set('mssql.timeout', 0);
+$test = ini_get('mssql.timeout');
+
+ini_set('mssql.textsize', 0);
+$test = ini_get('mssql.textsize');
+
+ini_set('mssql.textlimit', 0);
+$test = ini_get('mssql.textlimit');
+
+ini_set('mssql.batchsize', 0);
+$test = ini_get('mssql.batchsize');
+
+ini_set('mssql.datetimeconvert', 0);
+$test = ini_get('mssql.datetimeconvert');
+
+ini_set('mssql.secure_connection', 0);
+$test = ini_get('mssql.secure_connection');
+
+ini_set('mssql.max_procs', 0);
+$test = ini_get('mssql.max_procs');
+
+ini_set('mssql.charset', 0);
+$test = ini_get('mssql.charset');
