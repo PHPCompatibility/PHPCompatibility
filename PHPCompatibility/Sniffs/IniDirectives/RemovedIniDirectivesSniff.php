@@ -78,6 +78,30 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'pfpro.proxypassword' => array(
             '5.1' => true,
         ),
+        'ingres.allow_persistent' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres.default_database' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres.default_password' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres.default_user' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres.max_links' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres.max_persistent' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
 
         'hwapi.allow_persistent' => array(
             '5.2'       => true,

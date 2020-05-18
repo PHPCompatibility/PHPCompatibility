@@ -246,6 +246,12 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('crack.default_dictionary', '5.0', array(256, 257), '4.4'),
 
             array('dbx.colnames_case', '5.1', array(259, 260), '5.0'),
+            array('ingres.allow_persistent', '5.1', array(298, 299), '5.0'),
+            array('ingres.default_database', '5.1', array(301, 302), '5.0'),
+            array('ingres.default_password', '5.1', array(304, 305), '5.0'),
+            array('ingres.default_user', '5.1', array(307, 308), '5.0'),
+            array('ingres.max_links', '5.1', array(310, 311), '5.0'),
+            array('ingres.max_persistent', '5.1', array(313, 314), '5.0'),
 
             array('hwapi.allow_persistent', '5.2', array(253, 254), '5.1'),
 

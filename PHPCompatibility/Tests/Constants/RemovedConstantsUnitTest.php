@@ -354,6 +354,9 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('DBX_CMP_NUMBER', '5.1', array(529), '5.0'),
             array('DBX_CMP_ASC', '5.1', array(530), '5.0'),
             array('DBX_CMP_DESC', '5.1', array(531), '5.0'),
+            array('INGRES_ASSOC', '5.1', array(551), '5.0'),
+            array('INGRES_NUM', '5.1', array(552), '5.0'),
+            array('INGRES_BOTH', '5.1', array(553), '5.0'),
 
             array('FILEINFO_COMPRESS', '5.3', array(8), '5.2'),
             array('NCURSES_COLOR_BLACK', '5.3', array(142), '5.2'),

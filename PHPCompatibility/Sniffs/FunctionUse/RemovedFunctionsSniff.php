@@ -908,6 +908,78 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'dbx',
         ),
+        'ingres_autocommit' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_close' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_commit' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_connect' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_fetch_array' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_fetch_object' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_fetch_row' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_length' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_name' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_nullable' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_precision' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_scale' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_field_type' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_num_fields' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_num_rows' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_pconnect' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_query' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'ingres_rollback' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,
@@ -1891,6 +1963,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'dbase',
         ),
+
         'fbsql_affected_rows' => array(
             '5.3'       => true,
             'extension' => 'fbsql',

@@ -294,3 +294,21 @@ $test = ini_get('fbsql.default_database');
 
 ini_set('fbsql.default_database_password', 0);
 $test = ini_get('fbsql.default_database_password');
+
+ini_set('ingres.allow_persistent', 0);
+$test = ini_get('ingres.allow_persistent');
+
+ini_set('ingres.default_database', 0);
+$test = ini_get('ingres.default_database');
+
+ini_set('ingres.default_password', 0);
+$test = ini_get('ingres.default_password');
+
+ini_set('ingres.default_user', 0);
+$test = ini_get('ingres.default_user');
+
+ini_set('ingres.max_links', 0);
+$test = ini_get('ingres.max_links');
+
+ini_set('ingres.max_persistent', 0);
+$test = ini_get('ingres.max_persistent');
