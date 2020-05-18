@@ -366,3 +366,6 @@ $test = ini_get('mssql.max_procs');
 
 ini_set('mssql.charset', 0);
 $test = ini_get('mssql.charset');
+
+ini_set('sqlite.assoc_case', 0);
+$test = ini_get('sqlite.assoc_case');

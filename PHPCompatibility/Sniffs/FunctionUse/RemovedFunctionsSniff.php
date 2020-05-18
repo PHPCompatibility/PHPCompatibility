@@ -2793,6 +2793,166 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.4' => true,
             'alternative' => null,
         ),
+        'sqlite_array_query' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_busy_timeout' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_changes' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_close' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_column' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_create_aggregate' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_create_function' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_current' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_error_string' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_escape_string' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_exec' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_factory' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_all' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_array' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_column_types' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_object' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_single' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_fetch_string' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_field_name' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_has_more' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_has_prev' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_key' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_last_error' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_last_insert_rowid' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_libencoding' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_libversion' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_next' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_num_fields' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_num_rows' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_open' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_popen' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_prev' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_query' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_rewind' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_seek' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_single_query' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_udf_decode_binary' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_udf_encode_binary' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_unbuffered_query' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'sqlite_valid' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
 
         'mssql_bind' => array(
             '7.0'       => true,

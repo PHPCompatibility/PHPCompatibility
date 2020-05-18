@@ -294,6 +294,11 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.4' => true,
         ),
 
+        'sqlite.assoc_case' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+
         'always_populate_raw_post_data' => array(
             '5.6' => false,
             '7.0' => true,

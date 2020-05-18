@@ -89,6 +89,11 @@ class RemovedClassesUnitTest extends BaseSniffTest
             array('SWFText', '5.3', array(55), '5.2'),
             array('SWFTextField', '5.3', array(56), '5.2'),
             array('SWFVideoStream', '5.3', array(57), '5.2'),
+
+            array('SQLiteDatabase', '5.4', array(66), '5.3'),
+            array('SQLiteResult', '5.4', array(67), '5.3'),
+            array('SQLiteUnbuffered', '5.4', array(68), '5.3'),
+            array('SQLiteException', '5.4', array(69), '5.3'),
         );
     }
 
