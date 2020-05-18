@@ -476,6 +476,13 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('hwapi_content_new', '5.2', array(527), '5.1'),
             array('hwapi_hgcsp', '5.2', array(528), '5.1'),
             array('hwapi_object_new', '5.2', array(529), '5.1'),
+            array('filepro_fieldcount', '5.2', array(788), '5.1'),
+            array('filepro_fieldname', '5.2', array(789), '5.1'),
+            array('filepro_fieldtype', '5.2', array(790), '5.1'),
+            array('filepro_fieldwidth', '5.2', array(791), '5.1'),
+            array('filepro_retrieve', '5.2', array(792), '5.1'),
+            array('filepro_rowcount', '5.2', array(793), '5.1'),
+            array('filepro', '5.2', array(794), '5.1'),
 
             array('ncurses_addch', '5.3', array(255), '5.2'),
             array('ncurses_addchnstr', '5.3', array(256), '5.2'),
