@@ -53,9 +53,10 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
     public function dataNewHTMLEntitiesEncodingDefault()
     {
         return array(
-            array(9, 'htmlentities'),
-            array(10, 'htmlspecialchars'),
-            array(11, 'HTML_entity_decode'),
+            array(10, 'htmlentities'),
+            array(11, 'htmlspecialchars'),
+            array(12, 'HTML_entity_decode'),
+            array(13, 'get_html_translation_table'),
         );
     }
 
@@ -69,8 +70,8 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '5.3-5.4');
 
-        // No errors expected on the first 7 lines.
-        for ($line = 1; $line <= 7; $line++) {
+        // No errors expected on the first 8 lines.
+        for ($line = 1; $line <= 8; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }

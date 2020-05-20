@@ -40,9 +40,10 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
      * @var array
      */
     protected $targetFunctions = array(
-        'html_entity_decode' => 3,
-        'htmlentities'       => 3,
-        'htmlspecialchars'   => 3,
+        'html_entity_decode'         => 3,
+        'htmlentities'               => 3,
+        'htmlspecialchars'           => 3,
+        'get_html_translation_table' => 3,
     );
 
 
