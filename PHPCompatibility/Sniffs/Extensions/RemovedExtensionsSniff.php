@@ -73,10 +73,6 @@ class RemovedExtensionsSniff extends Sniff
      * @var array(string => array(string => bool|string|null))
      */
     protected $removedExtensions = [
-        'activescript' => [
-            '5.1' => true,
-            'alternative' => 'pecl/activescript',
-        ],
     ];
 
     /**
