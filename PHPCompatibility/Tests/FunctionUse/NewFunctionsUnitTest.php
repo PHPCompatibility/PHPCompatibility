@@ -69,7 +69,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('error_get_last', '5.1', array(14), '5.2'),
             array('image_type_to_extension', '5.1', array(15), '5.2'),
             array('memory_get_peak_usage', '5.1', array(16), '5.2'),
-            array('sys_get_temp_dir', '5.1', array(17), '5.2'),
             array('timezone_abbreviations_list', '5.1', array(18), '5.2'),
             array('timezone_identifiers_list', '5.1', array(19), '5.2'),
             array('timezone_name_from_abbr', '5.1', array(20), '5.2'),
@@ -116,6 +115,10 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('zip_entry_read', '5.1', array(61), '5.2'),
             array('zip_open', '5.1', array(62), '5.2'),
             array('zip_read', '5.1', array(63), '5.2'),
+
+            array('sys_get_temp_dir', '5.2.0', array(17), '5.3', '5.2'),
+
+            array('php_ini_loaded_file', '5.2.3', array(509), '5.3', '5.2'),
 
             array('array_replace', '5.2', array(65), '5.3'),
             array('array_replace_recursive', '5.2', array(66), '5.3'),
@@ -538,6 +541,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('socket_wsaprotocol_info_export', '7.2', array(458), '7.3'),
             array('socket_wsaprotocol_info_import', '7.2', array(459), '7.3'),
             array('socket_wsaprotocol_info_release', '7.2', array(460), '7.3'),
+            array('gc_status', '7.2', array(508), '7.3'),
 
             array('ldap_add_ext', '7.2', array(469), '7.3'),
             array('ldap_bind_ext', '7.2', array(470), '7.3'),

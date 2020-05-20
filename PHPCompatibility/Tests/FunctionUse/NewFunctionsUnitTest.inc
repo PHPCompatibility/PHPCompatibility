@@ -504,3 +504,6 @@ phpdbg_exec();
 phpdbg_get_executable();
 phpdbg_prompt();
 phpdbg_start_oplog();
+
+gc_status();
+php_ini_loaded_file();
