@@ -44,6 +44,427 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.3' => true,
         ),
 
+        'NCURSES_COLOR_BLACK' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_WHITE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_RED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_GREEN' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_YELLOW' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_BLUE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_CYAN' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_COLOR_MAGENTA' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_F0' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_DOWN' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_UP' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_LEFT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_RIGHT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_HOME' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_BACKSPACE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_DL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_IL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_DC' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_IC' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_EIC' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CLEAR' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_EOS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_EOL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SF' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SR' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_NPAGE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_PPAGE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_STAB' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CTAB' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CATAB' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SRESET' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_RESET' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_PRINT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_LL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_A1' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_A3' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_B2' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_C1' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_C3' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_BTAB' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_BEG' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CANCEL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CLOSE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_COMMAND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_COPY' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_CREATE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_END' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_EXIT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_FIND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_HELP' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_MARK' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_MESSAGE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_MOVE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_NEXT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_OPEN' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_OPTIONS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_PREVIOUS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_REDO' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_REFERENCE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_REFRESH' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_REPLACE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_RESTART' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_RESUME' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SAVE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SBEG' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SCANCEL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SCOMMAND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SCOPY' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SCREATE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SDC' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SDL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SELECT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SEND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SEOL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SEXIT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SFIND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SHELP' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SHOME' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SIC' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SLEFT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SMESSAGE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SMOVE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SNEXT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SOPTIONS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SPREVIOUS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SPRINT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SREDO' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SREPLACE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SRIGHT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SRSUME' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SSAVE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_SSUSPEND' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_UNDO' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_MOUSE' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_KEY_MAX' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON1_RELEASED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON1_PRESSED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON1_CLICKED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON1_DOUBLE_CLICKED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON1_TRIPLE_CLICKED' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON_CTRL' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON_SHIFT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_BUTTON_ALT' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_ALL_MOUSE_EVENTS' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'NCURSES_REPORT_MOUSE_POSITION' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,
         ),

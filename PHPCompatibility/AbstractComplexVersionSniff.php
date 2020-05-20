@@ -66,7 +66,7 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
      */
     protected function getNonVersionArrayKeys()
     {
-        return array();
+        return array('extension');
     }
 
 

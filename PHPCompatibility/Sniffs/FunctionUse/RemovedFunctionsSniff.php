@@ -71,6 +71,647 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
 
+        'ncurses_addch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_addchnstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_addchstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_addnstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_addstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_assume_default_colors' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_attroff' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_attron' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_attrset' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_baudrate' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_beep' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_bkgd' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_bkgdset' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_border' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_bottom_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_can_change_color' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_cbreak' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_clear' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_clrtobot' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_clrtoeol' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_color_content' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_color_set' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_curs_set' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_def_prog_mode' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_def_shell_mode' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_define_key' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_del_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_delay_output' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_delch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_deleteln' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_delwin' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_doupdate' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_echo' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_echochar' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_end' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_erase' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_erasechar' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_filter' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_flash' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_flushinp' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_getch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_getmaxyx' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_getmouse' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_getyx' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_halfdelay' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_has_colors' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_has_ic' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_has_il' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_has_key' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_hide_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_hline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_inch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_init_color' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_init_pair' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_init' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_insch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_insdelln' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_insertln' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_insstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_instr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_isendwin' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_keyok' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_keypad' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_killchar' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_longname' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_meta' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mouse_trafo' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mouseinterval' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mousemask' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_move_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_move' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvaddch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvaddchnstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvaddchstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvaddnstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvaddstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvcur' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvdelch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvgetch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvhline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvinch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvvline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_mvwaddstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_napms' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_new_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_newpad' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_newwin' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_nl' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_nocbreak' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_noecho' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_nonl' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_noqiflush' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_noraw' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_pair_content' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_panel_above' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_panel_below' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_panel_window' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_pnoutrefresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_prefresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_putp' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_qiflush' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_raw' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_refresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_replace_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_reset_prog_mode' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_reset_shell_mode' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_resetty' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_savetty' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_scr_dump' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_scr_init' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_scr_restore' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_scr_set' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_scrl' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_show_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_attr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_attroff' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_attron' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_attrset' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_clear' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_color' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_init' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_noutrefresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_refresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_restore' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_set' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_slk_touch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_standend' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_standout' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_start_color' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_termattrs' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_termname' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_timeout' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_top_panel' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_typeahead' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_ungetch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_ungetmouse' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_update_panels' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_use_default_colors' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_use_env' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_use_extended_names' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_vidattr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_vline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_waddch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_waddstr' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wattroff' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wattron' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wattrset' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wborder' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wclear' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wcolor_set' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_werase' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wgetch' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_whline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wmouse_trafo' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wmove' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wnoutrefresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wrefresh' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wstandend' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wstandout' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+        'ncurses_wvline' => array(
+            '5.3'       => true,
+            'extension' => 'ncurses',
+        ),
+
         'call_user_method' => array(
             '5.3' => false,
             '7.0' => true,
