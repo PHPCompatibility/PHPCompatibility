@@ -1217,6 +1217,26 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
         ),
+        'phpdbg_clear' => array(
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_color' => array(
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_exec' => array(
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_prompt' => array(
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'phpdbg',
+        ),
         'pg_connect_poll' => array(
             '5.5' => false,
             '5.6' => true,
@@ -1244,6 +1264,27 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'session_reset' => array(
             '5.5' => false,
             '5.6' => true,
+        ),
+
+        'phpdbg_break_file' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_break_function' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_break_method' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_break_next' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+            'extension' => 'phpdbg',
         ),
 
         'random_bytes' => array(
@@ -1279,6 +1320,21 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'get_resources' => array(
             '5.6' => false,
             '7.0' => true,
+        ),
+        'phpdbg_end_oplog' => array(
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_get_executable' => array(
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'phpdbg',
+        ),
+        'phpdbg_start_oplog' => array(
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'phpdbg',
         ),
         'posix_setrlimit' => array(
             '5.6' => false,

@@ -492,3 +492,15 @@ opcache_get_status();
 opcache_invalidate();
 opcache_reset();
 opcache_is_script_cached();
+
+phpdbg_break_file();
+phpdbg_break_function();
+phpdbg_break_method();
+phpdbg_break_next();
+phpdbg_clear();
+phpdbg_color();
+phpdbg_end_oplog();
+phpdbg_exec();
+phpdbg_get_executable();
+phpdbg_prompt();
+phpdbg_start_oplog();

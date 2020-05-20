@@ -591,6 +591,12 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.5.2' => true,
         ),
 
+        'phpdbg.path' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+            'extension' => 'phpdbg',
+        ),
+
         'mysqli.rollback_on_cached_plink' => array(
             '5.5' => false,
             '5.6' => true,
@@ -603,6 +609,11 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         'pcre.jit' => array(
             '5.6' => false,
             '7.0' => true,
+        ),
+        'phpdbg.eol' => array(
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'phpdbg',
         ),
         'session.lazy_write' => array(
             '5.6' => false,
