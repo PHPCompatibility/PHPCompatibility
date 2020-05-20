@@ -843,6 +843,26 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'ingres',
         ),
+        'ORA_BIND_INOUT' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ORA_BIND_IN' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ORA_BIND_OUT' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ORA_FETCHINTO_ASSOC' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ORA_FETCHINTO_NULLS' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
