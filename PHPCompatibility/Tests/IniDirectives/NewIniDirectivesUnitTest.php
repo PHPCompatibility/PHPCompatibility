@@ -199,7 +199,6 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('opcache.file_update_protection', '5.5', array(425, 426), '5.4'),
             array('opcache.huge_code_pages', '5.5', array(428, 429), '5.4'),
             array('opcache.lockfile_path', '5.5', array(431, 432), '5.4'),
-            array('opcache.opt_debug_level', '5.5', array(434, 435), '5.4'),
 
             array('session.use_strict_mode', '5.6', array(287, 288), '5.5.1', '5.5'),
 
@@ -218,6 +217,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('opcache.validate_root', '7.1', array(452, 453), '7.0.13', '7.0'),
 
             array('hard_timeout', '7.1', array(320, 321), '7.0'),
+            array('opcache.opt_debug_level', '7.1', array(434, 435), '7.0'),
             array('session.sid_length', '7.1', array(305, 306), '7.0'),
             array('session.sid_bits_per_character', '7.1', array(308, 309), '7.0'),
             array('session.trans_sid_hosts', '7.1', array(323, 324), '7.0'),
@@ -235,6 +235,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('ffi.preload', '7.4', array(461, 462), '7.3'),
             array('opcache.cache_id', '7.4', array(341, 342), '7.3'),
             array('opcache.preload', '7.4', array(455, 456), '7.3'),
+            array('opcache.preload_user', '7.4', array(464, 465), '7.3'),
             array('zend.exception_ignore_args', '7.4', array(338, 339), '7.3'),
         );
     }
