@@ -359,7 +359,6 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'yp',
         ),
-
         'udm_add_search_limit' => array(
             '5.1'       => true,
             'extension' => 'mnogosearch',
@@ -979,6 +978,90 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'ingres_rollback' => array(
             '5.1'       => true,
             'extension' => 'ingres',
+        ),
+        'ovrimos_close' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_commit' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_connect' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_cursor' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_exec' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_execute' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_fetch_into' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_fetch_row' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_field_len' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_field_name' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_field_num' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_field_type' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_free_result' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_longreadlen' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_num_fields' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_num_rows' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_prepare' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_result_all' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_result' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_rollback' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
+        ),
+        'ovrimos_close_all' => array(
+            '5.1'       => true,
+            'extension' => 'ovrimos',
         ),
 
         'msession_connect' => array(
