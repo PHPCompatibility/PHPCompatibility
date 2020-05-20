@@ -1066,6 +1066,19 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'msession',
         ),
 
+        'mysql_createdb' => array(
+            '5.1.7'     => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_dropdb' => array(
+            '5.1.7'     => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_listtables' => array(
+            '5.1.7'     => true,
+            'extension' => 'mysql',
+        ),
+
         'hwapi_attribute_new' => array(
             '5.2'       => true,
             'extension' => 'hwapi',
@@ -2451,19 +2464,27 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'mcrypt',
         ),
         'mysql_db_query' => array(
-            '5.3' => false,
-            '7.0' => true,
+            '5.3'         => false,
+            '7.0'         => true,
             'alternative' => 'mysqli::select_db() and mysqli::query()',
+            'extension'   => 'mysql',
         ),
         'mysql_escape_string' => array(
-            '5.3' => false,
-            '7.0' => true,
+            '4.3'         => false,
+            '7.0'         => true,
             'alternative' => 'mysqli::real_escape_string()',
+            'extension'   => 'mysql',
         ),
         'mysql_list_dbs' => array(
-            '5.4' => false,
-            '7.0' => true,
+            '5.4'         => false,
+            '7.0'         => true,
             'alternative' => null,
+            'extension'   => 'mysql',
+        ),
+        'mysql_list_fields' => array(
+            '5.4'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
         ),
         'mysqli_bind_param' => array(
             '5.3' => false,
@@ -3073,6 +3094,296 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'mssql_select_db' => array(
             '7.0'       => true,
             'extension' => 'mssql',
+        ),
+        'mysql_affected_rows' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_client_encoding' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_close' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_connect' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_create_db' => array(
+            '4.3'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_data_seek' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_db_name' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_drop_db' => array(
+            '4.3'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_errno' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_error' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_array' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_assoc' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_field' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_lengths' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_object' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fetch_row' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_flags' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_len' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_name' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_seek' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_table' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_field_type' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_free_result' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_get_client_info' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_get_host_info' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_get_proto_info' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_get_server_info' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_info' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_insert_id' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_list_processes' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_list_tables' => array(
+            '4.3.7'     => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_num_fields' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_num_rows' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_pconnect' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_ping' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_query' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_real_escape_string' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_result' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_select_db' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_set_charset' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_stat' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_tablename' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_thread_id' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_unbuffered_query' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fieldname' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fieldtable' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fieldlen' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fieldtype' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_fieldflags' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_selectdb' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_freeresult' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_numfields' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_numrows' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_listdbs' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_listfields' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_dbname' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql_table_name' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
         ),
 
         'mcrypt_create_iv' => array(

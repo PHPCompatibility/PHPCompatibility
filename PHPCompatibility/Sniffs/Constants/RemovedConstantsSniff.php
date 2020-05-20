@@ -1823,6 +1823,41 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.6' => true,
         ),
 
+        'MYSQL_CLIENT_COMPRESS' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_CLIENT_IGNORE_SPACE' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_CLIENT_INTERACTIVE' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_CLIENT_SSL' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_ASSOC' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_BOTH' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'MYSQL_NUM' => array(
+            '5.5'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
         'PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT' => array(
             '7.0' => true,
         ),

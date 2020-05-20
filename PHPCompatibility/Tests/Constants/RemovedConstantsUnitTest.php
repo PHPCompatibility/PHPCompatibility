@@ -742,6 +742,14 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     public function dataDeprecatedRemovedConstant()
     {
         return array(
+            array('MYSQL_CLIENT_COMPRESS', '5.5', '7.0', array(600), '5.4'),
+            array('MYSQL_CLIENT_IGNORE_SPACE', '5.5', '7.0', array(601), '5.4'),
+            array('MYSQL_CLIENT_INTERACTIVE', '5.5', '7.0', array(602), '5.4'),
+            array('MYSQL_CLIENT_SSL', '5.5', '7.0', array(603), '5.4'),
+            array('MYSQL_ASSOC', '5.5', '7.0', array(604), '5.4'),
+            array('MYSQL_BOTH', '5.5', '7.0', array(605), '5.4'),
+            array('MYSQL_NUM', '5.5', '7.0', array(606), '5.4'),
+
             array('MCRYPT_MODE_ECB', '7.1', '7.2', array(17), '7.0'),
             array('MCRYPT_MODE_CBC', '7.1', '7.2', array(18), '7.0'),
             array('MCRYPT_MODE_CFB', '7.1', '7.2', array(19), '7.0'),

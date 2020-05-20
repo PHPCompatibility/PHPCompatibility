@@ -369,3 +369,36 @@ $test = ini_get('mssql.charset');
 
 ini_set('sqlite.assoc_case', 0);
 $test = ini_get('sqlite.assoc_case');
+
+ini_set('mysql.allow_local_infile', 0);
+$test = ini_get('mysql.allow_local_infile');
+
+ini_set('mysql.allow_persistent', 0);
+$test = ini_get('mysql.allow_persistent');
+
+ini_set('mysql.max_persistent', 0);
+$test = ini_get('mysql.max_persistent');
+
+ini_set('mysql.max_links', 0);
+$test = ini_get('mysql.max_links');
+
+ini_set('mysql.trace_mode', 0);
+$test = ini_get('mysql.trace_mode');
+
+ini_set('mysql.default_port', 0);
+$test = ini_get('mysql.default_port');
+
+ini_set('mysql.default_socket', 0);
+$test = ini_get('mysql.default_socket');
+
+ini_set('mysql.default_host', 0);
+$test = ini_get('mysql.default_host');
+
+ini_set('mysql.default_user', 0);
+$test = ini_get('mysql.default_user');
+
+ini_set('mysql.default_password', 0);
+$test = ini_get('mysql.default_password');
+
+ini_set('mysql.connect_timeout', 0);
+$test = ini_get('mysql.connect_timeout');
