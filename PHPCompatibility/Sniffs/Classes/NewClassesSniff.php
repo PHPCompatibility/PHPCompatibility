@@ -598,8 +598,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.3' => true,
         ),
         'JsonException' => array(
-            '7.2' => false,
-            '7.3' => true,
+            '7.2'       => false,
+            '7.3'       => true,
+            'extension' => 'json',
         ),
 
         'FFI\Exception' => array(

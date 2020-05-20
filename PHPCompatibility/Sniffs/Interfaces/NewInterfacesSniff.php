@@ -77,8 +77,9 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         ),
 
         'JsonSerializable' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'json',
         ),
         'SessionHandlerInterface' => array(
             '5.3' => false,
