@@ -137,6 +137,9 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('mysqlnd.debug', '5.3', array(239, 240), '5.2'),
             array('mysqlnd.net_read_buffer_size', '5.3', array(242, 243), '5.2'),
             array('odbc.default_cursortype', '5.3', array(245, 246), '5.2'),
+            array('phar.readonly', '5.3', array(473, 474), '5.2'),
+            array('phar.require_hash', '5.3', array(476, 477), '5.2'),
+            array('phar.extract_list', '5.3', array(479, 480), '5.2'),
             array('zend.enable_gc', '5.3', array(248, 249), '5.2'),
 
             array('curl.cainfo', '5.4', array(251, 252), '5.3.6', '5.3'),

@@ -301,6 +301,21 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.2' => false,
             '5.3' => true,
         ),
+        'phar.readonly' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'phar',
+        ),
+        'phar.require_hash' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'phar',
+        ),
+        'phar.extract_list' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'phar',
+        ),
         'request_order' => array(
             '5.2' => false,
             '5.3' => true,
@@ -362,8 +377,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'phar.cache_list' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'phar',
         ),
         'session.upload_progress.enabled' => array(
             '5.3' => false,

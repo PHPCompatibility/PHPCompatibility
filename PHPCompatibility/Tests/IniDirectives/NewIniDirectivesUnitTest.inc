@@ -469,3 +469,12 @@ $test = ini_get('phpdbg.path');
 
 ini_set('phpdbg.eol', 1);
 $test = ini_get('phpdbg.eol');
+
+ini_set('phar.readonly', 1);
+$test = ini_get('phar.readonly');
+
+ini_set('phar.require_hash', 1);
+$test = ini_get('phar.require_hash');
+
+ini_set('phar.extract_list', 1);
+$test = ini_get('phar.extract_list');
