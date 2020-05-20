@@ -219,12 +219,14 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
 
         'mcrypt.algorithms_dir' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'mcrypt',
         ),
         'mcrypt.modes_dir' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'mcrypt',
         ),
         'session.entropy_file' => array(
             '7.1' => true,
