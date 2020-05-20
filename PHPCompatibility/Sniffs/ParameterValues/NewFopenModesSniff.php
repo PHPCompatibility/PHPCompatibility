@@ -76,6 +76,13 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
         $errors      = array();
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
+            if ($tokens[$i]['code'] === \T_STRING
+                || $tokens[$i]['code'] === \T_VARIABLE
+            ) {
+                // Variable, constant, function call. Ignore as undetermined.
+                return;
+            }
+
             if ($tokens[$i]['code'] !== \T_CONSTANT_ENCAPSED_STRING) {
                 continue;
             }
