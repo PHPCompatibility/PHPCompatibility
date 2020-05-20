@@ -710,20 +710,24 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'password_get_info' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'password',
         ),
         'password_hash' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'password',
         ),
         'password_needs_rehash' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'password',
         ),
         'password_verify' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'password',
         ),
         'hash_pbkdf2' => array(
             '5.4' => false,
@@ -1909,8 +1913,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ),
         'password_algos' => array(
-            '7.3' => false,
-            '7.4' => true,
+            '7.3'       => false,
+            '7.4'       => true,
+            'extension' => 'password',
         ),
         'pcntl_unshare' => array(
             '7.3' => false,
