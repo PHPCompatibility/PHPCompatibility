@@ -2208,190 +2208,252 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
         ),
         'IBASE_BKP_CONVERT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_IGNORE_CHECKSUMS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_IGNORE_LIMBO' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_METADATA_ONLY' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_NO_GARBAGE_COLLECT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_NON_TRANSPORTABLE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_BKP_OLD_DESCRIPTIONS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_COMMITTED' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_CONCURRENCY' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_CONSISTENCY' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_DEFAULT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_FETCH_ARRAYS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_FETCH_BLOBS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_NOWAIT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_ACCESS_MODE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_ACTIVATE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_AM_READONLY' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_AM_READWRITE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_DENY_NEW_ATTACHMENTS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_DENY_NEW_TRANSACTIONS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_DB_ONLINE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_PAGE_BUFFERS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_RES' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_RES_USE_FULL' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_RESERVE_SPACE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_SET_SQL_DIALECT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_SHUTDOWN_DB' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_SWEEP_INTERVAL' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_WM_ASYNC' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_WM_SYNC' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_PRP_WRITE_MODE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_READ' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_CREATE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_DEACTIVATE_IDX' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_NO_SHADOW' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_NO_VALIDITY' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_ONE_AT_A_TIME' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_REPLACE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RES_USE_ALL_SPACE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_CHECK_DB' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_FULL' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_IGNORE_CHECKSUM' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_KILL_SHADOWS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_MEND_DB' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_SWEEP_DB' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_RPR_VALIDATE_DB' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_STS_DATA_PAGES' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_STS_DB_LOG' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_STS_HDR_PAGES' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_STS_IDX_PAGES' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_STS_SYS_RELATIONS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_GET_ENV' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_GET_ENV_LOCK' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_GET_ENV_MSG' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_GET_USERS' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_IMPLEMENTATION' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_SERVER_VERSION' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_SVR_DB_INFO' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_SVC_USER_DBPATH' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_UNIXTIME' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_WAIT' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'IBASE_WRITE' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
     );
 
