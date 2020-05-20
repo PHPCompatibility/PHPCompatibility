@@ -75,6 +75,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
             array(18, 'Z', '5.4', '7.1'), // OK version set to beyond last error.
             array(18, 'J', '5.6', '7.1', '5.6.2'), // OK version set to beyond last error.
             array(18, 'E', '7.0', '7.1', '7.0.14'),
+            array(20, 'P', '5.6', '7.0', '5.6.2'),
         );
     }
 
@@ -82,16 +83,38 @@ class NewPackFormatUnitTest extends BaseSniffTest
     /**
      * testNoFalsePositives
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = array();
 
         // No errors expected on the first 6 lines.
         for ($line = 1; $line <= 6; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = array($line);
         }
+
+        $data[] = array(23);
+        $data[] = array(24);
+
+        return $data;
     }
 
 
