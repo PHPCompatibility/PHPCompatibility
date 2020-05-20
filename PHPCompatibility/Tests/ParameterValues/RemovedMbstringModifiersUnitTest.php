@@ -100,6 +100,8 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
             array(19),
             array(20),
             array(21),
+            array(33),
+            array(34),
         );
     }
 

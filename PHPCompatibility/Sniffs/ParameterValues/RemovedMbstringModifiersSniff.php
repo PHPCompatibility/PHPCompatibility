@@ -94,19 +94,19 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
         }
 
         $optionsParam = $parameters[$this->targetFunctions[$functionNameLc]];
-
-        $stringToken = $phpcsFile->findNext(Tokens::$stringTokens, $optionsParam['start'], $optionsParam['end'] + 1);
-        if ($stringToken === false) {
-            // No string token found in the options parameter, so skip it (e.g. variable passed in).
-            return;
-        }
-
-        $options = '';
+        $options      = '';
 
         /*
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
-        for ($i = $stringToken; $i <= $optionsParam['end']; $i++) {
+        for ($i = $optionsParam['start']; $i <= $optionsParam['end']; $i++) {
+            if ($tokens[$i]['code'] === \T_STRING
+                || $tokens[$i]['code'] === \T_VARIABLE
+            ) {
+                // Variable, constant, function call. Ignore as undetermined.
+                return;
+            }
+
             if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
