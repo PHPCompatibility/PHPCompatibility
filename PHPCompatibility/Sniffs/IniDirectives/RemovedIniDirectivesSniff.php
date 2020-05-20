@@ -246,8 +246,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.4' => true,
         ),
         'magic_quotes_sybase' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'sybase',
         ),
         'mbstring.script_encoding' => array(
             '5.4'         => true,
@@ -441,6 +442,34 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'mysql.connect_timeout' => array(
             '7.0'       => true,
             'extension' => 'mysql',
+        ),
+        'sybase.allow_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.max_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.max_links' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.interface_file' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.min_error_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.min_message_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase.compatability_mode' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
         ),
 
         'mcrypt.algorithms_dir' => array(

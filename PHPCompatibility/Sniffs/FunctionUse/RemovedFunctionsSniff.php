@@ -3560,6 +3560,106 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.0'       => true,
             'extension' => 'mysql',
         ),
+        'sybase_affected_rows' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_close' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_connect' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_data_seek' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_deadlock_retry_count' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_fetch_array' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_fetch_assoc' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_fetch_field' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_fetch_object' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_fetch_row' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_field_seek' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_free_result' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_get_last_message' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_min_client_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_min_error_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_min_message_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_min_server_severity' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_num_fields' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_num_rows' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_pconnect' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_query' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_result' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_select_db' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_set_message_handler' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
+        'sybase_unbuffered_query' => array(
+            '7.0'       => true,
+            'extension' => 'sybase',
+        ),
 
         'mcrypt_create_iv' => array(
             '7.1'         => false,
