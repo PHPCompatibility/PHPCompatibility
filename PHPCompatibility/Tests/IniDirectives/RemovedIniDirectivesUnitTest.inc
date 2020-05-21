@@ -243,3 +243,9 @@ $a = ini_get('opcache.load_comments');
 
 ini_set('phar.extract_list', 1);
 $test = ini_get('phar.extract_list');
+
+ini_set('mime_magic.debug', 1);
+$test = ini_get('mime_magic.debug');
+
+ini_set('mime_magic.magicfile', 'path');
+$test = ini_get('mime_magic.magicfile');
