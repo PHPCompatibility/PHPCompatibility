@@ -156,6 +156,11 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     public function dataRemovedConstant()
     {
         return array(
+            array('M_PENDING', '5.1', array(248), '5.0'),
+            array('M_DONE', '5.1', array(249), '5.0'),
+            array('M_ERROR', '5.1', array(250), '5.0'),
+            array('M_FAIL', '5.1', array(251), '5.0'),
+            array('M_SUCCESS', '5.1', array(252), '5.0'),
             array('FILEINFO_COMPRESS', '5.3', array(8), '5.2'),
             array('NCURSES_COLOR_BLACK', '5.3', array(142), '5.2'),
             array('NCURSES_COLOR_WHITE', '5.3', array(143), '5.2'),
