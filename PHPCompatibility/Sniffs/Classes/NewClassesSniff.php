@@ -257,6 +257,21 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'xsl',
         ),
+        'SQLiteDatabase' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLiteResult' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLiteUnbuffered' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
+        ),
 
         'libXMLError' => array(
             '5.0'       => false,

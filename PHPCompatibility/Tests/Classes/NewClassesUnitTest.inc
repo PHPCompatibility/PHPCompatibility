@@ -390,3 +390,7 @@ $a = new DOMText();
 $a = new DOMXPath;
 
 $anon = new class() extends XSLTProcessor {};
+
+$anon = new class extends SQLiteDatabase {};
+echo SQLiteResult::numFields();
+function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
