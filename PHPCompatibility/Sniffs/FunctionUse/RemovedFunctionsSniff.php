@@ -226,6 +226,42 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'mcve',
         ),
+        'dio_close' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_fcntl' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_open' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_read' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_seek' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_stat' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_tcsetattr' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_truncate' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
+        'dio_write' => array(
+            '5.1'       => true,
+            'extension' => 'dio',
+        ),
 
         'ncurses_addch' => array(
             '5.3'       => true,

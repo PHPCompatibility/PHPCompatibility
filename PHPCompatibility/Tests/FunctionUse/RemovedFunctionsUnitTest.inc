@@ -453,3 +453,14 @@ m_uwait();
 m_validateidentifier();
 m_verifyconnection();
 m_verifysslcert();
+
+// PHP 5.1 DIO extension.
+dio_close();
+dio_fcntl();
+dio_open();
+dio_read();
+dio_seek();
+dio_stat();
+dio_tcsetattr();
+dio_truncate();
+dio_write();
