@@ -58,25 +58,32 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'fbsql',
         ),
         'pfpro.defaulthost' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.defaultport' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.defaulttimeout' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.proxyaddress' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.proxyport' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.proxylogon' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro.proxypassword' => array(
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'ingres.allow_persistent' => array(
             '5.1'       => true,
