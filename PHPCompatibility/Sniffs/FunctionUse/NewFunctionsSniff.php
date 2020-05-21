@@ -74,10 +74,32 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'readline_callback_handler_install' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'readline_callback_handler_remove' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'readline_callback_read_char' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'readline_on_new_line' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'readline_redisplay' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+
         'hash_hmac' => array(
             '5.1.1' => false,
             '5.1.2' => true,
         ),
+
         'array_fill_keys' => array(
             '5.1' => false,
             '5.2' => true,
