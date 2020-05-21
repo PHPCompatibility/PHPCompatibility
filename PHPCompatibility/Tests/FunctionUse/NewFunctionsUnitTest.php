@@ -230,6 +230,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('transliteral_transliterate', '5.3', array(166), '5.4'),
             array('zlib_decode', '5.3', array(167), '5.4'),
             array('zlib_encode', '5.3', array(168), '5.4'),
+            array('gzdecode', '5.3', array(517), '5.4'),
 
             array('array_column', '5.4', array(170), '5.5'),
             array('boolval', '5.4', array(171), '5.5'),
@@ -428,6 +429,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('imageopenpolygon', '7.1', array(339), '7.2'),
             array('imageresolution', '7.1', array(340), '7.2'),
             array('imagesetclip', '7.1', array(341), '7.2'),
+            array('inflate_get_read_len', '7.1', array(518), '7.2'),
+            array('inflate_get_status', '7.1', array(519), '7.2'),
             array('hash_hmac_algos', '7.1', array(342), '7.2'),
             array('mb_chr', '7.1', array(343), '7.2'),
             array('mb_ord', '7.1', array(344), '7.2'),
