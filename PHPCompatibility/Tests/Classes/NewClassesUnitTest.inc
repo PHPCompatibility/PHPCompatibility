@@ -347,3 +347,4 @@ FFI::load(__DIR__ . "/dummy.h");
 function FFITypeHints( FFI\CData $a, FFI\CType $b );
 try {
 } catch ( FFI\Exception | FFI\ParserException $e ) {}
+$hash = new class extends HashContext {};

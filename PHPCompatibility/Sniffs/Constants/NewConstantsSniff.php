@@ -314,6 +314,12 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.1.1' => false,
             '5.1.2' => true,
         ),
+        // Hash:
+        'HASH_HMAC' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
         // XSL:
         'LIBXSLT_VERSION' => array(
             '5.1.1' => false,

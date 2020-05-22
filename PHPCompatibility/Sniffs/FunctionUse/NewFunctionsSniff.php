@@ -95,9 +95,55 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
 
+        'hash_algos' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_file' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_final' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
         'hash_hmac' => array(
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_hmac_file' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_init' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_update_file' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_update_stream' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash_update' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
+        ),
+        'hash' => array(
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'hash',
         ),
 
         'array_fill_keys' => array(
@@ -422,8 +468,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         'hash_copy' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'hash',
         ),
         'imap_gc' => array(
             '5.2' => false,
@@ -766,8 +813,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'password',
         ),
         'hash_pbkdf2' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'hash',
         ),
         'openssl_pbkdf2' => array(
             '5.4' => false,
@@ -1207,8 +1255,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.6' => true,
         ),
         'hash_equals' => array(
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'hash',
         ),
         'ldap_escape' => array(
             '5.5' => false,
@@ -1444,8 +1493,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ),
 
         'hash_hkdf' => array(
-            '7.1.1' => false,
-            '7.1.2' => true,
+            '7.1.1'     => false,
+            '7.1.2'     => true,
+            'extension' => 'hash',
         ),
         'oci_register_taf_callback' => array(
             '7.1.6' => false,
@@ -1469,8 +1519,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'hash_hmac_algos' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'hash',
         ),
         'imagebmp' => array(
             '7.1' => false,

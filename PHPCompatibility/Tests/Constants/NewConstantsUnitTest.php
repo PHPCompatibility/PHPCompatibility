@@ -130,6 +130,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('SUNFUNCS_RET_TIMESTAMP', '5.1.1', array(71), '5.2', '5.1'),
             array('SUNFUNCS_RET_STRING', '5.1.1', array(72), '5.2', '5.1'),
             array('SUNFUNCS_RET_DOUBLE', '5.1.1', array(73), '5.2', '5.1'),
+            array('HASH_HMAC', '5.1.1', array(883), '5.2', '5.1'),
             array('LIBXSLT_VERSION', '5.1.1', array(74), '5.2', '5.1'),
             array('LIBXSLT_DOTTED_VERSION', '5.1.1', array(75), '5.2', '5.1'),
             array('LIBEXSLT_VERSION', '5.1.1', array(76), '5.2', '5.1'),

@@ -70,6 +70,17 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('readline_on_new_line', '5.0', array(514), '5.1'),
             array('readline_redisplay', '5.0', array(515), '5.1'),
 
+            array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
+            array('hash_file', '5.1.1', array(522), '5.2', '5.1'),
+            array('hash_final', '5.1.1', array(523), '5.2', '5.1'),
+            array('hash_hmac', '5.1.1', array(442), '5.2', '5.1'),
+            array('hash_hmac_file', '5.1.1', array(524), '5.2', '5.1'),
+            array('hash_init', '5.1.1', array(525), '5.2', '5.1'),
+            array('hash_update_file', '5.1.1', array(526), '5.2', '5.1'),
+            array('hash_update_stream', '5.1.1', array(527), '5.2', '5.1'),
+            array('hash_update', '5.1.1', array(528), '5.2', '5.1'),
+            array('hash', '5.1.1', array(529), '5.2', '5.1'),
+
             array('array_fill_keys', '5.1', array(12), '5.2'),
             array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.
             array('error_get_last', '5.1', array(14), '5.2'),
@@ -532,7 +543,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('spl_autoload_register', '5.0', array(439), '5.1'),
             array('spl_autoload_unregister', '5.0', array(440), '5.1'),
             array('spl_autoload', '5.0', array(441), '5.1'),
-            array('hash_hmac', '5.1.1', array(442), '5.2', '5.1'),
 
             array('hrtime', '7.2', array(444), '7.3'),
             array('is_countable', '7.2', array(445), '7.3'),

@@ -517,3 +517,13 @@ readline_redisplay();
 gzdecode();
 inflate_get_read_len();
 inflate_get_status();
+
+hash_algos();
+hash_file();
+hash_final();
+hash_hmac_file();
+hash_init();
+hash_update_file();
+hash_update_stream();
+hash_update();
+hash();
