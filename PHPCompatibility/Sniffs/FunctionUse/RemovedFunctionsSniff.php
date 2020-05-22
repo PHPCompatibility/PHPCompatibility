@@ -903,6 +903,146 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'ncurses',
         ),
+        'fdf_add_doc_javascript' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_add_template' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_close' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_create' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_enum_values' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_errno' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_error' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_ap' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_attachment' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_encoding' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_file' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_flags' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_opt' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_status' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_value' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_get_version' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_header' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_next_field_name' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_open_string' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_open' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_remove_item' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_save_string' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_save' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_ap' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_encoding' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_file' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_flags' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_javascript_action' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_on_import_javascript' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_opt' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_status' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_submit_form_action' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_target_frame' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_value' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'fdf_set_version' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
 
         'call_user_method' => array(
             '5.3' => false,

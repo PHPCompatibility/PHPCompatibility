@@ -629,6 +629,114 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'ncurses',
         ),
+        'FDFValue' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFStatus' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFFile' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFID' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFFf' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFSetFf' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFClearFf' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFFlags' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFSetF' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFClrF' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFAP' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFAS' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFAction' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFAA' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFAPRef' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFIF' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFEnter' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFExit' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFDown' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFUp' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFFormat' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFValidate' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFKeystroke' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFCalculate' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFNormalAP' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFRolloverAP' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
+        'FDFDownAP' => array(
+            '5.3'       => true,
+            'extension' => 'fdf',
+        ),
 
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,
