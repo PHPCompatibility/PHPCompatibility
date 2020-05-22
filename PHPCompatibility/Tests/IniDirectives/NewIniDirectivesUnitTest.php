@@ -94,6 +94,9 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('detect_unicode', '5.1', array(164, 165), '5.0'),
             array('realpath_cache_size', '5.1', array(170, 171), '5.0'),
             array('realpath_cache_ttl', '5.1', array(173, 174), '5.0'),
+            array('pdo_odbc.connection_pooling', '5.1', array(488, 489), '5.0'),
+
+            array('pdo_odbc.db2_instance_name', '5.2', array(491, 492), '5.1.0', '5.1'),
 
             array('mbstring.strict_detection', '5.2', array(176, 177), '5.1.1', '5.1'),
             array('mssql.charset', '5.2', array(179, 180), '5.1.1', '5.1'),

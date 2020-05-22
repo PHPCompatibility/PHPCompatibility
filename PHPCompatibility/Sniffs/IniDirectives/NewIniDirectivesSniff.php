@@ -173,6 +173,17 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'pdo_odbc.connection_pooling' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'pdo',
+        ),
+
+        'pdo_odbc.db2_instance_name' => array(
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'pdo',
+        ),
 
         'mbstring.strict_detection' => array(
             '5.1.1' => false,

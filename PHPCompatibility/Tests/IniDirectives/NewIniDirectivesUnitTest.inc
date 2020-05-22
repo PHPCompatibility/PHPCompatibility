@@ -484,3 +484,9 @@ $test = ini_get('openssl.cafile');
 
 ini_set('openssl.capath', 1);
 $test = ini_get('openssl.capath');
+
+ini_set('pdo_odbc.connection_pooling', 1);
+$test = ini_get('pdo_odbc.connection_pooling');
+
+ini_set('pdo_odbc.db2_instance_name', 1);
+$test = ini_get('pdo_odbc.db2_instance_name');

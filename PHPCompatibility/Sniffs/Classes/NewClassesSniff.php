@@ -164,12 +164,14 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
         'PDO' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'pdo',
         ),
         'PDOStatement' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'pdo',
         ),
         'AppendIterator' => array(
             '5.0'       => false,
@@ -675,8 +677,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'spl',
         ),
         'PDOException' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'pdo',
         ),
         'RangeException' => array(
             '5.0'       => false,
