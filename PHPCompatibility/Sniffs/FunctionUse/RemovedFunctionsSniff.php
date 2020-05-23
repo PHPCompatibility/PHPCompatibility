@@ -1299,6 +1299,159 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'filepro',
         ),
 
+        'ifx_affected_rows' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_blobinfile_mode' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_byteasvarchar' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_close' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_connect' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_copy_blob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_create_blob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_create_char' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_do' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_error' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_errormsg' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_fetch_row' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_fieldproperties' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_fieldtypes' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_free_blob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_free_char' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_free_result' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_get_blob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_get_char' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_getsqlca' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_htmltbl_result' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_nullformat' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_num_fields' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_num_rows' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_pconnect' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_prepare' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_query' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_textasvarchar' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_update_blob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifx_update_char' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_close_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_create_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_free_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_open_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_read_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_seek_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_tell_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'ifxus_write_slob' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+
         'ncurses_addch' => array(
             '5.3'       => true,
             'extension' => 'ncurses',
