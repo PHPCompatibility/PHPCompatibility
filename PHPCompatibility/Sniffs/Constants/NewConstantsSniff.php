@@ -5177,8 +5177,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
 
         // SQLite3:
         'SQLITE3_DETERMINISTIC' => array(
-            '7.1.3' => false,
-            '7.1.4' => true,
+            '7.1.3'     => false,
+            '7.1.4'     => true,
+            'extension' => 'sqlite3',
         ),
 
         // Core:

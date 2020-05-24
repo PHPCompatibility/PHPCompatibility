@@ -523,3 +523,6 @@ $test = ini_get('oci8.privileged_connect');
 
 ini_set('oci8.statement_cache_size', 1);
 $test = ini_get('oci8.statement_cache_size');
+
+ini_set('sqlite3.defensive', 1);
+$test = ini_get('sqlite3.defensive');

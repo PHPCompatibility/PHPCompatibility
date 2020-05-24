@@ -566,6 +566,21 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.3'       => true,
             'extension' => 'spl',
         ),
+        'SQLite3' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'sqlite3',
+        ),
+        'SQLite3Stmt' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'sqlite3',
+        ),
+        'SQLite3Result' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'sqlite3',
+        ),
 
         'ResourceBundle' => array(
             '5.3.1'     => false,
