@@ -690,6 +690,28 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.1.2' => true,
             ),
         ),
+        'pg_escape_bytea' => array(
+            /*
+             * Is in actual fact the first parameter (0), with a second required param.
+             * So we need to check for two parameters being present.
+             */
+            1 => array(
+                'name' => 'connection',
+                '5.1'  => false,
+                '5.2'  => true,
+            ),
+        ),
+        'pg_escape_string' => array(
+            /*
+             * Is in actual fact the first parameter (0), with a second required param.
+             * So we need to check for two parameters being present.
+             */
+            1 => array(
+                'name' => 'connection',
+                '5.1'  => false,
+                '5.2'  => true,
+            ),
+        ),
         'pg_fetch_all' => array(
             1 => array(
                 'name' => 'result_type',
@@ -716,6 +738,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name' => 'object_id',
                 '5.2'  => false,
                 '5.3'  => true,
+            ),
+        ),
+        'pg_meta_data' => array(
+            2 => array(
+                'name' => 'extended',
+                '5.5'  => false,
+                '5.6'  => true,
             ),
         ),
         'pg_select' => array(

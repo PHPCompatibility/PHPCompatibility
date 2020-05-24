@@ -1152,6 +1152,50 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1'       => true,
             'extension' => 'mysqli',
         ),
+        'pg_execute' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_fetch_all_columns' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_field_type_oid' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_prepare' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_query_params' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_result_error_field' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_send_execute' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_send_prepare' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_send_query_params' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_set_error_verbosity' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'pg_transaction_status' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
@@ -2859,6 +2903,15 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4.1' => true,
         ),
 
+        'pg_escape_literal' => array(
+            '5.4.3' => false,
+            '5.4.4' => true,
+        ),
+        'pg_escape_identifier' => array(
+            '5.4.3' => false,
+            '5.4.4' => true,
+        ),
+
         'array_column' => array(
             '5.4' => false,
             '5.5' => true,
@@ -3003,14 +3056,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'mysqli',
-        ),
-        'pg_escape_literal' => array(
-            '5.4' => false,
-            '5.5' => true,
-        ),
-        'pg_escape_identifier' => array(
-            '5.4' => false,
-            '5.5' => true,
         ),
         'socket_sendmsg' => array(
             '5.4' => false,

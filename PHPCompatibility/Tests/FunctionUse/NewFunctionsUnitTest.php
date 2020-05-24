@@ -287,6 +287,17 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('mysqli_get_charset', '5.0', array(855), '5.1'),
             array('mysqli_get_warnings', '5.0', array(858), '5.1'),
             array('mysqli_stmt_get_warnings', '5.0', array(902), '5.1'),
+            array('pg_execute', '5.0', array(972), '5.1'),
+            array('pg_fetch_all_columns', '5.0', array(973), '5.1'),
+            array('pg_field_type_oid', '5.0', array(974), '5.1'),
+            array('pg_prepare', '5.0', array(975), '5.1'),
+            array('pg_query_params', '5.0', array(976), '5.1'),
+            array('pg_result_error_field', '5.0', array(977), '5.1'),
+            array('pg_send_execute', '5.0', array(978), '5.1'),
+            array('pg_send_prepare', '5.0', array(979), '5.1'),
+            array('pg_send_query_params', '5.0', array(980), '5.1'),
+            array('pg_set_error_verbosity', '5.0', array(981), '5.1'),
+            array('pg_transaction_status', '5.0', array(982), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
@@ -676,6 +687,9 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('mb_ereg_replace_callback', '5.4.0', array(680), '5.5', '5.4'),
 
+            array('pg_escape_literal', '5.4.3', array(200), '5.5', '5.4'),
+            array('pg_escape_identifier', '5.4.3', array(201), '5.5', '5.4'),
+
             array('array_column', '5.4', array(170), '5.5'),
             array('boolval', '5.4', array(171), '5.5'),
             array('json_last_error_msg', '5.4', array(172), '5.5'),
@@ -710,8 +724,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('mysqli_begin_transaction', '5.4', array(197), '5.5'),
             array('mysqli_release_savepoint', '5.4', array(198), '5.5'),
             array('mysqli_savepoint', '5.4', array(199), '5.5'),
-            array('pg_escape_literal', '5.4', array(200), '5.5'),
-            array('pg_escape_identifier', '5.4', array(201), '5.5'),
             array('socket_sendmsg', '5.4', array(202), '5.5'),
             array('socket_recvmsg', '5.4', array(203), '5.5'),
             array('socket_cmsg_space', '5.4', array(204), '5.5'),
