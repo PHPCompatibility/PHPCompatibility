@@ -1641,6 +1641,456 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'sqlite',
         ),
+        'MYSQLI_READ_DEFAULT_GROUP' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_READ_DEFAULT_FILE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_OPT_CONNECT_TIMEOUT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_OPT_LOCAL_INFILE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_INIT_COMMAND' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_SSL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_COMPRESS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_INTERACTIVE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_IGNORE_SPACE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_NO_SCHEMA' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CLIENT_MULTI_QUERIES' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_STORE_RESULT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_USE_RESULT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_ASSOC' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_NUM' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_BOTH' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_NOT_NULL_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_PRI_KEY_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_UNIQUE_KEY_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_MULTIPLE_KEY_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_BLOB_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_UNSIGNED_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_ZEROFILL_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_AUTO_INCREMENT_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TIMESTAMP_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_SET_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_NUM_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_PART_KEY_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_GROUP_FLAG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_DECIMAL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_NEWDECIMAL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_BIT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_TINY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_SHORT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_LONG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_FLOAT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_DOUBLE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_NULL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_TIMESTAMP' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_LONGLONG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_INT24' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_DATE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_TIME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_DATETIME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_YEAR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_NEWDATE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_INTERVAL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_ENUM' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_SET' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_TINY_BLOB' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_MEDIUM_BLOB' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_LONG_BLOB' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_BLOB' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_VAR_STRING' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_STRING' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_CHAR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TYPE_GEOMETRY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_NEED_DATA' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_NO_DATA' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CURSOR_TYPE_FOR_UPDATE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CURSOR_TYPE_NO_CURSOR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CURSOR_TYPE_READ_ONLY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_CURSOR_TYPE_SCROLLABLE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_STMT_ATTR_CURSOR_TYPE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_STMT_ATTR_PREFETCH_ROWS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_SET_CHARSET_NAME' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REPORT_INDEX' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REPORT_ERROR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REPORT_STRICT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REPORT_ALL' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REPORT_OFF' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_DEBUG_TRACE_ENABLED' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_SERVER_QUERY_NO_INDEX_USED' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_GRANT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_LOG' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_TABLES' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_HOSTS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_STATUS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_THREADS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_SLAVE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_REFRESH_MASTER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_COR_AND_CHAIN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_COR_AND_NO_CHAIN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_COR_RELEASE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_COR_NO_RELEASE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_START_READ_ONLY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_START_READ_WRITE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_TRANS_START_CONSISTENT_SNAPSHOT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
 
         'SORT_LOCALE_STRING' => array(
             '5.0.1' => false,
@@ -1900,6 +2350,12 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'libxml',
+        ),
+        // Mysqli.
+        'MYSQLI_DATA_TRUNCATED' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
         ),
 
         // Date/Time:
@@ -2854,21 +3310,36 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // Mysqli
         'MYSQLI_OPT_INT_AND_FLOAT_NATIVE' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'MYSQLI_OPT_NET_CMD_BUFFER_SIZE' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'MYSQLI_OPT_NET_READ_BUFFER_SIZE' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'MYSQLI_OPT_SSL_VERIFY_SERVER_CERT' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
+        'MYSQLI_ENUM_FLAG' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'MYSQLI_BINARY_FLAG' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+
         // OCI8:
         'OCI_CRED_EXT' => array(
             '5.2' => false,
@@ -3737,8 +4208,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
         // MySQLi
         'MYSQLI_SERVER_PUBLIC_KEY' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqli',
         ),
         // Curl:
         'CURLOPT_SHARE' => array(
@@ -4098,8 +4570,9 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
 
         'MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT' => array(
-            '5.6.15' => false,
-            '5.6.16' => true,
+            '5.6.15'    => false,
+            '5.6.16'    => true,
+            'extension' => 'mysqli',
         ),
 
         // GD:

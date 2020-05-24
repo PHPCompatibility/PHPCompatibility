@@ -272,6 +272,31 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'sqlite',
         ),
+        'mysqli' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_driver' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_warning' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
 
         'libXMLError' => array(
             '5.0'       => false,
@@ -740,6 +765,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '4.4' => false,
             '5.0' => true,
         ),
+        'mysqli_sql_exception' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
 
         'ErrorException' => array(
             '5.0' => false,
@@ -774,10 +804,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'mysqli_sql_exception' => array(
-            '5.0' => false,
-            '5.1' => true,
         ),
         'OutOfBoundsException' => array(
             '5.0'       => false,

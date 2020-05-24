@@ -394,3 +394,9 @@ $anon = new class() extends XSLTProcessor {};
 $anon = new class extends SQLiteDatabase {};
 echo SQLiteResult::numFields();
 function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
+
+$mysqli = new mysqli();
+class MyMysqliStmt extends mysqli_stmt {}
+function MySqliResultTypeHint( mysqli_result $result){}
+$anon = class MyMysqliDriver extends mysqli_driver {};
+if (is_a($var, mysqli_warning::class)) {}
