@@ -139,11 +139,16 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('mysqlnd.collect_statistics', '5.3', array(236, 237), '5.2'),
             array('mysqlnd.debug', '5.3', array(239, 240), '5.2'),
             array('mysqlnd.net_read_buffer_size', '5.3', array(242, 243), '5.2'),
+            array('mysqlnd.log_mask', '5.3', array(263, 264), '5.2'),
+            array('mysqlnd.net_read_timeout', '5.3', array(272, 273), '5.2'),
+            array('mysqlnd.net_cmd_buffer_size', '5.3', array(269, 270), '5.2'),
             array('odbc.default_cursortype', '5.3', array(245, 246), '5.2'),
             array('phar.readonly', '5.3', array(473, 474), '5.2'),
             array('phar.require_hash', '5.3', array(476, 477), '5.2'),
             array('phar.extract_list', '5.3', array(479, 480), '5.2'),
             array('zend.enable_gc', '5.3', array(248, 249), '5.2'),
+
+            array('mysqlnd.mempool_default_size', '5.4', array(266, 267), '5.3.2', '5.3'),
 
             array('curl.cainfo', '5.4', array(251, 252), '5.3.6', '5.3'),
 
@@ -164,10 +169,6 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('enable_post_data_reading', '5.4', array(71, 72), '5.3'),
             array('windows_show_crt_warning', '5.4', array(74, 75), '5.3'),
             array('session.upload_progress.prefix', '5.4', array(257, 258), '5.3'),
-            array('mysqlnd.log_mask', '5.4', array(263, 264), '5.3'),
-            array('mysqlnd.mempool_default_size', '5.4', array(266, 267), '5.3'),
-            array('mysqlnd.net_cmd_buffer_size', '5.4', array(269, 270), '5.3'),
-            array('mysqlnd.net_read_timeout', '5.4', array(272, 273), '5.3'),
             array('phar.cache_list', '5.4', array(275, 276), '5.3'),
 
             array('intl.use_exceptions', '5.5', array(77, 78), '5.4'),
@@ -211,6 +212,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('mysqli.rollback_on_cached_plink', '5.6', array(290, 291), '5.5'),
             array('openssl.cafile', '5.6', array(482, 483), '5.5'),
             array('openssl.capath', '5.6', array(485, 486), '5.5'),
+            array('mysqlnd.fetch_data_copy', '5.6', array(497, 498), '5.5'),
 
             array('phpdbg.path', '7.0', array(467, 468), '5.6.2', '5.6'),
 

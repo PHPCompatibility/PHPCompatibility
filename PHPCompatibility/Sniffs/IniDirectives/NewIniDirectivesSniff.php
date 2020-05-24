@@ -314,20 +314,39 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             'extension' => 'mysqli',
         ),
         'mysqlnd.collect_memory_statistics' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
         ),
         'mysqlnd.collect_statistics' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
         ),
         'mysqlnd.debug' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
+        ),
+        'mysqlnd.log_mask' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
+        ),
+        'mysqlnd.net_read_timeout' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
+        ),
+        'mysqlnd.net_cmd_buffer_size' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
         ),
         'mysqlnd.net_read_buffer_size' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqlnd',
         ),
         'odbc.default_cursortype' => array(
             '5.2' => false,
@@ -365,6 +384,12 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
 
+        'mysqlnd.mempool_default_size' => array(
+            '5.3.2'     => false,
+            '5.3.3'     => true,
+            'extension' => 'mysqlnd',
+        ),
+
         'curl.cainfo' => array(
             '5.3.6' => false,
             '5.3.7' => true,
@@ -393,18 +418,6 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'enable_post_data_reading' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.mempool_default_size' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.net_cmd_buffer_size' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
-        'mysqlnd.net_read_timeout' => array(
             '5.3' => false,
             '5.4' => true,
         ),
@@ -458,10 +471,6 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.3' => false,
             '5.4' => true,
         ),
-        'mysqlnd.log_mask' => array(
-            '5.3' => false,
-            '5.4' => true,
-        ),
 
         'intl.use_exceptions' => array(
             '5.4'       => false,
@@ -469,12 +478,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             'extension' => 'intl',
         ),
         'mysqlnd.sha256_server_public_key' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqlnd',
         ),
         'mysqlnd.trace_alloc' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqlnd',
         ),
         'sys_temp_dir' => array(
             '5.4' => false,
@@ -658,6 +669,11 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         'openssl.capath' => array(
             '5.5' => false,
             '5.6' => true,
+        ),
+        'mysqlnd.fetch_data_copy' => array(
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'mysqlnd',
         ),
 
         'assert.exception' => array(
