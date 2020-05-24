@@ -297,6 +297,17 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'mysqli',
         ),
+        /*
+        See: https://bugs.php.net/bug.php?id=79625
+        'OCI-Collection' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'OCI-Lob' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        */
 
         'libXMLError' => array(
             '5.0'       => false,

@@ -204,6 +204,34 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.1.1' => false,
             '5.1.2' => true,
         ),
+        'oci8.default_prefetch' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.max_persistent' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.old_oci_close_semantics' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.persistent_timeout' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.ping_interval' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.privileged_connect' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
+        'oci8.statement_cache_size' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
 
         'gd.jpeg_ignore_warning' => array(
             '5.1.2' => false,
@@ -380,6 +408,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         'zend.enable_gc' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'oci8.connection_class' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'oci8.events' => array(
             '5.2' => false,
             '5.3' => true,
         ),

@@ -118,6 +118,9 @@ class NewClassesUnitTest extends BaseSniffTest
             array('mysqli_result', '4.4', array(400), '5.0'),
             array('mysqli_driver', '4.4', array(401), '5.0'),
             array('mysqli_warning', '4.4', array(402), '5.0'),
+            // See: https://bugs.php.net/bug.php?id=79625
+            //array('OCI-Collection', '4.4', array(404), '5.0'),
+            //array('OCI-Lob', '4.4', array(405), '5.0'),
 
             array('libXMLError', '5.0', array(61, 101, 141), '5.1'),
             array('PDO', '5.0', array(314), '5.1'),

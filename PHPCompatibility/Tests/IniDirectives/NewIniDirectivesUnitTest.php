@@ -101,6 +101,13 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
 
             array('mbstring.strict_detection', '5.2', array(176, 177), '5.1.1', '5.1'),
             array('mssql.charset', '5.2', array(179, 180), '5.1.1', '5.1'),
+            array('oci8.default_prefetch', '5.2', array(503, 504), '5.1.1', '5.1'),
+            array('oci8.max_persistent', '5.2', array(509, 510), '5.1.1', '5.1'),
+            array('oci8.old_oci_close_semantics', '5.2', array(512, 513), '5.1.1', '5.1'),
+            array('oci8.persistent_timeout', '5.2', array(515, 516), '5.1.1', '5.1'),
+            array('oci8.ping_interval', '5.2', array(518, 519), '5.1.1', '5.1'),
+            array('oci8.privileged_connect', '5.2', array(521, 522), '5.1.1', '5.1'),
+            array('oci8.statement_cache_size', '5.2', array(524, 525), '5.1.1', '5.1'),
 
             array('gd.jpeg_ignore_warning', '5.2', array(182, 183), '5.1.2', '5.1'),
 
@@ -147,6 +154,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('phar.require_hash', '5.3', array(476, 477), '5.2'),
             array('phar.extract_list', '5.3', array(479, 480), '5.2'),
             array('zend.enable_gc', '5.3', array(248, 249), '5.2'),
+            array('oci8.connection_class', '5.3', array(500, 501), '5.2'),
+            array('oci8.events', '5.3', array(506, 507), '5.2'),
 
             array('mysqlnd.mempool_default_size', '5.4', array(266, 267), '5.3.2', '5.3'),
 
