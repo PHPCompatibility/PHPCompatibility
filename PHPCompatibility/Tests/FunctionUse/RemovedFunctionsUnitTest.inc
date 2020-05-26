@@ -585,3 +585,5 @@ msession_set();
 msession_timeout();
 msession_uniq();
 msession_unlock();
+
+__autoload($class);
