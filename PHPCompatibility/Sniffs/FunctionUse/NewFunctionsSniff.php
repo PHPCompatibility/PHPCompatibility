@@ -88,6 +88,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'tidy',
         ),
 
+        'interface_exists' => array(
+            '5.0.1' => false,
+            '5.0.2' => true,
+        ),
+
         'fputcsv' => array(
             '5.0' => false,
             '5.1' => true,
@@ -242,6 +247,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
         'array_product' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'property_exists' => array(
             '5.0' => false,
             '5.1' => true,
         ),

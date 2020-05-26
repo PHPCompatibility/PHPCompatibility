@@ -734,3 +734,5 @@ array_diff_ukey();
 array_intersect_key();
 array_intersect_ukey();
 array_product();
+interface_exists();
+property_exists();
