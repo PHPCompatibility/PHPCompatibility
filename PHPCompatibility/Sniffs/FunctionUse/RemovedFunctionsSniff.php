@@ -302,6 +302,46 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'fam',
         ),
+        'yp_all' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_cat' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_err_string' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_errno' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_first' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_get_default_domain' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_master' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_match' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_next' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
+        'yp_order' => array(
+            '5.1'       => true,
+            'extension' => 'yp',
+        ),
 
         'hwapi_attribute_new' => array(
             '5.2'       => true,
