@@ -343,6 +343,91 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'yp',
         ),
 
+        'udm_add_search_limit' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_alloc_agent_array' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_alloc_agent' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_api_version' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_cat_list' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_cat_path' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_check_charset' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_clear_search_limits' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_crc32' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_errno' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_error' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_find' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_free_agent' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_free_ispell_data' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_free_res' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_get_doc_count' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_get_res_field' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_get_res_param' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_hash32' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_load_ispell_data' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'udm_set_agent_param' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+
         'hwapi_attribute_new' => array(
             '5.2'       => true,
             'extension' => 'hwapi',

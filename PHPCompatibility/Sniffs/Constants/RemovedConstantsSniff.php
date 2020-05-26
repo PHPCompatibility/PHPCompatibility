@@ -303,6 +303,378 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'yp',
         ),
+        'UDM_FIELD_URLID' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_URL' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_CONTENT' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_TITLE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_KEYWORDS' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_DESC' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_DESCRIPTION' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_TEXT' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_SIZE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_RATING' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_SCORE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_MODIFIED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_ORDER' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_CRC' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_CATEGORY' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_LANG' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_FIELD_CHARSET' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_PAGE_SIZE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_PAGE_NUM' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_SEARCH_MODE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_CACHE_MODE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_TRACK_MODE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_PHRASE_MODE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_CHARSET' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_LOCAL_CHARSET' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_BROWSER_CHARSET' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_STOPTABLE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_STOP_TABLE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_STOPFILE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_STOP_FILE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_WEIGHT_FACTOR' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_WORD_MATCH' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_MAX_WORD_LEN' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_MAX_WORDLEN' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_MIN_WORD_LEN' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_MIN_WORDLEN' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_ISPELL_PREFIXES' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_ISPELL_PREFIX' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_PREFIXES' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_PREFIX' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_CROSS_WORDS' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_CROSSWORDS' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_VARDIR' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_DATADIR' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_HLBEG' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_HLEND' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_SYNONYM' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_SEARCHD' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_QSTRING' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_REMOTE_ADDR' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_LIMIT_CAT' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_LIMIT_URL' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_LIMIT_TAG' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_LIMIT_LANG' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_LIMIT_DATE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_FOUND' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_NUM_ROWS' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_WORDINFO' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_WORD_INFO' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_SEARCHTIME' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_SEARCH_TIME' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_FIRST_DOC' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PARAM_LAST_DOC' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MODE_ALL' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MODE_ANY' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MODE_BOOL' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MODE_PHRASE' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CACHE_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CACHE_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_TRACK_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_TRACK_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PHRASE_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PHRASE_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CROSS_WORDS_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CROSSWORDS_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CROSS_WORDS_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_CROSSWORDS_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PREFIXES_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PREFIX_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_PREFIXES_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_PREFIX_ENABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PREFIXES_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_PREFIX_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_PREFIXES_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_PREFIX_DISABLED' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_TYPE_AFFIX' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_TYPE_SPELL' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_TYPE_DB' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_ISPELL_TYPE_SERVER' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MATCH_WORD' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MATCH_BEGIN' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MATCH_SUBSTR' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
+        'UDM_MATCH_END' => array(
+            '5.1'       => true,
+            'extension' => 'mnogosearch',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
