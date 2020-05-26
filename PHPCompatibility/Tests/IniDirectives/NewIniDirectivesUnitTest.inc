@@ -478,3 +478,9 @@ $test = ini_get('phar.require_hash');
 
 ini_set('phar.extract_list', 1);
 $test = ini_get('phar.extract_list');
+
+ini_set('openssl.cafile', 1);
+$test = ini_get('openssl.cafile');
+
+ini_set('openssl.capath', 1);
+$test = ini_get('openssl.capath');

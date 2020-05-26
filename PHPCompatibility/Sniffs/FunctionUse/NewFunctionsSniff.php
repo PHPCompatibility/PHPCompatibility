@@ -354,6 +354,19 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2.1' => true,
         ),
 
+        'openssl_pkcs12_export_to_file' => array(
+            '5.2.1' => false,
+            '5.2.2' => true,
+        ),
+        'openssl_pkcs12_export' => array(
+            '5.2.1' => false,
+            '5.2.2' => true,
+        ),
+        'openssl_pkcs12_read' => array(
+            '5.2.1' => false,
+            '5.2.2' => true,
+        ),
+
         'php_ini_loaded_file' => array(
             '5.2.3' => false,
             '5.2.4' => true,
@@ -672,6 +685,35 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'intl_is_failure' => array(
             '5.2' => false,
             '5.3' => true,
+        ),
+        'openssl_decrypt' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'openssl_dh_compute_key' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'openssl_digest' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'openssl_encrypt' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'openssl_get_cipher_methods' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+        'openssl_get_md_methods' => array(
+            '5.2' => false,
+            '5.3' => true,
+        ),
+
+        'openssl_cipher_iv_length' => array(
+            '5.3.2' => false,
+            '5.3.3' => true,
         ),
 
         'hex2bin' => array(
@@ -1491,6 +1533,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.0' => false,
             '7.1' => true,
         ),
+        'openssl_get_curve_names' => array(
+            '7.0' => false,
+            '7.1' => true,
+        ),
 
         'hash_hkdf' => array(
             '7.1.1'     => false,
@@ -2028,6 +2074,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2'       => true,
             'extension' => 'sodium',
         ),
+        'openssl_pkcs7_read' => array(
+            '7.1' => false,
+            '7.2' => true,
+        ),
+
         // Introduced in 7.2.14 and 7.3.1 simultanously.
         'oci_set_call_timeout' => array(
             '7.2.13' => false,

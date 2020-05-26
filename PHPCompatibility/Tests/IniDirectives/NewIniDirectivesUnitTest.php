@@ -206,6 +206,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('session.use_strict_mode', '5.6', array(287, 288), '5.5.1', '5.5'),
 
             array('mysqli.rollback_on_cached_plink', '5.6', array(290, 291), '5.5'),
+            array('openssl.cafile', '5.6', array(482, 483), '5.5'),
+            array('openssl.capath', '5.6', array(485, 486), '5.5'),
 
             array('phpdbg.path', '7.0', array(467, 468), '5.6.2', '5.6'),
 

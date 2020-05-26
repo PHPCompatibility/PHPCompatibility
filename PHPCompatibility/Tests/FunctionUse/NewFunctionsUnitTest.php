@@ -135,6 +135,10 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('sys_get_temp_dir', '5.2.0', array(17), '5.3', '5.2'),
 
+            array('openssl_pkcs12_export_to_file', '5.2.1', array(539), '5.3', '5.2'),
+            array('openssl_pkcs12_export', '5.2.1', array(540), '5.3', '5.2'),
+            array('openssl_pkcs12_read', '5.2.1', array(541), '5.3', '5.2'),
+
             array('php_ini_loaded_file', '5.2.3', array(509), '5.3', '5.2'),
 
             array('array_replace', '5.2', array(65), '5.3'),
@@ -215,6 +219,14 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('intl_get_error_message', '5.2', array(140), '5.3'),
             array('intl_is_failure', '5.2', array(141), '5.3'),
             array('mysqli_get_cache_stats', '5.2', array(142), '5.3'),
+            array('openssl_decrypt', '5.2', array(532), '5.3'),
+            array('openssl_dh_compute_key', '5.2', array(533), '5.3'),
+            array('openssl_digest', '5.2', array(534), '5.3'),
+            array('openssl_encrypt', '5.2', array(535), '5.3'),
+            array('openssl_get_cipher_methods', '5.2', array(536), '5.3'),
+            array('openssl_get_md_methods', '5.2', array(538), '5.3'),
+
+            array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
 
             array('hex2bin', '5.3', array(144), '5.4'),
             array('http_response_code', '5.3', array(145), '5.4'),
@@ -418,6 +430,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('sapi_windows_cp_get', '7.0', array(463), '7.1'),
             array('sapi_windows_cp_is_utf8', '7.0', array(464), '7.1'),
             array('sapi_windows_cp_conv', '7.0', array(465), '7.1'),
+            array('openssl_get_curve_names', '7.0', array(537), '7.1'),
 
             array('hash_hkdf', '7.1.1', array(466), '7.2', '7.1'),
             array('oci_register_taf_callback', '7.1.6', array(322), '7.2', '7.1'),
@@ -532,6 +545,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('sodium_pad', '7.1', array(417), '7.2'),
             array('sodium_unpad', '7.1', array(418), '7.2'),
             array('spl_object_id', '7.1', array(419), '7.2'),
+            array('openssl_pkcs7_read', '7.1', array(542), '7.2'),
 
             array('pg_lo_truncate', '5.5', array(420), '5.6'),
 

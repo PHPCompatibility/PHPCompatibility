@@ -617,6 +617,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.5' => false,
             '5.6' => true,
         ),
+        'openssl.cafile' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
+        'openssl.capath' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
 
         'assert.exception' => array(
             '5.6' => false,
