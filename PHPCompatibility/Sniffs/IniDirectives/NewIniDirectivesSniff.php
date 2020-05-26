@@ -250,12 +250,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         'intl.default_locale' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'intl.error_level' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'intl',
         ),
         'mail.add_x_header' => array(
             '5.2' => false,
@@ -432,8 +434,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         ),
 
         'intl.use_exceptions' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'intl',
         ),
         'mysqlnd.sha256_server_public_key' => array(
             '5.4' => false,

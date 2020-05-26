@@ -348,3 +348,5 @@ function FFITypeHints( FFI\CData $a, FFI\CType $b );
 try {
 } catch ( FFI\Exception | FFI\ParserException $e ) {}
 $hash = new class extends HashContext {};
+class MyIntl extends IntlPartsIterator {}
+$iterator = new IntlIterator;

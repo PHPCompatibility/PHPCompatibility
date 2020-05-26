@@ -146,6 +146,8 @@ class NewClassesUnitTest extends BaseSniffTest
             array('IntlBreakIterator', '5.4', array(58, 98, 138), '5.5'),
             array('IntlRuleBasedBreakIterator', '5.4', array(59, 99, 139), '5.5'),
             array('IntlCodePointBreakIterator', '5.4', array(60, 100, 140), '5.5'),
+            array('IntlPartsIterator', '5.4', array(351), '5.5'),
+            array('IntlIterator', '5.4', array(352), '5.5'),
             array('UConverter', '5.4', array(276), '5.5'),
             array('GMP', '5.5', array(281), '5.6'),
             array('IntlChar', '5.6', array(277), '7.0'),
