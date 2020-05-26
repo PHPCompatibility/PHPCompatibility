@@ -562,3 +562,26 @@ udm_get_res_param();
 udm_hash32();
 udm_load_ispell_data();
 udm_set_agent_param();
+
+// PHP 5.1.3 Msession extension.
+msession_connect();
+msession_count();
+msession_create();
+msession_destroy();
+msession_disconnect();
+msession_find();
+msession_get_array();
+msession_get_data();
+msession_get();
+msession_inc();
+msession_list();
+msession_listvar();
+msession_lock();
+msession_plugin();
+msession_randstr();
+msession_set_array();
+msession_set_data();
+msession_set();
+msession_timeout();
+msession_uniq();
+msession_unlock();
