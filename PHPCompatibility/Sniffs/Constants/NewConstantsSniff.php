@@ -77,6 +77,67 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '4.4' => false,
             '5.0' => true,
         ),
+        // Math:
+        'M_PI' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_E' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_LOG2E' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_LOG10E' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_LN2' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_LN10' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_PI_2' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_PI_4' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_1_PI' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_2_PI' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_2_SQRTPI' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_SQRT2' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'M_SQRT1_2' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'NAN' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
+        'INF' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
         // OpenSSL:
         'OPENSSL_ALGO_MD2' => array(
             '4.4' => false,
