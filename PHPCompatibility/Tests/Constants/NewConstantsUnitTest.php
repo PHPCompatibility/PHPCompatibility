@@ -240,6 +240,8 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURLINFO_CERTINFO', '5.2', array(180), '5.3'),
             array('CURLOPT_PROGRESSFUNCTION', '5.2', array(181), '5.3'),
             array('CURLE_SSH', '5.2', array(182), '5.3'),
+            array('ENCHANT_MYSPELL', '5.2', array(894), '5.3'),
+            array('ENCHANT_ISPELL', '5.2', array(895), '5.3'),
             array('IMG_FILTER_PIXELATE', '5.2', array(183), '5.3'),
             array('IMAGETYPE_ICO', '5.2', array(184), '5.3'),
             array('FILEINFO_MIME_TYPE', '5.2', array(185), '5.3'),
