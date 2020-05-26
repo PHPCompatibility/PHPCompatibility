@@ -799,14 +799,57 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         // Fileinfo:
+        'FILEINFO_NONE' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_SYMLINK' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
         'FILEINFO_MIME_TYPE' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
         ),
         'FILEINFO_MIME_ENCODING' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
         ),
+        'FILEINFO_MIME' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_COMPRESS' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_DEVICES' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_CONTINUE' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_PRESERVE_ATIME' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+        'FILEINFO_RAW' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'fileinfo',
+        ),
+
         // JSON:
         'JSON_ERROR_CTRL_CHAR' => array(
             '5.2'       => false,
