@@ -369,3 +369,13 @@ echo SWF_SOUND_8BITS;
 echo SWF_SOUND_16BITS;
 echo SWF_SOUND_MONO;
 echo SWF_SOUND_STEREO;
+
+echo FAMChanged;
+echo FAMDeleted;
+echo FAMStartExecuting;
+echo FAMStopExecuting;
+echo FAMCreated;
+echo FAMMoved;
+echo FAMAcknowledge;
+echo FAMExists;
+echo FAMEndExist;

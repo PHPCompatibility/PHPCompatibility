@@ -510,3 +510,14 @@ ming_setswfcompression();
 ming_useconstants();
 ming_useswfversion();
 
+// PHP 5.1 Fam extension.
+fam_cancel_monitor();
+fam_close();
+fam_monitor_collection();
+fam_monitor_directory();
+fam_monitor_file();
+fam_next_event();
+fam_open();
+fam_pending();
+fam_resume_monitor();
+fam_suspend_monitor();
