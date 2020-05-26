@@ -545,6 +545,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURLPIPE_NOTHING', '5.6', array(481), '7.0'),
             array('CURLPIPE_HTTP1', '5.6', array(482), '7.0'),
             array('CURLPIPE_MULTIPLEX', '5.6', array(483), '7.0'),
+            array('DATE_RFC3339_EXTENDED', '5.6', array(885), '7.0'),
             array('JSON_ERROR_INVALID_PROPERTY_NAME', '5.6', array(484), '7.0'),
             array('JSON_ERROR_UTF16', '5.6', array(485), '7.0'),
             array('LIBXML_BIGLINES', '5.6', array(486), '7.0'),
@@ -583,6 +584,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('ZLIB_NO_FLUSH', '5.6', array(517), '7.0'),
             array('ZLIB_PARTIAL_FLUSH', '5.6', array(518), '7.0'),
             array('ZLIB_SYNC_FLUSH', '5.6', array(519), '7.0'),
+
             array('CURL_HTTP_VERSION_2', '7.0.6', array(520), '7.1', '7.0'),
             array('CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE', '7.0.6', array(521), '7.1', '7.0'),
             array('CURL_HTTP_VERSION_2TLS', '7.0.6', array(522), '7.1', '7.0'),
@@ -634,6 +636,9 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURLPROXY_HTTP_1_0', '7.0.6', array(568), '7.1', '7.0'),
             array('CURLSSH_AUTH_AGENT', '7.0.6', array(569), '7.1', '7.0'),
             array('CURLSSLOPT_NO_REVOKE', '7.0.6', array(570), '7.1', '7.0'),
+
+            array('DATE_RFC7231', '7.0.18', array(884), '7.1', '7.0'),
+
             array('PHP_FD_SETSIZE', '7.0', array(571), '7.1'),
             array('CURLMOPT_PUSHFUNCTION', '7.0', array(572), '7.1'),
             array('CURL_PUSH_OK', '7.0', array(573), '7.1'),
@@ -669,6 +674,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('PGSQL_NOTICE_ALL', '7.0', array(603), '7.1'),
             array('PGSQL_NOTICE_CLEAR', '7.0', array(604), '7.1'),
             array('MT_RAND_PHP', '7.0', array(605), '7.1'),
+
             array('SQLITE3_DETERMINISTIC', '7.1.3', array(606), '7.2', '7.1'),
             array('PHP_OS_FAMILY', '7.1', array(607), '7.2'),
             array('PHP_FLOAT_DIG', '7.1', array(608), '7.2'),

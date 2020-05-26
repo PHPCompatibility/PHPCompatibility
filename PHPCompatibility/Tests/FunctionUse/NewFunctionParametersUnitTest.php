@@ -76,6 +76,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             array('clearstatcache', 'filename', '5.2', array(18), '5.3'),
             array('copy', 'context', '5.2', array(19), '5.3'),
             array('curl_multi_info_read', 'msgs_in_queue', '5.1', array(20), '5.2'),
+            array('date_time_set', 'microseconds', '7.0', array(119), '7.1'),
             array('debug_backtrace', 'options', '5.2.4', array(21), '5.4', '5.2'),
             array('debug_backtrace', 'limit', '5.3', array(21), '5.4'),
             array('debug_print_backtrace', 'options', '5.3.5', array(22), '5.4', '5.3'),

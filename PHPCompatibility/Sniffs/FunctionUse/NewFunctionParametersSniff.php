@@ -122,6 +122,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.2'  => true,
             ),
         ),
+        'date_time_set' => array(
+            4 => array(
+                'name' => 'microseconds',
+                '7.0'  => false,
+                '7.1'  => true,
+            ),
+        ),
         'debug_backtrace' => array(
             0 => array(
                 'name'  => 'options',
