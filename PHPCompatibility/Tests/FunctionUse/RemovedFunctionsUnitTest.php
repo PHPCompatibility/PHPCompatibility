@@ -482,6 +482,12 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('fdf_set_target_frame', '5.3', array(501), '5.2'),
             array('fdf_set_value', '5.3', array(502), '5.2'),
             array('fdf_set_version', '5.3', array(503), '5.2'),
+            array('ming_keypress', '5.3', array(506), '5.2'),
+            array('ming_setcubicthreshold', '5.3', array(507), '5.2'),
+            array('ming_setscale', '5.3', array(508), '5.2'),
+            array('ming_setswfcompression', '5.3', array(509), '5.2'),
+            array('ming_useconstants', '5.3', array(510), '5.2'),
+            array('ming_useswfversion', '5.3', array(511), '5.2'),
 
             array('php_logo_guid', '5.5', array(32), '5.4'),
             array('php_egg_logo_guid', '5.5', array(33), '5.4'),

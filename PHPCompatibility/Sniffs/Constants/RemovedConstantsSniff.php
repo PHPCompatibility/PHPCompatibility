@@ -738,6 +738,219 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'fdf',
         ),
 
+        'MING_NEW' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'MING_ZLIB' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_HIT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_DOWN' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_OVER' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_UP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_MOUSEUPOUTSIDE' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_DRAGOVER' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_DRAGOUT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_MOUSEUP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_MOUSEDOWN' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_MOUSEOUT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFBUTTON_MOUSEOVER' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFFILL_RADIAL_GRADIENT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFFILL_LINEAR_GRADIENT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFFILL_TILED_BITMAP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFFILL_CLIPPED_BITMAP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_HASLENGTH' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_NOEDIT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_PASSWORD' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_MULTILINE' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_WORDWRAP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_DRAWBOX' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_NOSELECT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_HTML' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_ALIGN_LEFT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_ALIGN_RIGHT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_ALIGN_CENTER' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_ALIGN_JUSTIFY' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_ONLOAD' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_ENTERFRAME' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_UNLOAD' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_MOUSEMOVE' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_MOUSEDOWN' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_MOUSEUP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_KEYDOWN' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_KEYUP' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFACTION_DATA' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_USEFONT' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWFTEXTFIELD_AUTOSIZE' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_NOT_COMPRESSED' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_ADPCM_COMPRESSED' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_MP3_COMPRESSED' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_NOT_COMPRESSED_LE' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_NELLY_COMPRESSED' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_5KHZ' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_11KHZ' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_22KHZ' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_44KHZ' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_8BITS' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_16BITS' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_MONO' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'SWF_SOUND_STEREO' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,
         ),

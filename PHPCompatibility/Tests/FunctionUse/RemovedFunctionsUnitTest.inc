@@ -501,3 +501,12 @@ fdf_set_submit_form_action();
 fdf_set_target_frame();
 fdf_set_value();
 fdf_set_version();
+
+// PHP 5.3 Ming extension.
+ming_keypress();
+ming_setcubicthreshold();
+ming_setscale();
+ming_setswfcompression();
+ming_useconstants();
+ming_useswfversion();
+

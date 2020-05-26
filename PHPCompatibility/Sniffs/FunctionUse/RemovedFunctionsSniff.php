@@ -1043,6 +1043,30 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'fdf',
         ),
+        'ming_keypress' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'ming_setcubicthreshold' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'ming_setscale' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'ming_setswfcompression' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'ming_useconstants' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
+        'ming_useswfversion' => array(
+            '5.3'       => true,
+            'extension' => 'ming',
+        ),
 
         'call_user_method' => array(
             '5.3' => false,
