@@ -64,6 +64,13 @@ class RemovedClassesUnitTest extends BaseSniffTest
     public function dataRemovedClass()
     {
         return array(
+            array('HW_API', '5.2', array(59), '5.1'),
+            array('HW_API_Object', '5.2', array(60), '5.1'),
+            array('HW_API_Attribute', '5.2', array(61), '5.1'),
+            array('HW_API_Error', '5.2', array(62), '5.1'),
+            array('HW_API_Content', '5.2', array(63), '5.1'),
+            array('HW_API_Reason', '5.2', array(64), '5.1'),
+
             array('SWFAction', '5.3', array(32, 33, 34, 35), '5.2'),
             array('SWFBitmap', '5.3', array(37), '5.2'),
             array('SWFButton', '5.3', array(38), '5.2'),

@@ -303,6 +303,23 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'fam',
         ),
 
+        'hwapi_attribute_new' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'hwapi_content_new' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'hwapi_hgcsp' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'hwapi_object_new' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+
         'ncurses_addch' => array(
             '5.3'       => true,
             'extension' => 'ncurses',

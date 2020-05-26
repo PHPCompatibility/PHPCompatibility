@@ -521,3 +521,9 @@ fam_open();
 fam_pending();
 fam_resume_monitor();
 fam_suspend_monitor();
+
+// PHP 5.2 HWAPI extension.
+hwapi_attribute_new();
+hwapi_content_new();
+hwapi_hgcsp();
+hwapi_object_new();

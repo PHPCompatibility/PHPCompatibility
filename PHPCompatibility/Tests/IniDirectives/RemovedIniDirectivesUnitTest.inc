@@ -249,3 +249,6 @@ $test = ini_get('mime_magic.debug');
 
 ini_set('mime_magic.magicfile', 'path');
 $test = ini_get('mime_magic.magicfile');
+
+ini_set('hwapi.allow_persistent', 0);
+$test = ini_get('hwapi.allow_persistent');

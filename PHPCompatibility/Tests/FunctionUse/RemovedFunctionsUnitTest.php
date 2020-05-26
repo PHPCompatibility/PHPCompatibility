@@ -297,6 +297,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('fam_resume_monitor', '5.1', array(522), '5.0'),
             array('fam_suspend_monitor', '5.1', array(523), '5.0'),
 
+            array('hwapi_attribute_new', '5.2', array(526), '5.1'),
+            array('hwapi_content_new', '5.2', array(527), '5.1'),
+            array('hwapi_hgcsp', '5.2', array(528), '5.1'),
+            array('hwapi_object_new', '5.2', array(529), '5.1'),
+
             array('ncurses_addch', '5.3', array(255), '5.2'),
             array('ncurses_addchnstr', '5.3', array(256), '5.2'),
             array('ncurses_addchstr', '5.3', array(257), '5.2'),

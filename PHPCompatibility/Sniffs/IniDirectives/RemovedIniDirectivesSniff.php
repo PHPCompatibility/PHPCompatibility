@@ -70,6 +70,11 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.1' => true,
         ),
 
+        'hwapi.allow_persistent' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+
         'ifx.allow_persistent' => array(
             '5.2.1' => true,
         ),

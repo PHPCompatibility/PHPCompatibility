@@ -46,6 +46,30 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      * @var array(string => array(string => bool))
      */
     protected $removedClasses = array(
+        'HW_API' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'HW_API_Object' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'HW_API_Attribute' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'HW_API_Error' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'HW_API_Content' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
+        'HW_API_Reason' => array(
+            '5.2'       => true,
+            'extension' => 'hwapi',
+        ),
 
         'SWFAction' => array(
             '5.3'       => true,
