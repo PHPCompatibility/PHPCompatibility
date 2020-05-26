@@ -117,3 +117,4 @@ ldap_rename( $link_identifier, $dn, $newrdn, $newparent, $deleteoldrdn, $serverc
 ldap_search( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
 preg_replace_callback_array($patterns_and_callbacks, $subject, $limit, $count, $flags);
 date_time_set($object, $hour, $minute, $second, $microseconds);
+mb_decode_numericentity($str, $convmap, mb_internal_encoding(), FALSE );

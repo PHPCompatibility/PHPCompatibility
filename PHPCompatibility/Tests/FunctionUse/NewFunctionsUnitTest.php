@@ -120,6 +120,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('mb_strrchr', '5.1', array(27), '5.2'),
             array('mb_strrichr', '5.1', array(28), '5.2'),
             array('mb_strripos', '5.1', array(29), '5.2'),
+            array('mb_strstr', '5.1', array(681), '5.2'),
             array('ming_setSWFCompression', '5.1', array(30), '5.2'),
             array('openssl_csr_get_public_key', '5.1', array(31), '5.2'),
             array('openssl_csr_get_subject', '5.1', array(32), '5.2'),
@@ -338,6 +339,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_encrypt', '5.2', array(535), '5.3'),
             array('openssl_get_cipher_methods', '5.2', array(536), '5.3'),
             array('openssl_get_md_methods', '5.2', array(538), '5.3'),
+            array('mb_encoding_aliases', '5.2', array(679), '5.3'),
 
             array('enchant_broker_get_dict_path', '5.3.0', array(576), '5.4', '5.3'),
             array('enchant_broker_set_dict_path', '5.3.0', array(577), '5.4', '5.3'),
@@ -380,6 +382,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('zlib_decode', '5.3', array(167), '5.4'),
             array('zlib_encode', '5.3', array(168), '5.4'),
             array('gzdecode', '5.3', array(517), '5.4'),
+
+            array('mb_ereg_replace_callback', '5.4.0', array(680), '5.5', '5.4'),
 
             array('array_column', '5.4', array(170), '5.5'),
             array('boolval', '5.4', array(171), '5.5'),

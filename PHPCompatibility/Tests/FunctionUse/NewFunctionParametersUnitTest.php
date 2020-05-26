@@ -135,6 +135,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             array('ldap_search', 'serverctrls', '7.2', array(117), '7.3'),
             array('memory_get_peak_usage', 'real_usage', '5.1', array(51), '5.2'),
             array('memory_get_usage', 'real_usage', '5.1', array(52), '5.2'),
+            array('mb_decode_numericentity', 'is_hex', '5.3', array(120), '5.4'),
             array('mb_encode_numericentity', 'is_hex', '5.3', array(53), '5.4'),
             array('mb_strrpos', 'offset', '5.1', array(54), '5.2'),
             array('mssql_connect', 'new_link', '5.0', array(55), '5.1'),

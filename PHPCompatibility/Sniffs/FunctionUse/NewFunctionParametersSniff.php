@@ -515,6 +515,13 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.2'  => true,
             ),
         ),
+        'mb_decode_numericentity' => array(
+            3 => array(
+                'name' => 'is_hex',
+                '5.3'  => false,
+                '5.4'  => true,
+            ),
+        ),
         'mb_encode_numericentity' => array(
             3 => array(
                 'name' => 'is_hex',
