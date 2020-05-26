@@ -42,6 +42,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => bool))
      */
     protected $newFunctions = array(
+        'fputcsv' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
         'iterator_count' => array(
             '5.0' => false,
             '5.1' => true,
@@ -162,6 +166,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'hash',
         ),
 
+        'lchgrp' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
+        'lchown' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
         'timezone_name_from_abbr' => array(
             '5.1.2' => false,
             '5.1.3' => true,
@@ -807,6 +819,15 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'openssl_get_md_methods' => array(
             '5.2' => false,
             '5.3' => true,
+        ),
+
+        'realpath_cache_get' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'realpath_cache_size' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
         ),
 
         'openssl_cipher_iv_length' => array(

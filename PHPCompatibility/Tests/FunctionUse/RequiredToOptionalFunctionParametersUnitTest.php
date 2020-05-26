@@ -78,6 +78,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             array('ftp_put', 'mode', '7.2', array(31), '7.3'),
             array('array_merge', 'array(s) to merge', '7.3', array(35), '7.4'),
             array('array_merge_recursive', 'array(s) to merge', '7.3', array(36), '7.4'),
+            array('fgetcsv', 'length', '5.0', array(39), '5.1'),
         );
     }
 
@@ -116,6 +117,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             array(23),
             array(32),
             array(34),
+            array(38),
         );
     }
 

@@ -67,6 +67,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('date_default_timezone_get', '5.0', array(548), '5.1'),
             array('date_default_timezone_set', '5.0', array(549), '5.1'),
             array('strptime', '5.0', array(563), '5.1'),
+            array('fputcsv', '5.0', array(570), '5.1'),
             array('readline_callback_handler_install', '5.0', array(511), '5.1'),
             array('readline_callback_handler_remove', '5.0', array(512), '5.1'),
             array('readline_callback_read_char', '5.0', array(513), '5.1'),
@@ -85,6 +86,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('hash_update', '5.1.1', array(528), '5.2', '5.1'),
             array('hash', '5.1.1', array(529), '5.2', '5.1'),
 
+            array('lchgrp', '5.1.2', array(571), '5.2', '5.1'),
+            array('lchown', '5.1.2', array(572), '5.2', '5.1'),
             array('timezone_name_from_abbr', '5.1.2', array(20), '5.2', '5.1'),
 
             array('array_fill_keys', '5.1', array(12), '5.2'),
@@ -249,6 +252,9 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_encrypt', '5.2', array(535), '5.3'),
             array('openssl_get_cipher_methods', '5.2', array(536), '5.3'),
             array('openssl_get_md_methods', '5.2', array(538), '5.3'),
+
+            array('realpath_cache_get', '5.3.1', array(573), '5.4', '5.3'),
+            array('realpath_cache_size', '5.3.1', array(574), '5.4', '5.3'),
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
 

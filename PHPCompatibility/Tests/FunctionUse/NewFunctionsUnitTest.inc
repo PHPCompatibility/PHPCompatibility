@@ -566,3 +566,9 @@ timezone_location_get();
 timezone_name_get();
 timezone_offset_get();
 timezone_transitions_get();
+
+fputcsv();
+lchgrp();
+lchown();
+realpath_cache_get();
+realpath_cache_size();
