@@ -538,6 +538,11 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('session_abort', '5.5', array(295), '5.6'),
             array('session_reset', '5.5', array(296), '5.6'),
 
+            array('gmp_export', '5.6.0', array(689), '7.0', '5.6'),
+            array('gmp_import', '5.6.0', array(690), '7.0', '5.6'),
+
+            array('gmp_random_bits', '5.6.2', array(691), '7.0', '5.6'),
+            array('gmp_random_range', '5.6.2', array(692), '7.0', '5.6'),
             array('phpdbg_break_file', '5.6.2', array(496), '7.0', '5.6'),
             array('phpdbg_break_function', '5.6.2', array(497), '7.0', '5.6'),
             array('phpdbg_break_method', '5.6.2', array(498), '7.0', '5.6'),

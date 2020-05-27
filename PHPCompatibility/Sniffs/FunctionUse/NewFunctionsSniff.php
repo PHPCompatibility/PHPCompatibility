@@ -2159,6 +2159,23 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.6' => true,
         ),
 
+        'gmp_export' => array(
+            '5.6.0' => false,
+            '5.6.1' => true,
+        ),
+        'gmp_import' => array(
+            '5.6.0' => false,
+            '5.6.1' => true,
+        ),
+
+        'gmp_random_bits' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+        ),
+        'gmp_random_range' => array(
+            '5.6.2'     => false,
+            '5.6.3'     => true,
+        ),
         'phpdbg_break_file' => array(
             '5.6.2'     => false,
             '5.6.3'     => true,
