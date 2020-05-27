@@ -169,6 +169,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('jpeg2wbmp', '7.2', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
             array('png2wbmp', '7.2', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
             array('create_function', '7.2', 'an anonymous function', array(146), '7.1'),
+            array('__autoload', '7.2', 'SPL autoload', array(589), '7.1'),
             array('each', '7.2', 'a foreach loop', array(147), '7.1'),
             array('gmp_random', '7.2', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
             array('read_exif_data', '7.2', 'exif_read_data()', array(149), '7.1'),
@@ -792,8 +793,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function dataDeprecatedRemovedFunctionWithAlternative()
     {
         return array(
-            array('call_user_method', '5.3', '7.0', 'call_user_func()', array(3), '5.2'),
-            array('call_user_method_array', '5.3', '7.0', 'call_user_func_array()', array(4), '5.2'),
+            array('call_user_method', '4.1', '7.0', 'call_user_func()', array(3), '4.0'),
+            array('call_user_method_array', '4.1', '7.0', 'call_user_func_array()', array(4), '4.0'),
             array('ereg', '5.3', '7.0', 'preg_match()', array(7), '5.2'),
             array('ereg_replace', '5.3', '7.0', 'preg_replace()', array(8), '5.2'),
             array('eregi', '5.3', '7.0', 'preg_match() (with the i modifier)', array(9), '5.2'),
@@ -905,7 +906,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '5.0'); // Low version below the first deprecation.
+        $file = $this->sniffFile(__FILE__, '4.0'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
     }
 }

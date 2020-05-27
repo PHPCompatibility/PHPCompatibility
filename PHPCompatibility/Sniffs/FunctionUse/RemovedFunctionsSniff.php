@@ -1336,12 +1336,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
 
         'call_user_method' => array(
-            '5.3' => false,
+            '4.1' => false,
             '7.0' => true,
             'alternative' => 'call_user_func()',
         ),
         'call_user_method_array' => array(
-            '5.3' => false,
+            '4.1' => false,
             '7.0' => true,
             'alternative' => 'call_user_func_array()',
         ),
@@ -1964,6 +1964,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'png2wbmp' => array(
             '7.2' => false,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
+        ),
+        '__autoload' => array(
+            '7.2' => false,
+            'alternative' => 'SPL autoload',
         ),
         'create_function' => array(
             '7.2' => false,
