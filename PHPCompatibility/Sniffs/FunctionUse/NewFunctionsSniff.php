@@ -170,6 +170,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'hash',
         ),
 
+        'imap_savebody' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
         'lchgrp' => array(
             '5.1.2' => false,
             '5.1.3' => true,
@@ -1344,6 +1348,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'openssl_cipher_iv_length' => array(
             '5.3.2' => false,
             '5.3.3' => true,
+        ),
+
+        'imap_fetchmime' => array(
+            '5.3.5' => false,
+            '5.3.6' => true,
         ),
 
         'hex2bin' => array(

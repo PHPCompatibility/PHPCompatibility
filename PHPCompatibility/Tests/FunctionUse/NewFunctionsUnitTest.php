@@ -87,6 +87,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('hash_update', '5.1.1', array(528), '5.2', '5.1'),
             array('hash', '5.1.1', array(529), '5.2', '5.1'),
 
+            array('imap_savebody', '5.1.2', array(688), '5.2', '5.1'),
             array('lchgrp', '5.1.2', array(571), '5.2', '5.1'),
             array('lchown', '5.1.2', array(572), '5.2', '5.1'),
             array('timezone_name_from_abbr', '5.1.2', array(20), '5.2', '5.1'),
@@ -356,6 +357,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('realpath_cache_size', '5.3.1', array(574), '5.4', '5.3'),
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
+
+            array('imap_fetchmime', '5.3.5', array(687), '5.4', '5.3'),
 
             array('hex2bin', '5.3', array(144), '5.4'),
             array('http_response_code', '5.3', array(145), '5.4'),
