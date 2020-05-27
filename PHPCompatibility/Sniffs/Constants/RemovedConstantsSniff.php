@@ -715,6 +715,38 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'w32api',
         ),
+        'CPDF_PM_NONE' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PM_OUTLINES' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PM_THUMBS' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PM_FULLSCREEN' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PL_SINGLE' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PL_1COLUMN' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PL_2LCOLUMN' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
+        'CPDF_PL_2RCOLUMN' => array(
+            '5.1'       => true,
+            'extension' => 'cpdf',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
