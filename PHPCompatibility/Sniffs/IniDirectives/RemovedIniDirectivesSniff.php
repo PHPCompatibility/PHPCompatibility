@@ -44,6 +44,11 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      * @var array(string)
      */
     protected $deprecatedIniDirectives = array(
+        'crack.default_dictionary' => array(
+            '5.0'       => true,
+            'extension' => 'crack',
+        ),
+
         'fbsql.batchSize' => array(
             '5.1'         => true,
             'alternative' => 'fbsql.batchsize',

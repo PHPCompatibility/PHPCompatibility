@@ -587,3 +587,9 @@ msession_uniq();
 msession_unlock();
 
 __autoload($class);
+
+// PHP 5.0 Crack extension.
+crack_check();
+crack_closedict();
+crack_getlastmessage();
+crack_opendict();
