@@ -1350,6 +1350,19 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3.3' => true,
         ),
 
+        'pcntl_errno' => array(
+            '5.3.3' => false,
+            '5.3.4' => true,
+        ),
+        'pcntl_get_last_error' => array(
+            '5.3.3' => false,
+            '5.3.4' => true,
+        ),
+        'pcntl_strerror' => array(
+            '5.3.3' => false,
+            '5.3.4' => true,
+        ),
+
         'imap_fetchmime' => array(
             '5.3.5' => false,
             '5.3.6' => true,

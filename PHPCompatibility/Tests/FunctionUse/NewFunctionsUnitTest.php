@@ -358,6 +358,10 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
 
+            array('pcntl_errno', '5.3.3', array(693), '5.4', '5.3'),
+            array('pcntl_get_last_error', '5.3.3', array(694), '5.4', '5.3'),
+            array('pcntl_strerror', '5.3.3', array(695), '5.4', '5.3'),
+
             array('imap_fetchmime', '5.3.5', array(687), '5.4', '5.3'),
 
             array('hex2bin', '5.3', array(144), '5.4'),
