@@ -1578,6 +1578,82 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'ming',
         ),
+        'FBSQL_ASSOC' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_NUM' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_BOTH' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_LOCK_DEFERRED' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_LOCK_OPTIMISTIC' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_LOCK_PESSIMISTIC' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_ISO_READ_UNCOMMITTED' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_ISO_READ_COMMITTED' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_ISO_REPEATABLE_READ' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_ISO_SERIALIZABLE' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_ISO_VERSIONED' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_UNKNOWN' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_STOPPED' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_STARTING' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_RUNNING' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_STOPPING' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_NOEXEC' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_LOB_DIRECT' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'FBSQL_LOB_HANDLE' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
 
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,

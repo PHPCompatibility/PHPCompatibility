@@ -258,3 +258,39 @@ $test = ini_get('crack.default_dictionary');
 
 ini_set('dbx.colnames_case', 0);
 $test = ini_get('dbx.colnames_case');
+
+ini_set('fbsql.allow_persistent', 0);
+$test = ini_get('fbsql.allow_persistent');
+
+ini_set('fbsql.generate_warnings', 0);
+$test = ini_get('fbsql.generate_warnings');
+
+ini_set('fbsql.autocommit', 0);
+$test = ini_get('fbsql.autocommit');
+
+ini_set('fbsql.max_persistent', 0);
+$test = ini_get('fbsql.max_persistent');
+
+ini_set('fbsql.max_links', 0);
+$test = ini_get('fbsql.max_links');
+
+ini_set('fbsql.max_connections', 0);
+$test = ini_get('fbsql.max_connections');
+
+ini_set('fbsql.max_results', 0);
+$test = ini_get('fbsql.max_results');
+
+ini_set('fbsql.default_host', 0);
+$test = ini_get('fbsql.default_host');
+
+ini_set('fbsql.default_user', 0);
+$test = ini_get('fbsql.default_user');
+
+ini_set('fbsql.default_password', 0);
+$test = ini_get('fbsql.default_password');
+
+ini_set('fbsql.default_database', 0);
+$test = ini_get('fbsql.default_database');
+
+ini_set('fbsql.default_database_password', 0);
+$test = ini_get('fbsql.default_database_password');

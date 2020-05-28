@@ -264,6 +264,18 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mime_magic.debug', '5.3', array(247, 248), '5.2'),
             array('mime_magic.magicfile', '5.3', array(250, 251), '5.2'),
             array('zend.ze1_compatibility_mode', '5.3', array(36, 37), '5.2'),
+            array('fbsql.allow_persistent', '5.3', array(262, 263), '5.2'),
+            array('fbsql.generate_warnings', '5.3', array(265, 266), '5.2'),
+            array('fbsql.autocommit', '5.3', array(268, 269), '5.2'),
+            array('fbsql.max_persistent', '5.3', array(271, 272), '5.2'),
+            array('fbsql.max_links', '5.3', array(274, 275), '5.2'),
+            array('fbsql.max_connections', '5.3', array(277, 278), '5.2'),
+            array('fbsql.max_results', '5.3', array(280, 281), '5.2'),
+            array('fbsql.default_host', '5.3', array(283, 284), '5.2'),
+            array('fbsql.default_user', '5.3', array(286, 287), '5.2'),
+            array('fbsql.default_password', '5.3', array(289, 290), '5.2'),
+            array('fbsql.default_database', '5.3', array(292, 293), '5.2'),
+            array('fbsql.default_database_password', '5.3', array(295, 296), '5.2'),
 
             array('phar.extract_list', '5.4', array(244, 245), '5.3'),
 

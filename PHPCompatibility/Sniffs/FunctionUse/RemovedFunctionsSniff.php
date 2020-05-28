@@ -1863,6 +1863,246 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'dbase',
         ),
+        'fbsql_affected_rows' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_autocommit' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_blob_size' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_change_user' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_clob_size' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_close' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_commit' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_connect' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_create_blob' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_create_clob' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_create_db' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_data_seek' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_database_password' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_database' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_db_query' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_db_status' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_drop_db' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_errno' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_error' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_array' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_assoc' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_field' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_lengths' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_object' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_fetch_row' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_flags' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_len' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_name' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_seek' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_table' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_field_type' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_free_result' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_get_autostart_info' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_hostname' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_insert_id' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_list_dbs' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_list_fields' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_list_tables' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_next_result' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_num_fields' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_num_rows' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_password' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_pconnect' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_query' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_read_blob' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_read_clob' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_result' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_rollback' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_rows_fetched' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_select_db' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_set_characterset' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_set_lob_mode' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_set_password' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_set_transaction' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_start_db' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_stop_db' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_table_name' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_tablename' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_username' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
+        'fbsql_warnings' => array(
+            '5.3'       => true,
+            'extension' => 'fbsql',
+        ),
 
         'call_user_method' => array(
             '4.1' => false,
