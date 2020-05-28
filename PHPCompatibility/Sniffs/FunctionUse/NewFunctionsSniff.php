@@ -155,6 +155,30 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'stream_context_get_default' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'stream_filter_remove' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'stream_socket_enable_crypto' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'stream_socket_pair' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'stream_wrapper_restore' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'stream_wrapper_unregister' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
@@ -309,10 +333,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'timezone_transitions_get' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'stream_socket_shutdown' => array(
             '5.1' => false,
             '5.2' => true,
         ),
@@ -479,8 +499,16 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1' => false,
             '5.2' => true,
         ),
+        'stream_notification_callback' => array(
+            '5.1' => false,
+            '5.2' => true,
+        ),
 
         'sys_get_temp_dir' => array(
+            '5.2.0' => false,
+            '5.2.1' => true,
+        ),
+        'stream_socket_shutdown' => array(
             '5.2.0' => false,
             '5.2.1' => true,
         ),
@@ -507,6 +535,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ),
 
         'php_ini_loaded_file' => array(
+            '5.2.3' => false,
+            '5.2.4' => true,
+        ),
+        'stream_is_local' => array(
             '5.2.3' => false,
             '5.2.4' => true,
         ),
@@ -1386,7 +1418,15 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3.1' => false,
             '5.3.2' => true,
         ),
+        'stream_resolve_include_path' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
 
+        'stream_set_read_buffer' => array(
+            '5.3.2' => false,
+            '5.3.3' => true,
+        ),
         'openssl_cipher_iv_length' => array(
             '5.3.2' => false,
             '5.3.3' => true,

@@ -82,6 +82,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('posix_access', '5.0', array(696), '5.1'),
             array('posix_mknod', '5.0', array(697), '5.1'),
             array('time_sleep_until', '5.0', array(699), '5.1'),
+            array('stream_context_get_default', '5.0', array(703), '5.1'),
+            array('stream_filter_remove', '5.0', array(704), '5.1'),
+            array('stream_socket_enable_crypto', '5.0', array(709), '5.1'),
+            array('stream_socket_pair', '5.0', array(710), '5.1'),
+            array('stream_wrapper_restore', '5.0', array(711), '5.1'),
+            array('stream_wrapper_unregister', '5.0', array(712), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
@@ -122,7 +128,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('timezone_name_get', '5.1', array(566), '5.2'),
             array('timezone_offset_get', '5.1', array(567), '5.2'),
             array('timezone_transitions_get', '5.1', array(568), '5.2'),
-            array('stream_socket_shutdown', '5.1', array(21), '5.2'),
             array('libxml_disable_entity_loader', '5.1', array(24), '5.2'),
             array('mb_stripos', '5.1', array(25), '5.2'),
             array('mb_stristr', '5.1', array(26), '5.2'),
@@ -163,8 +168,10 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('zip_entry_read', '5.1', array(61), '5.2'),
             array('zip_open', '5.1', array(62), '5.2'),
             array('zip_read', '5.1', array(63), '5.2'),
+            array('stream_notification_callback', '5.1', array(706), '5.2'),
 
             array('sys_get_temp_dir', '5.2.0', array(17), '5.3', '5.2'),
+            array('stream_socket_shutdown', '5.2.0', array(21), '5.3', '5.2'),
 
             array('imagegrabscreen', '5.2.1', array(22), '5.3', '5.2'),
             array('imagegrabwindow', '5.2.1', array(23), '5.3', '5.2'),
@@ -173,6 +180,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_pkcs12_read', '5.2.1', array(541), '5.3', '5.2'),
 
             array('php_ini_loaded_file', '5.2.3', array(509), '5.3', '5.2'),
+            array('stream_is_local', '5.2.3', array(705), '5.3', '5.2'),
 
             array('array_replace', '5.2', array(65), '5.3'),
             array('array_replace_recursive', '5.2', array(66), '5.3'),
@@ -363,8 +371,10 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('resourcebundle_locales', '5.3.1', array(667), '5.4', '5.3'),
             array('realpath_cache_get', '5.3.1', array(573), '5.4', '5.3'),
             array('realpath_cache_size', '5.3.1', array(574), '5.4', '5.3'),
+            array('stream_resolve_include_path', '5.3.1', array(707), '5.4', '5.3'),
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
+            array('stream_set_read_buffer', '5.3.2', array(708), '5.4', '5.3'),
 
             array('pcntl_errno', '5.3.3', array(693), '5.4', '5.3'),
             array('pcntl_get_last_error', '5.3.3', array(694), '5.4', '5.3'),
