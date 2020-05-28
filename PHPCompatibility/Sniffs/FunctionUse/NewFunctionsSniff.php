@@ -114,6 +114,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'posix_access' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'posix_mknod' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,

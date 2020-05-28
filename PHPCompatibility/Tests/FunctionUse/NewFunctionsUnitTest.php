@@ -74,6 +74,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('readline_callback_read_char', '5.0', array(513), '5.1'),
             array('readline_on_new_line', '5.0', array(514), '5.1'),
             array('readline_redisplay', '5.0', array(515), '5.1'),
+            array('posix_access', '5.0', array(696), '5.1'),
+            array('posix_mknod', '5.0', array(697), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
