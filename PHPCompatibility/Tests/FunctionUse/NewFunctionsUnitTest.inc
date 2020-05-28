@@ -784,3 +784,6 @@ xmlwriter_write_dtd();
 xmlwriter_write_element_ns();
 xmlwriter_write_element();
 xmlwriter_write_pi();
+fbsql_rows_fetched();
+fbsql_set_characterset();
+fbsql_set_password();
