@@ -1783,6 +1783,54 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'ming',
         ),
+        'dbase_add_record' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_close' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_create' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_delete_record' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_get_header_info' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_get_record_with_names' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_get_record' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_numfields' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_numrecords' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_open' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_pack' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
+        'dbase_replace_record' => array(
+            '5.3'       => true,
+            'extension' => 'dbase',
+        ),
 
         'call_user_method' => array(
             '4.1' => false,
