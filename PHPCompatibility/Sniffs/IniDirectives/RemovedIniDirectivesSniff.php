@@ -48,7 +48,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.0'       => true,
             'extension' => 'crack',
         ),
-
+        'dbx.colnames_case' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
         'fbsql.batchSize' => array(
             '5.1'         => true,
             'alternative' => 'fbsql.batchsize',

@@ -876,6 +876,38 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'ircg',
         ),
+        'dbx_close' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_compare' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_connect' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_error' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_escape_string' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_fetch_row' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_query' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'dbx_sort' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,

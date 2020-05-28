@@ -255,3 +255,6 @@ $test = ini_get('hwapi.allow_persistent');
 
 ini_set('crack.default_dictionary', 0);
 $test = ini_get('crack.default_dictionary');
+
+ini_set('dbx.colnames_case', 0);
+$test = ini_get('dbx.colnames_case');

@@ -747,6 +747,90 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'cpdf',
         ),
+        'DBX_MYSQL' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_ODBC' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_PGSQL' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_MSSQL' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_FBSQL' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_OCI8' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_SYBASECT' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_SQLITE' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_PERSISTENT' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_RESULT_INFO' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_RESULT_INDEX' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_RESULT_ASSOC' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_RESULT_UNBUFFERED' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_COLNAMES_UNCHANGED' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_COLNAMES_UPPERCASE' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_COLNAMES_LOWERCASE' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_CMP_NATIVE' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_CMP_TEXT' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_CMP_NUMBER' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_CMP_ASC' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
+        'DBX_CMP_DESC' => array(
+            '5.1'       => true,
+            'extension' => 'dbx',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(

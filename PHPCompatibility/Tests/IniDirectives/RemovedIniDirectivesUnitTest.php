@@ -245,6 +245,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
         return array(
             array('crack.default_dictionary', '5.0', array(256, 257), '4.4'),
 
+            array('dbx.colnames_case', '5.1', array(259, 260), '5.0'),
+
             array('hwapi.allow_persistent', '5.2', array(253, 254), '5.1'),
 
             array('ifx.allow_persistent', '5.2.1', array(92, 93), '5.2', '5.3'),
