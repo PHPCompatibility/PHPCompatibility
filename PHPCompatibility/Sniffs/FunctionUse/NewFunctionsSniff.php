@@ -42,6 +42,22 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
      * @var array(string => array(string => bool))
      */
     protected $newFunctions = array(
+        'class_implements' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'spl',
+        ),
+        'class_parents' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'spl',
+        ),
+        'spl_classes' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'spl',
+        ),
+
         'fputcsv' => array(
             '5.0' => false,
             '5.1' => true,
@@ -50,37 +66,50 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'iterator_apply' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
+        ),
         'iterator_count' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'iterator_to_array' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload_call' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload_extensions' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload_functions' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload_register' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload_unregister' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'spl_autoload' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'date_default_timezone_get' => array(
             '5.0' => false,
@@ -332,12 +361,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'spl_object_hash' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'iterator_apply' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'spl',
         ),
         'preg_last_error' => array(
             '5.1' => false,
@@ -1425,8 +1451,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'class_uses' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'spl',
         ),
         'session_status' => array(
             '5.3' => false,
@@ -2472,8 +2499,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ),
         'spl_object_id' => array(
-            '7.1' => false,
-            '7.2' => true,
+            '7.1'       => false,
+            '7.2'       => true,
+            'extension' => 'spl',
         ),
         'sodium_add' => array(
             '7.1'       => false,

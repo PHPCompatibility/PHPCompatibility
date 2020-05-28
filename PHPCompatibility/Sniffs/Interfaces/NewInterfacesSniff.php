@@ -48,32 +48,38 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         ),
 
         'Countable' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'OuterIterator' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'RecursiveIterator' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'SeekableIterator' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'Serializable' => array(
             '5.0' => false,
             '5.1' => true,
         ),
         'SplObserver' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
         'SplSubject' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'spl',
         ),
 
         'JsonSerializable' => array(
