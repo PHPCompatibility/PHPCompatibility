@@ -122,6 +122,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'time_sleep_until' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
@@ -191,6 +195,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1.3' => true,
         ),
         'timezone_name_from_abbr' => array(
+            '5.1.2' => false,
+            '5.1.3' => true,
+        ),
+        'sys_getloadavg' => array(
             '5.1.2' => false,
             '5.1.3' => true,
         ),
