@@ -1010,6 +1010,34 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.2'       => true,
             'extension' => 'hwapi',
         ),
+        'filepro_fieldcount' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro_fieldname' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro_fieldtype' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro_fieldwidth' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro_retrieve' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro_rowcount' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
+        'filepro' => array(
+            '5.2'       => true,
+            'extension' => 'filepro',
+        ),
 
         'ncurses_addch' => array(
             '5.3'       => true,
