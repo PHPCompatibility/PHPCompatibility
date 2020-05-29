@@ -79,15 +79,17 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'tidy' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
+        ),
+        'tidyNode' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'tidy',
         ),
 
         'SimpleXMLElement' => array(
-            '5.0.0' => false,
-            '5.0.1' => true,
-        ),
-        'tidyNode' => array(
             '5.0.0' => false,
             '5.0.1' => true,
         ),

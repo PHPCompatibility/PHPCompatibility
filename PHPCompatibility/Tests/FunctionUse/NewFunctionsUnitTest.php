@@ -67,6 +67,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('class_implements', '4.4', array(700), '5.0'),
             array('class_parents', '4.4', array(701), '5.0'),
             array('spl_classes', '4.4', array(702), '5.0'),
+            array('ob_tidyhandler', '4.4', array(713), '5.0'),
+            array('tidy_access_count', '4.4', array(714), '5.0'),
+            array('tidy_config_count', '4.4', array(715), '5.0'),
+            array('tidy_error_count', '4.4', array(716), '5.0'),
+            array('tidy_get_output', '4.4', array(717), '5.0'),
+            array('tidy_warning_count', '4.4', array(718), '5.0'),
 
             array('date_default_timezone_get', '5.0', array(548), '5.1'),
             array('date_default_timezone_set', '5.0', array(549), '5.1'),
