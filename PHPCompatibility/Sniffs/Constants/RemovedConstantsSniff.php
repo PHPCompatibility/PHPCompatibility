@@ -831,6 +831,18 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'dbx',
         ),
+        'INGRES_ASSOC' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'INGRES_NUM' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
+        'INGRES_BOTH' => array(
+            '5.1'       => true,
+            'extension' => 'ingres',
+        ),
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
