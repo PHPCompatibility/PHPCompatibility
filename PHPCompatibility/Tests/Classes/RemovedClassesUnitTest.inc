@@ -62,3 +62,8 @@ $closure = function() : ?\HW_API_Attribute {};
 $closure = function() : ?HW_API_Error {};
 $obj = new HW_API_Content;
 echo HW_API_Reason::$property;
+
+$anon = new class extends SQLiteDatabase {};
+echo SQLiteResult::numFields();
+function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
+try {} catch (SQLiteException $e) {}

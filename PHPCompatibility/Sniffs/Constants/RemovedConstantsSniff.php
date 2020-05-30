@@ -1679,6 +1679,131 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'msql',
         ),
 
+        'SQLITE_ASSOC' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_BOTH' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_NUM' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_OK' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_ERROR' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_INTERNAL' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_PERM' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_ABORT' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_BUSY' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_LOCKED' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_NOMEM' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_READONLY' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_INTERRUPT' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_IOERR' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_NOTADB' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_CORRUPT' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_FORMAT' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_NOTFOUND' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_FULL' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_CANTOPEN' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_PROTOCOL' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_EMPTY' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_SCHEMA' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_TOOBIG' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_CONSTRAINT' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_MISMATCH' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_MISUSE' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_NOLFS' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_AUTH' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_ROW' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLITE_DONE' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+
         'CURLOPT_CLOSEPOLICY' => array(
             '5.6' => true,
         ),

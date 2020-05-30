@@ -143,6 +143,18 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'ming',
         ),
+        'SQLiteDatabase' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLiteResult' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+        'SQLiteUnbuffered' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
     );
 
     /**
@@ -164,7 +176,12 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $removedExceptions = array();
+    protected $removedExceptions = array(
+        'SQLiteException' => array(
+            '5.4'       => true,
+            'extension' => 'sqlite',
+        ),
+    );
 
 
     /**

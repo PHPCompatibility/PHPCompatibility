@@ -288,6 +288,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('fbsql.default_database_password', '5.3', array(295, 296), '5.2'),
 
             array('phar.extract_list', '5.4', array(244, 245), '5.3'),
+            array('sqlite.assoc_case', '5.4', array(370, 371), '5.3'),
 
             array('asp_tags', '7.0', array(83, 84), '5.6'),
             array('xsl.security_prefs', '7.0', array(86, 87), '5.6'),
