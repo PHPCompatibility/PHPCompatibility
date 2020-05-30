@@ -438,6 +438,20 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '7.3'  => true,
             ),
         ),
+        'ldap_exop' => array(
+            3 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
+        'ldap_exop_passwd' => array(
+            4 => array(
+                'name' => 'serverctrls',
+                '7.2'  => false,
+                '7.3'  => true,
+            ),
+        ),
         'ldap_list' => array(
             8 => array(
                 'name' => 'serverctrls',
