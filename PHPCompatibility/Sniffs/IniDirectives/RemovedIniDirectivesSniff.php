@@ -201,6 +201,18 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'fbsql',
         ),
+        'msql.allow_persistent' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql.max_persistent' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql.max_links' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
 
         'allow_call_time_pass_reference' => array(
             '5.3' => false,

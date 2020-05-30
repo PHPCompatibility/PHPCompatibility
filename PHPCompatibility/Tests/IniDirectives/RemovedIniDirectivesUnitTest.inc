@@ -312,3 +312,12 @@ $test = ini_get('ingres.max_links');
 
 ini_set('ingres.max_persistent', 0);
 $test = ini_get('ingres.max_persistent');
+
+ini_set('msql.allow_persistent', 0);
+$test = ini_get('msql.allow_persistent');
+
+ini_set('msql.max_persistent', 0);
+$test = ini_get('msql.max_persistent');
+
+ini_set('msql.max_links', 0);
+$test = ini_get('msql.max_links');

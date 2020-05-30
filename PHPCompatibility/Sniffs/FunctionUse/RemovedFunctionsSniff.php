@@ -1963,7 +1963,6 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.3'       => true,
             'extension' => 'dbase',
         ),
-
         'fbsql_affected_rows' => array(
             '5.3'       => true,
             'extension' => 'fbsql',
@@ -2203,6 +2202,166 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'fbsql_warnings' => array(
             '5.3'       => true,
             'extension' => 'fbsql',
+        ),
+        'msql_affected_rows' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_close' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_connect' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_create_db' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_createdb' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_data_seek' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_db_query' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_dbname' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_drop_db' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_error' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fetch_array' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fetch_field' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fetch_object' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fetch_row' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_flags' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_len' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_name' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_seek' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_table' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_field_type' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fieldflags' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fieldlen' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fieldname' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fieldtable' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_fieldtype' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_free_result' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_list_dbs' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_list_fields' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_list_tables' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_num_fields' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_num_rows' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_numfields' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_numrows' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_pconnect' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_query' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_regcase' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_result' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_select_db' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql_tablename' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
+        ),
+        'msql' => array(
+            '5.3'       => true,
+            'extension' => 'msql',
         ),
 
         'call_user_method' => array(

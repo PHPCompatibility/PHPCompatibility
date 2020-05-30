@@ -563,6 +563,9 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('FBSQL_NOEXEC', '5.3', array(548), '5.2'),
             array('FBSQL_LOB_DIRECT', '5.3', array(549), '5.2'),
             array('FBSQL_LOB_HANDLE', '5.3', array(550), '5.2'),
+            array('MSQL_ASSOC', '5.3', array(554), '5.2'),
+            array('MSQL_NUM', '5.3', array(555), '5.2'),
+            array('MSQL_BOTH', '5.3', array(556), '5.2'),
 
             array('CURLOPT_CLOSEPOLICY', '5.6', array(9), '5.5'),
             array('CURLCLOSEPOLICY_LEAST_RECENTLY_USED', '5.6', array(10), '5.5'),
