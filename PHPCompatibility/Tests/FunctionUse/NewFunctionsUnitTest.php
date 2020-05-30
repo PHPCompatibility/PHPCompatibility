@@ -294,6 +294,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('openssl_pkcs12_export', '5.2.1', array(540), '5.3', '5.2'),
             array('openssl_pkcs12_read', '5.2.1', array(541), '5.3', '5.2'),
 
+            array('mysql_set_charset', '5.2.2', array(830), '5.3', '5.2'),
+
             array('php_ini_loaded_file', '5.2.3', array(509), '5.3', '5.2'),
             array('stream_is_local', '5.2.3', array(705), '5.3', '5.2'),
 
