@@ -2794,6 +2794,127 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => null,
         ),
 
+        'mssql_bind' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_close' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_connect' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_data_seek' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_execute' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_array' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_assoc' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_batch' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_field' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_object' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_fetch_row' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_field_length' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_field_name' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_field_seek' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_field_type' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_free_result' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_free_statement' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_get_last_message' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_guid_string' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_init' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_min_error_severity' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_min_message_severity' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_next_result' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_num_fields' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_num_rows' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_pconnect' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_query' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_result' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_rows_affected' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+        'mssql_select_db' => array(
+            '7.0'       => true,
+            'extension' => 'mssql',
+        ),
+
         'mcrypt_create_iv' => array(
             '7.1'         => false,
             '7.2'         => true,
