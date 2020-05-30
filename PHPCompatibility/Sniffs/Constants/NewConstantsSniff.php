@@ -857,6 +857,18 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.1' => true,
         ),
         // Curl:
+        'CURLFTPAUTH_DEFAULT' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'CURLFTPAUTH_SSL' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'CURLFTPAUTH_TLS' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
         'CURLOPT_AUTOREFERER' => array(
             '5.0' => false,
             '5.1' => true,
@@ -1147,18 +1159,6 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'CURLE_LDAP_INVALID_URL' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'CURLFTPAUTH_DEFAULT' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'CURLFTPAUTH_SSL' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'CURLFTPAUTH_TLS' => array(
             '5.1' => false,
             '5.2' => true,
         ),
@@ -2566,6 +2566,22 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.4' => false,
             '5.5' => true,
         ),
+        'CURLOPT_COOKIELIST' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'CURLOPT_TCP_KEEPALIVE' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'CURLOPT_TCP_KEEPIDLE' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'CURLOPT_TCP_KEEPINTVL' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
         'CURLSSLOPT_ALLOW_BEAST' => array(
             '5.4' => false,
             '5.5' => true,
@@ -2631,6 +2647,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'CURLINFO_RTSP_SESSION_ID' => array(
+            '5.4' => false,
+            '5.5' => true,
+        ),
+        'CURLINFO_HTTP_CODE' => array(
             '5.4' => false,
             '5.5' => true,
         ),
@@ -2744,6 +2764,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ),
 
         'CURL_VERSION_HTTP2' => array(
+            '5.5.23' => false,
+            '5.5.24' => true,
+        ),
+        'CURL_HTTP_VERSION_2_0' => array(
             '5.5.23' => false,
             '5.5.24' => true,
         ),
@@ -4485,6 +4509,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         'CURL_VERSION_CURLDEBUG' => array(
             '7.3.5' => false,
             '7.3.6' => true,
+        ),
+
+        'CURLOPT_HTTP09_ALLOWED' => array(
+            '7.3.14' => false,
+            '7.3.15' => true,
         ),
 
         'IMG_FILTER_SCATTER' => array(

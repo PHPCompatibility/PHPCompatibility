@@ -716,3 +716,4 @@ tidy_config_count();
 tidy_error_count();
 tidy_get_output();
 tidy_warning_count();
+curl_setopt_array();

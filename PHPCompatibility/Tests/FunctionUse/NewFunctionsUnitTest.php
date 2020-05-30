@@ -112,6 +112,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('lchown', '5.1.2', array(572), '5.2', '5.1'),
             array('timezone_name_from_abbr', '5.1.2', array(20), '5.2', '5.1'),
             array('sys_getloadavg', '5.1.2', array(698), '5.2', '5.1'),
+            array('curl_setopt_array', '5.1.2', array(719), '5.2', '5.1'),
 
             array('array_fill_keys', '5.1', array(12), '5.2'),
             array('array_fill_keys', '5.1', array(13), '5.3'), // Test (global) namespaced function.
