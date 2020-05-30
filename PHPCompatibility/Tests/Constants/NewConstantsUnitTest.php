@@ -705,10 +705,13 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('T_ELLIPSIS', '5.5', array(471), '5.6'),
             array('T_POW', '5.5', array(472), '5.6'),
             array('T_POW_EQUAL', '5.5', array(473), '5.6'),
+            array('FTP_USEPASVADDRESS', '5.5', array(1057), '5.6'),
+
             array('INI_SCANNER_TYPED', '5.6.0', array(474), '7.0', '5.6'),
             array('JSON_PRESERVE_ZERO_FRACTION', '5.6.5', array(475), '7.0', '5.6'),
             array('MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT', '5.6.15', array(476), '7.0', '5.6'),
             array('IMG_WEBP', '5.6.24', array(477), '7.0', '5.6'),
+
             array('TOKEN_PARSE', '5.6', array(478), '7.0'),
             array('FILTER_VALIDATE_DOMAIN', '5.6', array(479), '7.0'),
             array('PHP_INT_MIN', '5.6', array(480), '7.0'),
