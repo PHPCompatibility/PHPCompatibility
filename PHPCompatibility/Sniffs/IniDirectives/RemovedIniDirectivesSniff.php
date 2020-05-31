@@ -391,6 +391,50 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '7.0'       => true,
             'extension' => 'mssql',
         ),
+        'mysql.allow_local_infile' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.allow_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.max_persistent' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.max_links' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.trace_mode' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.default_port' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.default_socket' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.default_host' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.default_user' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.default_password' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
+        'mysql.connect_timeout' => array(
+            '7.0'       => true,
+            'extension' => 'mysql',
+        ),
 
         'mcrypt.algorithms_dir' => array(
             '7.1'       => false,
