@@ -718,3 +718,5 @@ tidy_get_output();
 tidy_warning_count();
 curl_setopt_array();
 ftp_mlsd();
+inet_ntop();
+inet_pton();

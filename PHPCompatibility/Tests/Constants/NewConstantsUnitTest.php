@@ -811,6 +811,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('CURLSSH_AUTH_AGENT', '7.0.6', array(569), '7.1', '7.0'),
             array('CURLSSLOPT_NO_REVOKE', '7.0.6', array(570), '7.1', '7.0'),
 
+            array('DNS_CAA', '7.0.15', array(1059), '7.1', '7.0'),
             array('DATE_RFC7231', '7.0.18', array(884), '7.1', '7.0'),
 
             array('PHP_FD_SETSIZE', '7.0', array(571), '7.1'),
