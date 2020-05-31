@@ -577,6 +577,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('T_INSTEADOF', '5.3', array(353), '5.4'),
             array('T_TRAIT', '5.3', array(354), '5.4'),
             array('T_TRAIT_C', '5.3', array(355), '5.4'),
+
             array('CURLINFO_PRIMARY_IP', '5.4.6', array(356), '5.5', '5.4'),
             array('CURLINFO_PRIMARY_PORT', '5.4.6', array(357), '5.5', '5.4'),
             array('CURLINFO_LOCAL_IP', '5.4.6', array(358), '5.5', '5.4'),
@@ -586,6 +587,9 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('OPENSSL_ALGO_SHA256', '5.4.7', array(362), '5.5', '5.4'),
             array('OPENSSL_ALGO_SHA384', '5.4.7', array(363), '5.5', '5.4'),
             array('OPENSSL_ALGO_SHA512', '5.4.7', array(364), '5.5', '5.4'),
+
+            array('SO_REUSEPORT', '5.4.9', array(1060), '5.5', '5.4'),
+
             array('FILTER_VALIDATE_MAC', '5.4', array(365), '5.5'),
             array('IMG_AFFINE_TRANSLATE', '5.4', array(366), '5.5'),
             array('IMG_AFFINE_SCALE', '5.4', array(367), '5.5'),
