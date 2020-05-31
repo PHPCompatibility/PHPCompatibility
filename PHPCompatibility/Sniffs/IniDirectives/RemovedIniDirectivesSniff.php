@@ -487,34 +487,44 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '7.4' => false,
         ),
         'ibase.allow_persistent' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.max_persistent' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.max_links' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.default_db' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.default_user' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.default_password' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.default_charset' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.timestampformat' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.dateformat' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase.timeformat' => array(
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
     );
 

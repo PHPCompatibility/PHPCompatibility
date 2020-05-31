@@ -3709,197 +3709,390 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => "ini_restore('include_path')",
         ),
         'ibase_add_user' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_affected_rows' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_backup' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_add' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_cancel' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_close' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_create' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_echo' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_get' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_import' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_info' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_blob_open' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_close' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_commit_ret' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_commit' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_connect' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_db_info' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_delete_user' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_drop_db' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_errcode' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_errmsg' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_execute' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_fetch_assoc' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_fetch_object' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_fetch_row' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_field_info' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_free_event_handler' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_free_query' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_free_result' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_gen_id' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_maintain_db' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_modify_user' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_name_result' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_num_fields' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_num_params' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_param_info' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_pconnect' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_prepare' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_query' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_restore' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_rollback_ret' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_rollback' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_server_info' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_service_attach' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_service_detach' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_set_event_handler' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_trans' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
         'ibase_wait_event' => array(
-            '7.4' => true,
-            'alternative' => null,
+            '7.4'       => true,
+            'extension' => 'ibase',
         ),
+        'fbird_add_user' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_affected_rows' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_backup' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_add' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_cancel' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_close' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_create' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_echo' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_get' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_import' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_info' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_blob_open' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_close' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_commit_ret' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_commit' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_connect' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_db_info' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_delete_user' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_drop_db' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_errcode' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_errmsg' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_execute' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_fetch_assoc' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_fetch_object' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_fetch_row' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_field_info' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_free_event_handler' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_free_query' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_free_result' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_gen_id' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_maintain_db' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_modify_user' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_name_result' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_num_fields' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_num_params' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_param_info' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_pconnect' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_prepare' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_query' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_restore' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_rollback_ret' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_rollback' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_server_info' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_service_attach' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_service_detach' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_set_event_handler' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_trans' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+        'fbird_wait_event' => array(
+            '7.4'       => true,
+            'extension' => 'ibase',
+        ),
+
         'ldap_control_paged_result_response' => array(
             '7.4' => false,
             'alternative' => 'ldap_search()',
