@@ -357,6 +357,11 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('INGRES_ASSOC', '5.1', array(551), '5.0'),
             array('INGRES_NUM', '5.1', array(552), '5.0'),
             array('INGRES_BOTH', '5.1', array(553), '5.0'),
+            array('ORA_BIND_INOUT', '5.1', array(607), '5.0'),
+            array('ORA_BIND_IN', '5.1', array(608), '5.0'),
+            array('ORA_BIND_OUT', '5.1', array(609), '5.0'),
+            array('ORA_FETCHINTO_ASSOC', '5.1', array(610), '5.0'),
+            array('ORA_FETCHINTO_NULLS', '5.1', array(611), '5.0'),
 
             array('FILEINFO_COMPRESS', '5.3', array(8), '5.2'),
             array('NCURSES_COLOR_BLACK', '5.3', array(142), '5.2'),

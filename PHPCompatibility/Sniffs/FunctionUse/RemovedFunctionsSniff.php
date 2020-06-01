@@ -1063,6 +1063,98 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'ovrimos',
         ),
+        'ora_bind' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_close' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_columnname' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_columnsize' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_columntype' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_commit' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_commitoff' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_commiton' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_do' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_error' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_errorcode' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_exec' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_fetch_into' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_fetch' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_getcolumn' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_logoff' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_logon' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_numcols' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_numrows' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_open' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_parse' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_plogon' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
+        'ora_rollback' => array(
+            '5.1'       => true,
+            'extension' => 'oracle',
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,
