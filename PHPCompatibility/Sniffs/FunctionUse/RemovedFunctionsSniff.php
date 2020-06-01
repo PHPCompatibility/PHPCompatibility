@@ -1155,6 +1155,15 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '5.1'       => true,
             'extension' => 'oracle',
         ),
+        'mysqli_embedded_connect' => array(
+            '5.1' => true,
+        ),
+        'mysqli_server_end' => array(
+            '5.1' => true,
+        ),
+        'mysqli_server_init' => array(
+            '5.1' => true,
+        ),
 
         'msession_connect' => array(
             '5.1.3'     => true,
@@ -1239,6 +1248,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'msession_unlock' => array(
             '5.1.3'     => true,
             'extension' => 'msession',
+        ),
+
+        'mysqli_resource' => array(
+            '5.1.4' => true,
         ),
 
         'mysql_createdb' => array(
@@ -2703,6 +2716,30 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'msql' => array(
             '5.3'       => true,
             'extension' => 'msql',
+        ),
+        'mysqli_disable_reads_from_master' => array(
+            '5.3' => true,
+        ),
+        'mysqli_disable_rpl_parse' => array(
+            '5.3' => true,
+        ),
+        'mysqli_enable_reads_from_master' => array(
+            '5.3' => true,
+        ),
+        'mysqli_enable_rpl_parse' => array(
+            '5.3' => true,
+        ),
+        'mysqli_master_query' => array(
+            '5.3' => true,
+        ),
+        'mysqli_rpl_parse_enabled' => array(
+            '5.3' => true,
+        ),
+        'mysqli_rpl_probe' => array(
+            '5.3' => true,
+        ),
+        'mysqli_slave_query' => array(
+            '5.3' => true,
         ),
 
         'call_user_method' => array(
@@ -4573,6 +4610,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
+        ),
+        'mysqli_embedded_server_end' => array(
+            '7.4' => true,
+        ),
+        'mysqli_embedded_server_start' => array(
+            '7.4' => true,
         ),
     );
 
