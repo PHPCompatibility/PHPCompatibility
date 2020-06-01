@@ -726,3 +726,4 @@ snmp2_getnext();
 snmp2_real_walk();
 snmp2_set();
 snmp2_walk();
+apache_reset_timeout();

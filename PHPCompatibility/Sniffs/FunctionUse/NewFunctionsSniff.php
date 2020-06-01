@@ -217,6 +217,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'apache_reset_timeout' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
