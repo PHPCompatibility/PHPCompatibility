@@ -728,3 +728,4 @@ snmp2_set();
 snmp2_walk();
 apache_reset_timeout();
 fastcgi_finish_request();
+htmlspecialchars_decode();
