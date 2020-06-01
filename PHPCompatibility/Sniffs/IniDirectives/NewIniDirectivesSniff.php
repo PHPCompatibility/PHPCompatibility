@@ -203,12 +203,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'filter.default' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
         ),
         'filter.default_flags' => array(
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'filter',
         ),
         'pcre.backtrack_limit' => array(
             '5.1' => false,
