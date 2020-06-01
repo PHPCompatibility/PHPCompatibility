@@ -402,3 +402,24 @@ $test = ini_get('mysql.default_password');
 
 ini_set('mysql.connect_timeout', 0);
 $test = ini_get('mysql.connect_timeout');
+
+ini_set('sybase.allow_persistent', 0);
+$test = ini_get('sybase.allow_persistent');
+
+ini_set('sybase.max_persistent', 0);
+$test = ini_get('sybase.max_persistent');
+
+ini_set('sybase.max_links', 0);
+$test = ini_get('sybase.max_links');
+
+ini_set('sybase.interface_file', 0);
+$test = ini_get('sybase.interface_file');
+
+ini_set('sybase.min_error_severity', 0);
+$test = ini_get('sybase.min_error_severity');
+
+ini_set('sybase.min_message_severity', 0);
+$test = ini_get('sybase.min_message_severity');
+
+ini_set('sybase.compatability_mode', 0);
+$test = ini_get('sybase.compatability_mode');

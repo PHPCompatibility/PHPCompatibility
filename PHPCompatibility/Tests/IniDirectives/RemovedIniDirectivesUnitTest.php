@@ -319,6 +319,13 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mysql.default_user', '7.0', array(397, 398), '5.6'),
             array('mysql.default_password', '7.0', array(400, 401), '5.6'),
             array('mysql.connect_timeout', '7.0', array(403, 404), '5.6'),
+            array('sybase.allow_persistent', '7.0', array(406, 407), '5.6'),
+            array('sybase.max_persistent', '7.0', array(409, 410), '5.6'),
+            array('sybase.max_links', '7.0', array(412, 413), '5.6'),
+            array('sybase.interface_file', '7.0', array(415, 416), '5.6'),
+            array('sybase.min_error_severity', '7.0', array(418, 419), '5.6'),
+            array('sybase.min_message_severity', '7.0', array(421, 422), '5.6'),
+            array('sybase.compatability_mode', '7.0', array(424, 425), '5.6'),
 
             array('session.entropy_file', '7.1', array(141, 142), '7.0'),
             array('session.entropy_length', '7.1', array(144, 145), '7.0'),
