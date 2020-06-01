@@ -68,24 +68,24 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
 
         'pfpro_cleanup' => array(
-            '5.1' => true,
-            'alternative' => null,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro_init' => array(
-            '5.1' => true,
-            'alternative' => null,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro_process_raw' => array(
-            '5.1' => true,
-            'alternative' => null,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro_process' => array(
-            '5.1' => true,
-            'alternative' => null,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'pfpro_version' => array(
-            '5.1' => true,
-            'alternative' => null,
+            '5.1'       => true,
+            'extension' => 'pfpro',
         ),
         'm_checkstatus' => array(
             '5.1'       => true,

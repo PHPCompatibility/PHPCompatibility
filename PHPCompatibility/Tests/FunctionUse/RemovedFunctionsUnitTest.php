@@ -244,6 +244,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('crack_getlastmessage', '5.0', array(594), '4.4'),
             array('crack_opendict', '5.0', array(595), '4.4'),
 
+            array('pfpro_cleanup', '5.1', array(221), '5.0'),
+            array('pfpro_init', '5.1', array(222), '5.0'),
+            array('pfpro_process_raw', '5.1', array(223), '5.0'),
+            array('pfpro_process', '5.1', array(224), '5.0'),
+            array('pfpro_version', '5.1', array(225), '5.0'),
             array('m_checkstatus', '5.1', array(417), '5.0'),
             array('m_completeauthorizations', '5.1', array(418), '5.0'),
             array('m_connect', '5.1', array(419), '5.0'),
@@ -1020,12 +1025,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('fbird_set_event_handler', '7.4', array(1032), '7.3'),
             array('fbird_trans', '7.4', array(1033), '7.3'),
             array('fbird_wait_event', '7.4', array(1034), '7.3'),
-
-            array('pfpro_cleanup', '5.1', array(221), '5.0'),
-            array('pfpro_init', '5.1', array(222), '5.0'),
-            array('pfpro_process_raw', '5.1', array(223), '5.0'),
-            array('pfpro_process', '5.1', array(224), '5.0'),
-            array('pfpro_version', '5.1', array(225), '5.0'),
 
             array('wddx_add_vars', '7.4', array(228), '7.3'),
             array('wddx_deserialize', '7.4', array(229), '7.3'),
