@@ -359,14 +359,14 @@ function &MyReflMethod( ReflectionMethod $method ) {}
 function MyReflectionType () : ReflectionNamedType {}
 function MyReflectionObject () : \ReflectionObject {}
 $param = new ReflectionParameter;
-echo ReflectionProperty::$prop;
+if ($prop instanceof ReflectionProperty ) {}
 
 $soap = new SoapClient();
 class MySoapServer extends SoapServer() {}
-function processA(
-    SoapHeader $header) {}
-function processB(SoapParam $param) {}
-function processC() : SoapVar {}
+function process(
+    SoapHeader $header,
+    SoapParam $param
+) : SoapVar {}
 
 $com = new COMPersistHelper;
 
