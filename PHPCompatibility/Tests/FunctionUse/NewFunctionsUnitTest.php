@@ -98,6 +98,11 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('inet_pton', '5.0', array(722), '5.1'),
             array('apache_reset_timeout', '5.0', array(729), '5.1'),
             array('htmlspecialchars_decode', '5.0', array(731), '5.1'),
+            array('array_diff_key', '5.0', array(732), '5.1'),
+            array('array_diff_ukey', '5.0', array(733), '5.1'),
+            array('array_intersect_key', '5.0', array(734), '5.1'),
+            array('array_intersect_ukey', '5.0', array(735), '5.1'),
+            array('array_product', '5.0', array(736), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
