@@ -350,3 +350,13 @@ try {
 $hash = new class extends HashContext {};
 class MyIntl extends IntlPartsIterator {}
 $iterator = new IntlIterator;
+
+$refl = new Reflection();
+class MyReflection extends ReflectionClass {}
+$anon = new class extends ReflectionExtension {}
+$closure = function (ReflectionFunction $fn ) {};
+function &MyReflMethod( ReflectionMethod $method ) {}
+function MyReflectionType () : ReflectionNamedType {}
+function MyReflectionObject () : \ReflectionObject {}
+$param = new ReflectionParameter;
+echo ReflectionProperty::$prop;
