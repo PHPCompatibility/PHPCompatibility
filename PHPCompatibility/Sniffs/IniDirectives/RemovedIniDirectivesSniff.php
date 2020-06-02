@@ -116,37 +116,48 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
 
         'ifx.allow_persistent' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.blobinfile' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.byteasvarchar' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.charasvarchar' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.default_host' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.default_password' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.default_user' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.max_links' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.max_persistent' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.nullformat' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
         'ifx.textasvarchar' => array(
-            '5.2.1' => true,
+            '5.2.1'     => true,
+            'extension' => 'ifx',
         ),
 
         'mime_magic.debug' => array(

@@ -864,6 +864,39 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'oracle',
         ),
 
+        'IFX_SCROLL' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_HOLD' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_RDONLY' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_WRONLY' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_APPEND' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_RDWR' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_BUFFER' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+        'IFX_LO_NOBUFFER' => array(
+            '5.2.1'     => true,
+            'extension' => 'ifx',
+        ),
+
         // Disabled since PHP 5.3.0 due to thread safety issues.
         'FILEINFO_COMPRESS' => array(
             '5.3' => true,

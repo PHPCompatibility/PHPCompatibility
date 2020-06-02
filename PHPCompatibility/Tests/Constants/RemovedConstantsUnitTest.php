@@ -363,6 +363,15 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('ORA_FETCHINTO_ASSOC', '5.1', array(610), '5.0'),
             array('ORA_FETCHINTO_NULLS', '5.1', array(611), '5.0'),
 
+            array('IFX_SCROLL', '5.2.1', array(612), '5.2', '5.3'),
+            array('IFX_HOLD', '5.2.1', array(613), '5.2', '5.3'),
+            array('IFX_LO_RDONLY', '5.2.1', array(614), '5.2', '5.3'),
+            array('IFX_LO_WRONLY', '5.2.1', array(615), '5.2', '5.3'),
+            array('IFX_LO_APPEND', '5.2.1', array(616), '5.2', '5.3'),
+            array('IFX_LO_RDWR', '5.2.1', array(617), '5.2', '5.3'),
+            array('IFX_LO_BUFFER', '5.2.1', array(618), '5.2', '5.3'),
+            array('IFX_LO_NOBUFFER', '5.2.1', array(619), '5.2', '5.3'),
+
             array('FILEINFO_COMPRESS', '5.3', array(8), '5.2'),
             array('NCURSES_COLOR_BLACK', '5.3', array(142), '5.2'),
             array('NCURSES_COLOR_WHITE', '5.3', array(143), '5.2'),
