@@ -119,16 +119,19 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'soap.wsdl_cache_dir' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
         ),
         'soap.wsdl_cache_enabled' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
         ),
         'soap.wsdl_cache_ttl' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
         ),
         'sqlite.assoc_case' => array(
             '4.4' => false,
@@ -190,12 +193,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.1.5' => true,
         ),
         'soap.wsdl_cache' => array(
-            '5.1.4' => false,
-            '5.1.5' => true,
+            '5.1.4'     => false,
+            '5.1.5'     => true,
+            'extension' => 'soap',
         ),
         'soap.wsdl_cache_limit' => array(
-            '5.1.4' => false,
-            '5.1.5' => true,
+            '5.1.4'     => false,
+            '5.1.5'     => true,
+            'extension' => 'soap',
         ),
 
         'allow_url_include' => array(

@@ -87,6 +87,16 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'tidy',
         ),
+        'is_soap_fault' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
+        'use_soap_error_handler' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'soap',
+        ),
 
         'interface_exists' => array(
             '5.0.1' => false,
