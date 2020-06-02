@@ -74,6 +74,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('tidy_get_output', '4.4', array(717), '5.0'),
             array('tidy_warning_count', '4.4', array(718), '5.0'),
 
+            array('interface_exists', '5.0.1', array(737), '5.1', '5.0'),
+
             array('date_default_timezone_get', '5.0', array(548), '5.1'),
             array('date_default_timezone_set', '5.0', array(549), '5.1'),
             array('strptime', '5.0', array(563), '5.1'),
@@ -103,6 +105,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('array_intersect_key', '5.0', array(734), '5.1'),
             array('array_intersect_ukey', '5.0', array(735), '5.1'),
             array('array_product', '5.0', array(736), '5.1'),
+            array('property_exists', '5.0', array(738), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
