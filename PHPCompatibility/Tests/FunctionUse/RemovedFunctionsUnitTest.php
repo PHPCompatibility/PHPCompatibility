@@ -516,6 +516,9 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ora_parse', '5.1', array(1078), '5.0'),
             array('ora_plogon', '5.1', array(1079), '5.0'),
             array('ora_rollback', '5.1', array(1080), '5.0'),
+            array('mysqli_embedded_connect', '5.1', array(1146), '5.0'),
+            array('mysqli_server_end', '5.1', array(1155), '5.0'),
+            array('mysqli_server_init', '5.1', array(1156), '5.0'),
 
             array('msession_connect', '5.1.3', array(567), '5.1', '5.2'),
             array('msession_count', '5.1.3', array(568), '5.1', '5.2'),
@@ -538,6 +541,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('msession_timeout', '5.1.3', array(585), '5.1', '5.2'),
             array('msession_uniq', '5.1.3', array(586), '5.1', '5.2'),
             array('msession_unlock', '5.1.3', array(587), '5.1', '5.2'),
+
+            array('mysqli_resource', '5.1.4', array(1152), '5.1', '5.2'),
 
             array('mysql_createdb', '5.1.7', array(975), '5.1', '5.2'),
             array('mysql_dropdb', '5.1.7', array(976), '5.1', '5.2'),
@@ -907,6 +912,14 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('msql_select_db', '5.3', array(850), '5.2'),
             array('msql_tablename', '5.3', array(851), '5.2'),
             array('msql', '5.3', array(852), '5.2'),
+            array('mysqli_disable_reads_from_master', '5.3', array(1144), '5.2'),
+            array('mysqli_disable_rpl_parse', '5.3', array(1145), '5.2'),
+            array('mysqli_enable_reads_from_master', '5.3', array(1149), '5.2'),
+            array('mysqli_enable_rpl_parse', '5.3', array(1150), '5.2'),
+            array('mysqli_master_query', '5.3', array(1151), '5.2'),
+            array('mysqli_rpl_parse_enabled', '5.3', array(1153), '5.2'),
+            array('mysqli_rpl_probe', '5.3', array(1154), '5.2'),
+            array('mysqli_slave_query', '5.3', array(1157), '5.2'),
 
             array('sqlite_array_query', '5.4', array(883), '5.3'),
             array('sqlite_busy_timeout', '5.4', array(884), '5.3'),
@@ -1120,6 +1133,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('wddx_packet_start', '7.4', array(231), '7.3'),
             array('wddx_serialize_value', '7.4', array(232), '7.3'),
             array('wddx_serialize_vars', '7.4', array(233), '7.3'),
+            array('mysqli_embedded_server_end', '7.4', array(1147), '7.3'),
+            array('mysqli_embedded_server_start', '7.4', array(1148), '7.3'),
         );
     }
 
