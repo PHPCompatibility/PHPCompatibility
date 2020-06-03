@@ -10,6 +10,17 @@
 
 namespace PHPCompatibility\Traits;
 
+/*
+ * TODO/ THINK OVER:
+ * Consider a property to allow ignoring errors about a specific extension (for BC layers etc).
+ * Difficulty: can this property be made file specific ? I.e. the errors about removed/new functionality
+ * from an extension is only ignored when used in a specific file/directory.
+ * If not, it may not be worth adding.
+ *
+ * Think: wp-db.php containing references to mysql for BC purposes.
+ * However, in other files Mysql should still not be allowed.
+ */
+
 /**
  * Trait used in removed extension sniffs
  */
