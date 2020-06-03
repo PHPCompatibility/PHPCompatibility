@@ -269,6 +269,31 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0' => false,
             '5.1' => true,
         ),
+        'libxml_clear_errors' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'libxml_get_errors' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'libxml_get_last_error' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'libxml_set_streams_context' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
+        'libxml_use_internal_errors' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'libxml',
+        ),
 
         'date_sun_info' => array(
             '5.1.1'     => false,
@@ -427,10 +452,6 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2' => true,
         ),
         'timezone_transitions_get' => array(
-            '5.1' => false,
-            '5.2' => true,
-        ),
-        'libxml_disable_entity_loader' => array(
             '5.1' => false,
             '5.2' => true,
         ),
@@ -666,6 +687,12 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'stream_is_local' => array(
             '5.2.3' => false,
             '5.2.4' => true,
+        ),
+
+        'libxml_disable_entity_loader' => array(
+            '5.2.11'    => false,
+            '5.2.12'    => true,
+            'extension' => 'libxml',
         ),
 
         'array_replace' => array(
@@ -1642,8 +1669,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'libxml_set_external_entity_loader' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'libxml',
         ),
         'ldap_control_paged_result' => array(
             '5.3' => false,

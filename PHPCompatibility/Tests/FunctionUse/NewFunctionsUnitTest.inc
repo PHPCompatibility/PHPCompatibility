@@ -739,3 +739,8 @@ property_exists();
 is_soap_fault();
 use_soap_error_handler();
 dom_import_simplexml ();
+libxml_clear_errors();
+libxml_get_errors();
+libxml_get_last_error();
+libxml_set_streams_context();
+libxml_use_internal_errors();

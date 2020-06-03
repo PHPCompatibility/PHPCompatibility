@@ -109,6 +109,11 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('array_intersect_ukey', '5.0', array(735), '5.1'),
             array('array_product', '5.0', array(736), '5.1'),
             array('property_exists', '5.0', array(738), '5.1'),
+            array('libxml_clear_errors', '5.0', array(742), '5.1'),
+            array('libxml_get_errors', '5.0', array(743), '5.1'),
+            array('libxml_get_last_error', '5.0', array(744), '5.1'),
+            array('libxml_set_streams_context', '5.0', array(745), '5.1'),
+            array('libxml_use_internal_errors', '5.0', array(746), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
@@ -150,7 +155,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('timezone_name_get', '5.1', array(566), '5.2'),
             array('timezone_offset_get', '5.1', array(567), '5.2'),
             array('timezone_transitions_get', '5.1', array(568), '5.2'),
-            array('libxml_disable_entity_loader', '5.1', array(24), '5.2'),
             array('mb_stripos', '5.1', array(25), '5.2'),
             array('mb_stristr', '5.1', array(26), '5.2'),
             array('mb_strrchr', '5.1', array(27), '5.2'),
@@ -209,6 +213,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('php_ini_loaded_file', '5.2.3', array(509), '5.3', '5.2'),
             array('stream_is_local', '5.2.3', array(705), '5.3', '5.2'),
+
+            array('libxml_disable_entity_loader', '5.2.11', array(24), '5.3', '5.2'),
 
             array('array_replace', '5.2', array(65), '5.3'),
             array('array_replace_recursive', '5.2', array(66), '5.3'),
