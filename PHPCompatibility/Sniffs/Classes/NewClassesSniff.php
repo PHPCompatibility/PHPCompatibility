@@ -157,6 +157,96 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '4.4' => false,
             '5.0' => true,
         ),
+        'DOMAttr' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMCdataSection' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMCharacterData' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMComment' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMDocument' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMDocumentFragment' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMDocumentType' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMElement' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMEntity' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMEntityReference' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMImplementation' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMNamedNodeMap' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMNode' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMNodeList' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMNotation' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMProcessingInstruction' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMText' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMXPath' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
 
         'SimpleXMLElement' => array(
             '5.0.0' => false,
@@ -603,8 +693,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'DOMException' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
         ),
         'Exception' => array(
             // According to the docs introduced in PHP 5.1, but this appears to be.

@@ -1215,6 +1215,226 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'soap',
         ),
+        'XML_ELEMENT_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_TEXT_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_CDATA_SECTION_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ENTITY_REF_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ENTITY_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_PI_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_COMMENT_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_DOCUMENT_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_DOCUMENT_TYPE_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_DOCUMENT_FRAG_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_NOTATION_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_HTML_DOCUMENT_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_DTD_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ELEMENT_DECL_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_DECL_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ENTITY_DECL_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_NAMESPACE_DECL_NODE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_CDATA' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_ID' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_IDREF' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_IDREFS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_ENTITY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_NMTOKEN' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_NMTOKENS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_ENUMERATION' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'XML_ATTRIBUTE_NOTATION' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_PHP_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INDEX_SIZE_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOMSTRING_SIZE_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_HIERARCHY_REQUEST_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_WRONG_DOCUMENT_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INVALID_CHARACTER_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_NO_DATA_ALLOWED_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_NO_MODIFICATION_ALLOWED_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_NOT_FOUND_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_NOT_SUPPORTED_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INUSE_ATTRIBUTE_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INVALID_STATE_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_SYNTAX_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INVALID_MODIFICATION_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_NAMESPACE_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_INVALID_ACCESS_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
+        'DOM_VALIDATION_ERR' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'dom',
+        ),
 
         'SORT_LOCALE_STRING' => array(
             '5.0.1' => false,
