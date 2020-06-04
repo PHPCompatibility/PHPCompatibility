@@ -850,14 +850,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.6' => false,
             '7.0' => true,
         ),
-        'UI\Exception\InvalidArgumentException' => array(
-            '5.6' => false,
-            '7.0' => true,
-        ),
-        'UI\Exception\RuntimeException' => array(
-            '5.6' => false,
-            '7.0' => true,
-        ),
 
         'ArgumentCountError' => array(
             '7.0' => false,
