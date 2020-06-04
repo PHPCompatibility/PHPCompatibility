@@ -102,6 +102,21 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'dom',
         ),
+        'simplexml_import_dom' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'simplexml',
+        ),
+        'simplexml_load_file' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'simplexml',
+        ),
+        'simplexml_load_string' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'simplexml',
+        ),
 
         'interface_exists' => array(
             '5.0.1' => false,

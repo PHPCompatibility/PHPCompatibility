@@ -76,6 +76,9 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('is_soap_fault', '4.4', array(739), '5.0'),
             array('use_soap_error_handler', '4.4', array(740), '5.0'),
             array('dom_import_simplexml', '4.4', array(741), '5.0'),
+            array('simplexml_import_dom', '4.4', array(747), '5.0'),
+            array('simplexml_load_file', '4.4', array(748), '5.0'),
+            array('simplexml_load_string', '4.4', array(749), '5.0'),
 
             array('interface_exists', '5.0.1', array(737), '5.1', '5.0'),
 

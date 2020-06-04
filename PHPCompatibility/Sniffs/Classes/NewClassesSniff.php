@@ -247,10 +247,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'dom',
         ),
-
         'SimpleXMLElement' => array(
-            '5.0.0' => false,
-            '5.0.1' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'simplexml',
         ),
 
         'libXMLError' => array(
@@ -324,8 +324,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'spl',
         ),
         'SimpleXMLIterator' => array(
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'simplexml',
         ),
         'SplFileObject' => array(
             '5.0'       => false,
