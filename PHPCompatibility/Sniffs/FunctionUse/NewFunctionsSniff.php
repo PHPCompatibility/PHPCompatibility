@@ -117,6 +117,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'simplexml',
         ),
+        'fbsql_set_password' => array(
+            '4.4' => false,
+            '5.0' => true,
+        ),
 
         'interface_exists' => array(
             '5.0.1' => false,
@@ -308,6 +312,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'libxml',
+        ),
+        'fbsql_rows_fetched' => array(
+            '5.0' => false,
+            '5.1' => true,
+        ),
+        'fbsql_set_characterset' => array(
+            '5.0' => false,
+            '5.1' => true,
         ),
 
         'date_sun_info' => array(

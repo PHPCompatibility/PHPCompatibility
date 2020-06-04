@@ -79,6 +79,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('simplexml_import_dom', '4.4', array(747), '5.0'),
             array('simplexml_load_file', '4.4', array(748), '5.0'),
             array('simplexml_load_string', '4.4', array(749), '5.0'),
+            array('fbsql_set_password', '4.4', array(789), '5.0'),
 
             array('interface_exists', '5.0.1', array(737), '5.1', '5.0'),
 
@@ -117,6 +118,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('libxml_get_last_error', '5.0', array(744), '5.1'),
             array('libxml_set_streams_context', '5.0', array(745), '5.1'),
             array('libxml_use_internal_errors', '5.0', array(746), '5.1'),
+            array('fbsql_rows_fetched', '5.0', array(787), '5.1'),
+            array('fbsql_set_characterset', '5.0', array(788), '5.1'),
 
             array('date_sun_info', '5.1.1', array(557), '5.2', '5.1'),
             array('hash_algos', '5.1.1', array(521), '5.2', '5.1'),
