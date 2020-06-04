@@ -1435,6 +1435,56 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'dom',
         ),
+        'XSL_CLONE_AUTO' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_CLONE_NEVER' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_CLONE_ALWAYS' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_NONE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_READ_FILE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_WRITE_FILE' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_CREATE_DIRECTORY' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_READ_NETWORK' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_WRITE_NETWORK' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
+        'XSL_SECPREF_DEFAULT' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
 
         'SORT_LOCALE_STRING' => array(
             '5.0.1' => false,

@@ -388,3 +388,5 @@ $a = new DOMNotation();
 $a = new DOMProcessingInstruction;
 $a = new DOMText();
 $a = new DOMXPath;
+
+$anon = new class() extends XSLTProcessor {};

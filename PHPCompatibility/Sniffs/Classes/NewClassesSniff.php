@@ -252,6 +252,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'simplexml',
         ),
+        'XSLTProcessor' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'xsl',
+        ),
 
         'libXMLError' => array(
             '5.0'       => false,
