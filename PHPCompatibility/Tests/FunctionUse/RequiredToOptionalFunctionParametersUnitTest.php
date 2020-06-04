@@ -35,13 +35,15 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      * @param string $requiredUpTo  The last PHP version in which the parameter was still required.
      * @param array  $lines         The line numbers in the test file which apply to this class.
      * @param string $okVersion     A PHP version in which to test for no violation.
+     * @param string $testVersion   Optional PHP version to use for testing the flagged case.
      *
      * @return void
      */
-    public function testRequiredOptionalParameter($functionName, $parameterName, $requiredUpTo, $lines, $okVersion)
+    public function testRequiredOptionalParameter($functionName, $parameterName, $requiredUpTo, $lines, $okVersion, $testVersion = null)
     {
-        $file  = $this->sniffFile(__FILE__, $requiredUpTo);
-        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing, but was required for PHP version {$requiredUpTo} and lower";
+        $errorVersion = (isset($testVersion)) ? $testVersion : $requiredUpTo;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is missing, but was required for PHP version {$requiredUpTo} and lower";
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }
@@ -79,6 +81,8 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             array('array_merge', 'array(s) to merge', '7.3', array(35), '7.4'),
             array('array_merge_recursive', 'array(s) to merge', '7.3', array(36), '7.4'),
             array('fgetcsv', 'length', '5.0', array(39), '5.1'),
+            array('xmlwriter_write_element', 'content', '5.2.2', array(41), '5.3', '5.2'),
+            array('xmlwriter_write_element_ns', 'content', '5.2.2', array(42), '5.3', '5.2'),
         );
     }
 

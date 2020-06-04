@@ -360,8 +360,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'spl',
         ),
         'XMLWriter' => array(
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'xmlwriter',
         ),
 
         'DateTime' => array(
