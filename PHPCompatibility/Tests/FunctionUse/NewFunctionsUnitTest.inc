@@ -827,3 +827,4 @@ sqlite_udf_decode_binary();
 sqlite_udf_encode_binary();
 sqlite_unbuffered_query();
 sqlite_valid();
+mysql_set_charset();

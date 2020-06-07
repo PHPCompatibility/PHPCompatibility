@@ -1098,6 +1098,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2.2' => true,
         ),
 
+        'mysql_set_charset' => array(
+            '5.2.2' => false,
+            '5.2.3' => true,
+        ),
+
         'php_ini_loaded_file' => array(
             '5.2.3' => false,
             '5.2.4' => true,
