@@ -227,8 +227,8 @@ $test = ini_get('mysqli.allow_persistent');
 ini_set('mysqli.max_persistent', 1);
 $test = ini_get('mysqli.max_persistent');
 
-ini_set('mysqli.cache_size', 1);
-$test = ini_get('mysqli.cache_size');
+// The mysqli.cache_size ini directive was removed in PHP 5.3.
+// Removing tests as it is unclear whether the directive was ever in released version of PHP.
 
 ini_set('mysqlnd.collect_memory_statistics', 1);
 $test = ini_get('mysqlnd.collect_memory_statistics');
@@ -490,3 +490,6 @@ $test = ini_get('pdo_odbc.connection_pooling');
 
 ini_set('pdo_odbc.db2_instance_name', 1);
 $test = ini_get('pdo_odbc.db2_instance_name');
+
+ini_set('mysqli.reconnect', 1);
+$test = ini_get('mysqli.reconnect');

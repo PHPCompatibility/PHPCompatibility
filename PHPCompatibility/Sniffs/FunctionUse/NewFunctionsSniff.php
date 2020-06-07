@@ -321,10 +321,616 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.0'       => true,
             'extension' => 'sqlite',
         ),
+        'mysqli_affected_rows' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
+        ),
+        'mysqli_get_client_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_client_version' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_connect_errno' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_connect_error' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_errno' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_error' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_field_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_host_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_proto_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_server_version' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_insert_id' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_sqlstate' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_warning_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_autocommit' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_change_user' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_character_set_name' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_close' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_commit' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_connect' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_debug' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_dump_debug_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_server_info' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_init' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_kill' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_more_results' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_multi_query' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_next_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_options' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_ping' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_prepare' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_query' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_real_connect' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_real_escape_string' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_real_query' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_rollback' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_select_db' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_set_local_infile_default' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_set_local_infile_handler' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_ssl_set' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stat' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_init' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_store_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_thread_id' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_thread_safe' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_use_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_affected_rows' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_errno' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_error' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_field_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_insert_id' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_num_rows' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_param_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_sqlstate' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_attr_get' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_attr_set' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_bind_param' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_bind_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_close' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_data_seek' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_execute' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_fetch' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_free_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_prepare' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_reset' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_result_metadata' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_send_long_data' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_store_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_field_tell' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_num_fields' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_lengths' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_num_rows' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_data_seek' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_array' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_assoc' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_field_direct' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_field' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_fields' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_object' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch_row' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_field_seek' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_free_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_bind_param' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_bind_result' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_client_encoding' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_disable_rpl_parse' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_enable_reads_from_master' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_enable_rpl_parse' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_escape_string' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_execute' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_fetch' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_metadata' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_master_query' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_param_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_report' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_rpl_parse_enabled' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_rpl_probe' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_send_long_data' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_set_opt' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_slave_query' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_disable_reads_from_master' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_embedded_connect' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_resource' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_server_end' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_server_init' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_current_field' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_data_seek' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_array' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_assoc' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_field_direct' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_field' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_fields' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_object' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_row' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_field_count' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_field_seek' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_free' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_lengths' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_num_rows' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
 
         'interface_exists' => array(
             '5.0.1' => false,
             '5.0.2' => true,
+        ),
+
+        'mysqli_set_charset' => array(
+            '5.0.4'     => false,
+            '5.0.5'     => true,
+            'extension' => 'mysqli',
         ),
 
         'fputcsv' => array(
@@ -520,6 +1126,31 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'fbsql_set_characterset' => array(
             '5.0' => false,
             '5.1' => true,
+        ),
+        'mysqli_get_charset' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_warnings' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_get_warnings' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_embedded_server_end' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_embedded_server_start' => array(
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'mysqli',
         ),
 
         'date_sun_info' => array(
@@ -1269,24 +1900,64 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             'extension' => 'json',
         ),
         'mysqli_get_cache_stats' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_fetch_all' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_get_connection_status' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_poll' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
-        'mysqli_read_async_query' => array(
-            '5.2' => false,
-            '5.3' => true,
+        'mysqli_reap_async_query' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_connection_stats' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_get_client_stats' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_refresh' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_result_fetch_all' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_get_result' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_more_results' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli_stmt_next_result' => array(
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'openssl_random_pseudo_bytes' => array(
             '5.2' => false,
@@ -2084,12 +2755,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.4' => true,
         ),
         'mysqli_error_list' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_stmt_error_list' => array(
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'mysqli',
         ),
         'libxml_set_external_entity_loader' => array(
             '5.3'       => false,
@@ -2288,16 +2961,19 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.5' => true,
         ),
         'mysqli_begin_transaction' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_release_savepoint' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli_savepoint' => array(
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'mysqli',
         ),
         'pg_escape_literal' => array(
             '5.4' => false,
@@ -2760,8 +3436,9 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.6.0'  => true,
         ),
         'mysqli_get_links_stats' => array(
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'mysqli',
         ),
         'openssl_get_cert_locations' => array(
             '5.5' => false,

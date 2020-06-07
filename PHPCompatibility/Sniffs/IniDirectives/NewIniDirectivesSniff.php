@@ -83,28 +83,39 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.0' => true,
         ),
         'mysqli.max_links' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.default_port' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.default_socket' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.default_host' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.default_user' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.default_pw' => array(
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
+        ),
+        'mysqli.reconnect' => array(
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'mysqli',
         ),
         'report_zend_debug' => array(
             '4.4' => false,
@@ -252,8 +263,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         ),
 
         'mysqli.allow_local_infile' => array(
-            '5.2.3' => false,
-            '5.2.4' => true,
+            '5.2.3'     => false,
+            '5.2.4'     => true,
+            'extension' => 'mysqli',
         ),
 
         'max_file_uploads' => array(
@@ -292,16 +304,14 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '5.3' => true,
         ),
         'mysqli.allow_persistent' => array(
-            '5.2' => false,
-            '5.3' => true,
-        ),
-        'mysqli.cache_size' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqli.max_persistent' => array(
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ),
         'mysqlnd.collect_memory_statistics' => array(
             '5.2' => false,
@@ -637,8 +647,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         ),
 
         'mysqli.rollback_on_cached_plink' => array(
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'mysqli',
         ),
         'openssl.cafile' => array(
             '5.5' => false,
