@@ -1393,6 +1393,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.1.2'     => true,
             'extension' => 'xmlwriter',
         ),
+        'oci_bind_array_by_name' => array(
+            '5.1.1' => false,
+            '5.1.2' => true,
+        ),
 
         'imap_savebody' => array(
             '5.1.2' => false,
@@ -2668,6 +2672,26 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.3.1' => false,
             '5.3.2' => true,
         ),
+        'oci_set_action' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'oci_set_client_info' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'oci_set_client_identifier' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'oci_set_edition' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
+        'oci_set_module_name' => array(
+            '5.3.1' => false,
+            '5.3.2' => true,
+        ),
 
         'stream_set_read_buffer' => array(
             '5.3.2' => false,
@@ -2699,6 +2723,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         'imap_fetchmime' => array(
             '5.3.5' => false,
             '5.3.6' => true,
+        ),
+
+        'oci_client_version' => array(
+            '5.3.6' => false,
+            '5.3.7' => true,
         ),
 
         'hex2bin' => array(
@@ -3509,6 +3538,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.6' => true,
         ),
         'session_reset' => array(
+            '5.5' => false,
+            '5.6' => true,
+        ),
+        'oci_get_implicit_resultset' => array(
             '5.5' => false,
             '5.6' => true,
         ),

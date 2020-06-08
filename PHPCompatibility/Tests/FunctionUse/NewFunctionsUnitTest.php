@@ -337,6 +337,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('xmlwriter_write_element', '5.1.1', array(785), '5.2', '5.1'),
             array('xmlwriter_write_pi', '5.1.1', array(786), '5.2', '5.1'),
 
+            array('oci_bind_array_by_name', '5.1.1', array(964), '5.2', '5.1'),
+
             array('imap_savebody', '5.1.2', array(688), '5.2', '5.1'),
             array('lchgrp', '5.1.2', array(571), '5.2', '5.1'),
             array('lchown', '5.1.2', array(572), '5.2', '5.1'),
@@ -625,6 +627,11 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('realpath_cache_get', '5.3.1', array(573), '5.4', '5.3'),
             array('realpath_cache_size', '5.3.1', array(574), '5.4', '5.3'),
             array('stream_resolve_include_path', '5.3.1', array(707), '5.4', '5.3'),
+            array('oci_set_action', '5.3.1', array(965), '5.4', '5.3'),
+            array('oci_set_client_info', '5.3.1', array(966), '5.4', '5.3'),
+            array('oci_set_client_identifier', '5.3.1', array(967), '5.4', '5.3'),
+            array('oci_set_edition', '5.3.1', array(968), '5.4', '5.3'),
+            array('oci_set_module_name', '5.3.1', array(969), '5.4', '5.3'),
 
             array('openssl_cipher_iv_length', '5.3.2', array(531), '5.4', '5.3'),
             array('stream_set_read_buffer', '5.3.2', array(708), '5.4', '5.3'),
@@ -635,6 +642,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('pcntl_strerror', '5.3.3', array(695), '5.4', '5.3'),
 
             array('imap_fetchmime', '5.3.5', array(687), '5.4', '5.3'),
+
+            array('oci_client_version', '5.3.6', array(970), '5.4', '5.3'),
 
             array('hex2bin', '5.3', array(144), '5.4'),
             array('http_response_code', '5.3', array(145), '5.4'),
@@ -813,6 +822,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('pg_socket', '5.5', array(294), '5.6'),
             array('session_abort', '5.5', array(295), '5.6'),
             array('session_reset', '5.5', array(296), '5.6'),
+            array('oci_get_implicit_resultset', '5.5', array(971), '5.6'),
 
             array('gmp_export', '5.6.0', array(689), '7.0', '5.6'),
             array('gmp_import', '5.6.0', array(690), '7.0', '5.6'),

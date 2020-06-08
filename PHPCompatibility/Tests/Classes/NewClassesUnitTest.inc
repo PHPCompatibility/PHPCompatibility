@@ -400,3 +400,6 @@ class MyMysqliStmt extends mysqli_stmt {}
 function MySqliResultTypeHint( mysqli_result $result){}
 $anon = class MyMysqliDriver extends mysqli_driver {};
 if (is_a($var, mysqli_warning::class)) {}
+
+//$oci8 = new OCI-Collection();
+//$closure = function(OCI-Lob $lob) {};

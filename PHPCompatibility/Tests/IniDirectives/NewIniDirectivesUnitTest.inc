@@ -496,3 +496,30 @@ $test = ini_get('mysqli.reconnect');
 
 ini_set('mysqlnd.fetch_data_copy', 1);
 $test = ini_get('mysqlnd.fetch_data_copy');
+
+ini_set('oci8.connection_class', 1);
+$test = ini_get('oci8.connection_class');
+
+ini_set('oci8.default_prefetch', 1);
+$test = ini_get('oci8.default_prefetch');
+
+ini_set('oci8.events', 1);
+$test = ini_get('oci8.events');
+
+ini_set('oci8.max_persistent', 1);
+$test = ini_get('oci8.max_persistent');
+
+ini_set('oci8.old_oci_close_semantics', 1);
+$test = ini_get('oci8.old_oci_close_semantics');
+
+ini_set('oci8.persistent_timeout', 1);
+$test = ini_get('oci8.persistent_timeout');
+
+ini_set('oci8.ping_interval', 1);
+$test = ini_get('oci8.ping_interval');
+
+ini_set('oci8.privileged_connect', 1);
+$test = ini_get('oci8.privileged_connect');
+
+ini_set('oci8.statement_cache_size', 1);
+$test = ini_get('oci8.statement_cache_size');
