@@ -493,3 +493,6 @@ $test = ini_get('pdo_odbc.db2_instance_name');
 
 ini_set('mysqli.reconnect', 1);
 $test = ini_get('mysqli.reconnect');
+
+ini_set('mysqlnd.fetch_data_copy', 1);
+$test = ini_get('mysqlnd.fetch_data_copy');
