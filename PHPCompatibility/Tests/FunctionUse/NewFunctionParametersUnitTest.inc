@@ -120,3 +120,6 @@ date_time_set($object, $hour, $minute, $second, $microseconds);
 mb_decode_numericentity($str, $convmap, mb_internal_encoding(), FALSE );
 ldap_exop( $link, $reqoid, $reqdata, $serverctrls);
 ldap_exop_passwd( $link, $user, $oldpw, $newpw, &$serverctrls );
+pg_escape_bytea( $connection, $data );
+pg_escape_string( $connection, $data );
+pg_meta_data($connection, $table_name, $extended);
