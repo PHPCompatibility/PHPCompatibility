@@ -403,3 +403,7 @@ if (is_a($var, mysqli_warning::class)) {}
 
 //$oci8 = new OCI-Collection();
 //$closure = function(OCI-Lob $lob) {};
+
+$conn = new sqlite3();
+Class mySqlite3Stmt extends Sqlite3Stmt {}
+function MySqlite3ResultTypeHint(SQLite3Result $result) {]

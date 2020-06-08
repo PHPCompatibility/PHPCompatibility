@@ -175,6 +175,10 @@ class NewClassesUnitTest extends BaseSniffTest
             array('SplPriorityQueue', '5.2', array(44, 84, 124), '5.3'),
             array('SplQueue', '5.2', array(45, 85, 125), '5.3'),
             array('SplStack', '5.2', array(46, 86, 126), '5.3'),
+            array('sqlite3', '5.2', array(407), '5.3'),
+            array('Sqlite3Stmt', '5.2', array(408), '5.3'),
+            array('SQLite3Result', '5.2', array(409), '5.3'),
+
             array('ResourceBundle', '5.3.1', array(275), '5.4', '5.3'),
             array('CallbackFilterIterator', '5.3', array(47, 87, 127), '5.4'),
             array('RecursiveCallbackFilterIterator', '5.3', array(48, 88, 128, 179), '5.4'),

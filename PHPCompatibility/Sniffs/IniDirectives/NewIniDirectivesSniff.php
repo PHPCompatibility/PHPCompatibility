@@ -437,8 +437,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         ),
 
         'sqlite3.extension_dir' => array(
-            '5.3.10' => false,
-            '5.3.11' => true,
+            '5.3.10'    => false,
+            '5.3.11'    => true,
+            'extension' => 'sqlite3',
         ),
 
         'cli.pager' => array(
@@ -799,6 +800,13 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
         'imap.enable_insecure_rsh' => array(
             '7.1.24' => false,
             '7.1.25' => true,
+        ),
+
+        // Introduced in PHP 7.2.17, 7.3.4.
+        'sqlite3.defensive' => array(
+            '7.2.16'    => false,
+            '7.2.17'    => true,
+            'extension' => 'sqlite3',
         ),
 
         'syslog.facility' => array(
