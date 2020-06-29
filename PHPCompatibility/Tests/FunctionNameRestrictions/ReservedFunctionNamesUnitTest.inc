@@ -150,3 +150,12 @@ class Nesting extends \SoapClient {
         function __getLastResponse() {} // Error.
     }
 }
+
+// PHP 7.4: allow for new (un)serialize magic methods.
+class Magic_Test_PHP74 {
+    function __serialize() {} // OK.
+    function __unserialize() {} // OK.
+}
+
+function __serialize() {} // Error.
+function __unserialize() {} // Error.
