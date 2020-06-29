@@ -121,6 +121,10 @@ jobs:
     - php: 7.4
       env: PHPCS_VERSION="4.0.x-dev@dev"
 
+    - php: "nightly"
+      env: PHPCS_VERSION="dev-master" LINT=1
+
+
     #### CODE COVERAGE STAGE ####
     # N.B.: Coverage is only checked on the lowest and highest stable PHP versions for all PHPCS versions.
     # These builds are left out off the "test" stage so as not to duplicate test runs.
@@ -147,6 +151,7 @@ jobs:
 
   allow_failures:
     # Allow failures for unstable builds.
+    - php: "nightly"
     - env: PHPCS_VERSION="4.0.x-dev@dev"
 
 before_install:
@@ -176,7 +181,10 @@ before_install:
   - if [[ ${TRAVIS_PHP_VERSION:0:3} < "5.5" ]]; then export PHPUNIT_VERSION="~4.5"; fi
 
   # Work around bug in Travis PHP 7.2 image which contains PHPUnit 9.x while PHPUnit 9.x needs PHP 7.3.
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then export PHPUNIT_VERSION="~8.5"; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then export PHPUNIT_VERSION="^8.5"; fi
+
+  # Force installation of PHPUnit 9.x on PHP nightly.
+  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then export PHPUNIT_VERSION="^9.0"; fi
 
   # Set up test environment using Composer.
   - composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
@@ -192,6 +200,9 @@ before_install:
   - |
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Sniff" ]]; then
       composer install --prefer-dist --no-suggest
+    elif [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
+      # Ignore platform requirements to allow PHPUnit to install on PHP 8.
+      composer install --no-dev --prefer-dist --no-suggest --ignore-platform-reqs
     else
       # Remove devtools as it would block testing on old PHPCS versions (< 3.0).
       composer remove --dev phpcsstandards/phpcsdevtools --no-update
