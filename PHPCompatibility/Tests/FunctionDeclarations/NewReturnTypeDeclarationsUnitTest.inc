@@ -2,7 +2,7 @@
 
 // PHP 7.0+
 function fooBool($a): bool {}
-function fooInt($a): int {}
+function fooInt($a): INT {}
 function fooFloat($a): float {}
 function fooString($a): ?string {}
 function fooArray($a): array {}
@@ -19,14 +19,14 @@ function fooIterable($a): iterable {}
 function fooVoid($a): void {}
 
 // Anonymous function.
-function($a): callable {}
+function($a): Callable {}
 
 // OK: no return type hint.
 function fooNone($a) {}
 function ($a) {}
 
 // PHP 7.2+
-function fooObject($a): object {}
+function fooObject($a): ObJect {}
 
 function fooInterspersedWithComments($a) :
 	// Comment.
