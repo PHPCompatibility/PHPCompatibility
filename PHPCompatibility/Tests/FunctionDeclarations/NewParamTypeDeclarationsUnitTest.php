@@ -36,7 +36,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      * @param array  $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
      * @param bool   $testNoViolation   Whether or not to test noViolation.
-     *                                  Defaults to true. Only set to false for self/parent outside class scope.
+     *                                  Defaults to true.
      *
      * @return void
      */
@@ -86,6 +86,8 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['parent', '5.1', 73, '5.2', false],
             ['int', '5.6', 78, '7.0'],
             ['callable', '5.3', 80, '5.4'],
+            ['mixed', '7.4', 85, '8.0'],
+            ['mixed', '7.4', 88, '8.0', false],
         ];
     }
 
@@ -192,6 +194,30 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
+     * Verify an error is thrown for nullable mixed types.
+     *
+     * @return void
+     */
+    public function testInvalidNullableMixed()
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, 88, 'Mixed types cannot be nullable, null is already part of the mixed type');
+    }
+
+
+    /**
+     * Test no false positives for non-nullable "mixed" type.
+     *
+     * @return void
+     */
+    public function testInvalidNullableMixedNoFalsePositives()
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, 85);
+    }
+
+
+    /**
      * testTypeDeclaration
      *
      * @dataProvider dataTypeDeclaration
@@ -256,6 +282,8 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [79],
             [80],
             [81],
+            [85],
+            [88],
         ];
     }
 

@@ -80,3 +80,9 @@ $arrow = fn(\FQN\ClassName $b) => $b::method();
 $arrow = fn(callable $a) => $a();
 $arrow = fn(integer $a) => $a . 'test';
 $arrow = fn($a) => $a * 10; // OK.
+
+// Mixed type declaration - PHP 8.0+.
+$closure = function (mixed $a) {};
+
+// Invalid: Nullable mixed type declaration.
+function NullableMixed(?mixed $a) {};
