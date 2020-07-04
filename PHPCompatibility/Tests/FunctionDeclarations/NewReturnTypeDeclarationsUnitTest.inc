@@ -48,3 +48,9 @@ class Foo {
         $closure = function ($a): ?static {};
     }
 }
+
+// Mixed type declaration - PHP 8.0+.
+function fooMixed($a): mixed {}
+
+// Invalid: Nullable mixed type declaration.
+$arrow = fn($a) : ?mixed => $a * 10;
