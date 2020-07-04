@@ -2,13 +2,13 @@
 
 // Array type declaration - PHP 5.1+
 function foo(array $a) {}
-function foo( array   $a ) {} // Test extra spacing.
+function foo( Array   $a ) {} // Test extra spacing.
 
 // Callable type declaration - PHP 5.4+
 function foo(callable $a) {}
 
 // Scalar type declarations - PHP 7.0+
-function foo(bool $a) {}
+function foo(BOOL $a) {}
 function foo(int $a) {}
 function foo(float $a) {}
 function foo(string $a) {}
@@ -49,7 +49,7 @@ function foo() {}
 function foo( $a, $b ) {}
 
 // Type hints in closures.
-function (callable $a) {}
+function (CallAble $a) {}
 function(int $a) {}
 
 // Deal with nullable type hints.

@@ -177,6 +177,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
             // Strip off potential nullable indication.
             $typeHint = ltrim($param['type_hint'], '?');
+            $typeHint = strtolower($typeHint);
 
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
