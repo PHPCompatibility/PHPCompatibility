@@ -418,3 +418,5 @@ try {
     throw new ValueError('Unknown type');
 } catch (\ValueError $e) {
 }
+
+$type = new ReflectionUnionType();

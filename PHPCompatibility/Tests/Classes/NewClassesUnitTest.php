@@ -211,6 +211,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['WeakReference', '7.3', [345], '7.4'],
             ['PhpToken', '7.4', [415], '8.0'],
             ['WeakMap', '7.4', [412], '8.0'],
+            ['ReflectionUnionType', '7.4', [422], '8.0'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
