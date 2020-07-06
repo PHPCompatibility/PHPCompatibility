@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
-use PHPCompatibility\Sniff;
+use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\Variables;
@@ -24,9 +24,32 @@ use PHPCSUtils\Utils\Variables;
  * @link https://wiki.php.net/rfc/typed_properties_v2
  *
  * @since 9.2.0
+ * @since 10.0.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
  */
-class NewTypedPropertiesSniff extends Sniff
+class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
 {
+
+    /**
+     * A list of new types.
+     *
+     * The array lists : version number with false (not present) or true (present).
+     * If's sufficient to list the first version where the keyword appears.
+     *
+     * Note: this list should **not** include the initially supported types as that
+     * is handled via the "Typed properties are not supported in PHP 7.3 or earlier"
+     * error message.
+     *
+     * The types which were supported at the introduction of typed properties in PHP 7.4 were:
+     * bool, int, float, string, array, object, iterable, self, parent,
+     * any class or interface name, as well as nullability for all these.
+     * {@link https://wiki.php.net/rfc/typed_properties_v2#supported_types}
+     *
+     * @since 10.0.0
+     *
+     * @var array(string => array(string => bool))
+     */
+    protected $newTypes = array();
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -44,6 +67,7 @@ class NewTypedPropertiesSniff extends Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 9.2.0
+     * @since 10.0.0 Refactored to work with the AbstractNewFeature sniff.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token in the
@@ -67,29 +91,28 @@ class NewTypedPropertiesSniff extends Sniff
         }
 
         // Still here ? In that case, this will be a typed property.
+        $type      = ltrim($properties['type'], '?'); // Trim off potential nullability.
+        $typeToken = $properties['type_token'];
+
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
                 'Typed properties are not supported in PHP 7.3 or earlier. Found: %s',
-                $properties['type_token'],
+                $typeToken,
                 'Found',
-                array($properties['type'])
+                array($type)
             );
-        }
-
-        if ($this->supportsAbove('7.4') === true) {
-            $type = $properties['type'];
-            if ($properties['nullable_type'] === true) {
-                $type = ltrim($type, '?');
-            }
-
-            if ($type === 'void' || $type === 'callable') {
-                $phpcsFile->addError(
-                    '%s is not supported as a type declaration for properties',
-                    $properties['type_token'],
-                    'InvalidType',
-                    array($type)
-                );
-            }
+        } elseif (isset($this->newTypes[$type])) {
+            $itemInfo = array(
+                'name' => $type,
+            );
+            $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
+        } elseif ($type === 'void' || $type === 'callable') {
+            $phpcsFile->addError(
+                '%s is not supported as a type declaration for properties',
+                $typeToken,
+                'InvalidType',
+                array($type)
+            );
         }
 
         $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));
@@ -97,5 +120,33 @@ class NewTypedPropertiesSniff extends Sniff
             // Don't throw the same error multiple times for multi-property declarations.
             return ($endOfStatement + 1);
         }
+    }
+
+
+    /**
+     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     *
+     * @since 10.0.0
+     *
+     * @param array $itemInfo Base information about the item.
+     *
+     * @return array Version and other information about the item.
+     */
+    public function getItemArray(array $itemInfo)
+    {
+        return $this->newTypes[$itemInfo['name']];
+    }
+
+
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @since 10.0.0
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return "The '%s' property type is not present in PHP version %s or earlier";
     }
 }
