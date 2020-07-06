@@ -74,6 +74,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [64],
             [65],
             [66],
+            [71],
+            [74],
         ];
     }
 
@@ -125,6 +127,71 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [65, 'boolean'],
             [66, 'integer'],
         ];
+    }
+
+
+    /**
+     * Test correctly throwing an error when types are used which were not available on a particular PHP version.
+     *
+     * @dataProvider dataNewTypedPropertyTypes
+     *
+     * @param string $type              The declaration type.
+     * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
+     * @param array  $line              The line number where the error is expected.
+     * @param string $okVersion         A PHP version in which the type hint was ok to be used.
+     * @param bool   $testNoViolation   Whether or not to test noViolation.
+     *                                  Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewTypedPropertyTypes($type, $lastVersionBefore, $line, $okVersion, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, $lastVersionBefore);
+        $this->assertError($file, $line, "'{$type}' property type is not present in PHP version {$lastVersionBefore} or earlier");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, $okVersion);
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewTypedPropertyTypes()
+     *
+     * @return array
+     */
+    public function dataNewTypedPropertyTypes()
+    {
+        return [
+            ['mixed', '7.4', 71, '8.0'],
+            ['mixed', '7.4', 74, '8.0', false],
+        ];
+    }
+
+
+    /**
+     * Verify an error is thrown for nullable mixed types.
+     *
+     * @return void
+     */
+    public function testInvalidNullableMixed()
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, 74, 'Mixed types cannot be nullable, null is already part of the mixed type');
+    }
+
+
+    /**
+     * Test no false positives for non-nullable "mixed" type.
+     *
+     * @return void
+     */
+    public function testInvalidNullableMixedNoFalsePositives()
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, 71);
     }
 
 

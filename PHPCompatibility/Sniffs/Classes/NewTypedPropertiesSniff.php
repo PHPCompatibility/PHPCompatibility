@@ -16,12 +16,16 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\Variables;
 
 /**
- * Typed class property declarations are available since PHP 7.4.
+ * Detect and verify the use of typed class property declarations.
  *
- * PHP version 7.4
+ * Typed class property declarations are available since PHP 7.4.
+ * - Since PHP 8.0, `mixed` is allowed to be used as a property type.
+ *
+ * PHP version 7.4+
  *
  * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties
  * @link https://wiki.php.net/rfc/typed_properties_v2
+ * @link https://wiki.php.net/rfc/mixed_type_v2
  *
  * @since 9.2.0
  * @since 10.0.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -48,7 +52,12 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newTypes = [];
+    protected $newTypes = [
+        'mixed' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+    ];
 
     /**
      * Invalid types.
@@ -124,6 +133,21 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
                 'name' => $type,
             ];
             $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
+
+            /*
+             * Nullable mixed type declarations are not allowed, but could have been used prior
+             * to PHP 8 if the type hint referred to a class named "Mixed".
+             * Only throw an error if PHP 8+ needs to be supported.
+             */
+            if (($type === 'mixed' && $properties['nullable_type'] === true)
+                && $this->supportsAbove('8.0') === true
+            ) {
+                $phpcsFile->addError(
+                    'Mixed types cannot be nullable, null is already part of the mixed type',
+                    $typeToken,
+                    'NullableMixed'
+                );
+            }
         } elseif (isset($this->invalidTypes[$type])) {
             $error = "%s is not supported as a type declaration for properties";
             $data  = [$type];
