@@ -25,14 +25,14 @@ class PHP74Example {
     private ?ClassName $nullableClassType;
 
     // Types are also legal on static properties
-    public static iterable $staticProp;
+    public static Iterable $staticProp;
 
     // Types can also be used with the "var" notation
     var bool $flag;
 
     // Typed properties may have default values (more below)
     public string $str = "foo";
-    public ?string $nullableStr = null;
+    public ?STRING $nullableStr = null;
 
     // The type applies to all properties in one declaration
     public float $a, $b;
@@ -54,13 +54,13 @@ class PHP74Example {
     static bool $bool = true;
 
     // Test reversed keyword order.
-    static public int $int = 0;
+    static public inT $int = 0;
 }
 
 // Invalid property types.
 class InvalidExample {
     public void $invalidType;
-    protected callable $callable = 'strlen';
+    protected Callable $callable = 'strlen';
     private ?callable $nullableCallable = null;
     public boolean $booleanType;
     protected integer $integerType = 123;
