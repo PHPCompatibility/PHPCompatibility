@@ -50,6 +50,23 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      */
     protected $newTypes = array();
 
+    /**
+     * Invalid types.
+     *
+     * The array lists : the invalid type => what was probably intended/alternative
+     * or false if no alternative available.
+     *
+     * @since 10.0.0
+     *
+     * @var array(string => string|false)
+     */
+    protected $invalidTypes = array(
+        'boolean'  => 'bool',
+        'integer'  => 'int',
+        'callable' => false,
+        'void'     => false,
+    );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -106,13 +123,16 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
                 'name' => $type,
             );
             $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
-        } elseif ($type === 'void' || $type === 'callable') {
-            $phpcsFile->addError(
-                '%s is not supported as a type declaration for properties',
-                $typeToken,
-                'InvalidType',
-                array($type)
-            );
+        } elseif (isset($this->invalidTypes[$type])) {
+            $error = "%s is not supported as a type declaration for properties";
+            $data  = array($type);
+
+            if ($this->invalidTypes[$type] !== false) {
+                $error .= " Did you mean %s ?";
+                $data[] = $this->invalidTypes[$type];
+            }
+
+            $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
         }
 
         $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));

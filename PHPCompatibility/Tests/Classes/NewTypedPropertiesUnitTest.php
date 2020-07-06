@@ -72,6 +72,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             array(62),
             array(63),
             array(64),
+            array(65),
+            array(66),
         );
     }
 
@@ -120,6 +122,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             array(62, 'void'),
             array(63, 'callable'),
             array(64, 'callable'),
+            array(65, 'boolean'),
+            array(66, 'integer'),
         );
     }
 

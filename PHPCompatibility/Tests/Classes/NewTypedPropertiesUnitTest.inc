@@ -62,4 +62,6 @@ class InvalidExample {
     public void $invalidType;
     protected callable $callable = 'strlen';
     private ?callable $nullableCallable = null;
+    public boolean $booleanType;
+    protected integer $integerType = 123;
 }
