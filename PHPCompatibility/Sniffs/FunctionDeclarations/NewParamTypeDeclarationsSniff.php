@@ -199,7 +199,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                     && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
                         || ($tokens[$stackPtr]['code'] === \T_FUNCTION
                         && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
-                    && $this->supportsAbove('5.2') !== false
+                    && $this->supportsBelow('5.1') === false
                 ) {
                     $phpcsFile->addError(
                         "'%s' type cannot be used outside of class scope",
