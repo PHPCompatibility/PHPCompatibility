@@ -248,6 +248,85 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
+     * Verify that an error is thrown for union types.
+     *
+     * @dataProvider dataNewUnionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewUnionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Union types are not present in PHP version 7.4 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.0');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypes()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypes()
+    {
+        return [
+            ['int|float', 93],
+            ['int|float', 94],
+            ['MyClassA|\Package\MyClassB', 95],
+            ['array|bool|callable|int|float|null|object|string', 96],
+            ['false|mixed|self|parent|iterable|Resource', 100],
+            ['?int|float', 104],
+            ['bool|false', 113],
+            ['object|ClassName', 116],
+            ['iterable|array|Traversable', 119],
+            ['int|string|INT', 122],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when the type is not a union type.
+     *
+     * @dataProvider dataNewUnionTypesNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testNewUnionTypesNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypesNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypesNoFalsePositives()
+    {
+        return [
+            [17],
+            [79],
+            [91],
+        ];
+    }
+
+
+    /**
      * Verify that all type declarations are flagged when the minimum supported PHP version < 5.0.
      *
      * @dataProvider dataTypeDeclaration
