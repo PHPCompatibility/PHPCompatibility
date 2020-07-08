@@ -88,6 +88,36 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['callable', '5.3', 80, '5.4'],
             ['mixed', '7.4', 85, '8.0'],
             ['mixed', '7.4', 88, '8.0', false],
+
+            // Union types - OK version is 8.0.
+            ['int', '5.6', 93, '8.0'],
+            ['float', '5.6', 93, '8.0'],
+            ['int', '5.6', 94, '8.0'],
+            ['float', '5.6', 94, '8.0'],
+            ['array', '5.0', 96, '8.0'],
+            ['bool', '5.6', 96, '8.0'],
+            ['callable', '5.3', 96, '8.0'],
+            ['int', '5.6', 96, '8.0'],
+            ['float', '5.6', 96, '8.0'],
+            ['null', '7.4', 96, '8.0'],
+            ['object', '7.1', 96, '8.0'],
+            ['string', '5.6', 96, '8.0'],
+            ['false', '7.4', 100, '8.0'],
+            ['mixed', '7.4', 100, '8.0'],
+            ['self', '5.1', 100, '8.0'],
+            ['parent', '5.1', 100, '8.0'],
+            ['iterable', '7.0', 100, '8.0'],
+            ['int', '5.6', 104, '8.0'],
+            ['float', '5.6', 104, '8.0'],
+            ['null', '7.4', 107, '8.0', false],
+            ['false', '7.4', 110, '8.0', false],
+            ['bool', '5.6', 113, '8.0'],
+            ['false', '7.4', 113, '8.0'],
+            ['object', '7.1', 116, '8.0'],
+            ['iterable', '7.0', 119, '8.0'],
+            ['array', '5.0', 119, '8.0'],
+            ['int', '5.6', 122, '8.0'], // Expected x2.
+            ['string', '5.6', 122, '8.0'],
         ];
     }
 
@@ -284,6 +314,18 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [81],
             [85],
             [88],
+            [93],
+            [94],
+            [95],
+            [96],
+            [100],
+            [104],
+            [107],
+            [110],
+            [113],
+            [116],
+            [119],
+            [122],
         ];
     }
 
@@ -316,6 +358,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [48],
             [49],
             [82],
+            [91],
         ];
     }
 
