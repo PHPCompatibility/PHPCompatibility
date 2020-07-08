@@ -115,6 +115,16 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        // Union type only.
+        'false' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        // Union type only.
+        'null' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
     ];
 
 
@@ -155,36 +165,39 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $returnType      = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
         $returnType      = \strtolower($returnType);
         $returnTypeToken = $properties['return_type_token'];
+        $types           = \explode('|', $returnType);
 
-        if (isset($this->newTypes[$returnType]) === true) {
-            $itemInfo = [
-                'name' => $returnType,
-            ];
-            $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
+        foreach ($types as $type) {
+            if (isset($this->newTypes[$type]) === true) {
+                $itemInfo = [
+                    'name' => $type,
+                ];
+                $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
 
-            /*
-             * Nullable mixed type declarations are not allowed, but could have been used prior
-             * to PHP 8 if the type hint referred to a class named "Mixed".
-             * Only throw an error if PHP 8+ needs to be supported.
-             */
-            if (($returnType === 'mixed' && $properties['nullable_return_type'] === true)
-                && $this->supportsAbove('8.0') === true
-            ) {
-                $phpcsFile->addError(
-                    'Mixed types cannot be nullable, null is already part of the mixed type',
-                    $returnTypeToken,
-                    'NullableMixed'
-                );
+                /*
+                 * Nullable mixed type declarations are not allowed, but could have been used prior
+                 * to PHP 8 if the type hint referred to a class named "Mixed".
+                 * Only throw an error if PHP 8+ needs to be supported.
+                 */
+                if (($type === 'mixed' && $properties['nullable_return_type'] === true)
+                    && $this->supportsAbove('8.0') === true
+                ) {
+                    $phpcsFile->addError(
+                        'Mixed types cannot be nullable, null is already part of the mixed type',
+                        $returnTypeToken,
+                        'NullableMixed'
+                    );
+                }
+
+                continue;
             }
 
-            return;
+            // Handle class name based return types.
+            $itemInfo = [
+                'name' => 'Class name',
+            ];
+            $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
         }
-
-        // Handle class name based return types.
-        $itemInfo = [
-            'name' => 'Class name',
-        ];
-        $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
     }
 
 

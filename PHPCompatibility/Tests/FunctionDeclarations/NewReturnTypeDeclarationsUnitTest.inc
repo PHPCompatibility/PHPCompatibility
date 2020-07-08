@@ -54,3 +54,34 @@ function fooMixed($a): mixed {}
 
 // Invalid: Nullable mixed type declaration.
 $arrow = fn($a) : ?mixed => $a * 10;
+
+// PHP 8.0 union types.
+function unionTypeSimple($number) : int|float {}
+function unionTypesTwoClasses($var): MyClassA|\Package\MyClassB {}
+function unionTypesAllBaseTypes() : array|bool|callable|int|float|null|Object|string {}
+
+// Intentional fatal error - mixing types which cannot be combined, but that's not the concern of the sniff.
+function unionTypesAllPseudoTypes($var) : false|MIXED|self|parent|static|iterable|Resource|void {}
+
+// Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
+$closure = function () use($a) :?int|float {};
+
+// Intentional fatal error - null pseudotype is only allowed in union types.
+function pseudoTypeNull(): null {}
+
+// Intentional fatal error - false pseudotype is only allowed in union types.
+function pseudoTypeFalse(): false {}
+
+// Intentional fatal error - false pseudotype is not allowed in combination with bool, but that's not the concern of the sniff.
+function pseudoTypeFalseAndBool(): bool|false {}
+
+// Intentional fatal error - object is not allowed in combination with class name, but that's not the concern of the sniff.
+function objectAndClass(): object|ClassName {}
+
+// Intentional fatal error - iterable pseudotype is not allowed in combination with array or Traversable, but that's not the concern of the sniff.
+interface FooBar {
+    public function pseudoTypeIterableAndArray(): iterable|array|Traversable;
+}
+
+// Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
+function duplicateTypeInUnion(): int|string|INT {}
