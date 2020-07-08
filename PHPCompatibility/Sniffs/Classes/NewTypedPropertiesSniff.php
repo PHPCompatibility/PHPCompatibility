@@ -21,12 +21,14 @@ use PHPCSUtils\Utils\Variables;
  *
  * Typed class property declarations are available since PHP 7.4.
  * - Since PHP 8.0, `mixed` is allowed to be used as a property type.
+ * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  *
  * PHP version 7.4+
  *
  * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties
  * @link https://wiki.php.net/rfc/typed_properties_v2
  * @link https://wiki.php.net/rfc/mixed_type_v2
+ * @link https://wiki.php.net/rfc/union_types_v2
  *
  * @since 9.2.0
  */
@@ -140,7 +142,18 @@ class NewTypedPropertiesSniff extends Sniff
                 [$type]
             );
         } else {
-            $types = \explode('|', $type);
+            $types       = \explode('|', $type);
+            $isUnionType = (\strpos($type, '|') !== false);
+
+            if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
+                $phpcsFile->addError(
+                    'Union types are not present in PHP version 7.4 or earlier. Found: %s',
+                    $typeToken,
+                    'UnionTypeFound',
+                    [$properties['type']]
+                );
+            }
+
             foreach ($types as $type) {
                 if (isset($this->newTypes[$type])) {
                     $itemInfo = [

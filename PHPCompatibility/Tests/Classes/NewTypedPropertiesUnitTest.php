@@ -213,6 +213,53 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     }
 
 
+    /**
+     * Verify that an error is thrown for union types.
+     *
+     * @dataProvider dataNewUnionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewUnionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Union types are not present in PHP version 7.4 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.0');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypes()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypes()
+    {
+        return [
+            ['int|float', 79],
+            ['MyClassA|\Package\MyClassB', 80],
+            ['array|bool|int|float|NULL|object|string', 81],
+            ['false|mixed|self|parent|iterable|Resource', 84],
+            ['callable||void', 87, false],
+            ['?int|float', 90],
+            ['bool|FALSE', 99],
+            ['object|ClassName', 102],
+            ['iterable|array|Traversable', 105],
+            ['int|string|INT', 108],
+        ];
+    }
+
+
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will also throw warnings/errors
      * about invalid typed properties.
