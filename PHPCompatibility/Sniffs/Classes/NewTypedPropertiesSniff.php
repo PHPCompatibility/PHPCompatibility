@@ -58,6 +58,16 @@ class NewTypedPropertiesSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        // Union type only.
+        'false' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        // Union type only.
+        'null' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
     ];
 
     /**
@@ -129,36 +139,41 @@ class NewTypedPropertiesSniff extends Sniff
                 'Found',
                 [$type]
             );
-        } elseif (isset($this->newTypes[$type])) {
-            $itemInfo = [
-                'name' => $type,
-            ];
-            $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
+        } else {
+            $types = \explode('|', $type);
+            foreach ($types as $type) {
+                if (isset($this->newTypes[$type])) {
+                    $itemInfo = [
+                        'name' => $type,
+                    ];
+                    $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
 
-            /*
-             * Nullable mixed type declarations are not allowed, but could have been used prior
-             * to PHP 8 if the type hint referred to a class named "Mixed".
-             * Only throw an error if PHP 8+ needs to be supported.
-             */
-            if (($type === 'mixed' && $properties['nullable_type'] === true)
-                && $this->supportsAbove('8.0') === true
-            ) {
-                $phpcsFile->addError(
-                    'Mixed types cannot be nullable, null is already part of the mixed type',
-                    $typeToken,
-                    'NullableMixed'
-                );
+                    /*
+                     * Nullable mixed type declarations are not allowed, but could have been used prior
+                     * to PHP 8 if the type hint referred to a class named "Mixed".
+                     * Only throw an error if PHP 8+ needs to be supported.
+                     */
+                    if (($type === 'mixed' && $properties['nullable_type'] === true)
+                        && $this->supportsAbove('8.0') === true
+                    ) {
+                        $phpcsFile->addError(
+                            'Mixed types cannot be nullable, null is already part of the mixed type',
+                            $typeToken,
+                            'NullableMixed'
+                        );
+                    }
+                } elseif (isset($this->invalidTypes[$type])) {
+                    $error = '%s is not supported as a type declaration for properties';
+                    $data  = [$type];
+
+                    if ($this->invalidTypes[$type] !== false) {
+                        $error .= ' Did you mean %s ?';
+                        $data[] = $this->invalidTypes[$type];
+                    }
+
+                    $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
+                }
             }
-        } elseif (isset($this->invalidTypes[$type])) {
-            $error = '%s is not supported as a type declaration for properties';
-            $data  = [$type];
-
-            if ($this->invalidTypes[$type] !== false) {
-                $error .= ' Did you mean %s ?';
-                $data[] = $this->invalidTypes[$type];
-            }
-
-            $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
         }
 
         $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));

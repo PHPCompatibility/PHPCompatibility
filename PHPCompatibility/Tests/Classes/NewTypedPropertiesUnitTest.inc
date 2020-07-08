@@ -73,3 +73,37 @@ class PHP8Mixed {
     // Invalid: Nullable mixed type declaration.
     private ?miXed $nullableMixed;
 }
+
+// PHP 8.0 union types.
+$anon = class() {
+    public int|float $unionTypeSimple;
+    private MyClassA|\Package\MyClassB $unionTypesTwoClasses;
+    protected array|bool|int|float|NULL|object|string $unionTypesAllBaseTypes;
+
+    // Intentional fatal error - mixing types which cannot be combined, but that's not the concern of the sniff.
+    var false|mixed|self|parent|iterable|Resource $unionTypesAllPseudoTypes;
+
+    // Intentional fatal error - types which are not allowed for properties, but that's not the concern of the sniff.
+    public callable|static|void $unionTypesIllegalTypes;
+
+    // Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
+    public ?int|float $unionTypesNullable;
+
+    // Intentional fatal error - null pseudotype is only allowed in union types.
+    public null $pseudoTypeNull;
+
+    // Intentional fatal error - false pseudotype is only allowed in union types.
+    public false $pseudoTypeFalse;
+
+    // Intentional fatal error - false pseudotype is not allowed in combination with bool, but that's not the concern of the sniff.
+    public bool|FALSE $pseudoTypeFalseAndBool;
+
+    // Intentional fatal error - object is not allowed in combination with class name, but that's not the concern of the sniff.
+    public object|ClassName $objectAndClass;
+
+    // Intentional fatal error - iterable pseudotype is not allowed in combination with array or Traversable, but that's not the concern of the sniff.
+    public iterable|array|Traversable $pseudoTypeIterableAndArray;
+
+    // Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
+    public int|string|INT $duplicateTypeInUnion;
+};
