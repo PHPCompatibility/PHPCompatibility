@@ -141,6 +141,18 @@ class NewParamTypeDeclarationsSniff extends Sniff
         'integer' => 'int',
     ];
 
+    /**
+     * Types which are only allowed to occur in union types.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    protected $unionOnlyTypes = [
+        'false' => true,
+        'null'  => true,
+    ];
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -252,6 +264,16 @@ class NewParamTypeDeclarationsSniff extends Sniff
                             'NullableMixed'
                         );
                     }
+
+                    if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                        $phpcsFile->addError(
+                            "The '%s' type can only be used as part of a union type",
+                            $param['token'],
+                            'NonUnion' . \ucfirst($type),
+                            [$type]
+                        );
+                    }
+
                     continue;
                 }
 
