@@ -229,6 +229,70 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
     }
 
 
+    /**
+     * Verify an error is thrown when `false` or `null` is used while not a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseType
+     *
+     * @param int    $line Line number on which to expect an error.
+     * @param string $type The invalid type which should be expected.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseType($line, $type)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseType()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseType()
+    {
+        return [
+            [70, 'null'],
+            [73, 'false'],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when `false` or `null` is used within a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseTypeNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseTypeNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseTypeNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    {
+        return [
+            [61],
+            [64],
+            [76],
+        ];
+    }
+
+
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw errors
      * for invalid type hints and incorrect usage.
