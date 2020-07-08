@@ -89,6 +89,18 @@ class NewTypedPropertiesSniff extends Sniff
         'void'     => false,
     ];
 
+    /**
+     * Types which are only allowed to occur in union types.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    protected $unionOnlyTypes = [
+        'false' => true,
+        'null'  => true,
+    ];
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -173,6 +185,15 @@ class NewTypedPropertiesSniff extends Sniff
                             'Mixed types cannot be nullable, null is already part of the mixed type',
                             $typeToken,
                             'NullableMixed'
+                        );
+                    }
+
+                    if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                        $phpcsFile->addError(
+                            "The '%s' type can only be used as part of a union type",
+                            $typeToken,
+                            'NonUnion' . \ucfirst($type),
+                            [$type]
                         );
                     }
                 } elseif (isset($this->invalidTypes[$type])) {
