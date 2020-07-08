@@ -24,6 +24,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 7.2, the generic `object` type is available.
  * - Since PHP 8.0, `static` is allowed to be used as a return type.
  * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
+ * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  *
  * PHP version 7.0+
  *
@@ -35,6 +36,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/object-typehint
  * @link https://wiki.php.net/rfc/static_return_type
  * @link https://wiki.php.net/rfc/mixed_type_v2
+ * @link https://wiki.php.net/rfc/union_types_v2
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -166,6 +168,16 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $returnType      = \strtolower($returnType);
         $returnTypeToken = $properties['return_type_token'];
         $types           = \explode('|', $returnType);
+        $isUnionType     = (\strpos($returnType, '|') !== false);
+
+        if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
+            $phpcsFile->addError(
+                'Union types are not present in PHP version 7.4 or earlier. Found: %s',
+                $returnTypeToken,
+                'UnionTypeFound',
+                [$properties['return_type']]
+            );
+        }
 
         foreach ($types as $type) {
             if (isset($this->newTypes[$type]) === true) {
