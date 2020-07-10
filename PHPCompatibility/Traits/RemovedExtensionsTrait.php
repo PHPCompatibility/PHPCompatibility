@@ -173,6 +173,10 @@ trait RemovedExtensionsTrait
             '7.4'         => true,
             'alternative' => 'pecl/wddx',
         ],
+        'xmlrpc' => [
+            '8.0'         => true,
+            'alternative' => 'pecl/xmlrpc',
+        ],
         'yp' => [
             '5.1' => true,
         ],
