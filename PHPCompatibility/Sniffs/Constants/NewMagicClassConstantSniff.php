@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Constants;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect usage of the magic `::class` constant introduced in PHP 5.5.
@@ -20,13 +21,18 @@ use PHP_CodeSniffer_Tokens as Tokens;
  * The special `ClassName::class` constant is available as of PHP 5.5.0, and allows
  * for fully qualified class name resolution at compile time.
  *
+ * As of PHP 8.0, `::class` can also be used on objects.
+ *
  * PHP version 5.5
+ * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/class_name_scalars
  * @link https://www.php.net/manual/en/language.oop5.constants.php#example-186
+ * @link https://wiki.php.net/rfc/class_name_literal_on_object
  *
  * @since 7.1.4
- * @since 7.1.5 Removed the incorrect checks against invalid usage of the constant.
+ * @since 7.1.5  Removed the incorrect checks against invalid usage of the constant.
+ * @since 10.0.0 Now differentiates between Name::class (PHP 5.5+) and $obj::class (PHP 8.0+).
  */
 class NewMagicClassConstantSniff extends Sniff
 {
@@ -56,7 +62,7 @@ class NewMagicClassConstantSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.4') === false) {
+        if ($this->supportsBelow('7.4') === false) {
             return;
         }
 
@@ -71,10 +77,39 @@ class NewMagicClassConstantSniff extends Sniff
             return;
         }
 
+        $subjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
+        if ($subjectPtr === false) {
+            // Shouldn't be possible.
+            return;
+        }
+
+        $preSubjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($subjectPtr - 1), null, true, null, true);
+        if (isset(Collections::$OOHierarchyKeywords[$tokens[$subjectPtr]['code']]) === true
+            || ($tokens[$subjectPtr]['code'] === \T_STRING
+                && isset(Collections::$objectOperators[$tokens[$preSubjectPtr]['code']]) === false)
+        ) {
+            // This is a syntax which is supported on PHP 5.5 and higher.
+            if ($this->supportsBelow('5.4') === true) {
+                $phpcsFile->addError(
+                    'The magic class constant ClassName::class was not available in PHP 5.4 or earlier',
+                    $stackPtr,
+                    'Found'
+                );
+            }
+
+            return;
+        }
+
+        /*
+         * This syntax was not supported until PHP 8.0.
+         *
+         * Includes throwing an error for syntaxes which are still not supported, as differentiating
+         * between them would be hard, if not impossible, and cause more overhead than it's worth.
+         */
         $phpcsFile->addError(
-            'The magic class constant ClassName::class was not available in PHP 5.4 or earlier',
+            'Using the magic class constant ::class with dynamic class names is not supported in PHP 7.4 or earlier',
             $stackPtr,
-            'Found'
+            'UsedOnObject'
         );
     }
 }

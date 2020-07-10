@@ -26,7 +26,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewMagicClassConstant
+     * Test correctly identifying the magic class constant.
      *
      * @dataProvider dataNewMagicClassConstant
      *
@@ -38,10 +38,13 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertError($file, $line, 'The magic class constant ClassName::class was not available in PHP 5.4 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '5.5');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
-     * Data provider dataNewMagicClassConstant.
+     * Data provider.
      *
      * @see testNewMagicClassConstant()
      *
@@ -52,12 +55,18 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
         return array(
             array(6),
             array(12),
+            array(27),
+            array(28),
+            array(29),
+            array(30),
+            array(31),
+            array(32),
         );
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify that no false positives are thrown for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -90,13 +99,53 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
 
 
     /**
+     * Test correctly identifying the magic class constant when used on instantiated objects.
+     *
+     * @dataProvider dataNewMagicClassConstantOnObject
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNewMagicClassConstantOnObject($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, 'Using the magic class constant ::class with dynamic class names is not supported in PHP 7.4 or earlier');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewMagicClassConstantOnObject()
+     *
+     * @return array
+     */
+    public function dataNewMagicClassConstantOnObject()
+    {
+        return array(
+            array(35),
+            array(36),
+            array(37),
+            array(38),
+            array(39),
+
+            // Still not supported, but throwing an error anyhow.
+            array(49),
+            array(50),
+            array(51),
+            array(52),
+        );
+    }
+
+
+    /**
      * Verify no notices are thrown at all.
      *
      * @return void
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '5.5');
+        $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file);
     }
 }
