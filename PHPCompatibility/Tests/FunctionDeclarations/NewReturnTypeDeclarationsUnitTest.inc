@@ -41,3 +41,10 @@ function fooInterspersedWithComments($a) :
 // PHP 7.4 arrow functions.
 $arrow = fn($a) => $a * 10;
 $arrow = fn($a) : int => $a * 10;
+
+// PHP 8.0+
+class Foo {
+    public function fooStatic($a): static {
+        $closure = function ($a): ?static {};
+    }
+}

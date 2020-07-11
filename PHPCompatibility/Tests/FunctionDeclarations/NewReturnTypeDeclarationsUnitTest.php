@@ -78,6 +78,9 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             array('callable', '5.6', 22, '7.0'),
 
             array('object', '7.1', 29, '7.2'),
+
+            array('static', '7.4', 47, '8.0'),
+            array('static', '7.4', 48, '8.0'),
         );
     }
 
