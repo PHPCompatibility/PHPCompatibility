@@ -35,3 +35,7 @@ list(
 
 foreach ($array as list(&$a, &$b)) {}
 foreach ($array as [&$a, $b]) {}
+
+// Test handling of tokenizer issue in older PHPCS versions.
+if (true) {}
+[$id1, &$name1] = $data;

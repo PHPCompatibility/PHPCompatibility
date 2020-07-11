@@ -10,8 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Lists;
 
-use PHPCompatibility\Sniffs\Lists\NewKeyedListSniff;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Utils\Lists;
 
 /**
  * Detect reference assignments in array destructuring using (short) list.
@@ -23,50 +25,60 @@ use PHP_CodeSniffer_File as File;
  * @link https://www.php.net/manual/en/function.list.php
  *
  * @since 9.0.0
+ * @since 10.0.0 Complete rewrite. No longer extends the `NewKeyedListSniff`.
+ *               Now extends the base `Sniff` class.
  */
-class NewListReferenceAssignmentSniff extends NewKeyedListSniff
+class NewListReferenceAssignmentSniff extends Sniff
 {
-    /**
-     * The token(s) within the list construct which is being targeted.
-     *
-     * @since 9.0.0
-     *
-     * @var array
-     */
-    protected $targetsInList = array(
-        \T_BITWISE_AND => \T_BITWISE_AND,
-    );
 
     /**
-     * Do a version check to determine if this sniff needs to run at all.
+     * Returns an array of tokens this test wants to listen for.
      *
-     * @since 9.0.0
+     * @since 10.0.0
      *
-     * @return bool
+     * @return array
      */
-    protected function bowOutEarly()
+    public function register()
     {
-        return ($this->supportsBelow('7.2') === false);
+        return array(
+            \T_LIST                => \T_LIST,
+            \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
+            \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
+        );
     }
 
     /**
-     * Examine the contents of a list construct to determine whether an error needs to be thrown.
+     * Processes this test, when one of its tokens is encountered.
      *
-     * @since 9.0.0
+     * @since 10.0.0
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $opener    The position of the list open token.
-     * @param int                   $closer    The position of the list close token.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
-    protected function examineList(File $phpcsFile, $opener, $closer)
+    public function process(File $phpcsFile, $stackPtr)
     {
-        $start = $opener;
-        while (($start = $this->hasTargetInList($phpcsFile, $start, $closer)) !== false) {
+        if ($this->supportsBelow('7.2') === false) {
+            return;
+        }
+
+        try {
+            $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Parse error, live coding or short array, not short list.
+            return;
+        }
+
+        foreach ($assignments as $assign) {
+            if ($assign['assign_by_reference'] === false) {
+                continue;
+            }
+
             $phpcsFile->addError(
                 'Reference assignments within list constructs are not supported in PHP 7.2 or earlier.',
-                $start,
+                $assign['assignment_token'],
                 'Found'
             );
         }
