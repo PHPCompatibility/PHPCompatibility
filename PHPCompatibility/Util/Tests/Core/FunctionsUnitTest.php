@@ -26,12 +26,33 @@ class FunctionsUnitTest extends TestCase
 {
 
     /**
+     * PHPCS Config object.
+     *
+     * @var \PHP_CodeSniffer\Config
+     */
+    public static $config = null;
+
+    /**
      * A wrapper for the abstract PHPCompatibility sniff.
      *
      * @var \PHPCompatibility\Sniff
      */
     protected $helperClass;
 
+
+    /**
+     * Sets up a PHPCS Config object for PHPCS 3+.
+     *
+     * @beforeClass
+     *
+     * @return void
+     */
+    public static function initializeConfig()
+    {
+        if (\class_exists('\PHP_CodeSniffer\Config') === true) {
+            self::$config = new \PHP_CodeSniffer\Config();
+        }
+    }
 
     /**
      * Sets up this unit test.
@@ -55,8 +76,8 @@ class FunctionsUnitTest extends TestCase
     protected function resetTestVersion()
     {
         // Only really needed for the testVersion related tests, but doesn't harm the other test in this file.
-        Helper::setConfigData('testVersion', null, true);
-        Helper::setConfigData('testversion', null, true);
+        Helper::setConfigData('testVersion', null, true, self::$config);
+        Helper::setConfigData('testversion', null, true, self::$config);
     }
 
 
@@ -75,7 +96,7 @@ class FunctionsUnitTest extends TestCase
     public function testGetTestVersion($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            Helper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true, self::$config);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
@@ -99,7 +120,7 @@ class FunctionsUnitTest extends TestCase
     public function testGetTestVersionCaseLowercase($testVersion, $expected)
     {
         if (isset($testVersion)) {
-            Helper::setConfigData('testversion', $testVersion, true);
+            Helper::setConfigData('testversion', $testVersion, true, self::$config);
         }
 
         $this->assertSame($expected, $this->invokeMethod($this->helperClass, 'getTestVersion'));
@@ -240,7 +261,7 @@ class FunctionsUnitTest extends TestCase
     public function testSupportsAbove($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            Helper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true, self::$config);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsAbove($phpVersion));
@@ -285,7 +306,7 @@ class FunctionsUnitTest extends TestCase
     public function testSupportsBelow($phpVersion, $testVersion, $expected)
     {
         if (isset($testVersion)) {
-            Helper::setConfigData('testVersion', $testVersion, true);
+            Helper::setConfigData('testVersion', $testVersion, true, self::$config);
         }
 
         $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));
