@@ -65,6 +65,8 @@ class AssignmentOrderUnitTest extends BaseSniffTest
             array(37),
             array(38),
             array(45),
+            array(49),
+            array(52),
         );
     }
 
