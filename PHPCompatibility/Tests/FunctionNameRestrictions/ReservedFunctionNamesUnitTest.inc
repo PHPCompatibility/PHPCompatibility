@@ -43,7 +43,7 @@ function __my_function() {}
 
 interface Foo
 {
-    function __call() {}
+    function __call();
 }
 
 class Magic_Case_Test {
@@ -134,3 +134,28 @@ class Deprecated {
      */
     public static function __deprecatedMethod() {}
 }
+
+// Verify that functions declared as return by reference are recognized correctly.
+function & __returnByRef() {} // Error.
+
+class Ref {
+    public function &__returnByRef() {} // Error.
+}
+
+// Verify that nested functions are correctly seen as declared in the global namespace.
+class Nesting extends \SoapClient {
+    public function thisIsOk() {
+        function __autoload($class) {} // OK.
+        function __isset() {} // Error.
+        function __getLastResponse() {} // Error.
+    }
+}
+
+// PHP 7.4: allow for new (un)serialize magic methods.
+class Magic_Test_PHP74 {
+    function __serialize() {} // OK.
+    function __unserialize() {} // OK.
+}
+
+function __serialize() {} // Error.
+function __unserialize() {} // Error.
