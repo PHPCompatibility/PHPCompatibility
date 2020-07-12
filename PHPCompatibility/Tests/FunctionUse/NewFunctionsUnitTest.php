@@ -1054,6 +1054,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('str_ends_with', '7.4', array(994), '8.0'),
             array('str_starts_with', '7.4', array(995), '8.0'),
             array('imagegetinterpolation', '7.4', array(996), '8.0'),
+            array('enchant_dict_add', '7.4', array(997), '8.0'),
+            array('enchant_dict_is_added', '7.4', array(998), '8.0'),
             array('openssl_cms_encrypt', '7.4', array(984), '8.0'),
             array('openssl_cms_decrypt', '7.4', array(985), '8.0'),
             array('openssl_cms_read', '7.4', array(986), '8.0'),
