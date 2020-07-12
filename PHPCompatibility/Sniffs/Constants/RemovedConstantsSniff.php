@@ -2510,6 +2510,16 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '7.4'       => true,
             'extension' => 'ibase',
         ),
+
+        'MB_OVERLOAD_MAIL' => array(
+            '8.0' => true,
+        ),
+        'MB_OVERLOAD_STRING' => array(
+            '8.0' => true,
+        ),
+        'MB_OVERLOAD_REGEX' => array(
+            '8.0' => true,
+        ),
     );
 
 

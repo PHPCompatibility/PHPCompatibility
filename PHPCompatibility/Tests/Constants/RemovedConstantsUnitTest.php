@@ -657,6 +657,10 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('IBASE_SVC_USER_DBPATH', '7.4', array(134), '7.3'),
             array('IBASE_SVC_SVR_DB_INFO', '7.4', array(135), '7.3'),
             array('IBASE_SVC_GET_USERS', '7.4', array(136), '7.3'),
+
+            array('MB_OVERLOAD_MAIL', '8.0', array(620), '7.4'),
+            array('MB_OVERLOAD_STRING', '8.0', array(621), '7.4'),
+            array('MB_OVERLOAD_REGEX', '8.0', array(622), '7.4'),
         );
     }
 
