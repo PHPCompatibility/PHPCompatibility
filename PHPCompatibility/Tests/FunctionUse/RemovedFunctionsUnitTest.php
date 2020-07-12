@@ -139,7 +139,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ocifreecursor', '5.4', 'oci_free_statement()', array(66), '5.3'),
             array('ocifreedesc', '5.4', 'OCI-Lob::free()', array(67), '5.3'),
             array('ocifreestatement', '5.4', 'oci_free_statement()', array(68), '5.3'),
-            array('ociinternaldebug', '5.4', 'oci_internal_debug()', array(69), '5.3'),
             array('ociloadlob', '5.4', 'OCI-Lob::load()', array(70), '5.3'),
             array('ocilogoff', '5.4', 'oci_close()', array(71), '5.3'),
             array('ocilogon', '5.4', 'oci_connect()', array(72), '5.3'),
@@ -1110,6 +1109,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mysqli_embedded_server_end', '7.4', array(1147), '7.3'),
             array('mysqli_embedded_server_start', '7.4', array(1148), '7.3'),
 
+            array('oci_internal_debug', '8.0', array(1178), '7.4'),
             array('xmlrpc_decode_request', '8.0', array(1158), '7.4'),
             array('xmlrpc_decode', '8.0', array(1159), '7.4'),
             array('xmlrpc_encode_request', '8.0', array(1160), '7.4'),
@@ -1440,6 +1440,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('convert_cyr_string', '7.4', '8.0', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
             array('money_format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
             array('restore_include_path', '7.4', '8.0', "ini_restore('include_path')", array(246), '7.3'),
+            array('ociinternaldebug', '5.4', '8.0', 'oci_internal_debug() (PHP < 8.0)', array(69), '5.3'),
         );
     }
 

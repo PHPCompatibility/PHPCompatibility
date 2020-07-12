@@ -3094,7 +3094,8 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'ociinternaldebug' => array(
             '5.4' => false,
-            'alternative' => 'oci_internal_debug()',
+            '8.0' => true,
+            'alternative' => 'oci_internal_debug() (PHP < 8.0)',
         ),
         'ociloadlob' => array(
             '5.4' => false,
@@ -4670,6 +4671,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'enchant_dict_is_in_session' => array(
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
+        ),
+        'oci_internal_debug' => array(
+            '8.0' => true,
         ),
         'xmlrpc_decode_request' => array(
             '8.0'       => true,

@@ -1175,3 +1175,4 @@ enchant_broker_free();
 enchant_broker_free_dict();
 enchant_dict_add_to_personal();
 enchant_dict_is_in_session();
+oci_internal_debug();
