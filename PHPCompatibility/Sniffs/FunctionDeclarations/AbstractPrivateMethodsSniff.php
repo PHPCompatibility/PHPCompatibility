@@ -8,7 +8,7 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Sniffs\Classes;
+namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
@@ -17,19 +17,26 @@ use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
- * Abstract private methods are not allowed since PHP 5.1.
+ * Abstract private methods are not allowed since PHP 5.1, though they are allowed in traits since PHP 8.0.
  *
  * Abstract private methods were supported between PHP 5.0.0 and PHP 5.0.4, but
  * were then disallowed on the grounds that the behaviours of `private` and `abstract`
  * are mutually exclusive.
  *
+ * As of PHP 8.0, traits are allowed to declare abstract private methods.
+ *
  * PHP version 5.1
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration51.oop.php#migration51.oop-methods
+ * @link https://wiki.php.net/rfc/abstract_trait_method_validation
  *
  * @since 9.2.0
+ * @since 10.0.0 The sniff has been renamed from `PHPCompatibility.Classes.ForbiddenAbstractPrivateMethods`
+ *               to `PHPCompatibility.FunctionDeclarations.AbstractPrivateMethods` and now
+ *               includes detection of the PHP 8 change.
  */
-class ForbiddenAbstractPrivateMethodsSniff extends Sniff
+class AbstractPrivateMethodsSniff extends Sniff
 {
 
     /**
@@ -48,6 +55,7 @@ class ForbiddenAbstractPrivateMethodsSniff extends Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @since 9.2.0
+     * @since 10.0.0 New error message for abstract private methods in traits.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                   $stackPtr  The position of the current token
@@ -61,16 +69,32 @@ class ForbiddenAbstractPrivateMethodsSniff extends Sniff
             return;
         }
 
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
+        $tokens   = $phpcsFile->getTokens();
+        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        if ($scopePtr === false) {
             // Function, not method.
             return;
         }
 
         $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         if ($properties['scope'] !== 'private' || $properties['is_abstract'] !== true) {
+            // Not an abstract private method.
             return;
         }
 
+        if ($tokens[$scopePtr]['code'] === \T_TRAIT) {
+            if ($this->supportsBelow('7.4') === true) {
+                $phpcsFile->addError(
+                    'Traits cannot declare "abstract private" methods in PHP 7.4 or below',
+                    $stackPtr,
+                    'InTrait'
+                );
+            }
+
+            return;
+        }
+
+        // Not a trait.
         $phpcsFile->addError(
             'Abstract methods cannot be declared as private since PHP 5.1',
             $stackPtr,

@@ -8,25 +8,26 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Tests\Classes;
+namespace PHPCompatibility\Tests\FunctionDeclarations;
 
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Test the ForbiddenAbstractPrivateMethods sniff.
+ * Test the AbstractPrivateMethods sniff.
  *
- * @group newForbiddenAbstractPrivateMethods
- * @group classes
+ * @group abstractPrivateMethods
+ * @group functiondeclarations
  *
- * @covers \PHPCompatibility\Sniffs\Classes\ForbiddenAbstractPrivateMethodsSniff
+ * @covers \PHPCompatibility\Sniffs\FunctionDeclarations\AbstractPrivateMethodsSniff
  *
  * @since 9.2.0
+ * @since 10.0.0 Moved from `Classes` to `FunctionDeclarations`.
  */
-class ForbiddenAbstractPrivateMethodsUnitTest extends BaseSniffTest
+class AbstractPrivateMethodsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testForbiddenAbstractPrivateMethods.
+     * Verify that the sniff throws an error for non-trait abstract private methods for PHP 5.1+.
      *
      * @dataProvider dataForbiddenAbstractPrivateMethods
      *
@@ -52,16 +53,49 @@ class ForbiddenAbstractPrivateMethodsUnitTest extends BaseSniffTest
         return array(
             array(28),
             array(29),
+            array(33),
             array(34),
-            array(35),
-            array(39),
-            array(40),
         );
     }
 
 
     /**
-     * testNoFalsePositives.
+     * Verify that the sniff throws an error for abstract private methods in traits for PHP 7.4
+     * and doesn't for PHP 8.0.
+     *
+     * @dataProvider dataNewTraitAbstractPrivateMethods
+     *
+     * @param int $line The line number where a warning is expected.
+     *
+     * @return void
+     */
+    public function testNewTraitAbstractPrivateMethods($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, 'Traits cannot declare "abstract private" methods in PHP 7.4 or below');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewTraitAbstractPrivateMethods()
+     *
+     * @return array
+     */
+    public function dataNewTraitAbstractPrivateMethods()
+    {
+        return array(
+            array(42),
+            array(43),
+        );
+    }
+
+
+    /**
+     * Verify the sniff does not throw false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -72,6 +106,9 @@ class ForbiddenAbstractPrivateMethodsUnitTest extends BaseSniffTest
     public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.1');
+        $this->assertNoViolation($file, $line);
+
+        $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertNoViolation($file, $line);
     }
 
