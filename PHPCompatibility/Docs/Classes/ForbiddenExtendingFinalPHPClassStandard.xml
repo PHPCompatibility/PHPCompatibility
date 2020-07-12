@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Forbidden Extending Final PHP Class"
+    >
+    <standard>
+    <![CDATA[
+    A limited number of PHP native classes have been declared as `final` and are not allowed to be extended by userland code.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not extending a final class.">
+        <![CDATA[
+class Incomplete {}
+class MyClass <em>extends NonFinalClass</em> {}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.0: extending the PHP native __PHP_Incomplete_Class which became final in PHP 8.0.">
+        <![CDATA[
+class Foo <em>extends __PHP_Incomplete_Class</em> {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
