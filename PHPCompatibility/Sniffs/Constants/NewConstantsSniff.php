@@ -6470,6 +6470,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+        'T_MATCH' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'T_NAME_FULLY_QUALIFIED' => [
             '7.4' => false,
             '8.0' => true,

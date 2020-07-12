@@ -1482,6 +1482,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['OPENSSL_CMS_NOATTR', '7.4', [1404], '8.0'],
             ['OPENSSL_CMS_BINARY', '7.4', [1405], '8.0'],
             ['OPENSSL_CMS_NOSIGS', '7.4', [1406], '8.0'],
+            ['T_MATCH', '7.4', [1413], '8.0'],
             ['T_NAME_FULLY_QUALIFIED', '7.4', [1410], '8.0'],
             ['T_NAME_QUALIFIED', '7.4', [1411], '8.0'],
             ['T_NAME_RELATIVE', '7.4', [1412], '8.0'],
