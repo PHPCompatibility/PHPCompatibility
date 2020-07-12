@@ -1470,6 +1470,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('TIDY_TAG_VIDEO', '7.3', array(859), '7.4'),
 
             array('FILTER_VALIDATE_BOOL', '7.4', array(1407), '8.0'),
+            array('LIBENCHANT_VERSION', '7.4', array(1408), '8.0'),
             array('OPENSSL_ENCODING_DER', '7.4', array(1396), '8.0'),
             array('OPENSSL_ENCODING_SMIME', '7.4', array(1397), '8.0'),
             array('OPENSSL_ENCODING_PEM', '7.4', array(1398), '8.0'),
