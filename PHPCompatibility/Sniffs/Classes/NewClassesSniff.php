@@ -970,6 +970,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'ffi',
         ],
 
+        'UnhandledMatchError' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'ValueError' => [
             '7.4' => false,
             '8.0' => true,

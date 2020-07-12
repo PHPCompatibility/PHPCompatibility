@@ -258,6 +258,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['JsonException', '7.2', [250, 339], '7.3'],
             ['FFI\Exception', '7.3', [349], '7.4'],
             ['FFI\ParserException', '7.3', [349], '7.4'],
+            ['UnhandledMatchError', '7.4', [428], '8.0'],
             ['ValueError', '7.4', [418, 419], '8.0'],
         ];
     }
