@@ -23,13 +23,7 @@ $anon = new class() {
 };
 
 // PHP 5.1: abstract functions can not be private.
-abstract class CrossVersionValid
-{
-    abstract private function privateOverload();
-    static private abstract function privateStaticOverload();
-}
-
-trait CrossVersionValidTrait
+abstract class CrossVersionInValid
 {
     abstract private function privateOverload();
     static private abstract function privateStaticOverload();
@@ -39,3 +33,12 @@ $anon = new class() {
     abstract private function privateOverload();
     static private abstract function privateStaticOverload();
 };
+
+/*
+ * PHP 8.0: abstract private methods in traits.
+ */
+trait CrossVersionInValidTrait
+{
+    abstract private function privateOverload();
+    static private abstract function privateStaticOverload();
+}
