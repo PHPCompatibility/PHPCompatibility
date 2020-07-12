@@ -2511,6 +2511,9 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'ibase',
         ),
 
+        'ASSERT_QUIET_EVAL' => array(
+            '8.0' => true,
+        ),
         'MB_OVERLOAD_MAIL' => array(
             '8.0' => true,
         ),
