@@ -530,6 +530,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
         'pdo_odbc.db2_instance_name' => array(
             '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
+            '8.0' => true,
         ),
 
         'allow_url_include' => array(

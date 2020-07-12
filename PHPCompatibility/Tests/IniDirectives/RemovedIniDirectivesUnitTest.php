@@ -101,6 +101,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('opcache.inherited_hack', '5.3', '7.3', array(181, 182), '5.2'),
 
             array('track_errors', '7.2', '8.0', array(172, 173), '7.1'),
+            array('pdo_odbc.db2_instance_name', '7.3', '8.0', array(184, 185), '7.2'),
         );
     }
 
@@ -152,8 +153,6 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mbstring.http_input', '5.6', array(71, 72), '5.5'),
             array('mbstring.http_output', '5.6', array(74, 75), '5.5'),
             array('mbstring.internal_encoding', '5.6', array(77, 78), '5.5'),
-
-            array('pdo_odbc.db2_instance_name', '7.3', array(184, 185), '7.2'),
 
             array('allow_url_include', '7.4', array(238, 239), '7.3'),
         );
