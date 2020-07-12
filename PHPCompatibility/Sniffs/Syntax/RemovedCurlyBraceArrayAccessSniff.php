@@ -18,9 +18,11 @@ use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
- * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4.
+ * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
+ * and removed in PHP 8.0.
  *
  * PHP version 7.4
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.array-string-access-curly-brace
  * @link https://wiki.php.net/rfc/deprecate_curly_braces_array_access
@@ -181,6 +183,16 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
             return;
         }
 
+        $isError = ($this->supportsAbove('8.0') === true);
+
+        $errorMsg  = 'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4';
+        $errorCode = 'Deprecated';
+        if ($isError === true) {
+            $errorMsg .= ' and removed in PHP 8.0';
+            $errorCode = 'Removed';
+        }
+        $errorMsg .= '. Found: %s';
+
         foreach ($braces as $open => $close) {
             // Some of the functions will sniff for both curlies as well as square braces.
             if ($tokens[$open]['code'] !== \T_OPEN_CURLY_BRACKET) {
@@ -196,12 +208,12 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
 
             // OK, so we've found curly brace array access.
             $snippet = $phpcsFile->getTokensAsString($stackPtr, (($close - $stackPtr) + 1));
-            $fix     = $phpcsFile->addFixableWarning(
-                'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4. Found: %s',
-                $open,
-                'Found',
-                array($snippet)
-            );
+
+            if ($isError === false) {
+                $fix = $phpcsFile->addFixableWarning($errorMsg, $open, $errorCode, array($snippet));
+            } else {
+                $fix = $phpcsFile->addFixableError($errorMsg, $open, $errorCode, array($snippet));
+            }
 
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
