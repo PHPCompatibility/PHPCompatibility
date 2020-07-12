@@ -16,10 +16,11 @@ use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\Namespaces;
 
 /**
- * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0.
+ * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0
+ * and for which support has been removed in PHP 8.0.0.
  *
  * PHP 4 style constructors - methods that have the same name as the class they are defined in -
- * are deprecated as of PHP 7.0.0, and will be removed in the future.
+ * are deprecated as of PHP 7.0.0, and have been removed in PHP 8.0.
  * PHP 7 will emit `E_DEPRECATED` if a PHP 4 constructor is the only constructor defined
  * within a class. Classes that implement a `__construct()` method are unaffected.
  *
@@ -27,6 +28,7 @@ use PHPCSUtils\Utils\Namespaces;
  * are not recognized as constructors anyway and therefore outside the scope of this sniff.
  *
  * PHP version 7.0
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration70.deprecated.php#migration70.deprecated.php4-constructors
  * @link https://wiki.php.net/rfc/remove_php4_constructors
@@ -144,11 +146,17 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         }
 
         if ($newConstructorFound === false && $oldConstructorFound === true) {
-            $phpcsFile->addWarning(
-                'Use of deprecated PHP4 style class constructor is not supported since PHP 7.',
-                $oldConstructorPos,
-                'Found'
-            );
+            $error   = 'Declaration of a PHP4 style class constructor is deprecated since PHP 7.0';
+            $code    = 'Deprecated';
+            $isError = false;
+
+            if ($this->supportsAbove('8.0') === true) {
+                $error  .= ' and removed since PHP 8.0';
+                $code    = 'Removed';
+                $isError = true;
+            }
+
+            $this->addMessage($phpcsFile, $error, $oldConstructorPos, $isError, $code);
         }
     }
 }

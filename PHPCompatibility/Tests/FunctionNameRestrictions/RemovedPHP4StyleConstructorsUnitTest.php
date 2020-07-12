@@ -37,7 +37,10 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
     public function testIsDeprecated($line)
     {
         $file = $this->sniffFile(__FILE__, '7.0');
-        $this->assertWarning($file, $line, 'Use of deprecated PHP4 style class constructor is not supported since PHP 7');
+        $this->assertWarning($file, $line, 'Declaration of a PHP4 style class constructor is deprecated since PHP 7.0');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Declaration of a PHP4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0');
     }
 
     /**
