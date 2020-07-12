@@ -423,3 +423,6 @@ $test = ini_get('sybase.min_message_severity');
 
 ini_set('sybase.compatability_mode', 0);
 $test = ini_get('sybase.compatability_mode');
+
+ini_set('assert.quiet_eval', 0);
+$test = ini_get('assert.quiet_eval');

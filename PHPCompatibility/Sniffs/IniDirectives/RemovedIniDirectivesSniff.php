@@ -576,6 +576,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '7.4'       => true,
             'extension' => 'ibase',
         ),
+
+        'assert.quiet_eval' => array(
+            '8.0' => true,
+        ),
     );
 
     /**

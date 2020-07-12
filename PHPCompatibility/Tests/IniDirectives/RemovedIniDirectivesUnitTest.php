@@ -252,6 +252,13 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('ingres.default_user', '5.1', array(307, 308), '5.0'),
             array('ingres.max_links', '5.1', array(310, 311), '5.0'),
             array('ingres.max_persistent', '5.1', array(313, 314), '5.0'),
+            array('pfpro.defaulthost', '5.1', array(217, 218), '5.0'),
+            array('pfpro.defaultport', '5.1', array(220, 221), '5.0'),
+            array('pfpro.defaulttimeout', '5.1', array(223, 224), '5.0'),
+            array('pfpro.proxyaddress', '5.1', array(226, 227), '5.0'),
+            array('pfpro.proxyport', '5.1', array(229, 230), '5.0'),
+            array('pfpro.proxylogon', '5.1', array(232, 233), '5.0'),
+            array('pfpro.proxypassword', '5.1', array(235, 236), '5.0'),
 
             array('hwapi.allow_persistent', '5.2', array(253, 254), '5.1'),
 
@@ -348,13 +355,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('ibase.dateformat', '7.4', array(211, 212), '7.3'),
             array('ibase.timeformat', '7.4', array(214, 215), '7.3'),
 
-            array('pfpro.defaulthost', '5.1', array(217, 218), '5.0'),
-            array('pfpro.defaultport', '5.1', array(220, 221), '5.0'),
-            array('pfpro.defaulttimeout', '5.1', array(223, 224), '5.0'),
-            array('pfpro.proxyaddress', '5.1', array(226, 227), '5.0'),
-            array('pfpro.proxyport', '5.1', array(229, 230), '5.0'),
-            array('pfpro.proxylogon', '5.1', array(232, 233), '5.0'),
-            array('pfpro.proxypassword', '5.1', array(235, 236), '5.0'),
+            array('assert.quiet_eval', '8.0', array(427, 428), '7.4'),
         );
     }
 
