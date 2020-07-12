@@ -66,6 +66,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         return array(
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
+            array('enchant_broker_get_dict_path', '8.0', array(1172), '7.4'),
+            array('enchant_broker_set_dict_path', '8.0', array(1173), '7.4'),
         );
     }
 
@@ -163,6 +165,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('is_real', '7.4', 'is_float()', array(239), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
+
+            array('enchant_broker_free', '8.0', 'unset the object', array(1174), '7.4'),
+            array('enchant_broker_free_dict', '8.0', 'unset the object', array(1175), '7.4'),
+            array('enchant_dict_add_to_personal', '8.0', 'enchant_dict_add()', array(1176), '7.4'),
+            array('enchant_dict_is_in_session', '8.0', 'enchant_dict_is_added()', array(1177), '7.4'),
         );
     }
 

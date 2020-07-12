@@ -4649,6 +4649,28 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => true,
         ),
 
+        'enchant_broker_get_dict_path' => array(
+            '8.0' => false,
+        ),
+        'enchant_broker_set_dict_path' => array(
+            '8.0' => false,
+        ),
+        'enchant_broker_free' => array(
+            '8.0'         => false,
+            'alternative' => 'unset the object',
+        ),
+        'enchant_broker_free_dict' => array(
+            '8.0'         => false,
+            'alternative' => 'unset the object',
+        ),
+        'enchant_dict_add_to_personal' => array(
+            '8.0'         => false,
+            'alternative' => 'enchant_dict_add()',
+        ),
+        'enchant_dict_is_in_session' => array(
+            '8.0'         => false,
+            'alternative' => 'enchant_dict_is_added()',
+        ),
         'xmlrpc_decode_request' => array(
             '8.0'       => true,
             'extension' => 'xmlrpc',
