@@ -2523,6 +2523,10 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'MB_OVERLOAD_REGEX' => array(
             '8.0' => true,
         ),
+        'PG_VERSION_STR' => array(
+            '8.0'         => false,
+            'alternative' => 'PG_VERSION',
+        ),
     );
 
 
