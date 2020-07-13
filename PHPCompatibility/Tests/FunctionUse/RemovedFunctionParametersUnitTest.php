@@ -118,6 +118,11 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             array('mktime', 'is_dst', '5.1', '7.0', array(8), '5.0'),
             array('gmmktime', 'is_dst', '5.1', '7.0', array(9), '5.0'),
             array('define', 'case_insensitive', '7.3', '8.0', array(15), '7.2'),
+
+            array('curl_version', 'age', '7.4', '8.0', array(18), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(19), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(20), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(21), '7.3'),
         );
     }
 
@@ -160,16 +165,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedParameter()
     {
-        $data = array(
-            array('curl_version', 'age', '7.4', array(20), '7.3'),
-            array('curl_version', 'age', '7.4', array(21), '7.3'),
-        );
-
-        if (\CURLVERSION_NOW !== 4) {
-            $data[] = array('curl_version', 'age', '7.4', array(19), '7.3');
-        }
-
-        return $data;
+        return array();
     }
 
 
@@ -197,20 +193,13 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array(
+        return array(
             array(4),
             array(5),
             array(14),
             array(17),
-            array(18),
             array(23),
         );
-
-        if (\CURLVERSION_NOW === 4) {
-            $data[] = array(19);
-        }
-
-        return $data;
     }
 
 
