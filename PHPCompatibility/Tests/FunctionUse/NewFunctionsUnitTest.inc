@@ -980,3 +980,9 @@ pg_send_prepare();
 pg_send_query_params();
 pg_set_error_verbosity();
 pg_transaction_status();
+
+openssl_cms_encrypt();
+openssl_cms_decrypt();
+openssl_cms_read();
+openssl_cms_sign();
+openssl_cms_verify();
