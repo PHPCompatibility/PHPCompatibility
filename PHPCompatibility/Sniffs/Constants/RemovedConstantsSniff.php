@@ -2514,6 +2514,12 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'ASSERT_QUIET_EVAL' => array(
             '8.0' => true,
         ),
+        'ENCHANT_MYSPELL' => array(
+            '8.0' => false,
+        ),
+        'ENCHANT_ISPELL' => array(
+            '8.0' => false,
+        ),
         'MB_OVERLOAD_MAIL' => array(
             '8.0' => true,
         ),

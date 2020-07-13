@@ -67,6 +67,8 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('FILTER_FLAG_SCHEME_REQUIRED', '7.3', array(73), '7.2'),
             array('FILTER_FLAG_HOST_REQUIRED', '7.3', array(74), '7.2'),
             array('CURLPIPE_HTTP1', '7.4', array(138), '7.3'),
+            array('ENCHANT_MYSPELL', '8.0', array(625), '7.4'),
+            array('ENCHANT_ISPELL', '8.0', array(626), '7.4'),
         );
     }
 
