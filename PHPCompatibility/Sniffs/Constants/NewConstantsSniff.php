@@ -6417,6 +6417,51 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4'       => true,
             'extension' => 'tidy',
         ),
+
+        'OPENSSL_ENCODING_DER' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_ENCODING_SMIME' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_ENCODING_PEM' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_DETACHED' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_TEXT' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_NOINTERN' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_NOVERIFY' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_NOCERTS' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_NOATTR' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_BINARY' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'OPENSSL_CMS_NOSIGS' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
 
