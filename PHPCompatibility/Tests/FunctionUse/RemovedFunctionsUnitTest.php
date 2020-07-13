@@ -169,6 +169,16 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('enchant_broker_free_dict', '8.0', 'unset the object', array(1175), '7.4'),
             array('enchant_dict_add_to_personal', '8.0', 'enchant_dict_add()', array(1176), '7.4'),
             array('enchant_dict_is_in_session', '8.0', 'enchant_dict_is_added()', array(1177), '7.4'),
+            array('zip_close', '8.0', 'ZipArchive::close()', array(1179), '7.4'),
+            array('zip_entry_close', '8.0', 'ZipArchive', array(1180), '7.4'),
+            array('zip_entry_compressedsize', '8.0', 'ZipArchive', array(1181), '7.4'),
+            array('zip_entry_compressionmethod', '8.0', 'ZipArchive', array(1182), '7.4'),
+            array('zip_entry_filesize', '8.0', 'ZipArchive', array(1183), '7.4'),
+            array('zip_entry_name', '8.0', 'ZipArchive', array(1184), '7.4'),
+            array('zip_entry_open', '8.0', 'ZipArchive', array(1185), '7.4'),
+            array('zip_entry_read', '8.0', 'ZipArchive', array(1186), '7.4'),
+            array('zip_open', '8.0', 'ZipArchive::open()', array(1187), '7.4'),
+            array('zip_read', '8.0', 'ZipArchive', array(1188), '7.4'),
         );
     }
 

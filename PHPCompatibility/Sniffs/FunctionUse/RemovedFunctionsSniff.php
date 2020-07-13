@@ -4731,6 +4731,46 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.0'       => true,
             'extension' => 'xmlrpc',
         ),
+        'zip_close' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive::close()',
+        ),
+        'zip_entry_close' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_compressedsize' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_compressionmethod' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_filesize' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_name' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_open' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_read' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_open' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive::open()',
+        ),
+        'zip_read' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
     );
 
 
