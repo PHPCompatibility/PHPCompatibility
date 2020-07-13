@@ -996,3 +996,4 @@ str_starts_with();
 imagegetinterpolation();
 enchant_dict_add();
 enchant_dict_is_added();
+ldap_count_references();
