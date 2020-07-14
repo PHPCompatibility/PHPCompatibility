@@ -14,6 +14,8 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -111,7 +113,10 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function register()
     {
-        return [\T_VARIABLE];
+        return [
+            \T_VARIABLE,
+            \T_FUNCTION,
+        ];
     }
 
     /**
@@ -129,29 +134,94 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        try {
-            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Not a class property.
+        $tokens = $phpcsFile->getTokens();
+
+        if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
+            try {
+                $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+            } catch (RuntimeException $e) {
+                // Not a class property.
+                return;
+            }
+
+            if ($properties['type'] === '') {
+                // Not a typed property.
+                return;
+            }
+
+            $this->checkType($phpcsFile, $properties['type_token'], $properties);
+
+            $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));
+            if ($endOfStatement !== false) {
+                // Don't throw the same error multiple times for multi-property declarations.
+                return ($endOfStatement + 1);
+            }
+
             return;
         }
 
-        if ($properties['type'] === '') {
-            // Not a typed property.
+        /*
+         * This must be a function declaration. Let's check for constructor property promotion.
+         */
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
+            // Global function.
             return;
         }
 
-        // Still here ? In that case, this will be a typed property.
-        $type      = \ltrim($properties['type'], '?'); // Trim off potential nullability.
-        $type      = \strtolower($type);
-        $typeToken = $properties['type_token'];
+        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
+        if (\strtolower($functionName) !== '__construct') {
+            // Not a class constructor.
+            return;
+        }
+
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        foreach ($parameters as $param) {
+            if (empty($param['property_visibility']) === true) {
+                // Not property promotion.
+                continue;
+            }
+
+            // Juggle some of the array entries to what it expected for properties.
+            $paramInfo = [
+                'type'          => $param['type_hint'],
+                'nullable_type' => $param['nullable_type'],
+                'param_name'    => $param['name'],
+            ];
+
+            $this->checkType($phpcsFile, $param['type_hint_token'], $paramInfo);
+        }
+    }
+
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @since 10.0.0 Split off from the process() method to allow for examining constructor
+     *               property promotion parameters.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $typeToken The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param array                       $typeInfo  Information about the current property.
+     *
+     * @return void
+     */
+    protected function checkType(File $phpcsFile, $typeToken, $typeInfo)
+    {
+        $origType = $typeInfo['type'];
+        $type     = \ltrim($origType, '?'); // Trim off potential nullability.
+        $type     = \strtolower($type);
+
+        $errorSuffix = '';
+        if (isset($typeInfo['param_name']) === true) {
+            $errorSuffix = ' (promoted property ' . $typeInfo['param_name'] . ')';
+        }
 
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
-                'Typed properties are not supported in PHP 7.3 or earlier. Found: %s',
+                'Typed properties are not supported in PHP 7.3 or earlier. Found: %s' . $errorSuffix,
                 $typeToken,
                 'Found',
-                [$type]
+                [$origType]
             );
         } else {
             $types       = \explode('|', $type);
@@ -159,10 +229,10 @@ class NewTypedPropertiesSniff extends Sniff
 
             if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
                 $phpcsFile->addError(
-                    'Union types are not present in PHP version 7.4 or earlier. Found: %s',
+                    'Union types are not present in PHP version 7.4 or earlier. Found: %s' . $errorSuffix,
                     $typeToken,
                     'UnionTypeFound',
-                    [$properties['type']]
+                    [$origType]
                 );
             }
 
@@ -178,11 +248,11 @@ class NewTypedPropertiesSniff extends Sniff
                      * to PHP 8 if the type hint referred to a class named "Mixed".
                      * Only throw an error if PHP 8+ needs to be supported.
                      */
-                    if (($type === 'mixed' && $properties['nullable_type'] === true)
+                    if (($type === 'mixed' && $typeInfo['nullable_type'] === true)
                         && $this->supportsAbove('8.0') === true
                     ) {
                         $phpcsFile->addError(
-                            'Mixed types cannot be nullable, null is already part of the mixed type',
+                            'Mixed types cannot be nullable, null is already part of the mixed type' . $errorSuffix,
                             $typeToken,
                             'NullableMixed'
                         );
@@ -197,23 +267,17 @@ class NewTypedPropertiesSniff extends Sniff
                         );
                     }
                 } elseif (isset($this->invalidTypes[$type])) {
-                    $error = '%s is not supported as a type declaration for properties';
+                    $error = '%s is not supported as a type declaration for properties' . $errorSuffix;
                     $data  = [$type];
 
                     if ($this->invalidTypes[$type] !== false) {
-                        $error .= ' Did you mean %s ?';
+                        $error .= '. Did you mean %s ?';
                         $data[] = $this->invalidTypes[$type];
                     }
 
                     $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
                 }
             }
-        }
-
-        $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));
-        if ($endOfStatement !== false) {
-            // Don't throw the same error multiple times for multi-property declarations.
-            return ($endOfStatement + 1);
         }
     }
 

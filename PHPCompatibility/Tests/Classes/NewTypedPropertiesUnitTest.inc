@@ -107,3 +107,21 @@ $anon = class() {
     // Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
     public int|string|INT $duplicateTypeInUnion;
 };
+
+// PHP 8.0 constructor property promotion.
+class ConstructorPropertyPromotionWithTypes {
+    public function __construct(
+        protected float|int $x,
+        public ?string &$y = 'test',
+        private mixed $z,
+        public callable $callMe,
+        callable $normalParamIgnore1,
+        ?mixed $normalParamIgnore2,
+    ) {}
+
+    // Ignore. Not a constructor, so no property promotion.
+    public function notAConstructor(float|int $x, callable $callMe) {}
+}
+
+// Ignore. Not a constructor, so no property promotion.
+function __construct(float|int $x, callable $callMe) {}
