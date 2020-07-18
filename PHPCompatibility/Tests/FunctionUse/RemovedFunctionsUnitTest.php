@@ -1135,6 +1135,21 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('wddx_serialize_vars', '7.4', array(233), '7.3'),
             array('mysqli_embedded_server_end', '7.4', array(1147), '7.3'),
             array('mysqli_embedded_server_start', '7.4', array(1148), '7.3'),
+
+            array('xmlrpc_decode_request', '8.0', array(1158), '7.4'),
+            array('xmlrpc_decode', '8.0', array(1159), '7.4'),
+            array('xmlrpc_encode_request', '8.0', array(1160), '7.4'),
+            array('xmlrpc_encode', '8.0', array(1161), '7.4'),
+            array('xmlrpc_get_type', '8.0', array(1162), '7.4'),
+            array('xmlrpc_is_fault', '8.0', array(1163), '7.4'),
+            array('xmlrpc_parse_method_descriptions', '8.0', array(1164), '7.4'),
+            array('xmlrpc_server_add_introspection_data', '8.0', array(1165), '7.4'),
+            array('xmlrpc_server_call_method', '8.0', array(1166), '7.4'),
+            array('xmlrpc_server_create', '8.0', array(1167), '7.4'),
+            array('xmlrpc_server_destroy', '8.0', array(1168), '7.4'),
+            array('xmlrpc_server_register_introspection_callback', '8.0', array(1169), '7.4'),
+            array('xmlrpc_server_register_method', '8.0', array(1170), '7.4'),
+            array('xmlrpc_set_type', '8.0', array(1171), '7.4'),
         );
     }
 

@@ -67,3 +67,5 @@ $anon = new class extends SQLiteDatabase {};
 echo SQLiteResult::numFields();
 function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
 try {} catch (SQLiteException $e) {}
+
+function XmlRpcServerTypeHint(XmlRpcServer $server) {}

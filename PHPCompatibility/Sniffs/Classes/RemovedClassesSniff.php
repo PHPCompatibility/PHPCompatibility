@@ -155,6 +155,11 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             '5.4'       => true,
             'extension' => 'sqlite',
         ),
+
+        'XmlRpcServer' => array(
+            '8.0'       => true,
+            'extension' => 'xmlrpc',
+        ),
     );
 
     /**
