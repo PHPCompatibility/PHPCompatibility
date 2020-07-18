@@ -46,7 +46,16 @@ class NewMagicClassConstantSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        /*
+         * In PHPCS < 3.4.1, the class keyword after a double colon + comment may be tokenized as
+         * `T_CLASS` instead of as `T_STRING`, so registering both.
+         *
+         * @link https://github.com/squizlabs/php_codesniffer/issues/2431
+         */
+        return array(
+            \T_STRING,
+            \T_CLASS,
+        );
     }
 
     /**
