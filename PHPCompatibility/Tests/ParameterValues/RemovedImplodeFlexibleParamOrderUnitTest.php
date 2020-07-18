@@ -39,6 +39,9 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertWarning($file, $line, 'Passing the $glue and $pieces parameters in reverse order to ' . $function . ' has been deprecated since PHP 7.4; $glue should be the first parameter and $pieces the second');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Passing the $glue and $pieces parameters in reverse order to ' . $function . ' has been deprecated since PHP 7.4 and is removed since PHP 8.0; $glue should be the first parameter and $pieces the second');
     }
 
     /**

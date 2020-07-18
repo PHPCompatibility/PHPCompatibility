@@ -16,9 +16,10 @@ use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Passing the `$glue` and `$pieces` parameters to `implode()` in reverse order has
- * been deprecated in PHP 7.4.
+ * been deprecated in PHP 7.4 and removed in PHP 8.0.
  *
  * PHP version 7.4
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.implode-reverse-parameters
  * @link https://wiki.php.net/rfc/deprecations_php_7_4#implode_parameter_order_mix
@@ -306,15 +307,11 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         $errorCode = 'Deprecated';
         $data      = array($functionName);
 
-        /*
-        Support for the deprecated behaviour is expected to be removed in PHP 8.0.
-        Once this has been implemented, this section should be uncommented.
         if ($this->supportsAbove('8.0') === true) {
             $message  .= ' and is removed since PHP 8.0';
             $isError   = true;
             $errorCode = 'Removed';
         }
-        */
 
         $message .= '; $glue should be the first parameter and $pieces the second';
 
