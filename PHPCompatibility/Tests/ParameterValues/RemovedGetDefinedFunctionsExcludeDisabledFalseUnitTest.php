@@ -20,7 +20,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedGetDefinedFunctionsExcludeDisabledFalseSniff
  *
- * @since x.x.x
+ * @since 10.0.0
  */
 class RemovedGetDefinedFunctionsExcludeDisabledFalseUnitTest extends BaseSniffTest
 {
@@ -37,7 +37,7 @@ class RemovedGetDefinedFunctionsExcludeDisabledFalseUnitTest extends BaseSniffTe
     public function testRemovedGetDefinedFunctionsExcludeDisabledFalse($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, $line, 'Explicitly passing "false" as the value for $exclude_disabled to get_defined_functions() is deprecated since PHP 8.0.');
+        $this->assertWarning($file, $line, 'Explicitly passing "false" as the value for $exclude_disabled to get_defined_functions() is deprecated since PHP 8.0.');
     }
 
     /**
