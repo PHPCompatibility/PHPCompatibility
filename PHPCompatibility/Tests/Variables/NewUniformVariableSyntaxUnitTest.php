@@ -60,6 +60,8 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
             [35],
             [40],
             [41],
+            [45],
+            [46],
         ];
     }
 
@@ -107,7 +109,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
             [27],
             [28],
             [42],
-            [45],
+            [49],
         ];
     }
 

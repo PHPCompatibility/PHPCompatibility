@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Variables;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * The interpretation of variable variables has changed in PHP 7.0.
@@ -68,7 +69,10 @@ class NewUniformVariableSyntaxSniff extends Sniff
 
         // The previous non-empty token has to be a $, -> or ::.
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($prevToken === false || \in_array($tokens[$prevToken]['code'], [\T_DOLLAR, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON], true) === false) {
+        if ($prevToken === false
+            || (isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
+                && $tokens[$prevToken]['code'] !== \T_DOLLAR)
+        ) {
             return;
         }
 
