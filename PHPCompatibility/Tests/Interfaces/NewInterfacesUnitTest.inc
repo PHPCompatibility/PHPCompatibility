@@ -143,3 +143,12 @@ $anon = class() {
 // Test support for PHP 7.4 arrow functions.
 $fn = fn(SessionIdInterface $param) => $param;
 $fn = fn($param): SessionHandlerInterface => $param;
+
+// Test support for PHP 8.0 union types.
+class UnionTypes {
+    public NotATarget|AlsoNotATarget $okay;
+
+    public Countable|SplObserver $property;
+    public function paramType(OuterIterator|RecursiveIterator $param) {}
+    public function returnType($param) : SessionHandlerInterface|JsonSerializable {}
+}
