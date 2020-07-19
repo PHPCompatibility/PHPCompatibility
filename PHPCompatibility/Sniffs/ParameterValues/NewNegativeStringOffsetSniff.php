@@ -115,13 +115,13 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
             }
 
             $phpcsFile->addError(
-                'Negative string offsets were not supported for the $%s parameter in %s() in PHP 7.0 or lower. Found %s',
+                'Negative string offsets were not supported for the $%s parameter in %s() in PHP 7.0 or lower. Found: %s',
                 $targetParam['start'],
                 'Found',
                 array(
                     $name,
                     $functionName,
-                    $targetParam['raw'],
+                    $targetParam['clean'],
                 )
             );
         }
