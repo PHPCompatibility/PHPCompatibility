@@ -108,3 +108,13 @@ $a = iconv_mime_encode(
         'line-length'      => 80,
     ]
 ); // Error: 'input-charset' not set.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'Input-CharSet'    => 'ISO-8859-1',
+        'output-charset'   => 'UTF-8',
+        'line-length'      => 80,
+    ]
+); // Error: 'input-charset' not set (because case-sensitive).
