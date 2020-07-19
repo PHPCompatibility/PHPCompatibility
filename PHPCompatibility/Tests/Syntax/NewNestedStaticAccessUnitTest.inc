@@ -36,3 +36,6 @@ Foo::MY_CONSTANT::$baz;
 
 // Issue #1016.
 echo Foo::bar()::baz();
+
+// No false negative with PHP 8.0 nullsafe object operator.
+echo $foo?->bar()::baz();
