@@ -48,3 +48,5 @@ class MyClass {
         $another->__toString($param);
     }
 }
+
+$obj?->__toString($param);

@@ -58,6 +58,7 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
             [46],
             [47],
             [48],
+            [52],
         ];
     }
 

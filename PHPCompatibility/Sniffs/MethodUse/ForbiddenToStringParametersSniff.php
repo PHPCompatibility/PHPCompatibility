@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\MethodUse;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -39,10 +40,7 @@ class ForbiddenToStringParametersSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_DOUBLE_COLON,
-            \T_OBJECT_OPERATOR,
-        ];
+        return Collections::objectOperators();
     }
 
     /**
