@@ -16,7 +16,7 @@ array_reduce( $array, $callback, null ); // Will be typecast by PHP.
 array_reduce( $array, $callback, array() );
 
 // Not OK - warning.
-array_reduce( $array, $callback, $initial );
+array_reduce( $array, $callback, $initial /*initial*/ );
 array_reduce( $array, $callback, $this->initial );
 array_reduce( $array, $callback, self::INITIAL );
 array_reduce( $array, $callback, 15 * $initial );
