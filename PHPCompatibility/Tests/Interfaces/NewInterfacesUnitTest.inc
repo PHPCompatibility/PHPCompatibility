@@ -25,11 +25,11 @@ class MyJsonSerializable implements JsonSerializableSomething {}
 class MyJsonSerializable implements myNameSpace\JsonSerializable {}
 
 // Test anonymous class support.
-$a = new class implements SeekableIterator {}
+$a = new class implements SeekableIterator {};
 $b = new class implements \Serializable {
     public function __sleep() {}
     public function __wakeup() {}
-}
+};
 
 // Additional new interfaces.
 class MyTraversable implements Traversable {}
