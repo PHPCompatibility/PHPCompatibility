@@ -57,6 +57,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
             [25],
             [29],
             [31],
+            [55],
         ];
     }
 
@@ -136,7 +137,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
             [15],
             [16],
             [50],
-            [55],
+            [58],
         ];
     }
 

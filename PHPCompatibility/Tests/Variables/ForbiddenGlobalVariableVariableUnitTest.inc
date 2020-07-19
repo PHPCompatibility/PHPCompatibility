@@ -51,5 +51,8 @@ global $test,
     $$test,
 	$$$test ?> <?php
 
+// Prevent false negatives on PHP 8.0+ nullsafe property access.
+global $$var?->key;
+
 // Live coding. Ignore.
 global $$test
