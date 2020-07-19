@@ -62,12 +62,11 @@ class NewConstantArraysUsingDefineSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = [
-            \T_DOUBLE_COLON    => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_FUNCTION        => true,
-            \T_CONST           => true,
+        $ignore  = [
+            \T_FUNCTION => true,
+            \T_CONST    => true,
         ];
+        $ignore += Collections::objectOperators();
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
