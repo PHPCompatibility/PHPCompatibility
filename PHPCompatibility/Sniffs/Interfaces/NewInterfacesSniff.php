@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
@@ -299,13 +300,11 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
                 $nextFunc = $stackPtr;
                 while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-                    $funcName   = $phpcsFile->getDeclarationName($nextFunc);
+                    $funcName   = FunctionDeclarations::getName($phpcsFile, $nextFunc);
                     $funcNameLc = \strtolower($funcName);
-                    if ($funcNameLc === '') {
-                        continue;
-                    }
-
-                    if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
+                    if (empty($funcNameLc) === false
+                        && isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true
+                    ) {
                         $error     = $phrase . ' interface %s do not support the method %s(). See %s';
                         $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
                         $data      = [
@@ -315,6 +314,11 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                         ];
 
                         $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
+                    }
+
+                    // Skip over the function body.
+                    if (isset($tokens[$nextFunc]['scope_closer']) === true) {
+                        $nextFunc = $tokens[$nextFunc]['scope_closer'];
                     }
                 }
             }

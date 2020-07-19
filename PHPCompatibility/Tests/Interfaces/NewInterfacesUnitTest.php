@@ -73,7 +73,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             ['OuterIterator', '5.0', [4, 42, 65], '5.1'],
             ['RecursiveIterator', '5.0', [5, 43, 65], '5.1'],
             ['SeekableIterator', '5.0', [6, 17, 28, 44], '5.1'],
-            ['Serializable', '5.0', [7, 29, 45, 55, 70, 118], '5.1'],
+            ['Serializable', '5.0', [7, 29, 45, 55, 70, 118, 124], '5.1'],
             ['SplObserver', '5.0', [11, 46, 65], '5.1'],
             ['SplSubject', '5.0', [12, 17, 47, 69], '5.1'],
             ['JsonSerializable', '5.3', [13, 48], '5.4'],
@@ -118,6 +118,37 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [31, '__wakeup'],
             [119, '__sleep'],
             [120, '__wakeup'],
+        ];
+    }
+
+
+    /**
+     * Verify that the unsupported methods check doesn't throw false positives.
+     *
+     * @dataProvider dataNoFalsePositivesUnsupportedMethods
+     *
+     * @param array $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesUnsupportedMethods($line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.1'); // Version in which the Serializable interface was introduced.
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesUnsupportedMethods()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositivesUnsupportedMethods()
+    {
+        return [
+            [126],
+            [127],
         ];
     }
 

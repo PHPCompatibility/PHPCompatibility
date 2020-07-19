@@ -119,3 +119,11 @@ interface NewSerial extends \Serializable {
     public function __sleep();
     public function __wakeup();
 }
+
+// Function declarations nested in methods are not magic.
+class Nested implements Serializable {
+    public function declaredNested() {
+        function __sleep() {}
+        function __wakeup() {}
+    }
+}
