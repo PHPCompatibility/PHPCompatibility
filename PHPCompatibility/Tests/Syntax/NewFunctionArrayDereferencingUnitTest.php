@@ -63,6 +63,7 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
             [16],
             [28, true],
             [29, true],
+            [37],
         ];
     }
 
@@ -133,7 +134,7 @@ class NewFunctionArrayDereferencingUnitTest extends BaseSniffTest
             [10],
             [11],
             [32],
-            [37],
+            [40],
         ];
     }
 
