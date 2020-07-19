@@ -91,13 +91,13 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 $errors['cplusFound'] = array(
                     'c+',
                     '5.2.5',
-                    $targetParam['raw'],
+                    $targetParam['clean'],
                 );
             } elseif (strpos($tokens[$i]['content'], 'c') !== false && $this->supportsBelow('5.2.5')) {
                 $errors['cFound'] = array(
                     'c',
                     '5.2.5',
-                    $targetParam['raw'],
+                    $targetParam['clean'],
                 );
             }
 
@@ -105,7 +105,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 $errors['eFound'] = array(
                     'e',
                     '7.0.15',
-                    $targetParam['raw'],
+                    $targetParam['clean'],
                 );
             }
         }
@@ -116,7 +116,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 
         foreach ($errors as $errorCode => $errorData) {
             $phpcsFile->addError(
-                'Passing "%s" as the $mode to fopen() is not supported in PHP %s or lower. Found %s',
+                'Passing "%s" as the $mode to fopen() is not supported in PHP %s or lower. Found: %s',
                 $targetParam['start'],
                 $errorCode,
                 $errorData
