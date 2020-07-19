@@ -134,3 +134,6 @@ ucwords(string: $foo, separators: '|'); // Error.
 
 mb_strrpos( $haystack, encoding: 'UTF-8', needle: $needle ); // OK
 mb_strrpos( $haystack, encoding: 'UTF-8', needle: $needle, offset: 2 ); // Error.
+
+// Prevent false positives on PHP 8.0+ nullsafe method calls.
+$obj?->getenv($varname, true ); // OK.

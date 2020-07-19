@@ -240,6 +240,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
     {
         return [
             [4],
+            [139],
         ];
     }
 

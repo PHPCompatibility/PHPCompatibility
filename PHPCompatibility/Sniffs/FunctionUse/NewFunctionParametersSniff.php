@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -1075,11 +1076,8 @@ class NewFunctionParametersSniff extends Sniff
             return;
         }
 
-        $ignore = [
-            \T_DOUBLE_COLON    => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_NEW             => true,
-        ];
+        $ignore  = [\T_NEW => true];
+        $ignore += Collections::objectOperators();
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
