@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
@@ -215,8 +216,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 );
 
                 if ($afterThis !== false
-                    && ($tokens[$afterThis]['code'] === \T_OBJECT_OPERATOR
-                        || $tokens[$afterThis]['code'] === \T_DOUBLE_COLON)
+                    && isset(Collections::objectOperators()[$tokens[$afterThis]['code']]) === true
                 ) {
                     return;
                 }
@@ -254,8 +254,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                     );
 
                     if ($afterThis !== false
-                        && ($tokens[$afterThis]['code'] === \T_OBJECT_OPERATOR
-                            || $tokens[$afterThis]['code'] === \T_DOUBLE_COLON
+                        && (isset(Collections::objectOperators()[$tokens[$afterThis]['code']]) === true
                             || $tokens[$afterThis]['code'] === \T_OPEN_SQUARE_BRACKET)
                     ) {
                         $i = $afterThis;

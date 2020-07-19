@@ -65,9 +65,9 @@ foreach ($a as $something) {}
 class ForeachInMethod {
     public function testThis($a) {
         foreach($a as $k => $this->item) {}
+        foreach($a as $k => $this?->item) {}
     }
 }
-
 // This was already an error prior to PHP 7.1, so not our concern.
 foreach ($a as $this => $that) {}
 
@@ -80,7 +80,7 @@ foreach ($a as $that => $this) {}
  */
 class UnsetInMethod {
 	public function foo() {
-		unset($this->property); // OK.
+		unset($this->property, $this?->nullsafe_property); // OK.
 		
 		// This throws an "Attempt to unset static property" error across all versions, so not our concern.
 		unset($this::$property);
