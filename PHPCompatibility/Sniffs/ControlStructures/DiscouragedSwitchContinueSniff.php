@@ -152,13 +152,13 @@ class DiscouragedSwitchContinueSniff extends Sniff
             $doCount          = 0;
             while (($controlStructure = $phpcsFile->findNext($this->loopStructures, ($controlStructure + 1), $caseCloser)) !== false) {
                 if ($tokens[$controlStructure]['code'] === \T_DO) {
-                    $doCount++;
+                    ++$doCount;
                 }
 
                 if (isset($tokens[$controlStructure]['scope_opener'], $tokens[$controlStructure]['scope_closer']) === false) {
                     if ($tokens[$controlStructure]['code'] === \T_WHILE && $doCount > 0) {
                         // While in a do-while construct.
-                        $doCount--;
+                        --$doCount;
                         continue;
                     }
 
