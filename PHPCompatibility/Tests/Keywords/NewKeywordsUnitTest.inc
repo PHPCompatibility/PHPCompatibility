@@ -121,6 +121,9 @@ echo MyClass::yield;
 
 echo __dir__; // Magic constants are also case-insensitive.
 
+// Prevent false positives on PHP 8.0+ nullsafe property access.
+echo $obj?->finally;
+
 __halt_compiler();
 
 bla();
