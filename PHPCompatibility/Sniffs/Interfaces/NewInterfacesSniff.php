@@ -148,6 +148,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         return [
             \T_CLASS,
             \T_ANON_CLASS,
+            \T_INTERFACE,
             \T_FUNCTION,
             \T_CLOSURE,
             \T_RETURN_TYPE,
@@ -175,6 +176,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             case 'T_CLASS':
             case 'T_ANON_CLASS':
                 $this->processClassToken($phpcsFile, $stackPtr);
+                break;
+
+            case 'T_INTERFACE':
+                $this->processInterfaceToken($phpcsFile, $stackPtr);
                 break;
 
             case 'T_FUNCTION':
@@ -226,6 +231,51 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             return;
         }
 
+        $this->processInterfaceList($phpcsFile, $stackPtr, $interfaces, 'Classes that implement');
+    }
+
+
+    /**
+     * Processes this test for when an interface token is encountered.
+     *
+     * - Detect interfaces extending the new interfaces.
+     * - Detect interfaces extending the new interfaces with unsupported functions.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processInterfaceToken(File $phpcsFile, $stackPtr)
+    {
+        $interfaces = ObjectDeclarations::findExtendedInterfaceNames($phpcsFile, $stackPtr);
+
+        if (\is_array($interfaces) === false || $interfaces === []) {
+            return;
+        }
+
+        $this->processInterfaceList($phpcsFile, $stackPtr, $interfaces, 'Interfaces that extend');
+    }
+
+
+    /**
+     * Processes a list of interfaces being extended/implemented.
+     *
+     * @since 10.0.0 Split off from the `processClassToken()` method.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile  The file being scanned.
+     * @param int                         $stackPtr   The position of the current token in
+     *                                                the stack passed in $tokens.
+     * @param array                       $interfaces List of interface names.
+     * @param string                      $phrase     Start of the error phrase for unsupported functions.
+     *
+     * @return void
+     */
+    private function processInterfaceList(File $phpcsFile, $stackPtr, array $interfaces, $phrase)
+    {
         $tokens       = $phpcsFile->getTokens();
         $checkMethods = false;
 
@@ -256,7 +306,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                     }
 
                     if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
-                        $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
+                        $error     = $phrase . ' interface %s do not support the method %s(). See %s';
                         $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
                         $data      = [
                             $interface,

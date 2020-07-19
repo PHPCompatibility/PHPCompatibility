@@ -110,3 +110,12 @@ try {
 
 // PHP 8.0 new interfaces.
 function StringableTypeHint( Stringable $a ) {}
+
+// Test interfaces extending interfaces.
+interface MyReflection extends Reflector {}
+interface MySession extends SessionABC, SessionIdInterface {}
+
+interface NewSerial extends \Serializable {
+    public function __sleep();
+    public function __wakeup();
+}
