@@ -114,7 +114,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
                     'NotAlgoConstant',
                     array(
                         $functionName,
-                        $targetParam['raw'],
+                        $targetParam['clean'],
                     )
                 );
 
