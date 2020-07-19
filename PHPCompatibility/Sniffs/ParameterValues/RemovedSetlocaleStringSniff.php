@@ -93,7 +93,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
             $message   = 'Passing the $category as a string to setlocale() has been deprecated since PHP 4.2';
             $isError   = false;
             $errorCode = 'Deprecated';
-            $data      = [$targetParam['raw']];
+            $data      = [$targetParam['clean']];
 
             if ($this->supportsAbove('7.0') === true) {
                 $message  .= ' and is removed since PHP 7.0';
