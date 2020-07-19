@@ -73,7 +73,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             ['Serializable', '5.0', [7, 29, 45, 55, 70, 118, 124], '5.1'],
             ['SplObserver', '5.0', [11, 46, 65], '5.1'],
             ['SplSubject', '5.0', [12, 17, 47, 69], '5.1'],
-            ['JsonSerializable', '5.3', [13, 48], '5.4'],
+            ['JsonSerializable', '5.3', [13, 48, 133, 134], '5.4'],
             ['SessionHandlerInterface', '5.3', [14, 49], '5.4'],
             ['DateTimeInterface', '5.4', [36, 51, 61, 80], '5.5'],
             ['SessionIdInterface', '5.5.0', [89, 116], '5.6', '5.5'],

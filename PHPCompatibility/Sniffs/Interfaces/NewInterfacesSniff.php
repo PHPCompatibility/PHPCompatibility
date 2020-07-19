@@ -342,7 +342,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                     continue;
                 }
 
-                $this->checkTypeHint($phpcsFile, $stackPtr, $param['type_hint']);
+                $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
             }
         }
 
@@ -354,7 +354,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $this->checkTypeHint($phpcsFile, $stackPtr, $properties['return_type']);
+        $this->checkTypeHint($phpcsFile, $properties['return_type_token'], $properties['return_type']);
     }
 
 

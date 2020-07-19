@@ -127,3 +127,8 @@ class Nested implements Serializable {
         function __wakeup() {}
     }
 }
+
+// Test error line precision.
+function errorLinePrecisionCheck(
+    JsonSerializable $param
+) : JsonSerializable {}
