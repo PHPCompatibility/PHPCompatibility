@@ -1535,6 +1535,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             [250],
             [251],
             [252],
+            [1232],
         ];
     }
 
