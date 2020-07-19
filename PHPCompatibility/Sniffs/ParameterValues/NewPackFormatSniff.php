@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
  * Check for valid values for the `$format` passed to `pack()`.
@@ -102,9 +103,7 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
                 return;
             }
 
-            if ($tokens[$i]['code'] !== \T_CONSTANT_ENCAPSED_STRING
-                && $tokens[$i]['code'] !== \T_DOUBLE_QUOTED_STRING
-            ) {
+            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
 
@@ -121,13 +120,13 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
                 foreach ($versionArray as $version => $present) {
                     if ($present === false && $this->supportsBelow($version) === true) {
                         $phpcsFile->addError(
-                            'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower. Found %s',
+                            'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower. Found: %s',
                             $targetParam['start'],
                             'NewFormatFound',
                             array(
                                 $matches[1],
                                 $version,
-                                $targetParam['raw'],
+                                $targetParam['clean'],
                             )
                         );
                         continue 2;
