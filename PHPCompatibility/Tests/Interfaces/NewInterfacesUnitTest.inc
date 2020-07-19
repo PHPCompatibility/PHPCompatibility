@@ -132,3 +132,10 @@ class Nested implements Serializable {
 function errorLinePrecisionCheck(
     JsonSerializable $param
 ) : JsonSerializable {}
+
+// Test support for PHP 7.4 property types.
+public Throwable $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public SessionUpdateTimestampHandlerInterface $property;
+};

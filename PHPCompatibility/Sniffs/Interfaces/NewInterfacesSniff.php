@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detect use of new PHP native interfaces and unsupported interface methods.
@@ -152,6 +153,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             \T_CLASS,
             \T_ANON_CLASS,
             \T_INTERFACE,
+            \T_VARIABLE,
             \T_FUNCTION,
             \T_CLOSURE,
             \T_CATCH,
@@ -182,6 +184,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
             case 'T_INTERFACE':
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
+                break;
+
+            case 'T_VARIABLE':
+                $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
 
             case 'T_FUNCTION':
@@ -313,6 +319,36 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 }
             }
         }
+    }
+
+
+    /**
+     * Processes this test for when a variable token is encountered.
+     *
+     * - Detect new interfaces when used as a property type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processVariableToken(File $phpcsFile, $stackPtr)
+    {
+        try {
+            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Not a class property.
+            return;
+        }
+
+        if ($properties['type'] === '') {
+            return;
+        }
+
+        $this->checkTypeHint($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 
