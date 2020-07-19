@@ -19,3 +19,13 @@ trait footrait {
 fooanonclass(new class {
     private function assert($something) {}
 });
+
+class nested {
+    public function hasNested($something) {
+        function assert($something) {}
+    }
+}
+
+$cl = function() {
+    function assert($something) {}
+};

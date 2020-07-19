@@ -67,6 +67,8 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
         return array(
             array(self::TEST_FILE, 22),
             array(self::TEST_FILE_NAMESPACED, 5),
+            array(self::TEST_FILE_NAMESPACED, 25),
+            array(self::TEST_FILE_NAMESPACED, 30),
         );
     }
 
@@ -101,6 +103,8 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
             array(self::TEST_FILE, 10),
             array(self::TEST_FILE, 14),
             array(self::TEST_FILE, 18),
+            array(self::TEST_FILE, 27),
+            array(self::TEST_FILE, 32),
             array(self::TEST_FILE_NAMESPACED, 8),
             array(self::TEST_FILE_NAMESPACED, 12),
             array(self::TEST_FILE_NAMESPACED, 16),
