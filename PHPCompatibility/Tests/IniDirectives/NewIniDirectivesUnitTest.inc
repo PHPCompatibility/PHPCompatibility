@@ -3,10 +3,10 @@ function some_random_function() {} // Verify sniff doesn't flag this line.
 some_random_function(); // Verify sniff doesn't flag this line.
 ini_set('display_errors', 1); // Verify sniff doesn't flag this ini directive.
 ini_set(value: 'filter.default', option: $iniName); // Verify sniff doesn't flag on the value parameter.
+$obj?->ini_set('allow_url_include', 1); // Verify sniff doesn't flag methods with the same name as the PHP native function.
 
 ini_set(option: 'allow_url_include', value: 1);
 $test = ini_get(option: 'allow_url_include');
-
 
 ini_set('pcre.backtrack_limit', 1);
 $test = ini_get('pcre.backtrack_limit');

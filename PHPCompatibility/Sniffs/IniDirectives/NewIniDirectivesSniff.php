@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
@@ -938,12 +939,11 @@ class NewIniDirectivesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = [
-            \T_DOUBLE_COLON    => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_FUNCTION        => true,
-            \T_CONST           => true,
+        $ignore  = [
+            \T_FUNCTION => true,
+            \T_CONST    => true,
         ];
+        $ignore += Collections::objectOperators();
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
