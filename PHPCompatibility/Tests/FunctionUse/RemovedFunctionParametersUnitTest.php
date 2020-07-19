@@ -213,6 +213,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             [26],
             [29],
             [32],
+            [50],
         ];
     }
 
