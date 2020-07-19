@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -87,12 +88,11 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $ignore = [
-            \T_DOUBLE_COLON    => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_FUNCTION        => true,
-            \T_NEW             => true,
+        $ignore  = [
+            \T_FUNCTION => true,
+            \T_NEW      => true,
         ];
+        $ignore += Collections::objectOperators();
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
