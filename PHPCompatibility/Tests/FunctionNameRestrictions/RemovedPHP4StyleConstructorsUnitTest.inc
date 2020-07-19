@@ -81,5 +81,11 @@ class bar {
     }
 }
 
+// Class vs function name PHP case-sensitivity quirks.
+class FooBÃÈ {
+    function fOOBÃÈ() {}
+    function FooBãè() {} // OK - not PHP 4-type constructor - POC: https://3v4l.org/YOc2R.
+}
+
 // Must be last test: testing class without scope closer.
 class Something {

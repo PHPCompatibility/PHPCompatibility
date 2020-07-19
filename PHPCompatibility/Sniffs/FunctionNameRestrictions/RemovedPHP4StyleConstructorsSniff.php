@@ -13,8 +13,9 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\NamingConventions;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0
@@ -102,7 +103,6 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         }
 
         $nextFunc            = $class['scope_opener'];
-        $classNameLc         = strtolower($className);
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
@@ -125,13 +125,11 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
                 continue;
             }
 
-            $funcNameLc = strtolower($funcName);
-
-            if ($funcNameLc === '__construct') {
+            if (strtolower($funcName) === '__construct') {
                 $newConstructorFound = true;
             }
 
-            if ($funcNameLc === $classNameLc) {
+            if (NamingConventions::isEqual($funcName, $className) === true) {
                 $oldConstructorFound = true;
                 $oldConstructorPos   = $nextFunc;
             }
