@@ -23,12 +23,12 @@ function foo($a) {
     debug_backtrace()[0]['class']; // Explicitly requesting a non-args index from the backtrace array.
 }
 
-
 function foo($a) {
 	$a   = 'changed!';
 	$obj = new ABC();
 	echo $obj->
 		func_get_arg(0); // OK, not the PHP native function call.
+	echo $obj?->debug_backtrace(); // OK, not the PHP native function call.
 	echo ABC::func_get_args(); // OK, not the PHP native function call.
 	echo \myNS\debug_print_backtrace(); // OK, not the PHP native function call.
 	const DEBUG_BACKTRACE = 'abc';
