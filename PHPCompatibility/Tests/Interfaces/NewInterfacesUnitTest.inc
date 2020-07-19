@@ -139,3 +139,7 @@ public Throwable $var; // Ignore, not a property, parse error.
 $anon = class() {
     public SessionUpdateTimestampHandlerInterface $property;
 };
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(SessionIdInterface $param) => $param;
+$fn = fn($param): SessionHandlerInterface => $param;

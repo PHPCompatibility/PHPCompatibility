@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -149,15 +150,17 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         $this->newInterfaces      = \array_change_key_case($this->newInterfaces, \CASE_LOWER);
         $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
-        return [
+        $targets = [
             \T_CLASS,
             \T_ANON_CLASS,
             \T_INTERFACE,
             \T_VARIABLE,
-            \T_FUNCTION,
-            \T_CLOSURE,
             \T_CATCH,
         ];
+
+        $targets += Collections::functionDeclarationTokensBC();
+
+        return $targets;
     }
 
 
@@ -190,18 +193,13 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
 
-            case 'T_FUNCTION':
-            case 'T_CLOSURE':
-                $this->processFunctionToken($phpcsFile, $stackPtr);
-                break;
-
             case 'T_CATCH':
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
+        }
 
-            default:
-                // Deliberately left empty.
-                break;
+        if (isset(Collections::functionDeclarationTokensBC()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processFunctionToken($phpcsFile, $stackPtr);
         }
     }
 
@@ -371,15 +369,22 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         /*
          * Check parameter type declarations.
          */
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-        if (empty($parameters) === false && \is_array($parameters) === true) {
-            foreach ($parameters as $param) {
-                if ($param['type_hint'] === '') {
-                    continue;
-                }
+        try {
+            $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
 
-                $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+            if (empty($parameters) === false && \is_array($parameters) === true) {
+                foreach ($parameters as $param) {
+                    if ($param['type_hint'] === '') {
+                        continue;
+                    }
+
+                    $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+                }
             }
+        } catch (RuntimeException $e) {
+            // This must have been a T_STRING which wasn't an arrow function.
+            // Checking the return type will be futile, so just bow out.
+            return;
         }
 
         /*
