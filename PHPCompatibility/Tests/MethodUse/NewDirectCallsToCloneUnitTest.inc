@@ -32,3 +32,4 @@ class DEF {
  */
 $a = (new ABC()) ->  /* comment */ __clone();
 StaticClass::__clone();
+$obj?->__clone();
