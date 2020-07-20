@@ -4177,10 +4177,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'get_magic_quotes_gpc' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'get_magic_quotes_runtime' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'hebrevc' => array(
