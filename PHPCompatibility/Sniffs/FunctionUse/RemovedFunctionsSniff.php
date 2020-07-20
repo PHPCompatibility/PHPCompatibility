@@ -4167,6 +4167,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 
         'convert_cyr_string' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
         ),
         'ezmlm_hash' => array(
