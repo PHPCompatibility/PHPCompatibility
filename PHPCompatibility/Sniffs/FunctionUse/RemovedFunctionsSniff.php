@@ -4187,6 +4187,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'hebrevc' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'is_real' => array(

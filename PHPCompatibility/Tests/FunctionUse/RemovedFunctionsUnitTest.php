@@ -66,7 +66,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         return array(
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
-            array('hebrevc', '7.4', array(242), '7.3'),
         );
     }
 
@@ -1294,6 +1293,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ezmlm_hash', '7.4', '8.0', array(245), '7.3'),
             array('get_magic_quotes_gpc', '7.4', '8.0', array(240), '7.3'),
             array('get_magic_quotes_runtime', '7.4', '8.0', array(241), '7.3'),
+            array('hebrevc', '7.4', '8.0', array(242), '7.3'),
         );
     }
 
