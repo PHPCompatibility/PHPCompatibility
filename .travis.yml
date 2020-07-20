@@ -1,4 +1,5 @@
-dist: trusty
+os: linux
+dist: xenial
 
 language: php
 
@@ -12,16 +13,13 @@ cache:
     - $HOME/.cache/composer/files
 
 php:
-  - 5.5
   - 5.6
   - 7.0
   - 7.1
   - 7.2
 
 env:
-  global:
-    - PHPUNIT_VERSION="travis"
-  matrix:
+  jobs:
     # `master`, i.e PHPCS 3.x.
     - PHPCS_VERSION="dev-master" LINT=1
     # Lowest supported PHPCS version.
@@ -46,7 +44,7 @@ jobs:
   include:
     #### SNIFF STAGE ####
     - stage: sniff
-      php: 7.3
+      php: 7.4
       env: PHPCS_VERSION="dev-master"
       addons:
         apt:
@@ -83,20 +81,33 @@ jobs:
       env: PHPCS_VERSION="3.1.0" LINT=1
 
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION="dev-master" LINT=1
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION=">=2.6,<3.0"
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION="2.6.0"
 
     #### TEST STAGE ####
-    # In addition to the matrix defined above, test against a variation of PHPCS 2.x and 3.x versions.
+    # Normal builds for PHP 5.5, defined here as they need trusty.
     - stage: test
-      php: 5.4
+      php: 5.5
+      dist: trusty
+      env: PHPCS_VERSION="dev-master" LINT=1
+    - php: 5.5
+      dist: trusty
+      env: PHPCS_VERSION="2.6.0"
+    # In addition to the matrix defined above, test against a variation of PHPCS 2.x and 3.x versions.
+    - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION="3.1.0" LINT=1
     - php: 5.5
+      dist: trusty
       env: PHPCS_VERSION="2.7.*"
     - php: 5.5
+      dist: trusty
       env: PHPCS_VERSION="3.2.*"
     - php: 5.6
       env: PHPCS_VERSION="2.8.*"
@@ -143,10 +154,13 @@ jobs:
       env: PHPCS_VERSION="3.1.0" COVERALLS_VERSION="^2.0"
 
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^1.0"
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION=">=2.6,<3.0" COVERALLS_VERSION="^1.0" CUSTOM_INI=1
     - php: 5.4
+      dist: trusty
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^1.0"
 
   allow_failures:
@@ -177,21 +191,8 @@ before_install:
 
   - export XMLLINT_INDENT="    "
 
-  # Toggle the PHPUnit versions if necessary, depending on the known Travis configurations.
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} < "5.5" ]]; then export PHPUNIT_VERSION="~4.5"; fi
-
-  # Work around bug in Travis PHP 7.2 image which contains PHPUnit 9.x while PHPUnit 9.x needs PHP 7.3.
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then export PHPUNIT_VERSION="^8.5"; fi
-
-  # Force installation of PHPUnit 9.x on PHP nightly.
-  - if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then export PHPUNIT_VERSION="^9.0"; fi
-
   # Set up test environment using Composer.
   - composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
-  - |
-    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" != "Sniff" && $PHPUNIT_VERSION != "travis" ]]; then
-      composer require --no-update phpunit/phpunit:${PHPUNIT_VERSION}
-    fi
   - |
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
       composer require --no-update php-coveralls/php-coveralls:${COVERALLS_VERSION}
@@ -202,12 +203,11 @@ before_install:
       composer install --prefer-dist --no-suggest
     elif [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
       # Ignore platform requirements to allow PHPUnit to install on PHP 8.
-      composer install --no-dev --prefer-dist --no-suggest --ignore-platform-reqs
+      composer install --prefer-dist --no-suggest --ignore-platform-reqs
     else
-      # Remove devtools as it would block testing on old PHPCS versions (< 3.0).
+      # Remove devtools as it would block install on old PHPCS versions (< 3.0).
       composer remove --dev phpcsstandards/phpcsdevtools --no-update
-      # --no-dev makes sure the Travis provided version of PHPUnit is used whenever possible for better stability.
-      composer install --no-dev --prefer-dist --no-suggest
+      composer install --prefer-dist --no-suggest
     fi
 
 before_script:
@@ -224,17 +224,9 @@ script:
   # Run the unit tests.
   - |
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Quicktest" || "${TRAVIS_BUILD_STAGE_NAME^}" == "Test" ]]; then
-      if [[ $PHPUNIT_VERSION == "travis" ]]; then
-        phpunit --no-coverage
-      else
-        vendor/bin/phpunit --no-coverage
-      fi
+      vendor/bin/phpunit --no-coverage
     elif [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
-      if [[ $PHPUNIT_VERSION == "travis" ]]; then
-        phpunit
-      else
-        vendor/bin/phpunit
-      fi
+      vendor/bin/phpunit
     fi
 
 after_success:
