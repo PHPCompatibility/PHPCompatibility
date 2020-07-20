@@ -26,46 +26,6 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
 {
 
     /**
-     * testOptionalRequiredParameterDeprecated
-     *
-     * @dataProvider dataOptionalRequiredParameterDeprecated
-     *
-     * @param string $functionName     Function name.
-     * @param string $parameterName    Parameter name.
-     * @param string $softRequiredFrom The last PHP version in which the parameter was still optional.
-     * @param array  $lines            The line numbers in the test file which apply to this class.
-     * @param string $okVersion        A PHP version in which to test for no violation.
-     *
-     * @return void
-     */
-    public function testOptionalRequiredParameterDeprecated($functionName, $parameterName, $softRequiredFrom, $lines, $okVersion)
-    {
-        $file  = $this->sniffFile(__FILE__, $softRequiredFrom);
-        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is deprecated since PHP {$softRequiredFrom}";
-        foreach ($lines as $line) {
-            $this->assertWarning($file, $line, $error);
-        }
-
-        $file = $this->sniffFile(__FILE__, $okVersion);
-        foreach ($lines as $line) {
-            $this->assertNoViolation($file, $line);
-        }
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testOptionalRequiredParameterDeprecated()
-     *
-     * @return array
-     */
-    public function dataOptionalRequiredParameterDeprecated()
-    {
-        return array();
-    }
-
-
-    /**
      * testOptionalRequiredParameterDeprecatedRemoved
      *
      * @dataProvider dataOptionalRequiredParameterDeprecatedRemoved
