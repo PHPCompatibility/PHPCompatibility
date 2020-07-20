@@ -66,8 +66,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         return array(
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
-            array('fgetss', '7.3', array(167), '7.2'),
-            array('gzgetss', '7.3', array(168), '7.2'),
             array('ezmlm_hash', '7.4', array(245), '7.3'),
             array('get_magic_quotes_gpc', '7.4', array(240), '7.3'),
             array('get_magic_quotes_runtime', '7.4', array(241), '7.3'),
@@ -1295,6 +1293,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mysql_table_name', '5.5', '7.0', array(984), '5.4'),
 
             array('ldap_sort', '7.0', '8.0', array(97), '5.6'),
+            array('fgetss', '7.3', '8.0', array(167), '7.2'),
+            array('gzgetss', '7.3', '8.0', array(168), '7.2'),
         );
     }
 

@@ -4156,10 +4156,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'fgetss' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'gzgetss' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
 
