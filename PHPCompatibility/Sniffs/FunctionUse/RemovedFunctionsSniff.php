@@ -4172,6 +4172,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'ezmlm_hash' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'get_magic_quotes_gpc' => array(
