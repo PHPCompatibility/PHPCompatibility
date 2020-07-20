@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -37,21 +38,6 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
      */
     protected $targetFunctions = array(
         'strip_tags' => true,
-    );
-
-    /**
-     * Text string tokens to examine.
-     *
-     * @since 9.3.0
-     *
-     * @var array
-     */
-    private $textStringTokens = array(
-        \T_CONSTANT_ENCAPSED_STRING => true,
-        \T_DOUBLE_QUOTED_STRING     => true,
-        \T_INLINE_HTML              => true,
-        \T_HEREDOC                  => true,
-        \T_NOWDOC                   => true,
     );
 
 
@@ -112,7 +98,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
         }
 
         if ($this->supportsAbove('7.4') === true) {
-            if (strpos($targetParam['raw'], '>') === false) {
+            if (strpos($targetParam['clean'], '>') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;
             }
@@ -132,7 +118,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                         break;
                     }
 
-                    if (isset($this->textStringTokens[$tokens[$i]['code']]) === true
+                    if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
                         && strpos($tokens[$i]['content'], '>') !== false
                     ) {
 
@@ -140,7 +126,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                             'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',
                             $i,
                             'Invalid',
-                            array($item['raw'])
+                            array($item['clean'])
                         );
 
                         // Only throw one error per array item.
