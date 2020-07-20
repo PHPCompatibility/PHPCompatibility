@@ -4196,6 +4196,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'money_format' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => 'NumberFormatter::formatCurrency()',
         ),
         'restore_include_path' => array(
