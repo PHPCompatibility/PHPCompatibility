@@ -4201,6 +4201,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'restore_include_path' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => "ini_restore('include_path')",
         ),
         'ibase_add_user' => array(
