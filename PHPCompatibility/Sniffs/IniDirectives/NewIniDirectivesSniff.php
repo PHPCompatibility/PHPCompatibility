@@ -855,6 +855,11 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+
+        'zend.exception_string_param_max_len' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
     /**
