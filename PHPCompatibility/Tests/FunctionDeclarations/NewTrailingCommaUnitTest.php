@@ -54,8 +54,41 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
             array(44),
             array(48),
             array(59),
-            array(70),
-            array(73),
+            array(75),
+            array(89),
+            array(94),
+        );
+    }
+
+
+    /**
+     * Test correctly identifying trailing comma's in closure use lists.
+     *
+     * @dataProvider dataTrailingCommaClosureUse
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testTrailingCommaClosureUse($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Trailing comma's are not allowed in closure use lists in PHP 7.4 or earlier");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testTrailingCommaClosureUse()
+     *
+     * @return array
+     */
+    public function dataTrailingCommaClosureUse()
+    {
+        return array(
+            array(68),
+            array(79),
+            array(91),
         );
     }
 
@@ -90,8 +123,8 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
             $data[] = array($line);
         }
 
-        $data[] = array(76);
-        $data[] = array(80);
+        $data[] = array(97);
+        $data[] = array(101);
 
         return $data;
     }
