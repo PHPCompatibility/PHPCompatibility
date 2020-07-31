@@ -6470,6 +6470,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ),
+        'T_NULLSAFE_OBJECT_OPERATOR' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
 
