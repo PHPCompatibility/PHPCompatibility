@@ -22,6 +22,7 @@ use PHP_CodeSniffer_File as File;
  * @link https://wiki.php.net/rfc/combined-comparison-operator
  * @link https://wiki.php.net/rfc/isset_ternary
  * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
+ * @link https://wiki.php.net/rfc/nullsafe_operator
  *
  * @since 9.0.0 Detection of new operators was originally included in the
  *              `NewLanguageConstruct` sniff (since 5.6).
@@ -65,6 +66,11 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             '7.4' => true,
             'description' => 'null coalesce equal operator (??=)',
         ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
+        'T_NULLSAFE_OBJECT_OPERATOR' => array(
+            '7.4' => false,
+            '8.0' => true,
+            'description' => 'nullsafe object operator (?->)',
+        ),
     );
 
 
@@ -78,8 +84,9 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      * @var array(string => int)
      */
     protected $newOperatorsPHPCSCompat = array(
-        'T_COALESCE'       => \T_INLINE_THEN,
-        'T_COALESCE_EQUAL' => \T_EQUAL,
+        'T_COALESCE'                 => \T_INLINE_THEN,
+        'T_COALESCE_EQUAL'           => \T_EQUAL,
+        'T_NULLSAFE_OBJECT_OPERATOR' => \T_OBJECT_OPERATOR,
     );
 
     /**
@@ -109,6 +116,10 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
         'T_EQUAL' => array(
             'callback'   => 'isTCoalesceEqual',
             'real_token' => 'T_COALESCE_EQUAL',
+        ),
+        'T_OBJECT_OPERATOR' => array(
+            'before'     => 'T_INLINE_THEN',
+            'real_token' => 'T_NULLSAFE_OBJECT_OPERATOR',
         ),
     );
 
