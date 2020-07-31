@@ -44,32 +44,32 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
         'T_POW' => array(
             '5.5' => false,
             '5.6' => true,
-            'description' => 'power operator (**)',
+            'description' => 'The power operator (**)',
         ),
         'T_POW_EQUAL' => array(
             '5.5' => false,
             '5.6' => true,
-            'description' => 'power assignment operator (**=)',
+            'description' => 'The power assignment operator (**=)',
         ),
         'T_SPACESHIP' => array(
             '5.6' => false,
             '7.0' => true,
-            'description' => 'spaceship operator (<=>)',
+            'description' => 'The spaceship operator (<=>)',
         ),
         'T_COALESCE' => array(
             '5.6' => false,
             '7.0' => true,
-            'description' => 'null coalescing operator (??)',
+            'description' => 'The null coalescing operator (??)',
         ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
         'T_COALESCE_EQUAL' => array(
             '7.3' => false,
             '7.4' => true,
-            'description' => 'null coalesce equal operator (??=)',
+            'description' => 'The null coalesce equal operator (??=)',
         ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
         'T_NULLSAFE_OBJECT_OPERATOR' => array(
             '7.4' => false,
             '8.0' => true,
-            'description' => 'nullsafe object operator (?->)',
+            'description' => 'The nullsafe object operator (?->)',
         ),
     );
 
