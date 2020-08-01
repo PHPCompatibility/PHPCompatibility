@@ -64,6 +64,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
             [43],
             [61],
             [62],
+            [66],
         ];
     }
 

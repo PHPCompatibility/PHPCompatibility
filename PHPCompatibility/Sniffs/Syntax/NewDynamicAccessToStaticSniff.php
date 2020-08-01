@@ -75,7 +75,9 @@ class NewDynamicAccessToStaticSniff extends Sniff
         if ($tokens[$prevNonEmpty]['code'] === \T_STRING) {
             $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
 
-            if ($tokens[$prevPrevNonEmpty]['code'] !== \T_OBJECT_OPERATOR) {
+            if ($tokens[$prevPrevNonEmpty]['code'] !== \T_OBJECT_OPERATOR
+                && $tokens[$prevPrevNonEmpty]['code'] !== \T_NULLSAFE_OBJECT_OPERATOR
+            ) {
                 return;
             }
         }
