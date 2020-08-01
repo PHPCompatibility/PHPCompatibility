@@ -16,6 +16,7 @@ use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Operators;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
@@ -260,7 +261,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
             }
 
             // Handle property access.
-            if ($tokens[$current]['code'] === \T_OBJECT_OPERATOR) {
+            if ($tokens[$current]['code'] === \T_OBJECT_OPERATOR
+                || $tokens[$current]['code'] === \T_NULLSAFE_OBJECT_OPERATOR
+            ) {
                 $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);
                 if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
                     // Live coding or parse error.
