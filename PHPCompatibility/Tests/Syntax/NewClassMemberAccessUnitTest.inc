@@ -116,3 +116,5 @@ echo (clone $iterable){20};
 // Mixing access with square brackets and curly braces.
 $a = (new Foo( array(1, array(4, 5), 3) )){1}[0]; // Should give two errors (depending on supported PHP version).
 $a = (clone $iterable)[1]{0}; // Should give two errors (depending on supported PHP version).
+
+var_dump((new Bar)?->y);
