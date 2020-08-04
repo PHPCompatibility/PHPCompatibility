@@ -68,6 +68,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ocifetchinto', '5.4', array(63), '5.3'),
             array('enchant_broker_get_dict_path', '8.0', array(1172), '7.4'),
             array('enchant_broker_set_dict_path', '8.0', array(1173), '7.4'),
+            array('openssl_x509_free', '8.0', array(1189), '7.4'),
+            array('openssl_pkey_free', '8.0', array(1190), '7.4'),
         );
     }
 

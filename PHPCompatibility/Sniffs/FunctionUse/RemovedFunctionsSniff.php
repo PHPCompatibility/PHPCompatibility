@@ -4675,6 +4675,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'oci_internal_debug' => array(
             '8.0' => true,
         ),
+        'openssl_x509_free' => array(
+            '8.0' => false,
+        ),
+        'openssl_pkey_free' => array(
+            '8.0' => false,
+        ),
         'xmlrpc_decode_request' => array(
             '8.0'       => true,
             'extension' => 'xmlrpc',

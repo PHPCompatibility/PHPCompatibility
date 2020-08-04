@@ -1186,3 +1186,5 @@ zip_entry_open();
 zip_entry_read();
 zip_open();
 zip_read();
+openssl_x509_free();
+openssl_pkey_free();
