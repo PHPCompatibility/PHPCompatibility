@@ -4672,6 +4672,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
         ),
+        'libxml_disable_entity_loader' => array(
+            '8.0' => false,
+        ),
         'oci_internal_debug' => array(
             '8.0' => true,
         ),

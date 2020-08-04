@@ -1188,3 +1188,4 @@ zip_open();
 zip_read();
 openssl_x509_free();
 openssl_pkey_free();
+libxml_disable_entity_loader();
