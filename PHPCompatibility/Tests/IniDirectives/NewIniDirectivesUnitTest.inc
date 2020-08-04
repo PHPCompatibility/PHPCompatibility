@@ -529,3 +529,6 @@ $test = ini_get('sqlite3.defensive');
 
 ini_set('zend.exception_string_param_max_len', 30);
 $test = ini_get('zend.exception_string_param_max_len');
+
+ini_set('pm.status_listen', '127.0.0.1:9001');
+$test = ini_get('pm.status_listen');
