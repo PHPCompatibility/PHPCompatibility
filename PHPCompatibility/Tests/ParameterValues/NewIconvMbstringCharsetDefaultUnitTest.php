@@ -109,17 +109,43 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
     /**
      * Test the special handling of calls to iconv_mime_encode().
      *
+     * @dataProvider dataIconvMimeEncode
+     *
+     * @param int    $line    Line number where the error should occur.
+     * @param string $missing The preferences which are missing.
+     * @param string $type    Whether an error or a warning is expected. Defaults to 'error'.
+     *
      * @return void
      */
-    public function testIconvMimeEncode()
+    public function testIconvMimeEncode($line, $missing, $type = 'error')
     {
         $file  = $this->sniffFile(__FILE__, '5.4-7.0');
         $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6';
+        $error = sprintf($error, $missing);
 
-        $this->assertError($file, 91, sprintf($error, '$preferences[\'input/output-charset\']'));
-        $this->assertWarning($file, 92, sprintf($error, '$preferences[\'input/output-charset\']'));
-        $this->assertError($file, 96, sprintf($error, '$preferences[\'output-charset\']'));
-        $this->assertError($file, 106, sprintf($error, '$preferences[\'input-charset\']'));
+        if ($type === 'error') {
+            $this->assertError($file, $line, $error);
+        } else {
+            $this->assertWarning($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testIconvMimeEncode()
+     *
+     * @return array
+     */
+    public function dataIconvMimeEncode()
+    {
+        return array(
+            array(91, '$preferences[\'input/output-charset\']'),
+            array(92, '$preferences[\'input/output-charset\']', 'warning'),
+            array(96, '$preferences[\'output-charset\']'),
+            array(106, '$preferences[\'input-charset\']'),
+            array(115, '$preferences[\'input-charset\']'),
+        );
     }
 
 

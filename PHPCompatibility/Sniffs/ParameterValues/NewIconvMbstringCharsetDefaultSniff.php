@@ -183,8 +183,9 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         if ($tokens[$firstNonEmpty]['code'] === \T_ARRAY
             || $tokens[$firstNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY
         ) {
-            $hasInputCharset  = preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['raw']);
-            $hasOutputCharset = preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['raw']);
+            // Note: the item names are treated case-sensitively in PHP, so match on exact case.
+            $hasInputCharset  = preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);
+            $hasOutputCharset = preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['clean']);
             if ($hasInputCharset === 1 && $hasOutputCharset === 1) {
                 // Both input as well as output charset are set.
                 return;
