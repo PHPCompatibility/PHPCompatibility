@@ -1045,6 +1045,12 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('sapi_windows_generate_ctrl_event', '7.3', array(485), '7.4'),
             array('password_algos', '7.3', array(486), '7.4'),
             array('imagecreatefromtga', '7.3', array(487), '7.4'),
+
+            array('openssl_cms_encrypt', '7.4', array(984), '8.0'),
+            array('openssl_cms_decrypt', '7.4', array(985), '8.0'),
+            array('openssl_cms_read', '7.4', array(986), '8.0'),
+            array('openssl_cms_sign', '7.4', array(987), '8.0'),
+            array('openssl_cms_verify', '7.4', array(988), '8.0'),
         );
     }
 

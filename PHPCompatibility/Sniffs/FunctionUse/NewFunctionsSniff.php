@@ -4455,6 +4455,27 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+
+        'openssl_cms_encrypt' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'openssl_cms_decrypt' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'openssl_cms_read' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'openssl_cms_sign' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'openssl_cms_verify' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
 

@@ -1468,6 +1468,18 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('TIDY_TAG_TIME', '7.3', array(857), '7.4'),
             array('TIDY_TAG_TRACK', '7.3', array(858), '7.4'),
             array('TIDY_TAG_VIDEO', '7.3', array(859), '7.4'),
+
+            array('OPENSSL_ENCODING_DER', '7.4', array(1396), '8.0'),
+            array('OPENSSL_ENCODING_SMIME', '7.4', array(1397), '8.0'),
+            array('OPENSSL_ENCODING_PEM', '7.4', array(1398), '8.0'),
+            array('OPENSSL_CMS_DETACHED', '7.4', array(1399), '8.0'),
+            array('OPENSSL_CMS_TEXT', '7.4', array(1400), '8.0'),
+            array('OPENSSL_CMS_NOINTERN', '7.4', array(1401), '8.0'),
+            array('OPENSSL_CMS_NOVERIFY', '7.4', array(1402), '8.0'),
+            array('OPENSSL_CMS_NOCERTS', '7.4', array(1403), '8.0'),
+            array('OPENSSL_CMS_NOATTR', '7.4', array(1404), '8.0'),
+            array('OPENSSL_CMS_BINARY', '7.4', array(1405), '8.0'),
+            array('OPENSSL_CMS_NOSIGS', '7.4', array(1406), '8.0'),
         );
     }
 
