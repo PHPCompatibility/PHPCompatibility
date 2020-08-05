@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\Scopes;
 
@@ -35,16 +37,14 @@ class RemovedMagicAutoloadSniff extends Sniff
     /**
      * Scopes to look for when testing using validDirectScope.
      *
+     * {@internal More tokens are added on register().}
+     *
      * @since 8.1.0
      *
      * @var array
      */
     private $checkForScopes = array(
-        \T_CLASS      => \T_CLASS,
-        \T_ANON_CLASS => \T_ANON_CLASS,
-        \T_INTERFACE  => \T_INTERFACE,
-        \T_TRAIT      => \T_TRAIT,
-        \T_NAMESPACE  => \T_NAMESPACE,
+        \T_NAMESPACE => \T_NAMESPACE,
     );
 
     /**
@@ -56,6 +56,8 @@ class RemovedMagicAutoloadSniff extends Sniff
      */
     public function register()
     {
+        $this->checkForScopes += BCTokens::ooScopeTokens();
+
         return array(\T_FUNCTION);
     }
 
@@ -76,7 +78,7 @@ class RemovedMagicAutoloadSniff extends Sniff
             return;
         }
 
-        $funcName = $phpcsFile->getDeclarationName($stackPtr);
+        $funcName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
 
         if (strtolower($funcName) !== '__autoload') {
             return;

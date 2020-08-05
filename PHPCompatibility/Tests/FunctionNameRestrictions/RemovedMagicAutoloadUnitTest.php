@@ -80,6 +80,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
     {
         return array(
             array(3),
+            array(32),
         );
     }
 
