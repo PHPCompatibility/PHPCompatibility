@@ -12,8 +12,10 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\NamingConventions;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Detect declarations of PHP 4 style constructors which are deprecated as of PHP 7.0.0
@@ -87,23 +89,20 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
+        $class  = $tokens[$stackPtr];
 
-        $class = $tokens[$stackPtr];
-
-        if (isset($class['scope_closer']) === false) {
+        if (isset($class['scope_opener'], $class['scope_closer']) === false) {
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true); // Will never return false.
-        $scopeCloser  = $class['scope_closer'];
-        $className    = $tokens[$nextNonEmpty]['content'];
+        $scopeCloser = $class['scope_closer'];
+        $className   = ObjectDeclarations::getName($phpcsFile, $stackPtr);
 
         if (empty($className) || \is_string($className) === false) {
             return;
         }
 
-        $nextFunc            = $stackPtr;
-        $classNameLc         = strtolower($className);
+        $nextFunc            = $class['scope_opener'];
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
@@ -120,19 +119,17 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
                 $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
             }
 
-            $funcName = $phpcsFile->getDeclarationName($nextFunc);
+            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
             if (empty($funcName) || \is_string($funcName) === false) {
                 $nextFunc = $functionScopeCloser;
                 continue;
             }
 
-            $funcNameLc = strtolower($funcName);
-
-            if ($funcNameLc === '__construct') {
+            if (strtolower($funcName) === '__construct') {
                 $newConstructorFound = true;
             }
 
-            if ($funcNameLc === $classNameLc) {
+            if (NamingConventions::isEqual($funcName, $className) === true) {
                 $oldConstructorFound = true;
                 $oldConstructorPos   = $nextFunc;
             }

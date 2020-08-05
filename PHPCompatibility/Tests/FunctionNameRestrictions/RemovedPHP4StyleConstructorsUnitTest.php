@@ -57,6 +57,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
             array(18),
             array(33),
             array(66),
+            array(86),
         );
     }
 
@@ -96,6 +97,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
             array(51),
             array(53),
             array(65),
+            array(87),
         );
     }
 
