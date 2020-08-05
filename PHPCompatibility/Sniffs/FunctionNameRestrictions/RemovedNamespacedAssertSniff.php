@@ -12,7 +12,9 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect declaration of a namespaced function called `assert()`.
@@ -34,20 +36,6 @@ use PHPCSUtils\Utils\Namespaces;
  */
 class RemovedNamespacedAssertSniff extends Sniff
 {
-    /**
-     * Scopes in which an `assert` function can be declared without issue.
-     *
-     * @since 9.0.0
-     *
-     * @var array
-     */
-    private $scopes = array(
-        \T_CLASS,
-        \T_ANON_CLASS,
-        \T_INTERFACE,
-        \T_TRAIT,
-        \T_CLOSURE,
-    );
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -78,13 +66,13 @@ class RemovedNamespacedAssertSniff extends Sniff
             return;
         }
 
-        $funcName = $phpcsFile->getDeclarationName($stackPtr);
+        $funcName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
 
         if (strtolower($funcName) !== 'assert') {
             return;
         }
 
-        if ($phpcsFile->hasCondition($stackPtr, $this->scopes) === true) {
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true) {
             return;
         }
 
