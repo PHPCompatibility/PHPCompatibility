@@ -99,17 +99,17 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
         $error = 'Passing a non-integer as the value for $initial to array_reduce() is not supported in PHP 5.2 or lower.';
         if ($phpcsFile->findNext($this->variableValueTokens, $targetParam['start'], ($targetParam['end'] + 1)) === false) {
             $phpcsFile->addError(
-                $error . ' Found %s',
+                $error . ' Found: %s',
                 $targetParam['start'],
                 'InvalidTypeFound',
-                array($targetParam['raw'])
+                array($targetParam['clean'])
             );
         } else {
             $phpcsFile->addWarning(
-                $error . ' Variable value found. Found %s',
+                $error . ' Variable value found. Found: %s',
                 $targetParam['start'],
                 'VariableFound',
-                array($targetParam['raw'])
+                array($targetParam['clean'])
             );
         }
     }
