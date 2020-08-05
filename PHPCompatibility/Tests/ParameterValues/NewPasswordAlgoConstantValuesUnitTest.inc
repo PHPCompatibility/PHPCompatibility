@@ -22,5 +22,5 @@ $hash = password_hash( $password, +1, $options );
 $hash = password_needs_rehash( $password, 2, $options );
 $hash = password_hash( $password, 3, $options );
 $hash = password_hash( $password, '2y', $options );
-$hash = password_HASH( $password, "argon{$type}", $options );
+$hash = password_HASH( $password, "argon{$type}" /*comment*/, $options );
 $hash = password_needs_rehash( $password, 'argon2id', $options );
