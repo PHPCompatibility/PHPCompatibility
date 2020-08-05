@@ -100,7 +100,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
         }
 
         if ($this->supportsAbove('7.4') === true) {
-            if (strpos($targetParam['raw'], 'escapeshellarg(') === false) {
+            if (strpos($targetParam['clean'], 'escapeshellarg(') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;
             }
@@ -122,10 +122,10 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
                     // @todo Potential future enhancement: check if it's a call to the PHP native function.
 
                     $phpcsFile->addWarning(
-                        'When passing proc_open() the $cmd parameter as an array, PHP will take care of any necessary argument escaping. Found: %s',
+                        'When passing the $cmd parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: %s',
                         $i,
                         'Invalid',
-                        array($item['raw'])
+                        array($item['clean'])
                     );
 
                     // Only throw one error per array item.

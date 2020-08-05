@@ -21,7 +21,7 @@ $proc = proc_open(
         'php',
         '-r',
         'echo "Hello World\n";',
-    ),
+    ), // Not using escapeshellarg() as PHP will do the escaping.
     $descriptors,
     $pipes
 );
@@ -31,7 +31,7 @@ $proc = proc_open(['php', '-r', escapeshellarg($echo)], $descriptors, $pipes);
 $proc = proc_open(
     array(
         'phpcs',
-        '--standard=' . escapeshellarg($standard),
+        '--standard=' . escapeshellarg($standard), // Escaping.
         './path/to/' . escapeshellarg($file),
     ),
     $descriptors,

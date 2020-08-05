@@ -73,7 +73,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
     public function testInvalidProcOpenCmdArray($line, $itemValue)
     {
         $file  = $this->sniffFile(__FILE__, '7.4');
-        $error = 'When passing proc_open() the $cmd parameter as an array, PHP will take care of any necessary argument escaping. Found: ' . $itemValue;
+        $error = 'When passing the $cmd parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: ' . $itemValue;
 
         $this->assertWarning($file, $line, $error);
     }
