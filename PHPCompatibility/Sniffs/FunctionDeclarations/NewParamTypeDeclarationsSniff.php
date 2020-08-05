@@ -133,13 +133,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $targets  = array(
-            \T_FUNCTION,
-            \T_CLOSURE,
-        );
-        $targets += Collections::arrowFunctionTokensBC();
-
-        return $targets;
+        return Collections::functionDeclarationTokensBC();
     }
 
 
