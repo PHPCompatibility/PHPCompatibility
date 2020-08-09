@@ -66,13 +66,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         return array(
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
-            array('ldap_sort', '7.0', array(97), '5.6'),
-            array('fgetss', '7.3', array(167), '7.2'),
-            array('gzgetss', '7.3', array(168), '7.2'),
-            array('ezmlm_hash', '7.4', array(245), '7.3'),
-            array('get_magic_quotes_gpc', '7.4', array(240), '7.3'),
-            array('get_magic_quotes_runtime', '7.4', array(241), '7.3'),
-            array('hebrevc', '7.4', array(242), '7.3'),
         );
     }
 
@@ -166,34 +159,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ociwritelobtofile', '5.4', 'OCI-Lob::export()', array(88), '5.3'),
             array('ociwritetemporarylob', '5.4', 'OCI-Lob::writeTemporary()', array(89), '5.3'),
 
-            array('jpeg2wbmp', '7.2', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
-            array('png2wbmp', '7.2', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
-            array('create_function', '7.2', 'an anonymous function', array(146), '7.1'),
             array('__autoload', '7.2', 'SPL autoload', array(589), '7.1'),
-            array('each', '7.2', 'a foreach loop', array(147), '7.1'),
-            array('gmp_random', '7.2', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
-            array('read_exif_data', '7.2', 'exif_read_data()', array(149), '7.1'),
-
-            array('image2wbmp', '7.3', 'imagewbmp()', array(152), '7.2'),
-            array('mbregex_encoding', '7.3', 'mb_regex_encoding()', array(153), '7.2'),
-            array('mbereg', '7.3', 'mb_ereg()', array(154), '7.2'),
-            array('mberegi', '7.3', 'mb_eregi()', array(155), '7.2'),
-            array('mbereg_replace', '7.3', 'mb_ereg_replace()', array(156), '7.2'),
-            array('mberegi_replace', '7.3', 'mb_eregi_replace()', array(157), '7.2'),
-            array('mbsplit', '7.3', 'mb_split()', array(158), '7.2'),
-            array('mbereg_match', '7.3', 'mb_ereg_match()', array(159), '7.2'),
-            array('mbereg_search', '7.3', 'mb_ereg_search()', array(160), '7.2'),
-            array('mbereg_search_pos', '7.3', 'mb_ereg_search_pos()', array(161), '7.2'),
-            array('mbereg_search_regs', '7.3', 'mb_ereg_search_regs()', array(162), '7.2'),
-            array('mbereg_search_init', '7.3', 'mb_ereg_search_init()', array(163), '7.2'),
-            array('mbereg_search_getregs', '7.3', 'mb_ereg_search_getregs()', array(164), '7.2'),
-            array('mbereg_search_getpos', '7.3', 'mb_ereg_search_getpos()', array(165), '7.2'),
-            array('mbereg_search_setpos', '7.3', 'mb_ereg_search_setpos()', array(166), '7.2'),
-
-            array('convert_cyr_string', '7.4', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
             array('is_real', '7.4', 'is_float()', array(239), '7.3'),
-            array('money_format', '7.4', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
-            array('restore_include_path', '7.4', "ini_restore('include_path')", array(246), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
         );
@@ -1318,6 +1285,13 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mysql_dbname', '5.5', '7.0', array(983), '5.4'),
             array('mysql_table_name', '5.5', '7.0', array(984), '5.4'),
 
+            array('ldap_sort', '7.0', '8.0', array(97), '5.6'),
+            array('fgetss', '7.3', '8.0', array(167), '7.2'),
+            array('gzgetss', '7.3', '8.0', array(168), '7.2'),
+            array('ezmlm_hash', '7.4', '8.0', array(245), '7.3'),
+            array('get_magic_quotes_gpc', '7.4', '8.0', array(240), '7.3'),
+            array('get_magic_quotes_runtime', '7.4', '8.0', array(241), '7.3'),
+            array('hebrevc', '7.4', '8.0', array(242), '7.3'),
         );
     }
 
@@ -1433,6 +1407,32 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mcrypt_module_self_test', '7.1', '7.2', 'OpenSSL', array(130), '7.0'),
             array('mdecrypt_generic', '7.1', '7.2', 'OpenSSL', array(131), '7.0'),
 
+            array('create_function', '7.2', '8.0', 'an anonymous function', array(146), '7.1'),
+            array('each', '7.2', '8.0', 'a foreach loop or ArrayIterator', array(147), '7.1'),
+            array('read_exif_data', '7.2', '8.0', 'exif_read_data()', array(149), '7.1'),
+            array('jpeg2wbmp', '7.2', '8.0', 'imagecreatefromjpeg() and imagewbmp()', array(144), '7.1'),
+            array('png2wbmp', '7.2', '8.0', 'imagecreatefrompng() or imagewbmp()', array(145), '7.1'),
+            array('gmp_random', '7.2', '8.0', 'gmp_random_bits() or gmp_random_range()', array(148), '7.1'),
+
+            array('image2wbmp', '7.3', '8.0', 'imagewbmp()', array(152), '7.2'),
+            array('mbregex_encoding', '7.3', '8.0', 'mb_regex_encoding()', array(153), '7.2'),
+            array('mbereg', '7.3', '8.0', 'mb_ereg()', array(154), '7.2'),
+            array('mberegi', '7.3', '8.0', 'mb_eregi()', array(155), '7.2'),
+            array('mbereg_replace', '7.3', '8.0', 'mb_ereg_replace()', array(156), '7.2'),
+            array('mberegi_replace', '7.3', '8.0', 'mb_eregi_replace()', array(157), '7.2'),
+            array('mbsplit', '7.3', '8.0', 'mb_split()', array(158), '7.2'),
+            array('mbereg_match', '7.3', '8.0', 'mb_ereg_match()', array(159), '7.2'),
+            array('mbereg_search', '7.3', '8.0', 'mb_ereg_search()', array(160), '7.2'),
+            array('mbereg_search_pos', '7.3', '8.0', 'mb_ereg_search_pos()', array(161), '7.2'),
+            array('mbereg_search_regs', '7.3', '8.0', 'mb_ereg_search_regs()', array(162), '7.2'),
+            array('mbereg_search_init', '7.3', '8.0', 'mb_ereg_search_init()', array(163), '7.2'),
+            array('mbereg_search_getregs', '7.3', '8.0', 'mb_ereg_search_getregs()', array(164), '7.2'),
+            array('mbereg_search_getpos', '7.3', '8.0', 'mb_ereg_search_getpos()', array(165), '7.2'),
+            array('mbereg_search_setpos', '7.3', '8.0', 'mb_ereg_search_setpos()', array(166), '7.2'),
+
+            array('convert_cyr_string', '7.4', '8.0', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
+            array('money_format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
+            array('restore_include_path', '7.4', '8.0', "ini_restore('include_path')", array(246), '7.3'),
         );
     }
 

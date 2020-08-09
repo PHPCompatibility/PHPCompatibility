@@ -2820,6 +2820,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'ldap_sort' => array(
             '7.0' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'mcrypt_generic_end' => array(
@@ -4045,10 +4046,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'jpeg2wbmp' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'imagecreatefromjpeg() and imagewbmp()',
         ),
         'png2wbmp' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
         ),
         '__autoload' => array(
@@ -4057,108 +4060,134 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'create_function' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'an anonymous function',
         ),
         'each' => array(
             '7.2' => false,
-            'alternative' => 'a foreach loop',
+            '8.0' => true,
+            'alternative' => 'a foreach loop or ArrayIterator',
         ),
         'gmp_random' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
         ),
         'read_exif_data' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'exif_read_data()',
         ),
 
         'image2wbmp' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'imagewbmp()',
         ),
         'mbregex_encoding' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_regex_encoding()',
         ),
         'mbereg' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg()',
         ),
         'mberegi' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_eregi()',
         ),
         'mbereg_replace' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_replace()',
         ),
         'mberegi_replace' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_eregi_replace()',
         ),
         'mbsplit' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_split()',
         ),
         'mbereg_match' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_match()',
         ),
         'mbereg_search' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search()',
         ),
         'mbereg_search_pos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_pos()',
         ),
         'mbereg_search_regs' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_regs()',
         ),
         'mbereg_search_init' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_init()',
         ),
         'mbereg_search_getregs' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_getregs()',
         ),
         'mbereg_search_getpos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_getpos()',
         ),
         'mbereg_search_setpos' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => 'mb_ereg_search_setpos()',
         ),
         'fgetss' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'gzgetss' => array(
             '7.3' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
 
         'convert_cyr_string' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
         ),
         'ezmlm_hash' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'get_magic_quotes_gpc' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'get_magic_quotes_runtime' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'hebrevc' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => null,
         ),
         'is_real' => array(
@@ -4167,10 +4196,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'money_format' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => 'NumberFormatter::formatCurrency()',
         ),
         'restore_include_path' => array(
             '7.4' => false,
+            '8.0' => true,
             'alternative' => "ini_restore('include_path')",
         ),
         'ibase_add_user' => array(
