@@ -107,3 +107,6 @@ try {
 try {
 } catch (\My\Except\Throwable $e) {
 }
+
+// PHP 8.0 new interfaces.
+function StringableTypeHint( Stringable $a ) {}
