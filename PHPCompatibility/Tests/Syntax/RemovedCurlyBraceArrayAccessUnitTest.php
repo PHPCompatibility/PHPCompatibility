@@ -37,7 +37,10 @@ class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTest
     public function testRemovedCurlyBraceArrayAccess($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertWarning($file, $line, 'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4.');
+        $this->assertWarning($file, $line, 'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4 and removed in PHP 8.0');
     }
 
     /**
