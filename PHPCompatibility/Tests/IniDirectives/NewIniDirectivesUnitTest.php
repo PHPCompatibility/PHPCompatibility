@@ -261,6 +261,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             array('opcache.preload', '7.4', array(455, 456), '7.3'),
             array('opcache.preload_user', '7.4', array(464, 465), '7.3'),
             array('zend.exception_ignore_args', '7.4', array(338, 339), '7.3'),
+
+            array('zend.exception_string_param_max_len', '8.0', array(530, 531), '7.4'),
         );
     }
 

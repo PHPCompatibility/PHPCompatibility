@@ -526,3 +526,6 @@ $test = ini_get('oci8.statement_cache_size');
 
 ini_set('sqlite3.defensive', 1);
 $test = ini_get('sqlite3.defensive');
+
+ini_set('zend.exception_string_param_max_len', 30);
+$test = ini_get('zend.exception_string_param_max_len');
