@@ -990,3 +990,4 @@ fdiv();
 get_debug_type();
 get_resource_id();
 preg_last_error_msg();
+str_contains();
