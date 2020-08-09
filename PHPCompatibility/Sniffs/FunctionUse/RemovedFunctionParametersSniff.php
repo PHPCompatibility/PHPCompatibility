@@ -47,15 +47,16 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
     protected $removedFunctionParameters = array(
         'curl_version' => array(
             0 => array(
-                'name'     => 'age',
-                '7.4'      => false,
-                'callback' => 'curlVersionInvalidValue',
+                'name' => 'age',
+                '7.4'  => false,
+                '8.0'  => true,
             ),
         ),
         'define' => array(
             2 => array(
                 'name' => 'case_insensitive',
-                '7.3'  => false, // Slated for removal in PHP 8.0.0.
+                '7.3'  => false,
+                '8.0'  => true,
             ),
         ),
         'gmmktime' => array(
@@ -75,6 +76,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
             2 => array(
                 'name'  => 'ber_identifier',
                 '5.2.4' => true,
+            ),
+        ),
+        'mb_decode_numericentity' => array(
+            3 => array(
+                'name' => 'is_hex',
+                '8.0'  => true,
             ),
         ),
         'mktime' => array(
@@ -274,36 +281,5 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         array_shift($data);
         array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
         return $data;
-    }
-
-    /**
-     * Check whether curl_version() was passed the default CURLVERSION_NOW.
-     *
-     * @since 9.3.0
-     *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                 $parameter Parameter info array.
-     *
-     * @return bool True if the value was not CURLVERSION_NOW, false otherwise.
-     */
-    protected function curlVersionInvalidValue(File $phpcsFile, array $parameter)
-    {
-        $tokens = $phpcsFile->getTokens();
-        $raw    = '';
-        for ($i = $parameter['start']; $i <= $parameter['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
-                continue;
-            }
-
-            $raw .= $tokens[$i]['content'];
-        }
-
-        if ($raw !== 'CURLVERSION_NOW'
-            && $raw !== (string) \CURLVERSION_NOW
-        ) {
-            return true;
-        }
-
-        return false;
     }
 }

@@ -66,6 +66,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
         return array(
             array('ldap_first_attribute', 'ber_identifier', '5.2.4', array(11), '5.2', '5.3'),
             array('ldap_next_attribute', 'ber_identifier', '5.2.4', array(12), '5.2', '5.3'),
+            array('mb_decode_numericentity', 'is_hex', '8.0', array(24), '7.4'),
         );
     }
 
@@ -116,59 +117,13 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
         return array(
             array('mktime', 'is_dst', '5.1', '7.0', array(8), '5.0'),
             array('gmmktime', 'is_dst', '5.1', '7.0', array(9), '5.0'),
+            array('define', 'case_insensitive', '7.3', '8.0', array(15), '7.2'),
+
+            array('curl_version', 'age', '7.4', '8.0', array(18), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(19), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(20), '7.3'),
+            array('curl_version', 'age', '7.4', '8.0', array(21), '7.3'),
         );
-    }
-
-
-    /**
-     * testDeprecatedParameter
-     *
-     * @dataProvider dataDeprecatedParameter
-     *
-     * @param string $functionName  Function name.
-     * @param string $parameterName Parameter name.
-     * @param string $deprecatedIn  The PHP version in which the parameter was deprecated.
-     * @param array  $lines         The line numbers in the test file which apply to this class.
-     * @param string $okVersion     A PHP version in which the parameter was ok to be used.
-     * @param string $testVersion   Optional. A PHP version in which to test for the deprecation message.
-     *
-     * @return void
-     */
-    public function testDeprecatedParameter($functionName, $parameterName, $deprecatedIn, $lines, $okVersion, $testVersion = null)
-    {
-        $file = $this->sniffFile(__FILE__, $okVersion);
-        foreach ($lines as $line) {
-            $this->assertNoViolation($file, $line);
-        }
-
-        $errorVersion = (isset($testVersion)) ? $testVersion : $deprecatedIn;
-        $file         = $this->sniffFile(__FILE__, $errorVersion);
-        $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn}";
-        foreach ($lines as $line) {
-            $this->assertWarning($file, $line, $error);
-        }
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testDeprecatedParameter()
-     *
-     * @return array
-     */
-    public function dataDeprecatedParameter()
-    {
-        $data = array(
-            array('define', 'case_insensitive', '7.3', array(15), '7.2'),
-            array('curl_version', 'age', '7.4', array(20), '7.3'),
-            array('curl_version', 'age', '7.4', array(21), '7.3'),
-        );
-
-        if (\CURLVERSION_NOW !== 4) {
-            $data[] = array('curl_version', 'age', '7.4', array(19), '7.3');
-        }
-
-        return $data;
     }
 
 
@@ -196,19 +151,13 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array(
+        return array(
             array(4),
             array(5),
             array(14),
             array(17),
-            array(18),
+            array(23),
         );
-
-        if (\CURLVERSION_NOW === 4) {
-            $data[] = array(19);
-        }
-
-        return $data;
     }
 
 
