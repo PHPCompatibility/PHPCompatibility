@@ -986,3 +986,4 @@ openssl_cms_decrypt();
 openssl_cms_read();
 openssl_cms_sign();
 openssl_cms_verify();
+fdiv();

@@ -1046,6 +1046,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             array('password_algos', '7.3', array(486), '7.4'),
             array('imagecreatefromtga', '7.3', array(487), '7.4'),
 
+            array('fdiv', '7.4', array(989), '8.0'),
             array('openssl_cms_encrypt', '7.4', array(984), '8.0'),
             array('openssl_cms_decrypt', '7.4', array(985), '8.0'),
             array('openssl_cms_read', '7.4', array(986), '8.0'),
