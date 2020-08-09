@@ -32,3 +32,11 @@ $str = strip_tags(
 // Prevent false positive.
 $str = strip_tags($input, ['br', ...function_call('<a>,<p>')]); // PHP 7.4 syntax: unpacking within an array.
 $str = strip_tags($input, []);
+
+$str = strip_tags(
+    $input,
+    array(
+        'a', // <a href=...>
+        'p', // <p> 
+    ),
+);

@@ -124,6 +124,12 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
         return array(
             array(33),
             array(34),
+            array(36),
+            array(37),
+            array(38),
+            array(39),
+            array(40),
+            array(41),
         );
     }
 
