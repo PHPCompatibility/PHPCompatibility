@@ -1048,6 +1048,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
 
             array('fdiv', '7.4', array(989), '8.0'),
             array('get_debug_type', '7.4', array(990), '8.0'),
+            array('get_resource_id', '7.4', array(991), '8.0'),
             array('openssl_cms_encrypt', '7.4', array(984), '8.0'),
             array('openssl_cms_decrypt', '7.4', array(985), '8.0'),
             array('openssl_cms_read', '7.4', array(986), '8.0'),

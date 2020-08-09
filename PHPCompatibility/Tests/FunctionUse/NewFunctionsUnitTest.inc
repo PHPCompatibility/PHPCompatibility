@@ -988,3 +988,4 @@ openssl_cms_sign();
 openssl_cms_verify();
 fdiv();
 get_debug_type();
+get_resource_id();
