@@ -993,3 +993,4 @@ preg_last_error_msg();
 str_contains();
 str_ends_with();
 str_starts_with();
+imagegetinterpolation();
