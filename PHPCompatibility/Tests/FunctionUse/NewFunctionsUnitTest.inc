@@ -989,3 +989,4 @@ openssl_cms_verify();
 fdiv();
 get_debug_type();
 get_resource_id();
+preg_last_error_msg();

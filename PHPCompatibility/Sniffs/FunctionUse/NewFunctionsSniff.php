@@ -4468,6 +4468,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ),
+        'preg_last_error_msg' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
         'openssl_cms_encrypt' => array(
             '7.4' => false,
             '8.0' => true,
