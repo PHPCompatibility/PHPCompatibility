@@ -147,7 +147,7 @@ jobs:
     - stage: coverage
       php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
-    - php: 7.3
+    - php: 7.2
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^2.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
