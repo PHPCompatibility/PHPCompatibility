@@ -514,6 +514,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
         'track_errors' => array(
             '7.2' => false,
+            '8.0' => true,
         ),
         'opcache.fast_shutdown' => array(
             '7.2' => true,

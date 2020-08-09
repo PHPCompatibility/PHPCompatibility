@@ -97,6 +97,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mcrypt.modes_dir', '7.1', '7.2', array(138, 139), '7.0'),
 
             array('opcache.inherited_hack', '5.3', '7.3', array(181, 182), '5.2'),
+
+            array('track_errors', '7.2', '8.0', array(172, 173), '7.1'),
         );
     }
 
@@ -150,7 +152,6 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             array('mbstring.internal_encoding', '5.6', array(77, 78), '5.5'),
 
             array('mbstring.func_overload', '7.2', array(166, 167), '7.1'),
-            array('track_errors', '7.2', array(172, 173), '7.1'),
 
             array('pdo_odbc.db2_instance_name', '7.3', array(184, 185), '7.2'),
 

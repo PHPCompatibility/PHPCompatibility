@@ -93,6 +93,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
         'php_errormsg' => array(
             '7.2' => false,
+            '8.0' => true,
             'alternative' => 'error_get_last()',
         ),
     );
