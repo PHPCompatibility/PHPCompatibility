@@ -17,11 +17,12 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
- * Detect trailing comma's in function declarations as allowed since PHP 8.
+ * Detect trailing comma's in function declarations and closure use lists as allowed since PHP 8.
  *
  * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/trailing_comma_in_parameter_list
+ * @link https://wiki.php.net/rfc/trailing_comma_in_closure_use_list
  *
  * @since 10.0.0
  */
@@ -76,16 +77,52 @@ class NewTrailingCommaSniff extends Sniff
             $closer = $tokens[$stackPtr]['parenthesis_closer'];
         }
 
+        /*
+         * Check for trailing comma's in a function declaration parameter list.
+         */
         $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
 
-        if ($tokens[$lastInParenthesis]['code'] !== \T_COMMA) {
+        if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
+            $phpcsFile->addError(
+                'Trailing comma\'s are not allowed in function declaration parameter lists in PHP 7.4 or earlier',
+                $lastInParenthesis,
+                'InParameterList'
+            );
+        }
+
+        /*
+         * From this point forward, we're only interested in closures to check for
+         * trailing comma's in closure use lists.
+         * Bow out for any of the other tokens.
+         */
+        if ($tokens[$stackPtr]['code'] !== \T_CLOSURE) {
             return;
         }
 
-        $phpcsFile->addError(
-            'Trailing comma\'s are not allowed in function declaration parameter lists in PHP 7.4 or earlier',
-            $lastInParenthesis,
-            'Found'
-        );
+        $usePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
+        if ($usePtr === false || $tokens[$usePtr]['code'] !== \T_USE) {
+            // Closure without use list or live coding/parse error.
+            return;
+        }
+
+        $openParens = $phpcsFile->findNext(Tokens::$emptyTokens, ($usePtr + 1), null, true);
+        if ($openParens === false
+            || $tokens[$openParens]['code'] !== \T_OPEN_PARENTHESIS
+            || isset($tokens[$openParens]['parenthesis_closer']) === false
+        ) {
+            // Live coding/parse error.
+            return;
+        }
+
+        $closer            = $tokens[$openParens]['parenthesis_closer'];
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
+
+        if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
+            $phpcsFile->addError(
+                'Trailing comma\'s are not allowed in closure use lists in PHP 7.4 or earlier',
+                $lastInParenthesis,
+                'InClosureUseList'
+            );
+        }
     }
 }

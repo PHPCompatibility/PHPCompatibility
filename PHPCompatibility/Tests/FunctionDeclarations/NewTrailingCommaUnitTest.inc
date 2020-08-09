@@ -10,8 +10,8 @@ function Foo7(
     return $foo + $bar;
 }
 
-$closure = function ($foo, $bar) {
-    return $foo + $bar;
+$closure = function ($foo, $bar) use ($baz, $booboo) {
+    return ($foo + $bar) * $baz / $booboo;
 };
 
 $arrow = fn($foo, $bar) => $foo + $bar;
@@ -63,11 +63,32 @@ class LotsOfParams8 {
 }
 
 /*
+ * PHP 8.0 trailing comma's in closure use lists.
+ */
+$closure = function ($foo, $bar) use ($baz, $booboo,) {
+    return ($foo + $bar) * $baz / $booboo;
+};
+
+$longArgs_longVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument,
+) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3,
+) {
+   // body
+};
+
+/*
  * Still not allowed.
  */
 
 // Free-standing comma.
 $c = function(,) {}; // Parse error, but throw an error anyway.
+
+$c = function($foo) use(,) {}; // Parse error, but throw an error anyway.
 
 // Multiple trailing comma's.
 $a = fn($foo, $bar,,) => $bar; // Parse error, but throw an error anyway.
