@@ -4476,6 +4476,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ),
+        'str_ends_with' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'str_starts_with' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
         'openssl_cms_encrypt' => array(
             '7.4' => false,
             '8.0' => true,
