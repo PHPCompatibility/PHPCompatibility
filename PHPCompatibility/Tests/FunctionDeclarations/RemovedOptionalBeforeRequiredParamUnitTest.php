@@ -89,8 +89,13 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTest
             $cases[] = array($line);
         }
 
-        // Add parse error test case.
+        // Don't error on variadic parameters.
         $cases[] = array(23);
+        $cases[] = array(24);
+        $cases[] = array(26);
+
+        // Add parse error test case.
+        $cases[] = array(29);
 
         return $cases;
     }

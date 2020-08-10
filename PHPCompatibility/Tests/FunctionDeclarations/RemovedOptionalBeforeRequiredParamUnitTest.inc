@@ -19,5 +19,11 @@ $arrow = fn(?bool $a = true, ?bool $b): string => $a ? (string) $b : '';
 // Parse error, nothing in default, not our concern. Throw error anyway.
 $closure = function ($a = /*comment*/, $b) {};
 
+// Prevent false positives on variadic parameters.
+function variadicIsOptionalByNature($a, int ...$b) {}
+function variadicIsOptionalByNatureWithExtraOptional($a, $b = null, ...$c) {}
+// Intentional parse error. This has always been an error though, so ignore for this sniff.
+function variadicBeforeRequiredWasAlwaysAnError(...$a, $b) {}
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
