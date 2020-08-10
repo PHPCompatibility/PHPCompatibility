@@ -29,6 +29,8 @@
     "phpcsstandards/phpcsutils" : "^1.0 || dev-develop"
   },
   "require-dev" : {
+    "php-parallel-lint/php-parallel-lint": "^1.2.0",
+    "php-parallel-lint/php-console-highlighter": "^0.5",
     "phpunit/phpunit": "~4.5 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
     "phpcsstandards/phpcsdevtools": "^1.0"
   },
@@ -50,6 +52,9 @@
     ],
     "coverage-local": [
       "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/logs"
+    ],
+    "lint": [
+      "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --exclude vendor --exclude .git --exclude PHPCompatibility/Tests/Keywords/ForbiddenNames"
     ],
     "check-complete": [
       "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness -q ./PHPCompatibility"

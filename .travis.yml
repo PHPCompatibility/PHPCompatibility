@@ -147,7 +147,7 @@ jobs:
     - stage: coverage
       php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
-    - php: 7.3
+    - php: 7.2
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^2.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
@@ -216,10 +216,7 @@ before_script:
 
 script:
   # Lint all PHP files against parse errors.
-  - |
-    if [[ "$LINT" == "1" ]]; then
-      if find -L . -path ./vendor -prune -o -path ./PHPCompatibility/Tests/Keywords/ForbiddenNames -prune -o -name "*.php" -exec php -l {} \; | grep "^[Parse error|Fatal error]"; then exit 1; fi
-    fi
+  - if [[ "$LINT" == "1" ]]; then composer lint; fi
 
   # Run the unit tests.
   - |
