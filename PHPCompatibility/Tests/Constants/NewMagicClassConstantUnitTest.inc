@@ -9,7 +9,7 @@ namespace foo {
 namespace MyNameSpace {
     class xyz {}
 
-    remove_filter('theme_filter', [\MyNameSpace\xyz::class, 'methodName'], 30);
+    remove_filter('theme_filter', [\MyNameSpace\xyz:: /* comment */ class, 'methodName'], 30);
 }
 
 /*
