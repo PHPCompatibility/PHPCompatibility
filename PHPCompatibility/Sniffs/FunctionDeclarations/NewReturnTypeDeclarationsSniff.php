@@ -151,8 +151,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         }
 
         $returnType      = ltrim($properties['return_type'], '?'); // Trim off potential nullability.
+        $returnType      = strtolower($returnType);
         $returnTypeToken = $properties['return_type_token'];
-        $returnTypeEnd   = $properties['return_type_end_token'];
 
         if (isset($this->newTypes[$returnType]) === true) {
             $itemInfo = array(
@@ -167,7 +167,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         $itemInfo = array(
             'name'   => 'Class name',
         );
-        $this->handleFeature($phpcsFile, $returnTypeEnd, $itemInfo);
+        $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
     }
 
 
