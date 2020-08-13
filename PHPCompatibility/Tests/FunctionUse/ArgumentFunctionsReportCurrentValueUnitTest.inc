@@ -167,6 +167,31 @@ function author_can( $post, $capability ) {
 		}
 	}
 
+// Issue #1207.
+function ignoreParamInReturn ( $stuff ) {
+    if ( true === SOME_CONSTANT ) {
+        return [$somethingElse['key'], 'b' => $stuff];
+    }
+
+    $args = func_get_args();
+}
+
+function ignoreParamInExit ( $stuff ) {
+    if ( true === SOME_CONSTANT ) {
+        exit ( 'Did ' . functionCall() . $stuff );
+    }
+
+    $args = func_get_args();
+}
+
+function ignoreParamInDie ( $stuff ) {
+    if ( true === SOME_CONSTANT ) {
+        die ( 'Did ' . $stuff );
+    }
+
+    $args = func_get_args();
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function foo($x) {
     $x = function_call($x);

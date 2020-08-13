@@ -149,6 +149,9 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
         $cases[] = array(162);
         $cases[] = array(164);
         $cases[] = array(173);
+        $cases[] = array(176);
+        $cases[] = array(184);
+        $cases[] = array(192);
 
         return $cases;
     }
