@@ -272,7 +272,7 @@ class BaseSniffTest extends TestCase
     private function assertForType($issues, $type, $lineNumber, $expectedMessage)
     {
         if (isset($issues[$lineNumber]) === false) {
-            throw new \Exception("Expected $type '$expectedMessage' on line number $lineNumber, but none found.");
+            $this->fail("Expected $type '$expectedMessage' on line number $lineNumber, but none found.");
         }
 
         $insteadFoundMessages = array();
