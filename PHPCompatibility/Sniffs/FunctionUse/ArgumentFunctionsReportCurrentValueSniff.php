@@ -97,7 +97,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     );
 
     /**
-     * Tokens to ignore when determining the start of a statement.
+     * Tokens to ignore when determining the start of a statement for call to one of the functions.
      *
      * @since 9.1.0
      *
@@ -108,6 +108,21 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         \T_DOUBLE_ARROW,
         \T_OPEN_SQUARE_BRACKET,
         \T_OPEN_PARENTHESIS,
+    );
+
+    /**
+     * Tokens to ignore when determining the start of a statement for a used variable.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    private $ignoreForStartOfStatementVarUse = array(
+        \T_COMMA,
+        \T_DOUBLE_ARROW,
+        \T_OPEN_SQUARE_BRACKET,
+        \T_OPEN_PARENTHESIS,
+        \T_OPEN_SHORT_ARRAY,
     );
 
     /**
@@ -375,6 +390,21 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 } elseif (\in_array($tokens[$j]['content'], $paramNames, true) === false) {
                     // Variable is not one of the function parameters.
+                    continue;
+                }
+
+                /*
+                 * Check if the variable is used within a return or exit/die statement.
+                 * In that case, we can safely ignore it.
+                 */
+                $startOfVariableStatement = BCFile::findStartOfStatement(
+                    $phpcsFile,
+                    $j,
+                    $this->ignoreForStartOfStatementVarUse
+                );
+                if ($tokens[$startOfVariableStatement]['code'] === \T_RETURN
+                    || $tokens[$startOfVariableStatement]['code'] === \T_EXIT
+                ) {
                     continue;
                 }
 
