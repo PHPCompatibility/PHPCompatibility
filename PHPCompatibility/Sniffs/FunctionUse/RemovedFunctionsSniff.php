@@ -3094,7 +3094,8 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ),
         'ociinternaldebug' => array(
             '5.4' => false,
-            'alternative' => 'oci_internal_debug()',
+            '8.0' => true,
+            'alternative' => 'oci_internal_debug() (PHP < 8.0)',
         ),
         'ociloadlob' => array(
             '5.4' => false,
@@ -4649,6 +4650,40 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '7.4' => true,
         ),
 
+        'enchant_broker_get_dict_path' => array(
+            '8.0' => false,
+        ),
+        'enchant_broker_set_dict_path' => array(
+            '8.0' => false,
+        ),
+        'enchant_broker_free' => array(
+            '8.0'         => false,
+            'alternative' => 'unset the object',
+        ),
+        'enchant_broker_free_dict' => array(
+            '8.0'         => false,
+            'alternative' => 'unset the object',
+        ),
+        'enchant_dict_add_to_personal' => array(
+            '8.0'         => false,
+            'alternative' => 'enchant_dict_add()',
+        ),
+        'enchant_dict_is_in_session' => array(
+            '8.0'         => false,
+            'alternative' => 'enchant_dict_is_added()',
+        ),
+        'libxml_disable_entity_loader' => array(
+            '8.0' => false,
+        ),
+        'oci_internal_debug' => array(
+            '8.0' => true,
+        ),
+        'openssl_x509_free' => array(
+            '8.0' => false,
+        ),
+        'openssl_pkey_free' => array(
+            '8.0' => false,
+        ),
         'xmlrpc_decode_request' => array(
             '8.0'       => true,
             'extension' => 'xmlrpc',
@@ -4704,6 +4739,46 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'xmlrpc_set_type' => array(
             '8.0'       => true,
             'extension' => 'xmlrpc',
+        ),
+        'zip_close' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive::close()',
+        ),
+        'zip_entry_close' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_compressedsize' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_compressionmethod' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_filesize' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_name' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_open' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_entry_read' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
+        ),
+        'zip_open' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive::open()',
+        ),
+        'zip_read' => array(
+            '8.0'         => false,
+            'alternative' => 'ZipArchive',
         ),
     );
 

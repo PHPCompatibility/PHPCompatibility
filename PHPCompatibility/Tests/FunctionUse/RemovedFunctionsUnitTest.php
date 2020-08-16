@@ -66,6 +66,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         return array(
             array('dl', '5.3', array(6), '5.2'),
             array('ocifetchinto', '5.4', array(63), '5.3'),
+            array('enchant_broker_get_dict_path', '8.0', array(1172), '7.4'),
+            array('enchant_broker_set_dict_path', '8.0', array(1173), '7.4'),
+            array('libxml_disable_entity_loader', '8.0', array(1191), '7.4'),
+            array('openssl_x509_free', '8.0', array(1189), '7.4'),
+            array('openssl_pkey_free', '8.0', array(1190), '7.4'),
         );
     }
 
@@ -137,7 +142,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('ocifreecursor', '5.4', 'oci_free_statement()', array(66), '5.3'),
             array('ocifreedesc', '5.4', 'OCI-Lob::free()', array(67), '5.3'),
             array('ocifreestatement', '5.4', 'oci_free_statement()', array(68), '5.3'),
-            array('ociinternaldebug', '5.4', 'oci_internal_debug()', array(69), '5.3'),
             array('ociloadlob', '5.4', 'OCI-Lob::load()', array(70), '5.3'),
             array('ocilogoff', '5.4', 'oci_close()', array(71), '5.3'),
             array('ocilogon', '5.4', 'oci_connect()', array(72), '5.3'),
@@ -163,6 +167,21 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('is_real', '7.4', 'is_float()', array(239), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
             array('ldap_control_paged_result', '7.4', 'ldap_search()', array(235), '7.3'),
+
+            array('enchant_broker_free', '8.0', 'unset the object', array(1174), '7.4'),
+            array('enchant_broker_free_dict', '8.0', 'unset the object', array(1175), '7.4'),
+            array('enchant_dict_add_to_personal', '8.0', 'enchant_dict_add()', array(1176), '7.4'),
+            array('enchant_dict_is_in_session', '8.0', 'enchant_dict_is_added()', array(1177), '7.4'),
+            array('zip_close', '8.0', 'ZipArchive::close()', array(1179), '7.4'),
+            array('zip_entry_close', '8.0', 'ZipArchive', array(1180), '7.4'),
+            array('zip_entry_compressedsize', '8.0', 'ZipArchive', array(1181), '7.4'),
+            array('zip_entry_compressionmethod', '8.0', 'ZipArchive', array(1182), '7.4'),
+            array('zip_entry_filesize', '8.0', 'ZipArchive', array(1183), '7.4'),
+            array('zip_entry_name', '8.0', 'ZipArchive', array(1184), '7.4'),
+            array('zip_entry_open', '8.0', 'ZipArchive', array(1185), '7.4'),
+            array('zip_entry_read', '8.0', 'ZipArchive', array(1186), '7.4'),
+            array('zip_open', '8.0', 'ZipArchive::open()', array(1187), '7.4'),
+            array('zip_read', '8.0', 'ZipArchive', array(1188), '7.4'),
         );
     }
 
@@ -1103,6 +1122,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('mysqli_embedded_server_end', '7.4', array(1147), '7.3'),
             array('mysqli_embedded_server_start', '7.4', array(1148), '7.3'),
 
+            array('oci_internal_debug', '8.0', array(1178), '7.4'),
             array('xmlrpc_decode_request', '8.0', array(1158), '7.4'),
             array('xmlrpc_decode', '8.0', array(1159), '7.4'),
             array('xmlrpc_encode_request', '8.0', array(1160), '7.4'),
@@ -1433,6 +1453,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             array('convert_cyr_string', '7.4', '8.0', 'mb_convert_encoding(), iconv() or UConverter', array(243), '7.3'),
             array('money_format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', array(244), '7.3'),
             array('restore_include_path', '7.4', '8.0', "ini_restore('include_path')", array(246), '7.3'),
+            array('ociinternaldebug', '5.4', '8.0', 'oci_internal_debug() (PHP < 8.0)', array(69), '5.3'),
         );
     }
 
