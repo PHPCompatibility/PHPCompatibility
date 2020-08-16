@@ -856,6 +856,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ),
 
+        'pm.status_listen' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
         'zend.exception_string_param_max_len' => array(
             '7.4' => false,
             '8.0' => true,
