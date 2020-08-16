@@ -411,3 +411,5 @@ function MySqlite3ResultTypeHint(SQLite3Result $result) {]
 class FooBar {
     public function foo(): WeakMap {};
 }
+
+function processToken(PhpToken $stackPtr) {}
