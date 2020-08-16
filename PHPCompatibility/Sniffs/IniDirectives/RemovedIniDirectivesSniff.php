@@ -508,6 +508,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
         'mbstring.func_overload' => array(
             '7.2' => false,
+            '8.0' => true,
         ),
         'sql.safe_mode' => array(
             '7.2' => true,
@@ -529,6 +530,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         ),
         'pdo_odbc.db2_instance_name' => array(
             '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
+            '8.0' => true,
         ),
 
         'allow_url_include' => array(
@@ -573,6 +575,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'ibase.timeformat' => array(
             '7.4'       => true,
             'extension' => 'ibase',
+        ),
+
+        'assert.quiet_eval' => array(
+            '8.0' => true,
         ),
     );
 
