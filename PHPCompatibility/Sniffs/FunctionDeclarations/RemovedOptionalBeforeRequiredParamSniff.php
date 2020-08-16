@@ -96,6 +96,14 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
         $firstOptional = null;
 
         foreach ($parameters as $key => $param) {
+            /*
+             * Ignore variadic parameters, which are optional by nature.
+             * These always have to be declared last and this has been this way since their introduction.
+             */
+            if ($param['variable_length'] === true) {
+                continue;
+            }
+
             // Handle optional parameters.
             if (isset($param['default']) === true) {
                 if ($key === $lastKey) {
