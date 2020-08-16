@@ -209,6 +209,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('FFI\CType', '7.3', array(347), '7.4'),
             array('ReflectionReference', '7.3', array(344), '7.4'),
             array('WeakReference', '7.3', array(345), '7.4'),
+            array('WeakMap', '7.4', array(412), '8.0'),
 
             array('DATETIME', '5.1', array(146), '5.2'),
             array('datetime', '5.1', array(147, 320), '5.2'),

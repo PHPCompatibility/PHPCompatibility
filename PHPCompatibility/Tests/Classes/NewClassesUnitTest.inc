@@ -407,3 +407,7 @@ if (is_a($var, mysqli_warning::class)) {}
 $conn = new sqlite3();
 Class mySqlite3Stmt extends Sqlite3Stmt {}
 function MySqlite3ResultTypeHint(SQLite3Result $result) {]
+
+class FooBar {
+    public function foo(): WeakMap {};
+}
