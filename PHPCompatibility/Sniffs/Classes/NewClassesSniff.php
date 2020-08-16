@@ -957,6 +957,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.4'       => true,
             'extension' => 'ffi',
         ),
+
+        'ValueError' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
 

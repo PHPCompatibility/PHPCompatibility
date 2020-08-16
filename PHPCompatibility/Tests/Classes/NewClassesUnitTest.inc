@@ -413,3 +413,8 @@ class FooBar {
 }
 
 function processToken(PhpToken $stackPtr) {}
+
+try {
+    throw new ValueError('Unknown type');
+} catch (\ValueError $e) {
+}

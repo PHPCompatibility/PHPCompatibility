@@ -255,6 +255,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('JsonException', '7.2', array(250, 339), '7.3'),
             array('FFI\Exception', '7.3', array(349), '7.4'),
             array('FFI\ParserException', '7.3', array(349), '7.4'),
+            array('ValueError', '7.4', array(418, 419), '8.0'),
         );
     }
 
