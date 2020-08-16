@@ -4456,6 +4456,50 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ),
 
+        'fdiv' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'get_debug_type' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'get_resource_id' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'preg_last_error_msg' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'str_contains' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'str_ends_with' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'str_starts_with' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'imagegetinterpolation' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'enchant_dict_add' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'enchant_dict_is_added' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'ldap_count_references' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
         'openssl_cms_encrypt' => array(
             '7.4' => false,
             '8.0' => true,
