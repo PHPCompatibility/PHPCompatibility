@@ -1971,6 +1971,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
 
         'INTL_IDNA_VARIANT_2003' => array(
             '7.2' => false,
+            '8.0' => true,
         ),
 
         'MCRYPT_MODE_ECB' => array(
@@ -2258,6 +2259,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         ),
         'FILTER_SANITIZE_MAGIC_QUOTES' => array(
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
         ),
         'IBASE_BKP_CONVERT' => array(
@@ -2507,6 +2509,29 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'IBASE_WRITE' => array(
             '7.4'       => true,
             'extension' => 'ibase',
+        ),
+
+        'ASSERT_QUIET_EVAL' => array(
+            '8.0' => true,
+        ),
+        'ENCHANT_MYSPELL' => array(
+            '8.0' => false,
+        ),
+        'ENCHANT_ISPELL' => array(
+            '8.0' => false,
+        ),
+        'MB_OVERLOAD_MAIL' => array(
+            '8.0' => true,
+        ),
+        'MB_OVERLOAD_STRING' => array(
+            '8.0' => true,
+        ),
+        'MB_OVERLOAD_REGEX' => array(
+            '8.0' => true,
+        ),
+        'PG_VERSION_STR' => array(
+            '8.0'         => false,
+            'alternative' => 'PG_VERSION',
         ),
     );
 

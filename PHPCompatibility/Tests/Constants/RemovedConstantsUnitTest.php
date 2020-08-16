@@ -64,13 +64,13 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     public function dataDeprecatedConstant()
     {
         return array(
-            array('INTL_IDNA_VARIANT_2003', '7.2', array(16), '7.1'),
             array('FILTER_FLAG_SCHEME_REQUIRED', '7.3', array(73), '7.2'),
             array('FILTER_FLAG_HOST_REQUIRED', '7.3', array(74), '7.2'),
             array('CURLPIPE_HTTP1', '7.4', array(138), '7.3'),
+            array('ENCHANT_MYSPELL', '8.0', array(625), '7.4'),
+            array('ENCHANT_ISPELL', '8.0', array(626), '7.4'),
         );
     }
-
 
     /**
      * testDeprecatedConstantWithAlternative
@@ -112,7 +112,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     public function dataDeprecatedConstantWithAlternative()
     {
         return array(
-            array('FILTER_SANITIZE_MAGIC_QUOTES', '7.4', 'FILTER_SANITIZE_ADD_SLASHES', array(137), '7.3'),
+            array('PG_VERSION_STR', '8.0', 'PG_VERSION', array(624), '7.4'),
         );
     }
 
@@ -703,6 +703,11 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('IBASE_SVC_USER_DBPATH', '7.4', array(134), '7.3'),
             array('IBASE_SVC_SVR_DB_INFO', '7.4', array(135), '7.3'),
             array('IBASE_SVC_GET_USERS', '7.4', array(136), '7.3'),
+
+            array('ASSERT_QUIET_EVAL', '8.0', array(623), '7.4'),
+            array('MB_OVERLOAD_MAIL', '8.0', array(620), '7.4'),
+            array('MB_OVERLOAD_STRING', '8.0', array(621), '7.4'),
+            array('MB_OVERLOAD_REGEX', '8.0', array(622), '7.4'),
         );
     }
 
@@ -816,6 +821,63 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             array('MCRYPT_TWOFISH256', '7.1', '7.2', array(66), '7.0'),
             array('MCRYPT_WAKE', '7.1', '7.2', array(67), '7.0'),
             array('MCRYPT_XTEA', '7.1', '7.2', array(68), '7.0'),
+
+            array('INTL_IDNA_VARIANT_2003', '7.2', '8.0', array(16), '7.1'),
+        );
+    }
+
+
+    /**
+     * testDeprecatedRemovedConstantWithAlternative
+     *
+     * @dataProvider dataDeprecatedRemovedConstantWithAlternative
+     *
+     * @param string $constantName      Name of the PHP constant.
+     * @param string $deprecatedIn      The PHP version in which the constant was deprecated.
+     * @param string $removedIn         The PHP version in which the constant was removed.
+     * @param string $alternative       An alternative constant.
+     * @param array  $lines             The line numbers in the test file which apply to this constant.
+     * @param string $okVersion         A PHP version in which the constant was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     * @param string $removedVersion    Optional PHP version to test removed message with -
+     *                                  if different from the $removedIn version.
+     *
+     * @return void
+     */
+    public function testDeprecatedRemovedConstantWithAlternative($constantName, $deprecatedIn, $removedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null, $removedVersion = null)
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "The constant \"{$constantName}\" is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+
+        $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "The constant \"{$constantName}\" is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}";
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedRemovedConstantWithAlternative()
+     *
+     * @return array
+     */
+    public function dataDeprecatedRemovedConstantWithAlternative()
+    {
+        return array(
+            array('FILTER_SANITIZE_MAGIC_QUOTES', '7.4', '8.0', 'FILTER_SANITIZE_ADD_SLASHES', array(137), '7.3'),
         );
     }
 
