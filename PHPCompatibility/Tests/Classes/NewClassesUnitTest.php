@@ -209,6 +209,8 @@ class NewClassesUnitTest extends BaseSniffTest
             array('FFI\CType', '7.3', array(347), '7.4'),
             array('ReflectionReference', '7.3', array(344), '7.4'),
             array('WeakReference', '7.3', array(345), '7.4'),
+            array('PhpToken', '7.4', array(415), '8.0'),
+            array('WeakMap', '7.4', array(412), '8.0'),
 
             array('DATETIME', '5.1', array(146), '5.2'),
             array('datetime', '5.1', array(147, 320), '5.2'),
@@ -253,6 +255,7 @@ class NewClassesUnitTest extends BaseSniffTest
             array('JsonException', '7.2', array(250, 339), '7.3'),
             array('FFI\Exception', '7.3', array(349), '7.4'),
             array('FFI\ParserException', '7.3', array(349), '7.4'),
+            array('ValueError', '7.4', array(418, 419), '8.0'),
         );
     }
 

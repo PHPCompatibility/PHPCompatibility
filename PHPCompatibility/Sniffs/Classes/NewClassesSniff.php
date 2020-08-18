@@ -742,6 +742,15 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ),
+
+        'PhpToken' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
+        'WeakMap' => array(
+            '7.4' => false,
+            '8.0' => true,
+        ),
     );
 
     /**
@@ -947,6 +956,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
+        ),
+
+        'ValueError' => array(
+            '7.4' => false,
+            '8.0' => true,
         ),
     );
 
