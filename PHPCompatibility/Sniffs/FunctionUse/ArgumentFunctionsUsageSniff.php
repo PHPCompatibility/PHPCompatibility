@@ -102,7 +102,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $data = $tokens[$stackPtr]['content'];
+        $data = array($tokens[$stackPtr]['content']);
 
         /*
          * Check for use of the functions in the global scope.
