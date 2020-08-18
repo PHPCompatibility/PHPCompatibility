@@ -30,14 +30,20 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewTypedProperties
      *
-     * @param array $line The line number on which the error should occur.
+     * @param array $line            The line number on which the error should occur.
+     * @param bool  $testNoViolation Whether or not to test noViolation for PHP 7.4.
      *
      * @return void
      */
-    public function testNewTypedProperties($line)
+    public function testNewTypedProperties($line, $testNoViolation = false)
     {
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertError($file, $line, 'Typed properties are not supported in PHP 7.3 or earlier');
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '7.4');
+            $this->assertNoViolation($file, $line);
+        }
     }
 
     /**
@@ -50,22 +56,24 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     public function dataNewTypedProperties()
     {
         return array(
-            array(23),
-            array(24),
-            array(25),
-            array(28),
-            array(31),
-            array(34),
-            array(35),
-            array(38),
-            array(41),
-            array(49),
-            array(51),
-            array(54),
-            array(57),
+            array(23, true),
+            array(24, true),
+            array(25, true),
+            array(28, true),
+            array(31, true),
+            array(34, true),
+            array(35, true),
+            array(38, true),
+            array(41, true),
+            array(49, true),
+            array(51, true),
+            array(54, true),
+            array(57, true),
             array(62),
             array(63),
             array(64),
+            array(65),
+            array(66),
         );
     }
 
@@ -114,22 +122,9 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             array(62, 'void'),
             array(63, 'callable'),
             array(64, 'callable'),
+            array(65, 'boolean'),
+            array(66, 'integer'),
         );
-    }
-
-
-    /**
-     * Verify the sniff doesn't throw false positives.
-     *
-     * @return void
-     */
-    public function testNoFalsePositivesInvalidPropertyType()
-    {
-        $file = $this->sniffFile(__FILE__, '7.4');
-
-        for ($line = 1; $line < 57; $line++) {
-            $this->assertNoViolation($file, $line);
-        }
     }
 
 
