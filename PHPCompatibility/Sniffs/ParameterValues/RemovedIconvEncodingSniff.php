@@ -80,7 +80,7 @@ class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
             'All previously accepted values for the $type parameter of iconv_set_encoding() have been deprecated since PHP 5.6. Found %s',
             $parameters[1]['start'],
             'DeprecatedValueFound',
-            $parameters[1]['raw']
+            array($parameters[1]['raw'])
         );
     }
 }
