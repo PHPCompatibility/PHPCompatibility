@@ -12,6 +12,8 @@ namespace PHPCompatibility\Sniffs\Operators;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer_File as File;
+use PHPCSUtils\BackCompat\Helper;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect use of new PHP operators.
@@ -132,14 +134,27 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
+echo PHP_EOL, '======================================================================', PHP_EOL;
+echo 'TestVersion: ', Helper::getConfigData('testVersion'),PHP_EOL;
+
         $tokens = array();
+//var_dump($this->newOperators);
         foreach ($this->newOperators as $token => $versions) {
+echo "token $token defined ?", PHP_EOL;
+var_dump(defined($token));
             if (\defined($token)) {
                 $tokens[] = constant($token);
             } elseif (isset($this->newOperatorsPHPCSCompat[$token])) {
                 $tokens[] = $this->newOperatorsPHPCSCompat[$token];
             }
         }
+
+$names = [];
+foreach ($tokens as $token) {
+	$names[$token] = Tokens::tokenName($token);
+}
+var_dump($names);
+
         return $tokens;
     }
 
@@ -159,9 +174,40 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
+/*
+static $dumped = false;
+if ($dumped === false) {
+ini_set( 'xdebug.overload_var_dump', 1 );
+//$temp = new \PHPCSDebug\Sniffs\Debug\TokenListSniff();
+//$temp->process($phpcsFile, 0);
+$dumped = true;
+}
 
+echo '-------------------------------', PHP_EOL;
+echo 'Current token: ', $tokenType, ' on line ', $tokens[$stackPtr]['line'], PHP_EOL;
+if (isset($this->newOperators[$tokenType]) === false) {
+var_dump($tokens[$stackPtr]);
+}
+*/
         // Translate older PHPCS token combis for new operators to the actual operator.
         if (isset($this->newOperators[$tokenType]) === false) {
+/*
+echo 'Line: ', __LINE__, ' - ', $tokenType, ' is not a new operator type token',PHP_EOL;
+echo 'Token in translate table:',PHP_EOL;
+var_dump(isset($this->PHPCSCompatTranslate[$tokenType]));
+echo 'before key in translate table set and token before set:',PHP_EOL;
+var_dump(isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]));
+if (isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1])) {
+	echo 'type of token before is expected type of token before:',PHP_EOL;
+	var_dump($tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before']);
+}
+echo 'callback key in translate table set:',PHP_EOL;
+var_dump(isset($this->PHPCSCompatTranslate[$tokenType]['callback']));
+if (isset($this->PHPCSCompatTranslate[$tokenType]['callback'])) {
+	echo 'callback output:',PHP_EOL;
+	var_dump(call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr));
+}
+*/
             if (isset($this->PHPCSCompatTranslate[$tokenType])
                 && ((isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])

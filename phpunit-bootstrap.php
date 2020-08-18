@@ -112,4 +112,7 @@ if (class_exists('PHPUnit_Framework_TestCase') === true
 
 require_once __DIR__ . $ds . 'PHPCompatibility' . $ds . 'Tests' . $ds . 'BaseSniffTest.php';
 require_once __DIR__ . $ds . 'PHPCompatibility' . $ds . 'Util' . $ds . 'Tests' . $ds . 'CoreMethodTestFrame.php';
+
+//require_once dirname(dirname(__DIR__)) . $ds . 'PHPCSStandards' . $ds . 'PHPCSDevTools' . $ds . 'PHPCSDebug' . $ds . 'Sniffs' . $ds . 'Debug' . $ds . 'TokenListSniff.php';
+
 unset($ds, $phpcsDir, $vendorDir);
