@@ -42,9 +42,9 @@ class ReservedFunctionNamesSniff implements PHPCS_Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_FUNCTION,
-        );
+        ];
     }
 
     /**
@@ -93,7 +93,7 @@ class ReservedFunctionNamesSniff implements PHPCS_Sniff
                 'Function name "%s" is discouraged; PHP has reserved all function names with a double underscore prefix for future use.',
                 $stackPtr,
                 'FunctionDoubleUnderscore',
-                array($functionName)
+                [$functionName]
             );
 
             return;
@@ -119,7 +119,7 @@ class ReservedFunctionNamesSniff implements PHPCS_Sniff
             'Method name "%s" is discouraged; PHP has reserved all method names with a double underscore prefix for future use.',
             $stackPtr,
             'MethodDoubleUnderscore',
-            array($className . '::' . $functionName)
+            [$className . '::' . $functionName]
         );
     }
 

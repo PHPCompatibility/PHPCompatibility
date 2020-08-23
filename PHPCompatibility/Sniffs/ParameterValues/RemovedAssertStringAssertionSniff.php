@@ -44,9 +44,9 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'assert' => true,
-    );
+    ];
 
     /**
      * Target tokens.
@@ -57,7 +57,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
      *
      * @var array
      */
-    private $targetTokens = array();
+    private $targetTokens = [];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -116,10 +116,10 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
 
         $error   = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2%s. Found: %s';
         $isError = false;
-        $data    = array(
+        $data    = [
             '',
             $targetParam['clean'],
-        );
+        ];
 
         if ($this->supportsAbove('8.0') === true) {
             $data[0] = ' and removed since PHP 8.0';

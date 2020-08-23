@@ -65,30 +65,30 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      */
     public function dataBreakAndContinueVariableArgument()
     {
-        $data = array(
-            array(53, self::ERROR_TYPE_VARIABLE),
-            array(57, self::ERROR_TYPE_VARIABLE),
-            array(62, self::ERROR_TYPE_VARIABLE),
-            array(66, self::ERROR_TYPE_VARIABLE),
-            array(71, self::ERROR_TYPE_VARIABLE),
-            array(75, self::ERROR_TYPE_VARIABLE),
-            array(80, self::ERROR_TYPE_VARIABLE),
-            array(84, self::ERROR_TYPE_VARIABLE),
-            array(89, self::ERROR_TYPE_VARIABLE),
-            array(93, self::ERROR_TYPE_VARIABLE),
-            array(98, self::ERROR_TYPE_VARIABLE),
-            array(102, self::ERROR_TYPE_VARIABLE),
-            array(107, self::ERROR_TYPE_ZERO),
-            array(111, self::ERROR_TYPE_ZERO),
-            array(118, self::ERROR_TYPE_ZERO),
-            array(122, self::ERROR_TYPE_VARIABLE),
-            array(133, self::ERROR_TYPE_ZERO),
-            array(141, self::ERROR_TYPE_ZERO),
-            array(149, self::ERROR_TYPE_ZERO),
-        );
+        $data = [
+            [53, self::ERROR_TYPE_VARIABLE],
+            [57, self::ERROR_TYPE_VARIABLE],
+            [62, self::ERROR_TYPE_VARIABLE],
+            [66, self::ERROR_TYPE_VARIABLE],
+            [71, self::ERROR_TYPE_VARIABLE],
+            [75, self::ERROR_TYPE_VARIABLE],
+            [80, self::ERROR_TYPE_VARIABLE],
+            [84, self::ERROR_TYPE_VARIABLE],
+            [89, self::ERROR_TYPE_VARIABLE],
+            [93, self::ERROR_TYPE_VARIABLE],
+            [98, self::ERROR_TYPE_VARIABLE],
+            [102, self::ERROR_TYPE_VARIABLE],
+            [107, self::ERROR_TYPE_ZERO],
+            [111, self::ERROR_TYPE_ZERO],
+            [118, self::ERROR_TYPE_ZERO],
+            [122, self::ERROR_TYPE_VARIABLE],
+            [133, self::ERROR_TYPE_ZERO],
+            [141, self::ERROR_TYPE_ZERO],
+            [149, self::ERROR_TYPE_ZERO],
+        ];
 
         if (version_compare(Helper::getVersion(), '3.5.3', '!=')) {
-            $data[] = array(160, self::ERROR_TYPE_ZERO);
+            $data[] = [160, self::ERROR_TYPE_ZERO];
         }
 
         return $data;
@@ -119,23 +119,23 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(8),
-            array(12),
-            array(17),
-            array(21),
-            array(26),
-            array(30),
-            array(35),
-            array(39),
-            array(44),
-            array(48),
-            array(126),
-            array(137),
-            array(145),
-            array(153),
-            array(164),
-        );
+        return [
+            [8],
+            [12],
+            [17],
+            [21],
+            [26],
+            [30],
+            [35],
+            [39],
+            [44],
+            [48],
+            [126],
+            [137],
+            [145],
+            [153],
+            [164],
+        ];
     }
 
 

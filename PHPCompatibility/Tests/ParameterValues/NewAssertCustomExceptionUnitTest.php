@@ -51,10 +51,10 @@ class NewAssertCustomExceptionUnitTest extends BaseSniffTest
      */
     public function dataNewAssertCustomException()
     {
-        return array(
-            array(18),
-            array(19),
-        );
+        return [
+            [18],
+            [19],
+        ];
     }
 
 

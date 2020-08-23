@@ -63,11 +63,11 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataRemovedParameter()
     {
-        return array(
-            array('ldap_first_attribute', 'ber_identifier', '5.2.4', array(11), '5.2', '5.3'),
-            array('ldap_next_attribute', 'ber_identifier', '5.2.4', array(12), '5.2', '5.3'),
-            array('mb_decode_numericentity', 'is_hex', '8.0', array(24), '7.4'),
-        );
+        return [
+            ['ldap_first_attribute', 'ber_identifier', '5.2.4', [11], '5.2', '5.3'],
+            ['ldap_next_attribute', 'ber_identifier', '5.2.4', [12], '5.2', '5.3'],
+            ['mb_decode_numericentity', 'is_hex', '8.0', [24], '7.4'],
+        ];
     }
 
 
@@ -114,16 +114,16 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedRemovedParameter()
     {
-        return array(
-            array('mktime', 'is_dst', '5.1', '7.0', array(8), '5.0'),
-            array('gmmktime', 'is_dst', '5.1', '7.0', array(9), '5.0'),
-            array('define', 'case_insensitive', '7.3', '8.0', array(15), '7.2'),
+        return [
+            ['mktime', 'is_dst', '5.1', '7.0', [8], '5.0'],
+            ['gmmktime', 'is_dst', '5.1', '7.0', [9], '5.0'],
+            ['define', 'case_insensitive', '7.3', '8.0', [15], '7.2'],
 
-            array('curl_version', 'age', '7.4', '8.0', array(18), '7.3'),
-            array('curl_version', 'age', '7.4', '8.0', array(19), '7.3'),
-            array('curl_version', 'age', '7.4', '8.0', array(20), '7.3'),
-            array('curl_version', 'age', '7.4', '8.0', array(21), '7.3'),
-        );
+            ['curl_version', 'age', '7.4', '8.0', [18], '7.3'],
+            ['curl_version', 'age', '7.4', '8.0', [19], '7.3'],
+            ['curl_version', 'age', '7.4', '8.0', [20], '7.3'],
+            ['curl_version', 'age', '7.4', '8.0', [21], '7.3'],
+        ];
     }
 
 
@@ -151,13 +151,13 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(14),
-            array(17),
-            array(23),
-        );
+        return [
+            [4],
+            [5],
+            [14],
+            [17],
+            [23],
+        ];
     }
 
 

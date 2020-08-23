@@ -48,10 +48,10 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = array(
+        $errorInfo = [
             'not_in_version' => '',
             'error'          => true,
-        );
+        ];
 
         $versionArray = $this->getVersionArray($itemArray);
 
@@ -102,10 +102,10 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
         $error    = $this->getErrorMsgTemplate();
 
         $errorCode = $this->stringToErrorCode($itemName) . 'Found';
-        $data      = array(
+        $data      = [
             $itemName,
             $errorInfo['not_in_version'],
-        );
+        ];
 
         $error = $this->filterErrorMsg($error, $itemInfo, $errorInfo);
         $data  = $this->filterErrorData($data, $itemInfo, $errorInfo);

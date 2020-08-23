@@ -36,11 +36,11 @@ class NewArrayUnpackingSniff extends Sniff
      *
      * @var array
      */
-    private $arrayTokens = array(
+    private $arrayTokens = [
         \T_ARRAY               => \T_ARRAY,
         \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
         \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -131,7 +131,7 @@ class NewArrayUnpackingSniff extends Sniff
                 'Array unpacking within array declarations using the spread operator is not supported in PHP 7.3 or earlier. Found: %s',
                 $i,
                 'Found',
-                array($snippet)
+                [$snippet]
             );
         }
     }

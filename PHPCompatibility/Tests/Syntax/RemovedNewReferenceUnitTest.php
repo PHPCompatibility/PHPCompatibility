@@ -52,12 +52,12 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedNewReference()
     {
-        return array(
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-        );
+        return [
+            [9],
+            [10],
+            [11],
+            [12],
+        ];
     }
 
 

@@ -41,7 +41,7 @@ class NewEmptyNonVariableSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_EMPTY);
+        return [\T_EMPTY];
     }
 
     /**

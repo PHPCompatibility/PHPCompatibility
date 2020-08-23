@@ -41,10 +41,10 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'password_hash'         => 2,
         'password_needs_rehash' => 2,
-    );
+    ];
 
     /**
      * Tokens types which indicate that the parameter passed is not the PHP native constant.
@@ -53,7 +53,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      *
      * @var array
      */
-    private $invalidTokenTypes = array(
+    private $invalidTokenTypes = [
         \T_NULL                     => true,
         \T_TRUE                     => true,
         \T_FALSE                    => true,
@@ -63,7 +63,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
         \T_DOUBLE_QUOTED_STRING     => true,
         \T_HEREDOC                  => true,
         \T_NOWDOC                   => true,
-    );
+    ];
 
 
     /**
@@ -112,10 +112,10 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
                     'The value of the password hash algorithm constants has changed in PHP 7.4. Pass a PHP native constant to the %s() function instead of using the value of the constant. Found: %s',
                     $stackPtr,
                     'NotAlgoConstant',
-                    array(
+                    [
                         $functionName,
                         $targetParam['clean'],
-                    )
+                    ]
                 );
 
                 break;

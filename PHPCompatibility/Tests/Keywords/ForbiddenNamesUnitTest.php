@@ -63,31 +63,31 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function usecaseProvider()
     {
-        return array(
-            array('namespace'),
-            array('nested-namespace'),
-            array('use'),
-            array('use-as'),
-            array('class'),
-            array('class-extends'),
-            array('class-use-trait'),
-            array('class-use-trait-const'),
-            array('class-use-trait-function'),
-            array('class-use-trait-alias-method'),
-            array('class-use-trait-alias-public-method'),
-            array('class-use-trait-alias-protected-method'),
-            array('class-use-trait-alias-private-method'),
-            array('class-use-trait-alias-final-method'),
-            array('trait'),
-            array('function-declare'),
-            array('function-declare-reference'),
-            array('method-declare'),
-            array('const'),
-            array('class-const'),
-            array('define'),
-            array('interface'),
-            array('interface-extends'),
-        );
+        return [
+            ['namespace'],
+            ['nested-namespace'],
+            ['use'],
+            ['use-as'],
+            ['class'],
+            ['class-extends'],
+            ['class-use-trait'],
+            ['class-use-trait-const'],
+            ['class-use-trait-function'],
+            ['class-use-trait-alias-method'],
+            ['class-use-trait-alias-public-method'],
+            ['class-use-trait-alias-protected-method'],
+            ['class-use-trait-alias-private-method'],
+            ['class-use-trait-alias-final-method'],
+            ['trait'],
+            ['function-declare'],
+            ['function-declare-reference'],
+            ['method-declare'],
+            ['const'],
+            ['class-const'],
+            ['define'],
+            ['interface'],
+            ['interface-extends'],
+        ];
     }
 
 
@@ -126,10 +126,10 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function usecaseProviderPHP7()
     {
-        return array(
-            array('method-declare'),
-            array('class-const'),
-        );
+        return [
+            ['method-declare'],
+            ['class-const'],
+        ];
     }
 
 

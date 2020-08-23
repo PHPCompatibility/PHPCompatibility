@@ -52,16 +52,16 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function dataNewMagicClassConstant()
     {
-        return array(
-            array(6),
-            array(12),
-            array(27),
-            array(28),
-            array(29),
-            array(30),
-            array(31),
-            array(32),
-        );
+        return [
+            [6],
+            [12],
+            [27],
+            [28],
+            [29],
+            [30],
+            [31],
+            [32],
+        ];
     }
 
 
@@ -89,12 +89,12 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(10),
-            array(18),
-            array(19),
-        );
+        return [
+            [4],
+            [10],
+            [18],
+            [19],
+        ];
     }
 
 
@@ -122,19 +122,19 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function dataNewMagicClassConstantOnObject()
     {
-        return array(
-            array(35),
-            array(36),
-            array(37),
-            array(38),
-            array(39),
+        return [
+            [35],
+            [36],
+            [37],
+            [38],
+            [39],
 
             // Still not supported, but throwing an error anyhow.
-            array(49),
-            array(50),
-            array(51),
-            array(52),
-        );
+            [49],
+            [50],
+            [51],
+            [52],
+        ];
     }
 
 

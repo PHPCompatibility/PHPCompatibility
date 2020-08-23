@@ -37,9 +37,9 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'number_format' => true,
-    );
+    ];
 
     /**
      * Tokens which we are looking for in the parameter.
@@ -50,7 +50,7 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    private $targetTokens = array();
+    private $targetTokens = [];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -151,7 +151,7 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
             'Passing a multi-byte separator as the $%s to number_format() is not supported in PHP 5.3 or earlier. Found: "%s"',
             $firstNonEmpty,
             'In' . \ucfirst($paramName),
-            array($paramName, $content)
+            [$paramName, $content]
         );
     }
 }

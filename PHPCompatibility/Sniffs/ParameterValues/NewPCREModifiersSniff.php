@@ -36,7 +36,7 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'preg_filter'                 => true,
         'preg_grep'                   => true,
         'preg_match_all'              => true,
@@ -45,7 +45,7 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
         'preg_replace_callback'       => true,
         'preg_replace'                => true,
         'preg_split'                  => true,
-    );
+    ];
 
     /**
      * Array listing newly introduced regex modifiers.
@@ -57,12 +57,12 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      *
      * @var array
      */
-    protected $newModifiers = array(
-        'J' => array(
+    protected $newModifiers = [
+        'J' => [
             '7.1' => false,
             '7.2' => true,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -116,10 +116,10 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
             }
 
             $errorCode = $modifier . 'ModifierFound';
-            $data      = array(
+            $data      = [
                 $modifier,
                 $notInVersion,
-            );
+            ];
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }

@@ -88,16 +88,16 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
      */
     public function dataAlternativePHPTags()
     {
-        return array(
-            array('Script', '<script language="php">', 7),
-            array('Script', "<script language='php'>", 10),
-            array('Script', '<script type="text/php" language="php">', 13),
-            array('Script', "<script language='PHP' type='text/php'>", 16),
-            array('ASP', '<%', 21),
-            array('ASP', '<%', 22),
-            array('ASP', '<%=', 23),
-            array('ASP', '<%=', 24),
-        );
+        return [
+            ['Script', '<script language="php">', 7],
+            ['Script', "<script language='php'>", 10],
+            ['Script', '<script type="text/php" language="php">', 13],
+            ['Script', "<script language='PHP' type='text/php'>", 16],
+            ['ASP', '<%', 21],
+            ['ASP', '<%', 22],
+            ['ASP', '<%=', 23],
+            ['ASP', '<%=', 24],
+        ];
     }
 
 
@@ -132,12 +132,12 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
      */
     public function dataMaybeASPOpenTag()
     {
-        return array(
-            array(21, '<% echo $var; %>'),
-            array(22, '<% echo $var; %> and some m...'),
-            array(23, '<%= $var . \' and some more ...'),
-            array(24, '<%= $var %> and some more t...'),
-        );
+        return [
+            [21, '<% echo $var; %>'],
+            [22, '<% echo $var; %> and some m...'],
+            [23, '<%= $var . \' and some more ...'],
+            [24, '<%= $var %> and some more t...'],
+        ];
     }
 
 
@@ -165,9 +165,9 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(3),
-        );
+        return [
+            [3],
+        ];
     }
 
 

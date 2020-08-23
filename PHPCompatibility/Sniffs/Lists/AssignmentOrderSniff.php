@@ -42,11 +42,11 @@ class AssignmentOrderSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_LIST,
             \T_OPEN_SHORT_ARRAY,
             \T_OPEN_SQUARE_BRACKET,
-        );
+        ];
     }
 
 
@@ -121,7 +121,7 @@ class AssignmentOrderSniff extends Sniff
             throw $e;
         }
 
-        $listVars = array();
+        $listVars = [];
         foreach ($assignments as $assign) {
             if ($assign['is_empty'] === true) {
                 continue;

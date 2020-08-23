@@ -39,7 +39,7 @@ class NewConstantArraysUsingConstSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_CONST);
+        return [\T_CONST];
     }
 
     /**

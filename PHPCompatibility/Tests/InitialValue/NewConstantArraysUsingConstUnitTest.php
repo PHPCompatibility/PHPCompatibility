@@ -49,17 +49,17 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
      */
     public function dataConstantArraysUsingConst()
     {
-        return array(
-            array(3),
-            array(4),
-            array(6),
-            array(12),
-            array(19),
-            array(25),
-            array(37),
-            array(39),
-            array(41),
-        );
+        return [
+            [3],
+            [4],
+            [6],
+            [12],
+            [19],
+            [25],
+            [37],
+            [39],
+            [41],
+        ];
     }
 
 
@@ -87,16 +87,16 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(31),
-            array(33),
-            array(36),
-            array(38),
-            array(40),
-            array(42),
-            array(46),
-            array(47),
-        );
+        return [
+            [31],
+            [33],
+            [36],
+            [38],
+            [40],
+            [42],
+            [46],
+            [47],
+        ];
     }
 
 

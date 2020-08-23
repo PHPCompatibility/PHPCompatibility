@@ -39,10 +39,10 @@ class ForbiddenToStringParametersSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_DOUBLE_COLON,
             \T_OBJECT_OPERATOR,
-        );
+        ];
     }
 
     /**

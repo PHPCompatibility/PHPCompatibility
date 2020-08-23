@@ -54,12 +54,12 @@ class RemovedAssertStringAssertionUnitTest extends BaseSniffTest
      */
     public function dataRemovedAssertStringAssertion()
     {
-        return array(
-            array(18),
-            array(19),
-            array(20),
-            array(25),
-        );
+        return [
+            [18],
+            [19],
+            [20],
+            [25],
+        ];
     }
 
 

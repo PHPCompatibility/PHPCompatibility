@@ -51,14 +51,14 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
      */
     public function dataNewStripTagsAllowableTagsArray()
     {
-        return array(
-            array(13),
-            array(16),
-            array(23),
-            array(26),
-            array(33),
-            array(34),
-        );
+        return [
+            [13],
+            [16],
+            [23],
+            [26],
+            [33],
+            [34],
+        ];
     }
 
 
@@ -89,12 +89,12 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
      */
     public function dataInvalidStripTagsAllowableTagsArray()
     {
-        return array(
-            array(23, "'<a>'"),
-            array(23, "'<p>'"),
-            array(27, "'<a>'"),
-            array(28, "'<p>'"),
-        );
+        return [
+            [23, "'<a>'"],
+            [23, "'<p>'"],
+            [27, "'<a>'"],
+            [28, "'<p>'"],
+        ];
     }
 
     /**
@@ -121,16 +121,16 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesInvalidStripTagsAllowableTagsArray()
     {
-        return array(
-            array(33),
-            array(34),
-            array(36),
-            array(37),
-            array(38),
-            array(39),
-            array(40),
-            array(41),
-        );
+        return [
+            [33],
+            [34],
+            [36],
+            [37],
+            [38],
+            [39],
+            [40],
+            [41],
+        ];
     }
 
     /**
@@ -161,10 +161,10 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array('7.3'),
-            array('7.4'),
-        );
+        return [
+            ['7.3'],
+            ['7.4'],
+        ];
     }
 
 

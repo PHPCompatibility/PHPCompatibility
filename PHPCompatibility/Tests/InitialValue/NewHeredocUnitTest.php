@@ -50,26 +50,26 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     public function dataHeredocInitialize()
     {
-        return array(
-            array(5, 'static variables'),
-            array(13, 'constants'),
-            array(19, 'class properties'),
-            array(27, 'constants'),
-            array(31, 'class properties'),
-            array(39, 'constants'),
-            array(47, 'class properties'),
-            array(52, 'constants'),
-            array(60, 'constants'),
-            array(87, 'static variables'),
-            array(90, 'static variables'),
-            array(97, 'constants'),
-            array(100, 'constants'),
-            array(104, 'class properties'),
-            array(107, 'class properties'),
-            array(115, 'default parameter values'),
-            array(121, 'default parameter values'),
-            array(124, 'default parameter values'),
-        );
+        return [
+            [5, 'static variables'],
+            [13, 'constants'],
+            [19, 'class properties'],
+            [27, 'constants'],
+            [31, 'class properties'],
+            [39, 'constants'],
+            [47, 'class properties'],
+            [52, 'constants'],
+            [60, 'constants'],
+            [87, 'static variables'],
+            [90, 'static variables'],
+            [97, 'constants'],
+            [100, 'constants'],
+            [104, 'class properties'],
+            [107, 'class properties'],
+            [115, 'default parameter values'],
+            [121, 'default parameter values'],
+            [124, 'default parameter values'],
+        ];
     }
 
 
@@ -97,11 +97,11 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(70),
-            array(75),
-            array(79),
-        );
+        return [
+            [70],
+            [75],
+            [79],
+        ];
     }
 
 

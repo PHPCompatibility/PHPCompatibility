@@ -43,10 +43,10 @@ class NewLateStaticBindingSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_STATIC,
             \T_STRING,
-        );
+        ];
     }
 
 

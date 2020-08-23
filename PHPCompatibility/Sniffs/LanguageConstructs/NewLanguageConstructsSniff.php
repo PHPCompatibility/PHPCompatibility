@@ -39,18 +39,18 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $newConstructs = array(
-        'T_NS_SEPARATOR' => array(
+    protected $newConstructs = [
+        'T_NS_SEPARATOR' => [
             '5.2' => false,
             '5.3' => true,
             'description' => 'the \ operator (for namespaces)',
-        ),
-        'T_ELLIPSIS' => array(
+        ],
+        'T_ELLIPSIS' => [
             '5.5' => false,
             '5.6' => true,
             'description' => 'the ... spread operator',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -62,7 +62,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ($this->newConstructs as $token => $versions) {
             $tokens[] = constant($token);
         }
@@ -86,9 +86,9 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
 
-        $itemInfo = array(
+        $itemInfo = [
             'name' => $tokenType,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -117,7 +117,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('description');
+        return ['description'];
     }
 
 

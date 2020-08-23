@@ -36,12 +36,12 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_STRING,
             \T_VARIABLE,
             \T_ISSET,
             \T_UNSET,
-        );
+        ];
     }
 
 
@@ -72,11 +72,11 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === \T_STRING) {
-            $ignore = array(
+            $ignore = [
                 \T_FUNCTION        => true,
                 \T_CONST           => true,
                 \T_USE             => true,
-            );
+            ];
 
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
@@ -92,7 +92,7 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
             return;
         }
 
-        $data = array();
+        $data = [];
         switch ($tokens[$stackPtr]['code']) {
             case \T_ISSET:
                 $data[]    = 'calls to isset()';

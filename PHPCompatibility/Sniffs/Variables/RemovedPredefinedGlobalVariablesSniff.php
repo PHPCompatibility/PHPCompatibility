@@ -48,55 +48,55 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $removedGlobalVariables = array(
-        'HTTP_POST_VARS' => array(
+    protected $removedGlobalVariables = [
+        'HTTP_POST_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_POST',
-        ),
-        'HTTP_GET_VARS' => array(
+        ],
+        'HTTP_GET_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_GET',
-        ),
-        'HTTP_ENV_VARS' => array(
+        ],
+        'HTTP_ENV_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_ENV',
-        ),
-        'HTTP_SERVER_VARS' => array(
+        ],
+        'HTTP_SERVER_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_SERVER',
-        ),
-        'HTTP_COOKIE_VARS' => array(
+        ],
+        'HTTP_COOKIE_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_COOKIE',
-        ),
-        'HTTP_SESSION_VARS' => array(
+        ],
+        'HTTP_SESSION_VARS' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_SESSION',
-        ),
-        'HTTP_POST_FILES' => array(
+        ],
+        'HTTP_POST_FILES' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_FILES',
-        ),
+        ],
 
-        'HTTP_RAW_POST_DATA' => array(
+        'HTTP_RAW_POST_DATA' => [
             '5.6' => false,
             '7.0' => true,
             'alternative' => 'php://input',
-        ),
+        ],
 
-        'php_errormsg' => array(
+        'php_errormsg' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'error_get_last()',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -109,7 +109,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(\T_VARIABLE);
+        return [\T_VARIABLE];
     }
 
 
@@ -157,9 +157,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         }
 
         // Still here, so throw an error/warning.
-        $itemInfo = array(
+        $itemInfo = [
             'name' => $varName,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -227,10 +227,10 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     {
         $scopeStart = 0;
 
-        $validOwners = array(
+        $validOwners = [
             \T_CLOSURE,
             \T_FUNCTION,
-        );
+        ];
 
         /*
          * If the variable is detected within the scope of a function/closure, limit the checking.
@@ -304,14 +304,14 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
             }
         }
 
-        $skipPast = array(
+        $skipPast = [
             'T_CLASS'      => true,
             'T_ANON_CLASS' => true,
             'T_INTERFACE'  => true,
             'T_TRAIT'      => true,
             'T_FUNCTION'   => true,
             'T_CLOSURE'    => true,
-        );
+        ];
 
         // Walk back and see if there is an assignment to the variable within the same scope.
         for ($i = ($stackPtr - 1); $i >= $scopeStart; $i--) {

@@ -49,9 +49,9 @@ class RemovedGetDefinedFunctionsExcludeDisabledFalseUnitTest extends BaseSniffTe
      */
     public function dataRemovedGetDefinedFunctionsExcludeDisabledFalse()
     {
-        return array(
-            array(11),
-        );
+        return [
+            [11],
+        ];
     }
 
 

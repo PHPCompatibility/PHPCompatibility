@@ -35,13 +35,13 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      *
      * @var array
      */
-    protected $validLoopStructures = array(
+    protected $validLoopStructures = [
         \T_FOR     => \T_FOR,
         \T_FOREACH => \T_FOREACH,
         \T_WHILE   => \T_WHILE,
         \T_DO      => \T_DO,
         \T_SWITCH  => \T_SWITCH,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -52,10 +52,10 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_BREAK,
             \T_CONTINUE,
-        );
+        ];
     }
 
     /**
@@ -82,7 +82,7 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
         $error     = "Using '%s' outside of a loop or switch structure is invalid";
         $isError   = false;
         $errorCode = 'Found';
-        $data      = array($tokens[$stackPtr]['content']);
+        $data      = [$tokens[$stackPtr]['content']];
 
         if ($this->supportsAbove('7.0')) {
             $error    .= ' and will throw a fatal error since PHP 7.0';

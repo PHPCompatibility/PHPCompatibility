@@ -39,7 +39,7 @@ class RemovedNewReferenceSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_NEW);
+        return [\T_NEW];
     }
 
     /**

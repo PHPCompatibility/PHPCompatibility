@@ -40,42 +40,42 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      *
      * @var array
      */
-    protected $functionParameters = array(
+    protected $functionParameters = [
         // Special case, the optional nature is not deprecated, but usage is recommended
         // and leaving the parameter out will throw an E_NOTICE.
-        'crypt' => array(
-            1 => array(
+        'crypt' => [
+            1 => [
                 'name' => 'salt',
                 '5.6'  => 'recommended',
-            ),
-        ),
-        'gmmktime' => array(
-            1 => array(
+            ],
+        ],
+        'gmmktime' => [
+            1 => [
                 'name' => 'hour',
                 '8.0'  => true,
-            ),
-        ),
-        'mb_parse_str' => array(
-            1 => array(
+            ],
+        ],
+        'mb_parse_str' => [
+            1 => [
                 'name' => 'result',
                 '8.0'  => true,
-            ),
-        ),
-        'mktime' => array(
-            0 => array(
+            ],
+        ],
+        'mktime' => [
+            0 => [
                 'name' => 'hour',
                 '5.1'  => false,
                 '8.0'  => true,
-            ),
-        ),
-        'parse_str' => array(
-            1 => array(
+            ],
+        ],
+        'parse_str' => [
+            1 => [
                 'name' => 'result',
                 '7.2'  => false,
                 '8.0'  => true,
-            ),
-        ),
-    );
+            ],
+        ],
+    ];
 
 
     /**
@@ -107,13 +107,13 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = array(
+        $errorInfo = [
             'paramName'           => '',
             'optionalRecommended' => '',
             'optionalDeprecated'  => '',
             'optionalRemoved'     => '',
             'error'               => false,
-        );
+        ];
 
         $versionArray = $this->getVersionArray($itemArray);
 
@@ -162,10 +162,10 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
         }
 
         $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']);
-        $data      = array(
+        $data      = [
             $errorInfo['paramName'],
             $itemInfo['name'],
-        );
+        ];
 
         if ($errorInfo['optionalRecommended'] !== '') {
             $error     .= 'since PHP %s ';

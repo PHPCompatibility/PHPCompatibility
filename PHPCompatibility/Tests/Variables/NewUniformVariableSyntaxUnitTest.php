@@ -49,18 +49,18 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      */
     public function dataVariableVariables()
     {
-        return array(
-            array(4),
-            array(5),
-            array(6),
-            array(7),
-            array(8),
-            array(33),
-            array(34),
-            array(35),
-            array(40),
-            array(41),
-        );
+        return [
+            [4],
+            [5],
+            [6],
+            [7],
+            [8],
+            [33],
+            [34],
+            [35],
+            [40],
+            [41],
+        ];
     }
 
 
@@ -88,27 +88,27 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
+        return [
+            [11],
+            [12],
+            [13],
+            [14],
+            [15],
 
-            array(18),
-            array(19),
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(24),
-            array(25),
-            array(26),
-            array(27),
-            array(28),
-            array(42),
-            array(45),
-        );
+            [18],
+            [19],
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [25],
+            [26],
+            [27],
+            [28],
+            [42],
+            [45],
+        ];
     }
 
 

@@ -109,12 +109,12 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      */
     public function register()
     {
-        $targets = array(
-            array(
+        $targets = [
+            [
                 \T_VARIABLE,
                 \T_STRING, // Constants.
-            ),
-        );
+            ],
+        ];
 
         // Registers T_ARRAY, T_OPEN_SHORT_ARRAY and T_CONSTANT_ENCAPSED_STRING.
         $additionalTargets                        = $this->newArrayStringDereferencing->register();
@@ -153,7 +153,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        $braces = array();
+        $braces = [];
 
         // Note: Overwriting braces in each `if` is fine as only one will match anyway.
         if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
@@ -210,9 +210,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
             $snippet = $phpcsFile->getTokensAsString($stackPtr, (($close - $stackPtr) + 1));
 
             if ($isError === false) {
-                $fix = $phpcsFile->addFixableWarning($errorMsg, $open, $errorCode, array($snippet));
+                $fix = $phpcsFile->addFixableWarning($errorMsg, $open, $errorCode, [$snippet]);
             } else {
-                $fix = $phpcsFile->addFixableError($errorMsg, $open, $errorCode, array($snippet));
+                $fix = $phpcsFile->addFixableError($errorMsg, $open, $errorCode, [$snippet]);
             }
 
             if ($fix === true) {
@@ -242,7 +242,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
     {
         $tokens  = $phpcsFile->getTokens();
         $current = $stackPtr;
-        $braces  = array();
+        $braces  = [];
 
         do {
             $current = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);
@@ -318,23 +318,23 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
         if ($this->isUseOfGlobalConstant($phpcsFile, $stackPtr) === false
             && $tokens[$prevNonEmpty]['code'] !== \T_DOUBLE_COLON // Class constant access.
         ) {
-            return array();
+            return [];
         }
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
-            return array();
+            return [];
         }
 
         if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_SQUARE_BRACKET
             || isset($tokens[$nextNonEmpty]['bracket_closer']) === false
         ) {
             // Array access for constants must start with square brackets.
-            return array();
+            return [];
         }
 
         $current = $tokens[$nextNonEmpty]['bracket_closer'];
-        $braces  = array();
+        $braces  = [];
 
         do {
             $current = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);

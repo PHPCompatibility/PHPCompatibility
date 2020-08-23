@@ -48,7 +48,7 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newTypes = array();
+    protected $newTypes = [];
 
     /**
      * Invalid types.
@@ -60,12 +60,12 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => string|false)
      */
-    protected $invalidTypes = array(
+    protected $invalidTypes = [
         'boolean'  => 'bool',
         'integer'  => 'int',
         'callable' => false,
         'void'     => false,
-    );
+    ];
 
 
     /**
@@ -77,7 +77,7 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(\T_VARIABLE);
+        return [\T_VARIABLE];
     }
 
     /**
@@ -117,16 +117,16 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
                 'Typed properties are not supported in PHP 7.3 or earlier. Found: %s',
                 $typeToken,
                 'Found',
-                array($type)
+                [$type]
             );
         } elseif (isset($this->newTypes[$type])) {
-            $itemInfo = array(
+            $itemInfo = [
                 'name' => $type,
-            );
+            ];
             $this->handleFeature($phpcsFile, $typeToken, $itemInfo);
         } elseif (isset($this->invalidTypes[$type])) {
             $error = "%s is not supported as a type declaration for properties";
-            $data  = array($type);
+            $data  = [$type];
 
             if ($this->invalidTypes[$type] !== false) {
                 $error .= " Did you mean %s ?";

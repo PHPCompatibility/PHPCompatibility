@@ -45,122 +45,122 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $removedClasses = array(
-        'HW_API' => array(
+    protected $removedClasses = [
+        'HW_API' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'HW_API_Object' => array(
+        ],
+        'HW_API_Object' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'HW_API_Attribute' => array(
+        ],
+        'HW_API_Attribute' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'HW_API_Error' => array(
+        ],
+        'HW_API_Error' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'HW_API_Content' => array(
+        ],
+        'HW_API_Content' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'HW_API_Reason' => array(
+        ],
+        'HW_API_Reason' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
+        ],
 
-        'SWFAction' => array(
+        'SWFAction' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBitmap' => array(
+        ],
+        'SWFBitmap' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFButton' => array(
+        ],
+        'SWFButton' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFDisplayItem' => array(
+        ],
+        'SWFDisplayItem' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFill' => array(
+        ],
+        'SWFFill' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFont' => array(
+        ],
+        'SWFFont' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFontChar' => array(
+        ],
+        'SWFFontChar' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFGradient' => array(
+        ],
+        'SWFGradient' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFMorph' => array(
+        ],
+        'SWFMorph' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFMovie' => array(
+        ],
+        'SWFMovie' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFPrebuiltClip' => array(
+        ],
+        'SWFPrebuiltClip' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFShape' => array(
+        ],
+        'SWFShape' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFSound' => array(
+        ],
+        'SWFSound' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFSoundInstance' => array(
+        ],
+        'SWFSoundInstance' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFSprite' => array(
+        ],
+        'SWFSprite' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFText' => array(
+        ],
+        'SWFText' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTextField' => array(
+        ],
+        'SWFTextField' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFVideoStream' => array(
+        ],
+        'SWFVideoStream' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SQLiteDatabase' => array(
+        ],
+        'SQLiteDatabase' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLiteResult' => array(
+        ],
+        'SQLiteResult' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLiteUnbuffered' => array(
+        ],
+        'SQLiteUnbuffered' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
+        ],
 
-        'XmlRpcServer' => array(
+        'XmlRpcServer' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-    );
+        ],
+    ];
 
     /**
      * A list of deprecated/removed Exception classes.
@@ -181,12 +181,12 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $removedExceptions = array(
-        'SQLiteException' => array(
+    protected $removedExceptions = [
+        'SQLiteException' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -205,7 +205,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
         // Add the Exception classes to the Classes list.
         $this->removedClasses = array_merge($this->removedClasses, $this->removedExceptions);
 
-        return array(
+        return [
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
@@ -214,7 +214,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             \T_CLOSURE,
             \T_CATCH,
             \T_RETURN_TYPE,
-        );
+        ];
     }
 
 
@@ -298,10 +298,10 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $className,
             'nameLc' => $classNameLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -332,10 +332,10 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             $typeHintLc = strtolower($hint);
 
             if (isset($this->removedClasses[$typeHintLc]) === true) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $hint,
                     'nameLc' => $typeHintLc,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
         }
@@ -367,7 +367,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
         $opener = $tokens[$stackPtr]['parenthesis_opener'];
         $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
         $name   = '';
-        $listen = array(
+        $listen = [
             // Parts of a (namespaced) class name.
             \T_STRING              => true,
             \T_NS_SEPARATOR        => true,
@@ -375,7 +375,7 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             \T_VARIABLE            => false,
             \T_BITWISE_OR          => false,
             \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
-        );
+        ];
 
         for ($i = ($opener + 1); $i < $closer; $i++) {
             if (isset($listen[$tokens[$i]['code']]) === false) {
@@ -396,10 +396,10 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
                 $nameLC = strtolower($name);
 
                 if (isset($this->removedExceptions[$nameLC]) === true) {
-                    $itemInfo = array(
+                    $itemInfo = [
                         'name'   => $name,
                         'nameLc' => $nameLC,
-                    );
+                    ];
                     $this->handleFeature($phpcsFile, $i, $itemInfo);
                 }
 
@@ -438,10 +438,10 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
         }
 
         // Still here ? Then this is a return type declaration using a new class.
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $returnTypeHint,
             'nameLc' => $returnTypeHintLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

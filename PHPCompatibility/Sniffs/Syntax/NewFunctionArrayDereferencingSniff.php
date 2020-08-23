@@ -47,7 +47,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -120,41 +120,41 @@ class NewFunctionArrayDereferencingSniff extends Sniff
         // Next non-empty token should be the open parenthesis.
         $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
         if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== \T_OPEN_PARENTHESIS) {
-            return array();
+            return [];
         }
 
         // Don't throw errors during live coding.
         if (isset($tokens[$openParenthesis]['parenthesis_closer']) === false) {
-            return array();
+            return [];
         }
 
         // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevToken !== false
-            && \in_array($tokens[$prevToken]['code'], array(\T_DOUBLE_COLON, \T_OBJECT_OPERATOR), true) === false
+            && \in_array($tokens[$prevToken]['code'], [\T_DOUBLE_COLON, \T_OBJECT_OPERATOR], true) === false
         ) {
             if ($tokens[$prevToken]['code'] === \T_BITWISE_AND) {
                 // This may be a function declared by reference.
                 $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
             }
 
-            $ignore = array(
+            $ignore = [
                 \T_FUNCTION  => true,
                 \T_CONST     => true,
                 \T_USE       => true,
                 \T_NEW       => true,
                 \T_CLASS     => true,
                 \T_INTERFACE => true,
-            );
+            ];
 
             if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
                 // Not a call to a PHP function or method.
-                return array();
+                return [];
             }
         }
 
         $current = $tokens[$openParenthesis]['parenthesis_closer'];
-        $braces  = array();
+        $braces  = [];
 
         do {
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true, null, true);

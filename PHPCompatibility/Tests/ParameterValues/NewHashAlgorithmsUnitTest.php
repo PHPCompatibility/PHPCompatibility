@@ -57,26 +57,26 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function dataNewHashAlgorithms()
     {
-        return array(
-            array('md2', '5.2', 13, '5.3'),
-            array('ripemd256', '5.2', 14, '5.3'),
-            array('ripemd320', '5.2', 15, '5.3'),
-            array('salsa10', '5.2', 16, '5.3'),
-            array('salsa20', '5.2', 18, '5.3'),
-            array('snefru256', '5.2', 19, '5.3'),
-            array('sha224', '5.2', 20, '5.3'),
-            array('joaat', '5.3', 22, '5.4'),
-            array('fnv132', '5.3', 23, '5.4'),
-            array('fnv164', '5.3', 24, '5.4'),
-            array('gost-crypto', '5.5', 26, '5.6'),
-            array('sha512/224', '7.0', 28, '7.1'),
-            array('sha512/256', '7.0', 29, '7.1'),
-            array('sha3-224', '7.0', 30, '7.1'),
-            array('sha3-256', '7.0', 31, '7.1'),
-            array('sha3-384', '7.0', 32, '7.1'),
-            array('sha3-512', '7.0', 33, '7.1'),
-            array('crc32c', '7.3', 34, '7.4'),
-        );
+        return [
+            ['md2', '5.2', 13, '5.3'],
+            ['ripemd256', '5.2', 14, '5.3'],
+            ['ripemd320', '5.2', 15, '5.3'],
+            ['salsa10', '5.2', 16, '5.3'],
+            ['salsa20', '5.2', 18, '5.3'],
+            ['snefru256', '5.2', 19, '5.3'],
+            ['sha224', '5.2', 20, '5.3'],
+            ['joaat', '5.3', 22, '5.4'],
+            ['fnv132', '5.3', 23, '5.4'],
+            ['fnv164', '5.3', 24, '5.4'],
+            ['gost-crypto', '5.5', 26, '5.6'],
+            ['sha512/224', '7.0', 28, '7.1'],
+            ['sha512/256', '7.0', 29, '7.1'],
+            ['sha3-224', '7.0', 30, '7.1'],
+            ['sha3-256', '7.0', 31, '7.1'],
+            ['sha3-384', '7.0', 32, '7.1'],
+            ['sha3-512', '7.0', 33, '7.1'],
+            ['crc32c', '7.3', 34, '7.4'],
+        ];
     }
 
 
@@ -104,11 +104,11 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(7),
-            array(8),
-        );
+        return [
+            [6],
+            [7],
+            [8],
+        ];
     }
 
 

@@ -167,10 +167,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function dataYield()
     {
-        return array(
-            array(33),
-            array(78),
-        );
+        return [
+            [33],
+            [78],
+        ];
     }
 
     /**
@@ -211,10 +211,10 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function dataYieldFrom()
     {
-        return array(
-            array(75),
-            array(76),
-        );
+        return [
+            [75],
+            [76],
+        ];
     }
 
     /**
@@ -260,12 +260,12 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function dataConst()
     {
-        return array(
-            array(37),
-            array(44),
-            array(53),
-            array(62),
-        );
+        return [
+            [37],
+            [44],
+            [53],
+            [62],
+        ];
     }
 
 
@@ -293,14 +293,14 @@ class NewKeywordsUnitTest extends BaseSniffTest
      */
     public function dataConstNoFalsePositives()
     {
-        return array(
-            array(40),
-            array(41),
-            array(49),
-            array(50),
-            array(58),
-            array(59),
-        );
+        return [
+            [40],
+            [41],
+            [49],
+            [50],
+            [58],
+            [59],
+        ];
     }
 
 

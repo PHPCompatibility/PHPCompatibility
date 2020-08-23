@@ -68,10 +68,10 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataOptionalRequiredParameterDeprecatedRemoved()
     {
-        return array(
-            array('mktime', 'hour', '5.1', '8.0', array(19), '5.0'),
-            array('parse_str', 'result', '7.2', '8.0', array(7), '7.1'),
-        );
+        return [
+            ['mktime', 'hour', '5.1', '8.0', [19], '5.0'],
+            ['parse_str', 'result', '7.2', '8.0', [7], '7.1'],
+        ];
     }
 
 
@@ -111,10 +111,10 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataOptionalRequiredParameterRemoved()
     {
-        return array(
-            array('gmmktime', 'hour', '8.0', array(18), '7.4'),
-            array('mb_parse_str', 'result', '8.0', array(22), '7.4'),
-        );
+        return [
+            ['gmmktime', 'hour', '8.0', [18], '7.4'],
+            ['mb_parse_str', 'result', '8.0', [22], '7.4'],
+        ];
     }
 
 
@@ -154,9 +154,9 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataOptionalRecommendedParameter()
     {
-        return array(
-            array('crypt', 'salt', '5.6', array(8), '5.5'),
-        );
+        return [
+            ['crypt', 'salt', '5.6', [8], '5.5'],
+        ];
     }
 
 
@@ -184,12 +184,12 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(14),
-            array(15),
-            array(21),
-        );
+        return [
+            [4],
+            [14],
+            [15],
+            [21],
+        ];
     }
 
 

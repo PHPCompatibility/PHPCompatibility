@@ -77,7 +77,7 @@ class NewNullableTypesSniff extends Sniff
                             'Nullable type declarations are not supported in PHP 7.0 or earlier. Found: %s',
                             $param['token'],
                             'typeDeclarationFound',
-                            array($param['type_hint'])
+                            [$param['type_hint']]
                         );
                     }
                 }
@@ -93,7 +93,7 @@ class NewNullableTypesSniff extends Sniff
                     'Nullable return types are not supported in PHP 7.0 or earlier. Found: %s',
                     $nullPtr,
                     'returnTypeFound',
-                    array($properties['return_type'])
+                    [$properties['return_type']]
                 );
             }
         } catch (RuntimeException $e) {

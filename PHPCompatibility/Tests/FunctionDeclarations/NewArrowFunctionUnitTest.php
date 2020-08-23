@@ -49,14 +49,14 @@ class NewArrowFunctionUnitTest extends BaseSniffTest
      */
     public function dataNewArrowFunction()
     {
-        return array(
-            array(24),
-            array(26),
-            array(28),
-            array(31),
-            array(32),
-            array(35),
-        );
+        return [
+            [24],
+            [26],
+            [28],
+            [31],
+            [32],
+            [35],
+        ];
     }
 
 
@@ -84,11 +84,11 @@ class NewArrowFunctionUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No issues expected on the first 21 lines.
         for ($i = 1; $i <= 21; $i++) {
-            $data[] = array($i);
+            $data[] = [$i];
         }
 
         return $data;

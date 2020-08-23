@@ -49,13 +49,13 @@ class RemovedIconvEncodingUnitTest extends BaseSniffTest
      */
     public function dataIconvEncoding()
     {
-        return array(
-            array(14),
-            array(15),
-            array(16),
-            array(17),
-            array(18),
-        );
+        return [
+            [14],
+            [15],
+            [16],
+            [17],
+            [18],
+        ];
     }
 
 

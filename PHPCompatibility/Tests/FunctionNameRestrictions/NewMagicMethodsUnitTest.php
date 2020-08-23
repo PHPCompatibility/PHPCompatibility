@@ -61,32 +61,32 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      */
     public function dataNewMagicMethod()
     {
-        return array(
-            array('__construct', '4.4', array(20), '5.0'),
-            array('__destruct', '4.4', array(21), '5.0'),
-            array('__get', '4.4', array(22, 34, 61), '5.0'),
-            array('__isset', '5.0', array(23, 35, 62), '5.1'),
-            array('__unset', '5.0', array(24, 36, 63), '5.1'),
-            array('__set_state', '5.0', array(25, 37, 64), '5.1'),
-            array('__callStatic', '5.2', array(27, 39, 66), '5.3'),
-            array('__invoke', '5.2', array(28, 40, 67), '5.3'),
-            array('__debugInfo', '5.5', array(29, 41, 68), '5.6'),
-            array('__serialize', '7.3', array(78), '7.4'),
-            array('__unserialize', '7.3', array(79), '7.4'),
+        return [
+            ['__construct', '4.4', [20], '5.0'],
+            ['__destruct', '4.4', [21], '5.0'],
+            ['__get', '4.4', [22, 34, 61], '5.0'],
+            ['__isset', '5.0', [23, 35, 62], '5.1'],
+            ['__unset', '5.0', [24, 36, 63], '5.1'],
+            ['__set_state', '5.0', [25, 37, 64], '5.1'],
+            ['__callStatic', '5.2', [27, 39, 66], '5.3'],
+            ['__invoke', '5.2', [28, 40, 67], '5.3'],
+            ['__debugInfo', '5.5', [29, 41, 68], '5.6'],
+            ['__serialize', '7.3', [78], '7.4'],
+            ['__unserialize', '7.3', [79], '7.4'],
 
             // Traits.
-            array('__get', '4.4', array(87), '5.0'),
-            array('__isset', '5.0', array(88), '5.1'),
-            array('__unset', '5.0', array(89), '5.1'),
-            array('__set_state', '5.0', array(90), '5.1'),
-            array('__callStatic', '5.2', array(92), '5.3'),
-            array('__invoke', '5.2', array(93), '5.3'),
-            array('__debugInfo', '5.5', array(94), '5.6'),
-            array('__serialize', '7.3', array(95), '7.4'),
-            array('__unserialize', '7.3', array(96), '7.4'),
-            array('__construct', '4.4', array(97), '5.0'),
-            array('__destruct', '4.4', array(98), '5.0'),
-        );
+            ['__get', '4.4', [87], '5.0'],
+            ['__isset', '5.0', [88], '5.1'],
+            ['__unset', '5.0', [89], '5.1'],
+            ['__set_state', '5.0', [90], '5.1'],
+            ['__callStatic', '5.2', [92], '5.3'],
+            ['__invoke', '5.2', [93], '5.3'],
+            ['__debugInfo', '5.5', [94], '5.6'],
+            ['__serialize', '7.3', [95], '7.4'],
+            ['__unserialize', '7.3', [96], '7.4'],
+            ['__construct', '4.4', [97], '5.0'],
+            ['__destruct', '4.4', [98], '5.0'],
+        ];
     }
 
 
@@ -117,12 +117,12 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      */
     public function dataChangedToStringMethod()
     {
-        return array(
-            array(26),
-            array(38),
-            array(65),
-            array(91),
-        );
+        return [
+            [26],
+            [38],
+            [65],
+            [91],
+        ];
     }
 
 
@@ -150,13 +150,13 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      */
     public function dataMagicMethodsThatShouldntBeFlagged()
     {
-        return array(
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-        );
+        return [
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+        ];
     }
 
 
@@ -184,19 +184,19 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
+        return [
             // Functions of same name outside class context.
-            array(47),
-            array(48),
-            array(49),
-            array(50),
-            array(51),
-            array(52),
-            array(53),
-            array(54),
-            array(74),
-            array(75),
-        );
+            [47],
+            [48],
+            [49],
+            [50],
+            [51],
+            [52],
+            [53],
+            [54],
+            [74],
+            [75],
+        ];
     }
 
 

@@ -62,48 +62,48 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newTypes = array(
-        'array' => array(
+    protected $newTypes = [
+        'array' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'self' => array(
+        ],
+        'self' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'parent' => array(
+        ],
+        'parent' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'callable' => array(
+        ],
+        'callable' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'int' => array(
+        ],
+        'int' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'float' => array(
+        ],
+        'float' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'bool' => array(
+        ],
+        'bool' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'string' => array(
+        ],
+        'string' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'iterable' => array(
+        ],
+        'iterable' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'object' => array(
+        ],
+        'object' => [
             '7.1' => false,
             '7.2' => true,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -115,11 +115,11 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => string)
      */
-    protected $invalidTypes = array(
+    protected $invalidTypes = [
         'static'  => 'self',
         'boolean' => 'bool',
         'integer' => 'int',
-    );
+    ];
 
 
     /**
@@ -187,9 +187,9 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 );
 
             } elseif (isset($this->newTypes[$typeHint])) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name' => $typeHint,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
 
                 // As of PHP 7.0, using `self` or `parent` outside class scope throws a fatal error.
@@ -205,15 +205,15 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                         "'%s' type cannot be used outside of class scope",
                         $param['token'],
                         ucfirst($typeHint) . 'OutsideClassScopeFound',
-                        array($typeHint)
+                        [$typeHint]
                     );
                 }
             } elseif (isset($this->invalidTypes[$typeHint])) {
                 $error = "'%s' is not a valid type declaration. Did you mean %s ?";
-                $data  = array(
+                $data  = [
                     $typeHint,
                     $this->invalidTypes[$typeHint],
-                );
+                ];
 
                 $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
             }

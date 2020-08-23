@@ -66,7 +66,7 @@ class CaseSensitiveKeywordsSniff extends Sniff
                 'The keyword \'%s\' was treated in a case-sensitive fashion in certain cases in PHP 5.4 or earlier. Use the lowercase version for consistent support.',
                 $stackPtr,
                 'NonLowercaseFound',
-                array($tokenContentLC)
+                [$tokenContentLC]
             );
         }
     }

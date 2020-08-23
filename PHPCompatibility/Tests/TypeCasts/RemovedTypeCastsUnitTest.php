@@ -64,9 +64,9 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedTypeCastWithAlternative()
     {
-        return array(
-            array('The real cast', '7.4', '(float)', array(15, 16), '7.3'),
-        );
+        return [
+            ['The real cast', '7.4', '(float)', [15, 16], '7.3'],
+        ];
     }
 
 
@@ -119,9 +119,9 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedRemovedTypeCastWithAlternative()
     {
-        return array(
-            array('The unset cast', '7.2', '8.0', 'unset()', array(8, 11, 12), '7.1'),
-        );
+        return [
+            ['The unset cast', '7.2', '8.0', 'unset()', [8, 11, 12], '7.1'],
+        ];
     }
 
 
@@ -149,11 +149,11 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(17),
-        );
+        return [
+            [4],
+            [5],
+            [17],
+        ];
     }
 
 

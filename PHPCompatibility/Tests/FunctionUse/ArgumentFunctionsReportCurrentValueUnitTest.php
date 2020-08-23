@@ -51,24 +51,24 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      */
     public function dataValueChanged()
     {
-        return array(
-            array(84, 'func_get_arg', '$x'),
-            array(85, 'func_get_args', '$x'),
-            array(86, 'debug_backtrace', '$x'),
-            array(95, 'func_get_arg', '$b'),
-            array(97, 'func_get_args', '$b'),
-            array(100, 'func_get_arg', '$b'),
-            array(102, 'func_get_args', '$b'),
-            array(105, 'func_get_arg', '$b'),
-            array(106, 'func_get_arg', '$c'),
-            array(107, 'debug_backtrace', '$b'),
-            array(108, 'debug_print_backtrace', '$b'),
-            array(109, 'debug_backtrace', '$b'),
-            array(110, 'debug_backtrace', '$b'),
-            array(120, 'func_get_arg', '$a'),
-            array(122, 'func_get_arg', '$a'),
-            array(161, 'func_get_args', '$string'),
-        );
+        return [
+            [84, 'func_get_arg', '$x'],
+            [85, 'func_get_args', '$x'],
+            [86, 'debug_backtrace', '$x'],
+            [95, 'func_get_arg', '$b'],
+            [97, 'func_get_args', '$b'],
+            [100, 'func_get_arg', '$b'],
+            [102, 'func_get_args', '$b'],
+            [105, 'func_get_arg', '$b'],
+            [106, 'func_get_arg', '$c'],
+            [107, 'debug_backtrace', '$b'],
+            [108, 'debug_print_backtrace', '$b'],
+            [109, 'debug_backtrace', '$b'],
+            [110, 'debug_backtrace', '$b'],
+            [120, 'func_get_arg', '$a'],
+            [122, 'func_get_arg', '$a'],
+            [161, 'func_get_args', '$string'],
+        ];
     }
 
 
@@ -98,11 +98,11 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      */
     public function dataNeedsInspection()
     {
-        return array(
-            array(101, 'func_get_arg', '$c'),
-            array(129, 'func_get_args', '$x'),
-            array(134, 'debug_backtrace', '$x'),
-        );
+        return [
+            [101, 'func_get_arg', '$c'],
+            [129, 'func_get_args', '$x'],
+            [134, 'debug_backtrace', '$x'],
+        ];
     }
 
 
@@ -130,28 +130,28 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 81 lines.
         for ($line = 1; $line <= 81; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
-        $cases[] = array(90);
-        $cases[] = array(94);
-        $cases[] = array(96);
-        $cases[] = array(99);
-        $cases[] = array(104);
-        $cases[] = array(121);
-        $cases[] = array(123);
-        $cases[] = array(142);
-        $cases[] = array(143);
-        $cases[] = array(152);
-        $cases[] = array(162);
-        $cases[] = array(164);
-        $cases[] = array(173);
-        $cases[] = array(176);
-        $cases[] = array(184);
-        $cases[] = array(192);
+        $cases[] = [90];
+        $cases[] = [94];
+        $cases[] = [96];
+        $cases[] = [99];
+        $cases[] = [104];
+        $cases[] = [121];
+        $cases[] = [123];
+        $cases[] = [142];
+        $cases[] = [143];
+        $cases[] = [152];
+        $cases[] = [162];
+        $cases[] = [164];
+        $cases[] = [173];
+        $cases[] = [176];
+        $cases[] = [184];
+        $cases[] = [192];
 
         return $cases;
     }

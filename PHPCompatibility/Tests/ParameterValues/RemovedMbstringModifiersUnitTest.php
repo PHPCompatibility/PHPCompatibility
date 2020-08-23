@@ -56,16 +56,16 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      */
     public function dataMbstringEModifier()
     {
-        return array(
-            array(14),
-            array(15),
-            array(16),
-            array(24),
-            array(25),
-            array(26),
-            array(29),
-            array(30),
-        );
+        return [
+            [14],
+            [15],
+            [16],
+            [24],
+            [25],
+            [26],
+            [29],
+            [30],
+        ];
     }
 
 
@@ -93,19 +93,19 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(6),
-            array(9),
-            array(10),
-            array(11),
-            array(19),
-            array(20),
-            array(21),
-            array(33),
-            array(34),
-        );
+        return [
+            [4],
+            [5],
+            [6],
+            [9],
+            [10],
+            [11],
+            [19],
+            [20],
+            [21],
+            [33],
+            [34],
+        ];
     }
 
 

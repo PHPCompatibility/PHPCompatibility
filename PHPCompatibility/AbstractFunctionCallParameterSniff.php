@@ -46,7 +46,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      *            Other than that, the array can have arbitrary content
      *            depending on your needs.
      */
-    protected $targetFunctions = array();
+    protected $targetFunctions = [];
 
     /**
      * List of tokens which when they preceed the $stackPtr indicate that this
@@ -56,11 +56,11 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      *
      * @var array
      */
-    private $ignoreTokens = array(
+    private $ignoreTokens = [
         \T_DOUBLE_COLON    => true,
         \T_OBJECT_OPERATOR => true,
         \T_NEW             => true,
-    );
+    ];
 
 
     /**
@@ -75,7 +75,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         // Handle case-insensitivity of function names.
         $this->targetFunctions = \array_change_key_case($this->targetFunctions, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 

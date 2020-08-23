@@ -51,23 +51,23 @@ class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
      */
     public function dataGetFQClassNameFromNewToken()
     {
-        return array(
-            array('/* test 1 */', '\DateTime'),
-            array('/* test 2 */', '\MyTesting\DateTime'),
-            array('/* test 3 */', '\MyTesting\DateTime'),
-            array('/* test 4 */', '\DateTime'),
-            array('/* test 5 */', '\MyTesting\anotherNS\DateTime'),
-            array('/* test 6 */', '\FQNS\DateTime'),
-            array('/* test 7 */', '\AnotherTesting\DateTime'),
-            array('/* test 8 */', '\AnotherTesting\DateTime'),
-            array('/* test 9 */', '\DateTime'),
-            array('/* test 10 */', '\AnotherTesting\anotherNS\DateTime'),
-            array('/* test 11 */', '\FQNS\DateTime'),
-            array('/* test 12 */', '\DateTime'),
-            array('/* test 13 */', '\DateTime'),
-            array('/* test 14 */', '\AnotherTesting\DateTime'),
-            array('/* test 15 */', ''),
-            array('/* test 16 */', ''),
-        );
+        return [
+            ['/* test 1 */', '\DateTime'],
+            ['/* test 2 */', '\MyTesting\DateTime'],
+            ['/* test 3 */', '\MyTesting\DateTime'],
+            ['/* test 4 */', '\DateTime'],
+            ['/* test 5 */', '\MyTesting\anotherNS\DateTime'],
+            ['/* test 6 */', '\FQNS\DateTime'],
+            ['/* test 7 */', '\AnotherTesting\DateTime'],
+            ['/* test 8 */', '\AnotherTesting\DateTime'],
+            ['/* test 9 */', '\DateTime'],
+            ['/* test 10 */', '\AnotherTesting\anotherNS\DateTime'],
+            ['/* test 11 */', '\FQNS\DateTime'],
+            ['/* test 12 */', '\DateTime'],
+            ['/* test 13 */', '\DateTime'],
+            ['/* test 14 */', '\AnotherTesting\DateTime'],
+            ['/* test 15 */', ''],
+            ['/* test 16 */', ''],
+        ];
     }
 }

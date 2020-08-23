@@ -50,12 +50,12 @@ class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTest
      */
     public function dataNewNumberFormatMultibyteSeparators()
     {
-        return array(
-            array(20, 'thousands_sep'),
-            array(24, 'dec_point'),
-            array(29, 'dec_point'),
-            array(33, 'thousands_sep'),
-        );
+        return [
+            [20, 'thousands_sep'],
+            [24, 'dec_point'],
+            [29, 'dec_point'],
+            [33, 'thousands_sep'],
+        ];
     }
 
 

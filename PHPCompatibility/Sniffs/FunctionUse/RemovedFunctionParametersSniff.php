@@ -44,54 +44,54 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      *
      * @var array
      */
-    protected $removedFunctionParameters = array(
-        'curl_version' => array(
-            0 => array(
+    protected $removedFunctionParameters = [
+        'curl_version' => [
+            0 => [
                 'name' => 'age',
                 '7.4'  => false,
                 '8.0'  => true,
-            ),
-        ),
-        'define' => array(
-            2 => array(
+            ],
+        ],
+        'define' => [
+            2 => [
                 'name' => 'case_insensitive',
                 '7.3'  => false,
                 '8.0'  => true,
-            ),
-        ),
-        'gmmktime' => array(
-            6 => array(
+            ],
+        ],
+        'gmmktime' => [
+            6 => [
                 'name' => 'is_dst',
                 '5.1'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'ldap_first_attribute' => array(
-            2 => array(
+            ],
+        ],
+        'ldap_first_attribute' => [
+            2 => [
                 'name'  => 'ber_identifier',
                 '5.2.4' => true,
-            ),
-        ),
-        'ldap_next_attribute' => array(
-            2 => array(
+            ],
+        ],
+        'ldap_next_attribute' => [
+            2 => [
                 'name'  => 'ber_identifier',
                 '5.2.4' => true,
-            ),
-        ),
-        'mb_decode_numericentity' => array(
-            3 => array(
+            ],
+        ],
+        'mb_decode_numericentity' => [
+            3 => [
                 'name' => 'is_hex',
                 '8.0'  => true,
-            ),
-        ),
-        'mktime' => array(
-            6 => array(
+            ],
+        ],
+        'mktime' => [
+            6 => [
                 'name' => 'is_dst',
                 '5.1'  => false,
                 '7.0'  => true,
-            ),
-        ),
-    );
+            ],
+        ],
+    ];
 
 
     /**
@@ -106,7 +106,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         // Handle case-insensitivity of function names.
         $this->removedFunctionParameters = \array_change_key_case($this->removedFunctionParameters, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -139,11 +139,11 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_NEW             => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -178,11 +178,11 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                     }
                 }
 
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $function,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
@@ -213,7 +213,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('name', 'callback');
+        return ['name', 'callback'];
     }
 
 

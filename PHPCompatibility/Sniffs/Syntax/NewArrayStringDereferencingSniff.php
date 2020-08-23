@@ -49,11 +49,11 @@ class NewArrayStringDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_ARRAY,
             \T_OPEN_SHORT_ARRAY,
             \T_CONSTANT_ENCAPSED_STRING,
-        );
+        ];
     }
 
     /**
@@ -90,7 +90,7 @@ class NewArrayStringDereferencingSniff extends Sniff
                     'Direct array dereferencing of %s is not present in PHP version 5.4 or earlier',
                     $openBrace,
                     'Found',
-                    array($dereferencing['type'])
+                    [$dereferencing['type']]
                 );
 
                 continue;
@@ -102,7 +102,7 @@ class NewArrayStringDereferencingSniff extends Sniff
                     'Direct array dereferencing of %s using curly braces is not present in PHP version 5.6 or earlier',
                     $openBrace,
                     'FoundUsingCurlies',
-                    array($dereferencing['type'])
+                    [$dereferencing['type']]
                 );
             }
         }
@@ -135,7 +135,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             case \T_ARRAY:
                 if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
                     // Live coding.
-                    return array();
+                    return [];
                 } else {
                     $type = 'arrays';
                     $end  = $tokens[$stackPtr]['parenthesis_closer'];
@@ -145,7 +145,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             case \T_OPEN_SHORT_ARRAY:
                 if (isset($tokens[$stackPtr]['bracket_closer']) === false) {
                     // Live coding.
-                    return array();
+                    return [];
                 } else {
                     $type = 'arrays';
                     $end  = $tokens[$stackPtr]['bracket_closer'];
@@ -155,10 +155,10 @@ class NewArrayStringDereferencingSniff extends Sniff
 
         if (isset($type, $end) === false) {
             // Shouldn't happen, but for some reason did.
-            return array();
+            return [];
         }
 
-        $braces = array();
+        $braces = [];
 
         do {
             $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
@@ -188,12 +188,12 @@ class NewArrayStringDereferencingSniff extends Sniff
         } while (true);
 
         if (empty($braces)) {
-            return array();
+            return [];
         }
 
-        return array(
+        return [
             'type'   => $type,
             'braces' => $braces,
-        );
+        ];
     }
 }

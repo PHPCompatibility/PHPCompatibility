@@ -63,9 +63,9 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
      */
     public function dataPCRENewModifier()
     {
-        return array(
-            array('J', '7.1', array(3, 4, 6, 17, 19, 25), '7.2'),
-        );
+        return [
+            ['J', '7.1', [3, 4, 6, 17, 19, 25], '7.2'],
+        ];
     }
 
 
@@ -93,10 +93,10 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(18),
-            array(28),
-        );
+        return [
+            [18],
+            [28],
+        ];
     }
 
 

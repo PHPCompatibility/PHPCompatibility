@@ -43,141 +43,141 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      *
      * @var array
      */
-    protected $functionParameters = array(
-        'array_merge' => array(
-            0 => array(
+    protected $functionParameters = [
+        'array_merge' => [
+            0 => [
                 'name' => 'array(s) to merge',
                 '7.3'  => true,
                 '7.4'  => false,
-            ),
-        ),
-        'array_merge_recursive' => array(
-            0 => array(
+            ],
+        ],
+        'array_merge_recursive' => [
+            0 => [
                 'name' => 'array(s) to merge',
                 '7.3'  => true,
                 '7.4'  => false,
-            ),
-        ),
-        'array_push' => array(
-            1 => array(
+            ],
+        ],
+        'array_push' => [
+            1 => [
                 'name' => 'element to push',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'array_unshift' => array(
-            1 => array(
+            ],
+        ],
+        'array_unshift' => [
+            1 => [
                 'name' => 'element to prepend',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'bcscale' => array(
-            0 => array(
+            ],
+        ],
+        'bcscale' => [
+            0 => [
                 'name' => 'scale',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'fgetcsv' => array(
-            1 => array(
+            ],
+        ],
+        'fgetcsv' => [
+            1 => [
                 'name' => 'length',
                 '5.0'  => true,
                 '5.1'  => false,
-            ),
-        ),
-        'ftp_fget' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_fget' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_fput' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_fput' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_get' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_get' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_nb_fget' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_nb_fget' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_nb_fput' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_nb_fput' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_nb_get' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_nb_get' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_nb_put' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_nb_put' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'ftp_put' => array(
-            3 => array(
+            ],
+        ],
+        'ftp_put' => [
+            3 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
-            ),
-        ),
-        'getenv' => array(
-            0 => array(
+            ],
+        ],
+        'getenv' => [
+            0 => [
                 'name' => 'varname',
                 '7.0'  => true,
                 '7.1'  => false,
-            ),
-        ),
-        'preg_match_all' => array(
-            2 => array(
+            ],
+        ],
+        'preg_match_all' => [
+            2 => [
                 'name' => 'matches',
                 '5.3'  => true,
                 '5.4'  => false,
-            ),
-        ),
-        'stream_socket_enable_crypto' => array(
-            2 => array(
+            ],
+        ],
+        'stream_socket_enable_crypto' => [
+            2 => [
                 'name' => 'crypto_type',
                 '5.5'  => true,
                 '5.6'  => false,
-            ),
-        ),
-        'xmlwriter_write_element' => array(
-            2 => array(
+            ],
+        ],
+        'xmlwriter_write_element' => [
+            2 => [
                 'name'  => 'content',
                 '5.2.2' => true,
                 '5.2.3' => false,
-            ),
-        ),
-        'xmlwriter_write_element_ns' => array(
-            4 => array(
+            ],
+        ],
+        'xmlwriter_write_element_ns' => [
+            4 => [
                 'name'  => 'content',
                 '5.2.2' => true,
                 '5.2.3' => false,
-            ),
-        ),
-    );
+            ],
+        ],
+    ];
 
 
     /**
@@ -192,7 +192,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         // Handle case-insensitivity of function names.
         $this->functionParameters = \array_change_key_case($this->functionParameters, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -210,13 +210,13 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
             \T_NEW             => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -243,11 +243,11 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
 
         foreach ($this->functionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset > $parameterOffsetFound) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $function,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
@@ -293,7 +293,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('name');
+        return ['name'];
     }
 
 
@@ -309,10 +309,10 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = array(
+        $errorInfo = [
             'paramName'       => '',
             'requiredVersion' => '',
-        );
+        ];
 
         $versionArray = $this->getVersionArray($itemArray);
 
@@ -361,11 +361,11 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
     {
         $error     = $this->getErrorMsgTemplate();
         $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']) . 'Missing';
-        $data      = array(
+        $data      = [
             $errorInfo['paramName'],
             $itemInfo['name'],
             $errorInfo['requiredVersion'],
-        );
+        ];
 
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
     }

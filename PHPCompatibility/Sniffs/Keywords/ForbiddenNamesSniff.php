@@ -37,7 +37,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array(string => string)
      */
-    protected $invalidNames = array(
+    protected $invalidNames = [
         'abstract'      => '5.0',
         'and'           => 'all',
         'array'         => 'all',
@@ -110,7 +110,7 @@ class ForbiddenNamesSniff extends Sniff
         '__function__'  => 'all',
         '__method__'    => 'all',
         '__namespace__' => '5.3',
-    );
+    ];
 
     /**
      * A list of keywords that can follow use statements.
@@ -119,10 +119,10 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array(string => string)
      */
-    protected $validUseNames = array(
+    protected $validUseNames = [
         'const'    => true,
         'function' => true,
-    );
+    ];
 
     /**
      * Scope modifiers and other keywords allowed in trait use statements.
@@ -131,7 +131,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array
      */
-    private $allowedModifiers = array();
+    private $allowedModifiers = [];
 
     /**
      * Targeted tokens.
@@ -140,7 +140,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @var array
      */
-    protected $targetedTokens = array(
+    protected $targetedTokens = [
         \T_CLASS,
         \T_ANON_CLASS,
         \T_FUNCTION,
@@ -152,7 +152,7 @@ class ForbiddenNamesSniff extends Sniff
         \T_EXTENDS,
         \T_INTERFACE,
         \T_TRAIT,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -297,7 +297,7 @@ class ForbiddenNamesSniff extends Sniff
                 return;
             }
 
-            $endToken      = $phpcsFile->findNext(array(\T_SEMICOLON, \T_OPEN_CURLY_BRACKET), ($stackPtr + 1), null, false, null, true);
+            $endToken      = $phpcsFile->findNext([\T_SEMICOLON, \T_OPEN_CURLY_BRACKET], ($stackPtr + 1), null, false, null, true);
             $namespaceName = trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
             if (empty($namespaceName) === true) {
                 return;
@@ -342,10 +342,10 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         if ($this->supportsAbove($this->invalidNames[$nextContentLc])) {
-            $data = array(
+            $data = [
                 $tokens[$nextNonEmpty]['content'],
                 $this->invalidNames[$nextContentLc],
-            );
+            ];
             $this->addError($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content'], $data);
         }
     }
@@ -382,10 +382,10 @@ class ForbiddenNamesSniff extends Sniff
         $defineNameLc = strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
-            $data = array(
+            $data = [
                 $defineName,
                 $this->invalidNames[$defineNameLc],
-            );
+            ];
             $this->addError($phpcsFile, $stackPtr, $defineNameLc, $data);
         }
     }
@@ -424,6 +424,6 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function isEndOfUseStatement($token)
     {
-        return \in_array($token['code'], array(\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA), true);
+        return \in_array($token['code'], [\T_CLOSE_CURLY_BRACKET, \T_SEMICOLON, \T_COMMA], true);
     }
 }

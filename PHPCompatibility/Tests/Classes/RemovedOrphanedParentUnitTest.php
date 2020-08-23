@@ -52,17 +52,17 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
      */
     public function dataRemovedOrphanedParent()
     {
-        return array(
-            array(36),
-            array(37),
-            array(38),
-            array(45),
-            array(46),
-            array(47),
-            array(56),
-            array(57),
-            array(58),
-        );
+        return [
+            [36],
+            [37],
+            [38],
+            [45],
+            [46],
+            [47],
+            [56],
+            [57],
+            [58],
+        ];
     }
 
 
@@ -90,14 +90,14 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 31 lines.
         for ($line = 1; $line <= 31; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         // Add parse error test case.
-        $cases[] = array(67);
+        $cases[] = [67];
 
         return $cases;
     }

@@ -52,10 +52,10 @@ class NewMagicClassConstantSniff extends Sniff
          *
          * @link https://github.com/squizlabs/php_codesniffer/issues/2431
          */
-        return array(
+        return [
             \T_STRING,
             \T_CLASS,
-        );
+        ];
     }
 
     /**

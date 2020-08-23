@@ -51,15 +51,15 @@ class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTest
      */
     public function dataNewPasswordAlgoConstantValues()
     {
-        return array(
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(24),
-            array(25),
-            array(26),
-        );
+        return [
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [25],
+            [26],
+        ];
     }
 
 

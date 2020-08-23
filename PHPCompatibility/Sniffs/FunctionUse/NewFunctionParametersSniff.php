@@ -39,964 +39,964 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
      *
      * @var array
      */
-    protected $newFunctionParameters = array(
-        'array_filter' => array(
-            2 => array(
+    protected $newFunctionParameters = [
+        'array_filter' => [
+            2 => [
                 'name' => 'flag',
                 '5.5'  => false,
                 '5.6'  => true,
-            ),
-        ),
-        'array_slice' => array(
-            1 => array(
+            ],
+        ],
+        'array_slice' => [
+            1 => [
                 'name'  => 'preserve_keys',
                 '5.0.1' => false,
                 '5.0.2' => true,
-            ),
-        ),
-        'array_unique' => array(
-            1 => array(
+            ],
+        ],
+        'array_unique' => [
+            1 => [
                 'name'  => 'sort_flags',
                 '5.2.8' => false,
                 '5.2.9' => true,
-            ),
-        ),
-        'assert' => array(
-            1 => array(
+            ],
+        ],
+        'assert' => [
+            1 => [
                 'name'  => 'description',
                 '5.4.7' => false,
                 '5.4.8' => true,
-            ),
-        ),
-        'base64_decode' => array(
-            1 => array(
+            ],
+        ],
+        'base64_decode' => [
+            1 => [
                 'name' => 'strict',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'bcmod' => array(
-            2 => array(
+            ],
+        ],
+        'bcmod' => [
+            2 => [
                 'name' => 'scale',
                 '7.1'  => false,
                 '7.2'  => true,
-            ),
-        ),
-        'class_implements' => array(
-            1 => array(
+            ],
+        ],
+        'class_implements' => [
+            1 => [
                 'name' => 'autoload',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'class_parents' => array(
-            1 => array(
+            ],
+        ],
+        'class_parents' => [
+            1 => [
                 'name' => 'autoload',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'clearstatcache' => array(
-            0 => array(
+            ],
+        ],
+        'clearstatcache' => [
+            0 => [
                 'name' => 'clear_realpath_cache',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            1 => array(
+            ],
+            1 => [
                 'name' => 'filename',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'copy' => array(
-            2 => array(
+            ],
+        ],
+        'copy' => [
+            2 => [
                 'name' => 'context',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'curl_multi_info_read' => array(
-            1 => array(
+            ],
+        ],
+        'curl_multi_info_read' => [
+            1 => [
                 'name' => 'msgs_in_queue',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'date_time_set' => array(
-            4 => array(
+            ],
+        ],
+        'date_time_set' => [
+            4 => [
                 'name' => 'microseconds',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'debug_backtrace' => array(
-            0 => array(
+            ],
+        ],
+        'debug_backtrace' => [
+            0 => [
                 'name'  => 'options',
                 '5.2.4' => false,
                 '5.2.5' => true,
-            ),
-            1 => array(
+            ],
+            1 => [
                 'name' => 'limit',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'debug_print_backtrace' => array(
-            0 => array(
+            ],
+        ],
+        'debug_print_backtrace' => [
+            0 => [
                 'name'  => 'options',
                 '5.3.5' => false,
                 '5.3.6' => true,
-            ),
-            1 => array(
+            ],
+            1 => [
                 'name' => 'limit',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'dirname' => array(
-            1 => array(
+            ],
+        ],
+        'dirname' => [
+            1 => [
                 'name' => 'levels',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'dns_get_record' => array(
-            4 => array(
+            ],
+        ],
+        'dns_get_record' => [
+            4 => [
                 'name' => 'raw',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'fgetcsv' => array(
-            4 => array(
+            ],
+        ],
+        'fgetcsv' => [
+            4 => [
                 'name' => 'escape',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'fputcsv' => array(
-            4 => array(
+            ],
+        ],
+        'fputcsv' => [
+            4 => [
                 'name'  => 'escape_char',
                 '5.5.3' => false,
                 '5.5.4' => true,
-            ),
-        ),
-        'file_get_contents' => array(
-            3 => array(
+            ],
+        ],
+        'file_get_contents' => [
+            3 => [
                 'name' => 'offset',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-            4 => array(
+            ],
+            4 => [
                 'name' => 'maxlen',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'filter_input_array' => array(
-            2 => array(
+            ],
+        ],
+        'filter_input_array' => [
+            2 => [
                 'name' => 'add_empty',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'filter_var_array' => array(
-            2 => array(
+            ],
+        ],
+        'filter_var_array' => [
+            2 => [
                 'name' => 'add_empty',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'getenv' => array(
-            1 => array(
+            ],
+        ],
+        'getenv' => [
+            1 => [
                 'name'   => 'local_only',
                 '5.5.37' => false,
                 '5.5.38' => true, // Also introduced in PHP 5.6.24 and 7.0.9.
-            ),
-        ),
-        'getopt' => array(
-            2 => array(
+            ],
+        ],
+        'getopt' => [
+            2 => [
                 'name' => 'optind',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'gettimeofday' => array(
-            0 => array(
+            ],
+        ],
+        'gettimeofday' => [
+            0 => [
                 'name' => 'return_float',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'get_defined_functions' => array(
-            0 => array(
+            ],
+        ],
+        'get_defined_functions' => [
+            0 => [
                 'name'   => 'exclude_disabled',
                 '7.0.14' => false,
                 '7.0.15' => true,
-            ),
-        ),
-        'get_headers' => array(
-            2 => array(
+            ],
+        ],
+        'get_headers' => [
+            2 => [
                 'name' => 'context',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'get_html_translation_table' => array(
-            2 => array(
+            ],
+        ],
+        'get_html_translation_table' => [
+            2 => [
                 'name'  => 'encoding',
                 '5.3.3' => false,
                 '5.3.4' => true,
-            ),
-        ),
-        'get_loaded_extensions' => array(
-            0 => array(
+            ],
+        ],
+        'get_loaded_extensions' => [
+            0 => [
                 'name'  => 'zend_extensions',
                 '5.2.3' => false,
                 '5.2.4' => true,
-            ),
-        ),
-        'gzcompress' => array(
-            2 => array(
+            ],
+        ],
+        'gzcompress' => [
+            2 => [
                 'name' => 'encoding',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'gzdeflate' => array(
-            2 => array(
+            ],
+        ],
+        'gzdeflate' => [
+            2 => [
                 'name' => 'encoding',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'htmlentities' => array(
-            3 => array(
+            ],
+        ],
+        'htmlentities' => [
+            3 => [
                 'name'  => 'double_encode',
                 '5.2.2' => false,
                 '5.2.3' => true,
-            ),
-        ),
-        'htmlspecialchars' => array(
-            3 => array(
+            ],
+        ],
+        'htmlspecialchars' => [
+            3 => [
                 'name'  => 'double_encode',
                 '5.2.2' => false,
                 '5.2.3' => true,
-            ),
-        ),
-        'http_build_query' => array(
-            2 => array(
+            ],
+        ],
+        'http_build_query' => [
+            2 => [
                 'name'  => 'arg_separator',
                 '5.1.1' => false,
                 '5.1.2' => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name' => 'enc_type',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'idn_to_ascii' => array(
-            2 => array(
+            ],
+        ],
+        'idn_to_ascii' => [
+            2 => [
                 'name' => 'variant',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name' => 'idna_info',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'idn_to_utf8' => array(
-            2 => array(
+            ],
+        ],
+        'idn_to_utf8' => [
+            2 => [
                 'name' => 'variant',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name' => 'idna_info',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'imagecolorset' => array(
-            5 => array(
+            ],
+        ],
+        'imagecolorset' => [
+            5 => [
                 'name' => 'alpha',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'imagepng' => array(
-            2 => array(
+            ],
+        ],
+        'imagepng' => [
+            2 => [
                 'name'  => 'quality',
                 '5.1.1' => false,
                 '5.1.2' => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name'  => 'filters',
                 '5.1.2' => false,
                 '5.1.3' => true,
-            ),
-        ),
-        'imagerotate' => array(
-            3 => array(
+            ],
+        ],
+        'imagerotate' => [
+            3 => [
                 'name' => 'ignore_transparent',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'imap_open' => array(
-            4 => array(
+            ],
+        ],
+        'imap_open' => [
+            4 => [
                 'name' => 'n_retries',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name'  => 'params',
                 '5.3.1' => false,
                 '5.3.2' => true,
-            ),
-        ),
-        'imap_reopen' => array(
-            3 => array(
+            ],
+        ],
+        'imap_reopen' => [
+            3 => [
                 'name' => 'n_retries',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'ini_get_all' => array(
-            1 => array(
+            ],
+        ],
+        'ini_get_all' => [
+            1 => [
                 'name' => 'details',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'is_a' => array(
-            2 => array(
+            ],
+        ],
+        'is_a' => [
+            2 => [
                 'name'  => 'allow_string',
                 '5.3.8' => false,
                 '5.3.9' => true,
-            ),
-        ),
-        'is_subclass_of' => array(
-            2 => array(
+            ],
+        ],
+        'is_subclass_of' => [
+            2 => [
                 'name'  => 'allow_string',
                 '5.3.8' => false,
                 '5.3.9' => true,
-            ),
-        ),
-        'iterator_to_array' => array(
-            1 => array(
+            ],
+        ],
+        'iterator_to_array' => [
+            1 => [
                 'name'  => 'use_keys',
                 '5.2.0' => false,
                 '5.2.1' => true,
-            ),
-        ),
-        'json_decode' => array(
-            2 => array(
+            ],
+        ],
+        'json_decode' => [
+            2 => [
                 'name' => 'depth',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name' => 'options',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'json_encode' => array(
-            1 => array(
+            ],
+        ],
+        'json_encode' => [
+            1 => [
                 'name' => 'options',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            2 => array(
+            ],
+            2 => [
                 'name' => 'depth',
                 '5.4'  => false,
                 '5.5'  => true,
-            ),
-        ),
-        'ldap_add' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_add' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_compare' => array(
-            4 => array(
+            ],
+        ],
+        'ldap_compare' => [
+            4 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_delete' => array(
-            2 => array(
+            ],
+        ],
+        'ldap_delete' => [
+            2 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_exop' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_exop' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_exop_passwd' => array(
-            4 => array(
+            ],
+        ],
+        'ldap_exop_passwd' => [
+            4 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_list' => array(
-            8 => array(
+            ],
+        ],
+        'ldap_list' => [
+            8 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_mod_add' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_mod_add' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_mod_del' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_mod_del' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_mod_replace' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_mod_replace' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_modify_batch' => array(
-            3 => array(
+            ],
+        ],
+        'ldap_modify_batch' => [
+            3 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_parse_result' => array(
-            6 => array(
+            ],
+        ],
+        'ldap_parse_result' => [
+            6 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_read' => array(
-            8 => array(
+            ],
+        ],
+        'ldap_read' => [
+            8 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_rename' => array(
-            5 => array(
+            ],
+        ],
+        'ldap_rename' => [
+            5 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'ldap_search' => array(
-            8 => array(
+            ],
+        ],
+        'ldap_search' => [
+            8 => [
                 'name' => 'serverctrls',
                 '7.2'  => false,
                 '7.3'  => true,
-            ),
-        ),
-        'memory_get_peak_usage' => array(
-            0 => array(
+            ],
+        ],
+        'memory_get_peak_usage' => [
+            0 => [
                 'name' => 'real_usage',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'memory_get_usage' => array(
-            0 => array(
+            ],
+        ],
+        'memory_get_usage' => [
+            0 => [
                 'name' => 'real_usage',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'mb_decode_numericentity' => array(
-            3 => array(
+            ],
+        ],
+        'mb_decode_numericentity' => [
+            3 => [
                 'name' => 'is_hex',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'mb_encode_numericentity' => array(
-            3 => array(
+            ],
+        ],
+        'mb_encode_numericentity' => [
+            3 => [
                 'name' => 'is_hex',
                 '5.3'  => false,
                 '5.4'  => true,
-            ),
-        ),
-        'mb_strrpos' => array(
+            ],
+        ],
+        'mb_strrpos' => [
             /*
              * Note: the actual position is 2, but the original 3rd
              * parameter 'encoding' was moved to the 4th position.
              * So the only way to detect if offset is used is when
              * both offset and encoding are set.
              */
-            3 => array(
+            3 => [
                 'name' => 'offset',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'mssql_connect' => array(
-            3 => array(
+            ],
+        ],
+        'mssql_connect' => [
+            3 => [
                 'name' => 'new_link',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'mysqli_commit' => array(
-            1 => array(
+            ],
+        ],
+        'mysqli_commit' => [
+            1 => [
                 'name' => 'flags',
                 '5.4'  => false,
                 '5.5'  => true,
-            ),
-            2 => array(
+            ],
+            2 => [
                 'name' => 'name',
                 '5.4'  => false,
                 '5.5'  => true,
-            ),
-        ),
-        'mysqli_rollback' => array(
-            1 => array(
+            ],
+        ],
+        'mysqli_rollback' => [
+            1 => [
                 'name' => 'flags',
                 '5.4'  => false,
                 '5.5'  => true,
-            ),
-            2 => array(
+            ],
+            2 => [
                 'name' => 'name',
                 '5.4'  => false,
                 '5.5'  => true,
-            ),
-        ),
-        'nl2br' => array(
-            1 => array(
+            ],
+        ],
+        'nl2br' => [
+            1 => [
                 'name' => 'is_xhtml',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'openssl_decrypt' => array(
-            4 => array(
+            ],
+        ],
+        'openssl_decrypt' => [
+            4 => [
                 'name'  => 'iv',
                 '5.3.2' => false,
                 '5.3.3' => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name' => 'tag',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-            6 => array(
+            ],
+            6 => [
                 'name' => 'aad',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'openssl_encrypt' => array(
-            4 => array(
+            ],
+        ],
+        'openssl_encrypt' => [
+            4 => [
                 'name'  => 'iv',
                 '5.3.2' => false,
                 '5.3.3' => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name' => 'tag',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-            6 => array(
+            ],
+            6 => [
                 'name' => 'aad',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-            7 => array(
+            ],
+            7 => [
                 'name' => 'tag_length',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'openssl_open' => array(
-            4 => array(
+            ],
+        ],
+        'openssl_open' => [
+            4 => [
                 'name' => 'method',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name' => 'iv',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'openssl_pkcs7_verify' => array(
-            5 => array(
+            ],
+        ],
+        'openssl_pkcs7_verify' => [
+            5 => [
                 'name' => 'content',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-            6 => array(
+            ],
+            6 => [
                 'name' => 'p7bfilename',
                 '7.1'  => false,
                 '7.2'  => true,
-            ),
-        ),
-        'openssl_seal' => array(
-            4 => array(
+            ],
+        ],
+        'openssl_seal' => [
+            4 => [
                 'name' => 'method',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name' => 'iv',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'openssl_verify' => array(
-            3 => array(
+            ],
+        ],
+        'openssl_verify' => [
+            3 => [
                 'name' => 'signature_alg',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'parse_ini_file' => array(
-            2 => array(
+            ],
+        ],
+        'parse_ini_file' => [
+            2 => [
                 'name' => 'scanner_mode',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'parse_url' => array(
-            1 => array(
+            ],
+        ],
+        'parse_url' => [
+            1 => [
                 'name'  => 'component',
                 '5.1.1' => false,
                 '5.1.2' => true,
-            ),
-        ),
-        'pg_escape_bytea' => array(
+            ],
+        ],
+        'pg_escape_bytea' => [
             /*
              * Is in actual fact the first parameter (0), with a second required param.
              * So we need to check for two parameters being present.
              */
-            1 => array(
+            1 => [
                 'name' => 'connection',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'pg_escape_string' => array(
+            ],
+        ],
+        'pg_escape_string' => [
             /*
              * Is in actual fact the first parameter (0), with a second required param.
              * So we need to check for two parameters being present.
              */
-            1 => array(
+            1 => [
                 'name' => 'connection',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'pg_fetch_all' => array(
-            1 => array(
+            ],
+        ],
+        'pg_fetch_all' => [
+            1 => [
                 'name' => 'result_type',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'pg_last_notice' => array(
-            1 => array(
+            ],
+        ],
+        'pg_last_notice' => [
+            1 => [
                 'name' => 'option',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'pg_lo_create' => array(
-            1 => array(
+            ],
+        ],
+        'pg_lo_create' => [
+            1 => [
                 'name' => 'object_id',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'pg_lo_import' => array(
-            2 => array(
+            ],
+        ],
+        'pg_lo_import' => [
+            2 => [
                 'name' => 'object_id',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'pg_meta_data' => array(
-            2 => array(
+            ],
+        ],
+        'pg_meta_data' => [
+            2 => [
                 'name' => 'extended',
                 '5.5'  => false,
                 '5.6'  => true,
-            ),
-        ),
-        'pg_select' => array(
-            4 => array(
+            ],
+        ],
+        'pg_select' => [
+            4 => [
                 'name' => 'result_type',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'php_uname' => array(
-            0 => array(
+            ],
+        ],
+        'php_uname' => [
+            0 => [
                 'name' => 'mode',
                 '4.2'  => false,
                 '4.3'  => true,
-            ),
-        ),
-        'preg_replace' => array(
-            4 => array(
+            ],
+        ],
+        'preg_replace' => [
+            4 => [
                 'name' => 'count',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'preg_replace_callback' => array(
-            4 => array(
+            ],
+        ],
+        'preg_replace_callback' => [
+            4 => [
                 'name' => 'count',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-            5 => array(
+            ],
+            5 => [
                 'name' => 'flags',
                 '7.3'  => false,
                 '7.4'  => true,
-            ),
-        ),
-        'preg_replace_callback_array' => array(
-            4 => array(
+            ],
+        ],
+        'preg_replace_callback_array' => [
+            4 => [
                 'name' => 'flags',
                 '7.3'  => false,
                 '7.4'  => true,
-            ),
-        ),
-        'round' => array(
-            2 => array(
+            ],
+        ],
+        'round' => [
+            2 => [
                 'name' => 'mode',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'sem_acquire' => array(
-            1 => array(
+            ],
+        ],
+        'sem_acquire' => [
+            1 => [
                 'name'  => 'nowait',
                 '5.6.0' => false,
                 '5.6.1' => true,
-            ),
-        ),
-        'session_regenerate_id' => array(
-            0 => array(
+            ],
+        ],
+        'session_regenerate_id' => [
+            0 => [
                 'name' => 'delete_old_session',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'session_set_cookie_params' => array(
-            4 => array(
+            ],
+        ],
+        'session_set_cookie_params' => [
+            4 => [
                 'name' => 'httponly',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'session_set_save_handler' => array(
-            6 => array(
+            ],
+        ],
+        'session_set_save_handler' => [
+            6 => [
                 'name'  => 'create_sid',
                 '5.5.0' => false,
                 '5.5.1' => true,
-            ),
-            7 => array(
+            ],
+            7 => [
                 'name' => 'validate_sid',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-            8 => array(
+            ],
+            8 => [
                 'name' => 'update_timestamp',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'session_start' => array(
-            0 => array(
+            ],
+        ],
+        'session_start' => [
+            0 => [
                 'name' => 'options',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'setcookie' => array(
-            6 => array(
+            ],
+        ],
+        'setcookie' => [
+            6 => [
                 'name' => 'httponly',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'setrawcookie' => array(
-            6 => array(
+            ],
+        ],
+        'setrawcookie' => [
+            6 => [
                 'name' => 'httponly',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'simplexml_load_file' => array(
-            4 => array(
+            ],
+        ],
+        'simplexml_load_file' => [
+            4 => [
                 'name' => 'is_prefix',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'simplexml_load_string' => array(
-            4 => array(
+            ],
+        ],
+        'simplexml_load_string' => [
+            4 => [
                 'name' => 'is_prefix',
                 '5.1'  => false,
                 '5.2'  => true,
-            ),
-        ),
-        'spl_autoload_register' => array(
-            2 => array(
+            ],
+        ],
+        'spl_autoload_register' => [
+            2 => [
                 'name' => 'prepend',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'stream_context_create' => array(
-            1 => array(
+            ],
+        ],
+        'stream_context_create' => [
+            1 => [
                 'name' => 'params',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'stream_copy_to_stream' => array(
-            3 => array(
+            ],
+        ],
+        'stream_copy_to_stream' => [
+            3 => [
                 'name' => 'offset',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'stream_get_contents' => array(
-            2 => array(
+            ],
+        ],
+        'stream_get_contents' => [
+            2 => [
                 'name' => 'offset',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'stream_wrapper_register' => array(
-            2 => array(
+            ],
+        ],
+        'stream_wrapper_register' => [
+            2 => [
                 'name'  => 'flags',
                 '5.2.3' => false,
                 '5.2.4' => true,
-            ),
-        ),
-        'stristr' => array(
-            2 => array(
+            ],
+        ],
+        'stristr' => [
+            2 => [
                 'name' => 'before_needle',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'strstr' => array(
-            2 => array(
+            ],
+        ],
+        'strstr' => [
+            2 => [
                 'name' => 'before_needle',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'str_word_count' => array(
-            2 => array(
+            ],
+        ],
+        'str_word_count' => [
+            2 => [
                 'name' => 'charlist',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'substr_count' => array(
-            2 => array(
+            ],
+        ],
+        'substr_count' => [
+            2 => [
                 'name' => 'offset',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-            3 => array(
+            ],
+            3 => [
                 'name' => 'length',
                 '5.0'  => false,
                 '5.1'  => true,
-            ),
-        ),
-        'sybase_connect' => array(
-            5 => array(
+            ],
+        ],
+        'sybase_connect' => [
+            5 => [
                 'name' => 'new',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'timezone_transitions_get' => array(
-            1 => array(
+            ],
+        ],
+        'timezone_transitions_get' => [
+            1 => [
                 'name' => 'timestamp_begin',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            2 => array(
+            ],
+            2 => [
                 'name' => 'timestamp_end',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'timezone_identifiers_list' => array(
-            0 => array(
+            ],
+        ],
+        'timezone_identifiers_list' => [
+            0 => [
                 'name' => 'what',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-            1 => array(
+            ],
+            1 => [
                 'name' => 'country',
                 '5.2'  => false,
                 '5.3'  => true,
-            ),
-        ),
-        'token_get_all' => array(
-            1 => array(
+            ],
+        ],
+        'token_get_all' => [
+            1 => [
                 'name' => 'flags',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-        'ucwords' => array(
-            1 => array(
+            ],
+        ],
+        'ucwords' => [
+            1 => [
                 'name'   => 'delimiters',
                 '5.4.31' => false,
                 '5.5.15' => false,
                 '5.4.32' => true,
                 '5.5.16' => true,
-            ),
-        ),
-        'unpack' => array(
-            2 => array(
+            ],
+        ],
+        'unpack' => [
+            2 => [
                 'name' => 'offset',
                 '7.0'  => false,
                 '7.1'  => true,
-            ),
-        ),
-        'unserialize' => array(
-            1 => array(
+            ],
+        ],
+        'unserialize' => [
+            1 => [
                 'name' => 'options',
                 '5.6'  => false,
                 '7.0'  => true,
-            ),
-        ),
-    );
+            ],
+        ],
+    ];
 
 
     /**
@@ -1011,7 +1011,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         // Handle case-insensitivity of function names.
         $this->newFunctionParameters = \array_change_key_case($this->newFunctionParameters, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -1044,11 +1044,11 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_NEW             => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -1076,11 +1076,11 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
 
         foreach ($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $function,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
             }
         }
@@ -1111,7 +1111,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('name');
+        return ['name'];
     }
 
 

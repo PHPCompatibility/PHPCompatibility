@@ -53,9 +53,9 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_CLASS,
-        );
+        ];
     }
 
     /**
@@ -106,7 +106,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
-        while (($nextFunc = $phpcsFile->findNext(array(\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG), ($nextFunc + 1), $scopeCloser)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG], ($nextFunc + 1), $scopeCloser)) !== false) {
             // Skip over docblocks.
             if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
                 $nextFunc = $tokens[$nextFunc]['comment_closer'];

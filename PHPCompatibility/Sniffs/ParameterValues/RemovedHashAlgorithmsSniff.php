@@ -36,14 +36,14 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $removedAlgorithms = array(
-        'salsa10' => array(
+    protected $removedAlgorithms = [
+        'salsa10' => [
             '5.4' => true,
-        ),
-        'salsa20' => array(
+        ],
+        'salsa20' => [
             '5.4' => true,
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -54,7 +54,7 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 
@@ -81,9 +81,9 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name' => $algo,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

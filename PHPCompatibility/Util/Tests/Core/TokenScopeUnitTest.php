@@ -53,18 +53,18 @@ class TokenScopeUnitTest extends CoreMethodTestFrame
      */
     public function dataInClassScope()
     {
-        return array(
-            array('/* test C1 */', \T_VARIABLE, true), // $property
-            array('/* test C2 */', \T_FUNCTION, true), // Function in class.
-            array('/* test C3 */', \T_FUNCTION, false), // Global function.
-            array('/* test C4 */', \T_FUNCTION, true), // Function in namespaced class.
-            array('/* test C5 */', \T_FUNCTION, true), // Function in anon class.
-            array('/* test I1 */', \T_FUNCTION, false), // Function in interface / strict.
-            array('/* test I1 */', \T_FUNCTION, true, false), // Function in interface.
-            array('/* test T1 */', \T_VARIABLE, false), // Property in trait / strict.
-            array('/* test T1 */', \T_VARIABLE, true, false), // Property in trait.
-            array('/* test T2 */', \T_FUNCTION, false), // Function in trait / strict.
-            array('/* test T2 */', \T_FUNCTION, true, false), // Function in trait.
-        );
+        return [
+            ['/* test C1 */', \T_VARIABLE, true], // $property
+            ['/* test C2 */', \T_FUNCTION, true], // Function in class.
+            ['/* test C3 */', \T_FUNCTION, false], // Global function.
+            ['/* test C4 */', \T_FUNCTION, true], // Function in namespaced class.
+            ['/* test C5 */', \T_FUNCTION, true], // Function in anon class.
+            ['/* test I1 */', \T_FUNCTION, false], // Function in interface / strict.
+            ['/* test I1 */', \T_FUNCTION, true, false], // Function in interface.
+            ['/* test T1 */', \T_VARIABLE, false], // Property in trait / strict.
+            ['/* test T1 */', \T_VARIABLE, true, false], // Property in trait.
+            ['/* test T2 */', \T_FUNCTION, false], // Function in trait / strict.
+            ['/* test T2 */', \T_FUNCTION, true, false], // Function in trait.
+        ];
     }
 }

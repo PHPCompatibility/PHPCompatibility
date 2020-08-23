@@ -49,23 +49,23 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
      */
     public function dataNestedStaticAccess()
     {
-        return array(
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
-            array(16),
-            array(17),
-            array(18),
-            array(19),
-            array(23),
-            array(38),
-        );
+        return [
+            [7],
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+            [13],
+            [14],
+            [15],
+            [16],
+            [17],
+            [18],
+            [19],
+            [23],
+            [38],
+        ];
     }
 
 
@@ -93,14 +93,14 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(27),
-            array(28),
-            array(31),
-            array(34),
-            array(35),
-        );
+        return [
+            [4],
+            [27],
+            [28],
+            [31],
+            [34],
+            [35],
+        ];
     }
 
 

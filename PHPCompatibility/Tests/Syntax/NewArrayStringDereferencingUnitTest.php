@@ -57,15 +57,15 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      */
     public function dataArrayStringDereferencing()
     {
-        return array(
-            array(4, 'arrays'),
-            array(5, 'arrays'),
-            array(6, 'arrays'), // Error x 2.
-            array(7, 'string literals'),
-            array(8, 'string literals'),
-            array(27, 'arrays', true),
-            array(28, 'arrays', true),
-        );
+        return [
+            [4, 'arrays'],
+            [5, 'arrays'],
+            [6, 'arrays'], // Error x 2.
+            [7, 'string literals'],
+            [8, 'string literals'],
+            [27, 'arrays', true],
+            [28, 'arrays', true],
+        ];
     }
 
 
@@ -94,15 +94,15 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      */
     public function dataArrayStringDereferencingUsingCurlies()
     {
-        return array(
-            array(20, 'arrays'),
-            array(21, 'arrays'),
-            array(22, 'arrays'), // Error x 2.
-            array(23, 'string literals'),
-            array(24, 'string literals'),
-            array(27, 'arrays'),
-            array(28, 'arrays'),
-        );
+        return [
+            [20, 'arrays'],
+            [21, 'arrays'],
+            [22, 'arrays'], // Error x 2.
+            [23, 'string literals'],
+            [24, 'string literals'],
+            [27, 'arrays'],
+            [28, 'arrays'],
+        ];
     }
 
 
@@ -130,14 +130,14 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
-            array(16),
-        );
+        return [
+            [11],
+            [12],
+            [13],
+            [14],
+            [15],
+            [16],
+        ];
     }
 
 

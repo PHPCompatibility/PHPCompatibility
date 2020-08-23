@@ -37,10 +37,10 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'implode' => true,
         'join'    => true,
-    );
+    ];
 
     /**
      * List of PHP native constants which should be recognized as text strings.
@@ -49,10 +49,10 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @var array
      */
-    private $constantStrings = array(
+    private $constantStrings = [
         'DIRECTORY_SEPARATOR' => true,
         'PHP_EOL'             => true,
-    );
+    ];
 
     /**
      * List of PHP native functions which should be recognized as returning an array.
@@ -63,11 +63,11 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @var array
      */
-    private $arrayFunctions = array(
+    private $arrayFunctions = [
         'compact' => true,
         'explode' => true,
         'range'   => true,
-    );
+    ];
 
     /**
      * List of PHP native array functions which should *not* be recognized as returning an array.
@@ -76,7 +76,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @var array
      */
-    private $arrayFunctionExceptions = array(
+    private $arrayFunctionExceptions = [
         'array_key_exists'     => true,
         'array_key_first'      => true,
         'array_key_last'       => true,
@@ -90,7 +90,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         'array_unshift'        => true,
         'array_walk_recursive' => true,
         'array_walk'           => true,
-    );
+    ];
 
 
     /**
@@ -305,7 +305,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         $message   = 'Passing the $glue and $pieces parameters in reverse order to %s has been deprecated since PHP 7.4';
         $isError   = false;
         $errorCode = 'Deprecated';
-        $data      = array($functionName);
+        $data      = [$functionName];
 
         if ($this->supportsAbove('8.0') === true) {
             $message  .= ' and is removed since PHP 8.0';

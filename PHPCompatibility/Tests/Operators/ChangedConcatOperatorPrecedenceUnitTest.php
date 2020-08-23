@@ -52,16 +52,16 @@ class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTest
      */
     public function dataChangedConcatOperatorPrecedence()
     {
-        return array(
-            array(59),
-            array(60),
-            array(61),
-            array(68),
-            array(74),
-            array(85),
-            array(92),
-            array(95),
-        );
+        return [
+            [59],
+            [60],
+            [61],
+            [68],
+            [74],
+            [85],
+            [92],
+            [95],
+        ];
     }
 
 

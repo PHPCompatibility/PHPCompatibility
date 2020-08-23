@@ -36,10 +36,10 @@ class NewGeneratorReturnSniff extends Sniff
      *
      * @var array
      */
-    private $validConditions = array(
+    private $validConditions = [
         \T_FUNCTION => \T_FUNCTION,
         \T_CLOSURE  => \T_CLOSURE,
-    );
+    ];
 
 
     /**
@@ -51,9 +51,9 @@ class NewGeneratorReturnSniff extends Sniff
      */
     public function register()
     {
-        $targets = array(
+        $targets = [
             \T_YIELD,
-        );
+        ];
 
         /*
          * The `yield` keyword was introduced in PHP 5.5 with the token T_YIELD.
@@ -130,7 +130,7 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $targets = array(\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS, \T_ANON_CLASS);
+        $targets = [\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS, \T_ANON_CLASS];
         $current = $tokens[$function]['scope_opener'];
 
         while (($current = $phpcsFile->findNext($targets, ($current + 1), $tokens[$function]['scope_closer'])) !== false) {

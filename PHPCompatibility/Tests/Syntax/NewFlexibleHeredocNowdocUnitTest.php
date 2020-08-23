@@ -96,18 +96,18 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function dataIndentedHeredocNowdoc()
     {
-        $data = array(
-            array(3, 13),
-            array(4, 13),
-            array(5, 15),
-            array(6, 15),
-            array(7, 13),
-        );
+        $data = [
+            [3, 13],
+            [4, 13],
+            [5, 15],
+            [6, 15],
+            [7, 13],
+        ];
 
         if (self::getSetSkipCondition() === true) {
             // PHP 7.3+ will misidentify the closing marker (parse error) when the identifier is in the body.
-            $data[] = array(2, 23, true);
-            $data[] = array(2, 30, true);
+            $data[] = [2, 23, true];
+            $data[] = [2, 30, true];
         }
 
         return $data;
@@ -147,16 +147,16 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function dataCodeAfterHeredocNowdoc()
     {
-        $data = array(
-            array(8, 15),
-            array(9, 15),
-        );
+        $data = [
+            [8, 15],
+            [9, 15],
+        ];
 
         if (self::getSetSkipCondition() === true) {
             // PHP 7.3+ will misidentify the closing marker (parse error) when the identifier is in the body.
-            $data[] = array(2, 12, true);
-            $data[] = array(2, 18, true);
-            $data[] = array(2, 38, true);
+            $data[] = [2, 12, true];
+            $data[] = [2, 18, true];
+            $data[] = [2, 38, true];
         }
 
         return $data;
@@ -194,18 +194,18 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      */
     public function dataForbiddenClosingMarkerInBody()
     {
-        $lines = array(
-            array(12),
-            array(18),
-            array(23),
-            array(30),
-            array(38),
-        );
+        $lines = [
+            [12],
+            [18],
+            [23],
+            [30],
+            [38],
+        ];
 
         if (self::getSetSkipCondition() === false) {
             // PHP < 7.3 can reliably throw errors for all lines in the heredoc/nowdoc containing the identifier.
-            $lines[] = array(40);
-            $lines[] = array(42);
+            $lines[] = [40];
+            $lines[] = [42];
         }
 
         return $lines;

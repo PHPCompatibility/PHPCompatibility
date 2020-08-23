@@ -49,11 +49,11 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      */
     public function dataForbiddenSessionModuleNameUser()
     {
-        return array(
-            array(16),
-            array(17),
-            array(18),
-        );
+        return [
+            [16],
+            [17],
+            [18],
+        ];
     }
 
 

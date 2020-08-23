@@ -54,23 +54,23 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
      */
     public function dataNewNumericLiteralSeparator()
     {
-        $data = array(
-            array(14),
-            array(15),
-            array(16),
-            array(18),
-            array(19),
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(26),
-        );
+        $data = [
+            [14],
+            [15],
+            [16],
+            [18],
+            [19],
+            [20],
+            [21],
+            [22],
+            [23],
+            [26],
+        ];
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
         if (version_compare(\PHP_VERSION_ID, '70399', '>') || version_compare(Helper::getVersion(), '3.5.3', '<')) {
-            $data[] = array(41);
+            $data[] = [41];
         }
 
         return $data;
@@ -101,27 +101,27 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No issues expected on the first 12 lines.
         for ($i = 1; $i <= 12; $i++) {
-            $data[] = array($i);
+            $data[] = [$i];
         }
 
         // Parse errors, should be ignored by the sniff.
-        $data[] = array(31);
-        $data[] = array(32);
-        $data[] = array(33);
-        $data[] = array(34);
-        $data[] = array(35);
-        $data[] = array(36);
-        $data[] = array(37);
-        $data[] = array(38);
+        $data[] = [31];
+        $data[] = [32];
+        $data[] = [33];
+        $data[] = [34];
+        $data[] = [35];
+        $data[] = [36];
+        $data[] = [37];
+        $data[] = [38];
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
         if (version_compare(\PHP_VERSION_ID, '70399', '<=') && version_compare(Helper::getVersion(), '3.5.3', '>')) {
-            $data[] = array(41);
+            $data[] = [41];
         }
 
         return $data;

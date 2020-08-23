@@ -61,12 +61,12 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function dataNewPHPOpenTagEOF()
     {
-        return array(
-            array(4, 1),
-            array(5, 13),
-            array(6, 4),
-            array(7, 6),
-        );
+        return [
+            [4, 1],
+            [5, 13],
+            [6, 4],
+            [7, 6],
+        ];
     }
 
 
@@ -98,12 +98,12 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesOnLine()
     {
-        return array(
-            array(5, 1),
-            array(5, 8),
-            array(6, 1),
-            array(7, 1),
-        );
+        return [
+            [5, 1],
+            [5, 8],
+            [6, 1],
+            [7, 1],
+        ];
     }
 
 
@@ -133,11 +133,11 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesOnFile()
     {
-        return array(
-            array(1),
-            array(2),
-            array(3),
-        );
+        return [
+            [1],
+            [2],
+            [3],
+        ];
     }
 
 
@@ -167,18 +167,18 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function dataNoViolationsInFileOnValidVersion()
     {
-        $data = array(
-            array(1),
-            array(2),
-            array(3),
-            array(5),
-            array(6),
-            array(7),
-        );
+        $data = [
+            [1],
+            [2],
+            [3],
+            [5],
+            [6],
+            [7],
+        ];
 
         // In PHPCS 2.x, the `Internal.NoCodeFound` error will come through, even when unit testing.
         if (version_compare(Helper::getVersion(), '3.0.0', '>')) {
-            $data[] = array(4);
+            $data[] = [4];
         }
 
         return $data;

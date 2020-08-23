@@ -56,32 +56,32 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataReturnType()
     {
-        return array(
-            array('bool', '5.6', 4, '7.0'),
-            array('int', '5.6', 5, '7.0'),
-            array('float', '5.6', 6, '7.0'),
-            array('string', '5.6', 7, '7.0'),
-            array('array', '5.6', 8, '7.0'),
-            array('callable', '5.6', 9, '7.0'),
-            array('self', '5.6', 10, '7.0'),
-            array('parent', '5.6', 11, '7.0'),
-            array('Class name', '5.6', 12, '7.0'),
-            array('Class name', '5.6', 13, '7.0'),
-            array('Class name', '5.6', 14, '7.0'),
-            array('Class name', '5.6', 15, '7.0'),
-            array('Class name', '5.6', 35, '7.0'),
-            array('int', '5.6', 43, '7.0'),
+        return [
+            ['bool', '5.6', 4, '7.0'],
+            ['int', '5.6', 5, '7.0'],
+            ['float', '5.6', 6, '7.0'],
+            ['string', '5.6', 7, '7.0'],
+            ['array', '5.6', 8, '7.0'],
+            ['callable', '5.6', 9, '7.0'],
+            ['self', '5.6', 10, '7.0'],
+            ['parent', '5.6', 11, '7.0'],
+            ['Class name', '5.6', 12, '7.0'],
+            ['Class name', '5.6', 13, '7.0'],
+            ['Class name', '5.6', 14, '7.0'],
+            ['Class name', '5.6', 15, '7.0'],
+            ['Class name', '5.6', 35, '7.0'],
+            ['int', '5.6', 43, '7.0'],
 
-            array('iterable', '7.0', 18, '7.1'),
-            array('void', '7.0', 19, '7.1'),
+            ['iterable', '7.0', 18, '7.1'],
+            ['void', '7.0', 19, '7.1'],
 
-            array('callable', '5.6', 22, '7.0'),
+            ['callable', '5.6', 22, '7.0'],
 
-            array('object', '7.1', 29, '7.2'),
+            ['object', '7.1', 29, '7.2'],
 
-            array('static', '7.4', 47, '8.0'),
-            array('static', '7.4', 48, '8.0'),
-        );
+            ['static', '7.4', 47, '8.0'],
+            ['static', '7.4', 48, '8.0'],
+        ];
     }
 
 
@@ -109,11 +109,11 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(25),
-            array(26),
-            array(42),
-        );
+        return [
+            [25],
+            [26],
+            [42],
+        ];
     }
 
 

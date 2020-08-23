@@ -50,14 +50,14 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      */
     public function dataCaseSensitiveKeywords()
     {
-        return array(
-            array(18, 'self'),
-            array(19, 'static'),
-            array(20, 'parent'),
-            array(21, 'self'),
-            array(22, 'static'),
-            array(23, 'parent'),
-        );
+        return [
+            [18, 'self'],
+            [19, 'static'],
+            [20, 'parent'],
+            [21, 'self'],
+            [22, 'static'],
+            [23, 'parent'],
+        ];
     }
 
 
@@ -85,14 +85,14 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
-        );
+        return [
+            [10],
+            [11],
+            [12],
+            [13],
+            [14],
+            [15],
+        ];
     }
 
 

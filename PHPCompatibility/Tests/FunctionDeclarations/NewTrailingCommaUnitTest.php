@@ -49,15 +49,15 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
      */
     public function dataTrailingComma()
     {
-        return array(
-            array(39),
-            array(44),
-            array(48),
-            array(59),
-            array(75),
-            array(89),
-            array(94),
-        );
+        return [
+            [39],
+            [44],
+            [48],
+            [59],
+            [75],
+            [89],
+            [94],
+        ];
     }
 
 
@@ -85,11 +85,11 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
      */
     public function dataTrailingCommaClosureUse()
     {
-        return array(
-            array(68),
-            array(79),
-            array(91),
-        );
+        return [
+            [68],
+            [79],
+            [91],
+        ];
     }
 
 
@@ -118,13 +118,13 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         // No errors expected on the first 33 lines.
-        $data = array();
+        $data = [];
         for ($line = 1; $line <= 33; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
-        $data[] = array(97);
-        $data[] = array(101);
+        $data[] = [97];
+        $data[] = [101];
 
         return $data;
     }

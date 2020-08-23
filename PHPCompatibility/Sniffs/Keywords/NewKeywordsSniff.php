@@ -56,109 +56,109 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $newKeywords = array(
-        'T_HALT_COMPILER' => array(
+    protected $newKeywords = [
+        'T_HALT_COMPILER' => [
             '5.0'         => false,
             '5.1'         => true,
             'description' => '"__halt_compiler" keyword',
-        ),
-        'T_CONST' => array(
+        ],
+        'T_CONST' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"const" keyword',
             'callback'    => '\PHPCSUtils\Utils\Scopes::isOOConstant', // Keyword is only new when not in class context.
-        ),
-        'T_CALLABLE' => array(
+        ],
+        'T_CALLABLE' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"callable" keyword',
             'content'     => 'callable',
-        ),
-        'T_DIR' => array(
+        ],
+        'T_DIR' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '__DIR__ magic constant',
             'content'     => '__DIR__',
-        ),
-        'T_GOTO' => array(
+        ],
+        'T_GOTO' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"goto" keyword',
             'content'     => 'goto',
-        ),
-        'T_INSTEADOF' => array(
+        ],
+        'T_INSTEADOF' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"insteadof" keyword (for traits)',
             'content'     => 'insteadof',
-        ),
-        'T_NAMESPACE' => array(
+        ],
+        'T_NAMESPACE' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"namespace" keyword',
             'content'     => 'namespace',
-        ),
-        'T_NS_C' => array(
+        ],
+        'T_NS_C' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '__NAMESPACE__ magic constant',
             'content'     => '__NAMESPACE__',
-        ),
-        'T_USE' => array(
+        ],
+        'T_USE' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"use" keyword (for traits/namespaces/anonymous functions)',
-        ),
-        'T_START_NOWDOC' => array(
+        ],
+        'T_START_NOWDOC' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => 'nowdoc functionality',
-        ),
-        'T_END_NOWDOC' => array(
+        ],
+        'T_END_NOWDOC' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => 'nowdoc functionality',
-        ),
-        'T_START_HEREDOC' => array(
+        ],
+        'T_START_HEREDOC' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '(Double) quoted Heredoc identifier',
-            'callback'    => array(__CLASS__, 'isNotQuoted'), // Heredoc is only new with quoted identifier.
-        ),
-        'T_TRAIT' => array(
+            'callback'    => [__CLASS__, 'isNotQuoted'], // Heredoc is only new with quoted identifier.
+        ],
+        'T_TRAIT' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"trait" keyword',
             'content'     => 'trait',
-        ),
-        'T_TRAIT_C' => array(
+        ],
+        'T_TRAIT_C' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '__TRAIT__ magic constant',
             'content'     => '__TRAIT__',
-        ),
+        ],
         // The specifics for distinguishing between 'yield' and 'yield from' are dealt
         // with in the translation logic.
         // This token has to be placed above the `T_YIELD` token in this array to allow for this.
-        'T_YIELD_FROM' => array(
+        'T_YIELD_FROM' => [
             '5.6'         => false,
             '7.0'         => true,
             'description' => '"yield from" keyword (for generators)',
             'content'     => 'yield',
-        ),
-        'T_YIELD' => array(
+        ],
+        'T_YIELD' => [
             '5.4'         => false,
             '5.5'         => true,
             'description' => '"yield" keyword (for generators)',
             'content'     => 'yield',
-        ),
-        'T_FINALLY' => array(
+        ],
+        'T_FINALLY' => [
             '5.4'         => false,
             '5.5'         => true,
             'description' => '"finally" keyword (in exception handling)',
             'content'     => 'finally',
-        ),
-    );
+        ],
+    ];
 
     /**
      * Translation table for T_STRING tokens.
@@ -169,7 +169,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => string)
      */
-    protected $translateContentToToken = array();
+    protected $translateContentToToken = [];
 
 
     /**
@@ -181,8 +181,8 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $tokens    = array();
-        $translate = array();
+        $tokens    = [];
+        $translate = [];
         foreach ($this->newKeywords as $token => $versions) {
             if (\defined($token)) {
                 $tokens[] = constant($token);
@@ -298,9 +298,9 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
                 return;
             }
 
-            $itemInfo = array(
+            $itemInfo = [
                 'name'   => $tokenType,
-            );
+            ];
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
     }
@@ -330,11 +330,11 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array(
+        return [
             'description',
             'callback',
             'content',
-        );
+        ];
     }
 
 

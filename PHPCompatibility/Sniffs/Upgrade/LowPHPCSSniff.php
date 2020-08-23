@@ -82,9 +82,9 @@ class LowPHPCSSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_OPEN_TAG,
-        );
+        ];
     }
 
     /**
@@ -118,22 +118,22 @@ class LowPHPCSSniff extends Sniff
             $isError      = true;
             $message      = 'IMPORTANT: Please be advised that the minimum PHP_CodeSniffer version the PHPCompatibility standard supports is %s. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation. The recommended version of PHP_CodeSniffer for PHPCompatibility is %s or higher.';
             $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
-            $replacements = array(
+            $replacements = [
                 self::MIN_SUPPORTED_VERSION,
                 $phpcsVersion,
                 self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
-            );
+            ];
         } else {
             $isError      = false;
             $message      = 'IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP_CodeSniffer %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP_CodeSniffer %s. Please upgrade your PHP_CodeSniffer installation to version %s or higher.';
             $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
-            $replacements = array(
+            $replacements = [
                 self::MIN_RECOMMENDED_VERSION,
                 $phpcsVersion,
                 self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
-            );
+            ];
         }
 
         /*

@@ -55,26 +55,26 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      */
     public function dataNewTypedProperties()
     {
-        return array(
-            array(23, true),
-            array(24, true),
-            array(25, true),
-            array(28, true),
-            array(31, true),
-            array(34, true),
-            array(35, true),
-            array(38, true),
-            array(41, true),
-            array(49, true),
-            array(51, true),
-            array(54, true),
-            array(57, true),
-            array(62),
-            array(63),
-            array(64),
-            array(65),
-            array(66),
-        );
+        return [
+            [23, true],
+            [24, true],
+            [25, true],
+            [28, true],
+            [31, true],
+            [34, true],
+            [35, true],
+            [38, true],
+            [41, true],
+            [49, true],
+            [51, true],
+            [54, true],
+            [57, true],
+            [62],
+            [63],
+            [64],
+            [65],
+            [66],
+        ];
     }
 
 
@@ -118,13 +118,13 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      */
     public function dataInvalidPropertyType()
     {
-        return array(
-            array(62, 'void'),
-            array(63, 'callable'),
-            array(64, 'callable'),
-            array(65, 'boolean'),
-            array(66, 'integer'),
-        );
+        return [
+            [62, 'void'],
+            [63, 'callable'],
+            [64, 'callable'],
+            [65, 'boolean'],
+            [66, 'integer'],
+        ];
     }
 
 

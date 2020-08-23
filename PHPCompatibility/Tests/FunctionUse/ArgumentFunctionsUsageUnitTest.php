@@ -52,14 +52,14 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function dataArgumentFunctionsUseAsParameter()
     {
-        return array(
-            array(7),
-            array(8),
-            array(12),
-            array(17),
-            array(18),
-            array(19),
-        );
+        return [
+            [7],
+            [8],
+            [12],
+            [17],
+            [18],
+            [19],
+        ];
     }
 
 
@@ -87,16 +87,16 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesUseAsParameter()
     {
-        return array(
-            array(25),
-            array(26),
-            array(27),
-            array(29),
-            array(30),
-            array(31),
-            array(32),
-            array(35),
-        );
+        return [
+            [25],
+            [26],
+            [27],
+            [29],
+            [30],
+            [31],
+            [32],
+            [35],
+        ];
     }
 
 
@@ -127,11 +127,11 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function dataArgumentFunctionsUseOutsideFunctionScope()
     {
-        return array(
-            array(43),
-            array(44),
-            array(45),
-        );
+        return [
+            [43],
+            [44],
+            [45],
+        ];
     }
 
 
@@ -159,11 +159,11 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesUseOutsideFunctionScope()
     {
-        return array(
-            array(48),
-            array(49),
-            array(50),
-        );
+        return [
+            [48],
+            [49],
+            [50],
+        ];
     }
 
 

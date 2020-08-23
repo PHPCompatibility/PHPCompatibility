@@ -42,11 +42,11 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_CONSTANT_ENCAPSED_STRING,
             \T_DOUBLE_QUOTED_STRING,
             \T_HEREDOC,
-        );
+        ];
     }
 
 
@@ -117,7 +117,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
                     'Unicode codepoint escape sequences are not supported in PHP 5.6 or earlier. Found: %s',
                     $stackPtr,
                     'Found',
-                    array($match[0])
+                    [$match[0]]
                 );
             }
 
@@ -126,7 +126,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
                     'Strings containing a literal \u{ followed by an invalid unicode codepoint escape sequence will cause a fatal error in PHP 7.0 and above. Escape the leading backslash to prevent this. Found: %s',
                     $stackPtr,
                     'Invalid',
-                    array($match[0])
+                    [$match[0]]
                 );
             }
         }

@@ -39,10 +39,10 @@ class RemovedOrphanedParentSniff extends Sniff
      *
      * @var array
      */
-    private $classScopeTokens = array(
+    private $classScopeTokens = [
         \T_CLASS      => \T_CLASS,
         \T_ANON_CLASS => \T_ANON_CLASS,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -53,7 +53,7 @@ class RemovedOrphanedParentSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_PARENT);
+        return [\T_PARENT];
     }
 
     /**

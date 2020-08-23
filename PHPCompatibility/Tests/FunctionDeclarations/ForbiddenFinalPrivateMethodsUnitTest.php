@@ -49,14 +49,14 @@ class ForbiddenFinalPrivateMethodsUnitTest extends BaseSniffTest
      */
     public function dataForbiddenFinalPrivateMethods()
     {
-        return array(
-            array(34),
-            array(35),
-            array(39),
-            array(40),
-            array(45),
-            array(46),
-        );
+        return [
+            [34],
+            [35],
+            [39],
+            [40],
+            [45],
+            [46],
+        ];
     }
 
 
@@ -84,10 +84,10 @@ class ForbiddenFinalPrivateMethodsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 28 lines.
         for ($line = 1; $line <= 28; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         return $cases;

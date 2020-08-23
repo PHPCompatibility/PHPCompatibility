@@ -38,9 +38,9 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'proc_open' => true,
-    );
+    ];
 
 
     /**
@@ -125,7 +125,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
                         'When passing the $cmd parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: %s',
                         $i,
                         'Invalid',
-                        array($item['clean'])
+                        [$item['clean']]
                     );
 
                     // Only throw one error per array item.

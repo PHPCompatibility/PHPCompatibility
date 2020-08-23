@@ -41,9 +41,9 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_CONSTANT_ENCAPSED_STRING,
-        );
+        ];
     }
 
     /**
@@ -73,7 +73,7 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
             $stackPtr,
             $isError,
             'Found',
-            array($tokens[$stackPtr]['content'])
+            [$tokens[$stackPtr]['content']]
         );
     }
 }

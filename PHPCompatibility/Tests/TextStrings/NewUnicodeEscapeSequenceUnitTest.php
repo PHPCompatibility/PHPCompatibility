@@ -51,21 +51,21 @@ class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTest
      */
     public function dataNewUnicodeEscapeSequence()
     {
-        return array(
-            array(41, '\u{aa}'),
-            array(43, '\u{0000aa}'),
-            array(44, '\u{9999}'),
-            array(46, '\u{9999}'),
-            array(47, '\u{00F1}'),
-            array(48, '\u{0303}'),
-            array(49, '\u{1F602}'),
-            array(52, '\u{aa}'),
-            array(55, '\u{202E}'),
-            array(59, '\u{D801}'),
-            array(60, '\u{DC00}'),
-            array(61, '\u{D801}'),
-            array(61, '\u{DC00}'),
-        );
+        return [
+            [41, '\u{aa}'],
+            [43, '\u{0000aa}'],
+            [44, '\u{9999}'],
+            [46, '\u{9999}'],
+            [47, '\u{00F1}'],
+            [48, '\u{0303}'],
+            [49, '\u{1F602}'],
+            [52, '\u{aa}'],
+            [55, '\u{202E}'],
+            [59, '\u{D801}'],
+            [60, '\u{DC00}'],
+            [61, '\u{D801}'],
+            [61, '\u{DC00}'],
+        ];
     }
 
 
@@ -112,15 +112,15 @@ class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTest
      */
     public function dataNewUnicodeEscapeSequenceFatals()
     {
-        return array(
-            array(27, '\u{foobar'),
-            array(28, '\u{9999'),
-            array(29, '\u{}'),
-            array(30, '\u{+1F602}'),
-            array(31, '\u{-1F602}'),
-            array(32, '\u{1F602 }'),
-            array(35, '\u{110000}'),
-        );
+        return [
+            [27, '\u{foobar'],
+            [28, '\u{9999'],
+            [29, '\u{}'],
+            [30, '\u{+1F602}'],
+            [31, '\u{-1F602}'],
+            [32, '\u{1F602 }'],
+            [35, '\u{110000}'],
+        ];
     }
 
 

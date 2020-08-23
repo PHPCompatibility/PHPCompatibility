@@ -44,7 +44,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_OPEN_USE_GROUP);
+        return [\T_OPEN_USE_GROUP];
     }
 
 

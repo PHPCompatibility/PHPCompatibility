@@ -53,14 +53,14 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      */
     public function dataBreakContinueOutsideLoop()
     {
-        return array(
-            array(116, 'continue'),
-            array(118, 'continue'),
-            array(120, 'break'),
-            array(124, 'continue'),
-            array(128, 'break'),
-            array(131, 'continue'),
-        );
+        return [
+            [116, 'continue'],
+            [118, 'continue'],
+            [120, 'break'],
+            [124, 'continue'],
+            [128, 'break'],
+            [131, 'continue'],
+        ];
     }
 
 
@@ -88,30 +88,30 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(8),
-            array(11),
-            array(17),
-            array(20),
-            array(26),
-            array(29),
-            array(36),
-            array(39),
-            array(47),
-            array(51),
-            array(54),
-            array(60),
-            array(63),
-            array(69),
-            array(72),
-            array(78),
-            array(81),
-            array(89),
-            array(93),
-            array(96),
-            array(103),
-            array(106),
-        );
+        return [
+            [8],
+            [11],
+            [17],
+            [20],
+            [26],
+            [29],
+            [36],
+            [39],
+            [47],
+            [51],
+            [54],
+            [60],
+            [63],
+            [69],
+            [72],
+            [78],
+            [81],
+            [89],
+            [93],
+            [96],
+            [103],
+            [106],
+        ];
     }
 
 

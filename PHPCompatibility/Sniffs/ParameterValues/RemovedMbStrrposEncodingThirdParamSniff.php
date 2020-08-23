@@ -46,9 +46,9 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'mb_strrpos' => true,
-    );
+    ];
 
     /**
      * Tokens which should be recognized as text.
@@ -57,12 +57,12 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    private $textStringTokens = array(
+    private $textStringTokens = [
         \T_CONSTANT_ENCAPSED_STRING,
         \T_DOUBLE_QUOTED_STRING,
         \T_HEREDOC,
         \T_NOWDOC,
-    );
+    ];
 
     /**
      * Tokens which should be recognized as numbers.
@@ -71,12 +71,12 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    private $numberTokens = array(
+    private $numberTokens = [
         \T_LNUMBER => \T_LNUMBER,
         \T_DNUMBER => \T_DNUMBER,
         \T_MINUS   => \T_MINUS,
         \T_PLUS    => \T_PLUS,
-    );
+    ];
 
 
     /**

@@ -54,60 +54,60 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedEModifier()
     {
-        return array(
+        return [
             // Function preg_replace().
-            array(50),
-            array(51),
-            array(54),
-            array(55),
-            array(58),
-            array(59),
-            array(60),
-            array(63),
-            array(78),
-            array(84),
+            [50],
+            [51],
+            [54],
+            [55],
+            [58],
+            [59],
+            [60],
+            [63],
+            [78],
+            [84],
 
             // Bracket delimiters.
-            array(99),
-            array(100),
-            array(104),
-            array(106),
-            array(108),
+            [99],
+            [100],
+            [104],
+            [106],
+            [108],
 
             // Function preg_filter().
-            array(114, 'preg_filter'),
-            array(115, 'preg_filter'),
-            array(118, 'preg_filter'),
-            array(119, 'preg_filter'),
-            array(122, 'preg_filter'),
-            array(123, 'preg_filter'),
-            array(124, 'preg_filter'),
-            array(127, 'preg_filter'),
-            array(142, 'preg_filter'),
-            array(148, 'preg_filter'),
+            [114, 'preg_filter'],
+            [115, 'preg_filter'],
+            [118, 'preg_filter'],
+            [119, 'preg_filter'],
+            [122, 'preg_filter'],
+            [123, 'preg_filter'],
+            [124, 'preg_filter'],
+            [127, 'preg_filter'],
+            [142, 'preg_filter'],
+            [148, 'preg_filter'],
 
             // Array of patterns.
-            array(162),
-            array(163),
-            array(164),
-            array(165),
-            array(166),
+            [162],
+            [163],
+            [164],
+            [165],
+            [166],
 
-            array(173),
-            array(174),
-            array(175),
-            array(176),
-            array(177),
+            [173],
+            [174],
+            [175],
+            [176],
+            [177],
 
-            array(182), // Three errors.
+            [182], // Three errors.
 
             // Interpolated variables.
-            array(204),
-            array(205),
+            [204],
+            [205],
 
             // Quote as a delimiter.
-            array(211),
-        );
+            [211],
+        ];
     }
 
 
@@ -135,47 +135,47 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
+        return [
             // No or only valid modifiers.
-            array(9),
-            array(10),
-            array(13),
-            array(14),
-            array(17),
-            array(18),
-            array(21),
-            array(24),
-            array(39),
-            array(45),
+            [9],
+            [10],
+            [13],
+            [14],
+            [17],
+            [18],
+            [21],
+            [24],
+            [39],
+            [45],
 
             // Untestable regex (variable, constant, function call).
-            array(94),
-            array(95),
-            array(96),
+            [94],
+            [95],
+            [96],
 
             // Bracket delimiters.
-            array(101),
-            array(102),
-            array(103),
-            array(105),
-            array(107),
-            array(109),
+            [101],
+            [102],
+            [103],
+            [105],
+            [107],
+            [109],
 
             // Issue 265 - mixed string quotes.
-            array(157),
+            [157],
 
             // Issues https://wordpress.org/support/topic/wrong-error-preg_replace-e-modifier-is-forbidden-since-php-7-0/
-            array(167),
-            array(178),
-            array(187),
-            array(201),
+            [167],
+            [178],
+            [187],
+            [201],
 
             // Interpolated variables.
-            array(206),
+            [206],
 
             // Quote as a delimiter.
-            array(210),
-        );
+            [210],
+        ];
     }
 
 

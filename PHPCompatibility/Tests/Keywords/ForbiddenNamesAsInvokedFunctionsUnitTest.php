@@ -72,24 +72,24 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
      */
     public function dataReservedKeyword()
     {
-        return array(
-            array('abstract', array(6), array(53), '5.0', '4.4'),
-            array('callable', array(7), array(54), '5.4', '5.3'),
-            array('catch', array(8), array(55), '5.0', '4.4'),
-            array('final', array(10), array(56), '5.0', '4.4'),
-            array('finally', array(11), array(57), '5.5', '5.4'),
-            array('goto', array(12), array(58), '5.3', '5.2'),
-            array('implements', array(13), array(59), '5.0', '4.4'),
-            array('interface', array(14), array(60), '5.0', '4.4'),
-            array('instanceof', array(15), array(61), '5.0', '4.4'),
-            array('insteadof', array(16), array(62), '5.4', '5.3'),
-            array('namespace', array(17), array(63), '5.3', '5.2'),
-            array('private', array(18), array(64), '5.0', '4.4'),
-            array('protected', array(19), array(65), '5.0', '4.4'),
-            array('public', array(20), array(66), '5.0', '4.4'),
-            array('trait', array(22), array(67), '5.4', '5.3'),
-            array('try', array(23), array(68), '5.0', '4.4'),
-        );
+        return [
+            ['abstract', [6], [53], '5.0', '4.4'],
+            ['callable', [7], [54], '5.4', '5.3'],
+            ['catch', [8], [55], '5.0', '4.4'],
+            ['final', [10], [56], '5.0', '4.4'],
+            ['finally', [11], [57], '5.5', '5.4'],
+            ['goto', [12], [58], '5.3', '5.2'],
+            ['implements', [13], [59], '5.0', '4.4'],
+            ['interface', [14], [60], '5.0', '4.4'],
+            ['instanceof', [15], [61], '5.0', '4.4'],
+            ['insteadof', [16], [62], '5.4', '5.3'],
+            ['namespace', [17], [63], '5.3', '5.2'],
+            ['private', [18], [64], '5.0', '4.4'],
+            ['protected', [19], [65], '5.0', '4.4'],
+            ['public', [20], [66], '5.0', '4.4'],
+            ['trait', [22], [67], '5.4', '5.3'],
+            ['try', [23], [68], '5.0', '4.4'],
+        ];
     }
 
 
@@ -117,22 +117,22 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(34),
-            array(35),
-            array(36),
-            array(37),
-            array(38),
-            array(39),
-            array(40),
-            array(41),
-            array(42),
-            array(43),
-            array(44),
-            array(45),
-            array(46),
-            array(47),
-        );
+        return [
+            [34],
+            [35],
+            [36],
+            [37],
+            [38],
+            [39],
+            [40],
+            [41],
+            [42],
+            [43],
+            [44],
+            [45],
+            [46],
+            [47],
+        ];
     }
 
 

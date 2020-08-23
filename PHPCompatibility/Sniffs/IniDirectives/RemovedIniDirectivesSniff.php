@@ -43,544 +43,544 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string)
      */
-    protected $deprecatedIniDirectives = array(
-        'crack.default_dictionary' => array(
+    protected $deprecatedIniDirectives = [
+        'crack.default_dictionary' => [
             '5.0'       => true,
             'extension' => 'crack',
-        ),
-        'dbx.colnames_case' => array(
+        ],
+        'dbx.colnames_case' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'fbsql.batchSize' => array(
+        ],
+        'fbsql.batchSize' => [
             '5.1'         => true,
             'alternative' => 'fbsql.batchsize',
             'extension'   => 'fbsql',
-        ),
-        'pfpro.defaulthost' => array(
+        ],
+        'pfpro.defaulthost' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.defaultport' => array(
+        ],
+        'pfpro.defaultport' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.defaulttimeout' => array(
+        ],
+        'pfpro.defaulttimeout' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.proxyaddress' => array(
+        ],
+        'pfpro.proxyaddress' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.proxyport' => array(
+        ],
+        'pfpro.proxyport' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.proxylogon' => array(
+        ],
+        'pfpro.proxylogon' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro.proxypassword' => array(
+        ],
+        'pfpro.proxypassword' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'ingres.allow_persistent' => array(
+        ],
+        'ingres.allow_persistent' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres.default_database' => array(
+        ],
+        'ingres.default_database' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres.default_password' => array(
+        ],
+        'ingres.default_password' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres.default_user' => array(
+        ],
+        'ingres.default_user' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres.max_links' => array(
+        ],
+        'ingres.max_links' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres.max_persistent' => array(
+        ],
+        'ingres.max_persistent' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
+        ],
 
-        'hwapi.allow_persistent' => array(
+        'hwapi.allow_persistent' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
+        ],
 
-        'ifx.allow_persistent' => array(
+        'ifx.allow_persistent' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.blobinfile' => array(
+        ],
+        'ifx.blobinfile' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.byteasvarchar' => array(
+        ],
+        'ifx.byteasvarchar' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.charasvarchar' => array(
+        ],
+        'ifx.charasvarchar' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.default_host' => array(
+        ],
+        'ifx.default_host' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.default_password' => array(
+        ],
+        'ifx.default_password' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.default_user' => array(
+        ],
+        'ifx.default_user' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.max_links' => array(
+        ],
+        'ifx.max_links' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.max_persistent' => array(
+        ],
+        'ifx.max_persistent' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.nullformat' => array(
+        ],
+        'ifx.nullformat' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx.textasvarchar' => array(
+        ],
+        'ifx.textasvarchar' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
+        ],
 
-        'mime_magic.debug' => array(
+        'mime_magic.debug' => [
             '5.3'       => true,
             'extension' => 'mimetype',
-        ),
-        'mime_magic.magicfile' => array(
+        ],
+        'mime_magic.magicfile' => [
             '5.3'       => true,
             'extension' => 'mimetype',
-        ),
-        'zend.ze1_compatibility_mode' => array(
+        ],
+        'zend.ze1_compatibility_mode' => [
             '5.3' => true,
-        ),
-        'fbsql.allow_persistent' => array(
+        ],
+        'fbsql.allow_persistent' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.generate_warnings' => array(
+        ],
+        'fbsql.generate_warnings' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.autocommit' => array(
+        ],
+        'fbsql.autocommit' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.max_persistent' => array(
+        ],
+        'fbsql.max_persistent' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.max_links' => array(
+        ],
+        'fbsql.max_links' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.max_connections' => array(
+        ],
+        'fbsql.max_connections' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.max_results' => array(
+        ],
+        'fbsql.max_results' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.default_host' => array(
+        ],
+        'fbsql.default_host' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.default_user' => array(
+        ],
+        'fbsql.default_user' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.default_password' => array(
+        ],
+        'fbsql.default_password' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.default_database' => array(
+        ],
+        'fbsql.default_database' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql.default_database_password' => array(
+        ],
+        'fbsql.default_database_password' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'msql.allow_persistent' => array(
+        ],
+        'msql.allow_persistent' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql.max_persistent' => array(
+        ],
+        'msql.max_persistent' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql.max_links' => array(
+        ],
+        'msql.max_links' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
+        ],
 
-        'allow_call_time_pass_reference' => array(
+        'allow_call_time_pass_reference' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'define_syslog_variables' => array(
+        ],
+        'define_syslog_variables' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'detect_unicode' => array(
+        ],
+        'detect_unicode' => [
             '5.4'         => true,
             'alternative' => 'zend.detect_unicode',
-        ),
-        'highlight.bg' => array(
+        ],
+        'highlight.bg' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'magic_quotes_gpc' => array(
+        ],
+        'magic_quotes_gpc' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'magic_quotes_runtime' => array(
+        ],
+        'magic_quotes_runtime' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'magic_quotes_sybase' => array(
+        ],
+        'magic_quotes_sybase' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'sybase',
-        ),
-        'mbstring.script_encoding' => array(
+        ],
+        'mbstring.script_encoding' => [
             '5.4'         => true,
             'alternative' => 'zend.script_encoding',
-        ),
-        'phar.extract_list' => array(
+        ],
+        'phar.extract_list' => [
             '5.4' => true,
-        ),
-        'register_globals' => array(
+        ],
+        'register_globals' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'register_long_arrays' => array(
+        ],
+        'register_long_arrays' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode' => array(
+        ],
+        'safe_mode' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode_allowed_env_vars' => array(
+        ],
+        'safe_mode_allowed_env_vars' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode_exec_dir' => array(
+        ],
+        'safe_mode_exec_dir' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode_gid' => array(
+        ],
+        'safe_mode_gid' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode_include_dir' => array(
+        ],
+        'safe_mode_include_dir' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'safe_mode_protected_env_vars' => array(
+        ],
+        'safe_mode_protected_env_vars' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.bug_compat_42' => array(
+        ],
+        'session.bug_compat_42' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.bug_compat_warn' => array(
+        ],
+        'session.bug_compat_warn' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'y2k_compliance' => array(
+        ],
+        'y2k_compliance' => [
             '5.3' => false,
             '5.4' => true,
-        ),
+        ],
 
-        'sqlite.assoc_case' => array(
+        'sqlite.assoc_case' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
+        ],
 
-        'always_populate_raw_post_data' => array(
+        'always_populate_raw_post_data' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'iconv.input_encoding' => array(
+        ],
+        'iconv.input_encoding' => [
             '5.6' => false,
-        ),
-        'iconv.output_encoding' => array(
+        ],
+        'iconv.output_encoding' => [
             '5.6' => false,
-        ),
-        'iconv.internal_encoding' => array(
+        ],
+        'iconv.internal_encoding' => [
             '5.6' => false,
-        ),
-        'mbstring.http_input' => array(
+        ],
+        'mbstring.http_input' => [
             '5.6' => false,
-        ),
-        'mbstring.http_output' => array(
+        ],
+        'mbstring.http_output' => [
             '5.6' => false,
-        ),
-        'mbstring.internal_encoding' => array(
+        ],
+        'mbstring.internal_encoding' => [
             '5.6' => false,
-        ),
+        ],
 
-        'asp_tags' => array(
+        'asp_tags' => [
             '7.0' => true,
-        ),
-        'xsl.security_prefs' => array(
+        ],
+        'xsl.security_prefs' => [
             '7.0' => true,
-        ),
-        'opcache.load_comments' => array(
+        ],
+        'opcache.load_comments' => [
             '7.0' => true,
-        ),
-        'mssql.allow_persistent' => array(
+        ],
+        'mssql.allow_persistent' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.max_persistent' => array(
+        ],
+        'mssql.max_persistent' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.max_links' => array(
+        ],
+        'mssql.max_links' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.min_error_severity' => array(
+        ],
+        'mssql.min_error_severity' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.min_message_severity' => array(
+        ],
+        'mssql.min_message_severity' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.compatibility_mode' => array(
+        ],
+        'mssql.compatibility_mode' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.connect_timeout' => array(
+        ],
+        'mssql.connect_timeout' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.timeout' => array(
+        ],
+        'mssql.timeout' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.textsize' => array(
+        ],
+        'mssql.textsize' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.textlimit' => array(
+        ],
+        'mssql.textlimit' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.batchsize' => array(
+        ],
+        'mssql.batchsize' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.datetimeconvert' => array(
+        ],
+        'mssql.datetimeconvert' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.secure_connection' => array(
+        ],
+        'mssql.secure_connection' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.max_procs' => array(
+        ],
+        'mssql.max_procs' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql.charset' => array(
+        ],
+        'mssql.charset' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mysql.allow_local_infile' => array(
+        ],
+        'mysql.allow_local_infile' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.allow_persistent' => array(
+        ],
+        'mysql.allow_persistent' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.max_persistent' => array(
+        ],
+        'mysql.max_persistent' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.max_links' => array(
+        ],
+        'mysql.max_links' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.trace_mode' => array(
+        ],
+        'mysql.trace_mode' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.default_port' => array(
+        ],
+        'mysql.default_port' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.default_socket' => array(
+        ],
+        'mysql.default_socket' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.default_host' => array(
+        ],
+        'mysql.default_host' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.default_user' => array(
+        ],
+        'mysql.default_user' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.default_password' => array(
+        ],
+        'mysql.default_password' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql.connect_timeout' => array(
+        ],
+        'mysql.connect_timeout' => [
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'sybase.allow_persistent' => array(
+        ],
+        'sybase.allow_persistent' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.max_persistent' => array(
+        ],
+        'sybase.max_persistent' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.max_links' => array(
+        ],
+        'sybase.max_links' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.interface_file' => array(
+        ],
+        'sybase.interface_file' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.min_error_severity' => array(
+        ],
+        'sybase.min_error_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.min_message_severity' => array(
+        ],
+        'sybase.min_message_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase.compatability_mode' => array(
+        ],
+        'sybase.compatability_mode' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
+        ],
 
-        'mcrypt.algorithms_dir' => array(
+        'mcrypt.algorithms_dir' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'mcrypt.modes_dir' => array(
+        ],
+        'mcrypt.modes_dir' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'session.entropy_file' => array(
+        ],
+        'session.entropy_file' => [
             '7.1' => true,
-        ),
-        'session.entropy_length' => array(
+        ],
+        'session.entropy_length' => [
             '7.1' => true,
-        ),
-        'session.hash_function' => array(
+        ],
+        'session.hash_function' => [
             '7.1' => true,
-        ),
-        'session.hash_bits_per_character' => array(
+        ],
+        'session.hash_bits_per_character' => [
             '7.1' => true,
-        ),
+        ],
 
-        'mbstring.func_overload' => array(
+        'mbstring.func_overload' => [
             '7.2' => false,
             '8.0' => true,
-        ),
-        'sql.safe_mode' => array(
+        ],
+        'sql.safe_mode' => [
             '7.2' => true,
-        ),
-        'track_errors' => array(
+        ],
+        'track_errors' => [
             '7.2' => false,
             '8.0' => true,
-        ),
-        'opcache.fast_shutdown' => array(
+        ],
+        'opcache.fast_shutdown' => [
             '7.2' => true,
-        ),
+        ],
 
-        'birdstep.max_links' => array(
+        'birdstep.max_links' => [
             '7.3' => true,
-        ),
-        'opcache.inherited_hack' => array(
+        ],
+        'opcache.inherited_hack' => [
             '5.3' => false, // Soft deprecated, i.e. ignored.
             '7.3' => true,
-        ),
-        'pdo_odbc.db2_instance_name' => array(
+        ],
+        'pdo_odbc.db2_instance_name' => [
             '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
             '8.0' => true,
-        ),
+        ],
 
-        'allow_url_include' => array(
+        'allow_url_include' => [
             '7.4' => false,
-        ),
-        'ibase.allow_persistent' => array(
+        ],
+        'ibase.allow_persistent' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.max_persistent' => array(
+        ],
+        'ibase.max_persistent' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.max_links' => array(
+        ],
+        'ibase.max_links' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.default_db' => array(
+        ],
+        'ibase.default_db' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.default_user' => array(
+        ],
+        'ibase.default_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.default_password' => array(
+        ],
+        'ibase.default_password' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.default_charset' => array(
+        ],
+        'ibase.default_charset' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.timestampformat' => array(
+        ],
+        'ibase.timestampformat' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.dateformat' => array(
+        ],
+        'ibase.dateformat' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase.timeformat' => array(
+        ],
+        'ibase.timeformat' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
+        ],
 
-        'assert.quiet_eval' => array(
+        'assert.quiet_eval' => [
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -591,7 +591,7 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -609,12 +609,12 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -637,10 +637,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'       => $filteredToken,
             'functionLc' => $functionLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
     }
 

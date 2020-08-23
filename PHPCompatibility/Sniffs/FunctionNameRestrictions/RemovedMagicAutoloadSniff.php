@@ -43,9 +43,9 @@ class RemovedMagicAutoloadSniff extends Sniff
      *
      * @var array
      */
-    private $checkForScopes = array(
+    private $checkForScopes = [
         \T_NAMESPACE => \T_NAMESPACE,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -58,7 +58,7 @@ class RemovedMagicAutoloadSniff extends Sniff
     {
         $this->checkForScopes += BCTokens::ooScopeTokens();
 
-        return array(\T_FUNCTION);
+        return [\T_FUNCTION];
     }
 
     /**

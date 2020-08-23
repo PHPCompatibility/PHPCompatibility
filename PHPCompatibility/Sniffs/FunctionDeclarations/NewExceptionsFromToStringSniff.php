@@ -40,9 +40,9 @@ class NewExceptionsFromToStringSniff extends Sniff
      *
      * @var array
      */
-    private $docblockIgnoreTokens = array(
+    private $docblockIgnoreTokens = [
         \T_WHITESPACE => \T_WHITESPACE,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -57,7 +57,7 @@ class NewExceptionsFromToStringSniff extends Sniff
         $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
         $this->docblockIgnoreTokens += BCTokens::phpcsCommentTokens();
 
-        return array(\T_FUNCTION);
+        return [\T_FUNCTION];
     }
 
     /**

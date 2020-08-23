@@ -57,10 +57,10 @@ class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTest
     public function dataHexNumericString()
     {
         // phpcs:disable PHPCompatibility.Numbers.RemovedHexadecimalNumericStrings
-        return array(
-            array(5, '0xaa78b5'),
-            array(6, '0Xbb99EF'),
-        );
+        return [
+            [5, '0xaa78b5'],
+            [6, '0Xbb99EF'],
+        ];
         // phpcs:enable
     }
 

@@ -40,10 +40,10 @@ class NewUseConstFunctionSniff extends Sniff
      *
      * @var array(string => string)
      */
-    protected $validUseNames = array(
+    protected $validUseNames = [
         'const'    => true,
         'function' => true,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -54,7 +54,7 @@ class NewUseConstFunctionSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_USE);
+        return [\T_USE];
     }
 
 

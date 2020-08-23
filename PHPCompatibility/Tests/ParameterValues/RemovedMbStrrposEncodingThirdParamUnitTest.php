@@ -58,11 +58,11 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTest
      */
     public function dataRemovedMbStrrposEncodingThirdParam()
     {
-        return array(
-            array(22),
-            array(23),
-            array(24),
-        );
+        return [
+            [22],
+            [23],
+            [24],
+        ];
     }
 
 

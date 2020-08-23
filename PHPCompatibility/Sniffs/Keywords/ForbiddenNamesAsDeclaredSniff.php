@@ -40,11 +40,11 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      *
      * @var array
      */
-    protected $forbiddenTokens = array(
+    protected $forbiddenTokens = [
         \T_NULL  => '7.0',
         \T_TRUE  => '7.0',
         \T_FALSE => '7.0',
-    );
+    ];
 
     /**
      * T_STRING keywords to recognize as forbidden names.
@@ -53,7 +53,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      *
      * @var array
      */
-    protected $forbiddenNames = array(
+    protected $forbiddenNames = [
         'null'     => '7.0',
         'true'     => '7.0',
         'false'    => '7.0',
@@ -64,7 +64,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         'iterable' => '7.1',
         'void'     => '7.1',
         'object'   => '7.2',
-    );
+    ];
 
     /**
      * T_STRING keywords to recognize as soft reserved names.
@@ -76,12 +76,12 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      *
      * @var array
      */
-    protected $softReservedNames = array(
+    protected $softReservedNames = [
         'resource' => '7.0',
         'object'   => '7.0',
         'mixed'    => '7.0',
         'numeric'  => '7.0',
-    );
+    ];
 
     /**
      * Combined list of the two lists above.
@@ -94,7 +94,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
      *
      * @var array
      */
-    private $allForbiddenNames = array();
+    private $allForbiddenNames = [];
 
 
     /**
@@ -109,12 +109,12 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         // Do the list merge only once.
         $this->allForbiddenNames = array_merge($this->forbiddenNames, $this->softReservedNames);
 
-        $targets = array(
+        $targets = [
             \T_CLASS,
             \T_INTERFACE,
             \T_TRAIT,
             \T_NAMESPACE,
-        );
+        ];
 
         return $targets;
     }
@@ -180,9 +180,9 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         $error     = "'%s' is a";
         $isError   = null;
         $errorCode = $this->stringToErrorCode($nameLc) . 'Found';
-        $data      = array(
+        $data      = [
             $nameLc,
-        );
+        ];
 
         if (isset($this->softReservedNames[$nameLc]) === true
             && $this->supportsAbove($this->softReservedNames[$nameLc]) === true

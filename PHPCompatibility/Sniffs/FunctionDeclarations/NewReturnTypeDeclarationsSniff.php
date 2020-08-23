@@ -51,63 +51,63 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newTypes = array(
-        'int' => array(
+    protected $newTypes = [
+        'int' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'float' => array(
+        ],
+        'float' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'bool' => array(
+        ],
+        'bool' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'string' => array(
+        ],
+        'string' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'array' => array(
+        ],
+        'array' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'callable' => array(
+        ],
+        'callable' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'parent' => array(
+        ],
+        'parent' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'self' => array(
+        ],
+        'self' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'Class name' => array(
+        ],
+        'Class name' => [
             '5.6' => false,
             '7.0' => true,
-        ),
+        ],
 
-        'iterable' => array(
+        'iterable' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'void' => array(
+        ],
+        'void' => [
             '7.0' => false,
             '7.1' => true,
-        ),
+        ],
 
-        'object' => array(
+        'object' => [
             '7.1' => false,
             '7.2' => true,
-        ),
+        ],
 
-        'static' => array(
+        'static' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -155,18 +155,18 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
         $returnTypeToken = $properties['return_type_token'];
 
         if (isset($this->newTypes[$returnType]) === true) {
-            $itemInfo = array(
+            $itemInfo = [
                 'name' => $returnType,
-            );
+            ];
             $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
 
             return;
         }
 
         // Handle class name based return types.
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => 'Class name',
-        );
+        ];
         $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
     }
 

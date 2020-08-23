@@ -50,9 +50,9 @@ class NewPHPOpenTagEOFSniff extends Sniff
      */
     public function register()
     {
-        $targets = array(
+        $targets = [
             \T_OPEN_TAG_WITH_ECHO,
-        );
+        ];
 
         $this->shortOpenTags = (bool) ini_get('short_open_tag');
         if ($this->shortOpenTags === false) {

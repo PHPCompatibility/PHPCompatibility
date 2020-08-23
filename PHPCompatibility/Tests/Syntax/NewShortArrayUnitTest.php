@@ -51,13 +51,13 @@ class NewShortArrayUnitTest extends BaseSniffTest
      */
     public function dataViolation()
     {
-        return array(
-            array(12, 12),
-            array(13, 13),
-            array(14, 14),
-            array(16, 19),
-            array(22, 22),
-        );
+        return [
+            [12, 12],
+            [13, 13],
+            [14, 14],
+            [16, 19],
+            [22, 22],
+        ];
     }
 
 
@@ -85,12 +85,12 @@ class NewShortArrayUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(5),
-            array(6),
-            array(7),
-            array(25),
-        );
+        return [
+            [5],
+            [6],
+            [7],
+            [25],
+        ];
     }
 
 

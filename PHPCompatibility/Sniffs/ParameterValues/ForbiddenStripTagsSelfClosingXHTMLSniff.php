@@ -33,9 +33,9 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'strip_tags' => true,
-    );
+    ];
 
 
     /**
@@ -88,7 +88,7 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
                     'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowable_tags parameter since PHP 5.3.4. Found: %s',
                     $i,
                     'Found',
-                    array($targetParam['clean'])
+                    [$targetParam['clean']]
                 );
 
                 // Only throw one error per function call.

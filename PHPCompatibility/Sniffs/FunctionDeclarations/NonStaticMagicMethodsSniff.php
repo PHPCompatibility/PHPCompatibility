@@ -46,68 +46,68 @@ class NonStaticMagicMethodsSniff extends Sniff
      *
      * @var array(string)
      */
-    protected $magicMethods = array(
-        '__construct' => array(
+    protected $magicMethods = [
+        '__construct' => [
             'static' => false,
-        ),
-        '__destruct' => array(
+        ],
+        '__destruct' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__clone' => array(
+        ],
+        '__clone' => [
             'static'     => false,
-        ),
-        '__get' => array(
+        ],
+        '__get' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__set' => array(
+        ],
+        '__set' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__isset' => array(
+        ],
+        '__isset' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__unset' => array(
+        ],
+        '__unset' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__call' => array(
+        ],
+        '__call' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__callstatic' => array(
+        ],
+        '__callstatic' => [
             'visibility' => 'public',
             'static'     => true,
-        ),
-        '__sleep' => array(
+        ],
+        '__sleep' => [
             'visibility' => 'public',
-        ),
-        '__tostring' => array(
+        ],
+        '__tostring' => [
             'visibility' => 'public',
-        ),
-        '__set_state' => array(
+        ],
+        '__set_state' => [
             'visibility' => 'public',
             'static'     => true,
-        ),
-        '__debuginfo' => array(
+        ],
+        '__debuginfo' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__invoke' => array(
+        ],
+        '__invoke' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__serialize' => array(
+        ],
+        '__serialize' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-        '__unserialize' => array(
+        ],
+        '__unserialize' => [
             'visibility' => 'public',
             'static'     => false,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -122,9 +122,9 @@ class NonStaticMagicMethodsSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_FUNCTION,
-        );
+        ];
     }
 
 
@@ -167,11 +167,11 @@ class NonStaticMagicMethodsSniff extends Sniff
         ) {
             $error     = 'Visibility for magic method %s must be %s. Found: %s';
             $errorCode = $errorCodeBase . 'MethodVisibility';
-            $data      = array(
+            $data      = [
                 $methodName,
                 $this->magicMethods[$methodNameLc]['visibility'],
                 $methodProperties['scope'],
-            );
+            ];
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }
@@ -181,7 +181,7 @@ class NonStaticMagicMethodsSniff extends Sniff
         ) {
             $error     = 'Magic method %s cannot be defined as static.';
             $errorCode = $errorCodeBase . 'MethodStatic';
-            $data      = array($methodName);
+            $data      = [$methodName];
 
             if ($this->magicMethods[$methodNameLc]['static'] === true) {
                 $error     = 'Magic method %s must be defined as static.';

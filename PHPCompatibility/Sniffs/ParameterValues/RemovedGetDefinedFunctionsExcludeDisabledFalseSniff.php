@@ -35,9 +35,9 @@ class RemovedGetDefinedFunctionsExcludeDisabledFalseSniff extends AbstractFuncti
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'get_defined_functions' => true,
-    );
+    ];
 
     /**
      * Do a version check to determine if this sniff needs to run at all.

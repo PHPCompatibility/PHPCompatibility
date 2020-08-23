@@ -75,9 +75,9 @@ class LowPHPSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_OPEN_TAG,
-        );
+        ];
     }
 
     /**
@@ -111,22 +111,22 @@ class LowPHPSniff extends Sniff
             $isError      = true;
             $message      = 'IMPORTANT: Please be advised that the minimum PHP version the PHPCompatibility standard supports is %s. You are currently using PHP %s. Please upgrade your PHP installation. The recommended version of PHP for PHPCompatibility is %s or higher.';
             $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
-            $replacements = array(
+            $replacements = [
                 self::MIN_SUPPORTED_VERSION,
                 $phpVersion,
                 self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
-            );
+            ];
         } else {
             $isError      = false;
             $message      = 'IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP %s. Please upgrade your PHP installation to version %s or higher.';
             $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
-            $replacements = array(
+            $replacements = [
                 self::MIN_RECOMMENDED_VERSION,
                 $phpVersion,
                 self::MIN_RECOMMENDED_VERSION,
                 $errorCode,
-            );
+            ];
         }
 
         /*

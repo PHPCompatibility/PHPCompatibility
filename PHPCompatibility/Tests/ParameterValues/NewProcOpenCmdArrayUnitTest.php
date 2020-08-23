@@ -51,12 +51,12 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      */
     public function dataNewProcOpenCmdArray()
     {
-        return array(
-            array(18),
-            array(20),
-            array(30),
-            array(32),
-        );
+        return [
+            [18],
+            [20],
+            [30],
+            [32],
+        ];
     }
 
 
@@ -87,11 +87,11 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      */
     public function dataInvalidProcOpenCmdArray()
     {
-        return array(
-            array(30, 'escapeshellarg($echo)'),
-            array(34, '\'--standard=\' . escapeshellarg($standard)'),
-            array(35, '\'./path/to/\' . escapeshellarg($file)'),
-        );
+        return [
+            [30, 'escapeshellarg($echo)'],
+            [34, '\'--standard=\' . escapeshellarg($standard)'],
+            [35, '\'./path/to/\' . escapeshellarg($file)'],
+        ];
     }
 
 
@@ -123,10 +123,10 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array('7.3'),
-            array('7.4'),
-        );
+        return [
+            ['7.3'],
+            ['7.4'],
+        ];
     }
 
 

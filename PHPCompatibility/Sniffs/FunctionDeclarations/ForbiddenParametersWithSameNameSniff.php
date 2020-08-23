@@ -70,7 +70,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
             return;
         }
 
-        $paramNames = array();
+        $paramNames = [];
         foreach ($parameters as $param) {
             $paramNames[$param['name']] = true;
         }

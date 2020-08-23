@@ -49,10 +49,10 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'preg_replace' => true,
         'preg_filter'  => true,
-    );
+    ];
 
     /**
      * Regex bracket delimiters.
@@ -61,12 +61,12 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $doublesSeparators = array(
+    protected $doublesSeparators = [
         '{' => '}',
         '[' => ']',
         '(' => ')',
         '<' => '>',
-    );
+    ];
 
 
     /**
@@ -229,7 +229,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             $error     = '%s() - /e modifier is deprecated since PHP 5.5';
             $isError   = false;
             $errorCode = 'Deprecated';
-            $data      = array($functionName);
+            $data      = [$functionName];
 
             if ($this->supportsAbove('7.0')) {
                 $error    .= ' and removed since PHP 7.0';
