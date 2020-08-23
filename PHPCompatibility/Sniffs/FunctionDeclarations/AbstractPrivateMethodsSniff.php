@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -57,9 +57,9 @@ class AbstractPrivateMethodsSniff extends Sniff
      * @since 9.2.0
      * @since 10.0.0 New error message for abstract private methods in traits.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token
+     *                                               in the stack passed in $tokens.
      *
      * @return void
      */

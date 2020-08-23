@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
@@ -210,9 +210,9 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -386,9 +386,9 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * @since 10.0.0 This function is now a static function (to allow it to be set
      *               as a callback from a class property).
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return bool
      */

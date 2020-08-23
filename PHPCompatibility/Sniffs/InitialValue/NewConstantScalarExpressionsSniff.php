@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\PassedParameters;
@@ -148,9 +148,9 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void|int Null or integer stack pointer to skip forward.
      */
@@ -314,11 +314,12 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
-     * @param int                   $end       The end of the value definition.
-     *                                         This will normally be a comma or semi-colon.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param int                         $end       The end of the value definition.
+     *                                               This will normally be a comma or
+     *                                               semi-colon.
      *
      * @return bool
      */
@@ -340,14 +341,14 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param array                 $tokens       The token stack of the current file.
-     * @param int                   $start        The stackPtr from which to start examining.
-     * @param int                   $end          The end of the value definition (inclusive),
-     *                                            i.e. this token will be examined as part of
-     *                                            the snippet.
-     * @param int                   $nestedArrays Optional. Array nesting level when examining
-     *                                            the content of an array.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param array                       $tokens       The token stack of the current file.
+     * @param int                         $start        The stackPtr from which to start examining.
+     * @param int                         $end          The end of the value definition (inclusive),
+     *                                                  i.e. this token will be examined as part of
+     *                                                  the snippet.
+     * @param int                         $nestedArrays Optional. Array nesting level when examining
+     *                                                  the content of an array.
      *
      * @return bool
      */
@@ -486,10 +487,10 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token to link the error to.
-     * @param string                $type      Type of usage found.
-     * @param string                $content   Optional. The value for the declaration as found.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the token to link the error to.
+     * @param string                      $type      Type of usage found.
+     * @param string                      $content   Optional. The value for the declaration as found.
      *
      * @return void
      */

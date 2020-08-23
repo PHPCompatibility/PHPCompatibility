@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Lists;
@@ -55,9 +55,9 @@ class AssignmentOrderSniff extends Sniff
      *
      * @since 9.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void|int Void if not a valid list. If a list construct has been
      *                  examined, the stack pointer to the list closer to skip
@@ -102,8 +102,8 @@ class AssignmentOrderSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of a list-like token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a list-like token.
      *
      * @return array Array with the variables being assigned to as values and the corresponding
      *               stack pointer to the start of each variable as keys.

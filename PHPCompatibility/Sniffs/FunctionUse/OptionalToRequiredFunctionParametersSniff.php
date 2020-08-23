@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
@@ -143,12 +143,12 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      *
      * @since 8.1.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the relevant token in
-     *                                         the stack.
-     * @param array                 $itemInfo  Base information about the item.
-     * @param array                 $errorInfo Array with detail (version) information
-     *                                         relevant to the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
+     * @param array                       $errorInfo Array with detail (version) information
+     *                                               relevant to the item.
      *
      * @return void
      */

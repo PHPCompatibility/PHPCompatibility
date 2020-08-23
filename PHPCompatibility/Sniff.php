@@ -11,7 +11,7 @@
 namespace PHPCompatibility;
 
 use PHP_CodeSniffer_Exception as PHPCS_Exception;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\Helper;
@@ -232,16 +232,16 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.1.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file the message applies to.
-     * @param string                $message   The message.
-     * @param int                   $stackPtr  The position of the token
-     *                                         the message relates to.
-     * @param bool                  $isError   Whether to report the message as an
-     *                                         'error' or 'warning'.
-     *                                         Defaults to true (error).
-     * @param string                $code      The error code for the message.
-     *                                         Defaults to 'Found'.
-     * @param array                 $data      Optional input for the data replacements.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file the message applies to.
+     * @param string                      $message   The message.
+     * @param int                         $stackPtr  The position of the token
+     *                                               the message relates to.
+     * @param bool                        $isError   Whether to report the message as an
+     *                                               'error' or 'warning'. Defaults to
+     *                                               true (error).
+     * @param string                      $code      The error code for the message.
+     *                                               Defaults to 'Found'.
+     * @param array                       $data      Optional input for the data replacements.
      *
      * @return void
      */
@@ -298,11 +298,11 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
-     * @param bool                  $strict    Whether to strictly check for the T_CLASS
-     *                                         scope or also accept interfaces and traits
-     *                                         as scope.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the token.
+     * @param bool                        $strict    Whether to strictly check for the T_CLASS
+     *                                               scope or also accept interfaces and
+     *                                               traits as scope.
      *
      * @return bool True if within class scope, false otherwise.
      */
@@ -326,8 +326,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of a T_NEW token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a T_NEW token.
      *
      * @return string
      */
@@ -382,8 +382,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of a T_CLASS token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a T_CLASS token.
      *
      * @return string
      */
@@ -420,8 +420,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of a T_NEW token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a T_NEW token.
      *
      * @return string
      */
@@ -486,9 +486,9 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
-     * @param string                $name      The class / function / constant name.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the token.
+     * @param string                      $name      The class / function / constant name.
      *
      * @return string
      */
@@ -547,8 +547,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.1.2
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the token.
      *
      * @return int|false Stack pointer to the return type token or false if
      *                   no return type was found or the passed token was
@@ -628,8 +628,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the return type token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the return type token.
      *
      * @return string The name of the return type token.
      */
@@ -680,8 +680,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.1.4
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the token.
      *
      * @return array Array with type hints or an empty array if
      *               - the function does not have any parameters
@@ -728,8 +728,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 7.0.7 Logic was originally contained in the `RemovedHashAlgorithms` sniff.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile Instance of phpcsFile.
-     * @param int                   $stackPtr  The position of the T_STRING function token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile Instance of phpcsFile.
+     * @param int                         $stackPtr  The position of the T_STRING function token.
      *
      * @return string|false The algorithm name without quotes if this was a relevant hash
      *                      function call or false if it was not.
@@ -774,8 +774,8 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 8.1.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the T_STRING token.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the T_STRING token.
      *
      * @return bool
      */
@@ -890,12 +890,14 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $start       Start of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param int                   $end         End of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param bool                  $allowFloats Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return bool True if PHP would evaluate the snippet as a positive number.
      *              False if not or if it could not be reliably determined
@@ -924,12 +926,14 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $start       Start of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param int                   $end         End of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param bool                  $allowFloats Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return bool True if PHP would evaluate the snippet as a negative number.
      *              False if not or if it could not be reliably determined
@@ -960,12 +964,14 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                   $start       Start of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param int                   $end         End of the snippet (inclusive), i.e. this
-     *                                           token will be examined as part of the snippet.
-     * @param bool                  $allowFloats Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return int|float|bool The number found if PHP would evaluate the snippet as a number.
      *                        The return type will be int if $allowFloats is false, if
@@ -1136,11 +1142,13 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 9.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $start     Start of the snippet (inclusive), i.e. this
-     *                                         token will be examined as part of the snippet.
-     * @param int                   $end       End of the snippet (inclusive), i.e. this
-     *                                         token will be examined as part of the snippet.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $start     Start of the snippet (inclusive), i.e. this
+     *                                               token will be examined as part of the
+     *                                               snippet.
+     * @param int                         $end       End of the snippet (inclusive), i.e. this
+     *                                               token will be examined as part of the
+     *                                               snippet.
      *
      * @return bool
      */
@@ -1202,12 +1210,14 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @since 9.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile          The file being scanned.
-     * @param int                   $start              Starting point stack pointer. Inclusive.
-     *                                                  I.e. this token should be taken into account.
-     * @param int                   $end                End point stack pointer. Exclusive.
-     *                                                  I.e. this token should not be taken into account.
-     * @param int                   $targetNestingLevel The nesting level the variable should be at.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile          The file being scanned.
+     * @param int                         $start              Starting point stack pointer. Inclusive.
+     *                                                        I.e. this token should be taken into
+     *                                                        account.
+     * @param int                         $end                End point stack pointer. Exclusive.
+     *                                                        I.e. this token should not be taken
+     *                                                        into account.
+     * @param int                         $targetNestingLevel The nesting level the variable should be at.
      *
      * @return bool
      */

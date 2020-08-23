@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect negative string offsets as parameters passed to functions where this
@@ -92,10 +92,10 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the stack.
-     * @param string                $functionName The token content (function name) which was matched.
-     * @param array                 $parameters   Array with information about the parameters.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
      *
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.

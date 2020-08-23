@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -883,9 +883,9 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\Variables;
 
@@ -86,9 +86,9 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
      * @since 9.2.0
      * @since 10.0.0 Refactored to work with the AbstractNewFeature sniff.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.

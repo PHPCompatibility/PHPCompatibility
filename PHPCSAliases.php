@@ -28,9 +28,6 @@
  * manner.}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
-    if (class_exists('\PHP_CodeSniffer_File') === false) {
-        class_alias('PHP_CodeSniffer\Files\File', '\PHP_CodeSniffer_File');
-    }
     if (class_exists('\PHP_CodeSniffer_Tokens') === false) {
         class_alias('PHP_CodeSniffer\Util\Tokens', '\PHP_CodeSniffer_Tokens');
     }

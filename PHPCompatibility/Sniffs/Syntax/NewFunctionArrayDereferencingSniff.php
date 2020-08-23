@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
@@ -55,9 +55,9 @@ class NewFunctionArrayDereferencingSniff extends Sniff
      *
      * @since 7.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -105,9 +105,9 @@ class NewFunctionArrayDereferencingSniff extends Sniff
      *
      * @since 9.3.0 Logic split off from the process method.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return array Array containing stack pointers to the open/close braces
      *               involved in the function dereferencing;

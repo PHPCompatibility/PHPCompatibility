@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\UseDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 
 /**
@@ -53,9 +53,9 @@ class NewGroupUseDeclarationsSniff extends Sniff
      *
      * @since 7.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */

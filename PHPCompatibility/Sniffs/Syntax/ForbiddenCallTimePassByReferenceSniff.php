@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
@@ -67,9 +67,9 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token
+     *                                               in the stack passed in $tokens.
      *
      * @return void
      */
@@ -145,10 +145,10 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      *
      * @since 7.0.6 Split off from the `process()` method.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param array                 $parameter    Information on the current parameter
-     *                                            to be examined.
-     * @param int                   $nestingLevel Target nesting level.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param array                       $parameter    Information on the current parameter
+     *                                                  to be examined.
+     * @param int                         $nestingLevel Target nesting level.
      *
      * @return bool
      */

@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\NamingConventions;
@@ -65,9 +65,9 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
      * @since 7.0.8 The message is downgraded from error to warning as - for now - support
      *              for PHP4-style constructors is just deprecated, not yet removed.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

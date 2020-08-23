@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\Conditions;
@@ -56,9 +56,9 @@ class NewLateStaticBindingSniff extends Sniff
      * @since 7.0.3
      * @since 10.0.0 Will now also detect LSB with `instanceof static` and `new static`.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

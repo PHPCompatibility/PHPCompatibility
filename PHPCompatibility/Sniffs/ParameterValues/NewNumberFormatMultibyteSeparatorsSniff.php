@@ -88,10 +88,10 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the stack.
-     * @param string                $functionName The token content (function name) which was matched.
-     * @param array                 $parameters   Array with information about the parameters.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
      *
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
@@ -112,9 +112,9 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                 $param     Array with information about the current parameter.
-     * @param string                $paramName The name of the current parameter.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param array                       $param     Array with information about the current parameter.
+     * @param string                      $paramName The name of the current parameter.
      *
      * @return void
      */
