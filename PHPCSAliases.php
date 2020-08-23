@@ -17,15 +17,6 @@
  *
  * This file is auto-loaded by PHPCS 3.x before any sniffs are loaded
  * through the PHPCS 3.x `<autoload>` ruleset directive.
- *
- * {@internal The PHPCS file have been reorganized in PHPCS 3.x, quite
- * a few "old" classes have been split and spread out over several "new"
- * classes. In other words, this will only work for a limited number
- * of classes.}
- *
- * {@internal The `class_exists` wrappers are needed to play nice with other
- * external PHPCS standards creating cross-version compatibility in the same
- * manner.}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
     define('PHPCOMPATIBILITY_PHPCS_ALIASES_SET', true);
