@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
-use PHP_CodeSniffer_Sniff as PHPCS_Sniff;
+use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer_File as File;
 use PHP_CodeSniffer_Tokens as Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
@@ -30,7 +30,7 @@ use PHPCSUtils\Utils\Scopes;
  * @since 10.0.0 The sniff no longer extends the upstream `Generic.NamingConventions.CamelCapsFunctionName`
  *               sniff and has been completely rewritten using PHPCSUtils.
  */
-class ReservedFunctionNamesSniff implements PHPCS_Sniff
+class ReservedFunctionNamesSniff implements Sniff
 {
 
     /**
