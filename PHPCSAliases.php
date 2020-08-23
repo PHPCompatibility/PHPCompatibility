@@ -28,10 +28,6 @@
  * manner.}
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
-    if (class_exists('\PHP_CodeSniffer_Exception') === false) {
-        class_alias('PHP_CodeSniffer\Exceptions\RuntimeException', '\PHP_CodeSniffer_Exception');
-    }
-
     define('PHPCOMPATIBILITY_PHPCS_ALIASES_SET', true);
 
     /*

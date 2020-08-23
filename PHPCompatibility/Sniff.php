@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility;
 
-use PHP_CodeSniffer_Exception as PHPCS_Exception;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
@@ -106,7 +106,7 @@ abstract class Sniff implements PHPCS_Sniff
      *               single version number is specified, then this is used as
      *               both the min and max.
      *
-     * @throws \PHP_CodeSniffer_Exception If testVersion is invalid.
+     * @throws PHP warning If testVersion is invalid.
      */
     private function getTestVersion()
     {
@@ -524,13 +524,13 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @return bool True if namespaced, false if global.
      *
-     * @throws \PHP_CodeSniffer_Exception If the name in the passed parameter
-     *                                    is not fully qualified.
+     * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the name in the passed parameter
+     *                                                      is not fully qualified.
      */
     public function isNamespaced($FQName)
     {
         if (strpos($FQName, '\\') !== 0) {
-            throw new PHPCS_Exception('$FQName must be a fully qualified name');
+            throw new RuntimeException('$FQName must be a fully qualified name');
         }
 
         return (strpos(substr($FQName, 1), '\\') !== false);
