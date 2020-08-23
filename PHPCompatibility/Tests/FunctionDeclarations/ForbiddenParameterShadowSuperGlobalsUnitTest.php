@@ -51,21 +51,21 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
      */
     public function dataParameterShadowSuperGlobals()
     {
-        return array(
-            array('$GLOBALS', 4),
-            array('$_SERVER', 5),
-            array('$_GET', 6),
-            array('$_POST', 7),
-            array('$_FILES', 8),
-            array('$_COOKIE', 9),
-            array('$_SESSION', 10),
-            array('$_REQUEST', 11),
-            array('$_ENV', 12),
-            array('$GLOBALS', 20),
-            array('$_SERVER', 21),
-            array('$_GET', 22),
-            array('$_ENV', 25),
-        );
+        return [
+            ['$GLOBALS', 4],
+            ['$_SERVER', 5],
+            ['$_GET', 6],
+            ['$_POST', 7],
+            ['$_FILES', 8],
+            ['$_COOKIE', 9],
+            ['$_SESSION', 10],
+            ['$_REQUEST', 11],
+            ['$_ENV', 12],
+            ['$GLOBALS', 20],
+            ['$_SERVER', 21],
+            ['$_GET', 22],
+            ['$_ENV', 25],
+        ];
     }
 
 
@@ -93,11 +93,11 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(15),
-            array(16),
-            array(17),
-        );
+        return [
+            [15],
+            [16],
+            [17],
+        ];
     }
 
 

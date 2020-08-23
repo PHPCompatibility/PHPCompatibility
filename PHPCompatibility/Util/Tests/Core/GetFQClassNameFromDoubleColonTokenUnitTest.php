@@ -51,26 +51,26 @@ class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
      */
     public function dataGetFQClassNameFromDoubleColonToken()
     {
-        return array(
-            array('/* test 1 */', '\DateTime'),
-            array('/* test 2 */', '\DateTime'),
-            array('/* test 3 */', '\DateTime'),
-            array('/* test 4 */', '\DateTime'),
-            array('/* test 5 */', '\DateTime'),
-            array('/* test 6 */', '\AnotherNS\DateTime'),
-            array('/* test 7 */', '\FQNS\DateTime'),
-            array('/* test 8 */', '\DateTime'),
-            array('/* test 9 */', '\AnotherNS\DateTime'),
-            array('/* test 10 */', '\Testing\DateTime'),
-            array('/* test 11 */', '\Testing\DateTime'),
-            array('/* test 12 */', '\Testing\DateTime'),
-            array('/* test 13 */', '\Testing\MyClass'),
-            array('/* test 14 */', ''),
-            array('/* test 15 */', ''),
-            array('/* test 16 */', '\MyClass'),
-            array('/* test 17 */', ''),
-            array('/* test 18 */', ''),
-            array('/* test 19 */', ''),
-        );
+        return [
+            ['/* test 1 */', '\DateTime'],
+            ['/* test 2 */', '\DateTime'],
+            ['/* test 3 */', '\DateTime'],
+            ['/* test 4 */', '\DateTime'],
+            ['/* test 5 */', '\DateTime'],
+            ['/* test 6 */', '\AnotherNS\DateTime'],
+            ['/* test 7 */', '\FQNS\DateTime'],
+            ['/* test 8 */', '\DateTime'],
+            ['/* test 9 */', '\AnotherNS\DateTime'],
+            ['/* test 10 */', '\Testing\DateTime'],
+            ['/* test 11 */', '\Testing\DateTime'],
+            ['/* test 12 */', '\Testing\DateTime'],
+            ['/* test 13 */', '\Testing\MyClass'],
+            ['/* test 14 */', ''],
+            ['/* test 15 */', ''],
+            ['/* test 16 */', '\MyClass'],
+            ['/* test 17 */', ''],
+            ['/* test 18 */', ''],
+            ['/* test 19 */', ''],
+        ];
     }
 }

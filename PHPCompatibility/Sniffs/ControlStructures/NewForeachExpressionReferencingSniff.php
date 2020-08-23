@@ -37,7 +37,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_FOREACH);
+        return [\T_FOREACH];
     }
 
     /**

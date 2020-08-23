@@ -41,11 +41,11 @@ class ArgumentFunctionsUsageSniff extends Sniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'func_get_args' => true,
         'func_get_arg'  => true,
         'func_num_args' => true,
-    );
+    ];
 
 
     /**
@@ -57,7 +57,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 
@@ -86,12 +86,12 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_NEW             => true,
-        );
+        ];
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
@@ -102,7 +102,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $data = array($tokens[$stackPtr]['content']);
+        $data = [$tokens[$stackPtr]['content']];
 
         /*
          * Check for use of the functions in the global scope.
@@ -110,7 +110,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
          * As PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
          */
-        if ($phpcsFile->hasCondition($stackPtr, array(\T_FUNCTION, \T_CLOSURE)) === false) {
+        if ($phpcsFile->hasCondition($stackPtr, [\T_FUNCTION, \T_CLOSURE]) === false) {
             $isError = false;
             $message = 'Use of %s() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.';
 

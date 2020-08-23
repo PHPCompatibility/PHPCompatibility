@@ -34,10 +34,10 @@ class NewNestedStaticAccessSniff extends Sniff
      *
      * @var array
      */
-    private $accessOperators = array(
+    private $accessOperators = [
         \T_OBJECT_OPERATOR => true,
         \T_DOUBLE_COLON    => true,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -48,7 +48,7 @@ class NewNestedStaticAccessSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_DOUBLE_COLON);
+        return [\T_DOUBLE_COLON];
     }
 
     /**

@@ -53,14 +53,14 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @var array
      */
-    protected $hashAlgoFunctions = array(
+    protected $hashAlgoFunctions = [
         'hash_file'      => 1,
         'hash_hmac_file' => 1,
         'hash_hmac'      => 1,
         'hash_init'      => 1,
         'hash_pbkdf2'    => 1,
         'hash'           => 1,
-    );
+    ];
 
 
     /**
@@ -73,10 +73,10 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @var array
      */
-    protected $iniFunctions = array(
+    protected $iniFunctions = [
         'ini_get' => 1,
         'ini_set' => 1,
-    );
+    ];
 
 
     /**
@@ -110,9 +110,9 @@ abstract class Sniff implements PHPCS_Sniff
      */
     private function getTestVersion()
     {
-        static $arrTestVersions = array();
+        static $arrTestVersions = [];
 
-        $default     = array(null, null);
+        $default     = [null, null];
         $testVersion = trim(Helper::getConfigData('testVersion'));
 
         // Case-sensitivity tolerance.
@@ -125,7 +125,7 @@ abstract class Sniff implements PHPCS_Sniff
             $arrTestVersions[$testVersion] = $default;
 
             if (preg_match('`^\d+\.\d+$`', $testVersion)) {
-                $arrTestVersions[$testVersion] = array($testVersion, $testVersion);
+                $arrTestVersions[$testVersion] = [$testVersion, $testVersion];
                 return $arrTestVersions[$testVersion];
             }
 
@@ -148,7 +148,7 @@ abstract class Sniff implements PHPCS_Sniff
                         );
                         return $default;
                     } else {
-                        $arrTestVersions[$testVersion] = array($min, $max);
+                        $arrTestVersions[$testVersion] = [$min, $max];
                         return $arrTestVersions[$testVersion];
                     }
                 }
@@ -245,7 +245,7 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @return void
      */
-    public function addMessage(File $phpcsFile, $message, $stackPtr, $isError, $code = 'Found', $data = array())
+    public function addMessage(File $phpcsFile, $message, $stackPtr, $isError, $code = 'Found', $data = [])
     {
         if ($isError === true) {
             $phpcsFile->addError($message, $stackPtr, $code, $data);
@@ -308,7 +308,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function inClassScope(File $phpcsFile, $stackPtr, $strict = true)
     {
-        $validScopes = array(\T_CLASS, \T_ANON_CLASS);
+        $validScopes = [\T_CLASS, \T_ANON_CLASS];
 
         if ($strict === false) {
             $validScopes[] = \T_INTERFACE;
@@ -359,12 +359,12 @@ abstract class Sniff implements PHPCS_Sniff
             return '';
         }
 
-        $find = array(
+        $find = [
             \T_NS_SEPARATOR,
             \T_STRING,
             \T_NAMESPACE,
             \T_WHITESPACE,
-        );
+        ];
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
@@ -444,7 +444,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Nothing to do if 'parent' or 'static' as we don't know how far the class tree extends.
-        if (\in_array($tokens[$stackPtr - 1]['code'], array(\T_PARENT, \T_STATIC), true)) {
+        if (\in_array($tokens[$stackPtr - 1]['code'], [\T_PARENT, \T_STATIC], true)) {
             return '';
         }
 
@@ -458,12 +458,12 @@ abstract class Sniff implements PHPCS_Sniff
             return $this->getFQName($phpcsFile, $classDeclarationPtr, $className);
         }
 
-        $find = array(
+        $find = [
             \T_NS_SEPARATOR,
             \T_STRING,
             \T_NAMESPACE,
             \T_WHITESPACE,
-        );
+        ];
 
         $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
         if ($start === false || isset($tokens[($start + 1)]) === false) {
@@ -586,7 +586,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         $hasColon = $phpcsFile->findNext(
-            array(\T_COLON, \T_INLINE_ELSE),
+            [\T_COLON, \T_INLINE_ELSE],
             ($tokens[$stackPtr]['parenthesis_closer'] + 1),
             $endOfFunctionDeclaration
         );
@@ -602,12 +602,12 @@ abstract class Sniff implements PHPCS_Sniff
          *   to prevent confusing sniffs looking for array declarations.
          *   As of PHPCS 3.3.0 `array` as a type declaration will be tokenized as `T_STRING`.
          */
-        $unrecognizedTypes = array(
+        $unrecognizedTypes = [
             \T_CALLABLE,
             \T_SELF,
             \T_PARENT,
             \T_STRING,
-        );
+        ];
 
         return $phpcsFile->findPrevious($unrecognizedTypes, ($endOfFunctionDeclaration - 1), $hasColon);
     }
@@ -638,7 +638,7 @@ abstract class Sniff implements PHPCS_Sniff
         $tokens = $phpcsFile->getTokens();
 
         // In older PHPCS versions, the nullable indicator will turn a return type colon into a T_INLINE_ELSE.
-        $colon = $phpcsFile->findPrevious(array(\T_COLON, \T_INLINE_ELSE, \T_FUNCTION, \T_CLOSE_PARENTHESIS), ($stackPtr - 1));
+        $colon = $phpcsFile->findPrevious([\T_COLON, \T_INLINE_ELSE, \T_FUNCTION, \T_CLOSE_PARENTHESIS], ($stackPtr - 1));
         if ($colon === false
             || ($tokens[$colon]['code'] !== \T_COLON && $tokens[$colon]['code'] !== \T_INLINE_ELSE)
         ) {
@@ -693,15 +693,15 @@ abstract class Sniff implements PHPCS_Sniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] !== \T_FUNCTION && $tokens[$stackPtr]['code'] !== \T_CLOSURE) {
-            return array();
+            return [];
         }
 
         $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($parameters) || \is_array($parameters) === false) {
-            return array();
+            return [];
         }
 
-        $typeHints = array();
+        $typeHints = [];
 
         foreach ($parameters as $param) {
             if ($param['type_hint'] === '') {
@@ -803,7 +803,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
-        $tokensToIgnore = array(
+        $tokensToIgnore = [
             'T_NAMESPACE'       => true,
             'T_USE'             => true,
             'T_CLASS'           => true,
@@ -822,7 +822,7 @@ abstract class Sniff implements PHPCS_Sniff
             'T_PUBLIC'          => true,
             'T_PROTECTED'       => true,
             'T_PRIVATE'         => true,
-        );
+        ];
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['type']]) === true
@@ -978,7 +978,7 @@ abstract class Sniff implements PHPCS_Sniff
     {
         $stringTokens = Tokens::$heredocTokens + Tokens::$stringTokens;
 
-        $validTokens             = array();
+        $validTokens             = [];
         $validTokens[\T_LNUMBER] = true;
         $validTokens[\T_TRUE]    = true; // Evaluates to int 1.
         $validTokens[\T_FALSE]   = true; // Evaluates to int 0.
@@ -1032,7 +1032,7 @@ abstract class Sniff implements PHPCS_Sniff
                 || $tokens[$nextNonEmpty]['code'] === \T_START_NOWDOC
             ) {
                 // Skip past heredoc/nowdoc opener to the first content.
-                $firstDocToken = $phpcsFile->findNext(array(\T_HEREDOC, \T_NOWDOC), ($nextNonEmpty + 1), $searchEnd);
+                $firstDocToken = $phpcsFile->findNext([\T_HEREDOC, \T_NOWDOC], ($nextNonEmpty + 1), $searchEnd);
                 if ($firstDocToken === false) {
                     // Live coding or parse error.
                     return false;
@@ -1041,7 +1041,7 @@ abstract class Sniff implements PHPCS_Sniff
                 $stringContent = $content = $tokens[$firstDocToken]['content'];
 
                 // Skip forward to the end in preparation for the next part of the examination.
-                $nextNonEmpty = $phpcsFile->findNext(array(\T_END_HEREDOC, \T_END_NOWDOC), ($nextNonEmpty + 1), $searchEnd);
+                $nextNonEmpty = $phpcsFile->findNext([\T_END_HEREDOC, \T_END_NOWDOC], ($nextNonEmpty + 1), $searchEnd);
                 if ($nextNonEmpty === false) {
                     // Live coding or parse error.
                     return false;
@@ -1218,10 +1218,10 @@ abstract class Sniff implements PHPCS_Sniff
         // Create the token arrays only once.
         if (isset($tokenBlackList, $bracketTokens) === false) {
 
-            $tokenBlackList  = array(
+            $tokenBlackList  = [
                 \T_OPEN_PARENTHESIS => \T_OPEN_PARENTHESIS,
                 \T_STRING_CONCAT    => \T_STRING_CONCAT,
-            );
+            ];
             $tokenBlackList += Tokens::$assignmentTokens;
             $tokenBlackList += Tokens::$equalityTokens;
             $tokenBlackList += Tokens::$comparisonTokens;
@@ -1234,10 +1234,10 @@ abstract class Sniff implements PHPCS_Sniff
              *
              * Key is the open bracket token, value the close bracket token.
              */
-            $bracketTokens = array(
+            $bracketTokens = [
                 \T_OPEN_CURLY_BRACKET  => \T_CLOSE_CURLY_BRACKET,
                 \T_OPEN_SQUARE_BRACKET => \T_CLOSE_SQUARE_BRACKET,
-            );
+            ];
         }
 
         $tokens = $phpcsFile->getTokens();

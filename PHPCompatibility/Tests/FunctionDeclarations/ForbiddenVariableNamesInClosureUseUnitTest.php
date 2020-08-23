@@ -51,17 +51,17 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function dataForbiddenVariableNamesInClosureUse()
     {
-        return array(
-            array(4, '$_SERVER'),
-            array(5, '$_REQUEST'),
-            array(6, '$GLOBALS'),
-            array(7, '$this'),
-            array(8, '$param'),
-            array(9, '$param'),
-            array(10, '$c'),
-            array(11, '$b'),
-            array(11, '$d'),
-        );
+        return [
+            [4, '$_SERVER'],
+            [5, '$_REQUEST'],
+            [6, '$GLOBALS'],
+            [7, '$this'],
+            [8, '$param'],
+            [9, '$param'],
+            [10, '$c'],
+            [11, '$b'],
+            [11, '$d'],
+        ];
     }
 
 
@@ -89,20 +89,20 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(18),
-            array(19),
-            array(22),
-            array(23),
-            array(24),
-            array(27),
-            array(31),
-            array(32),
-            array(33),
-            array(36),
-            array(41),
-            array(44),
-        );
+        return [
+            [18],
+            [19],
+            [22],
+            [23],
+            [24],
+            [27],
+            [31],
+            [32],
+            [33],
+            [36],
+            [41],
+            [44],
+        ];
     }
 
 

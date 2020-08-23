@@ -39,13 +39,13 @@ class RemovedTernaryAssociativitySniff extends Sniff
      *
      * @var array
      */
-    private $tokensWithLowerPrecedence = array(
+    private $tokensWithLowerPrecedence = [
         'T_YIELD_FROM'  => true,
         'T_YIELD'       => true,
         'T_LOGICAL_AND' => true,
         'T_LOGICAL_OR'  => true,
         'T_LOGICAL_XOR' => true,
-    );
+    ];
 
 
     /**
@@ -57,7 +57,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
      */
     public function register()
     {
-        return array(\T_INLINE_THEN);
+        return [\T_INLINE_THEN];
     }
 
     /**

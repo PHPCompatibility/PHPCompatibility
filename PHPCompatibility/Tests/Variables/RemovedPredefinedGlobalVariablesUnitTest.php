@@ -70,17 +70,17 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function dataRemovedGlobalVariables()
     {
-        return array(
-            array('HTTP_POST_VARS', '5.3', '5.4', array(9, 31, 71, 91), '$_POST', '5.2'),
-            array('HTTP_GET_VARS', '5.3', '5.4', array(10, 32, 51, 72), '$_GET', '5.2'),
-            array('HTTP_ENV_VARS', '5.3', '5.4', array(11, 33, 52, 73), '$_ENV', '5.2'),
-            array('HTTP_SERVER_VARS', '5.3', '5.4', array(12, 34, 74, 92), '$_SERVER', '5.2'),
-            array('HTTP_COOKIE_VARS', '5.3', '5.4', array(13, 35, 75), '$_COOKIE', '5.2'),
-            array('HTTP_SESSION_VARS', '5.3', '5.4', array(14, 36, 76, 93), '$_SESSION', '5.2'),
-            array('HTTP_POST_FILES', '5.3', '5.4', array(15, 37, 77), '$_FILES', '5.2'),
+        return [
+            ['HTTP_POST_VARS', '5.3', '5.4', [9, 31, 71, 91], '$_POST', '5.2'],
+            ['HTTP_GET_VARS', '5.3', '5.4', [10, 32, 51, 72], '$_GET', '5.2'],
+            ['HTTP_ENV_VARS', '5.3', '5.4', [11, 33, 52, 73], '$_ENV', '5.2'],
+            ['HTTP_SERVER_VARS', '5.3', '5.4', [12, 34, 74, 92], '$_SERVER', '5.2'],
+            ['HTTP_COOKIE_VARS', '5.3', '5.4', [13, 35, 75], '$_COOKIE', '5.2'],
+            ['HTTP_SESSION_VARS', '5.3', '5.4', [14, 36, 76, 93], '$_SESSION', '5.2'],
+            ['HTTP_POST_FILES', '5.3', '5.4', [15, 37, 77], '$_FILES', '5.2'],
 
-            array('HTTP_RAW_POST_DATA', '5.6', '7.0', array(3, 38, 53, 78), 'php://input', '5.5'),
-        );
+            ['HTTP_RAW_POST_DATA', '5.6', '7.0', [3, 38, 53, 78], 'php://input', '5.5'],
+        ];
     }
 
 
@@ -116,16 +116,16 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedRemovedPHPErrorMsg()
     {
-        return array(
-            array(101),
-            array(110),
-            array(111),
-            array(126),
-            array(140),
-            array(141),
-            array(156),
-            array(179),
-        );
+        return [
+            [101],
+            [110],
+            [111],
+            [126],
+            [140],
+            [141],
+            [156],
+            [179],
+        ];
     }
 
 
@@ -153,76 +153,76 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
+        return [
             // Variable names are case-sensitive.
-            array(5),
-            array(6),
+            [5],
+            [6],
 
             // Issue #268 - class properties named after long array variables.
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(24),
-            array(25),
-            array(26),
-            array(27),
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [25],
+            [26],
+            [27],
 
-            array(41),
-            array(42),
-            array(43),
-            array(44),
-            array(45),
-            array(46),
-            array(47),
-            array(48),
+            [41],
+            [42],
+            [43],
+            [44],
+            [45],
+            [46],
+            [47],
+            [48],
 
             // Issue #333 - class properties named after long array variables in anonymous classes.
-            array(60),
-            array(61),
-            array(62),
-            array(63),
-            array(64),
-            array(65),
-            array(66),
-            array(67),
+            [60],
+            [61],
+            [62],
+            [63],
+            [64],
+            [65],
+            [66],
+            [67],
 
-            array(81),
-            array(82),
-            array(83),
-            array(84),
-            array(85),
-            array(86),
-            array(87),
-            array(88),
+            [81],
+            [82],
+            [83],
+            [84],
+            [85],
+            [86],
+            [87],
+            [88],
 
             // PHP 7.2 deprecated $php_errormsg.
-            array(106),
-            array(114),
-            array(116),
-            array(118),
-            array(121),
-            array(123),
-            array(127),
-            array(130),
-            array(132),
-            array(133),
-            array(134),
-            array(143),
-            array(145),
-            array(146),
-            array(147),
-            array(150),
-            array(151),
-            array(165),
-            array(169),
+            [106],
+            [114],
+            [116],
+            [118],
+            [121],
+            [123],
+            [127],
+            [130],
+            [132],
+            [133],
+            [134],
+            [143],
+            [145],
+            [146],
+            [147],
+            [150],
+            [151],
+            [165],
+            [169],
 
             // Static property use outside class context.
-            array(172),
-            array(173),
+            [172],
+            [173],
 
-            array(176),
-        );
+            [176],
+        ];
     }
 
 

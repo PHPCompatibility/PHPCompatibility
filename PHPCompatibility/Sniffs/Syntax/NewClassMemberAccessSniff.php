@@ -50,10 +50,10 @@ class NewClassMemberAccessSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_NEW,
             \T_CLONE,
-        );
+        ];
     }
 
     /**
@@ -82,11 +82,11 @@ class NewClassMemberAccessSniff extends Sniff
         $supports53 = $this->supportsBelow('5.3');
 
         $error     = 'Class member access on object %s was not supported in PHP %s or earlier';
-        $data      = array('instantiation', '5.3');
+        $data      = ['instantiation', '5.3'];
         $errorCode = 'OnNewFound';
 
         if ($tokens[$stackPtr]['code'] === \T_CLONE) {
-            $data      = array('cloning', '5.6');
+            $data      = ['cloning', '5.6'];
             $errorCode = 'OnCloneFound';
         }
 
@@ -107,7 +107,7 @@ class NewClassMemberAccessSniff extends Sniff
                 && $tokens[$open]['code'] === \T_OPEN_CURLY_BRACKET
             ) {
                 // Non-curlies was already handled above.
-                $itemData      = array('instantiation using curly braces', '5.6');
+                $itemData      = ['instantiation using curly braces', '5.6'];
                 $itemErrorCode = 'OnNewFoundUsingCurlies';
             }
 
@@ -135,7 +135,7 @@ class NewClassMemberAccessSniff extends Sniff
 
         if (isset($tokens[$stackPtr]['nested_parenthesis']) === false) {
             // The `new className/clone $a` has to be in parentheses, without is not supported.
-            return array();
+            return [];
         }
 
         $parenthesisCloser = end($tokens[$stackPtr]['nested_parenthesis']);
@@ -143,16 +143,16 @@ class NewClassMemberAccessSniff extends Sniff
 
         if (isset($tokens[$parenthesisOpener]['parenthesis_owner']) === true) {
             // If there is an owner, these parentheses are for a different purpose.
-            return array();
+            return [];
         }
 
         $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
         if ($prevBeforeParenthesis !== false && $tokens[$prevBeforeParenthesis]['code'] === \T_STRING) {
             // This is most likely a function call with the new/cloned object as a parameter.
-            return array();
+            return [];
         }
 
-        $braces = array();
+        $braces = [];
         $end    = $parenthesisCloser;
 
         do {

@@ -49,17 +49,17 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      */
     public function dataNewListReferenceAssignment()
     {
-        return array(
-            array(16),
-            array(17),
-            array(20),
-            array(24),
-            array(30),
-            array(33), // x2.
-            array(36), // x2.
-            array(37),
-            array(41),
-        );
+        return [
+            [16],
+            [17],
+            [20],
+            [24],
+            [30],
+            [33], // x2.
+            [36], // x2.
+            [37],
+            [41],
+        ];
     }
 
 
@@ -87,20 +87,20 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(7),
-            array(9),
-            array(10),
-            array(19),
-            array(21),
-            array(22),
-            array(23),
-            array(25),
-            array(29),
-            array(31),
-            array(32),
-        );
+        return [
+            [6],
+            [7],
+            [9],
+            [10],
+            [19],
+            [21],
+            [22],
+            [23],
+            [25],
+            [29],
+            [31],
+            [32],
+        ];
     }
 
 

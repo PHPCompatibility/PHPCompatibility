@@ -43,7 +43,7 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
      *
      * @var array
      */
-    private $tokensWithLowerPrecedence = array(
+    private $tokensWithLowerPrecedence = [
         'T_BITWISE_AND' => true,
         'T_BITWISE_XOR' => true,
         'T_BITWISE_OR'  => true,
@@ -52,7 +52,7 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
         'T_INLINE_ELSE' => true,
         'T_YIELD_FROM'  => true,
         'T_YIELD'       => true,
-    );
+    ];
 
 
     /**
@@ -64,10 +64,10 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_PLUS,
             \T_MINUS,
-        );
+        ];
     }
 
     /**

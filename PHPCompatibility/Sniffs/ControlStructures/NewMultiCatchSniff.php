@@ -35,7 +35,7 @@ class NewMultiCatchSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_CATCH);
+        return [\T_CATCH];
     }
 
     /**

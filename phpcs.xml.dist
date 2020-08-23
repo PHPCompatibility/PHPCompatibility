@@ -92,6 +92,9 @@
     <rule ref="PSR12.Keywords.ShortFormTypeKeywords"/>
     <rule ref="PSR12.Operators.OperatorSpacing"/>
 
+    <!-- Use short array syntax. -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
     <!-- Use normalized array indentation. -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
     <rule ref="Squiz.Arrays.ArrayDeclaration"/>

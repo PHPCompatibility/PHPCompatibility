@@ -49,16 +49,16 @@ class NewShortListUnitTest extends BaseSniffTest
      */
     public function dataShortList()
     {
-        return array(
-            array(17),
-            array(18),
-            array(19),
-            array(21),
-            array(23),
-            array(25), // x2.
-            array(28),
-            array(35),
-        );
+        return [
+            [17],
+            [18],
+            [19],
+            [21],
+            [23],
+            [25], // x2.
+            [28],
+            [35],
+        ];
     }
 
 
@@ -86,13 +86,13 @@ class NewShortListUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(8),
-            array(10),
-            array(12),
-            array(31),
-        );
+        return [
+            [6],
+            [8],
+            [10],
+            [12],
+            [31],
+        ];
     }
 
 

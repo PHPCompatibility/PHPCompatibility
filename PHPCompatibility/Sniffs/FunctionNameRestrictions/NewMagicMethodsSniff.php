@@ -41,64 +41,64 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $newMagicMethods = array(
-        '__construct' => array(
+    protected $newMagicMethods = [
+        '__construct' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        '__destruct' => array(
+        ],
+        '__destruct' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        '__get' => array(
+        ],
+        '__get' => [
             '4.4' => false,
             '5.0' => true,
-        ),
+        ],
 
-        '__isset' => array(
+        '__isset' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        '__unset' => array(
+        ],
+        '__unset' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        '__set_state' => array(
+        ],
+        '__set_state' => [
             '5.0' => false,
             '5.1' => true,
-        ),
+        ],
 
-        '__callstatic' => array(
+        '__callstatic' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        '__invoke' => array(
+        ],
+        '__invoke' => [
             '5.2' => false,
             '5.3' => true,
-        ),
+        ],
 
-        '__debuginfo' => array(
+        '__debuginfo' => [
             '5.5' => false,
             '5.6' => true,
-        ),
+        ],
 
-        '__serialize' => array(
+        '__serialize' => [
             '7.3' => false,
             '7.4' => true,
-        ),
-        '__unserialize' => array(
+        ],
+        '__unserialize' => [
             '7.3' => false,
             '7.4' => true,
-        ),
+        ],
 
         // Special case - only became properly magical in 5.2.0,
         // before that it was only called for echo and print.
-        '__tostring' => array(
+        '__tostring' => [
             '5.1'     => false,
             '5.2'     => true,
             'message' => 'The method %s() was not truly magical in PHP version %s and earlier. The associated magic functionality will only be called when directly combined with echo or print.',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -110,7 +110,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(\T_FUNCTION);
+        return [\T_FUNCTION];
     }
 
 
@@ -138,10 +138,10 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $functionName,
             'nameLc' => $functionNameLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -170,7 +170,7 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('message');
+        return ['message'];
     }
 
 

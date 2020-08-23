@@ -49,19 +49,19 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      */
     public function dataConstVisibility()
     {
-        return array(
-            array(10),
-            array(11),
-            array(12),
+        return [
+            [10],
+            [11],
+            [12],
 
-            array(20),
-            array(23),
-            array(24),
+            [20],
+            [23],
+            [24],
 
-            array(33),
-            array(34),
-            array(35),
-        );
+            [33],
+            [34],
+            [35],
+        ];
     }
 
 
@@ -89,14 +89,14 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(3),
-            array(7),
-            array(17),
-            array(30),
-            array(44),
-            array(48),
-        );
+        return [
+            [3],
+            [7],
+            [17],
+            [30],
+            [44],
+            [48],
+        ];
     }
 
 

@@ -39,10 +39,10 @@ class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'idn_to_ascii' => 3,
         'idn_to_utf8'  => 3,
-    );
+    ];
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
@@ -85,7 +85,7 @@ class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
             $error,
             $stackPtr,
             'NotSet',
-            array($functionName)
+            [$functionName]
         );
     }
 }

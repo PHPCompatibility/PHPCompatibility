@@ -63,10 +63,10 @@ class NewTypeCastsUnitTest extends BaseSniffTest
      */
     public function dataNewTypeCasts()
     {
-        return array(
-            array('The unset cast', '4.4', array(8, 15, 17), '5.0'),
-            array('The binary cast', '5.2.0', array(9, 10, 11, 12, 16, 18), '5.3', '5.2'), // Test (global) namespaced function.
-        );
+        return [
+            ['The unset cast', '4.4', [8, 15, 17], '5.0'],
+            ['The binary cast', '5.2.0', [9, 10, 11, 12, 16, 18], '5.3', '5.2'], // Test (global) namespaced function.
+        ];
     }
 
 
@@ -94,11 +94,11 @@ class NewTypeCastsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(21),
-        );
+        return [
+            [4],
+            [5],
+            [21],
+        ];
     }
 
 

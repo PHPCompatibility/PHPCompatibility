@@ -59,7 +59,7 @@ class BaseSniffTest extends TestCase
      *
      * @var array
      */
-    public static $sniffFiles = array();
+    public static $sniffFiles = [];
 
     /**
      * Last PHPCS config instance used, if any. (PHPCS > 3)
@@ -85,7 +85,7 @@ class BaseSniffTest extends TestCase
      */
     public static function resetSniffFiles()
     {
-        self::$sniffFiles = array();
+        self::$sniffFiles = [];
     }
 
     /**
@@ -109,12 +109,12 @@ class BaseSniffTest extends TestCase
                 self::$phpcs = new \PHP_CodeSniffer();
             }
 
-            self::$phpcs->cli->setCommandLineValues(array('-pq', '--colors'));
+            self::$phpcs->cli->setCommandLineValues(['-pq', '--colors']);
 
             // Restrict the sniffing of the test case files to the particular sniff being tested.
-            self::$phpcs->initStandard(self::STANDARD_NAME, array($this->getSniffCode()));
+            self::$phpcs->initStandard(self::STANDARD_NAME, [$this->getSniffCode()]);
 
-            self::$phpcs->setIgnorePatterns(array());
+            self::$phpcs->setIgnorePatterns([]);
         }
     }
 
@@ -185,9 +185,9 @@ class BaseSniffTest extends TestCase
                 // PHPCS 3.x, 4.x.
                 $config            = new \PHP_CodeSniffer\Config();
                 $config->cache     = false;
-                $config->standards = array(self::STANDARD_NAME);
-                $config->sniffs    = array($this->getSniffCode());
-                $config->ignored   = array();
+                $config->standards = [self::STANDARD_NAME];
+                $config->sniffs    = [$this->getSniffCode()];
+                $config->ignored   = [];
 
                 if ($targetPhpVersion !== 'none') {
                     Helper::setConfigData('testVersion', $targetPhpVersion, true, $config);
@@ -275,7 +275,7 @@ class BaseSniffTest extends TestCase
             $this->fail("Expected $type '$expectedMessage' on line number $lineNumber, but none found.");
         }
 
-        $insteadFoundMessages = array();
+        $insteadFoundMessages = [];
 
         // Concat any error messages so we can do an assertContains.
         foreach ($issues[$lineNumber] as $issue) {
@@ -321,7 +321,7 @@ class BaseSniffTest extends TestCase
             return $this->assertEmpty($allMessages, $failMessage);
         }
 
-        $encounteredMessages = array();
+        $encounteredMessages = [];
         if (isset($errors[$lineNumber])) {
             foreach ($errors[$lineNumber] as $error) {
                 $encounteredMessages[] = 'ERROR: ' . $error['message'];
@@ -352,10 +352,10 @@ class BaseSniffTest extends TestCase
      */
     public function showViolations(File $file)
     {
-        $violations = array(
+        $violations = [
             'errors'   => $this->gatherErrors($file),
             'warnings' => $this->gatherWarnings($file),
-        );
+        ];
 
         return $violations;
     }
@@ -404,13 +404,13 @@ class BaseSniffTest extends TestCase
      */
     private function gatherIssues($issuesArray)
     {
-        $allIssues = array();
+        $allIssues = [];
         foreach ($issuesArray as $line => $lineIssues) {
             foreach ($lineIssues as $column => $issues) {
                 foreach ($issues as $issue) {
 
                     if (isset($allIssues[$line]) === false) {
-                        $allIssues[$line] = array();
+                        $allIssues[$line] = [];
                     }
 
                     $allIssues[$line][] = $issue;

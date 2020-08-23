@@ -50,9 +50,9 @@ class NewMultiCatchUnitTest extends BaseSniffTest
      */
     public function dataNewMultiCatch()
     {
-        return array(
-            array(21),
-        );
+        return [
+            [21],
+        ];
     }
 
 
@@ -80,13 +80,13 @@ class NewMultiCatchUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(8),
-            array(10),
-            array(12),
-            array(23),
-            array(30), // Live coding.
-        );
+        return [
+            [8],
+            [10],
+            [12],
+            [23],
+            [30], // Live coding.
+        ];
     }
 
 

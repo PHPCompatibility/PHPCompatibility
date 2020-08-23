@@ -50,34 +50,34 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      */
     public function dataEmptyNonVariable()
     {
-        return array(
-            array(17),
-            array(18),
+        return [
+            [17],
+            [18],
 
-            array(20),
-            array(21),
-            array(22),
-            array(23),
+            [20],
+            [21],
+            [22],
+            [23],
 
-            array(25),
-            array(26),
-            array(27),
-            array(28),
-            array(29),
-            array(30),
-            array(31),
-            array(32),
+            [25],
+            [26],
+            [27],
+            [28],
+            [29],
+            [30],
+            [31],
+            [32],
 
-            array(34),
-            array(35),
-            array(37),
-            array(38),
-            array(39),
-            array(40),
+            [34],
+            [35],
+            [37],
+            [38],
+            [39],
+            [40],
 
-            array(42),
-            array(43),
-        );
+            [42],
+            [43],
+        ];
     }
 
 
@@ -105,39 +105,39 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(6),
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
+        return [
+            [4],
+            [5],
+            [6],
+            [7],
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+            [13],
+            [14],
 
             // Issue #210.
-            array(47),
-            array(48),
-            array(49),
-            array(50),
-            array(51),
-            array(52),
-            array(53),
-            array(54),
-            array(55),
-            array(56),
-            array(57),
-            array(58),
-            array(59),
-            array(60),
-            array(61),
+            [47],
+            [48],
+            [49],
+            [50],
+            [51],
+            [52],
+            [53],
+            [54],
+            [55],
+            [56],
+            [57],
+            [58],
+            [59],
+            [60],
+            [61],
 
             // Live coding.
-            array(65),
-        );
+            [65],
+        ];
     }
 
 

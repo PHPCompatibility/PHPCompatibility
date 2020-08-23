@@ -38,7 +38,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -60,12 +60,12 @@ class NewConstantArraysUsingDefineSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -88,7 +88,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             $targetNestingLevel = \count($tokens[$secondParam['start']]['nested_parenthesis']);
         }
 
-        $array = $phpcsFile->findNext(array(\T_ARRAY, \T_OPEN_SHORT_ARRAY), $secondParam['start'], ($secondParam['end'] + 1));
+        $array = $phpcsFile->findNext([\T_ARRAY, \T_OPEN_SHORT_ARRAY], $secondParam['start'], ($secondParam['end'] + 1));
         if ($array !== false) {
             if ((isset($tokens[$array]['nested_parenthesis']) === false && $targetNestingLevel === 0) || \count($tokens[$array]['nested_parenthesis']) === $targetNestingLevel) {
                 $phpcsFile->addError(

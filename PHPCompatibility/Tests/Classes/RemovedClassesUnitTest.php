@@ -63,40 +63,40 @@ class RemovedClassesUnitTest extends BaseSniffTest
      */
     public function dataRemovedClass()
     {
-        return array(
-            array('HW_API', '5.2', array(59), '5.1'),
-            array('HW_API_Object', '5.2', array(60), '5.1'),
-            array('HW_API_Attribute', '5.2', array(61), '5.1'),
-            array('HW_API_Error', '5.2', array(62), '5.1'),
-            array('HW_API_Content', '5.2', array(63), '5.1'),
-            array('HW_API_Reason', '5.2', array(64), '5.1'),
+        return [
+            ['HW_API', '5.2', [59], '5.1'],
+            ['HW_API_Object', '5.2', [60], '5.1'],
+            ['HW_API_Attribute', '5.2', [61], '5.1'],
+            ['HW_API_Error', '5.2', [62], '5.1'],
+            ['HW_API_Content', '5.2', [63], '5.1'],
+            ['HW_API_Reason', '5.2', [64], '5.1'],
 
-            array('SWFAction', '5.3', array(32, 33, 34, 35), '5.2'),
-            array('SWFBitmap', '5.3', array(37), '5.2'),
-            array('SWFButton', '5.3', array(38), '5.2'),
-            array('SWFDisplayItem', '5.3', array(39), '5.2'),
-            array('SWFFill', '5.3', array(40), '5.2'),
-            array('SWFFont', '5.3', array(41), '5.2'),
-            array('SWFFontChar', '5.3', array(44), '5.2'),
-            array('SWFGradient', '5.3', array(45), '5.2'),
-            array('SWFMorph', '5.3', array(46), '5.2'),
-            array('SWFMovie', '5.3', array(47), '5.2'),
-            array('SWFPrebuiltClip', '5.3', array(48), '5.2'),
-            array('SWFShape', '5.3', array(49), '5.2'),
-            array('SWFSound', '5.3', array(50), '5.2'),
-            array('SWFSoundInstance', '5.3', array(51), '5.2'),
-            array('SWFSprite', '5.3', array(52), '5.2'),
-            array('SWFText', '5.3', array(55), '5.2'),
-            array('SWFTextField', '5.3', array(56), '5.2'),
-            array('SWFVideoStream', '5.3', array(57), '5.2'),
+            ['SWFAction', '5.3', [32, 33, 34, 35], '5.2'],
+            ['SWFBitmap', '5.3', [37], '5.2'],
+            ['SWFButton', '5.3', [38], '5.2'],
+            ['SWFDisplayItem', '5.3', [39], '5.2'],
+            ['SWFFill', '5.3', [40], '5.2'],
+            ['SWFFont', '5.3', [41], '5.2'],
+            ['SWFFontChar', '5.3', [44], '5.2'],
+            ['SWFGradient', '5.3', [45], '5.2'],
+            ['SWFMorph', '5.3', [46], '5.2'],
+            ['SWFMovie', '5.3', [47], '5.2'],
+            ['SWFPrebuiltClip', '5.3', [48], '5.2'],
+            ['SWFShape', '5.3', [49], '5.2'],
+            ['SWFSound', '5.3', [50], '5.2'],
+            ['SWFSoundInstance', '5.3', [51], '5.2'],
+            ['SWFSprite', '5.3', [52], '5.2'],
+            ['SWFText', '5.3', [55], '5.2'],
+            ['SWFTextField', '5.3', [56], '5.2'],
+            ['SWFVideoStream', '5.3', [57], '5.2'],
 
-            array('SQLiteDatabase', '5.4', array(66), '5.3'),
-            array('SQLiteResult', '5.4', array(67), '5.3'),
-            array('SQLiteUnbuffered', '5.4', array(68), '5.3'),
-            array('SQLiteException', '5.4', array(69), '5.3'),
+            ['SQLiteDatabase', '5.4', [66], '5.3'],
+            ['SQLiteResult', '5.4', [67], '5.3'],
+            ['SQLiteUnbuffered', '5.4', [68], '5.3'],
+            ['SQLiteException', '5.4', [69], '5.3'],
 
-            array('XmlRpcServer', '8.0', array(71), '7.4'),
-        );
+            ['XmlRpcServer', '8.0', [71], '7.4'],
+        ];
     }
 
 
@@ -125,9 +125,9 @@ class RemovedClassesUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         // No errors expected on the first 26 lines.
-        $data = array();
+        $data = [];
         for ($line = 1; $line <= 26; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
         return $data;

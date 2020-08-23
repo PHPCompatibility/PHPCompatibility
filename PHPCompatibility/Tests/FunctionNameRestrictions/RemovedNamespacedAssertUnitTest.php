@@ -64,12 +64,12 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      */
     public function dataIsDeprecated()
     {
-        return array(
-            array(self::TEST_FILE, 22),
-            array(self::TEST_FILE_NAMESPACED, 5),
-            array(self::TEST_FILE_NAMESPACED, 25),
-            array(self::TEST_FILE_NAMESPACED, 30),
-        );
+        return [
+            [self::TEST_FILE, 22],
+            [self::TEST_FILE_NAMESPACED, 5],
+            [self::TEST_FILE_NAMESPACED, 25],
+            [self::TEST_FILE_NAMESPACED, 30],
+        ];
     }
 
     /**
@@ -97,19 +97,19 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(self::TEST_FILE, 3),
-            array(self::TEST_FILE, 6),
-            array(self::TEST_FILE, 10),
-            array(self::TEST_FILE, 14),
-            array(self::TEST_FILE, 18),
-            array(self::TEST_FILE, 27),
-            array(self::TEST_FILE, 32),
-            array(self::TEST_FILE_NAMESPACED, 8),
-            array(self::TEST_FILE_NAMESPACED, 12),
-            array(self::TEST_FILE_NAMESPACED, 16),
-            array(self::TEST_FILE_NAMESPACED, 20),
-        );
+        return [
+            [self::TEST_FILE, 3],
+            [self::TEST_FILE, 6],
+            [self::TEST_FILE, 10],
+            [self::TEST_FILE, 14],
+            [self::TEST_FILE, 18],
+            [self::TEST_FILE, 27],
+            [self::TEST_FILE, 32],
+            [self::TEST_FILE_NAMESPACED, 8],
+            [self::TEST_FILE_NAMESPACED, 12],
+            [self::TEST_FILE_NAMESPACED, 16],
+            [self::TEST_FILE_NAMESPACED, 20],
+        ];
     }
 
 

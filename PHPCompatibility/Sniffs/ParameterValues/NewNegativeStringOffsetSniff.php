@@ -33,46 +33,46 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array Function name => 1-based parameter offset of the affected parameters => parameter name.
      */
-    protected $targetFunctions = array(
-        'file_get_contents'     => array(
+    protected $targetFunctions = [
+        'file_get_contents'     => [
             4 => 'offset',
-        ),
-        'grapheme_extract'      => array(
+        ],
+        'grapheme_extract'      => [
             4 => 'start',
-        ),
-        'grapheme_stripos'      => array(
+        ],
+        'grapheme_stripos'      => [
             3 => 'offset',
-        ),
-        'grapheme_strpos'       => array(
+        ],
+        'grapheme_strpos'       => [
             3 => 'offset',
-        ),
-        'iconv_strpos'          => array(
+        ],
+        'iconv_strpos'          => [
             3 => 'offset',
-        ),
-        'mb_ereg_search_setpos' => array(
+        ],
+        'mb_ereg_search_setpos' => [
             1 => 'position',
-        ),
-        'mb_strimwidth'         => array(
+        ],
+        'mb_strimwidth'         => [
             2 => 'start',
             3 => 'width',
-        ),
-        'mb_stripos'            => array(
+        ],
+        'mb_stripos'            => [
             3 => 'offset',
-        ),
-        'mb_strpos'             => array(
+        ],
+        'mb_strpos'             => [
             3 => 'offset',
-        ),
-        'stripos'               => array(
+        ],
+        'stripos'               => [
             3 => 'offset',
-        ),
-        'strpos'                => array(
+        ],
+        'strpos'                => [
             3 => 'offset',
-        ),
-        'substr_count'          => array(
+        ],
+        'substr_count'          => [
             3 => 'offset',
             4 => 'length',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -118,11 +118,11 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
                 'Negative string offsets were not supported for the $%s parameter in %s() in PHP 7.0 or lower. Found: %s',
                 $targetParam['start'],
                 'Found',
-                array(
+                [
                     $name,
                     $functionName,
                     $targetParam['clean'],
-                )
+                ]
             );
         }
     }

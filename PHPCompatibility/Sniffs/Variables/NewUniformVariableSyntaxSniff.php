@@ -36,7 +36,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_VARIABLE);
+        return [\T_VARIABLE];
     }
 
     /**
@@ -67,7 +67,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
 
         // The previous non-empty token has to be a $, -> or ::.
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($prevToken === false || \in_array($tokens[$prevToken]['code'], array(\T_DOLLAR, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON), true) === false) {
+        if ($prevToken === false || \in_array($tokens[$prevToken]['code'], [\T_DOLLAR, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON], true) === false) {
             return;
         }
 

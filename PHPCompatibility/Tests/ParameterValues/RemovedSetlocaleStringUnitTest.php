@@ -52,10 +52,10 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      */
     public function dataSetlocaleString()
     {
-        return array(
-            array(9),
-            array(10),
-        );
+        return [
+            [9],
+            [10],
+        ];
     }
 
 
@@ -83,15 +83,15 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No errors expected on the first 7 lines.
         for ($line = 1; $line <= 7; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
-        $data[] = array(13);
-        $data[] = array(14);
+        $data[] = [13];
+        $data[] = [14];
 
         return $data;
     }

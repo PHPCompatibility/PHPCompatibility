@@ -39,12 +39,12 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'html_entity_decode'         => 3,
         'htmlentities'               => 3,
         'htmlspecialchars'           => 3,
         'get_html_translation_table' => 3,
-    );
+    ];
 
 
     /**
@@ -87,7 +87,7 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
             'The default value of the $encoding parameter for %s() was changed from ISO-8859-1 to UTF-8 in PHP 5.4. For cross-version compatibility, the $encoding parameter should be explicitly set.',
             $stackPtr,
             'NotSet',
-            array($functionName)
+            [$functionName]
         );
     }
 }

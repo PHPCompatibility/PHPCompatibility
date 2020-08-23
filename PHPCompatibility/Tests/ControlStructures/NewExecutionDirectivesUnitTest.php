@@ -92,11 +92,11 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     public function dataNewExecutionDirective()
     {
-        return array(
-            array('ticks', '3.1', array(6, 7), '4.0'),
-            array('encoding', '5.2', array(8), '5.4', '5.3', '--enable-zend-multibyte'),
-            array('strict_types', '5.6', array(9), '7.0'),
-        );
+        return [
+            ['ticks', '3.1', [6, 7], '4.0'],
+            ['encoding', '5.2', [8], '5.4', '5.3', '--enable-zend-multibyte'],
+            ['strict_types', '5.6', [9], '7.0'],
+        ];
     }
 
 
@@ -126,10 +126,10 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     public function dataInvalidDirectiveValue()
     {
-        return array(
-            array('ticks', 'TICK_VALUE', 16),
-            array('strict_types', 'false', 18),
-        );
+        return [
+            ['ticks', 'TICK_VALUE', 16],
+            ['strict_types', 'false', 18],
+        ];
     }
 
 
@@ -161,9 +161,9 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     public function dataInvalidEncodingDirectiveValue()
     {
-        return array(
-            array('encoding', 'invalid', 17),
-        );
+        return [
+            ['encoding', 'invalid', 17],
+        ];
     }
 
 

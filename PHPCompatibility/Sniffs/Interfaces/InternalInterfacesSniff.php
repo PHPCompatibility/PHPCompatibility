@@ -37,11 +37,11 @@ class InternalInterfacesSniff extends Sniff
      *
      * @var array(string => string)
      */
-    protected $internalInterfaces = array(
+    protected $internalInterfaces = [
         'Traversable'       => 'shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
         'DateTimeInterface' => 'is intended for type hints only and is not implementable.',
         'Throwable'         => 'cannot be implemented directly, extend the Exception class instead.',
-    );
+    ];
 
 
     /**
@@ -56,10 +56,10 @@ class InternalInterfacesSniff extends Sniff
         // Handle case-insensitivity of interface names.
         $this->internalInterfaces = \array_change_key_case($this->internalInterfaces, \CASE_LOWER);
 
-        return array(
+        return [
             \T_CLASS,
             \T_ANON_CLASS,
-        );
+        ];
     }
 
 
@@ -78,7 +78,7 @@ class InternalInterfacesSniff extends Sniff
     {
         $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
-        if (\is_array($interfaces) === false || $interfaces === array()) {
+        if (\is_array($interfaces) === false || $interfaces === []) {
             return;
         }
 
@@ -88,10 +88,10 @@ class InternalInterfacesSniff extends Sniff
             if (isset($this->internalInterfaces[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
                 $errorCode = $this->stringToErrorCode($interfaceLc) . 'Found';
-                $data      = array(
+                $data      = [
                     $interface,
                     $this->internalInterfaces[$interfaceLc],
-                );
+                ];
 
                 $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             }

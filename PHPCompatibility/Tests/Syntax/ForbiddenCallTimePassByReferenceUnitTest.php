@@ -52,17 +52,17 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      */
     public function dataForbiddenCallTimePassByReference()
     {
-        return array(
-            array(10), // Bad: call time pass by reference.
-            array(14), // Bad: call time pass by reference with multi-parameter call.
-            array(17), // Bad: nested call time pass by reference.
-            array(25), // Bad: call time pass by reference with space.
-            array(44), // Bad: call time pass by reference.
-            array(45), // Bad: call time pass by reference.
-            array(49), // Bad: multiple call time pass by reference.
-            array(71), // Bad: call time pass by reference.
-            array(93), // Bad: call time pass by reference.
-        );
+        return [
+            [10], // Bad: call time pass by reference.
+            [14], // Bad: call time pass by reference with multi-parameter call.
+            [17], // Bad: nested call time pass by reference.
+            [25], // Bad: call time pass by reference with space.
+            [44], // Bad: call time pass by reference.
+            [45], // Bad: call time pass by reference.
+            [49], // Bad: multiple call time pass by reference.
+            [71], // Bad: call time pass by reference.
+            [93], // Bad: call time pass by reference.
+        ];
     }
 
 
@@ -90,58 +90,58 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4), // OK: Declaring a parameter by reference.
-            array(9), // OK: Call time passing without reference.
+        return [
+            [4], // OK: Declaring a parameter by reference.
+            [9], // OK: Call time passing without reference.
 
             // OK: Bitwise operations as parameter.
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-            array(24),
-            array(39),
-            array(40),
-            array(41),
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [39],
+            [40],
+            [41],
 
-            array(51), // OK: No variables.
-            array(53), // OK: Outside scope of this sniff.
+            [51], // OK: No variables.
+            [53], // OK: Outside scope of this sniff.
 
             // Assign by reference within function call.
-            array(56),
-            array(57),
-            array(58),
-            array(59),
-            array(60),
-            array(61),
-            array(62),
-            array(63),
-            array(64),
-            array(65),
-            array(66),
-            array(67),
-            array(68),
-            array(69),
+            [56],
+            [57],
+            [58],
+            [59],
+            [60],
+            [61],
+            [62],
+            [63],
+            [64],
+            [65],
+            [66],
+            [67],
+            [68],
+            [69],
 
             // Comparison with reference.
-            array(74),
-            array(75),
+            [74],
+            [75],
 
             // Issue #39 - Bitwise operations with (class) constants.
-            array(78),
-            array(79),
-            array(80),
+            [78],
+            [79],
+            [80],
 
             // References in combination with closures.
-            array(83),
-            array(85),
-            array(90),
+            [83],
+            [85],
+            [90],
 
             // Reference within an array argument.
-            array(96),
-            array(97),
-            array(99),
-        );
+            [96],
+            [97],
+            [99],
+        ];
     }
 
 

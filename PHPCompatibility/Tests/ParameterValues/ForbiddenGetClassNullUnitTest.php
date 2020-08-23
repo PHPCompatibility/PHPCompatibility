@@ -49,10 +49,10 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
      */
     public function dataGetClassNull()
     {
-        return array(
-            array(11),
-            array(12),
-        );
+        return [
+            [11],
+            [12],
+        ];
     }
 
 

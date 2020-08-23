@@ -37,7 +37,7 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
      *
      * @var array
      */
-    protected $problemLines = array(
+    protected $problemLines = [
         3,
         4,
         5,
@@ -62,7 +62,7 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
         120,
         123,
         126,
-    );
+    ];
 
 
     /**
@@ -92,9 +92,9 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
      */
     public function dataRemovedTernaryAssociativity()
     {
-        $cases = array();
+        $cases = [];
         foreach ($this->problemLines as $line) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         return $cases;

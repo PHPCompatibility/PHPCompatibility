@@ -62,21 +62,21 @@ class NewPackFormatUnitTest extends BaseSniffTest
      */
     public function dataNewPackFormat()
     {
-        return array(
-            array(8, 'Z', '5.4', '5.5'),
-            array(9, 'q', '5.6', '7.0', '5.6.2'),
-            array(10, 'Q', '5.6', '7.0', '5.6.2'),
-            array(11, 'J', '5.6', '7.0', '5.6.2'),
-            array(12, 'P', '5.6', '7.0', '5.6.2'),
-            array(13, 'e', '7.0', '7.1', '7.0.14'),
-            array(14, 'E', '7.0', '7.1', '7.0.14'),
-            array(15, 'g', '7.0', '7.1', '7.0.14'),
-            array(16, 'G', '7.0', '7.1', '7.0.14'),
-            array(18, 'Z', '5.4', '7.1'), // OK version set to beyond last error.
-            array(18, 'J', '5.6', '7.1', '5.6.2'), // OK version set to beyond last error.
-            array(18, 'E', '7.0', '7.1', '7.0.14'),
-            array(20, 'P', '5.6', '7.0', '5.6.2'),
-        );
+        return [
+            [8, 'Z', '5.4', '5.5'],
+            [9, 'q', '5.6', '7.0', '5.6.2'],
+            [10, 'Q', '5.6', '7.0', '5.6.2'],
+            [11, 'J', '5.6', '7.0', '5.6.2'],
+            [12, 'P', '5.6', '7.0', '5.6.2'],
+            [13, 'e', '7.0', '7.1', '7.0.14'],
+            [14, 'E', '7.0', '7.1', '7.0.14'],
+            [15, 'g', '7.0', '7.1', '7.0.14'],
+            [16, 'G', '7.0', '7.1', '7.0.14'],
+            [18, 'Z', '5.4', '7.1'], // OK version set to beyond last error.
+            [18, 'J', '5.6', '7.1', '5.6.2'], // OK version set to beyond last error.
+            [18, 'E', '7.0', '7.1', '7.0.14'],
+            [20, 'P', '5.6', '7.0', '5.6.2'],
+        ];
     }
 
 
@@ -104,15 +104,15 @@ class NewPackFormatUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No errors expected on the first 6 lines.
         for ($line = 1; $line <= 6; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
-        $data[] = array(23);
-        $data[] = array(24);
+        $data[] = [23];
+        $data[] = [24];
 
         return $data;
     }

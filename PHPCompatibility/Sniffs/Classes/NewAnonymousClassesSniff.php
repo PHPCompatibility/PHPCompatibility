@@ -35,7 +35,7 @@ class NewAnonymousClassesSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_ANON_CLASS);
+        return [\T_ANON_CLASS];
     }
 
 

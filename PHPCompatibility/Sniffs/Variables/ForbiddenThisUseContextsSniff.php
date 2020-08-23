@@ -60,10 +60,10 @@ class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @var array
      */
-    private $skipOverScopes = array(
+    private $skipOverScopes = [
         \T_FUNCTION => true,
         \T_CLOSURE  => true,
-    );
+    ];
 
     /**
      * Valid uses of $this in plain functions or methods outside object context.
@@ -72,10 +72,10 @@ class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @var array
      */
-    private $validUseOutsideObject = array(
+    private $validUseOutsideObject = [
         \T_ISSET => true,
         \T_EMPTY => true,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -88,14 +88,14 @@ class ForbiddenThisUseContextsSniff extends Sniff
     {
         $this->skipOverScopes += BCTokens::ooScopeTokens();
 
-        return array(
+        return [
             \T_FUNCTION,
             \T_CLOSURE,
             \T_GLOBAL,
             \T_CATCH,
             \T_FOREACH,
             \T_UNSET,
-        );
+        ];
     }
 
     /**
@@ -133,7 +133,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                  * This worked in PHP 7.0, though in PHP 5.x, it would throw a
                  * fatal "Cannot re-assign $this" error.
                  */
-                $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr + 1));
+                $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
                 if ($endOfStatement === false) {
                     // No semi-colon - live coding.
                     return;
@@ -190,7 +190,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
                 }
 
                 $stopPtr = $phpcsFile->findPrevious(
-                    array(\T_AS, \T_DOUBLE_ARROW),
+                    [\T_AS, \T_DOUBLE_ARROW],
                     ($tokens[$stackPtr]['parenthesis_closer'] - 1),
                     $tokens[$stackPtr]['parenthesis_opener']
                 );

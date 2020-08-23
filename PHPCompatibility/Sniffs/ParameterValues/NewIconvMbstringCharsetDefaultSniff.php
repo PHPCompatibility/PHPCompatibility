@@ -47,7 +47,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'iconv_mime_decode_headers' => 3,
         'iconv_mime_decode'         => 3,
         'iconv_mime_encode'         => 3, // Special case.
@@ -80,7 +80,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         'mb_strwidth'               => 2,
         'mb_substr_count'           => 3,
         'mb_substr'                 => 4,
-    );
+    ];
 
 
     /**
@@ -132,10 +132,10 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         }
 
         $error = 'The default value of the %1$s parameter for %2$s() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %1$s parameter should be explicitly set.';
-        $data  = array(
+        $data  = [
             $paramName,
             $functionName,
-        );
+        ];
 
         $phpcsFile->addError($error, $stackPtr, 'NotSet', $data);
     }
@@ -163,10 +163,10 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                 $error,
                 $stackPtr,
                 'PreferencesNotSet',
-                array(
+                [
                     '$preferences[\'input/output-charset\']',
                     '$preferences[\'input-charset\'] and $preferences[\'output-charset\'] indexes',
-                )
+                ]
             );
 
             return;
@@ -196,10 +196,10 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                     $error,
                     $firstNonEmpty,
                     'InputPreferenceNotSet',
-                    array(
+                    [
                         '$preferences[\'input-charset\']',
                         '$preferences[\'input-charset\'] index',
-                    )
+                    ]
                 );
             }
 
@@ -208,10 +208,10 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                     $error,
                     $firstNonEmpty,
                     'OutputPreferenceNotSet',
-                    array(
+                    [
                         '$preferences[\'output-charset\']',
                         '$preferences[\'output-charset\'] index',
-                    )
+                    ]
                 );
             }
 
@@ -223,10 +223,10 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             $error,
             $firstNonEmpty,
             'Undetermined',
-            array(
+            [
                 '$preferences[\'input/output-charset\']',
                 '$preferences[\'input-charset\'] and $preferences[\'output-charset\'] indexes',
-            )
+            ]
         );
     }
 }

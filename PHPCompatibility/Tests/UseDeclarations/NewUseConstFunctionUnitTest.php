@@ -49,12 +49,12 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      */
     public function dataNewUseConstFunction()
     {
-        return array(
-            array(29),
-            array(30),
-            array(31),
-            array(32),
-        );
+        return [
+            [29],
+            [30],
+            [31],
+            [32],
+        ];
     }
 
 
@@ -82,20 +82,20 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(7),
-            array(8),
-            array(9),
-            array(15),
-            array(19),
-            array(24),
-            array(37),
-            array(38),
-            array(39),
-            array(45),
-            array(46),
-            array(51),
-        );
+        return [
+            [7],
+            [8],
+            [9],
+            [15],
+            [19],
+            [24],
+            [37],
+            [38],
+            [39],
+            [45],
+            [46],
+            [51],
+        ];
     }
 
 

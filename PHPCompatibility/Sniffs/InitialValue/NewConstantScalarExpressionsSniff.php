@@ -51,12 +51,12 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @var array
      */
-    protected $errorPhrases = array(
+    protected $errorPhrases = [
         'const'     => 'when defining constants using the const keyword',
         'property'  => 'in property declarations',
         'staticvar' => 'in static variable declarations',
         'default'   => 'in default function arguments',
-    );
+    ];
 
     /**
      * Tokens which were allowed to be used in these declarations prior to PHP 5.6.
@@ -67,7 +67,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
      *
      * @var array
      */
-    protected $safeOperands = array(
+    protected $safeOperands = [
         \T_LNUMBER                  => \T_LNUMBER,
         \T_DNUMBER                  => \T_DNUMBER,
         \T_CONSTANT_ENCAPSED_STRING => \T_CONSTANT_ENCAPSED_STRING,
@@ -91,7 +91,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
          * the T_STRING will be combined with non-allowed tokens, so we should be good.
          */
         \T_STRING                   => \T_STRING,
-    );
+    ];
 
 
     /**
@@ -106,13 +106,13 @@ class NewConstantScalarExpressionsSniff extends Sniff
         // Set the properties up only once.
         $this->setProperties();
 
-        return array(
+        return [
             \T_CONST,
             \T_VARIABLE,
             \T_FUNCTION,
             \T_CLOSURE,
             \T_STATIC,
-        );
+        ];
     }
 
 
@@ -196,7 +196,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                     }
 
                     $end = $param['token'];
-                    while (($end = $phpcsFile->findNext(array(\T_COMMA, \T_CLOSE_PARENTHESIS), ($end + 1), ($closer + 1))) !== false) {
+                    while (($end = $phpcsFile->findNext([\T_COMMA, \T_CLOSE_PARENTHESIS], ($end + 1), ($closer + 1))) !== false) {
                         $maybeSkipTo = $this->isRealEndOfDeclaration($tokens, $end, $nestedParenthesisCount);
                         if ($maybeSkipTo !== true) {
                             $end = $maybeSkipTo;
@@ -257,7 +257,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                     $type = 'staticvar';
                 }
 
-                $endOfStatement = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr + 1));
+                $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
                 if ($endOfStatement === false) {
                     // No semi-colon - live coding.
                     return;
@@ -271,7 +271,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                 // Examine each variable/constant in multi-declarations.
                 $start = $stackPtr;
                 $end   = $stackPtr;
-                while (($end = $phpcsFile->findNext(array(\T_COMMA, \T_SEMICOLON, \T_OPEN_SHORT_ARRAY, \T_CLOSE_TAG), ($end + 1), ($endOfStatement + 1))) !== false) {
+                while (($end = $phpcsFile->findNext([\T_COMMA, \T_SEMICOLON, \T_OPEN_SHORT_ARRAY, \T_CLOSE_TAG], ($end + 1), ($endOfStatement + 1))) !== false) {
 
                     $maybeSkipTo = $this->isRealEndOfDeclaration($tokens, $end, $targetNestingLevel);
                     if ($maybeSkipTo !== true) {
@@ -417,7 +417,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
                         $doubleArrow = false;
 
                         $maybeDoubleArrow = $phpcsFile->findNext(
-                            array(\T_DOUBLE_ARROW, \T_ARRAY, \T_OPEN_SHORT_ARRAY),
+                            [\T_DOUBLE_ARROW, \T_ARRAY, \T_OPEN_SHORT_ARRAY],
                             $item['start'],
                             ($item['end'] + 1)
                         );
@@ -504,7 +504,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             $phrase    = $this->errorPhrases[$type];
         }
 
-        $data = array($phrase);
+        $data = [$phrase];
 
         if (empty($content) === false) {
             $error .= ' Found: %s';

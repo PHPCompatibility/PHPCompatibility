@@ -49,21 +49,21 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
      */
     public function dataNewArrayUnpacking()
     {
-        return array(
-            array(11),
-            array(14),
-            array(15),
-            array(17),
-            array(18),
-            array(22),
-            array(23),
-            array(27),
-            array(28),
-            array(33),
-            array(34),
-            array(35),
-            array(38),
-        );
+        return [
+            [11],
+            [14],
+            [15],
+            [17],
+            [18],
+            [22],
+            [23],
+            [27],
+            [28],
+            [33],
+            [34],
+            [35],
+            [38],
+        ];
     }
 
 
@@ -91,17 +91,17 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
         for ($line = 1; $line < 7; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
         // Short list.
-        $data[] = array(41);
+        $data[] = [41];
 
         // Don't report for live coding.
-        $data[] = array(45);
-        $data[] = array(46);
+        $data[] = [45];
+        $data[] = [46];
 
         return $data;
     }

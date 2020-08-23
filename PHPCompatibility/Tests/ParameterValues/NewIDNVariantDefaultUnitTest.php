@@ -52,12 +52,12 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
      */
     public function dataNewIDNVariantDefault()
     {
-        return array(
-            array(10, 'idn_to_ascii'),
-            array(11, 'idn_to_ascii'),
-            array(12, 'IDN_to_utf8'),
-            array(13, 'idn_to_utf8'),
-        );
+        return [
+            [10, 'idn_to_ascii'],
+            [11, 'idn_to_ascii'],
+            [12, 'IDN_to_utf8'],
+            [13, 'idn_to_utf8'],
+        ];
     }
 
 
@@ -101,9 +101,9 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
      */
     public function dataNoViolationsInFileOnValidVersion()
     {
-        return array(
-            array('7.1-7.3'),
-            array('7.4-'),
-        );
+        return [
+            ['7.1-7.3'],
+            ['7.4-'],
+        ];
     }
 }

@@ -43,260 +43,260 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newClasses = array(
-        'ArrayObject' => array(
+    protected $newClasses = [
+        'ArrayObject' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'ArrayIterator' => array(
+        ],
+        'ArrayIterator' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'CachingIterator' => array(
+        ],
+        'CachingIterator' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'DirectoryIterator' => array(
+        ],
+        'DirectoryIterator' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveDirectoryIterator' => array(
+        ],
+        'RecursiveDirectoryIterator' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveIteratorIterator' => array(
+        ],
+        'RecursiveIteratorIterator' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'spl',
-        ),
-        'php_user_filter' => array(
+        ],
+        'php_user_filter' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'tidy' => array(
+        ],
+        'tidy' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'tidy',
-        ),
-        'tidyNode' => array(
+        ],
+        'tidyNode' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'tidy',
-        ),
-        'Reflection' => array(
+        ],
+        'Reflection' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionClass' => array(
+        ],
+        'ReflectionClass' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionExtension' => array(
+        ],
+        'ReflectionExtension' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionFunction' => array(
+        ],
+        'ReflectionFunction' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionMethod' => array(
+        ],
+        'ReflectionMethod' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionObject' => array(
+        ],
+        'ReflectionObject' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionParameter' => array(
+        ],
+        'ReflectionParameter' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionProperty' => array(
+        ],
+        'ReflectionProperty' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'SoapClient' => array(
+        ],
+        'SoapClient' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'SoapServer' => array(
+        ],
+        'SoapServer' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'SoapHeader' => array(
+        ],
+        'SoapHeader' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'SoapParam' => array(
+        ],
+        'SoapParam' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'SoapVar' => array(
+        ],
+        'SoapVar' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'COMPersistHelper' => array(
+        ],
+        'COMPersistHelper' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'DOMAttr' => array(
+        ],
+        'DOMAttr' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMCdataSection' => array(
+        ],
+        'DOMCdataSection' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMCharacterData' => array(
+        ],
+        'DOMCharacterData' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMComment' => array(
+        ],
+        'DOMComment' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMDocument' => array(
+        ],
+        'DOMDocument' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMDocumentFragment' => array(
+        ],
+        'DOMDocumentFragment' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMDocumentType' => array(
+        ],
+        'DOMDocumentType' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMElement' => array(
+        ],
+        'DOMElement' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMEntity' => array(
+        ],
+        'DOMEntity' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMEntityReference' => array(
+        ],
+        'DOMEntityReference' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMImplementation' => array(
+        ],
+        'DOMImplementation' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMNamedNodeMap' => array(
+        ],
+        'DOMNamedNodeMap' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMNode' => array(
+        ],
+        'DOMNode' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMNodeList' => array(
+        ],
+        'DOMNodeList' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMNotation' => array(
+        ],
+        'DOMNotation' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMProcessingInstruction' => array(
+        ],
+        'DOMProcessingInstruction' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMText' => array(
+        ],
+        'DOMText' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'DOMXPath' => array(
+        ],
+        'DOMXPath' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'SimpleXMLElement' => array(
+        ],
+        'SimpleXMLElement' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'simplexml',
-        ),
-        'XSLTProcessor' => array(
+        ],
+        'XSLTProcessor' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'xsl',
-        ),
-        'SQLiteDatabase' => array(
+        ],
+        'SQLiteDatabase' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLiteResult' => array(
+        ],
+        'SQLiteResult' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLiteUnbuffered' => array(
+        ],
+        'SQLiteUnbuffered' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'sqlite',
-        ),
-        'mysqli' => array(
+        ],
+        'mysqli' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli_stmt' => array(
+        ],
+        'mysqli_stmt' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli_result' => array(
+        ],
+        'mysqli_result' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli_driver' => array(
+        ],
+        'mysqli_driver' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli_warning' => array(
+        ],
+        'mysqli_warning' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
+        ],
         /*
         See: https://bugs.php.net/bug.php?id=79625
         'OCI-Collection' => array(
@@ -309,449 +309,449 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ),
         */
 
-        'libXMLError' => array(
+        'libXMLError' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'libxml',
-        ),
-        'PDO' => array(
+        ],
+        'PDO' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'pdo',
-        ),
-        'PDOStatement' => array(
+        ],
+        'PDOStatement' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'pdo',
-        ),
-        'AppendIterator' => array(
+        ],
+        'AppendIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'EmptyIterator' => array(
+        ],
+        'EmptyIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'FilterIterator' => array(
+        ],
+        'FilterIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'InfiniteIterator' => array(
+        ],
+        'InfiniteIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'IteratorIterator' => array(
+        ],
+        'IteratorIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'LimitIterator' => array(
+        ],
+        'LimitIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'NoRewindIterator' => array(
+        ],
+        'NoRewindIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'ParentIterator' => array(
+        ],
+        'ParentIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveArrayIterator' => array(
+        ],
+        'RecursiveArrayIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveCachingIterator' => array(
+        ],
+        'RecursiveCachingIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveFilterIterator' => array(
+        ],
+        'RecursiveFilterIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'SimpleXMLIterator' => array(
+        ],
+        'SimpleXMLIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'simplexml',
-        ),
-        'SplFileObject' => array(
+        ],
+        'SplFileObject' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'SplObjectStorage' => array(
+        ],
+        'SplObjectStorage' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'XMLReader' => array(
+        ],
+        'XMLReader' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'xmlreader',
-        ),
+        ],
 
-        'SplFileInfo' => array(
+        'SplFileInfo' => [
             '5.1.1'     => false,
             '5.1.2'     => true,
             'extension' => 'spl',
-        ),
-        'SplTempFileObject' => array(
+        ],
+        'SplTempFileObject' => [
             '5.1.1'     => false,
             '5.1.2'     => true,
             'extension' => 'spl',
-        ),
-        'XMLWriter' => array(
+        ],
+        'XMLWriter' => [
             '5.1.1'     => false,
             '5.1.2'     => true,
             'extension' => 'xmlwriter',
-        ),
+        ],
 
-        'DateTime' => array(
+        'DateTime' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'DateTimeZone' => array(
+        ],
+        'DateTimeZone' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'RegexIterator' => array(
+        ],
+        'RegexIterator' => [
             '5.1'       => false,
             '5.2'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveRegexIterator' => array(
+        ],
+        'RecursiveRegexIterator' => [
             '5.1'       => false,
             '5.2'       => true,
             'extension' => 'spl',
-        ),
-        'ReflectionFunctionAbstract' => array(
+        ],
+        'ReflectionFunctionAbstract' => [
             '5.1'       => false,
             '5.2'       => true,
             'extension' => 'reflection',
-        ),
-        'ZipArchive' => array(
+        ],
+        'ZipArchive' => [
             '5.1' => false,
             '5.2' => true,
-        ),
+        ],
 
-        'Closure' => array(
+        'Closure' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'DateInterval' => array(
+        ],
+        'DateInterval' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'DatePeriod' => array(
+        ],
+        'DatePeriod' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'finfo' => array(
+        ],
+        'finfo' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'fileinfo',
-        ),
-        'Collator' => array(
+        ],
+        'Collator' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'NumberFormatter' => array(
+        ],
+        'NumberFormatter' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'Locale' => array(
+        ],
+        'Locale' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'Normalizer' => array(
+        ],
+        'Normalizer' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'MessageFormatter' => array(
+        ],
+        'MessageFormatter' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'IntlDateFormatter' => array(
+        ],
+        'IntlDateFormatter' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'Phar' => array(
+        ],
+        'Phar' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'PharData' => array(
+        ],
+        'PharData' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'PharFileInfo' => array(
+        ],
+        'PharFileInfo' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'FilesystemIterator' => array(
+        ],
+        'FilesystemIterator' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'GlobIterator' => array(
+        ],
+        'GlobIterator' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'MultipleIterator' => array(
+        ],
+        'MultipleIterator' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveTreeIterator' => array(
+        ],
+        'RecursiveTreeIterator' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplDoublyLinkedList' => array(
+        ],
+        'SplDoublyLinkedList' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplFixedArray' => array(
+        ],
+        'SplFixedArray' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplHeap' => array(
+        ],
+        'SplHeap' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplMaxHeap' => array(
+        ],
+        'SplMaxHeap' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplMinHeap' => array(
+        ],
+        'SplMinHeap' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplPriorityQueue' => array(
+        ],
+        'SplPriorityQueue' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplQueue' => array(
+        ],
+        'SplQueue' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SplStack' => array(
+        ],
+        'SplStack' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'spl',
-        ),
-        'SQLite3' => array(
+        ],
+        'SQLite3' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'sqlite3',
-        ),
-        'SQLite3Stmt' => array(
+        ],
+        'SQLite3Stmt' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'sqlite3',
-        ),
-        'SQLite3Result' => array(
+        ],
+        'SQLite3Result' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'sqlite3',
-        ),
+        ],
 
-        'ResourceBundle' => array(
+        'ResourceBundle' => [
             '5.3.1'     => false,
             '5.3.2'     => true,
             'extension' => 'intl',
-        ),
+        ],
 
-        'CallbackFilterIterator' => array(
+        'CallbackFilterIterator' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveCallbackFilterIterator' => array(
+        ],
+        'RecursiveCallbackFilterIterator' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'spl',
-        ),
-        'ReflectionZendExtension' => array(
+        ],
+        'ReflectionZendExtension' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'reflection',
-        ),
-        'SessionHandler' => array(
+        ],
+        'SessionHandler' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'SNMP' => array(
+        ],
+        'SNMP' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'Transliterator' => array(
+        ],
+        'Transliterator' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'intl',
-        ),
-        'Spoofchecker' => array(
+        ],
+        'Spoofchecker' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'intl',
-        ),
+        ],
 
-        'Generator' => array(
+        'Generator' => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        'CURLFile' => array(
+        ],
+        'CURLFile' => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        'DateTimeImmutable' => array(
+        ],
+        'DateTimeImmutable' => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        'IntlCalendar' => array(
+        ],
+        'IntlCalendar' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlGregorianCalendar' => array(
+        ],
+        'IntlGregorianCalendar' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlTimeZone' => array(
+        ],
+        'IntlTimeZone' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlBreakIterator' => array(
+        ],
+        'IntlBreakIterator' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlRuleBasedBreakIterator' => array(
+        ],
+        'IntlRuleBasedBreakIterator' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlCodePointBreakIterator' => array(
+        ],
+        'IntlCodePointBreakIterator' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlPartsIterator' => array(
+        ],
+        'IntlPartsIterator' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'IntlIterator' => array(
+        ],
+        'IntlIterator' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'UConverter' => array(
+        ],
+        'UConverter' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
+        ],
 
-        'GMP' => array(
+        'GMP' => [
             '5.5' => false,
             '5.6' => true,
-        ),
+        ],
 
-        'IntlChar' => array(
+        'IntlChar' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'intl',
-        ),
-        'ReflectionType' => array(
+        ],
+        'ReflectionType' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionGenerator' => array(
+        ],
+        'ReflectionGenerator' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'reflection',
-        ),
+        ],
 
-        'ReflectionClassConstant' => array(
+        'ReflectionClassConstant' => [
             '7.0'       => false,
             '7.1'       => true,
             'extension' => 'reflection',
-        ),
-        'ReflectionNamedType' => array(
+        ],
+        'ReflectionNamedType' => [
             '7.0'       => false,
             '7.1'       => true,
             'extension' => 'reflection',
-        ),
+        ],
 
-        'HashContext' => array(
+        'HashContext' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'hash',
-        ),
+        ],
 
-        'FFI' => array(
+        'FFI' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'FFI\CData' => array(
+        ],
+        'FFI\CData' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'FFI\CType' => array(
+        ],
+        'FFI\CType' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'ReflectionReference' => array(
+        ],
+        'ReflectionReference' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'reflection',
-        ),
-        'WeakReference' => array(
+        ],
+        'WeakReference' => [
             '7.3' => false,
             '7.4' => true,
-        ),
+        ],
 
-        'PhpToken' => array(
+        'PhpToken' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-        'WeakMap' => array(
+        ],
+        'WeakMap' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
     /**
      * A list of new Exception classes, not present in older versions.
@@ -770,199 +770,199 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newExceptions = array(
-        'com_exception' => array(
+    protected $newExceptions = [
+        'com_exception' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'DOMException' => array(
+        ],
+        'DOMException' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'dom',
-        ),
-        'Exception' => array(
+        ],
+        'Exception' => [
             // According to the docs introduced in PHP 5.1, but this appears to be.
             // an error.  Class was introduced with try/catch keywords in PHP 5.0.
             '4.4' => false,
             '5.0' => true,
-        ),
-        'ReflectionException' => array(
+        ],
+        'ReflectionException' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
-        'SoapFault' => array(
+        ],
+        'SoapFault' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'SQLiteException' => array(
+        ],
+        'SQLiteException' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'mysqli_sql_exception' => array(
+        ],
+        'mysqli_sql_exception' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
+        ],
 
-        'ErrorException' => array(
+        'ErrorException' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'BadFunctionCallException' => array(
+        ],
+        'BadFunctionCallException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'BadMethodCallException' => array(
+        ],
+        'BadMethodCallException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'DomainException' => array(
+        ],
+        'DomainException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'InvalidArgumentException' => array(
+        ],
+        'InvalidArgumentException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'LengthException' => array(
+        ],
+        'LengthException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'LogicException' => array(
+        ],
+        'LogicException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'OutOfBoundsException' => array(
+        ],
+        'OutOfBoundsException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'OutOfRangeException' => array(
+        ],
+        'OutOfRangeException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'OverflowException' => array(
+        ],
+        'OverflowException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'PDOException' => array(
+        ],
+        'PDOException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'pdo',
-        ),
-        'RangeException' => array(
+        ],
+        'RangeException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'RuntimeException' => array(
+        ],
+        'RuntimeException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'UnderflowException' => array(
+        ],
+        'UnderflowException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'UnexpectedValueException' => array(
+        ],
+        'UnexpectedValueException' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
+        ],
 
-        'PharException' => array(
+        'PharException' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
+        ],
 
-        'SNMPException' => array(
+        'SNMPException' => [
             '5.3' => false,
             '5.4' => true,
-        ),
+        ],
 
-        'IntlException' => array(
+        'IntlException' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
+        ],
 
-        'Error' => array(
+        'Error' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'ArithmeticError' => array(
+        ],
+        'ArithmeticError' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'AssertionError' => array(
+        ],
+        'AssertionError' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'DivisionByZeroError' => array(
+        ],
+        'DivisionByZeroError' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'ParseError' => array(
+        ],
+        'ParseError' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'TypeError' => array(
+        ],
+        'TypeError' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'ClosedGeneratorException' => array(
+        ],
+        'ClosedGeneratorException' => [
             '5.6' => false,
             '7.0' => true,
-        ),
+        ],
 
-        'ArgumentCountError' => array(
+        'ArgumentCountError' => [
             '7.0' => false,
             '7.1' => true,
-        ),
+        ],
 
-        'SodiumException' => array(
+        'SodiumException' => [
             '7.1' => false,
             '7.2' => true,
-        ),
+        ],
 
-        'CompileError' => array(
+        'CompileError' => [
             '7.2' => false,
             '7.3' => true,
-        ),
-        'JsonException' => array(
+        ],
+        'JsonException' => [
             '7.2'       => false,
             '7.3'       => true,
             'extension' => 'json',
-        ),
+        ],
 
-        'FFI\Exception' => array(
+        'FFI\Exception' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'FFI\ParserException' => array(
+        ],
+        'FFI\ParserException' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
+        ],
 
-        'ValueError' => array(
+        'ValueError' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -990,7 +990,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         // Add the Exception classes to the Classes list.
         $this->newClasses = array_merge($this->newClasses, $this->newExceptions);
 
-        return array(
+        return [
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
@@ -999,7 +999,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             \T_CLOSURE,
             \T_CATCH,
             \T_RETURN_TYPE,
-        );
+        ];
     }
 
 
@@ -1083,10 +1083,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $className,
             'nameLc' => $classNameLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -1117,10 +1117,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             $typeHintLc = strtolower($hint);
 
             if (isset($this->newClasses[$typeHintLc]) === true) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $hint,
                     'nameLc' => $typeHintLc,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
         }
@@ -1152,7 +1152,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         $opener = $tokens[$stackPtr]['parenthesis_opener'];
         $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
         $name   = '';
-        $listen = array(
+        $listen = [
             // Parts of a (namespaced) class name.
             \T_STRING              => true,
             \T_NS_SEPARATOR        => true,
@@ -1160,7 +1160,7 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             \T_VARIABLE            => false,
             \T_BITWISE_OR          => false,
             \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
-        );
+        ];
 
         for ($i = ($opener + 1); $i < $closer; $i++) {
             if (isset($listen[$tokens[$i]['code']]) === false) {
@@ -1181,10 +1181,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
                 $nameLC = strtolower($name);
 
                 if (isset($this->newExceptions[$nameLC]) === true) {
-                    $itemInfo = array(
+                    $itemInfo = [
                         'name'   => $name,
                         'nameLc' => $nameLC,
-                    );
+                    ];
                     $this->handleFeature($phpcsFile, $i, $itemInfo);
                 }
 
@@ -1223,10 +1223,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         }
 
         // Still here ? Then this is a return type declaration using a new class.
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $returnTypeHint,
             'nameLc' => $returnTypeHintLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

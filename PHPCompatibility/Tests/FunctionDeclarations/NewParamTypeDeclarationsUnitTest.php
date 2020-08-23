@@ -60,33 +60,33 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataNewTypeDeclaration()
     {
-        return array(
-            array('array', '5.0', 4, '5.1'),
-            array('array', '5.0', 5, '5.1'),
-            array('callable', '5.3', 8, '5.4'),
-            array('bool', '5.6', 11, '7.0'),
-            array('int', '5.6', 12, '7.0'),
-            array('float', '5.6', 13, '7.0'),
-            array('string', '5.6', 14, '7.0'),
-            array('iterable', '7.0', 17, '7.1'),
-            array('parent', '5.1', 24, '5.2'),
-            array('self', '5.1', 34, '5.2'),
-            array('self', '5.1', 37, '5.2', false),
-            array('self', '5.1', 41, '5.2'),
-            array('self', '5.1', 44, '5.2', false),
-            array('callable', '5.3', 52, '5.4'),
-            array('int', '5.6', 53, '7.0'),
-            array('callable', '5.3', 56, '5.4'),
-            array('int', '5.6', 57, '7.0'),
-            array('object', '7.1', 60, '7.2'),
-            array('parent', '5.1', 63, '5.2', false),
-            array('parent', '5.1', 66, '5.2', false),
-            array('self', '5.1', 71, '5.2'),
-            array('self', '5.1', 72, '5.2', false),
-            array('parent', '5.1', 73, '5.2', false),
-            array('int', '5.6', 78, '7.0'),
-            array('callable', '5.3', 80, '5.4'),
-        );
+        return [
+            ['array', '5.0', 4, '5.1'],
+            ['array', '5.0', 5, '5.1'],
+            ['callable', '5.3', 8, '5.4'],
+            ['bool', '5.6', 11, '7.0'],
+            ['int', '5.6', 12, '7.0'],
+            ['float', '5.6', 13, '7.0'],
+            ['string', '5.6', 14, '7.0'],
+            ['iterable', '7.0', 17, '7.1'],
+            ['parent', '5.1', 24, '5.2'],
+            ['self', '5.1', 34, '5.2'],
+            ['self', '5.1', 37, '5.2', false],
+            ['self', '5.1', 41, '5.2'],
+            ['self', '5.1', 44, '5.2', false],
+            ['callable', '5.3', 52, '5.4'],
+            ['int', '5.6', 53, '7.0'],
+            ['callable', '5.3', 56, '5.4'],
+            ['int', '5.6', 57, '7.0'],
+            ['object', '7.1', 60, '7.2'],
+            ['parent', '5.1', 63, '5.2', false],
+            ['parent', '5.1', 66, '5.2', false],
+            ['self', '5.1', 71, '5.2'],
+            ['self', '5.1', 72, '5.2', false],
+            ['parent', '5.1', 73, '5.2', false],
+            ['int', '5.6', 78, '7.0'],
+            ['callable', '5.3', 80, '5.4'],
+        ];
     }
 
 
@@ -116,12 +116,12 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataInvalidTypeDeclaration()
     {
-        return array(
-            array('boolean', 'bool', 20),
-            array('integer', 'int', 21),
-            array('static', 'self', 25),
-            array('integer', 'int', 81),
-        );
+        return [
+            ['boolean', 'bool', 20],
+            ['integer', 'int', 21],
+            ['static', 'self', 25],
+            ['integer', 'int', 81],
+        ];
     }
 
 
@@ -150,13 +150,13 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataInvalidSelfTypeDeclaration()
     {
-        return array(
-            array(37, 'self'),
-            array(44, 'self'),
-            array(63, 'parent'),
-            array(66, 'parent'),
-            array(72, 'self'),
-        );
+        return [
+            [37, 'self'],
+            [44, 'self'],
+            [63, 'parent'],
+            [66, 'parent'],
+            [72, 'self'],
+        ];
     }
 
 
@@ -184,10 +184,10 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataInvalidSelfTypeDeclarationNoFalsePositives()
     {
-        return array(
-            array(71),
-            array(73),
-        );
+        return [
+            [71],
+            [73],
+        ];
     }
 
 
@@ -223,40 +223,40 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataTypeDeclaration()
     {
-        return array(
-            array(4),
-            array(5),
-            array(8),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(17),
-            array(20),
-            array(21),
-            array(24),
-            array(25),
-            array(29, true),
-            array(30, true),
-            array(34),
-            array(37),
-            array(41),
-            array(44),
-            array(52),
-            array(53),
-            array(56),
-            array(57),
-            array(60),
-            array(63),
-            array(66),
-            array(71),
-            array(72),
-            array(73),
-            array(78),
-            array(79),
-            array(80),
-            array(81),
-        );
+        return [
+            [4],
+            [5],
+            [8],
+            [11],
+            [12],
+            [13],
+            [14],
+            [17],
+            [20],
+            [21],
+            [24],
+            [25],
+            [29, true],
+            [30, true],
+            [34],
+            [37],
+            [41],
+            [44],
+            [52],
+            [53],
+            [56],
+            [57],
+            [60],
+            [63],
+            [66],
+            [71],
+            [72],
+            [73],
+            [78],
+            [79],
+            [80],
+            [81],
+        ];
     }
 
 
@@ -284,11 +284,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(48),
-            array(49),
-            array(82),
-        );
+        return [
+            [48],
+            [49],
+            [82],
+        ];
     }
 
 

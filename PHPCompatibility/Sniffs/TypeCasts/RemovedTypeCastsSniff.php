@@ -37,19 +37,19 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $deprecatedTypeCasts = array(
-        'T_UNSET_CAST' => array(
+    protected $deprecatedTypeCasts = [
+        'T_UNSET_CAST' => [
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'unset()',
             'description' => 'unset',
-        ),
-        'T_DOUBLE_CAST' => array(
+        ],
+        'T_DOUBLE_CAST' => [
             '7.4'         => false,
             'alternative' => '(float)',
             'description' => 'real',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -61,7 +61,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ($this->deprecatedTypeCasts as $token => $versions) {
             $tokens[] = constant($token);
         }
@@ -92,10 +92,10 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'        => $tokenType,
             'description' => $this->deprecatedTypeCasts[$tokenType]['description'],
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -109,7 +109,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('description', 'alternative');
+        return ['description', 'alternative'];
     }
 
     /**

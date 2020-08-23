@@ -65,12 +65,12 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
      */
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
-        $errorInfo = array(
+        $errorInfo = [
             'deprecated'  => '',
             'removed'     => '',
             'alternative' => '',
             'error'       => false,
-        );
+        ];
 
         $versionArray = $this->getVersionArray($itemArray);
 
@@ -128,7 +128,7 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
         $error    = $this->getErrorMsgTemplate();
 
         $errorCode = $this->stringToErrorCode($itemName);
-        $data      = array($itemName);
+        $data      = [$itemName];
 
         if ($errorInfo['deprecated'] !== '') {
             $error     .= 'deprecated since PHP %s and ';

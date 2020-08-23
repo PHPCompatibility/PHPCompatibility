@@ -41,830 +41,830 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string)
      */
-    protected $newIniDirectives = array(
-        'auto_globals_jit' => array(
+    protected $newIniDirectives = [
+        'auto_globals_jit' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'com.code_page' => array(
+        ],
+        'com.code_page' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'date.default_latitude' => array(
+        ],
+        'date.default_latitude' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'date.default_longitude' => array(
+        ],
+        'date.default_longitude' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'date.sunrise_zenith' => array(
+        ],
+        'date.sunrise_zenith' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'date.sunset_zenith' => array(
+        ],
+        'date.sunset_zenith' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'ibase.default_charset' => array(
+        ],
+        'ibase.default_charset' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'ibase.default_db' => array(
+        ],
+        'ibase.default_db' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'mail.force_extra_parameters' => array(
+        ],
+        'mail.force_extra_parameters' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'mime_magic.debug' => array(
+        ],
+        'mime_magic.debug' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'mysqli.max_links' => array(
+        ],
+        'mysqli.max_links' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.default_port' => array(
+        ],
+        'mysqli.default_port' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.default_socket' => array(
+        ],
+        'mysqli.default_socket' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.default_host' => array(
+        ],
+        'mysqli.default_host' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.default_user' => array(
+        ],
+        'mysqli.default_user' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.default_pw' => array(
+        ],
+        'mysqli.default_pw' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.reconnect' => array(
+        ],
+        'mysqli.reconnect' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'mysqli',
-        ),
-        'report_zend_debug' => array(
+        ],
+        'report_zend_debug' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'session.hash_bits_per_character' => array(
+        ],
+        'session.hash_bits_per_character' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'session.hash_function' => array(
+        ],
+        'session.hash_function' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'soap.wsdl_cache_dir' => array(
+        ],
+        'soap.wsdl_cache_dir' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'soap.wsdl_cache_enabled' => array(
+        ],
+        'soap.wsdl_cache_enabled' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'soap.wsdl_cache_ttl' => array(
+        ],
+        'soap.wsdl_cache_ttl' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'soap',
-        ),
-        'sqlite.assoc_case' => array(
+        ],
+        'sqlite.assoc_case' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'tidy.clean_output' => array(
+        ],
+        'tidy.clean_output' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'tidy',
-        ),
-        'tidy.default_config' => array(
+        ],
+        'tidy.default_config' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'tidy',
-        ),
-        'zend.ze1_compatibility_mode' => array(
+        ],
+        'zend.ze1_compatibility_mode' => [
             '4.4' => false,
             '5.0' => true,
-        ),
+        ],
 
-        'date.timezone' => array(
+        'date.timezone' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'detect_unicode' => array(
+        ],
+        'detect_unicode' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'fbsql.batchsize' => array(
+        ],
+        'fbsql.batchsize' => [
             '5.0'         => false,
             '5.1'         => true,
             'alternative' => 'fbsql.batchSize',
-        ),
-        'realpath_cache_size' => array(
+        ],
+        'realpath_cache_size' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'realpath_cache_ttl' => array(
+        ],
+        'realpath_cache_ttl' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'pdo_odbc.connection_pooling' => array(
+        ],
+        'pdo_odbc.connection_pooling' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'pdo',
-        ),
+        ],
 
-        'pdo_odbc.db2_instance_name' => array(
+        'pdo_odbc.db2_instance_name' => [
             '5.1.0'     => false,
             '5.1.1'     => true,
             'extension' => 'pdo',
-        ),
+        ],
 
-        'mbstring.strict_detection' => array(
+        'mbstring.strict_detection' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'mssql.charset' => array(
+        ],
+        'mssql.charset' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.default_prefetch' => array(
+        ],
+        'oci8.default_prefetch' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.max_persistent' => array(
+        ],
+        'oci8.max_persistent' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.old_oci_close_semantics' => array(
+        ],
+        'oci8.old_oci_close_semantics' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.persistent_timeout' => array(
+        ],
+        'oci8.persistent_timeout' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.ping_interval' => array(
+        ],
+        'oci8.ping_interval' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.privileged_connect' => array(
+        ],
+        'oci8.privileged_connect' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
-        'oci8.statement_cache_size' => array(
+        ],
+        'oci8.statement_cache_size' => [
             '5.1.1' => false,
             '5.1.2' => true,
-        ),
+        ],
 
-        'gd.jpeg_ignore_warning' => array(
+        'gd.jpeg_ignore_warning' => [
             '5.1.2' => false,
             '5.1.3' => true,
-        ),
+        ],
 
-        'fbsql.show_timestamp_decimals' => array(
+        'fbsql.show_timestamp_decimals' => [
             '5.1.4' => false,
             '5.1.5' => true,
-        ),
-        'soap.wsdl_cache' => array(
+        ],
+        'soap.wsdl_cache' => [
             '5.1.4'     => false,
             '5.1.5'     => true,
             'extension' => 'soap',
-        ),
-        'soap.wsdl_cache_limit' => array(
+        ],
+        'soap.wsdl_cache_limit' => [
             '5.1.4'     => false,
             '5.1.5'     => true,
             'extension' => 'soap',
-        ),
+        ],
 
-        'allow_url_include' => array(
+        'allow_url_include' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'filter.default' => array(
+        ],
+        'filter.default' => [
             '5.1'       => false,
             '5.2'       => true,
             'extension' => 'filter',
-        ),
-        'filter.default_flags' => array(
+        ],
+        'filter.default_flags' => [
             '5.1'       => false,
             '5.2'       => true,
             'extension' => 'filter',
-        ),
-        'pcre.backtrack_limit' => array(
+        ],
+        'pcre.backtrack_limit' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'pcre.recursion_limit' => array(
+        ],
+        'pcre.recursion_limit' => [
             '5.1' => false,
             '5.2' => true,
-        ),
-        'session.cookie_httponly' => array(
+        ],
+        'session.cookie_httponly' => [
             '5.1' => false,
             '5.2' => true,
-        ),
+        ],
 
-        'cgi.check_shebang_line' => array(
+        'cgi.check_shebang_line' => [
             '5.2.0' => false,
             '5.2.1' => true,
-        ),
+        ],
 
-        'max_input_nesting_level' => array(
+        'max_input_nesting_level' => [
             '5.2.2' => false,
             '5.2.3' => true,
-        ),
+        ],
 
-        'mysqli.allow_local_infile' => array(
+        'mysqli.allow_local_infile' => [
             '5.2.3'     => false,
             '5.2.4'     => true,
             'extension' => 'mysqli',
-        ),
+        ],
 
-        'max_file_uploads' => array(
+        'max_file_uploads' => [
             '5.2.11' => false,
             '5.2.12' => true,
-        ),
+        ],
 
-        'cgi.discard_path' => array(
+        'cgi.discard_path' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'exit_on_timeout' => array(
+        ],
+        'exit_on_timeout' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'intl.default_locale' => array(
+        ],
+        'intl.default_locale' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'intl.error_level' => array(
+        ],
+        'intl.error_level' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'intl',
-        ),
-        'mail.add_x_header' => array(
+        ],
+        'mail.add_x_header' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'mail.log' => array(
+        ],
+        'mail.log' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'mbstring.http_output_conv_mimetype' => array(
+        ],
+        'mbstring.http_output_conv_mimetype' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'mysqli.allow_persistent' => array(
+        ],
+        'mysqli.allow_persistent' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqli.max_persistent' => array(
+        ],
+        'mysqli.max_persistent' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqli',
-        ),
-        'mysqlnd.collect_memory_statistics' => array(
+        ],
+        'mysqlnd.collect_memory_statistics' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.collect_statistics' => array(
+        ],
+        'mysqlnd.collect_statistics' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.debug' => array(
+        ],
+        'mysqlnd.debug' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.log_mask' => array(
+        ],
+        'mysqlnd.log_mask' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.net_read_timeout' => array(
+        ],
+        'mysqlnd.net_read_timeout' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.net_cmd_buffer_size' => array(
+        ],
+        'mysqlnd.net_cmd_buffer_size' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.net_read_buffer_size' => array(
+        ],
+        'mysqlnd.net_read_buffer_size' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'odbc.default_cursortype' => array(
+        ],
+        'odbc.default_cursortype' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'phar.readonly' => array(
+        ],
+        'phar.readonly' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'phar.require_hash' => array(
+        ],
+        'phar.require_hash' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'phar.extract_list' => array(
+        ],
+        'phar.extract_list' => [
             '5.2'       => false,
             '5.3'       => true,
             'extension' => 'phar',
-        ),
-        'request_order' => array(
+        ],
+        'request_order' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'user_ini.cache_ttl' => array(
+        ],
+        'user_ini.cache_ttl' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'user_ini.filename' => array(
+        ],
+        'user_ini.filename' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'zend.enable_gc' => array(
+        ],
+        'zend.enable_gc' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'oci8.connection_class' => array(
+        ],
+        'oci8.connection_class' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'oci8.events' => array(
+        ],
+        'oci8.events' => [
             '5.2' => false,
             '5.3' => true,
-        ),
+        ],
 
-        'mysqlnd.mempool_default_size' => array(
+        'mysqlnd.mempool_default_size' => [
             '5.3.2'     => false,
             '5.3.3'     => true,
             'extension' => 'mysqlnd',
-        ),
+        ],
 
-        'curl.cainfo' => array(
+        'curl.cainfo' => [
             '5.3.6' => false,
             '5.3.7' => true,
-        ),
+        ],
 
-        'max_input_vars' => array(
+        'max_input_vars' => [
             '5.3.8' => false,
             '5.3.9' => true,
-        ),
+        ],
 
-        'sqlite3.extension_dir' => array(
+        'sqlite3.extension_dir' => [
             '5.3.10'    => false,
             '5.3.11'    => true,
             'extension' => 'sqlite3',
-        ),
+        ],
 
-        'cli.pager' => array(
+        'cli.pager' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'cli.prompt' => array(
+        ],
+        'cli.prompt' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'cli_server.color' => array(
+        ],
+        'cli_server.color' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'enable_post_data_reading' => array(
+        ],
+        'enable_post_data_reading' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'phar.cache_list' => array(
+        ],
+        'phar.cache_list' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'phar',
-        ),
-        'session.upload_progress.enabled' => array(
+        ],
+        'session.upload_progress.enabled' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.upload_progress.cleanup' => array(
+        ],
+        'session.upload_progress.cleanup' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.upload_progress.name' => array(
+        ],
+        'session.upload_progress.name' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.upload_progress.freq' => array(
+        ],
+        'session.upload_progress.freq' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.upload_progress.min_freq' => array(
+        ],
+        'session.upload_progress.min_freq' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'session.upload_progress.prefix' => array(
+        ],
+        'session.upload_progress.prefix' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'windows_show_crt_warning' => array(
+        ],
+        'windows_show_crt_warning' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'zend.detect_unicode' => array(
+        ],
+        'zend.detect_unicode' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'detect_unicode',
-        ),
-        'zend.multibyte' => array(
+        ],
+        'zend.multibyte' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'zend.script_encoding' => array(
+        ],
+        'zend.script_encoding' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'zend.signal_check' => array(
+        ],
+        'zend.signal_check' => [
             '5.3' => false,
             '5.4' => true,
-        ),
+        ],
 
-        'intl.use_exceptions' => array(
+        'intl.use_exceptions' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'intl',
-        ),
-        'mysqlnd.sha256_server_public_key' => array(
+        ],
+        'mysqlnd.sha256_server_public_key' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'mysqlnd.trace_alloc' => array(
+        ],
+        'mysqlnd.trace_alloc' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'mysqlnd',
-        ),
-        'sys_temp_dir' => array(
+        ],
+        'sys_temp_dir' => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        'xsl.security_prefs' => array(
+        ],
+        'xsl.security_prefs' => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        'opcache.enable' => array(
+        ],
+        'opcache.enable' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.enable_cli' => array(
+        ],
+        'opcache.enable_cli' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.memory_consumption' => array(
+        ],
+        'opcache.memory_consumption' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.interned_strings_buffer' => array(
+        ],
+        'opcache.interned_strings_buffer' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.max_accelerated_files' => array(
+        ],
+        'opcache.max_accelerated_files' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.max_wasted_percentage' => array(
+        ],
+        'opcache.max_wasted_percentage' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.use_cwd' => array(
+        ],
+        'opcache.use_cwd' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.validate_timestamps' => array(
+        ],
+        'opcache.validate_timestamps' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.revalidate_freq' => array(
+        ],
+        'opcache.revalidate_freq' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.revalidate_path' => array(
+        ],
+        'opcache.revalidate_path' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.save_comments' => array(
+        ],
+        'opcache.save_comments' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.load_comments' => array(
+        ],
+        'opcache.load_comments' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.fast_shutdown' => array(
+        ],
+        'opcache.fast_shutdown' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.enable_file_override' => array(
+        ],
+        'opcache.enable_file_override' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.optimization_level' => array(
+        ],
+        'opcache.optimization_level' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.inherited_hack' => array(
+        ],
+        'opcache.inherited_hack' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.dups_fix' => array(
+        ],
+        'opcache.dups_fix' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.blacklist_filename' => array(
+        ],
+        'opcache.blacklist_filename' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.max_file_size' => array(
+        ],
+        'opcache.max_file_size' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.consistency_checks' => array(
+        ],
+        'opcache.consistency_checks' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.force_restart_timeout' => array(
+        ],
+        'opcache.force_restart_timeout' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.error_log' => array(
+        ],
+        'opcache.error_log' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.log_verbosity_level' => array(
+        ],
+        'opcache.log_verbosity_level' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.preferred_memory_model' => array(
+        ],
+        'opcache.preferred_memory_model' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.protect_memory' => array(
+        ],
+        'opcache.protect_memory' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.mmap_base' => array(
+        ],
+        'opcache.mmap_base' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.restrict_api' => array(
+        ],
+        'opcache.restrict_api' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.file_update_protection' => array(
+        ],
+        'opcache.file_update_protection' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.huge_code_pages' => array(
+        ],
+        'opcache.huge_code_pages' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.lockfile_path' => array(
+        ],
+        'opcache.lockfile_path' => [
             '5.4'       => false,
             '5.5'       => true,
             'extension' => 'opcache',
-        ),
+        ],
 
-        'session.use_strict_mode' => array(
+        'session.use_strict_mode' => [
             '5.5.1' => false,
             '5.5.2' => true,
-        ),
+        ],
 
-        'phpdbg.path' => array(
+        'phpdbg.path' => [
             '5.6.2'     => false,
             '5.6.3'     => true,
             'extension' => 'phpdbg',
-        ),
+        ],
 
-        'mysqli.rollback_on_cached_plink' => array(
+        'mysqli.rollback_on_cached_plink' => [
             '5.5'       => false,
             '5.6'       => true,
             'extension' => 'mysqli',
-        ),
-        'openssl.cafile' => array(
+        ],
+        'openssl.cafile' => [
             '5.5' => false,
             '5.6' => true,
-        ),
-        'openssl.capath' => array(
+        ],
+        'openssl.capath' => [
             '5.5' => false,
             '5.6' => true,
-        ),
-        'mysqlnd.fetch_data_copy' => array(
+        ],
+        'mysqlnd.fetch_data_copy' => [
             '5.5'       => false,
             '5.6'       => true,
             'extension' => 'mysqlnd',
-        ),
+        ],
 
-        'assert.exception' => array(
+        'assert.exception' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'pcre.jit' => array(
+        ],
+        'pcre.jit' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'phpdbg.eol' => array(
+        ],
+        'phpdbg.eol' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'phpdbg',
-        ),
-        'session.lazy_write' => array(
+        ],
+        'session.lazy_write' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'zend.assertions' => array(
+        ],
+        'zend.assertions' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'opcache.file_cache' => array(
+        ],
+        'opcache.file_cache' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.file_cache_only' => array(
+        ],
+        'opcache.file_cache_only' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.file_cache_consistency_checks' => array(
+        ],
+        'opcache.file_cache_consistency_checks' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.file_cache_fallback' => array(
+        ],
+        'opcache.file_cache_fallback' => [
             '5.6'       => false,
             '7.0'       => true,
             'extension' => 'opcache',
-        ), // Windows only.
+        ], // Windows only.
 
-        'opcache.validate_permission' => array(
+        'opcache.validate_permission' => [
             '7.0.13'    => false,
             '7.0.14'    => true,
             'extension' => 'opcache',
-        ),
-        'opcache.validate_root' => array(
+        ],
+        'opcache.validate_root' => [
             '7.0.13'    => false,
             '7.0.14'    => true,
             'extension' => 'opcache',
-        ),
+        ],
 
-        'hard_timeout' => array(
+        'hard_timeout' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'opcache.opt_debug_level' => array(
+        ],
+        'opcache.opt_debug_level' => [
             '7.0'       => false,
             '7.1'       => true,
             'extension' => 'opcache',
-        ),
-        'session.sid_length' => array(
+        ],
+        'session.sid_length' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'session.sid_bits_per_character' => array(
+        ],
+        'session.sid_bits_per_character' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'session.trans_sid_hosts' => array(
+        ],
+        'session.trans_sid_hosts' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'session.trans_sid_tags' => array(
+        ],
+        'session.trans_sid_tags' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'url_rewriter.hosts' => array(
+        ],
+        'url_rewriter.hosts' => [
             '7.0' => false,
             '7.1' => true,
-        ),
+        ],
 
         // Introduced in PHP 7.1.25, 7.2.13, 7.3.0.
-        'imap.enable_insecure_rsh' => array(
+        'imap.enable_insecure_rsh' => [
             '7.1.24' => false,
             '7.1.25' => true,
-        ),
+        ],
 
         // Introduced in PHP 7.2.17, 7.3.4.
-        'sqlite3.defensive' => array(
+        'sqlite3.defensive' => [
             '7.2.16'    => false,
             '7.2.17'    => true,
             'extension' => 'sqlite3',
-        ),
+        ],
 
-        'syslog.facility' => array(
+        'syslog.facility' => [
             '7.2' => false,
             '7.3' => true,
-        ),
-        'syslog.filter' => array(
+        ],
+        'syslog.filter' => [
             '7.2' => false,
             '7.3' => true,
-        ),
-        'syslog.ident' => array(
+        ],
+        'syslog.ident' => [
             '7.2' => false,
             '7.3' => true,
-        ),
-        'session.cookie_samesite' => array(
+        ],
+        'session.cookie_samesite' => [
             '7.2' => false,
             '7.3' => true,
-        ),
+        ],
 
-        'ffi.enable' => array(
+        'ffi.enable' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'ffi.preload' => array(
+        ],
+        'ffi.preload' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
-        ),
-        'opcache.cache_id' => array(
+        ],
+        'opcache.cache_id' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.preload' => array(
+        ],
+        'opcache.preload' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'opcache',
-        ),
-        'opcache.preload_user' => array(
+        ],
+        'opcache.preload_user' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'opcache',
-        ),
-        'zend.exception_ignore_args' => array(
+        ],
+        'zend.exception_ignore_args' => [
             '7.3' => false,
             '7.4' => true,
-        ),
+        ],
 
-        'pm.status_listen' => array(
+        'pm.status_listen' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-        'zend.exception_string_param_max_len' => array(
+        ],
+        'zend.exception_string_param_max_len' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -875,7 +875,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -893,12 +893,12 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_FUNCTION        => true,
             \T_CONST           => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -921,10 +921,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'       => $filteredToken,
             'functionLc' => $functionLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
     }
 
@@ -953,7 +953,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('alternative');
+        return ['alternative'];
     }
 
 

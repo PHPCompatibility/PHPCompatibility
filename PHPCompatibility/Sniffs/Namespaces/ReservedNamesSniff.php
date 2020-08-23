@@ -38,9 +38,9 @@ class ReservedNamesSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_NAMESPACE,
-        );
+        ];
     }
 
     /**
@@ -77,7 +77,7 @@ class ReservedNamesSniff extends Sniff
             'Namespace name "%s" is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.',
             $stackPtr,
             'Found',
-            array($name)
+            [$name]
         );
     }
 }

@@ -49,9 +49,9 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageParam()
     {
-        return array(
-            array(16),
-        );
+        return [
+            [16],
+        ];
     }
 
 
@@ -79,10 +79,10 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageClosureParam()
     {
-        return array(
-            array(17), // x2.
-            array(21),
-        );
+        return [
+            [17], // x2.
+            [21],
+        ];
     }
 
 
@@ -110,11 +110,11 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesParam()
     {
-        return array(
-            array(6),
-            array(7),
-            array(11),
-        );
+        return [
+            [6],
+            [7],
+            [11],
+        ];
     }
 
 
@@ -142,11 +142,11 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageGlobal()
     {
-        return array(
-            array(30),
-            array(33),
-            array(40),
-        );
+        return [
+            [30],
+            [33],
+            [40],
+        ];
     }
 
 
@@ -174,11 +174,11 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesGlobal()
     {
-        return array(
-            array(38),
-            array(39),
-            array(41),
-        );
+        return [
+            [38],
+            [39],
+            [41],
+        ];
     }
 
 
@@ -206,10 +206,10 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageCatch()
     {
-        return array(
-            array(54),
-            array(56),
-        );
+        return [
+            [54],
+            [56],
+        ];
     }
 
 
@@ -237,9 +237,9 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesCatch()
     {
-        return array(
-            array(52),
-        );
+        return [
+            [52],
+        ];
     }
 
 
@@ -267,10 +267,10 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageForeach()
     {
-        return array(
-            array(75),
-            array(76),
-        );
+        return [
+            [75],
+            [76],
+        ];
     }
 
 
@@ -298,11 +298,11 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesForeach()
     {
-        return array(
-            array(63),
-            array(67),
-            array(72),
-        );
+        return [
+            [63],
+            [67],
+            [72],
+        ];
     }
 
 
@@ -330,11 +330,11 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageUnset()
     {
-        return array(
-            array(97),
-            array(98), // x2.
-            array(102),
-        );
+        return [
+            [97],
+            [98], // x2.
+            [102],
+        ];
     }
 
 
@@ -362,13 +362,13 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesUnset()
     {
-        return array(
-            array(83),
-            array(86),
-            array(92),
-            array(100),
-            array(101),
-        );
+        return [
+            [83],
+            [86],
+            [92],
+            [100],
+            [101],
+        ];
     }
 
 
@@ -396,10 +396,10 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataIncompatibleThisUsageOutsideObjectContext()
     {
-        return array(
-            array(146),
-            array(151),
-        );
+        return [
+            [146],
+            [151],
+        ];
     }
 
 
@@ -427,16 +427,16 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositivesOutsideObjectContext()
     {
-        return array(
-            array(109),
-            array(112),
-            array(117),
-            array(121),
-            array(126),
-            array(133),
-            array(138),
-            array(202), // Exception to the rule / static __call() magic method.
-        );
+        return [
+            [109],
+            [112],
+            [117],
+            [121],
+            [126],
+            [133],
+            [138],
+            [202], // Exception to the rule / static __call() magic method.
+        ];
     }
 
 

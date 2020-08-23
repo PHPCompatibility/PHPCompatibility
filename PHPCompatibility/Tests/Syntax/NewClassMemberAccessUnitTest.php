@@ -56,31 +56,31 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function dataNewClassMemberAccess()
     {
-        return array(
-            array(41),
-            array(42),
-            array(43),
-            array(45),
-            array(47),
-            array(48),
-            array(49),
-            array(51),
-            array(52),
-            array(54),
-            array(58),
-            array(60),
-            array(61),
-            array(62),
-            array(65),
-            array(70),
-            array(76),
-            array(79),
-            array(82),
-            array(87),
-            array(91),
-            array(96),
-            array(117, true),
-        );
+        return [
+            [41],
+            [42],
+            [43],
+            [45],
+            [47],
+            [48],
+            [49],
+            [51],
+            [52],
+            [54],
+            [58],
+            [60],
+            [61],
+            [62],
+            [65],
+            [70],
+            [76],
+            [79],
+            [82],
+            [87],
+            [91],
+            [96],
+            [117, true],
+        ];
     }
 
 
@@ -108,11 +108,11 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function dataNewClassMemberAccessUsingCurlies()
     {
-        return array(
-            array(111),
-            array(112), // Error x 2.
-            array(117),
-        );
+        return [
+            [111],
+            [112], // Error x 2.
+            [117],
+        ];
     }
 
 
@@ -140,13 +140,13 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      */
     public function dataCloneClassMemberAccess()
     {
-        return array(
-            array(101),
-            array(103),
-            array(105),
-            array(114),
-            array(118), // Error x 2.
-        );
+        return [
+            [101],
+            [103],
+            [105],
+            [114],
+            [118], // Error x 2.
+        ];
     }
 
 

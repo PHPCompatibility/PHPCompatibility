@@ -43,12 +43,12 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    protected $changedFunctions = array(
+    protected $changedFunctions = [
         'func_get_arg'          => true,
         'func_get_args'         => true,
         'debug_backtrace'       => true,
         'debug_print_backtrace' => true,
-    );
+    ];
 
     /**
      * Tokens to look out for to allow us to skip past nested scoped structures.
@@ -57,14 +57,14 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    private $skipPastNested = array(
+    private $skipPastNested = [
         'T_CLASS'      => true,
         'T_ANON_CLASS' => true,
         'T_INTERFACE'  => true,
         'T_TRAIT'      => true,
         'T_FUNCTION'   => true,
         'T_CLOSURE'    => true,
-    );
+    ];
 
     /**
      * List of tokens which when they preceed a T_STRING *within a function* indicate
@@ -79,10 +79,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    private $noneFunctionCallIndicators = array(
+    private $noneFunctionCallIndicators = [
         \T_DOUBLE_COLON    => true,
         \T_OBJECT_OPERATOR => true,
-    );
+    ];
 
     /**
      * The tokens for variable incrementing/decrementing.
@@ -91,10 +91,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    private $plusPlusMinusMinus = array(
+    private $plusPlusMinusMinus = [
         \T_DEC => true,
         \T_INC => true,
-    );
+    ];
 
     /**
      * Tokens to ignore when determining the start of a statement for call to one of the functions.
@@ -103,12 +103,12 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    private $ignoreForStartOfStatement = array(
+    private $ignoreForStartOfStatement = [
         \T_COMMA,
         \T_DOUBLE_ARROW,
         \T_OPEN_SQUARE_BRACKET,
         \T_OPEN_PARENTHESIS,
-    );
+    ];
 
     /**
      * Tokens to ignore when determining the start of a statement for a used variable.
@@ -117,13 +117,13 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @var array
      */
-    private $ignoreForStartOfStatementVarUse = array(
+    private $ignoreForStartOfStatementVarUse = [
         \T_COMMA,
         \T_DOUBLE_ARROW,
         \T_OPEN_SQUARE_BRACKET,
         \T_OPEN_PARENTHESIS,
         \T_OPEN_SHORT_ARRAY,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -134,10 +134,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_FUNCTION,
             \T_CLOSURE,
-        );
+        ];
     }
 
     /**
@@ -174,7 +174,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             return;
         }
 
-        $paramNames = array();
+        $paramNames = [];
         foreach ($params as $param) {
             $paramNames[] = $param['name'];
         }
@@ -469,11 +469,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             }
 
             $error = 'Since PHP 7.0, functions inspecting arguments, like %1$s(), no longer report the original value as passed to a parameter, but will instead provide the current value. The parameter "%2$s" was %4$s on line %3$s.';
-            $data  = array(
+            $data  = [
                 $foundFunctionName,
                 $tokens[$variableToken]['content'],
                 $tokens[$variableToken]['line'],
-            );
+            ];
 
             if ($scanResult === 'error') {
                 $data[] = 'changed';

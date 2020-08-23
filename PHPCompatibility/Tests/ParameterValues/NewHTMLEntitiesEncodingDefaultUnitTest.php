@@ -52,12 +52,12 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
      */
     public function dataNewHTMLEntitiesEncodingDefault()
     {
-        return array(
-            array(10, 'htmlentities'),
-            array(11, 'htmlspecialchars'),
-            array(12, 'HTML_entity_decode'),
-            array(13, 'get_html_translation_table'),
-        );
+        return [
+            [10, 'htmlentities'],
+            [11, 'htmlspecialchars'],
+            [12, 'HTML_entity_decode'],
+            [13, 'get_html_translation_table'],
+        ];
     }
 
 
@@ -101,9 +101,9 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
      */
     public function dataNoViolationsInFileOnValidVersion()
     {
-        return array(
-            array('5.0-5.3'),
-            array('5.4-'),
-        );
+        return [
+            ['5.0-5.3'],
+            ['5.4-'],
+        ];
     }
 }

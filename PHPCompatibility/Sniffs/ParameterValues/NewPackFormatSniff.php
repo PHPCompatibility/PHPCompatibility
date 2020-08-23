@@ -33,9 +33,9 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'pack' => true,
-    );
+    ];
 
     /**
      * List of new format character codes added to pack().
@@ -44,20 +44,20 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array Regex pattern => Version array.
      */
-    protected $newFormats = array(
-        '`([Z])`'    => array(
+    protected $newFormats = [
+        '`([Z])`'    => [
             '5.4' => false,
             '5.5' => true,
-        ),
-        '`([qQJP])`' => array(
+        ],
+        '`([qQJP])`' => [
             '5.6.2' => false,
             '5.6.3' => true,
-        ),
-        '`([eEgG])`' => array(
+        ],
+        '`([eEgG])`' => [
             '7.0.14' => false,
             '7.0.15' => true, // And 7.1.1.
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -123,11 +123,11 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
                             'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower. Found: %s',
                             $targetParam['start'],
                             'NewFormatFound',
-                            array(
+                            [
                                 $matches[1],
                                 $version,
                                 $targetParam['clean'],
-                            )
+                            ]
                         );
                         continue 2;
                     }

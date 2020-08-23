@@ -36,7 +36,7 @@ class NewConstVisibilitySniff extends Sniff
      */
     public function register()
     {
-        return array(\T_CONST);
+        return [\T_CONST];
     }
 
     /**
@@ -75,7 +75,7 @@ class NewConstVisibilitySniff extends Sniff
             'Visibility indicators for class constants are not supported in PHP 7.0 or earlier. Found "%s const"',
             $stackPtr,
             'Found',
-            array($tokens[$prevToken]['content'])
+            [$tokens[$prevToken]['content']]
         );
     }
 }

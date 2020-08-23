@@ -63,22 +63,22 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      */
     public function dataRemovedExtension()
     {
-        return array(
-            array('dbase', '5.3', array(10), '5.2'),
-            array('fam', '5.1', array(16), '5.0'),
-            array('fbsql', '5.3', array(18), '5.2'),
-            array('filepro', '5.2', array(22), '5.1'),
-            array('hw_api', '5.2', array(24), '5.1'),
-            array('ircg', '5.1', array(28), '5.0'),
-            array('mnogosearch', '5.1', array(34), '5.0'),
-            array('msql', '5.3', array(36), '5.2'),
-            array('mssql', '7.0', array(63), '5.6'),
-            array('ovrimos', '5.1', array(44), '5.0'),
-            array('pfpro_', '5.1', array(46), '5.0'),
-            array('sqlite', '5.4', array(48), '5.3'),
+        return [
+            ['dbase', '5.3', [10], '5.2'],
+            ['fam', '5.1', [16], '5.0'],
+            ['fbsql', '5.3', [18], '5.2'],
+            ['filepro', '5.2', [22], '5.1'],
+            ['hw_api', '5.2', [24], '5.1'],
+            ['ircg', '5.1', [28], '5.0'],
+            ['mnogosearch', '5.1', [34], '5.0'],
+            ['msql', '5.3', [36], '5.2'],
+            ['mssql', '7.0', [63], '5.6'],
+            ['ovrimos', '5.1', [44], '5.0'],
+            ['pfpro_', '5.1', [46], '5.0'],
+            ['sqlite', '5.4', [48], '5.3'],
             // array('sybase', '7.0', array(xx), '5.6'), sybase_ct ???
-            array('yp', '5.1', array(54), '5.0'),
-        );
+            ['yp', '5.1', [54], '5.0'],
+        ];
     }
 
     /**
@@ -120,23 +120,23 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      */
     public function dataRemovedExtensionWithAlternative()
     {
-        return array(
-            array('activescript', '5.1', 'pecl/activescript', array(3, 4), '5.0'),
-            array('cpdf', '5.1', 'pecl/pdflib', array(6, 7, 8), '5.0'),
-            array('dbx', '5.1', 'pecl/dbx', array(12), '5.0'),
-            array('dio', '5.1', 'pecl/dio', array(14), '5.0'),
-            array('fdf', '5.3', 'pecl/fdf', array(20), '5.2'),
-            array('ibase', '7.4', 'pecl/ibase', array(78), '7.3'),
-            array('ingres', '5.1', 'pecl/ingres', array(26), '5.0'),
-            array('mcve', '5.1', 'pecl/mcve', array(30), '5.0'),
-            array('ming', '5.3', 'pecl/ming', array(32), '5.2'),
-            array('ncurses', '5.3', 'pecl/ncurses', array(40), '5.2'),
-            array('oracle', '5.1', 'oci8 or pdo_oci', array(42), '5.0'),
-            array('recode', '7.4', 'iconv or mbstring', array(80), '7.3'),
-            array('sybase', '5.3', 'sybase_ct', array(50), '5.2'),
-            array('w32api', '5.1', 'pecl/ffi', array(52), '5.0'),
-            array('wddx', '7.4', 'pecl/wddx', array(79), '7.3'),
-        );
+        return [
+            ['activescript', '5.1', 'pecl/activescript', [3, 4], '5.0'],
+            ['cpdf', '5.1', 'pecl/pdflib', [6, 7, 8], '5.0'],
+            ['dbx', '5.1', 'pecl/dbx', [12], '5.0'],
+            ['dio', '5.1', 'pecl/dio', [14], '5.0'],
+            ['fdf', '5.3', 'pecl/fdf', [20], '5.2'],
+            ['ibase', '7.4', 'pecl/ibase', [78], '7.3'],
+            ['ingres', '5.1', 'pecl/ingres', [26], '5.0'],
+            ['mcve', '5.1', 'pecl/mcve', [30], '5.0'],
+            ['ming', '5.3', 'pecl/ming', [32], '5.2'],
+            ['ncurses', '5.3', 'pecl/ncurses', [40], '5.2'],
+            ['oracle', '5.1', 'oci8 or pdo_oci', [42], '5.0'],
+            ['recode', '7.4', 'iconv or mbstring', [80], '7.3'],
+            ['sybase', '5.3', 'sybase_ct', [50], '5.2'],
+            ['w32api', '5.1', 'pecl/ffi', [52], '5.0'],
+            ['wddx', '7.4', 'pecl/wddx', [79], '7.3'],
+        ];
     }
 
 
@@ -189,11 +189,11 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      */
     public function dataDeprecatedRemovedExtensionWithAlternative()
     {
-        return array(
-            array('ereg', '5.3', '7.0', 'pcre', array(65, 76), '5.2'),
-            array('mysql_', '5.5', '7.0', 'mysqli', array(38), '5.4'),
-            array('mcrypt', '7.1', '7.2', 'openssl (preferred) or pecl/mcrypt once available', array(71), '7.0'),
-        );
+        return [
+            ['ereg', '5.3', '7.0', 'pcre', [65, 76], '5.2'],
+            ['mysql_', '5.5', '7.0', 'mysqli', [38], '5.4'],
+            ['mcrypt', '7.1', '7.2', 'openssl (preferred) or pecl/mcrypt once available', [71], '7.0'],
+        ];
     }
 
 
@@ -221,16 +221,16 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(57), // Not a function call.
-            array(58), // Function declaration.
-            array(59), // Class instantiation.
-            array(60), // Method call.
-            array(68), // Whitelisted function.
-            array(74), // Whitelisted function array.
-            array(75), // Whitelisted function array.
-            array(82), // Live coding.
-        );
+        return [
+            [57], // Not a function call.
+            [58], // Function declaration.
+            [59], // Class instantiation.
+            [60], // Method call.
+            [68], // Whitelisted function.
+            [74], // Whitelisted function array.
+            [75], // Whitelisted function array.
+            [82], // Live coding.
+        ];
     }
 
 

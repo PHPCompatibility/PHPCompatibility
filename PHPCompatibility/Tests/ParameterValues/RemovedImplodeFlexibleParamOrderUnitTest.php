@@ -53,24 +53,24 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
      */
     public function dataRemovedImplodeFlexibleParamOrder()
     {
-        return array(
-            array(29, 'implode'),
-            array(30, 'join'),
-            array(32, 'implode'),
-            array(33, 'join'),
-            array(35, 'implode'),
-            array(36, 'join'),
-            array(37, 'implode'),
-            array(38, 'implode'),
-            array(40, 'join'),
-            array(46, 'implode'),
-            array(47, 'implode'),
-            array(48, 'implode'),
-            array(49, 'implode'),
-            array(52, 'implode'),
-            array(53, 'implode'),
-            array(68, 'implode'),
-        );
+        return [
+            [29, 'implode'],
+            [30, 'join'],
+            [32, 'implode'],
+            [33, 'join'],
+            [35, 'implode'],
+            [36, 'join'],
+            [37, 'implode'],
+            [38, 'implode'],
+            [40, 'join'],
+            [46, 'implode'],
+            [47, 'implode'],
+            [48, 'implode'],
+            [49, 'implode'],
+            [52, 'implode'],
+            [53, 'implode'],
+            [68, 'implode'],
+        ];
     }
 
 
@@ -98,16 +98,16 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No errors expected on the first 27 lines.
         for ($line = 1; $line <= 27; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
-        $data[] = array(57);
-        $data[] = array(64);
-        $data[] = array(67);
+        $data[] = [57];
+        $data[] = [64];
+        $data[] = [67];
 
         return $data;
     }

@@ -33,7 +33,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      *
      * @var array
      */
-    protected $targetedTokens = array(
+    protected $targetedTokens = [
         \T_ABSTRACT   => '5.0',
         \T_CALLABLE   => '5.4',
         \T_CATCH      => '5.0',
@@ -51,7 +51,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         \T_TRAIT      => '5.4',
         \T_TRY        => '5.0',
 
-    );
+    ];
 
     /**
      * T_STRING keywords to recognize as targetted tokens.
@@ -64,7 +64,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      *
      * @var array
      */
-    protected $targetedStringTokens = array(
+    protected $targetedStringTokens = [
         'abstract'   => '5.0',
         'callable'   => '5.4',
         'catch'      => '5.0',
@@ -81,7 +81,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         'public'     => '5.0',
         'trait'      => '5.4',
         'try'        => '5.0',
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -176,11 +176,11 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
         if ($this->supportsAbove($version)) {
             $error     = "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)";
             $errorCode = $this->stringToErrorCode($tokenContentLc) . 'Found';
-            $data      = array(
+            $data      = [
                 $tokenContentLc,
                 $version,
                 $tokens[$stackPtr]['type'],
-            );
+            ];
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }

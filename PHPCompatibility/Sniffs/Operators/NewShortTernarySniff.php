@@ -41,7 +41,7 @@ class NewShortTernarySniff extends Sniff
      */
     public function register()
     {
-        return array(\T_INLINE_THEN);
+        return [\T_INLINE_THEN];
     }
 
     /**

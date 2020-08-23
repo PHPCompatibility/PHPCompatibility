@@ -37,86 +37,86 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newInterfaces = array(
-        'Traversable' => array(
+    protected $newInterfaces = [
+        'Traversable' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'Reflector' => array(
+        ],
+        'Reflector' => [
             '4.4'       => false,
             '5.0'       => true,
             'extension' => 'reflection',
-        ),
+        ],
 
-        'Countable' => array(
+        'Countable' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'OuterIterator' => array(
+        ],
+        'OuterIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'RecursiveIterator' => array(
+        ],
+        'RecursiveIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'SeekableIterator' => array(
+        ],
+        'SeekableIterator' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'Serializable' => array(
+        ],
+        'Serializable' => [
             '5.0' => false,
             '5.1' => true,
-        ),
-        'SplObserver' => array(
+        ],
+        'SplObserver' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
-        'SplSubject' => array(
+        ],
+        'SplSubject' => [
             '5.0'       => false,
             '5.1'       => true,
             'extension' => 'spl',
-        ),
+        ],
 
-        'JsonSerializable' => array(
+        'JsonSerializable' => [
             '5.3'       => false,
             '5.4'       => true,
             'extension' => 'json',
-        ),
-        'SessionHandlerInterface' => array(
+        ],
+        'SessionHandlerInterface' => [
             '5.3' => false,
             '5.4' => true,
-        ),
+        ],
 
-        'DateTimeInterface' => array(
+        'DateTimeInterface' => [
             '5.4' => false,
             '5.5' => true,
-        ),
+        ],
 
-        'SessionIdInterface' => array(
+        'SessionIdInterface' => [
             '5.5.0' => false,
             '5.5.1' => true,
-        ),
+        ],
 
-        'Throwable' => array(
+        'Throwable' => [
             '5.6' => false,
             '7.0' => true,
-        ),
-        'SessionUpdateTimestampHandlerInterface' => array(
+        ],
+        'SessionUpdateTimestampHandlerInterface' => [
             '5.6' => false,
             '7.0' => true,
-        ),
+        ],
 
-        'Stringable' => array(
+        'Stringable' => [
             '7.4' => false,
             '8.0' => true,
-        ),
-    );
+        ],
+    ];
 
     /**
      * A list of methods which cannot be used in combination with particular interfaces.
@@ -125,12 +125,12 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => string))
      */
-    protected $unsupportedMethods = array(
-        'Serializable' => array(
+    protected $unsupportedMethods = [
+        'Serializable' => [
             '__sleep'  => 'https://www.php.net/serializable',
             '__wakeup' => 'https://www.php.net/serializable',
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -145,14 +145,14 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         $this->newInterfaces      = \array_change_key_case($this->newInterfaces, \CASE_LOWER);
         $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
-        return array(
+        return [
             \T_CLASS,
             \T_ANON_CLASS,
             \T_FUNCTION,
             \T_CLOSURE,
             \T_RETURN_TYPE,
             \T_CATCH,
-        );
+        ];
     }
 
 
@@ -222,7 +222,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
     {
         $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
-        if (\is_array($interfaces) === false || $interfaces === array()) {
+        if (\is_array($interfaces) === false || $interfaces === []) {
             return;
         }
 
@@ -239,10 +239,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             $interfaceLc = strtolower($interface);
 
             if (isset($this->newInterfaces[$interfaceLc]) === true) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $interface,
                     'nameLc' => $interfaceLc,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
 
@@ -258,11 +258,11 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                     if (isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true) {
                         $error     = 'Classes that implement interface %s do not support the method %s(). See %s';
                         $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
-                        $data      = array(
+                        $data      = [
                             $interface,
                             $funcName,
                             $this->unsupportedMethods[$interfaceLc][$funcNameLc],
-                        );
+                        ];
 
                         $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
                     }
@@ -297,10 +297,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             $typeHintLc = strtolower($hint);
 
             if (isset($this->newInterfaces[$typeHintLc]) === true) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $hint,
                     'nameLc' => $typeHintLc,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
         }
@@ -335,10 +335,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         }
 
         // Still here ? Then this is a return type declaration using a new interface.
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $returnTypeHint,
             'nameLc' => $returnTypeHintLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -368,7 +368,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         $opener = $tokens[$stackPtr]['parenthesis_opener'];
         $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
         $name   = '';
-        $listen = array(
+        $listen = [
             // Parts of a (namespaced) class name.
             \T_STRING              => true,
             \T_NS_SEPARATOR        => true,
@@ -376,7 +376,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             \T_VARIABLE            => false,
             \T_BITWISE_OR          => false,
             \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
-        );
+        ];
 
         for ($i = ($opener + 1); $i < $closer; $i++) {
             if (isset($listen[$tokens[$i]['code']]) === false) {
@@ -397,10 +397,10 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 $nameLC = strtolower($name);
 
                 if (isset($this->newInterfaces[$nameLC]) === true) {
-                    $itemInfo = array(
+                    $itemInfo = [
                         'name'   => $name,
                         'nameLc' => $nameLC,
-                    );
+                    ];
                     $this->handleFeature($phpcsFile, $i, $itemInfo);
                 }
 

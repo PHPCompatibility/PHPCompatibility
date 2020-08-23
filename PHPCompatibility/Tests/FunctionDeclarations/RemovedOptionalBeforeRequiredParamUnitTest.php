@@ -49,13 +49,13 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTest
      */
     public function dataRemovedOptionalBeforeRequiredParam()
     {
-        return array(
-            array(13), // Warning x 2.
-            array(14),
-            array(16),
-            array(17),
-            array(20),
-        );
+        return [
+            [13], // Warning x 2.
+            [14],
+            [16],
+            [17],
+            [20],
+        ];
     }
 
 
@@ -83,19 +83,19 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 9 lines.
         for ($line = 1; $line <= 9; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         // Don't error on variadic parameters.
-        $cases[] = array(23);
-        $cases[] = array(24);
-        $cases[] = array(26);
+        $cases[] = [23];
+        $cases[] = [24];
+        $cases[] = [26];
 
         // Add parse error test case.
-        $cases[] = array(29);
+        $cases[] = [29];
 
         return $cases;
     }

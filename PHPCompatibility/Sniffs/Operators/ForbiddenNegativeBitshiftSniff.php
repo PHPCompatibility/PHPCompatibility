@@ -39,12 +39,12 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      *
      * @var array
      */
-    private $inclusiveStopPoints = array(
+    private $inclusiveStopPoints = [
         \T_COLON        => true,
         \T_COMMA        => true,
         \T_DOUBLE_ARROW => true,
         \T_SEMICOLON    => true,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -56,12 +56,12 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_SL,
             \T_SL_EQUAL,
             \T_SR,
             \T_SR_EQUAL,
-        );
+        ];
     }
 
     /**
@@ -104,7 +104,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             'Bitwise shifts by negative number will throw an ArithmeticError in PHP 7.0. Found: %s',
             $stackPtr,
             'Found',
-            array(GetTokensAsString::compact($phpcsFile, $start, ($end - $start + 1), true))
+            [GetTokensAsString::compact($phpcsFile, $start, ($end - $start + 1), true)]
         );
     }
 }

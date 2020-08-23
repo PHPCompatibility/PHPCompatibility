@@ -52,10 +52,10 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      */
     public function dataForbiddenStripTagsSelfClosingXHTML()
     {
-        return array(
-            array(14, "'<br/>'"),
-            array(15, "'<img/><br/>' . '<meta/><input/>'"),
-        );
+        return [
+            [14, "'<br/>'"],
+            [15, "'<img/><br/>' . '<meta/><input/>'"],
+        ];
     }
 
 

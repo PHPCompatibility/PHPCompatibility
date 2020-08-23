@@ -50,12 +50,12 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      */
     public function dataForbiddenAbstractPrivateMethods()
     {
-        return array(
-            array(28),
-            array(29),
-            array(33),
-            array(34),
-        );
+        return [
+            [28],
+            [29],
+            [33],
+            [34],
+        ];
     }
 
 
@@ -87,10 +87,10 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      */
     public function dataNewTraitAbstractPrivateMethods()
     {
-        return array(
-            array(42),
-            array(43),
-        );
+        return [
+            [42],
+            [43],
+        ];
     }
 
 
@@ -121,10 +121,10 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 24 lines.
         for ($line = 1; $line <= 24; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         return $cases;

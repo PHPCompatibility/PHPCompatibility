@@ -43,13 +43,13 @@ class DiscouragedSwitchContinueSniff extends Sniff
      *
      * @var array
      */
-    protected $loopStructures = array(
+    protected $loopStructures = [
         \T_FOR     => \T_FOR,
         \T_FOREACH => \T_FOREACH,
         \T_WHILE   => \T_WHILE,
         \T_DO      => \T_DO,
         \T_SWITCH  => \T_SWITCH,
-    );
+    ];
 
     /**
      * Tokens which start a new case within a switch.
@@ -58,10 +58,10 @@ class DiscouragedSwitchContinueSniff extends Sniff
      *
      * @var array
      */
-    protected $caseTokens = array(
+    protected $caseTokens = [
         \T_CASE    => \T_CASE,
         \T_DEFAULT => \T_DEFAULT,
-    );
+    ];
 
     /**
      * Token codes which are accepted to determine the level for the continue.
@@ -72,11 +72,11 @@ class DiscouragedSwitchContinueSniff extends Sniff
      *
      * @var array
      */
-    protected $acceptedLevelTokens = array(
+    protected $acceptedLevelTokens = [
         \T_LNUMBER           => \T_LNUMBER,
         \T_OPEN_PARENTHESIS  => \T_OPEN_PARENTHESIS,
         \T_CLOSE_PARENTHESIS => \T_CLOSE_PARENTHESIS,
-    );
+    ];
 
 
     /**
@@ -91,7 +91,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
         $this->acceptedLevelTokens += BCTokens::arithmeticTokens();
         $this->acceptedLevelTokens += Tokens::$emptyTokens;
 
-        return array(\T_SWITCH);
+        return [\T_SWITCH];
     }
 
     /**
@@ -176,7 +176,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
                     break;
                 }
 
-                $nextSemicolon = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($continue + 1), $caseCloser);
+                $nextSemicolon = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($continue + 1), $caseCloser);
                 $codeString    = '';
                 for ($i = ($continue + 1); $i < $nextSemicolon; $i++) {
                     $content = $tokens[$i]['content'];

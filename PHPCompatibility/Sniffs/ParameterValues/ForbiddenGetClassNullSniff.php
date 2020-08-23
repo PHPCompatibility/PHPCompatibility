@@ -34,9 +34,9 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'get_class' => true,
-    );
+    ];
 
 
     /**

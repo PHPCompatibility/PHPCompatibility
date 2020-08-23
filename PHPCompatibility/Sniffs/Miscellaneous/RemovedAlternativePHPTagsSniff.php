@@ -52,11 +52,11 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             $this->aspTags = (bool) ini_get('asp_tags');
         }
 
-        return array(
+        return [
             \T_OPEN_TAG,
             \T_OPEN_TAG_WITH_ECHO,
             \T_INLINE_HTML,
-        );
+        ];
     }
 
 
@@ -88,17 +88,17 @@ class RemovedAlternativePHPTagsSniff extends Sniff
         if ($openTag['code'] === \T_OPEN_TAG || $openTag['code'] === \T_OPEN_TAG_WITH_ECHO) {
 
             if ($content === '<%' || $content === '<%=') {
-                $data      = array(
+                $data      = [
                     'ASP',
                     $content,
-                );
+                ];
                 $errorCode = 'ASPOpenTagFound';
 
             } elseif (strpos($content, '<script ') !== false) {
-                $data      = array(
+                $data      = [
                     'Script',
                     $content,
-                );
+                ];
                 $errorCode = 'ScriptOpenTagFound';
             } else {
                 return;
@@ -109,10 +109,10 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             && preg_match('`(<script (?:[^>]+)?language=[\'"]?php[\'"]?(?:[^>]+)?>)`i', $content, $match) === 1
         ) {
             $found     = $match[1];
-            $data      = array(
+            $data      = [
                 'Script',
                 $found,
-            );
+            ];
             $errorCode = 'ScriptOpenTagFound';
         }
 
@@ -131,7 +131,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             if (strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');
-                $data    = array('<%' . $snippet);
+                $data    = ['<%' . $snippet];
 
                 $phpcsFile->addWarning($error, $stackPtr, 'MaybeASPOpenTagFound', $data);
             }

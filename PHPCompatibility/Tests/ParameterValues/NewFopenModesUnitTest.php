@@ -62,13 +62,13 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function dataFopenMode()
     {
-        return array(
-            array(9, 'e', '7.0', '7.1', '7.0.15'),
-            array(10, 'c+', '5.2', '5.3', '5.2.5'),
-            array(11, 'c', '5.2', '5.3', '5.2.5'),
-            array(12, 'c', '5.2', '7.1', '5.2.5'), // High okVersion, to pass by the second violation.
-            array(12, 'e', '7.0', '7.1', '7.0.15'),
-        );
+        return [
+            [9, 'e', '7.0', '7.1', '7.0.15'],
+            [10, 'c+', '5.2', '5.3', '5.2.5'],
+            [11, 'c', '5.2', '5.3', '5.2.5'],
+            [12, 'c', '5.2', '7.1', '5.2.5'], // High okVersion, to pass by the second violation.
+            [12, 'e', '7.0', '7.1', '7.0.15'],
+        ];
     }
 
 
@@ -96,15 +96,15 @@ class NewFopenModesUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = array();
+        $data = [];
 
         // No errors expected on the first 6 lines.
         for ($line = 1; $line <= 6; $line++) {
-            $data[] = array($line);
+            $data[] = [$line];
         }
 
-        $data[] = array(15);
-        $data[] = array(16);
+        $data[] = [15];
+        $data[] = [16];
 
         return $data;
     }

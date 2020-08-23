@@ -49,17 +49,17 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
      */
     public function dataNewExceptionsFromToString()
     {
-        return array(
-            array(39),
-            array(48),
-            array(57),
-            array(80),
-            array(83),
-            array(92),
-            array(130),
-            array(141),
-            array(152),
-        );
+        return [
+            [39],
+            [48],
+            [57],
+            [80],
+            [83],
+            [92],
+            [130],
+            [141],
+            [152],
+        ];
     }
 
 
@@ -87,29 +87,29 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 34 lines.
         for ($line = 1; $line <= 34; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
-        $cases[] = array(37);
-        $cases[] = array(46);
-        $cases[] = array(55);
+        $cases[] = [37];
+        $cases[] = [46];
+        $cases[] = [55];
 
         // No false positive for try/catch.
         for ($line = 64; $line <= 79; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
-        $cases[] = array(90);
+        $cases[] = [90];
 
         // No false positive for docblock check.
         for ($line = 103; $line <= 122; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
-        $cases[] = array(154);
+        $cases[] = [154];
 
         return $cases;
     }

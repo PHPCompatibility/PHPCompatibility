@@ -33,9 +33,9 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'array_reduce' => true,
-    );
+    ];
 
     /**
      * Tokens which, for the purposes of this sniff, indicate that there is
@@ -45,14 +45,14 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    private $variableValueTokens = array(
+    private $variableValueTokens = [
         \T_VARIABLE,
         \T_STRING,
         \T_SELF,
         \T_PARENT,
         \T_STATIC,
         \T_DOUBLE_QUOTED_STRING,
-    );
+    ];
 
 
     /**
@@ -102,14 +102,14 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
                 $error . ' Found: %s',
                 $targetParam['start'],
                 'InvalidTypeFound',
-                array($targetParam['clean'])
+                [$targetParam['clean']]
             );
         } else {
             $phpcsFile->addWarning(
                 $error . ' Variable value found. Found: %s',
                 $targetParam['start'],
                 'VariableFound',
-                array($targetParam['clean'])
+                [$targetParam['clean']]
             );
         }
     }

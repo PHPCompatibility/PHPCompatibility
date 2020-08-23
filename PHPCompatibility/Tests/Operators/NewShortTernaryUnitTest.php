@@ -50,10 +50,10 @@ class NewShortTernaryUnitTest extends BaseSniffTest
      */
     public function dataElvisOperator()
     {
-        return array(
-            array(8),
-            array(10),
-        );
+        return [
+            [8],
+            [10],
+        ];
     }
 
 

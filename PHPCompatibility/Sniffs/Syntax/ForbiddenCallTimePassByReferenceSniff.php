@@ -43,7 +43,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      *
      * @var array
      */
-    private $assignOrCompare = array();
+    private $assignOrCompare = [];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -56,10 +56,10 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     {
         $this->assignOrCompare = BCTokens::assignmentTokens() + BCTokens::equalityTokens();
 
-        return array(
+        return [
             \T_STRING,
             \T_VARIABLE,
-        );
+        ];
     }
 
     /**
@@ -156,12 +156,12 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $find = array(
+        $find = [
             \T_VARIABLE,
             \T_ARRAY,
             \T_OPEN_SHORT_ARRAY,
             \T_CLOSURE,
-        );
+        ];
 
         $searchStartToken = $parameter['start'] - 1;
         $searchEndToken   = $parameter['end'] + 1;

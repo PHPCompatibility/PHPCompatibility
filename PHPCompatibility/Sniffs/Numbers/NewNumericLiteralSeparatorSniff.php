@@ -38,10 +38,10 @@ class NewNumericLiteralSeparatorSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_LNUMBER,
             \T_DNUMBER,
-        );
+        ];
     }
 
     /**
@@ -73,7 +73,7 @@ class NewNumericLiteralSeparatorSniff extends Sniff
                 'The use of underscore separators in numeric literals is not supported in PHP 7.3 or lower. Found: %s',
                 $stackPtr,
                 'Found',
-                array($numberInfo['orig_content'])
+                [$numberInfo['orig_content']]
             );
 
             // Skip past the parts we've already taken into account to prevent double reporting.

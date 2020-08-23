@@ -38,2502 +38,2502 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $removedConstants = array(
-        'F_DUPFD' => array(
+    protected $removedConstants = [
+        'F_DUPFD' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_GETFD' => array(
+        ],
+        'F_GETFD' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_GETFL' => array(
+        ],
+        'F_GETFL' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_GETLK' => array(
+        ],
+        'F_GETLK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_GETOWN' => array(
+        ],
+        'F_GETOWN' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_RDLCK' => array(
+        ],
+        'F_RDLCK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_SETFL' => array(
+        ],
+        'F_SETFL' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_SETLK' => array(
+        ],
+        'F_SETLK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_SETLKW' => array(
+        ],
+        'F_SETLKW' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_SETOWN' => array(
+        ],
+        'F_SETOWN' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_UNLCK' => array(
+        ],
+        'F_UNLCK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'F_WRLCK' => array(
+        ],
+        'F_WRLCK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_APPEND' => array(
+        ],
+        'O_APPEND' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_ASYNC' => array(
+        ],
+        'O_ASYNC' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_CREAT' => array(
+        ],
+        'O_CREAT' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_EXCL' => array(
+        ],
+        'O_EXCL' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_NDELAY' => array(
+        ],
+        'O_NDELAY' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_NOCTTY' => array(
+        ],
+        'O_NOCTTY' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_NONBLOCK' => array(
+        ],
+        'O_NONBLOCK' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_RDONLY' => array(
+        ],
+        'O_RDONLY' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_RDWR' => array(
+        ],
+        'O_RDWR' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_SYNC' => array(
+        ],
+        'O_SYNC' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_TRUNC' => array(
+        ],
+        'O_TRUNC' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'O_WRONLY' => array(
+        ],
+        'O_WRONLY' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IRGRP' => array(
+        ],
+        'S_IRGRP' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IROTH' => array(
+        ],
+        'S_IROTH' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IRUSR' => array(
+        ],
+        'S_IRUSR' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IRWXG' => array(
+        ],
+        'S_IRWXG' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IRWXO' => array(
+        ],
+        'S_IRWXO' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IRWXU' => array(
+        ],
+        'S_IRWXU' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IWGRP' => array(
+        ],
+        'S_IWGRP' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IWOTH' => array(
+        ],
+        'S_IWOTH' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IWUSR' => array(
+        ],
+        'S_IWUSR' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IXGRP' => array(
+        ],
+        'S_IXGRP' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IXOTH' => array(
+        ],
+        'S_IXOTH' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'S_IXUSR' => array(
+        ],
+        'S_IXUSR' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'M_PENDING' => array(
+        ],
+        'M_PENDING' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'M_DONE' => array(
+        ],
+        'M_DONE' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'M_ERROR' => array(
+        ],
+        'M_ERROR' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'M_FAIL' => array(
+        ],
+        'M_FAIL' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'M_SUCCESS' => array(
+        ],
+        'M_SUCCESS' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'FAMChanged' => array(
+        ],
+        'FAMChanged' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMDeleted' => array(
+        ],
+        'FAMDeleted' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMStartExecuting' => array(
+        ],
+        'FAMStartExecuting' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMStopExecuting' => array(
+        ],
+        'FAMStopExecuting' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMCreated' => array(
+        ],
+        'FAMCreated' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMMoved' => array(
+        ],
+        'FAMMoved' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMAcknowledge' => array(
+        ],
+        'FAMAcknowledge' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMExists' => array(
+        ],
+        'FAMExists' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'FAMEndExist' => array(
+        ],
+        'FAMEndExist' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'YPERR_ACCESS' => array(
+        ],
+        'YPERR_ACCESS' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_BADARGS' => array(
+        ],
+        'YPERR_BADARGS' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_BADDB' => array(
+        ],
+        'YPERR_BADDB' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_BUSY' => array(
+        ],
+        'YPERR_BUSY' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_DOMAIN' => array(
+        ],
+        'YPERR_DOMAIN' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_KEY' => array(
+        ],
+        'YPERR_KEY' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_MAP' => array(
+        ],
+        'YPERR_MAP' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_NODOM' => array(
+        ],
+        'YPERR_NODOM' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_NOMORE' => array(
+        ],
+        'YPERR_NOMORE' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_PMAP' => array(
+        ],
+        'YPERR_PMAP' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_RESRC' => array(
+        ],
+        'YPERR_RESRC' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_RPC' => array(
+        ],
+        'YPERR_RPC' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_YPBIND' => array(
+        ],
+        'YPERR_YPBIND' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_YPERR' => array(
+        ],
+        'YPERR_YPERR' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_YPSERV' => array(
+        ],
+        'YPERR_YPSERV' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'YPERR_VERS' => array(
+        ],
+        'YPERR_VERS' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'UDM_FIELD_URLID' => array(
+        ],
+        'UDM_FIELD_URLID' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_URL' => array(
+        ],
+        'UDM_FIELD_URL' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_CONTENT' => array(
+        ],
+        'UDM_FIELD_CONTENT' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_TITLE' => array(
+        ],
+        'UDM_FIELD_TITLE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_KEYWORDS' => array(
+        ],
+        'UDM_FIELD_KEYWORDS' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_DESC' => array(
+        ],
+        'UDM_FIELD_DESC' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_DESCRIPTION' => array(
+        ],
+        'UDM_FIELD_DESCRIPTION' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_TEXT' => array(
+        ],
+        'UDM_FIELD_TEXT' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_SIZE' => array(
+        ],
+        'UDM_FIELD_SIZE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_RATING' => array(
+        ],
+        'UDM_FIELD_RATING' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_SCORE' => array(
+        ],
+        'UDM_FIELD_SCORE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_MODIFIED' => array(
+        ],
+        'UDM_FIELD_MODIFIED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_ORDER' => array(
+        ],
+        'UDM_FIELD_ORDER' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_CRC' => array(
+        ],
+        'UDM_FIELD_CRC' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_CATEGORY' => array(
+        ],
+        'UDM_FIELD_CATEGORY' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_LANG' => array(
+        ],
+        'UDM_FIELD_LANG' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_FIELD_CHARSET' => array(
+        ],
+        'UDM_FIELD_CHARSET' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_PAGE_SIZE' => array(
+        ],
+        'UDM_PARAM_PAGE_SIZE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_PAGE_NUM' => array(
+        ],
+        'UDM_PARAM_PAGE_NUM' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_SEARCH_MODE' => array(
+        ],
+        'UDM_PARAM_SEARCH_MODE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_CACHE_MODE' => array(
+        ],
+        'UDM_PARAM_CACHE_MODE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_TRACK_MODE' => array(
+        ],
+        'UDM_PARAM_TRACK_MODE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_PHRASE_MODE' => array(
+        ],
+        'UDM_PARAM_PHRASE_MODE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_CHARSET' => array(
+        ],
+        'UDM_PARAM_CHARSET' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_LOCAL_CHARSET' => array(
+        ],
+        'UDM_PARAM_LOCAL_CHARSET' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_BROWSER_CHARSET' => array(
+        ],
+        'UDM_PARAM_BROWSER_CHARSET' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_STOPTABLE' => array(
+        ],
+        'UDM_PARAM_STOPTABLE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_STOP_TABLE' => array(
+        ],
+        'UDM_PARAM_STOP_TABLE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_STOPFILE' => array(
+        ],
+        'UDM_PARAM_STOPFILE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_STOP_FILE' => array(
+        ],
+        'UDM_PARAM_STOP_FILE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_WEIGHT_FACTOR' => array(
+        ],
+        'UDM_PARAM_WEIGHT_FACTOR' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_WORD_MATCH' => array(
+        ],
+        'UDM_PARAM_WORD_MATCH' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_MAX_WORD_LEN' => array(
+        ],
+        'UDM_PARAM_MAX_WORD_LEN' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_MAX_WORDLEN' => array(
+        ],
+        'UDM_PARAM_MAX_WORDLEN' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_MIN_WORD_LEN' => array(
+        ],
+        'UDM_PARAM_MIN_WORD_LEN' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_MIN_WORDLEN' => array(
+        ],
+        'UDM_PARAM_MIN_WORDLEN' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_ISPELL_PREFIXES' => array(
+        ],
+        'UDM_PARAM_ISPELL_PREFIXES' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_ISPELL_PREFIX' => array(
+        ],
+        'UDM_PARAM_ISPELL_PREFIX' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_PREFIXES' => array(
+        ],
+        'UDM_PARAM_PREFIXES' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_PREFIX' => array(
+        ],
+        'UDM_PARAM_PREFIX' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_CROSS_WORDS' => array(
+        ],
+        'UDM_PARAM_CROSS_WORDS' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_CROSSWORDS' => array(
+        ],
+        'UDM_PARAM_CROSSWORDS' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_VARDIR' => array(
+        ],
+        'UDM_PARAM_VARDIR' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_DATADIR' => array(
+        ],
+        'UDM_PARAM_DATADIR' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_HLBEG' => array(
+        ],
+        'UDM_PARAM_HLBEG' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_HLEND' => array(
+        ],
+        'UDM_PARAM_HLEND' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_SYNONYM' => array(
+        ],
+        'UDM_PARAM_SYNONYM' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_SEARCHD' => array(
+        ],
+        'UDM_PARAM_SEARCHD' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_QSTRING' => array(
+        ],
+        'UDM_PARAM_QSTRING' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_REMOTE_ADDR' => array(
+        ],
+        'UDM_PARAM_REMOTE_ADDR' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_LIMIT_CAT' => array(
+        ],
+        'UDM_LIMIT_CAT' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_LIMIT_URL' => array(
+        ],
+        'UDM_LIMIT_URL' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_LIMIT_TAG' => array(
+        ],
+        'UDM_LIMIT_TAG' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_LIMIT_LANG' => array(
+        ],
+        'UDM_LIMIT_LANG' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_LIMIT_DATE' => array(
+        ],
+        'UDM_LIMIT_DATE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_FOUND' => array(
+        ],
+        'UDM_PARAM_FOUND' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_NUM_ROWS' => array(
+        ],
+        'UDM_PARAM_NUM_ROWS' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_WORDINFO' => array(
+        ],
+        'UDM_PARAM_WORDINFO' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_WORD_INFO' => array(
+        ],
+        'UDM_PARAM_WORD_INFO' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_SEARCHTIME' => array(
+        ],
+        'UDM_PARAM_SEARCHTIME' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_SEARCH_TIME' => array(
+        ],
+        'UDM_PARAM_SEARCH_TIME' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_FIRST_DOC' => array(
+        ],
+        'UDM_PARAM_FIRST_DOC' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PARAM_LAST_DOC' => array(
+        ],
+        'UDM_PARAM_LAST_DOC' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MODE_ALL' => array(
+        ],
+        'UDM_MODE_ALL' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MODE_ANY' => array(
+        ],
+        'UDM_MODE_ANY' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MODE_BOOL' => array(
+        ],
+        'UDM_MODE_BOOL' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MODE_PHRASE' => array(
+        ],
+        'UDM_MODE_PHRASE' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CACHE_ENABLED' => array(
+        ],
+        'UDM_CACHE_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CACHE_DISABLED' => array(
+        ],
+        'UDM_CACHE_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_TRACK_ENABLED' => array(
+        ],
+        'UDM_TRACK_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_TRACK_DISABLED' => array(
+        ],
+        'UDM_TRACK_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PHRASE_ENABLED' => array(
+        ],
+        'UDM_PHRASE_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PHRASE_DISABLED' => array(
+        ],
+        'UDM_PHRASE_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CROSS_WORDS_ENABLED' => array(
+        ],
+        'UDM_CROSS_WORDS_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CROSSWORDS_ENABLED' => array(
+        ],
+        'UDM_CROSSWORDS_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CROSS_WORDS_DISABLED' => array(
+        ],
+        'UDM_CROSS_WORDS_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_CROSSWORDS_DISABLED' => array(
+        ],
+        'UDM_CROSSWORDS_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PREFIXES_ENABLED' => array(
+        ],
+        'UDM_PREFIXES_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PREFIX_ENABLED' => array(
+        ],
+        'UDM_PREFIX_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_PREFIXES_ENABLED' => array(
+        ],
+        'UDM_ISPELL_PREFIXES_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_PREFIX_ENABLED' => array(
+        ],
+        'UDM_ISPELL_PREFIX_ENABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PREFIXES_DISABLED' => array(
+        ],
+        'UDM_PREFIXES_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_PREFIX_DISABLED' => array(
+        ],
+        'UDM_PREFIX_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_PREFIXES_DISABLED' => array(
+        ],
+        'UDM_ISPELL_PREFIXES_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_PREFIX_DISABLED' => array(
+        ],
+        'UDM_ISPELL_PREFIX_DISABLED' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_TYPE_AFFIX' => array(
+        ],
+        'UDM_ISPELL_TYPE_AFFIX' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_TYPE_SPELL' => array(
+        ],
+        'UDM_ISPELL_TYPE_SPELL' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_TYPE_DB' => array(
+        ],
+        'UDM_ISPELL_TYPE_DB' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_ISPELL_TYPE_SERVER' => array(
+        ],
+        'UDM_ISPELL_TYPE_SERVER' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MATCH_WORD' => array(
+        ],
+        'UDM_MATCH_WORD' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MATCH_BEGIN' => array(
+        ],
+        'UDM_MATCH_BEGIN' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MATCH_SUBSTR' => array(
+        ],
+        'UDM_MATCH_SUBSTR' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'UDM_MATCH_END' => array(
+        ],
+        'UDM_MATCH_END' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'DC_MICROSOFT' => array(
+        ],
+        'DC_MICROSOFT' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_BORLAND' => array(
+        ],
+        'DC_BORLAND' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_CALL_CDECL' => array(
+        ],
+        'DC_CALL_CDECL' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_CALL_STD' => array(
+        ],
+        'DC_CALL_STD' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_RETVAL_MATH4' => array(
+        ],
+        'DC_RETVAL_MATH4' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_RETVAL_MATH8' => array(
+        ],
+        'DC_RETVAL_MATH8' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_CALL_STD_BO' => array(
+        ],
+        'DC_CALL_STD_BO' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_CALL_STD_MS' => array(
+        ],
+        'DC_CALL_STD_MS' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_CALL_STD_M8' => array(
+        ],
+        'DC_CALL_STD_M8' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'DC_FLAG_ARGPTR' => array(
+        ],
+        'DC_FLAG_ARGPTR' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'CPDF_PM_NONE' => array(
+        ],
+        'CPDF_PM_NONE' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PM_OUTLINES' => array(
+        ],
+        'CPDF_PM_OUTLINES' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PM_THUMBS' => array(
+        ],
+        'CPDF_PM_THUMBS' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PM_FULLSCREEN' => array(
+        ],
+        'CPDF_PM_FULLSCREEN' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PL_SINGLE' => array(
+        ],
+        'CPDF_PL_SINGLE' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PL_1COLUMN' => array(
+        ],
+        'CPDF_PL_1COLUMN' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PL_2LCOLUMN' => array(
+        ],
+        'CPDF_PL_2LCOLUMN' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'CPDF_PL_2RCOLUMN' => array(
+        ],
+        'CPDF_PL_2RCOLUMN' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'DBX_MYSQL' => array(
+        ],
+        'DBX_MYSQL' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_ODBC' => array(
+        ],
+        'DBX_ODBC' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_PGSQL' => array(
+        ],
+        'DBX_PGSQL' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_MSSQL' => array(
+        ],
+        'DBX_MSSQL' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_FBSQL' => array(
+        ],
+        'DBX_FBSQL' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_OCI8' => array(
+        ],
+        'DBX_OCI8' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_SYBASECT' => array(
+        ],
+        'DBX_SYBASECT' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_SQLITE' => array(
+        ],
+        'DBX_SQLITE' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_PERSISTENT' => array(
+        ],
+        'DBX_PERSISTENT' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_RESULT_INFO' => array(
+        ],
+        'DBX_RESULT_INFO' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_RESULT_INDEX' => array(
+        ],
+        'DBX_RESULT_INDEX' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_RESULT_ASSOC' => array(
+        ],
+        'DBX_RESULT_ASSOC' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_RESULT_UNBUFFERED' => array(
+        ],
+        'DBX_RESULT_UNBUFFERED' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_COLNAMES_UNCHANGED' => array(
+        ],
+        'DBX_COLNAMES_UNCHANGED' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_COLNAMES_UPPERCASE' => array(
+        ],
+        'DBX_COLNAMES_UPPERCASE' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_COLNAMES_LOWERCASE' => array(
+        ],
+        'DBX_COLNAMES_LOWERCASE' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_CMP_NATIVE' => array(
+        ],
+        'DBX_CMP_NATIVE' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_CMP_TEXT' => array(
+        ],
+        'DBX_CMP_TEXT' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_CMP_NUMBER' => array(
+        ],
+        'DBX_CMP_NUMBER' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_CMP_ASC' => array(
+        ],
+        'DBX_CMP_ASC' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'DBX_CMP_DESC' => array(
+        ],
+        'DBX_CMP_DESC' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'INGRES_ASSOC' => array(
+        ],
+        'INGRES_ASSOC' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'INGRES_NUM' => array(
+        ],
+        'INGRES_NUM' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'INGRES_BOTH' => array(
+        ],
+        'INGRES_BOTH' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ORA_BIND_INOUT' => array(
+        ],
+        'ORA_BIND_INOUT' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ORA_BIND_IN' => array(
+        ],
+        'ORA_BIND_IN' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ORA_BIND_OUT' => array(
+        ],
+        'ORA_BIND_OUT' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ORA_FETCHINTO_ASSOC' => array(
+        ],
+        'ORA_FETCHINTO_ASSOC' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ORA_FETCHINTO_NULLS' => array(
+        ],
+        'ORA_FETCHINTO_NULLS' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
+        ],
 
-        'IFX_SCROLL' => array(
+        'IFX_SCROLL' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_HOLD' => array(
+        ],
+        'IFX_HOLD' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_RDONLY' => array(
+        ],
+        'IFX_LO_RDONLY' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_WRONLY' => array(
+        ],
+        'IFX_LO_WRONLY' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_APPEND' => array(
+        ],
+        'IFX_LO_APPEND' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_RDWR' => array(
+        ],
+        'IFX_LO_RDWR' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_BUFFER' => array(
+        ],
+        'IFX_LO_BUFFER' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'IFX_LO_NOBUFFER' => array(
+        ],
+        'IFX_LO_NOBUFFER' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
+        ],
 
         // Disabled since PHP 5.3.0 due to thread safety issues.
-        'FILEINFO_COMPRESS' => array(
+        'FILEINFO_COMPRESS' => [
             '5.3' => true,
-        ),
+        ],
 
-        'NCURSES_COLOR_BLACK' => array(
+        'NCURSES_COLOR_BLACK' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_WHITE' => array(
+        ],
+        'NCURSES_COLOR_WHITE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_RED' => array(
+        ],
+        'NCURSES_COLOR_RED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_GREEN' => array(
+        ],
+        'NCURSES_COLOR_GREEN' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_YELLOW' => array(
+        ],
+        'NCURSES_COLOR_YELLOW' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_BLUE' => array(
+        ],
+        'NCURSES_COLOR_BLUE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_CYAN' => array(
+        ],
+        'NCURSES_COLOR_CYAN' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_COLOR_MAGENTA' => array(
+        ],
+        'NCURSES_COLOR_MAGENTA' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_F0' => array(
+        ],
+        'NCURSES_KEY_F0' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_DOWN' => array(
+        ],
+        'NCURSES_KEY_DOWN' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_UP' => array(
+        ],
+        'NCURSES_KEY_UP' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_LEFT' => array(
+        ],
+        'NCURSES_KEY_LEFT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_RIGHT' => array(
+        ],
+        'NCURSES_KEY_RIGHT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_HOME' => array(
+        ],
+        'NCURSES_KEY_HOME' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_BACKSPACE' => array(
+        ],
+        'NCURSES_KEY_BACKSPACE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_DL' => array(
+        ],
+        'NCURSES_KEY_DL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_IL' => array(
+        ],
+        'NCURSES_KEY_IL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_DC' => array(
+        ],
+        'NCURSES_KEY_DC' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_IC' => array(
+        ],
+        'NCURSES_KEY_IC' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_EIC' => array(
+        ],
+        'NCURSES_KEY_EIC' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CLEAR' => array(
+        ],
+        'NCURSES_KEY_CLEAR' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_EOS' => array(
+        ],
+        'NCURSES_KEY_EOS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_EOL' => array(
+        ],
+        'NCURSES_KEY_EOL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SF' => array(
+        ],
+        'NCURSES_KEY_SF' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SR' => array(
+        ],
+        'NCURSES_KEY_SR' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_NPAGE' => array(
+        ],
+        'NCURSES_KEY_NPAGE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_PPAGE' => array(
+        ],
+        'NCURSES_KEY_PPAGE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_STAB' => array(
+        ],
+        'NCURSES_KEY_STAB' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CTAB' => array(
+        ],
+        'NCURSES_KEY_CTAB' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CATAB' => array(
+        ],
+        'NCURSES_KEY_CATAB' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SRESET' => array(
+        ],
+        'NCURSES_KEY_SRESET' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_RESET' => array(
+        ],
+        'NCURSES_KEY_RESET' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_PRINT' => array(
+        ],
+        'NCURSES_KEY_PRINT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_LL' => array(
+        ],
+        'NCURSES_KEY_LL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_A1' => array(
+        ],
+        'NCURSES_KEY_A1' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_A3' => array(
+        ],
+        'NCURSES_KEY_A3' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_B2' => array(
+        ],
+        'NCURSES_KEY_B2' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_C1' => array(
+        ],
+        'NCURSES_KEY_C1' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_C3' => array(
+        ],
+        'NCURSES_KEY_C3' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_BTAB' => array(
+        ],
+        'NCURSES_KEY_BTAB' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_BEG' => array(
+        ],
+        'NCURSES_KEY_BEG' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CANCEL' => array(
+        ],
+        'NCURSES_KEY_CANCEL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CLOSE' => array(
+        ],
+        'NCURSES_KEY_CLOSE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_COMMAND' => array(
+        ],
+        'NCURSES_KEY_COMMAND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_COPY' => array(
+        ],
+        'NCURSES_KEY_COPY' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_CREATE' => array(
+        ],
+        'NCURSES_KEY_CREATE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_END' => array(
+        ],
+        'NCURSES_KEY_END' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_EXIT' => array(
+        ],
+        'NCURSES_KEY_EXIT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_FIND' => array(
+        ],
+        'NCURSES_KEY_FIND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_HELP' => array(
+        ],
+        'NCURSES_KEY_HELP' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_MARK' => array(
+        ],
+        'NCURSES_KEY_MARK' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_MESSAGE' => array(
+        ],
+        'NCURSES_KEY_MESSAGE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_MOVE' => array(
+        ],
+        'NCURSES_KEY_MOVE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_NEXT' => array(
+        ],
+        'NCURSES_KEY_NEXT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_OPEN' => array(
+        ],
+        'NCURSES_KEY_OPEN' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_OPTIONS' => array(
+        ],
+        'NCURSES_KEY_OPTIONS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_PREVIOUS' => array(
+        ],
+        'NCURSES_KEY_PREVIOUS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_REDO' => array(
+        ],
+        'NCURSES_KEY_REDO' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_REFERENCE' => array(
+        ],
+        'NCURSES_KEY_REFERENCE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_REFRESH' => array(
+        ],
+        'NCURSES_KEY_REFRESH' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_REPLACE' => array(
+        ],
+        'NCURSES_KEY_REPLACE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_RESTART' => array(
+        ],
+        'NCURSES_KEY_RESTART' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_RESUME' => array(
+        ],
+        'NCURSES_KEY_RESUME' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SAVE' => array(
+        ],
+        'NCURSES_KEY_SAVE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SBEG' => array(
+        ],
+        'NCURSES_KEY_SBEG' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SCANCEL' => array(
+        ],
+        'NCURSES_KEY_SCANCEL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SCOMMAND' => array(
+        ],
+        'NCURSES_KEY_SCOMMAND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SCOPY' => array(
+        ],
+        'NCURSES_KEY_SCOPY' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SCREATE' => array(
+        ],
+        'NCURSES_KEY_SCREATE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SDC' => array(
+        ],
+        'NCURSES_KEY_SDC' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SDL' => array(
+        ],
+        'NCURSES_KEY_SDL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SELECT' => array(
+        ],
+        'NCURSES_KEY_SELECT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SEND' => array(
+        ],
+        'NCURSES_KEY_SEND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SEOL' => array(
+        ],
+        'NCURSES_KEY_SEOL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SEXIT' => array(
+        ],
+        'NCURSES_KEY_SEXIT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SFIND' => array(
+        ],
+        'NCURSES_KEY_SFIND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SHELP' => array(
+        ],
+        'NCURSES_KEY_SHELP' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SHOME' => array(
+        ],
+        'NCURSES_KEY_SHOME' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SIC' => array(
+        ],
+        'NCURSES_KEY_SIC' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SLEFT' => array(
+        ],
+        'NCURSES_KEY_SLEFT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SMESSAGE' => array(
+        ],
+        'NCURSES_KEY_SMESSAGE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SMOVE' => array(
+        ],
+        'NCURSES_KEY_SMOVE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SNEXT' => array(
+        ],
+        'NCURSES_KEY_SNEXT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SOPTIONS' => array(
+        ],
+        'NCURSES_KEY_SOPTIONS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SPREVIOUS' => array(
+        ],
+        'NCURSES_KEY_SPREVIOUS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SPRINT' => array(
+        ],
+        'NCURSES_KEY_SPRINT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SREDO' => array(
+        ],
+        'NCURSES_KEY_SREDO' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SREPLACE' => array(
+        ],
+        'NCURSES_KEY_SREPLACE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SRIGHT' => array(
+        ],
+        'NCURSES_KEY_SRIGHT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SRSUME' => array(
+        ],
+        'NCURSES_KEY_SRSUME' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SSAVE' => array(
+        ],
+        'NCURSES_KEY_SSAVE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_SSUSPEND' => array(
+        ],
+        'NCURSES_KEY_SSUSPEND' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_UNDO' => array(
+        ],
+        'NCURSES_KEY_UNDO' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_MOUSE' => array(
+        ],
+        'NCURSES_KEY_MOUSE' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_KEY_MAX' => array(
+        ],
+        'NCURSES_KEY_MAX' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON1_RELEASED' => array(
+        ],
+        'NCURSES_BUTTON1_RELEASED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON1_PRESSED' => array(
+        ],
+        'NCURSES_BUTTON1_PRESSED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON1_CLICKED' => array(
+        ],
+        'NCURSES_BUTTON1_CLICKED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON1_DOUBLE_CLICKED' => array(
+        ],
+        'NCURSES_BUTTON1_DOUBLE_CLICKED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON1_TRIPLE_CLICKED' => array(
+        ],
+        'NCURSES_BUTTON1_TRIPLE_CLICKED' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON_CTRL' => array(
+        ],
+        'NCURSES_BUTTON_CTRL' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON_SHIFT' => array(
+        ],
+        'NCURSES_BUTTON_SHIFT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_BUTTON_ALT' => array(
+        ],
+        'NCURSES_BUTTON_ALT' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_ALL_MOUSE_EVENTS' => array(
+        ],
+        'NCURSES_ALL_MOUSE_EVENTS' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'NCURSES_REPORT_MOUSE_POSITION' => array(
+        ],
+        'NCURSES_REPORT_MOUSE_POSITION' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'FDFValue' => array(
+        ],
+        'FDFValue' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFStatus' => array(
+        ],
+        'FDFStatus' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFFile' => array(
+        ],
+        'FDFFile' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFID' => array(
+        ],
+        'FDFID' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFFf' => array(
+        ],
+        'FDFFf' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFSetFf' => array(
+        ],
+        'FDFSetFf' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFClearFf' => array(
+        ],
+        'FDFClearFf' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFFlags' => array(
+        ],
+        'FDFFlags' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFSetF' => array(
+        ],
+        'FDFSetF' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFClrF' => array(
+        ],
+        'FDFClrF' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFAP' => array(
+        ],
+        'FDFAP' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFAS' => array(
+        ],
+        'FDFAS' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFAction' => array(
+        ],
+        'FDFAction' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFAA' => array(
+        ],
+        'FDFAA' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFAPRef' => array(
+        ],
+        'FDFAPRef' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFIF' => array(
+        ],
+        'FDFIF' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFEnter' => array(
+        ],
+        'FDFEnter' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFExit' => array(
+        ],
+        'FDFExit' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFDown' => array(
+        ],
+        'FDFDown' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFUp' => array(
+        ],
+        'FDFUp' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFFormat' => array(
+        ],
+        'FDFFormat' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFValidate' => array(
+        ],
+        'FDFValidate' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFKeystroke' => array(
+        ],
+        'FDFKeystroke' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFCalculate' => array(
+        ],
+        'FDFCalculate' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFNormalAP' => array(
+        ],
+        'FDFNormalAP' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFRolloverAP' => array(
+        ],
+        'FDFRolloverAP' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'FDFDownAP' => array(
+        ],
+        'FDFDownAP' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
+        ],
 
-        'MING_NEW' => array(
+        'MING_NEW' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'MING_ZLIB' => array(
+        ],
+        'MING_ZLIB' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_HIT' => array(
+        ],
+        'SWFBUTTON_HIT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_DOWN' => array(
+        ],
+        'SWFBUTTON_DOWN' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_OVER' => array(
+        ],
+        'SWFBUTTON_OVER' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_UP' => array(
+        ],
+        'SWFBUTTON_UP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_MOUSEUPOUTSIDE' => array(
+        ],
+        'SWFBUTTON_MOUSEUPOUTSIDE' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_DRAGOVER' => array(
+        ],
+        'SWFBUTTON_DRAGOVER' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_DRAGOUT' => array(
+        ],
+        'SWFBUTTON_DRAGOUT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_MOUSEUP' => array(
+        ],
+        'SWFBUTTON_MOUSEUP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_MOUSEDOWN' => array(
+        ],
+        'SWFBUTTON_MOUSEDOWN' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_MOUSEOUT' => array(
+        ],
+        'SWFBUTTON_MOUSEOUT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFBUTTON_MOUSEOVER' => array(
+        ],
+        'SWFBUTTON_MOUSEOVER' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFILL_RADIAL_GRADIENT' => array(
+        ],
+        'SWFFILL_RADIAL_GRADIENT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFILL_LINEAR_GRADIENT' => array(
+        ],
+        'SWFFILL_LINEAR_GRADIENT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFILL_TILED_BITMAP' => array(
+        ],
+        'SWFFILL_TILED_BITMAP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFFILL_CLIPPED_BITMAP' => array(
+        ],
+        'SWFFILL_CLIPPED_BITMAP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_HASLENGTH' => array(
+        ],
+        'SWFTEXTFIELD_HASLENGTH' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_NOEDIT' => array(
+        ],
+        'SWFTEXTFIELD_NOEDIT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_PASSWORD' => array(
+        ],
+        'SWFTEXTFIELD_PASSWORD' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_MULTILINE' => array(
+        ],
+        'SWFTEXTFIELD_MULTILINE' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_WORDWRAP' => array(
+        ],
+        'SWFTEXTFIELD_WORDWRAP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_DRAWBOX' => array(
+        ],
+        'SWFTEXTFIELD_DRAWBOX' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_NOSELECT' => array(
+        ],
+        'SWFTEXTFIELD_NOSELECT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_HTML' => array(
+        ],
+        'SWFTEXTFIELD_HTML' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_ALIGN_LEFT' => array(
+        ],
+        'SWFTEXTFIELD_ALIGN_LEFT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_ALIGN_RIGHT' => array(
+        ],
+        'SWFTEXTFIELD_ALIGN_RIGHT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_ALIGN_CENTER' => array(
+        ],
+        'SWFTEXTFIELD_ALIGN_CENTER' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_ALIGN_JUSTIFY' => array(
+        ],
+        'SWFTEXTFIELD_ALIGN_JUSTIFY' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_ONLOAD' => array(
+        ],
+        'SWFACTION_ONLOAD' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_ENTERFRAME' => array(
+        ],
+        'SWFACTION_ENTERFRAME' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_UNLOAD' => array(
+        ],
+        'SWFACTION_UNLOAD' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_MOUSEMOVE' => array(
+        ],
+        'SWFACTION_MOUSEMOVE' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_MOUSEDOWN' => array(
+        ],
+        'SWFACTION_MOUSEDOWN' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_MOUSEUP' => array(
+        ],
+        'SWFACTION_MOUSEUP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_KEYDOWN' => array(
+        ],
+        'SWFACTION_KEYDOWN' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_KEYUP' => array(
+        ],
+        'SWFACTION_KEYUP' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFACTION_DATA' => array(
+        ],
+        'SWFACTION_DATA' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_USEFONT' => array(
+        ],
+        'SWFTEXTFIELD_USEFONT' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWFTEXTFIELD_AUTOSIZE' => array(
+        ],
+        'SWFTEXTFIELD_AUTOSIZE' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_NOT_COMPRESSED' => array(
+        ],
+        'SWF_SOUND_NOT_COMPRESSED' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_ADPCM_COMPRESSED' => array(
+        ],
+        'SWF_SOUND_ADPCM_COMPRESSED' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_MP3_COMPRESSED' => array(
+        ],
+        'SWF_SOUND_MP3_COMPRESSED' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_NOT_COMPRESSED_LE' => array(
+        ],
+        'SWF_SOUND_NOT_COMPRESSED_LE' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_NELLY_COMPRESSED' => array(
+        ],
+        'SWF_SOUND_NELLY_COMPRESSED' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_5KHZ' => array(
+        ],
+        'SWF_SOUND_5KHZ' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_11KHZ' => array(
+        ],
+        'SWF_SOUND_11KHZ' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_22KHZ' => array(
+        ],
+        'SWF_SOUND_22KHZ' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_44KHZ' => array(
+        ],
+        'SWF_SOUND_44KHZ' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_8BITS' => array(
+        ],
+        'SWF_SOUND_8BITS' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_16BITS' => array(
+        ],
+        'SWF_SOUND_16BITS' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_MONO' => array(
+        ],
+        'SWF_SOUND_MONO' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'SWF_SOUND_STEREO' => array(
+        ],
+        'SWF_SOUND_STEREO' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'FBSQL_ASSOC' => array(
+        ],
+        'FBSQL_ASSOC' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_NUM' => array(
+        ],
+        'FBSQL_NUM' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_BOTH' => array(
+        ],
+        'FBSQL_BOTH' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_LOCK_DEFERRED' => array(
+        ],
+        'FBSQL_LOCK_DEFERRED' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_LOCK_OPTIMISTIC' => array(
+        ],
+        'FBSQL_LOCK_OPTIMISTIC' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_LOCK_PESSIMISTIC' => array(
+        ],
+        'FBSQL_LOCK_PESSIMISTIC' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_ISO_READ_UNCOMMITTED' => array(
+        ],
+        'FBSQL_ISO_READ_UNCOMMITTED' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_ISO_READ_COMMITTED' => array(
+        ],
+        'FBSQL_ISO_READ_COMMITTED' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_ISO_REPEATABLE_READ' => array(
+        ],
+        'FBSQL_ISO_REPEATABLE_READ' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_ISO_SERIALIZABLE' => array(
+        ],
+        'FBSQL_ISO_SERIALIZABLE' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_ISO_VERSIONED' => array(
+        ],
+        'FBSQL_ISO_VERSIONED' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_UNKNOWN' => array(
+        ],
+        'FBSQL_UNKNOWN' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_STOPPED' => array(
+        ],
+        'FBSQL_STOPPED' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_STARTING' => array(
+        ],
+        'FBSQL_STARTING' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_RUNNING' => array(
+        ],
+        'FBSQL_RUNNING' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_STOPPING' => array(
+        ],
+        'FBSQL_STOPPING' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_NOEXEC' => array(
+        ],
+        'FBSQL_NOEXEC' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_LOB_DIRECT' => array(
+        ],
+        'FBSQL_LOB_DIRECT' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'FBSQL_LOB_HANDLE' => array(
+        ],
+        'FBSQL_LOB_HANDLE' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'MSQL_ASSOC' => array(
+        ],
+        'MSQL_ASSOC' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'MSQL_NUM' => array(
+        ],
+        'MSQL_NUM' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'MSQL_BOTH' => array(
+        ],
+        'MSQL_BOTH' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
+        ],
 
-        'SQLITE_ASSOC' => array(
+        'SQLITE_ASSOC' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_BOTH' => array(
+        ],
+        'SQLITE_BOTH' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_NUM' => array(
+        ],
+        'SQLITE_NUM' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_OK' => array(
+        ],
+        'SQLITE_OK' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_ERROR' => array(
+        ],
+        'SQLITE_ERROR' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_INTERNAL' => array(
+        ],
+        'SQLITE_INTERNAL' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_PERM' => array(
+        ],
+        'SQLITE_PERM' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_ABORT' => array(
+        ],
+        'SQLITE_ABORT' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_BUSY' => array(
+        ],
+        'SQLITE_BUSY' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_LOCKED' => array(
+        ],
+        'SQLITE_LOCKED' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_NOMEM' => array(
+        ],
+        'SQLITE_NOMEM' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_READONLY' => array(
+        ],
+        'SQLITE_READONLY' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_INTERRUPT' => array(
+        ],
+        'SQLITE_INTERRUPT' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_IOERR' => array(
+        ],
+        'SQLITE_IOERR' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_NOTADB' => array(
+        ],
+        'SQLITE_NOTADB' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_CORRUPT' => array(
+        ],
+        'SQLITE_CORRUPT' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_FORMAT' => array(
+        ],
+        'SQLITE_FORMAT' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_NOTFOUND' => array(
+        ],
+        'SQLITE_NOTFOUND' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_FULL' => array(
+        ],
+        'SQLITE_FULL' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_CANTOPEN' => array(
+        ],
+        'SQLITE_CANTOPEN' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_PROTOCOL' => array(
+        ],
+        'SQLITE_PROTOCOL' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_EMPTY' => array(
+        ],
+        'SQLITE_EMPTY' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_SCHEMA' => array(
+        ],
+        'SQLITE_SCHEMA' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_TOOBIG' => array(
+        ],
+        'SQLITE_TOOBIG' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_CONSTRAINT' => array(
+        ],
+        'SQLITE_CONSTRAINT' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_MISMATCH' => array(
+        ],
+        'SQLITE_MISMATCH' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_MISUSE' => array(
+        ],
+        'SQLITE_MISUSE' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_NOLFS' => array(
+        ],
+        'SQLITE_NOLFS' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_AUTH' => array(
+        ],
+        'SQLITE_AUTH' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_ROW' => array(
+        ],
+        'SQLITE_ROW' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'SQLITE_DONE' => array(
+        ],
+        'SQLITE_DONE' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
+        ],
 
-        'CURLOPT_CLOSEPOLICY' => array(
+        'CURLOPT_CLOSEPOLICY' => [
             '5.6' => true,
-        ),
-        'CURLCLOSEPOLICY_LEAST_RECENTLY_USED' => array(
+        ],
+        'CURLCLOSEPOLICY_LEAST_RECENTLY_USED' => [
             '5.6' => true,
-        ),
-        'CURLCLOSEPOLICY_LEAST_TRAFFIC' => array(
+        ],
+        'CURLCLOSEPOLICY_LEAST_TRAFFIC' => [
             '5.6' => true,
-        ),
-        'CURLCLOSEPOLICY_SLOWEST' => array(
+        ],
+        'CURLCLOSEPOLICY_SLOWEST' => [
             '5.6' => true,
-        ),
-        'CURLCLOSEPOLICY_CALLBACK' => array(
+        ],
+        'CURLCLOSEPOLICY_CALLBACK' => [
             '5.6' => true,
-        ),
-        'CURLCLOSEPOLICY_OLDEST' => array(
+        ],
+        'CURLCLOSEPOLICY_OLDEST' => [
             '5.6' => true,
-        ),
+        ],
 
-        'MYSQL_CLIENT_COMPRESS' => array(
+        'MYSQL_CLIENT_COMPRESS' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_CLIENT_IGNORE_SPACE' => array(
+        ],
+        'MYSQL_CLIENT_IGNORE_SPACE' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_CLIENT_INTERACTIVE' => array(
+        ],
+        'MYSQL_CLIENT_INTERACTIVE' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_CLIENT_SSL' => array(
+        ],
+        'MYSQL_CLIENT_SSL' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_ASSOC' => array(
+        ],
+        'MYSQL_ASSOC' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_BOTH' => array(
+        ],
+        'MYSQL_BOTH' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'MYSQL_NUM' => array(
+        ],
+        'MYSQL_NUM' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT' => array(
+        ],
+        'PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT' => [
             '7.0' => true,
-        ),
-        'T_CHARACTER' => array(
+        ],
+        'T_CHARACTER' => [
             '7.0' => true,
-        ),
-        'T_BAD_CHARACTER' => array(
+        ],
+        'T_BAD_CHARACTER' => [
             '7.0' => true,
-        ),
-        'MSSQL_ASSOC' => array(
+        ],
+        'MSSQL_ASSOC' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'MSSQL_NUM' => array(
+        ],
+        'MSSQL_NUM' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'MSSQL_BOTH' => array(
+        ],
+        'MSSQL_BOTH' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLTEXT' => array(
+        ],
+        'SQLTEXT' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLVARCHAR' => array(
+        ],
+        'SQLVARCHAR' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLCHAR' => array(
+        ],
+        'SQLCHAR' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLINT1' => array(
+        ],
+        'SQLINT1' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLINT2' => array(
+        ],
+        'SQLINT2' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLINT4' => array(
+        ],
+        'SQLINT4' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLBIT' => array(
+        ],
+        'SQLBIT' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLFLT4' => array(
+        ],
+        'SQLFLT4' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'SQLFLT8' => array(
+        ],
+        'SQLFLT8' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
+        ],
 
-        'INTL_IDNA_VARIANT_2003' => array(
+        'INTL_IDNA_VARIANT_2003' => [
             '7.2' => false,
             '8.0' => true,
-        ),
+        ],
 
-        'MCRYPT_MODE_ECB' => array(
+        'MCRYPT_MODE_ECB' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MODE_CBC' => array(
+        ],
+        'MCRYPT_MODE_CBC' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MODE_CFB' => array(
+        ],
+        'MCRYPT_MODE_CFB' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MODE_OFB' => array(
+        ],
+        'MCRYPT_MODE_OFB' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MODE_NOFB' => array(
+        ],
+        'MCRYPT_MODE_NOFB' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MODE_STREAM' => array(
+        ],
+        'MCRYPT_MODE_STREAM' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_ENCRYPT' => array(
+        ],
+        'MCRYPT_ENCRYPT' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_DECRYPT' => array(
+        ],
+        'MCRYPT_DECRYPT' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_DEV_RANDOM' => array(
+        ],
+        'MCRYPT_DEV_RANDOM' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_DEV_URANDOM' => array(
+        ],
+        'MCRYPT_DEV_URANDOM' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RAND' => array(
+        ],
+        'MCRYPT_RAND' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_3DES' => array(
+        ],
+        'MCRYPT_3DES' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_ARCFOUR_IV' => array(
+        ],
+        'MCRYPT_ARCFOUR_IV' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_ARCFOUR' => array(
+        ],
+        'MCRYPT_ARCFOUR' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_BLOWFISH' => array(
+        ],
+        'MCRYPT_BLOWFISH' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_CAST_128' => array(
+        ],
+        'MCRYPT_CAST_128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_CAST_256' => array(
+        ],
+        'MCRYPT_CAST_256' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_CRYPT' => array(
+        ],
+        'MCRYPT_CRYPT' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_DES' => array(
+        ],
+        'MCRYPT_DES' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_DES_COMPAT' => array(
+        ],
+        'MCRYPT_DES_COMPAT' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_ENIGMA' => array(
+        ],
+        'MCRYPT_ENIGMA' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_GOST' => array(
+        ],
+        'MCRYPT_GOST' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_IDEA' => array(
+        ],
+        'MCRYPT_IDEA' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_LOKI97' => array(
+        ],
+        'MCRYPT_LOKI97' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_MARS' => array(
+        ],
+        'MCRYPT_MARS' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_PANAMA' => array(
+        ],
+        'MCRYPT_PANAMA' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RIJNDAEL_128' => array(
+        ],
+        'MCRYPT_RIJNDAEL_128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RIJNDAEL_192' => array(
+        ],
+        'MCRYPT_RIJNDAEL_192' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RIJNDAEL_256' => array(
+        ],
+        'MCRYPT_RIJNDAEL_256' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC2' => array(
+        ],
+        'MCRYPT_RC2' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC4' => array(
+        ],
+        'MCRYPT_RC4' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC6' => array(
+        ],
+        'MCRYPT_RC6' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC6_128' => array(
+        ],
+        'MCRYPT_RC6_128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC6_192' => array(
+        ],
+        'MCRYPT_RC6_192' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_RC6_256' => array(
+        ],
+        'MCRYPT_RC6_256' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SAFER64' => array(
+        ],
+        'MCRYPT_SAFER64' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SAFER128' => array(
+        ],
+        'MCRYPT_SAFER128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SAFERPLUS' => array(
+        ],
+        'MCRYPT_SAFERPLUS' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SERPENT' => array(
+        ],
+        'MCRYPT_SERPENT' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SERPENT_128' => array(
+        ],
+        'MCRYPT_SERPENT_128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SERPENT_192' => array(
+        ],
+        'MCRYPT_SERPENT_192' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SERPENT_256' => array(
+        ],
+        'MCRYPT_SERPENT_256' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_SKIPJACK' => array(
+        ],
+        'MCRYPT_SKIPJACK' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TEAN' => array(
+        ],
+        'MCRYPT_TEAN' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_THREEWAY' => array(
+        ],
+        'MCRYPT_THREEWAY' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TRIPLEDES' => array(
+        ],
+        'MCRYPT_TRIPLEDES' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TWOFISH' => array(
+        ],
+        'MCRYPT_TWOFISH' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TWOFISH128' => array(
+        ],
+        'MCRYPT_TWOFISH128' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TWOFISH192' => array(
+        ],
+        'MCRYPT_TWOFISH192' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_TWOFISH256' => array(
+        ],
+        'MCRYPT_TWOFISH256' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_WAKE' => array(
+        ],
+        'MCRYPT_WAKE' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
-        'MCRYPT_XTEA' => array(
+        ],
+        'MCRYPT_XTEA' => [
             '7.1'       => false,
             '7.2'       => true,
             'extension' => 'mcrypt',
-        ),
+        ],
 
-        'PHPDBG_FILE' => array(
+        'PHPDBG_FILE' => [
             '7.3' => true,
-        ),
-        'PHPDBG_METHOD' => array(
+        ],
+        'PHPDBG_METHOD' => [
             '7.3' => true,
-        ),
-        'PHPDBG_LINENO' => array(
+        ],
+        'PHPDBG_LINENO' => [
             '7.3' => true,
-        ),
-        'PHPDBG_FUNC' => array(
+        ],
+        'PHPDBG_FUNC' => [
             '7.3' => true,
-        ),
-        'FILTER_FLAG_SCHEME_REQUIRED' => array(
+        ],
+        'FILTER_FLAG_SCHEME_REQUIRED' => [
             '7.3' => false,
-        ),
-        'FILTER_FLAG_HOST_REQUIRED' => array(
+        ],
+        'FILTER_FLAG_HOST_REQUIRED' => [
             '7.3' => false,
-        ),
+        ],
 
-        'CURLPIPE_HTTP1' => array(
+        'CURLPIPE_HTTP1' => [
             '7.4' => false,
-        ),
-        'FILTER_SANITIZE_MAGIC_QUOTES' => array(
+        ],
+        'FILTER_SANITIZE_MAGIC_QUOTES' => [
             '7.4'         => false,
             '8.0'         => true,
             'alternative' => 'FILTER_SANITIZE_ADD_SLASHES',
-        ),
-        'IBASE_BKP_CONVERT' => array(
+        ],
+        'IBASE_BKP_CONVERT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_IGNORE_CHECKSUMS' => array(
+        ],
+        'IBASE_BKP_IGNORE_CHECKSUMS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_IGNORE_LIMBO' => array(
+        ],
+        'IBASE_BKP_IGNORE_LIMBO' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_METADATA_ONLY' => array(
+        ],
+        'IBASE_BKP_METADATA_ONLY' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_NO_GARBAGE_COLLECT' => array(
+        ],
+        'IBASE_BKP_NO_GARBAGE_COLLECT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_NON_TRANSPORTABLE' => array(
+        ],
+        'IBASE_BKP_NON_TRANSPORTABLE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_BKP_OLD_DESCRIPTIONS' => array(
+        ],
+        'IBASE_BKP_OLD_DESCRIPTIONS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_COMMITTED' => array(
+        ],
+        'IBASE_COMMITTED' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_CONCURRENCY' => array(
+        ],
+        'IBASE_CONCURRENCY' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_CONSISTENCY' => array(
+        ],
+        'IBASE_CONSISTENCY' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_DEFAULT' => array(
+        ],
+        'IBASE_DEFAULT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_FETCH_ARRAYS' => array(
+        ],
+        'IBASE_FETCH_ARRAYS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_FETCH_BLOBS' => array(
+        ],
+        'IBASE_FETCH_BLOBS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_NOWAIT' => array(
+        ],
+        'IBASE_NOWAIT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_ACCESS_MODE' => array(
+        ],
+        'IBASE_PRP_ACCESS_MODE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_ACTIVATE' => array(
+        ],
+        'IBASE_PRP_ACTIVATE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_AM_READONLY' => array(
+        ],
+        'IBASE_PRP_AM_READONLY' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_AM_READWRITE' => array(
+        ],
+        'IBASE_PRP_AM_READWRITE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_DENY_NEW_ATTACHMENTS' => array(
+        ],
+        'IBASE_PRP_DENY_NEW_ATTACHMENTS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_DENY_NEW_TRANSACTIONS' => array(
+        ],
+        'IBASE_PRP_DENY_NEW_TRANSACTIONS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_DB_ONLINE' => array(
+        ],
+        'IBASE_PRP_DB_ONLINE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_PAGE_BUFFERS' => array(
+        ],
+        'IBASE_PRP_PAGE_BUFFERS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_RES' => array(
+        ],
+        'IBASE_PRP_RES' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_RES_USE_FULL' => array(
+        ],
+        'IBASE_PRP_RES_USE_FULL' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_RESERVE_SPACE' => array(
+        ],
+        'IBASE_PRP_RESERVE_SPACE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_SET_SQL_DIALECT' => array(
+        ],
+        'IBASE_PRP_SET_SQL_DIALECT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_SHUTDOWN_DB' => array(
+        ],
+        'IBASE_PRP_SHUTDOWN_DB' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_SWEEP_INTERVAL' => array(
+        ],
+        'IBASE_PRP_SWEEP_INTERVAL' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_WM_ASYNC' => array(
+        ],
+        'IBASE_PRP_WM_ASYNC' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_WM_SYNC' => array(
+        ],
+        'IBASE_PRP_WM_SYNC' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_PRP_WRITE_MODE' => array(
+        ],
+        'IBASE_PRP_WRITE_MODE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_READ' => array(
+        ],
+        'IBASE_READ' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_CREATE' => array(
+        ],
+        'IBASE_RES_CREATE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_DEACTIVATE_IDX' => array(
+        ],
+        'IBASE_RES_DEACTIVATE_IDX' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_NO_SHADOW' => array(
+        ],
+        'IBASE_RES_NO_SHADOW' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_NO_VALIDITY' => array(
+        ],
+        'IBASE_RES_NO_VALIDITY' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_ONE_AT_A_TIME' => array(
+        ],
+        'IBASE_RES_ONE_AT_A_TIME' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_REPLACE' => array(
+        ],
+        'IBASE_RES_REPLACE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RES_USE_ALL_SPACE' => array(
+        ],
+        'IBASE_RES_USE_ALL_SPACE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_CHECK_DB' => array(
+        ],
+        'IBASE_RPR_CHECK_DB' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_FULL' => array(
+        ],
+        'IBASE_RPR_FULL' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_IGNORE_CHECKSUM' => array(
+        ],
+        'IBASE_RPR_IGNORE_CHECKSUM' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_KILL_SHADOWS' => array(
+        ],
+        'IBASE_RPR_KILL_SHADOWS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_MEND_DB' => array(
+        ],
+        'IBASE_RPR_MEND_DB' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_SWEEP_DB' => array(
+        ],
+        'IBASE_RPR_SWEEP_DB' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_RPR_VALIDATE_DB' => array(
+        ],
+        'IBASE_RPR_VALIDATE_DB' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_STS_DATA_PAGES' => array(
+        ],
+        'IBASE_STS_DATA_PAGES' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_STS_DB_LOG' => array(
+        ],
+        'IBASE_STS_DB_LOG' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_STS_HDR_PAGES' => array(
+        ],
+        'IBASE_STS_HDR_PAGES' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_STS_IDX_PAGES' => array(
+        ],
+        'IBASE_STS_IDX_PAGES' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_STS_SYS_RELATIONS' => array(
+        ],
+        'IBASE_STS_SYS_RELATIONS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_GET_ENV' => array(
+        ],
+        'IBASE_SVC_GET_ENV' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_GET_ENV_LOCK' => array(
+        ],
+        'IBASE_SVC_GET_ENV_LOCK' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_GET_ENV_MSG' => array(
+        ],
+        'IBASE_SVC_GET_ENV_MSG' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_GET_USERS' => array(
+        ],
+        'IBASE_SVC_GET_USERS' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_IMPLEMENTATION' => array(
+        ],
+        'IBASE_SVC_IMPLEMENTATION' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_SERVER_VERSION' => array(
+        ],
+        'IBASE_SVC_SERVER_VERSION' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_SVR_DB_INFO' => array(
+        ],
+        'IBASE_SVC_SVR_DB_INFO' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_SVC_USER_DBPATH' => array(
+        ],
+        'IBASE_SVC_USER_DBPATH' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_UNIXTIME' => array(
+        ],
+        'IBASE_UNIXTIME' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_WAIT' => array(
+        ],
+        'IBASE_WAIT' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'IBASE_WRITE' => array(
+        ],
+        'IBASE_WRITE' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
+        ],
 
-        'ASSERT_QUIET_EVAL' => array(
+        'ASSERT_QUIET_EVAL' => [
             '8.0' => true,
-        ),
-        'ENCHANT_MYSPELL' => array(
+        ],
+        'ENCHANT_MYSPELL' => [
             '8.0' => false,
-        ),
-        'ENCHANT_ISPELL' => array(
+        ],
+        'ENCHANT_ISPELL' => [
             '8.0' => false,
-        ),
-        'MB_OVERLOAD_MAIL' => array(
+        ],
+        'MB_OVERLOAD_MAIL' => [
             '8.0' => true,
-        ),
-        'MB_OVERLOAD_STRING' => array(
+        ],
+        'MB_OVERLOAD_STRING' => [
             '8.0' => true,
-        ),
-        'MB_OVERLOAD_REGEX' => array(
+        ],
+        'MB_OVERLOAD_REGEX' => [
             '8.0' => true,
-        ),
-        'PG_VERSION_STR' => array(
+        ],
+        'PG_VERSION_STR' => [
             '8.0'         => false,
             'alternative' => 'PG_VERSION',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -2545,7 +2545,7 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 
@@ -2573,9 +2573,9 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name' => $constantName,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

@@ -37,9 +37,9 @@ class NewAssertCustomExceptionSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'assert' => true,
-    );
+    ];
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
@@ -93,7 +93,7 @@ class NewAssertCustomExceptionSniff extends AbstractFunctionCallParameterSniff
         }
 
         $error = 'Passing a Throwable object as the second parameter to assert() is not supported in PHP 5.6 or earlier. Found: %s';
-        $data  = array($targetParam['clean']);
+        $data  = [$targetParam['clean']];
 
         $phpcsFile->addError($error, $targetParam['start'], 'CustomExceptionFound', $data);
     }

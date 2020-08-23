@@ -54,39 +54,39 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      */
     public function dataNewIconvMbstringCharsetDefault()
     {
-        return array(
-            array(44, 'iconv_mime_decode_headers', '$charset'),
-            array(45, 'iconv_mime_decode', '$charset'),
-            array(46, 'Iconv_Strlen', '$charset'),
-            array(47, 'iconv_strpos', '$charset'),
-            array(48, 'iconv_strrpos', '$charset'),
-            array(49, 'iconv_substr', '$charset'),
+        return [
+            [44, 'iconv_mime_decode_headers', '$charset'],
+            [45, 'iconv_mime_decode', '$charset'],
+            [46, 'Iconv_Strlen', '$charset'],
+            [47, 'iconv_strpos', '$charset'],
+            [48, 'iconv_strrpos', '$charset'],
+            [49, 'iconv_substr', '$charset'],
 
-            array(51, 'mb_check_encoding'),
-            array(52, 'MB_chr'),
-            array(53, 'mb_convert_case'),
-            array(54, 'mb_convert_encoding', '$from_encoding'),
-            array(55, 'mb_convert_kana'),
-            array(56, 'mb_decode_numericentity'),
-            array(57, 'mb_encode_numericentity'),
-            array(58, 'mb_ord'),
-            array(59, 'mb_scrub'),
-            array(60, 'mb_strcut'),
-            array(61, 'mb_stripos'),
-            array(62, 'mb_stristr'),
-            array(63, 'mb_strlen'),
-            array(64, 'mb_strpos'),
-            array(65, 'mb_strrchr'),
-            array(66, 'mb_strrichr'),
-            array(67, 'mb_strripos'),
-            array(68, 'mb_strrpos'),
-            array(69, 'mb_strstr'),
-            array(70, 'mb_strtolower'),
-            array(71, 'mb_strtoupper'),
-            array(72, 'mb_strwidth'),
-            array(73, 'mb_substr_count'),
-            array(74, 'mb_substr'),
-        );
+            [51, 'mb_check_encoding'],
+            [52, 'MB_chr'],
+            [53, 'mb_convert_case'],
+            [54, 'mb_convert_encoding', '$from_encoding'],
+            [55, 'mb_convert_kana'],
+            [56, 'mb_decode_numericentity'],
+            [57, 'mb_encode_numericentity'],
+            [58, 'mb_ord'],
+            [59, 'mb_scrub'],
+            [60, 'mb_strcut'],
+            [61, 'mb_stripos'],
+            [62, 'mb_stristr'],
+            [63, 'mb_strlen'],
+            [64, 'mb_strpos'],
+            [65, 'mb_strrchr'],
+            [66, 'mb_strrichr'],
+            [67, 'mb_strripos'],
+            [68, 'mb_strrpos'],
+            [69, 'mb_strstr'],
+            [70, 'mb_strtolower'],
+            [71, 'mb_strtoupper'],
+            [72, 'mb_strwidth'],
+            [73, 'mb_substr_count'],
+            [74, 'mb_substr'],
+        ];
     }
 
 
@@ -139,13 +139,13 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      */
     public function dataIconvMimeEncode()
     {
-        return array(
-            array(91, '$preferences[\'input/output-charset\']'),
-            array(92, '$preferences[\'input/output-charset\']', 'warning'),
-            array(96, '$preferences[\'output-charset\']'),
-            array(106, '$preferences[\'input-charset\']'),
-            array(115, '$preferences[\'input-charset\']'),
-        );
+        return [
+            [91, '$preferences[\'input/output-charset\']'],
+            [92, '$preferences[\'input/output-charset\']', 'warning'],
+            [96, '$preferences[\'output-charset\']'],
+            [106, '$preferences[\'input-charset\']'],
+            [115, '$preferences[\'input-charset\']'],
+        ];
     }
 
 
@@ -189,9 +189,9 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      */
     public function dataNoViolationsInFileOnValidVersion()
     {
-        return array(
-            array('-5.5'),
-            array('5.6-'),
-        );
+        return [
+            ['-5.5'],
+            ['5.6-'],
+        ];
     }
 }

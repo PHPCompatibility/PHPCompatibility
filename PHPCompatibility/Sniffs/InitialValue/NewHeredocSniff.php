@@ -53,12 +53,12 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
      *
      * @var array
      */
-    protected $errorPhrases = array(
+    protected $errorPhrases = [
         'const'     => 'constants',
         'property'  => 'class properties',
         'staticvar' => 'static variables',
         'default'   => 'default parameter values',
-    );
+    ];
 
 
     /**

@@ -35,81 +35,81 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool))
      */
-    protected $newAlgorithms = array(
-        'md2' => array(
+    protected $newAlgorithms = [
+        'md2' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'ripemd256' => array(
+        ],
+        'ripemd256' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'ripemd320' => array(
+        ],
+        'ripemd320' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'salsa10' => array(
+        ],
+        'salsa10' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'salsa20' => array(
+        ],
+        'salsa20' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'snefru256' => array(
+        ],
+        'snefru256' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'sha224' => array(
+        ],
+        'sha224' => [
             '5.2' => false,
             '5.3' => true,
-        ),
-        'joaat' => array(
+        ],
+        'joaat' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'fnv132' => array(
+        ],
+        'fnv132' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'fnv164' => array(
+        ],
+        'fnv164' => [
             '5.3' => false,
             '5.4' => true,
-        ),
-        'gost-crypto' => array(
+        ],
+        'gost-crypto' => [
             '5.5' => false,
             '5.6' => true,
-        ),
+        ],
 
-        'sha512/224' => array(
+        'sha512/224' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'sha512/256' => array(
+        ],
+        'sha512/256' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'sha3-224' => array(
+        ],
+        'sha3-224' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'sha3-256' => array(
+        ],
+        'sha3-256' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'sha3-384' => array(
+        ],
+        'sha3-384' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'sha3-512' => array(
+        ],
+        'sha3-512' => [
             '7.0' => false,
             '7.1' => true,
-        ),
-        'crc32c' => array(
+        ],
+        'crc32c' => [
             '7.3' => false,
             '7.4' => true,
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -121,7 +121,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 
@@ -149,9 +149,9 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
         }
 
         // Check if the algorithm used is new.
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $algo,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

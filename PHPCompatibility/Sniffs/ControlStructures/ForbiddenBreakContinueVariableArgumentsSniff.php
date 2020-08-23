@@ -43,10 +43,10 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      *
      * @var array
      */
-    private $errorTypes = array(
+    private $errorTypes = [
         'variableArgument' => 'a variable argument',
         'zeroArgument'     => '0 as an argument',
-    );
+    ];
 
     /**
      * Tokens indicating this is definitely a variable argument.
@@ -55,10 +55,10 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      *
      * @var array
      */
-    private $varArgTokens = array(
+    private $varArgTokens = [
         \T_VARIABLE => \T_VARIABLE,
         \T_CLOSURE  => \T_CLOSURE,
-    );
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -69,7 +69,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_BREAK, \T_CONTINUE);
+        return [\T_BREAK, \T_CONTINUE];
     }
 
     /**
@@ -90,7 +90,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
         }
 
         $tokens             = $phpcsFile->getTokens();
-        $nextSemicolonToken = $phpcsFile->findNext(array(\T_SEMICOLON, \T_CLOSE_TAG), ($stackPtr), null, false);
+        $nextSemicolonToken = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr), null, false);
         $errorType          = '';
         for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
             if ($tokens[$curToken]['code'] === \T_STRING) {
@@ -121,7 +121,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
         if ($errorType !== '') {
             $error     = 'Using %s on break or continue is forbidden since PHP 5.4';
             $errorCode = $errorType . 'Found';
-            $data      = array($this->errorTypes[$errorType]);
+            $data      = [$this->errorTypes[$errorType]];
 
             $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
         }

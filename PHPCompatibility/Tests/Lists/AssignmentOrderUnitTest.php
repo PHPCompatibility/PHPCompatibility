@@ -49,25 +49,25 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      */
     public function dataAssignmentOrder()
     {
-        return array(
-            array(17),
-            array(18),
-            array(19),
-            array(20),
-            array(22),
-            array(24),
-            array(27),
-            array(28),
-            array(29),
-            array(30),
-            array(32),
-            array(34),
-            array(37),
-            array(38),
-            array(45),
-            array(49),
-            array(52),
-        );
+        return [
+            [17],
+            [18],
+            [19],
+            [20],
+            [22],
+            [24],
+            [27],
+            [28],
+            [29],
+            [30],
+            [32],
+            [34],
+            [37],
+            [38],
+            [45],
+            [49],
+            [52],
+        ];
     }
 
 
@@ -95,14 +95,14 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(8),
-            array(10),
-            array(12),
-            array(41),
-            array(42),
-        );
+        return [
+            [6],
+            [8],
+            [10],
+            [12],
+            [41],
+            [42],
+        ];
     }
 
 

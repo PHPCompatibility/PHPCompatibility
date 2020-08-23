@@ -67,7 +67,7 @@ class NewShortArraySniff extends Sniff
         $token  = $tokens[$stackPtr];
 
         $error = '%s is not supported in PHP 5.3 or lower';
-        $data  = array();
+        $data  = [];
 
         if ($token['code'] === \T_OPEN_SHORT_ARRAY || $token['code'] === \T_OPEN_SQUARE_BRACKET) {
             $data[] = 'Short array syntax (open)';

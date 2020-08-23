@@ -66,140 +66,140 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool|string|null))
      */
-    protected $removedExtensions = array(
-        'activescript' => array(
+    protected $removedExtensions = [
+        'activescript' => [
             '5.1' => true,
             'alternative' => 'pecl/activescript',
-        ),
-        'cpdf' => array(
+        ],
+        'cpdf' => [
             '5.1' => true,
             'alternative' => 'pecl/pdflib',
-        ),
-        'dbase' => array(
+        ],
+        'dbase' => [
             '5.3' => true,
             'alternative' => null,
-        ),
-        'dbx' => array(
+        ],
+        'dbx' => [
             '5.1' => true,
             'alternative' => 'pecl/dbx',
-        ),
-        'dio' => array(
+        ],
+        'dio' => [
             '5.1' => true,
             'alternative' => 'pecl/dio',
-        ),
-        'ereg' => array(
+        ],
+        'ereg' => [
             '5.3' => false,
             '7.0' => true,
             'alternative' => 'pcre',
-        ),
-        'fam' => array(
+        ],
+        'fam' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-        'fbsql' => array(
+        ],
+        'fbsql' => [
             '5.3' => true,
             'alternative' => null,
-        ),
-        'fdf' => array(
+        ],
+        'fdf' => [
             '5.3' => true,
             'alternative' => 'pecl/fdf',
-        ),
-        'filepro' => array(
+        ],
+        'filepro' => [
             '5.2' => true,
             'alternative' => null,
-        ),
-        'hw_api' => array(
+        ],
+        'hw_api' => [
             '5.2' => true,
             'alternative' => null,
-        ),
-        'ibase' => array(
+        ],
+        'ibase' => [
             '7.4' => true,
             'alternative' => 'pecl/ibase',
-        ),
-        'ingres' => array(
+        ],
+        'ingres' => [
             '5.1' => true,
             'alternative' => 'pecl/ingres',
-        ),
-        'ircg' => array(
+        ],
+        'ircg' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-        'mcrypt' => array(
+        ],
+        'mcrypt' => [
             '7.1' => false,
             '7.2' => true,
             'alternative' => 'openssl (preferred) or pecl/mcrypt once available',
-        ),
-        'mcve' => array(
+        ],
+        'mcve' => [
             '5.1' => true,
             'alternative' => 'pecl/mcve',
-        ),
-        'ming' => array(
+        ],
+        'ming' => [
             '5.3' => true,
             'alternative' => 'pecl/ming',
-        ),
-        'mnogosearch' => array(
+        ],
+        'mnogosearch' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-        'msql' => array(
+        ],
+        'msql' => [
             '5.3' => true,
             'alternative' => null,
-        ),
-        'mssql' => array(
+        ],
+        'mssql' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'mysql_' => array(
+        ],
+        'mysql_' => [
             '5.5' => false,
             '7.0' => true,
             'alternative' => 'mysqli',
-        ),
-        'ncurses' => array(
+        ],
+        'ncurses' => [
             '5.3' => true,
             'alternative' => 'pecl/ncurses',
-        ),
-        'oracle' => array(
+        ],
+        'oracle' => [
             '5.1' => true,
             'alternative' => 'oci8 or pdo_oci',
-        ),
-        'ovrimos' => array(
+        ],
+        'ovrimos' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-        'pfpro_' => array(
+        ],
+        'pfpro_' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-        'recode' => array(
+        ],
+        'recode' => [
             '7.4' => true,
             'alternative' => 'iconv or mbstring',
-        ),
-        'sqlite' => array(
+        ],
+        'sqlite' => [
             '5.4' => true,
             'alternative' => null,
-        ),
+        ],
         // Has to be before `sybase` as otherwise it will never match.
-        'sybase_ct' => array(
+        'sybase_ct' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'sybase' => array(
+        ],
+        'sybase' => [
             '5.3' => true,
             'alternative' => 'sybase_ct',
-        ),
-        'w32api' => array(
+        ],
+        'w32api' => [
             '5.1' => true,
             'alternative' => 'pecl/ffi',
-        ),
-        'wddx' => array(
+        ],
+        'wddx' => [
             '7.4' => true,
             'alternative' => 'pecl/wddx',
-        ),
-        'yp' => array(
+        ],
+        'yp' => [
             '5.1' => true,
             'alternative' => null,
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -213,7 +213,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         // Handle case-insensitivity of function names.
         $this->removedExtensions = \array_change_key_case($this->removedExtensions, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
     /**
@@ -273,9 +273,9 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 
         foreach ($this->removedExtensions as $extension => $versionList) {
             if (strpos($functionLc, $extension) === 0) {
-                $itemInfo = array(
+                $itemInfo = [
                     'name'   => $extension,
-                );
+                ];
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
                 break;
             }

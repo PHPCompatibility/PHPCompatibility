@@ -50,11 +50,11 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
      */
     public function dataRemovedCallingDestructAfterConstructorExit()
     {
-        return array(
-            array(33, 'exit'),
-            array(44, 'die'),
-            array(46, 'exit'),
-        );
+        return [
+            [33, 'exit'],
+            [44, 'die'],
+            [46, 'exit'],
+        ];
     }
 
 
@@ -82,10 +82,10 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 26 lines.
         for ($line = 1; $line <= 26; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         return $cases;

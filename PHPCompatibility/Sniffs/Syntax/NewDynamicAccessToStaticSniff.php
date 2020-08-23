@@ -39,9 +39,9 @@ class NewDynamicAccessToStaticSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_DOUBLE_COLON,
-        );
+        ];
     }
 
     /**

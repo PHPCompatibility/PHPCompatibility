@@ -36,9 +36,9 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'strip_tags' => true,
-    );
+    ];
 
 
     /**
@@ -126,7 +126,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                             'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',
                             $i,
                             'Invalid',
-                            array($item['clean'])
+                            [$item['clean']]
                         );
 
                         // Only throw one error per array item.

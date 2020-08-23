@@ -36,18 +36,18 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $newTypeCasts = array(
-        'T_UNSET_CAST' => array(
+    protected $newTypeCasts = [
+        'T_UNSET_CAST' => [
             '4.4'         => false,
             '5.0'         => true,
             'description' => 'The unset cast',
-        ),
-        'T_BINARY_CAST' => array(
+        ],
+        'T_BINARY_CAST' => [
             '5.2.0'       => false,
             '5.2.1'       => true,
             'description' => 'The binary cast',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -59,7 +59,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ($this->newTypeCasts as $token => $versions) {
             if (\defined($token)) {
                 $tokens[] = constant($token);
@@ -130,10 +130,10 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'    => $tokenType,
             'content' => $tokens[$stackPtr]['content'],
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -162,7 +162,7 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('description');
+        return ['description'];
     }
 
 

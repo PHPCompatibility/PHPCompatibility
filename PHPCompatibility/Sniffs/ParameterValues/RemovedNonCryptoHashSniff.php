@@ -36,12 +36,12 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'hash_hmac'      => true,
         'hash_hmac_file' => true,
         'hash_init'      => true,
         'hash_pbkdf2'    => true,
-    );
+    ];
 
     /**
      * List of the non-cryptographic hashes.
@@ -50,7 +50,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $disabledCryptos = array(
+    protected $disabledCryptos = [
         'adler32' => true,
         'crc32'   => true,
         'crc32b'  => true,
@@ -59,7 +59,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
         'fnv164'  => true,
         'fnv1a64' => true,
         'joaat'   => true,
-    );
+    ];
 
 
     /**
@@ -113,10 +113,10 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             'Non-cryptographic hashes are no longer accepted by function %s() since PHP 7.2. Found: %s',
             $targetParam['start'],
             $this->stringToErrorCode($functionName),
-            array(
+            [
                 $functionName,
                 $targetParam['raw'],
-            )
+            ]
         );
     }
 }

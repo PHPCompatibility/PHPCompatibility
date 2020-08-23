@@ -45,9 +45,9 @@ class ValidIntegersSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_LNUMBER,
-        );
+        ];
     }
 
 
@@ -71,13 +71,13 @@ class ValidIntegersSniff extends Sniff
         if (Numbers::isBinaryInt($numberInfo['content']) === true) {
             if ($this->supportsBelow('5.3')) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
-                $data  = array($numberInfo['orig_content']);
+                $data  = [$numberInfo['orig_content']];
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
             }
 
             if ($this->isInvalidBinaryInteger($tokens, $numberInfo['last_token']) === true) {
                 $error = 'Invalid binary integer detected. Found: %s';
-                $data  = array($this->getBinaryInteger($phpcsFile, $tokens, $stackPtr));
+                $data  = [$this->getBinaryInteger($phpcsFile, $tokens, $stackPtr)];
                 $phpcsFile->addWarning($error, $stackPtr, 'InvalidBinaryIntegerFound', $data);
             }
 
@@ -94,7 +94,7 @@ class ValidIntegersSniff extends Sniff
                 $stackPtr,
                 $isError,
                 'InvalidOctalIntegerFound',
-                array($numberInfo['orig_content'])
+                [$numberInfo['orig_content']]
             );
         }
 

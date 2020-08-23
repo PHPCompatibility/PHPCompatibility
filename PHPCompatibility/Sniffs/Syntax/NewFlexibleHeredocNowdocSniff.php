@@ -41,10 +41,10 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      */
     public function register()
     {
-        $targets = array(
+        $targets = [
             \T_END_HEREDOC,
             \T_END_NOWDOC,
-        );
+        ];
 
         if (version_compare(\PHP_VERSION_ID, '70299', '>') === false) {
             // Start identifier of a PHP 7.3 flexible heredoc/nowdoc.
@@ -110,7 +110,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             /*
              * Check for tokens after the closing marker.
              */
-            $nextNonWhitespace = $phpcsFile->findNext(array(\T_WHITESPACE, \T_SEMICOLON), ($stackPtr + 1), null, true);
+            $nextNonWhitespace = $phpcsFile->findNext([\T_WHITESPACE, \T_SEMICOLON], ($stackPtr + 1), null, true);
             if ($tokens[$stackPtr]['line'] === $tokens[$nextNonWhitespace]['line']) {
                 $phpcsFile->addError($trailingError, $stackPtr, $trailingErrorCode);
             }
@@ -198,7 +198,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
             }
 
             // The real closing tag has to be before the next heredoc/nowdoc.
-            $nextHereNowDoc = $phpcsFile->findNext(array(\T_START_HEREDOC, \T_START_NOWDOC), ($stackPtr + 1));
+            $nextHereNowDoc = $phpcsFile->findNext([\T_START_HEREDOC, \T_START_NOWDOC], ($stackPtr + 1));
             if ($nextHereNowDoc === false) {
                 $nextHereNowDoc = null;
             }

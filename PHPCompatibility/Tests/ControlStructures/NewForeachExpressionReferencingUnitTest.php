@@ -50,14 +50,14 @@ class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
      */
     public function dataNewForeachExpressionReferencing()
     {
-        return array(
-            array(17),
-            array(18),
-            array(20),
-            array(21),
-            array(23),
-            array(24),
-        );
+        return [
+            [17],
+            [18],
+            [20],
+            [21],
+            [23],
+            [24],
+        ];
     }
 
 
@@ -85,15 +85,15 @@ class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-        );
+        return [
+            [6],
+            [7],
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+        ];
     }
 
 

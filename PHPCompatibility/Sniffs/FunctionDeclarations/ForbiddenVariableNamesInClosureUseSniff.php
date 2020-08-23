@@ -42,7 +42,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_USE);
+        return [\T_USE];
     }
 
     /**
@@ -92,12 +92,12 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             $variableName = $useVar['name'];
 
             if ($variableName === '$this') {
-                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundThis', array($variableName));
+                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundThis', [$variableName]);
                 continue;
             }
 
             if (Variables::isSuperglobalName($variableName) === true) {
-                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundSuperglobal', array($variableName));
+                $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundSuperglobal', [$variableName]);
                 continue;
             }
 
@@ -105,7 +105,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             if (empty($closureParams) === false) {
                 foreach ($closureParams as $param) {
                     if ($param['name'] === $variableName) {
-                        $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundShadowParam', array($variableName));
+                        $phpcsFile->addError($errorMsg, $useVar['token'], 'FoundShadowParam', [$variableName]);
                         continue 2;
                     }
                 }

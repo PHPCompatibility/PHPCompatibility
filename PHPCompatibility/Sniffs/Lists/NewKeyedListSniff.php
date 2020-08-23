@@ -38,11 +38,11 @@ class NewKeyedListSniff extends Sniff
      */
     public function register()
     {
-        return array(
+        return [
             \T_LIST                => \T_LIST,
             \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
             \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
-        );
+        ];
     }
 
     /**

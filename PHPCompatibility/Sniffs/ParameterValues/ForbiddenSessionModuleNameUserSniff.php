@@ -37,9 +37,9 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'session_module_name' => true,
-    );
+    ];
 
     /**
      * Tokens which we are looking for in the parameter.
@@ -50,7 +50,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      *
      * @var array
      */
-    private $targetTokens = array();
+    private $targetTokens = [];
 
     /**
      * Returns an array of tokens this test wants to listen for.

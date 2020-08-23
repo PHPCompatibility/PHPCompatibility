@@ -48,7 +48,7 @@ class AbstractPrivateMethodsSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_FUNCTION);
+        return [\T_FUNCTION];
     }
 
     /**

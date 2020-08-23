@@ -54,10 +54,10 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTest
      */
     public function dataChangedObStartEraseFlagsBoolean()
     {
-        return array(
-            array(13),
-            array(14),
-        );
+        return [
+            [13],
+            [14],
+        ];
     }
 
 
@@ -90,15 +90,15 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTest
      */
     public function dataChangedObStartEraseFlagsInt()
     {
-        return array(
-            array(17),
-            array(18),
-            array(19),
-            array(20),
-            array(21),
-            array(22),
-            array(23),
-        );
+        return [
+            [17],
+            [18],
+            [19],
+            [20],
+            [21],
+            [22],
+            [23],
+        ];
     }
 
 

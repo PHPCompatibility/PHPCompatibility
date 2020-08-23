@@ -78,10 +78,10 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      */
     public function dataRemovedMagicAutoload()
     {
-        return array(
-            array(3),
-            array(32),
-        );
+        return [
+            [3],
+            [32],
+        ];
     }
 
     /**
@@ -109,16 +109,16 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      */
     public function dataIsNotAffected()
     {
-        return array(
-            array(self::TEST_FILE, 8),
-            array(self::TEST_FILE, 14),
-            array(self::TEST_FILE, 18),
-            array(self::TEST_FILE, 24),
-            array(self::TEST_FILE_NAMESPACED, 5),
-            array(self::TEST_FILE_NAMESPACED, 10),
-            array(self::TEST_FILE_NAMESPACED, 16),
-            array(self::TEST_FILE_NAMESPACED, 20),
-            array(self::TEST_FILE_NAMESPACED, 26),
-        );
+        return [
+            [self::TEST_FILE, 8],
+            [self::TEST_FILE, 14],
+            [self::TEST_FILE, 18],
+            [self::TEST_FILE, 24],
+            [self::TEST_FILE_NAMESPACED, 5],
+            [self::TEST_FILE_NAMESPACED, 10],
+            [self::TEST_FILE_NAMESPACED, 16],
+            [self::TEST_FILE_NAMESPACED, 20],
+            [self::TEST_FILE_NAMESPACED, 26],
+        ];
     }
 }

@@ -53,20 +53,20 @@ class IsNumericCalculationUnitTest extends CoreMethodTestFrame
      */
     public function dataIsNumericCalculation()
     {
-        return array(
-            array('/* test A1 */', false),
-            array('/* test A2 */', false),
-            array('/* test A3 */', false),
-            array('/* test A4 */', false),
-            array('/* test A5 */', false),
+        return [
+            ['/* test A1 */', false],
+            ['/* test A2 */', false],
+            ['/* test A3 */', false],
+            ['/* test A4 */', false],
+            ['/* test A5 */', false],
 
-            array('/* test B1 */', true),
-            array('/* test B2 */', true),
-            array('/* test B3 */', true),
-            array('/* test B4 */', true),
-            array('/* test B5 */', true),
-            array('/* test B6 */', true),
-            array('/* test B7 */', true),
-        );
+            ['/* test B1 */', true],
+            ['/* test B2 */', true],
+            ['/* test B3 */', true],
+            ['/* test B4 */', true],
+            ['/* test B5 */', true],
+            ['/* test B6 */', true],
+            ['/* test B7 */', true],
+        ];
     }
 }

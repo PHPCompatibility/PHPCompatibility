@@ -60,17 +60,17 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function dataReservedKeyword()
     {
-        return array(
-            array('null', array(22, 36, 50, 64, 79, 94), '7.0', '5.6'),
-            array('true', array(23, 37, 51, 65, 80, 95), '7.0', '5.6'),
-            array('false', array(24, 38, 52, 66, 81, 96), '7.0', '5.6'),
-            array('bool', array(25, 39, 53, 67, 82, 97), '7.0', '5.6'),
-            array('int', array(26, 40, 54, 68, 83, 98), '7.0', '5.6'),
-            array('float', array(27, 41, 55, 69, 84, 99), '7.0', '5.6'),
-            array('string', array(28, 42, 56, 70, 85, 100), '7.0', '5.6'),
-            array('iterable', array(33, 47, 61, 75, 90, 105), '7.1', '7.0'),
-            array('void', array(34, 48, 62, 76, 91, 106), '7.1', '7.0'),
-        );
+        return [
+            ['null', [22, 36, 50, 64, 79, 94], '7.0', '5.6'],
+            ['true', [23, 37, 51, 65, 80, 95], '7.0', '5.6'],
+            ['false', [24, 38, 52, 66, 81, 96], '7.0', '5.6'],
+            ['bool', [25, 39, 53, 67, 82, 97], '7.0', '5.6'],
+            ['int', [26, 40, 54, 68, 83, 98], '7.0', '5.6'],
+            ['float', [27, 41, 55, 69, 84, 99], '7.0', '5.6'],
+            ['string', [28, 42, 56, 70, 85, 100], '7.0', '5.6'],
+            ['iterable', [33, 47, 61, 75, 90, 105], '7.1', '7.0'],
+            ['void', [34, 48, 62, 76, 91, 106], '7.1', '7.0'],
+        ];
     }
 
 
@@ -109,11 +109,11 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function dataSoftReservedKeyword()
     {
-        return array(
-            array('resource', array(29, 43, 57, 71, 86, 101), '7.0', '5.6'),
-            array('mixed', array(31, 45, 59, 73, 88, 103), '7.0', '5.6'),
-            array('numeric', array(32, 46, 60, 74, 89, 104), '7.0', '5.6'),
-        );
+        return [
+            ['resource', [29, 43, 57, 71, 86, 101], '7.0', '5.6'],
+            ['mixed', [31, 45, 59, 73, 88, 103], '7.0', '5.6'],
+            ['numeric', [32, 46, 60, 74, 89, 104], '7.0', '5.6'],
+        ];
     }
 
 
@@ -153,9 +153,9 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function dataSoftHardReservedKeyword()
     {
-        return array(
-            array('object', array(30, 44, 58, 72, 87, 102), '7.0', '5.6', '7.2'),
-        );
+        return [
+            ['object', [30, 44, 58, 72, 87, 102], '7.0', '5.6', '7.2'],
+        ];
     }
 
 
@@ -183,19 +183,19 @@ class ForbiddenNamesAsDeclaredUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(6),
-            array(7),
-            array(8),
-            array(9),
-            array(10),
-            array(11),
-            array(12),
-            array(13),
-            array(14),
-            array(15),
-            array(16),
-        );
+        return [
+            [6],
+            [7],
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+            [13],
+            [14],
+            [15],
+            [16],
+        ];
     }
 
 

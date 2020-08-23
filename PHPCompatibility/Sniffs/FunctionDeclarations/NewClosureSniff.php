@@ -51,7 +51,7 @@ class NewClosureSniff extends Sniff
      */
     public function register()
     {
-        return array(\T_CLOSURE);
+        return [\T_CLOSURE];
     }
 
     /**
@@ -133,7 +133,7 @@ class NewClosureSniff extends Sniff
                         'Closures / anonymous functions could not use "%s::" in PHP 5.3 or earlier',
                         $usesClassRef,
                         'ClassRefFound',
-                        array(strtolower($tokens[$usesClassRef]['content']))
+                        [strtolower($tokens[$usesClassRef]['content'])]
                     );
 
                     $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, ($usesClassRef + 1), $scopeEnd);

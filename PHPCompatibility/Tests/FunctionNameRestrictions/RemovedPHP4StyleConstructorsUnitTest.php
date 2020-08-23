@@ -52,13 +52,13 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      */
     public function dataIsDeprecated()
     {
-        return array(
-            array(3),
-            array(18),
-            array(33),
-            array(66),
-            array(86),
-        );
+        return [
+            [3],
+            [18],
+            [33],
+            [66],
+            [86],
+        ];
     }
 
 
@@ -86,19 +86,19 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(9),
-            array(12),
-            array(26),
-            array(37),
-            array(41),
-            array(42),
-            array(47),
-            array(51),
-            array(53),
-            array(65),
-            array(87),
-        );
+        return [
+            [9],
+            [12],
+            [26],
+            [37],
+            [41],
+            [42],
+            [47],
+            [51],
+            [53],
+            [65],
+            [87],
+        ];
     }
 
 

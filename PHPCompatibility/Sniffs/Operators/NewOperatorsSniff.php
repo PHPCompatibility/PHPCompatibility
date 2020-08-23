@@ -40,38 +40,38 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string))
      */
-    protected $newOperators = array(
-        'T_POW' => array(
+    protected $newOperators = [
+        'T_POW' => [
             '5.5' => false,
             '5.6' => true,
             'description' => 'The power operator (**)',
-        ),
-        'T_POW_EQUAL' => array(
+        ],
+        'T_POW_EQUAL' => [
             '5.5' => false,
             '5.6' => true,
             'description' => 'The power assignment operator (**=)',
-        ),
-        'T_SPACESHIP' => array(
+        ],
+        'T_SPACESHIP' => [
             '5.6' => false,
             '7.0' => true,
             'description' => 'The spaceship operator (<=>)',
-        ),
-        'T_COALESCE' => array(
+        ],
+        'T_COALESCE' => [
             '5.6' => false,
             '7.0' => true,
             'description' => 'The null coalescing operator (??)',
-        ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
-        'T_COALESCE_EQUAL' => array(
+        ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
+        'T_COALESCE_EQUAL' => [
             '7.3' => false,
             '7.4' => true,
             'description' => 'The null coalesce equal operator (??=)',
-        ), // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
-        'T_NULLSAFE_OBJECT_OPERATOR' => array(
+        ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
+        'T_NULLSAFE_OBJECT_OPERATOR' => [
             '7.4' => false,
             '8.0' => true,
             'description' => 'The nullsafe object operator (?->)',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -83,11 +83,11 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => int)
      */
-    protected $newOperatorsPHPCSCompat = array(
+    protected $newOperatorsPHPCSCompat = [
         'T_COALESCE'                 => \T_INLINE_THEN,
         'T_COALESCE_EQUAL'           => \T_EQUAL,
         'T_NULLSAFE_OBJECT_OPERATOR' => \T_OBJECT_OPERATOR,
-    );
+    ];
 
     /**
      * Token translation table for older PHPCS versions.
@@ -108,20 +108,20 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => string))
      */
-    protected $PHPCSCompatTranslate = array(
-        'T_INLINE_THEN' => array(
+    protected $PHPCSCompatTranslate = [
+        'T_INLINE_THEN' => [
             'callback'   => 'isTCoalesce',
             'real_token' => 'T_COALESCE',
-        ),
-        'T_EQUAL' => array(
+        ],
+        'T_EQUAL' => [
             'callback'   => 'isTCoalesceEqual',
             'real_token' => 'T_COALESCE_EQUAL',
-        ),
-        'T_OBJECT_OPERATOR' => array(
+        ],
+        'T_OBJECT_OPERATOR' => [
             'before'     => 'T_INLINE_THEN',
             'real_token' => 'T_NULLSAFE_OBJECT_OPERATOR',
-        ),
-    );
+        ],
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -132,7 +132,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ($this->newOperators as $token => $versions) {
             if (\defined($token)) {
                 $tokens[] = constant($token);
@@ -166,7 +166,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
                 && ((isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]) === true
                     && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
                 || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
-                    && \call_user_func(array($this, $this->PHPCSCompatTranslate[$tokenType]['callback']), $tokens, $stackPtr) === true))
+                    && \call_user_func([$this, $this->PHPCSCompatTranslate[$tokenType]['callback']], $tokens, $stackPtr) === true))
             ) {
                 $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
             }
@@ -183,9 +183,9 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name' => $tokenType,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
@@ -214,7 +214,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array('description');
+        return ['description'];
     }
 
 

@@ -58,13 +58,13 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function dataBinaryInteger()
     {
-        return array(
-            array(3, '0b001001101', true),
-            array(4, '0b01', false),
-            array(11, '0B10001', true),
-            array(14, '0b00100_1101', true),
-            array(19, '0b01', false),
-        );
+        return [
+            [3, '0b001001101', true],
+            [4, '0b01', false],
+            [11, '0B10001', true],
+            [14, '0b00100_1101', true],
+            [19, '0b01', false],
+        ];
     }
 
 
@@ -93,12 +93,12 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function dataInvalidBinaryInteger()
     {
-        return array(
-            array(4, '0b0123456'),
+        return [
+            [4, '0b0123456'],
 
             // Depending on PHP version the message will show the complete number or just the first part.
-            array(19, '0b012'),
-        );
+            [19, '0b012'],
+        ];
     }
 
 
@@ -132,12 +132,12 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function dataInvalidOctalInteger()
     {
-        return array(
-            array(7, '08'),
-            array(8, '038'),
-            array(9, '091'),
-            array(16, '03_8'),
-        );
+        return [
+            [7, '08'],
+            [8, '038'],
+            [9, '091'],
+            [16, '03_8'],
+        ];
     }
 
 
@@ -165,10 +165,10 @@ class ValidIntegersUnitTest extends BaseSniffTest
      */
     public function dataValidOctalInteger()
     {
-        return array(
-            array(6),
-            array(15),
-        );
+        return [
+            [6],
+            [15],
+        ];
     }
 
 

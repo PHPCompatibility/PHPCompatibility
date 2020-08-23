@@ -32,9 +32,9 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
      *
      * @var array
      */
-    protected $targetFunctions = array(
+    protected $targetFunctions = [
         'fopen' => true,
-    );
+    ];
 
 
     /**
@@ -73,7 +73,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
 
         $tokens      = $phpcsFile->getTokens();
         $targetParam = $parameters[2];
-        $errors      = array();
+        $errors      = [];
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if ($tokens[$i]['code'] === \T_STRING
@@ -88,25 +88,25 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
             }
 
             if (strpos($tokens[$i]['content'], 'c+') !== false && $this->supportsBelow('5.2.5')) {
-                $errors['cplusFound'] = array(
+                $errors['cplusFound'] = [
                     'c+',
                     '5.2.5',
                     $targetParam['clean'],
-                );
+                ];
             } elseif (strpos($tokens[$i]['content'], 'c') !== false && $this->supportsBelow('5.2.5')) {
-                $errors['cFound'] = array(
+                $errors['cFound'] = [
                     'c',
                     '5.2.5',
                     $targetParam['clean'],
-                );
+                ];
             }
 
             if (strpos($tokens[$i]['content'], 'e') !== false && $this->supportsBelow('7.0.15')) {
-                $errors['eFound'] = array(
+                $errors['eFound'] = [
                     'e',
                     '7.0.15',
                     $targetParam['clean'],
-                );
+                ];
             }
         }
 

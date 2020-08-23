@@ -44,4743 +44,4743 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
      *
      * @var array(string => array(string => bool|string|null))
      */
-    protected $removedFunctions = array(
-        'crack_check' => array(
+    protected $removedFunctions = [
+        'crack_check' => [
             '5.0'       => true,
             'extension' => 'crack',
-        ),
-        'crack_closedict' => array(
+        ],
+        'crack_closedict' => [
             '5.0'       => true,
             'extension' => 'crack',
-        ),
-        'crack_getlastmessage' => array(
+        ],
+        'crack_getlastmessage' => [
             '5.0'       => true,
             'extension' => 'crack',
-        ),
-        'crack_opendict' => array(
+        ],
+        'crack_opendict' => [
             '5.0'       => true,
             'extension' => 'crack',
-        ),
+        ],
 
-        'php_check_syntax' => array(
+        'php_check_syntax' => [
             '5.0.5' => true,
             'alternative' => null,
-        ),
+        ],
 
-        'pfpro_cleanup' => array(
+        'pfpro_cleanup' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro_init' => array(
+        ],
+        'pfpro_init' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro_process_raw' => array(
+        ],
+        'pfpro_process_raw' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro_process' => array(
+        ],
+        'pfpro_process' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'pfpro_version' => array(
+        ],
+        'pfpro_version' => [
             '5.1'       => true,
             'extension' => 'pfpro',
-        ),
-        'm_checkstatus' => array(
+        ],
+        'm_checkstatus' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_completeauthorizations' => array(
+        ],
+        'm_completeauthorizations' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_connect' => array(
+        ],
+        'm_connect' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_connectionerror' => array(
+        ],
+        'm_connectionerror' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_deletetrans' => array(
+        ],
+        'm_deletetrans' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_destroyconn' => array(
+        ],
+        'm_destroyconn' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_destroyengine' => array(
+        ],
+        'm_destroyengine' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_getcell' => array(
+        ],
+        'm_getcell' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_getcellbynum' => array(
+        ],
+        'm_getcellbynum' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_getcommadelimited' => array(
+        ],
+        'm_getcommadelimited' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_getheader' => array(
+        ],
+        'm_getheader' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_initconn' => array(
+        ],
+        'm_initconn' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_initengine' => array(
+        ],
+        'm_initengine' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_iscommadelimited' => array(
+        ],
+        'm_iscommadelimited' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_maxconntimeout' => array(
+        ],
+        'm_maxconntimeout' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_monitor' => array(
+        ],
+        'm_monitor' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_numcolumns' => array(
+        ],
+        'm_numcolumns' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_numrows' => array(
+        ],
+        'm_numrows' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_parsecommadelimited' => array(
+        ],
+        'm_parsecommadelimited' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_responsekeys' => array(
+        ],
+        'm_responsekeys' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_responseparam' => array(
+        ],
+        'm_responseparam' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_returnstatus' => array(
+        ],
+        'm_returnstatus' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setblocking' => array(
+        ],
+        'm_setblocking' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setdropfile' => array(
+        ],
+        'm_setdropfile' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setip' => array(
+        ],
+        'm_setip' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setssl_cafile' => array(
+        ],
+        'm_setssl_cafile' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setssl_files' => array(
+        ],
+        'm_setssl_files' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_setssl' => array(
+        ],
+        'm_setssl' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_settimeout' => array(
+        ],
+        'm_settimeout' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_sslcert_gen_hash' => array(
+        ],
+        'm_sslcert_gen_hash' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_transactionssent' => array(
+        ],
+        'm_transactionssent' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_transinqueue' => array(
+        ],
+        'm_transinqueue' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_transkeyval' => array(
+        ],
+        'm_transkeyval' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_transnew' => array(
+        ],
+        'm_transnew' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_transsend' => array(
+        ],
+        'm_transsend' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_uwait' => array(
+        ],
+        'm_uwait' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_validateidentifier' => array(
+        ],
+        'm_validateidentifier' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_verifyconnection' => array(
+        ],
+        'm_verifyconnection' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'm_verifysslcert' => array(
+        ],
+        'm_verifysslcert' => [
             '5.1'       => true,
             'extension' => 'mcve',
-        ),
-        'dio_close' => array(
+        ],
+        'dio_close' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_fcntl' => array(
+        ],
+        'dio_fcntl' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_open' => array(
+        ],
+        'dio_open' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_read' => array(
+        ],
+        'dio_read' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_seek' => array(
+        ],
+        'dio_seek' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_stat' => array(
+        ],
+        'dio_stat' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_tcsetattr' => array(
+        ],
+        'dio_tcsetattr' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_truncate' => array(
+        ],
+        'dio_truncate' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'dio_write' => array(
+        ],
+        'dio_write' => [
             '5.1'       => true,
             'extension' => 'dio',
-        ),
-        'fam_cancel_monitor' => array(
+        ],
+        'fam_cancel_monitor' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_close' => array(
+        ],
+        'fam_close' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_monitor_collection' => array(
+        ],
+        'fam_monitor_collection' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_monitor_directory' => array(
+        ],
+        'fam_monitor_directory' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_monitor_file' => array(
+        ],
+        'fam_monitor_file' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_next_event' => array(
+        ],
+        'fam_next_event' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_open' => array(
+        ],
+        'fam_open' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_pending' => array(
+        ],
+        'fam_pending' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_resume_monitor' => array(
+        ],
+        'fam_resume_monitor' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'fam_suspend_monitor' => array(
+        ],
+        'fam_suspend_monitor' => [
             '5.1'       => true,
             'extension' => 'fam',
-        ),
-        'yp_all' => array(
+        ],
+        'yp_all' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_cat' => array(
+        ],
+        'yp_cat' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_err_string' => array(
+        ],
+        'yp_err_string' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_errno' => array(
+        ],
+        'yp_errno' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_first' => array(
+        ],
+        'yp_first' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_get_default_domain' => array(
+        ],
+        'yp_get_default_domain' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_master' => array(
+        ],
+        'yp_master' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_match' => array(
+        ],
+        'yp_match' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_next' => array(
+        ],
+        'yp_next' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'yp_order' => array(
+        ],
+        'yp_order' => [
             '5.1'       => true,
             'extension' => 'yp',
-        ),
-        'udm_add_search_limit' => array(
+        ],
+        'udm_add_search_limit' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_alloc_agent_array' => array(
+        ],
+        'udm_alloc_agent_array' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_alloc_agent' => array(
+        ],
+        'udm_alloc_agent' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_api_version' => array(
+        ],
+        'udm_api_version' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_cat_list' => array(
+        ],
+        'udm_cat_list' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_cat_path' => array(
+        ],
+        'udm_cat_path' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_check_charset' => array(
+        ],
+        'udm_check_charset' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_clear_search_limits' => array(
+        ],
+        'udm_clear_search_limits' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_crc32' => array(
+        ],
+        'udm_crc32' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_errno' => array(
+        ],
+        'udm_errno' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_error' => array(
+        ],
+        'udm_error' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_find' => array(
+        ],
+        'udm_find' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_free_agent' => array(
+        ],
+        'udm_free_agent' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_free_ispell_data' => array(
+        ],
+        'udm_free_ispell_data' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_free_res' => array(
+        ],
+        'udm_free_res' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_get_doc_count' => array(
+        ],
+        'udm_get_doc_count' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_get_res_field' => array(
+        ],
+        'udm_get_res_field' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_get_res_param' => array(
+        ],
+        'udm_get_res_param' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_hash32' => array(
+        ],
+        'udm_hash32' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_load_ispell_data' => array(
+        ],
+        'udm_load_ispell_data' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'udm_set_agent_param' => array(
+        ],
+        'udm_set_agent_param' => [
             '5.1'       => true,
             'extension' => 'mnogosearch',
-        ),
-        'w32api_deftype' => array(
+        ],
+        'w32api_deftype' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'w32api_init_dtype' => array(
+        ],
+        'w32api_init_dtype' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'w32api_invoke_function' => array(
+        ],
+        'w32api_invoke_function' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'w32api_register_function' => array(
+        ],
+        'w32api_register_function' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'w32api_set_call_method' => array(
+        ],
+        'w32api_set_call_method' => [
             '5.1'       => true,
             'extension' => 'w32api',
-        ),
-        'cpdf_add_annotation' => array(
+        ],
+        'cpdf_add_annotation' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_add_outline' => array(
+        ],
+        'cpdf_add_outline' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_arc' => array(
+        ],
+        'cpdf_arc' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_begin_text' => array(
+        ],
+        'cpdf_begin_text' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_circle' => array(
+        ],
+        'cpdf_circle' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_clip' => array(
+        ],
+        'cpdf_clip' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_close' => array(
+        ],
+        'cpdf_close' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_closepath_fill_stroke' => array(
+        ],
+        'cpdf_closepath_fill_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_closepath_stroke' => array(
+        ],
+        'cpdf_closepath_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_closepath' => array(
+        ],
+        'cpdf_closepath' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_continue_text' => array(
+        ],
+        'cpdf_continue_text' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_curveto' => array(
+        ],
+        'cpdf_curveto' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_end_text' => array(
+        ],
+        'cpdf_end_text' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_fill_stroke' => array(
+        ],
+        'cpdf_fill_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_fill' => array(
+        ],
+        'cpdf_fill' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_finalize_page' => array(
+        ],
+        'cpdf_finalize_page' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_finalize' => array(
+        ],
+        'cpdf_finalize' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_global_set_document_limits' => array(
+        ],
+        'cpdf_global_set_document_limits' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_import_jpeg' => array(
+        ],
+        'cpdf_import_jpeg' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_lineto' => array(
+        ],
+        'cpdf_lineto' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_moveto' => array(
+        ],
+        'cpdf_moveto' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_newpath' => array(
+        ],
+        'cpdf_newpath' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_open' => array(
+        ],
+        'cpdf_open' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_output_buffer' => array(
+        ],
+        'cpdf_output_buffer' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_page_init' => array(
+        ],
+        'cpdf_page_init' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_place_inline_image' => array(
+        ],
+        'cpdf_place_inline_image' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_rect' => array(
+        ],
+        'cpdf_rect' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_restore' => array(
+        ],
+        'cpdf_restore' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_rlineto' => array(
+        ],
+        'cpdf_rlineto' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_rmoveto' => array(
+        ],
+        'cpdf_rmoveto' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_rotate_text' => array(
+        ],
+        'cpdf_rotate_text' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_rotate' => array(
+        ],
+        'cpdf_rotate' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_save_to_file' => array(
+        ],
+        'cpdf_save_to_file' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_save' => array(
+        ],
+        'cpdf_save' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_scale' => array(
+        ],
+        'cpdf_scale' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_action_url' => array(
+        ],
+        'cpdf_set_action_url' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_char_spacing' => array(
+        ],
+        'cpdf_set_char_spacing' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_creator' => array(
+        ],
+        'cpdf_set_creator' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_current_page' => array(
+        ],
+        'cpdf_set_current_page' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_font_directories' => array(
+        ],
+        'cpdf_set_font_directories' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_font_map_file' => array(
+        ],
+        'cpdf_set_font_map_file' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_font' => array(
+        ],
+        'cpdf_set_font' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_horiz_scaling' => array(
+        ],
+        'cpdf_set_horiz_scaling' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_keywords' => array(
+        ],
+        'cpdf_set_keywords' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_leading' => array(
+        ],
+        'cpdf_set_leading' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_page_animation' => array(
+        ],
+        'cpdf_set_page_animation' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_subject' => array(
+        ],
+        'cpdf_set_subject' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_text_matrix' => array(
+        ],
+        'cpdf_set_text_matrix' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_text_pos' => array(
+        ],
+        'cpdf_set_text_pos' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_text_rendering' => array(
+        ],
+        'cpdf_set_text_rendering' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_text_rise' => array(
+        ],
+        'cpdf_set_text_rise' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_title' => array(
+        ],
+        'cpdf_set_title' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_viewer_preferences' => array(
+        ],
+        'cpdf_set_viewer_preferences' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_set_word_spacing' => array(
+        ],
+        'cpdf_set_word_spacing' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setdash' => array(
+        ],
+        'cpdf_setdash' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setflat' => array(
+        ],
+        'cpdf_setflat' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setgray_fill' => array(
+        ],
+        'cpdf_setgray_fill' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setgray_stroke' => array(
+        ],
+        'cpdf_setgray_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setgray' => array(
+        ],
+        'cpdf_setgray' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setlinecap' => array(
+        ],
+        'cpdf_setlinecap' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setlinejoin' => array(
+        ],
+        'cpdf_setlinejoin' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setlinewidth' => array(
+        ],
+        'cpdf_setlinewidth' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setmiterlimit' => array(
+        ],
+        'cpdf_setmiterlimit' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setrgbcolor_fill' => array(
+        ],
+        'cpdf_setrgbcolor_fill' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setrgbcolor_stroke' => array(
+        ],
+        'cpdf_setrgbcolor_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_setrgbcolor' => array(
+        ],
+        'cpdf_setrgbcolor' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_show_xy' => array(
+        ],
+        'cpdf_show_xy' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_show' => array(
+        ],
+        'cpdf_show' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_stringwidth' => array(
+        ],
+        'cpdf_stringwidth' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_stroke' => array(
+        ],
+        'cpdf_stroke' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_text' => array(
+        ],
+        'cpdf_text' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'cpdf_translate' => array(
+        ],
+        'cpdf_translate' => [
             '5.1'       => true,
             'extension' => 'cpdf',
-        ),
-        'ircg_channel_mode' => array(
+        ],
+        'ircg_channel_mode' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_disconnect' => array(
+        ],
+        'ircg_disconnect' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_eval_ecmascript_params' => array(
+        ],
+        'ircg_eval_ecmascript_params' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_fetch_error_msg' => array(
+        ],
+        'ircg_fetch_error_msg' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_get_username' => array(
+        ],
+        'ircg_get_username' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_html_encode' => array(
+        ],
+        'ircg_html_encode' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_ignore_add' => array(
+        ],
+        'ircg_ignore_add' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_ignore_del' => array(
+        ],
+        'ircg_ignore_del' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_invite' => array(
+        ],
+        'ircg_invite' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_is_conn_alive' => array(
+        ],
+        'ircg_is_conn_alive' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_join' => array(
+        ],
+        'ircg_join' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_kick' => array(
+        ],
+        'ircg_kick' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_list' => array(
+        ],
+        'ircg_list' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_lookup_format_messages' => array(
+        ],
+        'ircg_lookup_format_messages' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_lusers' => array(
+        ],
+        'ircg_lusers' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_msg' => array(
+        ],
+        'ircg_msg' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_names' => array(
+        ],
+        'ircg_names' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_nick' => array(
+        ],
+        'ircg_nick' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_nickname_escape' => array(
+        ],
+        'ircg_nickname_escape' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_nickname_unescape' => array(
+        ],
+        'ircg_nickname_unescape' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_notice' => array(
+        ],
+        'ircg_notice' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_oper' => array(
+        ],
+        'ircg_oper' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_part' => array(
+        ],
+        'ircg_part' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_pconnect' => array(
+        ],
+        'ircg_pconnect' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_register_format_messages' => array(
+        ],
+        'ircg_register_format_messages' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_set_current' => array(
+        ],
+        'ircg_set_current' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_set_file' => array(
+        ],
+        'ircg_set_file' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_set_on_die' => array(
+        ],
+        'ircg_set_on_die' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_topic' => array(
+        ],
+        'ircg_topic' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_who' => array(
+        ],
+        'ircg_who' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'ircg_whois' => array(
+        ],
+        'ircg_whois' => [
             '5.1'       => true,
             'extension' => 'ircg',
-        ),
-        'dbx_close' => array(
+        ],
+        'dbx_close' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_compare' => array(
+        ],
+        'dbx_compare' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_connect' => array(
+        ],
+        'dbx_connect' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_error' => array(
+        ],
+        'dbx_error' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_escape_string' => array(
+        ],
+        'dbx_escape_string' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_fetch_row' => array(
+        ],
+        'dbx_fetch_row' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_query' => array(
+        ],
+        'dbx_query' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'dbx_sort' => array(
+        ],
+        'dbx_sort' => [
             '5.1'       => true,
             'extension' => 'dbx',
-        ),
-        'ingres_autocommit' => array(
+        ],
+        'ingres_autocommit' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_close' => array(
+        ],
+        'ingres_close' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_commit' => array(
+        ],
+        'ingres_commit' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_connect' => array(
+        ],
+        'ingres_connect' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_fetch_array' => array(
+        ],
+        'ingres_fetch_array' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_fetch_object' => array(
+        ],
+        'ingres_fetch_object' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_fetch_row' => array(
+        ],
+        'ingres_fetch_row' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_length' => array(
+        ],
+        'ingres_field_length' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_name' => array(
+        ],
+        'ingres_field_name' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_nullable' => array(
+        ],
+        'ingres_field_nullable' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_precision' => array(
+        ],
+        'ingres_field_precision' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_scale' => array(
+        ],
+        'ingres_field_scale' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_field_type' => array(
+        ],
+        'ingres_field_type' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_num_fields' => array(
+        ],
+        'ingres_num_fields' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_num_rows' => array(
+        ],
+        'ingres_num_rows' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_pconnect' => array(
+        ],
+        'ingres_pconnect' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_query' => array(
+        ],
+        'ingres_query' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ingres_rollback' => array(
+        ],
+        'ingres_rollback' => [
             '5.1'       => true,
             'extension' => 'ingres',
-        ),
-        'ovrimos_close' => array(
+        ],
+        'ovrimos_close' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_commit' => array(
+        ],
+        'ovrimos_commit' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_connect' => array(
+        ],
+        'ovrimos_connect' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_cursor' => array(
+        ],
+        'ovrimos_cursor' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_exec' => array(
+        ],
+        'ovrimos_exec' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_execute' => array(
+        ],
+        'ovrimos_execute' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_fetch_into' => array(
+        ],
+        'ovrimos_fetch_into' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_fetch_row' => array(
+        ],
+        'ovrimos_fetch_row' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_field_len' => array(
+        ],
+        'ovrimos_field_len' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_field_name' => array(
+        ],
+        'ovrimos_field_name' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_field_num' => array(
+        ],
+        'ovrimos_field_num' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_field_type' => array(
+        ],
+        'ovrimos_field_type' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_free_result' => array(
+        ],
+        'ovrimos_free_result' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_longreadlen' => array(
+        ],
+        'ovrimos_longreadlen' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_num_fields' => array(
+        ],
+        'ovrimos_num_fields' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_num_rows' => array(
+        ],
+        'ovrimos_num_rows' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_prepare' => array(
+        ],
+        'ovrimos_prepare' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_result_all' => array(
+        ],
+        'ovrimos_result_all' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_result' => array(
+        ],
+        'ovrimos_result' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_rollback' => array(
+        ],
+        'ovrimos_rollback' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ovrimos_close_all' => array(
+        ],
+        'ovrimos_close_all' => [
             '5.1'       => true,
             'extension' => 'ovrimos',
-        ),
-        'ora_bind' => array(
+        ],
+        'ora_bind' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_close' => array(
+        ],
+        'ora_close' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_columnname' => array(
+        ],
+        'ora_columnname' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_columnsize' => array(
+        ],
+        'ora_columnsize' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_columntype' => array(
+        ],
+        'ora_columntype' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_commit' => array(
+        ],
+        'ora_commit' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_commitoff' => array(
+        ],
+        'ora_commitoff' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_commiton' => array(
+        ],
+        'ora_commiton' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_do' => array(
+        ],
+        'ora_do' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_error' => array(
+        ],
+        'ora_error' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_errorcode' => array(
+        ],
+        'ora_errorcode' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_exec' => array(
+        ],
+        'ora_exec' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_fetch_into' => array(
+        ],
+        'ora_fetch_into' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_fetch' => array(
+        ],
+        'ora_fetch' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_getcolumn' => array(
+        ],
+        'ora_getcolumn' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_logoff' => array(
+        ],
+        'ora_logoff' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_logon' => array(
+        ],
+        'ora_logon' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_numcols' => array(
+        ],
+        'ora_numcols' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_numrows' => array(
+        ],
+        'ora_numrows' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_open' => array(
+        ],
+        'ora_open' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_parse' => array(
+        ],
+        'ora_parse' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_plogon' => array(
+        ],
+        'ora_plogon' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'ora_rollback' => array(
+        ],
+        'ora_rollback' => [
             '5.1'       => true,
             'extension' => 'oracle',
-        ),
-        'mysqli_embedded_connect' => array(
+        ],
+        'mysqli_embedded_connect' => [
             '5.1' => true,
-        ),
-        'mysqli_server_end' => array(
+        ],
+        'mysqli_server_end' => [
             '5.1' => true,
-        ),
-        'mysqli_server_init' => array(
+        ],
+        'mysqli_server_init' => [
             '5.1' => true,
-        ),
+        ],
 
-        'msession_connect' => array(
+        'msession_connect' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_count' => array(
+        ],
+        'msession_count' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_create' => array(
+        ],
+        'msession_create' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_destroy' => array(
+        ],
+        'msession_destroy' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_disconnect' => array(
+        ],
+        'msession_disconnect' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_find' => array(
+        ],
+        'msession_find' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_get_array' => array(
+        ],
+        'msession_get_array' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_get_data' => array(
+        ],
+        'msession_get_data' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_get' => array(
+        ],
+        'msession_get' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_inc' => array(
+        ],
+        'msession_inc' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_list' => array(
+        ],
+        'msession_list' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_listvar' => array(
+        ],
+        'msession_listvar' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_lock' => array(
+        ],
+        'msession_lock' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_plugin' => array(
+        ],
+        'msession_plugin' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_randstr' => array(
+        ],
+        'msession_randstr' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_set_array' => array(
+        ],
+        'msession_set_array' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_set_data' => array(
+        ],
+        'msession_set_data' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_set' => array(
+        ],
+        'msession_set' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_timeout' => array(
+        ],
+        'msession_timeout' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_uniq' => array(
+        ],
+        'msession_uniq' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
-        'msession_unlock' => array(
+        ],
+        'msession_unlock' => [
             '5.1.3'     => true,
             'extension' => 'msession',
-        ),
+        ],
 
-        'mysqli_resource' => array(
+        'mysqli_resource' => [
             '5.1.4' => true,
-        ),
+        ],
 
-        'mysql_createdb' => array(
+        'mysql_createdb' => [
             '5.1.7'     => true,
             'extension' => 'mysql',
-        ),
-        'mysql_dropdb' => array(
+        ],
+        'mysql_dropdb' => [
             '5.1.7'     => true,
             'extension' => 'mysql',
-        ),
-        'mysql_listtables' => array(
+        ],
+        'mysql_listtables' => [
             '5.1.7'     => true,
             'extension' => 'mysql',
-        ),
+        ],
 
-        'hwapi_attribute_new' => array(
+        'hwapi_attribute_new' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'hwapi_content_new' => array(
+        ],
+        'hwapi_content_new' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'hwapi_hgcsp' => array(
+        ],
+        'hwapi_hgcsp' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'hwapi_object_new' => array(
+        ],
+        'hwapi_object_new' => [
             '5.2'       => true,
             'extension' => 'hwapi',
-        ),
-        'filepro_fieldcount' => array(
+        ],
+        'filepro_fieldcount' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro_fieldname' => array(
+        ],
+        'filepro_fieldname' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro_fieldtype' => array(
+        ],
+        'filepro_fieldtype' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro_fieldwidth' => array(
+        ],
+        'filepro_fieldwidth' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro_retrieve' => array(
+        ],
+        'filepro_retrieve' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro_rowcount' => array(
+        ],
+        'filepro_rowcount' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
-        'filepro' => array(
+        ],
+        'filepro' => [
             '5.2'       => true,
             'extension' => 'filepro',
-        ),
+        ],
 
-        'ifx_affected_rows' => array(
+        'ifx_affected_rows' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_blobinfile_mode' => array(
+        ],
+        'ifx_blobinfile_mode' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_byteasvarchar' => array(
+        ],
+        'ifx_byteasvarchar' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_close' => array(
+        ],
+        'ifx_close' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_connect' => array(
+        ],
+        'ifx_connect' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_copy_blob' => array(
+        ],
+        'ifx_copy_blob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_create_blob' => array(
+        ],
+        'ifx_create_blob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_create_char' => array(
+        ],
+        'ifx_create_char' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_do' => array(
+        ],
+        'ifx_do' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_error' => array(
+        ],
+        'ifx_error' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_errormsg' => array(
+        ],
+        'ifx_errormsg' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_fetch_row' => array(
+        ],
+        'ifx_fetch_row' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_fieldproperties' => array(
+        ],
+        'ifx_fieldproperties' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_fieldtypes' => array(
+        ],
+        'ifx_fieldtypes' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_free_blob' => array(
+        ],
+        'ifx_free_blob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_free_char' => array(
+        ],
+        'ifx_free_char' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_free_result' => array(
+        ],
+        'ifx_free_result' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_get_blob' => array(
+        ],
+        'ifx_get_blob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_get_char' => array(
+        ],
+        'ifx_get_char' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_getsqlca' => array(
+        ],
+        'ifx_getsqlca' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_htmltbl_result' => array(
+        ],
+        'ifx_htmltbl_result' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_nullformat' => array(
+        ],
+        'ifx_nullformat' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_num_fields' => array(
+        ],
+        'ifx_num_fields' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_num_rows' => array(
+        ],
+        'ifx_num_rows' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_pconnect' => array(
+        ],
+        'ifx_pconnect' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_prepare' => array(
+        ],
+        'ifx_prepare' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_query' => array(
+        ],
+        'ifx_query' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_textasvarchar' => array(
+        ],
+        'ifx_textasvarchar' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_update_blob' => array(
+        ],
+        'ifx_update_blob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifx_update_char' => array(
+        ],
+        'ifx_update_char' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_close_slob' => array(
+        ],
+        'ifxus_close_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_create_slob' => array(
+        ],
+        'ifxus_create_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_free_slob' => array(
+        ],
+        'ifxus_free_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_open_slob' => array(
+        ],
+        'ifxus_open_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_read_slob' => array(
+        ],
+        'ifxus_read_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_seek_slob' => array(
+        ],
+        'ifxus_seek_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_tell_slob' => array(
+        ],
+        'ifxus_tell_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
-        'ifxus_write_slob' => array(
+        ],
+        'ifxus_write_slob' => [
             '5.2.1'     => true,
             'extension' => 'ifx',
-        ),
+        ],
 
-        'ncurses_addch' => array(
+        'ncurses_addch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_addchnstr' => array(
+        ],
+        'ncurses_addchnstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_addchstr' => array(
+        ],
+        'ncurses_addchstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_addnstr' => array(
+        ],
+        'ncurses_addnstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_addstr' => array(
+        ],
+        'ncurses_addstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_assume_default_colors' => array(
+        ],
+        'ncurses_assume_default_colors' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_attroff' => array(
+        ],
+        'ncurses_attroff' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_attron' => array(
+        ],
+        'ncurses_attron' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_attrset' => array(
+        ],
+        'ncurses_attrset' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_baudrate' => array(
+        ],
+        'ncurses_baudrate' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_beep' => array(
+        ],
+        'ncurses_beep' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_bkgd' => array(
+        ],
+        'ncurses_bkgd' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_bkgdset' => array(
+        ],
+        'ncurses_bkgdset' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_border' => array(
+        ],
+        'ncurses_border' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_bottom_panel' => array(
+        ],
+        'ncurses_bottom_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_can_change_color' => array(
+        ],
+        'ncurses_can_change_color' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_cbreak' => array(
+        ],
+        'ncurses_cbreak' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_clear' => array(
+        ],
+        'ncurses_clear' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_clrtobot' => array(
+        ],
+        'ncurses_clrtobot' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_clrtoeol' => array(
+        ],
+        'ncurses_clrtoeol' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_color_content' => array(
+        ],
+        'ncurses_color_content' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_color_set' => array(
+        ],
+        'ncurses_color_set' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_curs_set' => array(
+        ],
+        'ncurses_curs_set' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_def_prog_mode' => array(
+        ],
+        'ncurses_def_prog_mode' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_def_shell_mode' => array(
+        ],
+        'ncurses_def_shell_mode' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_define_key' => array(
+        ],
+        'ncurses_define_key' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_del_panel' => array(
+        ],
+        'ncurses_del_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_delay_output' => array(
+        ],
+        'ncurses_delay_output' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_delch' => array(
+        ],
+        'ncurses_delch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_deleteln' => array(
+        ],
+        'ncurses_deleteln' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_delwin' => array(
+        ],
+        'ncurses_delwin' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_doupdate' => array(
+        ],
+        'ncurses_doupdate' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_echo' => array(
+        ],
+        'ncurses_echo' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_echochar' => array(
+        ],
+        'ncurses_echochar' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_end' => array(
+        ],
+        'ncurses_end' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_erase' => array(
+        ],
+        'ncurses_erase' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_erasechar' => array(
+        ],
+        'ncurses_erasechar' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_filter' => array(
+        ],
+        'ncurses_filter' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_flash' => array(
+        ],
+        'ncurses_flash' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_flushinp' => array(
+        ],
+        'ncurses_flushinp' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_getch' => array(
+        ],
+        'ncurses_getch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_getmaxyx' => array(
+        ],
+        'ncurses_getmaxyx' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_getmouse' => array(
+        ],
+        'ncurses_getmouse' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_getyx' => array(
+        ],
+        'ncurses_getyx' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_halfdelay' => array(
+        ],
+        'ncurses_halfdelay' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_has_colors' => array(
+        ],
+        'ncurses_has_colors' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_has_ic' => array(
+        ],
+        'ncurses_has_ic' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_has_il' => array(
+        ],
+        'ncurses_has_il' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_has_key' => array(
+        ],
+        'ncurses_has_key' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_hide_panel' => array(
+        ],
+        'ncurses_hide_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_hline' => array(
+        ],
+        'ncurses_hline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_inch' => array(
+        ],
+        'ncurses_inch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_init_color' => array(
+        ],
+        'ncurses_init_color' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_init_pair' => array(
+        ],
+        'ncurses_init_pair' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_init' => array(
+        ],
+        'ncurses_init' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_insch' => array(
+        ],
+        'ncurses_insch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_insdelln' => array(
+        ],
+        'ncurses_insdelln' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_insertln' => array(
+        ],
+        'ncurses_insertln' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_insstr' => array(
+        ],
+        'ncurses_insstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_instr' => array(
+        ],
+        'ncurses_instr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_isendwin' => array(
+        ],
+        'ncurses_isendwin' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_keyok' => array(
+        ],
+        'ncurses_keyok' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_keypad' => array(
+        ],
+        'ncurses_keypad' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_killchar' => array(
+        ],
+        'ncurses_killchar' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_longname' => array(
+        ],
+        'ncurses_longname' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_meta' => array(
+        ],
+        'ncurses_meta' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mouse_trafo' => array(
+        ],
+        'ncurses_mouse_trafo' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mouseinterval' => array(
+        ],
+        'ncurses_mouseinterval' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mousemask' => array(
+        ],
+        'ncurses_mousemask' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_move_panel' => array(
+        ],
+        'ncurses_move_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_move' => array(
+        ],
+        'ncurses_move' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvaddch' => array(
+        ],
+        'ncurses_mvaddch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvaddchnstr' => array(
+        ],
+        'ncurses_mvaddchnstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvaddchstr' => array(
+        ],
+        'ncurses_mvaddchstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvaddnstr' => array(
+        ],
+        'ncurses_mvaddnstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvaddstr' => array(
+        ],
+        'ncurses_mvaddstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvcur' => array(
+        ],
+        'ncurses_mvcur' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvdelch' => array(
+        ],
+        'ncurses_mvdelch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvgetch' => array(
+        ],
+        'ncurses_mvgetch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvhline' => array(
+        ],
+        'ncurses_mvhline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvinch' => array(
+        ],
+        'ncurses_mvinch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvvline' => array(
+        ],
+        'ncurses_mvvline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_mvwaddstr' => array(
+        ],
+        'ncurses_mvwaddstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_napms' => array(
+        ],
+        'ncurses_napms' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_new_panel' => array(
+        ],
+        'ncurses_new_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_newpad' => array(
+        ],
+        'ncurses_newpad' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_newwin' => array(
+        ],
+        'ncurses_newwin' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_nl' => array(
+        ],
+        'ncurses_nl' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_nocbreak' => array(
+        ],
+        'ncurses_nocbreak' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_noecho' => array(
+        ],
+        'ncurses_noecho' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_nonl' => array(
+        ],
+        'ncurses_nonl' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_noqiflush' => array(
+        ],
+        'ncurses_noqiflush' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_noraw' => array(
+        ],
+        'ncurses_noraw' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_pair_content' => array(
+        ],
+        'ncurses_pair_content' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_panel_above' => array(
+        ],
+        'ncurses_panel_above' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_panel_below' => array(
+        ],
+        'ncurses_panel_below' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_panel_window' => array(
+        ],
+        'ncurses_panel_window' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_pnoutrefresh' => array(
+        ],
+        'ncurses_pnoutrefresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_prefresh' => array(
+        ],
+        'ncurses_prefresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_putp' => array(
+        ],
+        'ncurses_putp' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_qiflush' => array(
+        ],
+        'ncurses_qiflush' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_raw' => array(
+        ],
+        'ncurses_raw' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_refresh' => array(
+        ],
+        'ncurses_refresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_replace_panel' => array(
+        ],
+        'ncurses_replace_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_reset_prog_mode' => array(
+        ],
+        'ncurses_reset_prog_mode' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_reset_shell_mode' => array(
+        ],
+        'ncurses_reset_shell_mode' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_resetty' => array(
+        ],
+        'ncurses_resetty' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_savetty' => array(
+        ],
+        'ncurses_savetty' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_scr_dump' => array(
+        ],
+        'ncurses_scr_dump' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_scr_init' => array(
+        ],
+        'ncurses_scr_init' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_scr_restore' => array(
+        ],
+        'ncurses_scr_restore' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_scr_set' => array(
+        ],
+        'ncurses_scr_set' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_scrl' => array(
+        ],
+        'ncurses_scrl' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_show_panel' => array(
+        ],
+        'ncurses_show_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_attr' => array(
+        ],
+        'ncurses_slk_attr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_attroff' => array(
+        ],
+        'ncurses_slk_attroff' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_attron' => array(
+        ],
+        'ncurses_slk_attron' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_attrset' => array(
+        ],
+        'ncurses_slk_attrset' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_clear' => array(
+        ],
+        'ncurses_slk_clear' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_color' => array(
+        ],
+        'ncurses_slk_color' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_init' => array(
+        ],
+        'ncurses_slk_init' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_noutrefresh' => array(
+        ],
+        'ncurses_slk_noutrefresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_refresh' => array(
+        ],
+        'ncurses_slk_refresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_restore' => array(
+        ],
+        'ncurses_slk_restore' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_set' => array(
+        ],
+        'ncurses_slk_set' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_slk_touch' => array(
+        ],
+        'ncurses_slk_touch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_standend' => array(
+        ],
+        'ncurses_standend' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_standout' => array(
+        ],
+        'ncurses_standout' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_start_color' => array(
+        ],
+        'ncurses_start_color' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_termattrs' => array(
+        ],
+        'ncurses_termattrs' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_termname' => array(
+        ],
+        'ncurses_termname' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_timeout' => array(
+        ],
+        'ncurses_timeout' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_top_panel' => array(
+        ],
+        'ncurses_top_panel' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_typeahead' => array(
+        ],
+        'ncurses_typeahead' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_ungetch' => array(
+        ],
+        'ncurses_ungetch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_ungetmouse' => array(
+        ],
+        'ncurses_ungetmouse' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_update_panels' => array(
+        ],
+        'ncurses_update_panels' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_use_default_colors' => array(
+        ],
+        'ncurses_use_default_colors' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_use_env' => array(
+        ],
+        'ncurses_use_env' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_use_extended_names' => array(
+        ],
+        'ncurses_use_extended_names' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_vidattr' => array(
+        ],
+        'ncurses_vidattr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_vline' => array(
+        ],
+        'ncurses_vline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_waddch' => array(
+        ],
+        'ncurses_waddch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_waddstr' => array(
+        ],
+        'ncurses_waddstr' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wattroff' => array(
+        ],
+        'ncurses_wattroff' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wattron' => array(
+        ],
+        'ncurses_wattron' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wattrset' => array(
+        ],
+        'ncurses_wattrset' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wborder' => array(
+        ],
+        'ncurses_wborder' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wclear' => array(
+        ],
+        'ncurses_wclear' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wcolor_set' => array(
+        ],
+        'ncurses_wcolor_set' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_werase' => array(
+        ],
+        'ncurses_werase' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wgetch' => array(
+        ],
+        'ncurses_wgetch' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_whline' => array(
+        ],
+        'ncurses_whline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wmouse_trafo' => array(
+        ],
+        'ncurses_wmouse_trafo' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wmove' => array(
+        ],
+        'ncurses_wmove' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wnoutrefresh' => array(
+        ],
+        'ncurses_wnoutrefresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wrefresh' => array(
+        ],
+        'ncurses_wrefresh' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wstandend' => array(
+        ],
+        'ncurses_wstandend' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wstandout' => array(
+        ],
+        'ncurses_wstandout' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'ncurses_wvline' => array(
+        ],
+        'ncurses_wvline' => [
             '5.3'       => true,
             'extension' => 'ncurses',
-        ),
-        'fdf_add_doc_javascript' => array(
+        ],
+        'fdf_add_doc_javascript' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_add_template' => array(
+        ],
+        'fdf_add_template' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_close' => array(
+        ],
+        'fdf_close' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_create' => array(
+        ],
+        'fdf_create' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_enum_values' => array(
+        ],
+        'fdf_enum_values' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_errno' => array(
+        ],
+        'fdf_errno' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_error' => array(
+        ],
+        'fdf_error' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_ap' => array(
+        ],
+        'fdf_get_ap' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_attachment' => array(
+        ],
+        'fdf_get_attachment' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_encoding' => array(
+        ],
+        'fdf_get_encoding' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_file' => array(
+        ],
+        'fdf_get_file' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_flags' => array(
+        ],
+        'fdf_get_flags' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_opt' => array(
+        ],
+        'fdf_get_opt' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_status' => array(
+        ],
+        'fdf_get_status' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_value' => array(
+        ],
+        'fdf_get_value' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_get_version' => array(
+        ],
+        'fdf_get_version' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_header' => array(
+        ],
+        'fdf_header' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_next_field_name' => array(
+        ],
+        'fdf_next_field_name' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_open_string' => array(
+        ],
+        'fdf_open_string' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_open' => array(
+        ],
+        'fdf_open' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_remove_item' => array(
+        ],
+        'fdf_remove_item' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_save_string' => array(
+        ],
+        'fdf_save_string' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_save' => array(
+        ],
+        'fdf_save' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_ap' => array(
+        ],
+        'fdf_set_ap' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_encoding' => array(
+        ],
+        'fdf_set_encoding' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_file' => array(
+        ],
+        'fdf_set_file' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_flags' => array(
+        ],
+        'fdf_set_flags' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_javascript_action' => array(
+        ],
+        'fdf_set_javascript_action' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_on_import_javascript' => array(
+        ],
+        'fdf_set_on_import_javascript' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_opt' => array(
+        ],
+        'fdf_set_opt' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_status' => array(
+        ],
+        'fdf_set_status' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_submit_form_action' => array(
+        ],
+        'fdf_set_submit_form_action' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_target_frame' => array(
+        ],
+        'fdf_set_target_frame' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_value' => array(
+        ],
+        'fdf_set_value' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'fdf_set_version' => array(
+        ],
+        'fdf_set_version' => [
             '5.3'       => true,
             'extension' => 'fdf',
-        ),
-        'ming_keypress' => array(
+        ],
+        'ming_keypress' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'ming_setcubicthreshold' => array(
+        ],
+        'ming_setcubicthreshold' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'ming_setscale' => array(
+        ],
+        'ming_setscale' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'ming_setswfcompression' => array(
+        ],
+        'ming_setswfcompression' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'ming_useconstants' => array(
+        ],
+        'ming_useconstants' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'ming_useswfversion' => array(
+        ],
+        'ming_useswfversion' => [
             '5.3'       => true,
             'extension' => 'ming',
-        ),
-        'dbase_add_record' => array(
+        ],
+        'dbase_add_record' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_close' => array(
+        ],
+        'dbase_close' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_create' => array(
+        ],
+        'dbase_create' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_delete_record' => array(
+        ],
+        'dbase_delete_record' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_get_header_info' => array(
+        ],
+        'dbase_get_header_info' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_get_record_with_names' => array(
+        ],
+        'dbase_get_record_with_names' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_get_record' => array(
+        ],
+        'dbase_get_record' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_numfields' => array(
+        ],
+        'dbase_numfields' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_numrecords' => array(
+        ],
+        'dbase_numrecords' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_open' => array(
+        ],
+        'dbase_open' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_pack' => array(
+        ],
+        'dbase_pack' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'dbase_replace_record' => array(
+        ],
+        'dbase_replace_record' => [
             '5.3'       => true,
             'extension' => 'dbase',
-        ),
-        'fbsql_affected_rows' => array(
+        ],
+        'fbsql_affected_rows' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_autocommit' => array(
+        ],
+        'fbsql_autocommit' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_blob_size' => array(
+        ],
+        'fbsql_blob_size' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_change_user' => array(
+        ],
+        'fbsql_change_user' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_clob_size' => array(
+        ],
+        'fbsql_clob_size' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_close' => array(
+        ],
+        'fbsql_close' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_commit' => array(
+        ],
+        'fbsql_commit' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_connect' => array(
+        ],
+        'fbsql_connect' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_create_blob' => array(
+        ],
+        'fbsql_create_blob' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_create_clob' => array(
+        ],
+        'fbsql_create_clob' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_create_db' => array(
+        ],
+        'fbsql_create_db' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_data_seek' => array(
+        ],
+        'fbsql_data_seek' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_database_password' => array(
+        ],
+        'fbsql_database_password' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_database' => array(
+        ],
+        'fbsql_database' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_db_query' => array(
+        ],
+        'fbsql_db_query' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_db_status' => array(
+        ],
+        'fbsql_db_status' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_drop_db' => array(
+        ],
+        'fbsql_drop_db' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_errno' => array(
+        ],
+        'fbsql_errno' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_error' => array(
+        ],
+        'fbsql_error' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_array' => array(
+        ],
+        'fbsql_fetch_array' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_assoc' => array(
+        ],
+        'fbsql_fetch_assoc' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_field' => array(
+        ],
+        'fbsql_fetch_field' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_lengths' => array(
+        ],
+        'fbsql_fetch_lengths' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_object' => array(
+        ],
+        'fbsql_fetch_object' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_fetch_row' => array(
+        ],
+        'fbsql_fetch_row' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_flags' => array(
+        ],
+        'fbsql_field_flags' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_len' => array(
+        ],
+        'fbsql_field_len' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_name' => array(
+        ],
+        'fbsql_field_name' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_seek' => array(
+        ],
+        'fbsql_field_seek' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_table' => array(
+        ],
+        'fbsql_field_table' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_field_type' => array(
+        ],
+        'fbsql_field_type' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_free_result' => array(
+        ],
+        'fbsql_free_result' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_get_autostart_info' => array(
+        ],
+        'fbsql_get_autostart_info' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_hostname' => array(
+        ],
+        'fbsql_hostname' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_insert_id' => array(
+        ],
+        'fbsql_insert_id' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_list_dbs' => array(
+        ],
+        'fbsql_list_dbs' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_list_fields' => array(
+        ],
+        'fbsql_list_fields' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_list_tables' => array(
+        ],
+        'fbsql_list_tables' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_next_result' => array(
+        ],
+        'fbsql_next_result' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_num_fields' => array(
+        ],
+        'fbsql_num_fields' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_num_rows' => array(
+        ],
+        'fbsql_num_rows' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_password' => array(
+        ],
+        'fbsql_password' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_pconnect' => array(
+        ],
+        'fbsql_pconnect' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_query' => array(
+        ],
+        'fbsql_query' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_read_blob' => array(
+        ],
+        'fbsql_read_blob' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_read_clob' => array(
+        ],
+        'fbsql_read_clob' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_result' => array(
+        ],
+        'fbsql_result' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_rollback' => array(
+        ],
+        'fbsql_rollback' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_rows_fetched' => array(
+        ],
+        'fbsql_rows_fetched' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_select_db' => array(
+        ],
+        'fbsql_select_db' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_set_characterset' => array(
+        ],
+        'fbsql_set_characterset' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_set_lob_mode' => array(
+        ],
+        'fbsql_set_lob_mode' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_set_password' => array(
+        ],
+        'fbsql_set_password' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_set_transaction' => array(
+        ],
+        'fbsql_set_transaction' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_start_db' => array(
+        ],
+        'fbsql_start_db' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_stop_db' => array(
+        ],
+        'fbsql_stop_db' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_table_name' => array(
+        ],
+        'fbsql_table_name' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_tablename' => array(
+        ],
+        'fbsql_tablename' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_username' => array(
+        ],
+        'fbsql_username' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'fbsql_warnings' => array(
+        ],
+        'fbsql_warnings' => [
             '5.3'       => true,
             'extension' => 'fbsql',
-        ),
-        'msql_affected_rows' => array(
+        ],
+        'msql_affected_rows' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_close' => array(
+        ],
+        'msql_close' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_connect' => array(
+        ],
+        'msql_connect' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_create_db' => array(
+        ],
+        'msql_create_db' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_createdb' => array(
+        ],
+        'msql_createdb' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_data_seek' => array(
+        ],
+        'msql_data_seek' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_db_query' => array(
+        ],
+        'msql_db_query' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_dbname' => array(
+        ],
+        'msql_dbname' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_drop_db' => array(
+        ],
+        'msql_drop_db' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_error' => array(
+        ],
+        'msql_error' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fetch_array' => array(
+        ],
+        'msql_fetch_array' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fetch_field' => array(
+        ],
+        'msql_fetch_field' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fetch_object' => array(
+        ],
+        'msql_fetch_object' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fetch_row' => array(
+        ],
+        'msql_fetch_row' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_flags' => array(
+        ],
+        'msql_field_flags' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_len' => array(
+        ],
+        'msql_field_len' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_name' => array(
+        ],
+        'msql_field_name' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_seek' => array(
+        ],
+        'msql_field_seek' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_table' => array(
+        ],
+        'msql_field_table' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_field_type' => array(
+        ],
+        'msql_field_type' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fieldflags' => array(
+        ],
+        'msql_fieldflags' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fieldlen' => array(
+        ],
+        'msql_fieldlen' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fieldname' => array(
+        ],
+        'msql_fieldname' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fieldtable' => array(
+        ],
+        'msql_fieldtable' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_fieldtype' => array(
+        ],
+        'msql_fieldtype' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_free_result' => array(
+        ],
+        'msql_free_result' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_list_dbs' => array(
+        ],
+        'msql_list_dbs' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_list_fields' => array(
+        ],
+        'msql_list_fields' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_list_tables' => array(
+        ],
+        'msql_list_tables' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_num_fields' => array(
+        ],
+        'msql_num_fields' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_num_rows' => array(
+        ],
+        'msql_num_rows' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_numfields' => array(
+        ],
+        'msql_numfields' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_numrows' => array(
+        ],
+        'msql_numrows' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_pconnect' => array(
+        ],
+        'msql_pconnect' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_query' => array(
+        ],
+        'msql_query' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_regcase' => array(
+        ],
+        'msql_regcase' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_result' => array(
+        ],
+        'msql_result' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_select_db' => array(
+        ],
+        'msql_select_db' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql_tablename' => array(
+        ],
+        'msql_tablename' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'msql' => array(
+        ],
+        'msql' => [
             '5.3'       => true,
             'extension' => 'msql',
-        ),
-        'mysqli_disable_reads_from_master' => array(
+        ],
+        'mysqli_disable_reads_from_master' => [
             '5.3' => true,
-        ),
-        'mysqli_disable_rpl_parse' => array(
+        ],
+        'mysqli_disable_rpl_parse' => [
             '5.3' => true,
-        ),
-        'mysqli_enable_reads_from_master' => array(
+        ],
+        'mysqli_enable_reads_from_master' => [
             '5.3' => true,
-        ),
-        'mysqli_enable_rpl_parse' => array(
+        ],
+        'mysqli_enable_rpl_parse' => [
             '5.3' => true,
-        ),
-        'mysqli_master_query' => array(
+        ],
+        'mysqli_master_query' => [
             '5.3' => true,
-        ),
-        'mysqli_rpl_parse_enabled' => array(
+        ],
+        'mysqli_rpl_parse_enabled' => [
             '5.3' => true,
-        ),
-        'mysqli_rpl_probe' => array(
+        ],
+        'mysqli_rpl_probe' => [
             '5.3' => true,
-        ),
-        'mysqli_slave_query' => array(
+        ],
+        'mysqli_slave_query' => [
             '5.3' => true,
-        ),
+        ],
 
-        'call_user_method' => array(
+        'call_user_method' => [
             '4.1' => false,
             '7.0' => true,
             'alternative' => 'call_user_func()',
-        ),
-        'call_user_method_array' => array(
+        ],
+        'call_user_method_array' => [
             '4.1' => false,
             '7.0' => true,
             'alternative' => 'call_user_func_array()',
-        ),
-        'define_syslog_variables' => array(
+        ],
+        'define_syslog_variables' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => null,
-        ),
-        'dl' => array(
+        ],
+        'dl' => [
             '5.3' => false,
             'alternative' => null,
-        ),
-        'ereg' => array(
+        ],
+        'ereg' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_match()',
             'extension'   => 'ereg',
-        ),
-        'ereg_replace' => array(
+        ],
+        'ereg_replace' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_replace()',
             'extension'   => 'ereg',
-        ),
-        'eregi' => array(
+        ],
+        'eregi' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_match() (with the i modifier)',
             'extension'   => 'ereg',
-        ),
-        'eregi_replace' => array(
+        ],
+        'eregi_replace' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_replace() (with the i modifier)',
             'extension'   => 'ereg',
-        ),
-        'imagepsbbox' => array(
+        ],
+        'imagepsbbox' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepsencodefont' => array(
+        ],
+        'imagepsencodefont' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepsextendfont' => array(
+        ],
+        'imagepsextendfont' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepsfreefont' => array(
+        ],
+        'imagepsfreefont' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepsloadfont' => array(
+        ],
+        'imagepsloadfont' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepsslantfont' => array(
+        ],
+        'imagepsslantfont' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'imagepstext' => array(
+        ],
+        'imagepstext' => [
             '7.0' => true,
             'alternative' => null,
-        ),
-        'import_request_variables' => array(
+        ],
+        'import_request_variables' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => null,
-        ),
-        'ldap_sort' => array(
+        ],
+        'ldap_sort' => [
             '7.0' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'mcrypt_generic_end' => array(
+        ],
+        'mcrypt_generic_end' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'mcrypt_generic_deinit()',
             'extension'   => 'mcrypt',
-        ),
-        'mysql_db_query' => array(
+        ],
+        'mysql_db_query' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'mysqli::select_db() and mysqli::query()',
             'extension'   => 'mysql',
-        ),
-        'mysql_escape_string' => array(
+        ],
+        'mysql_escape_string' => [
             '4.3'         => false,
             '7.0'         => true,
             'alternative' => 'mysqli::real_escape_string()',
             'extension'   => 'mysql',
-        ),
-        'mysql_list_dbs' => array(
+        ],
+        'mysql_list_dbs' => [
             '5.4'         => false,
             '7.0'         => true,
             'alternative' => null,
             'extension'   => 'mysql',
-        ),
-        'mysql_list_fields' => array(
+        ],
+        'mysql_list_fields' => [
             '5.4'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysqli_bind_param' => array(
+        ],
+        'mysqli_bind_param' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt::bind_param()',
-        ),
-        'mysqli_bind_result' => array(
+        ],
+        'mysqli_bind_result' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt::bind_result()',
-        ),
-        'mysqli_client_encoding' => array(
+        ],
+        'mysqli_client_encoding' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli::character_set_name()',
-        ),
-        'mysqli_fetch' => array(
+        ],
+        'mysqli_fetch' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt::fetch()',
-        ),
-        'mysqli_param_count' => array(
+        ],
+        'mysqli_param_count' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt_param_count()',
-        ),
-        'mysqli_get_metadata' => array(
+        ],
+        'mysqli_get_metadata' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt::result_metadata()',
-        ),
-        'mysqli_send_long_data' => array(
+        ],
+        'mysqli_send_long_data' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => 'mysqli_stmt::send_long_data()',
-        ),
-        'magic_quotes_runtime' => array(
+        ],
+        'magic_quotes_runtime' => [
             '5.3' => false,
             '7.0' => true,
             'alternative' => null,
-        ),
-        'session_register' => array(
+        ],
+        'session_register' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_SESSION',
-        ),
-        'session_unregister' => array(
+        ],
+        'session_unregister' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_SESSION',
-        ),
-        'session_is_registered' => array(
+        ],
+        'session_is_registered' => [
             '5.3' => false,
             '5.4' => true,
             'alternative' => '$_SESSION',
-        ),
-        'set_magic_quotes_runtime' => array(
+        ],
+        'set_magic_quotes_runtime' => [
             '5.3' => false,
             '7.0' => true,
             'alternative' => null,
-        ),
-        'set_socket_blocking' => array(
+        ],
+        'set_socket_blocking' => [
             '5.3' => false,
             '7.0' => true,
             'alternative' => 'stream_set_blocking()',
-        ),
-        'split' => array(
+        ],
+        'split' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_split(), explode() or str_split()',
             'extension'   => 'ereg',
-        ),
-        'spliti' => array(
+        ],
+        'spliti' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => 'preg_split() (with the i modifier)',
             'extension'   => 'ereg',
-        ),
-        'sql_regcase' => array(
+        ],
+        'sql_regcase' => [
             '5.3'         => false,
             '7.0'         => true,
             'alternative' => null,
             'extension'   => 'ereg',
-        ),
-        'php_logo_guid' => array(
+        ],
+        'php_logo_guid' => [
             '5.5' => true,
             'alternative' => null,
-        ),
-        'php_egg_logo_guid' => array(
+        ],
+        'php_egg_logo_guid' => [
             '5.5' => true,
             'alternative' => null,
-        ),
-        'php_real_logo_guid' => array(
+        ],
+        'php_real_logo_guid' => [
             '5.5' => true,
             'alternative' => null,
-        ),
-        'zend_logo_guid' => array(
+        ],
+        'zend_logo_guid' => [
             '5.5' => true,
             'alternative' => 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"',
-        ),
-        'datefmt_set_timezone_id' => array(
+        ],
+        'datefmt_set_timezone_id' => [
             '5.5' => false,
             '7.0' => true,
             'alternative' => 'IntlDateFormatter::setTimeZone()',
-        ),
-        'mcrypt_ecb' => array(
+        ],
+        'mcrypt_ecb' => [
             '5.5'         => false,
             '7.0'         => true,
             'alternative' => 'mcrypt_decrypt()/mcrypt_encrypt()',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_cbc' => array(
+        ],
+        'mcrypt_cbc' => [
             '5.5'         => false,
             '7.0'         => true,
             'alternative' => 'mcrypt_decrypt()/mcrypt_encrypt()',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_cfb' => array(
+        ],
+        'mcrypt_cfb' => [
             '5.5'         => false,
             '7.0'         => true,
             'alternative' => 'mcrypt_decrypt()/mcrypt_encrypt()',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_ofb' => array(
+        ],
+        'mcrypt_ofb' => [
             '5.5'         => false,
             '7.0'         => true,
             'alternative' => 'mcrypt_decrypt()/mcrypt_encrypt()',
             'extension'   => 'mcrypt',
-        ),
-        'ocibindbyname' => array(
+        ],
+        'ocibindbyname' => [
             '5.4' => false,
             'alternative' => 'oci_bind_by_name()',
-        ),
-        'ocicancel' => array(
+        ],
+        'ocicancel' => [
             '5.4' => false,
             'alternative' => 'oci_cancel()',
-        ),
-        'ocicloselob' => array(
+        ],
+        'ocicloselob' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::close()',
-        ),
-        'ocicollappend' => array(
+        ],
+        'ocicollappend' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::append()',
-        ),
-        'ocicollassign' => array(
+        ],
+        'ocicollassign' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::assign()',
-        ),
-        'ocicollassignelem' => array(
+        ],
+        'ocicollassignelem' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::assignElem()',
-        ),
-        'ocicollgetelem' => array(
+        ],
+        'ocicollgetelem' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::getElem()',
-        ),
-        'ocicollmax' => array(
+        ],
+        'ocicollmax' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::max()',
-        ),
-        'ocicollsize' => array(
+        ],
+        'ocicollsize' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::size()',
-        ),
-        'ocicolltrim' => array(
+        ],
+        'ocicolltrim' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::trim()',
-        ),
-        'ocicolumnisnull' => array(
+        ],
+        'ocicolumnisnull' => [
             '5.4' => false,
             'alternative' => 'oci_field_is_null()',
-        ),
-        'ocicolumnname' => array(
+        ],
+        'ocicolumnname' => [
             '5.4' => false,
             'alternative' => 'oci_field_name()',
-        ),
-        'ocicolumnprecision' => array(
+        ],
+        'ocicolumnprecision' => [
             '5.4' => false,
             'alternative' => 'oci_field_precision()',
-        ),
-        'ocicolumnscale' => array(
+        ],
+        'ocicolumnscale' => [
             '5.4' => false,
             'alternative' => 'oci_field_scale()',
-        ),
-        'ocicolumnsize' => array(
+        ],
+        'ocicolumnsize' => [
             '5.4' => false,
             'alternative' => 'oci_field_size()',
-        ),
-        'ocicolumntype' => array(
+        ],
+        'ocicolumntype' => [
             '5.4' => false,
             'alternative' => 'oci_field_type()',
-        ),
-        'ocicolumntyperaw' => array(
+        ],
+        'ocicolumntyperaw' => [
             '5.4' => false,
             'alternative' => 'oci_field_type_raw()',
-        ),
-        'ocicommit' => array(
+        ],
+        'ocicommit' => [
             '5.4' => false,
             'alternative' => 'oci_commit()',
-        ),
-        'ocidefinebyname' => array(
+        ],
+        'ocidefinebyname' => [
             '5.4' => false,
             'alternative' => 'oci_define_by_name()',
-        ),
-        'ocierror' => array(
+        ],
+        'ocierror' => [
             '5.4' => false,
             'alternative' => 'oci_error()',
-        ),
-        'ociexecute' => array(
+        ],
+        'ociexecute' => [
             '5.4' => false,
             'alternative' => 'oci_execute()',
-        ),
-        'ocifetch' => array(
+        ],
+        'ocifetch' => [
             '5.4' => false,
             'alternative' => 'oci_fetch()',
-        ),
-        'ocifetchinto' => array(
+        ],
+        'ocifetchinto' => [
             '5.4' => false,
             'alternative' => null,
-        ),
-        'ocifetchstatement' => array(
+        ],
+        'ocifetchstatement' => [
             '5.4' => false,
             'alternative' => 'oci_fetch_all()',
-        ),
-        'ocifreecollection' => array(
+        ],
+        'ocifreecollection' => [
             '5.4' => false,
             'alternative' => 'OCI-Collection::free()',
-        ),
-        'ocifreecursor' => array(
+        ],
+        'ocifreecursor' => [
             '5.4' => false,
             'alternative' => 'oci_free_statement()',
-        ),
-        'ocifreedesc' => array(
+        ],
+        'ocifreedesc' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::free()',
-        ),
-        'ocifreestatement' => array(
+        ],
+        'ocifreestatement' => [
             '5.4' => false,
             'alternative' => 'oci_free_statement()',
-        ),
-        'ociinternaldebug' => array(
+        ],
+        'ociinternaldebug' => [
             '5.4' => false,
             '8.0' => true,
             'alternative' => 'oci_internal_debug() (PHP < 8.0)',
-        ),
-        'ociloadlob' => array(
+        ],
+        'ociloadlob' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::load()',
-        ),
-        'ocilogoff' => array(
+        ],
+        'ocilogoff' => [
             '5.4' => false,
             'alternative' => 'oci_close()',
-        ),
-        'ocilogon' => array(
+        ],
+        'ocilogon' => [
             '5.4' => false,
             'alternative' => 'oci_connect()',
-        ),
-        'ocinewcollection' => array(
+        ],
+        'ocinewcollection' => [
             '5.4' => false,
             'alternative' => 'oci_new_collection()',
-        ),
-        'ocinewcursor' => array(
+        ],
+        'ocinewcursor' => [
             '5.4' => false,
             'alternative' => 'oci_new_cursor()',
-        ),
-        'ocinewdescriptor' => array(
+        ],
+        'ocinewdescriptor' => [
             '5.4' => false,
             'alternative' => 'oci_new_descriptor()',
-        ),
-        'ocinlogon' => array(
+        ],
+        'ocinlogon' => [
             '5.4' => false,
             'alternative' => 'oci_new_connect()',
-        ),
-        'ocinumcols' => array(
+        ],
+        'ocinumcols' => [
             '5.4' => false,
             'alternative' => 'oci_num_fields()',
-        ),
-        'ociparse' => array(
+        ],
+        'ociparse' => [
             '5.4' => false,
             'alternative' => 'oci_parse()',
-        ),
-        'ociplogon' => array(
+        ],
+        'ociplogon' => [
             '5.4' => false,
             'alternative' => 'oci_pconnect()',
-        ),
-        'ociresult' => array(
+        ],
+        'ociresult' => [
             '5.4' => false,
             'alternative' => 'oci_result()',
-        ),
-        'ocirollback' => array(
+        ],
+        'ocirollback' => [
             '5.4' => false,
             'alternative' => 'oci_rollback()',
-        ),
-        'ocirowcount' => array(
+        ],
+        'ocirowcount' => [
             '5.4' => false,
             'alternative' => 'oci_num_rows()',
-        ),
-        'ocisavelob' => array(
+        ],
+        'ocisavelob' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::save()',
-        ),
-        'ocisavelobfile' => array(
+        ],
+        'ocisavelobfile' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::import()',
-        ),
-        'ociserverversion' => array(
+        ],
+        'ociserverversion' => [
             '5.4' => false,
             'alternative' => 'oci_server_version()',
-        ),
-        'ocisetprefetch' => array(
+        ],
+        'ocisetprefetch' => [
             '5.4' => false,
             'alternative' => 'oci_set_prefetch()',
-        ),
-        'ocistatementtype' => array(
+        ],
+        'ocistatementtype' => [
             '5.4' => false,
             'alternative' => 'oci_statement_type()',
-        ),
-        'ociwritelobtofile' => array(
+        ],
+        'ociwritelobtofile' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::export()',
-        ),
-        'ociwritetemporarylob' => array(
+        ],
+        'ociwritetemporarylob' => [
             '5.4' => false,
             'alternative' => 'OCI-Lob::writeTemporary()',
-        ),
-        'mysqli_get_cache_stats' => array(
+        ],
+        'mysqli_get_cache_stats' => [
             '5.4' => true,
             'alternative' => null,
-        ),
-        'sqlite_array_query' => array(
+        ],
+        'sqlite_array_query' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_busy_timeout' => array(
+        ],
+        'sqlite_busy_timeout' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_changes' => array(
+        ],
+        'sqlite_changes' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_close' => array(
+        ],
+        'sqlite_close' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_column' => array(
+        ],
+        'sqlite_column' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_create_aggregate' => array(
+        ],
+        'sqlite_create_aggregate' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_create_function' => array(
+        ],
+        'sqlite_create_function' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_current' => array(
+        ],
+        'sqlite_current' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_error_string' => array(
+        ],
+        'sqlite_error_string' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_escape_string' => array(
+        ],
+        'sqlite_escape_string' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_exec' => array(
+        ],
+        'sqlite_exec' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_factory' => array(
+        ],
+        'sqlite_factory' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_all' => array(
+        ],
+        'sqlite_fetch_all' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_array' => array(
+        ],
+        'sqlite_fetch_array' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_column_types' => array(
+        ],
+        'sqlite_fetch_column_types' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_object' => array(
+        ],
+        'sqlite_fetch_object' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_single' => array(
+        ],
+        'sqlite_fetch_single' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_fetch_string' => array(
+        ],
+        'sqlite_fetch_string' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_field_name' => array(
+        ],
+        'sqlite_field_name' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_has_more' => array(
+        ],
+        'sqlite_has_more' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_has_prev' => array(
+        ],
+        'sqlite_has_prev' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_key' => array(
+        ],
+        'sqlite_key' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_last_error' => array(
+        ],
+        'sqlite_last_error' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_last_insert_rowid' => array(
+        ],
+        'sqlite_last_insert_rowid' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_libencoding' => array(
+        ],
+        'sqlite_libencoding' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_libversion' => array(
+        ],
+        'sqlite_libversion' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_next' => array(
+        ],
+        'sqlite_next' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_num_fields' => array(
+        ],
+        'sqlite_num_fields' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_num_rows' => array(
+        ],
+        'sqlite_num_rows' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_open' => array(
+        ],
+        'sqlite_open' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_popen' => array(
+        ],
+        'sqlite_popen' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_prev' => array(
+        ],
+        'sqlite_prev' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_query' => array(
+        ],
+        'sqlite_query' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_rewind' => array(
+        ],
+        'sqlite_rewind' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_seek' => array(
+        ],
+        'sqlite_seek' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_single_query' => array(
+        ],
+        'sqlite_single_query' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_udf_decode_binary' => array(
+        ],
+        'sqlite_udf_decode_binary' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_udf_encode_binary' => array(
+        ],
+        'sqlite_udf_encode_binary' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_unbuffered_query' => array(
+        ],
+        'sqlite_unbuffered_query' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
-        'sqlite_valid' => array(
+        ],
+        'sqlite_valid' => [
             '5.4'       => true,
             'extension' => 'sqlite',
-        ),
+        ],
 
-        'mssql_bind' => array(
+        'mssql_bind' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_close' => array(
+        ],
+        'mssql_close' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_connect' => array(
+        ],
+        'mssql_connect' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_data_seek' => array(
+        ],
+        'mssql_data_seek' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_execute' => array(
+        ],
+        'mssql_execute' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_array' => array(
+        ],
+        'mssql_fetch_array' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_assoc' => array(
+        ],
+        'mssql_fetch_assoc' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_batch' => array(
+        ],
+        'mssql_fetch_batch' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_field' => array(
+        ],
+        'mssql_fetch_field' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_object' => array(
+        ],
+        'mssql_fetch_object' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_fetch_row' => array(
+        ],
+        'mssql_fetch_row' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_field_length' => array(
+        ],
+        'mssql_field_length' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_field_name' => array(
+        ],
+        'mssql_field_name' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_field_seek' => array(
+        ],
+        'mssql_field_seek' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_field_type' => array(
+        ],
+        'mssql_field_type' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_free_result' => array(
+        ],
+        'mssql_free_result' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_free_statement' => array(
+        ],
+        'mssql_free_statement' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_get_last_message' => array(
+        ],
+        'mssql_get_last_message' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_guid_string' => array(
+        ],
+        'mssql_guid_string' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_init' => array(
+        ],
+        'mssql_init' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_min_error_severity' => array(
+        ],
+        'mssql_min_error_severity' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_min_message_severity' => array(
+        ],
+        'mssql_min_message_severity' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_next_result' => array(
+        ],
+        'mssql_next_result' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_num_fields' => array(
+        ],
+        'mssql_num_fields' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_num_rows' => array(
+        ],
+        'mssql_num_rows' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_pconnect' => array(
+        ],
+        'mssql_pconnect' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_query' => array(
+        ],
+        'mssql_query' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_result' => array(
+        ],
+        'mssql_result' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_rows_affected' => array(
+        ],
+        'mssql_rows_affected' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mssql_select_db' => array(
+        ],
+        'mssql_select_db' => [
             '7.0'       => true,
             'extension' => 'mssql',
-        ),
-        'mysql_affected_rows' => array(
+        ],
+        'mysql_affected_rows' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_client_encoding' => array(
+        ],
+        'mysql_client_encoding' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_close' => array(
+        ],
+        'mysql_close' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_connect' => array(
+        ],
+        'mysql_connect' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_create_db' => array(
+        ],
+        'mysql_create_db' => [
             '4.3'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_data_seek' => array(
+        ],
+        'mysql_data_seek' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_db_name' => array(
+        ],
+        'mysql_db_name' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_drop_db' => array(
+        ],
+        'mysql_drop_db' => [
             '4.3'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_errno' => array(
+        ],
+        'mysql_errno' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_error' => array(
+        ],
+        'mysql_error' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_array' => array(
+        ],
+        'mysql_fetch_array' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_assoc' => array(
+        ],
+        'mysql_fetch_assoc' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_field' => array(
+        ],
+        'mysql_fetch_field' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_lengths' => array(
+        ],
+        'mysql_fetch_lengths' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_object' => array(
+        ],
+        'mysql_fetch_object' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fetch_row' => array(
+        ],
+        'mysql_fetch_row' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_flags' => array(
+        ],
+        'mysql_field_flags' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_len' => array(
+        ],
+        'mysql_field_len' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_name' => array(
+        ],
+        'mysql_field_name' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_seek' => array(
+        ],
+        'mysql_field_seek' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_table' => array(
+        ],
+        'mysql_field_table' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_field_type' => array(
+        ],
+        'mysql_field_type' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_free_result' => array(
+        ],
+        'mysql_free_result' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_get_client_info' => array(
+        ],
+        'mysql_get_client_info' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_get_host_info' => array(
+        ],
+        'mysql_get_host_info' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_get_proto_info' => array(
+        ],
+        'mysql_get_proto_info' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_get_server_info' => array(
+        ],
+        'mysql_get_server_info' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_info' => array(
+        ],
+        'mysql_info' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_insert_id' => array(
+        ],
+        'mysql_insert_id' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_list_processes' => array(
+        ],
+        'mysql_list_processes' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_list_tables' => array(
+        ],
+        'mysql_list_tables' => [
             '4.3.7'     => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_num_fields' => array(
+        ],
+        'mysql_num_fields' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_num_rows' => array(
+        ],
+        'mysql_num_rows' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_pconnect' => array(
+        ],
+        'mysql_pconnect' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_ping' => array(
+        ],
+        'mysql_ping' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_query' => array(
+        ],
+        'mysql_query' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_real_escape_string' => array(
+        ],
+        'mysql_real_escape_string' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_result' => array(
+        ],
+        'mysql_result' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_select_db' => array(
+        ],
+        'mysql_select_db' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_set_charset' => array(
+        ],
+        'mysql_set_charset' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_stat' => array(
+        ],
+        'mysql_stat' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_tablename' => array(
+        ],
+        'mysql_tablename' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_thread_id' => array(
+        ],
+        'mysql_thread_id' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_unbuffered_query' => array(
+        ],
+        'mysql_unbuffered_query' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql' => array(
+        ],
+        'mysql' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fieldname' => array(
+        ],
+        'mysql_fieldname' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fieldtable' => array(
+        ],
+        'mysql_fieldtable' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fieldlen' => array(
+        ],
+        'mysql_fieldlen' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fieldtype' => array(
+        ],
+        'mysql_fieldtype' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_fieldflags' => array(
+        ],
+        'mysql_fieldflags' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_selectdb' => array(
+        ],
+        'mysql_selectdb' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_freeresult' => array(
+        ],
+        'mysql_freeresult' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_numfields' => array(
+        ],
+        'mysql_numfields' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_numrows' => array(
+        ],
+        'mysql_numrows' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_listdbs' => array(
+        ],
+        'mysql_listdbs' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_listfields' => array(
+        ],
+        'mysql_listfields' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_dbname' => array(
+        ],
+        'mysql_dbname' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'mysql_table_name' => array(
+        ],
+        'mysql_table_name' => [
             '5.5'       => false,
             '7.0'       => true,
             'extension' => 'mysql',
-        ),
-        'sybase_affected_rows' => array(
+        ],
+        'sybase_affected_rows' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_close' => array(
+        ],
+        'sybase_close' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_connect' => array(
+        ],
+        'sybase_connect' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_data_seek' => array(
+        ],
+        'sybase_data_seek' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_deadlock_retry_count' => array(
+        ],
+        'sybase_deadlock_retry_count' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_fetch_array' => array(
+        ],
+        'sybase_fetch_array' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_fetch_assoc' => array(
+        ],
+        'sybase_fetch_assoc' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_fetch_field' => array(
+        ],
+        'sybase_fetch_field' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_fetch_object' => array(
+        ],
+        'sybase_fetch_object' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_fetch_row' => array(
+        ],
+        'sybase_fetch_row' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_field_seek' => array(
+        ],
+        'sybase_field_seek' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_free_result' => array(
+        ],
+        'sybase_free_result' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_get_last_message' => array(
+        ],
+        'sybase_get_last_message' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_min_client_severity' => array(
+        ],
+        'sybase_min_client_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_min_error_severity' => array(
+        ],
+        'sybase_min_error_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_min_message_severity' => array(
+        ],
+        'sybase_min_message_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_min_server_severity' => array(
+        ],
+        'sybase_min_server_severity' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_num_fields' => array(
+        ],
+        'sybase_num_fields' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_num_rows' => array(
+        ],
+        'sybase_num_rows' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_pconnect' => array(
+        ],
+        'sybase_pconnect' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_query' => array(
+        ],
+        'sybase_query' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_result' => array(
+        ],
+        'sybase_result' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_select_db' => array(
+        ],
+        'sybase_select_db' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_set_message_handler' => array(
+        ],
+        'sybase_set_message_handler' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
-        'sybase_unbuffered_query' => array(
+        ],
+        'sybase_unbuffered_query' => [
             '7.0'       => true,
             'extension' => 'sybase',
-        ),
+        ],
 
-        'mcrypt_create_iv' => array(
+        'mcrypt_create_iv' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'random_bytes() or OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_decrypt' => array(
+        ],
+        'mcrypt_decrypt' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_algorithms_name' => array(
+        ],
+        'mcrypt_enc_get_algorithms_name' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_block_size' => array(
+        ],
+        'mcrypt_enc_get_block_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_iv_size' => array(
+        ],
+        'mcrypt_enc_get_iv_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_key_size' => array(
+        ],
+        'mcrypt_enc_get_key_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_modes_name' => array(
+        ],
+        'mcrypt_enc_get_modes_name' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_get_supported_key_sizes' => array(
+        ],
+        'mcrypt_enc_get_supported_key_sizes' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_is_block_algorithm_mode' => array(
+        ],
+        'mcrypt_enc_is_block_algorithm_mode' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_is_block_algorithm' => array(
+        ],
+        'mcrypt_enc_is_block_algorithm' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_is_block_mode' => array(
+        ],
+        'mcrypt_enc_is_block_mode' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_enc_self_test' => array(
+        ],
+        'mcrypt_enc_self_test' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_encrypt' => array(
+        ],
+        'mcrypt_encrypt' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_generic_deinit' => array(
+        ],
+        'mcrypt_generic_deinit' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_generic_init' => array(
+        ],
+        'mcrypt_generic_init' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_generic' => array(
+        ],
+        'mcrypt_generic' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_get_block_size' => array(
+        ],
+        'mcrypt_get_block_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_get_cipher_name' => array(
+        ],
+        'mcrypt_get_cipher_name' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_get_iv_size' => array(
+        ],
+        'mcrypt_get_iv_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_get_key_size' => array(
+        ],
+        'mcrypt_get_key_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_list_algorithms' => array(
+        ],
+        'mcrypt_list_algorithms' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_list_modes' => array(
+        ],
+        'mcrypt_list_modes' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_close' => array(
+        ],
+        'mcrypt_module_close' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_get_algo_block_size' => array(
+        ],
+        'mcrypt_module_get_algo_block_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_get_algo_key_size' => array(
+        ],
+        'mcrypt_module_get_algo_key_size' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_get_supported_key_sizes' => array(
+        ],
+        'mcrypt_module_get_supported_key_sizes' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_is_block_algorithm_mode' => array(
+        ],
+        'mcrypt_module_is_block_algorithm_mode' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_is_block_algorithm' => array(
+        ],
+        'mcrypt_module_is_block_algorithm' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_is_block_mode' => array(
+        ],
+        'mcrypt_module_is_block_mode' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_open' => array(
+        ],
+        'mcrypt_module_open' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mcrypt_module_self_test' => array(
+        ],
+        'mcrypt_module_self_test' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'mdecrypt_generic' => array(
+        ],
+        'mdecrypt_generic' => [
             '7.1'         => false,
             '7.2'         => true,
             'alternative' => 'OpenSSL',
             'extension'   => 'mcrypt',
-        ),
-        'jpeg2wbmp' => array(
+        ],
+        'jpeg2wbmp' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'imagecreatefromjpeg() and imagewbmp()',
-        ),
-        'png2wbmp' => array(
+        ],
+        'png2wbmp' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
-        ),
-        '__autoload' => array(
+        ],
+        '__autoload' => [
             '7.2' => false,
             'alternative' => 'SPL autoload',
-        ),
-        'create_function' => array(
+        ],
+        'create_function' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'an anonymous function',
-        ),
-        'each' => array(
+        ],
+        'each' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'a foreach loop or ArrayIterator',
-        ),
-        'gmp_random' => array(
+        ],
+        'gmp_random' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
-        ),
-        'read_exif_data' => array(
+        ],
+        'read_exif_data' => [
             '7.2' => false,
             '8.0' => true,
             'alternative' => 'exif_read_data()',
-        ),
+        ],
 
-        'image2wbmp' => array(
+        'image2wbmp' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'imagewbmp()',
-        ),
-        'mbregex_encoding' => array(
+        ],
+        'mbregex_encoding' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_regex_encoding()',
-        ),
-        'mbereg' => array(
+        ],
+        'mbereg' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg()',
-        ),
-        'mberegi' => array(
+        ],
+        'mberegi' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_eregi()',
-        ),
-        'mbereg_replace' => array(
+        ],
+        'mbereg_replace' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_replace()',
-        ),
-        'mberegi_replace' => array(
+        ],
+        'mberegi_replace' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_eregi_replace()',
-        ),
-        'mbsplit' => array(
+        ],
+        'mbsplit' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_split()',
-        ),
-        'mbereg_match' => array(
+        ],
+        'mbereg_match' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_match()',
-        ),
-        'mbereg_search' => array(
+        ],
+        'mbereg_search' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search()',
-        ),
-        'mbereg_search_pos' => array(
+        ],
+        'mbereg_search_pos' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_pos()',
-        ),
-        'mbereg_search_regs' => array(
+        ],
+        'mbereg_search_regs' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_regs()',
-        ),
-        'mbereg_search_init' => array(
+        ],
+        'mbereg_search_init' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_init()',
-        ),
-        'mbereg_search_getregs' => array(
+        ],
+        'mbereg_search_getregs' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_getregs()',
-        ),
-        'mbereg_search_getpos' => array(
+        ],
+        'mbereg_search_getpos' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_getpos()',
-        ),
-        'mbereg_search_setpos' => array(
+        ],
+        'mbereg_search_setpos' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => 'mb_ereg_search_setpos()',
-        ),
-        'fgetss' => array(
+        ],
+        'fgetss' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'gzgetss' => array(
+        ],
+        'gzgetss' => [
             '7.3' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
+        ],
 
-        'convert_cyr_string' => array(
+        'convert_cyr_string' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
-        ),
-        'ezmlm_hash' => array(
+        ],
+        'ezmlm_hash' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'get_magic_quotes_gpc' => array(
+        ],
+        'get_magic_quotes_gpc' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'get_magic_quotes_runtime' => array(
+        ],
+        'get_magic_quotes_runtime' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'hebrevc' => array(
+        ],
+        'hebrevc' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => null,
-        ),
-        'is_real' => array(
+        ],
+        'is_real' => [
             '7.4' => false,
             'alternative' => 'is_float()',
-        ),
-        'money_format' => array(
+        ],
+        'money_format' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => 'NumberFormatter::formatCurrency()',
-        ),
-        'restore_include_path' => array(
+        ],
+        'restore_include_path' => [
             '7.4' => false,
             '8.0' => true,
             'alternative' => "ini_restore('include_path')",
-        ),
-        'ibase_add_user' => array(
+        ],
+        'ibase_add_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_affected_rows' => array(
+        ],
+        'ibase_affected_rows' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_backup' => array(
+        ],
+        'ibase_backup' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_add' => array(
+        ],
+        'ibase_blob_add' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_cancel' => array(
+        ],
+        'ibase_blob_cancel' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_close' => array(
+        ],
+        'ibase_blob_close' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_create' => array(
+        ],
+        'ibase_blob_create' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_echo' => array(
+        ],
+        'ibase_blob_echo' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_get' => array(
+        ],
+        'ibase_blob_get' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_import' => array(
+        ],
+        'ibase_blob_import' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_info' => array(
+        ],
+        'ibase_blob_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_blob_open' => array(
+        ],
+        'ibase_blob_open' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_close' => array(
+        ],
+        'ibase_close' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_commit_ret' => array(
+        ],
+        'ibase_commit_ret' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_commit' => array(
+        ],
+        'ibase_commit' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_connect' => array(
+        ],
+        'ibase_connect' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_db_info' => array(
+        ],
+        'ibase_db_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_delete_user' => array(
+        ],
+        'ibase_delete_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_drop_db' => array(
+        ],
+        'ibase_drop_db' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_errcode' => array(
+        ],
+        'ibase_errcode' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_errmsg' => array(
+        ],
+        'ibase_errmsg' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_execute' => array(
+        ],
+        'ibase_execute' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_fetch_assoc' => array(
+        ],
+        'ibase_fetch_assoc' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_fetch_object' => array(
+        ],
+        'ibase_fetch_object' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_fetch_row' => array(
+        ],
+        'ibase_fetch_row' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_field_info' => array(
+        ],
+        'ibase_field_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_free_event_handler' => array(
+        ],
+        'ibase_free_event_handler' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_free_query' => array(
+        ],
+        'ibase_free_query' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_free_result' => array(
+        ],
+        'ibase_free_result' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_gen_id' => array(
+        ],
+        'ibase_gen_id' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_maintain_db' => array(
+        ],
+        'ibase_maintain_db' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_modify_user' => array(
+        ],
+        'ibase_modify_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_name_result' => array(
+        ],
+        'ibase_name_result' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_num_fields' => array(
+        ],
+        'ibase_num_fields' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_num_params' => array(
+        ],
+        'ibase_num_params' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_param_info' => array(
+        ],
+        'ibase_param_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_pconnect' => array(
+        ],
+        'ibase_pconnect' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_prepare' => array(
+        ],
+        'ibase_prepare' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_query' => array(
+        ],
+        'ibase_query' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_restore' => array(
+        ],
+        'ibase_restore' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_rollback_ret' => array(
+        ],
+        'ibase_rollback_ret' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_rollback' => array(
+        ],
+        'ibase_rollback' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_server_info' => array(
+        ],
+        'ibase_server_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_service_attach' => array(
+        ],
+        'ibase_service_attach' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_service_detach' => array(
+        ],
+        'ibase_service_detach' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_set_event_handler' => array(
+        ],
+        'ibase_set_event_handler' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_trans' => array(
+        ],
+        'ibase_trans' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'ibase_wait_event' => array(
+        ],
+        'ibase_wait_event' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_add_user' => array(
+        ],
+        'fbird_add_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_affected_rows' => array(
+        ],
+        'fbird_affected_rows' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_backup' => array(
+        ],
+        'fbird_backup' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_add' => array(
+        ],
+        'fbird_blob_add' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_cancel' => array(
+        ],
+        'fbird_blob_cancel' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_close' => array(
+        ],
+        'fbird_blob_close' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_create' => array(
+        ],
+        'fbird_blob_create' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_echo' => array(
+        ],
+        'fbird_blob_echo' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_get' => array(
+        ],
+        'fbird_blob_get' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_import' => array(
+        ],
+        'fbird_blob_import' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_info' => array(
+        ],
+        'fbird_blob_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_blob_open' => array(
+        ],
+        'fbird_blob_open' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_close' => array(
+        ],
+        'fbird_close' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_commit_ret' => array(
+        ],
+        'fbird_commit_ret' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_commit' => array(
+        ],
+        'fbird_commit' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_connect' => array(
+        ],
+        'fbird_connect' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_db_info' => array(
+        ],
+        'fbird_db_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_delete_user' => array(
+        ],
+        'fbird_delete_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_drop_db' => array(
+        ],
+        'fbird_drop_db' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_errcode' => array(
+        ],
+        'fbird_errcode' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_errmsg' => array(
+        ],
+        'fbird_errmsg' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_execute' => array(
+        ],
+        'fbird_execute' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_fetch_assoc' => array(
+        ],
+        'fbird_fetch_assoc' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_fetch_object' => array(
+        ],
+        'fbird_fetch_object' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_fetch_row' => array(
+        ],
+        'fbird_fetch_row' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_field_info' => array(
+        ],
+        'fbird_field_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_free_event_handler' => array(
+        ],
+        'fbird_free_event_handler' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_free_query' => array(
+        ],
+        'fbird_free_query' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_free_result' => array(
+        ],
+        'fbird_free_result' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_gen_id' => array(
+        ],
+        'fbird_gen_id' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_maintain_db' => array(
+        ],
+        'fbird_maintain_db' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_modify_user' => array(
+        ],
+        'fbird_modify_user' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_name_result' => array(
+        ],
+        'fbird_name_result' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_num_fields' => array(
+        ],
+        'fbird_num_fields' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_num_params' => array(
+        ],
+        'fbird_num_params' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_param_info' => array(
+        ],
+        'fbird_param_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_pconnect' => array(
+        ],
+        'fbird_pconnect' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_prepare' => array(
+        ],
+        'fbird_prepare' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_query' => array(
+        ],
+        'fbird_query' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_restore' => array(
+        ],
+        'fbird_restore' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_rollback_ret' => array(
+        ],
+        'fbird_rollback_ret' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_rollback' => array(
+        ],
+        'fbird_rollback' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_server_info' => array(
+        ],
+        'fbird_server_info' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_service_attach' => array(
+        ],
+        'fbird_service_attach' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_service_detach' => array(
+        ],
+        'fbird_service_detach' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_set_event_handler' => array(
+        ],
+        'fbird_set_event_handler' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_trans' => array(
+        ],
+        'fbird_trans' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
-        'fbird_wait_event' => array(
+        ],
+        'fbird_wait_event' => [
             '7.4'       => true,
             'extension' => 'ibase',
-        ),
+        ],
 
-        'ldap_control_paged_result_response' => array(
+        'ldap_control_paged_result_response' => [
             '7.4' => false,
             'alternative' => 'ldap_search()',
-        ),
-        'ldap_control_paged_result' => array(
+        ],
+        'ldap_control_paged_result' => [
             '7.4' => false,
             'alternative' => 'ldap_search()',
-        ),
-        'recode_file' => array(
+        ],
+        'recode_file' => [
             '7.4'         => true,
             'alternative' => 'the iconv or mbstring extension',
             'extension'   => 'recode',
-        ),
-        'recode_string' => array(
+        ],
+        'recode_string' => [
             '7.4'         => true,
             'alternative' => 'the iconv or mbstring extension',
             'extension'   => 'recode',
-        ),
-        'recode' => array(
+        ],
+        'recode' => [
             '7.4'         => true,
             'alternative' => 'the iconv or mbstring extension',
             'extension'   => 'recode',
-        ),
-        'wddx_add_vars' => array(
+        ],
+        'wddx_add_vars' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'wddx_deserialize' => array(
+        ],
+        'wddx_deserialize' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'wddx_packet_end' => array(
+        ],
+        'wddx_packet_end' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'wddx_packet_start' => array(
+        ],
+        'wddx_packet_start' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'wddx_serialize_value' => array(
+        ],
+        'wddx_serialize_value' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'wddx_serialize_vars' => array(
+        ],
+        'wddx_serialize_vars' => [
             '7.4'         => true,
             'alternative' => null,
             'extension'   => 'wddx',
-        ),
-        'mysqli_embedded_server_end' => array(
+        ],
+        'mysqli_embedded_server_end' => [
             '7.4' => true,
-        ),
-        'mysqli_embedded_server_start' => array(
+        ],
+        'mysqli_embedded_server_start' => [
             '7.4' => true,
-        ),
+        ],
 
-        'enchant_broker_get_dict_path' => array(
+        'enchant_broker_get_dict_path' => [
             '8.0' => false,
-        ),
-        'enchant_broker_set_dict_path' => array(
+        ],
+        'enchant_broker_set_dict_path' => [
             '8.0' => false,
-        ),
-        'enchant_broker_free' => array(
+        ],
+        'enchant_broker_free' => [
             '8.0'         => false,
             'alternative' => 'unset the object',
-        ),
-        'enchant_broker_free_dict' => array(
+        ],
+        'enchant_broker_free_dict' => [
             '8.0'         => false,
             'alternative' => 'unset the object',
-        ),
-        'enchant_dict_add_to_personal' => array(
+        ],
+        'enchant_dict_add_to_personal' => [
             '8.0'         => false,
             'alternative' => 'enchant_dict_add()',
-        ),
-        'enchant_dict_is_in_session' => array(
+        ],
+        'enchant_dict_is_in_session' => [
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
-        ),
-        'libxml_disable_entity_loader' => array(
+        ],
+        'libxml_disable_entity_loader' => [
             '8.0' => false,
-        ),
-        'oci_internal_debug' => array(
+        ],
+        'oci_internal_debug' => [
             '8.0' => true,
-        ),
-        'openssl_x509_free' => array(
+        ],
+        'openssl_x509_free' => [
             '8.0' => false,
-        ),
-        'openssl_pkey_free' => array(
+        ],
+        'openssl_pkey_free' => [
             '8.0' => false,
-        ),
-        'xmlrpc_decode_request' => array(
+        ],
+        'xmlrpc_decode_request' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_decode' => array(
+        ],
+        'xmlrpc_decode' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_encode_request' => array(
+        ],
+        'xmlrpc_encode_request' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_encode' => array(
+        ],
+        'xmlrpc_encode' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_get_type' => array(
+        ],
+        'xmlrpc_get_type' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_is_fault' => array(
+        ],
+        'xmlrpc_is_fault' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_parse_method_descriptions' => array(
+        ],
+        'xmlrpc_parse_method_descriptions' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_add_introspection_data' => array(
+        ],
+        'xmlrpc_server_add_introspection_data' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_call_method' => array(
+        ],
+        'xmlrpc_server_call_method' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_create' => array(
+        ],
+        'xmlrpc_server_create' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_destroy' => array(
+        ],
+        'xmlrpc_server_destroy' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_register_introspection_callback' => array(
+        ],
+        'xmlrpc_server_register_introspection_callback' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_server_register_method' => array(
+        ],
+        'xmlrpc_server_register_method' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'xmlrpc_set_type' => array(
+        ],
+        'xmlrpc_set_type' => [
             '8.0'       => true,
             'extension' => 'xmlrpc',
-        ),
-        'zip_close' => array(
+        ],
+        'zip_close' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive::close()',
-        ),
-        'zip_entry_close' => array(
+        ],
+        'zip_entry_close' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_compressedsize' => array(
+        ],
+        'zip_entry_compressedsize' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_compressionmethod' => array(
+        ],
+        'zip_entry_compressionmethod' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_filesize' => array(
+        ],
+        'zip_entry_filesize' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_name' => array(
+        ],
+        'zip_entry_name' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_open' => array(
+        ],
+        'zip_entry_open' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_entry_read' => array(
+        ],
+        'zip_entry_read' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-        'zip_open' => array(
+        ],
+        'zip_open' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive::open()',
-        ),
-        'zip_read' => array(
+        ],
+        'zip_read' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
-        ),
-    );
+        ],
+    ];
 
 
     /**
@@ -4795,7 +4795,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         // Handle case-insensitivity of function names.
         $this->removedFunctions = \array_change_key_case($this->removedFunctions, \CASE_LOWER);
 
-        return array(\T_STRING);
+        return [\T_STRING];
     }
 
 
@@ -4829,11 +4829,11 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $ignore = array(
+        $ignore = [
             \T_DOUBLE_COLON    => true,
             \T_OBJECT_OPERATOR => true,
             \T_NEW             => true,
-        );
+        ];
 
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
@@ -4850,10 +4850,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             }
         }
 
-        $itemInfo = array(
+        $itemInfo = [
             'name'   => $function,
             'nameLc' => $functionLc,
-        );
+        ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 

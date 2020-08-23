@@ -49,13 +49,13 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
      */
     public function dataForbiddenToStringParameters()
     {
-        return array(
-            array(17),
-            array(21),
-            array(25),
-            array(31),
-            array(37),
-        );
+        return [
+            [17],
+            [21],
+            [25],
+            [31],
+            [37],
+        ];
     }
 
 
@@ -83,10 +83,10 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $cases = array();
+        $cases = [];
         // No errors expected on the first 15 lines.
         for ($line = 1; $line <= 15; $line++) {
-            $cases[] = array($line);
+            $cases[] = [$line];
         }
 
         return $cases;

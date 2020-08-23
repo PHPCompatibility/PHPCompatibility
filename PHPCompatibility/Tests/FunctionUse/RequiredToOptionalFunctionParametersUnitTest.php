@@ -63,27 +63,27 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataRequiredOptionalParameter()
     {
-        return array(
-            array('preg_match_all', 'matches', '5.3', array(8), '5.4'),
-            array('stream_socket_enable_crypto', 'crypto_type', '5.5', array(9), '5.6'),
-            array('bcscale', 'scale', '7.2', array(12), '7.3'),
-            array('getenv', 'varname', '7.0', array(15), '7.1'),
-            array('array_push', 'element to push', '7.2', array(18), '7.3'),
-            array('array_unshift', 'element to prepend', '7.2', array(21), '7.3'),
-            array('ftp_fget', 'mode', '7.2', array(24), '7.3'),
-            array('ftp_fput', 'mode', '7.2', array(25), '7.3'),
-            array('ftp_get', 'mode', '7.2', array(26), '7.3'),
-            array('ftp_nb_fget', 'mode', '7.2', array(27), '7.3'),
-            array('ftp_nb_fput', 'mode', '7.2', array(28), '7.3'),
-            array('ftp_nb_get', 'mode', '7.2', array(29), '7.3'),
-            array('ftp_nb_put', 'mode', '7.2', array(30), '7.3'),
-            array('ftp_put', 'mode', '7.2', array(31), '7.3'),
-            array('array_merge', 'array(s) to merge', '7.3', array(35), '7.4'),
-            array('array_merge_recursive', 'array(s) to merge', '7.3', array(36), '7.4'),
-            array('fgetcsv', 'length', '5.0', array(39), '5.1'),
-            array('xmlwriter_write_element', 'content', '5.2.2', array(41), '5.3', '5.2'),
-            array('xmlwriter_write_element_ns', 'content', '5.2.2', array(42), '5.3', '5.2'),
-        );
+        return [
+            ['preg_match_all', 'matches', '5.3', [8], '5.4'],
+            ['stream_socket_enable_crypto', 'crypto_type', '5.5', [9], '5.6'],
+            ['bcscale', 'scale', '7.2', [12], '7.3'],
+            ['getenv', 'varname', '7.0', [15], '7.1'],
+            ['array_push', 'element to push', '7.2', [18], '7.3'],
+            ['array_unshift', 'element to prepend', '7.2', [21], '7.3'],
+            ['ftp_fget', 'mode', '7.2', [24], '7.3'],
+            ['ftp_fput', 'mode', '7.2', [25], '7.3'],
+            ['ftp_get', 'mode', '7.2', [26], '7.3'],
+            ['ftp_nb_fget', 'mode', '7.2', [27], '7.3'],
+            ['ftp_nb_fput', 'mode', '7.2', [28], '7.3'],
+            ['ftp_nb_get', 'mode', '7.2', [29], '7.3'],
+            ['ftp_nb_put', 'mode', '7.2', [30], '7.3'],
+            ['ftp_put', 'mode', '7.2', [31], '7.3'],
+            ['array_merge', 'array(s) to merge', '7.3', [35], '7.4'],
+            ['array_merge_recursive', 'array(s) to merge', '7.3', [36], '7.4'],
+            ['fgetcsv', 'length', '5.0', [39], '5.1'],
+            ['xmlwriter_write_element', 'content', '5.2.2', [41], '5.3', '5.2'],
+            ['xmlwriter_write_element_ns', 'content', '5.2.2', [42], '5.3', '5.2'],
+        ];
     }
 
 
@@ -111,18 +111,18 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return array(
-            array(4),
-            array(5),
-            array(11),
-            array(14),
-            array(17),
-            array(20),
-            array(23),
-            array(32),
-            array(34),
-            array(38),
-        );
+        return [
+            [4],
+            [5],
+            [11],
+            [14],
+            [17],
+            [20],
+            [23],
+            [32],
+            [34],
+            [38],
+        ];
     }
 
 

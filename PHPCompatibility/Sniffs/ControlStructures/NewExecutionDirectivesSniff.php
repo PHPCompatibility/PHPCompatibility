@@ -49,24 +49,24 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @var array(string => array(string => bool|string|array))
      */
-    protected $newDirectives = array(
-        'ticks' => array(
+    protected $newDirectives = [
+        'ticks' => [
             '3.1' => false,
             '4.0' => true,
             'valid_value_callback' => 'isNumeric',
-        ),
-        'encoding' => array(
+        ],
+        'encoding' => [
             '5.2' => false,
             '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
             '5.4' => true,
             'valid_value_callback' => 'validEncoding',
-        ),
-        'strict_types' => array(
+        ],
+        'strict_types' => [
             '5.6' => false,
             '7.0' => true,
-            'valid_values' => array(1),
-        ),
-    );
+            'valid_values' => [1],
+        ],
+    ];
 
 
     /**
@@ -76,7 +76,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @var array
      */
-    protected $ignoreTokens = array();
+    protected $ignoreTokens = [];
 
 
     /**
@@ -91,7 +91,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         $this->ignoreTokens           = Tokens::$emptyTokens;
         $this->ignoreTokens[\T_EQUAL] = \T_EQUAL;
 
-        return array(\T_DECLARE);
+        return [\T_DECLARE];
     }
 
 
@@ -126,18 +126,18 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         if (isset($this->newDirectives[$directiveContent]) === false) {
             $error = 'Declare can only be used with the directives %s. Found: %s';
-            $data  = array(
+            $data  = [
                 implode(', ', array_keys($this->newDirectives)),
                 $directiveContent,
-            );
+            ];
 
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
 
         } else {
             // Check for valid directive for version.
-            $itemInfo = array(
+            $itemInfo = [
                 'name'   => $directiveContent,
-            );
+            ];
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
             // Check for valid directive value.
@@ -190,10 +190,10 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     protected function getNonVersionArrayKeys()
     {
-        return array(
+        return [
             'valid_value_callback',
             'valid_values',
-        );
+        ];
     }
 
 
@@ -266,11 +266,11 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         } elseif ($errorInfo['conditional_version'] !== '') {
             $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
             $errorCode = $this->stringToErrorCode($itemInfo['name']) . 'WithConditionFound';
-            $data      = array(
+            $data      = [
                 $itemInfo['name'],
                 $errorInfo['conditional_version'],
                 $errorInfo['condition'],
-            );
+            ];
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
@@ -305,7 +305,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
                 $isError = true;
             }
         } elseif (isset($this->newDirectives[$directive]['valid_value_callback'])) {
-            $valid = \call_user_func(array($this, $this->newDirectives[$directive]['valid_value_callback']), $value);
+            $valid = \call_user_func([$this, $this->newDirectives[$directive]['valid_value_callback']], $value);
             if ($valid === false) {
                 $isError = true;
             }
@@ -314,10 +314,10 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
         if ($isError === true) {
             $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
             $errorCode = $this->stringToErrorCode($directive) . 'InvalidValueFound';
-            $data      = array(
+            $data      = [
                 $directive,
                 $value,
-            );
+            ];
 
             $phpcsFile->addWarning($error, $stackPtr, $errorCode, $data);
         }
