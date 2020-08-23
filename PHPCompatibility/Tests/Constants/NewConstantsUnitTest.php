@@ -1482,6 +1482,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             array('OPENSSL_CMS_NOATTR', '7.4', array(1404), '8.0'),
             array('OPENSSL_CMS_BINARY', '7.4', array(1405), '8.0'),
             array('OPENSSL_CMS_NOSIGS', '7.4', array(1406), '8.0'),
+            array('T_NULLSAFE_OBJECT_OPERATOR', '7.4', array(1409), '8.0'),
         );
     }
 

@@ -97,6 +97,20 @@ class NewOperatorsUnitTest extends BaseSniffTest
     }
 
     /**
+     * Nullsafe object operator.
+     *
+     * @return void
+     */
+    public function testNullsafeObjectOperator()
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, 11, 'nullsafe object operator (?->) is not present in PHP version 7.4 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, 11);
+    }
+
+    /**
      * Verify no notices are thrown at all.
      *
      * @return void
