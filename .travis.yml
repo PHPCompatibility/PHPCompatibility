@@ -147,7 +147,7 @@ jobs:
     - stage: coverage
       php: 7.4
       env: PHPCS_VERSION="dev-master" COVERALLS_VERSION="^2.0" CUSTOM_INI=1
-    - php: 7.2
+    - php: 7.3
       env: PHPCS_VERSION="2.6.0" COVERALLS_VERSION="^2.0"
     # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
     - php: 7.2
@@ -202,7 +202,10 @@ before_install:
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Sniff" ]]; then
       composer install --prefer-dist --no-suggest
     elif [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
-      # Ignore platform requirements to allow PHPUnit to install on PHP 8.
+      # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
+      # As PHP 8 doesn't run code coverage, we can safely install it there though.
+      composer require --no-update phpunit/phpunit:"^9.3"
+      # Not all PHPUnit dependencies have stable releases yet allowing for PHP 8.0.
       composer install --prefer-dist --no-suggest --ignore-platform-reqs
     else
       # Remove devtools as it would block install on old PHPCS versions (< 3.0).
