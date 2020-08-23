@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect array and string literal dereferencing.

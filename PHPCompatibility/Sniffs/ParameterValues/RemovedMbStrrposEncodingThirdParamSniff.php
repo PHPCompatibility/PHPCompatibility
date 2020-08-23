@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect passing `$encoding` to `mb_strrpos()` as 3rd argument.

@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\Extensions;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect the use of deprecated and/or removed PHP extensions.

@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect use of new PHP keywords.

@@ -13,7 +13,7 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer_Exception as PHPCS_Exception;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Namespaces;

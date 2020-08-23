@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * The constant value of the password hash algorithm constants has changed in PHP 7.4.

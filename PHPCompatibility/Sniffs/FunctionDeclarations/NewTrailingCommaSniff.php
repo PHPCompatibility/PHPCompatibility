@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 

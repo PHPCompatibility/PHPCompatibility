@@ -58,11 +58,13 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
     require_once $phpcsDir . $ds . 'autoload.php';
 
     /*
-     * Alias the PHPCS 3.x classes to their PHPCS 2.x equivalent if necessary.
-     * Also provide a custom autoloader for our abstract base classes as the PHPCS native autoloader
+     * Provide a custom autoloader for our abstract base classes as the PHPCS native autoloader
      * has trouble with them in combination with the PHPCompatibility custom unit test suite.
      */
     require_once __DIR__ . $ds . 'PHPCSAliases.php';
+
+    // Pre-load the token back-fills to prevent undefined constant notices.
+    require_once $phpcsDir . '/src/Util/Tokens.php';
 
 } elseif ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'CodeSniffer.php')) {
     // PHPCS 2.x.

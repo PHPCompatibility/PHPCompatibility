@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Passing the `$glue` and `$pieces` parameters to `implode()` in reverse order has

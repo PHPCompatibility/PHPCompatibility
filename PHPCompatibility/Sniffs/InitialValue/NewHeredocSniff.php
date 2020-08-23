@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect a heredoc being used to set an initial value.

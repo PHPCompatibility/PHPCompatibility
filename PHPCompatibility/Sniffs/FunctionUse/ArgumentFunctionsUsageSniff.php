@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect usage of `func_get_args()`, `func_get_arg()` and `func_num_args()` in invalid context.

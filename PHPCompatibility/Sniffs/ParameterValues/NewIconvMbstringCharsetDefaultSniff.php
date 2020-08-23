@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect calls to Iconv and Mbstring functions with the optional `$charset`/`$encoding` parameter not set.

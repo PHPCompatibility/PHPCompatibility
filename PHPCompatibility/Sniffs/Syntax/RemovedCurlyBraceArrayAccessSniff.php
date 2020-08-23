@@ -15,7 +15,7 @@ use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
 use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
