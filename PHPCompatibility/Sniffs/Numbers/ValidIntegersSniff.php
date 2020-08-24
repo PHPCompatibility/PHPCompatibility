@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Numbers;
 
@@ -56,9 +56,9 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack.
      *
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
@@ -135,10 +135,10 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param array                 $tokens    Token stack.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param array                       $tokens    Token stack.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack.
      *
      * @return string
      */

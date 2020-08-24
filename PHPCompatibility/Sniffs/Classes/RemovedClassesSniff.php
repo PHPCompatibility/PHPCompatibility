@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect use of removed PHP native classes.
@@ -223,9 +223,9 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -266,9 +266,9 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -313,9 +313,9 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -349,9 +349,9 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -417,9 +417,9 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */

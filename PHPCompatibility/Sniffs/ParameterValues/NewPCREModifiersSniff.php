@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Check for the use of newly added regex modifiers for PCRE functions.
@@ -85,11 +85,11 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the
-     *                                            stack passed in $tokens.
-     * @param string                $functionName The function which contained the pattern.
-     * @param string                $modifiers    The regex modifiers found.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the
+     *                                                  stack passed in $tokens.
+     * @param string                      $functionName The function which contained the pattern.
+     * @param string                      $modifiers    The regex modifiers found.
      *
      * @return void
      */

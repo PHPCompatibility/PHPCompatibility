@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect unpacking nested arrays with `list()` in a `foreach()` as available since PHP 5.5.
@@ -44,9 +44,9 @@ class NewListInForeachSniff extends Sniff
      *
      * @since 9.0.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

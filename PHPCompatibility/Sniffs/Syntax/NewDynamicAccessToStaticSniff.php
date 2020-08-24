@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect dynamic access to static methods and properties, as well as class constants.
@@ -49,9 +49,9 @@ class NewDynamicAccessToStaticSniff extends Sniff
      *
      * @since 8.1.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

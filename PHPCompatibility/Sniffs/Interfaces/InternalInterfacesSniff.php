@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
@@ -68,9 +68,9 @@ class InternalInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */

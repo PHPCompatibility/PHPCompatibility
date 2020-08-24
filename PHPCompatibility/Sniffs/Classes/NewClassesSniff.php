@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect use of new PHP native classes.
@@ -1008,9 +1008,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -1051,9 +1051,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @since 7.1.4
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -1098,9 +1098,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @since 7.1.4
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -1134,9 +1134,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @since 7.1.4
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -1202,9 +1202,9 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */

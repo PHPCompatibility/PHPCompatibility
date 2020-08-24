@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\Helper;
 
 /**
@@ -166,7 +166,7 @@ class BaseSniffTest extends TestCase
      *                                 to have the same name, but with an `inc` extension.
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
      *
-     * @return \PHP_CodeSniffer_File|false File object.
+     * @return \PHP_CodeSniffer\Files\File|false File object.
      */
     public function sniffFile($pathToFile, $targetPhpVersion = 'none')
     {
@@ -223,9 +223,9 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file            Codesniffer file object.
-     * @param int                   $lineNumber      Line number.
-     * @param string                $expectedMessage Expected error message (assertContains).
+     * @param \PHP_CodeSniffer\Files\File $file            Codesniffer file object.
+     * @param int                         $lineNumber      Line number.
+     * @param string                      $expectedMessage Expected error message (assertContains).
      *
      * @return bool
      */
@@ -241,9 +241,9 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file            Codesniffer file object.
-     * @param int                   $lineNumber      Line number.
-     * @param string                $expectedMessage Expected message (assertContains).
+     * @param \PHP_CodeSniffer\Files\File $file            Codesniffer file object.
+     * @param int                         $lineNumber      Line number.
+     * @param string                      $expectedMessage Expected message (assertContains).
      *
      * @return bool
      */
@@ -299,8 +299,8 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file       Codesniffer File object.
-     * @param mixed                 $lineNumber Line number.
+     * @param \PHP_CodeSniffer\Files\File $file       Codesniffer File object.
+     * @param mixed                       $lineNumber Line number.
      *
      * @return bool
      */
@@ -346,7 +346,7 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file Codesniffer file object.
+     * @param \PHP_CodeSniffer\Files\File $file Codesniffer file object.
      *
      * @return array
      */
@@ -365,7 +365,7 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file Codesniffer File object.
+     * @param \PHP_CodeSniffer\Files\File $file Codesniffer File object.
      *
      * @return array
      */
@@ -381,7 +381,7 @@ class BaseSniffTest extends TestCase
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $file Codesniffer File object.
+     * @param \PHP_CodeSniffer\Files\File $file Codesniffer File object.
      *
      * @return array
      */

@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Catching multiple exception types in one statement is available since PHP 7.1.
@@ -43,9 +43,9 @@ class NewMultiCatchSniff extends Sniff
      *
      * @since 7.0.7
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token
+     *                                               in the stack passed in $tokens.
      *
      * @return void
      */

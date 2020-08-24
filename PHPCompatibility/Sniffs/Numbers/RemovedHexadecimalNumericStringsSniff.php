@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -51,9 +51,9 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack.
      *
      * @return void
      */

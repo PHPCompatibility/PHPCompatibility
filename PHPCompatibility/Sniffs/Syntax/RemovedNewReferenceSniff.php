@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect the use of assigning the return value of `new` by reference.
@@ -47,9 +47,9 @@ class RemovedNewReferenceSniff extends Sniff
      *
      * @since 5.5
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */

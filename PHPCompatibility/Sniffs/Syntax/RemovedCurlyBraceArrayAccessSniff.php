@@ -14,8 +14,8 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
 use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
@@ -140,9 +140,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -230,9 +230,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return array An array with the stack pointers to the open/close braces of
      *               the curly brace array access, or an empty array if no curly
@@ -302,9 +302,9 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return array An array with the stack pointers to the open/close braces of
      *               the curly brace array access, or an empty array if no curly

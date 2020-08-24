@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\Variables;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Parentheses;
@@ -119,9 +119,9 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      * @since 5.5
      * @since 7.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */
@@ -216,10 +216,10 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      *
      * @since 8.1.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
-     * @param array                 $tokens    Token array of the current file.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param array                       $tokens    Token array of the current file.
      *
      * @return bool
      */

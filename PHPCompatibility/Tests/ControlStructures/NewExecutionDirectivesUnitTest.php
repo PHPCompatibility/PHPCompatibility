@@ -28,7 +28,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     /**
      * Sniffed file
      *
-     * @var \PHP_CodeSniffer_File
+     * @var \PHP_CodeSniffer\Files\File
      */
     protected $sniffResult;
 

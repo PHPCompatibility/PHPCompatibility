@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\TextStrings;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_Exception as PHPCS_Exception;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -55,9 +55,9 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -85,7 +85,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
 
             try {
                 $textString = TextStrings::getCompleteTextString($phpcsFile, $start, false);
-            } catch (PHPCS_Exception $e) {
+            } catch (RuntimeException $e) {
                 // Something went wrong determining the start of the text string.
                 return;
             }

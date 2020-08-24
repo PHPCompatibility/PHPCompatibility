@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -76,10 +76,10 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
      *              logic superfluous now the sniff extends the abstract.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the stack.
-     * @param string                $functionName The token content (function name) which was matched.
-     * @param array                 $parameters   Array with information about the parameters.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
      *
      * @return int|void Integer stack pointer to skip forward or void to continue
      *                  normal file processing.
@@ -149,13 +149,13 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 7.1.2 This logic was originally contained within the `process()` method.
      *
-     * @param array                 $pattern      Array containing the start and end token
-     *                                            pointer of the potential regex pattern and
-     *                                            the raw string value of the pattern.
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the
-     *                                            stack passed in $tokens.
-     * @param string                $functionName The function which contained the pattern.
+     * @param array                       $pattern      Array containing the start and end token
+     *                                                  pointer of the potential regex pattern
+     *                                                  and the raw string value of the pattern.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the
+     *                                                  stack passed in $tokens.
+     * @param string                      $functionName The function which contained the pattern.
      *
      * @return void
      */
@@ -215,11 +215,11 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 8.2.0 Split off from the `processRegexPattern()` method.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-     * @param int                   $stackPtr     The position of the current token in the
-     *                                            stack passed in $tokens.
-     * @param string                $functionName The function which contained the pattern.
-     * @param string                $modifiers    The regex modifiers found.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the
+     *                                                  stack passed in $tokens.
+     * @param string                      $functionName The function which contained the pattern.
+     * @param string                      $modifiers    The regex modifiers found.
      *
      * @return void
      */

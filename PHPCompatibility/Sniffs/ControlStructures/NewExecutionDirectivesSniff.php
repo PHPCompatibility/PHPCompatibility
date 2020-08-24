@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -100,9 +100,9 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *
      * @since 7.0.3
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in
-     *                                         the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
      *
      * @return void
      */
@@ -250,12 +250,12 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      *              - Renamed from `maybeAddError()` to `addError()`.
      *              - Changed visibility from `protected` to `public`.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the relevant token in
-     *                                         the stack.
-     * @param array                 $itemInfo  Base information about the item.
-     * @param array                 $errorInfo Array with detail (version) information
-     *                                         relevant to the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
+     * @param array                       $errorInfo Array with detail (version) information
+     *                                               relevant to the item.
      *
      * @return void
      */
@@ -283,10 +283,10 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      * @since 7.0.3
      * @since 7.0.6 Renamed from `addErrorOnInvalidValue()` to `addWarningOnInvalidValue()`.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the execution directive value
-     *                                         in the token array.
-     * @param string                $directive The directive.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the execution directive value
+     *                                               in the token array.
+     * @param string                      $directive The directive.
      *
      * @return void
      */

@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer_File as File;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Check for use of alternative PHP tags, support for which was removed in PHP 7.0.
@@ -65,9 +65,9 @@ class RemovedAlternativePHPTagsSniff extends Sniff
      *
      * @since 7.0.4
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token
+     *                                               in the stack passed in $tokens.
      *
      * @return void
      */

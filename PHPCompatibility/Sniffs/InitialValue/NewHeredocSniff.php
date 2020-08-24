@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff;
-use PHP_CodeSniffer_File as File;
-use PHP_CodeSniffer_Tokens as Tokens;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect a heredoc being used to set an initial value.
@@ -79,10 +79,10 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                   $stackPtr  The position of the current token in the
-     *                                         stack passed in $tokens.
-     * @param int                   $end       The end of the value definition.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param int                         $end       The end of the value definition.
      *
      * @return bool True if no heredoc (or assignment) is found, false otherwise.
      */
