@@ -23,6 +23,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 7.1, the `iterable` and `void` pseudo-types are available.
  * - Since PHP 7.2, the generic `object` type is available.
  * - Since PHP 8.0, `static` is allowed to be used as a return type.
+ * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
  *
  * PHP version 7.0+
  *
@@ -33,6 +34,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/void_return_type
  * @link https://wiki.php.net/rfc/object-typehint
  * @link https://wiki.php.net/rfc/static_return_type
+ * @link https://wiki.php.net/rfc/mixed_type_v2
  *
  * @since 7.0.0
  * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -103,6 +105,10 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             '7.2' => true,
         ],
 
+        'mixed' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'static' => [
             '7.4' => false,
             '8.0' => true,
@@ -159,6 +165,21 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
                 'name' => $returnType,
             ];
             $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
+
+            /*
+             * Nullable mixed type declarations are not allowed, but could have been used prior
+             * to PHP 8 if the type hint referred to a class named "Mixed".
+             * Only throw an error if PHP 8+ needs to be supported.
+             */
+            if (($returnType === 'mixed' && $properties['nullable_return_type'] === true)
+                && $this->supportsAbove('8.0') === true
+            ) {
+                $phpcsFile->addError(
+                    'Mixed types cannot be nullable, null is already part of the mixed type',
+                    $returnTypeToken,
+                    'NullableMixed'
+                );
+            }
 
             return;
         }

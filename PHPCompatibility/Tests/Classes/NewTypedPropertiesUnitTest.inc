@@ -65,3 +65,11 @@ class InvalidExample {
     public boolean $booleanType;
     protected integer $integerType = 123;
 }
+
+// Mixed type declaration - PHP 8.0+.
+class PHP8Mixed {
+    public static mixed $mixed;
+
+    // Invalid: Nullable mixed type declaration.
+    private ?miXed $nullableMixed;
+}
