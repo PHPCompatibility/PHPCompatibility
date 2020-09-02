@@ -60,7 +60,7 @@ jobs:
         - travis_retry composer install-devcs
       script:
         # Check the code style of the code base.
-        - vendor/bin/phpcs
+        - vendor/bin/phpcs --no-cache
 
         # Validate the xml file.
         # @link http://xmlsoft.org/xmllint.html

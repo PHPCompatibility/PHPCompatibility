@@ -29,6 +29,9 @@
     <!-- Check up to 8 files simultaneously. -->
     <arg name="parallel" value="8"/>
 
+    <!-- Enable caching to a fixed file. -->
+    <arg name="cache" value=".phpcs.cache"/>
+
 
     <!--
     #############################################################################

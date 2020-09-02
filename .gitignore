@@ -7,4 +7,5 @@ phpcs.xml
 /build/
 phpunit.xml
 .phpunit.result.cache
+.phpcs.cache
 *~
