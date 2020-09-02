@@ -111,7 +111,6 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                     $value['raw'] = trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
                     $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
                 }
-
             } else {
                 // Otherwise, the patterns will be in the array values.
                 foreach ($arrayValues as $value) {
@@ -124,7 +123,6 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                     $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
                 }
             }
-
         } else {
             $this->processRegexPattern($firstParam, $phpcsFile, $stackPtr, $functionName);
         }

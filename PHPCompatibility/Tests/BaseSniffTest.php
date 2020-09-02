@@ -209,7 +209,6 @@ class BaseSniffTest extends TestCase
 
                 self::$sniffFiles[$pathToFile][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
             }
-
         } catch (\Exception $e) {
             $this->fail('An unexpected exception has been caught when loading file "' . $pathToFile . '" : ' . $e->getMessage());
             return false;

@@ -77,7 +77,6 @@ class AssignmentOrderSniff extends Sniff
                 // Empty list, not our concern.
                 return ($closer + 1);
             }
-
         } catch (RuntimeException $e) {
             // Parse error, live coding, real square brackets or short array, not short list.
             return;

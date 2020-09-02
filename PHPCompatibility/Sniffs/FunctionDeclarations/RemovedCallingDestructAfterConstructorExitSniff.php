@@ -95,7 +95,6 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
                 'Found',
                 [$tokens[$current]['content']]
             );
-
         } while (true);
     }
 }

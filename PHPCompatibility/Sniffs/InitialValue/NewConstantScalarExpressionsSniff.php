@@ -431,7 +431,6 @@ class NewConstantScalarExpressionsSniff extends Sniff
                             if ($this->isStaticValue($phpcsFile, $tokens, $item['start'], $item['end'], $nestedArrays) === false) {
                                 return false;
                             }
-
                         } else {
                             // Examine array key.
                             if ($this->isStaticValue($phpcsFile, $tokens, $item['start'], ($doubleArrow - 1), $nestedArrays) === false) {
@@ -474,7 +473,6 @@ class NewConstantScalarExpressionsSniff extends Sniff
 
                 // Examine what comes after the array, if anything.
                 return $this->isStaticValue($phpcsFile, $tokens, ($closer + 1), $end, $nestedArrays);
-
         }
 
         // Ok, so this unsafe token was not one of the exceptions, i.e. this is a PHP 5.6+ syntax.

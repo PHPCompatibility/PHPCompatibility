@@ -99,7 +99,6 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
         $trailingErrorCode = 'ClosingMarkerNoNewLine';
 
         if (version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
-
             /*
              * Check for indented closing marker.
              */
@@ -222,7 +221,6 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
 
                 break;
             }
-
         } else {
             if (isset($tokens[$stackPtr]['scope_closer'], $tokens[$stackPtr]['scope_opener']) === true
                 && $tokens[$stackPtr]['scope_closer'] === $stackPtr

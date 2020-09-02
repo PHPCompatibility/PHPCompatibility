@@ -73,7 +73,6 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
     if (isset($vendorDir) && file_exists($vendorDir . $ds . 'autoload.php')) {
         require_once $vendorDir . $ds . 'autoload.php';
     }
-
 } else {
     echo 'Uh oh... can\'t find PHPCS.
 

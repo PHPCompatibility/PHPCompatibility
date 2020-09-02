@@ -131,7 +131,6 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             ];
 
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
-
         } else {
             // Check for valid directive for version.
             $itemInfo = [

@@ -121,7 +121,6 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                     if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
                         && strpos($tokens[$i]['content'], '>') !== false
                     ) {
-
                         $phpcsFile->addWarning(
                             'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',
                             $i,

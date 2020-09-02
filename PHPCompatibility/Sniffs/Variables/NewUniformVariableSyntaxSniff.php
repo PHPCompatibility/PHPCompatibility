@@ -84,7 +84,6 @@ class NewUniformVariableSyntaxSniff extends Sniff
                         // Live coding.
                         return;
                     }
-
                 } elseif ($tokens[$hasBrackets]['code'] === \T_OPEN_PARENTHESIS) {
                     // Caught!
                     break;
