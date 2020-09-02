@@ -42,33 +42,33 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
      */
     protected $newOperators = [
         'T_POW' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'         => false,
+            '5.6'         => true,
             'description' => 'The power operator (**)',
         ],
         'T_POW_EQUAL' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'         => false,
+            '5.6'         => true,
             'description' => 'The power assignment operator (**=)',
         ],
         'T_SPACESHIP' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'         => false,
+            '7.0'         => true,
             'description' => 'The spaceship operator (<=>)',
         ],
         'T_COALESCE' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'         => false,
+            '7.0'         => true,
             'description' => 'The null coalescing operator (??)',
         ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
         'T_COALESCE_EQUAL' => [
-            '7.3' => false,
-            '7.4' => true,
+            '7.3'         => false,
+            '7.4'         => true,
             'description' => 'The null coalesce equal operator (??=)',
         ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
         'T_NULLSAFE_OBJECT_OPERATOR' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'description' => 'The nullsafe object operator (?->)',
         ],
     ];

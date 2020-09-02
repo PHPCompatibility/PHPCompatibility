@@ -4039,7 +4039,7 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
         ],
 
         'SO_REUSEPORT' => [
-            '5.4.9' => false,
+            '5.4.9'  => false,
             '5.4.10' => true,
         ],
 

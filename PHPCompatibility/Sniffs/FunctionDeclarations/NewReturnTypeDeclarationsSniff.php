@@ -186,7 +186,7 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
         // Handle class name based return types.
         $itemInfo = [
-            'name'   => 'Class name',
+            'name' => 'Class name',
         ];
         $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
     }

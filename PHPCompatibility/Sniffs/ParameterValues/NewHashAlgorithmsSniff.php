@@ -151,7 +151,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 
         // Check if the algorithm used is new.
         $itemInfo = [
-            'name'   => $algo,
+            'name' => $algo,
         ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }

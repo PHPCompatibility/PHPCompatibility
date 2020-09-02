@@ -1199,8 +1199,8 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ],
 
         'date_sun_info' => [
-            '5.1.1'     => false,
-            '5.1.2'     => true,
+            '5.1.1' => false,
+            '5.1.2' => true,
         ],
         'hash_algos' => [
             '5.1.1'     => false,
@@ -1742,18 +1742,18 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '5.2.1' => true,
         ],
         'xmlwriter_start_dtd_entity' => [
-            '5.2.0'       => false,
-            '5.2.1'       => true,
+            '5.2.0'     => false,
+            '5.2.1'     => true,
             'extension' => 'xmlwriter',
         ],
         'xmlwriter_end_dtd_entity' => [
-            '5.2.0'       => false,
-            '5.2.1'       => true,
+            '5.2.0'     => false,
+            '5.2.1'     => true,
             'extension' => 'xmlwriter',
         ],
         'xmlwriter_write_dtd_entity' => [
-            '5.2.0'       => false,
-            '5.2.1'       => true,
+            '5.2.0'     => false,
+            '5.2.1'     => true,
             'extension' => 'xmlwriter',
         ],
 
@@ -3602,12 +3602,12 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         ],
 
         'gmp_random_bits' => [
-            '5.6.2'     => false,
-            '5.6.3'     => true,
+            '5.6.2' => false,
+            '5.6.3' => true,
         ],
         'gmp_random_range' => [
-            '5.6.2'     => false,
-            '5.6.3'     => true,
+            '5.6.2' => false,
+            '5.6.3' => true,
         ],
         'phpdbg_break_file' => [
             '5.6.2'     => false,
