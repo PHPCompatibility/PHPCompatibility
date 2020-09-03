@@ -43,6 +43,12 @@
   "suggest" : {
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "9.x-dev",
+      "dev-develop": "10.x-dev"
+    }
+  },
   "scripts" : {
     "test": [
       "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
@@ -61,6 +67,22 @@
     ],
     "check-complete-strict": [
       "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness ./PHPCompatibility"
+    ],
+    "install-devcs": [
+      "composer require --dev phpcsstandards/phpcsdevcs:\"^1.1.1\" --no-suggest"
+    ],
+    "remove-devcs": [
+      "composer remove --dev phpcsstandards/phpcsdevcs"
+    ],
+    "checkcs": [
+      "@install-devcs",
+      "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+      "@remove-devcs"
+    ],
+    "fixcs": [
+      "@install-devcs",
+      "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+      "@remove-devcs"
     ]
   }
 }
