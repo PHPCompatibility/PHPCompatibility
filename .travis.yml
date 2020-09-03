@@ -192,25 +192,25 @@ before_install:
   - export XMLLINT_INDENT="    "
 
   # Set up test environment using Composer.
-  - composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
+  - travis_retry composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
   - |
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
-      composer require --no-update php-coveralls/php-coveralls:${COVERALLS_VERSION}
+      travis_retry composer require --no-update php-coveralls/php-coveralls:${COVERALLS_VERSION}
     fi
   # --prefer-dist will allow for optimal use of the travis caching ability.
   - |
     if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Sniff" ]]; then
-      composer install --prefer-dist --no-suggest
+      travis_retry composer install --prefer-dist --no-suggest
     elif [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
       # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
       # As PHP 8 doesn't run code coverage, we can safely install it there though.
-      composer require --no-update phpunit/phpunit:"^9.3"
+      travis_retry composer require --no-update phpunit/phpunit:"^9.3"
       # Not all PHPUnit dependencies have stable releases yet allowing for PHP 8.0.
-      composer install --prefer-dist --no-suggest --ignore-platform-reqs
+      travis_retry composer install --prefer-dist --no-suggest --ignore-platform-reqs
     else
       # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-      composer remove --dev phpcsstandards/phpcsdevtools --no-update
-      composer install --prefer-dist --no-suggest
+      travis_retry composer remove --dev phpcsstandards/phpcsdevtools --no-update
+      travis_retry composer install --prefer-dist --no-suggest
     fi
 
 before_script:
