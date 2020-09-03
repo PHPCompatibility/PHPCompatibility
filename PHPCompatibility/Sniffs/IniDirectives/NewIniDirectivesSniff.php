@@ -30,6 +30,7 @@ use PHPCSUtils\Utils\TextStrings;
  */
 class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {
+
     /**
      * A list of new INI directives
      *

@@ -50,50 +50,50 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
      */
     protected $removedGlobalVariables = [
         'HTTP_POST_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_POST',
         ],
         'HTTP_GET_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_GET',
         ],
         'HTTP_ENV_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_ENV',
         ],
         'HTTP_SERVER_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_SERVER',
         ],
         'HTTP_COOKIE_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_COOKIE',
         ],
         'HTTP_SESSION_VARS' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_SESSION',
         ],
         'HTTP_POST_FILES' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_FILES',
         ],
 
         'HTTP_RAW_POST_DATA' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'         => false,
+            '7.0'         => true,
             'alternative' => 'php://input',
         ],
 
         'php_errormsg' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'error_get_last()',
         ],
     ];

@@ -25,6 +25,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 {
+
     /**
      * A list of new hash algorithms, not present in older versions.
      *
@@ -150,7 +151,7 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 
         // Check if the algorithm used is new.
         $itemInfo = [
-            'name'   => $algo,
+            'name' => $algo,
         ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }

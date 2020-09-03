@@ -478,7 +478,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             if ($scanResult === 'error') {
                 $data[] = 'changed';
                 $phpcsFile->addError($error, $i, 'Changed', $data);
-
             } elseif ($scanResult === 'warning') {
                 $data[] = 'used, and possibly changed (by reference),';
                 $phpcsFile->addWarning($error, $i, 'NeedsInspection', $data);

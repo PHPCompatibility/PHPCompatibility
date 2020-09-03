@@ -51,23 +51,22 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
      */
     protected $newDirectives = [
         'ticks' => [
-            '3.1' => false,
-            '4.0' => true,
+            '3.1'                  => false,
+            '4.0'                  => true,
             'valid_value_callback' => 'isNumeric',
         ],
         'encoding' => [
-            '5.2' => false,
-            '5.3' => '--enable-zend-multibyte', // Directive ignored unless.
-            '5.4' => true,
+            '5.2'                  => false,
+            '5.3'                  => '--enable-zend-multibyte', // Directive ignored unless.
+            '5.4'                  => true,
             'valid_value_callback' => 'validEncoding',
         ],
         'strict_types' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'          => false,
+            '7.0'          => true,
             'valid_values' => [1],
         ],
     ];
-
 
     /**
      * Tokens to ignore when trying to find the value for the directive.
@@ -132,11 +131,10 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             ];
 
             $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
-
         } else {
             // Check for valid directive for version.
             $itemInfo = [
-                'name'   => $directiveContent,
+                'name' => $directiveContent,
             ];
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 

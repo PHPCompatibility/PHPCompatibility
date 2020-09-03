@@ -83,7 +83,6 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
             if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
                 && strpos($tokens[$i]['content'], '/>') !== false
             ) {
-
                 $phpcsFile->addError(
                     'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowable_tags parameter since PHP 5.3.4. Found: %s',
                     $i,

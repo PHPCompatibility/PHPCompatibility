@@ -121,7 +121,6 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
                         return;
                     }
                     break;
-
             }
         }
 

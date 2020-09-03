@@ -27,6 +27,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class NewFunctionCallTrailingCommaSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -73,9 +74,9 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
 
         if ($tokens[$stackPtr]['code'] === \T_STRING) {
             $ignore = [
-                \T_FUNCTION        => true,
-                \T_CONST           => true,
-                \T_USE             => true,
+                \T_FUNCTION => true,
+                \T_CONST    => true,
+                \T_USE      => true,
             ];
 
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);

@@ -62,7 +62,6 @@ abstract class Sniff implements PHPCS_Sniff
         'hash'           => 1,
     ];
 
-
     /**
      * List of functions which take an ini directive as parameter (always the first parameter).
      *
@@ -1009,7 +1008,6 @@ abstract class Sniff implements PHPCS_Sniff
             && ($tokens[$nextNonEmpty]['code'] === \T_PLUS
             || $tokens[$nextNonEmpty]['code'] === \T_MINUS)
         ) {
-
             if ($tokens[$nextNonEmpty]['code'] === \T_MINUS) {
                 $negativeNumber = ($negativeNumber === false) ? true : false;
             }
@@ -1227,7 +1225,6 @@ abstract class Sniff implements PHPCS_Sniff
 
         // Create the token arrays only once.
         if (isset($tokenBlackList, $bracketTokens) === false) {
-
             $tokenBlackList  = [
                 \T_OPEN_PARENTHESIS => \T_OPEN_PARENTHESIS,
                 \T_STRING_CONCAT    => \T_STRING_CONCAT,

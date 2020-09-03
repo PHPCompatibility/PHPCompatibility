@@ -30,6 +30,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  */
 class NewNullableTypesSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

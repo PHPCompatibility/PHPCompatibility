@@ -32,6 +32,7 @@ use PHPCSUtils\Utils\TextStrings;
  */
 class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of deprecated/removed INI directives.
      *

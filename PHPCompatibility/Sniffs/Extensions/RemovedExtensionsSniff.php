@@ -37,6 +37,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of functions to whitelist, if any.
      *

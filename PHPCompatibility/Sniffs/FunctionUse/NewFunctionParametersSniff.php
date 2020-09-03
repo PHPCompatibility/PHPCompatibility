@@ -27,6 +27,7 @@ use PHPCSUtils\Utils\PassedParameters;
  */
 class NewFunctionParametersSniff extends AbstractNewFeatureSniff
 {
+
     /**
      * A list of functions which have new parameters, not present in older versions.
      *

@@ -149,11 +149,11 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
                 );
             }
         } elseif (isset($this->invalidTypes[$type])) {
-            $error = "%s is not supported as a type declaration for properties";
+            $error = '%s is not supported as a type declaration for properties';
             $data  = [$type];
 
             if ($this->invalidTypes[$type] !== false) {
-                $error .= " Did you mean %s ?";
+                $error .= ' Did you mean %s ?';
                 $data[] = $this->invalidTypes[$type];
             }
 

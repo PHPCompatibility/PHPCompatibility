@@ -27,6 +27,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class NewUniformVariableSyntaxSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -83,7 +84,6 @@ class NewUniformVariableSyntaxSniff extends Sniff
                         // Live coding.
                         return;
                     }
-
                 } elseif ($tokens[$hasBrackets]['code'] === \T_OPEN_PARENTHESIS) {
                     // Caught!
                     break;

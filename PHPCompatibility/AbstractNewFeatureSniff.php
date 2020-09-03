@@ -20,7 +20,6 @@ use PHP_CodeSniffer\Files\File;
 abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
 {
 
-
     /**
      * Determine whether an error/warning should be thrown for an item based on collected information.
      *

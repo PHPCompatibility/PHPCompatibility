@@ -29,6 +29,7 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 {
+
     /**
      * A list of deprecated and removed functions with their alternatives.
      *
@@ -63,7 +64,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
 
         'php_check_syntax' => [
-            '5.0.5' => true,
+            '5.0.5'       => true,
             'alternative' => null,
         ],
 
@@ -2743,22 +2744,22 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
 
         'call_user_method' => [
-            '4.1' => false,
-            '7.0' => true,
+            '4.1'         => false,
+            '7.0'         => true,
             'alternative' => 'call_user_func()',
         ],
         'call_user_method_array' => [
-            '4.1' => false,
-            '7.0' => true,
+            '4.1'         => false,
+            '7.0'         => true,
             'alternative' => 'call_user_func_array()',
         ],
         'define_syslog_variables' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => null,
         ],
         'dl' => [
-            '5.3' => false,
+            '5.3'         => false,
             'alternative' => null,
         ],
         'ereg' => [
@@ -2786,41 +2787,41 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'ereg',
         ],
         'imagepsbbox' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepsencodefont' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepsextendfont' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepsfreefont' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepsloadfont' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepsslantfont' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'imagepstext' => [
-            '7.0' => true,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'import_request_variables' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => null,
         ],
         'ldap_sort' => [
-            '7.0' => false,
-            '8.0' => true,
+            '7.0'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'mcrypt_generic_end' => [
@@ -2853,68 +2854,68 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension' => 'mysql',
         ],
         'mysqli_bind_param' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt::bind_param()',
         ],
         'mysqli_bind_result' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt::bind_result()',
         ],
         'mysqli_client_encoding' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli::character_set_name()',
         ],
         'mysqli_fetch' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt::fetch()',
         ],
         'mysqli_param_count' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt_param_count()',
         ],
         'mysqli_get_metadata' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt::result_metadata()',
         ],
         'mysqli_send_long_data' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => 'mysqli_stmt::send_long_data()',
         ],
         'magic_quotes_runtime' => [
-            '5.3' => false,
-            '7.0' => true,
+            '5.3'         => false,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'session_register' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_SESSION',
         ],
         'session_unregister' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_SESSION',
         ],
         'session_is_registered' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'         => false,
+            '5.4'         => true,
             'alternative' => '$_SESSION',
         ],
         'set_magic_quotes_runtime' => [
-            '5.3' => false,
-            '7.0' => true,
+            '5.3'         => false,
+            '7.0'         => true,
             'alternative' => null,
         ],
         'set_socket_blocking' => [
-            '5.3' => false,
-            '7.0' => true,
+            '5.3'         => false,
+            '7.0'         => true,
             'alternative' => 'stream_set_blocking()',
         ],
         'split' => [
@@ -2936,24 +2937,24 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'ereg',
         ],
         'php_logo_guid' => [
-            '5.5' => true,
+            '5.5'         => true,
             'alternative' => null,
         ],
         'php_egg_logo_guid' => [
-            '5.5' => true,
+            '5.5'         => true,
             'alternative' => null,
         ],
         'php_real_logo_guid' => [
-            '5.5' => true,
+            '5.5'         => true,
             'alternative' => null,
         ],
         'zend_logo_guid' => [
-            '5.5' => true,
+            '5.5'         => true,
             'alternative' => 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"',
         ],
         'datefmt_set_timezone_id' => [
-            '5.5' => false,
-            '7.0' => true,
+            '5.5'         => false,
+            '7.0'         => true,
             'alternative' => 'IntlDateFormatter::setTimeZone()',
         ],
         'mcrypt_ecb' => [
@@ -2981,204 +2982,204 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'mcrypt',
         ],
         'ocibindbyname' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_bind_by_name()',
         ],
         'ocicancel' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_cancel()',
         ],
         'ocicloselob' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::close()',
         ],
         'ocicollappend' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::append()',
         ],
         'ocicollassign' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::assign()',
         ],
         'ocicollassignelem' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::assignElem()',
         ],
         'ocicollgetelem' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::getElem()',
         ],
         'ocicollmax' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::max()',
         ],
         'ocicollsize' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::size()',
         ],
         'ocicolltrim' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::trim()',
         ],
         'ocicolumnisnull' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_is_null()',
         ],
         'ocicolumnname' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_name()',
         ],
         'ocicolumnprecision' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_precision()',
         ],
         'ocicolumnscale' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_scale()',
         ],
         'ocicolumnsize' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_size()',
         ],
         'ocicolumntype' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_type()',
         ],
         'ocicolumntyperaw' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_field_type_raw()',
         ],
         'ocicommit' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_commit()',
         ],
         'ocidefinebyname' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_define_by_name()',
         ],
         'ocierror' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_error()',
         ],
         'ociexecute' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_execute()',
         ],
         'ocifetch' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_fetch()',
         ],
         'ocifetchinto' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => null,
         ],
         'ocifetchstatement' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_fetch_all()',
         ],
         'ocifreecollection' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Collection::free()',
         ],
         'ocifreecursor' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_free_statement()',
         ],
         'ocifreedesc' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::free()',
         ],
         'ocifreestatement' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_free_statement()',
         ],
         'ociinternaldebug' => [
-            '5.4' => false,
-            '8.0' => true,
+            '5.4'         => false,
+            '8.0'         => true,
             'alternative' => 'oci_internal_debug() (PHP < 8.0)',
         ],
         'ociloadlob' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::load()',
         ],
         'ocilogoff' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_close()',
         ],
         'ocilogon' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_connect()',
         ],
         'ocinewcollection' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_new_collection()',
         ],
         'ocinewcursor' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_new_cursor()',
         ],
         'ocinewdescriptor' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_new_descriptor()',
         ],
         'ocinlogon' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_new_connect()',
         ],
         'ocinumcols' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_num_fields()',
         ],
         'ociparse' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_parse()',
         ],
         'ociplogon' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_pconnect()',
         ],
         'ociresult' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_result()',
         ],
         'ocirollback' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_rollback()',
         ],
         'ocirowcount' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_num_rows()',
         ],
         'ocisavelob' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::save()',
         ],
         'ocisavelobfile' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::import()',
         ],
         'ociserverversion' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_server_version()',
         ],
         'ocisetprefetch' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_set_prefetch()',
         ],
         'ocistatementtype' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'oci_statement_type()',
         ],
         'ociwritelobtofile' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::export()',
         ],
         'ociwritetemporarylob' => [
-            '5.4' => false,
+            '5.4'         => false,
             'alternative' => 'OCI-Lob::writeTemporary()',
         ],
         'mysqli_get_cache_stats' => [
-            '5.4' => true,
+            '5.4'         => true,
             'alternative' => null,
         ],
         'sqlite_array_query' => [
@@ -4046,163 +4047,163 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'mcrypt',
         ],
         'jpeg2wbmp' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'imagecreatefromjpeg() and imagewbmp()',
         ],
         'png2wbmp' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
         ],
         '__autoload' => [
-            '7.2' => false,
+            '7.2'         => false,
             'alternative' => 'SPL autoload',
         ],
         'create_function' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'an anonymous function',
         ],
         'each' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'a foreach loop or ArrayIterator',
         ],
         'gmp_random' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
         ],
         'read_exif_data' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'         => false,
+            '8.0'         => true,
             'alternative' => 'exif_read_data()',
         ],
 
         'image2wbmp' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'imagewbmp()',
         ],
         'mbregex_encoding' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_regex_encoding()',
         ],
         'mbereg' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg()',
         ],
         'mberegi' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_eregi()',
         ],
         'mbereg_replace' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_replace()',
         ],
         'mberegi_replace' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_eregi_replace()',
         ],
         'mbsplit' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_split()',
         ],
         'mbereg_match' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_match()',
         ],
         'mbereg_search' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search()',
         ],
         'mbereg_search_pos' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_pos()',
         ],
         'mbereg_search_regs' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_regs()',
         ],
         'mbereg_search_init' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_init()',
         ],
         'mbereg_search_getregs' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_getregs()',
         ],
         'mbereg_search_getpos' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_getpos()',
         ],
         'mbereg_search_setpos' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_ereg_search_setpos()',
         ],
         'fgetss' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'gzgetss' => [
-            '7.3' => false,
-            '8.0' => true,
+            '7.3'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
 
         'convert_cyr_string' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
         ],
         'ezmlm_hash' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'get_magic_quotes_gpc' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'get_magic_quotes_runtime' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'hebrevc' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => null,
         ],
         'is_real' => [
-            '7.4' => false,
+            '7.4'         => false,
             'alternative' => 'is_float()',
         ],
         'money_format' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'NumberFormatter::formatCurrency()',
         ],
         'restore_include_path' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'         => false,
+            '8.0'         => true,
             'alternative' => "ini_restore('include_path')",
         ],
         'ibase_add_user' => [
@@ -4591,11 +4592,11 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
 
         'ldap_control_paged_result_response' => [
-            '7.4' => false,
+            '7.4'         => false,
             'alternative' => 'ldap_search()',
         ],
         'ldap_control_paged_result' => [
-            '7.4' => false,
+            '7.4'         => false,
             'alternative' => 'ldap_search()',
         ],
         'recode_file' => [

@@ -41,13 +41,13 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
      */
     protected $newConstructs = [
         'T_NS_SEPARATOR' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'         => false,
+            '5.3'         => true,
             'description' => 'the \ operator (for namespaces)',
         ],
         'T_ELLIPSIS' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'         => false,
+            '5.6'         => true,
             'description' => 'the ... spread operator',
         ],
     ];

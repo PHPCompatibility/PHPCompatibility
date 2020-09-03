@@ -42,6 +42,7 @@ use PHPCSUtils\Utils\Conditions;
  */
 class NewClosureSniff extends Sniff
 {
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *

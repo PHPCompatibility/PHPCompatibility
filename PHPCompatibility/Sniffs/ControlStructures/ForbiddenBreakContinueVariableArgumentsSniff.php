@@ -33,6 +33,7 @@ use PHPCSUtils\Utils\Numbers;
  */
 class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {
+
     /**
      * Error types this sniff handles for forbidden break/continue arguments.
      *
@@ -106,7 +107,6 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
             if (isset($this->varArgTokens[$tokens[$curToken]['code']]) === true) {
                 $errorType = 'variableArgument';
                 break;
-
             }
 
             if ($tokens[$curToken]['code'] === \T_LNUMBER) {

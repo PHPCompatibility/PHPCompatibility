@@ -112,7 +112,6 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
         ],
     ];
 
-
     /**
      * Invalid types
      *
@@ -192,7 +191,6 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
                     $param['token'],
                     'TypeHintFound'
                 );
-
             } elseif (isset($this->newTypes[$typeHint])) {
                 $itemInfo = [
                     'name' => $typeHint,

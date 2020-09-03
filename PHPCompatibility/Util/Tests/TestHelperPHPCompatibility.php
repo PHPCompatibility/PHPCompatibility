@@ -20,6 +20,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class TestHelperPHPCompatibility extends Sniff
 {
+
     /**
      * Dummy method to bypass the abstract method implementation requirements.
      *

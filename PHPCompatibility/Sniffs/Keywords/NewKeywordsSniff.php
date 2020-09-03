@@ -299,7 +299,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             }
 
             $itemInfo = [
-                'name'   => $tokenType,
+                'name' => $tokenType,
             ];
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }

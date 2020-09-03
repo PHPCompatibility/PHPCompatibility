@@ -22,6 +22,7 @@ use PHPCSUtils\Utils\PassedParameters;
  */
 abstract class AbstractFunctionCallParameterSniff extends Sniff
 {
+
     /**
      * Is the sniff looking for a function call or a method call ?
      *

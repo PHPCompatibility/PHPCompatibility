@@ -146,7 +146,7 @@ class ValidIntegersSniff extends Sniff
     {
         $i = $stackPtr;
         while ($tokens[($i + 1)]['code'] === \T_LNUMBER) {
-            $i++;
+            ++$i;
         }
 
         return GetTokensAsString::normal($phpcsFile, $stackPtr, $i);

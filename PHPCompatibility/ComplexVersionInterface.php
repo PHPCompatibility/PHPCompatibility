@@ -24,7 +24,6 @@ use PHP_CodeSniffer\Files\File;
 interface ComplexVersionInterface
 {
 
-
     /**
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error/warning for an item.
