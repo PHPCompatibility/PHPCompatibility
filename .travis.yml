@@ -45,14 +45,22 @@ jobs:
     #### SNIFF STAGE ####
     - stage: sniff
       php: 7.4
-      env: PHPCS_VERSION="dev-master"
       addons:
         apt:
           packages:
             - libxml2-utils
+      before_install:
+        - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
+        - export XMLLINT_INDENT="    "
+        # Set up CS check.
+        # - Using PHPCS `master` as an early detection system for bugs upstream.
+        # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
+        - export COMPOSER_ROOT_VERSION="10.99.99"
+        - travis_retry composer require --no-update squizlabs/php_codesniffer:"dev-master"
+        - travis_retry composer install-devcs
       script:
         # Check the code style of the code base.
-        - vendor/bin/phpcs
+        - vendor/bin/phpcs --no-cache
 
         # Validate the xml file.
         # @link http://xmlsoft.org/xmllint.html
@@ -178,7 +186,7 @@ before_install:
   # On stable PHPCS versions, allow for PHP deprecation notices.
   # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
   - |
-    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" != "Sniff" && $PHPCS_VERSION != "dev-master" ]]; then
+    if [[ $PHPCS_VERSION != "dev-master" ]]; then
       echo 'error_reporting = E_ALL & ~E_DEPRECATED' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     fi
 
@@ -189,8 +197,6 @@ before_install:
     fi
   - php -r "echo ini_get('short_open_tag');"
 
-  - export XMLLINT_INDENT="    "
-
   # Set up test environment using Composer.
   - travis_retry composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
   - |
@@ -199,9 +205,7 @@ before_install:
     fi
   # --prefer-dist will allow for optimal use of the travis caching ability.
   - |
-    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Sniff" ]]; then
-      travis_retry composer install --prefer-dist --no-suggest
-    elif [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
+    if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
       # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
       # As PHP 8 doesn't run code coverage, we can safely install it there though.
       travis_retry composer require --no-update phpunit/phpunit:"^9.3"

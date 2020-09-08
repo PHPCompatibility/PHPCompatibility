@@ -27,7 +27,7 @@ Please make sure that your pull request contains unit tests covering what's bein
 * All code should be compatible with PHPCS >= 2.6.0 and PHPCS >= 3.1.0.
 * All code should be compatible with PHP 5.4 to PHP nightly.
 * All code should comply with the PHPCompatibility coding standards.
-    The [ruleset used by PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/phpcs.xml.dist) is largely based on PSR-2 with minor variations and some additional checks for documentation and such.
+    The [ruleset used by PHPCompatibility](https://github.com/PHPCSStandards/PHPCSDevCS) is largely based on PSR-12 with minor variations and some additional checks for array layout and documentation and such.
 
 ### Typical sources of information about changes in PHP
 * The [PHP RFC wiki](https://wiki.php.net/rfc)
@@ -135,3 +135,35 @@ To fix these errors, make sure you are running PHPCS 2.7.1 or higher and add the
 ```
 
 This will prevent PHPCS trying to include the PHPCompatibility unit tests when creating the test suite.
+
+
+Checking Code Style Locally
+-----------------------
+
+PHPCompatibility uses the [PHPCSDevCS](https://github.com/PHPCSStandards/PHPCSDevCS) standard for code style.
+As PHPCompatibility is one of the dependencies of PHPCSDevCS, we have a recursive dependency which makes it slightly less intuitive to work with.
+On top of that, PHPCSDevCS has a higher minimum PHPCS requirement than PHPCompatibility, so fun times getting this working ;-)
+
+If you have a local test environment setup which is based on git clones, clone the [PHPCSDevCS](https://github.com/PHPCSStandards/PHPCSDevCS) repo and register it with your PHPCS clone using the `--installed_paths` argument.
+You can then run `phpcs` from the command-line from the root directory of this repo to check the code style of your branch/patch.
+
+> :light_bulb: Pro-tips:
+> * Make sure your PHPCS clone is checked out at a recent PHPCS version (PHPCS 3.5.0 or higher) before running the CS check.
+> * Keep the PHPCSDevCS repo up to date.
+>     You may want to start _watching releases_ on GitHub for the repo to know when there are updates available.
+> * The PHPCSDevCS repo is expected to add more external standards in the (near) future.
+>     If you run into _"Unknown standard"_ errors, this might be the cause and you'll need to make sure those additional external standards are also available on your system and registered with your local PHPCS clone.
+
+If you have a Composer based local test environment setup, there are helper scripts available to check the code style.
+* `composer checkcs`
+* `composer fixcs`
+
+These helper scripts will temporarily install PHPCSDevCS, run the code style check and then remove PHPCSDevCS again.
+
+If the PHPCS run exits with errors, fix those and run either one of the scripts again to make sure the temporary dependency is removed before committing your changes or run `composer remove-devcs` to make sure the `composer.json` file is cleaned up.
+
+> :light_bulb: Pro-tips:
+> * If you run into time-outs when running the `checkcs` or `fixcs` scripts, you can run the underlying scripts directly to get round that:
+>     - `composer install-devcs`
+>     - `vendor/bin/phpcs` or `vendor/bin/phpcbf`
+>     - `composer remove-devcs`
