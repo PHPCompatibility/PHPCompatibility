@@ -92,7 +92,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
      */
     public function register()
     {
-        $tokens   = array_keys($this->targetedTokens);
+        $tokens   = \array_keys($this->targetedTokens);
         $tokens[] = \T_STRING;
 
         return $tokens;
@@ -113,7 +113,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
     {
         $tokens         = $phpcsFile->getTokens();
         $tokenCode      = $tokens[$stackPtr]['code'];
-        $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
+        $tokenContentLc = \strtolower($tokens[$stackPtr]['content']);
         $isString       = false;
 
         /*

@@ -109,7 +109,7 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
     public function testNoFalsePositives()
     {
         $file    = $this->sniffFile(__FILE__, '7.4');
-        $exclude = array_flip($this->problemLines);
+        $exclude = \array_flip($this->problemLines);
 
         for ($line = 1; $line <= $this->totalLines; $line++) {
             if (isset($exclude[$line])) {

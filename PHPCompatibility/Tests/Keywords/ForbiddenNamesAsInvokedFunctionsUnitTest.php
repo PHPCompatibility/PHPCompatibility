@@ -42,7 +42,7 @@ class ForbiddenNamesAsInvokedFunctionsUnitTest extends BaseSniffTest
     {
         $file  = $this->sniffFile(__FILE__, $introducedIn);
         $error = "'{$keyword}' is a reserved keyword introduced in PHP version {$introducedIn} and cannot be invoked as a function";
-        $lines = array_merge($linesFunction, $linesMethod);
+        $lines = \array_merge($linesFunction, $linesMethod);
         foreach ($lines as $line) {
             $this->assertError($file, $line, $error);
         }

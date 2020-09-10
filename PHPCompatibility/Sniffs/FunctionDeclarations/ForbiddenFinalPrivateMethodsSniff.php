@@ -76,7 +76,7 @@ class ForbiddenFinalPrivateMethodsSniff extends Sniff
             return;
         }
 
-        if (strtolower($name) === '__construct') {
+        if (\strtolower($name) === '__construct') {
             // The rule does not apply to constructors. Bow out.
             return;
         }

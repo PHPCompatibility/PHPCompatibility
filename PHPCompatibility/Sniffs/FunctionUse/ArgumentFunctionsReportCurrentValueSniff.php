@@ -190,7 +190,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            $foundFunctionName = strtolower($tokens[$i]['content']);
+            $foundFunctionName = \strtolower($tokens[$i]['content']);
 
             if (isset($this->changedFunctions[$foundFunctionName]) === false) {
                 // Not one of the target functions.

@@ -79,7 +79,7 @@ class NewDirectCallsToCloneSniff extends Sniff
             return;
         }
 
-        if (strtolower($tokens[$nextNonEmpty]['content']) !== '__clone') {
+        if (\strtolower($tokens[$nextNonEmpty]['content']) !== '__clone') {
             // Not a call to the __clone() method.
             return;
         }

@@ -1031,7 +1031,7 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->newFunctionParameters[$functionLc]) === false) {
             return;
@@ -1177,8 +1177,8 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
      */
     protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
     {
-        array_shift($data);
-        array_unshift($data, $itemInfo['name'], $errorInfo['paramName']);
+        \array_shift($data);
+        \array_unshift($data, $itemInfo['name'], $errorInfo['paramName']);
         return $data;
     }
 }

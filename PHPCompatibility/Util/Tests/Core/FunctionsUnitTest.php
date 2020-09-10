@@ -174,7 +174,7 @@ class FunctionsUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
-        $message = sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
+        $message = \sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
         $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
@@ -210,7 +210,7 @@ class FunctionsUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        $message = sprintf('Invalid testVersion setting: \'%s\'', trim($testVersion));
+        $message = \sprintf('Invalid testVersion setting: \'%s\'', \trim($testVersion));
         $this->phpWarningTestHelper($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
@@ -447,7 +447,7 @@ class FunctionsUnitTest extends TestCase
      */
     public function phpWarningTestHelper($message)
     {
-        if (method_exists($this, 'expectWarning')) {
+        if (\method_exists($this, 'expectWarning')) {
             // PHPUnit 9.0+.
             $this->expectWarning();
             $this->expectWarningMessage($message);
@@ -455,7 +455,7 @@ class FunctionsUnitTest extends TestCase
             return;
         }
 
-        if (\method_exists($this, 'expectException') && class_exists('PHPUnit\Framework\Error\Warning')) {
+        if (\method_exists($this, 'expectException') && \class_exists('PHPUnit\Framework\Error\Warning')) {
             // PHPUnit 5.7/6/7/8.
             $this->expectException('PHPUnit\Framework\Error\Warning');
             $this->expectExceptionMessage($message);

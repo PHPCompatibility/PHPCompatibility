@@ -100,7 +100,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
         }
 
         if ($this->supportsAbove('7.4') === true) {
-            if (strpos($targetParam['clean'], 'escapeshellarg(') === false) {
+            if (\strpos($targetParam['clean'], 'escapeshellarg(') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;
             }

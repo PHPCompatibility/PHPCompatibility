@@ -185,10 +185,10 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
         $translate = [];
         foreach ($this->newKeywords as $token => $versions) {
             if (\defined($token)) {
-                $tokens[] = constant($token);
+                $tokens[] = \constant($token);
             }
             if (isset($versions['content'])) {
-                $translate[strtolower($versions['content'])] = $token;
+                $translate[\strtolower($versions['content'])] = $token;
             }
         }
 
@@ -226,7 +226,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
 
         // Translate T_STRING token if necessary.
         if ($tokens[$stackPtr]['type'] === 'T_STRING') {
-            $content = strtolower($tokens[$stackPtr]['content']);
+            $content = \strtolower($tokens[$stackPtr]['content']);
 
             if (isset($this->translateContentToToken[$content]) === false) {
                 // Not one of the tokens we're looking for.

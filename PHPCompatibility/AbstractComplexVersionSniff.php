@@ -81,7 +81,7 @@ abstract class AbstractComplexVersionSniff extends Sniff implements ComplexVersi
      */
     protected function getVersionArray(array $itemArray)
     {
-        return array_diff_key($itemArray, array_flip($this->getNonVersionArrayKeys()));
+        return \array_diff_key($itemArray, \array_flip($this->getNonVersionArrayKeys()));
     }
 
 

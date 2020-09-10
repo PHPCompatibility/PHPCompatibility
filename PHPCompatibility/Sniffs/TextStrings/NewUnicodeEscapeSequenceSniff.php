@@ -91,7 +91,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
             }
 
             $startQuote = $textString[0];
-            $endQuote   = substr($textString, -1);
+            $endQuote   = \substr($textString, -1);
             if (($startQuote === "'" && $endQuote === "'")
                 || $startQuote !== $endQuote
             ) {
@@ -101,7 +101,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
         }
 
         $content = TextStrings::stripQuotes($tokens[$stackPtr]['content']);
-        $count   = preg_match_all('`(?<!\\\\)\\\\u\{([^}\n\r]*)(\})?`', $content, $matches, \PREG_SET_ORDER);
+        $count   = \preg_match_all('`(?<!\\\\)\\\\u\{([^}\n\r]*)(\})?`', $content, $matches, \PREG_SET_ORDER);
         if ($count === false || $count === 0) {
             return;
         }
@@ -144,16 +144,16 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
      */
     protected function isValidUnicodeEscapeSequence($codepoint)
     {
-        if (trim($codepoint) === '') {
+        if (\trim($codepoint) === '') {
             return false;
         }
 
         // Check if it's a valid hex codepoint.
-        if (preg_match('`^[0-9A-F]+$`iD', $codepoint, $match) !== 1) {
+        if (\preg_match('`^[0-9A-F]+$`iD', $codepoint, $match) !== 1) {
             return false;
         }
 
-        if (hexdec($codepoint) > 1114111) {
+        if (\hexdec($codepoint) > 1114111) {
             // Outside of the maximum permissable range.
             return false;
         }

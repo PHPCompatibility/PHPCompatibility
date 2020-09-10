@@ -73,7 +73,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             return;
         }
 
-        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if ($functionLc !== 'define') {
             return;
         }

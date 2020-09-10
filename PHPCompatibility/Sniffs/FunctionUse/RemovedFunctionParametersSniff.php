@@ -126,7 +126,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->removedFunctionParameters[$functionLc]) === false) {
             return;
@@ -173,7 +173,7 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
             if ($offset <= $parameterOffsetFound) {
-                if (isset($parameterDetails['callback']) && method_exists($this, $parameterDetails['callback'])) {
+                if (isset($parameterDetails['callback']) && \method_exists($this, $parameterDetails['callback'])) {
                     if ($this->{$parameterDetails['callback']}($phpcsFile, $parameters[($offset + 1)]) === false) {
                         continue;
                     }
@@ -279,8 +279,8 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
      */
     protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
     {
-        array_shift($data);
-        array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
+        \array_shift($data);
+        \array_unshift($data, $errorInfo['paramName'], $itemInfo['name']);
         return $data;
     }
 }

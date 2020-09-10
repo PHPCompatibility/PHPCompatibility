@@ -78,7 +78,7 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = strtolower($functionName);
+        $functionLC = \strtolower($functionName);
         if (isset($parameters[$this->targetFunctions[$functionLC]]) === true) {
             return;
         }

@@ -98,7 +98,7 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
         $error = 'The PCRE regex modifier "%s" is not present in PHP version %s or earlier';
 
         foreach ($this->newModifiers as $modifier => $versionArray) {
-            if (strpos($modifiers, $modifier) === false) {
+            if (\strpos($modifiers, $modifier) === false) {
                 continue;
             }
 

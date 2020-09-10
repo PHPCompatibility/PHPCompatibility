@@ -118,20 +118,20 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
 
         // Registers T_ARRAY, T_OPEN_SHORT_ARRAY and T_CONSTANT_ENCAPSED_STRING.
         $additionalTargets                        = $this->newArrayStringDereferencing->register();
-        $this->newArrayStringDereferencingTargets = array_flip($additionalTargets);
+        $this->newArrayStringDereferencingTargets = \array_flip($additionalTargets);
         $targets[] = $additionalTargets;
 
         // Registers T_NEW and T_CLONE.
         $additionalTargets                 = $this->newClassMemberAccess->register();
-        $this->newClassMemberAccessTargets = array_flip($additionalTargets);
+        $this->newClassMemberAccessTargets = \array_flip($additionalTargets);
         $targets[]                         = $additionalTargets;
 
         // Registers T_STRING.
         $additionalTargets = $this->newFunctionArrayDereferencing->register();
-        $this->newFunctionArrayDereferencingTargets = array_flip($additionalTargets);
+        $this->newFunctionArrayDereferencingTargets = \array_flip($additionalTargets);
         $targets[] = $additionalTargets;
 
-        return call_user_func_array('array_merge', $targets);
+        return \call_user_func_array('array_merge', $targets);
     }
 
 

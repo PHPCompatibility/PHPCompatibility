@@ -77,7 +77,7 @@ class NewMagicClassConstantSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if (strtolower($tokens[$stackPtr]['content']) !== 'class') {
+        if (\strtolower($tokens[$stackPtr]['content']) !== 'class') {
             return;
         }
 

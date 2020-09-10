@@ -86,7 +86,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $tokens         = $phpcsFile->getTokens();
-        $functionNameLc = strtolower($functionName);
+        $functionNameLc = \strtolower($functionName);
 
         // Check whether the options parameter in the function call is passed.
         if (isset($parameters[$this->targetFunctions[$functionNameLc]]) === false) {
@@ -115,14 +115,14 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
             if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                 $content = $this->stripVariables($content);
             }
-            $content = trim($content);
+            $content = \trim($content);
 
             if (empty($content) === false) {
                 $options .= $content;
             }
         }
 
-        if (strpos($options, 'e') !== false) {
+        if (\strpos($options, 'e') !== false) {
             $error   = 'The Mbstring regex "e" modifier is deprecated since PHP 7.1';
             $code    = 'Deprecated';
             $isError = false;

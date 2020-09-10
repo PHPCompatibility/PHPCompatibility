@@ -156,8 +156,8 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $returnType      = ltrim($properties['return_type'], '?'); // Trim off potential nullability.
-        $returnType      = strtolower($returnType);
+        $returnType      = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
+        $returnType      = \strtolower($returnType);
         $returnTypeToken = $properties['return_type_token'];
 
         if (isset($this->newTypes[$returnType]) === true) {

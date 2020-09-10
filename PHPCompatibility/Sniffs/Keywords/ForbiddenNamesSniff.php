@@ -231,7 +231,7 @@ class ForbiddenNamesSniff extends Sniff
          * - `use const HelloWorld` => move to the next token (HelloWorld) to verify.
          */
         elseif ($tokens[$stackPtr]['type'] === 'T_USE'
-            && isset($this->validUseNames[strtolower($tokens[$nextNonEmpty]['content'])]) === true
+            && isset($this->validUseNames[\strtolower($tokens[$nextNonEmpty]['content'])]) === true
         ) {
             $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true, null, true);
             if ($maybeUseNext !== false && $this->isEndOfUseStatement($tokens[$maybeUseNext]) === false) {
@@ -263,7 +263,7 @@ class ForbiddenNamesSniff extends Sniff
             && isset($tokens[$stackPtr]['nested_parenthesis']) === true
             && $tokens[$nextNonEmpty]['code'] === \T_LIST
         ) {
-            $parentheses = array_reverse($tokens[$stackPtr]['nested_parenthesis'], true);
+            $parentheses = \array_reverse($tokens[$stackPtr]['nested_parenthesis'], true);
             foreach ($parentheses as $open => $close) {
                 if (isset($tokens[$open]['parenthesis_owner'])
                     && $tokens[$tokens[$open]['parenthesis_owner']]['code'] === \T_FOREACH
@@ -298,14 +298,14 @@ class ForbiddenNamesSniff extends Sniff
             }
 
             $endToken      = $phpcsFile->findNext([\T_SEMICOLON, \T_OPEN_CURLY_BRACKET], ($stackPtr + 1), null, false, null, true);
-            $namespaceName = trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
+            $namespaceName = \trim($phpcsFile->getTokensAsString(($stackPtr + 1), ($endToken - $stackPtr - 1)));
             if (empty($namespaceName) === true) {
                 return;
             }
 
-            $namespaceParts = explode('\\', $namespaceName);
+            $namespaceParts = \explode('\\', $namespaceName);
             foreach ($namespaceParts as $namespacePart) {
-                $partLc = strtolower($namespacePart);
+                $partLc = \strtolower($namespacePart);
                 if (isset($this->invalidNames[$partLc]) === false) {
                     continue;
                 }
@@ -321,7 +321,7 @@ class ForbiddenNamesSniff extends Sniff
             unset($i, $namespacePart, $partLc);
         }
 
-        $nextContentLc = strtolower($tokens[$nextNonEmpty]['content']);
+        $nextContentLc = \strtolower($tokens[$nextNonEmpty]['content']);
         if (isset($this->invalidNames[$nextContentLc]) === false) {
             return;
         }
@@ -365,7 +365,7 @@ class ForbiddenNamesSniff extends Sniff
      */
     public function processString(File $phpcsFile, $stackPtr, $tokens)
     {
-        $tokenContentLc = strtolower($tokens[$stackPtr]['content']);
+        $tokenContentLc = \strtolower($tokens[$stackPtr]['content']);
 
         // Look for any define/defined tokens (both T_STRING ones, blame Tokenizer).
         if ($tokenContentLc !== 'define' && $tokenContentLc !== 'defined') {
@@ -379,7 +379,7 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         $defineName   = TextStrings::stripQuotes($firstParam['raw']);
-        $defineNameLc = strtolower($defineName);
+        $defineNameLc = \strtolower($defineName);
 
         if (isset($this->invalidNames[$defineNameLc]) && $this->supportsAbove($this->invalidNames[$defineNameLc])) {
             $data = [

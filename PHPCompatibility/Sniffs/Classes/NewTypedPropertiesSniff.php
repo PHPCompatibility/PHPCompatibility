@@ -117,8 +117,8 @@ class NewTypedPropertiesSniff extends AbstractNewFeatureSniff
         }
 
         // Still here ? In that case, this will be a typed property.
-        $type      = ltrim($properties['type'], '?'); // Trim off potential nullability.
-        $type      = strtolower($type);
+        $type      = \ltrim($properties['type'], '?'); // Trim off potential nullability.
+        $type      = \strtolower($type);
         $typeToken = $properties['type_token'];
 
         if ($this->supportsBelow('7.3') === true) {

@@ -45,7 +45,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function testNewPHPOpenTagEOF($fileNumber, $line)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertError($file, $line, 'A PHP open tag at the end of a file, without trailing newline, was not supported in PHP 7.3 or earlier and would result in a syntax error or be interpreted as a literal string');
@@ -82,7 +82,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesOnLine($fileNumber, $line)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertNoViolation($file, $line);
@@ -117,7 +117,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesOnFile($fileNumber)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertNoViolation($file);
@@ -151,7 +151,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion($fileNumber)
     {
-        $fileName = __DIR__ . '/' . sprintf(self::TEST_FILE, $fileNumber);
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, $fileNumber);
 
         $file = $this->sniffFile($fileName, '7.4');
         $this->assertNoViolation($file);
@@ -176,7 +176,7 @@ class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
         ];
 
         // In PHPCS 2.x, the `Internal.NoCodeFound` error will come through, even when unit testing.
-        if (version_compare(Helper::getVersion(), '3.0.0', '>')) {
+        if (\version_compare(Helper::getVersion(), '3.0.0', '>')) {
             $data[] = [4];
         }
 

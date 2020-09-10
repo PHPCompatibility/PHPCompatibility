@@ -4816,7 +4816,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->removedFunctions[$functionLc]) === false) {
             return;

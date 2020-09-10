@@ -42,7 +42,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
     public function testNewPackFormat($line, $code, $errorVersion, $okVersion, $displayVersion = null)
     {
         $file  = $this->sniffFile(__FILE__, $errorVersion);
-        $error = sprintf(
+        $error = \sprintf(
             'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower.',
             $code,
             isset($displayVersion) ? $displayVersion : $errorVersion

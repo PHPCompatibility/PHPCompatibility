@@ -69,8 +69,8 @@ class NewGeneratorReturnSniff extends Sniff
          * For PHP 5.5+ we need to look for T_YIELD.
          * For PHPCS 3.1.0+, we also need to look for T_YIELD_FROM.
          */
-        if (version_compare(\PHP_VERSION_ID, '50500', '<') === true
-            && version_compare(Helper::getVersion(), '3.1.0', '<') === true
+        if (\version_compare(\PHP_VERSION_ID, '50500', '<') === true
+            && \version_compare(Helper::getVersion(), '3.1.0', '<') === true
         ) {
             $targets[] = \T_STRING;
         }

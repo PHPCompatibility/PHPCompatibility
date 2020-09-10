@@ -67,8 +67,8 @@ class ReservedNamesSniff extends Sniff
             return;
         }
 
-        $nameParts = explode('\\', $name);
-        $firstPart = strtolower($nameParts[0]);
+        $nameParts = \explode('\\', $name);
+        $firstPart = \strtolower($nameParts[0]);
         if ($firstPart !== 'php') {
             return;
         }

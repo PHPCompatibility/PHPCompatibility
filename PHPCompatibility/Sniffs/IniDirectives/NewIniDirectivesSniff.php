@@ -907,7 +907,7 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if (isset($this->iniFunctions[$functionLc]) === false) {
             return;
         }

@@ -65,7 +65,7 @@ class ReservedFunctionNamesSniff implements Sniff
             return;
         }
 
-        if (preg_match('|^__[^_]|', $functionName) !== 1) {
+        if (\preg_match('|^__[^_]|', $functionName) !== 1) {
             // Name doesn't start with double underscore.
             return;
         }

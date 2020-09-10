@@ -87,7 +87,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
             [149, self::ERROR_TYPE_ZERO],
         ];
 
-        if (version_compare(Helper::getVersion(), '3.5.3', '!=')) {
+        if (\version_compare(Helper::getVersion(), '3.5.3', '!=')) {
             $data[] = [160, self::ERROR_TYPE_ZERO];
         }
 

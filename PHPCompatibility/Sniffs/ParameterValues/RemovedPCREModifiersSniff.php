@@ -92,7 +92,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         }
 
         $tokens         = $phpcsFile->getTokens();
-        $functionNameLc = strtolower($functionName);
+        $functionNameLc = \strtolower($functionName);
         $firstParam     = $parameters[1];
 
         // Differentiate between an array of patterns passed and a single pattern.
@@ -108,7 +108,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                     }
 
                     $value['end'] = ($hasKey - 1);
-                    $value['raw'] = trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
+                    $value['raw'] = \trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
                     $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
                 }
             } else {
@@ -117,7 +117,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                     $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
                     if ($hasKey !== false) {
                         $value['start'] = ($hasKey + 1);
-                        $value['raw']   = trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
+                        $value['raw']   = \trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
                     }
 
                     $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
@@ -173,7 +173,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                     $content = $this->stripVariables($content);
                 }
 
-                $regex .= trim($content);
+                $regex .= \trim($content);
             }
         }
 
@@ -187,22 +187,22 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $regexFirstChar = substr($regex, 0, 1);
+        $regexFirstChar = \substr($regex, 0, 1);
 
         // Make sure that the character identified as the delimiter is valid.
         // Otherwise, it is a false positive caused by the string concatenation.
-        if (preg_match('`[a-z0-9\\\\ ]`i', $regexFirstChar) === 1) {
+        if (\preg_match('`[a-z0-9\\\\ ]`i', $regexFirstChar) === 1) {
             return;
         }
 
         if (isset($this->doublesSeparators[$regexFirstChar])) {
-            $regexEndPos = strrpos($regex, $this->doublesSeparators[$regexFirstChar]);
+            $regexEndPos = \strrpos($regex, $this->doublesSeparators[$regexFirstChar]);
         } else {
-            $regexEndPos = strrpos($regex, $regexFirstChar);
+            $regexEndPos = \strrpos($regex, $regexFirstChar);
         }
 
         if ($regexEndPos !== false) {
-            $modifiers = substr($regex, $regexEndPos + 1);
+            $modifiers = \substr($regex, $regexEndPos + 1);
             $this->examineModifiers($phpcsFile, $stackPtr, $functionName, $modifiers);
         }
     }
@@ -223,7 +223,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      */
     protected function examineModifiers(File $phpcsFile, $stackPtr, $functionName, $modifiers)
     {
-        if (strpos($modifiers, 'e') !== false) {
+        if (\strpos($modifiers, 'e') !== false) {
             $error     = '%s() - /e modifier is deprecated since PHP 5.5';
             $isError   = false;
             $errorCode = 'Deprecated';

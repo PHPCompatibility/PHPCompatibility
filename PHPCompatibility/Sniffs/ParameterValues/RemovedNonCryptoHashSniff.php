@@ -100,7 +100,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if (strtolower($functionName) === 'hash_init'
+        if (\strtolower($functionName) === 'hash_init'
             && (isset($parameters[2]) === false
             || ($parameters[2]['raw'] !== 'HASH_HMAC'
                 && $parameters[2]['raw'] !== (string) \HASH_HMAC))

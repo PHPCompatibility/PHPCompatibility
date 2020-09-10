@@ -81,7 +81,7 @@ class RemovedMagicAutoloadSniff extends Sniff
 
         $funcName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
 
-        if (strtolower($funcName) !== '__autoload') {
+        if (\strtolower($funcName) !== '__autoload') {
             return;
         }
 

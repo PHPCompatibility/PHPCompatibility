@@ -265,7 +265,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         }
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if ($this->isWhiteListed($functionLc) === true) {
             // Function is whitelisted.
@@ -273,7 +273,7 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         }
 
         foreach ($this->removedExtensions as $extension => $versionList) {
-            if (strpos($functionLc, $extension) === 0) {
+            if (\strpos($functionLc, $extension) === 0) {
                 $itemInfo = [
                     'name'   => $extension,
                 ];
@@ -302,15 +302,15 @@ class RemovedExtensionsSniff extends AbstractRemovedFeatureSniff
         }
 
         if (\is_string($this->functionWhitelist) === true) {
-            if (strpos($this->functionWhitelist, ',') !== false) {
-                $this->functionWhitelist = explode(',', $this->functionWhitelist);
+            if (\strpos($this->functionWhitelist, ',') !== false) {
+                $this->functionWhitelist = \explode(',', $this->functionWhitelist);
             } else {
                 $this->functionWhitelist = (array) $this->functionWhitelist;
             }
         }
 
         if (\is_array($this->functionWhitelist) === true) {
-            $this->functionWhitelist = array_map('strtolower', $this->functionWhitelist);
+            $this->functionWhitelist = \array_map('strtolower', $this->functionWhitelist);
             return \in_array($content, $this->functionWhitelist, true);
         }
 

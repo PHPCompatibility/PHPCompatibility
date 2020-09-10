@@ -225,7 +225,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
         }
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->functionParameters[$functionLc]) === false) {
             return;

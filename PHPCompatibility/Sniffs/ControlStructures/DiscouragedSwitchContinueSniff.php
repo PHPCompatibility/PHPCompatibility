@@ -199,7 +199,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
 
                 $level = null;
                 if ($codeString !== '') {
-                    if (is_numeric($codeString)) {
+                    if (\is_numeric($codeString)) {
                         $level = (int) $codeString;
                     } else {
                         // With the above logic, the string can only contain digits and operators, eval!
@@ -216,7 +216,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
                     continue;
                 }
 
-                $conditions = array_reverse($tokens[$continue]['conditions'], true);
+                $conditions = \array_reverse($tokens[$continue]['conditions'], true);
                 // PHPCS adds more structures to the conditions array than we want to take into
                 // consideration, so clean up the array.
                 foreach ($conditions as $tokenPtr => $tokenCode) {
@@ -230,7 +230,7 @@ class DiscouragedSwitchContinueSniff extends Sniff
                     continue;
                 }
 
-                $conditionToken = key($targetCondition);
+                $conditionToken = \key($targetCondition);
                 if ($conditionToken === $stackPtr) {
                     $phpcsFile->addWarning(
                         "Targeting a 'switch' control structure with a 'continue' statement is strongly discouraged and will throw a warning as of PHP 7.3.",

@@ -381,8 +381,8 @@ class ForbiddenThisUseContextsSniff extends Sniff
 
             if (isset($tokens[$i]['nested_parenthesis']) === true) {
                 $nestedParenthesis     = $tokens[$i]['nested_parenthesis'];
-                $nestedOpenParenthesis = array_keys($nestedParenthesis);
-                $lastOpenParenthesis   = array_pop($nestedOpenParenthesis);
+                $nestedOpenParenthesis = \array_keys($nestedParenthesis);
+                $lastOpenParenthesis   = \array_pop($nestedOpenParenthesis);
 
                 $previousNonEmpty = $phpcsFile->findPrevious(
                     Tokens::$emptyTokens,

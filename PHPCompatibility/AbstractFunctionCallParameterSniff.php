@@ -100,7 +100,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
 
         $tokens     = $phpcsFile->getTokens();
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->targetFunctions[$functionLc]) === false) {
             return;

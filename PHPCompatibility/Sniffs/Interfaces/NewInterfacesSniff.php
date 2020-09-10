@@ -235,8 +235,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
         }
 
         foreach ($interfaces as $interface) {
-            $interface   = ltrim($interface, '\\');
-            $interfaceLc = strtolower($interface);
+            $interface   = \ltrim($interface, '\\');
+            $interfaceLc = \strtolower($interface);
 
             if (isset($this->newInterfaces[$interfaceLc]) === true) {
                 $itemInfo = [
@@ -250,7 +250,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 $nextFunc = $stackPtr;
                 while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
                     $funcName   = $phpcsFile->getDeclarationName($nextFunc);
-                    $funcNameLc = strtolower($funcName);
+                    $funcNameLc = \strtolower($funcName);
                     if ($funcNameLc === '') {
                         continue;
                     }
@@ -294,7 +294,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
 
         foreach ($typeHints as $hint) {
 
-            $typeHintLc = strtolower($hint);
+            $typeHintLc = \strtolower($hint);
 
             if (isset($this->newInterfaces[$typeHintLc]) === true) {
                 $itemInfo = [
@@ -327,8 +327,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        $returnTypeHint   = ltrim($returnTypeHint, '\\');
-        $returnTypeHintLc = strtolower($returnTypeHint);
+        $returnTypeHint   = \ltrim($returnTypeHint, '\\');
+        $returnTypeHintLc = \strtolower($returnTypeHint);
 
         if (isset($this->newInterfaces[$returnTypeHintLc]) === false) {
             return;
@@ -393,8 +393,8 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                     continue;
                 }
 
-                $name   = ltrim($name, '\\');
-                $nameLC = strtolower($name);
+                $name   = \ltrim($name, '\\');
+                $nameLC = \strtolower($name);
 
                 if (isset($this->newInterfaces[$nameLC]) === true) {
                     $itemInfo = [

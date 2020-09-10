@@ -87,7 +87,7 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ((preg_match('`PHP_OUTPUT_HANDLER_(CLEANABLE|FLUSHABLE|REMOVABLE|STDFLAGS)`', $targetParam['clean']) === 1
+        if ((\preg_match('`PHP_OUTPUT_HANDLER_(CLEANABLE|FLUSHABLE|REMOVABLE|STDFLAGS)`', $targetParam['clean']) === 1
             || $this->isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], true) !== false)
             && $this->supportsBelow('5.3') === true
         ) {

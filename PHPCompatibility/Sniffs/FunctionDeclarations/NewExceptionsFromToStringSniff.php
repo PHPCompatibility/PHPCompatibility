@@ -84,7 +84,7 @@ class NewExceptionsFromToStringSniff extends Sniff
         }
 
         $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (strtolower($functionName) !== '__tostring') {
+        if (\strtolower($functionName) !== '__tostring') {
             // Not the right function.
             return;
         }

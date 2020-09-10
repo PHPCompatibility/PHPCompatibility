@@ -4555,7 +4555,7 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
         $tokens = $phpcsFile->getTokens();
 
         $function   = $tokens[$stackPtr]['content'];
-        $functionLc = strtolower($function);
+        $functionLc = \strtolower($function);
 
         if (isset($this->newFunctions[$functionLc]) === false) {
             return;

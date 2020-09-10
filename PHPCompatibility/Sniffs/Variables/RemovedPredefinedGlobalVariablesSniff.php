@@ -132,7 +132,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         }
 
         $tokens  = $phpcsFile->getTokens();
-        $varName = substr($tokens[$stackPtr]['content'], 1);
+        $varName = \substr($tokens[$stackPtr]['content'], 1);
 
         if (isset($this->removedGlobalVariables[$varName]) === false) {
             return;
@@ -206,7 +206,7 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
     protected function filterErrorMsg($error, array $itemInfo, array $errorInfo)
     {
         if ($itemInfo['name'] === 'php_errormsg') {
-            $error = str_replace('Global', 'The', $error);
+            $error = \str_replace('Global', 'The', $error);
         }
         return $error;
     }

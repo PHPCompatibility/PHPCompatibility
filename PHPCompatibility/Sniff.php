@@ -112,23 +112,23 @@ abstract class Sniff implements PHPCS_Sniff
         static $arrTestVersions = [];
 
         $default     = [null, null];
-        $testVersion = trim(Helper::getConfigData('testVersion'));
+        $testVersion = \trim(Helper::getConfigData('testVersion'));
 
         // Case-sensitivity tolerance.
         if (empty($testVersion) === true) {
-            $testVersion = trim(Helper::getConfigData('testversion'));
+            $testVersion = \trim(Helper::getConfigData('testversion'));
         }
 
         if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
 
             $arrTestVersions[$testVersion] = $default;
 
-            if (preg_match('`^\d+\.\d+$`', $testVersion)) {
+            if (\preg_match('`^\d+\.\d+$`', $testVersion)) {
                 $arrTestVersions[$testVersion] = [$testVersion, $testVersion];
                 return $arrTestVersions[$testVersion];
             }
 
-            if (preg_match('`^(\d+\.\d+)?\s*-\s*(\d+\.\d+)?$`', $testVersion, $matches)) {
+            if (\preg_match('`^(\d+\.\d+)?\s*-\s*(\d+\.\d+)?$`', $testVersion, $matches)) {
                 if (empty($matches[1]) === false || empty($matches[2]) === false) {
                     // If no lower-limit is set, we set the min version to 4.0.
                     // Whilst development focuses on PHP 5 and above, we also accept
@@ -140,8 +140,8 @@ abstract class Sniff implements PHPCS_Sniff
                     // If no upper-limit is set, we set the max version to 99.9.
                     $max = empty($matches[2]) ? '99.9' : $matches[2];
 
-                    if (version_compare($min, $max, '>')) {
-                        trigger_error(
+                    if (\version_compare($min, $max, '>')) {
+                        \trigger_error(
                             "Invalid range in testVersion setting: '" . $testVersion . "'",
                             \E_USER_WARNING
                         );
@@ -153,7 +153,7 @@ abstract class Sniff implements PHPCS_Sniff
                 }
             }
 
-            trigger_error(
+            \trigger_error(
                 "Invalid testVersion setting: '" . $testVersion . "'",
                 \E_USER_WARNING
             );
@@ -188,7 +188,7 @@ abstract class Sniff implements PHPCS_Sniff
         $testVersion = $testVersion[1];
 
         if (\is_null($testVersion)
-            || version_compare($testVersion, $phpVersion) >= 0
+            || \version_compare($testVersion, $phpVersion) >= 0
         ) {
             return true;
         } else {
@@ -217,7 +217,7 @@ abstract class Sniff implements PHPCS_Sniff
         $testVersion = $testVersion[0];
 
         if (\is_null($testVersion) === false
-            && version_compare($testVersion, $phpVersion) <= 0
+            && \version_compare($testVersion, $phpVersion) <= 0
         ) {
             return true;
         } else {
@@ -267,7 +267,7 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function stringToErrorCode($baseString)
     {
-        return preg_replace('`[^a-z0-9_]`i', '_', strtolower($baseString));
+        return \preg_replace('`[^a-z0-9_]`i', '_', \strtolower($baseString));
     }
 
 
@@ -284,11 +284,11 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function stripVariables($string)
     {
-        if (strpos($string, '$') === false) {
+        if (\strpos($string, '$') === false) {
             return $string;
         }
 
-        return preg_replace(self::REGEX_COMPLEX_VARS, '', $string);
+        return \preg_replace(self::REGEX_COMPLEX_VARS, '', $string);
     }
 
 
@@ -367,7 +367,7 @@ abstract class Sniff implements PHPCS_Sniff
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
-        $className = trim($className);
+        $className = \trim($className);
 
         return $this->getFQName($phpcsFile, $stackPtr, $className);
     }
@@ -471,7 +471,7 @@ abstract class Sniff implements PHPCS_Sniff
 
         $start     = ($start + 1);
         $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
-        $className = trim($className);
+        $className = \trim($className);
 
         return $this->getFQName($phpcsFile, $stackPtr, $className);
     }
@@ -493,14 +493,14 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function getFQName(File $phpcsFile, $stackPtr, $name)
     {
-        if (strpos($name, '\\') === 0) {
+        if (\strpos($name, '\\') === 0) {
             // Already fully qualified.
             return $name;
         }
 
         // Remove the namespace keyword if used.
-        if (strpos($name, 'namespace\\') === 0) {
-            $name = substr($name, 10);
+        if (\strpos($name, 'namespace\\') === 0) {
+            $name = \substr($name, 10);
         }
 
         $namespace = Namespaces::determineNamespace($phpcsFile, $stackPtr);
@@ -528,11 +528,11 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function isNamespaced($FQName)
     {
-        if (strpos($FQName, '\\') !== 0) {
+        if (\strpos($FQName, '\\') !== 0) {
             throw new RuntimeException('$FQName must be a fully qualified name');
         }
 
-        return (strpos(substr($FQName, 1), '\\') !== false);
+        return (\strpos(\substr($FQName, 1), '\\') !== false);
     }
 
 
@@ -708,10 +708,10 @@ abstract class Sniff implements PHPCS_Sniff
             }
 
             // Strip off potential nullable indication.
-            $typeHint = ltrim($param['type_hint'], '?');
+            $typeHint = \ltrim($param['type_hint'], '?');
 
             // Strip off potential (global) namespace indication.
-            $typeHint = ltrim($typeHint, '\\');
+            $typeHint = \ltrim($typeHint, '\\');
 
             if ($typeHint !== '') {
                 $typeHints[] = $typeHint;
@@ -747,7 +747,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         $functionName   = $tokens[$stackPtr]['content'];
-        $functionNameLc = strtolower($functionName);
+        $functionNameLc = \strtolower($functionName);
 
         // Bow out if not one of the functions we're targetting.
         if (isset($this->hashAlgoFunctions[$functionNameLc]) === false) {
@@ -761,7 +761,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Algorithm is a text string, so we need to remove the quotes.
-        $algo = strtolower(trim($algoParam['raw']));
+        $algo = \strtolower(\trim($algoParam['raw']));
         $algo = TextStrings::stripQuotes($algo);
 
         return $algo;
@@ -1071,8 +1071,8 @@ abstract class Sniff implements PHPCS_Sniff
             $regexInt   = '`^\s*[0-9]+`';
             $regexFloat = '`^\s*(?:[+-]?(?:(?:(?P<LNUM>[0-9]+)|(?P<DNUM>([0-9]*\.(?P>LNUM)|(?P>LNUM)\.[0-9]*)))[eE][+-]?(?P>LNUM))|(?P>DNUM))`';
 
-            $intString   = preg_match($regexInt, $content, $intMatch);
-            $floatString = preg_match($regexFloat, $content, $floatMatch);
+            $intString   = \preg_match($regexInt, $content, $intMatch);
+            $floatString = \preg_match($regexFloat, $content, $floatMatch);
 
             // Does the text string start with a number ? If so, PHP would juggle it and use it as a number.
             if ($allowFloats === false) {
@@ -1084,26 +1084,26 @@ abstract class Sniff implements PHPCS_Sniff
 
                     $content = 0.0;
                 } else {
-                    $content = (float) trim($intMatch[0]);
+                    $content = (float) \trim($intMatch[0]);
                 }
             } else {
                 if ($intString !== 1 && $floatString !== 1) {
                     $content = 0.0;
                 } else {
-                    $content = ($floatString === 1) ? (float) trim($floatMatch[0]) : (float) trim($intMatch[0]);
+                    $content = ($floatString === 1) ? (float) \trim($floatMatch[0]) : (float) \trim($intMatch[0]);
                 }
             }
 
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.
-            if ($intString === 1 && trim($intMatch[0]) === '0'
-                && preg_match('`^\s*(0x[A-Fa-f0-9]+)`', $stringContent, $hexNumberString) === 1
+            if ($intString === 1 && \trim($intMatch[0]) === '0'
+                && \preg_match('`^\s*(0x[A-Fa-f0-9]+)`', $stringContent, $hexNumberString) === 1
                 && $this->supportsBelow('5.6') === true
             ) {
                 // The filter extension still allows for hex numeric strings in PHP 7, so
                 // use that to get the numeric value if possible.
                 // If the filter extension is not available, the value will be zero, but so be it.
-                if (function_exists('filter_var')) {
-                    $filtered = filter_var($hexNumberString[1], \FILTER_VALIDATE_INT, \FILTER_FLAG_ALLOW_HEX);
+                if (\function_exists('filter_var')) {
+                    $filtered = \filter_var($hexNumberString[1], \FILTER_VALIDATE_INT, \FILTER_FLAG_ALLOW_HEX);
                     if ($filtered !== false) {
                         $content = $filtered;
                     }

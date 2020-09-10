@@ -75,7 +75,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         $tokens     = $phpcsFile->getTokens();
-        $functionLc = strtolower($tokens[$stackPtr]['content']);
+        $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if (isset($this->targetFunctions[$functionLc]) === false) {
             return;
         }
@@ -135,13 +135,13 @@ class ArgumentFunctionsUsageSniff extends Sniff
 
         $throwError = false;
 
-        $closer = end($tokens[$stackPtr]['nested_parenthesis']);
+        $closer = \end($tokens[$stackPtr]['nested_parenthesis']);
         if (isset($tokens[$closer]['parenthesis_owner'])
             && $tokens[$tokens[$closer]['parenthesis_owner']]['type'] === 'T_CLOSURE'
         ) {
             $throwError = true;
         } else {
-            $opener       = key($tokens[$stackPtr]['nested_parenthesis']);
+            $opener       = \key($tokens[$stackPtr]['nested_parenthesis']);
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
             if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
                 return;

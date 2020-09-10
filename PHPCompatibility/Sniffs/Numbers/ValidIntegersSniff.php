@@ -163,6 +163,6 @@ class ValidIntegersSniff extends Sniff
      */
     private function isInvalidOctalInteger($tokenContent)
     {
-        return (preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $tokenContent) === 1);
+        return (\preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $tokenContent) === 1);
     }
 }

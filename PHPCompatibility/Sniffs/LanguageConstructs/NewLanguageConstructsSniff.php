@@ -64,7 +64,7 @@ class NewLanguageConstructsSniff extends AbstractNewFeatureSniff
     {
         $tokens = [];
         foreach ($this->newConstructs as $token => $versions) {
-            $tokens[] = constant($token);
+            $tokens[] = \constant($token);
         }
         return $tokens;
     }

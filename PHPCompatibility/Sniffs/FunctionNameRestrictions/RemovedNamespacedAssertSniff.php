@@ -68,7 +68,7 @@ class RemovedNamespacedAssertSniff extends Sniff
 
         $funcName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
 
-        if (strtolower($funcName) !== 'assert') {
+        if (\strtolower($funcName) !== 'assert') {
             return;
         }
 
