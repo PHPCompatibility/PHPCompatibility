@@ -272,7 +272,7 @@ class NewExtensionsUnitTest extends BaseSniffTest
         ];
 
         // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
-        if (version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
+        if (\version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
             $data[] = [68]; // Whitelisted function.
             $data[] = [74]; // Whitelisted function array.
             $data[] = [75]; // Whitelisted function array.
