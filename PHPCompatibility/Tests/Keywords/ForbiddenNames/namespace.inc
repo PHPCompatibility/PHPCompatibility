@@ -46,7 +46,6 @@ namespace insteadof;
 namespace interface;
 namespace isset;
 namespace list;
-namespace namespace;
 namespace new;
 namespace or;
 namespace print;

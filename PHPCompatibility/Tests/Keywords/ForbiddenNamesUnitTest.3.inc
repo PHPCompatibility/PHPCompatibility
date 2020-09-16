@@ -5,7 +5,7 @@
  */
 
 // Test multiple errors for multiple incorrect namespace parts, as well as tolerance for comments and whitespace.
-namespace For\ List /*comment*/ \Foreach ?><?php // Error x3.
+namespace For\ List /*comment*/ \Foreach ?><?php // Error x3 with testVersion which includes PHP < 8.
 
 // Test multi-use line precision, including `as` as alias.
 use My\Foo as As, // Error.
@@ -74,3 +74,8 @@ trait FooTrait {
 
 // Test function delared to return by reference.
 function &trait() {}
+
+// Test "namespace" keyword at start of namespace name. Forbidden, even in PHP 8.
+namespace NAMEspace;
+
+namespace NameSpace\Foo;

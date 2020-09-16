@@ -351,6 +351,13 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function processNamespaceDeclaration(File $phpcsFile, $stackPtr)
     {
+        /*
+         * Note: explicitly only excluding use of the keyword as an operator, not the "undetermined"
+         * type, as the "undetermined" cases are often exactly the type of errors this sniff is trying to detect.
+         *
+         * Also note: that is also the reason to determine the namespace name within this method and
+         * not to use the `Namespaces::getDeclaredName()` method.
+         */
         $type = Namespaces::getType($phpcsFile, $stackPtr);
         if ($type === 'operator') {
             return;
@@ -369,6 +376,19 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
+        /*
+         * Deal with PHP 8 relaxing the rules.
+         * "The namespace declaration will accept any name, including isolated reserved keywords.
+         *  The only restriction is that the namespace name cannot start with a `namespace` segment"
+         */
+        $nextContentLC = \strtolower($tokens[$next]['content']);
+        if ($this->supportsBelow('7.4') === false
+            && $nextContentLC !== 'namespace'
+            && \strpos($nextContentLC, 'namespace\\') !== 0 // PHPCS 4.x.
+        ) {
+            return;
+        }
+
         for ($i = $next; $i < $endOfStatement; $i++) {
             if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_NS_SEPARATOR
@@ -376,8 +396,29 @@ class ForbiddenNamesSniff extends Sniff
                 continue;
             }
 
-            $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
-            $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
+            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+                && $tokens[$i]['code'] !== \T_STRING
+            ) {
+                /*
+                 * This is a PHP 8.0 "namespaced name as single token" token (PHPCS 4.x).
+                 * This also means that there can be no whitespace or comments in the name.
+                 */
+                $parts = \explode('\\', $tokens[$i]['content']);
+                $parts = \array_filter($parts); // Remove empties.
+
+                if (empty($parts)) {
+                    // Shouldn't be possible, but just in case.
+                    continue;
+                }
+
+                foreach ($parts as $part) {
+                    $this->checkName($phpcsFile, $i, $part);
+                    $this->checkOtherName($phpcsFile, $i, $part, 'namespace declaration');
+                }
+            } else {
+                $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
+                $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
+            }
         }
     }
 
