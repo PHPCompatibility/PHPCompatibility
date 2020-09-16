@@ -6470,6 +6470,18 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+        'T_NAME_FULLY_QUALIFIED' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        'T_NAME_QUALIFIED' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        'T_NAME_RELATIVE' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'T_NULLSAFE_OBJECT_OPERATOR' => [
             '7.4' => false,
             '8.0' => true,
