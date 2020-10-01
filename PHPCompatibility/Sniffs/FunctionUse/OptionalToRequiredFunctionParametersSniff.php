@@ -68,6 +68,18 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
                 '8.0'  => true,
             ],
         ],
+        'openssl_seal' => [
+            4 => [
+                'name' => 'method',
+                '8.0'  => true,
+            ],
+        ],
+        'openssl_open' => [
+            4 => [
+                'name' => 'method',
+                '8.0'  => true,
+            ],
+        ],
         'parse_str' => [
             1 => [
                 'name' => 'result',
