@@ -160,6 +160,17 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             '8.0'       => true,
             'extension' => 'xmlrpc',
         ],
+        /*
+        See: https://bugs.php.net/bug.php?id=79625
+        'OCI-Collection' => [
+            '8.0'         => true,
+            'alternative' => 'OCICollection',
+        ],
+        'OCI-Lob' => [
+            '8.0'         => true,
+            'alternative' => 'OCILob',
+        ],
+        */
     ];
 
     /**

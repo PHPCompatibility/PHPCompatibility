@@ -420,3 +420,6 @@ try {
 }
 
 $type = new ReflectionUnionType();
+
+$oci8 = new OCICollection();
+$closure = function(OCILob $lob) {};

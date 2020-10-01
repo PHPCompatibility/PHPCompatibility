@@ -119,8 +119,8 @@ class NewClassesUnitTest extends BaseSniffTest
             ['mysqli_driver', '4.4', [401], '5.0'],
             ['mysqli_warning', '4.4', [402], '5.0'],
             // See: https://bugs.php.net/bug.php?id=79625
-            //array('OCI-Collection', '4.4', array(404), '5.0'),
-            //array('OCI-Lob', '4.4', array(405), '5.0'),
+            //['OCI-Collection', '4.4', [404], '5.0'],
+            //['OCI-Lob', '4.4', [405], '5.0'],
 
             ['libXMLError', '5.0', [61, 101, 141], '5.1'],
             ['PDO', '5.0', [314], '5.1'],
@@ -212,6 +212,8 @@ class NewClassesUnitTest extends BaseSniffTest
             ['PhpToken', '7.4', [415], '8.0'],
             ['WeakMap', '7.4', [412], '8.0'],
             ['ReflectionUnionType', '7.4', [422], '8.0'],
+            ['OCICollection', '7.4', [424], '8.0'],
+            ['OCILob', '7.4', [425], '8.0'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
