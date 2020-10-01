@@ -92,6 +92,21 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '7.0'  => true,
             ],
         ],
+        'pg_connect' => [
+            // These were already deprecated before, but version in which deprecation took place is unclear.
+            2 => [
+                'name' => 'options',
+                '8.0'  => true,
+            ],
+            3 => [
+                'name' => 'tty',
+                '8.0'  => true,
+            ],
+            4 => [
+                'name' => 'dbname',
+                '8.0'  => true,
+            ],
+        ],
     ];
 
 
