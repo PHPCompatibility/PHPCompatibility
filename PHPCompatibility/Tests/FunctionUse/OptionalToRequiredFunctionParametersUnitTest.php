@@ -70,6 +70,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
     {
         return [
             ['mktime', 'hour', '5.1', '8.0', [19], '5.0'],
+            ['crypt', 'salt', '5.6', '8.0', [8], '5.5'],
             ['parse_str', 'result', '7.2', '8.0', [7], '7.1'],
         ];
     }
@@ -121,49 +122,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
 
 
     /**
-     * testOptionalRecommendedParameter
-     *
-     * @dataProvider dataOptionalRecommendedParameter
-     *
-     * @param string $functionName        Function name.
-     * @param string $parameterName       Parameter name.
-     * @param string $softRecommendedFrom The PHP version in which the parameter became recommended.
-     * @param array  $lines               The line numbers in the test file which apply to this class.
-     * @param string $okVersion           A PHP version in which to test for no violation.
-     *
-     * @return void
-     */
-    public function testOptionalRecommendedParameter($functionName, $parameterName, $softRecommendedFrom, $lines, $okVersion)
-    {
-        $file  = $this->sniffFile(__FILE__, $softRecommendedFrom);
-        $error = "The \"{$parameterName}\" parameter for function {$functionName}() is missing. Passing this parameter is strongly recommended since PHP {$softRecommendedFrom}";
-        foreach ($lines as $line) {
-            $this->assertWarning($file, $line, $error);
-        }
-
-        $file = $this->sniffFile(__FILE__, $okVersion);
-        foreach ($lines as $line) {
-            $this->assertNoViolation($file, $line);
-        }
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testOptionalRecommendedParameter()
-     *
-     * @return array
-     */
-    public function dataOptionalRecommendedParameter()
-    {
-        return [
-            ['crypt', 'salt', '5.6', [8], '5.5'],
-        ];
-    }
-
-
-    /**
-     * testNoFalsePositives
+     * Verify no false positives are thrown for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
