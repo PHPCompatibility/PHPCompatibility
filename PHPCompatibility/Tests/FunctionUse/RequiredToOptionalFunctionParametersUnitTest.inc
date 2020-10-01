@@ -45,3 +45,31 @@ imagepolygon($image, $points, $num_points, $color); // OK.
 imagepolygon($image, $points, $color); // PHP 8.0+.
 imageopenpolygon($image, $points, $color); // PHP 8.0+.
 imagefilledpolygon($image, $points, $color); // PHP 8.0+.
+
+array_diff_uassoc($array, $array2, $array3, $array4, $key_compare_func); // OK.
+array_diff_ukey($array, $array2, $key_compare_func); // OK.
+array_intersect_uassoc($array, $array2, $key_compare_func); // OK.
+array_intersect_ukey($array, $array2, $key_compare_func); // OK.
+array_udiff_assoc( $array1, $array2, $array3, $value_compare_func ); // OK.
+array_udiff_uassoc($array1, $array2, $value_compare_func, $key_compare_func); // OK.
+array_udiff($array1, $array2, $value_compare_func ); // OK.
+array_uintersect_assoc( $array1, $array2, $value_compare_func ); // OK.
+array_uintersect_uassoc($array1, $array2, $array3, $value_compare_func, $key_compare_func); // OK.
+array_uintersect($array1, $array2, $value_compare_func ); // OK.
+
+array_diff_assoc($array); // PHP 8.0+.
+array_diff_key($array); // PHP 8.0+.
+array_diff_uassoc($array, $key_compare_func); // PHP 8.0+.
+array_diff_ukey(...$array, $key_compare_func); // PHP 8.0+.
+array_diff($array); // PHP 8.0+.
+array_intersect_assoc($array); // PHP 8.0+.
+array_intersect_key($array); // PHP 8.0+.
+array_intersect_uassoc($array, $key_compare_func); // PHP 8.0+.
+array_intersect_ukey(...$array, $key_compare_func); // PHP 8.0+.
+array_intersect($array); // PHP 8.0+.
+array_udiff_assoc ( $array, $value_compare_func ); // PHP 8.0+.
+array_udiff_uassoc($array, $value_compare_func, $key_compare_func); // PHP 8.0+.
+array_udiff($array, $value_compare_func ); // PHP 8.0+.
+array_uintersect_assoc( $array, $value_compare_func ); // PHP 8.0+.
+array_uintersect_uassoc($array, $value_compare_func, $key_compare_func); // PHP 8.0+.
+array_uintersect($array, $value_compare_func ); // PHP 8.0+.
