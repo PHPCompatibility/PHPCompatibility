@@ -532,3 +532,6 @@ $test = ini_get('zend.exception_string_param_max_len');
 
 ini_set('pm.status_listen', '127.0.0.1:9001');
 $test = ini_get('pm.status_listen');
+
+ini_set('com.dotnet_version', 'v4.0.30319');
+$test = ini_get('com.dotnet_version');
