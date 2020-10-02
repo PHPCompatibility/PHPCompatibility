@@ -1213,3 +1213,4 @@ pg_numfields();
 pg_numrows();
 pg_result();
 pg_setclientencoding();
+imap_header();

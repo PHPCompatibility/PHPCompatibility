@@ -1210,6 +1210,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['recode_file', '7.4', 'the iconv or mbstring extension', [236], '7.3'],
             ['recode_string', '7.4', 'the iconv or mbstring extension', [237], '7.3'],
             ['recode', '7.4', 'the iconv or mbstring extension', [238], '7.3'],
+
+            ['imap_header', '8.0', 'imap_headerinfo()', [1216], '7.4'],
         ];
     }
 

@@ -4673,6 +4673,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
         ],
+        'imap_header' => [
+            '8.0'         => true,
+            'alternative' => 'imap_headerinfo()',
+        ],
         'libxml_disable_entity_loader' => [
             '8.0' => false,
         ],
