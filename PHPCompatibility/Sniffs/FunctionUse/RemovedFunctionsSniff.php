@@ -4593,10 +4593,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 
         'ldap_control_paged_result_response' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'ldap_search()',
         ],
         'ldap_control_paged_result' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'ldap_search()',
         ],
         'recode_file' => [
