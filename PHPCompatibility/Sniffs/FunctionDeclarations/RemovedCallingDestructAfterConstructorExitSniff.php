@@ -12,8 +12,12 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\UseStatements;
 
 /**
  * As of PHP 8.0, when an object constructor exit()s, the destructor will no longer be called.
@@ -58,7 +62,8 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
+        $classPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, [\T_CLASS, \T_ANON_CLASS, \T_TRAIT]);
+        if ($classPtr === false) {
             // Function, not method.
             return;
         }
@@ -80,21 +85,117 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        $current = $tokens[$stackPtr]['scope_opener'];
-        $end     = $tokens[$stackPtr]['scope_closer'];
-        do {
-            $current = $phpcsFile->findNext(\T_EXIT, ($current + 1), $end);
-            if ($current === false) {
-                // No exit found.
-                return;
+        $functionOpen  = $tokens[$stackPtr]['scope_opener'];
+        $functionClose = $tokens[$stackPtr]['scope_closer'];
+        $exits         = [];
+        for ($current = ($functionOpen + 1); $current < $functionClose; $current++) {
+            if (isset(Tokens::$emptyTokens[$tokens[$current]['code']]) === true) {
+                continue;
             }
 
-            $phpcsFile->addError(
-                'When %s() is called within an object constructor, the object destructor will no longer be called since PHP 8.0',
-                $current,
-                'Found',
-                [$tokens[$current]['content']]
-            );
-        } while (true);
+            if ($tokens[$current]['code'] === \T_EXIT) {
+                $exits[] = $current;
+                continue;
+            }
+
+            // Skip over nested closed scopes as possible for efficiency.
+            // Ignore arrow functions as they aren't closed scopes.
+            if (isset(Collections::$closedScopes[$tokens[$current]['code']]) === true
+                && isset($tokens[$current]['scope_closer']) === true
+            ) {
+                $current = $tokens[$current]['scope_closer'];
+                continue;
+            }
+
+            // Skip over array access and short arrays/lists, but not control structures.
+            if (isset($tokens[$current]['bracket_closer']) === true
+                && isset($tokens[$current]['scope_closer']) === false
+            ) {
+                $current = $tokens[$current]['bracket_closer'];
+                continue;
+            }
+
+            // Skip over long array/lists as they can't contain an exit statement, except within a closed scope.
+            if (($tokens[$current]['code'] === \T_ARRAY || $tokens[$current]['code'] === \T_LIST)
+                && isset($tokens[$current]['parenthesis_closer']) === true
+            ) {
+                $current = $tokens[$current]['parenthesis_closer'];
+                continue;
+            }
+        }
+
+        if (empty($exits) === true) {
+            // No calls to exit or die found.
+            return;
+        }
+
+        if (isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false) {
+            // Parse error, tokenizer error or live coding.
+            return;
+        }
+
+        $hasDestruct = false;
+        $usesTraits  = false;
+        $isError     = false;
+        $classOpen   = $tokens[$classPtr]['scope_opener'];
+        $classClose  = $tokens[$classPtr]['scope_closer'];
+        $nextFunc    = $classOpen;
+
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
+            // Skip over docblocks.
+            if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
+                $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
+            if ($tokens[$nextFunc]['code'] === \T_USE
+                && UseStatements::isTraitUse($phpcsFile, $nextFunc) === true
+            ) {
+                $usesTraits = true;
+                continue;
+            }
+
+            $functionScopeCloser = $nextFunc;
+            if (isset($tokens[$nextFunc]['scope_closer'])) {
+                // Normal (non-abstract) method.
+                $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
+            }
+
+            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
+            $nextFunc = $functionScopeCloser; // Set up to skip over the method content.
+
+            if (empty($funcName) === true) {
+                continue;
+            }
+
+            if (\strtolower($funcName) !== '__destruct') {
+                continue;
+            }
+
+            $hasDestruct = true;
+            $isError     = true;
+            break;
+        }
+
+        if ($hasDestruct === false && $usesTraits === false) {
+            /*
+             * No destruct method or trait use found, check if this class extends another one
+             * which may contain a destruct method.
+             */
+            $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $classPtr);
+            if (empty($extends) === true) {
+                // No destruct method and class doesn't extend nor uses traits, so the calls to exit can be ignored.
+                return;
+            }
+        }
+
+        /*
+         * Ok, either a destruct method has been found and we can throw an error, or either a class extends
+         * or trait use has been found and no destruct method, in which case, we throw a warning.
+         */
+        $error = 'When %s() is called within an object constructor, the object destructor will no longer be called since PHP 8.0';
+        foreach ($exits as $ptr) {
+            $this->addMessage($phpcsFile, $error, $ptr, $isError, 'Found', [$tokens[$ptr]['content']]);
+        }
     }
 }
