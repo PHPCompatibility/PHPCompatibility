@@ -71,6 +71,8 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             ['pg_connect', 'tty', '8.0', [27], '7.4'],
             ['pg_connect', 'dbname', '8.0', [27], '7.4'],
             ['imap_headerinfo', 'defaulthost', '8.0', [30], '7.4'],
+            ['odbc_exec', 'flags', '8.0', [33], '7.4'],
+            ['odbc_do', 'flags', '8.0', [34], '7.4'],
         ];
     }
 
@@ -163,6 +165,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             [23],
             [26],
             [29],
+            [32],
         ];
     }
 

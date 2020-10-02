@@ -98,6 +98,18 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '7.0'  => true,
             ],
         ],
+        'odbc_do' => [
+            2 => [
+                'name' => 'flags',
+                '8.0'  => true,
+            ],
+        ],
+        'odbc_exec' => [
+            2 => [
+                'name' => 'flags',
+                '8.0'  => true,
+            ],
+        ],
         'pg_connect' => [
             // These were already deprecated before, but version in which deprecation took place is unclear.
             2 => [
