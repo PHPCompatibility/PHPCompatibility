@@ -67,6 +67,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '7.0'  => true,
             ],
         ],
+        'imap_headerinfo' => [
+            4 => [
+                'name' => 'defaulthost',
+                '8.0'  => true,
+            ],
+        ],
         'ldap_first_attribute' => [
             2 => [
                 'name'  => 'ber_identifier',
