@@ -114,6 +114,8 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
         return [
             ['gmmktime', 'hour', '8.0', [18], '7.4'],
             ['mb_parse_str', 'result', '8.0', [22], '7.4'],
+            ['openssl_seal', 'method', '8.0', [25], '7.4'],
+            ['openssl_open', 'method', '8.0', [28], '7.4'],
         ];
     }
 
