@@ -857,6 +857,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ],
 
+        'com.dotnet_version' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'pm.status_listen' => [
             '7.4' => false,
             '8.0' => true,

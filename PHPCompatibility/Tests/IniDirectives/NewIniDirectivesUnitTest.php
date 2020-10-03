@@ -262,6 +262,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             ['opcache.preload_user', '7.4', [464, 465], '7.3'],
             ['zend.exception_ignore_args', '7.4', [338, 339], '7.3'],
 
+            ['com.dotnet_version', '8.0', [536, 537], '7.4'],
             ['pm.status_listen', '8.0', [533, 534], '7.4'],
             ['zend.exception_string_param_max_len', '8.0', [530, 531], '7.4'],
         ];
