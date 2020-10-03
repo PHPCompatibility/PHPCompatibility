@@ -30,15 +30,22 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
      *
      * @dataProvider dataRemovedCallingDestructAfterConstructorExit
      *
-     * @param int    $line The line number where an error is expected.
-     * @param string $name The name of the exit type used.
+     * @param int    $line    The line number where an error is expected.
+     * @param string $name    The name of the exit type used.
+     * @param bool   $isError Whether to expect an error or a warning. Defaults to true (= error).
      *
      * @return void
      */
-    public function testRemovedCallingDestructAfterConstructorExit($line, $name)
+    public function testRemovedCallingDestructAfterConstructorExit($line, $name, $isError = true)
     {
-        $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, $line, "When $name() is called within an object constructor, the object destructor will no longer be called since PHP 8.0");
+        $file  = $this->sniffFile(__FILE__, '8.0');
+        $error = "When $name() is called within an object constructor, the object destructor will no longer be called since PHP 8.0";
+
+        if ($isError === true) {
+            $this->assertError($file, $line, $error);
+        } else {
+            $this->assertWarning($file, $line, $error);
+        }
     }
 
     /**
@@ -52,8 +59,11 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
     {
         return [
             [33, 'exit'],
-            [44, 'die'],
-            [46, 'exit'],
+            [44, 'die', false],
+            [46, 'exit', false],
+            [69, 'die'],
+            [85, 'exit'],
+            [97, 'die', false],
         ];
     }
 
@@ -87,6 +97,13 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 26; $line++) {
             $cases[] = [$line];
         }
+
+        $cases[] = [56];
+        $cases[] = [61];
+        $cases[] = [66];
+        $cases[] = [106];
+        $cases[] = [112];
+        $cases[] = [119];
 
         return $cases;
     }

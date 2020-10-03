@@ -29,21 +29,96 @@ $anon = new class() {
  */
 class CrossVersionInValid
 {
-    function __construct() {
-        exit(1);
+    public function __construct() {
+        exit(1); // Error.
     }
 
-    function __destruct() {
+    public function __destruct() {
         // Destructor will not be called on exit() in constructor.
     }
 }
 
-$anon = new class() {
+$anon = new class() extends ClassWhichMayOrMayNotContainADestructMethod {
     function __CONSTRUCT() {
         if ($something) {
-            die();
+            die(); // Warning.
         } else {
-            exit(2);
+            exit(2); // Warning.
         }
     }
 };
+
+abstract class HasDestructAndExtends extends ClassWhichMayOrMayNotContainADestructMethod
+{
+    public function __construct() {
+        // Test skipping over irrelevant code.
+        $array = [
+            'closure' => function() { exit; }, // Ignore, nested closed scope.
+        ];
+
+        $anon = new class {
+            function something() {
+                exit; // Ignore, nested closed scope.
+            }
+        };
+
+        $array = array(
+            'closure' => function() { exit; }, // Ignore, nested closed scope.
+        );
+
+        die; // Error.
+    }
+
+    /**
+     * This should be easily skipped over.
+     */
+    abstract function something();
+
+    public function __DeStruct() {
+        // Destructor will not be called on exit() in constructor.
+    }
+}
+
+trait CrossVersionInValid
+{
+    public function __construct() {
+        exit(1); // Error.
+    }
+
+    public function __destruct() {
+        // Destructor will not be called on exit() in constructor.
+    }
+}
+
+class DoesntExtendAndDoesntHaveDestructMethodButUsesTrait {
+    use TraitWhichMayOrMayNotContainADestructMethod;
+
+    public function __construct() {
+        die(1); // Warning.
+    }
+}
+
+/*
+ * Prevent false positives.
+ */
+class DoesntExtendAndDoesntHaveDestructMethod {
+    public function __construct() {
+        exit(1);
+    }
+}
+
+trait CantExtendAndDoesntHaveDestructMethod {
+    public function __construct() {
+        exit(1);
+    }
+}
+
+class ExitNotInFunctionScope {
+    public function __construct() {
+        $this->property = function($param) {
+            exit(1);
+        };
+    }
+
+    public function __destruct() {}
+}
