@@ -4593,10 +4593,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 
         'ldap_control_paged_result_response' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'ldap_search()',
         ],
         'ldap_control_paged_result' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'ldap_search()',
         ],
         'recode_file' => [
@@ -4673,6 +4675,10 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
         ],
+        'imap_header' => [
+            '8.0'         => true,
+            'alternative' => 'imap_headerinfo()',
+        ],
         'libxml_disable_entity_loader' => [
             '8.0' => false,
         ],
@@ -4684,6 +4690,102 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'openssl_pkey_free' => [
             '8.0' => false,
+        ],
+        'pg_clientencoding' => [
+            '8.0'         => false,
+            'alternative' => 'pg_client_encoding()',
+        ],
+        'pg_cmdtuples' => [
+            '8.0'         => false,
+            'alternative' => 'pg_affected_rows()',
+        ],
+        'pg_errormessage' => [
+            '8.0'         => false,
+            'alternative' => 'pg_last_error()',
+        ],
+        'pg_fieldname' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_name()',
+        ],
+        'pg_fieldnum' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_num()',
+        ],
+        'pg_fieldisnull' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_is_null()',
+        ],
+        'pg_fieldprtlen' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_prtlen()',
+        ],
+        'pg_fieldsize' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_size()',
+        ],
+        'pg_fieldtype' => [
+            '8.0'         => false,
+            'alternative' => 'pg_field_type()',
+        ],
+        'pg_freeresult' => [
+            '8.0'         => false,
+            'alternative' => 'pg_free_result()',
+        ],
+        'pg_getlastoid' => [
+            '8.0'         => false,
+            'alternative' => 'pg_last_oid()',
+        ],
+        'pg_loclose' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_close()',
+        ],
+        'pg_locreate' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_create()',
+        ],
+        'pg_loexport' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_export()',
+        ],
+        'pg_loimport' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_import()',
+        ],
+        'pg_loopen' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_open()',
+        ],
+        'pg_loread' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_read()',
+        ],
+        'pg_loreadall' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_read_all()',
+        ],
+        'pg_lounlink' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_unlink()',
+        ],
+        'pg_lowrite' => [
+            '8.0'         => false,
+            'alternative' => 'pg_lo_write()',
+        ],
+        'pg_numfields' => [
+            '8.0'         => false,
+            'alternative' => 'pg_num_fields()',
+        ],
+        'pg_numrows' => [
+            '8.0'         => false,
+            'alternative' => 'pg_num_rows()',
+        ],
+        'pg_result' => [
+            '8.0'         => false,
+            'alternative' => 'pg_fetch_result()',
+        ],
+        'pg_setclientencoding' => [
+            '8.0'         => false,
+            'alternative' => 'pg_set_client_encoding()',
         ],
         'xmlrpc_decode_request' => [
             '8.0'       => true,

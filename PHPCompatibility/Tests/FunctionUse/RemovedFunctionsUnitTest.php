@@ -165,8 +165,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
 
             ['__autoload', '7.2', 'SPL autoload', [589], '7.1'],
             ['is_real', '7.4', 'is_float()', [239], '7.3'],
-            ['ldap_control_paged_result', '7.4', 'ldap_search()', [235], '7.3'],
-            ['ldap_control_paged_result', '7.4', 'ldap_search()', [235], '7.3'],
 
             ['enchant_broker_free', '8.0', 'unset the object', [1174], '7.4'],
             ['enchant_broker_free_dict', '8.0', 'unset the object', [1175], '7.4'],
@@ -182,6 +180,30 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['zip_entry_read', '8.0', 'ZipArchive', [1186], '7.4'],
             ['zip_open', '8.0', 'ZipArchive::open()', [1187], '7.4'],
             ['zip_read', '8.0', 'ZipArchive', [1188], '7.4'],
+            ['pg_clientencoding', '8.0', 'pg_client_encoding()', [1192], '7.4'],
+            ['pg_cmdtuples', '8.0', 'pg_affected_rows()', [1193], '7.4'],
+            ['pg_errormessage', '8.0', 'pg_last_error()', [1194], '7.4'],
+            ['pg_fieldname', '8.0', 'pg_field_name()', [1195], '7.4'],
+            ['pg_fieldnum', '8.0', 'pg_field_num()', [1196], '7.4'],
+            ['pg_fieldisnull', '8.0', 'pg_field_is_null()', [1197], '7.4'],
+            ['pg_fieldprtlen', '8.0', 'pg_field_prtlen()', [1198], '7.4'],
+            ['pg_fieldsize', '8.0', 'pg_field_size()', [1199], '7.4'],
+            ['pg_fieldtype', '8.0', 'pg_field_type()', [1200], '7.4'],
+            ['pg_freeresult', '8.0', 'pg_free_result()', [1201], '7.4'],
+            ['pg_getlastoid', '8.0', 'pg_last_oid()', [1202], '7.4'],
+            ['pg_loclose', '8.0', 'pg_lo_close()', [1203], '7.4'],
+            ['pg_locreate', '8.0', 'pg_lo_create()', [1204], '7.4'],
+            ['pg_loexport', '8.0', 'pg_lo_export()', [1205], '7.4'],
+            ['pg_loimport', '8.0', 'pg_lo_import()', [1206], '7.4'],
+            ['pg_loopen', '8.0', 'pg_lo_open()', [1207], '7.4'],
+            ['pg_loread', '8.0', 'pg_lo_read()', [1208], '7.4'],
+            ['pg_loreadall', '8.0', 'pg_lo_read_all()', [1209], '7.4'],
+            ['pg_lounlink', '8.0', 'pg_lo_unlink()', [1210], '7.4'],
+            ['pg_lowrite', '8.0', 'pg_lo_write()', [1211], '7.4'],
+            ['pg_numfields', '8.0', 'pg_num_fields()', [1212], '7.4'],
+            ['pg_numrows', '8.0', 'pg_num_rows()', [1213], '7.4'],
+            ['pg_result', '8.0', 'pg_fetch_result()', [1214], '7.4'],
+            ['pg_setclientencoding', '8.0', 'pg_set_client_encoding()', [1215], '7.4'],
         ];
     }
 
@@ -1186,6 +1208,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['recode_file', '7.4', 'the iconv or mbstring extension', [236], '7.3'],
             ['recode_string', '7.4', 'the iconv or mbstring extension', [237], '7.3'],
             ['recode', '7.4', 'the iconv or mbstring extension', [238], '7.3'],
+
+            ['imap_header', '8.0', 'imap_headerinfo()', [1216], '7.4'],
         ];
     }
 
@@ -1454,6 +1478,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['money_format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', [244], '7.3'],
             ['restore_include_path', '7.4', '8.0', "ini_restore('include_path')", [246], '7.3'],
             ['ociinternaldebug', '5.4', '8.0', 'oci_internal_debug() (PHP < 8.0)', [69], '5.3'],
+            ['ldap_control_paged_result_response', '7.4', '8.0', 'ldap_search()', [234], '7.3'],
+            ['ldap_control_paged_result', '7.4', '8.0', 'ldap_search()', [235], '7.3'],
         ];
     }
 
