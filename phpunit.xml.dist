@@ -22,6 +22,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="false">
             <file>./PHPCompatibility/Sniff.php</file>
             <directory>./PHPCompatibility/Sniffs/</directory>
+            <directory>./PHPCompatibility/Helpers/</directory>
         </whitelist>
     </filter>
 
