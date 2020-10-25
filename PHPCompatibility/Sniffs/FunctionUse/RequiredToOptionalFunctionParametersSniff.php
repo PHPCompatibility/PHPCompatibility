@@ -44,6 +44,83 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
      * @var array
      */
     protected $functionParameters = [
+        'array_diff_assoc' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_diff_key' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_diff_uassoc' => [
+            /*
+             * $array2 is actually at position 1, but has another required parameter after it,
+             * so we need to detect on the last parameter.
+             */
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_diff_ukey' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_diff' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_intersect_assoc' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_intersect_key' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_intersect_uassoc' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_intersect_ukey' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_intersect' => [
+            1 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
         'array_merge' => [
             0 => [
                 'name' => 'array(s) to merge',
@@ -63,6 +140,54 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 'name' => 'element to push',
                 '7.2'  => true,
                 '7.3'  => false,
+            ],
+        ],
+        'array_udiff_assoc' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_udiff_uassoc' => [
+            // Note from array_diff_uassoc applies here too.
+            3 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_udiff' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_uintersect_assoc' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_uintersect_uassoc' => [
+            // Note from array_diff_uassoc applies here too.
+            3 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'array_uintersect' => [
+            // Note from array_diff_uassoc applies here too.
+            2 => [
+                'name' => 'array2',
+                '7.4'  => true,
+                '8.0'  => false,
             ],
         ],
         'array_unshift' => [
@@ -147,6 +272,33 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractComplexVersionSn
                 'name' => 'varname',
                 '7.0'  => true,
                 '7.1'  => false,
+            ],
+        ],
+        'imagepolygon' => [
+            /*
+             * $num_points is actually at position 2, but has another required parameter after it,
+             * so we need to detect on the last parameter.
+             */
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'imageopenpolygon' => [
+            // Note from imagepolygon applies here too.
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
+            ],
+        ],
+        'imagefilledpolygon' => [
+            // Note from imagepolygon applies here too.
+            3 => [
+                'name' => 'num_points',
+                '7.4'  => true,
+                '8.0'  => false,
             ],
         ],
         'preg_match_all' => [

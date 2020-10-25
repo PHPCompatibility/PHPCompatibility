@@ -83,6 +83,25 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             ['fgetcsv', 'length', '5.0', [39], '5.1'],
             ['xmlwriter_write_element', 'content', '5.2.2', [41], '5.3', '5.2'],
             ['xmlwriter_write_element_ns', 'content', '5.2.2', [42], '5.3', '5.2'],
+            ['imagepolygon', 'num_points', '7.4', [45], '8.0'],
+            ['imageopenpolygon', 'num_points', '7.4', [46], '8.0'],
+            ['imagefilledpolygon', 'num_points', '7.4', [47], '8.0'],
+            ['array_diff_assoc', 'array2', '7.4', [60], '8.0'],
+            ['array_diff_key', 'array2', '7.4', [61], '8.0'],
+            ['array_diff_uassoc', 'array2', '7.4', [62], '8.0'],
+            ['array_diff_ukey', 'array2', '7.4', [63], '8.0'],
+            ['array_diff', 'array2', '7.4', [64], '8.0'],
+            ['array_intersect_assoc', 'array2', '7.4', [65], '8.0'],
+            ['array_intersect_key', 'array2', '7.4', [66], '8.0'],
+            ['array_intersect_uassoc', 'array2', '7.4', [67], '8.0'],
+            ['array_intersect_ukey', 'array2', '7.4', [68], '8.0'],
+            ['array_intersect', 'array2', '7.4', [69], '8.0'],
+            ['array_udiff_assoc', 'array2', '7.4', [70], '8.0'],
+            ['array_udiff_uassoc', 'array2', '7.4', [71], '8.0'],
+            ['array_udiff', 'array2', '7.4', [72], '8.0'],
+            ['array_uintersect_assoc', 'array2', '7.4', [73], '8.0'],
+            ['array_uintersect_uassoc', 'array2', '7.4', [74], '8.0'],
+            ['array_uintersect', 'array2', '7.4', [75], '8.0'],
         ];
     }
 
@@ -122,6 +141,17 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             [32],
             [34],
             [38],
+            [44],
+            [49],
+            [50],
+            [51],
+            [52],
+            [53],
+            [54],
+            [55],
+            [56],
+            [57],
+            [58],
         ];
     }
 
