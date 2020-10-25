@@ -67,6 +67,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '7.0'  => true,
             ],
         ],
+        'imap_headerinfo' => [
+            4 => [
+                'name' => 'defaulthost',
+                '8.0'  => true,
+            ],
+        ],
         'ldap_first_attribute' => [
             2 => [
                 'name'  => 'ber_identifier',
@@ -90,6 +96,33 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 'name' => 'is_dst',
                 '5.1'  => false,
                 '7.0'  => true,
+            ],
+        ],
+        'odbc_do' => [
+            2 => [
+                'name' => 'flags',
+                '8.0'  => true,
+            ],
+        ],
+        'odbc_exec' => [
+            2 => [
+                'name' => 'flags',
+                '8.0'  => true,
+            ],
+        ],
+        'pg_connect' => [
+            // These were already deprecated before, but version in which deprecation took place is unclear.
+            2 => [
+                'name' => 'options',
+                '8.0'  => true,
+            ],
+            3 => [
+                'name' => 'tty',
+                '8.0'  => true,
+            ],
+            4 => [
+                'name' => 'dbname',
+                '8.0'  => true,
             ],
         ],
     ];

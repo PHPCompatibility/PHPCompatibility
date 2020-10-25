@@ -67,6 +67,12 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             ['ldap_first_attribute', 'ber_identifier', '5.2.4', [11], '5.2', '5.3'],
             ['ldap_next_attribute', 'ber_identifier', '5.2.4', [12], '5.2', '5.3'],
             ['mb_decode_numericentity', 'is_hex', '8.0', [24], '7.4'],
+            ['pg_connect', 'options', '8.0', [27], '7.4'],
+            ['pg_connect', 'tty', '8.0', [27], '7.4'],
+            ['pg_connect', 'dbname', '8.0', [27], '7.4'],
+            ['imap_headerinfo', 'defaulthost', '8.0', [30], '7.4'],
+            ['odbc_exec', 'flags', '8.0', [33], '7.4'],
+            ['odbc_do', 'flags', '8.0', [34], '7.4'],
         ];
     }
 
@@ -157,6 +163,9 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             [14],
             [17],
             [23],
+            [26],
+            [29],
+            [32],
         ];
     }
 

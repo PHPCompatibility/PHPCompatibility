@@ -22,3 +22,13 @@ curl_version( $age );
 
 mb_decode_numericentity($str, $convmap); // OK.
 mb_decode_numericentity($str, $convmap, $encoding, $is_hex); // Error.
+
+$conn = pg_connect ( $connection_string, $connect_type ); // OK.
+$conn = pg_connect ( $host, $port, $options, $tty, $dbname ); // Error x 3.
+
+imap_headerinfo($imap_stream, $msg_number); // OK.
+imap_headerinfo($imap_stream, $msg_number, $fromlength, $subjectlength, $defaulthost); // Error.
+
+odbc_exec($connection_id, $query_string); // OK.
+odbc_exec($connection_id, $query_string, $flags); // Error.
+odbc_do($connection_id, $query_string, $flags); // Error.
