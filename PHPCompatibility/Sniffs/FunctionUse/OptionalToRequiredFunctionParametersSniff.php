@@ -41,12 +41,11 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      * @var array
      */
     protected $functionParameters = [
-        // Special case, the optional nature is not deprecated, but usage is recommended
-        // and leaving the parameter out will throw an E_NOTICE.
         'crypt' => [
             1 => [
                 'name' => 'salt',
-                '5.6'  => 'recommended',
+                '5.6'  => false,
+                '8.0'  => true,
             ],
         ],
         'gmmktime' => [
@@ -101,9 +100,7 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      */
     protected function shouldThrowError(array $errorInfo)
     {
-        return ($errorInfo['optionalDeprecated'] !== ''
-            || $errorInfo['optionalRemoved'] !== ''
-            || $errorInfo['optionalRecommended'] !== '');
+        return ($errorInfo['optionalDeprecated'] !== '' || $errorInfo['optionalRemoved'] !== '');
     }
 
 
@@ -120,11 +117,10 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
     public function getErrorInfo(array $itemArray, array $itemInfo)
     {
         $errorInfo = [
-            'paramName'           => '',
-            'optionalRecommended' => '',
-            'optionalDeprecated'  => '',
-            'optionalRemoved'     => '',
-            'error'               => false,
+            'paramName'          => '',
+            'optionalDeprecated' => '',
+            'optionalRemoved'    => '',
+            'error'              => false,
         ];
 
         $versionArray = $this->getVersionArray($itemArray);
@@ -135,8 +131,6 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
                     if ($required === true && $errorInfo['optionalRemoved'] === '') {
                         $errorInfo['optionalRemoved'] = $version;
                         $errorInfo['error']           = true;
-                    } elseif ($required === 'recommended' && $errorInfo['optionalRecommended'] === '') {
-                        $errorInfo['optionalRecommended'] = $version;
                     } elseif ($errorInfo['optionalDeprecated'] === '') {
                         $errorInfo['optionalDeprecated'] = $version;
                     }
@@ -149,6 +143,15 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
         return $errorInfo;
     }
 
+    /**
+     * Get the error message template for this sniff.
+     *
+     * @return string
+     */
+    protected function getErrorMsgTemplate()
+    {
+        return 'The "%s" parameter for function %s() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is ';
+    }
 
     /**
      * Generates the error or warning for this item.
@@ -166,40 +169,32 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      */
     public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
     {
-        $error = 'The "%s" parameter for function %s() is missing. Passing this parameter is ';
-        if ($errorInfo['optionalRecommended'] === '') {
-            $error .= 'no longer optional. The optional nature of the parameter is ';
-        } else {
-            $error .= 'strongly recommended ';
-        }
-
-        $errorCode = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']);
-        $data      = [
+        $error      = $this->getErrorMsgTemplate();
+        $errorCode  = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']);
+        $codeSuffix = '';
+        $data       = [
             $errorInfo['paramName'],
             $itemInfo['name'],
         ];
 
-        if ($errorInfo['optionalRecommended'] !== '') {
-            $error     .= 'since PHP %s ';
-            $errorCode .= 'SoftRecommended';
-            $data[]     = $errorInfo['optionalRecommended'];
-        } else {
-            if ($errorInfo['optionalDeprecated'] !== '') {
-                $error     .= 'deprecated since PHP %s and ';
-                $errorCode .= 'SoftRequired';
-                $data[]     = $errorInfo['optionalDeprecated'];
-            }
-
-            if ($errorInfo['optionalRemoved'] !== '') {
-                $error     .= 'removed since PHP %s and ';
-                $errorCode .= 'HardRequired';
-                $data[]     = $errorInfo['optionalRemoved'];
-            }
-
-            // Remove the last 'and' from the message.
-            $error = \substr($error, 0, (\strlen($error) - 5));
+        if ($errorInfo['optionalDeprecated'] !== '') {
+            $error     .= 'deprecated since PHP %s and ';
+            $codeSuffix = 'Soft';
+            $data[]     = $errorInfo['optionalDeprecated'];
         }
 
+        if ($errorInfo['optionalRemoved'] !== '') {
+            $error     .= 'removed since PHP %s and ';
+            $codeSuffix = 'Hard';
+            $data[]     = $errorInfo['optionalRemoved'];
+        }
+
+        // Remove the last 'and' from the message.
+        $error      = \substr($error, 0, (\strlen($error) - 5));
+        $errorCode .= $codeSuffix . 'Required';
+
         $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+
+        return;
     }
 }
