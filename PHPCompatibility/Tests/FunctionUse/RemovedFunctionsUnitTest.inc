@@ -1214,3 +1214,6 @@ pg_numrows();
 pg_result();
 pg_setclientencoding();
 imap_header();
+shmop_close();
+openssl_free_key();
+
