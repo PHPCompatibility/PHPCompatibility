@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -415,6 +416,39 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                $beforeVar                = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
+                $startOfVariableStatement = BCFile::findStartOfStatement(
+                    $phpcsFile,
+                    $j,
+                    $this->ignoreForStartOfStatementVarUse
+                );
+
+                /*
+                 * Check if this is only a plain assignment. If so, ignore.
+                 *
+                 * A "plain assignment" for the purposes of this check is defined as:
+                 * - Variable is not nested in parenthesis, i.e. not used in a potential function call.
+                 * - Not preceded by a reference operator.
+                 * - Has an assignment operator before it and none after.
+                 */
+                if (empty($tokens[$j]['nested_parenthesis']) === true
+                    && $beforeVar !== false
+                    && Operators::isReference($phpcsFile, $beforeVar) === false
+                    && $tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
+                ) {
+                    $endOfVariableStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($j + 1));
+                    $lastAssignmentOperator = $phpcsFile->findPrevious(
+                        Tokens::$assignmentTokens,
+                        ($endOfVariableStatement - 1),
+                        $startOfVariableStatement
+                    );
+                    if ($lastAssignmentOperator !== false
+                        && $lastAssignmentOperator < $j
+                    ) {
+                        continue;
+                    }
+                }
+
                 /*
                  * Ok, so we've found a variable which was passed as one of the parameters.
                  * Now, is this variable being changed, i.e. incremented, decremented, unset
@@ -425,7 +459,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     $variableToken = $j;
                 }
 
-                $beforeVar = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
                 if ($beforeVar !== false && isset($this->plusPlusMinusMinus[$tokens[$beforeVar]['code']])) {
                     // Variable is being (pre-)incremented/decremented.
                     $scanResult    = 'error';

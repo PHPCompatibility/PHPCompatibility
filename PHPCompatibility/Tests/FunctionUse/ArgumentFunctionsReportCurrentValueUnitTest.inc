@@ -230,6 +230,31 @@ function do_NOT_ignore_unset($x) {
     \func_get_args(); // Error.
 }
 
+// Issue #1240, part 2 - plain assignments.
+function ignorePlainAssignments($stuff) {
+    $other = $stuff;
+    $other = $stuff + 10;
+    $other = 10 + $stuff;
+    $args = func_get_args(); // OK.
+}
+
+function dontIgnoreDoubleAssignment($stuff) {
+    $other = $stuff = $other;
+    $args = func_get_args(); // Error.
+}
+
+function dontIgnoreReferenceAssignments($stuff) {
+    $other = &$stuff;
+    // Do some more.
+    $args = func_get_args(); // Warning, reference assignment.
+}
+
+function dontIgnoreNonPlainAssignments($matches) {
+    $other = preg_match('/regex/', $subject, $matches);
+    // Do some more.
+    $args = func_get_args(); // Warning, non-plain assignment.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function foo($x) {
     $x = function_call($x);
