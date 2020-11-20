@@ -26,51 +26,6 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testDeprecatedTypeCastWithAlternative
-     *
-     * @dataProvider dataDeprecatedTypeCastWithAlternative
-     *
-     * @param string $castDescription   The type of type cast.
-     * @param string $deprecatedIn      The PHP version in which the function was deprecated.
-     * @param string $alternative       An alternative type cast.
-     * @param array  $lines             The line numbers in the test file which apply to this function.
-     * @param string $okVersion         A PHP version in which the function was still valid.
-     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
-     *                                  if different from the $deprecatedIn version.
-     *
-     * @return void
-     */
-    public function testDeprecatedTypeCastWithAlternative($castDescription, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
-    {
-        $file = $this->sniffFile(__FILE__, $okVersion);
-        foreach ($lines as $line) {
-            $this->assertNoViolation($file, $line);
-        }
-
-        $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
-        $file         = $this->sniffFile(__FILE__, $errorVersion);
-        $error        = "{$castDescription} is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
-        foreach ($lines as $line) {
-            $this->assertWarning($file, $line, $error);
-        }
-    }
-
-    /**
-     * Data provider.
-     *
-     * @see testDeprecatedTypeCastWithAlternative()
-     *
-     * @return array
-     */
-    public function dataDeprecatedTypeCastWithAlternative()
-    {
-        return [
-            ['The real cast', '7.4', '(float)', [15, 16], '7.3'],
-        ];
-    }
-
-
-    /**
      * testDeprecatedRemovedTypeCastWithAlternative
      *
      * @dataProvider dataDeprecatedRemovedTypeCastWithAlternative
@@ -121,6 +76,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
     {
         return [
             ['The unset cast', '7.2', '8.0', 'unset()', [8, 11, 12], '7.1'],
+            ['The real cast', '7.4', '8.0', '(float)', [15, 16], '7.3'],
         ];
     }
 
