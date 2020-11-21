@@ -47,6 +47,7 @@ class RemovedTypeCastsSniff extends AbstractRemovedFeatureSniff
         ],
         'T_DOUBLE_CAST' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => '(float)',
             'description' => 'real',
         ],
