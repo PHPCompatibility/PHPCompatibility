@@ -78,7 +78,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             return;
         }
 
-        $secondParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 2);
+        $secondParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 2, 'value');
         if (isset($secondParam['start'], $secondParam['end']) === false) {
             return;
         }
