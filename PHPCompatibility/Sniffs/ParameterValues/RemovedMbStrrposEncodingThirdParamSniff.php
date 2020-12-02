@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect passing `$encoding` to `mb_strrpos()` as 3rd argument.
@@ -95,19 +96,20 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[3]) === false) {
-            // Optional third parameter not set.
-            return;
-        }
-
-        if (isset($parameters[4]) === true) {
+        $encodingParam = PassedParameters::getParameterFromStack($parameters, 4, 'encoding');
+        if ($encodingParam !== false) {
             // Encoding set as fourth parameter.
             return;
         }
 
-        $targetParam = $parameters[3];
-        $targets     = $this->numberTokens + Tokens::$emptyTokens;
-        $nonNumber   = $phpcsFile->findNext($targets, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 3, 'offset');
+        if ($targetParam === false) {
+            // Optional third parameter not set.
+            return;
+        }
+
+        $targets   = $this->numberTokens + Tokens::$emptyTokens;
+        $nonNumber = $phpcsFile->findNext($targets, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($nonNumber === false) {
             return;
         }
