@@ -37,3 +37,26 @@ $proc = proc_open(
     $descriptors,
     $pipes
 );
+
+// Safeguard support for PHP 8 named parameters.
+$proc = proc_open(
+    descriptor_spec: array(
+        0 => array("pipe", "r"),
+        1 => array("pipe", "w"),
+        2 => array("file", "/tmp/error-output.txt", "a"),
+    ),
+    command: '"findstr" "search" "filename.txt"',
+    pipes: $pipes,
+    env_vars: $env_vars
+); // OK.
+
+$proc = proc_open(
+    pipes: $pipes,
+    env_vars: $env_vars,
+    descriptor_spec: array(
+        0 => array("pipe", "r"),
+        1 => array("pipe", "w"),
+        2 => array("file", "/tmp/error-output.txt", "a"),
+    ),
+    command: array('php', '-r', escapeshellarg($echo)),
+); // Error + Warning.

@@ -37,7 +37,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
     public function testNewProcOpenCmdArray($line)
     {
         $file  = $this->sniffFile(__FILE__, '7.3');
-        $error = 'The proc_open() function did not accept $cmd to be passed in array format in PHP 7.3 and earlier.';
+        $error = 'The proc_open() function did not accept $command to be passed in array format in PHP 7.3 and earlier.';
 
         $this->assertError($file, $line, $error);
     }
@@ -56,6 +56,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
             [20],
             [30],
             [32],
+            [61],
         ];
     }
 
@@ -73,7 +74,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
     public function testInvalidProcOpenCmdArray($line, $itemValue)
     {
         $file  = $this->sniffFile(__FILE__, '7.4');
-        $error = 'When passing the $cmd parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: ' . $itemValue;
+        $error = 'When passing the $command parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: ' . $itemValue;
 
         $this->assertWarning($file, $line, $error);
     }
@@ -91,6 +92,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
             [30, 'escapeshellarg($echo)'],
             [34, '\'--standard=\' . escapeshellarg($standard)'],
             [35, '\'./path/to/\' . escapeshellarg($file)'],
+            [61, 'escapeshellarg($echo)'],
         ];
     }
 
@@ -110,6 +112,11 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
 
         // No errors expected on the first 16 lines.
         for ($line = 1; $line <= 16; $line++) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        // Nor on line 41 to 51.
+        for ($line = 41; $line <= 51; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
