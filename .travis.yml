@@ -195,7 +195,11 @@ before_install:
     if [[ "$CUSTOM_INI" == 1 ]]; then
       echo 'short_open_tag = On' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     fi
-  - php -r "echo ini_get('short_open_tag');"
+  # Turn on Xdebug code coverage mode in case Xdebug 3 is being used.
+  - |
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
+      echo 'xdebug.mode = coverage' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    fi
 
   # Set up test environment using Composer.
   - travis_retry composer require --no-update squizlabs/php_codesniffer:${PHPCS_VERSION}
