@@ -17,7 +17,7 @@ use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
- * As of PHP 7.4, `strip_tags()` now also accepts an array of `$allowable_tags`.
+ * As of PHP 7.4, `strip_tags()` now also accepts an array of `$allowed_tags`.
  *
  * PHP version 7.4
  *
@@ -69,12 +69,12 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[2]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 2, 'allowed_tags');
+        if ($targetParam === false) {
             return;
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $targetParam  = $parameters[2];
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], $targetParam['end'], true);
 
         if ($nextNonEmpty === false) {
@@ -91,7 +91,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
 
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
-                'The strip_tags() function did not accept $allowable_tags to be passed in array format in PHP 7.3 and earlier.',
+                'The strip_tags() function did not accept $allowed_tags to be passed in array format in PHP 7.3 and earlier.',
                 $nextNonEmpty,
                 'Found'
             );
@@ -122,7 +122,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                         && \strpos($tokens[$i]['content'], '>') !== false
                     ) {
                         $phpcsFile->addWarning(
-                            'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',
+                            'When passing strip_tags() the $allowed_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: %s',
                             $i,
                             'Invalid',
                             [$item['clean']]

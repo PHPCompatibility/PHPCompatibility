@@ -37,7 +37,7 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
     public function testNewStripTagsAllowableTagsArray($line)
     {
         $file  = $this->sniffFile(__FILE__, '7.3');
-        $error = 'The strip_tags() function did not accept $allowable_tags to be passed in array format in PHP 7.3 and earlier.';
+        $error = 'The strip_tags() function did not accept $allowed_tags to be passed in array format in PHP 7.3 and earlier.';
 
         $this->assertError($file, $line, $error);
     }
@@ -75,7 +75,7 @@ class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTest
     public function testInvalidStripTagsAllowableTagsArray($line, $paramValue)
     {
         $file  = $this->sniffFile(__FILE__, '7.4');
-        $error = 'When passing strip_tags() the $allowable_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: ' . $paramValue;
+        $error = 'When passing strip_tags() the $allowed_tags parameter as an array, the tags should not be enclosed in <> brackets. Found: ' . $paramValue;
 
         $this->assertWarning($file, $line, $error);
     }
