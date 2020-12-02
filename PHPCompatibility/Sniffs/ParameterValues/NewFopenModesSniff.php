@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Check for valid values for the `fopen()` `$mode` parameter.
@@ -67,13 +68,13 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[2]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 2, 'mode');
+        if ($targetParam === false) {
             return;
         }
 
-        $tokens      = $phpcsFile->getTokens();
-        $targetParam = $parameters[2];
-        $errors      = [];
+        $tokens = $phpcsFile->getTokens();
+        $errors = [];
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if ($tokens[$i]['code'] === \T_STRING
