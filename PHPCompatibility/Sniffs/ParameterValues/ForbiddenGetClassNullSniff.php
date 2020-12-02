@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect: Passing `null` to `get_class()` is no longer allowed as of PHP 7.2.
@@ -67,17 +68,18 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $target = PassedParameters::getParameterFromStack($parameters, 1, 'object');
+        if ($target === false) {
             return;
         }
 
-        if ($parameters[1]['clean'] !== 'null') {
+        if ($target['clean'] !== 'null') {
             return;
         }
 
         $phpcsFile->addError(
             'Passing "null" as the $object to get_class() is not allowed since PHP 7.2.',
-            $parameters[1]['start'],
+            $target['start'],
             'Found'
         );
     }

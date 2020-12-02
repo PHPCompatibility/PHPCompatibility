@@ -12,3 +12,4 @@ get_class(null);
 get_class(
     null // Comment.
 );
+get_class(object:null);
