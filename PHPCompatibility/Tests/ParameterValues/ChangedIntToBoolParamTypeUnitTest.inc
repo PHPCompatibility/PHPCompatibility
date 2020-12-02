@@ -23,5 +23,6 @@ sem_get( $key, $max_acquire, $perm, 1 );
 sem_get( $key, $max_acquire, $perm, -1 );
 Sem_Get( $key, $max_acquire, $perm, 0 );
 sem_get( $key, $max_acquire, $perm, 1.0 );
-sem_get( $key, $max_acquire, $perm, 1 * 1);
+sem_get( $key, auto_release: 1 * 1);
 ob_implicit_flush(0);
+ob_implicit_flush(enable: 1);
