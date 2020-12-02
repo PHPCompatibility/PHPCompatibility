@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect passing a string literal as `$category` to `setlocale()`.
@@ -72,13 +73,12 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'category');
+        if ($targetParam === false) {
             return;
         }
 
-        $tokens      = $phpcsFile->getTokens();
-        $targetParam = $parameters[1];
-
+        $tokens = $phpcsFile->getTokens();
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if ($tokens[$i]['code'] === \T_STRING
                 || $tokens[$i]['code'] === \T_VARIABLE
