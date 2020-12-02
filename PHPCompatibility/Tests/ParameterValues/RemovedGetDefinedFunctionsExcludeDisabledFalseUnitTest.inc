@@ -5,7 +5,7 @@
 
 // OK.
 get_defined_functions();
-get_defined_functions($exclude_disabled);
+get_defined_functions(exclude_disabled: $exclude_disabled);
 
 // Not OK.
 get_defined_functions(false);
