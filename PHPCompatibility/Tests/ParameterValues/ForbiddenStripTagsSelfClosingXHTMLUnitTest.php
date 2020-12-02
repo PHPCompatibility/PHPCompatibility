@@ -38,7 +38,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
     public function testForbiddenStripTagsSelfClosingXHTML($line, $paramValue)
     {
         $file  = $this->sniffFile(__FILE__, '5.4');
-        $error = 'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowable_tags parameter since PHP 5.3.4. Found: ' . $paramValue;
+        $error = 'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowed_tags parameter since PHP 5.3.4. Found: ' . $paramValue;
 
         $this->assertError($file, $line, $error);
     }
