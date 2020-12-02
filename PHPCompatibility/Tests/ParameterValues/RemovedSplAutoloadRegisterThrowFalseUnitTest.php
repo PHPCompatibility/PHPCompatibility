@@ -50,7 +50,8 @@ class RemovedSplAutoloadRegisterThrowFalseUnitTest extends BaseSniffTest
     public function dataRemovedSplAutoloadRegisterThrowFalse()
     {
         return [
-            [13],
+            [14],
+            [15],
         ];
     }
 
@@ -64,8 +65,8 @@ class RemovedSplAutoloadRegisterThrowFalseUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '8.0');
 
-        // No errors expected on the first 11 lines.
-        for ($line = 1; $line <= 11; $line++) {
+        // No errors expected on the first 12 lines.
+        for ($line = 1; $line <= 12; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
