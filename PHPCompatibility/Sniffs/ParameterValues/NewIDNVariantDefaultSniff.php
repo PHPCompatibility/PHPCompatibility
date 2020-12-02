@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * The default value for the `$variant` parameter has changed from `INTL_IDNA_VARIANT_2003`
@@ -32,16 +33,22 @@ class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
     /**
      * Functions to check for.
      *
-     * Key is the function name, value the 1-based parameter position of
-     * the $variant parameter.
+     * Key is the function name, value an array containing the 1-based parameter position
+     * and the official name of the parameter.
      *
      * @since 9.3.0
      *
      * @var array
      */
     protected $targetFunctions = [
-        'idn_to_ascii' => 3,
-        'idn_to_utf8'  => 3,
+        'idn_to_ascii' => [
+            'position' => 3,
+            'name'     => 'variant',
+        ],
+        'idn_to_utf8' => [
+            'position' => 3,
+            'name'     => 'variant',
+        ],
     ];
 
     /**
@@ -75,17 +82,19 @@ class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = \strtolower($functionName);
-        if (isset($parameters[$this->targetFunctions[$functionLC]]) === true) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam !== false) {
             return;
         }
 
-        $error = 'The default value of the %s() $variant parameter has changed from INTL_IDNA_VARIANT_2003 to INTL_IDNA_VARIANT_UTS46 in PHP 7.4. For optimal cross-version compatibility, the $variant parameter should be explicitly set.';
+        $error = 'The default value of the %1$s() $%2$s parameter has changed from INTL_IDNA_VARIANT_2003 to INTL_IDNA_VARIANT_UTS46 in PHP 7.4. For optimal cross-version compatibility, the $%2$s parameter should be explicitly set.';
         $phpcsFile->addError(
             $error,
             $stackPtr,
             'NotSet',
-            [$functionName]
+            [$functionName, $paramInfo['name']]
         );
     }
 }
