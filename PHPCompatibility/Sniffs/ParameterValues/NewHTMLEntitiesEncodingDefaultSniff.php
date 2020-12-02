@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * As of PHP 5.4, the default character set for `htmlspecialchars()`, `htmlentities()`
@@ -32,18 +33,30 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
     /**
      * Functions to check for.
      *
-     * Key is the function name, value the 1-based parameter position of
-     * the $encoding parameter.
+     * Key is the function name, value an array containing the 1-based parameter position
+     * and the official name of the parameter.
      *
      * @since 9.3.0
      *
      * @var array
      */
     protected $targetFunctions = [
-        'html_entity_decode'         => 3,
-        'htmlentities'               => 3,
-        'htmlspecialchars'           => 3,
-        'get_html_translation_table' => 3,
+        'html_entity_decode' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'htmlentities' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'htmlspecialchars' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'get_html_translation_table' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
     ];
 
 
@@ -78,16 +91,18 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = \strtolower($functionName);
-        if (isset($parameters[$this->targetFunctions[$functionLC]]) === true) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam !== false) {
             return;
         }
 
         $phpcsFile->addError(
-            'The default value of the $encoding parameter for %s() was changed from ISO-8859-1 to UTF-8 in PHP 5.4. For cross-version compatibility, the $encoding parameter should be explicitly set.',
+            'The default value of the $%1$s parameter for %2$s() was changed from ISO-8859-1 to UTF-8 in PHP 5.4. For cross-version compatibility, the $%1$s parameter should be explicitly set.',
             $stackPtr,
             'NotSet',
-            [$functionName]
+            [$paramInfo['name'], $functionName]
         );
     }
 }
