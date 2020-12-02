@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect negative string offsets as parameters passed to functions where this
@@ -38,7 +39,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
             4 => 'offset',
         ],
         'grapheme_extract'      => [
-            4 => 'start',
+            4 => 'offset',
         ],
         'grapheme_stripos'      => [
             3 => 'offset',
@@ -50,7 +51,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
             3 => 'offset',
         ],
         'mb_ereg_search_setpos' => [
-            1 => 'position',
+            1 => 'offset',
         ],
         'mb_strimwidth'         => [
             2 => 'start',
@@ -104,11 +105,10 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
     {
         $functionLC = \strtolower($functionName);
         foreach ($this->targetFunctions[$functionLC] as $pos => $name) {
-            if (isset($parameters[$pos]) === false) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $pos, $name);
+            if ($targetParam === false) {
                 continue;
             }
-
-            $targetParam = $parameters[$pos];
 
             if ($this->isNegativeNumber($phpcsFile, $targetParam['start'], $targetParam['end']) === false) {
                 continue;

@@ -57,10 +57,10 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
     public function dataNegativeStringOffset()
     {
         return [
-            [28, 'position', 'mb_ereg_search_setpos'],
-            [34, 'position', 'MB_ereg_search_setpos'],
+            [28, 'offset', 'mb_ereg_search_setpos'],
+            [34, 'offset', 'MB_ereg_search_setpos'],
             [36, 'offset', 'file_get_contents'],
-            [37, 'start', 'grapheme_extract'],
+            [37, 'offset', 'grapheme_extract'],
             [38, 'offset', 'grapheme_stripos'],
             [39, 'offset', 'grapheme_strpos'],
             [40, 'offset', 'iconv_strpos'],
@@ -74,6 +74,9 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
             [46, 'length', 'substr_count'],
             [47, 'offset', 'Substr_Count'],
             [48, 'length', 'substr_count'],
+            [51, 'start', 'mb_strimwidth'],
+            [52, 'start', 'mb_strimwidth'],
+            [52, 'width', 'mb_strimwidth'],
         ];
     }
 
