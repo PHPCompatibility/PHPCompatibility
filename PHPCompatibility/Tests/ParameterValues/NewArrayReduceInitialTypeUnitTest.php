@@ -65,6 +65,8 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
             [21, false],
             [22, false],
             [23, false],
+
+            [26],
         ];
     }
 
