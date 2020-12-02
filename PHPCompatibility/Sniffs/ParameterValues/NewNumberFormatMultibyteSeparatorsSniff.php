@@ -13,10 +13,11 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
- * Detect: Passing multi-byte separators to the `$dec_point` and `$thousands_sep` parameters
+ * Detect: Passing multi-byte separators to the `$decimal_separator` and `$thousands_separator` parameters
  * for `number_format()` which was not supported prior to PHP 5.4.
  *
  * Previously, only the first byte of each separator was used.
@@ -98,12 +99,14 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[3]) === true) {
-            $this->examineParameter($phpcsFile, $parameters[3], 'dec_point');
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 3, 'decimal_separator');
+        if ($targetParam !== false) {
+            $this->examineParameter($phpcsFile, $targetParam, 'decimal_separator');
         }
 
-        if (isset($parameters[4]) === true) {
-            $this->examineParameter($phpcsFile, $parameters[4], 'thousands_sep');
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 4, 'thousands_separator');
+        if ($targetParam !== false) {
+            $this->examineParameter($phpcsFile, $targetParam, 'thousands_separator');
         }
     }
 

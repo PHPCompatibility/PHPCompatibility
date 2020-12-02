@@ -9,7 +9,7 @@
 number_format();
 number_format($number);
 number_format($number, $decimals);
-number_format($number, $decimals, $dec_point, $thousands_sep); // Undetermined.
+number_format($number, decimal_separator: $dec_point, thousands_separator: $thousands_sep, decimals: $decimals); // Undetermined.
 // Variables passed in a double quoted string are presumed to be single-byte.
 number_format($number, $decimals, "$dec_point", "$thousands_sep");
 number_format($number, $decimals, '.', ','); // Single-byte.
@@ -19,9 +19,9 @@ number_format($number, $decimals, '.', ','); // Single-byte.
  */
 number_format($number, $decimals, '.', '::'); // Thousand-sep multi-byte.
 
-// Note: this is an invalid function call, as when the third param is passed, the fourth has to be passed too,
-// but that's not the concern of this sniff.
-number_format($number, $decimals, "-$a",); // Dec point multi-byte (most probably, depends on contents of the variable).
+// Note: this is an invalid function call, as when the $decimal_separator is passed, the $thousands_separator
+// has to be passed too, but that's not the concern of this sniff.
+number_format(num: $number, decimal_separator: "-$a", decimals: $decimals,); // Dec point multi-byte (most probably, depends on contents of the variable).
 
 number_format(
     $number,

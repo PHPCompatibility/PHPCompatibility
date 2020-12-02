@@ -51,10 +51,10 @@ class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTest
     public function dataNewNumberFormatMultibyteSeparators()
     {
         return [
-            [20, 'thousands_sep'],
-            [24, 'dec_point'],
-            [29, 'dec_point'],
-            [33, 'thousands_sep'],
+            [20, 'thousands_separator'],
+            [24, 'decimal_separator'],
+            [29, 'decimal_separator'],
+            [33, 'thousands_separator'],
         ];
     }
 
