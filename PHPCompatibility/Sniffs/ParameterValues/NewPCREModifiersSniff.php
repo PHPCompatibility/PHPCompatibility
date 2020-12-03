@@ -10,7 +10,8 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
-use PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -24,10 +25,12 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.pcre
  *
  * @since 8.2.0
- * @since 9.0.0 Renamed from `PCRENewModifiersSniff` to `NewPCREModifiersSniff`.
+ * @since 9.0.0  Renamed from `PCRENewModifiersSniff` to `NewPCREModifiersSniff`.
+ * @since 10.0.0 Now uses the new `PCRERegexTrait` and extends the `AbstractFunctionCallParameterSniff`.
  */
-class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
+class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
+    use PCRERegexTrait;
 
     /**
      * Functions to check for.
@@ -79,6 +82,39 @@ class NewPCREModifiersSniff extends RemovedPCREModifiersSniff
         return ($this->supportsBelow('7.2') === false);
     }
 
+    /**
+     * Process the parameters of a matched function.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
+     *
+     * @return void
+     */
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
+    {
+        // Check the first parameter in the function call as that should contain the regex(es).
+        if (isset($parameters[1]) === false) {
+            return;
+        }
+
+        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $parameters[1]);
+        if (empty($patterns) === true) {
+            return;
+        }
+
+        foreach ($patterns as $pattern) {
+            $modifiers = $this->getRegexModifiers($phpcsFile, $pattern);
+            if ($modifiers === '') {
+                continue;
+            }
+
+            $this->examineModifiers($phpcsFile, $pattern['end'], $functionName, $modifiers);
+        }
+    }
 
     /**
      * Examine the regex modifier string.

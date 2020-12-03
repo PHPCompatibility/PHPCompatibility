@@ -11,10 +11,8 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Utils\PassedParameters;
-use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
@@ -33,13 +31,15 @@ use PHPCSUtils\Utils\TextStrings;
  * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
  *
  * @since 5.6
- * @since 7.0.8 This sniff now throws a warning (deprecated) or an error (removed) depending
- *              on the `testVersion` set. Previously it would always throw an error.
- * @since 8.2.0 Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
- * @since 9.0.0 Renamed from `PregReplaceEModifierSniff` to `RemovedPCREModifiersSniff`.
+ * @since 7.0.8  This sniff now throws a warning (deprecated) or an error (removed) depending
+ *               on the `testVersion` set. Previously it would always throw an error.
+ * @since 8.2.0  Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
+ * @since 9.0.0  Renamed from `PregReplaceEModifierSniff` to `RemovedPCREModifiersSniff`.
+ * @since 10.0.0 Now uses the new `PCRERegexTrait`.
  */
 class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
+    use PCRERegexTrait;
 
     /**
      * Functions to check for.
@@ -54,20 +54,6 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         'preg_filter'  => true,
     ];
 
-    /**
-     * Regex bracket delimiters.
-     *
-     * @since 7.0.5 This array was originally contained within the `process()` method.
-     *
-     * @var array
-     */
-    protected $doublesSeparators = [
-        '{' => '}',
-        '[' => ']',
-        '(' => ')',
-        '<' => '>',
-    ];
-
 
     /**
      * Process the parameters of a matched function.
@@ -75,6 +61,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      * @since 5.6
      * @since 8.2.0 Renamed from `process()` to `processParameters()` and removed
      *              logic superfluous now the sniff extends the abstract.
+     * @since 10.0.0 Most logic has been moved to the new `PCRERegexTrait`.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
      * @param int                         $stackPtr     The position of the current token in the stack.
@@ -91,40 +78,18 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $tokens         = $phpcsFile->getTokens();
-        $functionNameLc = \strtolower($functionName);
-        $firstParam     = $parameters[1];
+        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $parameters[1]);
+        if (empty($patterns) === true) {
+            return;
+        }
 
-        // Differentiate between an array of patterns passed and a single pattern.
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $firstParam['start'], ($firstParam['end'] + 1), true);
-        if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === \T_ARRAY || $tokens[$nextNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY)) {
-            $arrayValues = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
-            if ($functionNameLc === 'preg_replace_callback_array') {
-                // For preg_replace_callback_array(), the patterns will be in the array keys.
-                foreach ($arrayValues as $value) {
-                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
-                    if ($hasKey === false) {
-                        continue;
-                    }
-
-                    $value['end'] = ($hasKey - 1);
-                    $value['raw'] = \trim($phpcsFile->getTokensAsString($value['start'], ($hasKey - $value['start'])));
-                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
-                }
-            } else {
-                // Otherwise, the patterns will be in the array values.
-                foreach ($arrayValues as $value) {
-                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $value['start'], ($value['end'] + 1));
-                    if ($hasKey !== false) {
-                        $value['start'] = ($hasKey + 1);
-                        $value['raw']   = \trim($phpcsFile->getTokensAsString($value['start'], (($value['end'] + 1) - $value['start'])));
-                    }
-
-                    $this->processRegexPattern($value, $phpcsFile, $value['end'], $functionName);
-                }
+        foreach ($patterns as $pattern) {
+            $modifiers = $this->getRegexModifiers($phpcsFile, $pattern);
+            if ($modifiers === '') {
+                continue;
             }
-        } else {
-            $this->processRegexPattern($firstParam, $phpcsFile, $stackPtr, $functionName);
+
+            $this->examineModifiers($phpcsFile, $pattern['end'], $functionName, $modifiers);
         }
     }
 
@@ -140,73 +105,6 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
     {
         return ($this->supportsAbove('5.5') === false);
     }
-
-
-    /**
-     * Analyse a potential regex pattern for use of the /e modifier.
-     *
-     * @since 7.1.2 This logic was originally contained within the `process()` method.
-     *
-     * @param array                       $pattern      Array containing the start and end token
-     *                                                  pointer of the potential regex pattern
-     *                                                  and the raw string value of the pattern.
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $stackPtr     The position of the current token in the
-     *                                                  stack passed in $tokens.
-     * @param string                      $functionName The function which contained the pattern.
-     *
-     * @return void
-     */
-    protected function processRegexPattern($pattern, File $phpcsFile, $stackPtr, $functionName)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        /*
-         * The pattern might be build up of a combination of strings, variables
-         * and function calls. We are only concerned with the strings.
-         */
-        $regex = '';
-        for ($i = $pattern['start']; $i <= $pattern['end']; $i++) {
-            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
-                $content = TextStrings::stripQuotes($tokens[$i]['content']);
-                if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
-                    $content = $this->stripVariables($content);
-                }
-
-                $regex .= \trim($content);
-            }
-        }
-
-        // Deal with multi-line regexes which were broken up in several string tokens.
-        if ($tokens[$pattern['start']]['line'] !== $tokens[$pattern['end']]['line']) {
-            $regex = TextStrings::stripQuotes($regex);
-        }
-
-        if ($regex === '') {
-            // No string token found in the first parameter, so skip it (e.g. if variable passed in).
-            return;
-        }
-
-        $regexFirstChar = \substr($regex, 0, 1);
-
-        // Make sure that the character identified as the delimiter is valid.
-        // Otherwise, it is a false positive caused by the string concatenation.
-        if (\preg_match('`[a-z0-9\\\\ ]`i', $regexFirstChar) === 1) {
-            return;
-        }
-
-        if (isset($this->doublesSeparators[$regexFirstChar])) {
-            $regexEndPos = \strrpos($regex, $this->doublesSeparators[$regexFirstChar]);
-        } else {
-            $regexEndPos = \strrpos($regex, $regexFirstChar);
-        }
-
-        if ($regexEndPos !== false) {
-            $modifiers = \substr($regex, $regexEndPos + 1);
-            $this->examineModifiers($phpcsFile, $stackPtr, $functionName, $modifiers);
-        }
-    }
-
 
     /**
      * Examine the regex modifier string.
