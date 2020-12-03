@@ -21,7 +21,8 @@ use PHP_CodeSniffer\Files\File;
  * and removed as of PHP 7.0.
  *
  * {@internal If and when this sniff would need to start checking for other modifiers, a minor
- * refactor will be needed as all references to the `e` modifier are currently hard-coded.}
+ * refactor will be needed as all references to the `e` modifier are currently hard-coded
+ * and the target functions are limited to the ones which supported the `e` modifier.}
  *
  * PHP version 5.5
  * PHP version 7.0
