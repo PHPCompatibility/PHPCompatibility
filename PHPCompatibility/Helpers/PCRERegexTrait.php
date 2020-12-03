@@ -71,41 +71,55 @@ trait PCRERegexTrait
             );
         }
 
-        $tokens         = $phpcsFile->getTokens();
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $paramInfo['start'], ($paramInfo['end'] + 1), true);
+        if ($nextNonEmpty === false) {
+            // Shouldn't be possible.
+            return [];
+        }
+
+        $tokens = $phpcsFile->getTokens();
+        if ($tokens[$nextNonEmpty]['code'] !== \T_ARRAY
+            && $tokens[$nextNonEmpty]['code'] !== \T_OPEN_SHORT_ARRAY
+        ) {
+            // Parameter not passed as an array, treat it as a string pattern.
+            return [$paramInfo];
+        }
+
+        // Okay, so we have an array of regex patterns. Let's split these out properly.
+        $arrayItems = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
+        if (empty($arrayItems) === true) {
+            return [];
+        }
+
         $patterns       = [];
         $functionNameLc = \strtolower($functionName);
 
-        // Differentiate between an array of patterns passed and a single pattern.
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $paramInfo['start'], ($paramInfo['end'] + 1), true);
-        if ($nextNonEmpty !== false && ($tokens[$nextNonEmpty]['code'] === \T_ARRAY || $tokens[$nextNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY)) {
-            $arrayItems = PassedParameters::getParameters($phpcsFile, $nextNonEmpty);
-            if ($functionNameLc === 'preg_replace_callback_array') {
-                // For preg_replace_callback_array(), the patterns will be in the array keys.
-                foreach ($arrayItems as $itemInfo) {
-                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
-                    if ($hasKey === false) {
-                        continue;
-                    }
-
-                    $itemInfo['end'] = ($hasKey - 1);
-                    $itemInfo['raw'] = \trim($phpcsFile->getTokensAsString($itemInfo['start'], ($hasKey - $itemInfo['start'])));
-                    $patterns[]      = $itemInfo;
+        if ($functionNameLc === 'preg_replace_callback_array') {
+            // For preg_replace_callback_array(), the patterns will be in the array keys.
+            foreach ($arrayItems as $itemInfo) {
+                $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
+                if ($hasKey === false) {
+                    continue;
                 }
-            } else {
-                // Otherwise, the patterns will be in the array values.
-                foreach ($arrayItems as $itemInfo) {
-                    $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
-                    if ($hasKey !== false) {
-                        // Param info array only needs adjusting if this was a keyed array item.
-                        $itemInfo['start'] = ($hasKey + 1);
-                        $itemInfo['raw']   = \trim($phpcsFile->getTokensAsString($itemInfo['start'], (($itemInfo['end'] + 1) - $itemInfo['start'])));
-                    }
 
-                    $patterns[] = $itemInfo;
-                }
+                $itemInfo['end'] = ($hasKey - 1);
+                $itemInfo['raw'] = \trim($phpcsFile->getTokensAsString($itemInfo['start'], ($hasKey - $itemInfo['start'])));
+                $patterns[]      = $itemInfo;
             }
-        } else {
-            $patterns[] = $paramInfo;
+
+            return $patterns;
+        }
+
+        // Otherwise, the patterns will be in the array values.
+        foreach ($arrayItems as $itemInfo) {
+            $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
+            if ($hasKey !== false) {
+                // Param info array only needs adjusting if this was a keyed array item.
+                $itemInfo['start'] = ($hasKey + 1);
+                $itemInfo['raw']   = \trim($phpcsFile->getTokensAsString($itemInfo['start'], (($itemInfo['end'] + 1) - $itemInfo['start'])));
+            }
+
+            $patterns[] = $itemInfo;
         }
 
         return $patterns;
