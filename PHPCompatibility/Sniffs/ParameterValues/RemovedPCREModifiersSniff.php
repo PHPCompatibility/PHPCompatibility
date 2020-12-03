@@ -54,6 +54,17 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
         'preg_filter'  => true,
     ];
 
+    /**
+     * Do a version check to determine if this sniff needs to run at all.
+     *
+     * @since 8.2.0
+     *
+     * @return bool
+     */
+    protected function bowOutEarly()
+    {
+        return ($this->supportsAbove('5.5') === false);
+    }
 
     /**
      * Process the parameters of a matched function.
@@ -91,19 +102,6 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 
             $this->examineModifiers($phpcsFile, $pattern['end'], $functionName, $modifiers);
         }
-    }
-
-
-    /**
-     * Do a version check to determine if this sniff needs to run at all.
-     *
-     * @since 8.2.0
-     *
-     * @return bool
-     */
-    protected function bowOutEarly()
-    {
-        return ($this->supportsAbove('5.5') === false);
     }
 
     /**
