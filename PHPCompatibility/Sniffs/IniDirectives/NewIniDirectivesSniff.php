@@ -32,6 +32,21 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
 {
 
     /**
+     * List of functions which take an ini directive as parameter (always the first parameter).
+     *
+     * Key is the function name, value is the 1-based parameter position in the function call.
+     *
+     * @since 7.1.0
+     * @since 10.0.0 Moved from the base `Sniff` class to this sniff.
+     *
+     * @var array
+     */
+    protected $iniFunctions = [
+        'ini_get' => 1,
+        'ini_set' => 1,
+    ];
+
+    /**
      * A list of new INI directives
      *
      * The array lists : version number with false (not present) or true (present).

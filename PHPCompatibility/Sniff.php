@@ -63,21 +63,6 @@ abstract class Sniff implements PHPCS_Sniff
         'hash'           => 1,
     ];
 
-    /**
-     * List of functions which take an ini directive as parameter (always the first parameter).
-     *
-     * Used by the new/removed ini directives sniffs.
-     * Key is the function name, value is the 1-based parameter position in the function call.
-     *
-     * @since 7.1.0
-     *
-     * @var array
-     */
-    protected $iniFunctions = [
-        'ini_get' => 1,
-        'ini_set' => 1,
-    ];
-
 
     /**
      * Add a PHPCS message to the output stack as either a warning or an error.
