@@ -112,6 +112,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Quote as a delimiter.
             [211],
+
+            // Heredoc/Nowdoc.
+            [228, 'preg_filter'],
         ];
     }
 
@@ -180,6 +183,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Quote as a delimiter.
             [210],
+
+            // Heredoc/Nowdoc.
+            [220],
         ];
     }
 

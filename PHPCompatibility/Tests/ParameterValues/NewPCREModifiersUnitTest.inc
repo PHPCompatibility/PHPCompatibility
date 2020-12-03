@@ -31,3 +31,16 @@ preg_replace_callback_array(
     ],
     $subject
 );
+
+// Verify support for heredocs and nowdocs.
+$text = preg_match_all(
+    <<<'EOD'
+/(?<!\\\\)     # not preceded by a backslash
+  <            # an open bracket
+  >            # close bracket
+/iJx
+EOD
+    ,
+    '[$1]',
+    $text
+  );

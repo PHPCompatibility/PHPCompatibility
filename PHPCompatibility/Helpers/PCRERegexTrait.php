@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\PassedParameters;
@@ -160,19 +161,22 @@ trait PCRERegexTrait
          * and function calls. We are only concerned with the strings.
          */
         for ($i = $patternInfo['start']; $i <= $patternInfo['end']; $i++) {
-            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === true) {
-                $content = TextStrings::stripQuotes($tokens[$i]['content']);
-                if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
+            if (isset(Collections::$textStingStartTokens[$tokens[$i]['code']]) === false) {
+                continue;
+            }
+
+            try {
+                $content = TextStrings::getCompleteTextString($phpcsFile, $i, true);
+                if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING
+                    || $tokens[$i]['code'] === \T_START_HEREDOC
+                ) {
                     $content = Sniff::stripVariables($content);
                 }
 
                 $regex .= \trim($content);
+            } catch (RuntimeException $e) {
+                // Ignore. Subsequent line of a multi-line double quoted text string.
             }
-        }
-
-        // Deal with multi-line regexes which were broken up in several string tokens.
-        if ($tokens[$patternInfo['start']]['line'] !== $tokens[$patternInfo['end']]['line']) {
-            $regex = TextStrings::stripQuotes($regex);
         }
 
         if ($regex === '') {
