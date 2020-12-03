@@ -86,6 +86,10 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
             [142, 'preg_filter'],
             [148, 'preg_filter'],
 
+            // Regex build up of multiple tokens.
+            [153],
+            [154],
+
             // Array of patterns.
             [162],
             [163],
