@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -97,7 +98,7 @@ trait PCRERegexTrait
         if ($functionNameLc === 'preg_replace_callback_array') {
             // For preg_replace_callback_array(), the patterns will be in the array keys.
             foreach ($arrayItems as $itemInfo) {
-                $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
+                $hasKey = Arrays::getDoubleArrowPtr($phpcsFile, $itemInfo['start'], $itemInfo['end']);
                 if ($hasKey === false) {
                     continue;
                 }
@@ -112,7 +113,7 @@ trait PCRERegexTrait
 
         // Otherwise, the patterns will be in the array values.
         foreach ($arrayItems as $itemInfo) {
-            $hasKey = $phpcsFile->findNext(\T_DOUBLE_ARROW, $itemInfo['start'], ($itemInfo['end'] + 1));
+            $hasKey = Arrays::getDoubleArrowPtr($phpcsFile, $itemInfo['start'], $itemInfo['end']);
             if ($hasKey !== false) {
                 // Param info array only needs adjusting if this was a keyed array item.
                 $itemInfo['start'] = ($hasKey + 1);
