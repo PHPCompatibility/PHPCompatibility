@@ -71,6 +71,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['libxml_disable_entity_loader', '8.0', [1191], '7.4'],
             ['openssl_x509_free', '8.0', [1189], '7.4'],
             ['openssl_pkey_free', '8.0', [1190], '7.4'],
+            ['shmop_close', '8.0', [1217], '7.4'],
+            ['openssl_free_key', '8.0', [1218], '7.4'],
         ];
     }
 

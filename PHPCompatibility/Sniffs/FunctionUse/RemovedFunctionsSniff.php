@@ -4691,6 +4691,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'openssl_pkey_free' => [
             '8.0' => false,
         ],
+        'openssl_free_key' => [
+            '8.0' => false,
+        ],
         'pg_clientencoding' => [
             '8.0'         => false,
             'alternative' => 'pg_client_encoding()',
@@ -4786,6 +4789,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         'pg_setclientencoding' => [
             '8.0'         => false,
             'alternative' => 'pg_set_client_encoding()',
+        ],
+        'shmop_close' => [
+            '8.0' => false,
         ],
         'xmlrpc_decode_request' => [
             '8.0'       => true,
