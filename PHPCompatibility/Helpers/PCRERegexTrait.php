@@ -81,9 +81,7 @@ trait PCRERegexTrait
         }
 
         $tokens = $phpcsFile->getTokens();
-        if ($tokens[$nextNonEmpty]['code'] !== \T_ARRAY
-            && $tokens[$nextNonEmpty]['code'] !== \T_OPEN_SHORT_ARRAY
-        ) {
+        if (isset(Collections::$arrayTokensBC[$tokens[$nextNonEmpty]['code']]) === false) {
             // Parameter not passed as an array, treat it as a string pattern.
             return [$paramInfo];
         }
