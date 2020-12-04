@@ -40,12 +40,30 @@ trait HashAlgorithmsTrait
      * @var array
      */
     protected $hashAlgoFunctions = [
-        'hash_file'      => 1,
-        'hash_hmac_file' => 1,
-        'hash_hmac'      => 1,
-        'hash_init'      => 1,
-        'hash_pbkdf2'    => 1,
-        'hash'           => 1,
+        'hash_file' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
+        'hash_hmac_file' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
+        'hash_hmac' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
+        'hash_init' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
+        'hash_pbkdf2' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
+        'hash' => [
+            'position' => 1,
+            'name'     => 'algo',
+        ],
     ];
 
     /**
@@ -78,7 +96,8 @@ trait HashAlgorithmsTrait
         }
 
         // Get the parameter from the function call which should contain the algorithm name.
-        $algoParam = PassedParameters::getParameter($phpcsFile, $stackPtr, $this->hashAlgoFunctions[$functionNameLc]);
+        $paramInfo = $this->hashAlgoFunctions[$functionNameLc];
+        $algoParam = PassedParameters::getParameter($phpcsFile, $stackPtr, $paramInfo['position'], $paramInfo['name']);
         if ($algoParam === false) {
             return false;
         }
