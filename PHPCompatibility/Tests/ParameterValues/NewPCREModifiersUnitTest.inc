@@ -44,3 +44,7 @@ EOD
     '[$1]',
     $text
   );
+
+// Safeguard support for PHP 8 named parameters.
+preg_grep(array: $input, pattern: '#some text#i'); // OK.
+preg_grep(array: $input, pattern: '#some text#Ji', flags: $flags); // Error.
