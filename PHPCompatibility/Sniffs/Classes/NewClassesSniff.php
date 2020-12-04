@@ -299,14 +299,14 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         ],
         /*
         See: https://bugs.php.net/bug.php?id=79625
-        'OCI-Collection' => array(
+        'OCI-Collection' => [
             '4.4' => false,
             '5.0' => true,
-        ),
-        'OCI-Lob' => array(
+        ],
+        'OCI-Lob' => [
             '4.4' => false,
             '5.0' => true,
-        ),
+        ],
         */
 
         'libXMLError' => [
@@ -747,7 +747,19 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+        'ReflectionUnionType' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'WeakMap' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        'OCICollection' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        'OCILob' => [
             '7.4' => false,
             '8.0' => true,
         ],
@@ -958,6 +970,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             'extension' => 'ffi',
         ],
 
+        'UnhandledMatchError' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'ValueError' => [
             '7.4' => false,
             '8.0' => true,

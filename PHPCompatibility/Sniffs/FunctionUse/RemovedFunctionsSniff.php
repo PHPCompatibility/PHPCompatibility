@@ -2991,35 +2991,35 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ocicloselob' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::close()',
+            'alternative' => 'OCI-Lob::close() / OCILob::close() (PHP 8+)',
         ],
         'ocicollappend' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::append()',
+            'alternative' => 'OCI-Collection::append() / OCICollection::append() (PHP 8+)',
         ],
         'ocicollassign' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::assign()',
+            'alternative' => 'OCI-Collection::assign() / OCICollection::assign() (PHP 8+)',
         ],
         'ocicollassignelem' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::assignElem()',
+            'alternative' => 'OCI-Collection::assignElem() / OCICollection::assignElem() (PHP 8+)',
         ],
         'ocicollgetelem' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::getElem()',
+            'alternative' => 'OCI-Collection::getElem() / OCICollection::getElem() (PHP 8+)',
         ],
         'ocicollmax' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::max()',
+            'alternative' => 'OCI-Collection::max() / OCICollection::max() (PHP 8+)',
         ],
         'ocicollsize' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::size()',
+            'alternative' => 'OCI-Collection::size() / OCICollection::size() (PHP 8+)',
         ],
         'ocicolltrim' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::trim()',
+            'alternative' => 'OCI-Collection::trim() / OCICollection::trim() (PHP 8+)',
         ],
         'ocicolumnisnull' => [
             '5.4'         => false,
@@ -3079,7 +3079,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ocifreecollection' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Collection::free()',
+            'alternative' => 'OCI-Collection::free() / OCICollection::free() (PHP 8+)',
         ],
         'ocifreecursor' => [
             '5.4'         => false,
@@ -3087,7 +3087,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ocifreedesc' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::free()',
+            'alternative' => 'OCI-Lob::free() / OCILob::free() (PHP 8+)',
         ],
         'ocifreestatement' => [
             '5.4'         => false,
@@ -3100,7 +3100,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ociloadlob' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::load()',
+            'alternative' => 'OCI-Lob::load() / OCILob::load() (PHP 8+)',
         ],
         'ocilogoff' => [
             '5.4'         => false,
@@ -3152,11 +3152,11 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ocisavelob' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::save()',
+            'alternative' => 'OCI-Lob::save() / OCILob::save() (PHP 8+)',
         ],
         'ocisavelobfile' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::import()',
+            'alternative' => 'OCI-Lob::import() / OCILob::import() (PHP 8+)',
         ],
         'ociserverversion' => [
             '5.4'         => false,
@@ -3172,11 +3172,11 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
         'ociwritelobtofile' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::export()',
+            'alternative' => 'OCI-Lob::export() / OCILob::export() (PHP 8+)',
         ],
         'ociwritetemporarylob' => [
             '5.4'         => false,
-            'alternative' => 'OCI-Lob::writeTemporary()',
+            'alternative' => 'OCI-Lob::writeTemporary() / OCILob::writeTemporary() (PHP 8+)',
         ],
         'mysqli_get_cache_stats' => [
             '5.4'         => true,

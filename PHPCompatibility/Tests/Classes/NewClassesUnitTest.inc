@@ -418,3 +418,12 @@ try {
     throw new ValueError('Unknown type');
 } catch (\ValueError $e) {
 }
+
+$type = new ReflectionUnionType();
+
+$oci8 = new OCICollection();
+$closure = function(OCILob $lob) {};
+
+try {
+} catch (UnhandledMatchError $e) {
+}
