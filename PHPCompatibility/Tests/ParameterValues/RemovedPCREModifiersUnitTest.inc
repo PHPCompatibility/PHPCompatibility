@@ -226,3 +226,7 @@ preg_filter(<<<EOD
 `xe
 EOD
     , $replace, $source); // Bad.
+
+// Safeguard support for PHP 8 named parameters.
+preg_replace( subject: '/pattern/e', pattern: '/pattern/', count: $count, replacement: $replacement, limit: $limit ); // OK.
+preg_replace( limit: $limit, count: $count, pattern: '/some text/emS', replacement: $replacement, subject: $subject ); // Error.

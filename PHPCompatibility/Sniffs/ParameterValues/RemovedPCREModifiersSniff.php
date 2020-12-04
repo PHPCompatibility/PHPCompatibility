@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
@@ -47,13 +48,21 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      * Functions to check for.
      *
      * @since 7.0.1
-     * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
+     * @since 8.2.0  Renamed from `$functions` to `$targetFunctions`.
+     * @since 10.0.0 Value changed from an irrelevant value to an array.
      *
-     * @var array
+     * @var array Key is the function name, value an array containing the 1-based parameter position
+     *            and the official name of the parameter.
      */
     protected $targetFunctions = [
-        'preg_replace' => true,
-        'preg_filter'  => true,
+        'preg_replace' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_filter' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
     ];
 
     /**
@@ -86,12 +95,14 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        // Check the first parameter in the function call as that should contain the regex(es).
-        if (isset($parameters[1]) === false) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam === false) {
             return;
         }
 
-        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $parameters[1]);
+        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $targetParam);
         if (empty($patterns) === true) {
             return;
         }
