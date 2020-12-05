@@ -71,7 +71,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
         return [
             ['mktime', 'hour', '5.1', '8.0', [19], '5.0'],
             ['crypt', 'salt', '5.6', '8.0', [8], '5.5'],
-            ['parse_str', 'result', '7.2', '8.0', [7], '7.1'],
+            ['parse_str', 'result', '7.2', '8.0', [7, 37], '7.1'],
         ];
     }
 
@@ -115,8 +115,8 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
         return [
             ['gmmktime', 'hour', '8.0', [18, 31], '7.4'],
             ['mb_parse_str', 'result', '8.0', [22], '7.4'],
-            ['openssl_seal', 'method', '8.0', [25], '7.4'],
-            ['openssl_open', 'method', '8.0', [28], '7.4'],
+            ['openssl_seal', 'cipher_algo', '8.0', [25, 40], '7.4'],
+            ['openssl_open', 'cipher_algo', '8.0', [28], '7.4'],
         ];
     }
 

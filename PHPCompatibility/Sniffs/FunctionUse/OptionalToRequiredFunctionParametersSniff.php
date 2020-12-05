@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -77,13 +78,13 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
         ],
         'openssl_seal' => [
             5 => [
-                'name' => 'method',
+                'name' => 'cipher_algo',
                 '8.0'  => true,
             ],
         ],
         'openssl_open' => [
             5 => [
-                'name' => 'method',
+                'name' => 'cipher_algo',
                 '8.0'  => true,
             ],
         ],
@@ -125,11 +126,12 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLc     = \strtolower($functionName);
-        $parameterCount = \count($parameters);
+        $functionLc = \strtolower($functionName);
 
         foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
-            if ($offset > $parameterCount) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam === false) {
                 $itemInfo = [
                     'name'   => $functionName,
                     'nameLc' => $functionLc,
