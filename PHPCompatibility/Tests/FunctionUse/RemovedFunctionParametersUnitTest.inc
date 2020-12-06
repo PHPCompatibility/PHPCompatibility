@@ -38,3 +38,10 @@ imageopenpolygon($image, $points, $num_points, $color); // Warning.
 imagefilledpolygon($image, $points, $num_points, $color); // Warning.
 
 mysqli_get_client_info($mysql); // Warning.
+
+// Safeguard support for PHP 8 named parameters.
+define(constant_name: 'CONSTANT', value : 'foo'); // OK.
+define( case_insensitive : true, value : 'foo', constant_name: 'CONSTANT' ); // Error.
+
+imagepolygon($image, color: $color, points: $points); // OK, well not really as this function sig doesn't support named params, but that's not the concern of this sniff.
+imagepolygon($image, color: $color, points: $points, num_points: $num_points); // Warning.

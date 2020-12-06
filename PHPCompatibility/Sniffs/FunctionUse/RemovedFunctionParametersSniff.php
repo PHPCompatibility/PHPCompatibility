@@ -67,7 +67,7 @@ class RemovedFunctionParametersSniff extends Sniff
         ],
         'gmmktime' => [
             7 => [
-                'name' => 'is_dst',
+                'name' => 'isDST',
                 '5.1'  => false,
                 '7.0'  => true,
             ],
@@ -81,6 +81,8 @@ class RemovedFunctionParametersSniff extends Sniff
         /*
          * For the below three functions, it's actually the 3rd parameter which has been deprecated.
          * However with positional arguments, this can only be detected by checking for the "old last" argument.
+         * Note: this function explicitly does NOT support named parameters for the function
+         * signature without this parameter, but that's not the concern of this sniff.
          */
         'imagepolygon' => [
             4 => [
@@ -120,7 +122,7 @@ class RemovedFunctionParametersSniff extends Sniff
         ],
         'mktime' => [
             7 => [
-                'name' => 'is_dst',
+                'name' => 'isDST',
                 '5.1'  => false,
                 '7.0'  => true,
             ],
@@ -227,9 +229,8 @@ class RemovedFunctionParametersSniff extends Sniff
             }
         }
 
-        $parameters     = PassedParameters::getParameters($phpcsFile, $stackPtr);
-        $parameterCount = \count($parameters);
-        if ($parameterCount === 0) {
+        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters)) {
             return;
         }
 
@@ -237,7 +238,9 @@ class RemovedFunctionParametersSniff extends Sniff
         $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
-            if ($offset <= $parameterCount) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam !== false) {
                 if (isset($parameterDetails['callback']) && \method_exists($this, $parameterDetails['callback'])) {
                     if ($this->{$parameterDetails['callback']}($phpcsFile, $parameters[($offset + 1)]) === false) {
                         continue;
