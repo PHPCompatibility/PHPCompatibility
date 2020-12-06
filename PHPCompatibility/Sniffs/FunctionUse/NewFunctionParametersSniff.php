@@ -47,7 +47,7 @@ class NewFunctionParametersSniff extends Sniff
     protected $newFunctionParameters = [
         'array_filter' => [
             3 => [
-                'name' => 'flag',
+                'name' => 'mode',
                 '5.5'  => false,
                 '5.6'  => true,
             ],
@@ -61,7 +61,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'array_unique' => [
             2 => [
-                'name'  => 'sort_flags',
+                'name'  => 'flags',
                 '5.2.8' => false,
                 '5.2.9' => true,
             ],
@@ -122,14 +122,14 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'curl_multi_info_read' => [
             2 => [
-                'name' => 'msgs_in_queue',
+                'name' => 'queued_messages',
                 '5.1'  => false,
                 '5.2'  => true,
             ],
         ],
         'date_time_set' => [
             5 => [
-                'name' => 'microseconds',
+                'name' => 'microsecond',
                 '7.0'  => false,
                 '7.1'  => true,
             ],
@@ -186,7 +186,7 @@ class NewFunctionParametersSniff extends Sniff
                 '5.1'  => true,
             ],
             5 => [
-                'name' => 'maxlen',
+                'name' => 'length',
                 '5.0'  => false,
                 '5.1'  => true,
             ],
@@ -207,7 +207,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'fputcsv' => [
             5 => [
-                'name'  => 'escape_char',
+                'name'  => 'escape',
                 '5.5.3' => false,
                 '5.5.4' => true,
             ],
@@ -226,14 +226,14 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'getopt' => [
             3 => [
-                'name' => 'optind',
+                'name' => 'rest_index',
                 '7.0'  => false,
                 '7.1'  => true,
             ],
         ],
         'gettimeofday' => [
             1 => [
-                'name' => 'return_float',
+                'name' => 'as_float',
                 '5.0'  => false,
                 '5.1'  => true,
             ],
@@ -322,7 +322,7 @@ class NewFunctionParametersSniff extends Sniff
                 '5.1.2' => true,
             ],
             4 => [
-                'name' => 'enc_type',
+                'name' => 'encoding_type',
                 '5.3'  => false,
                 '5.4'  => true,
             ],
@@ -379,19 +379,19 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'imap_open' => [
             5 => [
-                'name' => 'n_retries',
+                'name' => 'retries',
                 '5.1'  => false,
                 '5.2'  => true,
             ],
             6 => [
-                'name'  => 'params',
+                'name'  => 'options',
                 '5.3.1' => false,
                 '5.3.2' => true,
             ],
         ],
         'imap_reopen' => [
             4 => [
-                'name' => 'n_retries',
+                'name' => 'retries',
                 '5.1'  => false,
                 '5.2'  => true,
             ],
@@ -419,7 +419,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'iterator_to_array' => [
             2 => [
-                'name'  => 'use_keys',
+                'name'  => 'preserve_keys',
                 '5.2.0' => false,
                 '5.2.1' => true,
             ],
@@ -431,14 +431,14 @@ class NewFunctionParametersSniff extends Sniff
                 '5.3'  => true,
             ],
             4 => [
-                'name' => 'options',
+                'name' => 'flags',
                 '5.3'  => false,
                 '5.4'  => true,
             ],
         ],
         'json_encode' => [
             2 => [
-                'name' => 'options',
+                'name' => 'flags',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -450,98 +450,98 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'ldap_add' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_compare' => [
             5 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_delete' => [
             3 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_exop' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_exop_passwd' => [
             5 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_list' => [
             9 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_mod_add' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_mod_del' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_mod_replace' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_modify_batch' => [
             4 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_parse_result' => [
             7 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_read' => [
             9 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_rename' => [
             6 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
         ],
         'ldap_search' => [
             9 => [
-                'name' => 'serverctrls',
+                'name' => 'controls',
                 '7.2'  => false,
                 '7.3'  => true,
             ],
@@ -569,7 +569,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'mb_encode_numericentity' => [
             4 => [
-                'name' => 'is_hex',
+                'name' => 'hex',
                 '5.3'  => false,
                 '5.4'  => true,
             ],
@@ -620,7 +620,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'nl2br' => [
             2 => [
-                'name' => 'is_xhtml',
+                'name' => 'use_xhtml',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -666,7 +666,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'openssl_open' => [
             5 => [
-                'name' => 'method',
+                'name' => 'cipher_algo',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -683,14 +683,14 @@ class NewFunctionParametersSniff extends Sniff
                 '5.1'  => true,
             ],
             7 => [
-                'name' => 'p7bfilename',
+                'name' => 'output_filename',
                 '7.1'  => false,
                 '7.2'  => true,
             ],
         ],
         'openssl_seal' => [
             5 => [
-                'name' => 'method',
+                'name' => 'cipher_algo',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -702,7 +702,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'openssl_verify' => [
             4 => [
-                'name' => 'signature_alg',
+                'name' => 'algorithm',
                 '5.1'  => false,
                 '5.2'  => true,
             ],
@@ -745,28 +745,28 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'pg_fetch_all' => [
             2 => [
-                'name' => 'result_type',
+                'name' => 'mode',
                 '7.0'  => false,
                 '7.1'  => true,
             ],
         ],
         'pg_last_notice' => [
             2 => [
-                'name' => 'option',
+                'name' => 'mode',
                 '7.0'  => false,
                 '7.1'  => true,
             ],
         ],
         'pg_lo_create' => [
             2 => [
-                'name' => 'object_id',
+                'name' => 'oid',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
         ],
         'pg_lo_import' => [
             3 => [
-                'name' => 'object_id',
+                'name' => 'oid',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -780,7 +780,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'pg_select' => [
             5 => [
-                'name' => 'result_type',
+                'name' => 'mode',
                 '7.0'  => false,
                 '7.1'  => true,
             ],
@@ -827,7 +827,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'sem_acquire' => [
             2 => [
-                'name'  => 'nowait',
+                'name'  => 'non_blocking',
                 '5.6.0' => false,
                 '5.6.1' => true,
             ],
@@ -949,7 +949,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'str_word_count' => [
             3 => [
-                'name' => 'charlist',
+                'name' => 'characters',
                 '5.0'  => false,
                 '5.1'  => true,
             ],
@@ -975,24 +975,24 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'timezone_transitions_get' => [
             2 => [
-                'name' => 'timestamp_begin',
+                'name' => 'timestampBegin',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
             3 => [
-                'name' => 'timestamp_end',
+                'name' => 'timestampEnd',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
         ],
         'timezone_identifiers_list' => [
             1 => [
-                'name' => 'what',
+                'name' => 'timezoneGroup',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
             2 => [
-                'name' => 'country',
+                'name' => 'countryCode',
                 '5.2'  => false,
                 '5.3'  => true,
             ],
@@ -1006,7 +1006,7 @@ class NewFunctionParametersSniff extends Sniff
         ],
         'ucwords' => [
             2 => [
-                'name'   => 'delimiters',
+                'name'   => 'separators',
                 '5.4.31' => false,
                 '5.5.15' => false,
                 '5.4.32' => true,
@@ -1096,8 +1096,8 @@ class NewFunctionParametersSniff extends Sniff
             }
         }
 
-        $parameterCount = PassedParameters::getParameterCount($phpcsFile, $stackPtr);
-        if ($parameterCount === 0) {
+        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters)) {
             return;
         }
 
@@ -1105,7 +1105,9 @@ class NewFunctionParametersSniff extends Sniff
         $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
 
         foreach ($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
-            if ($offset <= $parameterCount) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam !== false) {
                 $itemInfo = [
                     'name'   => $function,
                     'nameLc' => $functionLc,
