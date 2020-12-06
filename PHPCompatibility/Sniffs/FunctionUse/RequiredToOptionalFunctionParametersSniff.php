@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
@@ -51,25 +52,25 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
     protected $targetFunctions = [
         'array_diff_assoc' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff_key' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff_uassoc' => [
             /*
-             * $array2 is actually at position 1, but has another required parameter after it,
+             * $rest is actually at position 2, but has another required parameter after it,
              * so we need to detect on the last parameter.
              */
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -77,28 +78,28 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_diff_ukey' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_assoc' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_key' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -106,7 +107,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_intersect_uassoc' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -114,35 +115,35 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_intersect_ukey' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect' => [
             2 => [
-                'name' => 'array2',
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_merge' => [
             1 => [
-                'name' => 'array(s) to merge',
+                'name' => 'arrays',
                 '7.3'  => true,
                 '7.4'  => false,
             ],
         ],
         'array_merge_recursive' => [
             1 => [
-                'name' => 'array(s) to merge',
+                'name' => 'arrays',
                 '7.3'  => true,
                 '7.4'  => false,
             ],
         ],
         'array_push' => [
             2 => [
-                'name' => 'element to push',
+                'name' => 'values',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
@@ -150,7 +151,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_udiff_assoc' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -158,7 +159,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_udiff_uassoc' => [
             // Note from array_diff_uassoc applies here too.
             4 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -166,7 +167,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_udiff' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -174,7 +175,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_uintersect_assoc' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -182,7 +183,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_uintersect_uassoc' => [
             // Note from array_diff_uassoc applies here too.
             4 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
@@ -190,14 +191,14 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         'array_uintersect' => [
             // Note from array_diff_uassoc applies here too.
             3 => [
-                'name' => 'array2',
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_unshift' => [
             2 => [
-                'name' => 'element to prepend',
+                'name' => 'values',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
@@ -274,15 +275,17 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         ],
         'getenv' => [
             1 => [
-                'name' => 'varname',
+                'name' => 'name',
                 '7.0'  => true,
                 '7.1'  => false,
             ],
         ],
         'imagepolygon' => [
             /*
-             * $num_points is actually at position 2, but has another required parameter after it,
+             * $points is actually at position 3, but has another required parameter after it,
              * so we need to detect on the last parameter.
+             * Note: this function explicitly does NOT support named parameters for the function
+             * signature without this parameter, but that's not the concern of this sniff.
              */
             4 => [
                 'name' => 'num_points',
@@ -315,7 +318,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         ],
         'stream_socket_enable_crypto' => [
             3 => [
-                'name' => 'crypto_type',
+                'name' => 'crypto_method',
                 '5.5'  => true,
                 '5.6'  => false,
             ],
@@ -364,11 +367,12 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLc     = \strtolower($functionName);
-        $parameterCount = \count($parameters);
+        $functionLc = \strtolower($functionName);
 
         foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
-            if ($offset > $parameterCount) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam === false) {
                 $itemInfo = [
                     'name'   => $functionName,
                     'nameLc' => $functionLc,
