@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Upgrade;
 
+use PHPCompatibility\Helpers\DisableSniffMsgTrait;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Add a notification for users of low PHP versions.
@@ -30,6 +30,8 @@ use PHPCSUtils\BackCompat\Helper;
  */
 class LowPHPSniff extends Sniff
 {
+    use DisableSniffMsgTrait;
+
     /**
      * The minimum supported PHP version.
      *
@@ -115,7 +117,6 @@ class LowPHPSniff extends Sniff
                 self::MIN_SUPPORTED_VERSION,
                 $phpVersion,
                 self::MIN_RECOMMENDED_VERSION,
-                $errorCode,
             ];
         } else {
             $isError      = false;
@@ -125,54 +126,10 @@ class LowPHPSniff extends Sniff
                 self::MIN_RECOMMENDED_VERSION,
                 $phpVersion,
                 self::MIN_RECOMMENDED_VERSION,
-                $errorCode,
             ];
         }
 
-        /*
-         * Figure out the report width to determine how long the delimiter lines should be.
-         *
-         * This is not an exact calculation as there are a number of unknowns at the time the
-         * notice is thrown (whether there are other notices for the file, whether those are
-         * warnings or errors, whether there are auto-fixable issues etc).
-         *
-         * In other words, this is just an approximation to get a reasonably stable and
-         * readable message layout format.
-         *
-         * {@internal
-         * PHPCS has had some changes as to how the messages display over the years.
-         * Most significantly in 2.4.0 it was attempted to solve an issue with messages
-         * containing new lines. Unfortunately, that solution is buggy.
-         * An improved version has been pulled upstream and will hopefully make it
-         * into PHPCS 3.3.1/3.4.0.
-         *
-         * Anyway, this means that instead of new lines, delimiter lines will be used to improved
-         * the readability of the (long) message.
-         *
-         * Also, as of PHPCS 2.2.0, the report width when using the `-s` option is 8 wider than
-         * it should be. A patch for that is included in the same upstream PR.
-         *
-         * If/when the upstream PR has been merged and the minimum supported/recommended version
-         * of PHPCompatibility would go beyond that, the below code should be adjusted.}
-         */
-        $reportWidth = Helper::getCommandLineData($phpcsFile, 'reportWidth');
-        if (empty($reportWidth)) {
-            $reportWidth = 80;
-        }
-        $showSources = Helper::getCommandLineData($phpcsFile, 'showSources');
-        if ($showSources === true) {
-            $reportWidth += 6;
-        }
-
-        $messageWidth  = ($reportWidth - 15); // 15 is length of " # | WARNING | ".
-        $delimiterLine = \str_repeat('-', ($messageWidth));
-        $disableNotice = 'To disable this notice, add --exclude=PHPCompatibility.Upgrade.LowPHP to your command or add <exclude name="PHPCompatibility.Upgrade.LowPHP.%s"/> to your custom ruleset. ';
-        $thankYou      = 'Thank you for using PHPCompatibility!';
-
-        $message .= ' ' . $delimiterLine;
-        $message .= ' ' . $disableNotice;
-        $message .= ' ' . $delimiterLine;
-        $message .= ' ' . $thankYou;
+        $message .= $this->createDisableSniffNotice($phpcsFile, 'PHPCompatibility.Upgrade.LowPHP', $errorCode);
 
         $this->addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
 
