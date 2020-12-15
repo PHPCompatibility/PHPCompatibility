@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect passing a string literal as `$category` to `setlocale()`.
@@ -85,16 +86,14 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
                 return;
             }
 
-            if ($tokens[$i]['code'] !== \T_CONSTANT_ENCAPSED_STRING
-                && $tokens[$i]['code'] !== \T_DOUBLE_QUOTED_STRING
-            ) {
+            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
                 continue;
             }
 
             $message   = 'Passing the $category as a string to setlocale() has been deprecated since PHP 4.2';
             $isError   = false;
             $errorCode = 'Deprecated';
-            $data      = [$targetParam['raw']];
+            $data      = [$targetParam['clean']];
 
             if ($this->supportsAbove('7.0') === true) {
                 $message  .= ' and is removed since PHP 7.0';
