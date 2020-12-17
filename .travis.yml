@@ -27,12 +27,10 @@ env:
 
 # Define the stages used.
 # For non-PRs, only the quicktest stage is run.
-# For pull requests and merges, the full script is run (skipping quicktest).
+# For pull requests and merges, the full script is run.
 # Note: for pull requests, "master" is (currently) the base branch name.
 # See: https://docs.travis-ci.com/user/conditions-v1
 stages:
-  - name: quicktest
-    if: type = push AND branch NOT IN (master, develop)
   - name: test
     if: branch IN (master, develop)
   - name: coverage
@@ -41,30 +39,6 @@ stages:
 jobs:
   fast_finish: true
   include:
-    #### QUICK TEST STAGE ####
-    # This is a much quicker test which only runs the unit tests and linting against the low/high
-    # supported PHP/PHPCS combinations.
-    # These are basically the same builds as in the Coverage stage, but then without doing
-    # the code-coverage.
-    - stage: quicktest
-      php: 7.4
-      env: PHPCS_VERSION="dev-master" LINT=1
-    - php: 7.3
-      env: PHPCS_VERSION="2.6.0"
-    # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
-    - php: 7.2
-      env: PHPCS_VERSION="3.1.0" LINT=1
-
-    - php: 5.4
-      dist: trusty
-      env: PHPCS_VERSION="dev-master" LINT=1
-    - php: 5.4
-      dist: trusty
-      env: PHPCS_VERSION=">=2.6,<3.0"
-    - php: 5.4
-      dist: trusty
-      env: PHPCS_VERSION="2.6.0"
-
     #### TEST STAGE ####
     # Normal builds for PHP 5.5, defined here as they need trusty.
     - stage: test
@@ -198,7 +172,7 @@ script:
 
   # Run the unit tests.
   - |
-    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Quicktest" || "${TRAVIS_BUILD_STAGE_NAME^}" == "Test" ]]; then
+    if [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Test" ]]; then
       vendor/bin/phpunit --no-coverage
     elif [[ "${TRAVIS_BUILD_STAGE_NAME^}" == "Coverage" ]]; then
       vendor/bin/phpunit

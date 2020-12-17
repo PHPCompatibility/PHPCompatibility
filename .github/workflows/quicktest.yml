@@ -1,0 +1,88 @@
+name: Quicktest
+
+on:
+  # Run on pushes, including merges, to all branches except `master`.
+  push:
+    branches-ignore:
+      - master
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  #### QUICK TEST STAGE ####
+  # This is a much quicker test which only runs the unit tests and linting against the low/high
+  # supported PHP/PHPCS combinations.
+  # These are basically the same builds as in the Test->Coverage workflow, but then without doing
+  # the code-coverage.
+  quicktest:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['5.4', 'latest']
+        phpcs_version: ['dev-master']
+        lint: [true]
+
+        include:
+          - php: '7.3'
+            phpcs_version: '2.6.0'
+            lint: false
+          # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
+          - php: '7.2'
+            phpcs_version: '3.1.0'
+            lint: true
+          - php: '5.4'
+            phpcs_version: '>=2.6,<3.0'
+            lint: false
+          - php: '5.4'
+            phpcs_version: '2.6.0'
+            lint: false
+
+    name: "QTest${{ matrix.lint && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # On stable PHPCS versions, allow for PHP deprecation notices.
+      # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
+      - name: Setup ini config
+        id: set_ini
+        run: |
+          if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+            echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED'
+          else
+            echo '::set-output name=PHP_INI::error_reporting=E_ALL'
+          fi
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
+          coverage: none
+
+      - name: 'Composer: set PHPCS version for tests'
+        run: |
+          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+
+      - name: 'Composer: tweak PHPUnit version'
+        if: ${{ matrix.php == 'latest' || startsWith( '8', matrix.php ) }}
+        run: |
+          # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
+          # As the quick tests don't run code coverage, we can safely install it for PHP 8.
+          composer require --no-update --dev phpunit/phpunit:"^9.3"
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v1"
+
+      - name: Lint against parse errors
+        if: ${{ matrix.lint }}
+        run: composer lint
+
+      - name: Run the unit tests
+        run: vendor/bin/phpunit --no-coverage
