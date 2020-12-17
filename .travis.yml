@@ -26,12 +26,11 @@ env:
     - PHPCS_VERSION="2.6.0"
 
 # Define the stages used.
-# For non-PRs, only the sniff and quicktest stages are run.
+# For non-PRs, only the quicktest stage is run.
 # For pull requests and merges, the full script is run (skipping quicktest).
 # Note: for pull requests, "master" is (currently) the base branch name.
 # See: https://docs.travis-ci.com/user/conditions-v1
 stages:
-  - name: sniff
   - name: quicktest
     if: type = push AND branch NOT IN (master, develop)
   - name: test
@@ -42,38 +41,6 @@ stages:
 jobs:
   fast_finish: true
   include:
-    #### SNIFF STAGE ####
-    - stage: sniff
-      php: 7.4
-      addons:
-        apt:
-          packages:
-            - libxml2-utils
-      before_install:
-        - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
-        - export XMLLINT_INDENT="    "
-        # Set up CS check.
-        # - Using PHPCS `master` as an early detection system for bugs upstream.
-        # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
-        - export COMPOSER_ROOT_VERSION="10.99.99"
-        - travis_retry composer require --no-update squizlabs/php_codesniffer:"dev-master"
-        - travis_retry composer install-devcs
-      script:
-        # Check the code style of the code base.
-        - vendor/bin/phpcs --no-cache
-
-        # Validate the xml file.
-        # @link http://xmlsoft.org/xmllint.html
-        - xmllint --noout ./PHPCompatibility/ruleset.xml
-
-        # Check the code-style consistency of the xml files.
-        - diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml")
-
-        # Check that the sniffs available are feature complete.
-        # For now, just check that all sniffs have unit tests.
-        # At a later stage the documentation check can be activated.
-        - composer check-complete
-
     #### QUICK TEST STAGE ####
     # This is a much quicker test which only runs the unit tests and linting against the low/high
     # supported PHP/PHPCS combinations.

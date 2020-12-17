@@ -1,0 +1,70 @@
+name: CS
+
+on:
+  # Run on all pushes and on all pull requests.
+  # Prevent the build from running when there are only irrelevant changes.
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  checkcs:
+    name: 'Basic CS and QA checks'
+    runs-on: ubuntu-latest
+
+    env:
+      XMLLINT_INDENT: '    '
+      # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
+      COMPOSER_ROOT_VERSION: '10.99.99'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+
+      - name: 'Composer: adjust dependencies'
+        run: |
+          # Using PHPCS `master` as an early detection system for bugs upstream.
+          composer require --no-update squizlabs/php_codesniffer:"dev-master"
+          # Add PHPCSDevCS - this is the CS ruleset we use.
+          # This is not in the composer.json as it has different minimum PHPCS reqs and would conflict.
+          composer require --no-update --dev phpcsstandards/phpcsdevcs:"^1.1.2"
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v1"
+
+      - name: Install xmllint
+        run: sudo apt-get install --no-install-recommends -y libxml2-utils
+
+      # Show XML violations inline in the file diff.
+      # @link https://github.com/marketplace/actions/xmllint-problem-matcher
+      - uses: korelstar/xmllint-problem-matcher@v1
+
+      # Validate the XML file.
+      # @link http://xmlsoft.org/xmllint.html
+      - name: Validate ruleset against schema
+        run: xmllint --noout --schema vendor/squizlabs/php_codesniffer/phpcs.xsd PHPCompatibility/ruleset.xml
+
+      # Check the code-style consistency of the XML file.
+      - name: Check XML code style
+        run: diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml")
+
+      # Check the code-style consistency of the PHP files.
+      - name: Check PHP code style
+        run: vendor/bin/phpcs --no-cache
+
+      # Check that the sniffs available are feature complete.
+      # For now, just check that all sniffs have unit tests.
+      # At a later stage the documentation check can be activated.
+      - name: Check sniff feature completeness
+        run: composer check-complete
