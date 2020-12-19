@@ -1,0 +1,322 @@
+name: Test
+
+on:
+  # Run on pushes to `master` and on all pull requests.
+  push:
+    branches:
+      - master
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  #### PHP LINT STAGE ####
+  # Linting against high/low of each PHP major should catch everything.
+  # If needs be, we can always add interim versions back at a later point in time.
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['5.4', '5.6', '7.0', '7.4', '8.0']
+        experimental: [false]
+
+        include:
+          - php: '8.1'
+            experimental: true
+
+    name: "Lint: PHP ${{ matrix.php }}"
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: 'Composer: adjust dependencies'
+        # Remove PHPUnit requirement to save some bandwidth.
+        run: composer remove --no-update phpunit/phpunit
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v1"
+
+      - name: Lint against parse errors
+        run: composer lint
+
+  #### TEST STAGE ####
+  test:
+    # No use running the tests if there is a linting error somewhere as they would fail anyway.
+    needs: lint
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Keys:
+      # - custom_ini: Whether to run with specific custom ini settings to hit very specific
+      #   code conditions.
+      # - experimental: Whether the build is "allowed to fail".
+      matrix:
+        # The GHA matrix works different from Travis.
+        # You can define jobs here and then augment them with extra variables in `include`,
+        # as well as add extra jobs in `include`.
+        # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
+        #
+        # IMPORTANT: test runs shouldn't fail because of PHPCS being incompatible with a PHP version.
+        # - PHPCS will run without errors on PHP 5.4 - 7.2 on any version.
+        # - PHP 7.3 needs PHPCS 2.9.2 and 3.3.1+ to run without errors.
+        #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.3.1 they will.
+        # - PHP 7.4 needs PHPCS 3.5.0+ to run without errors.
+        #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.5.0 they will.
+        # - PHP 8.0 needs PHPCS 3.5.7+ to run without errors.
+        #
+        # The matrix is set up so as not to duplicate the builds which are run for code coverage.
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.4']
+        phpcs_version: ['2.6.0', 'dev-master']
+        experimental: [false]
+
+        include:
+          # Complement the builds run in code coverage to complete the matrix.
+          - php: '8.0'
+            phpcs_version: '~3.5.7'
+            experimental: false
+
+          - php: '7.3'
+            phpcs_version: 'dev-master'
+            experimental: false
+
+          # In addition to the matrix, test against a variation of PHPCS 2.x and 3.x versions.
+          - php: '7.4'
+            phpcs_version: '>=2.6,<3.0'
+            experimental: false
+
+          - php: '7.3'
+            phpcs_version: '3.4.*'
+            experimental: false
+
+          - php: '7.2'
+            phpcs_version: '3.3.*'
+            custom_ini: true
+            experimental: false
+
+          - php: '7.1'
+            phpcs_version: '3.1.*'
+            experimental: false
+
+          - php: '7.0'
+            phpcs_version: '2.6.*'
+            experimental: false
+
+          - php: '5.6'
+            phpcs_version: '2.8.*'
+            experimental: false
+
+          - php: '5.5'
+            phpcs_version: '3.2.*'
+            experimental: false
+          - php: '5.5'
+            phpcs_version: '2.7.*'
+            experimental: false
+
+          - php: '5.4'
+            phpcs_version: '3.1.0'
+            experimental: false
+
+          # Experimental builds. These are allowed to fail.
+          - php: '7.4'
+            phpcs_version: '4.0.x-dev@dev'
+            experimental: true
+
+          - php: '8.1' # Nightly.
+            phpcs_version: 'dev-master'
+            experimental: true
+
+    name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
+
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup ini config
+        id: set_ini
+        run: |
+          # On stable PHPCS versions, allow for PHP deprecation notices.
+          # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
+          # Also set the "short_open_tag" ini to make sure specific conditions are tested.
+          if [ ${{ matrix.custom_ini }} == "true" ]; then
+            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, short_open_tag=On'
+            else
+              echo '::set-output name=PHP_INI::short_open_tag=On'
+            fi
+          else
+            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED'
+            else
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL'
+            fi
+          fi
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
+          coverage: none
+
+      - name: 'Composer: adjust dependencies'
+        run: |
+          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+
+      - name: 'Composer: conditionally tweak PHPUnit version'
+        if: ${{ startsWith( matrix.php, '8' ) }}
+        # Temporary fix - PHPUnit 9.3+ is buggy when used for code coverage, so not allowed "normally".
+        # For tests which don't run code coverage, we can safely install it for PHP 8 though.
+        run: composer require --no-update phpunit/phpunit:"^9.3"
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies - normal
+        if: ${{ matrix.php < 8.1 }}
+        uses: "ramsey/composer-install@v1"
+
+      # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
+      - name: Install Composer dependencies - with ignore platform
+        if: ${{ matrix.php >= 8.1 }}
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: --ignore-platform-reqs
+
+      - name: Run the unit tests
+        run: vendor/bin/phpunit --no-coverage
+
+  #### CODE COVERAGE STAGE ####
+  # N.B.: Coverage is only checked on the lowest and highest stable PHP versions
+  # and low/high of each major for PHPCS.
+  coverage:
+    # No use running the coverage builds if there are failing test builds.
+    needs: test
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Keys:
+      # - coveralls: The version of the PHP Coveralls package to use.
+      # - custom_ini: Whether to run with specific custom ini settings to hit very specific
+      #   code conditions.
+      matrix:
+        include:
+          - php: '8.0'
+            phpcs_version: 'dev-master'
+            custom_ini: true
+            coveralls: '^2.4'
+          - php: '7.3'
+            phpcs_version: '2.6.0'
+            coveralls: '^2.4'
+          - php: '7.2'
+            phpcs_version: '3.1.0'
+            coveralls: '^2.4'
+
+          - php: '5.4'
+            phpcs_version: 'dev-master'
+            coveralls: '^1.0'
+          - php: '5.4'
+            phpcs_version: '>=2.6,<3.0'
+            custom_ini: true
+            coveralls: '^1.0'
+          - php: '5.4'
+            phpcs_version: '2.6.0'
+            coveralls: '^1.0'
+
+    name: "Coverage: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup ini config
+        id: set_ini
+        run: |
+          # On stable PHPCS versions, allow for PHP deprecation notices.
+          # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
+          # Also set the "short_open_tag" ini to make sure specific conditions are tested.
+          if [ ${{ matrix.custom_ini }} == "true" ]; then
+            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, short_open_tag=On'
+            else
+              echo '::set-output name=PHP_INI::short_open_tag=On'
+            fi
+          else
+            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED'
+            else
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL'
+            fi
+          fi
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
+          coverage: xdebug
+
+      - name: 'Composer: adjust dependencies'
+        run: |
+          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools
+          # Set a specific PHPCS version.
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          # Install PHP Coveralls to handle the upload of the coverage data.
+          composer require --no-update --dev php-coveralls/php-coveralls:"${{ matrix.coveralls }}"
+
+      - name: Install Composer dependencies - normal
+        if: ${{ startsWith( matrix.php, '8' ) == false  }}
+        uses: "ramsey/composer-install@v1"
+
+      - name: Install Composer dependencies - with ignore platform
+        # For PHP 8+, we need to install with ignore platform reqs as we're using PHPUnit < 9.3.
+        if: ${{ startsWith( matrix.php, '8' ) }}
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: --ignore-platform-reqs
+
+      - name: Run the unit tests with code coverage
+        run: vendor/bin/phpunit
+
+      - name: Upload coverage results to Coveralls PHP 5.4
+        if: ${{ success() && startsWith( matrix.coveralls, '^1' )}}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
+        run: vendor/bin/coveralls -v -x build/logs/clover.xml
+
+      - name: Upload coverage results to Coveralls PHP 7/8
+        if: ${{ success() && startsWith( matrix.coveralls, '^2' )}}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
+        run: vendor/bin/php-coveralls -v -x build/logs/clover.xml
+
+  coveralls-finish:
+    needs: coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
