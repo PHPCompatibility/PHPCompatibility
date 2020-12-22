@@ -211,7 +211,6 @@ jobs:
 
     strategy:
       # Keys:
-      # - coveralls: The version of the PHP Coveralls package to use.
       # - custom_ini: Whether to run with specific custom ini settings to hit very specific
       #   code conditions.
       matrix:
@@ -219,24 +218,18 @@ jobs:
           - php: '8.0'
             phpcs_version: 'dev-master'
             custom_ini: true
-            coveralls: '^2.4'
           - php: '7.3'
             phpcs_version: '2.6.0'
-            coveralls: '^2.4'
           - php: '7.2'
             phpcs_version: '3.1.0'
-            coveralls: '^2.4'
 
           - php: '5.4'
             phpcs_version: 'dev-master'
-            coveralls: '^1.0'
           - php: '5.4'
             phpcs_version: '>=2.6,<3.0'
             custom_ini: true
-            coveralls: '^1.0'
           - php: '5.4'
             phpcs_version: '2.6.0'
-            coveralls: '^1.0'
 
     name: "Coverage: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
@@ -277,8 +270,6 @@ jobs:
           composer remove --no-update --dev phpcsstandards/phpcsdevtools
           # Set a specific PHPCS version.
           composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
-          # Install PHP Coveralls to handle the upload of the coverage data.
-          composer require --no-update --dev php-coveralls/php-coveralls:"${{ matrix.coveralls }}"
 
       - name: Install Composer dependencies - normal
         if: ${{ startsWith( matrix.php, '8' ) == false  }}
@@ -294,16 +285,20 @@ jobs:
       - name: Run the unit tests with code coverage
         run: vendor/bin/phpunit
 
-      - name: Upload coverage results to Coveralls PHP 5.4
-        if: ${{ success() && startsWith( matrix.coveralls, '^1' )}}
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
-        run: vendor/bin/coveralls -v -x build/logs/clover.xml
+      # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
+      - name: Switch to PHP 7.4
+        if: ${{ success() && matrix.php != '7.4' }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: none
 
-      - name: Upload coverage results to Coveralls PHP 7/8
-        if: ${{ success() && startsWith( matrix.coveralls, '^2' )}}
+      - name: Install Coveralls
+        if: ${{ success() }}
+        run: composer require php-coveralls/php-coveralls:"^2.4.2"
+
+      - name: Upload coverage results to Coveralls
+        if: ${{ success() }}
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
