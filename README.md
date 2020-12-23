@@ -6,12 +6,13 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![License](https://poser.pugx.org/phpcompatibility/php-compatibility/license.png)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=wimg&url=https://github.com/PHPCompatibility/PHPCompatibility&title=PHPCompatibility&language=&tags=github&category=software)
 
-[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibility.svg?branch=develop)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![CS Build Status](https://github.com/PHPCompatibility/PHPCompatibility/workflows/CS/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ACS)
+[![Test Build Status](https://github.com/PHPCompatibility/PHPCompatibility/workflows/Test/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ATest)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20-brightgreen.svg?maxAge=2419200)](https://travis-ci.org/PHPCompatibility/PHPCompatibility)
+[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ATest)
 
 
 This is a set of sniffs for [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that checks for PHP cross-version compatibility.

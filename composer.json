@@ -71,7 +71,7 @@
       "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness ./PHPCompatibility"
     ],
     "install-devcs": [
-      "composer require --dev phpcsstandards/phpcsdevcs:\"^1.1.1\" --no-suggest"
+      "composer require --dev phpcsstandards/phpcsdevcs:\"^1.1.2\" --no-suggest"
     ],
     "remove-devcs": [
       "composer remove --dev phpcsstandards/phpcsdevcs"
