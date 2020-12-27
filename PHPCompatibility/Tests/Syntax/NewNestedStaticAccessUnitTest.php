@@ -70,6 +70,37 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
 
 
     /**
+     * testClassConstantDereferencing
+     *
+     * @dataProvider dataClassConstantDereferencing
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testClassConstantDereferencing($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, 'Class constants cannot be dereferenced in PHP 7.4 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testClassConstantDereferencing()
+     *
+     * @return array
+     */
+    public function dataClassConstantDereferencing()
+    {
+        return [
+            [34],
+            [35],
+        ];
+    }
+
+
+    /**
      * Verify the sniff doesn't throw false positives.
      *
      * @dataProvider dataNoFalsePositives
@@ -98,8 +129,6 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
             [27],
             [28],
             [31],
-            [34],
-            [35],
         ];
     }
 
@@ -111,7 +140,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '7.0');
+        $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file);
     }
 }
