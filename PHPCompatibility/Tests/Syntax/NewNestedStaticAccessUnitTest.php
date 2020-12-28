@@ -26,7 +26,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNestedStaticAccess
+     * Verify that nested static access emits an error in PHP 5.6, but not in PHP 7.0.
      *
      * @dataProvider dataNestedStaticAccess
      *
@@ -38,6 +38,9 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.');
+
+        $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -65,6 +68,37 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
             [19],
             [23],
             [38],
+        ];
+    }
+
+
+    /**
+     * Verify that class constant dereferencing emits an error in PHP 7.4.
+     *
+     * @dataProvider dataClassConstantDereferencing
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testClassConstantDereferencing($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, 'Dereferencing class constants was not supported in PHP 7.4 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testClassConstantDereferencing()
+     *
+     * @return array
+     */
+    public function dataClassConstantDereferencing()
+    {
+        return [
+            [34],
+            [35],
         ];
     }
 
@@ -98,8 +132,6 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
             [27],
             [28],
             [31],
-            [34],
-            [35],
         ];
     }
 
@@ -111,7 +143,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '7.0');
+        $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file);
     }
 }

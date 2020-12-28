@@ -18,9 +18,13 @@ use PHP_CodeSniffer\Util\Tokens;
  * (Nested) Static property and constant fetches as well as method calls can be applied to
  * any dereferencable expression since PHP 7.0.
  *
+ * Class constants can be dereferenced since PHP 8.0.
+ *
  * PHP version 7.0
+ * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
+ * @link https://wiki.php.net/rfc/variable_syntax_tweaks#class_constant_dereferencability
  *
  * @since 10.0.0
  */
@@ -64,7 +68,8 @@ class NewNestedStaticAccessSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6') === false) {
+        // PHP 8.0 supports both nested static access and class constant dereferencing
+        if ($this->supportsBelow('7.4') === false) {
             return;
         }
 
@@ -122,19 +127,27 @@ class NewNestedStaticAccessSniff extends Sniff
             return;
         }
 
-        // Ignore the one form of nested static access which is still not supported: ?::CONST::?.
+        // Class constants cannot be dereferenced before PHP 8.0.
         if ($seenBrackets === false
             && $tokens[$prev]['code'] === \T_STRING
             && $tokens[$prevOperator]['code'] === \T_DOUBLE_COLON
+            && $this->supportsBelow('7.4') === true
         ) {
+            $phpcsFile->addError(
+                'Dereferencing class constants was not supported in PHP 7.4 or earlier.',
+                $stackPtr,
+                'ClassConstantDereferenced'
+            );
             return;
         }
 
         // This is nested static access.
-        $phpcsFile->addError(
-            'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.',
-            $stackPtr,
-            'Found'
-        );
+        if ($this->supportsBelow('5.6') === true) {
+            $phpcsFile->addError(
+                'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.',
+                $stackPtr,
+                'NestedStaticAccess'
+            );
+        }
     }
 }

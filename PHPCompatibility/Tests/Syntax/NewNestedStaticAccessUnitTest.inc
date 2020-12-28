@@ -30,7 +30,7 @@ echo ($foo->bar())::baz();
 // Parse error in any PHP version. Outside the scope of this sniff.
 echo $bar::($foo['bar'])::$baz;
 
-// Still not supported.
+// PHP 8.0: class constant dereferencing.
 self::MY_CONSTANT::$baz;
 Foo::MY_CONSTANT::$baz;
 
