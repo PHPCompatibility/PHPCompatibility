@@ -26,7 +26,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNestedStaticAccess
+     * Verify that nested static access emits an error in PHP 5.6, but not in PHP 7.0.
      *
      * @dataProvider dataNestedStaticAccess
      *
@@ -73,7 +73,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
 
 
     /**
-     * testClassConstantDereferencing
+     * Verify that class constant dereferencing emits an error in PHP 7.4.
      *
      * @dataProvider dataClassConstantDereferencing
      *
