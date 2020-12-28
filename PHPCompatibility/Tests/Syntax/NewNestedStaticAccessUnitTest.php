@@ -38,6 +38,9 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertError($file, $line, 'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.');
+
+        $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
