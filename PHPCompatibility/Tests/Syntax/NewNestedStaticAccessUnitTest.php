@@ -84,7 +84,7 @@ class NewNestedStaticAccessUnitTest extends BaseSniffTest
     public function testClassConstantDereferencing($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertError($file, $line, 'Class constants cannot be dereferenced in PHP 7.4 or earlier.');
+        $this->assertError($file, $line, 'Dereferencing class constants was not supported in PHP 7.4 or earlier.');
     }
 
     /**

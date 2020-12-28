@@ -134,7 +134,7 @@ class NewNestedStaticAccessSniff extends Sniff
             && $this->supportsBelow('7.4') === true
         ) {
             $phpcsFile->addError(
-                'Class constants cannot be dereferenced in PHP 7.4 or earlier.',
+                'Dereferencing class constants was not supported in PHP 7.4 or earlier.',
                 $stackPtr,
                 'ClassConstantDereferenced'
             );
