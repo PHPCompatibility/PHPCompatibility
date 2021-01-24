@@ -35,7 +35,9 @@ Please make sure that your pull request contains unit tests covering what's bein
 * The [NEWS](https://github.com/php/php-src/blob/master/NEWS) document of each release
 * The [Migrating from PHP x.x.x to PHP x.x.x section](https://www.php.net/manual/en/appendices.php) in the manual for each release (once published)
 * The [Changelog](https://www.php.net/manual/en/doc.changelog.php) in the manual
-* The [PHP manual](https://www.php.net/manual/en/index.php) in general
+* The official [PHP manual](https://www.php.net/manual/en/index.php) in general
+* The legacy [PHP 5 manual](https://php-legacy-docs.zend.com/manual/php5/en/index)
+* The legacy [PHP 4 manual](https://php-legacy-docs.zend.com/manual/php4/en/index)
 * The [PHP source code](https://github.com/php/php-src) in general
 
 ### Framework/CMS specific rulesets
