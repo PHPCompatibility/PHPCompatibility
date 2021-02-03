@@ -98,7 +98,7 @@ abstract class Sniff implements PHPCS_Sniff
      *
      * @return string String without variables in it.
      */
-    public function stripVariables($string)
+    public static function stripVariables($string)
     {
         if (\strpos($string, '$') === false) {
             return $string;

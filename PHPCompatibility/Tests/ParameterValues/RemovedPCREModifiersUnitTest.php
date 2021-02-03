@@ -20,6 +20,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group regexModifiers
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\RemovedPCREModifiersSniff
+ * @covers \PHPCompatibility\Helpers\PCRERegexTrait
  *
  * @since 5.6
  */
@@ -63,8 +64,8 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
             [58],
             [59],
             [60],
-            [63],
-            [78],
+            [72],
+            [80],
             [84],
 
             // Bracket delimiters.
@@ -82,9 +83,13 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
             [122, 'preg_filter'],
             [123, 'preg_filter'],
             [124, 'preg_filter'],
-            [127, 'preg_filter'],
-            [142, 'preg_filter'],
+            [136, 'preg_filter'],
+            [144, 'preg_filter'],
             [148, 'preg_filter'],
+
+            // Regex build up of multiple tokens.
+            [153],
+            [154],
 
             // Array of patterns.
             [162],
@@ -107,6 +112,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Quote as a delimiter.
             [211],
+
+            // Heredoc/Nowdoc.
+            [228, 'preg_filter'],
         ];
     }
 
@@ -175,6 +183,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Quote as a delimiter.
             [210],
+
+            // Heredoc/Nowdoc.
+            [220],
         ];
     }
 
