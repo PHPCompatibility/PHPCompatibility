@@ -25,11 +25,11 @@ class MyJsonSerializable implements JsonSerializableSomething {}
 class MyJsonSerializable implements myNameSpace\JsonSerializable {}
 
 // Test anonymous class support.
-$a = new class implements SeekableIterator {}
+$a = new class implements SeekableIterator {};
 $b = new class implements \Serializable {
     public function __sleep() {}
     public function __wakeup() {}
-}
+};
 
 // Additional new interfaces.
 class MyTraversable implements Traversable {}
@@ -110,3 +110,36 @@ try {
 
 // PHP 8.0 new interfaces.
 function StringableTypeHint( Stringable $a ) {}
+
+// Test interfaces extending interfaces.
+interface MyReflection extends Reflector {}
+interface MySession extends SessionABC, SessionIdInterface {}
+
+interface NewSerial extends \Serializable {
+    public function __sleep();
+    public function __wakeup();
+}
+
+// Function declarations nested in methods are not magic.
+class Nested implements Serializable {
+    public function declaredNested() {
+        function __sleep() {}
+        function __wakeup() {}
+    }
+}
+
+// Test error line precision.
+function errorLinePrecisionCheck(
+    JsonSerializable $param
+) : JsonSerializable {}
+
+// Test support for PHP 7.4 property types.
+public Throwable $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public SessionUpdateTimestampHandlerInterface $property;
+};
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(SessionIdInterface $param) => $param;
+$fn = fn($param): SessionHandlerInterface => $param;
