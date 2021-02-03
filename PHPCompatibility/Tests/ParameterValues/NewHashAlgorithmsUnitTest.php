@@ -20,7 +20,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group hashAlgorithms
  *
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewHashAlgorithmsSniff
- * @covers \PHPCompatibility\Sniff::getHashAlgorithmParameter
+ * @covers \PHPCompatibility\Helpers\HashAlgorithmsTrait
  *
  * @since 7.0.7
  */

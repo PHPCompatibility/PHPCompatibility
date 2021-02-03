@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\Helpers\HashAlgorithmsTrait;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -21,10 +22,12 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
  *
  * @since 7.0.7
- * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
+ * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
+ * @since 10.0.0 Now uses the new `HashAlgorithmsTrait`.
  */
 class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
 {
+    use HashAlgorithmsTrait;
 
     /**
      * A list of new hash algorithms, not present in older versions.

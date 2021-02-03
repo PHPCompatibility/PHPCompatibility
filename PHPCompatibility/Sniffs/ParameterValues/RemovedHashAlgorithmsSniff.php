@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\Helpers\HashAlgorithmsTrait;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -21,10 +22,12 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
  *
  * @since 5.5
- * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
+ * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
+ * @since 10.0.0 Now uses the new `HashAlgorithmsTrait`.
  */
 class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 {
+    use HashAlgorithmsTrait;
 
     /**
      * A list of removed hash algorithms, which were present in older versions.
