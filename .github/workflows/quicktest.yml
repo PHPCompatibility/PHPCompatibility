@@ -7,6 +7,8 @@ on:
       - master
     paths-ignore:
       - '**.md'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
 
 jobs:
   #### QUICK TEST STAGE ####

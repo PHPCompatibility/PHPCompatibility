@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - '**.md'
   pull_request:
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
 
 jobs:
   checkcs:
