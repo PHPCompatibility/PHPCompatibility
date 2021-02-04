@@ -24,7 +24,7 @@ use PHPCSUtils\Utils\Numbers;
  *
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/migration54.incompatible.php
+ * @link https://php-legacy-docs.zend.com/manual/php5/en/migration54.incompatible
  * @link https://www.php.net/manual/en/control-structures.break.php
  * @link https://www.php.net/manual/en/control-structures.continue.php
  *
