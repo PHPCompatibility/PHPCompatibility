@@ -743,6 +743,10 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.4' => true,
         ],
 
+        'Attribute' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
         'PhpToken' => [
             '7.4' => false,
             '8.0' => true,
