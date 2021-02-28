@@ -37,6 +37,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           coverage: none
+          tools: cs2pr
 
       - name: 'Composer: adjust dependencies'
         # Remove PHPUnit requirement to save some bandwidth.
@@ -48,7 +49,12 @@ jobs:
         uses: "ramsey/composer-install@v1"
 
       - name: Lint against parse errors
+        if: ${{ matrix.php != '5.4' && startsWith( matrix.php, '8' ) == false }}
         run: composer lint
+
+      - name: Lint against parse errors
+        if: ${{ matrix.php == '5.4' || startsWith( matrix.php, '8' ) }}
+        run: composer lint -- --checkstyle | cs2pr
 
   #### TEST STAGE ####
   test:
