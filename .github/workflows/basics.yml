@@ -29,6 +29,7 @@ jobs:
         with:
           php-version: '7.4'
           coverage: none
+          tools: cs2pr
 
       - name: 'Composer: adjust dependencies'
         run: |
@@ -61,7 +62,11 @@ jobs:
 
       # Check the code-style consistency of the PHP files.
       - name: Check PHP code style
-        run: vendor/bin/phpcs --no-cache
+        continue-on-error: true
+        run: vendor/bin/phpcs --no-cache --report-full --report-checkstyle=./phpcs-report.xml
+
+      - name: Show PHPCS results in PR
+        run: cs2pr ./phpcs-report.xml
 
       # Check that the sniffs available are feature complete.
       # For now, just check that all sniffs have unit tests.
