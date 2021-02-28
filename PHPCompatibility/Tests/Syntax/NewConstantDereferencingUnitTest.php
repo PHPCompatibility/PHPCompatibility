@@ -51,8 +51,10 @@ class NewConstantDereferencingUnitTest extends BaseSniffTest
     public function dataArrayDereferencing()
     {
         return [
-            [19],
-            [20],
+            [28],
+            [29],
+            [30],
+            [31],
         ];
     }
 
@@ -82,7 +84,9 @@ class NewConstantDereferencingUnitTest extends BaseSniffTest
     public function dataObjectDereferencing()
     {
         return [
-            [23],
+            [34],
+            [35],
+            [36],
         ];
     }
 
@@ -125,6 +129,15 @@ class NewConstantDereferencingUnitTest extends BaseSniffTest
             [14],
             [15],
             [16],
+            [17],
+            [18],
+            [19],
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [25],
         ];
     }
 
