@@ -1,0 +1,17 @@
+<documentation title="Title">
+    <standard><![CDATA[
+The /e modifier is deprecated since PHP 5.5 and removed since PHP 7.0. Use preg_replace_callback or preg_replace_array_callback instead.
+    ]]></standard>
+    <code_comparison>
+        <code title="Valid"><![CDATA[
+<?php
+preg_replace_callback('/^(.?)/', function ($matches) {
+    return strtoupper($matches[1]);
+}, $input);
+        ]]></code>
+        <code title="Invalid"><![CDATA[
+<?php
+preg_replace('/^(.?)/e', "strtoupper('\\1')", $input);
+        ]]></code>
+    </code_comparison>
+</documentation>
