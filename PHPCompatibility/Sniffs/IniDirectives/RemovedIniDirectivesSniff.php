@@ -10,8 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\IniDirectives;
 
-use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -24,14 +26,16 @@ use PHPCSUtils\Utils\TextStrings;
  * @link https://www.php.net/manual/en/ini.core.php
  *
  * @since 5.5
- * @since 7.0.0 This sniff now throws a warning (deprecated) or an error (removed) depending
- *              on the `testVersion` set. Previously it would always throw a warning.
- * @since 7.0.1 The sniff will now only throw warnings for `ini_get()`.
- * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
- * @since 9.0.0 Renamed from `DeprecatedIniDirectivesSniff` to `RemovedIniDirectivesSniff`.
+ * @since 7.0.0  This sniff now throws a warning (deprecated) or an error (removed) depending
+ *               on the `testVersion` set. Previously it would always throw a warning.
+ * @since 7.0.1  The sniff will now only throw warnings for `ini_get()`.
+ * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
+ * @since 9.0.0  Renamed from `DeprecatedIniDirectivesSniff` to `RemovedIniDirectivesSniff`.
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
  */
-class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
+class RemovedIniDirectivesSniff extends Sniff
 {
+    use ComplexVersionDeprecatedRemovedFeatureTrait;
 
     /**
      * List of functions which take an ini directive as parameter (always the first parameter).
@@ -701,65 +705,80 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error/warning for a matched item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @param array $itemInfo Base information about the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
      *
-     * @return array Version and other information about the item.
+     * @return void
      */
-    public function getItemArray(array $itemInfo)
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return $this->deprecatedIniDirectives[$itemInfo['name']];
-    }
+        $itemArray   = $this->deprecatedIniDirectives[$itemInfo['name']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+        $isError     = null;
 
+        if (empty($versionInfo['removed']) === false
+            && $this->supportsAbove($versionInfo['removed']) === true
+        ) {
+            $isError = true;
+        } elseif (empty($versionInfo['deprecated']) === false
+            && $this->supportsAbove($versionInfo['deprecated']) === true
+        ) {
+            $isError = false;
 
-    /**
-     * Retrieve the relevant detail (version) information for use in an error message.
-     *
-     * @since 7.1.0
-     *
-     * @param array $itemArray Version and other information about the item.
-     * @param array $itemInfo  Base information about the item.
-     *
-     * @return array
-     */
-    public function getErrorInfo(array $itemArray, array $itemInfo)
-    {
-        $errorInfo = parent::getErrorInfo($itemArray, $itemInfo);
-
-        // Lower error level to warning if the function used was ini_get.
-        if ($errorInfo['error'] === true && $itemInfo['functionLc'] === 'ini_get') {
-            $errorInfo['error'] = false;
+            // Reset the 'removed' info as it is not relevant for the current notice.
+            $versionInfo['removed'] = '';
         }
 
-        return $errorInfo;
+        if (isset($isError) === false) {
+            return;
+        }
+
+        $this->addMessage($phpcsFile, $stackPtr, $isError, $itemInfo, $versionInfo);
     }
 
 
     /**
-     * Get the error message template for this sniff.
+     * Generates the error or warning for this item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @return string
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param bool                        $isError     Whether this should be an error or a warning.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
      */
-    protected function getErrorMsgTemplate()
+    protected function addMessage(File $phpcsFile, $stackPtr, $isError, array $itemInfo, array $versionInfo)
     {
-        return "INI directive '%s' is ";
-    }
+        // Overrule the default message template.
+        $this->msgTemplate               = "INI directive '%s' is ";
+        $this->alternativeOptionTemplate = "; Use '%s' instead";
 
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
 
-    /**
-     * Get the error message template for suggesting an alternative for a specific sniff.
-     *
-     * @since 7.1.0
-     *
-     * @return string
-     */
-    protected function getAlternativeOptionTemplate()
-    {
-        return \str_replace('%s', "'%s'", parent::getAlternativeOptionTemplate());
+        // Lower error level to warning if the function called was `ini_get()`.
+        if ($itemInfo['functionLc'] === 'ini_get') {
+            $isError = false;
+        }
+
+        MessageHelper::addMessage(
+            $phpcsFile,
+            $msgInfo['message'],
+            $stackPtr,
+            $isError,
+            $msgInfo['errorcode'],
+            $msgInfo['data']
+        );
     }
 }
