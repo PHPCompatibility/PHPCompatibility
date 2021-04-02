@@ -43,7 +43,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
     public function testReturnType($returnType, $lastVersionBefore, $line, $okVersion, $testNoViolation = true)
     {
         $file = $this->sniffFile(__FILE__, $lastVersionBefore);
-        $this->assertError($file, $line, "{$returnType} return type is not present in PHP version {$lastVersionBefore} or earlier");
+        $this->assertError($file, $line, "'{$returnType}' return type is not present in PHP version {$lastVersionBefore} or earlier");
 
         if ($testNoViolation === true) {
             $file = $this->sniffFile(__FILE__, $okVersion);

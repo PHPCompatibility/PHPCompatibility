@@ -10,7 +10,8 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
-use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
@@ -37,11 +38,13 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/mixed_type_v2
  *
  * @since 7.0.0
- * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
- * @since 7.1.2 Renamed from `NewScalarReturnTypeDeclarationsSniff` to `NewReturnTypeDeclarationsSniff`.
+ * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
+ * @since 7.1.2  Renamed from `NewScalarReturnTypeDeclarationsSniff` to `NewReturnTypeDeclarationsSniff`.
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
  */
-class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
+class NewReturnTypeDeclarationsSniff extends Sniff
 {
+    use ComplexVersionNewFeatureTrait;
 
     /**
      * A list of new types
@@ -193,29 +196,54 @@ class NewReturnTypeDeclarationsSniff extends AbstractNewFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error for a matched item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @param array $itemInfo Base information about the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
      *
-     * @return array Version and other information about the item.
+     * @return void
      */
-    public function getItemArray(array $itemInfo)
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return $this->newTypes[$itemInfo['name']];
+        $itemArray   = $this->newTypes[$itemInfo['name']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+
+        if (empty($versionInfo['not_in_version'])
+            || $this->supportsBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        $this->addError($phpcsFile, $stackPtr, $itemInfo, $versionInfo);
     }
 
 
     /**
-     * Get the error message template for this sniff.
+     * Generates the error for this item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @return string
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
      */
-    protected function getErrorMsgTemplate()
+    protected function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $versionInfo)
     {
-        return '%s return type is not present in PHP version %s or earlier';
+        // Overrule the default message template.
+        $this->msgTemplate = "'%s' return type is not present in PHP version %s or earlier";
+
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+        $phpcsFile->addError($msgInfo['message'], $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
     }
 }
