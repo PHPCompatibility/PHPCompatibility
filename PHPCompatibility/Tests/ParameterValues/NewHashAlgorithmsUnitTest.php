@@ -42,7 +42,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
     public function testNewHashAlgorithms($algorithm, $lastVersionBefore, $line, $okVersion)
     {
         $file = $this->sniffFile(__FILE__, $lastVersionBefore);
-        $this->assertError($file, $line, "The {$algorithm} hash algorithm is not present in PHP version {$lastVersionBefore} or earlier");
+        $this->assertError($file, $line, "The '{$algorithm}' hash algorithm is not present in PHP version {$lastVersionBefore} or earlier");
 
         $file = $this->sniffFile(__FILE__, $okVersion);
         $this->assertNoViolation($file, $line);
