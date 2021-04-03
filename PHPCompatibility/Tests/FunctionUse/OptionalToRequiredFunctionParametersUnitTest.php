@@ -113,7 +113,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
     public function dataOptionalRequiredParameterRemoved()
     {
         return [
-            ['gmmktime', 'hour', '8.0', [18], '7.4'],
+            ['gmmktime', 'hour', '8.0', [18, 31], '7.4'],
             ['mb_parse_str', 'result', '8.0', [22], '7.4'],
             ['openssl_seal', 'method', '8.0', [25], '7.4'],
             ['openssl_open', 'method', '8.0', [28], '7.4'],
@@ -150,6 +150,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
             [14],
             [15],
             [21],
+            [32],
         ];
     }
 

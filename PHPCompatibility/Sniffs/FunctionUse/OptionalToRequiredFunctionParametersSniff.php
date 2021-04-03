@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
-use PHPCompatibility\Sniffs\FunctionUse\RequiredToOptionalFunctionParametersSniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -23,9 +23,13 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/doc.changelog.php
  *
  * @since 8.1.0
- * @since 9.0.0 Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.
+ * @since 9.0.0  Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.
+ * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class.
+ *               Previously the sniff extended the sister-sniff `RequiredToOptionalFunctionParametersSniff`.
+ *               Methods which were previously required due to the extending of the (grand-parent)
+ *               `AbstractComplexVersionSniff` have been removed.
  */
-class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFunctionParametersSniff
+class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**
@@ -37,10 +41,12 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
      * If's sufficient to list the last version in which the parameter was not yet required.
      *
      * @since 8.1.0
+     * @since 10.0.0 Parameter renamed from `$functionParameters` to `$targetFunctions` for
+     *               compatibility with the `AbstractFunctionCallParameterSniff` class.
      *
      * @var array
      */
-    protected $functionParameters = [
+    protected $targetFunctions = [
         'crypt' => [
             1 => [
                 'name' => 'salt',
@@ -90,111 +96,175 @@ class OptionalToRequiredFunctionParametersSniff extends RequiredToOptionalFuncti
 
 
     /**
-     * Determine whether an error/warning should be thrown for an item based on collected information.
+     * Bowing out early is not applicable to this sniff.
      *
-     * @since 8.1.0
-     *
-     * @param array $errorInfo Detail information about an item.
+     * @since 10.0.0
      *
      * @return bool
      */
-    protected function shouldThrowError(array $errorInfo)
+    protected function bowOutEarly()
     {
-        return ($errorInfo['optionalDeprecated'] !== '' || $errorInfo['optionalRemoved'] !== '');
+        return false;
     }
 
+    /**
+     * Process the parameters of a matched function.
+     *
+     * @since 10.0.0 Part of the logic in this method was previously contained in the
+     *               parent sniff `process()` method (now removed).
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
+     *
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
+     */
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
+    {
+        $functionLc           = \strtolower($functionName);
+        $parameterCount       = \count($parameters);
+        $parameterOffsetFound = $parameterCount - 1;
+
+        foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
+            if ($offset > $parameterOffsetFound) {
+                $itemInfo = [
+                    'name'   => $functionName,
+                    'nameLc' => $functionLc,
+                    'offset' => $offset,
+                ];
+                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            }
+        }
+    }
+
+    /**
+     * Process the function if no parameters were found.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     *
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
+     */
+    public function processNoParameters(File $phpcsFile, $stackPtr, $functionName)
+    {
+        $this->processParameters($phpcsFile, $stackPtr, $functionName, []);
+    }
 
     /**
      * Retrieve the relevant detail (version) information for use in an error message.
      *
      * @since 8.1.0
+     * @since 10.0.0 - Method renamed from `getErrorInfo()` to `getVersionInfo().
+     *               - Second function parameter `$itemInfo` removed.
+     *               - Method visibility changed from `public` to `protected`.
      *
      * @param array $itemArray Version and other information about the item.
-     * @param array $itemInfo  Base information about the item.
      *
      * @return array
      */
-    public function getErrorInfo(array $itemArray, array $itemInfo)
+    protected function getVersionInfo(array $itemArray)
     {
-        $errorInfo = [
-            'paramName'          => '',
+        $versionInfo = [
             'optionalDeprecated' => '',
             'optionalRemoved'    => '',
             'error'              => false,
         ];
 
-        $versionArray = $this->getVersionArray($itemArray);
+        foreach ($itemArray as $version => $required) {
+            if (\preg_match('`^\d\.\d(\.\d{1,2})?$`', $version) !== 1) {
+                // Not a version key.
+                continue;
+            }
 
-        if (empty($versionArray) === false) {
-            foreach ($versionArray as $version => $required) {
-                if ($this->supportsAbove($version) === true) {
-                    if ($required === true && $errorInfo['optionalRemoved'] === '') {
-                        $errorInfo['optionalRemoved'] = $version;
-                        $errorInfo['error']           = true;
-                    } elseif ($errorInfo['optionalDeprecated'] === '') {
-                        $errorInfo['optionalDeprecated'] = $version;
-                    }
+            if ($this->supportsAbove($version) === true) {
+                if ($required === true && $versionInfo['optionalRemoved'] === '') {
+                    $versionInfo['optionalRemoved'] = $version;
+                    $versionInfo['error']           = true;
+                } elseif ($versionInfo['optionalDeprecated'] === '') {
+                    $versionInfo['optionalDeprecated'] = $version;
                 }
             }
         }
 
-        $errorInfo['paramName'] = $itemArray['name'];
-
-        return $errorInfo;
+        return $versionInfo;
     }
 
     /**
-     * Get the error message template for this sniff.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error for a matched item.
      *
-     * @return string
+     * @since 10.0.0 This was previously handled via a similar method in the `AbstractComplexVersionSniff`.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
+     *
+     * @return void
      */
-    protected function getErrorMsgTemplate()
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return 'The "%s" parameter for function %s() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is ';
+        $itemArray   = $this->targetFunctions[$itemInfo['nameLc']][$itemInfo['offset']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+
+        if (empty($versionInfo['optionalDeprecated']) && empty($versionInfo['optionalRemoved'])) {
+            return;
+        }
+
+        $this->addError($phpcsFile, $stackPtr, $itemInfo, $itemArray, $versionInfo);
     }
 
     /**
      * Generates the error or warning for this item.
      *
      * @since 8.1.0
+     * @since 10.0.0 - Method visibility changed from `public` to `protected`.
+     *               - Introduced $itemArray parameter.
+     *               - Renamed the last parameter from `$errorInfo` to `$versionInfo`.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the relevant token in
-     *                                               the stack.
-     * @param array                       $itemInfo  Base information about the item.
-     * @param array                       $errorInfo Array with detail (version) information
-     *                                               relevant to the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param array                       $itemArray   The sub-array with all the details about
+     *                                                 this item.
+     * @param array                       $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
      *
      * @return void
      */
-    public function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $errorInfo)
+    protected function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $itemArray, array $versionInfo)
     {
-        $error      = $this->getErrorMsgTemplate();
-        $errorCode  = $this->stringToErrorCode($itemInfo['name'] . '_' . $errorInfo['paramName']);
+        $error      = 'The "%s" parameter for function %s() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is ';
+        $errorCode  = $this->stringToErrorCode($itemInfo['name'] . '_' . $itemArray['name']);
         $codeSuffix = '';
         $data       = [
-            $errorInfo['paramName'],
+            $itemArray['name'],
             $itemInfo['name'],
         ];
 
-        if ($errorInfo['optionalDeprecated'] !== '') {
+        if ($versionInfo['optionalDeprecated'] !== '') {
             $error     .= 'deprecated since PHP %s and ';
             $codeSuffix = 'Soft';
-            $data[]     = $errorInfo['optionalDeprecated'];
+            $data[]     = $versionInfo['optionalDeprecated'];
         }
 
-        if ($errorInfo['optionalRemoved'] !== '') {
+        if ($versionInfo['optionalRemoved'] !== '') {
             $error     .= 'removed since PHP %s and ';
             $codeSuffix = 'Hard';
-            $data[]     = $errorInfo['optionalRemoved'];
+            $data[]     = $versionInfo['optionalRemoved'];
         }
 
         // Remove the last 'and' from the message.
         $error      = \substr($error, 0, (\strlen($error) - 5));
         $errorCode .= $codeSuffix . 'Required';
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
-
-        return;
+        $this->addMessage($phpcsFile, $error, $stackPtr, $versionInfo['error'], $errorCode, $data);
     }
 }
