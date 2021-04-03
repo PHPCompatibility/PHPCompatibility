@@ -71,7 +71,7 @@ jobs:
           composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
 
       - name: 'Composer: tweak PHPUnit version'
-        if: ${{ matrix.php == 'latest' || startsWith( '8', matrix.php ) }}
+        if: ${{ matrix.php == 'latest' || startsWith( matrix.php, '8' ) }}
         run: |
           # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
           # As the quick tests don't run code coverage, we can safely install it for PHP 8.
