@@ -73,3 +73,7 @@ array_udiff($array, $value_compare_func ); // PHP 8.0+.
 array_uintersect_assoc( $array, $value_compare_func ); // PHP 8.0+.
 array_uintersect_uassoc($array, $value_compare_func, $key_compare_func); // PHP 8.0+.
 array_uintersect($array, $value_compare_func ); // PHP 8.0+.
+
+// Prevent false positives on namespaced functions.
+\getenv(); // Not OK, global function.
+MyNameSpace\ftp_put( $ftp_stream, $remote_file, $local_file); // OK.
