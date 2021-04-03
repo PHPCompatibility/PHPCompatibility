@@ -289,7 +289,6 @@ class TestVersionTraitUnitTest extends TestCase
         }
 
         $this->assertSame($expected, $this->supportsBelow($phpVersion));
-//        $this->assertSame($expected, $this->helperClass->supportsBelow($phpVersion));
     }
 
     /**

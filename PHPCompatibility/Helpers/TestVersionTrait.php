@@ -58,12 +58,14 @@ trait TestVersionTrait
         static $arrTestVersions = [];
 
         $default     = [null, null];
-        $testVersion = \trim(Helper::getConfigData('testVersion'));
+        $testVersion = Helper::getConfigData('testVersion');
 
         // Case-sensitivity tolerance.
         if (empty($testVersion) === true) {
-            $testVersion = \trim(Helper::getConfigData('testversion'));
+            $testVersion = Helper::getConfigData('testversion');
         }
+
+        $testVersion = \trim((string) $testVersion);
 
         if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
 
