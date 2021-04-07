@@ -11,9 +11,9 @@
 namespace PHPCompatibility\Sniffs\Exceptions;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer_Tokens as Tokens;
-use PHPCompatibility\PHPCSHelper;
+use PHPCSUtils\BackCompat\BCTokens;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\BackCompat\BCFile;
 
 /**
  * As of PHP 8.0, a throw keyword can be used as an expression.
@@ -85,30 +85,34 @@ class NewThrowExpressionsSniff extends Sniff
             return;
         }
 
-        $endOfStatement = PHPCSHelper::findEndOfStatement($phpcsFile, $stackPtr);
+        $endOfStatement = BCFile::findEndOfStatement($phpcsFile, $stackPtr);
         $tokens = $phpcsFile->getTokens();
-        $errorsCounter = 0;
+        $isError = false;
         for ($i = $stackPtr; $i < $endOfStatement; $i++) {
             if ($tokens[$i]['code'] === \T_THROW) {
-                $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, $i - 1, null, true, null, true);
+                $prevToken = $phpcsFile->findPrevious(BCTokens::emptyTokens(), $i - 1, null, true, null, true);
                 if (\in_array($tokens[$prevToken]['code'], $this->acceptedContextOperators)) {
-                    $errorsCounter++;
+                    $isError = true; break;
                 }
 
                 if ($tokens[$prevToken]['code'] === \T_OPEN_PARENTHESIS) {
-                    $afterEndOfStatementToken = $phpcsFile->findNext(Tokens::$emptyTokens, $endOfStatement + 1, null, true, null, true);
-                    $afterAfterEndOfStatementToken = $phpcsFile->findNext(Tokens::$emptyTokens, $afterEndOfStatementToken + 1, null, true, null, true);
+                    $afterEndOfStatementToken = $phpcsFile->findNext(BCTokens::emptyTokens(), $endOfStatement + 1, null, true, null, true);
+                    $afterAfterEndOfStatementToken = $phpcsFile->findNext(BCTokens::emptyTokens(), $afterEndOfStatementToken + 1, null, true, null, true);
                     if ($tokens[$afterEndOfStatementToken]['code'] === \T_CLOSE_PARENTHESIS
                         && \in_array($tokens[$afterAfterEndOfStatementToken]['code'], $this->acceptedPrecedenceOperator)) {
-                        $errorsCounter++;
+                        $isError = true; break;
                     }
                 }
             }
             continue;
         }
 
-        if ($errorsCounter > 0) {
-            $this->addMessage($phpcsFile, 'Throw expression is only allowed since PHP 8.0.', $stackPtr, true);
+        if ($isError) {
+            $phpcsFile->addError(
+                'Throw expression is not allowed in PHP 7.4 or earlier.',
+                $stackPtr,
+                'Found'
+            );
         }
     }
 }
