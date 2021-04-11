@@ -49,10 +49,15 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testIsDeprecated($testFile, $line)
+    public function testRemovedNamespacedAssert($testFile, $line)
     {
-        $file = $this->sniffFile(__DIR__ . '/' . $testFile, '7.3');
-        $this->assertWarning($file, $line, 'Declaring a free-standing function called assert() is deprecated since PHP 7.3');
+        $error = 'Declaring a namespaced function called assert() is deprecated since PHP 7.3';
+        $file  = $this->sniffFile(__DIR__ . '/' . $testFile, '7.3');
+        $this->assertWarning($file, $line, $error);
+
+        $error .= ' and will throw a fatal error since PHP 8.0';
+        $file   = $this->sniffFile(__DIR__ . '/' . $testFile, '8.0');
+        $this->assertError($file, $line, $error);
     }
 
     /**
