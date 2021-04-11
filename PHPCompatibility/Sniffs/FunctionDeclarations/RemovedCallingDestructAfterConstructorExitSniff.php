@@ -193,9 +193,15 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
          * Ok, either a destruct method has been found and we can throw an error, or either a class extends
          * or trait use has been found and no destruct method, in which case, we throw a warning.
          */
-        $error = 'When %s() is called within an object constructor, the object destructor will no longer be called since PHP 8.0';
+        $error     = 'When %s() is called within an object constructor, the object destructor will no longer be called since PHP 8.0';
+        $errorCode = 'Found';
+        if ($isError === false) {
+            $error    .= ' While no __destruct() method was found in this class, one may be declared in the parent class or in a trait being used.';
+            $errorCode = 'NeedsInspection';
+        }
+
         foreach ($exits as $ptr) {
-            $this->addMessage($phpcsFile, $error, $ptr, $isError, 'Found', [$tokens[$ptr]['content']]);
+            $this->addMessage($phpcsFile, $error, $ptr, $isError, $errorCode, [$tokens[$ptr]['content']]);
         }
     }
 }
