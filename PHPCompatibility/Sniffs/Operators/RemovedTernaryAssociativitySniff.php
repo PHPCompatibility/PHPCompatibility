@@ -144,15 +144,17 @@ class RemovedTernaryAssociativitySniff extends Sniff
 
         if ($ternaryCount > 1 && $ternaryCount === $elseCount && $ternaryCount > $shortTernaryCount) {
             $message = 'The left-associativity of the ternary operator has been deprecated in PHP 7.4';
+            $code    = 'Deprecated';
             $isError = false;
             if ($this->supportsAbove('8.0') === true) {
                 $message .= ' and removed in PHP 8.0';
+                $code     = 'Removed';
                 $isError  = true;
             }
 
             $message .= '. Multiple consecutive ternaries detected. Use parenthesis to clarify the order in which the operations should be executed';
 
-            $this->addMessage($phpcsFile, $message, $stackPtr, $isError);
+            $this->addMessage($phpcsFile, $message, $stackPtr, $isError, $code);
         }
     }
 }
