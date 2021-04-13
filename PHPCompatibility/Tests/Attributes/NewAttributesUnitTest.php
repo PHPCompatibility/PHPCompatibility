@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Tests\Attributes;
 
 use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the NewAttributes sniff.
@@ -55,7 +56,7 @@ class NewAttributesUnitTest extends BaseSniffTest
      */
     public function dataNewAttributes()
     {
-        return [
+        $data = [
             [17],
             [20],
             [23],
@@ -93,6 +94,18 @@ class NewAttributesUnitTest extends BaseSniffTest
             [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
             [104],
         ];
+
+        /*
+         * In PHP < 8.0 in combination with PHPCS < 3.6.1, anything after the test case on
+         * line 104 will be tokenized as `T_INLINE_HTML` and undetectable.
+         */
+        if (version_compare(Helper::getVersion(), '3.6.1', '>=') === true
+            || version_compare(PHP_VERSION_ID, '80000', '>=') === true
+        ) {
+            $data[] = [109];
+        }
+
+        return $data;
     }
 
 
