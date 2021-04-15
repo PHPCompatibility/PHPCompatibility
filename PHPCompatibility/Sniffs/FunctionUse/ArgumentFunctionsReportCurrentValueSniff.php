@@ -417,8 +417,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
                 /*
                  * Ok, so we've found a variable which was passed as one of the parameters.
-                 * Now, is this variable being changed, i.e. incremented, decremented or
-                 * assigned something ?
+                 * Now, is this variable being changed, i.e. incremented, decremented, unset
+                 * or assigned something ?
                  */
                 $scanResult = 'warning';
                 if (isset($variableToken) === false) {
@@ -444,6 +444,21 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     $scanResult    = 'error';
                     $variableToken = $j;
                     break;
+                }
+
+                if (empty($tokens[$j]['nested_parenthesis']) === false) {
+                    $parentheses = $tokens[$j]['nested_parenthesis'];
+                    end($parentheses);
+                    $openParens   = key($parentheses);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($openParens - 1), null, true);
+                    if ($prevNonEmpty !== false
+                        && $tokens[$prevNonEmpty]['code'] === \T_UNSET
+                    ) {
+                        // Variable is being unset.
+                        $scanResult    = 'error';
+                        $variableToken = $j;
+                        break;
+                    }
                 }
 
                 if ($tokens[$afterVar]['code'] === \T_OPEN_SQUARE_BRACKET

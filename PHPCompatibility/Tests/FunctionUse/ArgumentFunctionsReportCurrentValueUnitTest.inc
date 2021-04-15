@@ -225,6 +225,11 @@ function ignore_empty($x) {
     func_get_args ( ); // OK.
 }
 
+function do_NOT_ignore_unset($x) {
+    unset($x[0]);
+    \func_get_args(); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function foo($x) {
     $x = function_call($x);
