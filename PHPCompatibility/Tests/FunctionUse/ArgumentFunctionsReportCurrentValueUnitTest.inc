@@ -215,6 +215,16 @@ function ignoreParamInExitUnscopedCondition ( $stuff ) {
     $args = func_get_args(); // OK.
 }
 
+function ignore_isset($x) {
+    if (isset($x[0])) {}
+    func_get_args(); // OK.
+}
+
+function ignore_empty($x) {
+    if (empty($x)) {}
+    func_get_args ( ); // OK.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function foo($x) {
     $x = function_call($x);

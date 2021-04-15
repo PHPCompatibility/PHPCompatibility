@@ -381,6 +381,19 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                // Ignore use of any of the passed parameters in isset() or empty().
+                if ($tokens[$j]['code'] === \T_ISSET
+                    || $tokens[$j]['code'] === \T_EMPTY
+                ) {
+                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
+                    if ($nextNonEmpty !== false
+                        && isset($tokens[$nextNonEmpty]['parenthesis_closer'])
+                    ) {
+                        $j = $tokens[$nextNonEmpty]['parenthesis_closer'];
+                        continue;
+                    }
+                }
+
                 if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
