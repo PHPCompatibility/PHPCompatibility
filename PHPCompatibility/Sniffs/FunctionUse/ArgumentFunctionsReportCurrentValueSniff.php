@@ -372,6 +372,15 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                // Ignore return, exit and throw statements completely.
+                if ($tokens[$j]['code'] === \T_RETURN
+                    || $tokens[$j]['code'] === \T_EXIT
+                    || $tokens[$j]['code'] === \T_THROW
+                ) {
+                    $j = BCFile::findEndOfStatement($phpcsFile, $j);
+                    continue;
+                }
+
                 if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
@@ -390,21 +399,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 } elseif (\in_array($tokens[$j]['content'], $paramNames, true) === false) {
                     // Variable is not one of the function parameters.
-                    continue;
-                }
-
-                /*
-                 * Check if the variable is used within a return or exit/die statement.
-                 * In that case, we can safely ignore it.
-                 */
-                $startOfVariableStatement = BCFile::findStartOfStatement(
-                    $phpcsFile,
-                    $j,
-                    $this->ignoreForStartOfStatementVarUse
-                );
-                if ($tokens[$startOfVariableStatement]['code'] === \T_RETURN
-                    || $tokens[$startOfVariableStatement]['code'] === \T_EXIT
-                ) {
                     continue;
                 }
 
