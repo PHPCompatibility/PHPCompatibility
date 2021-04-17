@@ -39,6 +39,9 @@ class NewConstantDereferencingUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '5.5');
         $this->assertError($file, $line, 'Array dereferencing of constants is not present in PHP version 5.5 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '5.6');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
