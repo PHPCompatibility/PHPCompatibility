@@ -25,5 +25,27 @@ function variadicIsOptionalByNatureWithExtraOptional($a, $b = null, ...$c) {}
 // Intentional parse error. This has always been an error though, so ignore for this sniff.
 function variadicBeforeRequiredWasAlwaysAnError(...$a, $b) {}
 
+// Rule also applies to constructor property promotion.
+class ConstructorPropertyPromotion {
+    public function __construct(
+        public $propA = 10,
+        protected $propB,
+    ) {}
+}
+
+class MixedWithOptionalProperty {
+    public function __construct(
+        public $propA = false,
+        $normalParam
+    ) {}
+}
+
+class MixedWithOptionalParam {
+    public function __construct(
+        public $propA,
+        $normalParam = 10, // OK.
+    ) {}
+}
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
