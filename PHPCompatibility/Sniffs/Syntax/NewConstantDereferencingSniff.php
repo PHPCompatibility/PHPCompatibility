@@ -43,7 +43,7 @@ class NewConstantDereferencingSniff extends Sniff
     public function register()
     {
         return [
-            T_STRING,
+            \T_STRING,
         ];
     }
 
@@ -69,9 +69,9 @@ class NewConstantDereferencingSniff extends Sniff
 
         // Not a reference, out of scope
         $referenceTokens  = [
-            T_OPEN_SQUARE_BRACKET => true,
-            T_OPEN_CURLY_BRACKET  => true,
-            T_OBJECT_OPERATOR     => true,
+            \T_OPEN_SQUARE_BRACKET => true,
+            \T_OPEN_CURLY_BRACKET  => true,
+            \T_OBJECT_OPERATOR     => true,
         ];
         $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
@@ -82,23 +82,23 @@ class NewConstantDereferencingSniff extends Sniff
         // Reference to non-constant, out of scope
         $prevNonEmpty     = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         $outOfScopeTokens = [
-            T_NAMESPACE       => true,
-            T_USE             => true,
-            T_CLASS           => true,
-            T_TRAIT           => true,
-            T_INTERFACE       => true,
-            T_EXTENDS         => true,
-            T_IMPLEMENTS      => true,
-            T_NEW             => true,
-            T_FUNCTION        => true,
-            T_OBJECT_OPERATOR => true,
-            T_INSTANCEOF      => true,
-            T_INSTEADOF       => true,
-            T_GOTO            => true,
-            T_AS              => true,
-            T_PUBLIC          => true,
-            T_PROTECTED       => true,
-            T_PRIVATE         => true,
+            \T_NAMESPACE       => true,
+            \T_USE             => true,
+            \T_CLASS           => true,
+            \T_TRAIT           => true,
+            \T_INTERFACE       => true,
+            \T_EXTENDS         => true,
+            \T_IMPLEMENTS      => true,
+            \T_NEW             => true,
+            \T_FUNCTION        => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_INSTANCEOF      => true,
+            \T_INSTEADOF       => true,
+            \T_GOTO            => true,
+            \T_AS              => true,
+            \T_PUBLIC          => true,
+            \T_PROTECTED       => true,
+            \T_PRIVATE         => true,
             'PHPCS_T_COMMA'   => true,
         ];
         if (isset($outOfScopeTokens[$tokens[$prevNonEmpty]['code']])) {
@@ -107,8 +107,8 @@ class NewConstantDereferencingSniff extends Sniff
 
         // PHP 5.5 and below do not support array dereferencing of constants
         $openBracketTokens = [
-            T_OPEN_SQUARE_BRACKET => true,
-            T_OPEN_CURLY_BRACKET  => true,
+            \T_OPEN_SQUARE_BRACKET => true,
+            \T_OPEN_CURLY_BRACKET  => true,
         ];
         if ($this->supportsBelow('5.5') === true
             && isset($openBracketTokens[$nextNonEmptyCode])
@@ -123,7 +123,7 @@ class NewConstantDereferencingSniff extends Sniff
 
         // PHP 7.4 and below do not support object dereferencing of constants
         if ($this->supportsBelow('7.4') === true
-            && $nextNonEmptyCode === T_OBJECT_OPERATOR
+            && $nextNonEmptyCode === \T_OBJECT_OPERATOR
         ) {
             $phpcsFile->addError(
                 'Object dereferencing of constants is not present in PHP version 7.4 or earlier',
