@@ -75,33 +75,15 @@ class NewConstantDereferencingSniff extends Sniff
         ];
         $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
-        if (!isset($referenceTokens[$nextNonEmptyCode])) {
+        if (!isset($referenceTokens[$nextNonEmptyCode])
+            || ($nextNonEmptyCode === T_OPEN_CURLY_BRACKET
+            && isset($tokens[$nextNonEmpty]['scope_opener']) === true)) {
             return;
         }
 
         // Reference to non-constant, out of scope
-        $prevNonEmpty     = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        $outOfScopeTokens = [
-            \T_NAMESPACE       => true,
-            \T_USE             => true,
-            \T_CLASS           => true,
-            \T_TRAIT           => true,
-            \T_INTERFACE       => true,
-            \T_EXTENDS         => true,
-            \T_IMPLEMENTS      => true,
-            \T_NEW             => true,
-            \T_FUNCTION        => true,
-            \T_OBJECT_OPERATOR => true,
-            \T_INSTANCEOF      => true,
-            \T_INSTEADOF       => true,
-            \T_GOTO            => true,
-            \T_AS              => true,
-            \T_PUBLIC          => true,
-            \T_PROTECTED       => true,
-            \T_PRIVATE         => true,
-            'PHPCS_T_COMMA'   => true,
-        ];
-        if (isset($outOfScopeTokens[$tokens[$prevNonEmpty]['code']])) {
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($tokens[$prevNonEmpty]['code'] === \T_OBJECT_OPERATOR) {
             return;
         }
 
