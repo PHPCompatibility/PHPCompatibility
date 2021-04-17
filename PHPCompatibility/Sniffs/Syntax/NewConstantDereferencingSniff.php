@@ -17,9 +17,12 @@ use PHP_CodeSniffer\Util\Tokens;
 /**
  * Detect constant dereferencing.
  *
- * As of PHP 5.6, constants can now be dereferenced to access individual elements and characters.
+ * As of PHP 5.6, constants can now be dereferenced to access individual
+ * elements and characters.
  *
- * As of PHP 8.0, constants can also be dereferenced to invoke method calls, though this support only applies to syntax and must be used in conjunction with the scalar objects extension to work at runtime.
+ * As of PHP 8.0, constants can also be dereferenced to invoke method calls,
+ * though this support only applies to syntax and must be used in conjunction
+ * with the scalar objects extension to work at runtime.
  *
  * PHP version 5.6
  * PHP version 8.0
@@ -60,14 +63,14 @@ class NewConstantDereferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        // Impacted features are supported in PHP 8, bail early
+        // Impacted features are fully supported in PHP 8.0 and above, bail early.
         if ($this->supportsBelow('7.4') === false) {
             return;
         }
 
         $tokens = $phpcsFile->getTokens();
 
-        // Not a reference, out of scope
+        // Check if this is a reference.
         $referenceTokens  = [
             \T_OPEN_SQUARE_BRACKET => true,
             \T_OPEN_CURLY_BRACKET  => true,
@@ -81,13 +84,13 @@ class NewConstantDereferencingSniff extends Sniff
             return;
         }
 
-        // Reference to non-constant, out of scope
+        // Check if this T_STRING is a constant.
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($tokens[$prevNonEmpty]['code'] === \T_OBJECT_OPERATOR) {
             return;
         }
 
-        // PHP 5.5 and below do not support array dereferencing of constants
+        // PHP 5.5 and below does not support array dereferencing of constants.
         $openBracketTokens = [
             \T_OPEN_SQUARE_BRACKET => true,
             \T_OPEN_CURLY_BRACKET  => true,
@@ -103,7 +106,7 @@ class NewConstantDereferencingSniff extends Sniff
             return;
         }
 
-        // PHP 7.4 and below do not support object dereferencing of constants
+        // PHP 7.4 and below does not support object dereferencing of constants.
         if ($this->supportsBelow('7.4') === true
             && $nextNonEmptyCode === \T_OBJECT_OPERATOR
         ) {
