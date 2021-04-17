@@ -80,7 +80,8 @@ class NewConstantDereferencingSniff extends Sniff
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
         if (!isset($referenceTokens[$nextNonEmptyCode])
             || ($nextNonEmptyCode === T_OPEN_CURLY_BRACKET
-            && isset($tokens[$nextNonEmpty]['scope_opener']) === true)) {
+            && isset($tokens[$nextNonEmpty]['scope_opener']) === true)
+        ) {
             return;
         }
 
