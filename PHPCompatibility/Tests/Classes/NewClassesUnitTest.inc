@@ -427,3 +427,5 @@ $closure = function(OCILob $lob) {};
 try {
 } catch (UnhandledMatchError $e) {
 }
+
+class MyAttribute extends \Attribute {}

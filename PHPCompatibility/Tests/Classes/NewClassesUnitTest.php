@@ -214,6 +214,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['ReflectionUnionType', '7.4', [422], '8.0'],
             ['OCICollection', '7.4', [424], '8.0'],
             ['OCILob', '7.4', [425], '8.0'],
+            ['Attribute', '7.4', [431], '8.0'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
