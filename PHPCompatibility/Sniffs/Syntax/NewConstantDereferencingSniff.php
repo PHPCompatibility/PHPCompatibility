@@ -101,7 +101,7 @@ class NewConstantDereferencingSniff extends Sniff
             $phpcsFile->addError(
                 'Array dereferencing of constants is not present in PHP version 5.5 or earlier',
                 $stackPtr,
-                'ArrayConstantDereferenced'
+                'ArrayDereferencing'
             );
             return;
         }
@@ -113,7 +113,7 @@ class NewConstantDereferencingSniff extends Sniff
             $phpcsFile->addError(
                 'Object dereferencing of constants is not present in PHP version 7.4 or earlier',
                 $stackPtr,
-                'ObjectConstantDereferenced'
+                'ObjectDereferencing'
             );
         }
     }
