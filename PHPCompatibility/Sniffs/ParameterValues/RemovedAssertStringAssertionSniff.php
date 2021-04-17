@@ -115,6 +115,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
         }
 
         $error   = 'Using a string as the assertion passed to assert() is deprecated since PHP 7.2%s. Found: %s';
+        $code    = 'Deprecated';
         $isError = false;
         $data    = [
             '',
@@ -124,8 +125,9 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
         if ($this->supportsAbove('8.0') === true) {
             $data[0] = ' and removed since PHP 8.0';
             $isError = true;
+            $code    = 'Removed';
         }
 
-        $this->addMessage($phpcsFile, $error, $targetParam['start'], $isError, 'Found', $data);
+        $this->addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code, $data);
     }
 }
