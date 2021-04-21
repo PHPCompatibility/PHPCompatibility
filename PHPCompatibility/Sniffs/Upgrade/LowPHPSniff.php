@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Upgrade;
 use PHPCompatibility\Helpers\DisableSniffMsgTrait;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -78,9 +79,7 @@ class LowPHPSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_OPEN_TAG,
-        ];
+        return Collections::phpOpenTags();
     }
 
     /**
