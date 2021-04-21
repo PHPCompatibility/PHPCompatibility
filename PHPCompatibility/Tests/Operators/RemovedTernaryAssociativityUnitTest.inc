@@ -124,3 +124,7 @@ return $number.($number === 1 ? 'd' : $number % 10 === 2 ? 'na' : 'mh');
 
 // (BUG!) /home/nikic/package-analysis/sources/respect/validation/library/Rules/Cnh.php:59
 $check = $dv2 < 0 ? $dv2 + 11 : $dv2 > 9 ? 0 : $dv2;
+
+?>
+<div class="<?= $a ? $b : $c ? $d : $e ? $f : $g ?>"></div><!-- Deprecated x2-->
+<?php

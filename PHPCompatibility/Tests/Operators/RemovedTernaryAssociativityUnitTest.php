@@ -62,6 +62,7 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTest
         120,
         123,
         126,
+        129, // x2.
     ];
 
 
