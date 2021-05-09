@@ -30,8 +30,8 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
      *
      * @dataProvider dataValueChanged
      *
-     * @param array  $line         The line number where a warning is expected.
-     * @param string $functionName The name of the function to which the warning applies.
+     * @param array  $line         The line number where an error is expected.
+     * @param string $functionName The name of the function to which the error applies.
      * @param string $variableName The variable which was detected as having been changed.
      *
      * @return void
@@ -68,6 +68,8 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
             [120, 'func_get_arg', '$a'],
             [122, 'func_get_arg', '$a'],
             [161, 'func_get_args', '$string'],
+            [230, 'func_get_args', '$x'],
+            [243, 'func_get_args', '$stuff'],
         ];
     }
 
@@ -102,6 +104,8 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
             [101, 'func_get_arg', '$c'],
             [129, 'func_get_args', '$x'],
             [134, 'debug_backtrace', '$x'],
+            [249, 'func_get_args', '$stuff'],
+            [255, 'func_get_args', '$matches'],
         ];
     }
 
@@ -152,6 +156,14 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
         $cases[] = [176];
         $cases[] = [184];
         $cases[] = [192];
+        $cases[] = [200];
+        $cases[] = [208];
+        $cases[] = [215];
+        $cases[] = [220];
+        $cases[] = [225];
+        $cases[] = [238];
+
+        $cases[] = [261]; // Parse error.
 
         return $cases;
     }

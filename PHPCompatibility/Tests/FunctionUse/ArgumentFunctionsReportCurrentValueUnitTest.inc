@@ -173,7 +173,7 @@ function ignoreParamInReturn ( $stuff ) {
         return [$somethingElse['key'], 'b' => $stuff];
     }
 
-    $args = func_get_args();
+    $args = func_get_args(); // OK.
 }
 
 function ignoreParamInExit ( $stuff ) {
@@ -181,7 +181,7 @@ function ignoreParamInExit ( $stuff ) {
         exit ( 'Did ' . functionCall() . $stuff );
     }
 
-    $args = func_get_args();
+    $args = func_get_args(); // OK.
 }
 
 function ignoreParamInDie ( $stuff ) {
@@ -189,7 +189,70 @@ function ignoreParamInDie ( $stuff ) {
         die ( 'Did ' . $stuff );
     }
 
-    $args = func_get_args();
+    $args = func_get_args(); // OK.
+}
+
+function ignoreParamInThrow ( $stuff, $msg ) {
+    if ( true === SOME_CONSTANT ) {
+        throw new Exception($msg);
+    }
+
+    $args = func_get_args(); // OK.
+}
+
+// Issue #1240 - return/exit with unscoped conditions.
+function ignoreParamInReturnUnscopedCondition ( $stuff ) {
+    if ( true === SOME_CONSTANT )
+        return $stuff;
+
+    $args = func_get_args(); // OK.
+}
+
+function ignoreParamInExitUnscopedCondition ( $stuff ) {
+    if ( true === SOME_CONSTANT )
+        do_something OR die( 'Did ' . functionCall( $stuff ) );
+
+    $args = func_get_args(); // OK.
+}
+
+function ignore_isset($x) {
+    if (isset($x[0])) {}
+    func_get_args(); // OK.
+}
+
+function ignore_empty($x) {
+    if (empty($x)) {}
+    func_get_args ( ); // OK.
+}
+
+function do_NOT_ignore_unset($x) {
+    unset($x[0]);
+    \func_get_args(); // Error.
+}
+
+// Issue #1240, part 2 - plain assignments.
+function ignorePlainAssignments($stuff) {
+    $other = $stuff;
+    $other = $stuff + 10;
+    $other = 10 + $stuff;
+    $args = func_get_args(); // OK.
+}
+
+function dontIgnoreDoubleAssignment($stuff) {
+    $other = $stuff = $other;
+    $args = func_get_args(); // Error.
+}
+
+function dontIgnoreReferenceAssignments($stuff) {
+    $other = &$stuff;
+    // Do some more.
+    $args = func_get_args(); // Warning, reference assignment.
+}
+
+function dontIgnoreNonPlainAssignments($matches) {
+    $other = preg_match('/regex/', $subject, $matches);
+    // Do some more.
+    $args = func_get_args(); // Warning, non-plain assignment.
 }
 
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.

@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -372,6 +373,28 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                // Ignore return, exit and throw statements completely.
+                if ($tokens[$j]['code'] === \T_RETURN
+                    || $tokens[$j]['code'] === \T_EXIT
+                    || $tokens[$j]['code'] === \T_THROW
+                ) {
+                    $j = BCFile::findEndOfStatement($phpcsFile, $j);
+                    continue;
+                }
+
+                // Ignore use of any of the passed parameters in isset() or empty().
+                if ($tokens[$j]['code'] === \T_ISSET
+                    || $tokens[$j]['code'] === \T_EMPTY
+                ) {
+                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
+                    if ($nextNonEmpty !== false
+                        && isset($tokens[$nextNonEmpty]['parenthesis_closer'])
+                    ) {
+                        $j = $tokens[$nextNonEmpty]['parenthesis_closer'];
+                        continue;
+                    }
+                }
+
                 if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
@@ -393,32 +416,49 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
-                /*
-                 * Check if the variable is used within a return or exit/die statement.
-                 * In that case, we can safely ignore it.
-                 */
+                $beforeVar                = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
                 $startOfVariableStatement = BCFile::findStartOfStatement(
                     $phpcsFile,
                     $j,
                     $this->ignoreForStartOfStatementVarUse
                 );
-                if ($tokens[$startOfVariableStatement]['code'] === \T_RETURN
-                    || $tokens[$startOfVariableStatement]['code'] === \T_EXIT
+
+                /*
+                 * Check if this is only a plain assignment. If so, ignore.
+                 *
+                 * A "plain assignment" for the purposes of this check is defined as:
+                 * - Variable is not nested in parenthesis, i.e. not used in a potential function call.
+                 * - Not preceded by a reference operator.
+                 * - Has an assignment operator before it and none after.
+                 */
+                if (empty($tokens[$j]['nested_parenthesis']) === true
+                    && $beforeVar !== false
+                    && Operators::isReference($phpcsFile, $beforeVar) === false
+                    && $tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
                 ) {
-                    continue;
+                    $endOfVariableStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($j + 1));
+                    $lastAssignmentOperator = $phpcsFile->findPrevious(
+                        Tokens::$assignmentTokens,
+                        ($endOfVariableStatement - 1),
+                        $startOfVariableStatement
+                    );
+                    if ($lastAssignmentOperator !== false
+                        && $lastAssignmentOperator < $j
+                    ) {
+                        continue;
+                    }
                 }
 
                 /*
                  * Ok, so we've found a variable which was passed as one of the parameters.
-                 * Now, is this variable being changed, i.e. incremented, decremented or
-                 * assigned something ?
+                 * Now, is this variable being changed, i.e. incremented, decremented, unset
+                 * or assigned something ?
                  */
                 $scanResult = 'warning';
                 if (isset($variableToken) === false) {
                     $variableToken = $j;
                 }
 
-                $beforeVar = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
                 if ($beforeVar !== false && isset($this->plusPlusMinusMinus[$tokens[$beforeVar]['code']])) {
                     // Variable is being (pre-)incremented/decremented.
                     $scanResult    = 'error';
@@ -437,6 +477,21 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     $scanResult    = 'error';
                     $variableToken = $j;
                     break;
+                }
+
+                if (empty($tokens[$j]['nested_parenthesis']) === false) {
+                    $parentheses = $tokens[$j]['nested_parenthesis'];
+                    end($parentheses);
+                    $openParens   = key($parentheses);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($openParens - 1), null, true);
+                    if ($prevNonEmpty !== false
+                        && $tokens[$prevNonEmpty]['code'] === \T_UNSET
+                    ) {
+                        // Variable is being unset.
+                        $scanResult    = 'error';
+                        $variableToken = $j;
+                        break;
+                    }
                 }
 
                 if ($tokens[$afterVar]['code'] === \T_OPEN_SQUARE_BRACKET
