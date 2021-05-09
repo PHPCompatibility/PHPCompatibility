@@ -67,7 +67,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             ['preg_match_all', 'matches', '5.3', [8], '5.4'],
             ['stream_socket_enable_crypto', 'crypto_type', '5.5', [9], '5.6'],
             ['bcscale', 'scale', '7.2', [12], '7.3'],
-            ['getenv', 'varname', '7.0', [15], '7.1'],
+            ['getenv', 'varname', '7.0', [15, 78], '7.1'],
             ['array_push', 'element to push', '7.2', [18], '7.3'],
             ['array_unshift', 'element to prepend', '7.2', [21], '7.3'],
             ['ftp_fget', 'mode', '7.2', [24], '7.3'],
@@ -152,6 +152,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
             [56],
             [57],
             [58],
+            [79],
         ];
     }
 

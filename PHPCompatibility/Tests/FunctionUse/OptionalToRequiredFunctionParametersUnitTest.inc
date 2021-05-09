@@ -26,3 +26,7 @@ openssl_seal ( $data, $sealed_data, $env_keys, $pub_key_ids ); // Not ok.
 
 openssl_open ( $sealed_data, $open_data, $env_key, $priv_key_id, $method, $iv ); // Ok.
 openssl_open ( $sealed_data, $open_data, $env_key, $priv_key_id ); // Not ok.
+
+// Prevent false positives on namespaced functions.
+\gmmktime(); // Not OK, global function.
+MyNameSpace\mktime(); // OK.
