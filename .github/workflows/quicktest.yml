@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore:
       - master
+      - develop
     paths-ignore:
       - '**.md'
   # Allow manually triggering the workflow.
