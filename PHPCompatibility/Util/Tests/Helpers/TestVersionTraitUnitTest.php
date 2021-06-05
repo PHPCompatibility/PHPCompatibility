@@ -13,6 +13,8 @@ namespace PHPCompatibility\Util\Tests\Helpers;
 use PHPUnit\Framework\TestCase;
 use PHPCompatibility\Helpers\TestVersionTrait;
 use PHPCSUtils\BackCompat\Helper;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * Tests for the TestVersionTrait sniff helper.
@@ -23,6 +25,8 @@ use PHPCSUtils\BackCompat\Helper;
  */
 class TestVersionTraitUnitTest extends TestCase
 {
+    use ExpectException;
+    use ExpectPHPException;
     use TestVersionTrait;
 
     /**
@@ -154,7 +158,9 @@ class TestVersionTraitUnitTest extends TestCase
     public function testGetTestVersionInvalidRange($testVersion)
     {
         $message = \sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
-        $this->phpWarningTestHelper($message);
+
+        $this->expectWarning();
+        $this->expectWarningMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
     }
@@ -190,7 +196,9 @@ class TestVersionTraitUnitTest extends TestCase
     public function testGetTestVersionInvalidVersion($testVersion)
     {
         $message = \sprintf('Invalid testVersion setting: \'%s\'', \trim($testVersion));
-        $this->phpWarningTestHelper($message);
+
+        $this->expectWarning();
+        $this->expectWarningMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
     }
@@ -311,37 +319,5 @@ class TestVersionTraitUnitTest extends TestCase
             'valid_testVersion_range_1'          => ['7.1', '5.1-5.4', true],
             'valid_testVersion_range_2'          => ['7.1', '5.3-7.0', true],
         ];
-    }
-
-
-    /**
-     * Helper function for testing PHP warnings.
-     *
-     * @since 10.0.0
-     *
-     * @param string $message The warning message to expect.
-     *
-     * @return void
-     */
-    public function phpWarningTestHelper($message)
-    {
-        if (\method_exists($this, 'expectWarning')) {
-            // PHPUnit 9.0+.
-            $this->expectWarning();
-            $this->expectWarningMessage($message);
-
-            return;
-        }
-
-        if (\method_exists($this, 'expectException') && \class_exists('PHPUnit\Framework\Error\Warning')) {
-            // PHPUnit 5.7/6/7/8.
-            $this->expectException('PHPUnit\Framework\Error\Warning');
-            $this->expectExceptionMessage($message);
-
-            return;
-        }
-
-        // PHPUnit 4/5.7.
-        $this->setExpectedException('PHPUnit_Framework_Error_Warning', $message);
     }
 }
