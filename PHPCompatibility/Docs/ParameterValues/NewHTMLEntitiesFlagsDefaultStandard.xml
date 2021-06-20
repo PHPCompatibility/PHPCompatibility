@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New htmlentities() Flags Default"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.1, the default value for the `$flags` parameter for the `htmlspecialchars()`, `htmlentities()`, `htmlspecialchars_decode()`, `html_entitity_decode()` and `get_html_translation_table()` functions was `ENT_COMPAT`.
+
+    As of PHP 8.1, the default value of the `$flags` parameters has been changed to
+    `ENT_QUOTES | ENT_SUBSTITUTE`.
+    This means that, as of PHP 8.1, a single quote `'` is escaped to `&#039`; while previously it was left alone.
+    Additionally, malformed UTF-8 will be replaced by a Unicode substitution character, instead of resulting in an empty string.
+
+    When any of these functions are used in code which needs to be PHP cross-version compatible, with both PHP < 8.1, as well as PHP 8.1+, the `$flags` parameter should be explicitly set to ensure the function return value will be consistent cross-version.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing the $flags parameter when calling these functions.">
+        <![CDATA[
+echo htmlentities($text, <em>ENT_COMPAT</em>, 'UTF-8');
+
+$decoded = htmlspecialchars_decode(
+    $string,
+    <em>ENT_QUOTES | ENT_SUBSTITUTE</em>
+);
+        ]]>
+        </code>
+        <code title="Invalid: calling these functions without passing the $flags parameter.">
+        <![CDATA[
+echo htmlspecialchars($string);
+
+$decoded = html_entity_decode(
+    string:   $string,
+    encoding: $encoding,
+);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
