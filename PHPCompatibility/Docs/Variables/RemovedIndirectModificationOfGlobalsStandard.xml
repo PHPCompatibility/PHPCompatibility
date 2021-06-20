@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Indirect Modification of $GLOBALS"
+    >
+    <standard>
+    <![CDATA[
+    As of PHP 8.1, the `$GLOBALS` array is effectively a read-only copy of the global symbol table.
+
+    This has the following side-effects:
+    - The recursive `$GLOBALS['GLOBALS']` entry no longer exists.
+    - Appending unnamed entries to the `$GLOBALS` array is no longer supported.
+    - Assignments which overwrite the `$GLOBALS` array are no longer allowed. This includes unsetting the `$GLOBALS` variable and passing the `$GLOBALS` variable to functions which would modify the received parameter by reference.
+    - Creating a reference to the `$GLOBALS` array is no longer allowed.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: appending a named entry to $GLOBALS.">
+        <![CDATA[
+$GLOBALS['name'] = 'value';
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.1: appending an unnamed entry to $GLOBALS.">
+        <![CDATA[
+$GLOBALS[] = 'value';
+        ]]>
+        </code>
+    </code_comparison>
+
+    <code_comparison>
+        <code title="Cross-version compatible: overwriting a subkey in the $GLOBALS array.">
+        <![CDATA[
+$GLOBALS['name'] = 'value';
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.1: overwriting the complete $GLOBALS array.">
+        <![CDATA[
+$GLOBALS = [];
+list($GLOBALS) = $array;
+foreach ($array as $GLOBALS) {}
+
+// Modification by reference.
+array_pop($GLOBALS);
+        ]]>
+        </code>
+    </code_comparison>
+
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.1, assignment of the `$GLOBALS` variable to another variable would effectively function like a reference.
+    Since PHP 8.1, it creates a by-value copy.
+
+    This leads to a change in behaviour when values are subsequently overwritten.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Behaviour in PHP &lt; 8.1.">
+        <![CDATA[
+$a = 1;
+
+// Ostensibly by-value copy, but not really.
+$globals = $GLOBALS;
+
+$globals['a'] = 2;
+var_dump($a); // int(2)
+        ]]>
+        </code>
+        <code title="Behaviour in PHP &gt;= 8.1.">
+        <![CDATA[
+$a = 1;
+
+// By-value copy.
+$globals = $GLOBALS;
+
+$globals['a'] = 2;
+var_dump($a); // int(1)
+        ]]>
+        </code>
+    </code_comparison>
+
+    <standard>
+    <![CDATA[
+    The behaviour for how integer and float variable names are treated with respect to the `$GLOBALS` array has changed in PHP 8.1.
+
+    Normal array key semantics only allow for integer and string keys and canonicalize integral string keys to integers.
+    Prior to PHP 8.1, the way variables with integer or float names were stored in the `$GLOBALS` array was inconsistent with these normal array key semantics.
+
+    This has been fixed in PHP 8.1, which results in a change in behaviour for variables with an integer or floating point number as the variable name.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Behaviour in PHP &lt; 8.1.">
+        <![CDATA[
+${1} = 1;
+$GLOBALS[1] = 2;
+var_dump(${1}); // int(1)
+        ]]>
+        </code>
+        <code title="Behaviour in PHP &gt;= 8.1.">
+        <![CDATA[
+${1} = 1;
+$GLOBALS[1] = 2;
+var_dump(${1}); // int(2)
+        ]]>
+        </code>
+    </code_comparison>
+
+</documentation>
