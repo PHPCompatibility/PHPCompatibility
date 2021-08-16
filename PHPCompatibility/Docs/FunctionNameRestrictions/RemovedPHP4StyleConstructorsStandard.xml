@@ -1,25 +1,41 @@
 <documentation title="Removed PHP 4 Style Constructors">
     <standard><![CDATA[
-Declaration of a PHP4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0.
+Declaration of a PHP 4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0.
 ]]></standard>
     <code_comparison>
-        <code title="Valid"><![CDATA[
-class A extends B
-{
-    function __construct()
-    {
-        B::__construct();
-    }
-}
-
-class B
+        <code title="Valid: new style"><![CDATA[
+class A
 {
     function __construct()
     {
     }
 }
         ]]></code>
-        <code title="Invalid"><![CDATA[
+        <code title="Invalid: old style"><![CDATA[
+class A
+{
+    function A()
+    {
+    }
+}
+        ]]></code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Valid: calling direct parent"><![CDATA[
+class A extends B
+{
+    function __construct()
+    {
+        parent::__construct();
+    }
+}
+
+class B
+{
+    function __construct() {}
+}
+        ]]></code>
+        <code title="Invalid: calling direct parent"><![CDATA[
 class A extends B
 {
     function A()
@@ -30,9 +46,53 @@ class A extends B
 
 class B
 {
+    function B() {}
+}
+        ]]></code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Valid: calling indirect parent"><![CDATA[
+class A extends B
+{
+    function __construct()
+    {
+        C::__construct();
+    }
+}
+
+class B extends C
+{
+    function __construct()
+    {
+        throw new Exception('Do not call');
+    }
+}
+
+class C
+{
+    function __construct() {}
+}
+        ]]></code>
+        <code title="Invalid: calling indirect parent"><![CDATA[
+class A extends B
+{
+    function A()
+    {
+        $this->C();
+    }
+}
+
+class B extends C
+{
     function B()
     {
+        throw new Exception('Do not call');
     }
+}
+
+class C
+{
+    function C() {}
 }
         ]]></code>
     </code_comparison>
