@@ -34,7 +34,6 @@ class B
     {
     }
 }
-
         ]]></code>
     </code_comparison>
     <link>https://www.zend.com/php-migration/function-name-restrictions/removed-php4-style-constructor</link>
