@@ -1,0 +1,16 @@
+<documentation title="Reserved Function Name">
+    <standard><![CDATA[
+PHP has reserved all function and method names with a double underscore prefix for future use.
+
+When renaming functions, make sure to also update all references to those functions. This might include indirect references, such as using `call_user_func`.
+]]></standard>
+    <code_comparison>
+        <code title="Valid"><![CDATA[
+function existsUserName($userName)
+        ]]></code>
+        <code title="Invalid"><![CDATA[
+function __existsUserName($userName)
+        ]]></code>
+    </code_comparison>
+    <link>https://www.zend.com/php-migration/function-name-restrictions/reserved-double-underscore</link>
+</documentation>
