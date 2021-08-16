@@ -11,12 +11,14 @@ Review the code and fix if needed. Mark occurrence as ignored by adding an ignor
  .NeedsInspection
 function myFunction($email) {
     $newEmail = 'New value';
+    saveEmail($newEmail);
     return func_get_arg(0);
 }
         ]]></code>
         <code title="Invalid: will return the new value"><![CDATA[
 function myFunction($email) {
     $email = 'New value';
+    saveEmail($email);
     return func_get_arg(0);
 }
         ]]></code>
