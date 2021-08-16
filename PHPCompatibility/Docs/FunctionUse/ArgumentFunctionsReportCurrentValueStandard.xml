@@ -1,0 +1,25 @@
+<documentation title="Functions Inspecting Function Arguments Report Current Value">
+    <standard><![CDATA[
+Since PHP 7.0, functions inspecting arguments no longer report the original value as passed to a parameter, but will instead provide the current value.
+
+Review the code and fix if needed. Mark occurrence as ignored by adding an ignore comment.
+]]></standard>
+    <code_comparison>
+        <code title="Valid: will return the original value"><![CDATA[
+// phpcs:ignore PHPCompatibility.FunctionUse
+ .ArgumentFunctionsReportCurrentValue
+ .NeedsInspection
+function myFunction($email) {
+    $newEmail = 'New value';
+    return func_get_arg(0);
+}
+        ]]></code>
+        <code title="Invalid: will return the new value"><![CDATA[
+function myFunction($email) {
+    $email = 'New value';
+    return func_get_arg(0);
+}
+        ]]></code>
+    </code_comparison>
+    <link>https://www.zend.com/php-migration/function-use/inspecting-arguments</link>
+</documentation>
