@@ -1,0 +1,41 @@
+<documentation title="Removed PHP 4 Style Constructors">
+    <standard><![CDATA[
+Declaration of a PHP4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0.
+]]></standard>
+    <code_comparison>
+        <code title="Valid"><![CDATA[
+class A extends B
+{
+    function __construct()
+    {
+        B::__construct();
+    }
+}
+
+class B
+{
+    function __construct()
+    {
+    }
+}
+        ]]></code>
+        <code title="Invalid"><![CDATA[
+class A extends B
+{
+    function A()
+    {
+        $this->B();
+    }
+}
+
+class B
+{
+    function B()
+    {
+    }
+}
+
+        ]]></code>
+    </code_comparison>
+    <link>https://www.zend.com/php-migration/function-name-restrictions/removed-php4-style-constructor</link>
+</documentation>
