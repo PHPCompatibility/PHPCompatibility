@@ -540,7 +540,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
             return $tokens[$endPtr]['bracket_closer'];
         }
 
-        // Skip past comma's at a lower nesting level.
+        // Skip past commas at a lower nesting level.
         if ($tokens[$endPtr]['code'] === \T_COMMA) {
             // Check if a comma is at the nesting level we're targetting.
             $nestingLevel = 0;

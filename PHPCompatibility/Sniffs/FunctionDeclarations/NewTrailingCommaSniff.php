@@ -17,7 +17,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
- * Detect trailing comma's in function declarations and closure use lists as allowed since PHP 8.
+ * Detect trailing commas in function declarations and closure use lists as allowed since PHP 8.
  *
  * PHP version 8.0
  *
@@ -78,13 +78,13 @@ class NewTrailingCommaSniff extends Sniff
         }
 
         /*
-         * Check for trailing comma's in a function declaration parameter list.
+         * Check for trailing commas in a function declaration parameter list.
          */
         $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
 
         if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
             $phpcsFile->addError(
-                'Trailing comma\'s are not allowed in function declaration parameter lists in PHP 7.4 or earlier',
+                'Trailing commas are not allowed in function declaration parameter lists in PHP 7.4 or earlier',
                 $lastInParenthesis,
                 'InParameterList'
             );
@@ -92,7 +92,7 @@ class NewTrailingCommaSniff extends Sniff
 
         /*
          * From this point forward, we're only interested in closures to check for
-         * trailing comma's in closure use lists.
+         * trailing commas in closure use lists.
          * Bow out for any of the other tokens.
          */
         if ($tokens[$stackPtr]['code'] !== \T_CLOSURE) {
@@ -119,7 +119,7 @@ class NewTrailingCommaSniff extends Sniff
 
         if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
             $phpcsFile->addError(
-                'Trailing comma\'s are not allowed in closure use lists in PHP 7.4 or earlier',
+                'Trailing commas are not allowed in closure use lists in PHP 7.4 or earlier',
                 $lastInParenthesis,
                 'InClosureUseList'
             );

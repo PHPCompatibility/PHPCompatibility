@@ -74,7 +74,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
     public function testGroupUseTrailingComma($line)
     {
         $file = $this->sniffFile(__FILE__, '7.1');
-        $this->assertError($file, $line, 'Trailing comma\'s are not allowed in group use statements in PHP 7.1 or earlier');
+        $this->assertError($file, $line, 'Trailing commas are not allowed in group use statements in PHP 7.1 or earlier');
     }
 
     /**

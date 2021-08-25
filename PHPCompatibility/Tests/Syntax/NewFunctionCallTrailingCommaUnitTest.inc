@@ -9,7 +9,7 @@ myFunction($foo, $bar);
 $myClosure($foo, $bar);
 
 /*
- * PHP 7.3 trailing comma's in function calls + isset + unset.
+ * PHP 7.3 trailing commas in function calls + isset + unset.
  */
 // Isset & unset.
 unset($foo, $bar,);
@@ -61,7 +61,7 @@ $closure = function ($a, $b,) {} // Parse error, but not our concern.
 // Free-standing comma.
 foo(,); // Parse error, but throw an error anyway.
 
-// Multiple trailing comma's.
+// Multiple trailing commas.
 foo('function', 'bar',,); // Parse error, but throw an error anyway.
 
 // Leading comma.
