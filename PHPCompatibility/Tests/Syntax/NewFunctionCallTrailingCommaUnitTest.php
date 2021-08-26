@@ -38,7 +38,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
     public function testTrailingComma($line, $type = 'function calls')
     {
         $file = $this->sniffFile(__FILE__, '7.2');
-        $this->assertError($file, $line, 'Trailing commas are not allowed in {$type} in PHP 7.2 or earlier');
+        $this->assertError($file, $line, "Trailing commas are not allowed in {$type} in PHP 7.2 or earlier");
     }
 
     /**
