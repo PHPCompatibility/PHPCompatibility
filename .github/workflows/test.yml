@@ -222,8 +222,8 @@ jobs:
   coverage:
     # No use running the coverage builds if there are failing test builds.
     needs: test
-    # The default condition is success(), but this is false when one of the previous jobs is skipped
-    if: always() && (needs.test.result == 'success' || needs.test.result == 'skipped')
+    # The default condition is success(), but this is false when one of the previous jobs is skipped (but don't run on forks).
+    if: github.repository_owner == 'PHPCompatibility' && (needs.test.result == 'success' || needs.test.result == 'skipped')
 
     runs-on: ubuntu-latest
 
@@ -325,7 +325,8 @@ jobs:
 
   coveralls-finish:
     needs: coverage
-    if: always() && needs.coverage.result == 'success'
+    # Don't run on forks.
+    if: github.repository_owner == 'PHPCompatibility' && needs.coverage.result == 'success'
 
     runs-on: ubuntu-latest
 
