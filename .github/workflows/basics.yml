@@ -79,3 +79,24 @@ jobs:
       # At a later stage the documentation check can be activated.
       - name: Check sniff feature completeness
         run: composer check-complete
+
+  verify-tests:
+    name: 'Check test files are up to date'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+          coverage: none
+
+      - name: Regenerate the test files for the forbidden names test
+        run: php "./bin/generate-forbidden-names-test-files"
+
+      # If the regeneration of the test files yielded changes, this will ensure we fail the build.
+      - name: Ensure version-controlled files are not modified or deleted
+        run: git diff --exit-code
