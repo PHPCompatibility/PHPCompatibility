@@ -44,7 +44,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          ini-values: error_reporting=E_ALL, display_errors=On
+          ini-values: error_reporting=-1, display_errors=On, zend.assertions=1
           coverage: none
           tools: cs2pr
 
@@ -169,15 +169,15 @@ jobs:
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1, short_open_tag=On'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, short_open_tag=On, zend.assertions=1'
             fi
           else
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, zend.assertions=1'
             fi
           fi
 
@@ -263,15 +263,15 @@ jobs:
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1, short_open_tag=On'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, short_open_tag=On, zend.assertions=1'
             fi
           else
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, zend.assertions=1'
             fi
           fi
 
