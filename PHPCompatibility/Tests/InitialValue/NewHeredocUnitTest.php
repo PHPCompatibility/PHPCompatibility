@@ -76,7 +76,7 @@ class NewHeredocUnitTest extends BaseSniffTest
             [156, 'constants'],
         ];
 
-        if (PHP_VERSION_ID >= 70300) {
+        if (\PHP_VERSION_ID >= 70300) {
             $data[] = [165, 'static variables'];
         }
 

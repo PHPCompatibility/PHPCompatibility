@@ -235,7 +235,7 @@ class NewKeywordsSniff extends Sniff
         if ($tokenType === 'T_YIELD') {
             $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true);
             if ($tokens[$nextToken]['code'] === \T_STRING
-                && strtolower($tokens[$nextToken]['content']) === 'from'
+                && \strtolower($tokens[$nextToken]['content']) === 'from'
             ) {
                 $tokenType = 'T_YIELD_FROM';
                 $end       = $nextToken;

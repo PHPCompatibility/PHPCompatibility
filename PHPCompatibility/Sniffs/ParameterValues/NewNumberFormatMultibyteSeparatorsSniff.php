@@ -141,7 +141,7 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
             $length    = \strlen($embedInfo['remaining']);
             if ($embedInfo['remaining'] !== $content) {
                 // Add 1 character to the count for each variable stripped.
-                $length += count($embedInfo['embeds']);
+                $length += \count($embedInfo['embeds']);
             }
         }
 
