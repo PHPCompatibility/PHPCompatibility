@@ -86,6 +86,7 @@ jobs:
         # - PHP 7.4 needs PHPCS 3.5.0+ to run without errors.
         #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.5.0 they will.
         # - PHP 8.0 needs PHPCS 3.5.7+ to run without errors.
+        # - PHP 8.1 needs PHPCS 3.6.1+ to run without errors.
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.4']
@@ -94,6 +95,13 @@ jobs:
 
         include:
           # Complement the builds run in code coverage to complete the matrix.
+          - php: '8.1'
+            phpcs_version: 'dev-master'
+            experimental: false
+          - php: '8.1'
+            phpcs_version: '3.6.1'
+            experimental: false
+
           - php: '8.0'
             phpcs_version: '~3.5.7'
             experimental: false
@@ -144,7 +152,7 @@ jobs:
           #  phpcs_version: '4.0.x-dev@dev'
           #  experimental: true
 
-          - php: '8.1' # Nightly.
+          - php: '8.2' # Nightly.
             phpcs_version: 'dev-master'
             experimental: true
 
@@ -198,15 +206,15 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies - normal
-        if: ${{ matrix.php < 8.1 }}
+        if: ${{ matrix.php < 8.2 }}
         uses: "ramsey/composer-install@v1"
 
       # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies - with ignore platform
-        if: ${{ matrix.php >= 8.1 }}
+        if: ${{ matrix.php >= 8.2 }}
         uses: "ramsey/composer-install@v1"
         with:
-          composer-options: --ignore-platform-reqs
+          composer-options: --ignore-platform-req=php
 
       - name: Run the unit tests
         run: vendor/bin/phpunit --no-coverage
@@ -293,7 +301,7 @@ jobs:
         if: ${{ startsWith( matrix.php, '8' ) }}
         uses: "ramsey/composer-install@v1"
         with:
-          composer-options: --ignore-platform-reqs
+          composer-options: --ignore-platform-req=php
 
       - name: Run the unit tests with code coverage
         run: vendor/bin/phpunit
