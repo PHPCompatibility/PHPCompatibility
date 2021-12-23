@@ -23,6 +23,11 @@
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
     "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
   },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
   "require" : {
     "php" : ">=5.4",
     "squizlabs/php_codesniffer" : "^2.6 || ^3.1.0",
