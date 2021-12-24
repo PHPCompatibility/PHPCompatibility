@@ -45,7 +45,7 @@ jobs:
 
       - name: 'Composer: adjust dependencies'
         # Remove PHPUnit requirement to save some bandwidth.
-        run: composer remove --no-update phpunit/phpunit
+        run: composer remove --no-update phpunit/phpunit --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
@@ -194,14 +194,14 @@ jobs:
       - name: 'Composer: adjust dependencies'
         run: |
           # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: 'Composer: conditionally tweak PHPUnit version'
         if: ${{ startsWith( matrix.php, '8' ) }}
         # Temporary fix - PHPUnit 9.3+ is buggy when used for code coverage, so not allowed "normally".
         # For tests which don't run code coverage, we can safely install it for PHP 8 though.
-        run: composer require --no-update phpunit/phpunit:"^9.3"
+        run: composer require --no-update phpunit/phpunit:"^9.3" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
@@ -288,9 +288,9 @@ jobs:
       - name: 'Composer: adjust dependencies'
         run: |
           # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
           # Set a specific PHPCS version.
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: Install Composer dependencies - normal
         if: ${{ startsWith( matrix.php, '8' ) == false  }}
@@ -316,7 +316,7 @@ jobs:
 
       - name: Install Coveralls
         if: ${{ success() }}
-        run: composer require php-coveralls/php-coveralls:"^2.4.2"
+        run: composer require php-coveralls/php-coveralls:"^2.4.2" --no-interaction
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}

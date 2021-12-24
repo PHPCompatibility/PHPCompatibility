@@ -40,10 +40,10 @@ jobs:
       - name: 'Composer: adjust dependencies'
         run: |
           # Using PHPCS `master` as an early detection system for bugs upstream.
-          composer require --no-update squizlabs/php_codesniffer:"dev-master"
+          composer require --no-update squizlabs/php_codesniffer:"dev-master" --no-interaction
           # Add PHPCSDevCS - this is the CS ruleset we use.
           # This is not in the composer.json as it has different minimum PHPCS reqs and would conflict.
-          composer require --no-update --dev phpcsstandards/phpcsdevcs:"^1.1.3"
+          composer require --no-update --dev phpcsstandards/phpcsdevcs:"^1.1.3" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
