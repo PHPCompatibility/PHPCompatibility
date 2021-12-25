@@ -6,7 +6,10 @@
         backupGlobals="true"
         colors="true"
         verbose="false"
+        convertErrorsToExceptions="true"
         convertWarningsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertDeprecationsToExceptions="true"
         forceCoversAnnotation="true"
     >
     <testsuites>
