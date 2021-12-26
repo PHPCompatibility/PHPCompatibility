@@ -11,6 +11,12 @@ on:
   # Allow manually triggering the workflow.
   workflow_dispatch:
 
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   #### QUICK TEST STAGE ####
   # This is a much quicker test which only runs the unit tests and linting against the low/high
@@ -53,9 +59,9 @@ jobs:
         id: set_ini
         run: |
           if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-            echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On'
+            echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1'
           else
-            echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On'
+            echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, zend.assertions=1'
           fi
 
       - name: Install PHP
@@ -68,20 +74,20 @@ jobs:
       - name: 'Composer: set PHPCS version for tests'
         run: |
           # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: 'Composer: tweak PHPUnit version'
         if: ${{ matrix.php == 'latest' || startsWith( matrix.php, '8' ) }}
         run: |
           # Temporary fix - PHPUnit 9.3 is buggy when used for code coverage, so not allowed "normally".
           # As the quick tests don't run code coverage, we can safely install it for PHP 8.
-          composer require --no-update --dev phpunit/phpunit:"^9.3"
+          composer require --no-update --dev phpunit/phpunit:"^9.3" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: Lint against parse errors
         if: ${{ matrix.lint }}

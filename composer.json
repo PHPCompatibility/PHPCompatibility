@@ -23,6 +23,11 @@
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
     "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
   },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
   "require" : {
     "php" : ">=5.4",
     "squizlabs/php_codesniffer" : "^2.6 || ^3.1.0",
@@ -71,7 +76,7 @@
       "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness ./PHPCompatibility"
     ],
     "install-devcs": [
-      "composer require --dev phpcsstandards/phpcsdevcs:\"^1.1.2\" --no-suggest"
+      "composer require --dev phpcsstandards/phpcsdevcs:\"^1.1.3\" --no-suggest"
     ],
     "remove-devcs": [
       "composer remove --dev phpcsstandards/phpcsdevcs"

@@ -10,6 +10,12 @@ on:
   # Allow manually triggering the workflow.
   workflow_dispatch:
 
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   #### PHP LINT STAGE ####
   # Linting against high/low of each PHP major should catch everything.
@@ -20,15 +26,10 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.6', '7.0', '7.4', '8.0']
-        experimental: [false]
-
-        include:
-          - php: '8.1'
-            experimental: true
+        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.1', '8.2']
 
     name: "Lint: PHP ${{ matrix.php }}"
-    continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.php == '8.2' }}
 
     steps:
       - name: Checkout code
@@ -38,18 +39,18 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          ini-values: error_reporting=E_ALL, display_errors=On
+          ini-values: error_reporting=-1, display_errors=On, zend.assertions=1
           coverage: none
           tools: cs2pr
 
       - name: 'Composer: adjust dependencies'
         # Remove PHPUnit requirement to save some bandwidth.
-        run: composer remove --no-update phpunit/phpunit
+        run: composer remove --no-update phpunit/phpunit --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: Lint against parse errors
         if: ${{ matrix.php != '5.4' && startsWith( matrix.php, '8' ) == false }}
@@ -85,6 +86,7 @@ jobs:
         # - PHP 7.4 needs PHPCS 3.5.0+ to run without errors.
         #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.5.0 they will.
         # - PHP 8.0 needs PHPCS 3.5.7+ to run without errors.
+        # - PHP 8.1 needs PHPCS 3.6.1+ to run without errors.
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.4']
@@ -93,6 +95,13 @@ jobs:
 
         include:
           # Complement the builds run in code coverage to complete the matrix.
+          - php: '8.1'
+            phpcs_version: 'dev-master'
+            experimental: false
+          - php: '8.1'
+            phpcs_version: '3.6.1'
+            experimental: false
+
           - php: '8.0'
             phpcs_version: '~3.5.7'
             experimental: false
@@ -143,7 +152,7 @@ jobs:
           #  phpcs_version: '4.0.x-dev@dev'
           #  experimental: true
 
-          - php: '8.1' # Nightly.
+          - php: '8.2' # Nightly.
             phpcs_version: 'dev-master'
             experimental: true
 
@@ -163,15 +172,15 @@ jobs:
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1, short_open_tag=On'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, short_open_tag=On, zend.assertions=1'
             fi
           else
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, zend.assertions=1'
             fi
           fi
 
@@ -185,27 +194,27 @@ jobs:
       - name: 'Composer: adjust dependencies'
         run: |
           # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: 'Composer: conditionally tweak PHPUnit version'
         if: ${{ startsWith( matrix.php, '8' ) }}
         # Temporary fix - PHPUnit 9.3+ is buggy when used for code coverage, so not allowed "normally".
         # For tests which don't run code coverage, we can safely install it for PHP 8 though.
-        run: composer require --no-update phpunit/phpunit:"^9.3"
+        run: composer require --no-update phpunit/phpunit:"^9.3" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies - normal
-        if: ${{ matrix.php < 8.1 }}
-        uses: "ramsey/composer-install@v1"
+        if: ${{ matrix.php < 8.2 }}
+        uses: "ramsey/composer-install@v2"
 
       # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies - with ignore platform
-        if: ${{ matrix.php >= 8.1 }}
-        uses: "ramsey/composer-install@v1"
+        if: ${{ matrix.php >= 8.2 }}
+        uses: "ramsey/composer-install@v2"
         with:
-          composer-options: --ignore-platform-reqs
+          composer-options: --ignore-platform-req=php
 
       - name: Run the unit tests
         run: vendor/bin/phpunit --no-coverage
@@ -216,8 +225,8 @@ jobs:
   coverage:
     # No use running the coverage builds if there are failing test builds.
     needs: test
-    # The default condition is success(), but this is false when one of the previous jobs is skipped
-    if: always() && (needs.test.result == 'success' || needs.test.result == 'skipped')
+    # The default condition is success(), but this is false when one of the previous jobs is skipped (but don't run on forks).
+    if: github.repository_owner == 'PHPCompatibility' && (needs.test.result == 'success' || needs.test.result == 'skipped')
 
     runs-on: ubuntu-latest
 
@@ -257,15 +266,15 @@ jobs:
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1, short_open_tag=On'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On, short_open_tag=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, short_open_tag=On, zend.assertions=1'
             fi
           else
             if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, zend.assertions=1'
             else
-              echo '::set-output name=PHP_INI::error_reporting=E_ALL, display_errors=On'
+              echo '::set-output name=PHP_INI::error_reporting=-1, display_errors=On, zend.assertions=1'
             fi
           fi
 
@@ -279,20 +288,20 @@ jobs:
       - name: 'Composer: adjust dependencies'
         run: |
           # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools
+          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
           # Set a specific PHPCS version.
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}"
+          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: Install Composer dependencies - normal
         if: ${{ startsWith( matrix.php, '8' ) == false  }}
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       - name: Install Composer dependencies - with ignore platform
         # For PHP 8+, we need to install with ignore platform reqs as we're using PHPUnit < 9.3.
         if: ${{ startsWith( matrix.php, '8' ) }}
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
         with:
-          composer-options: --ignore-platform-reqs
+          composer-options: --ignore-platform-req=php
 
       - name: Run the unit tests with code coverage
         run: vendor/bin/phpunit
@@ -307,7 +316,7 @@ jobs:
 
       - name: Install Coveralls
         if: ${{ success() }}
-        run: composer require php-coveralls/php-coveralls:"^2.4.2"
+        run: composer require php-coveralls/php-coveralls:"^2.4.2" --no-interaction
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
@@ -319,7 +328,8 @@ jobs:
 
   coveralls-finish:
     needs: coverage
-    if: always() && needs.coverage.result == 'success'
+    # Don't run on forks.
+    if: github.repository_owner == 'PHPCompatibility' && needs.coverage.result == 'success'
 
     runs-on: ubuntu-latest
 
