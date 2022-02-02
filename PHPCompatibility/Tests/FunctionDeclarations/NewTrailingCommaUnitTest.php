@@ -26,7 +26,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
 {
 
     /**
-     * Test correctly identifying trailing comma's in function declarations.
+     * Test correctly identifying trailing commas in function declarations.
      *
      * @dataProvider dataTrailingComma
      *
@@ -37,7 +37,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
     public function testTrailingComma($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertError($file, $line, "Trailing comma's are not allowed in function declaration parameter lists in PHP 7.4 or earlier");
+        $this->assertError($file, $line, 'Trailing commas are not allowed in function declaration parameter lists in PHP 7.4 or earlier');
     }
 
     /**
@@ -62,7 +62,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
 
 
     /**
-     * Test correctly identifying trailing comma's in closure use lists.
+     * Test correctly identifying trailing commas in closure use lists.
      *
      * @dataProvider dataTrailingCommaClosureUse
      *
@@ -73,7 +73,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
     public function testTrailingCommaClosureUse($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertError($file, $line, "Trailing comma's are not allowed in closure use lists in PHP 7.4 or earlier");
+        $this->assertError($file, $line, 'Trailing commas are not allowed in closure use lists in PHP 7.4 or earlier');
     }
 
     /**

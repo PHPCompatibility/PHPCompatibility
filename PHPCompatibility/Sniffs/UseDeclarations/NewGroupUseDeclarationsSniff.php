@@ -19,7 +19,7 @@ use PHP_CodeSniffer\Util\Tokens;
  *
  * Checks for:
  * - Group use statements as introduced in PHP 7.0.
- * - Trailing comma's in group use statements as allowed since PHP 7.2.
+ * - Trailing commas in group use statements as allowed since PHP 7.2.
  *
  * PHP version 7.0
  * PHP version 7.2
@@ -31,7 +31,7 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://www.php.net/manual/en/language.namespaces.importing.php#language.namespaces.importing.group
  *
  * @since 7.0.0
- * @since 8.0.1 Now also checks for trailing comma's in group `use` declarations.
+ * @since 8.0.1 Now also checks for trailing commas in group `use` declarations.
  */
 class NewGroupUseDeclarationsSniff extends Sniff
 {
@@ -84,7 +84,7 @@ class NewGroupUseDeclarationsSniff extends Sniff
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closeCurly - 1), null, true);
         if ($tokens[$prevToken]['code'] === \T_COMMA) {
             $phpcsFile->addError(
-                'Trailing comma\'s are not allowed in group use statements in PHP 7.1 or earlier',
+                'Trailing commas are not allowed in group use statements in PHP 7.1 or earlier',
                 $prevToken,
                 'TrailingCommaFound'
             );

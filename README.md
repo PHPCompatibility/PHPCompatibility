@@ -131,7 +131,7 @@ Installation via a git check-out to an arbitrary directory (method 2)
    ```
    I.e. if you placed the `PHPCompatibility` repository in the `/my/custom/standards/PHPCompatibility` directory, you will need to add that directory to the PHP CodeSniffer [`installed_paths` configuration variable](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
 
-   **Warning**: :warning: The `installed_paths` command overwrites any previously set `installed_paths`. If you have previously set `installed_paths` for other external standards, run `phpcs --config-show` first and then run the `installed_paths` command with all the paths you need separated by comma's, i.e.:
+   **Warning**: :warning: The `installed_paths` command overwrites any previously set `installed_paths`. If you have previously set `installed_paths` for other external standards, run `phpcs --config-show` first and then run the `installed_paths` command with all the paths you need separated by commas, i.e.:
    ```bash
    phpcs --config-set installed_paths /path/1,/path/2,/path/3
    ```

@@ -32,7 +32,7 @@ class LotsOfParams7 {
 }
 
 /*
- * PHP 8.0 trailing comma's in function declarations.
+ * PHP 8.0 trailing commas in function declarations.
  */
 function Foo8(
     $foo,
@@ -63,7 +63,7 @@ class LotsOfParams8 {
 }
 
 /*
- * PHP 8.0 trailing comma's in closure use lists.
+ * PHP 8.0 trailing commas in closure use lists.
  */
 $closure = function ($foo, $bar) use ($baz, $booboo,) {
     return ($foo + $bar) * $baz / $booboo;
@@ -90,7 +90,7 @@ $c = function(,) {}; // Parse error, but throw an error anyway.
 
 $c = function($foo) use(,) {}; // Parse error, but throw an error anyway.
 
-// Multiple trailing comma's.
+// Multiple trailing commas.
 $a = fn($foo, $bar,,) => $bar; // Parse error, but throw an error anyway.
 
 // Leading comma.
