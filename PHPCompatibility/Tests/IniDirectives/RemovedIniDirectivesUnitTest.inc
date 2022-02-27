@@ -426,3 +426,6 @@ $test = ini_get('sybase.compatability_mode');
 
 ini_set('assert.quiet_eval', 0);
 $test = ini_get('assert.quiet_eval');
+
+ini_set('auto_detect_line_endings', 0);
+$test = ini_get('auto_detect_line_endings');

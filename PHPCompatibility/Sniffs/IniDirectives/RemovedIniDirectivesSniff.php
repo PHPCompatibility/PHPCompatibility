@@ -596,6 +596,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'assert.quiet_eval' => [
             '8.0' => true,
         ],
+
+        'auto_detect_line_endings' => [
+            '8.1' => false,
+        ],
     ];
 
     /**

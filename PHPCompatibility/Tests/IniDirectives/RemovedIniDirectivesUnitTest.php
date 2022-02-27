@@ -155,6 +155,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['mbstring.internal_encoding', '5.6', [77, 78], '5.5'],
 
             ['allow_url_include', '7.4', [238, 239], '7.3'],
+
+            ['auto_detect_line_endings', '8.1', [430, 431], '8.0'],
         ];
     }
 
