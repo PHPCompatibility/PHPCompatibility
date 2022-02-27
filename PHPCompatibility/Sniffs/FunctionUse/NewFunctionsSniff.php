@@ -4526,6 +4526,14 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'fsync' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'fdatasync' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
 

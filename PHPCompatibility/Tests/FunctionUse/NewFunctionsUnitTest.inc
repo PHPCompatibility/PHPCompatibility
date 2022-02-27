@@ -999,3 +999,5 @@ enchant_dict_is_added();
 ldap_count_references();
 
 array_is_list();
+fsync();
+fdatasync();
