@@ -623,6 +623,10 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '8.1'       => false,
             'extension' => 'filter',
         ],
+        'oci8.old_oci_close_semantics' => [
+            '8.1'       => false,
+            'extension' => 'oci8',
+        ],
     ];
 
     /**

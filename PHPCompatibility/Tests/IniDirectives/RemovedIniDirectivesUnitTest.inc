@@ -447,3 +447,6 @@ $test = ini_get('filter.default');
 
 ini_set('filter.default_options', 0);
 $test = ini_get('filter.default_options');
+
+ini_set('oci8.old_oci_close_semantics', 0);
+$test = ini_get('oci8.old_oci_close_semantics');

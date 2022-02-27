@@ -162,6 +162,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
             ['filter.default', '8.1', [445, 446], '8.0'],
             ['filter.default_options', '8.1', [448, 449], '8.0'],
+            ['oci8.old_oci_close_semantics', '8.1', [451, 452], '8.0'],
         ];
     }
 
