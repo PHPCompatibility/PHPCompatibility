@@ -212,6 +212,11 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['strptime', '8.1', 'date_parse_from_format() or IntlDateFormatter::parse()', [1221], '8.0'],
             ['strftime', '8.1', 'date() or IntlDateFormatter::format()', [1222], '8.0'],
             ['gmstrftime', '8.1', 'date() or IntlDateFormatter::format()', [1223], '8.0'],
+            ['mhash_count', '8.1', 'the hash_*() functions', [1224], '8.0'],
+            ['mhash_get_block_size', '8.1', 'the hash_*() functions', [1225], '8.0'],
+            ['mhash_get_hash_name', '8.1', 'the hash_*() functions', [1226], '8.0'],
+            ['mhash_keygen_s2k', '8.1', 'the hash_*() functions', [1227], '8.0'],
+            ['mhash', '8.1', 'the hash_*() functions', [1228], '8.0'],
         ];
     }
 

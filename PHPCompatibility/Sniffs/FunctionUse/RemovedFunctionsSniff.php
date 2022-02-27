@@ -4910,6 +4910,26 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.1'         => false,
             'alternative' => 'date() or IntlDateFormatter::format()',
         ],
+        'mhash_count' => [
+            '8.1'         => false,
+            'alternative' => 'the hash_*() functions',
+        ],
+        'mhash_get_block_size' => [
+            '8.1'         => false,
+            'alternative' => 'the hash_*() functions',
+        ],
+        'mhash_get_hash_name' => [
+            '8.1'         => false,
+            'alternative' => 'the hash_*() functions',
+        ],
+        'mhash_keygen_s2k' => [
+            '8.1'         => false,
+            'alternative' => 'the hash_*() functions',
+        ],
+        'mhash' => [
+            '8.1'         => false,
+            'alternative' => 'the hash_*() functions',
+        ],
     ];
 
 

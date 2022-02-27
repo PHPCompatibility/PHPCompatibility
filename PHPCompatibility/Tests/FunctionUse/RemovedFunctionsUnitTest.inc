@@ -1221,3 +1221,8 @@ date_sunset();
 strptime();
 strftime();
 gmstrftime();
+mhash_count();
+mhash_get_block_size();
+mhash_get_hash_name();
+mhash_keygen_s2k();
+mhash();
