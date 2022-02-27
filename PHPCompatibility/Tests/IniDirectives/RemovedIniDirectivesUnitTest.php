@@ -157,6 +157,9 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['allow_url_include', '7.4', [238, 239], '7.3'],
 
             ['auto_detect_line_endings', '8.1', [430, 431], '8.0'],
+            ['date.default_latitude', '8.1', [436, 437], '8.0'],
+            ['date.default_longitude', '8.1', [439, 440], '8.0'],
+            ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
         ];
     }
 

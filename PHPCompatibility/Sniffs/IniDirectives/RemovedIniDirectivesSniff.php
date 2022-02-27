@@ -603,6 +603,18 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'log_errors_max_len' => [
             '8.1' => true,
         ],
+        'date.default_latitude' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
+        'date.default_longitude' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
+        'date.sunset_zenith' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
     ];
 
     /**

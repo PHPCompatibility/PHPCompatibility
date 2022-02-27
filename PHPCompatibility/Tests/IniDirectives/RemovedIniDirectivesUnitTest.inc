@@ -432,3 +432,12 @@ $test = ini_get('auto_detect_line_endings');
 
 ini_set('log_errors_max_len', 0);
 $test = ini_get('log_errors_max_len');
+
+ini_set('date.default_latitude', 0);
+$test = ini_get('date.default_latitude');
+
+ini_set('date.default_longitude', 0);
+$test = ini_get('date.default_longitude');
+
+ini_set('date.sunset_zenith', 0);
+$test = ini_get('date.sunset_zenith');
