@@ -26,7 +26,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
 {
 
     /**
-     * testConstVisibility
+     * Test that an error is thrown for class constants declared with visibility.
      *
      * @dataProvider dataConstVisibility
      *
@@ -61,12 +61,16 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
             [33],
             [34],
             [35],
+
+            [57],
+            [58],
+            [59],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify that there are no false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *

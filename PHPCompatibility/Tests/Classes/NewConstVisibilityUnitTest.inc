@@ -33,7 +33,7 @@ $a = new class
     public const PUBLIC_CONST_B = 2;
     protected const PROTECTED_CONST = 3;
     private const PRIVATE_CONST = 4;
-}
+};
 
 /*
  * Test against some false positives.
@@ -47,4 +47,14 @@ class NotAClassConstant {
     public function something() {
         public const GLOBAL_CONSTANT = 'not valid';
     }
+}
+
+/*
+ * Make sure the sniff will still work correctly when PHP 8.1 final constants are declared.
+ */
+class FinalConstDemo
+{
+    public final const FINAL_PUBLIC_CONST_B = 4;
+    protected final const FINAL_PROTECTED_CONST_B = 6;
+    private final const FINAL_PRIVATE_CONST_B = 8;
 }
