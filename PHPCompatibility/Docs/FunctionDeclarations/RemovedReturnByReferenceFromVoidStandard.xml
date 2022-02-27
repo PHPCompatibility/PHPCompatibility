@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<documentation title="Removed Return By Reference From Void Functions">
+    <standard>
+    <![CDATA[
+    Returning by reference from a void function is deprecated since PHP 8.1.
+
+    Such a function is contradictory, and already emits the following E_NOTICE when called: Only variable references should be returned by reference.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: not returning by reference with void.">
+        <![CDATA[
+// Not returning by reference.
+function foo(): void {}
+
+// Returning by reference, no return type.
+function &foo() {}
+
+// Returning by reference
+// without a void return type.
+function &foo(): array {}
+        ]]>
+        </code>
+        <code title="Invalid: returning by reference from a void function.">
+        <![CDATA[
+function <em>&</em>foo(): <em>void</em> {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
