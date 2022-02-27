@@ -6541,6 +6541,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'gd',
         ],
+        'MYSQLI_REFRESH_REPLICA' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
 

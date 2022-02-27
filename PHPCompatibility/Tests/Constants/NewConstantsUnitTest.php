@@ -1498,6 +1498,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['CURLOPT_SSLKEY_BLOB', '8.0', [1421], '8.1'],
             ['IMG_AVIF', '8.0', [1422], '8.1'],
             ['IMG_WEBP_LOSSLESS', '8.0', [1423], '8.1'],
+            ['MYSQLI_REFRESH_REPLICA', '8.0', [1424], '8.1'],
         ];
     }
 
