@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<documentation title="New constant visibility">
+    <standard>
+    <![CDATA[
+    Class constants can be declared with visibility since PHP 7.1.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not using a visibility modifier.">
+        <![CDATA[
+class Foo {
+    const BAR = 10;
+}
+        ]]>
+        </code>
+        <code title="PHP >= 7.1: using a visibility modifier.">
+        <![CDATA[
+class Foo {
+    <em>protected</em> const BAR = 10;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
