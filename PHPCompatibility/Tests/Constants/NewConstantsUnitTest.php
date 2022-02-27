@@ -1501,6 +1501,11 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['MYSQLI_REFRESH_REPLICA', '8.0', [1424], '8.1'],
             ['POSIX_RLIMIT_KQUEUES', '8.0', [1425], '8.1'],
             ['POSIX_RLIMIT_NPTS', '8.0', [1426], '8.1'],
+            ['SO_ACCEPTFILTER', '8.0', [1427], '8.1'],
+            ['SO_DONTTRUNC', '8.0', [1428], '8.1'],
+            ['SO_WANTMORE', '8.0', [1429], '8.1'],
+            ['SO_MARK', '8.0', [1430], '8.1'],
+            ['TCP_DEFER_ACCEPT', '8.0', [1431], '8.1'],
         ];
     }
 

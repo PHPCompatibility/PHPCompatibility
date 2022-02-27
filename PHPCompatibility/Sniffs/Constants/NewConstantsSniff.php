@@ -6556,6 +6556,31 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'posix',
         ],
+        'SO_ACCEPTFILTER' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_DONTTRUNC' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_WANTMORE' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_MARK' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_DEFER_ACCEPT' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
