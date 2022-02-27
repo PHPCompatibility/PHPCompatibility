@@ -69,6 +69,8 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             ['CURLPIPE_HTTP1', '7.4', [138], '7.3'],
             ['ENCHANT_MYSPELL', '8.0', [625], '7.4'],
             ['ENCHANT_ISPELL', '8.0', [626], '7.4'],
+            ['FILE_BINARY', '8.1', [627], '8.0'],
+            ['FILE_TEXT', '8.1', [628], '8.0'],
         ];
     }
 

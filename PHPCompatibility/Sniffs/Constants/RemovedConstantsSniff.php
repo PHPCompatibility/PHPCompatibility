@@ -2533,6 +2533,13 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'PG_VERSION',
         ],
+
+        'FILE_BINARY' => [
+            '8.1' => false,
+        ],
+        'FILE_TEXT' => [
+            '8.1' => false,
+        ],
     ];
 
 
