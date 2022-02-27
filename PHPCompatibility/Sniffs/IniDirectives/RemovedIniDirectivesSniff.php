@@ -615,6 +615,14 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             '8.1'       => false,
             'extension' => 'date',
         ],
+        'filter.default' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'filter.default_options' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
     ];
 
     /**

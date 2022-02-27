@@ -441,3 +441,9 @@ $test = ini_get('date.default_longitude');
 
 ini_set('date.sunset_zenith', 0);
 $test = ini_get('date.sunset_zenith');
+
+ini_set('filter.default', 0);
+$test = ini_get('filter.default');
+
+ini_set('filter.default_options', 0);
+$test = ini_get('filter.default_options');

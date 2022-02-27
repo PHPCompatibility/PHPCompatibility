@@ -160,6 +160,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['date.default_latitude', '8.1', [436, 437], '8.0'],
             ['date.default_longitude', '8.1', [439, 440], '8.0'],
             ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
+            ['filter.default', '8.1', [445, 446], '8.0'],
+            ['filter.default_options', '8.1', [448, 449], '8.0'],
         ];
     }
 
