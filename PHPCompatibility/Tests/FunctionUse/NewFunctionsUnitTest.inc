@@ -1003,3 +1003,4 @@ fsync();
 fdatasync();
 imagecreatefromavif();
 imageavif();
+mysqli_fetch_column();

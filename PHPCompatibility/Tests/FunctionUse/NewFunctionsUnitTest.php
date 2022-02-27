@@ -1068,6 +1068,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             ['fdatasync', '8.0', [1003], '8.1'],
             ['imagecreatefromavif', '8.0', [1004], '8.1'],
             ['imageavif', '8.0', [1005], '8.1'],
+            ['mysqli_fetch_column', '8.0', [1006], '8.1'],
         ];
     }
 

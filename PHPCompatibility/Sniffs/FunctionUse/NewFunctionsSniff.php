@@ -4544,6 +4544,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'gd',
         ],
+        'mysqli_fetch_column' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
 
