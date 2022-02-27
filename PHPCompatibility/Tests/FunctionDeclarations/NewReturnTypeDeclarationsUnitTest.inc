@@ -85,3 +85,13 @@ interface FooBar {
 
 // Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
 function duplicateTypeInUnion(): int|string|INT {}
+
+// PHP 8.1 noreturn type
+function subTypeForAlwaysExitOrThrow(): never {
+	throw new Exception();
+}
+
+$closure = function() : Never {
+	redirect();
+	exit;
+};

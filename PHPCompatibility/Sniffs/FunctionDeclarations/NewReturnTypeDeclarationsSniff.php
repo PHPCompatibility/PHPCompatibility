@@ -25,6 +25,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 8.0, `static` is allowed to be used as a return type.
  * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
+ * - Since PHP 8.1, the stand-alone `never` type is available.
  *
  * PHP version 7.0+
  *
@@ -37,6 +38,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/static_return_type
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
+ * @link https://wiki.php.net/rfc/noreturn_type
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -126,6 +128,11 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         'null' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+        // Subtype of every other type.
+        'never' => [
+            '8.0' => false,
+            '8.1' => true,
         ],
     ];
 

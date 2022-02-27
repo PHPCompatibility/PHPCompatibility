@@ -123,6 +123,8 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['int', '5.6', 87, '8.0'],
             ['string', '5.6', 87, '8.0'],
             ['int', '5.6', 87, '8.0'],
+            ['never', '8.0', 90, '8.1'],
+            ['never', '8.0', 94, '8.1'],
         ];
     }
 
