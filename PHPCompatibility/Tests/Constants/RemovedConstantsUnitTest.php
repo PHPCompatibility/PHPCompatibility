@@ -117,6 +117,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     {
         return [
             ['PG_VERSION_STR', '8.0', 'PG_VERSION', [624], '7.4'],
+            ['NIL', '8.1', 'integer 0', [631], '8.0'],
         ];
     }
 

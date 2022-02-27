@@ -2548,6 +2548,11 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '8.1'       => false,
             'extension' => 'filter',
         ],
+        'NIL' => [
+            '8.1'         => false,
+            'alternative' => 'integer 0',
+            'extension'   => 'imap',
+        ],
     ];
 
 
