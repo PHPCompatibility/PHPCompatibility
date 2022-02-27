@@ -4889,6 +4889,27 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'ZipArchive',
         ],
+
+        'date_sunrise' => [
+            '8.1'         => false,
+            'alternative' => 'date_sun_info()',
+        ],
+        'date_sunset' => [
+            '8.1'         => false,
+            'alternative' => 'date_sun_info()',
+        ],
+        'strptime' => [
+            '8.1'         => false,
+            'alternative' => 'date_parse_from_format() or IntlDateFormatter::parse()',
+        ],
+        'strftime' => [
+            '8.1'         => false,
+            'alternative' => 'date() or IntlDateFormatter::format()',
+        ],
+        'gmstrftime' => [
+            '8.1'         => false,
+            'alternative' => 'date() or IntlDateFormatter::format()',
+        ],
     ];
 
 

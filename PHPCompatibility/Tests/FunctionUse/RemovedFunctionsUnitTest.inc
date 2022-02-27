@@ -1216,4 +1216,8 @@ pg_setclientencoding();
 imap_header();
 shmop_close();
 openssl_free_key();
-
+date_sunrise();
+date_sunset();
+strptime();
+strftime();
+gmstrftime();
