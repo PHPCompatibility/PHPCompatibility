@@ -209,7 +209,7 @@ This allows for more flexibility when, for instance, your project needs to compl
 
 ### PHPCompatibility specific options
 
-At this moment, there is one sniff which has a property which can be set via the ruleset. More custom properties may become available in the future.
+At this moment, there are two sniffs which have a property which can be set via the ruleset. More custom properties may become available in the future.
 
 The `PHPCompatibility.Extensions.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
 This might clash with userland functions using the same function prefix.
@@ -220,6 +220,21 @@ To whitelist userland functions, you can pass a comma-delimited list of function
     <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
         <properties>
             <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
+        </properties>
+    </rule>
+```
+
+The `PHPCompatibility.Interfaces.RemovedSerializable` sniff needs to know about all interfaces which extend the `Serializable` interface to provide the most reliable results.
+The sniff will warn when it encounters an interface extending the `Serializable` interface which is unknown to the sniff and recommend for the interface name to be added to the property.
+
+To inform the sniff about additional interfaces providing the Serializable interface, add a snippet along the lines of the below to your custom ruleset:
+```xml
+    <rule ref="PHPCompatibility.Interfaces.RemovedSerializable">
+        <properties>
+            <property name="serializableInterfaces" type="array">
+                <element value="MyCustomSerializableInterface"/>
+                <element value="AnotherSerializableInterface"/>
+            </property>
         </properties>
     </rule>
 ```
