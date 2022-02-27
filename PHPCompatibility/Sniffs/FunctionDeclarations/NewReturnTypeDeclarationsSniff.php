@@ -148,6 +148,19 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         'null'  => true,
     ];
 
+    /**
+     * Types which are only allowed to occur as stand-alone.
+     *
+     * @since 10.0.0
+     *
+     * @var array Key: string type name, value: PHP version in which the type was introduced.
+     */
+    protected $standAloneTypes = [
+        'void'  => '7.1',
+        'mixed' => '8.0',
+        'never' => '8.1',
+    ];
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -206,17 +219,21 @@ class NewReturnTypeDeclarationsSniff extends Sniff
                 $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
 
                 /*
-                 * Nullable mixed type declarations are not allowed, but could have been used prior
-                 * to PHP 8 if the type hint referred to a class named "Mixed".
-                 * Only throw an error if PHP 8+ needs to be supported.
+                 * Stand-alone types are not allowed to be nullable, nor can they be included in a type union.
+                 * As the names for these types _could_ have referred to a class prior to their introduction
+                 * as a type, we should check for this, but only when the PHP version in which the type
+                 * was introduced needs to be supported.
                  */
-                if (($type === 'mixed' && $properties['nullable_return_type'] === true)
-                    && $this->supportsAbove('8.0') === true
+                if (isset($this->standAloneTypes[$type]) === true
+                    && ($isUnionType === true
+                    || $properties['nullable_return_type'] === true)
+                    && $this->supportsAbove($this->standAloneTypes[$type]) === true
                 ) {
                     $phpcsFile->addError(
-                        'Mixed types cannot be nullable, null is already part of the mixed type',
+                        "The '%s' type can only be used as a standalone type",
                         $returnTypeToken,
-                        'NullableMixed'
+                        'NonStandalone' . \ucfirst($type),
+                        [$type]
                     );
                 }
 
