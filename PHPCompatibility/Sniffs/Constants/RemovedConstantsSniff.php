@@ -2540,6 +2540,14 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
         'FILE_TEXT' => [
             '8.1' => false,
         ],
+        'FILTER_SANITIZE_STRING' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'FILTER_SANITIZE_STRIPPED' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
     ];
 
 

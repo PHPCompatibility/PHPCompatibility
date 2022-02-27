@@ -71,6 +71,8 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             ['ENCHANT_ISPELL', '8.0', [626], '7.4'],
             ['FILE_BINARY', '8.1', [627], '8.0'],
             ['FILE_TEXT', '8.1', [628], '8.0'],
+            ['FILTER_SANITIZE_STRING', '8.1', [629], '8.0'],
+            ['FILTER_SANITIZE_STRIPPED', '8.1', [630], '8.0'],
         ];
     }
 
