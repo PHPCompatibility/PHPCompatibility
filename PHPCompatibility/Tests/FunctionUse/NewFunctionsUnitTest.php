@@ -1069,6 +1069,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
             ['imagecreatefromavif', '8.0', [1004], '8.1'],
             ['imageavif', '8.0', [1005], '8.1'],
             ['mysqli_fetch_column', '8.0', [1006], '8.1'],
+            ['pcntl_rfork', '8.0', [1007], '8.1'],
         ];
     }
 

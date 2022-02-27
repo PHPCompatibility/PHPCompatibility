@@ -4549,6 +4549,10 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'mysqli',
         ],
+        'pcntl_rfork' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
 
