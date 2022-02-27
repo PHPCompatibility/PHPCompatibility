@@ -429,3 +429,5 @@ try {
 }
 
 class MyAttribute extends \Attribute {}
+
+$generator = new IntlDatePatternGenerator();
