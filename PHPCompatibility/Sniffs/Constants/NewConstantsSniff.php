@@ -6581,6 +6581,10 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'sockets',
         ],
+        'T_READONLY' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
 

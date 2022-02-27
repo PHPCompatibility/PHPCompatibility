@@ -1506,6 +1506,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['SO_WANTMORE', '8.0', [1429], '8.1'],
             ['SO_MARK', '8.0', [1430], '8.1'],
             ['TCP_DEFER_ACCEPT', '8.0', [1431], '8.1'],
+            ['T_READONLY', '8.0', [1432], '8.1'],
         ];
     }
 
