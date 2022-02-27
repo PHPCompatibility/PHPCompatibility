@@ -4521,6 +4521,11 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'array_is_list' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
 

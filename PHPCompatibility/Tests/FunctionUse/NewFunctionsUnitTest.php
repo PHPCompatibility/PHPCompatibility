@@ -1062,6 +1062,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             ['openssl_cms_read', '7.4', [986], '8.0'],
             ['openssl_cms_sign', '7.4', [987], '8.0'],
             ['openssl_cms_verify', '7.4', [988], '8.0'],
+
+            ['array_is_list', '8.0', [1001], '8.1'],
         ];
     }
 
