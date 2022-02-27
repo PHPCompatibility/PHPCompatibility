@@ -1226,3 +1226,4 @@ mhash_get_block_size();
 mhash_get_hash_name();
 mhash_keygen_s2k();
 mhash();
+odbc_result_all();

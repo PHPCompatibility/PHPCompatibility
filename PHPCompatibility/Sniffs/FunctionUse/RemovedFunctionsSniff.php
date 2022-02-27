@@ -4930,6 +4930,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
         ],
+        'odbc_result_all' => [
+            '8.1' => false,
+        ],
     ];
 
 

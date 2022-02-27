@@ -73,6 +73,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['openssl_pkey_free', '8.0', [1190], '7.4'],
             ['shmop_close', '8.0', [1217], '7.4'],
             ['openssl_free_key', '8.0', [1218], '7.4'],
+            ['odbc_result_all', '8.1', [1229], '8.0'],
         ];
     }
 
