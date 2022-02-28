@@ -2553,6 +2553,30 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'integer 0',
             'extension'   => 'imap',
         ],
+        'MYSQLI_NO_DATA' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_DATA_TRUNCATED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_NO_INDEX_USED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_WAS_SLOW' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_PS_OUT_PARAMS' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
     ];
 
 

@@ -73,6 +73,12 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             ['FILE_TEXT', '8.1', [628], '8.0'],
             ['FILTER_SANITIZE_STRING', '8.1', [629], '8.0'],
             ['FILTER_SANITIZE_STRIPPED', '8.1', [630], '8.0'],
+            ['MYSQLI_NO_DATA', '8.1', [632], '8.0'],
+            ['MYSQLI_DATA_TRUNCATED', '8.1', [633], '8.0'],
+            ['MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED', '8.1', [634], '8.0'],
+            ['MYSQLI_SERVER_QUERY_NO_INDEX_USED', '8.1', [635], '8.0'],
+            ['MYSQLI_SERVER_QUERY_WAS_SLOW', '8.1', [636], '8.0'],
+            ['MYSQLI_SERVER_PS_OUT_PARAMS', '8.1', [637], '8.0'],
         ];
     }
 
