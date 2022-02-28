@@ -65,6 +65,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
             [22],
             [23],
             [26],
+            [44],
         ];
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
