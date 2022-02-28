@@ -88,14 +88,15 @@ class ValidIntegersSniff extends Sniff
 
         $isError = $this->supportsAbove('7.0');
 
-        if ($this->isInvalidOctalInteger($numberInfo['content']) === true) {
+        $isInvalidOctal = $this->isInvalidOctalInteger($tokens, $stackPtr, $numberInfo);
+        if ($isInvalidOctal !== false) {
             MessageHelper::addMessage(
                 $phpcsFile,
                 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s',
                 $stackPtr,
                 $isError,
                 'InvalidOctalIntegerFound',
-                [$numberInfo['orig_content']]
+                [$isInvalidOctal]
             );
         }
 
@@ -158,12 +159,28 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @param string $tokenContent The content of the current numeric token to examine.
+     * @param array  $tokens     Token stack.
+     * @param int    $stackPtr   The current position in the token stack.
+     * @param string $numberInfo The information on the number to examine
      *
-     * @return bool
+     * @return string|bool The invalid octal as a string or false when this is not an invalid octal.
      */
-    private function isInvalidOctalInteger($tokenContent)
+    private function isInvalidOctalInteger($tokens, $stackPtr, $numberInfo)
     {
-        return (\preg_match('`^0[0-7]*[8-9]+[0-9]*$`D', $tokenContent) === 1);
+        // For invalid explicit octal, we need to also check the next token.
+        if (($numberInfo['content'] === '0'
+             && \strtolower($tokens[($stackPtr + 1)]['content'][0]) === 'o')
+             || \stripos($numberInfo['content'], '0o') === 0
+        ) {
+            if (\preg_match('`^(?:[o_][0-7_]*)?[8-9]+[_0-9]*$`iD', $tokens[($stackPtr + 1)]['content']) === 1) {
+                return $tokens[$stackPtr]['content'] . $tokens[($stackPtr + 1)]['content'];
+            }
+        }
+
+        if (\preg_match('`^0[0-7]*[8-9]+[0-9]*$`iD', $numberInfo['content']) === 1) {
+            return $numberInfo['orig_content'];
+        }
+
+        return false;
     }
 }

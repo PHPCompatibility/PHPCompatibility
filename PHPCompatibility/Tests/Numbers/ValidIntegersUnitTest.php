@@ -103,7 +103,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidOctalInteger
+     * Test that invalid octals are correctly flagged.
      *
      * @dataProvider dataInvalidOctalInteger
      *
@@ -137,12 +137,16 @@ class ValidIntegersUnitTest extends BaseSniffTest
             [8, '038'],
             [9, '091'],
             [16, '03_8'],
+            [26, '0o91'],
+            [27, '0O282'],
+            [28, '0o28_2'],
+            [29, '0o2_82'],
         ];
     }
 
 
     /**
-     * testValidOctalInteger
+     * Verify that no false positives are thrown for valid octals.
      *
      * @dataProvider dataValidOctalInteger
      *
@@ -168,6 +172,8 @@ class ValidIntegersUnitTest extends BaseSniffTest
         return [
             [6],
             [15],
+            [22],
+            [23],
         ];
     }
 
