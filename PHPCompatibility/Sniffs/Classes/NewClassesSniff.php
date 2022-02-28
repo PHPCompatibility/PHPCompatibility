@@ -772,6 +772,15 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'Fiber' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'ReflectionFiber' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
     ];
 
     /**
@@ -986,6 +995,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'ValueError' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+
+        'FiberError' => [
+            '8.0' => false,
+            '8.1' => true,
         ],
     ];
 
