@@ -884,6 +884,11 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'fiber.stack_size' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
     /**

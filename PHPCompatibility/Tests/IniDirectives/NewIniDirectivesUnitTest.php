@@ -265,6 +265,8 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             ['com.dotnet_version', '8.0', [536, 537], '7.4'],
             ['pm.status_listen', '8.0', [533, 534], '7.4'],
             ['zend.exception_string_param_max_len', '8.0', [530, 531], '7.4'],
+
+            ['fiber.stack_size', '8.1', [539, 540], '8.0'],
         ];
     }
 
