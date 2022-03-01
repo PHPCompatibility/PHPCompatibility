@@ -1487,6 +1487,15 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['T_NAME_QUALIFIED', '7.4', [1411], '8.0'],
             ['T_NAME_RELATIVE', '7.4', [1412], '8.0'],
             ['T_NULLSAFE_OBJECT_OPERATOR', '7.4', [1409], '8.0'],
+
+            ['CURLOPT_DOH_URL', '8.0', [1414], '8.1'],
+            ['CURLOPT_ISSUERCERT_BLOB', '8.0', [1415], '8.1'],
+            ['CURLOPT_PROXY_ISSUERCERT', '8.0', [1416], '8.1'],
+            ['CURLOPT_PROXY_ISSUERCERT_BLOB', '8.0', [1417], '8.1'],
+            ['CURLOPT_PROXY_SSLCERT_BLOB', '8.0', [1418], '8.1'],
+            ['CURLOPT_PROXY_SSLKEY_BLOB', '8.0', [1419], '8.1'],
+            ['CURLOPT_SSLCERT_BLOB', '8.0', [1420], '8.1'],
+            ['CURLOPT_SSLKEY_BLOB', '8.0', [1421], '8.1'],
         ];
     }
 

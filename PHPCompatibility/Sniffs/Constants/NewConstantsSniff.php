@@ -6490,6 +6490,47 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'CURLOPT_DOH_URL' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_ISSUERCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_ISSUERCERT' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_ISSUERCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_SSLCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_SSLKEY_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSLCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSLKEY_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
     ];
 
 
