@@ -7200,6 +7200,12 @@ class NewConstantsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'sodium',
         ],
+
+        'MYSQLI_IS_MARIADB' => [
+            '8.1.1'     => false,
+            '8.1.2'     => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
 

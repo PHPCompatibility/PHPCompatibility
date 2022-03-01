@@ -1514,6 +1514,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG', '8.0', 1441, '8.1'],
             ['T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG', '8.0', 1442, '8.1'],
             ['T_ENUM', '8.0', 1443, '8.1'],
+
+            ['MYSQLI_IS_MARIADB', '8.1.1', 1445, '8.2', '8.1'],
         ];
     }
 
