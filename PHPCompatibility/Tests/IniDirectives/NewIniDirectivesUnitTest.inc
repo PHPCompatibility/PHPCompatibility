@@ -541,3 +541,6 @@ $test = ini_get('fiber.stack_size');
 
 ini_set('mysqli.local_infile_directory', 10);
 $test = ini_get('mysqli.local_infile_directory');
+
+ini_set('pm.max_spawn_rate', 10);
+$test = ini_get('pm.max_spawn_rate');

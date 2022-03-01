@@ -268,6 +268,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
 
             ['fiber.stack_size', '8.1', [539, 540], '8.0'],
             ['mysqli.local_infile_directory', '8.1', [542, 543], '8.0'],
+            ['pm.max_spawn_rate', '8.1', [545, 546], '8.0'],
         ];
     }
 

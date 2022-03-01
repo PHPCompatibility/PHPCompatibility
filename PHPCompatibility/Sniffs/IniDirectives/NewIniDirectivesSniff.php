@@ -894,6 +894,10 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'mysqli',
         ],
+        'pm.max_spawn_rate' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
     /**
