@@ -889,6 +889,11 @@ class NewIniDirectivesSniff extends AbstractNewFeatureSniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'mysqli.local_infile_directory' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
     /**

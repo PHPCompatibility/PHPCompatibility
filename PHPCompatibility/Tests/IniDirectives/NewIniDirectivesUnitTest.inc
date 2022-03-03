@@ -538,3 +538,6 @@ $test = ini_get('com.dotnet_version');
 
 ini_set('fiber.stack_size', 10);
 $test = ini_get('fiber.stack_size');
+
+ini_set('mysqli.local_infile_directory', 10);
+$test = ini_get('mysqli.local_infile_directory');
