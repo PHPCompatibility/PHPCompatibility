@@ -1001,3 +1001,5 @@ ldap_count_references();
 array_is_list();
 fsync();
 fdatasync();
+imagecreatefromavif();
+imageavif();

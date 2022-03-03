@@ -1066,6 +1066,8 @@ class NewFunctionsUnitTest extends BaseSniffTest
             ['array_is_list', '8.0', [1001], '8.1'],
             ['fsync', '8.0', [1002], '8.1'],
             ['fdatasync', '8.0', [1003], '8.1'],
+            ['imagecreatefromavif', '8.0', [1004], '8.1'],
+            ['imageavif', '8.0', [1005], '8.1'],
         ];
     }
 

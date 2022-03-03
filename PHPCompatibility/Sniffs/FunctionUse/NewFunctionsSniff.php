@@ -4534,6 +4534,16 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'imagecreatefromavif' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'imageavif' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
     ];
 
 
