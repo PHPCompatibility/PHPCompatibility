@@ -84,11 +84,12 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
             ['dirname', 'levels', '5.6', [23], '7.0'],
             ['dns_get_record', 'raw', '5.3', [24], '5.4'],
             ['fgetcsv', 'escape', '5.2', [25], '5.3'],
-            ['fputcsv', 'escape_char', '5.5.3', [26], '5.6', '5.5'],
             ['file_get_contents', 'offset', '5.0', [27], '5.1'],
             ['file_get_contents', 'maxlen', '5.0', [27], '5.1'],
             ['filter_input_array', 'add_empty', '5.3', [28], '5.4'],
             ['filter_var_array', 'add_empty', '5.3', [29], '5.4'],
+            ['fputcsv', 'escape_char', '5.5.3', [26, 129], '8.1', '5.5'], // OK version > version in which last parameter was added to the function.
+            ['fputcsv', 'eol', '8.0', [129], '8.1'],
             ['getenv', 'local_only', '5.5.37', [105], '5.6', '5.5'],
             ['getopt', 'optind', '7.0', [98], '7.1'],
             ['gettimeofday', 'return_float', '5.0', [30], '5.1'],

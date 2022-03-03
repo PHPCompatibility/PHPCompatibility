@@ -126,3 +126,4 @@ pg_meta_data($connection, $table_name, $extended);
 hash($algo, $data, $binary, []);
 hash_file($algo, $filename, $binary, $options);
 hash_init($algo, $flags, $key, MyClass::$options);
+fputcsv($stream, $fields, ",", "\"", "\\", $eol);
