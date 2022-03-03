@@ -781,6 +781,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'reflection',
         ],
+        'CURLStringFile' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
     ];
 
     /**

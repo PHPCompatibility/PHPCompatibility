@@ -435,3 +435,4 @@ try {
 	$fiber = new Fiber();
 	$reflect = new ReflectionFiber($fiber);
 } catch( FiberError $e ) {}
+$file = new CURLStringFile($data, 'filename.txt', 'text/plain');
