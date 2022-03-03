@@ -271,6 +271,27 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.4'  => true,
             ],
         ],
+        'hash' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
+            ],
+        ],
+        'hash_file' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
+            ],
+        ],
+        'hash_init' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
+            ],
+        ],
         'htmlentities' => [
             3 => [
                 'name'  => 'double_encode',
