@@ -6546,6 +6546,16 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'mysqli',
         ],
+        'POSIX_RLIMIT_KQUEUES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_RLIMIT_NPTS' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 

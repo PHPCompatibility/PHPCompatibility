@@ -1499,6 +1499,8 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['IMG_AVIF', '8.0', [1422], '8.1'],
             ['IMG_WEBP_LOSSLESS', '8.0', [1423], '8.1'],
             ['MYSQLI_REFRESH_REPLICA', '8.0', [1424], '8.1'],
+            ['POSIX_RLIMIT_KQUEUES', '8.0', [1425], '8.1'],
+            ['POSIX_RLIMIT_NPTS', '8.0', [1426], '8.1'],
         ];
     }
 
