@@ -1496,6 +1496,7 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['CURLOPT_PROXY_SSLKEY_BLOB', '8.0', [1419], '8.1'],
             ['CURLOPT_SSLCERT_BLOB', '8.0', [1420], '8.1'],
             ['CURLOPT_SSLKEY_BLOB', '8.0', [1421], '8.1'],
+            ['IMG_AVIF', '8.0', [1422], '8.1'],
         ];
     }
 
