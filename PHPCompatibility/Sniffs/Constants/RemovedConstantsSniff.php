@@ -2577,6 +2577,14 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '8.1'       => false,
             'extension' => 'mysqli',
         ],
+        'MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_STORE_RESULT_COPY_DATA' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
     ];
 
 
