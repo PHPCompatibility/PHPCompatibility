@@ -33,7 +33,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      * @param string $functionName  Function name.
      * @param string $parameterName Parameter name.
      * @param string $removedIn     The PHP version in which the parameter was removed.
-     * @param array  $lines         The line numbers in the test file which apply to this class.
+     * @param array  $lines         The line numbers in the test file which apply to this parameter.
      * @param string $okVersion     A PHP version in which the parameter was ok to be used.
      * @param string $testVersion   Optional. A PHP version in which to test for the removal message.
      *
@@ -86,7 +86,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      * @param string $parameterName Parameter name.
      * @param string $deprecatedIn  The PHP version in which the parameter was deprecated.
      * @param string $removedIn     The PHP version in which the parameter was removed.
-     * @param array  $lines         The line numbers in the test file which apply to this class.
+     * @param array  $lines         The line numbers in the test file which apply to this parameter.
      * @param string $okVersion     A PHP version in which the parameter was ok to be used.
      *
      * @return void
@@ -129,6 +129,52 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             ['curl_version', 'age', '7.4', '8.0', [19], '7.3'],
             ['curl_version', 'age', '7.4', '8.0', [20], '7.3'],
             ['curl_version', 'age', '7.4', '8.0', [21], '7.3'],
+        ];
+    }
+
+
+    /**
+     * Test that use of a deprecated parameter is detected correctly.
+     *
+     * @dataProvider dataDeprecatedParameter
+     *
+     * @param string $functionName  Function name.
+     * @param string $parameterName Parameter name.
+     * @param string $deprecatedIn  The PHP version in which the parameter was deprecated.
+     * @param array  $lines         The line numbers in the test file which apply to this parameter.
+     * @param string $okVersion     A PHP version in which the parameter was ok to be used.
+     * @param string $testVersion   Optional. A PHP version in which to test for the deprecation message.
+     *
+     * @return void
+     */
+    public function testDeprecatedParameter($functionName, $parameterName, $deprecatedIn, $lines, $okVersion, $testVersion = null)
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($testVersion)) ? $testVersion : $deprecatedIn;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "The \"{$parameterName}\" parameter for function {$functionName}() is deprecated since PHP {$deprecatedIn}";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedParameter()
+     *
+     * @return array
+     */
+    public function dataDeprecatedParameter()
+    {
+        return [
+            ['imagepolygon', 'num_points', '8.1', [36], '8.0'],
+            ['imageopenpolygon', 'num_points', '8.1', [37], '8.0'],
+            ['imagefilledpolygon', 'num_points', '8.1', [38], '8.0'],
         ];
     }
 
