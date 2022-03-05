@@ -8,7 +8,6 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 
 [![CS Build Status](https://github.com/PHPCompatibility/PHPCompatibility/workflows/CS/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ACS)
 [![Test Build Status](https://github.com/PHPCompatibility/PHPCompatibility/workflows/Test/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ATest)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/PHPCompatibility/PHPCompatibility/)
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
