@@ -6536,6 +6536,11 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'gd',
         ],
+        'IMG_WEBP_LOSSLESS' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
     ];
 
 
