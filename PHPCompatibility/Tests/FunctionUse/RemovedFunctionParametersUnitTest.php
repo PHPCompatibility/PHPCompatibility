@@ -175,6 +175,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             ['imagepolygon', 'num_points', '8.1', [36], '8.0'],
             ['imageopenpolygon', 'num_points', '8.1', [37], '8.0'],
             ['imagefilledpolygon', 'num_points', '8.1', [38], '8.0'],
+            ['mysqli_get_client_info', 'mysql', '8.1', [40], '8.0'],
         ];
     }
 

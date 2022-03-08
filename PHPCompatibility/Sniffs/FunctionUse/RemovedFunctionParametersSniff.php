@@ -120,6 +120,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '7.0'  => true,
             ],
         ],
+        'mysqli_get_client_info' => [
+            0 => [
+                'name' => 'mysql',
+                '8.1'  => false,
+            ],
+        ],
         'odbc_do' => [
             2 => [
                 'name' => 'flags',

@@ -36,3 +36,5 @@ odbc_do($connection_id, $query_string, $flags); // Error.
 imagepolygon($image, $points, $num_points, $color); // Warning.
 imageopenpolygon($image, $points, $num_points, $color); // Warning.
 imagefilledpolygon($image, $points, $num_points, $color); // Warning.
+
+mysqli_get_client_info($mysql); // Warning.
