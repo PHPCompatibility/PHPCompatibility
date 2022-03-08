@@ -358,6 +358,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['ibase.timeformat', '7.4', [214, 215], '7.3'],
 
             ['assert.quiet_eval', '8.0', [427, 428], '7.4'],
+
+            ['log_errors_max_len', '8.1', [433, 434], '8.0'],
         ];
     }
 

@@ -429,3 +429,6 @@ $test = ini_get('assert.quiet_eval');
 
 ini_set('auto_detect_line_endings', 0);
 $test = ini_get('auto_detect_line_endings');
+
+ini_set('log_errors_max_len', 0);
+$test = ini_get('log_errors_max_len');

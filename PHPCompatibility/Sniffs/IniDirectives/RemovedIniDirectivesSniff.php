@@ -600,6 +600,9 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'auto_detect_line_endings' => [
             '8.1' => false,
         ],
+        'log_errors_max_len' => [
+            '8.1' => true,
+        ],
     ];
 
     /**
