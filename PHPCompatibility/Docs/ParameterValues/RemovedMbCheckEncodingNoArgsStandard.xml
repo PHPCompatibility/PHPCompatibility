@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation title="Removed mb_check_encoding() without arguments">
+    <standard>
+    <![CDATA[
+    Calling the mb_check_encoding() function without passing any arguments is deprecated since PHP 8.1 and support will be removed in PHP 9.0.
+
+    Pass either the $value and/or the $encoding parameter for PHP cross-version compatible code.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: calling mb_check_encoding() with at least one argument.">
+        <![CDATA[
+$check = <em>mb_check_encoding($value, $encoding)</em>;
+$check = <em>mb_check_encoding(encoding: $charset)</em>;
+        ]]>
+        </code>
+        <code title="Invalid: calling mb_check_encoding() without any arguments.">
+        <![CDATA[
+$check = <em>mb_check_encoding()</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
