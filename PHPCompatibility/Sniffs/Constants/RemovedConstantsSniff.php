@@ -2533,6 +2533,58 @@ class RemovedConstantsSniff extends AbstractRemovedFeatureSniff
             '8.0'         => false,
             'alternative' => 'PG_VERSION',
         ],
+
+        'FILE_BINARY' => [
+            '8.1' => false,
+        ],
+        'FILE_TEXT' => [
+            '8.1' => false,
+        ],
+        'FILTER_SANITIZE_STRING' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'FILTER_SANITIZE_STRIPPED' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'NIL' => [
+            '8.1'         => false,
+            'alternative' => 'integer 0',
+            'extension'   => 'imap',
+        ],
+        'MYSQLI_NO_DATA' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_DATA_TRUNCATED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_NO_INDEX_USED' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_QUERY_WAS_SLOW' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SERVER_PS_OUT_PARAMS' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_STORE_RESULT_COPY_DATA' => [
+            '8.1'       => false,
+            'extension' => 'mysqli',
+        ],
     ];
 
 

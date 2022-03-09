@@ -69,6 +69,18 @@ class RemovedConstantsUnitTest extends BaseSniffTest
             ['CURLPIPE_HTTP1', '7.4', [138], '7.3'],
             ['ENCHANT_MYSPELL', '8.0', [625], '7.4'],
             ['ENCHANT_ISPELL', '8.0', [626], '7.4'],
+            ['FILE_BINARY', '8.1', [627], '8.0'],
+            ['FILE_TEXT', '8.1', [628], '8.0'],
+            ['FILTER_SANITIZE_STRING', '8.1', [629], '8.0'],
+            ['FILTER_SANITIZE_STRIPPED', '8.1', [630], '8.0'],
+            ['MYSQLI_NO_DATA', '8.1', [632], '8.0'],
+            ['MYSQLI_DATA_TRUNCATED', '8.1', [633], '8.0'],
+            ['MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED', '8.1', [634], '8.0'],
+            ['MYSQLI_SERVER_QUERY_NO_INDEX_USED', '8.1', [635], '8.0'],
+            ['MYSQLI_SERVER_QUERY_WAS_SLOW', '8.1', [636], '8.0'],
+            ['MYSQLI_SERVER_PS_OUT_PARAMS', '8.1', [637], '8.0'],
+            ['MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH', '8.1', [638], '8.0'],
+            ['MYSQLI_STORE_RESULT_COPY_DATA', '8.1', [639], '8.0'],
         ];
     }
 
@@ -113,6 +125,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
     {
         return [
             ['PG_VERSION_STR', '8.0', 'PG_VERSION', [624], '7.4'],
+            ['NIL', '8.1', 'integer 0', [631], '8.0'],
         ];
     }
 
