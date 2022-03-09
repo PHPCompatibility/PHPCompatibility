@@ -57,8 +57,11 @@ class NewConstVisibilitySniff extends Sniff
             return;
         }
 
-        $tokens    = $phpcsFile->getTokens();
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $tokens = $phpcsFile->getTokens();
+        $skip   = Tokens::$emptyTokens;
+        $skip[] = \T_FINAL;
+
+        $prevToken = $phpcsFile->findPrevious($skip, ($stackPtr - 1), null, true, null, true);
 
         // Is the previous token a visibility indicator ?
         if ($prevToken === false || isset(Tokens::$scopeModifiers[$tokens[$prevToken]['code']]) === false) {
