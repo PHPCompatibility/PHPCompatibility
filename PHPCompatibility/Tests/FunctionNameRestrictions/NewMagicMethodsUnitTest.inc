@@ -97,3 +97,27 @@ trait MyTrait
     public function __construct() {}
     public function __destruct() {}
 }
+
+/*
+ * Don't show warning for the PHP 7.4+ serialization magic methods when the class/interface
+ * also implements/extends Serializable.
+ */
+class ImplementingSerializableANDMagicMethods extends ArrayIterator implements Serializable {
+    public function serialize() {
+        return serialize($this->data);
+    }
+    public function unserialize( $data) {
+        $this->data = unserialize($data);
+    }
+    public function __serialize() {
+        return $this->data;
+    }
+    public function __unserialize($data) {
+        $this->data = $data;
+    }
+}
+
+interface SerializableExtendedInterface extends Iterator, Serializable, ArrayAccess {
+    public function __serialize();
+    public function __unserialize($data);
+}

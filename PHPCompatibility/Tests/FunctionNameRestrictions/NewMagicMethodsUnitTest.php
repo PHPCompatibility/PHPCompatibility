@@ -196,6 +196,12 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             [54],
             [74],
             [75],
+
+            // Magic serialization methods in a class implementing Serializable.
+            [112],
+            [115],
+            [121],
+            [122],
         ];
     }
 
