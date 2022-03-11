@@ -6585,6 +6585,16 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_STREAM_XCHACHA20_KEYBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 

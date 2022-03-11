@@ -1507,6 +1507,8 @@ class NewConstantsUnitTest extends BaseSniffTest
             ['SO_MARK', '8.0', [1430], '8.1'],
             ['TCP_DEFER_ACCEPT', '8.0', [1431], '8.1'],
             ['T_READONLY', '8.0', [1432], '8.1'],
+            ['SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES', '8.0', [1433], '8.1'],
+            ['SODIUM_CRYPTO_STREAM_XCHACHA20_KEYBYTES', '8.0', [1434], '8.1'],
         ];
     }
 
