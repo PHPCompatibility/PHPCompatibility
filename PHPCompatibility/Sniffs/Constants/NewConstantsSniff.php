@@ -6595,6 +6595,36 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '8.1'       => true,
             'extension' => 'sodium',
         ],
+        'SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_BYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_SCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_BYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_HASHBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_SCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_NONREDUCEDSCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
