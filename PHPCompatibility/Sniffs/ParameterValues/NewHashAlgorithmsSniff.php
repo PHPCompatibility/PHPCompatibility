@@ -113,6 +113,35 @@ class NewHashAlgorithmsSniff extends AbstractNewFeatureSniff
             '7.3' => false,
             '7.4' => true,
         ],
+
+        'murmur3a' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'murmur3c' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'murmur3f' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'xxh32' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'xxh64' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'xxh3' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'xxh128' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
 
