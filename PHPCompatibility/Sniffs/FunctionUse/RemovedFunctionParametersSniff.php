@@ -73,6 +73,28 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 '8.0'  => true,
             ],
         ],
+        /*
+         * For the below three functions, it's actually the 3rd (pos: 2) parameter which has been deprecated.
+         * However with positional arguments, this can only be detected by checking for the "old last" argument.
+         */
+        'imagepolygon' => [
+            3 => [
+                'name' => 'num_points',
+                '8.1'  => false,
+            ],
+        ],
+        'imageopenpolygon' => [
+            3 => [
+                'name' => 'num_points',
+                '8.1'  => false,
+            ],
+        ],
+        'imagefilledpolygon' => [
+            3 => [
+                'name' => 'num_points',
+                '8.1'  => false,
+            ],
+        ],
         'ldap_first_attribute' => [
             2 => [
                 'name'  => 'ber_identifier',
@@ -96,6 +118,12 @@ class RemovedFunctionParametersSniff extends AbstractRemovedFeatureSniff
                 'name' => 'is_dst',
                 '5.1'  => false,
                 '7.0'  => true,
+            ],
+        ],
+        'mysqli_get_client_info' => [
+            0 => [
+                'name' => 'mysql',
+                '8.1'  => false,
             ],
         ],
         'odbc_do' => [

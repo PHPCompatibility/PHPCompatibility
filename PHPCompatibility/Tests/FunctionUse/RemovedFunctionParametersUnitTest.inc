@@ -32,3 +32,9 @@ imap_headerinfo($imap_stream, $msg_number, $fromlength, $subjectlength, $default
 odbc_exec($connection_id, $query_string); // OK.
 odbc_exec($connection_id, $query_string, $flags); // Error.
 odbc_do($connection_id, $query_string, $flags); // Error.
+
+imagepolygon($image, $points, $num_points, $color); // Warning.
+imageopenpolygon($image, $points, $num_points, $color); // Warning.
+imagefilledpolygon($image, $points, $num_points, $color); // Warning.
+
+mysqli_get_client_info($mysql); // Warning.
