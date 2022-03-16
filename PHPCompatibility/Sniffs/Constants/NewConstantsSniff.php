@@ -6490,6 +6490,141 @@ class NewConstantsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'CURLOPT_DOH_URL' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_ISSUERCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_ISSUERCERT' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_ISSUERCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_SSLCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_SSLKEY_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSLCERT_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSLKEY_BLOB' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
+        'IMG_AVIF' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'IMG_WEBP_LOSSLESS' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'MYSQLI_REFRESH_REPLICA' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mysqli',
+        ],
+        'POSIX_RLIMIT_KQUEUES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_RLIMIT_NPTS' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'posix',
+        ],
+        'SO_ACCEPTFILTER' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_DONTTRUNC' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_WANTMORE' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_MARK' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_DEFER_ACCEPT' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sockets',
+        ],
+        'T_READONLY' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_STREAM_XCHACHA20_KEYBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_BYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_SCALARMULT_RISTRETTO255_SCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_BYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_HASHBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_SCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_CORE_RISTRETTO255_NONREDUCEDSCALARBYTES' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
