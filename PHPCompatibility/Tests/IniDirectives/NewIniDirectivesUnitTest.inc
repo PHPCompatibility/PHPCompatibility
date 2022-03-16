@@ -535,3 +535,12 @@ $test = ini_get('pm.status_listen');
 
 ini_set('com.dotnet_version', 'v4.0.30319');
 $test = ini_get('com.dotnet_version');
+
+ini_set('fiber.stack_size', 10);
+$test = ini_get('fiber.stack_size');
+
+ini_set('mysqli.local_infile_directory', 10);
+$test = ini_get('mysqli.local_infile_directory');
+
+ini_set('pm.max_spawn_rate', 10);
+$test = ini_get('pm.max_spawn_rate');
