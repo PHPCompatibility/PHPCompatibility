@@ -4521,6 +4521,128 @@ class NewFunctionsSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'array_is_list' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'fsync' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'fdatasync' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'imagecreatefromavif' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'imageavif' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'mysqli_fetch_column' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mysqli',
+        ],
+        'pcntl_rfork' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'sodium_crypto_stream_xchacha20' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_stream_xchacha20_keygen' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_stream_xchacha20_xor' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_add' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_from_hash' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_is_valid_point' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_random' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_add' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_complement' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_invert' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_mul' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_negate' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_random' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_reduce' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_scalar_sub' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_core_ristretto255_sub' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_scalarmult_ristretto255' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_scalarmult_ristretto255_base' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
