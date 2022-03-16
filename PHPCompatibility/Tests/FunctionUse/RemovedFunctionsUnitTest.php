@@ -73,6 +73,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['openssl_pkey_free', '8.0', [1190], '7.4'],
             ['shmop_close', '8.0', [1217], '7.4'],
             ['openssl_free_key', '8.0', [1218], '7.4'],
+            ['odbc_result_all', '8.1', [1229], '8.0'],
         ];
     }
 
@@ -206,6 +207,17 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
             ['pg_numrows', '8.0', 'pg_num_rows()', [1213], '7.4'],
             ['pg_result', '8.0', 'pg_fetch_result()', [1214], '7.4'],
             ['pg_setclientencoding', '8.0', 'pg_set_client_encoding()', [1215], '7.4'],
+
+            ['date_sunrise', '8.1', 'date_sun_info()', [1219], '8.0'],
+            ['date_sunset', '8.1', 'date_sun_info()', [1220], '8.0'],
+            ['strptime', '8.1', 'date_parse_from_format() or IntlDateFormatter::parse()', [1221], '8.0'],
+            ['strftime', '8.1', 'date() or IntlDateFormatter::format()', [1222], '8.0'],
+            ['gmstrftime', '8.1', 'date() or IntlDateFormatter::format()', [1223], '8.0'],
+            ['mhash_count', '8.1', 'the hash_*() functions', [1224], '8.0'],
+            ['mhash_get_block_size', '8.1', 'the hash_*() functions', [1225], '8.0'],
+            ['mhash_get_hash_name', '8.1', 'the hash_*() functions', [1226], '8.0'],
+            ['mhash_keygen_s2k', '8.1', 'the hash_*() functions', [1227], '8.0'],
+            ['mhash', '8.1', 'the hash_*() functions', [1228], '8.0'],
         ];
     }
 
