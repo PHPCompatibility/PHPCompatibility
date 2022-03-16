@@ -767,6 +767,25 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             '7.4' => false,
             '8.0' => true,
         ],
+
+        'IntlDatePatternGenerator' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'Fiber' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'ReflectionFiber' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
+        'CURLStringFile' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'curl',
+        ],
     ];
 
     /**
@@ -981,6 +1000,11 @@ class NewClassesSniff extends AbstractNewFeatureSniff
         'ValueError' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+
+        'FiberError' => [
+            '8.0' => false,
+            '8.1' => true,
         ],
     ];
 

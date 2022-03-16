@@ -215,6 +215,10 @@ class NewClassesUnitTest extends BaseSniffTest
             ['OCICollection', '7.4', [424], '8.0'],
             ['OCILob', '7.4', [425], '8.0'],
             ['Attribute', '7.4', [431], '8.0'],
+            ['IntlDatePatternGenerator', '8.0', [433], '8.1'],
+            ['Fiber', '8.0', [435], '8.1'],
+            ['ReflectionFiber', '8.0', [436], '8.1'],
+            ['CURLStringFile', '8.0', [438], '8.1'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
@@ -261,6 +265,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['FFI\ParserException', '7.3', [349], '7.4'],
             ['UnhandledMatchError', '7.4', [428], '8.0'],
             ['ValueError', '7.4', [418, 419], '8.0'],
+            ['FiberError', '8.0', [437], '8.1'],
         ];
     }
 
