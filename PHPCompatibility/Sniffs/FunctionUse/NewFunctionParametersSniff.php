@@ -175,13 +175,6 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 '5.3'  => true,
             ],
         ],
-        'fputcsv' => [
-            4 => [
-                'name'  => 'escape_char',
-                '5.5.3' => false,
-                '5.5.4' => true,
-            ],
-        ],
         'file_get_contents' => [
             3 => [
                 'name' => 'offset',
@@ -206,6 +199,18 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name' => 'add_empty',
                 '5.3'  => false,
                 '5.4'  => true,
+            ],
+        ],
+        'fputcsv' => [
+            4 => [
+                'name'  => 'escape_char',
+                '5.5.3' => false,
+                '5.5.4' => true,
+            ],
+            5 => [
+                'name' => 'eol',
+                '8.0'  => false,
+                '8.1'  => true,
             ],
         ],
         'getenv' => [
@@ -269,6 +274,27 @@ class NewFunctionParametersSniff extends AbstractNewFeatureSniff
                 'name' => 'encoding',
                 '5.3'  => false,
                 '5.4'  => true,
+            ],
+        ],
+        'hash' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
+            ],
+        ],
+        'hash_file' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
+            ],
+        ],
+        'hash_init' => [
+            3 => [
+                'name' => 'options',
+                '8.0'  => false,
+                '8.1'  => true,
             ],
         ],
         'htmlentities' => [
