@@ -426,3 +426,27 @@ $test = ini_get('sybase.compatability_mode');
 
 ini_set('assert.quiet_eval', 0);
 $test = ini_get('assert.quiet_eval');
+
+ini_set('auto_detect_line_endings', 0);
+$test = ini_get('auto_detect_line_endings');
+
+ini_set('log_errors_max_len', 0);
+$test = ini_get('log_errors_max_len');
+
+ini_set('date.default_latitude', 0);
+$test = ini_get('date.default_latitude');
+
+ini_set('date.default_longitude', 0);
+$test = ini_get('date.default_longitude');
+
+ini_set('date.sunset_zenith', 0);
+$test = ini_get('date.sunset_zenith');
+
+ini_set('filter.default', 0);
+$test = ini_get('filter.default');
+
+ini_set('filter.default_options', 0);
+$test = ini_get('filter.default_options');
+
+ini_set('oci8.old_oci_close_semantics', 0);
+$test = ini_get('oci8.old_oci_close_semantics');

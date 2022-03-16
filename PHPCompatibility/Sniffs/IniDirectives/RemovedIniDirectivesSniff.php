@@ -596,6 +596,37 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
         'assert.quiet_eval' => [
             '8.0' => true,
         ],
+
+        'auto_detect_line_endings' => [
+            '8.1' => false,
+        ],
+        'log_errors_max_len' => [
+            '8.1' => true,
+        ],
+        'date.default_latitude' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
+        'date.default_longitude' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
+        'date.sunset_zenith' => [
+            '8.1'       => false,
+            'extension' => 'date',
+        ],
+        'filter.default' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'filter.default_options' => [
+            '8.1'       => false,
+            'extension' => 'filter',
+        ],
+        'oci8.old_oci_close_semantics' => [
+            '8.1'       => false,
+            'extension' => 'oci8',
+        ],
     ];
 
     /**

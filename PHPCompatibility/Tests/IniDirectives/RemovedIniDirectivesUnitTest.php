@@ -155,6 +155,14 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['mbstring.internal_encoding', '5.6', [77, 78], '5.5'],
 
             ['allow_url_include', '7.4', [238, 239], '7.3'],
+
+            ['auto_detect_line_endings', '8.1', [430, 431], '8.0'],
+            ['date.default_latitude', '8.1', [436, 437], '8.0'],
+            ['date.default_longitude', '8.1', [439, 440], '8.0'],
+            ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
+            ['filter.default', '8.1', [445, 446], '8.0'],
+            ['filter.default_options', '8.1', [448, 449], '8.0'],
+            ['oci8.old_oci_close_semantics', '8.1', [451, 452], '8.0'],
         ];
     }
 
@@ -356,6 +364,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             ['ibase.timeformat', '7.4', [214, 215], '7.3'],
 
             ['assert.quiet_eval', '8.0', [427, 428], '7.4'],
+
+            ['log_errors_max_len', '8.1', [433, 434], '8.0'],
         ];
     }
 
