@@ -1,7 +1,7 @@
 name: Quicktest
 
 on:
-  # Run on pushes, including merges, to all branches except `master`.
+  # Run on pushes, including merges, to all branches except `master` and `develop`.
   push:
     branches-ignore:
       - master
