@@ -12,7 +12,9 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -23,6 +25,7 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://www.php.net/manual/en/language.oop5.magic.php
  * @link https://wiki.php.net/rfc/closures#additional_goodyinvoke
  * @link https://wiki.php.net/rfc/debug-info
+ * @link https://wiki.php.net/rfc/phase_out_serializable Special casing of the __[un]serialize methods.
  *
  * @since 7.0.4
  * @since 7.1.0 Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -134,8 +137,41 @@ class NewMagicMethodsSniff extends AbstractNewFeatureSniff
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
+        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        if ($scopePtr === false) {
             return;
+        }
+
+        /*
+         * Special case: don't throw an error when a declaration is found for __[un]serialize()
+         * and the class in which the methods are implemented/the interface also implements/extends
+         * the Serializable interface.
+         */
+        if ($functionNameLc === '__serialize' || $functionNameLc === '__unserialize') {
+            $tokens = $phpcsFile->getTokens();
+
+            if ($tokens[$scopePtr]['code'] === \T_INTERFACE) {
+                $extendedInterfaces = ObjectDeclarations::findExtendedInterfaceNames($phpcsFile, $scopePtr);
+
+                if (\is_array($extendedInterfaces) === true) {
+                    $extendedInterfaces = \array_map('strtolower', $extendedInterfaces);
+
+                    if (\in_array('serializable', $extendedInterfaces, true) === true) {
+                        return;
+                    }
+                }
+            } else {
+                // Class.
+                $implementedInterfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $scopePtr);
+
+                if (\is_array($implementedInterfaces) === true) {
+                    $implementedInterfaces = \array_map('strtolower', $implementedInterfaces);
+
+                    if (\in_array('serializable', $implementedInterfaces, true) === true) {
+                        return;
+                    }
+                }
+            }
         }
 
         $itemInfo = [
