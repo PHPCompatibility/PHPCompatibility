@@ -1513,6 +1513,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SODIUM_CRYPTO_CORE_RISTRETTO255_NONREDUCEDSCALARBYTES', '8.0', 1440, '8.1'],
             ['T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG', '8.0', 1441, '8.1'],
             ['T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG', '8.0', 1442, '8.1'],
+            ['T_ENUM', '8.0', 1443, '8.1'],
         ];
     }
 
