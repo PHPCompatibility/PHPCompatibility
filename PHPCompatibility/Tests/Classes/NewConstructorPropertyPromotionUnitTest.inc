@@ -53,3 +53,16 @@ abstract class ConstructorPropertyPromotionAbstractMethod {
     // 3. The callable type is not supported for properties, but that's not the concern of this sniff.
     abstract public function __construct(public callable $y, private ...$x);
 }
+
+// Safeguard handling of constructor prop promotion with PHP 8.1 intersection types,
+// PHP 8.1 readonly properties and PHP 8.2 stand-alone true/false/null types.
+class ConstructorPropertyPromotionWithReadonlyProperties {
+    public function __construct(
+        public readonly string $x,
+        readonly ?int $noVisibility,
+        readonly private Foo $modifierOrder,
+        readonly Foo&Bar $intersectionType,
+        public true $thisIsSilly,
+        private null $thisIsAlsoSilly,
+    ) {}
+}

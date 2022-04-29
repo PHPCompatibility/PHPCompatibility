@@ -82,7 +82,7 @@ final class NewConstructorPropertyPromotionSniff extends Sniff
 
             $phpcsFile->addError(
                 'Constructor property promotion is not available in PHP version 7.4 or earlier. Found: %s',
-                $param['visibility_token'],
+                $param['token'],
                 'Found',
                 [$param['content']]
             );

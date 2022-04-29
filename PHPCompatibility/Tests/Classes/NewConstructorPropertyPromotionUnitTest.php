@@ -56,6 +56,12 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTest
             [39], // x3.
             [44],
             [54], // x2.
+            [61],
+            [62],
+            [63],
+            [64],
+            [65],
+            [66],
         ];
     }
 
