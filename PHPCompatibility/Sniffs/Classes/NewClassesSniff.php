@@ -803,6 +803,11 @@ class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'reflection',
         ],
+        'ReflectionIntersectionType' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
         'CURLStringFile' => [
             '8.0'       => false,
             '8.1'       => true,

@@ -465,3 +465,5 @@ class IntersectionTypes {
     public function paramType(\ReflectionClassConstant&\ReflectionNamedType $param) {}
     public function returnType($param) : \FFI\CData&\FFI\CType {}
 }
+
+$type = new ReflectionIntersectionType();
