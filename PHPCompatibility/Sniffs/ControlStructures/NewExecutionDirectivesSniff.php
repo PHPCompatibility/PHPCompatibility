@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -263,7 +264,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
             parent::addError($phpcsFile, $stackPtr, $itemInfo, $errorInfo);
         } elseif ($errorInfo['conditional_version'] !== '') {
             $error     = 'Directive %s is present in PHP version %s but will be disregarded unless PHP is compiled with %s';
-            $errorCode = $this->stringToErrorCode($itemInfo['name']) . 'WithConditionFound';
+            $errorCode = MessageHelper::stringToErrorCode($itemInfo['name'], true) . 'WithConditionFound';
             $data      = [
                 $itemInfo['name'],
                 $errorInfo['conditional_version'],
@@ -311,7 +312,7 @@ class NewExecutionDirectivesSniff extends AbstractNewFeatureSniff
 
         if ($isError === true) {
             $error     = 'The execution directive %s does not seem to have a valid value. Please review. Found: %s';
-            $errorCode = $this->stringToErrorCode($directive) . 'InvalidValueFound';
+            $errorCode = MessageHelper::stringToErrorCode($directive, true) . 'InvalidValueFound';
             $data      = [
                 $directive,
                 $value,

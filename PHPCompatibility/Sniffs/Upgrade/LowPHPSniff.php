@@ -113,7 +113,7 @@ class LowPHPSniff extends Sniff
         if (\version_compare($phpVersion, self::MIN_SUPPORTED_VERSION, '<')) {
             $isError      = true;
             $message      = 'IMPORTANT: Please be advised that the minimum PHP version the PHPCompatibility standard supports is %s. You are currently using PHP %s. Please upgrade your PHP installation. The recommended version of PHP for PHPCompatibility is %s or higher.';
-            $errorCode    = 'Unsupported_' . $this->stringToErrorCode(self::MIN_SUPPORTED_VERSION);
+            $errorCode    = 'Unsupported_' . MessageHelper::stringToErrorCode(self::MIN_SUPPORTED_VERSION);
             $replacements = [
                 self::MIN_SUPPORTED_VERSION,
                 $phpVersion,
@@ -122,7 +122,7 @@ class LowPHPSniff extends Sniff
         } else {
             $isError      = false;
             $message      = 'IMPORTANT: Please be advised that for the most reliable PHPCompatibility results, PHP %s or higher should be used. Support for lower versions will be dropped in the foreseeable future. You are currently using PHP %s. Please upgrade your PHP installation to version %s or higher.';
-            $errorCode    = 'BelowRecommended_' . $this->stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
+            $errorCode    = 'BelowRecommended_' . MessageHelper::stringToErrorCode(self::MIN_RECOMMENDED_VERSION);
             $replacements = [
                 self::MIN_RECOMMENDED_VERSION,
                 $phpVersion,

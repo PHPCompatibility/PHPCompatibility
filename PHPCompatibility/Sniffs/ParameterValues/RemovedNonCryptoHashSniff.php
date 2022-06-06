@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -100,7 +101,8 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if (\strtolower($functionName) === 'hash_init'
+        $functionLC = \strtolower($functionName);
+        if ($functionLC === 'hash_init'
             && (isset($parameters[2]) === false
             || ($parameters[2]['clean'] !== 'HASH_HMAC'
                 && $parameters[2]['clean'] !== (string) \HASH_HMAC))
@@ -112,7 +114,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
         $phpcsFile->addError(
             'Non-cryptographic hashes are no longer accepted by function %s() since PHP 7.2. Found: %s',
             $targetParam['start'],
-            $this->stringToErrorCode($functionName),
+            MessageHelper::stringToErrorCode($functionLC),
             [
                 $functionName,
                 $targetParam['clean'],

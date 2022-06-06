@@ -127,7 +127,7 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
         $itemName = $this->getItemName($itemInfo, $errorInfo);
         $error    = $this->getErrorMsgTemplate();
 
-        $errorCode = $this->stringToErrorCode($itemName);
+        $errorCode = MessageHelper::stringToErrorCode($itemName, true);
         $data      = [$itemName];
 
         if ($errorInfo['deprecated'] !== '') {

@@ -243,7 +243,7 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
     protected function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $itemArray, array $versionInfo)
     {
         $error      = 'The "%s" parameter for function %s() is missing. Passing this parameter is no longer optional. The optional nature of the parameter is ';
-        $errorCode  = $this->stringToErrorCode($itemInfo['name'] . '_' . $itemArray['name']);
+        $errorCode  = MessageHelper::stringToErrorCode($itemInfo['name'] . '_' . $itemArray['name'], true);
         $codeSuffix = '';
         $data       = [
             $itemArray['name'],

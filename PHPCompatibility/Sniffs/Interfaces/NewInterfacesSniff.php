@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Variables;
 
@@ -300,7 +301,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                         && isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true
                     ) {
                         $error     = $phrase . ' interface %s do not support the method %s(). See %s';
-                        $errorCode = $this->stringToErrorCode($interface) . 'UnsupportedMethod';
+                        $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'UnsupportedMethod';
                         $data      = [
                             $interface,
                             $funcName,

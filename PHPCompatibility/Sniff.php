@@ -43,23 +43,6 @@ abstract class Sniff implements PHPCS_Sniff
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
 
     /**
-     * Convert an arbitrary string to an alphanumeric string with underscores.
-     *
-     * Pre-empt issues with arbitrary strings being used as error codes in XML and PHP.
-     *
-     * @since 7.1.0
-     *
-     * @param string $baseString Arbitrary string.
-     *
-     * @return string
-     */
-    public function stringToErrorCode($baseString)
-    {
-        return \preg_replace('`[^a-z0-9_]`i', '_', \strtolower($baseString));
-    }
-
-
-    /**
      * Strip variables from an arbitrary double quoted string.
      *
      * Intended for use with the contents of a T_DOUBLE_QUOTED_STRING.

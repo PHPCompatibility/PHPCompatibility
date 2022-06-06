@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Prohibits the use of reserved keywords invoked as functions.
@@ -175,7 +176,7 @@ class ForbiddenNamesAsInvokedFunctionsSniff extends Sniff
 
         if ($this->supportsAbove($version)) {
             $error     = "'%s' is a reserved keyword introduced in PHP version %s and cannot be invoked as a function (%s)";
-            $errorCode = $this->stringToErrorCode($tokenContentLc) . 'Found';
+            $errorCode = MessageHelper::stringToErrorCode($tokenContentLc) . 'Found';
             $data      = [
                 $tokenContentLc,
                 $version,

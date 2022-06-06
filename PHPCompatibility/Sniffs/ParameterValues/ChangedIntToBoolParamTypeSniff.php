@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect calls to functions where the expected type of a parameter has been changed from integer to boolean.
@@ -109,7 +110,7 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
             }
 
             $error = 'The $%s parameter of %s() expects a boolean value instead of an integer since PHP %s. Found: %s';
-            $code  = $this->stringToErrorCode($functionName . '_' . $paramInfo['name']) . 'NumericFound';
+            $code  = MessageHelper::stringToErrorCode($functionLC . '_' . $paramInfo['name'], true) . 'NumericFound';
             $data  = [
                 $paramInfo['name'],
                 $functionLC,

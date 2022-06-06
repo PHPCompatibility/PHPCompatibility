@@ -101,7 +101,7 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
         $itemName = $this->getItemName($itemInfo, $errorInfo);
         $error    = $this->getErrorMsgTemplate();
 
-        $errorCode = $this->stringToErrorCode($itemName) . 'Found';
+        $errorCode = MessageHelper::stringToErrorCode($itemName, true) . 'Found';
         $data      = [
             $itemName,
             $errorInfo['not_in_version'],
