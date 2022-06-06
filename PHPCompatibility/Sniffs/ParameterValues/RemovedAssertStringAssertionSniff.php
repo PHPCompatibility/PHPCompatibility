@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect the use of assertions passed as a string.
@@ -128,6 +129,6 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
             $code    = 'Removed';
         }
 
-        $this->addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code, $data);
+        MessageHelper::addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code, $data);
     }
 }

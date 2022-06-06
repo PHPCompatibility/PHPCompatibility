@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Check for the use of deprecated and removed regex modifiers for PCRE regex functions.
@@ -132,7 +133,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
                 $errorCode = 'Removed';
             }
 
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+            MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
     }
 }

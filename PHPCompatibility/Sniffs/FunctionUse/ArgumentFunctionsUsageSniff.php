@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect usage of `func_get_args()`, `func_get_arg()` and `func_num_args()` in invalid context.
@@ -119,7 +120,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
                 $message .= ' As of PHP 5.3, it is no longer supported at all.';
             }
 
-            $this->addMessage($phpcsFile, $message, $stackPtr, $isError, 'OutsideFunctionScope', $data);
+            MessageHelper::addMessage($phpcsFile, $message, $stackPtr, $isError, 'OutsideFunctionScope', $data);
         }
 
         /*

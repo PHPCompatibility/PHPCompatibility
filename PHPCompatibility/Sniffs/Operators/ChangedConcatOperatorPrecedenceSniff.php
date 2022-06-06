@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Operators;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Operators;
 
 /**
@@ -195,6 +196,6 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
             $isError  = true;
         }
 
-        $this->addMessage($phpcsFile, $message, $i, $isError);
+        MessageHelper::addMessage($phpcsFile, $message, $i, $isError);
     }
 }

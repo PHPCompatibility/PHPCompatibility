@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect passing `$encoding` to `mb_strrpos()` as 3rd argument.
@@ -135,6 +136,6 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
 
         $error .= '. Use an explicit 0 as the offset in the third parameter.';
 
-        $this->addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code);
+        MessageHelper::addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code);
     }
 }

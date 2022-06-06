@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
@@ -265,6 +266,6 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
         $error      = \substr($error, 0, (\strlen($error) - 5));
         $errorCode .= $codeSuffix . 'Required';
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $versionInfo['error'], $errorCode, $data);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $versionInfo['error'], $errorCode, $data);
     }
 }

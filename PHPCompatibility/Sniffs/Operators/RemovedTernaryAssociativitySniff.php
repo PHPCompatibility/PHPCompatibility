@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Operators;
 
 /**
@@ -154,7 +155,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
 
             $message .= '. Multiple consecutive ternaries detected. Use parenthesis to clarify the order in which the operations should be executed';
 
-            $this->addMessage($phpcsFile, $message, $stackPtr, $isError, $code);
+            MessageHelper::addMessage($phpcsFile, $message, $stackPtr, $isError, $code);
         }
     }
 }

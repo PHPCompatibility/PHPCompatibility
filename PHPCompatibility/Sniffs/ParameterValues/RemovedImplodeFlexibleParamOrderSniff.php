@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Passing the `$glue` and `$pieces` parameters to `implode()` in reverse order has
@@ -312,6 +313,6 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
 
         $message .= '; $glue should be the first parameter and $pieces the second';
 
-        $this->addMessage($phpcsFile, $message, $stackPtr, $isError, $errorCode, $data);
+        MessageHelper::addMessage($phpcsFile, $message, $stackPtr, $isError, $errorCode, $data);
     }
 }

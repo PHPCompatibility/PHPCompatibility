@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect using `break` and/or `continue` statements outside of a looping structure.
@@ -90,6 +91,6 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
             $errorCode = 'FatalError';
         }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
     }
 }

@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -67,7 +68,7 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
 
         $isError = $this->supportsAbove('7.0');
 
-        $this->addMessage(
+        MessageHelper::addMessage(
             $phpcsFile,
             'The behaviour of hexadecimal numeric strings was inconsistent prior to PHP 7 and support has been removed in PHP 7. Found: %s',
             $stackPtr,

@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\DisableSniffMsgTrait;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\Helper;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Add a notification for users of low PHPCS versions.
@@ -140,7 +141,7 @@ class LowPHPCSSniff extends Sniff
 
         $message .= $this->createDisableSniffNotice($phpcsFile, 'PHPCompatibility.Upgrade.LowPHPCS', $errorCode);
 
-        $this->addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
+        MessageHelper::addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
 
         $this->examine = false;
     }

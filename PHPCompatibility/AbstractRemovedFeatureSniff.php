@@ -11,6 +11,7 @@
 namespace PHPCompatibility;
 
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Base class for removed feature sniffs.
@@ -152,6 +153,6 @@ abstract class AbstractRemovedFeatureSniff extends AbstractComplexVersionSniff
         $error = $this->filterErrorMsg($error, $itemInfo, $errorInfo);
         $data  = $this->filterErrorData($data, $itemInfo, $errorInfo);
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
     }
 }

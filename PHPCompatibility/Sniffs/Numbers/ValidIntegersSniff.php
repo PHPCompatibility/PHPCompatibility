@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Numbers;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Numbers;
 
 /**
@@ -88,7 +89,7 @@ class ValidIntegersSniff extends Sniff
         $isError = $this->supportsAbove('7.0');
 
         if ($this->isInvalidOctalInteger($numberInfo['content']) === true) {
-            $this->addMessage(
+            MessageHelper::addMessage(
                 $phpcsFile,
                 'Invalid octal integer detected. Prior to PHP 7 this would lead to a truncated number. From PHP 7 onwards this causes a parse error. Found: %s',
                 $stackPtr,

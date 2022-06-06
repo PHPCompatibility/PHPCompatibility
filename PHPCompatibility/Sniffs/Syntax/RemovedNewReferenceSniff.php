@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect the use of assigning the return value of `new` by reference.
@@ -75,6 +76,6 @@ class RemovedNewReferenceSniff extends Sniff
             $errorCode = 'Removed';
         }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode);
     }
 }
