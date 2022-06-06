@@ -11,8 +11,8 @@
 namespace PHPCompatibility\Sniffs\TextStrings;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -45,7 +45,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
         return [
             \T_CONSTANT_ENCAPSED_STRING,
             \T_DOUBLE_QUOTED_STRING,
-            \T_HEREDOC,
+            \T_START_HEREDOC,
         ];
     }
 
@@ -59,36 +59,18 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
      * @param int                         $stackPtr  The position of the current token in
      *                                               the stack passed in $tokens.
      *
-     * @return void
+     * @return int Integer stack pointer to skip forward.
      */
     public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
+        // Always process a complete text string in one go for efficiency.
+        $endOfString = TextStrings::getEndOfCompleteTextString($phpcsFile, $stackPtr);
+
         // Check whether this is a single quoted or double quoted string.
         if ($tokens[$stackPtr]['code'] === \T_CONSTANT_ENCAPSED_STRING) {
-
-            // Find the start of the - potentially multi-line - text string.
-            $start = $stackPtr;
-            for ($i = ($stackPtr - 1); $i >= 0; $i--) {
-                if ($tokens[$i]['code'] === \T_WHITESPACE) {
-                    continue;
-                }
-
-                if ($tokens[$i]['code'] === \T_CONSTANT_ENCAPSED_STRING) {
-                    $start = $i;
-                    continue;
-                }
-
-                break;
-            }
-
-            try {
-                $textString = TextStrings::getCompleteTextString($phpcsFile, $start, false);
-            } catch (RuntimeException $e) {
-                // Something went wrong determining the start of the text string.
-                return;
-            }
+            $textString = GetTokensAsString::normal($phpcsFile, $stackPtr, $endOfString);
 
             $startQuote = $textString[0];
             $endQuote   = \substr($textString, -1);
@@ -96,40 +78,49 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
                 || $startQuote !== $endQuote
             ) {
                 // Single quoted string, not our concern.
-                return;
+                return ($endOfString + 1);
             }
         }
 
-        $content = TextStrings::stripQuotes($tokens[$stackPtr]['content']);
-        $count   = \preg_match_all('`(?<!\\\\)\\\\u\{([^}\n\r]*)(\})?`', $content, $matches, \PREG_SET_ORDER);
-        if ($count === false || $count === 0) {
-            return;
+        $start = $stackPtr;
+        if ($tokens[$stackPtr]['code'] === \T_START_HEREDOC) {
+            ++$start;
         }
 
-        foreach ($matches as $match) {
-            $valid = false; // If the close curly is missing, we have an incomplete escape sequence.
-            if (isset($match[2])) {
-                $valid = $this->isValidUnicodeEscapeSequence($match[1]);
+        for ($i = $start; $i <= $endOfString; $i++) {
+            $content = TextStrings::stripQuotes($tokens[$i]['content']);
+            $count   = \preg_match_all('`(?<!\\\\)\\\\u\{([^}\n\r]*)(\})?`', $content, $matches, \PREG_SET_ORDER);
+            if ($count === false || $count === 0) {
+                continue;
             }
 
-            if ($this->supportsBelow('5.6') === true && $valid === true) {
-                $phpcsFile->addError(
-                    'Unicode codepoint escape sequences are not supported in PHP 5.6 or earlier. Found: %s',
-                    $stackPtr,
-                    'Found',
-                    [$match[0]]
-                );
-            }
+            foreach ($matches as $match) {
+                $valid = false; // If the close curly is missing, we have an incomplete escape sequence.
+                if (isset($match[2])) {
+                    $valid = $this->isValidUnicodeEscapeSequence($match[1]);
+                }
 
-            if ($this->supportsAbove('7.0') === true && $valid === false) {
-                $phpcsFile->addError(
-                    'Strings containing a literal \u{ followed by an invalid unicode codepoint escape sequence will cause a fatal error in PHP 7.0 and above. Escape the leading backslash to prevent this. Found: %s',
-                    $stackPtr,
-                    'Invalid',
-                    [$match[0]]
-                );
+                if ($this->supportsBelow('5.6') === true && $valid === true) {
+                    $phpcsFile->addError(
+                        'Unicode codepoint escape sequences are not supported in PHP 5.6 or earlier. Found: %s',
+                        $i,
+                        'Found',
+                        [$match[0]]
+                    );
+                }
+
+                if ($this->supportsAbove('7.0') === true && $valid === false) {
+                    $phpcsFile->addError(
+                        'Strings containing a literal \u{ followed by an invalid unicode codepoint escape sequence will cause a fatal error in PHP 7.0 and above. Escape the leading backslash to prevent this. Found: %s',
+                        $i,
+                        'Invalid',
+                        [$match[0]]
+                    );
+                }
             }
         }
+
+        return ($endOfString + 1);
     }
 
 
