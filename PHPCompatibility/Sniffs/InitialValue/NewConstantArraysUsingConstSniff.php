@@ -60,7 +60,7 @@ class NewConstantArraysUsingConstSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        $find   = Collections::$arrayTokens;
+        $find   = Collections::arrayOpenTokensBC();
 
         while (($hasArray = $phpcsFile->findNext($find, ($stackPtr + 1), null, false, null, true)) !== false) {
             if ($tokens[$hasArray]['code'] === \T_ARRAY

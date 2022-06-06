@@ -84,9 +84,9 @@ class NewMagicClassConstantSniff extends Sniff
         }
 
         $preSubjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($subjectPtr - 1), null, true, null, true);
-        if (isset(Collections::$OOHierarchyKeywords[$tokens[$subjectPtr]['code']]) === true
+        if (isset(Collections::ooHierarchyKeywords()[$tokens[$subjectPtr]['code']]) === true
             || ($tokens[$subjectPtr]['code'] === \T_STRING
-                && isset(Collections::$objectOperators[$tokens[$preSubjectPtr]['code']]) === false)
+                && isset(Collections::objectOperators()[$tokens[$preSubjectPtr]['code']]) === false)
         ) {
             // This is a syntax which is supported on PHP 5.5 and higher.
             if ($this->supportsBelow('5.4') === true) {

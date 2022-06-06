@@ -38,7 +38,7 @@ class CaseSensitiveKeywordsSniff extends Sniff
      */
     public function register()
     {
-        return Collections::$OOHierarchyKeywords;
+        return Collections::ooHierarchyKeywords();
     }
 
     /**

@@ -100,7 +100,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
 
             // Skip over nested closed scopes as possible for efficiency.
             // Ignore arrow functions as they aren't closed scopes.
-            if (isset(Collections::$closedScopes[$tokens[$current]['code']]) === true
+            if (isset(Collections::closedScopes()[$tokens[$current]['code']]) === true
                 && isset($tokens[$current]['scope_closer']) === true
             ) {
                 $current = $tokens[$current]['scope_closer'];

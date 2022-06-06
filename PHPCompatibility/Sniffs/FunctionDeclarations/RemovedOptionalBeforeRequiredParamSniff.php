@@ -58,7 +58,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
     {
         $this->allowedInDefault += Tokens::$emptyTokens;
 
-        return Collections::functionDeclarationTokensBC();
+        return Collections::functionDeclarationTokens();
     }
 
     /**

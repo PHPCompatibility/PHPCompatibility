@@ -139,7 +139,7 @@ class NewParamTypeDeclarationsSniff extends AbstractNewFeatureSniff
      */
     public function register()
     {
-        return Collections::functionDeclarationTokensBC();
+        return Collections::functionDeclarationTokens();
     }
 
 

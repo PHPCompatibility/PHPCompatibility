@@ -95,7 +95,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             true
         );
 
-        if ($prevNonEmpty !== false && isset(Collections::$closedScopes[$tokens[$prevNonEmpty]['code']]) === true) {
+        if ($prevNonEmpty !== false && isset(Collections::closedScopes()[$tokens[$prevNonEmpty]['code']]) === true) {
             return;
         }
 

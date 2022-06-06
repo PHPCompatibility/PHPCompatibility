@@ -38,7 +38,7 @@ class NewShortArraySniff extends Sniff
      */
     public function register()
     {
-        return Collections::$shortArrayTokensBC;
+        return Collections::shortArrayListOpenTokensBC();
     }
 
 
@@ -63,18 +63,12 @@ class NewShortArraySniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-        $token  = $tokens[$stackPtr];
-
-        $error = '%s is not supported in PHP 5.3 or lower';
-        $data  = [];
-
-        if ($token['code'] === \T_OPEN_SHORT_ARRAY || $token['code'] === \T_OPEN_SQUARE_BRACKET) {
-            $data[] = 'Short array syntax (open)';
-        } elseif ($token['code'] === \T_CLOSE_SHORT_ARRAY || $token['code'] === \T_CLOSE_SQUARE_BRACKET) {
-            $data[] = 'Short array syntax (close)';
-        }
-
+        $error = 'Short array syntax (%s) is not supported in PHP 5.3 or lower';
+        $data  = ['open'];
         $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+
+        $tokens = $phpcsFile->getTokens();
+        $data   = ['close'];
+        $phpcsFile->addError($error, $tokens[$stackPtr]['bracket_closer'], 'Found', $data);
     }
 }

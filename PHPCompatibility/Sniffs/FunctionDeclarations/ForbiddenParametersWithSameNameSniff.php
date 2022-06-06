@@ -39,7 +39,7 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
      */
     public function register()
     {
-        return Collections::functionDeclarationTokensBC();
+        return Collections::functionDeclarationTokens();
     }
 
     /**
