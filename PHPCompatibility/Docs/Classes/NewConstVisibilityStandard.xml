@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<documentation title="New constant visibility">
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Constant Visibility"
+    >
     <standard>
     <![CDATA[
     Class constants can be declared with visibility since PHP 7.1.

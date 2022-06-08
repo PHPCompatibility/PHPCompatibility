@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<documentation title="Removed mb_check_encoding() without arguments">
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed mb_check_encoding() Without Arguments"
+    >
     <standard>
     <![CDATA[
     Calling the mb_check_encoding() function without passing any arguments is deprecated since PHP 8.1 and support will be removed in PHP 9.0.
