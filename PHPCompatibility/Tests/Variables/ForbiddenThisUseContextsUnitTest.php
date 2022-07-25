@@ -435,7 +435,8 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
             [126],
             [133],
             [138],
-            [202], // Exception to the rule / static __call() magic method.
+            [164],
+            [219], // Exception to the rule / static __call() magic method.
         ];
     }
 
@@ -449,8 +450,8 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '7.1');
 
-        // No errors expected on the first 14 lines.
-        for ($line = 156; $line <= 205; $line++) {
+        // No errors expected on the last group of lines.
+        for ($line = 172; $line <= 226; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
