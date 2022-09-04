@@ -2,7 +2,7 @@
   "name" : "phpcompatibility/php-compatibility",
   "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
   "type" : "phpcodesniffer-standard",
-  "keywords" : [ "compatibility", "phpcs", "standards" ],
+  "keywords" : [ "compatibility", "phpcs", "standards", "static analysis" ],
   "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
   "license" : "LGPL-3.0-or-later",
   "authors" : [ {
