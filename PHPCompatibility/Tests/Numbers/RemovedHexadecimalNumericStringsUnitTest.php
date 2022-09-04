@@ -60,6 +60,18 @@ class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTest
         return [
             [5, '0xaa78b5'],
             [6, '0Xbb99EF'],
+
+            [14, '0x7ff000000'],
+            [15, '0x7'],
+            [16, '0x7fef'],
+            [17, '0x7ff00'],
+            [18, '0x7ff00'],
+            [19, '0x7ff00'],
+            [20, '0x7ff00'],
+            [21, '0x7ff00'],
+            [23, '0x7ff00'],
+            [27, '0x7ff00'],
+            [28, '0x7ff00'],
         ];
         // phpcs:enable
     }
@@ -68,17 +80,37 @@ class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTest
     /**
      * Verify the sniff doesn't throw false positives.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.6');
-        $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, $line);
 
         $file = $this->sniffFile(__FILE__, '7.0');
-        $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, $line);
     }
 
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        return [
+            [3],
+            [9],
+            [10],
+            [11],
+        ];
+    }
 
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
