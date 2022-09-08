@@ -1013,15 +1013,16 @@ class NewClassesSniff extends AbstractNewFeatureSniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 5.5
-     * @since 7.0.3 - Now also targets the `class` keyword to detect extended classes.
-     *              - Now also targets double colons to detect static class use.
-     * @since 7.1.4 - Now also targets anonymous classes to detect extended classes.
-     *              - Now also targets functions/closures to detect new classes used
-     *                as parameter type declarations.
-     *              - Now also targets the `catch` control structure to detect new
-     *                exception classes being caught.
-     * @since 8.2.0 Now also targets the `T_RETURN_TYPE` token to detect new classes used
-     *              as return type declarations.
+     * @since 7.0.3  - Now also targets the `class` keyword to detect extended classes.
+     *               - Now also targets double colons to detect static class use.
+     * @since 7.1.4  - Now also targets anonymous classes to detect extended classes.
+     *               - Now also targets functions/closures to detect new classes used
+     *                 as parameter type declarations.
+     *               - Now also targets the `catch` control structure to detect new
+     *                 exception classes being caught.
+     * @since 8.2.0  Now also targets the `T_RETURN_TYPE` token to detect new classes used
+     *               as return type declarations.
+     * @since 10.0.0 `T_RETURN_TYPE` token removed after PHPCS < 3.7.1 version drop.
      *
      * @return array
      */
@@ -1042,7 +1043,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
             \T_FUNCTION,
             \T_CLOSURE,
             \T_CATCH,
-            \T_RETURN_TYPE,
         ];
     }
 
@@ -1077,10 +1077,6 @@ class NewClassesSniff extends AbstractNewFeatureSniff
 
             case 'T_CATCH':
                 $this->processCatchToken($phpcsFile, $stackPtr);
-                break;
-
-            case 'T_RETURN_TYPE':
-                $this->processReturnTypeToken($phpcsFile, $stackPtr);
                 break;
 
             default:
