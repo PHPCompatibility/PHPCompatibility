@@ -401,7 +401,7 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         $hasColon = $phpcsFile->findNext(
-            [\T_COLON, \T_INLINE_ELSE],
+            [\T_COLON],
             ($tokens[$stackPtr]['parenthesis_closer'] + 1),
             $endOfFunctionDeclaration
         );
@@ -453,9 +453,9 @@ abstract class Sniff implements PHPCS_Sniff
         $tokens = $phpcsFile->getTokens();
 
         // In older PHPCS versions, the nullable indicator will turn a return type colon into a T_INLINE_ELSE.
-        $colon = $phpcsFile->findPrevious([\T_COLON, \T_INLINE_ELSE, \T_FUNCTION, \T_CLOSE_PARENTHESIS], ($stackPtr - 1));
+        $colon = $phpcsFile->findPrevious([\T_COLON, \T_FUNCTION, \T_CLOSE_PARENTHESIS], ($stackPtr - 1));
         if ($colon === false
-            || ($tokens[$colon]['code'] !== \T_COLON && $tokens[$colon]['code'] !== \T_INLINE_ELSE)
+            || ($tokens[$colon]['code'] !== \T_COLON)
         ) {
             // Shouldn't happen, just in case.
             return '';
@@ -469,12 +469,7 @@ abstract class Sniff implements PHPCS_Sniff
                 continue;
             }
 
-            if ($tokens[$i]['type'] === 'T_NULLABLE') {
-                continue;
-            }
-
-            if (\defined('T_NULLABLE') === false && $tokens[$i]['code'] === \T_INLINE_THEN) {
-                // PHPCS < 2.8.0.
+            if ($tokens[$i]['code'] === \T_NULLABLE) {
                 continue;
             }
 
@@ -629,9 +624,7 @@ abstract class Sniff implements PHPCS_Sniff
         if ($firstOnLine !== false && $tokens[$firstOnLine]['code'] === \T_USE) {
             $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($firstOnLine + 1), null, true);
             if ($nextOnLine !== false) {
-                if (($tokens[$nextOnLine]['code'] === \T_STRING && $tokens[$nextOnLine]['content'] === 'const')
-                    || $tokens[$nextOnLine]['code'] === \T_CONST // Happens in some PHPCS versions.
-                ) {
+                if (($tokens[$nextOnLine]['code'] === \T_STRING && $tokens[$nextOnLine]['content'] === 'const')) {
                     $hasNsSep = $phpcsFile->findNext(\T_NS_SEPARATOR, ($nextOnLine + 1), $stackPtr);
                     if ($hasNsSep !== false) {
                         // Namespaced const (group) use statement.
@@ -923,10 +916,6 @@ abstract class Sniff implements PHPCS_Sniff
     protected function isNumericCalculation(File $phpcsFile, $start, $end)
     {
         $arithmeticTokens = Tokens::$arithmeticTokens;
-
-        // T_POW was not added to the arithmetic array until PHPCS 2.9.0.
-        // phpcs:ignore PHPCompatibility.Constants.NewConstants.t_powFound
-        $arithmeticTokens[\T_POW] = \T_POW;
 
         $skipTokens   = Tokens::$emptyTokens;
         $skipTokens[] = \T_MINUS;
