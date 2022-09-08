@@ -226,12 +226,6 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
                 && $tokens[$stackPtr]['scope_closer'] === $stackPtr
             ) {
                 $opener = $tokens[$stackPtr]['scope_opener'];
-            } else {
-                // PHPCS < 3.0.2 did not add scope_* values for Nowdocs.
-                $opener = $phpcsFile->findPrevious(\T_START_NOWDOC, ($stackPtr - 1));
-                if ($opener === false) {
-                    return;
-                }
             }
 
             $quotedIdentifier = \preg_quote($tokens[$stackPtr]['content'], '`');
