@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\Generators;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Utils\Conditions;
 
 /**
@@ -52,34 +51,10 @@ class NewGeneratorReturnSniff extends Sniff
      */
     public function register()
     {
-        $targets = [
+        return [
             \T_YIELD,
+            \T_YIELD_FROM,
         ];
-
-        /*
-         * The `yield` keyword was introduced in PHP 5.5 with the token T_YIELD.
-         * The `yield from` keyword was introduced in PHP 7.0 and tokenizes as
-         * "T_YIELD T_WHITESPACE T_STRING".
-         *
-         * Pre-PHPCS 3.1.0, the T_YIELD token was not correctly back-filled for PHP < 5.5.
-         * Also, as of PHPCS 3.1.0, the PHPCS tokenizer adds a new T_YIELD_FROM
-         * token.
-         *
-         * So for PHP 5.4 icw PHPCS < 3.1.0, we need to look for T_STRING with content "yield".
-         * For PHP 5.5+ we need to look for T_YIELD.
-         * For PHPCS 3.1.0+, we also need to look for T_YIELD_FROM.
-         */
-        if (\version_compare(\PHP_VERSION_ID, '50500', '<') === true
-            && \version_compare(Helper::getVersion(), '3.1.0', '<') === true
-        ) {
-            $targets[] = \T_STRING;
-        }
-
-        if (\defined('T_YIELD_FROM')) {
-            $targets[] = \T_YIELD_FROM;
-        }
-
-        return $targets;
     }
 
     /**
@@ -101,21 +76,10 @@ class NewGeneratorReturnSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['code'] === \T_STRING
-            && $tokens[$stackPtr]['content'] !== 'yield'
-        ) {
-            return;
-        }
-
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevNonEmpty !== false
-            && ($tokens[$prevNonEmpty]['type'] === 'T_FN_ARROW'
-            || $tokens[$prevNonEmpty]['code'] === \T_DOUBLE_ARROW)
-        ) {
+        if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_FN_ARROW) {
             /*
              * Yield in an arrow function, which can only contain one expression.
-             * And as `yield` can not be used within an array declaration or a foreach expression,
-             * just checking for the double arrow should be sufficient.
              */
             return;
         }
