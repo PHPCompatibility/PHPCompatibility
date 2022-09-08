@@ -20,7 +20,7 @@ use PHPCSUtils\BackCompat\Helper;
  *
  * Originally PHPCompatibility supported PHPCS 1.5.x, 2.x and since PHPCompatibility 8.0.0, 3.x.
  * Support for PHPCS < 2.3.0 has been dropped in PHPCompatibility 9.0.0.
- * Support for PHPCS < 2.6.0 has been dropped in PHPCompatibility 10.0.0.
+ * Support for PHPCS < 3.7.1 has been dropped in PHPCompatibility 10.0.0.
  *
  * The standard will - up to a point - still work for users of lower
  * PHPCS versions, but will give less accurate results and may throw
@@ -31,6 +31,7 @@ use PHPCSUtils\BackCompat\Helper;
  *
  * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/688
  * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/835
+ * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/1347
  *
  * @since 8.2.0
  */
@@ -48,7 +49,7 @@ class LowPHPCSSniff extends Sniff
      *
      * @var string
      */
-    const MIN_SUPPORTED_VERSION = '2.6.0';
+    const MIN_SUPPORTED_VERSION = '3.7.1';
 
     /**
      * The minimum recommended PHPCS version.
@@ -60,7 +61,7 @@ class LowPHPCSSniff extends Sniff
      *
      * @var string
      */
-    const MIN_RECOMMENDED_VERSION = '3.1.0';
+    const MIN_RECOMMENDED_VERSION = '3.7.1';
 
     /**
      * Keep track of whether this sniff needs to actually run.

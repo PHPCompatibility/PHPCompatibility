@@ -24,7 +24,7 @@ To start contributing, fork the repository, create a new branch in your fork, ma
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
-* All code should be compatible with PHPCS >= 2.6.0 and PHPCS >= 3.1.0.
+* All code should be compatible with PHPCS >= 3.7.1.
 * All code should be compatible with PHP 5.4 to PHP nightly.
 * All code should comply with the PHPCompatibility coding standards.
     The [ruleset used by PHPCompatibility](https://github.com/PHPCSStandards/PHPCSDevCS) is largely based on PSR-12 with minor variations and some additional checks for array layout and documentation and such.
@@ -129,7 +129,7 @@ If you are running the PHPCS native unit tests or the unit tests for another sni
 
 This will generally only happen if you have both PHPCompatibility as well as another custom sniff library in your PHPCS `installed_paths` setting.
 
-To fix these errors, make sure you are running PHPCS 2.7.1 or higher and add the following to the `phpunit.xml` file for the sniff library you are testing:
+To fix these errors, add the following to the `phpunit.xml` file for the sniff library you are testing:
 ```xml
     <php>
         <env name="PHPCS_IGNORE_TESTS" value="PHPCompatibility"/>

@@ -29,25 +29,9 @@ jobs:
     strategy:
       matrix:
         php: ['5.4', 'latest']
-        phpcs_version: ['dev-master']
-        lint: [true]
+        phpcs_version: ['3.7.1', 'dev-master']
 
-        include:
-          - php: '7.3'
-            phpcs_version: '2.6.0'
-            lint: false
-          # PHP 7.3+ is only fully supported icw PHPCS 2.9.2 and 3.3.1+.
-          - php: '7.2'
-            phpcs_version: '3.1.0'
-            lint: true
-          - php: '5.4'
-            phpcs_version: '>=2.6,<3.0'
-            lint: false
-          - php: '5.4'
-            phpcs_version: '2.6.0'
-            lint: false
-
-    name: "QTest${{ matrix.lint && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
+    name: "QTest${{ matrix.phpcs_version == 'dev-master' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
 
     steps:
       - name: Checkout code
@@ -72,10 +56,7 @@ jobs:
           coverage: none
 
       - name: 'Composer: set PHPCS version for tests'
-        run: |
-          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
+        run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: 'Composer: tweak PHPUnit version'
         if: ${{ matrix.php == 'latest' || startsWith( matrix.php, '8' ) }}
@@ -90,7 +71,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
 
       - name: Lint against parse errors
-        if: ${{ matrix.lint }}
+        if: ${{ matrix.phpcs_version == 'dev-master' }}
         run: composer lint
 
       - name: Run the unit tests

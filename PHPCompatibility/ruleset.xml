@@ -4,7 +4,4 @@
 
     <autoload>./../PHPCSAliases.php</autoload>
 
-    <!-- Make the utility functions available in PHPCS 2.x -->
-    <rule ref="PHPCS23Utils"/>
-
 </ruleset>

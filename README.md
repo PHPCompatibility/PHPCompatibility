@@ -43,19 +43,13 @@ Requirements
 -------
 
 * PHP 5.4+
-* PHP CodeSniffer: 2.6.0+ or 3.1.0+.
+* PHP CodeSniffer: 3.7.1+.
 
 The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
 
-For running the sniffs on PHP 7.3, it is recommended to use PHP_CodeSniffer 3.3.1+, or, if needs be, PHP_CodeSniffer 2.9.2.
-PHP_CodeSniffer < 2.9.2/3.3.1 is not fully compatible with PHP 7.3, which effectively means that PHPCompatibility can't be either.
-While the sniffs will still work in _most_ cases, you can expect PHP warnings to be thrown.
-
-For running the sniffs on PHP 7.4, it is recommended to use PHP_CodeSniffer 3.5.0+ for the same reasons.
-
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
 As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.
-As of version 10.0.0, support for PHP < 5.4 and PHP CodeSniffer < 2.6.0 has been dropped.
+As of version 10.0.0, support for PHP < 5.4 and PHP CodeSniffer < 3.7.1 has been dropped.
 
 
 Thank you
@@ -102,7 +96,7 @@ Installation in a Composer project (method 1)
        * [DealerDirect/phpcodesniffer-composer-installer](https://github.com/DealerDirect/phpcodesniffer-composer-installer):"^0.6.0"
        * [higidi/composer-phpcodesniffer-standards-plugin](https://github.com/higidi/composer-phpcodesniffer-standards-plugin)
        * [SimplyAdmire/ComposerPlugins](https://github.com/SimplyAdmire/ComposerPlugins). This plugin *might* still work, but appears to be abandoned.
-    - As a last alternative in case you use a custom ruleset, _and only if you use PHP CodeSniffer version 2.6.0 or higher_, you can tell PHP CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
+    - As a last alternative in case you use a custom ruleset, you can tell PHP CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
         ```xml
         <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
         ```
@@ -135,7 +129,7 @@ Installation via a git check-out to an arbitrary directory (method 2)
    phpcs --config-set installed_paths /path/1,/path/2,/path/3
    ```
 
-   **Pro-tip:** Alternatively, in case you use a custom ruleset _and only if you use PHP CodeSniffer version 2.6.0 or higher_, you can tell PHP CodeSniffer the path to the PHPCompatibility standard(s) by adding the following snippet to your custom ruleset:
+   **Pro-tip:** Alternatively, in case you use a custom ruleset, you can tell PHP CodeSniffer the path to the PHPCompatibility standard(s) by adding the following snippet to your custom ruleset:
    ```xml
    <config name="installed_paths" value="/path/to/PHPCompatibility" />
    ```
