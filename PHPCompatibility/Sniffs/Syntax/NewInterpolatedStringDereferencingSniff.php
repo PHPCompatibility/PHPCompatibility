@@ -75,9 +75,6 @@ class NewInterpolatedStringDereferencingSniff extends Sniff
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
         if ($nextNonEmptyCode !== \T_OPEN_SQUARE_BRACKET
             && $nextNonEmptyCode !== \T_OBJECT_OPERATOR
-            // Work-around for a bug in PHPCS < 3.6.0.
-            // @link https://github.com/squizlabs/PHP_CodeSniffer/pull/3172
-            && $nextNonEmptyCode !== \T_OPEN_SHORT_ARRAY
         ) {
             return $endOfQuote;
         }
