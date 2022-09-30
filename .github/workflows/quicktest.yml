@@ -26,6 +26,10 @@ jobs:
   quicktest:
     runs-on: ubuntu-latest
 
+    env:
+      # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
+      COMPOSER_ROOT_VERSION: '10.99.99'
+
     strategy:
       matrix:
         php: ['5.4', 'latest']
