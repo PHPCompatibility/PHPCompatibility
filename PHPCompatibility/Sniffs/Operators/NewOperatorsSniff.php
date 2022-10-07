@@ -60,65 +60,16 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
             '5.6'         => false,
             '7.0'         => true,
             'description' => 'The null coalescing operator (??)',
-        ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN.
+        ],
         'T_COALESCE_EQUAL' => [
             '7.3'         => false,
             '7.4'         => true,
             'description' => 'The null coalesce equal operator (??=)',
-        ], // Identified in PHP < 7.0 icw PHPCS < 2.6.2 as T_INLINE_THEN + T_INLINE_THEN + T_EQUAL and between PHPCS 2.6.2 and PHPCS 2.8.1 as T_COALESCE + T_EQUAL.
+        ],
         'T_NULLSAFE_OBJECT_OPERATOR' => [
             '7.4'         => false,
             '8.0'         => true,
             'description' => 'The nullsafe object operator (?->)',
-        ],
-    ];
-
-    /**
-     * A list of new operators which are not recognized in older PHPCS versions.
-     *
-     * The array lists an alternative token to listen for.
-     *
-     * @since 7.0.3
-     *
-     * @var array(string => int)
-     */
-    protected $newOperatorsPHPCSCompat = [
-        'T_COALESCE'                 => \T_INLINE_THEN,
-        'T_COALESCE_EQUAL'           => \T_EQUAL,
-        'T_NULLSAFE_OBJECT_OPERATOR' => \T_OBJECT_OPERATOR,
-    ];
-
-    /**
-     * Token translation table for older PHPCS versions.
-     *
-     * The 'before' index lists the token which would have to be directly before the
-     * token found for it to be one of the new operators.
-     * The 'real_token' index indicates which operator was found in that case.
-     *
-     * If the token combination has multi-layer complexity, such as is the case
-     * with T_COALESCE(_EQUAL), a 'callback' index is added instead pointing to a
-     * separate function which can determine whether this is the targetted token across
-     * PHP and PHPCS versions.
-     *
-     * {@internal 'before' was chosen rather than 'after' as that allowed for a 1-on-1
-     * translation list with the current tokens.}
-     *
-     * @since 7.0.3
-     *
-     * @var array(string => array(string => string))
-     */
-    protected $PHPCSCompatTranslate = [
-        'T_INLINE_THEN' => [
-            'callback'   => 'isTCoalesce',
-            'real_token' => 'T_COALESCE',
-        ],
-        'T_EQUAL' => [
-            'callback'   => 'isTCoalesceEqual',
-            'real_token' => 'T_COALESCE_EQUAL',
-        ],
-        'T_OBJECT_OPERATOR' => [
-            'before'     => 'T_INLINE_THEN',
-            'real_token' => 'T_NULLSAFE_OBJECT_OPERATOR',
         ],
     ];
 
@@ -133,11 +84,7 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     {
         $tokens = [];
         foreach ($this->newOperators as $token => $versions) {
-            if (\defined($token)) {
-                $tokens[] = \constant($token);
-            } elseif (isset($this->newOperatorsPHPCSCompat[$token])) {
-                $tokens[] = $this->newOperatorsPHPCSCompat[$token];
-            }
+            $tokens[] = \constant($token);
         }
         return $tokens;
     }
@@ -158,29 +105,6 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
-
-        // Translate older PHPCS token combis for new operators to the actual operator.
-        if (isset($this->newOperators[$tokenType]) === false) {
-            if (isset($this->PHPCSCompatTranslate[$tokenType])
-                && ((isset($this->PHPCSCompatTranslate[$tokenType]['before'], $tokens[$stackPtr - 1]) === true
-                    && $tokens[$stackPtr - 1]['type'] === $this->PHPCSCompatTranslate[$tokenType]['before'])
-                || (isset($this->PHPCSCompatTranslate[$tokenType]['callback']) === true
-                    && \call_user_func([$this, $this->PHPCSCompatTranslate[$tokenType]['callback']], $tokens, $stackPtr) === true))
-            ) {
-                $tokenType = $this->PHPCSCompatTranslate[$tokenType]['real_token'];
-            }
-        } elseif ($tokenType === 'T_COALESCE') {
-            // Make sure that T_COALESCE is not confused with T_COALESCE_EQUAL.
-            if (isset($tokens[($stackPtr + 1)]) !== false && $tokens[($stackPtr + 1)]['code'] === \T_EQUAL) {
-                // Ignore as will be dealt with via the T_EQUAL token.
-                return;
-            }
-        }
-
-        // If the translation did not yield one of the tokens we are looking for, bow out.
-        if (isset($this->newOperators[$tokenType]) === false) {
-            return;
-        }
 
         $itemInfo = [
             'name' => $tokenType,
@@ -251,62 +175,5 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
     {
         $data[0] = $errorInfo['description'];
         return $data;
-    }
-
-
-    /**
-     * Callback function to determine whether a T_EQUAL token is really a T_COALESCE_EQUAL token.
-     *
-     * @since 7.1.2
-     *
-     * @param array $tokens   The token stack.
-     * @param int   $stackPtr The current position in the token stack.
-     *
-     * @return bool
-     */
-    private function isTCoalesceEqual($tokens, $stackPtr)
-    {
-        if ($tokens[$stackPtr]['code'] !== \T_EQUAL || isset($tokens[($stackPtr - 1)]) === false) {
-            // Function called for wrong token or token has no predecessor.
-            return false;
-        }
-
-        if ($tokens[($stackPtr - 1)]['type'] === 'T_COALESCE') {
-            return true;
-        }
-        if ($tokens[($stackPtr - 1)]['type'] === 'T_INLINE_THEN'
-            && (isset($tokens[($stackPtr - 2)]) && $tokens[($stackPtr - 2)]['type'] === 'T_INLINE_THEN')
-        ) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Callback function to determine whether a T_INLINE_THEN token is really a T_COALESCE token.
-     *
-     * @since 7.1.2
-     *
-     * @param array $tokens   The token stack.
-     * @param int   $stackPtr The current position in the token stack.
-     *
-     * @return bool
-     */
-    private function isTCoalesce($tokens, $stackPtr)
-    {
-        if ($tokens[$stackPtr]['code'] !== \T_INLINE_THEN || isset($tokens[($stackPtr - 1)]) === false) {
-            // Function called for wrong token or token has no predecessor.
-            return false;
-        }
-
-        if ($tokens[($stackPtr - 1)]['code'] === \T_INLINE_THEN) {
-            // Make sure not to confuse it with the T_COALESCE_EQUAL token.
-            if (isset($tokens[($stackPtr + 1)]) === false || $tokens[($stackPtr + 1)]['code'] !== \T_EQUAL) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
