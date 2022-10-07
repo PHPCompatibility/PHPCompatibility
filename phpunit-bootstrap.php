@@ -82,13 +82,6 @@ if ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'autoload.php')) {
     // Pre-load the token back-fills to prevent undefined constant notices.
     require_once $phpcsDir . '/src/Util/Tokens.php';
 
-} elseif ($phpcsDir !== false && file_exists($phpcsDir . $ds . 'CodeSniffer.php')) {
-    // PHPCS 2.x.
-    require_once $phpcsDir . $ds . 'CodeSniffer.php';
-
-    if (isset($vendorDir) && file_exists($vendorDir . $ds . 'autoload.php')) {
-        require_once $vendorDir . $ds . 'autoload.php';
-    }
 } else {
     echo 'Uh oh... can\'t find PHPCS.
 

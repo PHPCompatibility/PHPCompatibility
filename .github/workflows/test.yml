@@ -16,6 +16,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
+  COMPOSER_ROOT_VERSION: '10.99.99'
+
 jobs:
   #### PHP LINT STAGE ####
   # Linting against high/low of each PHP major should catch everything.
@@ -79,72 +83,15 @@ jobs:
         # as well as add extra jobs in `include`.
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
-        # IMPORTANT: test runs shouldn't fail because of PHPCS being incompatible with a PHP version.
-        # - PHPCS will run without errors on PHP 5.4 - 7.2 on any version.
-        # - PHP 7.3 needs PHPCS 2.9.2 and 3.3.1+ to run without errors.
-        #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.3.1 they will.
-        # - PHP 7.4 needs PHPCS 3.5.0+ to run without errors.
-        #   On PHPCS 2.x our tests won't fail though, but on PHPCS 3.x < 3.5.0 they will.
-        # - PHP 8.0 needs PHPCS 3.5.7+ to run without errors.
-        # - PHP 8.1 needs PHPCS 3.6.1+ to run without errors.
-        #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.4']
-        phpcs_version: ['2.6.0', 'dev-master']
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.1']
+        phpcs_version: ['3.7.1', 'dev-master']
         experimental: [false]
 
         include:
-          # Complement the builds run in code coverage to complete the matrix.
-          - php: '8.1'
-            phpcs_version: 'dev-master'
-            experimental: false
-          - php: '8.1'
-            phpcs_version: '3.6.1'
-            experimental: false
-
-          - php: '8.0'
-            phpcs_version: '~3.5.7'
-            experimental: false
-
-          - php: '7.3'
-            phpcs_version: 'dev-master'
-            experimental: false
-
-          # In addition to the matrix, test against a variation of PHPCS 2.x and 3.x versions.
-          - php: '7.4'
-            phpcs_version: '>=2.6,<3.0'
-            experimental: false
-
-          - php: '7.3'
-            phpcs_version: '3.4.*'
-            experimental: false
-
           - php: '7.2'
-            phpcs_version: '3.3.*'
+            phpcs_version: '^3.7.1'
             custom_ini: true
-            experimental: false
-
-          - php: '7.1'
-            phpcs_version: '3.1.*'
-            experimental: false
-
-          - php: '7.0'
-            phpcs_version: '2.6.*'
-            experimental: false
-
-          - php: '5.6'
-            phpcs_version: '2.8.*'
-            experimental: false
-
-          - php: '5.5'
-            phpcs_version: '3.2.*'
-            experimental: false
-          - php: '5.5'
-            phpcs_version: '2.7.*'
-            experimental: false
-
-          - php: '5.4'
-            phpcs_version: '3.1.0'
             experimental: false
 
           # Experimental builds. These are allowed to fail.
@@ -191,11 +138,8 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      - name: 'Composer: adjust dependencies'
-        run: |
-          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
+      - name: 'Composer: set PHPCS version for tests'
+        run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: 'Composer: conditionally tweak PHPUnit version'
         if: ${{ startsWith( matrix.php, '8' ) }}
@@ -239,18 +183,14 @@ jobs:
           - php: '8.0'
             phpcs_version: 'dev-master'
             custom_ini: true
-          - php: '7.3'
-            phpcs_version: '2.6.0'
-          - php: '7.2'
-            phpcs_version: '3.1.0'
+          - php: '8.0'
+            phpcs_version: '3.7.1'
 
           - php: '5.4'
             phpcs_version: 'dev-master'
           - php: '5.4'
-            phpcs_version: '>=2.6,<3.0'
+            phpcs_version: '3.7.1'
             custom_ini: true
-          - php: '5.4'
-            phpcs_version: '2.6.0'
 
     name: "Coverage: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
@@ -285,12 +225,8 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: xdebug
 
-      - name: 'Composer: adjust dependencies'
-        run: |
-          # Remove devtools as it would block install on old PHPCS versions (< 3.0).
-          composer remove --no-update --dev phpcsstandards/phpcsdevtools --no-interaction
-          # Set a specific PHPCS version.
-          composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
+      - name: 'Composer: set PHPCS version for tests'
+        run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
       - name: Install Composer dependencies - normal
         if: ${{ startsWith( matrix.php, '8' ) == false  }}
@@ -307,6 +243,7 @@ jobs:
         run: vendor/bin/phpunit
 
       # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
+      # Also PHP Coveralls itself (still) isn't fully compatible with PHP 8.0+.
       - name: Switch to PHP 7.4
         if: ${{ success() && matrix.php != '7.4' }}
         uses: shivammathur/setup-php@v2
