@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the DiscouragedSwitchContinue sniff.
@@ -68,6 +67,8 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             [149],
             [174],
             [210],
+            [212],
+            [218],
 
             /*
             @todo: False negatives. Unscoped control structure within case.
@@ -77,11 +78,6 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
             array(184),
             */
         ];
-
-        if (\version_compare(Helper::getVersion(), '3.5.3', '!=')) {
-            $data[] = [212];
-            $data[] = [218];
-        }
 
         return $data;
     }

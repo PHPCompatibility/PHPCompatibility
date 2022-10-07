@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\ControlStructures;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Test the ForbiddenBreakContinueVariableArguments sniff.
@@ -85,11 +84,8 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
             [133, self::ERROR_TYPE_ZERO],
             [141, self::ERROR_TYPE_ZERO],
             [149, self::ERROR_TYPE_ZERO],
+            [160, self::ERROR_TYPE_ZERO],
         ];
-
-        if (\version_compare(Helper::getVersion(), '3.5.3', '!=')) {
-            $data[] = [160, self::ERROR_TYPE_ZERO];
-        }
 
         return $data;
     }
