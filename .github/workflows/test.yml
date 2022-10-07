@@ -84,7 +84,7 @@ jobs:
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.1']
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
         phpcs_version: ['3.7.1', 'dev-master']
         experimental: [false]
 
@@ -141,12 +141,6 @@ jobs:
       - name: 'Composer: set PHPCS version for tests'
         run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
-      - name: 'Composer: conditionally tweak PHPUnit version'
-        if: ${{ startsWith( matrix.php, '8' ) }}
-        # Temporary fix - PHPUnit 9.3+ is buggy when used for code coverage, so not allowed "normally".
-        # For tests which don't run code coverage, we can safely install it for PHP 8 though.
-        run: composer require --no-update phpunit/phpunit:"^9.3" --no-interaction
-
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies - normal
@@ -180,10 +174,10 @@ jobs:
       #   code conditions.
       matrix:
         include:
-          - php: '8.0'
+          - php: '8.1'
             phpcs_version: 'dev-master'
             custom_ini: true
-          - php: '8.0'
+          - php: '8.1'
             phpcs_version: '3.7.1'
 
           - php: '5.4'
@@ -228,19 +222,31 @@ jobs:
       - name: 'Composer: set PHPCS version for tests'
         run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
 
-      - name: Install Composer dependencies - normal
-        if: ${{ startsWith( matrix.php, '8' ) == false  }}
+      - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
 
-      - name: Install Composer dependencies - with ignore platform
-        # For PHP 8+, we need to install with ignore platform reqs as we're using PHPUnit < 9.3.
-        if: ${{ startsWith( matrix.php, '8' ) }}
-        uses: "ramsey/composer-install@v2"
-        with:
-          composer-options: --ignore-platform-req=php
+      - name: Grab PHPUnit version
+        id: phpunit_version
+        run: echo ::set-output name=VERSION::$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')
 
-      - name: Run the unit tests with code coverage
+      - name: "DEBUG: Show grabbed version"
+        run: echo ${{ steps.phpunit_version.outputs.VERSION }}
+
+      # PHPUnit 9.3 started using PHP-Parser for code coverage causing some of our coverage builds to fail.
+      # As of PHPUnit 9.3.4, a cache warming option is available.
+      # Using that option prevents issues with PHP-Parser backfilling PHP tokens when PHPCS does not (yet),
+      # which would otherwise cause tests to fail on tokens being available when they shouldn't be.
+      - name: "Warm the PHPUnit cache (PHPUnit 9.3+)"
+        if: ${{ steps.phpunit_version.outputs.VERSION >= '9.3' }}
+        run: vendor/bin/phpunit --coverage-cache ./build/phpunit-cache --warm-coverage-cache
+
+      - name: "Run the unit tests with code coverage (PHPUnit < 9.3)"
+        if: ${{ steps.phpunit_version.outputs.VERSION < '9.3' }}
         run: vendor/bin/phpunit
+
+      - name: "Run the unit tests with code coverage (PHPUnit 9.3+)"
+        if: ${{ steps.phpunit_version.outputs.VERSION >= '9.3' }}
+        run: vendor/bin/phpunit --coverage-cache ./build/phpunit-cache
 
       # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
       # Also PHP Coveralls itself (still) isn't fully compatible with PHP 8.0+.
