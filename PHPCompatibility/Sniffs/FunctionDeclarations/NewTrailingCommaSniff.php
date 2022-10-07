@@ -14,7 +14,6 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * Detect trailing commas in function declarations and closure use lists as allowed since PHP 8.
@@ -38,7 +37,7 @@ class NewTrailingCommaSniff extends Sniff
      */
     public function register()
     {
-        return Collections::functionDeclarationTokensBC();
+        return Collections::functionDeclarationTokens();
     }
 
     /**
@@ -60,22 +59,12 @@ class NewTrailingCommaSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if (isset(Collections::arrowFunctionTokensBC()[$tokens[$stackPtr]['code']]) === true) {
-            $arrowInfo = FunctionDeclarations::getArrowFunctionOpenClose($phpcsFile, $stackPtr);
-            if ($arrowInfo === false) {
-                // Not an arrow function.
-                return;
-            }
-
-            $closer = $arrowInfo['parenthesis_closer'];
-        } else {
-            if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
-                // Live coding or parse error.
-                return;
-            }
-
-            $closer = $tokens[$stackPtr]['parenthesis_closer'];
+        if (isset($tokens[$stackPtr]['parenthesis_closer']) === false) {
+            // Live coding or parse error.
+            return;
         }
+
+        $closer = $tokens[$stackPtr]['parenthesis_closer'];
 
         /*
          * Check for trailing commas in a function declaration parameter list.
