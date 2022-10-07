@@ -13,6 +13,7 @@ namespace PHPCompatibility\Tests;
 use PHPUnit\Framework\TestCase;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\Helper;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * Base sniff test class file.
@@ -31,6 +32,7 @@ use PHPCSUtils\BackCompat\Helper;
  */
 class BaseSniffTest extends TestCase
 {
+    use AssertStringContains;
 
     /**
      * The name of the standard as registered with PHPCS.
@@ -284,11 +286,6 @@ class BaseSniffTest extends TestCase
         $insteadMessagesString = \implode(', ', $insteadFoundMessages);
 
         $msg = "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString.";
-
-        if (\method_exists($this, 'assertStringContainsString') === false) {
-            // PHPUnit < 7.
-            return $this->assertContains($expectedMessage, $insteadMessagesString, $msg);
-        }
 
         return $this->assertStringContainsString($expectedMessage, $insteadMessagesString, $msg);
     }

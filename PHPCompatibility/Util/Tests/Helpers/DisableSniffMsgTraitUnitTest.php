@@ -12,6 +12,7 @@ namespace PHPCompatibility\Util\Tests\Helpers;
 
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 use PHPCompatibility\Helpers\DisableSniffMsgTrait;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * Tests for the DisableSniffMsgTrait sniff helper.
@@ -24,6 +25,7 @@ use PHPCompatibility\Helpers\DisableSniffMsgTrait;
  */
 class DisableSniffMsgTraitUnitTest extends CoreMethodTestFrame
 {
+    use AssertionRenames;
     use DisableSniffMsgTrait;
 
     /**
@@ -41,12 +43,6 @@ class DisableSniffMsgTraitUnitTest extends CoreMethodTestFrame
 
         $result = $this->createDisableSniffNotice(self::$phpcsFile, 'Stnd.Cat.Sniff', 'Code');
 
-        if (\method_exists($this, 'assertMatchesRegularExpression') === true) {
-            // PHPUnit >= 9.1.0
-            $this->assertMatchesRegularExpression($expectedPattern, $result);
-        } else {
-            // PHPUnit < 9.1.0.
-            $this->assertRegExp($expectedPattern, $result);
-        }
+        $this->assertMatchesRegularExpression($expectedPattern, $result);
     }
 }
