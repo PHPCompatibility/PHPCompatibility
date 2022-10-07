@@ -82,10 +82,7 @@ class NewArrayStringDereferencingSniff extends Sniff
         $supports54 = $this->supportsBelow('5.4');
 
         foreach ($dereferencing['braces'] as $openBrace => $closeBrace) {
-            if ($supports54 === true
-                && ($tokens[$openBrace]['type'] === 'T_OPEN_SQUARE_BRACKET'
-                    || $tokens[$openBrace]['type'] === 'T_OPEN_SHORT_ARRAY') // Work around bug #1381 in PHPCS 2.8.1 and lower.
-            ) {
+            if ($supports54 === true && $tokens[$openBrace]['code'] === \T_OPEN_SQUARE_BRACKET) {
                 $phpcsFile->addError(
                     'Direct array dereferencing of %s is not present in PHP version 5.4 or earlier',
                     $openBrace,
@@ -97,7 +94,7 @@ class NewArrayStringDereferencingSniff extends Sniff
             }
 
             // PHP 7.0 Array/string dereferencing using curly braces.
-            if ($tokens[$openBrace]['type'] === 'T_OPEN_CURLY_BRACKET') {
+            if ($tokens[$openBrace]['code'] === \T_OPEN_CURLY_BRACKET) {
                 $phpcsFile->addError(
                     'Direct array dereferencing of %s using curly braces is not present in PHP version 5.6 or earlier',
                     $openBrace,
@@ -166,9 +163,8 @@ class NewArrayStringDereferencingSniff extends Sniff
                 break;
             }
 
-            if ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET'
-                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_CURLY_BRACKET' // PHP 7.0+.
-                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_SHORT_ARRAY' // Work around bug #1381 in PHPCS 2.8.1 and lower.
+            if ($tokens[$nextNonEmpty]['code'] === \T_OPEN_SQUARE_BRACKET
+                || $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET // PHP 7.0+.
             ) {
                 if (isset($tokens[$nextNonEmpty]['bracket_closer']) === false) {
                     // Live coding or parse error.

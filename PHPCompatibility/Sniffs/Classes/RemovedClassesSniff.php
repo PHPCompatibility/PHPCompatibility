@@ -224,7 +224,6 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
             \T_FUNCTION,
             \T_CLOSURE,
             \T_CATCH,
-            \T_RETURN_TYPE,
         ];
     }
 
@@ -259,10 +258,6 @@ class RemovedClassesSniff extends AbstractRemovedFeatureSniff
 
             case 'T_CATCH':
                 $this->processCatchToken($phpcsFile, $stackPtr);
-                break;
-
-            case 'T_RETURN_TYPE':
-                $this->processReturnTypeToken($phpcsFile, $stackPtr);
                 break;
 
             default:

@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
@@ -39,7 +38,7 @@ class RemovedReturnByReferenceFromVoidSniff extends Sniff
      */
     public function register()
     {
-        return Collections::functionDeclarationTokensBC();
+        return Collections::functionDeclarationTokens();
     }
 
     /**
@@ -61,30 +60,13 @@ class RemovedReturnByReferenceFromVoidSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if (isset(Collections::arrowFunctionTokensBC()[$tokens[$stackPtr]['code']])
-            && \strtolower($tokens[$stackPtr]['content']) !== 'fn'
-        ) {
-            // Not a function declaration.
-            return;
-        }
-
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false
-            || ($tokens[$nextNonEmpty]['code'] !== \T_BITWISE_AND
-            // Deal with PHP 8.1 tokenization when using PHPCS < 3.6.1.
-            && $tokens[$nextNonEmpty]['type'] !== 'T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG'
-            && $tokens[$nextNonEmpty]['type'] !== 'T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG')
-        ) {
+        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_BITWISE_AND) {
             // Not a function declared to return by reference.
             return;
         }
 
-        try {
-            $functionProps = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Most likely a T_STRING which wasn't an arrow function.
-            return;
-        }
+        $functionProps = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
 
         if ($functionProps['return_type'] !== 'void') {
             // Not a void function.

@@ -12,7 +12,6 @@ namespace PHPCompatibility\Sniffs\TypeCasts;
 
 use PHPCompatibility\AbstractNewFeatureSniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Detect use of newly introduced type casts.
@@ -66,20 +65,6 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
             }
         }
 
-        /*
-         * Work around tokenizer issues.
-         *
-         * - (binary) cast is incorrectly tokenized as T_STRING_CAST by PHP and PHPCS.
-         * - b"something" binary cast is incorrectly tokenized as T_CONSTANT_ENCAPSED_STRING by PHP and PHPCS.
-         * - Since PHPCS 3.4.0, PHPCS *will* tokenize these correctly.
-         *
-         * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/1574
-         */
-        if (\version_compare(Helper::getVersion(), '3.4.0', '<') === true) {
-            $tokens[] = \T_STRING_CAST;
-            $tokens[] = \T_CONSTANT_ENCAPSED_STRING;
-        }
-
         return $tokens;
     }
 
@@ -99,35 +84,6 @@ class NewTypeCastsSniff extends AbstractNewFeatureSniff
     {
         $tokens    = $phpcsFile->getTokens();
         $tokenType = $tokens[$stackPtr]['type'];
-
-        // Detect incorrectly tokenized binary casts.
-        if (isset($this->newTypeCasts[$tokenType]) === false) {
-            $tokenContent = $tokens[$stackPtr]['content'];
-            switch ($tokenType) {
-                case 'T_STRING_CAST':
-                    if (\preg_match('`^\(\s*binary\s*\)$`i', $tokenContent) !== 1) {
-                        return;
-                    }
-
-                    $tokenType = 'T_BINARY_CAST';
-                    break;
-
-                case 'T_CONSTANT_ENCAPSED_STRING':
-                    if ((\strpos($tokenContent, 'b"') === 0 && \substr($tokenContent, -1) === '"')
-                        || (\strpos($tokenContent, "b'") === 0 && \substr($tokenContent, -1) === "'")
-                    ) {
-                        $tokenType = 'T_BINARY_CAST';
-                    } else {
-                        return;
-                    }
-                    break;
-            }
-        }
-
-        // If the translation did not yield one of the tokens we are looking for, bow out.
-        if (isset($this->newTypeCasts[$tokenType]) === false) {
-            return;
-        }
 
         $itemInfo = [
             'name'    => $tokenType,

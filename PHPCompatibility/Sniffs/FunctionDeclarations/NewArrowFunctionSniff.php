@@ -12,8 +12,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Sniff;
-use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
  * The arrow function syntax for short functions is available since PHP 7.4.
@@ -37,7 +35,7 @@ class NewArrowFunctionSniff extends Sniff
      */
     public function register()
     {
-        return Collections::arrowFunctionTokensBC();
+        return [\T_FN];
     }
 
     /**
@@ -54,10 +52,6 @@ class NewArrowFunctionSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->supportsBelow('7.3') === false) {
-            return;
-        }
-
-        if (FunctionDeclarations::isArrowFunction($phpcsFile, $stackPtr) === false) {
             return;
         }
 

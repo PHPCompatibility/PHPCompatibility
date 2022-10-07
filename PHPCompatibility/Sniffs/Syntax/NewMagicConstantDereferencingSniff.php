@@ -63,10 +63,7 @@ class NewMagicConstantDereferencingSniff extends Sniff
             return;
         }
 
-        if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_SQUARE_BRACKET
-            // Work around bug #3013 in PHPCS 3.5.5 and lower.
-            && $tokens[$nextNonEmpty]['code'] !== \T_OPEN_SHORT_ARRAY
-        ) {
+        if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_SQUARE_BRACKET) {
             return;
         }
 
@@ -104,9 +101,7 @@ class NewMagicConstantDereferencingSniff extends Sniff
             }
 
             // Check if this is an multi-access array assignment, e.g., `__FILE__[1][2] = 'val';` .
-            if (($tokens[$nextNext]['code'] === \T_OPEN_SQUARE_BRACKET
-                // Work around for nested array access being incorrectly tokenized in PHPCS 2.8.x.
-                || $tokens[$nextNext]['code'] === \T_OPEN_SHORT_ARRAY)
+            if ($tokens[$nextNext]['code'] === \T_OPEN_SQUARE_BRACKET
                 && isset($tokens[$nextNext]['bracket_closer']) === true
             ) {
                 $nextNext = $tokens[$nextNext]['bracket_closer'];

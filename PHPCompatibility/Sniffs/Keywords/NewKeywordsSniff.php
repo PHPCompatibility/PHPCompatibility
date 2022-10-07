@@ -44,8 +44,7 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
      * The callback function should return `true` if the condition is met and the
      * error should *not* be thrown.
      *
-     * {@internal This list does not contain `T_FN` as that token is not reliably
-     * sniffable in a PHP/PHPCS cross-version compatible manner.
+     * {@internal This list does not contain `T_FN`.
      * The separate `Syntax.NewArrowFunction` sniff reports on that token.}
      *
      * @since 5.5
@@ -72,37 +71,31 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"callable" keyword',
-            'content'     => 'callable',
         ],
         'T_DIR' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '__DIR__ magic constant',
-            'content'     => '__DIR__',
         ],
         'T_GOTO' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"goto" keyword',
-            'content'     => 'goto',
         ],
         'T_INSTEADOF' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"insteadof" keyword (for traits)',
-            'content'     => 'insteadof',
         ],
         'T_NAMESPACE' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"namespace" keyword',
-            'content'     => 'namespace',
         ],
         'T_NS_C' => [
             '5.2'         => false,
             '5.3'         => true,
             'description' => '__NAMESPACE__ magic constant',
-            'content'     => '__NAMESPACE__',
         ],
         'T_USE' => [
             '5.2'         => false,
@@ -129,34 +122,26 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             '5.3'         => false,
             '5.4'         => true,
             'description' => '"trait" keyword',
-            'content'     => 'trait',
         ],
         'T_TRAIT_C' => [
             '5.3'         => false,
             '5.4'         => true,
             'description' => '__TRAIT__ magic constant',
-            'content'     => '__TRAIT__',
         ],
-        // The specifics for distinguishing between 'yield' and 'yield from' are dealt
-        // with in the translation logic.
-        // This token has to be placed above the `T_YIELD` token in this array to allow for this.
         'T_YIELD_FROM' => [
             '5.6'         => false,
             '7.0'         => true,
             'description' => '"yield from" keyword (for generators)',
-            'content'     => 'yield',
         ],
         'T_YIELD' => [
             '5.4'         => false,
             '5.5'         => true,
             'description' => '"yield" keyword (for generators)',
-            'content'     => 'yield',
         ],
         'T_FINALLY' => [
             '5.4'         => false,
             '5.5'         => true,
             'description' => '"finally" keyword (in exception handling)',
-            'content'     => 'finally',
         ],
     ];
 
@@ -234,29 +219,6 @@ class NewKeywordsSniff extends AbstractNewFeatureSniff
             }
 
             $tokenType = $this->translateContentToToken[$content];
-        }
-
-        /*
-         * Special case: distinguish between `yield` and `yield from`.
-         *
-         * PHPCS did not backfill for the `yield` nor the `yield from` keywords prior to PHPCS 3.1.0.
-         * See: https://github.com/squizlabs/PHP_CodeSniffer/issues/1524
-         *
-         * In PHP < 5.5, both `yield` as well as `from` are tokenized as T_STRING.
-         * In PHP 5.5 - 5.6, `yield` is tokenized as T_YIELD and `from` as T_STRING,
-         * but the `T_YIELD_FROM` token *is* defined in PHP.
-         * In PHP 7.0+ both are tokenized as their respective token, however,
-         * a multi-line "yield from" is tokenized as two tokens.
-         */
-        if ($tokenType === 'T_YIELD') {
-            $nextToken = $phpcsFile->findNext(\T_WHITESPACE, ($end + 1), null, true);
-            if ($tokens[$nextToken]['code'] === \T_STRING
-                && $tokens[$nextToken]['content'] === 'from'
-            ) {
-                $tokenType = 'T_YIELD_FROM';
-                $end       = $nextToken;
-            }
-            unset($nextToken);
         }
 
         if ($tokenType === 'T_YIELD_FROM' && $tokens[($stackPtr - 1)]['type'] === 'T_YIELD_FROM') {
