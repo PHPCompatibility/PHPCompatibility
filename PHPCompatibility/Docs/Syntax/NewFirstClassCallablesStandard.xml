@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New First Class Callable Syntax"
+    >
+    <standard>
+    <![CDATA[
+    First class callables using the CallableExpr(...) syntax are available since PHP 8.1.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not using first class callables.">
+        <![CDATA[
+$fn = <em>Closure::fromCallable('strlen')</em>;
+$fn = <em>Closure::fromCallable([$this, 'method'])</em>;
+$fn = <em>Closure::fromCallable(['Foo', 'method'])</em>;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.1: using first class callables.">
+        <![CDATA[
+$fn = <em>strlen(...)</em>;
+$fn = <em>$this->method(...)</em>;
+$fn = <em>Foo::method(...)</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
