@@ -41,8 +41,6 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     protected function setUpPHPCS()
     {
-        parent::setUpPHPCS();
-
         // Sniff file without testVersion for testing the version independent sniff features.
         $this->sniffResult = $this->sniffFile(__FILE__);
     }

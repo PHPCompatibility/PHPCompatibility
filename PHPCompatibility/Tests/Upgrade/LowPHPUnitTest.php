@@ -50,8 +50,6 @@ class LowPHPUnitTest extends BaseSniffTest
      */
     protected function setUpPHPCS()
     {
-        parent::setUpPHPCS();
-
         // Sniff file without testVersion as all checks run independently of testVersion being set.
         $this->sniffResult = $this->sniffFile(__FILE__);
         $this->phpVersion  = \phpversion();

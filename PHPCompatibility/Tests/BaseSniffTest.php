@@ -28,7 +28,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  * @since 8.0.0  Compatible with PHP_CodeSniffer 3+.
  * @since 8.2.0  Allows for sniffs in multiple categories.
  * @since 9.0.0  Dropped support for PHP_CodeSniffer 1.x.
- * @since 10.0.0 Updated for preliminary support of PHP_CodeSniffer 4.
+ * @since 10.0.0 Updated for preliminary support of PHP_CodeSniffer 4 and dropped support for PHPCS 2.x.
  */
 class BaseSniffTest extends TestCase
 {
@@ -42,17 +42,6 @@ class BaseSniffTest extends TestCase
      * @var string
      */
     const STANDARD_NAME = 'PHPCompatibility';
-
-    /**
-     * The PHP_CodeSniffer object used for testing.
-     *
-     * Used by PHPCS 2.x.
-     *
-     * @since 5.5
-     *
-     * @var \PHP_CodeSniffer
-     */
-    protected static $phpcs = null;
 
     /**
      * An array of PHPCS results by filename and PHP version.
@@ -88,36 +77,6 @@ class BaseSniffTest extends TestCase
     public static function resetSniffFiles()
     {
         self::$sniffFiles = [];
-    }
-
-    /**
-     * Sets up this unit test.
-     *
-     * @before
-     *
-     * @since 5.5
-     * @since 10.0.0 Renamed the method from `setUp()` to `setUpPHPCS()` and now using
-     *               the `@before` annotation to allow for PHPUnit cross-version compatibility.
-     *
-     * @return void
-     */
-    protected function setUpPHPCS()
-    {
-        if (\class_exists('\PHP_CodeSniffer') === true) {
-            /*
-             * PHPCS 2.x.
-             */
-            if (self::$phpcs === null) {
-                self::$phpcs = new \PHP_CodeSniffer();
-            }
-
-            self::$phpcs->cli->setCommandLineValues(['-pq', '--colors']);
-
-            // Restrict the sniffing of the test case files to the particular sniff being tested.
-            self::$phpcs->initStandard(self::STANDARD_NAME, [$this->getSniffCode()]);
-
-            self::$phpcs->setIgnorePatterns([]);
-        }
     }
 
     /**
@@ -183,34 +142,23 @@ class BaseSniffTest extends TestCase
         }
 
         try {
-            if (\class_exists('\PHP_CodeSniffer\Files\LocalFile')) {
-                // PHPCS 3.x, 4.x.
-                $config            = new \PHP_CodeSniffer\Config();
-                $config->cache     = false;
-                $config->standards = [self::STANDARD_NAME];
-                $config->sniffs    = [$this->getSniffCode()];
-                $config->ignored   = [];
+            // PHPCS 3.x, 4.x.
+            $config            = new \PHP_CodeSniffer\Config();
+            $config->cache     = false;
+            $config->standards = [self::STANDARD_NAME];
+            $config->sniffs    = [$this->getSniffCode()];
+            $config->ignored   = [];
 
-                if ($targetPhpVersion !== 'none') {
-                    Helper::setConfigData('testVersion', $targetPhpVersion, true, $config);
-                }
-
-                self::$lastConfig = $config;
-
-                $ruleset = new \PHP_CodeSniffer\Ruleset($config);
-
-                self::$sniffFiles[$pathToFile][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
-                self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
-            } else {
-                // PHPCS 2.x.
-                self::$lastConfig = null;
-
-                if ($targetPhpVersion !== 'none') {
-                    Helper::setConfigData('testVersion', $targetPhpVersion, true);
-                }
-
-                self::$sniffFiles[$pathToFile][$targetPhpVersion] = self::$phpcs->processFile($pathToFile);
+            if ($targetPhpVersion !== 'none') {
+                Helper::setConfigData('testVersion', $targetPhpVersion, true, $config);
             }
+
+            self::$lastConfig = $config;
+
+            $ruleset = new \PHP_CodeSniffer\Ruleset($config);
+
+            self::$sniffFiles[$pathToFile][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
+            self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
         } catch (\Exception $e) {
             $this->fail('An unexpected exception has been caught when loading file "' . $pathToFile . '" : ' . $e->getMessage());
             return false;
