@@ -4731,6 +4731,10 @@ class NewFunctionsSniff extends Sniff
             '8.0' => false,
             '8.1' => true,
         ],
+        'enum_exists' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
         'fsync' => [
             '8.0' => false,
             '8.1' => true,

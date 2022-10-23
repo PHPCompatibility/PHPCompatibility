@@ -1023,3 +1023,4 @@ sodium_crypto_core_ristretto255_scalar_sub();
 sodium_crypto_core_ristretto255_sub();
 sodium_crypto_scalarmult_ristretto255();
 sodium_crypto_scalarmult_ristretto255_base();
+enum_exists();
