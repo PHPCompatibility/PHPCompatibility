@@ -81,7 +81,7 @@ trait PCRERegexTrait
         }
 
         $tokens = $phpcsFile->getTokens();
-        if (isset(Collections::$arrayTokensBC[$tokens[$nextNonEmpty]['code']]) === false) {
+        if (isset(Collections::arrayOpenTokensBC()[$tokens[$nextNonEmpty]['code']]) === false) {
             // Parameter not passed as an array, treat it as a string pattern.
             return [$paramInfo];
         }
@@ -159,7 +159,7 @@ trait PCRERegexTrait
          * and function calls. We are only concerned with the strings.
          */
         for ($i = $patternInfo['start']; $i <= $patternInfo['end']; $i++) {
-            if (isset(Collections::$textStingStartTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Collections::textStringStartTokens()[$tokens[$i]['code']]) === false) {
                 continue;
             }
 

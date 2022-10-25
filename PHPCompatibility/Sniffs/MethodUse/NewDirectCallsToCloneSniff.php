@@ -92,7 +92,7 @@ class NewDirectCallsToCloneSniff extends Sniff
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevNonEmpty === false
-            || isset(Collections::$OOHierarchyKeywords[$tokens[$prevNonEmpty]['code']])
+            || isset(Collections::ooHierarchyKeywords()[$tokens[$prevNonEmpty]['code']])
         ) {
             // Class internal call to __clone().
             return;

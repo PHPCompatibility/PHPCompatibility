@@ -158,7 +158,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
             \T_CATCH,
         ];
 
-        $targets += Collections::functionDeclarationTokensBC();
+        $targets += Collections::functionDeclarationTokens();
 
         return $targets;
     }
@@ -198,7 +198,7 @@ class NewInterfacesSniff extends AbstractNewFeatureSniff
                 break;
         }
 
-        if (isset(Collections::functionDeclarationTokensBC()[$tokens[$stackPtr]['code']]) === true) {
+        if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
             $this->processFunctionToken($phpcsFile, $stackPtr);
         }
     }

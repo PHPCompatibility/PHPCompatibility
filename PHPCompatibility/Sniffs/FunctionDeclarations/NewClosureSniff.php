@@ -251,7 +251,7 @@ class NewClosureSniff extends Sniff
         }
 
         $tokens   = $phpcsFile->getTokens();
-        $classRef = $phpcsFile->findNext(Collections::$OOHierarchyKeywords, $startToken, $endToken);
+        $classRef = $phpcsFile->findNext(Collections::ooHierarchyKeywords(), $startToken, $endToken);
 
         if ($classRef === false || $tokens[$classRef]['code'] !== \T_STATIC) {
             return $classRef;

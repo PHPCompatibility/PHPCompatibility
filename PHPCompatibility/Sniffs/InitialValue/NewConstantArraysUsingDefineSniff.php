@@ -90,7 +90,7 @@ class NewConstantArraysUsingDefineSniff extends Sniff
             $targetNestingLevel = \count($tokens[$secondParam['start']]['nested_parenthesis']);
         }
 
-        $array = $phpcsFile->findNext(Collections::$arrayTokensBC, $secondParam['start'], ($secondParam['end'] + 1));
+        $array = $phpcsFile->findNext(Collections::arrayOpenTokensBC(), $secondParam['start'], ($secondParam['end'] + 1));
         if ($array !== false
             && ($tokens[$array]['code'] === \T_ARRAY
                 || Arrays::isShortArray($phpcsFile, $array) === true)

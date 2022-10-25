@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\BackCompat\BCTokens;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect dereferencing of magic constants as allowed per PHP 8.0.
@@ -37,7 +36,7 @@ class NewMagicConstantDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return Collections::$magicConstants;
+        return Tokens::$magicConstants;
     }
 
     /**

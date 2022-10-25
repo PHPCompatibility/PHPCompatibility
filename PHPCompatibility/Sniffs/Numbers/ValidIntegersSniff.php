@@ -122,7 +122,7 @@ class ValidIntegersSniff extends Sniff
         }
 
         if ($next['code'] === \T_STRING
-            && \preg_match(Numbers::REGEX_NUMLIT_STRING, $next['content'])
+            && \preg_match('`^((?<![\.e])_[0-9][0-9e\.]*)+$`iD', $next['content'])
         ) {
             return true;
         }
