@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
@@ -407,7 +408,7 @@ class ForbiddenNamesSniff extends Sniff
     protected function addError(File $phpcsFile, $stackPtr, $content, $data)
     {
         $error     = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
-        $errorCode = $this->stringToErrorCode($content) . 'Found';
+        $errorCode = MessageHelper::stringToErrorCode($content, true) . 'Found';
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
     }
 

@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Keywords;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Namespaces;
 
@@ -179,7 +180,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
         // Build up the error message.
         $error     = "'%s' is a";
         $isError   = null;
-        $errorCode = $this->stringToErrorCode($nameLc) . 'Found';
+        $errorCode = MessageHelper::stringToErrorCode($nameLc) . 'Found';
         $data      = [
             $nameLc,
         ];
@@ -207,7 +208,7 @@ class ForbiddenNamesAsDeclaredSniff extends Sniff
             $error .= ' and should not be used to name a class, interface or trait or as part of a namespace (%s)';
             $data[] = $tokens[$stackPtr]['type'];
 
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+            MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
         }
     }
 }

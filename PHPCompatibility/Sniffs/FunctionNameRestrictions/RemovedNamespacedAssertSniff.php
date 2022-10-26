@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\Scopes;
 
@@ -91,6 +92,6 @@ class RemovedNamespacedAssertSniff extends Sniff
             $isError = true;
         }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
     }
 }

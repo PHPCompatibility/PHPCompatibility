@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect passing a string literal as `$category` to `setlocale()`.
@@ -103,7 +104,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
 
             $message .= '; Pass one of the LC_* constants instead. Found: %s';
 
-            $this->addMessage($phpcsFile, $message, $i, $isError, $errorCode, $data);
+            MessageHelper::addMessage($phpcsFile, $message, $i, $isError, $errorCode, $data);
             break;
         }
     }

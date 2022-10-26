@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -140,7 +141,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
                 $error .= ' Use mb_ereg_replace_callback() instead (PHP 5.4.1+).';
             }
 
-            $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
+            MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
         }
     }
 }

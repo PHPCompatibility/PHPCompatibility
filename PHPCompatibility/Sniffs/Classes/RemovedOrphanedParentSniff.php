@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Using `parent` inside a class without parent is deprecated since PHP 7.4 and removed in PHP 8.0.
@@ -101,6 +102,6 @@ class RemovedOrphanedParentSniff extends Sniff
             $isError = true;
         }
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
     }
 }

@@ -43,51 +43,6 @@ abstract class Sniff implements PHPCS_Sniff
     const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
 
     /**
-     * Add a PHPCS message to the output stack as either a warning or an error.
-     *
-     * @since 7.1.0
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file the message applies to.
-     * @param string                      $message   The message.
-     * @param int                         $stackPtr  The position of the token
-     *                                               the message relates to.
-     * @param bool                        $isError   Whether to report the message as an
-     *                                               'error' or 'warning'. Defaults to
-     *                                               true (error).
-     * @param string                      $code      The error code for the message.
-     *                                               Defaults to 'Found'.
-     * @param array                       $data      Optional input for the data replacements.
-     *
-     * @return void
-     */
-    public function addMessage(File $phpcsFile, $message, $stackPtr, $isError, $code = 'Found', $data = [])
-    {
-        if ($isError === true) {
-            $phpcsFile->addError($message, $stackPtr, $code, $data);
-        } else {
-            $phpcsFile->addWarning($message, $stackPtr, $code, $data);
-        }
-    }
-
-
-    /**
-     * Convert an arbitrary string to an alphanumeric string with underscores.
-     *
-     * Pre-empt issues with arbitrary strings being used as error codes in XML and PHP.
-     *
-     * @since 7.1.0
-     *
-     * @param string $baseString Arbitrary string.
-     *
-     * @return string
-     */
-    public function stringToErrorCode($baseString)
-    {
-        return \preg_replace('`[^a-z0-9_]`i', '_', \strtolower($baseString));
-    }
-
-
-    /**
      * Strip variables from an arbitrary double quoted string.
      *
      * Intended for use with the contents of a T_DOUBLE_QUOTED_STRING.

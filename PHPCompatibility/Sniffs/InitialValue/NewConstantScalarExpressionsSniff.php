@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 
@@ -499,7 +500,7 @@ class NewConstantScalarExpressionsSniff extends Sniff
         $errorCode = 'Found';
 
         if (isset($this->errorPhrases[$type]) === true) {
-            $errorCode = $this->stringToErrorCode($type) . 'Found';
+            $errorCode = MessageHelper::stringToErrorCode($type) . 'Found';
             $phrase    = $this->errorPhrases[$type];
         }
 

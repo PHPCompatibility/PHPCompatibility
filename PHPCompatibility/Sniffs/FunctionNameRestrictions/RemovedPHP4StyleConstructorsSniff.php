@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\NamingConventions;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -153,7 +154,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
                 $isError = true;
             }
 
-            $this->addMessage($phpcsFile, $error, $oldConstructorPos, $isError, $code);
+            MessageHelper::addMessage($phpcsFile, $error, $oldConstructorPos, $isError, $code);
         }
     }
 }

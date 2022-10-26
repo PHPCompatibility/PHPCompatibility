@@ -56,41 +56,6 @@ class FunctionsUnitTest extends TestCase
     }
 
     /**
-     * testStringToErrorCode
-     *
-     * @dataProvider dataStringToErrorCode
-     *
-     * @covers \PHPCompatibility\Sniff::stringToErrorCode
-     *
-     * @param string $input    The input string.
-     * @param string $expected The expected error code.
-     *
-     * @return void
-     */
-    public function testStringToErrorCode($input, $expected)
-    {
-        $this->assertSame($expected, $this->helperClass->stringToErrorCode($input));
-    }
-
-    /**
-     * dataStringToErrorCode
-     *
-     * @see testStringToErrorCode()
-     *
-     * @return array
-     */
-    public function dataStringToErrorCode()
-    {
-        return [
-            ['dir_name', 'dir_name'], // No change.
-            ['soap.wsdl_cache', 'soap_wsdl_cache'], // No dot.
-            ['arbitrary-string with space', 'arbitrary_string_with_space'], // No dashes, no spaces.
-            ['^%*&%*€à?', '____________'], // No non alpha-numeric characters.
-        ];
-    }
-
-
-    /**
      * testStripVariables
      *
      * @dataProvider dataStripVariables

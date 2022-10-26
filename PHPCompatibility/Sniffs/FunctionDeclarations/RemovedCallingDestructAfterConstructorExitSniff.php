@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\UseStatements;
@@ -201,7 +202,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
         }
 
         foreach ($exits as $ptr) {
-            $this->addMessage($phpcsFile, $error, $ptr, $isError, $errorCode, [$tokens[$ptr]['content']]);
+            MessageHelper::addMessage($phpcsFile, $error, $ptr, $isError, $errorCode, [$tokens[$ptr]['content']]);
         }
     }
 }

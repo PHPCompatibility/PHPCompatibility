@@ -11,6 +11,7 @@
 namespace PHPCompatibility;
 
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Base class for new feature sniffs.
@@ -100,7 +101,7 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
         $itemName = $this->getItemName($itemInfo, $errorInfo);
         $error    = $this->getErrorMsgTemplate();
 
-        $errorCode = $this->stringToErrorCode($itemName) . 'Found';
+        $errorCode = MessageHelper::stringToErrorCode($itemName, true) . 'Found';
         $data      = [
             $itemName,
             $errorInfo['not_in_version'],
@@ -109,6 +110,6 @@ abstract class AbstractNewFeatureSniff extends AbstractComplexVersionSniff
         $error = $this->filterErrorMsg($error, $itemInfo, $errorInfo);
         $data  = $this->filterErrorData($data, $itemInfo, $errorInfo);
 
-        $this->addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $errorInfo['error'], $errorCode, $data);
     }
 }

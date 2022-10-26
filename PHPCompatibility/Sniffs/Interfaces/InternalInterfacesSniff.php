@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
@@ -87,7 +88,7 @@ class InternalInterfacesSniff extends Sniff
             $interfaceLc = \strtolower($interface);
             if (isset($this->internalInterfaces[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
-                $errorCode = $this->stringToErrorCode($interfaceLc) . 'Found';
+                $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'Found';
                 $data      = [
                     $interface,
                     $this->internalInterfaces[$interfaceLc],
