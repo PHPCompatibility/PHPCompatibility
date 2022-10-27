@@ -52,6 +52,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
         return [
             [3],
             [9],
+            [39],
         ];
     }
 
@@ -92,6 +93,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
             [32],
             [35],
             [36],
+            [40],
         ];
     }
 

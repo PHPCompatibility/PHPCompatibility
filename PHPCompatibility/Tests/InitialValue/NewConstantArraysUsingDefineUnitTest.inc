@@ -34,3 +34,7 @@ define('WPDIRAUTH_LDAP_RETURN_KEYS',serialize(['sn', 'givenname', 'mail']));
 // Array dereferencing.
 define('DEREF', OTHER['key']);
 define('DEREF', 'string'[2]);
+
+// PHP 8.0: calling define() using named parameters.
+define(value: array('bird'), constant_name: 'ANIMALS' ); // Error.
+define(value: 'not an array', constant_name: 'NOTANARRAY' ); // OK.
