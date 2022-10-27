@@ -21,3 +21,8 @@ ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_STDFLAGS);
 ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_STDFLAGS | PHP_OUTPUT_HANDLER_FLUSHABLE);
 ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_STDFLAGS ^ PHP_OUTPUT_HANDLER_FLUSHABLE);
 ob_start($output_callback, $chunk_size, 10);
+
+// Safeguard support for PHP 8 named parameters.
+ob_start(flags: false);
+ob_start(flags: 20);
+ob_start(flags: $flags); // OK.

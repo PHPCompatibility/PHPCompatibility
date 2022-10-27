@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect incompatible use of the third parameter for `ob_start()`.
@@ -69,11 +70,11 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[3]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 3, 'flags');
+        if ($targetParam === false) {
             return;
         }
 
-        $targetParam  = $parameters[3];
         $cleanValueLc = \strtolower($targetParam['clean']);
 
         $error = 'The third parameter of ob_start() changed from the boolean $erase to the integer $flags in PHP 5.4. Found: %s';
