@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * In PHP 5.2 and lower, the `$initial` parameter for `array_reduce()` had to be an integer.
@@ -83,11 +84,11 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[3]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 3, 'initial');
+        if ($targetParam === false) {
             return;
         }
 
-        $targetParam = $parameters[3];
         if ($this->isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], true) !== false) {
             return;
         }
