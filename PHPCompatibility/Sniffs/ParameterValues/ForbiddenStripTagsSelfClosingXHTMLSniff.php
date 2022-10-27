@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Since PHP 5.3.4, `strip_tags()` ignores self-closing XHTML tags in allowable_tags
@@ -66,12 +67,12 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[2]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 2, 'allowed_tags');
+        if ($targetParam === false) {
             return;
         }
 
-        $tokens      = $phpcsFile->getTokens();
-        $targetParam = $parameters[2];
+        $tokens = $phpcsFile->getTokens();
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if ($tokens[$i]['code'] === \T_STRING
                 || $tokens[$i]['code'] === \T_VARIABLE
@@ -84,7 +85,7 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
                 && \strpos($tokens[$i]['content'], '/>') !== false
             ) {
                 $phpcsFile->addError(
-                    'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowable_tags parameter since PHP 5.3.4. Found: %s',
+                    'Self-closing XHTML tags are ignored. Only non-self-closing tags should be used in the strip_tags() $allowed_tags parameter since PHP 5.3.4. Found: %s',
                     $i,
                     'Found',
                     [$targetParam['clean']]
