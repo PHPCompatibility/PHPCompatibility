@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect calls to functions where the expected type of a parameter has been changed from integer to boolean.
@@ -38,7 +39,7 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
     protected $targetFunctions = [
         'ob_implicit_flush' => [
             1 => [
-                'name'  => 'flag',
+                'name'  => 'enable',
                 'since' => '8.0',
             ],
         ],
@@ -93,15 +94,14 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
         $functionLC   = \strtolower($functionName);
         $functionInfo = $this->targetFunctions[$functionLC];
         foreach ($functionInfo as $offset => $paramInfo) {
-            if (isset($parameters[$offset]) === false) {
-                continue;
-            }
-
             if ($this->supportsAbove($paramInfo['since']) === false) {
                 continue;
             }
 
-            $target = $parameters[$offset];
+            $target = PassedParameters::getParameterFromStack($parameters, $offset, $paramInfo['name']);
+            if ($target === false) {
+                continue;
+            }
 
             $hasNonNumeric = $phpcsFile->findNext($search, $target['start'], ($target['end'] + 1), true);
             if ($hasNonNumeric !== false) {

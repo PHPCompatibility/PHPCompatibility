@@ -61,7 +61,8 @@ class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTest
             [24, '8.0', '$auto_release', 'sem_get'],
             [25, '8.0', '$auto_release', 'sem_get'],
             [26, '8.0', '$auto_release', 'sem_get'],
-            [27, '8.0', '$flag', 'ob_implicit_flush'],
+            [27, '8.0', '$enable', 'ob_implicit_flush'],
+            [28, '8.0', '$enable', 'ob_implicit_flush'],
         ];
     }
 
