@@ -167,6 +167,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
     {
         return [
             [3],
+            [28],
         ];
     }
 

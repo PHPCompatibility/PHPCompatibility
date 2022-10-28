@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Check for use of alternative PHP tags, support for which was removed in PHP 7.0.
@@ -52,11 +53,10 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             $this->aspTags = (bool) \ini_get('asp_tags');
         }
 
-        return [
-            \T_OPEN_TAG,
-            \T_OPEN_TAG_WITH_ECHO,
-            \T_INLINE_HTML,
-        ];
+        $targets                 = Collections::phpOpenTags();
+        $targets[\T_INLINE_HTML] = \T_INLINE_HTML;
+
+        return $targets;
     }
 
 
@@ -85,7 +85,7 @@ class RemovedAlternativePHPTagsSniff extends Sniff
             return;
         }
 
-        if ($openTag['code'] === \T_OPEN_TAG || $openTag['code'] === \T_OPEN_TAG_WITH_ECHO) {
+        if (isset(Collections::phpOpenTags()[$openTag['code']]) === true) {
 
             if ($content === '<%' || $content === '<%=') {
                 $data      = [

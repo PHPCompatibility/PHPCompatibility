@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Operators;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Operators;
 
@@ -102,11 +103,10 @@ class ChangedConcatOperatorPrecedenceSniff extends Sniff
 
             if ($tokens[$i]['code'] === \T_SEMICOLON
                 || $tokens[$i]['code'] === \T_OPEN_CURLY_BRACKET
-                || $tokens[$i]['code'] === \T_OPEN_TAG
-                || $tokens[$i]['code'] === \T_OPEN_TAG_WITH_ECHO
                 || $tokens[$i]['code'] === \T_COMMA
                 || $tokens[$i]['code'] === \T_COLON
                 || $tokens[$i]['code'] === \T_CASE
+                || isset(Collections::phpOpenTags()[$tokens[$i]['code']]) === true
             ) {
                 // If we reached any of the above tokens, we've reached the end of
                 // the statement without encountering a concatenation operator.
