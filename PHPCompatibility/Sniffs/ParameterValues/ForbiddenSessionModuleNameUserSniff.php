@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -98,11 +99,10 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $param = PassedParameters::getParameterFromStack($parameters, 1, 'module');
+        if ($param === false) {
             return;
         }
-
-        $param = $parameters[1];
 
         $firstNonEmpty   = $phpcsFile->findNext(Tokens::$emptyTokens, $param['start'], ($param['end'] + 1), true);
         $hasNonTextToken = $phpcsFile->findNext($this->targetTokens, $firstNonEmpty, ($param['end'] + 1), true);
