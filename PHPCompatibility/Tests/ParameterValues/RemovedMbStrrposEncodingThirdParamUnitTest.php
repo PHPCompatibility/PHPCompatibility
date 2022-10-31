@@ -62,23 +62,45 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTest
             [22],
             [23],
             [24],
+            [28],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify there are no false positives on code this sniff should ignore.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 20 lines.
         for ($line = 1; $line <= 20; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        $data[] = [27];
+
+        return $data;
     }
 
 
