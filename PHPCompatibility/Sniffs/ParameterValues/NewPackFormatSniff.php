@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Check for valid values for the `$format` passed to `pack()`.
@@ -88,12 +89,12 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'format');
+        if ($targetParam === false) {
             return;
         }
 
-        $tokens      = $phpcsFile->getTokens();
-        $targetParam = $parameters[1];
+        $tokens = $phpcsFile->getTokens();
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if ($tokens[$i]['code'] === \T_STRING
