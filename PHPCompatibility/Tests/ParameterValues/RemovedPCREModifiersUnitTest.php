@@ -115,6 +115,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Heredoc/Nowdoc.
             [228, 'preg_filter'],
+
+            // Named parameters.
+            [232],
         ];
     }
 
@@ -186,6 +189,9 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Heredoc/Nowdoc.
             [220],
+
+            // Named parameters.
+            [231],
         ];
     }
 
