@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * The constant value of the password hash algorithm constants has changed in PHP 7.4.
@@ -34,16 +35,22 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
     /**
      * Functions to check for.
      *
-     * Key is the function name, value the 1-based parameter position of
-     * the $algo parameter.
+     * Key is the function name, value an array containing the 1-based parameter position
+     * and the official name of the parameter.
      *
      * @since 9.3.0
      *
      * @var array
      */
     protected $targetFunctions = [
-        'password_hash'         => 2,
-        'password_needs_rehash' => 2,
+        'password_hash' => [
+            'position' => 2,
+            'name'     => 'algo',
+        ],
+        'password_needs_rehash' => [
+            'position' => 2,
+            'name'     => 'algo',
+        ],
     ];
 
     /**
@@ -94,14 +101,14 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLC = \strtolower($functionName);
-        if (isset($parameters[$this->targetFunctions[$functionLC]]) === false) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam === false) {
             return;
         }
 
-        $targetParam = $parameters[$this->targetFunctions[$functionLC]];
-        $tokens      = $phpcsFile->getTokens();
-
+        $tokens = $phpcsFile->getTokens();
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
             if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                 continue;
