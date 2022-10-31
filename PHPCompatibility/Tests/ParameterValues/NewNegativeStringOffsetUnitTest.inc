@@ -8,9 +8,9 @@ mb_ereg_search_setpos();
 mb_ereg_search_setpos( 0 );
 mb_ereg_search_setpos( /* Some comment. */ );
 mb_ereg_search_setpos(
-	// Some comment.
-	0
-	// phpcs:ignore Standard.Category.Sniff -- for reasons.
+    // Some comment.
+    offset: 0
+    // phpcs:ignore Standard.Category.Sniff -- for reasons.
 );
 mb_ereg_search_setpos($position);
 mb_ereg_search_setpos( -1 + 10 );
@@ -46,3 +46,7 @@ $a = strpos($haystack, $needle, -30 );
 $a = substr_count($haystack, $needle, -20, -10 );
 $a = Substr_Count($haystack, $needle, -20, 10 );
 $a = substr_count($haystack, $needle, 20, -+-+-10 );
+
+// Safeguard support for PHP 8 named parameters.
+$a = mb_strimwidth(trim_marker: '', width: 5, start: -2, string: $str, ); // Error x 1.
+$a = mb_strimwidth(start: -2, width: -10, string: $str, trim_marker: ''); // Error x 2.
