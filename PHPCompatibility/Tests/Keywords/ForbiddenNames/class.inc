@@ -31,6 +31,7 @@ class exit {}
 class extends {}
 class final {}
 class finally {}
+class fn {}
 class for {}
 class foreach {}
 class function {}
@@ -70,5 +71,7 @@ class __CLASS__ {}
 class __DIR__ {}
 class __FILE__ {}
 class __FUNCTION__ {}
+class __LINE__ {}
 class __METHOD__ {}
 class __NAMESPACE__ {}
+class __TRAIT__ {}

@@ -15,141 +15,114 @@
 
 // This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php
 $invalidNames = [
-    'abstract' => '5.0',
-    'and' => 'all',
-    'array' => 'all',
-    'as' => 'all',
-    'break' => 'all',
-    'callable' => '5.4',
-    'case' => 'all',
-    'catch' => '5.0',
-    'class' => 'all',
-    'clone' => '5.0',
-    'const' => 'all',
-    'continue' => 'all',
-    'declare' => 'all',
-    'default' => 'all',
-    'die' => 'all',
-    'do' => 'all',
-    'echo' => 'all',
-    'else' => 'all',
-    'elseif' => 'all',
-    'empty' => 'all',
-    'enddeclare' => 'all',
-    'endfor' => 'all',
-    'endforeach' => 'all',
-    'endif' => 'all',
-    'endswitch' => 'all',
-    'endwhile' => 'all',
-    'eval' => 'all',
-    'exit' => 'all',
-    'extends' => 'all',
-    'final' => '5.0',
-    'finally' => '5.5',
-    'for' => 'all',
-    'foreach' => 'all',
-    'function' => 'all',
-    'global' => 'all',
-    'goto' => '5.3',
-    'if' => 'all',
-    'implements' => '5.0',
-    'include' => 'all',
-    'include_once' => 'all',
-    'instanceof' => '5.0',
-    'insteadof' => '5.4',
-    'interface' => '5.0',
-    'isset' => 'all',
-    'list' => 'all',
-    'namespace' => '5.3',
-    'new' => 'all',
-    'or' => 'all',
-    'print' => 'all',
-    'private' => '5.0',
-    'protected' => '5.0',
-    'public' => '5.0',
-    'require' => 'all',
-    'require_once' => 'all',
-    'return' => 'all',
-    'static' => 'all',
-    'switch' => 'all',
-    'throw' => '5.0',
-    'trait' => '5.4',
-    'try' => '5.0',
-    'unset' => 'all',
-    'use' => 'all',
-    'var' => 'all',
-    'while' => 'all',
-    'xor' => 'all',
-    'yield' => '5.5',
-    '__CLASS__' => 'all',
-    '__DIR__' => '5.3',
-    '__FILE__' => 'all',
-    '__FUNCTION__' => 'all',
-    '__METHOD__' => 'all',
+    'abstract'      => '5.0',
+    'and'           => 'all',
+    'array'         => 'all',
+    'as'            => 'all',
+    'break'         => 'all',
+    'callable'      => '5.4',
+    'case'          => 'all',
+    'catch'         => '5.0',
+    'class'         => 'all',
+    'clone'         => '5.0',
+    'const'         => 'all',
+    'continue'      => 'all',
+    'declare'       => 'all',
+    'default'       => 'all',
+    'die'           => 'all',
+    'do'            => 'all',
+    'echo'          => 'all',
+    'else'          => 'all',
+    'elseif'        => 'all',
+    'empty'         => 'all',
+    'enddeclare'    => 'all',
+    'endfor'        => 'all',
+    'endforeach'    => 'all',
+    'endif'         => 'all',
+    'endswitch'     => 'all',
+    'endwhile'      => 'all',
+    'eval'          => 'all',
+    'exit'          => 'all',
+    'extends'       => 'all',
+    'final'         => '5.0',
+    'finally'       => '5.5',
+    'fn'            => '7.4',
+    'for'           => 'all',
+    'foreach'       => 'all',
+    'function'      => 'all',
+    'global'        => 'all',
+    'goto'          => '5.3',
+    'if'            => 'all',
+    'implements'    => '5.0',
+    'include'       => 'all',
+    'include_once'  => 'all',
+    'instanceof'    => '5.0',
+    'insteadof'     => '5.4',
+    'interface'     => '5.0',
+    'isset'         => 'all',
+    'list'          => 'all',
+    'namespace'     => '5.3',
+    'new'           => 'all',
+    'or'            => 'all',
+    'print'         => 'all',
+    'private'       => '5.0',
+    'protected'     => '5.0',
+    'public'        => '5.0',
+    'require'       => 'all',
+    'require_once'  => 'all',
+    'return'        => 'all',
+    'static'        => 'all',
+    'switch'        => 'all',
+    'throw'         => '5.0',
+    'trait'         => '5.4',
+    'try'           => '5.0',
+    'unset'         => 'all',
+    'use'           => 'all',
+    'var'           => 'all',
+    'while'         => 'all',
+    'xor'           => 'all',
+    'yield'         => '5.5',
+    '__CLASS__'     => 'all',
+    '__DIR__'       => '5.3',
+    '__FILE__'      => 'all',
+    '__FUNCTION__'  => 'all',
+    '__LINE__'      => 'all',
+    '__METHOD__'    => 'all',
     '__NAMESPACE__' => '5.3',
+    '__TRAIT__'     => '5.4',
 ];
 
 echo "Generating files containing invalid PHP code that is attempting to use reserved keywords in various capacities.\n\n";
 
 $tests = [
+    /*
+     * Reserved names being used in a declaration.
+     */
     'namespace'                              => function ($name) {
         return "namespace $name;\n";
     },
     'nested-namespace'                       => function ($name) {
+        $name = ucfirst($name);
         return "namespace Foo\\{$name}\\Bar;\n";
-    },
-    'use'                                    => function ($name) {
-        return "use $name;\n";
-    },
-    'use-as'                                 => function ($name) {
-        return "use Foobar as $name;\n";
     },
     'class'                                  => function ($name) {
         return "class $name {}\n";
     },
-    'class-extends'                          => function ($name) {
-        return "class Foobar extends $name {}\n";
-    },
-    'class-use-trait'                        => function ($name) {
-        return "class Foobar { use $name }\n";
-    },
-    'class-use-trait-const'                  => function ($name) {
-        return "class Foobar { use const $name }\n";
-    },
-    'class-use-trait-function'               => function ($name) {
-        return "class Foobar { use function $name }\n";
-    },
-    'class-use-trait-alias-method'           => function ($name) {
-        if (in_array($name, ['public', 'protected', 'private', 'final'], true) === true) {
-            return '';
-        } else {
-            return "class Foobar { use BazTrait { oldfunction as $name } }\n";
-        }
-    },
-    'class-use-trait-alias-public-method'    => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as public $name } }\n";
-    },
-    'class-use-trait-alias-protected-method' => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as protected $name } }\n";
-    },
-    'class-use-trait-alias-private-method'   => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as private $name } }\n";
-    },
-    'class-use-trait-alias-final-method'     => function ($name) {
-        return "class Foobar { use BazTrait { oldfunction as final $name } }\n";
+    'interface'                              => function ($name) {
+        $name = ucfirst($name);
+        return "interface $name {}\n";
     },
     'trait'                                  => function ($name) {
+        $name = ucfirst($name);
         return "trait $name {}\n";
     },
     'function-declare'                       => function ($name) {
-        return "function $name() { };\n";
-    },
-    'function-declare-reference'             => function ($name) {
-        return "function &$name() { };\n";
+        return "function $name() { }\n";
     },
     // Only pre-PHP 7!
     'method-declare'                         => function ($name) {
-        return "class Foobar { function $name() { } };\n";
+        $name = strtolower($name);
+        return "class Foobar { function $name() { } }\n";
     },
     'const'                                  => function ($name) {
         return "const $name = 1;\n";
@@ -164,13 +137,57 @@ $tests = [
         }
     },
     'define'                                 => function ($name) {
+        $name = strtoupper($name);
         return "define('$name', 1);\n";
     },
-    'interface'                              => function ($name) {
-        return "interface $name {}\n";
+
+    /*
+     * Reserved names being used as an alias.
+     */
+    'use-as'                                 => function ($name) {
+        $name = ucfirst($name);
+        return "use Foobar as $name;\n";
     },
-    'interface-extends'                      => function ($name) {
-        return "interface Foobar extends $name {}\n";
+    'use-function-as'                        => function ($name) {
+        $name = strtolower($name);
+        return "use function foobar as $name;\n";
+    },
+    'use-const-as'                           => function ($name) {
+        $name = strtoupper($name);
+        return "use const FOOBAR as $name;\n";
+    },
+    'multi-use-as'                           => function ($name) {
+        return "use Foobar as Foo, BarFoo as $name;\n";
+    },
+    'multi-use-function-as'                  => function ($name) {
+        return "use function Foobar as $name, barfoo as Bar;\n";
+    },
+    'multi-use-const-as'                     => function ($name) {
+        return "use const FOOBAR as Foo, BARFOO as $name;\n";
+    },
+    'group-use-as'                           => function ($name) {
+        return "use My\NS\{ Foobar as $name };\n";
+    },
+    'group-use-function-as'                  => function ($name) {
+        $name = strtolower($name);
+        return "use function My\NS\{ foobar as $name, };\n";
+    },
+    'group-use-const-as'                     => function ($name) {
+        $name = strtoupper($name);
+        return "use const My\NS\{ FOOBAR as $name };\n";
+    },
+    'group-use-function-as-in-group'         => function ($name) {
+        return "use My\NS\{ function foobar as $name };\n";
+    },
+    'group-use-const-as-in-group'            => function ($name) {
+        return "use My\NS\{ const FOOBAR as $name, };\n";
+    },
+    'class-use-trait-alias-method'           => function ($name) {
+        if (in_array($name, array('public', 'protected', 'private', 'final'), true) === true) {
+            return '';
+        } else {
+            return "class Foobar { use BazTrait { oldfunction as $name; } }\n";
+        }
     },
 ];
 
@@ -181,14 +198,14 @@ $path = realpath(dirname(__DIR__))
     . DIRECTORY_SEPARATOR . 'ForbiddenNames';
 
 foreach ($tests as $name => $callback) {
-    $filename = $path . DIRECTORY_SEPARATOR . $name . '.php';
+    $filename = $path . DIRECTORY_SEPARATOR . $name . '.inc';
     echo "Creating file '$filename'\n";
     file_put_contents($filename, "<?php\n" . $callback('Baz'));
 }
 
 foreach (array_keys($invalidNames) as $name) {
     foreach ($tests as $testname => $callback) {
-        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.php';
+        $filename = $path . DIRECTORY_SEPARATOR . $testname . '.inc';
         file_put_contents($filename, $callback($name), FILE_APPEND);
     }
 }

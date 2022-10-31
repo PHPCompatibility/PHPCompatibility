@@ -39,12 +39,12 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     {
         // These use cases were generated using the PHP script
         // `generate-forbidden-names-test-files` in sniff-examples.
-        $filename = __DIR__ . "/ForbiddenNames/$usecase.php";
+        $filename = __DIR__ . "/ForbiddenNames/$usecase.inc";
 
         // Set the testVersion to the highest PHP version encountered in the
         // \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff::$invalidNames
         // list to catch all errors.
-        $file = $this->sniffFile($filename, '5.5');
+        $file = $this->sniffFile($filename, '7.4');
 
         $this->assertNoViolation($file, 2);
 
@@ -63,50 +63,72 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function usecaseProvider()
     {
-        return [
-            ['namespace'],
-            ['nested-namespace'],
-            ['use'],
-            ['use-as'],
-            ['class'],
-            ['class-extends'],
-            ['class-use-trait'],
-            ['class-use-trait-const'],
-            ['class-use-trait-function'],
-            ['class-use-trait-alias-method'],
-            ['class-use-trait-alias-public-method'],
-            ['class-use-trait-alias-protected-method'],
-            ['class-use-trait-alias-private-method'],
-            ['class-use-trait-alias-final-method'],
-            ['trait'],
-            ['function-declare'],
-            ['function-declare-reference'],
-            ['method-declare'],
-            ['const'],
-            ['class-const'],
-            ['define'],
-            ['interface'],
-            ['interface-extends'],
+        $testCaseTypes = [
+            // Declarations.
+            'namespace',
+            'nested-namespace',
+            'class',
+            'interface',
+            'trait',
+            'function-declare',
+            'const',
+            'define',
+
+            // Aliases.
+            'use-as',
+            'use-function-as',
+            'use-const-as',
+            'multi-use-as',
+            'multi-use-function-as',
+            'multi-use-const-as',
+            'group-use-as',
+            'group-use-function-as',
+            'group-use-const-as',
+            'group-use-function-as-in-group',
+            'group-use-const-as-in-group',
+            'class-use-trait-alias-method',
         ];
+
+        $data = [];
+        foreach ($testCaseTypes as $type) {
+            $data[$type] = [$type];
+        }
+
+        return $data;
     }
 
 
     /**
-     * testCorrectUsageOfKeywords
+     * Test that reserved names trigger an error when used as method/class const name
+     * in combination with PHP 5.
+     *
+     * @dataProvider usecaseProviderPHP5vs7
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
      *
      * @return void
      */
-    public function testCorrectUsageOfKeywords()
+    public function testForbiddenInPHP5($usecase)
     {
-        $file = $this->sniffFile(__FILE__, '5.5');
-        $this->assertNoViolation($file);
+        $filename = __DIR__ . "/ForbiddenNames/$usecase.inc";
+        $file     = $this->sniffFile($filename, '5.6-');
+
+        $this->assertNoViolation($file, 2);
+
+        $lineCount = \count(\file($filename));
+        // Each line of the use case files (starting at line 3) exhibits an
+        // error.
+        for ($i = 3; $i < $lineCount; $i++) {
+            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+        }
     }
 
-
     /**
-     * testNotForbiddenInPHP7
+     * Test that reserved names do NOT trigger an error when used as method/class const name
+     * in combination with PHP 7.
      *
-     * @dataProvider usecaseProviderPHP7
+     * @dataProvider usecaseProviderPHP5vs7
      *
      * @param string $usecase Partial filename of the test case file covering
      *                        a specific use case.
@@ -115,7 +137,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testNotForbiddenInPHP7($usecase)
     {
-        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.php", '7.0');
+        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.inc", '7.0-');
         $this->assertNoViolation($file);
     }
 
@@ -124,23 +146,108 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function usecaseProviderPHP7()
+    public function usecaseProviderPHP5vs7()
     {
         return [
-            ['method-declare'],
-            ['class-const'],
+            'method-declare' => ['method-declare'],
+            'class-const'    => ['class-const'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test some specific code samples trigger the correct errors on the correct lines.
+     *
+     * @dataProvider dataSpecificCodeSamples
+     *
+     * @param int    $line    Line number of which to expect an error.
+     * @param string $keyword Keyword which triggered the error.
+     *
+     * @return void
+     */
+    public function testSpecificCodeSamples($line, $keyword)
+    {
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc');
+        $this->assertError($file, $line, "Function name, class name, namespace name or constant name can not be reserved keyword '$keyword'");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function dataSpecificCodeSamples()
+    {
+        return [
+            [8, 'for'],
+            [8, 'list'],
+            [8, 'foreach'],
+            [11, 'as'],
+            [12, 'private'],
+            [16, 'or'],
+            [17, 'list'],
+            [18, 'die'],
+            [25, 'endwhile'],
+            [26, 'public'],
+            [29, 'endfor'],
+            [30, 'protected'],
+            [33, 'endswitch'],
+            [34, 'private'],
+            [37, 'enddeclare'],
+            [38, 'final'],
+            [43, 'as'],
+            [44, 'finally'],
+            [46, 'as'],
+            [50, 'class'],
+            [54, 'exit'],
+            [59, 'interface'],
+            [71, 'switch'],
+            [76, 'trait'],
+        ];
+    }
+
+
+    /**
+     * Test that no false positives are thrown for a keyword on a version in which the keyword wasn't reserved.
      *
      * @return void
      */
     public function testNoFalsePositives()
     {
-        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.php', '4.4'); // Version number specific to the line being tested.
-        $this->assertNoViolation($file, 3);
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNames/class.inc', '4.4'); // Version number specific to the lines being tested.
+        // Just a sample of the lines which should give no violation.
+        $this->assertNoViolation($file, 3); // Keyword: abstract.
+        $this->assertNoViolation($file, 8); // Keyword: callable.
+        $this->assertNoViolation($file, 10); // Keyword: catch.
+    }
+
+
+    /**
+     * Test that correct use of the keywords doesn't trigger false positives, as well as
+     * use of incorrectly named constructs.
+     *
+     * @dataProvider dataCorrectUsageOfKeywords
+     *
+     * @param string $path Path to the test case file which shouldn't trigger any errors.
+     *
+     * @return void
+     */
+    public function testCorrectUsageOfKeywords($path)
+    {
+        $file = $this->sniffFile($path, '7.4');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function dataCorrectUsageOfKeywords()
+    {
+        return [
+            'correct-use'                   => [__DIR__ . '/ForbiddenNamesUnitTest.1.inc'],
+            'incorrect-use-but-not-checked' => [__DIR__ . '/ForbiddenNamesUnitTest.2.inc'],
+        ];
     }
 }
