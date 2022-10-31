@@ -55,6 +55,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
         return [
             [9],
             [10],
+            [18],
         ];
     }
 
@@ -92,6 +93,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
 
         $data[] = [13];
         $data[] = [14];
+        $data[] = [17];
 
         return $data;
     }
