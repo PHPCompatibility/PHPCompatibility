@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -91,24 +92,25 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'algo');
+        if ($targetParam === false) {
             return;
         }
-
-        $targetParam = $parameters[1];
 
         if (isset($this->disabledCryptos[TextStrings::stripQuotes($targetParam['clean'])]) === false) {
             return;
         }
 
         $functionLC = \strtolower($functionName);
-        if ($functionLC === 'hash_init'
-            && (isset($parameters[2]) === false
-            || ($parameters[2]['clean'] !== 'HASH_HMAC'
-                && $parameters[2]['clean'] !== (string) \HASH_HMAC))
-        ) {
-            // For hash_init(), these hashes are only disabled with HASH_HMAC set.
-            return;
+        if ($functionLC === 'hash_init') {
+            $secondParam = PassedParameters::getParameterFromStack($parameters, 2, 'flags');
+            if ($secondParam === false
+                || ($secondParam['clean'] !== 'HASH_HMAC'
+                    && $secondParam['clean'] !== (string) \HASH_HMAC)
+            ) {
+                // For hash_init(), these hashes are only disabled with HASH_HMAC set.
+                return;
+            }
         }
 
         $phpcsFile->addError(
