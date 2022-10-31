@@ -57,6 +57,8 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
             [11, 'idn_to_ascii'],
             [12, 'IDN_to_utf8'],
             [13, 'idn_to_utf8'],
+            [14, 'idn_to_ascii'],
+            [15, 'idn_to_utf8'],
         ];
     }
 
