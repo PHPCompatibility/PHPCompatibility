@@ -1,7 +1,7 @@
 <?php
 
-ini_set('define_syslog_variables', 'a');
-$a = ini_get('define_syslog_variables');
+ini_set(option: 'define_syslog_variables', value: 'a');
+$a = ini_get(option: 'define_syslog_variables');
 
 ini_set('register_globals', 'a');
 $a = ini_get('register_globals');

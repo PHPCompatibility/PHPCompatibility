@@ -36,7 +36,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
     /**
      * List of functions which take an ini directive as parameter (always the first parameter).
      *
-     * Key is the function name, value is the 1-based parameter position in the function call.
+     * Key is the function name, value an array containing the 1-based parameter position
+     * and the official name of the parameter.
      *
      * @since 7.1.0
      * @since 10.0.0 Moved from the base `Sniff` class to this sniff.
@@ -44,8 +45,14 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
      * @var array
      */
     protected $iniFunctions = [
-        'ini_get' => 1,
-        'ini_set' => 1,
+        'ini_get' => [
+            'position' => 1,
+            'name'     => 'option',
+        ],
+        'ini_set' => [
+            'position' => 1,
+            'name'     => 'option',
+        ],
     ];
 
     /**
@@ -674,7 +681,8 @@ class RemovedIniDirectivesSniff extends AbstractRemovedFeatureSniff
             return;
         }
 
-        $iniToken = PassedParameters::getParameter($phpcsFile, $stackPtr, $this->iniFunctions[$functionLc]);
+        $paramInfo = $this->iniFunctions[$functionLc];
+        $iniToken  = PassedParameters::getParameter($phpcsFile, $stackPtr, $paramInfo['position'], $paramInfo['name']);
         if ($iniToken === false) {
             return;
         }
