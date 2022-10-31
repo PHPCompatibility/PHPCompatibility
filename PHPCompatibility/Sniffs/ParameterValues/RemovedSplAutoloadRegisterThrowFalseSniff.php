@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect: Passing `false` to `spl_autoload_register()` is deprecated as of PHP 8.0.
@@ -67,17 +68,18 @@ class RemovedSplAutoloadRegisterThrowFalseSniff extends AbstractFunctionCallPara
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[2]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 2, 'throw');
+        if ($targetParam === false) {
             return;
         }
 
-        if ($parameters[2]['clean'] !== 'false') {
+        if ($targetParam['clean'] !== 'false') {
             return;
         }
 
         $phpcsFile->addWarning(
             'Explicitly passing "false" as the value for $throw to spl_autoload_register() is deprecated since PHP 8.0.',
-            $parameters[2]['start'],
+            $targetParam['start'],
             'Deprecated'
         );
     }
