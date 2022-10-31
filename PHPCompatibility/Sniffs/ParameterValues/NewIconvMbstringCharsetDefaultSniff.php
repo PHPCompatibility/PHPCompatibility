@@ -13,11 +13,12 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
- * Detect calls to Iconv and Mbstring functions with the optional `$charset`/`$encoding` parameter not set.
+ * Detect calls to Iconv and Mbstring functions with the optional `$encoding` parameter not set.
  *
- * The default value for the iconv `$charset` and the MbString  $encoding` parameters was changed
+ * The default value for the iconv and MbString `$encoding` parameters was changed
  * in PHP 5.6 to the value of `default_charset`, which defaults to `UTF-8`.
  *
  * Previously, the iconv functions would default to the value of `iconv.internal_encoding`;
@@ -40,46 +41,140 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      *
      * Only those functions where the charset/encoding parameter is optional need to be listed.
      *
-     * Key is the function name, value the 1-based parameter position of
-     * the $charset/$encoding parameter.
+     * Key is the function name, value an array containing the 1-based parameter position
+     * and the official name of the parameter.
      *
      * @since 9.3.0
      *
      * @var array
      */
     protected $targetFunctions = [
-        'iconv_mime_decode_headers' => 3,
-        'iconv_mime_decode'         => 3,
-        'iconv_mime_encode'         => 3, // Special case.
-        'iconv_strlen'              => 2,
-        'iconv_strpos'              => 4,
-        'iconv_strrpos'             => 3,
-        'iconv_substr'              => 4,
+        'iconv_mime_decode_headers' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'iconv_mime_decode' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        // Special case.
+        'iconv_mime_encode' => [
+            'position' => 3,
+            'name'     => 'options',
+        ],
+        'iconv_strlen' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'iconv_strpos' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'iconv_strrpos' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'iconv_substr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
 
-        'mb_check_encoding'         => 2,
-        'mb_chr'                    => 2,
-        'mb_convert_case'           => 3,
-        'mb_convert_encoding'       => 3,
-        'mb_convert_kana'           => 3,
-        'mb_decode_numericentity'   => 3,
-        'mb_encode_numericentity'   => 3,
-        'mb_ord'                    => 2,
-        'mb_scrub'                  => 2,
-        'mb_strcut'                 => 4,
-        'mb_stripos'                => 4,
-        'mb_stristr'                => 4,
-        'mb_strlen'                 => 2,
-        'mb_strpos'                 => 4,
-        'mb_strrchr'                => 4,
-        'mb_strrichr'               => 4,
-        'mb_strripos'               => 4,
-        'mb_strrpos'                => 4,
-        'mb_strstr'                 => 4,
-        'mb_strtolower'             => 2,
-        'mb_strtoupper'             => 2,
-        'mb_strwidth'               => 2,
-        'mb_substr_count'           => 3,
-        'mb_substr'                 => 4,
+        'mb_check_encoding' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_chr' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_convert_case' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'mb_convert_encoding' => [
+            'position' => 3,
+            'name'     => 'from_encoding',
+        ],
+        'mb_convert_kana' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'mb_decode_numericentity' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'mb_encode_numericentity' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'mb_ord' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_scrub' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_strcut' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_stripos' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_stristr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strlen' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_strpos' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strrchr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strrichr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strripos' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strrpos' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strstr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
+        'mb_strtolower' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_strtoupper' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_strwidth' => [
+            'position' => 2,
+            'name'     => 'encoding',
+        ],
+        'mb_substr_count' => [
+            'position' => 3,
+            'name'     => 'encoding',
+        ],
+        'mb_substr' => [
+            'position' => 4,
+            'name'     => 'encoding',
+        ],
     ];
 
 
@@ -120,20 +215,15 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             return $this->processIconvMimeEncode($phpcsFile, $stackPtr, $functionName, $parameters);
         }
 
-        if (isset($parameters[$this->targetFunctions[$functionLC]]) === true) {
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam !== false) {
             return;
         }
 
-        $paramName = '$encoding';
-        if (\strpos($functionLC, 'iconv_') === 0) {
-            $paramName = '$charset';
-        } elseif ($functionLC === 'mb_convert_encoding') {
-            $paramName = '$from_encoding';
-        }
-
-        $error = 'The default value of the %1$s parameter for %2$s() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %1$s parameter should be explicitly set.';
+        $error = 'The default value of the $%1$s parameter for %2$s() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the $%1$s parameter should be explicitly set.';
         $data  = [
-            $paramName,
+            $paramInfo['name'],
             $functionName,
         ];
 
@@ -157,15 +247,17 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
     {
         $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
 
-        $functionLC = \strtolower($functionName);
-        if (isset($parameters[$this->targetFunctions[$functionLC]]) === false) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam === false) {
             $phpcsFile->addError(
                 $error,
                 $stackPtr,
                 'PreferencesNotSet',
                 [
-                    '$preferences[\'input/output-charset\']',
-                    '$preferences[\'input-charset\'] and $preferences[\'output-charset\'] indexes',
+                    '$options[\'input/output-charset\']',
+                    '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
                 ]
             );
 
@@ -173,7 +265,6 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         }
 
         $tokens        = $phpcsFile->getTokens();
-        $targetParam   = $parameters[$this->targetFunctions[$functionLC]];
         $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($firstNonEmpty === false) {
             // Parse error or live coding.
@@ -197,8 +288,8 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                     $firstNonEmpty,
                     'InputPreferenceNotSet',
                     [
-                        '$preferences[\'input-charset\']',
-                        '$preferences[\'input-charset\'] index',
+                        '$options[\'input-charset\']',
+                        '$options[\'input-charset\'] index',
                     ]
                 );
             }
@@ -209,8 +300,8 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                     $firstNonEmpty,
                     'OutputPreferenceNotSet',
                     [
-                        '$preferences[\'output-charset\']',
-                        '$preferences[\'output-charset\'] index',
+                        '$options[\'output-charset\']',
+                        '$options[\'output-charset\'] index',
                     ]
                 );
             }
@@ -218,14 +309,14 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             return;
         }
 
-        // The $preferences parameter was passed, but it was a variable/constant/output of a function call.
+        // The $options parameter was passed, but it was a variable/constant/output of a function call.
         $phpcsFile->addWarning(
             $error,
             $firstNonEmpty,
             'Undetermined',
             [
-                '$preferences[\'input/output-charset\']',
-                '$preferences[\'input-charset\'] and $preferences[\'output-charset\'] indexes',
+                '$options[\'input/output-charset\']',
+                '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
             ]
         );
     }

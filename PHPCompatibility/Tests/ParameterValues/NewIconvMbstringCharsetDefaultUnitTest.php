@@ -55,12 +55,12 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
     public function dataNewIconvMbstringCharsetDefault()
     {
         return [
-            [44, 'iconv_mime_decode_headers', '$charset'],
-            [45, 'iconv_mime_decode', '$charset'],
-            [46, 'Iconv_Strlen', '$charset'],
-            [47, 'iconv_strpos', '$charset'],
-            [48, 'iconv_strrpos', '$charset'],
-            [49, 'iconv_substr', '$charset'],
+            [44, 'iconv_mime_decode_headers'],
+            [45, 'iconv_mime_decode'],
+            [46, 'Iconv_Strlen'],
+            [47, 'iconv_strpos'],
+            [48, 'iconv_strrpos'],
+            [49, 'iconv_substr'],
 
             [51, 'mb_check_encoding'],
             [52, 'MB_chr'],
@@ -140,11 +140,11 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
     public function dataIconvMimeEncode()
     {
         return [
-            [91, '$preferences[\'input/output-charset\']'],
-            [92, '$preferences[\'input/output-charset\']', 'warning'],
-            [96, '$preferences[\'output-charset\']'],
-            [106, '$preferences[\'input-charset\']'],
-            [115, '$preferences[\'input-charset\']'],
+            [91, '$options[\'input/output-charset\']'],
+            [92, '$options[\'input/output-charset\']', 'warning'],
+            [96, '$options[\'output-charset\']'],
+            [106, '$options[\'input-charset\']'],
+            [115, '$options[\'input-charset\']'],
         ];
     }
 

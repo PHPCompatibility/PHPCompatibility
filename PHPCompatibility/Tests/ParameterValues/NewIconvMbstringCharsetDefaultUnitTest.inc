@@ -36,7 +36,7 @@ $a = mb_strtolower( $str, $encoding );
 $a = mb_strtoupper( $str, $encoding );
 $a = mb_strwidth( $str, $encoding );
 $a = mb_substr_count( $haystack, $needle, $encoding );
-$a = mb_substr($str, $start, $length, $encoding);
+$a = mb_substr(string: $str, start: $start, encoding: $encoding);
 
 /*
  * Error: parameter not set.
@@ -71,7 +71,7 @@ $a = mb_strtolower($str);
 $a = mb_strtoupper( $str );
 $a = mb_strwidth( $str );
 $a = mb_substr_count( $haystack, $needle );
-$a = mb_substr($str, $start);
+$a = mb_substr(string: $str, start: $start, length: 10);
 
 /*
  * iconv_mime_encode() specific tests.
