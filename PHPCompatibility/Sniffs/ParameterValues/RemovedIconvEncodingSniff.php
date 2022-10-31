@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect passing deprecated `$type` values to `iconv_get_encoding()`.
@@ -72,15 +73,16 @@ class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'type');
+        if ($targetParam === false) {
             return;
         }
 
         $phpcsFile->addWarning(
             'All previously accepted values for the $type parameter of iconv_set_encoding() have been deprecated since PHP 5.6. Found %s',
-            $parameters[1]['start'],
+            $targetParam['start'],
             'DeprecatedValueFound',
-            [$parameters[1]['clean']]
+            [$targetParam['clean']]
         );
     }
 }
