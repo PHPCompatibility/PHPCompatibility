@@ -71,12 +71,12 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'command');
+        if ($targetParam === false) {
             return;
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $targetParam  = $parameters[1];
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], $targetParam['end'], true);
 
         if ($nextNonEmpty === false) {
@@ -93,7 +93,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
 
         if ($this->supportsBelow('7.3') === true) {
             $phpcsFile->addError(
-                'The proc_open() function did not accept $cmd to be passed in array format in PHP 7.3 and earlier.',
+                'The proc_open() function did not accept $command to be passed in array format in PHP 7.3 and earlier.',
                 $nextNonEmpty,
                 'Found'
             );
@@ -122,7 +122,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
                     // @todo Potential future enhancement: check if it's a call to the PHP native function.
 
                     $phpcsFile->addWarning(
-                        'When passing the $cmd parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: %s',
+                        'When passing the $command parameter to proc_open() as an array, PHP will take care of any necessary argument escaping. Found: %s',
                         $i,
                         'Invalid',
                         [$item['clean']]
