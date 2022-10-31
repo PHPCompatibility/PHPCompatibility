@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect: Passing `false` to `get_defined_functions()` is deprecated as of PHP 8.0.
@@ -66,17 +67,18 @@ class RemovedGetDefinedFunctionsExcludeDisabledFalseSniff extends AbstractFuncti
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        if (isset($parameters[1]) === false) {
+        $targetParam = PassedParameters::getParameterFromStack($parameters, 1, 'exclude_disabled');
+        if ($targetParam === false) {
             return;
         }
 
-        if ($parameters[1]['clean'] !== 'false') {
+        if ($targetParam['clean'] !== 'false') {
             return;
         }
 
         $phpcsFile->addWarning(
             'Explicitly passing "false" as the value for $exclude_disabled to get_defined_functions() is deprecated since PHP 8.0.',
-            $parameters[1]['start'],
+            $targetParam['start'],
             'Deprecated'
         );
     }
