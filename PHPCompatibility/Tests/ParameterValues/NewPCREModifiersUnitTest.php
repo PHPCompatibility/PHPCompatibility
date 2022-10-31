@@ -65,7 +65,7 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
     public function dataPCRENewModifier()
     {
         return [
-            ['J', '7.1', [3, 4, 10, 17, 19, 25, 43], '7.2'],
+            ['J', '7.1', [3, 4, 10, 17, 19, 25, 43, 50], '7.2'],
         ];
     }
 
@@ -97,6 +97,7 @@ class NewPCREModifiersUnitTest extends BaseSniffTest
         return [
             [18],
             [28],
+            [49],
         ];
     }
 

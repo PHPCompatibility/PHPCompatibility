@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Check for the use of newly added regex modifiers for PCRE functions.
@@ -36,18 +37,44 @@ class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      * Functions to check for.
      *
      * @since 8.2.0
+     * @since 10.0.0 Value changed from an irrelevant value to an array.
      *
-     * @var array
+     * @var array Key is the function name, value an array containing the 1-based parameter position
+     *            and the official name of the parameter.
      */
     protected $targetFunctions = [
-        'preg_filter'                 => true,
-        'preg_grep'                   => true,
-        'preg_match_all'              => true,
-        'preg_match'                  => true,
-        'preg_replace_callback_array' => true,
-        'preg_replace_callback'       => true,
-        'preg_replace'                => true,
-        'preg_split'                  => true,
+        'preg_filter' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_grep' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_match_all' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_match' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_replace_callback_array' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_replace_callback' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_replace' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
+        'preg_split' => [
+            'position' => 1,
+            'name'     => 'pattern',
+        ],
     ];
 
     /**
@@ -96,12 +123,14 @@ class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        // Check the first parameter in the function call as that should contain the regex(es).
-        if (isset($parameters[1]) === false) {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam === false) {
             return;
         }
 
-        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $parameters[1]);
+        $patterns = $this->getRegexPatternsFromParameter($phpcsFile, $functionName, $targetParam);
         if (empty($patterns) === true) {
             return;
         }
