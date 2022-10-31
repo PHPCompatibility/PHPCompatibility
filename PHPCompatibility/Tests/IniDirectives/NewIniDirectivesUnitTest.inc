@@ -2,10 +2,10 @@
 function some_random_function() {} // Verify sniff doesn't flag this line.
 some_random_function(); // Verify sniff doesn't flag this line.
 ini_set('display_errors', 1); // Verify sniff doesn't flag this ini directive.
-ini_set($iniName, 'filter.default'); // Verify sniff doesn't flag on second parameter.
+ini_set(value: 'filter.default', option: $iniName); // Verify sniff doesn't flag on the value parameter.
 
-ini_set('allow_url_include', 1);
-$test = ini_get('allow_url_include');
+ini_set(option: 'allow_url_include', value: 1);
+$test = ini_get(option: 'allow_url_include');
 
 
 ini_set('pcre.backtrack_limit', 1);
