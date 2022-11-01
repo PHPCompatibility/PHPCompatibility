@@ -114,7 +114,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
 
             $content = TextStrings::stripQuotes($tokens[$i]['content']);
             if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
-                $content = $this->stripVariables($content);
+                $content = TextStrings::stripEmbeds($content);
             }
             $content = \trim($content);
 

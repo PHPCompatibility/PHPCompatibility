@@ -22,3 +22,6 @@ $binarydata = pack('nv' . /*comment*/ 'Pc*', 0x1234, 0x5678, 65, 66); // Testing
 // Issue #1043 - OK, text in brackets, not the actual format.
 $binarydata = pack($foo['test'], 0x1234, 0x5678, 65, 66);
 $binarydata = pack($obj->getModes('type'), 0x1234, 0x5678, 65, 66);
+
+// Test handling of more complex embedded variables and expressions.
+$binarydata = pack("n${(eq)}vc*", 0x1234, 0x5678, 65, 66); // OK.

@@ -183,6 +183,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
 
             // Interpolated variables.
             [206],
+            [235],
 
             // Quote as a delimiter.
             [210],

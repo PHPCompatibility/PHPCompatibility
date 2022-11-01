@@ -54,6 +54,7 @@ class NewInterpolatedStringDereferencingUnitTest extends BaseSniffTest
             [25],
             [26],
             [28],
+            [31],
         ];
     }
 

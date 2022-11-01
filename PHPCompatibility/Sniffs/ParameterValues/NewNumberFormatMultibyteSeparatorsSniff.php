@@ -137,11 +137,11 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
         if ($tokens[$firstNonEmpty]['code'] === \T_DOUBLE_QUOTED_STRING
             || $tokens[$firstNonEmpty]['code'] === \T_START_HEREDOC
         ) {
-            $contentStripped = $this->stripVariables($content);
-            $length          = \strlen($contentStripped);
-            if ($contentStripped !== $content) {
+            $embedInfo = TextStrings::getStripEmbeds($content);
+            $length    = \strlen($embedInfo['remaining']);
+            if ($embedInfo['remaining'] !== $content) {
                 // Add 1 character to the count for each variable stripped.
-                $length += \substr_count($content, '$');
+                $length += count($embedInfo['embeds']);
             }
         }
 

@@ -11,7 +11,7 @@ number_format($number);
 number_format($number, $decimals);
 number_format($number, decimal_separator: $dec_point, thousands_separator: $thousands_sep, decimals: $decimals); // Undetermined.
 // Variables passed in a double quoted string are presumed to be single-byte.
-number_format($number, $decimals, "$dec_point", "$thousands_sep");
+number_format($number, $decimals, "$dec_point", "${thousands->{${'sep'}}}");
 number_format($number, $decimals, '.', ','); // Single-byte.
 
 /*
