@@ -64,8 +64,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
         ],
 
         'php_check_syntax' => [
-            '5.0.5'       => true,
-            'alternative' => null,
+            '5.0.5' => true,
         ],
 
         'pfpro_cleanup' => [
@@ -2754,13 +2753,11 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'call_user_func_array()',
         ],
         'define_syslog_variables' => [
-            '5.3'         => false,
-            '5.4'         => true,
-            'alternative' => null,
+            '5.3' => false,
+            '5.4' => true,
         ],
         'dl' => [
-            '5.3'         => false,
-            'alternative' => null,
+            '5.3' => false,
         ],
         'ereg' => [
             '5.3'         => false,
@@ -2787,42 +2784,33 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'ereg',
         ],
         'imagepsbbox' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepsencodefont' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepsextendfont' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepsfreefont' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepsloadfont' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepsslantfont' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'imagepstext' => [
-            '7.0'         => true,
-            'alternative' => null,
+            '7.0' => true,
         ],
         'import_request_variables' => [
-            '5.3'         => false,
-            '5.4'         => true,
-            'alternative' => null,
+            '5.3' => false,
+            '5.4' => true,
         ],
         'ldap_sort' => [
-            '7.0'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.0' => false,
+            '8.0' => true,
         ],
         'mcrypt_generic_end' => [
             '5.3'         => false,
@@ -2843,10 +2831,9 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'mysql',
         ],
         'mysql_list_dbs' => [
-            '5.4'         => false,
-            '7.0'         => true,
-            'alternative' => null,
-            'extension'   => 'mysql',
+            '5.4'       => false,
+            '7.0'       => true,
+            'extension' => 'mysql',
         ],
         'mysql_list_fields' => [
             '5.4'       => false,
@@ -2889,9 +2876,8 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'mysqli_stmt::send_long_data()',
         ],
         'magic_quotes_runtime' => [
-            '5.3'         => false,
-            '7.0'         => true,
-            'alternative' => null,
+            '5.3' => false,
+            '7.0' => true,
         ],
         'session_register' => [
             '5.3'         => false,
@@ -2909,9 +2895,8 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => '$_SESSION',
         ],
         'set_magic_quotes_runtime' => [
-            '5.3'         => false,
-            '7.0'         => true,
-            'alternative' => null,
+            '5.3' => false,
+            '7.0' => true,
         ],
         'set_socket_blocking' => [
             '5.3'         => false,
@@ -2931,22 +2916,18 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'ereg',
         ],
         'sql_regcase' => [
-            '5.3'         => false,
-            '7.0'         => true,
-            'alternative' => null,
-            'extension'   => 'ereg',
+            '5.3'       => false,
+            '7.0'       => true,
+            'extension' => 'ereg',
         ],
         'php_logo_guid' => [
-            '5.5'         => true,
-            'alternative' => null,
+            '5.5' => true,
         ],
         'php_egg_logo_guid' => [
-            '5.5'         => true,
-            'alternative' => null,
+            '5.5' => true,
         ],
         'php_real_logo_guid' => [
-            '5.5'         => true,
-            'alternative' => null,
+            '5.5' => true,
         ],
         'zend_logo_guid' => [
             '5.5'         => true,
@@ -3070,8 +3051,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'oci_fetch()',
         ],
         'ocifetchinto' => [
-            '5.4'         => false,
-            'alternative' => null,
+            '5.4' => false,
         ],
         'ocifetchstatement' => [
             '5.4'         => false,
@@ -3179,8 +3159,7 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'OCI-Lob::writeTemporary() / OCILob::writeTemporary() (PHP 8+)',
         ],
         'mysqli_get_cache_stats' => [
-            '5.4'         => true,
-            'alternative' => null,
+            '5.4' => true,
         ],
         'sqlite_array_query' => [
             '5.4'       => true,
@@ -4157,14 +4136,12 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'mb_ereg_search_setpos()',
         ],
         'fgetss' => [
-            '7.3'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.3' => false,
+            '8.0' => true,
         ],
         'gzgetss' => [
-            '7.3'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.3' => false,
+            '8.0' => true,
         ],
 
         'convert_cyr_string' => [
@@ -4173,24 +4150,20 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'alternative' => 'mb_convert_encoding(), iconv() or UConverter',
         ],
         'ezmlm_hash' => [
-            '7.4'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.4' => false,
+            '8.0' => true,
         ],
         'get_magic_quotes_gpc' => [
-            '7.4'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.4' => false,
+            '8.0' => true,
         ],
         'get_magic_quotes_runtime' => [
-            '7.4'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.4' => false,
+            '8.0' => true,
         ],
         'hebrevc' => [
-            '7.4'         => false,
-            '8.0'         => true,
-            'alternative' => null,
+            '7.4' => false,
+            '8.0' => true,
         ],
         'is_real' => [
             '7.4'         => false,
@@ -4617,34 +4590,28 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
             'extension'   => 'recode',
         ],
         'wddx_add_vars' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'wddx_deserialize' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'wddx_packet_end' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'wddx_packet_start' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'wddx_serialize_value' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'wddx_serialize_vars' => [
-            '7.4'         => true,
-            'alternative' => null,
-            'extension'   => 'wddx',
+            '7.4'       => true,
+            'extension' => 'wddx',
         ],
         'mysqli_embedded_server_end' => [
             '7.4' => true,
