@@ -30,15 +30,15 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewIDNVariantDefault
      *
-     * @param int    $line     Line number where the error should occur.
-     * @param string $function Function name.
+     * @param int    $line         Line number where the error should occur.
+     * @param string $functionName Function name.
      *
      * @return void
      */
-    public function testNewIDNVariantDefault($line, $function)
+    public function testNewIDNVariantDefault($line, $functionName)
     {
         $file  = $this->sniffFile(__FILE__, '7.3-');
-        $error = 'The default value of the ' . $function . '() $variant parameter has changed from INTL_IDNA_VARIANT_2003 to INTL_IDNA_VARIANT_UTS46 in PHP 7.4.';
+        $error = 'The default value of the ' . $functionName . '() $variant parameter has changed from INTL_IDNA_VARIANT_2003 to INTL_IDNA_VARIANT_UTS46 in PHP 7.4.';
 
         $this->assertError($file, $line, $error);
     }

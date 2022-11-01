@@ -30,15 +30,15 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewHTMLEntitiesEncodingDefault
      *
-     * @param int    $line     Line number where the error should occur.
-     * @param string $function The name of the function called.
+     * @param int    $line         Line number where the error should occur.
+     * @param string $functionName The name of the function called.
      *
      * @return void
      */
-    public function testNewHTMLEntitiesEncodingDefault($line, $function)
+    public function testNewHTMLEntitiesEncodingDefault($line, $functionName)
     {
         $file  = $this->sniffFile(__FILE__, '5.3-5.4');
-        $error = "The default value of the \$encoding parameter for {$function}() was changed from ISO-8859-1 to UTF-8 in PHP 5.4";
+        $error = "The default value of the \$encoding parameter for {$functionName}() was changed from ISO-8859-1 to UTF-8 in PHP 5.4";
 
         $this->assertError($file, $line, $error);
     }
