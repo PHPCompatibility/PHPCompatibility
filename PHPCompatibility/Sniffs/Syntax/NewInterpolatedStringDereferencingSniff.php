@@ -11,6 +11,8 @@
 namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -64,19 +66,20 @@ class NewInterpolatedStringDereferencingSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Check whether the text string uses interpolation.
-        $string     = TextStrings::getCompleteTextString($phpcsFile, $stackPtr, true);
-        $endOfQuote = $phpcsFile->findNext([\T_DOUBLE_QUOTED_STRING], $stackPtr + 1, null, true);
-        if ($this->stripVariables($string) === $string) {
-            return $endOfQuote;
+        $endOfQuote = TextStrings::getEndOfCompleteTextString($phpcsFile, $stackPtr);
+        $string     = TextStrings::stripQuotes(GetTokensAsString::normal($phpcsFile, $stackPtr, $endOfQuote));
+        $nextAfter  = ($endOfQuote + 1);
+        if (TextStrings::stripEmbeds($string) === $string) {
+            return $nextAfter;
         }
 
         // Check whether the string is being dereferenced.
-        $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, $endOfQuote, null, true);
+        $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, $nextAfter, null, true);
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
         if ($nextNonEmptyCode !== \T_OPEN_SQUARE_BRACKET
             && $nextNonEmptyCode !== \T_OBJECT_OPERATOR
         ) {
-            return $endOfQuote;
+            return $nextAfter;
         }
 
         $phpcsFile->addError(
@@ -85,6 +88,6 @@ class NewInterpolatedStringDereferencingSniff extends Sniff
             'Found'
         );
 
-        return $endOfQuote;
+        return $nextAfter;
     }
 }

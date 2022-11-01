@@ -168,7 +168,7 @@ trait PCRERegexTrait
                 if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING
                     || $tokens[$i]['code'] === \T_START_HEREDOC
                 ) {
-                    $content = Sniff::stripVariables($content);
+                    $content = TextStrings::stripEmbeds($content);
                 }
 
                 $regex .= \trim($content);

@@ -113,6 +113,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
 
         $data[] = [23];
         $data[] = [24];
+        $data[] = [27];
 
         return $data;
     }

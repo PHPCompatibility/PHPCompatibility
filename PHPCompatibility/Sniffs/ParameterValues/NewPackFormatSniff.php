@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
+use PHPCSUtils\Utils\TextStrings;
 
 /**
  * Check for valid values for the `$format` passed to `pack()`.
@@ -110,7 +111,7 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
 
             $content = $tokens[$i]['content'];
             if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
-                $content = $this->stripVariables($content);
+                $content = TextStrings::stripEmbeds($content);
             }
 
             foreach ($this->newFormats as $pattern => $versionArray) {

@@ -230,3 +230,6 @@ EOD
 // Safeguard support for PHP 8 named parameters.
 preg_replace( subject: '/pattern/e', pattern: '/pattern/', count: $count, replacement: $replacement, limit: $limit ); // OK.
 preg_replace( limit: $limit, count: $count, pattern: '/some text/emS', replacement: $replacement, subject: $subject ); // Error.
+
+// Test handling of more complex embedded variables and expressions.
+preg_replace("/double-quoted/${e->{$z}}", $Replace, $Source); // Ok.

@@ -28,3 +28,4 @@ $bar"->baz();
 $a = "foo $lines
 $bar
 more foo"[10];
+$a = "${foo->{"${'a'}"}}"[$c];

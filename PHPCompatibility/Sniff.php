@@ -31,39 +31,6 @@ abstract class Sniff implements PHPCS_Sniff
     use TestVersionTrait;
 
     /**
-     * Regex to match variables in a double quoted string.
-     *
-     * This matches plain variables, but also more complex variables, such
-     * as $obj->prop, self::prop and $var[].
-     *
-     * @since 7.1.2
-     *
-     * @var string
-     */
-    const REGEX_COMPLEX_VARS = '`(?:(\{)?(?<!\\\\)\$)?(\{)?(?<!\\\\)\$(\{)?(?P<varname>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(?:->\$?(?P>varname)|\[[^\]]+\]|::\$?(?P>varname)|\([^\)]*\))*(?(3)\}|)(?(2)\}|)(?(1)\}|)`';
-
-    /**
-     * Strip variables from an arbitrary double quoted string.
-     *
-     * Intended for use with the contents of a T_DOUBLE_QUOTED_STRING.
-     *
-     * @since 7.1.2
-     *
-     * @param string $string The raw string.
-     *
-     * @return string String without variables in it.
-     */
-    public static function stripVariables($string)
-    {
-        if (\strpos($string, '$') === false) {
-            return $string;
-        }
-
-        return \preg_replace(self::REGEX_COMPLEX_VARS, '', $string);
-    }
-
-
-    /**
      * Verify whether a token is within a class scope.
      *
      * @since 7.0.3
