@@ -30,5 +30,8 @@ if (true) {}
 list(,(),) = $infoArray;
 [,(),] = $infoArray;
 
+// Issue #1341, safeguard against a false positive.
+foreach(["a"=>[]] as $v){}
+
 // Don't trigger on unfinished code during live code review.
 list(
