@@ -125,6 +125,71 @@ class ForbiddenNamesSniff extends Sniff
     ];
 
     /**
+     * T_STRING keywords to recognize as forbidden names.
+     *
+     * @since 7.0.8
+     * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
+     *
+     * @var array
+     */
+    protected $otherForbiddenNames = [
+        'null'     => '7.0',
+        'true'     => '7.0',
+        'false'    => '7.0',
+        'bool'     => '7.0',
+        'int'      => '7.0',
+        'float'    => '7.0',
+        'string'   => '7.0',
+        'iterable' => '7.1',
+        'void'     => '7.1',
+        'object'   => '7.2',
+    ];
+
+    /**
+     * T_STRING keywords to recognize as soft reserved names.
+     *
+     * Using any of these keywords to name a class, interface, trait or namespace
+     * is highly discouraged since they may be used in future versions of PHP.
+     *
+     * @since 7.0.8
+     * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
+     *
+     * @var array
+     */
+    protected $softReservedNames = [
+        'resource' => '7.0',
+        'object'   => '7.0',
+        'mixed'    => '7.0',
+        'numeric'  => '7.0',
+    ];
+
+    /**
+     * Combined list of the two lists above.
+     *
+     * Used for quick check whether or not something is a reserved
+     * word.
+     * Set from the `register()` method.
+     *
+     * @since 7.0.8
+     * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
+     *
+     * @var array
+     */
+    private $allOtherForbiddenNames = [];
+
+    /**
+     * A list of keywords that can follow use statements.
+     *
+     * @since 7.0.1
+     *
+     * @var array(string => string)
+     */
+    protected $validUseNames = [
+        'const'    => true,
+        'function' => true,
+    ];
+
+    /**
      * Scope modifiers and other keywords allowed in trait use statements.
      *
      * @since 7.1.4
@@ -163,6 +228,9 @@ class ForbiddenNamesSniff extends Sniff
     {
         $this->allowedModifiers           = Tokens::$scopeModifiers;
         $this->allowedModifiers[\T_FINAL] = \T_FINAL;
+
+        // Do the "other reserved keywords" list merge only once.
+        $this->allOtherForbiddenNames = \array_merge($this->otherForbiddenNames, $this->softReservedNames);
 
         return $this->targetedTokens;
     }
@@ -309,6 +377,7 @@ class ForbiddenNamesSniff extends Sniff
             }
 
             $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
+            $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
         }
     }
 
@@ -331,6 +400,9 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         $this->checkName($phpcsFile, $stackPtr, $name);
+
+        $tokens = $phpcsFile->getTokens();
+        $this->checkOtherName($phpcsFile, $stackPtr, $name, $tokens[$stackPtr]['content'] . ' declaration');
     }
 
     /**
@@ -455,21 +527,76 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        $current = ($stackPtr + 1);
-        while ($current < $endOfStatement) {
-            $asPtr = $phpcsFile->findNext(\T_AS, $current, $endOfStatement);
-            if ($asPtr === false) {
+        $checkOther   = true;
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $endOfStatement, true);
+        if (isset($this->validUseNames[$tokens[$nextNonEmpty]['content']]) === true) {
+            $checkOther = false;
+        }
+
+        $checkOtherLocal = true;
+        $nextPtr         = $stackPtr;
+        $find            = [
+            \T_AS             => \T_AS,
+            \T_OPEN_USE_GROUP => \T_OPEN_USE_GROUP,
+        ];
+
+        //$current = ($stackPtr + 1);
+        while (($nextPtr + 1) < $endOfStatement) {
+            $nextPtr = $phpcsFile->findNext($find, ($nextPtr + 1), $endOfStatement);
+            if ($nextPtr === false) {
                 break;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($asPtr + 1), $endOfStatement, true);
-            if ($nextNonEmpty === false) {
+            /*
+             * Group use statements can contain substatements for function/const imports.
+             * These _do_ have to be checked for the fully reserved names, but the reservation on "other" names
+             * does not apply.
+             *
+             * To allow for this, check the first non-empty token after a group use open bracket and after a
+             * comma to see if it is the `function` or `const` keyword.
+             *
+             * Note: the T_COMMA token is only added to `$find` if we've seen a group use open bracket.
+             */
+            if ($tokens[$nextPtr]['code'] === \T_OPEN_USE_GROUP
+                || $tokens[$nextPtr]['code'] === \T_COMMA
+            ) {
+                if ($checkOther === false) {
+                    // Function/const applies to the whole group use statement.
+                    continue;
+                }
+
+                $checkOtherLocal = true;
+
+                $nextPtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextPtr + 1), $endOfStatement, true);
+                if ($nextPtr === false) {
+                    // Group use with trailing comma.
+                    break;
+                }
+
+                if (isset($this->validUseNames[$tokens[$nextPtr]['content']]) === true) {
+                    $checkOtherLocal = false;
+                }
+
+                if ($tokens[$nextPtr]['code'] === \T_OPEN_USE_GROUP) {
+                    $find[\T_COMMA] = \T_COMMA;
+                }
+
+                continue;
+            }
+
+            // Ok, so this must be an T_AS token.
+            $nextPtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextPtr + 1), $endOfStatement, true);
+            if ($nextPtr === false) {
                 break;
             }
 
-            $this->checkName($phpcsFile, $nextNonEmpty, $tokens[$nextNonEmpty]['content']);
+            $this->checkName($phpcsFile, $nextPtr, $tokens[$nextPtr]['content']);
 
-            $current = ($nextNonEmpty + 1);
+            if ($checkOther === false || $checkOtherLocal === false) {
+                continue;
+            }
+
+            $this->checkOtherName($phpcsFile, $nextPtr, $tokens[$nextPtr]['content'], 'import use alias');
         }
     }
 
@@ -593,5 +720,83 @@ class ForbiddenNamesSniff extends Sniff
         ];
 
         $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+    }
+
+    /**
+     * Check whether a particular name is one of the "other" reserved keywords.
+     *
+     * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param string                      $name      The declaration/alias name found.
+     * @param string                      $type      The type of statement in which the keyword was found.
+     *
+     * @return void
+     */
+    protected function checkOtherName(File $phpcsFile, $stackPtr, $name, $type)
+    {
+        $name = \strtolower($name);
+        if (isset($this->allOtherForbiddenNames[$name]) === false) {
+            return;
+        }
+
+        if ($this->supportsAbove('7.0') === false) {
+            return;
+        }
+
+        $this->addOtherReservedError($phpcsFile, $stackPtr, $name, $type);
+    }
+
+    /**
+     * Add the error message for when one of the "other" reserved keywords is detected.
+     *
+     * @since 7.0.8
+     * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
+     * @param string                      $name      The declaration/alias name found in lowercase.
+     * @param string                      $type      The type of statement in which the keyword was found.
+     *
+     * @return void
+     */
+    protected function addOtherReservedError(File $phpcsFile, $stackPtr, $name, $type)
+    {
+        // Build up the error message.
+        $error     = "'%s' is a";
+        $isError   = null;
+        $errorCode = MessageHelper::stringToErrorCode($name, true) . 'Found';
+        $data      = [
+            $name,
+        ];
+
+        if (isset($this->softReservedNames[$name]) === true
+            && $this->supportsAbove($this->softReservedNames[$name]) === true
+        ) {
+            $error  .= ' soft reserved keyword as of PHP version %s';
+            $isError = false;
+            $data[]  = $this->softReservedNames[$name];
+        }
+
+        if (isset($this->otherForbiddenNames[$name]) === true
+            && $this->supportsAbove($this->otherForbiddenNames[$name]) === true
+        ) {
+            if (isset($isError) === true) {
+                $error .= ' and a';
+            }
+            $error  .= ' reserved keyword as of PHP version %s';
+            $isError = true;
+            $data[]  = $this->otherForbiddenNames[$name];
+        }
+
+        if (isset($isError) === true) {
+            $error .= ' and should not be used to name a class, interface or trait or as part of a namespace (%s)';
+            $data[] = $type;
+
+            MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);
+        }
     }
 }

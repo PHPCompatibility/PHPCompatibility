@@ -75,3 +75,16 @@ trait __LINE__ {}
 trait __METHOD__ {}
 trait __NAMESPACE__ {}
 trait __TRAIT__ {}
+trait Null {}
+trait True {}
+trait False {}
+trait Bool {}
+trait Int {}
+trait Float {}
+trait String {}
+trait Iterable {}
+trait Void {}
+trait Object {}
+trait Resource {}
+trait Mixed {}
+trait Numeric {}

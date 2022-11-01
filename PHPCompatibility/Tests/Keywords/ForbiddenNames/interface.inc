@@ -75,3 +75,16 @@ interface __LINE__ {}
 interface __METHOD__ {}
 interface __NAMESPACE__ {}
 interface __TRAIT__ {}
+interface Null {}
+interface True {}
+interface False {}
+interface Bool {}
+interface Int {}
+interface Float {}
+interface String {}
+interface Iterable {}
+interface Void {}
+interface Object {}
+interface Resource {}
+interface Mixed {}
+interface Numeric {}

@@ -228,6 +228,44 @@ yield from $array;
 echo __CLASS__, __FUNCTION__, __METHOD__, __NAMESPACE__, __TRAIT_;
 var_dump(__DIR__, __FILE__, __LINE__);
 
+// Other reserved keywords.
+$var = null;
+$true = TRUE;
+$false = false;
+
+function softReservedTypeHints(
+    bool $bool,
+    int $int,
+    float $float,
+    string $string,
+    iterable $iterable,
+    object $object
+) : void
+{}
+
+// Other reserved keywords are ok to use as a function or constant name.
+function null() {}
+function true() {}
+use function Some\BooleanFalse as false;
+function bool() {}
+use My\Abc\{
+    function IntegerMath as int,
+};
+const float = 1;
+const string = 1;
+use const Some\FileObject as resource;
+const object = 1;
+use My\Abc\{
+    const MixerLogic as mixed,
+};
+const numeric = 1;
+class HasTrait {
+    use MyTrait {
+        getArray as private iterable;
+    }
+}
+const VOID = null;
+
 // Issue #117: Traits: alias method with changed visibility.
 class MyClass1 {
     use HelloWorld { sayHello as protected; }
