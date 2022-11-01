@@ -98,6 +98,7 @@ class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTest
             [30],
             [31],
             [34],
+            [37],
         ];
     }
 
