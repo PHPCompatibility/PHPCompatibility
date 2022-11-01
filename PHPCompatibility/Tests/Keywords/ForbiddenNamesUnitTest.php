@@ -327,6 +327,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             [76, 'trait'],
             [79, 'namespace'],
             [81, 'namespace'],
+            [84, 'class'],
         ];
     }
 
