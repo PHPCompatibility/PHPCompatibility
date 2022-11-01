@@ -41,3 +41,8 @@ class Foo extends List implements Callable
 interface Bar extends Yield {}
 
 $anon = new class extends Clone {};
+
+// Live coding/parse error.
+// This has to be the last test in the file.
+// Testing T_STRING without anything after it.
+someText

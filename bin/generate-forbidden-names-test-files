@@ -120,6 +120,8 @@ $testsForOtherInvalidNames = [
     'class'            => true,
     'interface'        => true,
     'trait'            => true,
+    'enum'             => true,
+    'enum-backed'      => true,
 
     // Aliases.
     'use-as'           => true,
@@ -156,6 +158,14 @@ $tests = [
     'trait'                                  => function ($name) {
         $name = ucfirst($name);
         return "trait $name {}\n";
+    },
+    'enum'                                   => function ($name) {
+        $name = ucfirst($name);
+        return "enum $name {}\n";
+    },
+    'enum-backed'                            => function ($name) {
+        $name = ucfirst($name);
+        return "enum $name: string implements Foo {}\n";
     },
     'function-declare'                       => function ($name) {
         return "function $name() { }\n";
