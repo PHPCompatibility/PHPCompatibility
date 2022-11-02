@@ -46,6 +46,7 @@ class insteadof {}
 class interface {}
 class isset {}
 class list {}
+class match {}
 class namespace {}
 class new {}
 class or {}
@@ -53,6 +54,7 @@ class print {}
 class private {}
 class protected {}
 class public {}
+class readonly {}
 class require {}
 class require_once {}
 class return {}
@@ -85,6 +87,8 @@ class string {}
 class iterable {}
 class void {}
 class object {}
-class resource {}
 class mixed {}
+class never {}
+class resource {}
 class numeric {}
+class enum {}

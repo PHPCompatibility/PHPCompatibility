@@ -46,6 +46,7 @@ function insteadof() { }
 function interface() { }
 function isset() { }
 function list() { }
+function match() { }
 function namespace() { }
 function new() { }
 function or() { }

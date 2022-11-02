@@ -46,6 +46,7 @@ interface Insteadof {}
 interface Interface {}
 interface Isset {}
 interface List {}
+interface Match {}
 interface Namespace {}
 interface New {}
 interface Or {}
@@ -53,6 +54,7 @@ interface Print {}
 interface Private {}
 interface Protected {}
 interface Public {}
+interface Readonly {}
 interface Require {}
 interface Require_once {}
 interface Return {}
@@ -85,6 +87,8 @@ interface String {}
 interface Iterable {}
 interface Void {}
 interface Object {}
-interface Resource {}
 interface Mixed {}
+interface Never {}
+interface Resource {}
 interface Numeric {}
+interface Enum {}

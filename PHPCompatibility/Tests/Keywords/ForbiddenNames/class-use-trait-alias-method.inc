@@ -45,10 +45,12 @@ class Foobar { use BazTrait { oldfunction as insteadof; } }
 class Foobar { use BazTrait { oldfunction as interface; } }
 class Foobar { use BazTrait { oldfunction as isset; } }
 class Foobar { use BazTrait { oldfunction as list; } }
+class Foobar { use BazTrait { oldfunction as match; } }
 class Foobar { use BazTrait { oldfunction as namespace; } }
 class Foobar { use BazTrait { oldfunction as new; } }
 class Foobar { use BazTrait { oldfunction as or; } }
 class Foobar { use BazTrait { oldfunction as print; } }
+class Foobar { use BazTrait { oldfunction as readonly; } }
 class Foobar { use BazTrait { oldfunction as require; } }
 class Foobar { use BazTrait { oldfunction as require_once; } }
 class Foobar { use BazTrait { oldfunction as return; } }

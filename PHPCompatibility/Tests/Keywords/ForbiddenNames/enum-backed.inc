@@ -46,6 +46,7 @@ enum Insteadof: string implements Foo {}
 enum Interface: string implements Foo {}
 enum Isset: string implements Foo {}
 enum List: string implements Foo {}
+enum Match: string implements Foo {}
 enum Namespace: string implements Foo {}
 enum New: string implements Foo {}
 enum Or: string implements Foo {}
@@ -53,6 +54,7 @@ enum Print: string implements Foo {}
 enum Private: string implements Foo {}
 enum Protected: string implements Foo {}
 enum Public: string implements Foo {}
+enum Readonly: string implements Foo {}
 enum Require: string implements Foo {}
 enum Require_once: string implements Foo {}
 enum Return: string implements Foo {}
@@ -85,6 +87,8 @@ enum String: string implements Foo {}
 enum Iterable: string implements Foo {}
 enum Void: string implements Foo {}
 enum Object: string implements Foo {}
-enum Resource: string implements Foo {}
 enum Mixed: string implements Foo {}
+enum Never: string implements Foo {}
+enum Resource: string implements Foo {}
 enum Numeric: string implements Foo {}
+enum Enum: string implements Foo {}

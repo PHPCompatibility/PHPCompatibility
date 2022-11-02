@@ -93,6 +93,7 @@ class ForbiddenNamesSniff extends Sniff
         'interface'     => '5.0',
         'isset'         => 'all',
         'list'          => 'all',
+        'match'         => '8.0',
         'namespace'     => '5.3',
         'new'           => 'all',
         'or'            => 'all',
@@ -100,6 +101,7 @@ class ForbiddenNamesSniff extends Sniff
         'private'       => '5.0',
         'protected'     => '5.0',
         'public'        => '5.0',
+        'readonly'      => '8.1',
         'require'       => 'all',
         'require_once'  => 'all',
         'return'        => 'all',
@@ -143,6 +145,8 @@ class ForbiddenNamesSniff extends Sniff
         'iterable' => '7.1',
         'void'     => '7.1',
         'object'   => '7.2',
+        'mixed'    => '8.0',
+        'never'    => '8.1',
     ];
 
     /**
@@ -161,6 +165,7 @@ class ForbiddenNamesSniff extends Sniff
         'object'   => '7.0',
         'mixed'    => '7.0',
         'numeric'  => '7.0',
+        'enum'     => '8.1',
     ];
 
     /**
@@ -501,6 +506,18 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
+
+        /*
+         * Deal with `readonly` being a reserved keyword, but still being allowed
+         * as a function name.
+         *
+         * @link https://github.com/php/php-src/pull/7468 (PHP 8.1)
+         * @link https://github.com/php/php-src/pull/9512 (PHP 8.2 follow-up)
+         */
+        if (\strtolower($name) === 'readonly') {
+            return;
+        }
+
         $this->checkName($phpcsFile, $stackPtr, $name);
     }
 
