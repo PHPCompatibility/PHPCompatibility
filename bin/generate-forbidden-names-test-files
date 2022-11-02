@@ -133,9 +133,15 @@ $tests = [
     /*
      * Reserved names being used in a declaration.
      */
+    // Only pre-PHP 8!
     'namespace'                              => function ($name) {
-        return "namespace $name;\n";
+        if ($name === 'namespace') {
+            return '';
+        } else {
+            return "namespace $name;\n";
+        }
     },
+    // Only pre-PHP 8!
     'nested-namespace'                       => function ($name) {
         $name = ucfirst($name);
         return "namespace Foo\\{$name}\\Bar;\n";

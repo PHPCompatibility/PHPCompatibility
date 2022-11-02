@@ -26,6 +26,24 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 {
 
     /**
+     * Count of "other" reserved keywords.
+     *
+     * Count should be in line with the `$otherInvalidNames` array in the `bin/generate-forbidden-names-test-files` file.
+     *
+     * @var int
+     */
+    const OTHER_KEYWORD_COUNT = 13;
+
+    /**
+     * Count of "soft" reserved keywords.
+     *
+     * Count should be in line with the `$otherInvalidNames` array in the `bin/generate-forbidden-names-test-files` file.
+     *
+     * @var int
+     */
+    const SOFT_KEYWORD_COUNT = 3;
+
+    /**
      * Test case files containing tests for the "other" reserved keywords.
      *
      * This array should be kept in sync with the same in the "generate-forbidden-names-test-files" script.
@@ -34,16 +52,14 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     private $testsForOtherInvalidNames = [
         // Declarations.
-        'namespace'        => true,
-        'nested-namespace' => true,
-        'class'            => true,
-        'interface'        => true,
-        'trait'            => true,
+        'class'        => true,
+        'interface'    => true,
+        'trait'        => true,
 
         // Aliases.
-        'use-as'           => true,
-        'multi-use-as'     => true,
-        'group-use-as'     => true,
+        'use-as'       => true,
+        'multi-use-as' => true,
+        'group-use-as' => true,
     ];
 
     /**
@@ -73,8 +89,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         $fullReservedLineEnd  = $lineCount;
         $otherReservedLineEnd = $lineCount;
         if (isset($this->testsForOtherInvalidNames[$usecase]) === true) {
-            $fullReservedLineEnd  = ($lineCount - 13);
-            $otherReservedLineEnd = ($lineCount - 3);
+            $fullReservedLineEnd  = ($lineCount - self::OTHER_KEYWORD_COUNT);
+            $otherReservedLineEnd = ($lineCount - self::SOFT_KEYWORD_COUNT);
         }
 
         // Each line of the use case files (starting at line 3) exhibits an error.
@@ -104,8 +120,6 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     {
         $testCaseTypes = [
             // Declarations.
-            'namespace',
-            'nested-namespace',
             'class',
             'interface',
             'trait',
@@ -195,6 +209,75 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
 
 
     /**
+     * Test that reserved names trigger an error when used as part of a namespace name
+     * in combination with PHP 5/7.
+     *
+     * @dataProvider usecaseProviderNamespaceNamePHP57vs8
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
+     */
+    public function testForbiddenInNamespaceNameInPHP57($usecase)
+    {
+        $filename = __DIR__ . "/ForbiddenNames/$usecase.inc";
+        $file     = $this->sniffFile($filename, '7.4-');
+
+        $this->assertNoViolation($file, 2);
+
+        $lineCount            = \count(\file($filename));
+        $fullReservedLineEnd  = ($lineCount - self::OTHER_KEYWORD_COUNT);
+        $otherReservedLineEnd = ($lineCount - self::SOFT_KEYWORD_COUNT);
+
+        // Each line of the use case files (starting at line 3) exhibits an error.
+        for ($i = 3; $i <= $fullReservedLineEnd; $i++) {
+            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+        }
+
+        // The error message for "other" reserved keywords is slightly different.
+        for ($i = ($fullReservedLineEnd + 1); $i <= $otherReservedLineEnd; $i++) {
+            $this->assertError($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+        }
+
+        // Other "soft" reserved are a warning.
+        for ($i = ($otherReservedLineEnd + 1); $i <= $lineCount; $i++) {
+            $this->assertWarning($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+        }
+    }
+
+    /**
+     * Test that reserved names do NOT trigger an error when used as part of a namespace name
+     * in combination with PHP 8.
+     *
+     * @dataProvider usecaseProviderNamespaceNamePHP57vs8
+     *
+     * @param string $usecase Partial filename of the test case file covering
+     *                        a specific use case.
+     *
+     * @return void
+     */
+    public function testNotForbiddenInNamespaceNameInPHP8($usecase)
+    {
+        $file = $this->sniffFile(__DIR__ . "/ForbiddenNames/$usecase.inc", '8.0-');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Provides use cases to test with each keyword.
+     *
+     * @return array
+     */
+    public function usecaseProviderNamespaceNamePHP57vs8()
+    {
+        return [
+            'namespace'        => ['namespace'],
+            'nested-namespace' => ['nested-namespace'],
+        ];
+    }
+
+
+    /**
      * Test some specific code samples trigger the correct errors on the correct lines.
      *
      * @dataProvider dataSpecificCodeSamples
@@ -206,7 +289,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      */
     public function testSpecificCodeSamples($line, $keyword)
     {
-        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc');
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '0.0-');
         $this->assertError($file, $line, "Function name, class name, namespace name or constant name can not be reserved keyword '$keyword'");
     }
 
@@ -218,9 +301,9 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
     public function dataSpecificCodeSamples()
     {
         return [
-            [8, 'for'],
-            [8, 'list'],
-            [8, 'foreach'],
+            [8, 'for'], // If the testVersion does not include PHP < 8, this will not trigger an error.
+            [8, 'list'], // If the testVersion does not include PHP < 8, this will not trigger an error.
+            [8, 'foreach'], // If the testVersion does not include PHP < 8, this will not trigger an error.
             [11, 'as'],
             [12, 'private'],
             [16, 'or'],
@@ -242,6 +325,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             [59, 'interface'],
             [71, 'switch'],
             [76, 'trait'],
+            [79, 'namespace'],
+            [81, 'namespace'],
         ];
     }
 
