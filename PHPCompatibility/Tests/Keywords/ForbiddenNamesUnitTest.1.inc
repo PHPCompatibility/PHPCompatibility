@@ -312,3 +312,6 @@ use const MyCONSTANT;
 
 // Closure use should be ignored.
 $closure = function () use ($a) {};
+
+// Test call to define() using named parameters.
+define(value: 'class', constant_name: 'BAR');

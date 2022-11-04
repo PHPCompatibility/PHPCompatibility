@@ -538,12 +538,12 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         // Retrieve the define(d) constant name.
-        $firstParam = PassedParameters::getParameter($phpcsFile, $stackPtr, 1);
-        if ($firstParam === false) {
+        $constantName = PassedParameters::getParameter($phpcsFile, $stackPtr, 1, 'constant_name');
+        if ($constantName === false) {
             return;
         }
 
-        $defineName = TextStrings::stripQuotes($firstParam['clean']);
+        $defineName = TextStrings::stripQuotes($constantName['clean']);
         $this->checkName($phpcsFile, $stackPtr, $defineName);
     }
 

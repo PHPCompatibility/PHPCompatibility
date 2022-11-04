@@ -73,9 +73,12 @@ trait FooTrait {
 }
 
 // Test function delared to return by reference.
-function &trait() {}
+function &trait() {} // Error.
 
 // Test "namespace" keyword at start of namespace name. Forbidden, even in PHP 8.
-namespace NAMEspace;
+namespace NAMEspace; // Error.
 
-namespace NameSpace\Foo;
+namespace NameSpace\Foo; // Error.
+
+// Test call to define() using named parameters.
+define(value: 'class', constant_name: 'class'); // Error.
