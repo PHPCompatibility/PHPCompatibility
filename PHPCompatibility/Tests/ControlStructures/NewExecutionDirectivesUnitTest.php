@@ -56,11 +56,19 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      * @param string $okVersion          A PHP version in which the directive was ok to be used.
      * @param string $conditionalVersion Optional. A PHP version in which the directive was conditionaly available.
      * @param string $condition          The availability condition.
+     * @param bool   $skipNoViolation    Whether to skip the "no violation test".
      *
      * @return void
      */
-    public function testNewExecutionDirective($directive, $lastVersionBefore, $lines, $okVersion, $conditionalVersion = null, $condition = null)
-    {
+    public function testNewExecutionDirective(
+        $directive,
+        $lastVersionBefore,
+        $lines,
+        $okVersion,
+        $conditionalVersion = null,
+        $condition = null,
+        $skipNoViolation = false
+    ) {
         $file  = $this->sniffFile(__FILE__, $lastVersionBefore);
         $error = "Directive {$directive} is not present in PHP version {$lastVersionBefore} or earlier";
         foreach ($lines as $line) {
@@ -73,6 +81,10 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
             foreach ($lines as $line) {
                 $this->assertWarning($file, $line, $error);
             }
+        }
+
+        if ($skipNoViolation === true) {
+            return;
         }
 
         $file = $this->sniffFile(__FILE__, $okVersion);
@@ -92,8 +104,11 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     {
         return [
             ['ticks', '3.1', [6, 7], '4.0'],
+            ['ticks', '3.1', [16], '4.0', null, null, true], // Test lines with an invalid value.
             ['encoding', '5.2', [8], '5.4', '5.3', '--enable-zend-multibyte'],
+            ['encoding', '5.2', [17], '5.4', '5.3', '--enable-zend-multibyte', true], // Test lines with an invalid value.
             ['strict_types', '5.6', [9], '7.0'],
+            ['strict_types', '5.6', [18], '7.0', null, null, true], // Test lines with an invalid value.
         ];
     }
 
