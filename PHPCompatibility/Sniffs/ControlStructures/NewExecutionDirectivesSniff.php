@@ -68,7 +68,7 @@ class NewExecutionDirectivesSniff extends Sniff
         'strict_types' => [
             '5.6'          => false,
             '7.0'          => true,
-            'valid_values' => [0, 1],
+            'valid_values' => ['0', '1'],
         ],
     ];
 
@@ -292,13 +292,13 @@ class NewExecutionDirectivesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if (isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
+        if ($directive === 'encoding' && isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
             $value = TextStrings::stripQuotes($value);
         }
 
         $isError = false;
         if (isset($this->newDirectives[$directive]['valid_values'])) {
-            if (\in_array($value, $this->newDirectives[$directive]['valid_values']) === false) {
+            if (\in_array($value, $this->newDirectives[$directive]['valid_values'], true) === false) {
                 $isError = true;
             }
         } elseif (isset($this->newDirectives[$directive]['valid_value_callback'])) {

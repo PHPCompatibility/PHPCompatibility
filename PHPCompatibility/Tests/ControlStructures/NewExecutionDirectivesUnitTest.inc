@@ -24,5 +24,9 @@ declare(invalid=true);
 // Strict types can have value 0.
 declare(strict_types=0);
 
+// Strict types does not type juggle the value.
+declare(strict_types='0');
+declare(strict_types='1');
+
 // Incomplete directive.
 declare(
