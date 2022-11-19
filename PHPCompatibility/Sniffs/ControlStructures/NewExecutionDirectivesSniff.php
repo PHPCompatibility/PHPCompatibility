@@ -68,7 +68,7 @@ class NewExecutionDirectivesSniff extends Sniff
         'strict_types' => [
             '5.6'          => false,
             '7.0'          => true,
-            'valid_values' => [1],
+            'valid_values' => [0, 1],
         ],
     ];
 

@@ -21,5 +21,8 @@ declare(strict_types=false); // Invalid - only 1 is a valid value.
 // Invalid directive name.
 declare(invalid=true);
 
+// Strict types can have value 0.
+declare(strict_types=0);
+
 // Incomplete directive.
 declare(
