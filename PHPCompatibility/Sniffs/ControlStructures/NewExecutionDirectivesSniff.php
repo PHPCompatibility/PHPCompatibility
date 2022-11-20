@@ -125,9 +125,10 @@ class NewExecutionDirectivesSniff extends Sniff
             return;
         }
 
-        $directiveContent = $tokens[$directivePtr]['content'];
+        $directiveContent   = $tokens[$directivePtr]['content'];
+        $directiveContentLC = \strtolower($directiveContent);
 
-        if (isset($this->newDirectives[$directiveContent]) === false) {
+        if (isset($this->newDirectives[$directiveContentLC]) === false) {
             $error = 'Declare can only be used with the directives %s. Found: %s';
             $data  = [
                 \implode(', ', \array_keys($this->newDirectives)),
@@ -138,7 +139,7 @@ class NewExecutionDirectivesSniff extends Sniff
         } else {
             // Check for valid directive for version.
             $itemInfo = [
-                'name' => $directiveContent,
+                'name' => $directiveContentLC,
             ];
             $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
 
@@ -148,7 +149,7 @@ class NewExecutionDirectivesSniff extends Sniff
                 return;
             }
 
-            $this->addWarningOnInvalidValue($phpcsFile, $valuePtr, $directiveContent);
+            $this->addWarningOnInvalidValue($phpcsFile, $valuePtr, $directiveContentLC);
         }
     }
 
