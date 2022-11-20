@@ -120,7 +120,39 @@ class NewExecutionDirectivesSniff extends Sniff
         $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
         $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
 
-        $directivePtr = $phpcsFile->findNext(\T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
+        $start = ($openParenthesis + 1);
+        do {
+            $comma = $phpcsFile->findNext(\T_COMMA, $start, $closeParenthesis);
+            if ($comma === false) {
+                // Found last directive.
+                $this->processDirective($phpcsFile, $start, $closeParenthesis);
+                break;
+            }
+
+            // Multi-directive declare statement.
+            $this->processDirective($phpcsFile, $start, $comma);
+
+            $start = ($comma + 1);
+        } while ($start < $closeParenthesis);
+    }
+
+
+    /**
+     * Processes one individual declare execution directive.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $start     The position of the start of the directive.
+     * @param int                         $end       The position of the end of the directive.
+     *
+     * @return void
+     */
+    protected function processDirective($phpcsFile, $start, $end)
+    {
+        $tokens       = $phpcsFile->getTokens();
+        $directivePtr = $phpcsFile->findNext(\T_STRING, $start, $end);
+
         if ($directivePtr === false) {
             return;
         }
@@ -144,7 +176,7 @@ class NewExecutionDirectivesSniff extends Sniff
             $this->handleFeature($phpcsFile, $directivePtr, $itemInfo);
 
             // Check for valid directive value.
-            $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $closeParenthesis, true);
+            $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $end, true);
             if ($valuePtr === false) {
                 return;
             }

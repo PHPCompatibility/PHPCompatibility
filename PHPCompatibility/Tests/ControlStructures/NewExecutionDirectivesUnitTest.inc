@@ -32,5 +32,16 @@ declare(
     strict_types='1'
 );
 
+/*
+ * Testing multi-declare statements.
+ */
+declare(
+    ticks = 10.56,
+    encoding='UTF-8',
+    strict_types=0
+); // All valid.
+
+declare(ticks = new stdClass, encoding=$encoding, strict_types=false, unknown = 'invalid', ); // All invalid in one way or another; also: trailing comma not allowed.
+
 // Incomplete directive.
 declare(
