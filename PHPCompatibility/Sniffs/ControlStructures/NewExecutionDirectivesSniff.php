@@ -135,13 +135,13 @@ class NewExecutionDirectivesSniff extends Sniff
                 $directiveContent,
             ];
 
-            $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
+            $phpcsFile->addError($error, $directivePtr, 'InvalidDirectiveFound', $data);
         } else {
             // Check for valid directive for version.
             $itemInfo = [
                 'name' => $directiveContentLC,
             ];
-            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            $this->handleFeature($phpcsFile, $directivePtr, $itemInfo);
 
             // Check for valid directive value.
             $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $closeParenthesis, true);

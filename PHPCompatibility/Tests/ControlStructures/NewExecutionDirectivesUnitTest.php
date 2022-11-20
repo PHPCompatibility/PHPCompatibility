@@ -107,8 +107,8 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
             ['ticks', '3.1', [16], '4.0', null, null, true], // Test lines with an invalid value.
             ['encoding', '5.2', [8], '5.4', '5.3', '--enable-zend-multibyte'],
             ['encoding', '5.2', [17], '5.4', '5.3', '--enable-zend-multibyte', true], // Test lines with an invalid value.
-            ['strict_types', '5.6', [9, 25], '7.0'],
-            ['strict_types', '5.6', [18, 28, 29], '7.0', null, null, true], // Test lines with an invalid value.
+            ['strict_types', '5.6', [9, 26], '7.0'],
+            ['strict_types', '5.6', [18, 29, 32], '7.0', null, null, true], // Test lines with an invalid value.
         ];
     }
 
@@ -142,8 +142,8 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
         return [
             ['ticks', 'TICK_VALUE', 16],
             ['strict_types', 'false', 18],
-            ['strict_types', "'0'", 28],
-            ['strict_types', "'1'", 29],
+            ['strict_types', "'0'", 29],
+            ['strict_types', "'1'", 32],
         ];
     }
 
@@ -201,7 +201,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      */
     public function testIncompleteDirective()
     {
-        $this->assertNoViolation($this->sniffResult, 32);
+        $this->assertNoViolation($this->sniffResult, 36);
     }
 
 

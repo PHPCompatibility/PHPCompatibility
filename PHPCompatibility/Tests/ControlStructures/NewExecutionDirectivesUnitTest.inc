@@ -17,16 +17,20 @@ declare(ticks=TICK_VALUE); // Invalid - only literals may be given as directive 
 declare(encoding='invalid'); // Invalid - not a valid encoding.
 declare(Strict_Types=false); // Invalid - only 1 is a valid value.
 
-
 // Invalid directive name.
-declare(invalid=true);
+declare(
+    invalid=true
+);
 
 // Strict types can have value 0.
 declare(strict_types=0);
 
 // Strict types does not type juggle the value.
 declare(strict_types='0');
-declare(strict_types='1');
+declare(
+    // Comment.
+    strict_types='1'
+);
 
 // Incomplete directive.
 declare(
