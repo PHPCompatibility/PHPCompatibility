@@ -46,7 +46,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     }
 
     /**
-     * testNewExecutionDirective
+     * Test that execution directives which are not supported in certain PHP versions are correctly flagged.
      *
      * @dataProvider dataNewExecutionDirective
      *
@@ -99,7 +99,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidDirectiveValue
+     * Verify that execution directives with an invalid value are flagged.
      *
      * @dataProvider dataInvalidDirectiveValue
      *
@@ -116,7 +116,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataInvalidDirectiveValue
+     * Data provider.
      *
      * @see testInvalidDirectiveValue()
      *
@@ -132,7 +132,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidEncodingDirectiveValue
+     * Verify that "encoding" execution directives with an invalid value are flagged.
      *
      * @requires function mb_list_encodings
      *
@@ -151,7 +151,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataInvalidEncodingDirectiveValue
+     * Data provider.
      *
      * @see testInvalidEncodingDirectiveValue()
      *
@@ -166,7 +166,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidDirective
+     * Verify that directives which are not supported by PHP are flagged as such.
      *
      * @return void
      */
@@ -178,7 +178,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
 
 
     /**
-     * testIncompleteDirective
+     * Verify that the sniff stays silent for incomplete declare statements (live coding/parse error).
      *
      * @return void
      */
