@@ -10,7 +10,8 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
-use PHPCompatibility\AbstractNewFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -24,11 +25,13 @@ use PHP_CodeSniffer\Files\File;
  * @link https://wiki.php.net/rfc/null_coalesce_equal_operator
  * @link https://wiki.php.net/rfc/nullsafe_operator
  *
- * @since 9.0.0 Detection of new operators was originally included in the
- *              `NewLanguageConstruct` sniff (since 5.6).
+ * @since 9.0.0  Detection of new operators was originally included in the
+ *               `NewLanguageConstruct` sniff (since 5.6).
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
  */
-class NewOperatorsSniff extends AbstractNewFeatureSniff
+class NewOperatorsSniff extends Sniff
 {
+    use ComplexVersionNewFeatureTrait;
 
     /**
      * A list of new operators, not present in older versions.
@@ -114,66 +117,53 @@ class NewOperatorsSniff extends AbstractNewFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error for a matched item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @param array $itemInfo Base information about the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
      *
-     * @return array Version and other information about the item.
+     * @return void
      */
-    public function getItemArray(array $itemInfo)
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return $this->newOperators[$itemInfo['name']];
+        $itemArray   = $this->newOperators[$itemInfo['name']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+
+        if (empty($versionInfo['not_in_version'])
+            || $this->supportsBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        $this->addError($phpcsFile, $stackPtr, $itemInfo, $itemArray, $versionInfo);
     }
 
 
     /**
-     * Get an array of the non-PHP-version array keys used in a sub-array.
+     * Generates the error for this item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @return array
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param array                       $itemArray   The sub-array with all the details about
+     *                                                 this item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
      */
-    protected function getNonVersionArrayKeys()
+    protected function addError(File $phpcsFile, $stackPtr, array $itemInfo, array $itemArray, array $versionInfo)
     {
-        return ['description'];
-    }
+        $msgInfo = $this->getMessageInfo($itemArray['description'], $itemInfo['name'], $versionInfo);
 
-
-    /**
-     * Retrieve the relevant detail (version) information for use in an error message.
-     *
-     * @since 7.1.0
-     *
-     * @param array $itemArray Version and other information about the item.
-     * @param array $itemInfo  Base information about the item.
-     *
-     * @return array
-     */
-    public function getErrorInfo(array $itemArray, array $itemInfo)
-    {
-        $errorInfo                = parent::getErrorInfo($itemArray, $itemInfo);
-        $errorInfo['description'] = $itemArray['description'];
-
-        return $errorInfo;
-    }
-
-
-    /**
-     * Filter the error data before it's passed to PHPCS.
-     *
-     * @since 7.1.0
-     *
-     * @param array $data      The error data array which was created.
-     * @param array $itemInfo  Base information about the item this error message applies to.
-     * @param array $errorInfo Detail information about an item this error message applies to.
-     *
-     * @return array
-     */
-    protected function filterErrorData(array $data, array $itemInfo, array $errorInfo)
-    {
-        $data[0] = $errorInfo['description'];
-        return $data;
+        $phpcsFile->addError($msgInfo['message'], $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
     }
 }

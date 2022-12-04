@@ -10,9 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
-use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect calls to deprecated/removed native PHP functions.
@@ -22,13 +24,15 @@ use PHP_CodeSniffer\Util\Tokens;
  * PHP version All
  *
  * @since 5.5
- * @since 5.6   Now extends the base `Sniff` class instead of the upstream
- *              `Generic.PHP.ForbiddenFunctions` sniff.
- * @since 7.1.0 Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
- * @since 9.0.0 Renamed from `DeprecatedFunctionsSniff` to `RemovedFunctionsSniff`.
+ * @since 5.6    Now extends the base `Sniff` class instead of the upstream
+ *               `Generic.PHP.ForbiddenFunctions` sniff.
+ * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
+ * @since 9.0.0  Renamed from `DeprecatedFunctionsSniff` to `RemovedFunctionsSniff`.
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
  */
-class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
+class RemovedFunctionsSniff extends Sniff
 {
+    use ComplexVersionDeprecatedRemovedFeatureTrait;
 
     /**
      * A list of deprecated and removed functions with their alternatives.
@@ -4979,29 +4983,74 @@ class RemovedFunctionsSniff extends AbstractRemovedFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error/warning for a matched item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @param array $itemInfo Base information about the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
      *
-     * @return array Version and other information about the item.
+     * @return void
      */
-    public function getItemArray(array $itemInfo)
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return $this->removedFunctions[$itemInfo['nameLc']];
+        $itemArray   = $this->removedFunctions[$itemInfo['nameLc']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+        $isError     = null;
+
+        if (empty($versionInfo['removed']) === false
+            && $this->supportsAbove($versionInfo['removed']) === true
+        ) {
+            $isError = true;
+        } elseif (empty($versionInfo['deprecated']) === false
+            && $this->supportsAbove($versionInfo['deprecated']) === true
+        ) {
+            $isError = false;
+
+            // Reset the 'removed' info as it is not relevant for the current notice.
+            $versionInfo['removed'] = '';
+        }
+
+        if (isset($isError) === false) {
+            return;
+        }
+
+        $this->addMessage($phpcsFile, $stackPtr, $isError, $itemInfo, $versionInfo);
     }
 
 
     /**
-     * Get the error message template for this sniff.
+     * Generates the error or warning for this item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @return string
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param bool                        $isError     Whether this should be an error or a warning.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
      */
-    protected function getErrorMsgTemplate()
+    protected function addMessage(File $phpcsFile, $stackPtr, $isError, array $itemInfo, array $versionInfo)
     {
-        return 'Function %s() is ';
+        // Overrule the default message template.
+        $this->msgTemplate = 'Function %s() is ';
+
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+        MessageHelper::addMessage(
+            $phpcsFile,
+            $msgInfo['message'],
+            $stackPtr,
+            $isError,
+            $msgInfo['errorcode'],
+            $msgInfo['data']
+        );
     }
 }

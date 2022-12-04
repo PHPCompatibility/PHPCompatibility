@@ -10,11 +10,13 @@
 
 namespace PHPCompatibility\Sniffs\Variables;
 
-use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\Scopes;
 
@@ -25,17 +27,19 @@ use PHPCSUtils\Utils\Scopes;
  *
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#php_errormsg
  *
- * @since 5.5   Introduced `LongArrays` sniff.
- * @since 7.0   Introduced `RemovedGlobalVariables` sniff.
- * @since 7.0.7 The `LongArrays` sniff now throws a warning for deprecated and an error for removed.
- *              Previously the `LongArrays` sniff would always throw a warning.
- * @since 7.1.0 The `RemovedGlobalVariables` sniff now extends the `AbstractNewFeatureSniff`
- *              instead of the base `Sniff` class.
- * @since 7.1.3 Merged the `LongArrays` sniff into the `RemovedGlobalVariables` sniff.
- * @since 9.0.0 Renamed from `RemovedGlobalVariablesSniff` to `RemovedPredefinedGlobalVariablesSniff`.
+ * @since 5.5    Introduced `LongArrays` sniff.
+ * @since 7.0    Introduced `RemovedGlobalVariables` sniff.
+ * @since 7.0.7  The `LongArrays` sniff now throws a warning for deprecated and an error for removed.
+ *               Previously the `LongArrays` sniff would always throw a warning.
+ * @since 7.1.0  The `RemovedGlobalVariables` sniff now extends the `AbstractNewFeatureSniff`
+ *               instead of the base `Sniff` class.
+ * @since 7.1.3  Merged the `LongArrays` sniff into the `RemovedGlobalVariables` sniff.
+ * @since 9.0.0  Renamed from `RemovedGlobalVariablesSniff` to `RemovedPredefinedGlobalVariablesSniff`.
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
  */
-class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
+class RemovedPredefinedGlobalVariablesSniff extends Sniff
 {
+    use ComplexVersionDeprecatedRemovedFeatureTrait;
 
     /**
      * A list of removed global variables with their alternative, if any.
@@ -165,53 +169,6 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
-     *
-     * @since 7.1.0
-     *
-     * @param array $itemInfo Base information about the item.
-     *
-     * @return array Version and other information about the item.
-     */
-    public function getItemArray(array $itemInfo)
-    {
-        return $this->removedGlobalVariables[$itemInfo['name']];
-    }
-
-
-    /**
-     * Get the error message template for this sniff.
-     *
-     * @since 7.1.0
-     *
-     * @return string
-     */
-    protected function getErrorMsgTemplate()
-    {
-        return "Global variable '\$%s' is ";
-    }
-
-
-    /**
-     * Filter the error message before it's passed to PHPCS.
-     *
-     * @since 8.1.0
-     *
-     * @param string $error     The error message which was created.
-     * @param array  $itemInfo  Base information about the item this error message applies to.
-     * @param array  $errorInfo Detail information about an item this error message applies to.
-     *
-     * @return string
-     */
-    protected function filterErrorMsg($error, array $itemInfo, array $errorInfo)
-    {
-        if ($itemInfo['name'] === 'php_errormsg') {
-            $error = \str_replace('Global', 'The', $error);
-        }
-        return $error;
-    }
-
-    /**
      * Run some additional checks for the `$php_errormsg` variable.
      *
      * @since 8.1.0
@@ -338,5 +295,81 @@ class RemovedPredefinedGlobalVariablesSniff extends AbstractRemovedFeatureSniff
         }
 
         return true;
+    }
+
+
+    /**
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error/warning for a matched item.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
+     *
+     * @return void
+     */
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
+    {
+        $itemArray   = $this->removedGlobalVariables[$itemInfo['name']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+        $isError     = null;
+
+        if (empty($versionInfo['removed']) === false
+            && $this->supportsAbove($versionInfo['removed']) === true
+        ) {
+            $isError = true;
+        } elseif (empty($versionInfo['deprecated']) === false
+            && $this->supportsAbove($versionInfo['deprecated']) === true
+        ) {
+            $isError = false;
+
+            // Reset the 'removed' info as it is not relevant for the current notice.
+            $versionInfo['removed'] = '';
+        }
+
+        if (isset($isError) === false) {
+            return;
+        }
+
+        $this->addMessage($phpcsFile, $stackPtr, $isError, $itemInfo, $versionInfo);
+    }
+
+
+    /**
+     * Generates the error or warning for this item.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param bool                        $isError     Whether this should be an error or a warning.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
+     */
+    protected function addMessage(File $phpcsFile, $stackPtr, $isError, array $itemInfo, array $versionInfo)
+    {
+        // Overrule the default message template.
+        $this->msgTemplate = "Global variable '\$%s' is ";
+        if ($itemInfo['name'] === 'php_errormsg') {
+            $this->msgTemplate = "The variable '\$%s' is ";
+        }
+
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+        MessageHelper::addMessage(
+            $phpcsFile,
+            $msgInfo['message'],
+            $stackPtr,
+            $isError,
+            $msgInfo['errorcode'],
+            $msgInfo['data']
+        );
     }
 }

@@ -10,9 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
-use PHPCompatibility\AbstractRemovedFeatureSniff;
+use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\HashAlgorithmsTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect the use of deprecated and removed hash algorithms.
@@ -24,9 +26,11 @@ use PHP_CodeSniffer\Files\File;
  * @since 5.5
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  * @since 10.0.0 Now uses the new `HashAlgorithmsTrait`.
+ * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
  */
-class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
+class RemovedHashAlgorithmsSniff extends Sniff
 {
+    use ComplexVersionDeprecatedRemovedFeatureTrait;
     use HashAlgorithmsTrait;
 
     /**
@@ -92,29 +96,74 @@ class RemovedHashAlgorithmsSniff extends AbstractRemovedFeatureSniff
 
 
     /**
-     * Get the relevant sub-array for a specific item from a multi-dimensional array.
+     * Handle the retrieval of relevant information and - if necessary - throwing of an
+     * error/warning for a matched item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @param array $itemInfo Base information about the item.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the relevant token in
+     *                                               the stack.
+     * @param array                       $itemInfo  Base information about the item.
      *
-     * @return array Version and other information about the item.
+     * @return void
      */
-    public function getItemArray(array $itemInfo)
+    protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        return $this->removedAlgorithms[$itemInfo['name']];
+        $itemArray   = $this->removedAlgorithms[$itemInfo['name']];
+        $versionInfo = $this->getVersionInfo($itemArray);
+        $isError     = null;
+
+        if (empty($versionInfo['removed']) === false
+            && $this->supportsAbove($versionInfo['removed']) === true
+        ) {
+            $isError = true;
+        } elseif (empty($versionInfo['deprecated']) === false
+            && $this->supportsAbove($versionInfo['deprecated']) === true
+        ) {
+            $isError = false;
+
+            // Reset the 'removed' info as it is not relevant for the current notice.
+            $versionInfo['removed'] = '';
+        }
+
+        if (isset($isError) === false) {
+            return;
+        }
+
+        $this->addMessage($phpcsFile, $stackPtr, $isError, $itemInfo, $versionInfo);
     }
 
 
     /**
-     * Get the error message template for this sniff.
+     * Generates the error or warning for this item.
      *
-     * @since 7.1.0
+     * @since 10.0.0
      *
-     * @return string
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $stackPtr    The position of the relevant token in
+     *                                                 the stack.
+     * @param bool                        $isError     Whether this should be an error or a warning.
+     * @param array                       $itemInfo    Base information about the item.
+     * @param string[]                    $versionInfo Array with detail (version) information
+     *                                                 relevant to the item.
+     *
+     * @return void
      */
-    protected function getErrorMsgTemplate()
+    protected function addMessage(File $phpcsFile, $stackPtr, $isError, array $itemInfo, array $versionInfo)
     {
-        return 'The %s hash algorithm is ';
+        // Overrule the default message template.
+        $this->msgTemplate = 'The %s hash algorithm is ';
+
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+        MessageHelper::addMessage(
+            $phpcsFile,
+            $msgInfo['message'],
+            $stackPtr,
+            $isError,
+            $msgInfo['errorcode'],
+            $msgInfo['data']
+        );
     }
 }
