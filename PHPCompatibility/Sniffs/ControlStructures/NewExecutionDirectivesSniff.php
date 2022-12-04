@@ -68,7 +68,7 @@ class NewExecutionDirectivesSniff extends Sniff
         'strict_types' => [
             '5.6'          => false,
             '7.0'          => true,
-            'valid_values' => [1],
+            'valid_values' => ['0', '1'],
         ],
     ];
 
@@ -120,35 +120,68 @@ class NewExecutionDirectivesSniff extends Sniff
         $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
         $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
 
-        $directivePtr = $phpcsFile->findNext(\T_STRING, ($openParenthesis + 1), $closeParenthesis, false);
+        $start = ($openParenthesis + 1);
+        do {
+            $comma = $phpcsFile->findNext(\T_COMMA, $start, $closeParenthesis);
+            if ($comma === false) {
+                // Found last directive.
+                $this->processDirective($phpcsFile, $start, $closeParenthesis);
+                break;
+            }
+
+            // Multi-directive declare statement.
+            $this->processDirective($phpcsFile, $start, $comma);
+
+            $start = ($comma + 1);
+        } while ($start < $closeParenthesis);
+    }
+
+
+    /**
+     * Processes one individual declare execution directive.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $start     The position of the start of the directive.
+     * @param int                         $end       The position of the end of the directive.
+     *
+     * @return void
+     */
+    protected function processDirective($phpcsFile, $start, $end)
+    {
+        $tokens       = $phpcsFile->getTokens();
+        $directivePtr = $phpcsFile->findNext(\T_STRING, $start, $end);
+
         if ($directivePtr === false) {
             return;
         }
 
-        $directiveContent = $tokens[$directivePtr]['content'];
+        $directiveContent   = $tokens[$directivePtr]['content'];
+        $directiveContentLC = \strtolower($directiveContent);
 
-        if (isset($this->newDirectives[$directiveContent]) === false) {
+        if (isset($this->newDirectives[$directiveContentLC]) === false) {
             $error = 'Declare can only be used with the directives %s. Found: %s';
             $data  = [
                 \implode(', ', \array_keys($this->newDirectives)),
                 $directiveContent,
             ];
 
-            $phpcsFile->addError($error, $stackPtr, 'InvalidDirectiveFound', $data);
+            $phpcsFile->addError($error, $directivePtr, 'InvalidDirectiveFound', $data);
         } else {
             // Check for valid directive for version.
             $itemInfo = [
-                'name' => $directiveContent,
+                'name' => $directiveContentLC,
             ];
-            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            $this->handleFeature($phpcsFile, $directivePtr, $itemInfo);
 
             // Check for valid directive value.
-            $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $closeParenthesis, true);
+            $valuePtr = $phpcsFile->findNext($this->ignoreTokens, $directivePtr + 1, $end, true);
             if ($valuePtr === false) {
                 return;
             }
 
-            $this->addWarningOnInvalidValue($phpcsFile, $valuePtr, $directiveContent);
+            $this->addWarningOnInvalidValue($phpcsFile, $valuePtr, $directiveContentLC);
         }
     }
 
@@ -292,13 +325,13 @@ class NewExecutionDirectivesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if (isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
+        if ($directive === 'encoding' && isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
             $value = TextStrings::stripQuotes($value);
         }
 
         $isError = false;
         if (isset($this->newDirectives[$directive]['valid_values'])) {
-            if (\in_array($value, $this->newDirectives[$directive]['valid_values']) === false) {
+            if (\in_array($value, $this->newDirectives[$directive]['valid_values'], true) === false) {
                 $isError = true;
             }
         } elseif (isset($this->newDirectives[$directive]['valid_value_callback'])) {
