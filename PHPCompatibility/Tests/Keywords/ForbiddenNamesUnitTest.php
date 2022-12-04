@@ -32,7 +32,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @var int
      */
-    const OTHER_KEYWORD_COUNT = 13;
+    const OTHER_KEYWORD_COUNT = 15;
 
     /**
      * Count of "soft" reserved keywords.
@@ -83,7 +83,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         // Set the testVersion to the highest PHP version encountered in the
         // \PHPCompatibility\Sniffs\Keywords\ForbiddenNamesSniff::$invalidNames
         // list to catch all errors.
-        $file = $this->sniffFile($filename, '7.4');
+        $file = $this->sniffFile($filename, '8.1');
 
         $this->assertNoViolation($file, 2);
 

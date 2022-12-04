@@ -100,6 +100,19 @@ endif;
 // empty
 empty($foo);
 
+// enum
+enum Direction {
+    case Up;
+    case Down;
+}
+
+enum Suit: string implements Colorful {
+    case Hearts = 'H';
+    case Diamonds = 'D';
+    case Clubs = 'C';
+    case Spades = 'S';
+}
+
 // eval
 eval( 'echo "Hello World!";' );
 
@@ -173,12 +186,25 @@ foreach ([[1, 2], [2, 3]] as list($a, $b)):
     // Do something.
 endforeach;
 
+// match
+$val = match($foo) {
+    'bar' => 10,
+    default => 20,
+};
+
 // or
 $c = 1 or 2;
 
 // print
 print "Hello world!";
 print($var);
+
+// readonly
+class ContainsReadonlyProp {
+    readonly $propA;
+    public readonly $propB;
+}
+final readonly class MyReadonly {}
 
 // require
 require __DIR__ . '/path/to/file.php';
@@ -239,9 +265,12 @@ function softReservedTypeHints(
     float $float,
     string $string,
     iterable $iterable,
-    object $object
+    object $object,
+    mixed $mixed
 ) : void
 {}
+
+function softReservedReturnTypeNever() : never {}
 
 // Other reserved keywords are ok to use as a function or constant name.
 function null() {}
@@ -265,6 +294,10 @@ class HasTrait {
     }
 }
 const VOID = null;
+const MIXED = 'mixed';
+function never() {}
+const ENUM = MyEnum::CaseName;
+function enum() {}
 
 // Issue #117: Traits: alias method with changed visibility.
 class MyClass1 {
@@ -315,3 +348,10 @@ $closure = function () use ($a) {};
 
 // Test call to define() using named parameters.
 define(value: 'class', constant_name: 'BAR');
+
+// Test readonly as a function name. This is a (temporary) exception.
+function readonly() {}
+
+class ReadonlyFoo {
+    public function readonly() {}
+}

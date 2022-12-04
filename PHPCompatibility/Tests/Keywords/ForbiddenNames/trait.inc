@@ -46,6 +46,7 @@ trait Insteadof {}
 trait Interface {}
 trait Isset {}
 trait List {}
+trait Match {}
 trait Namespace {}
 trait New {}
 trait Or {}
@@ -53,6 +54,7 @@ trait Print {}
 trait Private {}
 trait Protected {}
 trait Public {}
+trait Readonly {}
 trait Require {}
 trait Require_once {}
 trait Return {}
@@ -85,6 +87,8 @@ trait String {}
 trait Iterable {}
 trait Void {}
 trait Object {}
-trait Resource {}
 trait Mixed {}
+trait Never {}
+trait Resource {}
 trait Numeric {}
+trait Enum {}

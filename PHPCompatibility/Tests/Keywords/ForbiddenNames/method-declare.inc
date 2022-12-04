@@ -46,6 +46,7 @@ class Foobar { function insteadof() { } }
 class Foobar { function interface() { } }
 class Foobar { function isset() { } }
 class Foobar { function list() { } }
+class Foobar { function match() { } }
 class Foobar { function namespace() { } }
 class Foobar { function new() { } }
 class Foobar { function or() { } }

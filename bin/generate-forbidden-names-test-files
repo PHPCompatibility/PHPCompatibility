@@ -62,6 +62,7 @@ $invalidNames = [
     'interface'     => '5.0',
     'isset'         => 'all',
     'list'          => 'all',
+    'match'         => '8.0',
     'namespace'     => '5.3',
     'new'           => 'all',
     'or'            => 'all',
@@ -69,6 +70,7 @@ $invalidNames = [
     'private'       => '5.0',
     'protected'     => '5.0',
     'public'        => '5.0',
+    'readonly'      => '8.1',
     'require'       => 'all',
     'require_once'  => 'all',
     'return'        => 'all',
@@ -105,11 +107,13 @@ $otherInvalidNames = [
     'iterable' => '7.1',
     'void'     => '7.1',
     'object'   => '7.2',
+    'mixed'    => '8.0',
+    'never'    => '8.1',
 
     // Soft reserved.
     'resource' => '7.0',
-    'mixed'    => '7.0',
     'numeric'  => '7.0',
+    'enum'     => '8.1'
 ];
 
 // The "other" reserved names are fine to use for function or constant names, so should only be injected in select tests.
@@ -168,12 +172,22 @@ $tests = [
         return "enum $name: string implements Foo {}\n";
     },
     'function-declare'                       => function ($name) {
-        return "function $name() { }\n";
+        if ($name === 'readonly') {
+            // Tested separately as there is an exception in place.
+            return '';
+        } else {
+            return "function $name() { }\n";
+        }
     },
     // Only pre-PHP 7!
     'method-declare'                         => function ($name) {
-        $name = strtolower($name);
-        return "class Foobar { function $name() { } }\n";
+        if ($name === 'readonly') {
+            // Tested separately as there is an exception in place.
+            return '';
+        } else {
+            $name = strtolower($name);
+            return "class Foobar { function $name() { } }\n";
+        }
     },
     'const'                                  => function ($name) {
         return "const $name = 1;\n";

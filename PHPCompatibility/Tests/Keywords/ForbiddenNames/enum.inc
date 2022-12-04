@@ -46,6 +46,7 @@ enum Insteadof {}
 enum Interface {}
 enum Isset {}
 enum List {}
+enum Match {}
 enum Namespace {}
 enum New {}
 enum Or {}
@@ -53,6 +54,7 @@ enum Print {}
 enum Private {}
 enum Protected {}
 enum Public {}
+enum Readonly {}
 enum Require {}
 enum Require_once {}
 enum Return {}
@@ -85,6 +87,8 @@ enum String {}
 enum Iterable {}
 enum Void {}
 enum Object {}
-enum Resource {}
 enum Mixed {}
+enum Never {}
+enum Resource {}
 enum Numeric {}
+enum Enum {}
