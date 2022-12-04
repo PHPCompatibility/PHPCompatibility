@@ -55,6 +55,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         'class'        => true,
         'interface'    => true,
         'trait'        => true,
+        'enum'         => true,
+        'enum-backed'  => true,
 
         // Aliases.
         'use-as'       => true,
@@ -123,6 +125,8 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
             'class',
             'interface',
             'trait',
+            'enum',
+            'enum-backed',
             'function-declare',
             'const',
             'define',

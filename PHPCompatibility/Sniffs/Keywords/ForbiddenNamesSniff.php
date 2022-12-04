@@ -210,6 +210,7 @@ class ForbiddenNamesSniff extends Sniff
         \T_CLASS,
         \T_INTERFACE,
         \T_TRAIT,
+        \T_ENUM,
         \T_FUNCTION,
         \T_CONST,
         \T_STRING, // Function calls to `define()`.
@@ -258,6 +259,7 @@ class ForbiddenNamesSniff extends Sniff
             case 'T_CLASS':
             case 'T_INTERFACE':
             case 'T_TRAIT':
+            case 'T_ENUM':
                 $this->processOODeclaration($phpcsFile, $stackPtr);
                 return;
 
@@ -270,6 +272,34 @@ class ForbiddenNamesSniff extends Sniff
                 return;
 
             case 'T_STRING':
+                /*
+                 * Handle a very specific edge case `enum extends/implements`, where PHP itself does not
+                 * correctly tokenize the keyword in PHP 8.1+.
+                 * Additionally, handle that the PHPCS tokenizer does not backfill `enum` to `T_ENUM`
+                 * when followed by a reserved keyword which can not be a valid name on PHP < 8.1.
+                 * As these are edge cases/parse errors anyway, we cannot reasonably expect PHPCS to
+                 * handle this.
+                 */
+                if (\strtolower($tokens[$stackPtr]['content']) === 'enum') {
+                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+                    if ($nextNonEmpty === false) {
+                        return;
+                    }
+
+                    $nextNonEmptyLC = \strtolower($tokens[$nextNonEmpty]['content']);
+                    if (isset($this->invalidNames[$nextNonEmptyLC])) {
+                        $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
+
+                        $this->checkOtherName(
+                            $phpcsFile,
+                            $stackPtr,
+                            $tokens[$nextNonEmpty]['content'],
+                            $tokens[$stackPtr]['content'] . ' declaration'
+                        );
+                    }
+                    return;
+                }
+
                 $this->processString($phpcsFile, $stackPtr);
                 return;
 
