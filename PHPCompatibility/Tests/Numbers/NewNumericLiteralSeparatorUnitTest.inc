@@ -39,3 +39,6 @@ $a = 1e_2;   // next to e
 
 // More test cases.
 $a = 0xCAFE_F00D_.892;
+
+// PHP 8.1 explicit octal notation.
+$octal = 0o137_041;
