@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed version_compare() Operators"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.1, the `version_compare()` function did not verify the passed `$operator` parameter sufficiently, which meant that arbitrary abbreviations of the supported operators were accepted and - by accident - supported.
+    This behaviour was undocumented and could lead to subtle bugs.
+
+    As of PHP 8.1, these abbreviations of the supported operators are not longer supported and using these will fail the `version_compare()` comparison.
+
+    The following operators are supported cross-version:
+    '<', 'lt', '<=', 'le', '>', 'gt', '>=', 'ge', '==', '=', 'eq', '!=', '<>', 'ne'.
+
+    Support for the following unofficially supported operators has been removed in PHP 8.1:
+    '', 'l', 'g', 'e', '!', 'n'.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using officially supported comparison operators.">
+        <![CDATA[
+version_compare($v1, $v2, <em>'<'</em>);
+version_compare($v1, $v2, <em>'ge'</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.1: using accidentally supported comparison operators.">
+        <![CDATA[
+version_compare($v1, $v2, <em>'!'</em>);
+version_compare($v1, $v2, <em>'e'</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
