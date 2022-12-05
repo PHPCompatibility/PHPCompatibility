@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Readonly Properties"
+    >
+    <standard>
+    <![CDATA[
+    Properties can be declared as readonly since PHP 8.1.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: properties declared without the readonly keyword.">
+        <![CDATA[
+class NonReadonly
+{
+    public $foo;
+    protected ClassName $baz;
+    private static ?string $bar;
+    var bool $flag;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.1: properties declared with the readonly keyword.">
+        <![CDATA[
+class ReadonlyProperties
+{
+    public <em>readonly</em> int $foo;
+    <em>readonly</em> protected ClassName $bar;
+    private <em>readonly</em> ?string $baz;
+    <em>readonly</em> bool $flag;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
