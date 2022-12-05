@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Explicit Octal Notation"
+    >
+    <standard>
+    <![CDATA[
+    Since PHP 8.1, octal integers can use an explicit 0o/0O prefix in integer literals, similarly to binary and hexadecimal integer literals.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: octal integer without the explicit octal prefix.">
+        <![CDATA[
+$octal = <em>014</em>;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.1: octal integer using the explicit octal prefix.">
+        <![CDATA[
+$octal = <em>0o14</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
