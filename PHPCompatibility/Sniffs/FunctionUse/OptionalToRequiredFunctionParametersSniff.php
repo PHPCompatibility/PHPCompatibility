@@ -38,56 +38,57 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
      *
      * The array lists : version number with true (required) and false (optional use deprecated).
      *
-     * The index is the location of the parameter in the parameter list, starting at 0 !
+     * The index is the 1-based parameter position of the parameter in the parameter list.
      * If's sufficient to list the last version in which the parameter was not yet required.
      *
      * @since 8.1.0
-     * @since 10.0.0 Parameter renamed from `$functionParameters` to `$targetFunctions` for
-     *               compatibility with the `AbstractFunctionCallParameterSniff` class.
+     * @since 10.0.0 - Parameter renamed from `$functionParameters` to `$targetFunctions` for
+     *                 compatibility with the `AbstractFunctionCallParameterSniff` class.
+     *               - The parameter offsets were changed from 0-based to 1-based.
      *
      * @var array
      */
     protected $targetFunctions = [
         'crypt' => [
-            1 => [
+            2 => [
                 'name' => 'salt',
                 '5.6'  => false,
                 '8.0'  => true,
             ],
         ],
         'gmmktime' => [
-            1 => [
+            2 => [
                 'name' => 'hour',
                 '8.0'  => true,
             ],
         ],
         'mb_parse_str' => [
-            1 => [
+            2 => [
                 'name' => 'result',
                 '8.0'  => true,
             ],
         ],
         'mktime' => [
-            0 => [
+            1 => [
                 'name' => 'hour',
                 '5.1'  => false,
                 '8.0'  => true,
             ],
         ],
         'openssl_seal' => [
-            4 => [
+            5 => [
                 'name' => 'method',
                 '8.0'  => true,
             ],
         ],
         'openssl_open' => [
-            4 => [
+            5 => [
                 'name' => 'method',
                 '8.0'  => true,
             ],
         ],
         'parse_str' => [
-            1 => [
+            2 => [
                 'name' => 'result',
                 '7.2'  => false,
                 '8.0'  => true,
@@ -124,12 +125,11 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLc           = \strtolower($functionName);
-        $parameterCount       = \count($parameters);
-        $parameterOffsetFound = $parameterCount - 1;
+        $functionLc     = \strtolower($functionName);
+        $parameterCount = \count($parameters);
 
         foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
-            if ($offset > $parameterOffsetFound) {
+            if ($offset > $parameterCount) {
                 $itemInfo = [
                     'name'   => $functionName,
                     'nameLc' => $functionLc,
