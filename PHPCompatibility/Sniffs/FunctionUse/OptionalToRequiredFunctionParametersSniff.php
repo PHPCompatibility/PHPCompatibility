@@ -57,7 +57,7 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
             ],
         ],
         'gmmktime' => [
-            2 => [
+            1 => [
                 'name' => 'hour',
                 '8.0'  => true,
             ],
