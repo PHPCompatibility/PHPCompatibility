@@ -26,7 +26,7 @@ $decoded = htmlspecialchars_decode(
 );
         ]]>
         </code>
-        <code title="Invalid: calling these functions without passing the $flags parameter.">
+        <code title="Cross-version INcompatible: calling these functions without passing the $flags parameter.">
         <![CDATA[
 echo htmlspecialchars($string);
 

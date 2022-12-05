@@ -11,7 +11,7 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: not returning by reference with void.">
+        <code title="Cross-version compatible: not returning by reference with void.">
         <![CDATA[
 // Not returning by reference.
 function foo(): void {}
@@ -24,7 +24,7 @@ function &foo() {}
 function &foo(): array {}
         ]]>
         </code>
-        <code title="Invalid: returning by reference from a void function.">
+        <code title="PHP &lt; 8.1: returning by reference from a void function.">
         <![CDATA[
 function <em>&</em>foo(): <em>void</em> {}
         ]]>
