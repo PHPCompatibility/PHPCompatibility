@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Dollar Brace String Embeds"
+    >
+    <standard>
+    <![CDATA[
+    Detect use of select forms of variable embedding in double quoted texts strings and heredocs which are deprecated since PHP 8.2.
+
+    Until PHP 8.2, PHP allowed embedding variables in strings with double-quotes (") and heredocs in four different ways:
+    1. Directly embedding variables (`$foo`)
+    2. Braces outside the variable (`{$foo}`)
+    3. Braces after the dollar sign (`${foo}`)
+    4. Variable variables (`${expr}`, equivalent to `(string) ${expr}`)
+
+    As of PHP 8.2, embedding variables and expressions using the syntaxes as per option 3 and 4 is deprecated.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Embedding simple variables and complex expressions in text strings using plain variables or the `{$...}` syntax.">
+        <![CDATA[
+echo <em>"hello $world"</em>;
+
+echo <em>"hello {$world['bar']}"</em>;
+
+echo <em>"hello {$world->bar}"</em>;
+
+echo <em>"hello {$world["${bar['baz']}"]}"</em>;
+
+echo <em>"hello {${world->{${'bar'}}}}"</em>;
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.2: Embedding simple variables and complex expressions in text strings using the `${...}` syntax">
+        <![CDATA[
+echo <em>"hello ${world}"</em>;
+
+echo <em>"hello ${world['bar']}"</em>;
+
+echo <em>"hello ${world->bar}"</em>;
+
+echo <em>"hello ${world["${bar['baz']}"]}"</em>;
+
+echo <em>"hello ${world->{${'bar'}}}"</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
