@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Constructor Property Promotion"
+    >
+    <standard>
+    <![CDATA[
+    Constructor Property Promotion is available since PHP 8.0.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: assigning parameters received in the class constructor to properties.">
+        <![CDATA[
+class Foo
+{
+    <em>public float $x = 0.0</em>;
+    <em>protected $y = ''</em>;
+    <em>private $z = null</em>;
+
+    public function __construct($x, $y, $z) {
+        <em>$this->x = $x</em>;
+        <em>$this->y = $y</em>;
+        <em>$this->z = $z</em>;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.0: using constructor property promotion.">
+        <![CDATA[
+class PropertyPromotion
+{
+    public function __construct(
+        <em>public float $x = 0.0</em>,
+        <em>protected $y = ''</em>,
+        <em>private $z = null</em>,
+    ) {}
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
