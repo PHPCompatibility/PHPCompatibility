@@ -383,6 +383,12 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         $this->assertNoViolation($file);
     }
 
+    public function testNoFalsePositivesConstEnum()
+    {
+        $file = $this->sniffFile(__DIR__ . \DIRECTORY_SEPARATOR . 'ForbiddenNamesUnitTest.4.inc', '8.1');
+        $this->assertNoViolation($file);
+    }
+
     /**
      * Data provider.
      *

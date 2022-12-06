@@ -292,6 +292,13 @@ class ForbiddenNamesSniff extends Sniff
                     }
 
                     $nextNonEmptyLC = \strtolower($tokens[$nextNonEmpty]['content']);
+                    /*
+                     * Suppress false-positive detections for "as", "or", "and" and "xor".
+                     */
+                    if (\in_array($nextNonEmptyLC, ['as', 'or', 'and', 'xor'])) {
+                        $this->processString($phpcsFile, $stackPtr);
+                        return;
+                    }
                     if (isset($this->invalidNames[$nextNonEmptyLC])) {
                         $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
 
