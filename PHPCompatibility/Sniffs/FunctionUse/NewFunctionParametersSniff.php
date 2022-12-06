@@ -53,7 +53,7 @@ class NewFunctionParametersSniff extends Sniff
             ],
         ],
         'array_slice' => [
-            2 => [
+            4 => [
                 'name'  => 'preserve_keys',
                 '5.0.1' => false,
                 '5.0.2' => true,
