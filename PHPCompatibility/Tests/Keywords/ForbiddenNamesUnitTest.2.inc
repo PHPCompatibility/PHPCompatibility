@@ -42,6 +42,12 @@ interface Bar extends Yield {}
 
 $anon = new class extends Clone {};
 
+// Issue #1434: ensure there are no false positives when `enum` is tokenized a T_STRING and handled via the special casing.
+class EnumSpecialCasingTest extends Enum implements Enum
+{
+    public function bar(\Enum $obj1, Enum $obj2, $static = parent::Enum) {}
+}
+
 // Live coding/parse error.
 // This has to be the last test in the file.
 // Testing T_STRING without anything after it.

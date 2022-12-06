@@ -355,3 +355,25 @@ function readonly() {}
 class ReadonlyFoo {
     public function readonly() {}
 }
+
+// Issue #1434: ensure there are no false positives when `enum` is tokenized a T_STRING and handled via the special casing.
+use My\Enum\Switch;
+use function enum;
+use const ENUM;
+
+class EnumSpecialCasingTest
+{
+    use Enum {
+        enum as public;
+        class as final;
+    }
+
+    public function methodName()
+    {
+        foreach (self::ENUM as $key => $value) {}
+
+        self::ENUM or \true;
+        self::ENUM and \true;
+        self::ENUM xor \false;
+    }
+}

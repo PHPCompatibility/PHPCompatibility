@@ -286,19 +286,27 @@ class ForbiddenNamesSniff extends Sniff
                  * handle this.
                  */
                 if (\strtolower($tokens[$stackPtr]['content']) === 'enum') {
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+                    if ($tokens[$prevNonEmpty]['code'] === \T_DOUBLE_COLON
+                        || $tokens[$prevNonEmpty]['code'] === \T_EXTENDS
+                        || $tokens[$prevNonEmpty]['code'] === \T_IMPLEMENTS
+                    ) {
+                        // Use of a construct named `enum`, not an enum declaration.
+                        return;
+                    }
+
+                    $lastCondition = Conditions::getLastCondition($phpcsFile, $stackPtr);
+                    if ($tokens[$lastCondition]['code'] === \T_USE) {
+                        // Trait use conflict resolution. Ignore.
+                        return;
+                    }
+
                     $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
                     if ($nextNonEmpty === false) {
                         return;
                     }
 
                     $nextNonEmptyLC = \strtolower($tokens[$nextNonEmpty]['content']);
-                    /*
-                     * Suppress false-positive detections for "as", "or", "and" and "xor".
-                     */
-                    if (\in_array($nextNonEmptyLC, ['as', 'or', 'and', 'xor'])) {
-                        $this->processString($phpcsFile, $stackPtr);
-                        return;
-                    }
                     if (isset($this->invalidNames[$nextNonEmptyLC])) {
                         $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
 
@@ -477,6 +485,13 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function processOODeclaration(File $phpcsFile, $stackPtr)
     {
+        $tokens        = $phpcsFile->getTokens();
+        $lastCondition = Conditions::getLastCondition($phpcsFile, $stackPtr);
+        if ($tokens[$lastCondition]['code'] === \T_USE) {
+            // Trait use conflict resolution. Ignore.
+            return;
+        }
+
         $name = ObjectDeclarations::getName($phpcsFile, $stackPtr);
         if (isset($name) === false || $name === '') {
             return;
