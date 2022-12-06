@@ -383,6 +383,11 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
         $this->assertNoViolation($file);
     }
 
+    /**
+     * Test false-positive detection when the class constant "enum" is present.
+     *
+     * @return void
+     */
     public function testNoFalsePositivesConstEnum()
     {
         $file = $this->sniffFile(__DIR__ . \DIRECTORY_SEPARATOR . 'ForbiddenNamesUnitTest.4.inc', '8.1');

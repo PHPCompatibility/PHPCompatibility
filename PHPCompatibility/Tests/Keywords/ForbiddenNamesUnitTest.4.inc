@@ -1,6 +1,7 @@
 <?php
 
-final class Bongo {
+final class Foo
+{
     public const ENUM = [1, 2, 3, 4, 5];
 
     public static function conga(): void
