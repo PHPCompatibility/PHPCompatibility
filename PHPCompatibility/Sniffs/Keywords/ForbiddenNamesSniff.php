@@ -256,27 +256,27 @@ class ForbiddenNamesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch ($tokens[$stackPtr]['type']) {
-            case 'T_NAMESPACE':
+        switch ($tokens[$stackPtr]['code']) {
+            case \T_NAMESPACE:
                 $this->processNamespaceDeclaration($phpcsFile, $stackPtr);
                 return;
 
-            case 'T_CLASS':
-            case 'T_INTERFACE':
-            case 'T_TRAIT':
-            case 'T_ENUM':
+            case \T_CLASS:
+            case \T_INTERFACE:
+            case \T_TRAIT:
+            case \T_ENUM:
                 $this->processOODeclaration($phpcsFile, $stackPtr);
                 return;
 
-            case 'T_FUNCTION':
+            case \T_FUNCTION:
                 $this->processFunctionDeclaration($phpcsFile, $stackPtr);
                 return;
 
-            case 'T_CONST':
+            case \T_CONST:
                 $this->processConstDeclaration($phpcsFile, $stackPtr);
                 return;
 
-            case 'T_STRING':
+            case \T_STRING:
                 /*
                  * Handle a very specific edge case `enum extends/implements`, where PHP itself does not
                  * correctly tokenize the keyword in PHP 8.1+.
@@ -323,7 +323,7 @@ class ForbiddenNamesSniff extends Sniff
                 $this->processString($phpcsFile, $stackPtr);
                 return;
 
-            case 'T_USE':
+            case \T_USE:
                 $type = UseStatements::getType($phpcsFile, $stackPtr);
 
                 if ($type === 'closure') {
@@ -367,7 +367,7 @@ class ForbiddenNamesSniff extends Sniff
 
                 return;
 
-            case 'T_ANON_CLASS':
+            case \T_ANON_CLASS:
                 /*
                  * Deal with anonymous classes - `class` before a reserved keyword is sometimes
                  * misidentified as `T_ANON_CLASS`.
