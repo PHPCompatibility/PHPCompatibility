@@ -31,32 +31,6 @@ abstract class Sniff implements PHPCS_Sniff
     use TestVersionTrait;
 
     /**
-     * Verify whether a token is within a class scope.
-     *
-     * @since 7.0.3
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the token.
-     * @param bool                        $strict    Whether to strictly check for the T_CLASS
-     *                                               scope or also accept interfaces and
-     *                                               traits as scope.
-     *
-     * @return bool True if within class scope, false otherwise.
-     */
-    public function inClassScope(File $phpcsFile, $stackPtr, $strict = true)
-    {
-        $validScopes = [\T_CLASS, \T_ANON_CLASS];
-
-        if ($strict === false) {
-            $validScopes[] = \T_INTERFACE;
-            $validScopes[] = \T_TRAIT;
-        }
-
-        return $phpcsFile->hasCondition($stackPtr, $validScopes);
-    }
-
-
-    /**
      * Returns the fully qualified class name for a new class instantiation.
      *
      * Returns an empty string if the class name could not be reliably inferred.
