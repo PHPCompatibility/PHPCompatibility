@@ -30,13 +30,13 @@ if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
      *
      * @since 8.0.0
      */
-    spl_autoload_register(function ($class) {
+    spl_autoload_register(function ($className) {
         // Only try & load our own classes.
-        if (stripos($class, 'PHPCompatibility') !== 0) {
+        if (stripos($className, 'PHPCompatibility') !== 0) {
             return;
         }
 
-        $file = realpath(__DIR__) . DIRECTORY_SEPARATOR . strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
+        $file = realpath(__DIR__) . DIRECTORY_SEPARATOR . strtr($className, '\\', DIRECTORY_SEPARATOR) . '.php';
 
         if (file_exists($file)) {
             include_once $file;

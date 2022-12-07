@@ -30,17 +30,17 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewIconvMbstringCharsetDefault
      *
-     * @param int    $line      Line number where the error should occur.
-     * @param string $function  The name of the function called.
-     * @param string $paramName The name of parameter which is missing.
-     *                          Defaults to `$encoding`.
+     * @param int    $line         Line number where the error should occur.
+     * @param string $functionName The name of the function called.
+     * @param string $paramName    The name of parameter which is missing.
+     *                             Defaults to `$encoding`.
      *
      * @return void
      */
-    public function testNewIconvMbstringCharsetDefault($line, $function, $paramName = '$encoding')
+    public function testNewIconvMbstringCharsetDefault($line, $functionName, $paramName = '$encoding')
     {
         $file  = $this->sniffFile(__FILE__, '5.4-7.0');
-        $error = "The default value of the {$paramName} parameter for {$function}() was changed from ISO-8859-1 to UTF-8 in PHP 5.6";
+        $error = "The default value of the {$paramName} parameter for {$functionName}() was changed from ISO-8859-1 to UTF-8 in PHP 5.6";
 
         $this->assertError($file, $line, $error);
     }
