@@ -56,8 +56,8 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint against parse errors
         if: ${{ matrix.php != '5.4' && startsWith( matrix.php, '8' ) == false }}
@@ -150,8 +150,8 @@ jobs:
         if: ${{ matrix.php < 8.2 }}
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies - with ignore platform
@@ -159,7 +159,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-req=php
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Run the unit tests
         run: vendor/bin/phpunit --no-coverage
@@ -232,8 +232,8 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Grab PHPUnit version
         id: phpunit_version
