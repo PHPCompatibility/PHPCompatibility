@@ -269,7 +269,7 @@ class RemovedExtensionsSniff extends Sniff
         }
 
         if ($tokens[$previous]['code'] === \T_DOUBLE_COLON) {
-            // We are calling a method of an object.
+            // We are calling a static class function.
             return;
         }
 
