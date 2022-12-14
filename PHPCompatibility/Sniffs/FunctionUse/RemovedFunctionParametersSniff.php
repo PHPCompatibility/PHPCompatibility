@@ -36,7 +36,7 @@ class RemovedFunctionParametersSniff extends Sniff
      * A list of removed function parameters, which were present in older versions.
      *
      * The array lists : version number with false (deprecated) and true (removed).
-     * The index is the location of the parameter in the parameter list, starting at 0 !
+     * The index is the 1-based parameter position of the parameter in the parameter list.
      * If's sufficient to list the first version where the function parameter was deprecated/removed.
      *
      * The optional `callback` key can be used to pass a method name which should be called for an
@@ -44,115 +44,118 @@ class RemovedFunctionParametersSniff extends Sniff
      * if the notice should be thrown or false otherwise.
      *
      * @since 7.0.0
-     * @since 7.0.2 Visibility changed from `public` to `protected`.
-     * @since 9.3.0 Optional `callback` key.
+     * @since 7.0.2  Visibility changed from `public` to `protected`.
+     * @since 9.3.0  Optional `callback` key.
+     * @since 10.0.0 The parameter offsets were changed from 0-based to 1-based.
      *
      * @var array
      */
     protected $removedFunctionParameters = [
         'curl_version' => [
-            0 => [
+            1 => [
                 'name' => 'age',
                 '7.4'  => false,
                 '8.0'  => true,
             ],
         ],
         'define' => [
-            2 => [
+            3 => [
                 'name' => 'case_insensitive',
                 '7.3'  => false,
                 '8.0'  => true,
             ],
         ],
         'gmmktime' => [
-            6 => [
-                'name' => 'is_dst',
+            7 => [
+                'name' => 'isDST',
                 '5.1'  => false,
                 '7.0'  => true,
             ],
         ],
         'imap_headerinfo' => [
-            4 => [
+            5 => [
                 'name' => 'defaulthost',
                 '8.0'  => true,
             ],
         ],
         /*
-         * For the below three functions, it's actually the 3rd (pos: 2) parameter which has been deprecated.
+         * For the below three functions, it's actually the 3rd parameter which has been deprecated.
          * However with positional arguments, this can only be detected by checking for the "old last" argument.
+         * Note: this function explicitly does NOT support named parameters for the function
+         * signature without this parameter, but that's not the concern of this sniff.
          */
         'imagepolygon' => [
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '8.1'  => false,
             ],
         ],
         'imageopenpolygon' => [
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '8.1'  => false,
             ],
         ],
         'imagefilledpolygon' => [
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '8.1'  => false,
             ],
         ],
         'ldap_first_attribute' => [
-            2 => [
+            3 => [
                 'name'  => 'ber_identifier',
                 '5.2.4' => true,
             ],
         ],
         'ldap_next_attribute' => [
-            2 => [
+            3 => [
                 'name'  => 'ber_identifier',
                 '5.2.4' => true,
             ],
         ],
         'mb_decode_numericentity' => [
-            3 => [
+            4 => [
                 'name' => 'is_hex',
                 '8.0'  => true,
             ],
         ],
         'mktime' => [
-            6 => [
-                'name' => 'is_dst',
+            7 => [
+                'name' => 'isDST',
                 '5.1'  => false,
                 '7.0'  => true,
             ],
         ],
         'mysqli_get_client_info' => [
-            0 => [
+            1 => [
                 'name' => 'mysql',
                 '8.1'  => false,
             ],
         ],
         'odbc_do' => [
-            2 => [
+            3 => [
                 'name' => 'flags',
                 '8.0'  => true,
             ],
         ],
         'odbc_exec' => [
-            2 => [
+            3 => [
                 'name' => 'flags',
                 '8.0'  => true,
             ],
         ],
         'pg_connect' => [
             // These were already deprecated before, but version in which deprecation took place is unclear.
-            2 => [
+            3 => [
                 'name' => 'options',
                 '8.0'  => true,
             ],
-            3 => [
+            4 => [
                 'name' => 'tty',
                 '8.0'  => true,
             ],
-            4 => [
+            5 => [
                 'name' => 'dbname',
                 '8.0'  => true,
             ],
@@ -226,18 +229,18 @@ class RemovedFunctionParametersSniff extends Sniff
             }
         }
 
-        $parameters     = PassedParameters::getParameters($phpcsFile, $stackPtr);
-        $parameterCount = \count($parameters);
-        if ($parameterCount === 0) {
+        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters)) {
             return;
         }
 
         // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis      = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-        $parameterOffsetFound = $parameterCount - 1;
+        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
 
         foreach ($this->removedFunctionParameters[$functionLc] as $offset => $parameterDetails) {
-            if ($offset <= $parameterOffsetFound) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam !== false) {
                 if (isset($parameterDetails['callback']) && \method_exists($this, $parameterDetails['callback'])) {
                     if ($this->{$parameterDetails['callback']}($phpcsFile, $parameters[($offset + 1)]) === false) {
                         continue;

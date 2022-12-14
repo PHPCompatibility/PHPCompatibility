@@ -121,9 +121,9 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
     public function dataDeprecatedRemovedParameter()
     {
         return [
-            ['mktime', 'is_dst', '5.1', '7.0', [8], '5.0'],
-            ['gmmktime', 'is_dst', '5.1', '7.0', [9], '5.0'],
-            ['define', 'case_insensitive', '7.3', '8.0', [15], '7.2'],
+            ['mktime', 'isDST', '5.1', '7.0', [8], '5.0'],
+            ['gmmktime', 'isDST', '5.1', '7.0', [9], '5.0'],
+            ['define', 'case_insensitive', '7.3', '8.0', [15, 44], '7.2'],
 
             ['curl_version', 'age', '7.4', '8.0', [18], '7.3'],
             ['curl_version', 'age', '7.4', '8.0', [19], '7.3'],
@@ -172,7 +172,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
     public function dataDeprecatedParameter()
     {
         return [
-            ['imagepolygon', 'num_points', '8.1', [36], '8.0'],
+            ['imagepolygon', 'num_points', '8.1', [36, 47], '8.0'],
             ['imageopenpolygon', 'num_points', '8.1', [37], '8.0'],
             ['imagefilledpolygon', 'num_points', '8.1', [38], '8.0'],
             ['mysqli_get_client_info', 'mysql', '8.1', [40], '8.0'],
