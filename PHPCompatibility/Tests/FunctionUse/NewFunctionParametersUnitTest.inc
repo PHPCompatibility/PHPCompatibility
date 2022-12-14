@@ -127,3 +127,10 @@ hash($algo, $data, $binary, []);
 hash_file($algo, $filename, $binary, $options);
 hash_init($algo, $flags, $key, MyClass::$options);
 fputcsv($stream, $fields, ",", "\"", "\\", $eol);
+
+// Safeguard support for PHP 8 named parameters.
+ucwords(string : $foo); // OK.
+ucwords(string: $foo, separators: '|'); // Error.
+
+mb_strrpos( $haystack, encoding: 'UTF-8', needle: $needle ); // OK
+mb_strrpos( $haystack, encoding: 'UTF-8', needle: $needle, offset: 2 ); // Error.
