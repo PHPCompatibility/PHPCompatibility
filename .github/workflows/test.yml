@@ -30,10 +30,10 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.1', '8.2']
+        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.1', '8.2', '8.3']
 
     name: "Lint: PHP ${{ matrix.php }}"
-    continue-on-error: ${{ matrix.php == '8.2' }}
+    continue-on-error: ${{ matrix.php == '8.3' }}
 
     steps:
       - name: Checkout code
@@ -56,15 +56,15 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint against parse errors
-        if: ${{ matrix.php != '5.4' && startsWith( matrix.php, '8' ) == false }}
+        if: ${{ matrix.php != '5.4' && matrix.php != '8.2' }}
         run: composer lint
 
       - name: Lint against parse errors
-        if: ${{ matrix.php == '5.4' || startsWith( matrix.php, '8' ) }}
+        if: ${{ matrix.php == '5.4' || matrix.php == '8.2' }}
         run: composer lint -- --checkstyle | cs2pr
 
   #### TEST STAGE ####
@@ -87,7 +87,7 @@ jobs:
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
         phpcs_version: ['3.7.1', 'dev-master']
         experimental: [false]
 
@@ -102,7 +102,7 @@ jobs:
           #  phpcs_version: '4.0.x-dev@dev'
           #  experimental: true
 
-          - php: '8.2' # Nightly.
+          - php: '8.3' # Nightly.
             phpcs_version: 'dev-master'
             experimental: true
 
@@ -147,19 +147,19 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies - normal
-        if: ${{ matrix.php < 8.2 }}
+        if: ${{ matrix.php < 8.3 }}
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies - with ignore platform
-        if: ${{ matrix.php >= 8.2 }}
+        if: ${{ matrix.php >= 8.3 }}
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-req=php
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Run the unit tests
         run: vendor/bin/phpunit --no-coverage
@@ -181,10 +181,10 @@ jobs:
       #   code conditions.
       matrix:
         include:
-          - php: '8.1'
+          - php: '8.2'
             phpcs_version: 'dev-master'
             custom_ini: true
-          - php: '8.1'
+          - php: '8.2'
             phpcs_version: '3.7.1'
 
           - php: '5.4'
@@ -232,8 +232,8 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Grab PHPUnit version
         id: phpunit_version
