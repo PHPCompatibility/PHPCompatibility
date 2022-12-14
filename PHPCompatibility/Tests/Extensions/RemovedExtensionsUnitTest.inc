@@ -58,6 +58,7 @@ mnogosearch;
 function pfpro() {}
 $ok = new Sybase();
 $someObject->ming();
+SomeClass::ming();
 
 // More removed extensions:
 mssql_bind();

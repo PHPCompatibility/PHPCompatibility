@@ -268,6 +268,11 @@ class RemovedExtensionsSniff extends Sniff
             return;
         }
 
+        if ($tokens[$previous]['code'] === \T_DOUBLE_COLON) {
+            // We are calling a method of an object.
+            return;
+        }
+
         $function   = $tokens[$stackPtr]['content'];
         $functionLc = \strtolower($function);
 

@@ -72,7 +72,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             ['ircg', '5.1', [28], '5.0'],
             ['mnogosearch', '5.1', [34], '5.0'],
             ['msql', '5.3', [36], '5.2'],
-            ['mssql', '7.0', [63], '5.6'],
+            ['mssql', '7.0', [64], '5.6'],
             ['ovrimos', '5.1', [44], '5.0'],
             ['pfpro_', '5.1', [46], '5.0'],
             ['sqlite', '5.4', [48], '5.3'],
@@ -126,16 +126,16 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             ['dbx', '5.1', 'pecl/dbx', [12], '5.0'],
             ['dio', '5.1', 'pecl/dio', [14], '5.0'],
             ['fdf', '5.3', 'pecl/fdf', [20], '5.2'],
-            ['ibase', '7.4', 'pecl/ibase', [78], '7.3'],
+            ['ibase', '7.4', 'pecl/ibase', [79], '7.3'],
             ['ingres', '5.1', 'pecl/ingres', [26], '5.0'],
             ['mcve', '5.1', 'pecl/mcve', [30], '5.0'],
             ['ming', '5.3', 'pecl/ming', [32], '5.2'],
             ['ncurses', '5.3', 'pecl/ncurses', [40], '5.2'],
             ['oracle', '5.1', 'oci8 or pdo_oci', [42], '5.0'],
-            ['recode', '7.4', 'iconv or mbstring', [80], '7.3'],
+            ['recode', '7.4', 'iconv or mbstring', [81], '7.3'],
             ['sybase', '5.3', 'sybase_ct', [50], '5.2'],
             ['w32api', '5.1', 'pecl/ffi', [52], '5.0'],
-            ['wddx', '7.4', 'pecl/wddx', [79], '7.3'],
+            ['wddx', '7.4', 'pecl/wddx', [80], '7.3'],
         ];
     }
 
@@ -190,9 +190,9 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
     public function dataDeprecatedRemovedExtensionWithAlternative()
     {
         return [
-            ['ereg', '5.3', '7.0', 'pcre', [65, 76], '5.2'],
+            ['ereg', '5.3', '7.0', 'pcre', [66, 77], '5.2'],
             ['mysql_', '5.5', '7.0', 'mysqli', [38], '5.4'],
-            ['mcrypt', '7.1', '7.2', 'openssl (preferred) or pecl/mcrypt once available', [71], '7.0'],
+            ['mcrypt', '7.1', '7.2', 'openssl (preferred) or pecl/mcrypt once available', [72], '7.0'],
         ];
     }
 
