@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\FunctionUse;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\PassedParameters;
 
 /**
  * Detect missing required function parameters in calls to native PHP functions.
@@ -38,252 +39,255 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
      *
      * The array lists : version number with true (required) and false (optional).
      *
-     * The index is the location of the parameter in the parameter list, starting at 0 !
+     * The index is the 1-based parameter position of the parameter in the parameter list.
      * If's sufficient to list the last version in which the parameter was still required.
      *
      * @since 7.0.3
-     * @since 10.0.0 Parameter renamed from `$functionParameters` to `$targetFunctions` for
-     *               compatibility with the `AbstractFunctionCallParameterSniff` class.
+     * @since 10.0.0 - Parameter renamed from `$functionParameters` to `$targetFunctions` for
+     *                 compatibility with the `AbstractFunctionCallParameterSniff` class.
+     *               - The parameter offsets were changed from 0-based to 1-based.
      *
      * @var array
      */
     protected $targetFunctions = [
         'array_diff_assoc' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff_key' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff_uassoc' => [
             /*
-             * $array2 is actually at position 1, but has another required parameter after it,
+             * $rest is actually at position 2, but has another required parameter after it,
              * so we need to detect on the last parameter.
              */
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff_ukey' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_diff' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_assoc' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_key' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_uassoc' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect_ukey' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_intersect' => [
-            1 => [
-                'name' => 'array2',
+            2 => [
+                'name' => 'arrays',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_merge' => [
-            0 => [
-                'name' => 'array(s) to merge',
+            1 => [
+                'name' => 'arrays',
                 '7.3'  => true,
                 '7.4'  => false,
             ],
         ],
         'array_merge_recursive' => [
-            0 => [
-                'name' => 'array(s) to merge',
+            1 => [
+                'name' => 'arrays',
                 '7.3'  => true,
                 '7.4'  => false,
             ],
         ],
         'array_push' => [
-            1 => [
-                'name' => 'element to push',
+            2 => [
+                'name' => 'values',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'array_udiff_assoc' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_udiff_uassoc' => [
             // Note from array_diff_uassoc applies here too.
-            3 => [
-                'name' => 'array2',
+            4 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_udiff' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_uintersect_assoc' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_uintersect_uassoc' => [
             // Note from array_diff_uassoc applies here too.
-            3 => [
-                'name' => 'array2',
+            4 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_uintersect' => [
             // Note from array_diff_uassoc applies here too.
-            2 => [
-                'name' => 'array2',
+            3 => [
+                'name' => 'rest',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'array_unshift' => [
-            1 => [
-                'name' => 'element to prepend',
+            2 => [
+                'name' => 'values',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'bcscale' => [
-            0 => [
+            1 => [
                 'name' => 'scale',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'fgetcsv' => [
-            1 => [
+            2 => [
                 'name' => 'length',
                 '5.0'  => true,
                 '5.1'  => false,
             ],
         ],
         'ftp_fget' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_fput' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_get' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_nb_fget' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_nb_fput' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_nb_get' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_nb_put' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'ftp_put' => [
-            3 => [
+            4 => [
                 'name' => 'mode',
                 '7.2'  => true,
                 '7.3'  => false,
             ],
         ],
         'getenv' => [
-            0 => [
-                'name' => 'varname',
+            1 => [
+                'name' => 'name',
                 '7.0'  => true,
                 '7.1'  => false,
             ],
         ],
         'imagepolygon' => [
             /*
-             * $num_points is actually at position 2, but has another required parameter after it,
+             * $points is actually at position 3, but has another required parameter after it,
              * so we need to detect on the last parameter.
+             * Note: this function explicitly does NOT support named parameters for the function
+             * signature without this parameter, but that's not the concern of this sniff.
              */
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '7.4'  => true,
                 '8.0'  => false,
@@ -291,7 +295,7 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         ],
         'imageopenpolygon' => [
             // Note from imagepolygon applies here too.
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '7.4'  => true,
                 '8.0'  => false,
@@ -299,35 +303,35 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
         ],
         'imagefilledpolygon' => [
             // Note from imagepolygon applies here too.
-            3 => [
+            4 => [
                 'name' => 'num_points',
                 '7.4'  => true,
                 '8.0'  => false,
             ],
         ],
         'preg_match_all' => [
-            2 => [
+            3 => [
                 'name' => 'matches',
                 '5.3'  => true,
                 '5.4'  => false,
             ],
         ],
         'stream_socket_enable_crypto' => [
-            2 => [
-                'name' => 'crypto_type',
+            3 => [
+                'name' => 'crypto_method',
                 '5.5'  => true,
                 '5.6'  => false,
             ],
         ],
         'xmlwriter_write_element' => [
-            2 => [
+            3 => [
                 'name'  => 'content',
                 '5.2.2' => true,
                 '5.2.3' => false,
             ],
         ],
         'xmlwriter_write_element_ns' => [
-            4 => [
+            5 => [
                 'name'  => 'content',
                 '5.2.2' => true,
                 '5.2.3' => false,
@@ -363,12 +367,12 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $functionLc           = \strtolower($functionName);
-        $parameterCount       = \count($parameters);
-        $parameterOffsetFound = $parameterCount - 1;
+        $functionLc = \strtolower($functionName);
 
         foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
-            if ($offset > $parameterOffsetFound) {
+            $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
+
+            if ($targetParam === false) {
                 $itemInfo = [
                     'name'   => $functionName,
                     'nameLc' => $functionLc,

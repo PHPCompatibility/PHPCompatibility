@@ -77,3 +77,11 @@ array_uintersect($array, $value_compare_func ); // PHP 8.0+.
 // Prevent false positives on namespaced functions.
 \getenv(); // Not OK, global function.
 MyNameSpace\ftp_put( $ftp_stream, $remote_file, $local_file); // OK.
+
+// Safeguard support for PHP 8 named parameters.
+array_diff_uassoc(key_compare_func: $callback, array: $array, rest: ...$arrays); // OK.
+array_diff_uassoc(rest: ...$arrays, key_compare_func: $callback, array: $array, ); // OK.
+array_diff_uassoc(key_compare_func: $callback, array: $array, ); // Error.
+
+ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, mode: $mode, offset: $resumepos ); // OK.
+ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, offset: $resumepos ); // PHP 7.3+
