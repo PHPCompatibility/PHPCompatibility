@@ -22,7 +22,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * PHP version 5.5
  *
- * @link https://www.php.net/manual/en/migration55.incompatible.php#migration55.incompatible.self-parent-static
+ * @link https://php-legacy-docs.zend.com/manual/php5/en/migration55.incompatible#migration55.incompatible.self-parent-static
  *
  * @since 7.1.4
  */
