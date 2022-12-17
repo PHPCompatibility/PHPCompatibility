@@ -475,12 +475,10 @@ abstract class Sniff implements PHPCS_Sniff
             \T_INSTEADOF  => true,
             \T_GOTO       => true,
             \T_AS         => true,
-            \T_PUBLIC     => true,
-            \T_PROTECTED  => true,
-            \T_PRIVATE    => true,
         ];
         $tokensToIgnore += Tokens::$ooScopeTokens;
         $tokensToIgnore += Collections::objectOperators();
+        $tokensToIgnore += Tokens::$scopeModifiers;
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
