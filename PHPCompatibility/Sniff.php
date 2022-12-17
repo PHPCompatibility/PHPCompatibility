@@ -464,29 +464,28 @@ abstract class Sniff implements PHPCS_Sniff
 
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
         $tokensToIgnore = [
-            'T_NAMESPACE'       => true,
-            'T_USE'             => true,
-            'T_CLASS'           => true,
-            'T_TRAIT'           => true,
-            'T_INTERFACE'       => true,
-            'T_EXTENDS'         => true,
-            'T_IMPLEMENTS'      => true,
-            'T_NEW'             => true,
-            'T_FUNCTION'        => true,
-            'T_DOUBLE_COLON'    => true,
-            'T_OBJECT_OPERATOR' => true,
-            'T_INSTANCEOF'      => true,
-            'T_INSTEADOF'       => true,
-            'T_GOTO'            => true,
-            'T_AS'              => true,
-            'T_PUBLIC'          => true,
-            'T_PROTECTED'       => true,
-            'T_PRIVATE'         => true,
+            \T_NAMESPACE       => true,
+            \T_USE             => true,
+            \T_CLASS           => true,
+            \T_TRAIT           => true,
+            \T_INTERFACE       => true,
+            \T_EXTENDS         => true,
+            \T_IMPLEMENTS      => true,
+            \T_NEW             => true,
+            \T_FUNCTION        => true,
+            \T_DOUBLE_COLON    => true,
+            \T_OBJECT_OPERATOR => true,
+            \T_INSTANCEOF      => true,
+            \T_INSTEADOF       => true,
+            \T_GOTO            => true,
+            \T_AS              => true,
+            \T_PUBLIC          => true,
+            \T_PROTECTED       => true,
+            \T_PRIVATE         => true,
         ];
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['type']]) === true
-        ) {
+        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
         }
