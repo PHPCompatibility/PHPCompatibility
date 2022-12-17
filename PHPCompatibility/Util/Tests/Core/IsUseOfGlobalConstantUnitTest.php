@@ -83,6 +83,7 @@ class IsUseOfGlobalConstantUnitTest extends CoreMethodTestFrame
             ['/* test 29 */', false],
             ['/* test 30 */', false],
             ['/* test 31 */', false],
+            ['/* test 32 */', false],
 
             ['/* test A1 */', true],
             ['/* test A2 */', true],

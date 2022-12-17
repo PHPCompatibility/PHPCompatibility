@@ -101,6 +101,9 @@ class MyClass2 {
     }
 }
 
+/* test 32 */
+echo $this?->PHP_VERSION_ID;
+
 /*
  * Make sure that global constants are correctly identified.
  *
