@@ -467,9 +467,6 @@ abstract class Sniff implements PHPCS_Sniff
         $tokensToIgnore  = [
             \T_NAMESPACE  => true,
             \T_USE        => true,
-            \T_CLASS      => true,
-            \T_TRAIT      => true,
-            \T_INTERFACE  => true,
             \T_EXTENDS    => true,
             \T_IMPLEMENTS => true,
             \T_NEW        => true,
@@ -482,6 +479,7 @@ abstract class Sniff implements PHPCS_Sniff
             \T_PROTECTED  => true,
             \T_PRIVATE    => true,
         ];
+        $tokensToIgnore += Tokens::$ooScopeTokens;
         $tokensToIgnore += Collections::objectOperators();
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
