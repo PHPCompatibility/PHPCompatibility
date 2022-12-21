@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Operators;
 
 /**
  * Detect class member access on object instantiation/cloning.
@@ -161,7 +162,9 @@ class NewClassMemberAccessSniff extends Sniff
                 break;
             }
 
-            if ($tokens[$nextNonEmpty]['code'] === \T_OBJECT_OPERATOR) {
+            if ($tokens[$nextNonEmpty]['code'] === \T_OBJECT_OPERATOR
+                || $tokens[$nextNonEmpty]['code'] === \T_NULLSAFE_OBJECT_OPERATOR
+            ) {
                 // No need to walk any further if this is object access.
                 $braces[$nextNonEmpty] = true;
                 break;

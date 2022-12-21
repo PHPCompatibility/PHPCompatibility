@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect function array dereferencing as introduced in PHP 5.4.
@@ -132,7 +133,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
         // Is this T_STRING really a function or method call ?
         $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if ($prevToken !== false
-            && \in_array($tokens[$prevToken]['code'], [\T_DOUBLE_COLON, \T_OBJECT_OPERATOR], true) === false
+            && isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
         ) {
             if ($tokens[$prevToken]['code'] === \T_BITWISE_AND) {
                 // This may be a function declared by reference.

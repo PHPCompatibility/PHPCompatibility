@@ -450,3 +450,6 @@ $test = ini_get('filter.default_options');
 
 ini_set('oci8.old_oci_close_semantics', 0);
 $test = ini_get('oci8.old_oci_close_semantics');
+
+// Prevent false positives on PHP 8.0+ nullsafe method calls.
+$obj?->ini_set('y2k_compliance', 1);

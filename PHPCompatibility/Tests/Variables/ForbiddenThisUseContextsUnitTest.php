@@ -301,6 +301,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
         return [
             [63],
             [67],
+            [68],
             [72],
         ];
     }

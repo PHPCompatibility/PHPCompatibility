@@ -234,6 +234,35 @@ class NewKeywordsUnitTest extends BaseSniffTest
     }
 
     /**
+     * testFinallyNoFalsePositives
+     *
+     * @dataProvider dataFinallyNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testFinallyNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testConstNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataFinallyNoFalsePositives()
+    {
+        return [
+            [125],
+        ];
+    }
+
+    /**
      * testConst
      *
      * @dataProvider dataConst
@@ -387,7 +416,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
          * not be reported.
          */
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 127);
+        $this->assertNoViolation($file, 130);
     }
 
 

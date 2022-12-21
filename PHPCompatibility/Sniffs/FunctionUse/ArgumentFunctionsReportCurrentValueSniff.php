@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
@@ -65,24 +66,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         'T_TRAIT'      => true,
         'T_FUNCTION'   => true,
         'T_CLOSURE'    => true,
-    ];
-
-    /**
-     * List of tokens which when they preceed a T_STRING *within a function* indicate
-     * this is not a call to a PHP native function.
-     *
-     * This list already takes into account that nested scoped structures are being
-     * skipped over, so doesn't check for those again.
-     * Similarly, as constants won't have parentheses, those don't need to be checked
-     * for either.
-     *
-     * @since 9.1.0
-     *
-     * @var array
-     */
-    private $noneFunctionCallIndicators = [
-        \T_DOUBLE_COLON    => true,
-        \T_OBJECT_OPERATOR => true,
     ];
 
     /**
@@ -209,7 +192,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
             $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), null, true);
             if ($prev !== false) {
-                if (isset($this->noneFunctionCallIndicators[$tokens[$prev]['code']])) {
+                if (isset(Collections::objectOperators()[$tokens[$prev]['code']])) {
                     continue;
                 }
 

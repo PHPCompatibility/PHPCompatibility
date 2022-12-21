@@ -62,3 +62,5 @@ class TestKeyword extends StaticAllThings {
         echo $name::$foo;
     }
 }
+
+echo $c?->name::test();

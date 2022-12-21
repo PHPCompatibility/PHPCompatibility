@@ -80,6 +80,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
             [91],
             [96],
             [117, true],
+            [120],
         ];
     }
 

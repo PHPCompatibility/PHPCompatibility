@@ -66,3 +66,7 @@ implode( ( $type === 'a' ? '-' : '|' ), (array) $pieces );
 // Recognize array casts.
 implode( $glue, (array) $object ); // OK.
 implode( (array) $object, $glue ); // Error.
+
+// Prevent false positives on PHP 8.0+ nullsafe method calls.
+$obj?->implode( $pieces, ', ' );
+implode( $obj?->array_map( 'strtolower', $pieces ), $glue ); // Undetermined, same as other params with unrecognized function calls.

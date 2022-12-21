@@ -38,3 +38,6 @@ parse_str(string: $str); // Error.
 
 openssl_seal( $data, $sealed_data, cipher_algo: $cipher_algo, iv: $iv, encrypted_keys: $encrypted_keys, public_key: $public_key, ); // Ok.
 openssl_seal( $data, $sealed_data, iv: $iv, encrypted_keys: $encrypted_keys, public_key: $public_key, ); // Error.
+
+// Prevent false positives on PHP 8.0+ nullsafe method calls.
+$obj?->mktime();

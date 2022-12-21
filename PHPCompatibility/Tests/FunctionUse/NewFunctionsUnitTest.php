@@ -1119,6 +1119,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
     public function dataNoFalsePositives()
     {
         return [
+            [3],
             [4],
             [5],
             [6],

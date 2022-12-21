@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * (Nested) Static property and constant fetches as well as method calls can be applied to
@@ -30,18 +31,6 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class NewNestedStaticAccessSniff extends Sniff
 {
-
-    /**
-     * Access operators.
-     *
-     * @since 10.0.0
-     *
-     * @var array
-     */
-    private $accessOperators = [
-        \T_OBJECT_OPERATOR => true,
-        \T_DOUBLE_COLON    => true,
-    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -122,7 +111,7 @@ class NewNestedStaticAccessSniff extends Sniff
         } while (true);
 
         if ($prevOperator === false
-            || isset($this->accessOperators[$tokens[$prevOperator]['code']]) === false
+            || isset(Collections::objectOperators()[$tokens[$prevOperator]['code']]) === false
         ) {
             return;
         }

@@ -74,7 +74,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      */
     public function testNoFalsePositivesUseAsParameter($line)
     {
-        $file = $this->sniffFile(__FILE__, '5.6');
+        $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertNoViolation($file, $line);
     }
 
@@ -95,7 +95,8 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
             [30],
             [31],
             [32],
-            [35],
+            [33],
+            [36],
         ];
     }
 
@@ -163,6 +164,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
             [48],
             [49],
             [50],
+            [51],
         ];
     }
 

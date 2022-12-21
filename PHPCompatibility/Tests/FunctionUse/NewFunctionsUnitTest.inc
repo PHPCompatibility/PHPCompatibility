@@ -1,8 +1,8 @@
 <?php
-
 // These calls should *not* trigger an error.
 ExampleClass::random_bytes(); // Method, not the native PHP function.
 $myobject->random_bytes(); // Method, not the native PHP function.
+$myobject?->random_bytes(); // Method, not the native PHP function.
 myNamespace\random_bytes(); // Namespaced function, not the native PHP function.
 myNamespace\ExampleClass::random_bytes(); // Namespaced method, not the native PHP function.
 

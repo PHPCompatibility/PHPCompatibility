@@ -33,5 +33,8 @@ function &test() {
 	echo '123';
 }
 
+// Also recognize this with PHP 8.0 nullsafe object operator.
+echo $foo?->bar()[1];
+
 // Don't throw errors during live code review.
 echo test(

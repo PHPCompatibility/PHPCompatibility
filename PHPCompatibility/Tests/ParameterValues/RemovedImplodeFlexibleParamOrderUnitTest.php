@@ -108,6 +108,8 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
         $data[] = [57];
         $data[] = [64];
         $data[] = [67];
+        $data[] = [71];
+        $data[] = [72];
 
         return $data;
     }

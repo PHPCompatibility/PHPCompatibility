@@ -13,6 +13,7 @@ namespace PHPCompatibility;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -53,14 +54,14 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      * List of tokens which when they preceed the $stackPtr indicate that this
      * is not a function call.
      *
+     * {@internal The object operators are added to the array in the register() method.}
+     *
      * @since 8.2.0
      *
      * @var array
      */
     private $ignoreTokens = [
-        \T_DOUBLE_COLON    => true,
-        \T_OBJECT_OPERATOR => true,
-        \T_NEW             => true,
+        \T_NEW => true,
     ];
 
 
@@ -73,6 +74,8 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
      */
     public function register()
     {
+        $this->ignoreTokens += Collections::objectOperators();
+
         // Handle case-insensitivity of function names.
         $this->targetFunctions = \array_change_key_case($this->targetFunctions, \CASE_LOWER);
 
@@ -117,9 +120,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
         if ($this->isMethod === true) {
-            if ($tokens[$prevNonEmpty]['code'] !== \T_DOUBLE_COLON
-                && $tokens[$prevNonEmpty]['code'] !== \T_OBJECT_OPERATOR
-            ) {
+            if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === false) {
                 // Not a call to a PHP method.
                 return;
             }

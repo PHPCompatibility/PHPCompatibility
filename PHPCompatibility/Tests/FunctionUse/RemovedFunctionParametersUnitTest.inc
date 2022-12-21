@@ -45,3 +45,6 @@ define( case_insensitive : true, value : 'foo', constant_name: 'CONSTANT' ); // 
 
 imagepolygon($image, color: $color, points: $points); // OK, well not really as this function sig doesn't support named params, but that's not the concern of this sniff.
 imagepolygon($image, color: $color, points: $points, num_points: $num_points); // Warning.
+
+// Prevent false positives on PHP 8.0+ nullsafe method calls.
+$obj?->define( 'CONSTANT', 'foo', true, ); // OK.

@@ -41,10 +41,7 @@ class NewDirectCallsToCloneSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_DOUBLE_COLON,
-            \T_OBJECT_OPERATOR,
-        ];
+        return Collections::objectOperators();
     }
 
     /**

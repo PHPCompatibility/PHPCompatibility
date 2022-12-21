@@ -115,7 +115,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             ['soap.wsdl_cache', '5.2', [188, 189], '5.1.4', '5.1'],
             ['soap.wsdl_cache_limit', '5.2', [191, 192], '5.1.4', '5.1'],
 
-            ['allow_url_include', '5.2', [7, 8], '5.1'],
+            ['allow_url_include', '5.2', [8, 9], '5.1'],
             ['pcre.backtrack_limit', '5.2', [11, 12], '5.1'],
             ['pcre.recursion_limit', '5.2', [14, 15], '5.1'],
             ['session.cookie_httponly', '5.2', [17, 18], '5.1'],
@@ -347,6 +347,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
             [3],
             [4],
             [5],
+            [6],
         ];
     }
 

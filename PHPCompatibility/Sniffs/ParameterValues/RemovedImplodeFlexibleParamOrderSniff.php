@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -202,9 +203,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
 
                 // Now make sure it's the PHP native function being called.
                 $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), $start, true);
-                if ($tokens[$prevNonEmpty]['code'] === \T_DOUBLE_COLON
-                    || $tokens[$prevNonEmpty]['code'] === \T_OBJECT_OPERATOR
-                ) {
+                if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
                     // Method call, not a call to the PHP native function.
                     continue;
                 }

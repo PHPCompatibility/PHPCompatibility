@@ -132,5 +132,8 @@ echo testClass::another_test(){0};
 echo $foo->bar()->baz()[0]{2};
 echo $foo->bar()->baz(){0}[2];
 
+// No false negative with PHP 8.0 nullsafe object operator and curlies.
+echo $obj?->array_num{1}, PHP_EOL;
+
 /* Live coding. Intentional parse error. This has to be the last test in the file. */
 $a = $b[0] + $c['something']{

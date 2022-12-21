@@ -52,6 +52,7 @@ class NewDirectCallsToCloneUnitTest extends BaseSniffTest
         return [
             [33],
             [34],
+            [35],
         ];
     }
 

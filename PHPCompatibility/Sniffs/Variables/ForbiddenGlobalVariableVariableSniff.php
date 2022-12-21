@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Variables;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
@@ -80,7 +81,8 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
                     $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
 
                     if ($next !== false
-                        && \in_array($tokens[$next]['code'], [\T_OPEN_SQUARE_BRACKET, \T_OBJECT_OPERATOR, \T_DOUBLE_COLON], true) === true
+                        && (isset(Collections::objectOperators()[$tokens[$next]['code']]) === true
+                            || $tokens[$next]['code'] === \T_OPEN_SQUARE_BRACKET)
                     ) {
                         $phpcsFile->addError(
                             'Global with variable variables is not allowed since PHP 7.0. Found %s',
