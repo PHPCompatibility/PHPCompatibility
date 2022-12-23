@@ -12,6 +12,7 @@
 /phpunit.xml.dist export-ignore
 /.github export-ignore
 /bin export-ignore
+/phpunit-bootstrap.php export-ignore
 /PHPCompatibility/Tests export-ignore
 /PHPCompatibility/Util/Tests export-ignore
 
