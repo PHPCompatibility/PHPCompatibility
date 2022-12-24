@@ -27,11 +27,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewTypeDeclaration
+     * Verify that type declarations not supported in certain PHP versions are flagged correctly.
      *
      * @dataProvider dataNewTypeDeclaration
      *
-     * @param string $type              The scalar type.
+     * @param string $type              The declared type.
      * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
      * @param array  $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
@@ -93,11 +93,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidTypeDeclaration
+     * Verify that invalid type declarations are flagged correctly.
      *
      * @dataProvider dataInvalidTypeDeclaration
      *
-     * @param string $type        The scalar type.
+     * @param string $type        The declared type.
      * @param string $alternative Alternative for the invalid type hint.
      * @param int    $line        Line number on which to expect an error.
      *
@@ -128,7 +128,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidSelfTypeDeclaration
+     * Verify that hierarchical type declarations used outside of an OO context are flagged correctly.
      *
      * @dataProvider dataInvalidSelfTypeDeclaration
      *
@@ -163,7 +163,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidSelfTypeDeclaration
+     * Verify that the hierarchical type declaration check does not throw false positives.
      *
      * @dataProvider dataInvalidSelfTypeDeclarationNoFalsePositives
      *
@@ -218,7 +218,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testTypeDeclaration
+     * Verify that all type declarations are flagged when the minimum supported PHP version < 5.0.
      *
      * @dataProvider dataTypeDeclaration
      *
@@ -289,7 +289,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositives
+     * Verify that no false positives are thrown for function declarations without types.
      *
      * @dataProvider dataNoFalsePositives
      *
