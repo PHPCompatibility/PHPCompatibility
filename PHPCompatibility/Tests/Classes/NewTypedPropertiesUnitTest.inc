@@ -89,10 +89,10 @@ $anon = class() {
     // Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
     public ?int|float $unionTypesNullable;
 
-    // Intentional fatal error - null pseudotype is only allowed in union types.
+    // Intentional fatal error in PHP 8.0/8.1 - null pseudotype is only allowed in union types.
     public null $pseudoTypeNull;
 
-    // Intentional fatal error - false pseudotype is only allowed in union types.
+    // Intentional fatal error in PHP 8.0/8.1 - false pseudotype is only allowed in union types.
     public false $pseudoTypeFalse;
 
     // Intentional fatal error - false pseudotype is not allowed in combination with bool, but that's not the concern of the sniff.
