@@ -137,6 +137,15 @@ class NewInterfacesSniff extends Sniff
             '8.0'       => true,
             'extension' => 'dom',
         ],
+
+        'UnitEnum' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
+        'BackedEnum' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
     /**
