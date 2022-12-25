@@ -130,6 +130,8 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['self', '5.6', 122, '8.1'],
             ['parent', '5.6', 123, '8.1'],
             ['static', '7.4', 124, '8.1'],
+
+            ['true', '8.1', 131, '8.2'],
         ];
     }
 

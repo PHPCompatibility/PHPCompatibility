@@ -28,6 +28,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 8.1, the stand-alone `never` type is available.
  * - Since PHP 8.1, intersection types are supported for class/interface names.
  * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
+ * - Since PHP 8.2, the `true` sub-type is available.
  *
  * PHP version 7.0+
  *
@@ -43,6 +44,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/noreturn_type
  * @link https://wiki.php.net/rfc/pure-intersection-types
  * @link https://wiki.php.net/rfc/null-false-standalone-types
+ * @link https://wiki.php.net/rfc/true-type
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -137,6 +139,10 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         'never' => [
             '8.0' => false,
             '8.1' => true,
+        ],
+        'true' => [
+            '8.1' => false,
+            '8.2' => true,
         ],
     ];
 

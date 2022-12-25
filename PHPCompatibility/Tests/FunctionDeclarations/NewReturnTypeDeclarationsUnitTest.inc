@@ -126,3 +126,6 @@ class HierachicalIntersection {
 
 // Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
 function intersectionTypesIllegalTypes(): A&B&A {}
+
+// PHP 8.2 true type.
+function pseudoTypeTrue(): true {}
