@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
@@ -165,13 +164,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        try {
-            $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Most likely a T_STRING which wasn't an arrow function.
-            return;
-        }
-
+        $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($paramNames)) {
             return;
         }
