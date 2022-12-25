@@ -798,6 +798,21 @@ class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'fibers',
         ],
+        'ReflectionEnum' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
+        'ReflectionEnumBackedCase' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
+        'ReflectionEnumUnitCase' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'reflection',
+        ],
         'ReflectionFiber' => [
             '8.0'       => false,
             '8.1'       => true,

@@ -467,3 +467,6 @@ class IntersectionTypes {
 }
 
 $type = new ReflectionIntersectionType();
+$type = new ReflectionEnum();
+$type = new ReflectionEnumBackedCase();
+$type = new ReflectionEnumUnitCase();
