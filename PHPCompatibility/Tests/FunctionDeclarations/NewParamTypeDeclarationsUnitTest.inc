@@ -132,3 +132,23 @@ class ConstructorPropertyPromotionWithTypes {
         mixed $normalParam3,
     ) {}
 }
+
+// PHP 8.1 intersection types.
+function NOTintersectionTypeBitwiseAndInDefault($var = CONSTANT_A & CONSTANT_B) {}
+
+function intersectionTypes(MyClassA&\Package\MyClassB $var) {}
+class IntersectionTypes {
+    public function setIterator(Traversable&\Countable $countableIterator): void {}
+}
+
+// Intentional fatal error - non-class/interface types are not allowed, but that's not the concern of the sniff.
+function intersectionTypesIllegalTypes(int&string $var) {}
+
+// Intentional fatal error - hierarchical types are not allowed, but that's not the concern of the sniff.
+class HierachicalIntersection {
+    function intersectionTypesIllegalTypes(self&\Fully\Qualified\SomeInterface $var) {}
+    function intersectionTypesIllegalTypes(Qualified\SomeInterface&parent $var) {}
+}
+
+// Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
+function intersectionTypesIllegalTypes(A&B&A $var) {}
