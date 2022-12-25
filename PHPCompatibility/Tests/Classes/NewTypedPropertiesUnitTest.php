@@ -26,7 +26,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewTypedProperties
+     * Verify that all type declarations are flagged when the minimum supported PHP version < 7.4.
      *
      * @dataProvider dataNewTypedProperties
      *
@@ -96,7 +96,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidPropertyType
+     * Verify that invalid type declarations are flagged correctly.
      *
      * @dataProvider dataInvalidPropertyType
      *
@@ -135,7 +135,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewTypedPropertyTypes
      *
-     * @param string $type              The declaration type.
+     * @param string $type              The declared type.
      * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
      * @param array  $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
