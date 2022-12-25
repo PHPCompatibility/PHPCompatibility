@@ -98,6 +98,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [138],
             [139],
             [142],
+            [147],
         ];
     }
 
@@ -221,6 +222,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             ['false', '7.4', 96, '8.0', false],
             ['false', '7.4', 99, '8.0'],
             ['mixed', '7.4', 116, '8.0', false],
+            ['true', '8.1', 147, '8.2'],
         ];
     }
 

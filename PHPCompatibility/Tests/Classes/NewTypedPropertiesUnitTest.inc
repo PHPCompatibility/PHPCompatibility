@@ -141,3 +141,8 @@ class IntersectionTypes() {
     // Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
     public A&B&A $duplicateIntersection;
 }
+
+// PHP 8.2 true type.
+class TrueType() {
+    public true $true = true;
+}
