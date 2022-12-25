@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
@@ -147,13 +146,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        try {
-            $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // This must have been a T_STRING which wasn't an arrow function.
-            return;
-        }
-
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         if ($properties['return_type'] === '') {
             // No return type found.
             return;
