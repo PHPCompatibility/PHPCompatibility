@@ -351,7 +351,10 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
     public function testInvalidNonUnionNullFalseType($line, $type)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type in PHP 8.1 or earlier");
+
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
