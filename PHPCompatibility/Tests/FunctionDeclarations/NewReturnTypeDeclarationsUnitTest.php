@@ -27,7 +27,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testReturnType
+     * Verify that type declarations not supported in certain PHP versions are flagged correctly.
      *
      * @dataProvider dataReturnType
      *
@@ -92,7 +92,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositives
+     * Verify that no false positives are thrown for function declarations without types.
      *
      * @dataProvider dataNoFalsePositives
      *
