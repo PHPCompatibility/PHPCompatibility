@@ -34,6 +34,7 @@ use PHPCSUtils\Utils\Scopes;
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  * - Since PHP 8.1, intersection types are supported for class/interface names.
  * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
+ * - Since PHP 8.2, the `true` sub-type is available.
  *
  * Additionally, this sniff does a cursory check for typical invalid type declarations,
  * such as:
@@ -52,6 +53,7 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/union_types_v2
  * @link https://wiki.php.net/rfc/pure-intersection-types
  * @link https://wiki.php.net/rfc/null-false-standalone-types
+ * @link https://wiki.php.net/rfc/true-type
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -127,6 +129,10 @@ class NewParamTypeDeclarationsSniff extends Sniff
         'null' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+        'true' => [
+            '8.1' => false,
+            '8.2' => true,
         ],
     ];
 

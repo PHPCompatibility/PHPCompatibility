@@ -129,6 +129,8 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['string', '5.6', 145, '8.1'],
             ['self', '5.1', 149, '8.1'],
             ['parent', '5.1', 150, '8.1'],
+
+            ['true', '8.1', 157, '8.2'],
         ];
     }
 
