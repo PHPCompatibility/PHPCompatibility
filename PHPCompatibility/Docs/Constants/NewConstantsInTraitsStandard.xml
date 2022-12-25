@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Constants In Traits"
+    >
+    <standard>
+    <![CDATA[
+    Declaring constants in traits is allowed since PHP 8.2.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: trait without constants.">
+        <![CDATA[
+trait Foo {
+    public $prop = 10;
+    protected method() {}
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.2: trait declaring constants.">
+        <![CDATA[
+trait Foo {
+    <em>protected const FLAG_ON = true;</em>
+    <em>final public const FLAG_OFF = false;</em>
+
+    public $prop = 10;
+    protected method() {}
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
