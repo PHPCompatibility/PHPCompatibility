@@ -27,7 +27,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testReturnType
+     * Verify that type declarations not supported in certain PHP versions are flagged correctly.
      *
      * @dataProvider dataReturnType
      *
@@ -87,12 +87,48 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['static', '7.4', 48, '8.0'],
             ['mixed', '7.4', 53, '8.0'],
             ['mixed', '7.4', 56, '8.0', false],
+
+            // Union types - OK version is 8.0.
+            ['int', '5.6', 59, '8.0'],
+            ['float', '5.6', 59, '8.0'],
+            ['Class name', '5.6', 60, '8.0'],
+            ['Class name', '5.6', 60, '8.0'],
+            ['array', '5.6', 61, '8.0'],
+            ['bool', '5.6', 61, '8.0'],
+            ['callable', '5.6', 61, '8.0'],
+            ['int', '5.6', 61, '8.0'],
+            ['float', '5.6', 61, '8.0'],
+            ['null', '7.4', 61, '8.0'],
+            ['object', '7.1', 61, '8.0'],
+            ['string', '5.6', 61, '8.0'],
+            ['false', '7.4', 64, '8.0'],
+            ['mixed', '7.4', 64, '8.0'],
+            ['self', '5.6', 64, '8.0'],
+            ['parent', '5.6', 64, '8.0'],
+            ['static', '7.4', 64, '8.0'],
+            ['iterable', '7.0', 64, '8.0'],
+            ['Class name', '5.6', 64, '8.0'],
+            ['void', '7.0', 64, '8.0'],
+            ['int', '5.6', 67, '8.0'],
+            ['float', '5.6', 67, '8.0'],
+            ['null', '7.4', 70, '8.0', false],
+            ['false', '7.4', 73, '8.0', false],
+            ['bool', '5.6', 76, '8.0'],
+            ['false', '7.4', 76, '8.0'],
+            ['object', '7.1', 79, '8.0'],
+            ['Class name', '5.6', 79, '8.0'],
+            ['iterable', '7.0', 83, '8.0'],
+            ['array', '5.6', 83, '8.0'],
+            ['Class name', '5.6', 83, '8.0'],
+            ['int', '5.6', 87, '8.0'],
+            ['string', '5.6', 87, '8.0'],
+            ['int', '5.6', 87, '8.0'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify that no false positives are thrown for function declarations without types.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -144,6 +180,116 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file, 53);
+    }
+
+
+    /**
+     * Verify that an error is thrown for union types.
+     *
+     * @dataProvider dataNewUnionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewUnionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Union types are not present in PHP version 7.4 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.0');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypes()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypes()
+    {
+        return [
+            ['int|float', 59],
+            ['MyClassA|\Package\MyClassB', 60],
+            ['array|bool|callable|int|float|null|Object|string', 61],
+            ['false|MIXED|self|parent|static|iterable|Resource|void', 64],
+            ['?int|float', 67],
+            ['bool|false', 76],
+            ['object|ClassName', 79],
+            ['iterable|array|Traversable', 83],
+            ['int|string|INT', 87],
+        ];
+    }
+
+
+    /**
+     * Verify an error is thrown when `false` or `null` is used while not a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseType
+     *
+     * @param int    $line Line number on which to expect an error.
+     * @param string $type The invalid type which should be expected.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseType($line, $type)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseType()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseType()
+    {
+        return [
+            [70, 'null'],
+            [73, 'false'],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when `false` or `null` is used within a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseTypeNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseTypeNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseTypeNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    {
+        return [
+            [61],
+            [64],
+            [76],
+        ];
     }
 
 

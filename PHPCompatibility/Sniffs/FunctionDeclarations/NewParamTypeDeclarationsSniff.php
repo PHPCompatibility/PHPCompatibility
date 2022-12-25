@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
@@ -32,6 +31,7 @@ use PHPCSUtils\Utils\Scopes;
  * - Since PHP 7.1, the `iterable` pseudo-type is available.
  * - Since PHP 7.2, the generic `object` type is available.
  * - Since PHP 8.0, the `mixed` pseudo-type is available.
+ * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  *
  * Additionally, this sniff does a cursory check for typical invalid type declarations,
  * such as:
@@ -47,6 +47,7 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/iterable
  * @link https://wiki.php.net/rfc/object-typehint
  * @link https://wiki.php.net/rfc/mixed_type_v2
+ * @link https://wiki.php.net/rfc/union_types_v2
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -113,6 +114,16 @@ class NewParamTypeDeclarationsSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        // Union type only.
+        'false' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        // Union type only.
+        'null' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
     ];
 
     /**
@@ -128,6 +139,18 @@ class NewParamTypeDeclarationsSniff extends Sniff
         'static'  => 'self',
         'boolean' => 'bool',
         'integer' => 'int',
+    ];
+
+    /**
+     * Types which are only allowed to occur in union types.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    protected $unionOnlyTypes = [
+        'false' => true,
+        'null'  => true,
     ];
 
 
@@ -165,18 +188,13 @@ class NewParamTypeDeclarationsSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // Get all parameters from method signature.
-        try {
-            $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Most likely a T_STRING which wasn't an arrow function.
-            return;
-        }
-
+        $paramNames = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
         if (empty($paramNames)) {
             return;
         }
 
         $supportsPHP4 = $this->supportsBelow('4.4');
+        $supportsPHP7 = $this->supportsBelow('7.4');
         $tokens       = $phpcsFile->getTokens();
 
         foreach ($paramNames as $param) {
@@ -184,61 +202,90 @@ class NewParamTypeDeclarationsSniff extends Sniff
                 continue;
             }
 
-            // Strip off potential nullable indication.
-            $typeHint = \ltrim($param['type_hint'], '?');
-            $typeHint = \strtolower($typeHint);
-
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
                     'Type declarations were not present in PHP 4.4 or earlier.',
                     $param['token'],
                     'TypeHintFound'
                 );
-            } elseif (isset($this->newTypes[$typeHint])) {
-                $itemInfo = [
-                    'name' => $typeHint,
-                ];
-                $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
+                continue;
+            }
 
-                // As of PHP 7.0, using `self` or `parent` outside class scope throws a fatal error.
-                // Only throw this error for PHP 5.2+ as before that the "type hint not supported" error
-                // will be thrown.
-                if (($typeHint === 'self' || $typeHint === 'parent')
-                    && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
-                        || ($tokens[$stackPtr]['code'] === \T_FUNCTION
-                        && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
-                    && $this->supportsBelow('5.1') === false
-                ) {
-                    $phpcsFile->addError(
-                        "'%s' type cannot be used outside of class scope",
-                        $param['token'],
-                        \ucfirst($typeHint) . 'OutsideClassScopeFound',
-                        [$typeHint]
-                    );
+            // Strip off potential nullable indication.
+            $typeHint    = \ltrim($param['type_hint'], '?');
+            $typeHint    = \strtolower($typeHint);
+            $types       = \explode('|', $typeHint);
+            $isUnionType = (\strpos($typeHint, '|') !== false);
+
+            if ($supportsPHP7 === true && $isUnionType === true) {
+                $phpcsFile->addError(
+                    'Union types are not present in PHP version 7.4 or earlier. Found: %s',
+                    $param['token'],
+                    'UnionTypeFound',
+                    [$param['type_hint']]
+                );
+            }
+
+            foreach ($types as $type) {
+                if (isset($this->newTypes[$type])) {
+                    $itemInfo = [
+                        'name' => $type,
+                    ];
+                    $this->handleFeature($phpcsFile, $param['token'], $itemInfo);
+
+                    // As of PHP 7.0, using `self` or `parent` outside class scope throws a fatal error.
+                    // Only throw this error for PHP 5.2+ as before that the "type hint not supported" error
+                    // will be thrown.
+                    if (($type === 'self' || $type === 'parent')
+                        && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
+                            || ($tokens[$stackPtr]['code'] === \T_FUNCTION
+                            && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
+                        && $this->supportsBelow('5.1') === false
+                    ) {
+                        $phpcsFile->addError(
+                            "'%s' type cannot be used outside of class scope",
+                            $param['token'],
+                            \ucfirst($type) . 'OutsideClassScopeFound',
+                            [$type]
+                        );
+                    }
+
+                    /*
+                     * Nullable mixed type declarations are not allowed, but could have been used prior
+                     * to PHP 8 if the type hint referred to a class named "Mixed".
+                     * Only throw an error if PHP 8+ needs to be supported.
+                     */
+                    if (($type === 'mixed' && $param['nullable_type'] === true)
+                        && $this->supportsAbove('8.0') === true
+                    ) {
+                        $phpcsFile->addError(
+                            'Mixed types cannot be nullable, null is already part of the mixed type',
+                            $param['token'],
+                            'NullableMixed'
+                        );
+                    }
+
+                    if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                        $phpcsFile->addError(
+                            "The '%s' type can only be used as part of a union type",
+                            $param['token'],
+                            'NonUnion' . \ucfirst($type),
+                            [$type]
+                        );
+                    }
+
+                    continue;
                 }
 
-                /*
-                 * Nullable mixed type declarations are not allowed, but could have been used prior
-                 * to PHP 8 if the type hint referred to a class named "Mixed".
-                 * Only throw an error if PHP 8+ needs to be supported.
-                 */
-                if (($typeHint === 'mixed' && $param['nullable_type'] === true)
-                    && $this->supportsAbove('8.0') === true
-                ) {
-                    $phpcsFile->addError(
-                        'Mixed types cannot be nullable, null is already part of the mixed type',
-                        $param['token'],
-                        'NullableMixed'
-                    );
-                }
-            } elseif (isset($this->invalidTypes[$typeHint])) {
-                $error = "'%s' is not a valid type declaration. Did you mean %s ?";
-                $data  = [
-                    $typeHint,
-                    $this->invalidTypes[$typeHint],
-                ];
+                if (isset($this->invalidTypes[$type])) {
+                    $error = "'%s' is not a valid type declaration. Did you mean %s ?";
+                    $data  = [
+                        $type,
+                        $this->invalidTypes[$type],
+                    ];
 
-                $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
+                    $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
+                }
             }
         }
     }

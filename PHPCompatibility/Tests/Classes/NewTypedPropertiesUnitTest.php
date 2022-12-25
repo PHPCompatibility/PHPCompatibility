@@ -26,7 +26,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewTypedProperties
+     * Verify that all type declarations are flagged when the minimum supported PHP version < 7.4.
      *
      * @dataProvider dataNewTypedProperties
      *
@@ -76,6 +76,18 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [66],
             [71],
             [74],
+            [79],
+            [80],
+            [81],
+            [84],
+            [87],
+            [90],
+            [93],
+            [96],
+            [99],
+            [102],
+            [105],
+            [108],
         ];
     }
 
@@ -96,7 +108,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidPropertyType
+     * Verify that invalid type declarations are flagged correctly.
      *
      * @dataProvider dataInvalidPropertyType
      *
@@ -135,7 +147,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNewTypedPropertyTypes
      *
-     * @param string $type              The declaration type.
+     * @param string $type              The declared type.
      * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
      * @param array  $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
@@ -167,6 +179,12 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
         return [
             ['mixed', '7.4', 71, '8.0'],
             ['mixed', '7.4', 74, '8.0', false],
+            ['null', '7.4', 81, '8.0'],
+            ['false', '7.4', 84, '8.0'],
+            ['mixed', '7.4', 84, '8.0'],
+            ['null', '7.4', 93, '8.0', false],
+            ['false', '7.4', 96, '8.0', false],
+            ['false', '7.4', 99, '8.0'],
         ];
     }
 
@@ -192,6 +210,117 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file, 71);
+    }
+
+
+    /**
+     * Verify that an error is thrown for union types.
+     *
+     * @dataProvider dataNewUnionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewUnionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Union types are not present in PHP version 7.4 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.0');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypes()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypes()
+    {
+        return [
+            ['int|float', 79],
+            ['MyClassA|\Package\MyClassB', 80],
+            ['array|bool|int|float|NULL|object|string', 81],
+            ['false|mixed|self|parent|iterable|Resource', 84],
+            ['callable||void', 87, false],
+            ['?int|float', 90],
+            ['bool|FALSE', 99],
+            ['object|ClassName', 102],
+            ['iterable|array|Traversable', 105],
+            ['int|string|INT', 108],
+        ];
+    }
+
+
+    /**
+     * Verify an error is thrown when `false` or `null` is used while not a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseType
+     *
+     * @param int    $line Line number on which to expect an error.
+     * @param string $type The invalid type which should be expected.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseType($line, $type)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseType()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseType()
+    {
+        return [
+            [93, 'null'],
+            [96, 'false'],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when `false` or `null` is used within a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseTypeNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseTypeNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseTypeNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    {
+        return [
+            [81],
+            [84],
+            [99],
+        ];
     }
 
 

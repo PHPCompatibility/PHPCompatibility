@@ -27,11 +27,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewTypeDeclaration
+     * Verify that type declarations not supported in certain PHP versions are flagged correctly.
      *
      * @dataProvider dataNewTypeDeclaration
      *
-     * @param string $type              The scalar type.
+     * @param string $type              The declared type.
      * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
      * @param array  $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
@@ -88,16 +88,46 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['callable', '5.3', 80, '5.4'],
             ['mixed', '7.4', 85, '8.0'],
             ['mixed', '7.4', 88, '8.0', false],
+
+            // Union types - OK version is 8.0.
+            ['int', '5.6', 93, '8.0'],
+            ['float', '5.6', 93, '8.0'],
+            ['int', '5.6', 94, '8.0'],
+            ['float', '5.6', 94, '8.0'],
+            ['array', '5.0', 96, '8.0'],
+            ['bool', '5.6', 96, '8.0'],
+            ['callable', '5.3', 96, '8.0'],
+            ['int', '5.6', 96, '8.0'],
+            ['float', '5.6', 96, '8.0'],
+            ['null', '7.4', 96, '8.0'],
+            ['object', '7.1', 96, '8.0'],
+            ['string', '5.6', 96, '8.0'],
+            ['false', '7.4', 100, '8.0'],
+            ['mixed', '7.4', 100, '8.0'],
+            ['self', '5.1', 100, '8.0'],
+            ['parent', '5.1', 100, '8.0'],
+            ['iterable', '7.0', 100, '8.0'],
+            ['int', '5.6', 104, '8.0'],
+            ['float', '5.6', 104, '8.0'],
+            ['null', '7.4', 107, '8.0', false],
+            ['false', '7.4', 110, '8.0', false],
+            ['bool', '5.6', 113, '8.0'],
+            ['false', '7.4', 113, '8.0'],
+            ['object', '7.1', 116, '8.0'],
+            ['iterable', '7.0', 119, '8.0'],
+            ['array', '5.0', 119, '8.0'],
+            ['int', '5.6', 122, '8.0'], // Expected x2.
+            ['string', '5.6', 122, '8.0'],
         ];
     }
 
 
     /**
-     * testInvalidTypeDeclaration
+     * Verify that invalid type declarations are flagged correctly.
      *
      * @dataProvider dataInvalidTypeDeclaration
      *
-     * @param string $type        The scalar type.
+     * @param string $type        The declared type.
      * @param string $alternative Alternative for the invalid type hint.
      * @param int    $line        Line number on which to expect an error.
      *
@@ -128,7 +158,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidSelfTypeDeclaration
+     * Verify that hierarchical type declarations used outside of an OO context are flagged correctly.
      *
      * @dataProvider dataInvalidSelfTypeDeclaration
      *
@@ -163,7 +193,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testInvalidSelfTypeDeclaration
+     * Verify that the hierarchical type declaration check does not throw false positives.
      *
      * @dataProvider dataInvalidSelfTypeDeclarationNoFalsePositives
      *
@@ -218,7 +248,150 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * testTypeDeclaration
+     * Verify that an error is thrown for union types.
+     *
+     * @dataProvider dataNewUnionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewUnionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, "Union types are not present in PHP version 7.4 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.0');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypes()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypes()
+    {
+        return [
+            ['int|float', 93],
+            ['int|float', 94],
+            ['MyClassA|\Package\MyClassB', 95],
+            ['array|bool|callable|int|float|null|object|string', 96],
+            ['false|mixed|self|parent|iterable|Resource', 100],
+            ['?int|float', 104],
+            ['bool|false', 113],
+            ['object|ClassName', 116],
+            ['iterable|array|Traversable', 119],
+            ['int|string|INT', 122],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when the type is not a union type.
+     *
+     * @dataProvider dataNewUnionTypesNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testNewUnionTypesNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewUnionTypesNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNewUnionTypesNoFalsePositives()
+    {
+        return [
+            [17],
+            [79],
+            [91],
+        ];
+    }
+
+
+    /**
+     * Verify an error is thrown when `false` or `null` is used while not a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseType
+     *
+     * @param int    $line Line number on which to expect an error.
+     * @param string $type The invalid type which should be expected.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseType($line, $type)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseType()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseType()
+    {
+        return [
+            [107, 'null'],
+            [110, 'false'],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when `false` or `null` is used within a union type.
+     *
+     * @dataProvider dataInvalidNonUnionNullFalseTypeNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidNonUnionNullFalseTypeNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidNonUnionNullFalseTypeNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    {
+        return [
+            [96],
+            [99],
+            [113],
+        ];
+    }
+
+
+    /**
+     * Verify that all type declarations are flagged when the minimum supported PHP version < 5.0.
      *
      * @dataProvider dataTypeDeclaration
      *
@@ -284,12 +457,24 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [81],
             [85],
             [88],
+            [93],
+            [94],
+            [95],
+            [96],
+            [100],
+            [104],
+            [107],
+            [110],
+            [113],
+            [116],
+            [119],
+            [122],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify that no false positives are thrown for function declarations without types.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -316,6 +501,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [48],
             [49],
             [82],
+            [91],
         ];
     }
 

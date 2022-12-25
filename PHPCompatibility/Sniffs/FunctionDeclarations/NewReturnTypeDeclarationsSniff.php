@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
@@ -25,6 +24,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 7.2, the generic `object` type is available.
  * - Since PHP 8.0, `static` is allowed to be used as a return type.
  * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
+ * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  *
  * PHP version 7.0+
  *
@@ -36,6 +36,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/object-typehint
  * @link https://wiki.php.net/rfc/static_return_type
  * @link https://wiki.php.net/rfc/mixed_type_v2
+ * @link https://wiki.php.net/rfc/union_types_v2
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -116,6 +117,28 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        // Union type only.
+        'false' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+        // Union type only.
+        'null' => [
+            '7.4' => false,
+            '8.0' => true,
+        ],
+    ];
+
+    /**
+     * Types which are only allowed to occur in union types.
+     *
+     * @since 10.0.0
+     *
+     * @var array
+     */
+    protected $unionOnlyTypes = [
+        'false' => true,
+        'null'  => true,
     ];
 
 
@@ -147,13 +170,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        try {
-            $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // This must have been a T_STRING which wasn't an arrow function.
-            return;
-        }
-
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         if ($properties['return_type'] === '') {
             // No return type found.
             return;
@@ -162,36 +179,58 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $returnType      = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
         $returnType      = \strtolower($returnType);
         $returnTypeToken = $properties['return_type_token'];
+        $types           = \explode('|', $returnType);
+        $isUnionType     = (\strpos($returnType, '|') !== false);
 
-        if (isset($this->newTypes[$returnType]) === true) {
-            $itemInfo = [
-                'name' => $returnType,
-            ];
-            $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
-
-            /*
-             * Nullable mixed type declarations are not allowed, but could have been used prior
-             * to PHP 8 if the type hint referred to a class named "Mixed".
-             * Only throw an error if PHP 8+ needs to be supported.
-             */
-            if (($returnType === 'mixed' && $properties['nullable_return_type'] === true)
-                && $this->supportsAbove('8.0') === true
-            ) {
-                $phpcsFile->addError(
-                    'Mixed types cannot be nullable, null is already part of the mixed type',
-                    $returnTypeToken,
-                    'NullableMixed'
-                );
-            }
-
-            return;
+        if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
+            $phpcsFile->addError(
+                'Union types are not present in PHP version 7.4 or earlier. Found: %s',
+                $returnTypeToken,
+                'UnionTypeFound',
+                [$properties['return_type']]
+            );
         }
 
-        // Handle class name based return types.
-        $itemInfo = [
-            'name' => 'Class name',
-        ];
-        $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
+        foreach ($types as $type) {
+            if (isset($this->newTypes[$type]) === true) {
+                $itemInfo = [
+                    'name' => $type,
+                ];
+                $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
+
+                /*
+                 * Nullable mixed type declarations are not allowed, but could have been used prior
+                 * to PHP 8 if the type hint referred to a class named "Mixed".
+                 * Only throw an error if PHP 8+ needs to be supported.
+                 */
+                if (($type === 'mixed' && $properties['nullable_return_type'] === true)
+                    && $this->supportsAbove('8.0') === true
+                ) {
+                    $phpcsFile->addError(
+                        'Mixed types cannot be nullable, null is already part of the mixed type',
+                        $returnTypeToken,
+                        'NullableMixed'
+                    );
+                }
+
+                if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                    $phpcsFile->addError(
+                        "The '%s' type can only be used as part of a union type",
+                        $returnTypeToken,
+                        'NonUnion' . \ucfirst($type),
+                        [$type]
+                    );
+                }
+
+                continue;
+            }
+
+            // Handle class name based return types.
+            $itemInfo = [
+                'name' => 'Class name',
+            ];
+            $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
+        }
     }
 
 
