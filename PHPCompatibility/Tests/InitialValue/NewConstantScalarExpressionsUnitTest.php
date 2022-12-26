@@ -18,6 +18,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newConstantScalarExpressions
  * @group initialValue
  *
+ * @covers \PHPCompatibility\AbstractInitialValueSniff
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff
  *
  * @since 8.2.0
