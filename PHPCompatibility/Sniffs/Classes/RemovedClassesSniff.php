@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -250,13 +251,6 @@ class RemovedClassesSniff extends Sniff
             case \T_FUNCTION:
             case \T_CLOSURE:
                 $this->processFunctionToken($phpcsFile, $stackPtr);
-
-                // Deal with older PHPCS version which don't recognize return type hints
-                // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
-                $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
-                if ($returnTypeHint !== false) {
-                    $this->processReturnTypeToken($phpcsFile, $returnTypeHint);
-                }
                 break;
 
             case \T_CATCH:
@@ -319,6 +313,7 @@ class RemovedClassesSniff extends Sniff
      * Processes this test for when a function token is encountered.
      *
      * - Detect removed classes when used as a parameter type declaration.
+     * - Detect removed classes when used as a return type declaration.
      *
      * @since 10.0.0
      *
@@ -330,24 +325,66 @@ class RemovedClassesSniff extends Sniff
      */
     private function processFunctionToken(File $phpcsFile, $stackPtr)
     {
-        // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
-        $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
-        if (empty($typeHints) || \is_array($typeHints) === false) {
+        /*
+         * Check parameter type declarations.
+         */
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters) === false && \is_array($parameters) === true) {
+            foreach ($parameters as $param) {
+                if ($param['type_hint'] === '') {
+                    continue;
+                }
+
+                $this->checkTypeDeclaration($phpcsFile, $stackPtr, $param['type_hint']);
+            }
+        }
+
+        /*
+         * Check return type declarations.
+         */
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        if ($properties['return_type'] === '') {
             return;
         }
 
-        foreach ($typeHints as $hint) {
+        $this->checkTypeDeclaration($phpcsFile, $stackPtr, $properties['return_type']);
+    }
 
-            $typeHintLc = \strtolower($hint);
 
-            if (isset($this->removedClasses[$typeHintLc]) === true) {
-                $itemInfo = [
-                    'name'   => $hint,
-                    'nameLc' => $typeHintLc,
-                ];
-                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
-            }
+    /**
+     * Processes a type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile  The file being scanned.
+     * @param int                         $stackPtr   The position of the current token in
+     *                                                the stack passed in $tokens.
+     * @param string                      $typeString The type declaration.
+     *
+     * @return void
+     */
+    private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeString)
+    {
+        // Strip off potential nullable indication.
+        $typeString = \ltrim($typeString, '?');
+
+        // Strip off potential (global) namespace indication.
+        $typeString = \ltrim($typeString, '\\');
+
+        if ($typeString === '') {
+            return;
         }
+
+        $typeStringLc = \strtolower($typeString);
+        if (isset($this->removedClasses[$typeStringLc]) === false) {
+            return;
+        }
+
+        $itemInfo = [
+            'name'   => $typeString,
+            'nameLc' => $typeStringLc,
+        ];
+        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
 
@@ -416,42 +453,6 @@ class RemovedClassesSniff extends Sniff
                 $name = '';
             }
         }
-    }
-
-
-    /**
-     * Processes this test for when a return type token is encountered.
-     *
-     * - Detect removed classes when used as a return type declaration.
-     *
-     * @since 10.0.0
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in
-     *                                               the stack passed in $tokens.
-     *
-     * @return void
-     */
-    private function processReturnTypeToken(File $phpcsFile, $stackPtr)
-    {
-        $returnTypeHint = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
-        if (empty($returnTypeHint)) {
-            return;
-        }
-
-        $returnTypeHint   = \ltrim($returnTypeHint, '\\');
-        $returnTypeHintLc = \strtolower($returnTypeHint);
-
-        if (isset($this->removedClasses[$returnTypeHintLc]) === false) {
-            return;
-        }
-
-        // Still here ? Then this is a return type declaration using a new class.
-        $itemInfo = [
-            'name'   => $returnTypeHint,
-            'nameLc' => $returnTypeHintLc,
-        ];
-        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
 
