@@ -12,7 +12,9 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
@@ -1222,54 +1224,28 @@ class NewClassesSniff extends Sniff
      */
     private function processCatchToken(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Bow out during live coding.
-        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
+        try {
+            $exceptions = ControlStructures::getCaughtExceptions($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Parse error or live coding.
             return;
         }
 
-        $opener = $tokens[$stackPtr]['parenthesis_opener'];
-        $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
-        $name   = '';
-        $listen = [
-            // Parts of a (namespaced) class name.
-            \T_STRING              => true,
-            \T_NS_SEPARATOR        => true,
-            // End/split tokens.
-            \T_VARIABLE            => false,
-            \T_BITWISE_OR          => false,
-            \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
-        ];
+        if (empty($exceptions) === true) {
+            return;
+        }
 
-        for ($i = ($opener + 1); $i < $closer; $i++) {
-            if (isset($listen[$tokens[$i]['code']]) === false) {
-                continue;
-            }
+        foreach ($exceptions as $exception) {
+            // Strip off potential (global) namespace indication.
+            $name   = \ltrim($exception['type'], '\\');
+            $nameLC = \strtolower($name);
 
-            if ($listen[$tokens[$i]['code']] === true) {
-                $name .= $tokens[$i]['content'];
-                continue;
-            } else {
-                if (empty($name) === true) {
-                    // Weird, we should have a name by the time we encounter a variable or |.
-                    // So this may be the closer.
-                    continue;
-                }
-
-                $name   = \ltrim($name, '\\');
-                $nameLC = \strtolower($name);
-
-                if (isset($this->newExceptions[$nameLC]) === true) {
-                    $itemInfo = [
-                        'name'   => $name,
-                        'nameLc' => $nameLC,
-                    ];
-                    $this->handleFeature($phpcsFile, $i, $itemInfo);
-                }
-
-                // Reset for a potential multi-catch.
-                $name = '';
+            if (isset($this->newExceptions[$nameLC]) === true) {
+                $itemInfo = [
+                    'name'   => $name,
+                    'nameLc' => $nameLC,
+                ];
+                $this->handleFeature($phpcsFile, $exception['type_token'], $itemInfo);
             }
         }
     }
