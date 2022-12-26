@@ -8,8 +8,8 @@ $okay = new \myNamespace\SWFAction();
 $okay = \myNamespace\SWFAction::static_method();
 $okay = SomeNamespace\SWFAction::static_method();
 
-new class extends \My\SWFFill {}
-new class extends My\SWFFont {}
+$snon = new class extends \My\SWFFill {};
+new class extends My\SWFFont {};
 
 class MyClass {
     function SWFSoundTypeHint( myNameSpace\SWFSound $a ) {}
