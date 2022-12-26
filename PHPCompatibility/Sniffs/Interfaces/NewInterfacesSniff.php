@@ -373,22 +373,15 @@ class NewInterfacesSniff extends Sniff
         /*
          * Check parameter type declarations.
          */
-        try {
-            $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-
-            if (empty($parameters) === false && \is_array($parameters) === true) {
-                foreach ($parameters as $param) {
-                    if ($param['type_hint'] === '') {
-                        continue;
-                    }
-
-                    $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters) === false && \is_array($parameters) === true) {
+            foreach ($parameters as $param) {
+                if ($param['type_hint'] === '') {
+                    continue;
                 }
+
+                $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
             }
-        } catch (RuntimeException $e) {
-            // This must have been a T_STRING which wasn't an arrow function.
-            // Checking the return type will be futile, so just bow out.
-            return;
         }
 
         /*

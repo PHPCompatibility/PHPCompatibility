@@ -12,7 +12,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
@@ -60,13 +59,8 @@ class ForbiddenParametersWithSameNameSniff extends Sniff
         }
 
         // Get all parameters from method signature.
-        try {
-            $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-            if (empty($parameters)) {
-                return;
-            }
-        } catch (RuntimeException $e) {
-            // Most likely a T_STRING which wasn't an arrow function.
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters)) {
             return;
         }
 
