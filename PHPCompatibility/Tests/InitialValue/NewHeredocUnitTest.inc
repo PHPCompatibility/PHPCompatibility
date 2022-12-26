@@ -147,3 +147,13 @@ enum EnumWithConstant
 Constant in enum example
 FOOBAR;
 }
+
+/*
+ * Test detecting heredoc initial values in PHP 8.2+ constants in traits.
+ */
+trait ConstantsInTraits
+{
+    public const MY_TRAIT_CONST = <<<"FOOBAR"
+Constant in trait example
+FOOBAR;
+}
