@@ -72,6 +72,7 @@ class NewHeredocUnitTest extends BaseSniffTest
             [124, 'default parameter values'],
             [132, 'default parameter values'],
             [136, 'default parameter values'],
+            [146, 'constants'],
         ];
     }
 

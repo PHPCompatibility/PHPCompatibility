@@ -137,3 +137,13 @@ $arrow = fn( $a = <<<FOO
 Something
 FOO
 ) => $a;
+
+/*
+ * Test detecting heredoc initial values in PHP 8.1+ constants in enums.
+ */
+enum EnumWithConstant
+{
+    protected const MY_ENUM_CONST = <<<FOOBAR
+Constant in enum example
+FOOBAR;
+}
