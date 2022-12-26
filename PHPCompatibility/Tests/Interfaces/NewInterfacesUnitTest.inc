@@ -37,32 +37,32 @@ class MyDateTimeInterface implements DateTimeInterface {}
 class MyThrowable implements Throwable {}
 
 class MyClass {
-	// Interfaces as typehints.
-	function CountableTypeHint( Countable $a ) {}
-	function OuterIteratorTypeHint( OuterIterator $a ) {}
-	function RecursiveIteratorTypeHint( RecursiveIterator $a ) {}
-	function SeekableIteratorTypeHint( SeekableIterator $a ) {}
-	function SerializableTypeHint( Serializable $a ) {}
-	function SplObserverTypeHint( SplObserver $a ) {}
-	function SplSubjectTypeHint( SplSubject $a ) {}
-	function JsonSerializableTypeHint( JsonSerializable $a ) {}
-	function SessionHandlerInterfaceTypeHint( SessionHandlerInterface $a ) {}
-	function TraversableTypeHint( Traversable $a ) {}
-	function DateTimeInterfaceTypeHint( DateTimeInterface $a ) {}
-	function ThrowableTypeHint( Throwable $a ) {}
+    // Interfaces as typehints.
+    function CountableTypeHint( Countable $a ) {}
+    function OuterIteratorTypeHint( OuterIterator $a ) {}
+    function RecursiveIteratorTypeHint( RecursiveIterator $a ) {}
+    function SeekableIteratorTypeHint( SeekableIterator $a ) {}
+    function SerializableTypeHint( Serializable $a ) {}
+    function SplObserverTypeHint( SplObserver $a ) {}
+    function SplSubjectTypeHint( SplSubject $a ) {}
+    function JsonSerializableTypeHint( JsonSerializable $a ) {}
+    function SessionHandlerInterfaceTypeHint( SessionHandlerInterface $a ) {}
+    function TraversableTypeHint( Traversable $a ) {}
+    function DateTimeInterfaceTypeHint( DateTimeInterface $a ) {}
+    function ThrowableTypeHint( Throwable $a ) {}
 
-	// Namespaced interfaces as typehints
-	function SerializableTypeHint( \Serializable $a ) {} // Error: global namespace.
-	function SplObserverTypeHint( myNameSpace\SplObserver $a ) {} // Ok.
-	function SplSubjectTypeHint( \some\other\SplSubject $a ) {} // Ok.
+    // Namespaced interfaces as typehints
+    function SerializableTypeHint( \Serializable $a ) {} // Error: global namespace.
+    function SplObserverTypeHint( myNameSpace\SplObserver $a ) {} // Ok.
+    function SplSubjectTypeHint( \some\other\SplSubject $a ) {} // Ok.
 
-	// Interfaces as nullable typehints (PHP 7.1+).
-	function TraversableTypeHint( ?Traversable $a ) {}
-	function DateTimeInterfaceTypeHint( ?\DateTimeInterface $a ) {}
-	function ThrowableTypeHint( ?Throwable $a ) {}
-	
-	// Function with multiple typehinted parameters.
-	function MultipleTypeHints (OuterIterator $a, ?int $b, SplObserver $c, ?\RecursiveIterator $d) {}
+    // Interfaces as nullable typehints (PHP 7.1+).
+    function TraversableTypeHint( ?Traversable $a ) {}
+    function DateTimeInterfaceTypeHint( ?\DateTimeInterface $a ) {}
+    function ThrowableTypeHint( ?Throwable $a ) {}
+
+    // Function with multiple typehinted parameters.
+    function MultipleTypeHints (OuterIterator $a, ?int $b, SplObserver $c, ?\RecursiveIterator $d) {}
 }
 
 // Interfaces in type hints in anonymous functions.
@@ -151,4 +151,13 @@ class UnionTypes {
     public Countable|SplObserver $property;
     public function paramType(OuterIterator|RecursiveIterator $param) {}
     public function returnType($param) : SessionHandlerInterface|JsonSerializable {}
+}
+
+// Test support for PHP 8.1 intersection types.
+class IntersectionTypes {
+    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+
+    public Throwable&SessionUpdateTimestampHandlerInterface $property;
+    public function paramType(SeekableIterator&SplSubject $param) {}
+    public function returnType($param) : Reflector&Traversable {}
 }
