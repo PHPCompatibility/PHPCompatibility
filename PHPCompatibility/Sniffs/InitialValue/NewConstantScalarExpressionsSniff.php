@@ -63,15 +63,6 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         \T_FALSE                    => \T_FALSE,
         \T_NULL                     => \T_NULL,
 
-        \T_LINE                     => \T_LINE,
-        \T_FILE                     => \T_FILE,
-        \T_DIR                      => \T_DIR,
-        \T_FUNC_C                   => \T_FUNC_C,
-        \T_CLASS_C                  => \T_CLASS_C,
-        \T_TRAIT_C                  => \T_TRAIT_C,
-        \T_METHOD_C                 => \T_METHOD_C,
-        \T_NS_C                     => \T_NS_C,
-
         // Special cases:
         \T_NS_SEPARATOR             => \T_NS_SEPARATOR,
         /*
@@ -107,6 +98,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
     public function setProperties()
     {
         $this->safeOperands += Tokens::$heredocTokens;
+        $this->safeOperands += Tokens::$magicConstants;
         $this->safeOperands += Tokens::$emptyTokens;
     }
 
