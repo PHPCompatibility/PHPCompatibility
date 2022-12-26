@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
@@ -224,16 +225,18 @@ class RemovedClassesSniff extends Sniff
         // Add the Exception classes to the Classes list.
         $this->removedClasses = \array_merge($this->removedClasses, $this->removedExceptions);
 
-        return [
+        $targets = [
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
             \T_VARIABLE,
             \T_DOUBLE_COLON,
-            \T_FUNCTION,
-            \T_CLOSURE,
             \T_CATCH,
         ];
+
+        $targets += Collections::functionDeclarationTokens();
+
+        return $targets;
     }
 
 
@@ -253,11 +256,6 @@ class RemovedClassesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case \T_FUNCTION:
-            case \T_CLOSURE:
-                $this->processFunctionToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_VARIABLE:
                 $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
@@ -269,6 +267,10 @@ class RemovedClassesSniff extends Sniff
             default:
                 $this->processSingularToken($phpcsFile, $stackPtr);
                 break;
+        }
+
+        if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processFunctionToken($phpcsFile, $stackPtr);
         }
     }
 

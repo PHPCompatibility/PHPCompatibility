@@ -196,7 +196,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['IntlIterator', '5.4', [352], '5.5'],
             ['UConverter', '5.4', [276], '5.5'],
             ['GMP', '5.5', [281], '5.6'],
-            ['IntlChar', '5.6', [277], '7.0'],
+            ['IntlChar', '5.6', [277, 448], '7.0'],
             ['ReflectionType', '5.6', [308], '7.0'],
             ['ReflectionGenerator', '5.6', [309], '7.0'],
             ['ReflectionClassConstant', '7.0', [306], '7.1'],
@@ -213,7 +213,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['OCILob', '7.4', [425], '8.0'],
             ['Attribute', '7.4', [431, 444], '8.0'],
             ['IntlDatePatternGenerator', '8.0', [433], '8.1'],
-            ['Fiber', '8.0', [435], '8.1'],
+            ['Fiber', '8.0', [435, 449], '8.1'],
             ['ReflectionFiber', '8.0', [436], '8.1'],
             ['CURLStringFile', '8.0', [438], '8.1'],
 

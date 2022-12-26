@@ -79,3 +79,7 @@ public SWFButton $var; // Ignore, not a property, parse error.
 $anon = class() {
     public SQLiteDatabase $property;
 };
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(SWFDisplayItem $param) => $param;
+$fn = fn($param): SWFTextField => $param;

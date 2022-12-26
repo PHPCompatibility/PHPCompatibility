@@ -443,3 +443,7 @@ public WeakMap $var; // Ignore, not a property, parse error.
 $anon = class() {
     public Attribute $property;
 };
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(IntlChar $param) => $param;
+$fn = fn($param): Fiber => $param;

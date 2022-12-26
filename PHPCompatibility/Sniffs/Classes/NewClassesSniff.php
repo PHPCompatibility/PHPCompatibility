@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Variables;
@@ -1043,16 +1044,18 @@ class NewClassesSniff extends Sniff
         // Add the Exception classes to the Classes list.
         $this->newClasses = \array_merge($this->newClasses, $this->newExceptions);
 
-        return [
+        $targets = [
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
             \T_VARIABLE,
             \T_DOUBLE_COLON,
-            \T_FUNCTION,
-            \T_CLOSURE,
             \T_CATCH,
         ];
+
+        $targets += Collections::functionDeclarationTokens();
+
+        return $targets;
     }
 
 
@@ -1072,11 +1075,6 @@ class NewClassesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case \T_FUNCTION:
-            case \T_CLOSURE:
-                $this->processFunctionToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_VARIABLE:
                 $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
@@ -1088,6 +1086,10 @@ class NewClassesSniff extends Sniff
             default:
                 $this->processSingularToken($phpcsFile, $stackPtr);
                 break;
+        }
+
+        if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processFunctionToken($phpcsFile, $stackPtr);
         }
     }
 

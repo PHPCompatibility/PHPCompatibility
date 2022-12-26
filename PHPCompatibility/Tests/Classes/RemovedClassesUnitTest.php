@@ -74,7 +74,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
             ['SWFAction', '5.3', [32, 33, 34, 35], '5.2'],
             ['SWFBitmap', '5.3', [37], '5.2'],
             ['SWFButton', '5.3', [38], '5.2'],
-            ['SWFDisplayItem', '5.3', [39], '5.2'],
+            ['SWFDisplayItem', '5.3', [39, 84], '5.2'],
             ['SWFFill', '5.3', [40], '5.2'],
             ['SWFFont', '5.3', [41], '5.2'],
             ['SWFFontChar', '5.3', [44], '5.2'],
@@ -87,7 +87,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
             ['SWFSoundInstance', '5.3', [51], '5.2'],
             ['SWFSprite', '5.3', [52], '5.2'],
             ['SWFText', '5.3', [55], '5.2'],
-            ['SWFTextField', '5.3', [56], '5.2'],
+            ['SWFTextField', '5.3', [56, 85], '5.2'],
             ['SWFVideoStream', '5.3', [57], '5.2'],
 
             ['SQLiteDatabase', '5.4', [66, 80], '5.3'],
