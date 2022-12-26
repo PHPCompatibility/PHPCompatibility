@@ -69,3 +69,6 @@ function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
 try {} catch (SQLiteException $e) {}
 
 function XmlRpcServerTypeHint(XmlRpcServer $server) {}
+function XmlRpcServerTypeHint(
+    $server
+): XmlRpcServer {}

@@ -95,7 +95,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
             ['SQLiteUnbuffered', '5.4', [68], '5.3'],
             ['SQLiteException', '5.4', [69], '5.3'],
 
-            ['XmlRpcServer', '8.0', [71], '7.4'],
+            ['XmlRpcServer', '8.0', [71, 74], '7.4'],
         ];
     }
 
