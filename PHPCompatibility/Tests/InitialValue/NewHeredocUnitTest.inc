@@ -157,3 +157,11 @@ trait ConstantsInTraits
 Constant in trait example
 FOOBAR;
 }
+
+/*
+ * Safeguard that PHP 7.3+ flexible heredoc initial values are also detected correctly.
+ * IMPORTANT: this must be the last test in the file!
+ */
+static $a = <<<EOD
+            Multi-declaration in static variable.
+            EOD;
