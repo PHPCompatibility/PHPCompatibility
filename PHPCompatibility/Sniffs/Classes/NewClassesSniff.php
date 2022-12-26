@@ -1065,9 +1065,9 @@ class NewClassesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch ($tokens[$stackPtr]['type']) {
-            case 'T_FUNCTION':
-            case 'T_CLOSURE':
+        switch ($tokens[$stackPtr]['code']) {
+            case \T_FUNCTION:
+            case \T_CLOSURE:
                 $this->processFunctionToken($phpcsFile, $stackPtr);
 
                 // Deal with older PHPCS version which don't recognize return type hints
@@ -1078,7 +1078,7 @@ class NewClassesSniff extends Sniff
                 }
                 break;
 
-            case 'T_CATCH':
+            case \T_CATCH:
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
 
@@ -1105,13 +1105,13 @@ class NewClassesSniff extends Sniff
         $tokens      = $phpcsFile->getTokens();
         $FQClassName = '';
 
-        if ($tokens[$stackPtr]['type'] === 'T_NEW') {
+        if ($tokens[$stackPtr]['code'] === \T_NEW) {
             $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
 
-        } elseif ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
+        } elseif ($tokens[$stackPtr]['code'] === \T_CLASS || $tokens[$stackPtr]['code'] === \T_ANON_CLASS) {
             $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
 
-        } elseif ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
+        } elseif ($tokens[$stackPtr]['code'] === \T_DOUBLE_COLON) {
             $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
