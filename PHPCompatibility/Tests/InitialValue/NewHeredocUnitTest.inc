@@ -72,14 +72,14 @@ Constant example
 FOOBAR;
 
 // Nowdoc was only introduced in PHP 5.3 and is sniffed for in a separate sniff.
-$var = <<<'FOOBAR'
+static $var = <<<'FOOBAR'
 Constant example
 FOOBAR;
 
-$array = array( 'key' => <<<FOOBAR
+static $array;
+$array = <<<FOOBAR
 Constant example
-FOOBAR
-);
+FOOBAR;
 
 /*
  * Test handling of multi-declarations.
