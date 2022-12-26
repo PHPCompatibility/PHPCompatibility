@@ -125,3 +125,15 @@ EOD
 This is a function default value.
 EOT
 ) {}
+
+/*
+ * Test detecting heredoc initial values in closure/arrow function declarations.
+ */
+$closure = function($a, $b = <<<FOO
+Something
+FOO
+) {};
+$arrow = fn( $a = <<<FOO
+Something
+FOO
+) => $a;
