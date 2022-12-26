@@ -408,24 +408,31 @@ class RemovedClassesSniff extends Sniff
     {
         // Strip off potential nullable indication.
         $typeString = \ltrim($typeString, '?');
+        $types      = \explode('|', $typeString);
 
-        // Strip off potential (global) namespace indication.
-        $typeString = \ltrim($typeString, '\\');
-
-        if ($typeString === '') {
+        if (empty($types) === true) {
             return;
         }
 
-        $typeStringLc = \strtolower($typeString);
-        if (isset($this->removedClasses[$typeStringLc]) === false) {
-            return;
-        }
+        foreach ($types as $type) {
+            // Strip off potential (global) namespace indication.
+            $type = \ltrim($type, '\\');
 
-        $itemInfo = [
-            'name'   => $typeString,
-            'nameLc' => $typeStringLc,
-        ];
-        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            if ($type === '') {
+                return;
+            }
+
+            $typeLc = \strtolower($type);
+            if (isset($this->removedClasses[$typeLc]) === false) {
+                return;
+            }
+
+            $itemInfo = [
+                'name'   => $type,
+                'nameLc' => $typeLc,
+            ];
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+        }
     }
 
 

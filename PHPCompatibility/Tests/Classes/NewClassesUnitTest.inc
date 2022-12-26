@@ -447,3 +447,12 @@ $anon = class() {
 // Test support for PHP 7.4 arrow functions.
 $fn = fn(IntlChar $param) => $param;
 $fn = fn($param): Fiber => $param;
+
+// Test support for PHP 8.0 union types.
+class UnionTypes {
+    public NotATarget|AlsoNotATarget $okay;
+
+    public ReflectionReference|WeakReference $property;
+    public function paramType(OCICollection|OCILob $param) {}
+    public function returnType($param) : Sqlite3Stmt|SQLite3Result {}
+}

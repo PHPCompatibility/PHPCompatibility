@@ -83,3 +83,12 @@ $anon = class() {
 // Test support for PHP 7.4 arrow functions.
 $fn = fn(SWFDisplayItem $param) => $param;
 $fn = fn($param): SWFTextField => $param;
+
+// Test support for PHP 8.0 union types.
+class UnionTypes {
+    public NotATarget|AlsoNotATarget $okay;
+
+    public HW_API_Content|HW_API_Reason $property;
+    public function paramType(SWFFill|SWFFont $param) {}
+    public function returnType($param) : SQLiteResult|SQLiteUnbuffered {}
+}
