@@ -185,6 +185,14 @@ try {
 } catch (SomeException) {}
 } catch (MyException | Throwable | AnotherException) {}
 
+// Test support for PHP 8.1 enums implementing interfaces.
+enum NoImplements {}
+enum MyPlainEnum implements JsonSerializable {}
+enum MyBackedEnum: string implements NotATarget, Serializable, ArrayAccess {
+    public function __sleep();
+    public function __wakeup();
+}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {

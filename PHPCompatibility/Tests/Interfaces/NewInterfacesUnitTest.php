@@ -70,10 +70,10 @@ class NewInterfacesUnitTest extends BaseSniffTest
             ['OuterIterator', '5.0', [4, 42, 65, 154], '5.1'],
             ['RecursiveIterator', '5.0', [5, 43, 65, 154], '5.1'],
             ['SeekableIterator', '5.0', [6, 17, 28, 44, 163], '5.1'],
-            ['Serializable', '5.0', [7, 29, 45, 55, 70, 119, 125], '5.1'],
+            ['Serializable', '5.0', [7, 29, 45, 55, 70, 119, 125, 191], '5.1'],
             ['SplObserver', '5.0', [11, 46, 65, 153], '5.1'],
             ['SplSubject', '5.0', [12, 17, 47, 69, 163], '5.1'],
-            ['JsonSerializable', '5.3', [13, 48, 134, 135, 155], '5.4'],
+            ['JsonSerializable', '5.3', [13, 48, 134, 135, 155, 190], '5.4'],
             ['SessionHandlerInterface', '5.3', [14, 49, 147, 155], '5.4'],
             ['DateTimeInterface', '5.4', [36, 51, 61, 80], '5.5'],
             ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
@@ -115,6 +115,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [31, '__wakeup'],
             [120, '__sleep'],
             [121, '__wakeup'],
+            [192, '__sleep'],
+            [193, '__wakeup'],
         ];
     }
 
@@ -209,7 +211,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [175],
             [177],
             [185],
-            [191],
+            [189],
+            [199],
         ];
     }
 

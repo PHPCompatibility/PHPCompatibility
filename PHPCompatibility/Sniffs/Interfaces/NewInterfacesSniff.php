@@ -157,13 +157,12 @@ class NewInterfacesSniff extends Sniff
         $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
         $targets = [
-            \T_CLASS,
-            \T_ANON_CLASS,
             \T_INTERFACE,
             \T_VARIABLE,
             \T_CATCH,
         ];
 
+        $targets += Collections::ooCanImplement();
         $targets += Collections::functionDeclarationTokens();
 
         return $targets;
@@ -186,11 +185,6 @@ class NewInterfacesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case \T_CLASS:
-            case \T_ANON_CLASS:
-                $this->processClassToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_INTERFACE:
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
                 break;
@@ -204,6 +198,10 @@ class NewInterfacesSniff extends Sniff
                 break;
         }
 
+        if (isset(Collections::ooCanImplement()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processOOToken($phpcsFile, $stackPtr);
+        }
+
         if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
             $this->processFunctionToken($phpcsFile, $stackPtr);
         }
@@ -213,10 +211,11 @@ class NewInterfacesSniff extends Sniff
     /**
      * Processes this test for when a class token is encountered.
      *
-     * - Detect classes implementing the new interfaces.
-     * - Detect classes implementing the new interfaces with unsupported functions.
+     * - Detect classes and enums implementing the new interfaces.
+     * - Detect classes and enums implementing the new interfaces with unsupported functions.
      *
-     * @since 7.1.4 Split off from the `process()` method.
+     * @since 7.1.4  Split off from the `process()` method.
+     * @since 10.0.0 Renamed from `processClassToken()` to `processOOToken()`.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of the current token in
@@ -224,7 +223,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @return void
      */
-    private function processClassToken(File $phpcsFile, $stackPtr)
+    private function processOOToken(File $phpcsFile, $stackPtr)
     {
         $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
