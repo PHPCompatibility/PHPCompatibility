@@ -72,3 +72,10 @@ function XmlRpcServerTypeHint(XmlRpcServer $server) {}
 function XmlRpcServerTypeHint(
     $server
 ): XmlRpcServer {}
+
+// Test support for PHP 7.4 property types.
+public SWFButton $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public SQLiteDatabase $property;
+};

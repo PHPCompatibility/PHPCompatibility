@@ -211,7 +211,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['ReflectionUnionType', '7.4', [422], '8.0'],
             ['OCICollection', '7.4', [424], '8.0'],
             ['OCILob', '7.4', [425], '8.0'],
-            ['Attribute', '7.4', [431], '8.0'],
+            ['Attribute', '7.4', [431, 444], '8.0'],
             ['IntlDatePatternGenerator', '8.0', [433], '8.1'],
             ['Fiber', '8.0', [435], '8.1'],
             ['ReflectionFiber', '8.0', [436], '8.1'],
@@ -305,6 +305,7 @@ class NewClassesUnitTest extends BaseSniffTest
             [325],
             [326],
             [327],
+            [441],
         ];
     }
 

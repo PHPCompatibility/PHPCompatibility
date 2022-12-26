@@ -436,3 +436,10 @@ try {
 	$reflect = new ReflectionFiber($fiber);
 } catch( FiberError $e ) {}
 $file = new CURLStringFile($data, 'filename.txt', 'text/plain');
+
+// Test support for PHP 7.4 property types.
+public WeakMap $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public Attribute $property;
+};

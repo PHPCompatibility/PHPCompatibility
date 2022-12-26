@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detect use of new PHP native classes.
@@ -26,6 +27,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Static use of class properties, constants or functions using the double colon.
  * - Function/closure declarations to detect new classes used as parameter type declarations.
  * - Function/closure declarations to detect new classes used as return type declarations.
+ * - Property declarations to detect new classes used as property type declarations.
  * - Try/catch statements to detect new exception classes being caught.
  *
  * PHP version All
@@ -1045,6 +1047,7 @@ class NewClassesSniff extends Sniff
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
+            \T_VARIABLE,
             \T_DOUBLE_COLON,
             \T_FUNCTION,
             \T_CLOSURE,
@@ -1072,6 +1075,10 @@ class NewClassesSniff extends Sniff
             case \T_FUNCTION:
             case \T_CLOSURE:
                 $this->processFunctionToken($phpcsFile, $stackPtr);
+                break;
+
+            case \T_VARIABLE:
+                $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
 
             case \T_CATCH:
@@ -1169,6 +1176,36 @@ class NewClassesSniff extends Sniff
         }
 
         $this->checkTypeDeclaration($phpcsFile, $properties['return_type_token'], $properties['return_type']);
+    }
+
+
+    /**
+     * Processes this test for when a variable token is encountered.
+     *
+     * - Detect new classes when used as a property type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processVariableToken(File $phpcsFile, $stackPtr)
+    {
+        try {
+            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Not a class property.
+            return;
+        }
+
+        if ($properties['type'] === '') {
+            return;
+        }
+
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 

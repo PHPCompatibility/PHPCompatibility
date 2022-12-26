@@ -90,7 +90,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
             ['SWFTextField', '5.3', [56], '5.2'],
             ['SWFVideoStream', '5.3', [57], '5.2'],
 
-            ['SQLiteDatabase', '5.4', [66], '5.3'],
+            ['SQLiteDatabase', '5.4', [66, 80], '5.3'],
             ['SQLiteResult', '5.4', [67], '5.3'],
             ['SQLiteUnbuffered', '5.4', [68], '5.3'],
             ['SQLiteException', '5.4', [69], '5.3'],
@@ -129,6 +129,8 @@ class RemovedClassesUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 26; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [77];
 
         return $data;
     }
