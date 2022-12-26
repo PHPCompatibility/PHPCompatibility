@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/function.ob-start.php#refsect1-function.ob-start-changelog
+ * @link https://php-legacy-docs.zend.com/manual/php5/en/function.ob-start#refsect1-function.ob-start-changelog
  *
  * @since 10.0.0
  */
