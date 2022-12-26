@@ -162,6 +162,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             \T_ARRAY,
             \T_OPEN_SHORT_ARRAY,
             \T_CLOSURE,
+            \T_FN,
         ];
 
         $searchStartToken = $parameter['start'] - 1;
@@ -191,11 +192,12 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 continue;
             }
 
-            // Skip past closures passed as function parameters.
-            if ($tokens[$nextVariable]['type'] === 'T_CLOSURE'
+            // Skip past closures and arrow functions passed as function parameters.
+            if (($tokens[$nextVariable]['type'] === 'T_CLOSURE'
+                || $tokens[$nextVariable]['type'] === 'T_FN')
                 && isset($tokens[$nextVariable]['scope_closer'])
             ) {
-                // Skip forward to the end of the closure declaration.
+                // Skip forward to the end of the closure/arrow function declaration.
                 $nextVariable = $tokens[$nextVariable]['scope_closer'];
                 continue;
             }

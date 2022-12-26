@@ -141,6 +141,11 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
             [96],
             [97],
             [99],
+
+            // References in combination with arrow functions.
+            [102],
+            [103],
+            [104],
         ];
     }
 
