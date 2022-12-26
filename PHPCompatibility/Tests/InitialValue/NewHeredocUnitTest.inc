@@ -31,7 +31,7 @@ FOOBAR;
     protected static $baz = <<<FOOBAR
 Property example
 FOOBAR;
-}
+};
 
 // Interface constants - interfaces cannot declare properties.
 interface FooBar
