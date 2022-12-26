@@ -92,3 +92,12 @@ class UnionTypes {
     public function paramType(SWFFill|SWFFont $param) {}
     public function returnType($param) : SQLiteResult|SQLiteUnbuffered {}
 }
+
+// Test support for PHP 8.1 intersection types.
+class IntersectionTypes {
+    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+
+    public SWFMorph&SWFMovie $property;
+    public function paramType(SWFSprite&\SWFText $param) {}
+    public function returnType($param) : HW_API_Object&HW_API_Attribute {}
+}

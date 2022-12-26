@@ -456,3 +456,12 @@ class UnionTypes {
     public function paramType(OCICollection|OCILob $param) {}
     public function returnType($param) : Sqlite3Stmt|SQLite3Result {}
 }
+
+// Test support for PHP 8.1 intersection types.
+class IntersectionTypes {
+    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+
+    public IntlPartsIterator&IntlIterator $property;
+    public function paramType(\ReflectionClassConstant&\ReflectionNamedType $param) {}
+    public function returnType($param) : \FFI\CData&\FFI\CType {}
+}

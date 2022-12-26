@@ -1227,7 +1227,7 @@ class NewClassesSniff extends Sniff
     {
         // Strip off potential nullable indication.
         $typeString = \ltrim($typeString, '?');
-        $types      = \explode('|', $typeString);
+        $types      = \preg_split('`[|&]`', $typeString, -1, \PREG_SPLIT_NO_EMPTY);
 
         if (empty($types) === true) {
             return;
