@@ -307,3 +307,10 @@ class ArrayValue {
  * Test detecting constant scalar expressions as the default parameter value in arrow function declarations.
  */
 $arrow = fn(int $a, int $b = 10 + 20) => $a + $b;
+
+/*
+ * Test detecting constant scalar expressions in PHP 8.1+ constants in enums.
+ */
+enum EnumWithConstant {
+    protected const MY_ENUM_CONST = ONE + self::THREE;
+}
