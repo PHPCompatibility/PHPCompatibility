@@ -314,3 +314,10 @@ $arrow = fn(int $a, int $b = 10 + 20) => $a + $b;
 enum EnumWithConstant {
     protected const MY_ENUM_CONST = ONE + self::THREE;
 }
+
+/*
+ * Test detecting heredoc initial values in PHP 8.2+ constants in traits.
+ */
+trait ConstantsInTraits {
+    public const MY_TRAIT_CONST = (BAR)?10:100);
+}

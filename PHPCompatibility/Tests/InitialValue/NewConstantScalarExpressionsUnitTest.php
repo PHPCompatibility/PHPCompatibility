@@ -181,6 +181,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
             [309, 'default'],
 
             [315, 'const'],
+            [322, 'const'],
         ];
     }
 
