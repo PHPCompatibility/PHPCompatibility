@@ -302,3 +302,8 @@ class ArrayValue {
         10 => __DIR__ . self::FILENAME,
     ];
 }
+
+/*
+ * Test detecting constant scalar expressions as the default parameter value in arrow function declarations.
+ */
+$arrow = fn(int $a, int $b = 10 + 20) => $a + $b;
