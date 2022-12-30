@@ -20,7 +20,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.3.4
  *
- * @link https://www.php.net/manual/en/function.strip-tags.php#refsect1-function.strip-tags-changelog
+ * @link https://php-legacy-docs.zend.com/manual/php5/en/function.strip-tags#refsect1-function.strip-tags-changelog
  *
  * @since 9.3.0
  */
