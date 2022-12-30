@@ -164,3 +164,15 @@ for ($y = 0; $y < 8; $y++) {
        continue 0_1;
    }
 }
+
+// Test recognizing PHP 7.4 arrow functions as forbidden.
+for ($z = 0; $z < 8; $z++) {
+    // Bad: Break/continue with a closure.
+    if ($z == 10) {
+        break (fn () => 1)(); // Bad.
+    }
+
+    if ($z < 11) {
+        continue (fn () => 1)(); // Bad.
+    }
+}

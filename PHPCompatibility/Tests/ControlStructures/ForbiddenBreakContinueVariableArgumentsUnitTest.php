@@ -85,6 +85,8 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
             [141, self::ERROR_TYPE_ZERO],
             [149, self::ERROR_TYPE_ZERO],
             [160, self::ERROR_TYPE_ZERO],
+            [172, self::ERROR_TYPE_VARIABLE],
+            [176, self::ERROR_TYPE_VARIABLE],
         ];
 
         return $data;

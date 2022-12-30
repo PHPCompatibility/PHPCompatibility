@@ -97,3 +97,8 @@ Hooks::run( 'SecondaryDataUpdates', array( $title, $old, $recursive, $parserOutp
 Hooks::run( 'SecondaryDataUpdates', [ $title, $old, $recursive, $parserOutput, &$updates ] );
 // Similar, but live coding, parse error.
 Hooks::run( 'SecondaryDataUpdates', [ $title, $old,
+
+// Treat PHP 7.4 arrow functions same as closures.
+$d = fn ( &$a ) => $a;
+abc(fn ($a, &$b, $c) => array($a,$b,$c));
+abc(fn ($a, $b, $c) => array($a,$b,&$c));

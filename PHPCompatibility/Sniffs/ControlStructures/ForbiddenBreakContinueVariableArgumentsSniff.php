@@ -59,6 +59,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
     private $varArgTokens = [
         \T_VARIABLE => \T_VARIABLE,
         \T_CLOSURE  => \T_CLOSURE,
+        \T_FN       => \T_FN,
     ];
 
     /**
