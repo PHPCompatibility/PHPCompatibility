@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Readonly Classes"
+    >
+    <standard>
+    <![CDATA[
+    Declaring classes as readonly is supported since PHP 8.2.
+
+    Using the `readonly` keyword on a class declaration will make all properties declared in the class readonly and will forbid declaring dynamic properties on the class.
+    Note: static properties or properties without type declaration are not supported.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: class without the readonly keyword.">
+        <![CDATA[
+class MyClass {}
+final class MyFinalClass {}
+abstract class MyAbstractClass {}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.2: class using the readonly keyword.">
+        <![CDATA[
+readonly class MyClass {}
+final readonly class MyFinalClass {}
+readonly abstract class MyAbstractClass {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
