@@ -412,24 +412,31 @@ class NewInterfacesSniff extends Sniff
     {
         // Strip off potential nullable indication.
         $typeHint = \ltrim($typeHint, '?');
+        $types    = \preg_split('`[|&]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
 
-        // Strip off potential (global) namespace indication.
-        $typeHint = \ltrim($typeHint, '\\');
-
-        if ($typeHint === '') {
+        if (empty($types) === true) {
             return;
         }
 
-        $typeHintLc = \strtolower($typeHint);
-        if (isset($this->newInterfaces[$typeHintLc]) === false) {
-            return;
-        }
+        foreach ($types as $type) {
+            // Strip off potential (global) namespace indication.
+            $type = \ltrim($type, '\\');
 
-        $itemInfo = [
-            'name'   => $typeHint,
-            'nameLc' => $typeHintLc,
-        ];
-        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            if ($type === '') {
+                return;
+            }
+
+            $typeLc = \strtolower($type);
+            if (isset($this->newInterfaces[$typeLc]) === false) {
+                return;
+            }
+
+            $itemInfo = [
+                'name'   => $type,
+                'nameLc' => $typeLc,
+            ];
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+        }
     }
 
 
