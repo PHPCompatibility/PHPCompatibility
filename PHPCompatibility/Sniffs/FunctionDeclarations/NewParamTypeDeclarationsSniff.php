@@ -202,6 +202,11 @@ class NewParamTypeDeclarationsSniff extends Sniff
                 continue;
             }
 
+            if (empty($param['property_visibility']) === false) {
+                // Constructor property promotion, these are examined by the NewTypedProperties sniff.
+                continue;
+            }
+
             if ($supportsPHP4 === true) {
                 $phpcsFile->addError(
                     'Type declarations were not present in PHP 4.4 or earlier.',

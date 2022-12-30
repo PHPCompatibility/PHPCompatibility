@@ -120,3 +120,15 @@ function pseudoTypeIterableAndArray(iterable|array|Traversable $var) {}
 
 // Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
 function duplicateTypeInUnion(int|string|INT $var) {}
+
+// PHP 8.0 constructor property promotion. Only the "normal" parameters should be examined.
+class ConstructorPropertyPromotionWithTypes {
+    public function __construct(
+        protected float|int $propertyIgnore1,
+        private mixed $propertyIgnore2,
+        public callable $propertyIgnore3,
+        callable $normalParam1,
+        float|int $normalParam2,
+        mixed $normalParam3,
+    ) {}
+}

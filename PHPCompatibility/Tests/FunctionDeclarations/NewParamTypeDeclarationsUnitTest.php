@@ -118,6 +118,11 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['array', '5.0', 119, '8.0'],
             ['int', '5.6', 122, '8.0'], // Expected x2.
             ['string', '5.6', 122, '8.0'],
+
+            ['callable', '5.3', 130, '5.4'],
+            ['float', '5.6', 131, '8.0'],
+            ['int', '5.6', 131, '8.0'],
+            ['mixed', '7.4', 132, '8.0', false],
         ];
     }
 
@@ -290,6 +295,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['object|ClassName', 116],
             ['iterable|array|Traversable', 119],
             ['int|string|INT', 122],
+            ['float|int', 131],
         ];
     }
 
@@ -469,6 +475,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [116],
             [119],
             [122],
+            [130],
+            [131],
+            [132],
         ];
     }
 
@@ -502,6 +511,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [49],
             [82],
             [91],
+            [127],
+            [128],
+            [129],
         ];
     }
 

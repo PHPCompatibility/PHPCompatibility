@@ -88,6 +88,10 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [102],
             [105],
             [108],
+            [114],
+            [115, true],
+            [116],
+            [117],
         ];
     }
 
@@ -95,17 +99,41 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
     /**
      * Verify the sniff doesn't throw false positives for non-typed properties.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testNoFalsePositivesNewTypedProperties()
+    public function testNoFalsePositivesNewTypedProperties($line)
     {
         $file = $this->sniffFile(__FILE__, '7.3');
-
-        for ($line = 1; $line < 19; $line++) {
-            $this->assertNoViolation($file, $line);
-        }
+        $this->assertNoViolation($file, $line);
     }
 
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $cases = [];
+        // No errors expected on the first 19 lines.
+        for ($line = 1; $line <= 19; $line++) {
+            $cases[] = [$line];
+        }
+
+        // Don't throw errors for normal constructor/function parameters.
+        $cases[] = [118];
+        $cases[] = [119];
+        $cases[] = [123];
+        $cases[] = [127];
+
+        return $cases;
+    }
 
     /**
      * Verify that invalid type declarations are flagged correctly.
@@ -138,6 +166,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [64, 'callable'],
             [65, 'boolean'],
             [66, 'integer'],
+            [117, 'callable'],
         ];
     }
 
@@ -185,6 +214,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             ['null', '7.4', 93, '8.0', false],
             ['false', '7.4', 96, '8.0', false],
             ['false', '7.4', 99, '8.0'],
+            ['mixed', '7.4', 116, '8.0', false],
         ];
     }
 
@@ -256,6 +286,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             ['object|ClassName', 102],
             ['iterable|array|Traversable', 105],
             ['int|string|INT', 108],
+            ['float|int', 114],
         ];
     }
 
