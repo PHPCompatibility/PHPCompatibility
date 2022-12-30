@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
@@ -66,40 +65,35 @@ class NewNullableTypesSniff extends Sniff
             return;
         }
 
-        try {
-            /*
-             * Check parameter type declarations.
-             */
-            $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
-            if (empty($params) === false) {
-                foreach ($params as $param) {
-                    if ($param['nullable_type'] === true) {
-                        $phpcsFile->addError(
-                            'Nullable type declarations are not supported in PHP 7.0 or earlier. Found: %s',
-                            $param['token'],
-                            'typeDeclarationFound',
-                            [$param['type_hint']]
-                        );
-                    }
+        /*
+         * Check parameter type declarations.
+         */
+        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($params) === false) {
+            foreach ($params as $param) {
+                if ($param['nullable_type'] === true) {
+                    $phpcsFile->addError(
+                        'Nullable type declarations are not supported in PHP 7.0 or earlier. Found: %s',
+                        $param['token'],
+                        'typeDeclarationFound',
+                        [$param['type_hint']]
+                    );
                 }
             }
+        }
 
-            /*
-             * Check return type declarations.
-             */
-            $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-            if ($properties['nullable_return_type'] === true) {
-                $nullPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($properties['return_type_token'] - 1), null, true);
-                $phpcsFile->addError(
-                    'Nullable return types are not supported in PHP 7.0 or earlier. Found: %s',
-                    $nullPtr,
-                    'returnTypeFound',
-                    [$properties['return_type']]
-                );
-            }
-        } catch (RuntimeException $e) {
-            // Most likely a T_STRING which wasn't an arrow function.
-            return;
+        /*
+         * Check return type declarations.
+         */
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        if ($properties['nullable_return_type'] === true) {
+            $nullPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($properties['return_type_token'] - 1), null, true);
+            $phpcsFile->addError(
+                'Nullable return types are not supported in PHP 7.0 or earlier. Found: %s',
+                $nullPtr,
+                'returnTypeFound',
+                [$properties['return_type']]
+            );
         }
     }
 }
