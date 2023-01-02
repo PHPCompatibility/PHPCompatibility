@@ -47,8 +47,6 @@
   "suggest" : {
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
-  "minimum-stability": "alpha",
-  "prefer-stable": true,
   "extra": {
     "branch-alias": {
       "dev-master": "9.x-dev",
