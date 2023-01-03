@@ -10,9 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\InitialValue;
 
-use PHPCompatibility\Sniffs\InitialValue\NewConstantScalarExpressionsSniff;
+use PHPCompatibility\AbstractInitialValueSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Utils\MessageHelper;
 
 /**
  * Detect a heredoc being used to set an initial value.
@@ -31,10 +32,12 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc
  *
  * @since 7.1.4
- * @since 8.2.0 Now extends the NewConstantScalarExpressionsSniff instead of the base Sniff class.
- * @since 9.0.0 Renamed from `NewHeredocInitializeSniff` to `NewHeredocSniff`.
+ * @since 8.2.0  Now extends the NewConstantScalarExpressionsSniff instead of the base Sniff class.
+ * @since 9.0.0  Renamed from `NewHeredocInitializeSniff` to `NewHeredocSniff`.
+ * @since 10.0.0 This sniff now extends the `AbstractInitialValueSniff` class instead of the
+ *               `NewConstantScalarExpressionsSniff` class.
  */
-class NewHeredocSniff extends NewConstantScalarExpressionsSniff
+class NewHeredocSniff extends AbstractInitialValueSniff
 {
 
     /**
@@ -44,22 +47,22 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
      *
      * @var string
      */
-    const ERROR_PHRASE = 'Initializing %s using the Heredoc syntax was not supported in PHP 5.2 or earlier';
+    const ERROR_PHRASE = 'Initializing %s using the Heredoc syntax was not supported in PHP 5.2 or earlier. Found: %s';
 
     /**
      * Partial error phrases to be used in combination with the error message constant.
      *
      * @since 8.2.0
+     * @since 10.0.0 Renamed from `$errorPhrases` to `$initialValueTypes`.
      *
      * @var array
      */
-    protected $errorPhrases = [
+    protected $initialValueTypes = [
         'const'     => 'constants',
         'property'  => 'class properties',
         'staticvar' => 'static variables',
         'default'   => 'default parameter values',
     ];
-
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
@@ -73,28 +76,43 @@ class NewHeredocSniff extends NewConstantScalarExpressionsSniff
         return ($this->supportsBelow('5.2') !== true);
     }
 
-
     /**
-     * Is a value declared and does the declared value not contain an heredoc ?
+     * Process a token which has an initial value.
      *
-     * @since 8.2.0
+     * @since 10.0.0
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
-     * @param int                         $end       The end of the value definition.
+     * @param int                         $stackPtr  The position of the variable/constant name token
+     *                                               in the stack passed in $tokens.
+     * @param int                         $start     The stackPtr to the start of the initial value.
+     * @param int                         $end       The stackPtr to the end of the initial value.
+     *                                               This will normally be a comma or semi-colon.
+     * @param string                      $type      The "type" of initial value declaration being examined.
+     *                                               The type will match one of the keys in the
+     *                                               `AbstractInitialValueSniff::$initialValueTypes` property.
      *
-     * @return bool True if no heredoc (or assignment) is found, false otherwise.
+     * @return void
      */
-    protected function isValidAssignment(File $phpcsFile, $stackPtr, $end)
+    protected function processInitialValue(File $phpcsFile, $stackPtr, $start, $end, $type)
     {
-        $tokens = $phpcsFile->getTokens();
-        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
-        if ($next === false || $tokens[$next]['code'] !== \T_EQUAL) {
-            // No value assigned.
-            return true;
+        $hasHeredoc = $phpcsFile->findNext(\T_START_HEREDOC, $start, $end);
+        if ($hasHeredoc === false) {
+            // Initial value doesn't contain a heredoc, nothing to do.
+            return;
         }
 
-        return ($phpcsFile->findNext(\T_START_HEREDOC, ($next + 1), $end, false, null, true) === false);
+        $error       = static::ERROR_PHRASE;
+        $errorCode   = 'Found';
+        $phrase      = '';
+        $codeSnippet = \trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $hasHeredoc));
+
+        if (isset($this->initialValueTypes[$type]) === true) {
+            $errorCode = MessageHelper::stringToErrorCode($type) . 'Found';
+            $phrase    = $this->initialValueTypes[$type];
+        }
+
+        $data = [$phrase, $codeSnippet];
+
+        $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
     }
 }

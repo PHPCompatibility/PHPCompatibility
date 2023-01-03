@@ -18,6 +18,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newHeredoc
  * @group initialValue
  *
+ * @covers \PHPCompatibility\AbstractInitialValueSniff
  * @covers \PHPCompatibility\Sniffs\InitialValue\NewHeredocSniff
  *
  * @since 7.1.4
