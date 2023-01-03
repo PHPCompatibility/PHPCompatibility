@@ -25,6 +25,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 8.0, `static` is allowed to be used as a return type.
  * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
+ * - Since PHP 8.1, the stand-alone `never` type is available.
  *
  * PHP version 7.0+
  *
@@ -37,6 +38,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/static_return_type
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
+ * @link https://wiki.php.net/rfc/noreturn_type
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -127,6 +129,11 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        // Subtype of every other type.
+        'never' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
     ];
 
     /**
@@ -139,6 +146,19 @@ class NewReturnTypeDeclarationsSniff extends Sniff
     protected $unionOnlyTypes = [
         'false' => true,
         'null'  => true,
+    ];
+
+    /**
+     * Types which are only allowed to occur as stand-alone.
+     *
+     * @since 10.0.0
+     *
+     * @var array Key: string type name, value: PHP version in which the type was introduced.
+     */
+    protected $standAloneTypes = [
+        'void'  => '7.1',
+        'mixed' => '8.0',
+        'never' => '8.1',
     ];
 
 
@@ -199,17 +219,21 @@ class NewReturnTypeDeclarationsSniff extends Sniff
                 $this->handleFeature($phpcsFile, $returnTypeToken, $itemInfo);
 
                 /*
-                 * Nullable mixed type declarations are not allowed, but could have been used prior
-                 * to PHP 8 if the type hint referred to a class named "Mixed".
-                 * Only throw an error if PHP 8+ needs to be supported.
+                 * Stand-alone types are not allowed to be nullable, nor can they be included in a type union.
+                 * As the names for these types _could_ have referred to a class prior to their introduction
+                 * as a type, we should check for this, but only when the PHP version in which the type
+                 * was introduced needs to be supported.
                  */
-                if (($type === 'mixed' && $properties['nullable_return_type'] === true)
-                    && $this->supportsAbove('8.0') === true
+                if (isset($this->standAloneTypes[$type]) === true
+                    && ($isUnionType === true
+                    || $properties['nullable_return_type'] === true)
+                    && $this->supportsAbove($this->standAloneTypes[$type]) === true
                 ) {
                     $phpcsFile->addError(
-                        'Mixed types cannot be nullable, null is already part of the mixed type',
+                        "The '%s' type can only be used as a standalone type",
                         $returnTypeToken,
-                        'NullableMixed'
+                        'NonStandalone' . \ucfirst($type),
+                        [$type]
                     );
                 }
 

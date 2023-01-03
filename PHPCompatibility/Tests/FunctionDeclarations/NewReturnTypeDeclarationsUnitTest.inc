@@ -60,8 +60,8 @@ function unionTypeSimple($number) : int|float {}
 function unionTypesTwoClasses($var): MyClassA|\Package\MyClassB {}
 function unionTypesAllBaseTypes() : array|bool|callable|int|float|null|Object|string {}
 
-// Intentional fatal error - mixing types which cannot be combined, but that's not the concern of the sniff.
-function unionTypesAllPseudoTypes($var) : false|MIXED|self|parent|static|iterable|Resource|void {}
+// This is fine.
+function unionTypesAllPseudoTypes($var) : false|self|parent|static|iterable|Resource {}
 
 // Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
 $closure = function () use($a) :?int|float {};
@@ -85,3 +85,24 @@ interface FooBar {
 
 // Intentional fatal error - duplicate types are not allowed in union types, but that's not the concern of the sniff.
 function duplicateTypeInUnion(): int|string|INT {}
+
+// PHP 8.1 noreturn type
+function subTypeForAlwaysExitOrThrow(): never {
+	throw new Exception();
+}
+
+$closure = function() : Never {
+	redirect();
+	exit;
+};
+
+// Invalid: nullable or union with void.
+function voidIsStandAloneA($a): ?void {}
+function voidIsStandAloneB($a): int|void {}
+
+// Invalid: nullable or union with mixed.
+function mixedIsStandAloneB($a): int|MIXED {}
+
+// Invalid: nullable or union with never.
+function neverIsStandAloneA($a): ?never {}
+function neverIsStandAloneB($a): int|never {}

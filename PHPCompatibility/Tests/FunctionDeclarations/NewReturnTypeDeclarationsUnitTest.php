@@ -102,13 +102,11 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['object', '7.1', 61, '8.0'],
             ['string', '5.6', 61, '8.0'],
             ['false', '7.4', 64, '8.0'],
-            ['mixed', '7.4', 64, '8.0'],
             ['self', '5.6', 64, '8.0'],
             ['parent', '5.6', 64, '8.0'],
             ['static', '7.4', 64, '8.0'],
             ['iterable', '7.0', 64, '8.0'],
             ['Class name', '5.6', 64, '8.0'],
-            ['void', '7.0', 64, '8.0'],
             ['int', '5.6', 67, '8.0'],
             ['float', '5.6', 67, '8.0'],
             ['null', '7.4', 70, '8.0', false],
@@ -123,6 +121,8 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['int', '5.6', 87, '8.0'],
             ['string', '5.6', 87, '8.0'],
             ['int', '5.6', 87, '8.0'],
+            ['never', '8.0', 90, '8.1'],
+            ['never', '8.0', 94, '8.1'],
         ];
     }
 
@@ -160,14 +160,39 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
 
 
     /**
-     * Verify an error is thrown for nullable mixed types.
+     * Verify an error is thrown for combining stand-alone types with the nullability operator or using them in a union type.
+     *
+     * @dataProvider dataInvalidStandAloneType
+     *
+     * @param string $type        The declared type.
+     * @param array  $line        The line number where the error is expected.
+     * @param bool   $testVersion The PHP version in which the type was first allowed to be used.
      *
      * @return void
      */
-    public function testInvalidNullableMixed()
+    public function testInvalidStandAloneType($type, $line, $testVersion)
     {
-        $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, 56, 'Mixed types cannot be nullable, null is already part of the mixed type');
+        $file = $this->sniffFile(__FILE__, $testVersion);
+        $this->assertError($file, $line, "The '$type' type can only be used as a standalone type");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidStandAloneType()
+     *
+     * @return array
+     */
+    public function dataInvalidStandAloneType()
+    {
+        return [
+            ['mixed', 56, '8.0'],
+            ['void', 100, '7.1'],
+            ['void', 101, '7.1'],
+            ['mixed', 104, '8.0'],
+            ['never', 107, '8.1'],
+            ['never', 108, '8.1'],
+        ];
     }
 
 
@@ -219,7 +244,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['int|float', 59],
             ['MyClassA|\Package\MyClassB', 60],
             ['array|bool|callable|int|float|null|Object|string', 61],
-            ['false|MIXED|self|parent|static|iterable|Resource|void', 64],
+            ['false|self|parent|static|iterable|Resource', 64],
             ['?int|float', 67],
             ['bool|false', 76],
             ['object|ClassName', 79],
