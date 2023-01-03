@@ -183,21 +183,21 @@ class NewInterfacesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch ($tokens[$stackPtr]['type']) {
-            case 'T_CLASS':
-            case 'T_ANON_CLASS':
+        switch ($tokens[$stackPtr]['code']) {
+            case \T_CLASS:
+            case \T_ANON_CLASS:
                 $this->processClassToken($phpcsFile, $stackPtr);
                 break;
 
-            case 'T_INTERFACE':
+            case \T_INTERFACE:
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
                 break;
 
-            case 'T_VARIABLE':
+            case \T_VARIABLE:
                 $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
 
-            case 'T_CATCH':
+            case \T_CATCH:
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
         }
