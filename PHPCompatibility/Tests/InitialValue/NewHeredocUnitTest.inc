@@ -31,7 +31,7 @@ FOOBAR;
     protected static $baz = <<<FOOBAR
 Property example
 FOOBAR;
-}
+};
 
 // Interface constants - interfaces cannot declare properties.
 interface FooBar
@@ -72,14 +72,14 @@ Constant example
 FOOBAR;
 
 // Nowdoc was only introduced in PHP 5.3 and is sniffed for in a separate sniff.
-$var = <<<'FOOBAR'
+static $var = <<<'FOOBAR'
 Constant example
 FOOBAR;
 
-$array = array( 'key' => <<<FOOBAR
+static $array;
+$array = <<<FOOBAR
 Constant example
-FOOBAR
-);
+FOOBAR;
 
 /*
  * Test handling of multi-declarations.
@@ -125,3 +125,43 @@ EOD
 This is a function default value.
 EOT
 ) {}
+
+/*
+ * Test detecting heredoc initial values in closure/arrow function declarations.
+ */
+$closure = function($a, $b = <<<FOO
+Something
+FOO
+) {};
+$arrow = fn( $a = <<<FOO
+Something
+FOO
+) => $a;
+
+/*
+ * Test detecting heredoc initial values in PHP 8.1+ constants in enums.
+ */
+enum EnumWithConstant
+{
+    protected const MY_ENUM_CONST = <<<FOOBAR
+Constant in enum example
+FOOBAR;
+}
+
+/*
+ * Test detecting heredoc initial values in PHP 8.2+ constants in traits.
+ */
+trait ConstantsInTraits
+{
+    public const MY_TRAIT_CONST = <<<"FOOBAR"
+Constant in trait example
+FOOBAR;
+}
+
+/*
+ * Safeguard that PHP 7.3+ flexible heredoc initial values are also detected correctly.
+ * IMPORTANT: this must be the last test in the file!
+ */
+static $a = <<<EOD
+            Multi-declaration in static variable.
+            EOD;

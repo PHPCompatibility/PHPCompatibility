@@ -51,7 +51,7 @@ class NewHeredocUnitTest extends BaseSniffTest
      */
     public function dataHeredocInitialize()
     {
-        return [
+        $data = [
             [5, 'static variables'],
             [13, 'constants'],
             [19, 'class properties'],
@@ -70,7 +70,17 @@ class NewHeredocUnitTest extends BaseSniffTest
             [115, 'default parameter values'],
             [121, 'default parameter values'],
             [124, 'default parameter values'],
+            [132, 'default parameter values'],
+            [136, 'default parameter values'],
+            [146, 'constants'],
+            [156, 'constants'],
         ];
+
+        if (PHP_VERSION_ID >= 70300) {
+            $data[] = [165, 'static variables'];
+        }
+
+        return $data;
     }
 
 
