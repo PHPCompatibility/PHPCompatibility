@@ -263,3 +263,61 @@ static $var = $a;
 static $callA = function($a) {};
 static $callB = strpos( $a, 'a' );
 static $interpolated = "value with $variable";
+
+// Some tests to cover edge cases, safeguarding against false positives.
+class NotOurTargets {
+    public static $property; // The static here triggers the sniff, but should be ignored in favour of the $property token.
+
+    protected $parseError = 10,
+        $secondProp, // Invalid trailing comma.
+        ;
+
+    // All uses of `static` here should be ignored as "not our target".
+    public static function staticFunction($noDefault) : static {
+        $closure = static function() {}; // Not the `static` this sniff is looking for.
+        $bool = $obj instanceof static;
+    }
+}
+
+/*
+ * These are all still not allowed and/or nonsense code. These should all throw errors for pre-5.6, as these are not static values.
+ * Just testing some defensive coding which is in place.
+ */
+class InvalidNotConstantScalarExpression {
+    const NAME = self || parent; // Nonsensical, but testing some defensive coding.
+    const VARS_NOT_ALLOWED = ClassName::$prop;
+    const STATIC_NOT_ALLOWED = 'ClassName'::CONSTANT_NAME;
+}
+
+// Test expression starting with negative number.
+static $var = -1 + 10;
+
+// Test keyed array with static key and expression in the value part.
+class ArrayValue {
+    private $arrayProp1 = [
+        'key' => 10 + 20,
+    ];
+
+    private $arrayProp2 = [
+        10 => __DIR__ . self::FILENAME,
+    ];
+}
+
+/*
+ * Test detecting constant scalar expressions as the default parameter value in arrow function declarations.
+ */
+$arrow = fn(int $a, int $b = 10 + 20) => $a + $b;
+
+/*
+ * Test detecting constant scalar expressions in PHP 8.1+ constants in enums.
+ */
+enum EnumWithConstant {
+    protected const MY_ENUM_CONST = ONE + self::THREE;
+}
+
+/*
+ * Test detecting heredoc initial values in PHP 8.2+ constants in traits.
+ */
+trait ConstantsInTraits {
+    public const MY_TRAIT_CONST = (BAR)?10:100);
+}

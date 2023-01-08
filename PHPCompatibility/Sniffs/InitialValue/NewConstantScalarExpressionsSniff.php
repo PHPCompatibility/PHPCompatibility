@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 use PHPCompatibility\AbstractInitialValueSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -63,15 +64,6 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         \T_FALSE                    => \T_FALSE,
         \T_NULL                     => \T_NULL,
 
-        \T_LINE                     => \T_LINE,
-        \T_FILE                     => \T_FILE,
-        \T_DIR                      => \T_DIR,
-        \T_FUNC_C                   => \T_FUNC_C,
-        \T_CLASS_C                  => \T_CLASS_C,
-        \T_TRAIT_C                  => \T_TRAIT_C,
-        \T_METHOD_C                 => \T_METHOD_C,
-        \T_NS_C                     => \T_NS_C,
-
         // Special cases:
         \T_NS_SEPARATOR             => \T_NS_SEPARATOR,
         /*
@@ -107,6 +99,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
     public function setProperties()
     {
         $this->safeOperands += Tokens::$heredocTokens;
+        $this->safeOperands += Tokens::$magicConstants;
         $this->safeOperands += Tokens::$emptyTokens;
     }
 
@@ -231,17 +224,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                 if (empty($arrayItems) === false) {
                     foreach ($arrayItems as $item) {
                         // Check for a double arrow, but only if it's for this array item, not for a nested array.
-                        $doubleArrow = false;
-
-                        $maybeDoubleArrow = $phpcsFile->findNext(
-                            [\T_DOUBLE_ARROW, \T_ARRAY, \T_OPEN_SHORT_ARRAY],
-                            $item['start'],
-                            ($item['end'] + 1)
-                        );
-                        if ($maybeDoubleArrow !== false && $tokens[$maybeDoubleArrow]['code'] === \T_DOUBLE_ARROW) {
-                            // Double arrow is for this nesting level.
-                            $doubleArrow = $maybeDoubleArrow;
-                        }
+                        $doubleArrow = Arrays::getDoubleArrowPtr($phpcsFile, $item['start'], $item['end']);
 
                         if ($doubleArrow === false) {
                             if ($this->isStaticValue($phpcsFile, $item['start'], $item['end'], $nestedArrays) === false) {

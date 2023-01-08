@@ -168,23 +168,61 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
             [263, 'static'],
             [264, 'static'],
             [265, 'static'],
+
+            [287, 'const'],
+            [288, 'const'],
+            [289, 'const'],
+
+            [293, 'static'],
+
+            [297, 'property'],
+            [301, 'property'],
+
+            [309, 'default'],
+
+            [315, 'const'],
+            [322, 'const'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test the sniff doesn't throw false positives for valid code.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.5');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 120 lines.
         for ($line = 1; $line <= 120; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        // ... nor on line 267 - 282.
+        for ($line = 267; $line <= 280; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
