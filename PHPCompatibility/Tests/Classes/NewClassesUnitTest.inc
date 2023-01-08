@@ -148,14 +148,14 @@ class MyDateTime extends datetime {} // Lowercase.
 dATeTiMe::static_method(); // Mixed case.
 
 // Test anonymous classes extending a new class.
-new class extends DateTime {}
-new class extends \Phar {}
-new class extends SplMinHeap {}
-new class extends \Transliterator {}
+$snon = new class extends DateTime {};
+new class extends \Phar {};
+$snon = new class extends SplMinHeap {};
+new class extends \Transliterator {};
 
 // Check against false positives.
-new class extends \My\IntlRuleBasedBreakIterator {}
-new class extends My\IntlRuleBasedBreakIterator {}
+$snon = new class extends \My\IntlRuleBasedBreakIterator {};
+$snon = new class extends My\IntlRuleBasedBreakIterator {};
 
 class MyClass {
     // New Classes as typehints.
@@ -198,9 +198,9 @@ UnderflowException::CLASS_CONSTANT;
 PDOException::$static_property;
 
 
-new class extends BadFunctionCallException {}
-new class extends mysqli_sql_exception {}
-new class extends DivisionByZeroError {}
+$snon = new class extends BadFunctionCallException {};
+$snon = new class extends mysqli_sql_exception {};
+$snon = new class extends DivisionByZeroError {};
 
 class MyExceptionHandler {
     // New Exceptions as typehints.
@@ -268,17 +268,17 @@ try {
 $test = new ZipArchive();
 class MyCollator extends Collator {}
 NumberFormatter::static_method();
-new class extends Locale {}
+$snon = new class extends Locale {};
 function NormalizerTypeHint( \Normalizer $a ) {}
 function MessageFormatterTypeHint( \MessageFormatter $a ) {}
 $test = new IntlDateFormatter();
 class MyResourceBundle extends ResourceBundle {}
 UConverter::$static_property;
 function IntlCharTypeHint( IntlChar $a ) {}
-new class extends finfo {}
+$snon = new class extends finfo {};
 function ClosureTypeHint( Closure $a ) {}
 class MyGenerator extends Generator {}
-new class extends GMP {}
+$snon = new class extends GMP {};
 class MySplObjectStorage extends SplObjectStorage {}
 $test = new ArrayIterator();
 $test = new CachingIterator();
@@ -287,8 +287,8 @@ $test = new RecursiveDirectoryIterator();
 $test = new RecursiveIteratorIterator();
 class MyAppendIterator extends AppendIterator {}
 class MyEmptyIterator extends EmptyIterator {}
-new class extends FilterIterator {}
-new class extends InfiniteIterator {}
+$snon = new class extends FilterIterator {};
+$snon = new class extends InfiniteIterator {};
 IteratorIterator::static_method();
 LimitIterator::$static_property;
 function NoRewindIteratorTypeHint( \NoRewindIterator $a ) {}
@@ -303,7 +303,7 @@ $test = new SplFileObject();
 $test = new SplFileInfo();
 $test = new SplTempFileObject();
 class MyArrayObject extends ArrayObject {}
-new class extends ReflectionClassConstant {}
+$snon = new class extends ReflectionClassConstant {};
 ReflectionFunctionAbstract::CLASS_CONSTANT;
 function ReflectionTypeTypeHint( \ReflectionType $a ) {}
 function ReflectionGeneratorTypeHint( ReflectionGenerator $a ) {}
@@ -353,7 +353,7 @@ $iterator = new IntlIterator;
 
 $refl = new Reflection();
 class MyReflection extends ReflectionClass {}
-$anon = new class extends ReflectionExtension {}
+$anon = new class extends ReflectionExtension {};
 $closure = function (ReflectionFunction $fn ) {};
 function &MyReflMethod( ReflectionMethod $method ) {}
 function MyReflectionType () : ReflectionNamedType {}
@@ -436,3 +436,32 @@ try {
 	$reflect = new ReflectionFiber($fiber);
 } catch( FiberError $e ) {}
 $file = new CURLStringFile($data, 'filename.txt', 'text/plain');
+
+// Test support for PHP 7.4 property types.
+public WeakMap $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public Attribute $property;
+};
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(IntlChar $param) => $param;
+$fn = fn($param): Fiber => $param;
+
+// Test support for PHP 8.0 union types.
+class UnionTypes {
+    public NotATarget|AlsoNotATarget $okay;
+
+    public ReflectionReference|WeakReference $property;
+    public function paramType(OCICollection|OCILob $param) {}
+    public function returnType($param) : Sqlite3Stmt|SQLite3Result {}
+}
+
+// Test support for PHP 8.1 intersection types.
+class IntersectionTypes {
+    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+
+    public IntlPartsIterator&IntlIterator $property;
+    public function paramType(\ReflectionClassConstant&\ReflectionNamedType $param) {}
+    public function returnType($param) : \FFI\CData&\FFI\CType {}
+}

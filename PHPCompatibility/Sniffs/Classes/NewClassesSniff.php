@@ -12,7 +12,12 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\ControlStructures;
+use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detect use of new PHP native classes.
@@ -23,6 +28,7 @@ use PHP_CodeSniffer\Files\File;
  * - Static use of class properties, constants or functions using the double colon.
  * - Function/closure declarations to detect new classes used as parameter type declarations.
  * - Function/closure declarations to detect new classes used as return type declarations.
+ * - Property declarations to detect new classes used as property type declarations.
  * - Try/catch statements to detect new exception classes being caught.
  *
  * PHP version All
@@ -1038,15 +1044,18 @@ class NewClassesSniff extends Sniff
         // Add the Exception classes to the Classes list.
         $this->newClasses = \array_merge($this->newClasses, $this->newExceptions);
 
-        return [
+        $targets = [
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
+            \T_VARIABLE,
             \T_DOUBLE_COLON,
-            \T_FUNCTION,
-            \T_CLOSURE,
             \T_CATCH,
         ];
+
+        $targets += Collections::functionDeclarationTokens();
+
+        return $targets;
     }
 
 
@@ -1065,26 +1074,22 @@ class NewClassesSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch ($tokens[$stackPtr]['type']) {
-            case 'T_FUNCTION':
-            case 'T_CLOSURE':
-                $this->processFunctionToken($phpcsFile, $stackPtr);
-
-                // Deal with older PHPCS version which don't recognize return type hints
-                // as well as newer PHPCS versions (3.3.0+) where the tokenization has changed.
-                $returnTypeHint = $this->getReturnTypeHintToken($phpcsFile, $stackPtr);
-                if ($returnTypeHint !== false) {
-                    $this->processReturnTypeToken($phpcsFile, $returnTypeHint);
-                }
+        switch ($tokens[$stackPtr]['code']) {
+            case \T_VARIABLE:
+                $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
 
-            case 'T_CATCH':
+            case \T_CATCH:
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
 
             default:
                 $this->processSingularToken($phpcsFile, $stackPtr);
                 break;
+        }
+
+        if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processFunctionToken($phpcsFile, $stackPtr);
         }
     }
 
@@ -1105,13 +1110,13 @@ class NewClassesSniff extends Sniff
         $tokens      = $phpcsFile->getTokens();
         $FQClassName = '';
 
-        if ($tokens[$stackPtr]['type'] === 'T_NEW') {
+        if ($tokens[$stackPtr]['code'] === \T_NEW) {
             $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
 
-        } elseif ($tokens[$stackPtr]['type'] === 'T_CLASS' || $tokens[$stackPtr]['type'] === 'T_ANON_CLASS') {
+        } elseif ($tokens[$stackPtr]['code'] === \T_CLASS || $tokens[$stackPtr]['code'] === \T_ANON_CLASS) {
             $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
 
-        } elseif ($tokens[$stackPtr]['type'] === 'T_DOUBLE_COLON') {
+        } elseif ($tokens[$stackPtr]['code'] === \T_DOUBLE_COLON) {
             $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
@@ -1138,6 +1143,7 @@ class NewClassesSniff extends Sniff
      * Processes this test for when a function token is encountered.
      *
      * - Detect new classes when used as a parameter type declaration.
+     * - Detect new classes when used as a return type declaration.
      *
      * @since 7.1.4
      *
@@ -1149,23 +1155,102 @@ class NewClassesSniff extends Sniff
      */
     private function processFunctionToken(File $phpcsFile, $stackPtr)
     {
-        // Retrieve typehints stripped of global NS indicator and/or nullable indicator.
-        $typeHints = $this->getTypeHintsFromFunctionDeclaration($phpcsFile, $stackPtr);
-        if (empty($typeHints) || \is_array($typeHints) === false) {
+        /*
+         * Check parameter type declarations.
+         */
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        if (empty($parameters) === false && \is_array($parameters) === true) {
+            foreach ($parameters as $param) {
+                if ($param['type_hint'] === '') {
+                    continue;
+                }
+
+                $this->checkTypeDeclaration($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+            }
+        }
+
+        /*
+         * Check return type declarations.
+         */
+        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
+        if ($properties['return_type'] === '') {
             return;
         }
 
-        foreach ($typeHints as $hint) {
+        $this->checkTypeDeclaration($phpcsFile, $properties['return_type_token'], $properties['return_type']);
+    }
 
-            $typeHintLc = \strtolower($hint);
 
-            if (isset($this->newClasses[$typeHintLc]) === true) {
-                $itemInfo = [
-                    'name'   => $hint,
-                    'nameLc' => $typeHintLc,
-                ];
-                $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+    /**
+     * Processes this test for when a variable token is encountered.
+     *
+     * - Detect new classes when used as a property type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processVariableToken(File $phpcsFile, $stackPtr)
+    {
+        try {
+            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Not a class property.
+            return;
+        }
+
+        if ($properties['type'] === '') {
+            return;
+        }
+
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
+    }
+
+
+    /**
+     * Processes a type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile  The file being scanned.
+     * @param int                         $stackPtr   The position of the current token in
+     *                                                the stack passed in $tokens.
+     * @param string                      $typeString The type declaration.
+     *
+     * @return void
+     */
+    private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeString)
+    {
+        // Strip off potential nullable indication.
+        $typeString = \ltrim($typeString, '?');
+        $types      = \preg_split('`[|&]`', $typeString, -1, \PREG_SPLIT_NO_EMPTY);
+
+        if (empty($types) === true) {
+            return;
+        }
+
+        foreach ($types as $type) {
+            // Strip off potential (global) namespace indication.
+            $type = \ltrim($type, '\\');
+
+            if ($type === '') {
+                return;
             }
+
+            $typeLc = \strtolower($type);
+            if (isset($this->newClasses[$typeLc]) === false) {
+                return;
+            }
+
+            $itemInfo = [
+                'name'   => $type,
+                'nameLc' => $typeLc,
+            ];
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
         }
     }
 
@@ -1185,92 +1270,30 @@ class NewClassesSniff extends Sniff
      */
     private function processCatchToken(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Bow out during live coding.
-        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
+        try {
+            $exceptions = ControlStructures::getCaughtExceptions($phpcsFile, $stackPtr);
+        } catch (RuntimeException $e) {
+            // Parse error or live coding.
             return;
         }
 
-        $opener = $tokens[$stackPtr]['parenthesis_opener'];
-        $closer = ($tokens[$stackPtr]['parenthesis_closer'] + 1);
-        $name   = '';
-        $listen = [
-            // Parts of a (namespaced) class name.
-            \T_STRING              => true,
-            \T_NS_SEPARATOR        => true,
-            // End/split tokens.
-            \T_VARIABLE            => false,
-            \T_BITWISE_OR          => false,
-            \T_CLOSE_CURLY_BRACKET => false, // Shouldn't be needed as we expect a var before this.
-        ];
+        if (empty($exceptions) === true) {
+            return;
+        }
 
-        for ($i = ($opener + 1); $i < $closer; $i++) {
-            if (isset($listen[$tokens[$i]['code']]) === false) {
-                continue;
-            }
+        foreach ($exceptions as $exception) {
+            // Strip off potential (global) namespace indication.
+            $name   = \ltrim($exception['type'], '\\');
+            $nameLC = \strtolower($name);
 
-            if ($listen[$tokens[$i]['code']] === true) {
-                $name .= $tokens[$i]['content'];
-                continue;
-            } else {
-                if (empty($name) === true) {
-                    // Weird, we should have a name by the time we encounter a variable or |.
-                    // So this may be the closer.
-                    continue;
-                }
-
-                $name   = \ltrim($name, '\\');
-                $nameLC = \strtolower($name);
-
-                if (isset($this->newExceptions[$nameLC]) === true) {
-                    $itemInfo = [
-                        'name'   => $name,
-                        'nameLc' => $nameLC,
-                    ];
-                    $this->handleFeature($phpcsFile, $i, $itemInfo);
-                }
-
-                // Reset for a potential multi-catch.
-                $name = '';
+            if (isset($this->newExceptions[$nameLC]) === true) {
+                $itemInfo = [
+                    'name'   => $name,
+                    'nameLc' => $nameLC,
+                ];
+                $this->handleFeature($phpcsFile, $exception['type_token'], $itemInfo);
             }
         }
-    }
-
-
-    /**
-     * Processes this test for when a return type token is encountered.
-     *
-     * - Detect new classes when used as a return type declaration.
-     *
-     * @since 8.2.0
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in
-     *                                               the stack passed in $tokens.
-     *
-     * @return void
-     */
-    private function processReturnTypeToken(File $phpcsFile, $stackPtr)
-    {
-        $returnTypeHint = $this->getReturnTypeHintName($phpcsFile, $stackPtr);
-        if (empty($returnTypeHint)) {
-            return;
-        }
-
-        $returnTypeHint   = \ltrim($returnTypeHint, '\\');
-        $returnTypeHintLc = \strtolower($returnTypeHint);
-
-        if (isset($this->newClasses[$returnTypeHintLc]) === false) {
-            return;
-        }
-
-        // Still here ? Then this is a return type declaration using a new class.
-        $itemInfo = [
-            'name'   => $returnTypeHint,
-            'nameLc' => $returnTypeHintLc,
-        ];
-        $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
 
 

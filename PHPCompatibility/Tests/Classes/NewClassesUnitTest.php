@@ -19,9 +19,6 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\NewClassesSniff
- * @covers \PHPCompatibility\Sniff::getReturnTypeHintName
- * @covers \PHPCompatibility\Sniff::getReturnTypeHintToken
- * @covers \PHPCompatibility\Sniff::getTypeHintsFromFunctionDeclaration
  *
  * @since 5.5
  */
@@ -86,7 +83,7 @@ class NewClassesUnitTest extends BaseSniffTest
             ['ReflectionProperty', '4.4', [362], '5.0'],
             ['SoapClient', '4.4', [364], '5.0'],
             ['SoapServer', '4.4', [365], '5.0'],
-            ['SoapHeader', '4.4', [366], '5.0'],
+            ['SoapHeader', '4.4', [367], '5.0'],
             ['SoapParam', '4.4', [368], '5.0'],
             ['SoapVar', '4.4', [369], '5.0'],
             ['COMPersistHelper', '4.4', [371], '5.0'],
@@ -176,8 +173,8 @@ class NewClassesUnitTest extends BaseSniffTest
             ['SplQueue', '5.2', [45, 85, 125], '5.3'],
             ['SplStack', '5.2', [46, 86, 126], '5.3'],
             ['sqlite3', '5.2', [407], '5.3'],
-            ['Sqlite3Stmt', '5.2', [408], '5.3'],
-            ['SQLite3Result', '5.2', [409], '5.3'],
+            ['Sqlite3Stmt', '5.2', [408, 457], '5.3'],
+            ['SQLite3Result', '5.2', [409, 457], '5.3'],
 
             ['ResourceBundle', '5.3.1', [275], '5.4', '5.3'],
             ['CallbackFilterIterator', '5.3', [47, 87, 127], '5.4'],
@@ -195,28 +192,28 @@ class NewClassesUnitTest extends BaseSniffTest
             ['IntlBreakIterator', '5.4', [58, 98, 138], '5.5'],
             ['IntlRuleBasedBreakIterator', '5.4', [59, 99, 139], '5.5'],
             ['IntlCodePointBreakIterator', '5.4', [60, 100, 140], '5.5'],
-            ['IntlPartsIterator', '5.4', [351], '5.5'],
-            ['IntlIterator', '5.4', [352], '5.5'],
+            ['IntlPartsIterator', '5.4', [351, 464], '5.5'],
+            ['IntlIterator', '5.4', [352, 464], '5.5'],
             ['UConverter', '5.4', [276], '5.5'],
             ['GMP', '5.5', [281], '5.6'],
-            ['IntlChar', '5.6', [277], '7.0'],
+            ['IntlChar', '5.6', [277, 448], '7.0'],
             ['ReflectionType', '5.6', [308], '7.0'],
             ['ReflectionGenerator', '5.6', [309], '7.0'],
-            ['ReflectionClassConstant', '7.0', [306], '7.1'],
-            ['ReflectionNamedType', '7.0', [359], '7.1'],
+            ['ReflectionClassConstant', '7.0', [306, 465], '7.1'],
+            ['ReflectionNamedType', '7.0', [359, 465], '7.1'],
             ['FFI', '7.3', [346], '7.4'],
-            ['FFI\CData', '7.3', [347], '7.4'],
-            ['FFI\CType', '7.3', [347], '7.4'],
-            ['ReflectionReference', '7.3', [344], '7.4'],
-            ['WeakReference', '7.3', [345], '7.4'],
+            ['FFI\CData', '7.3', [347, 466], '7.4'],
+            ['FFI\CType', '7.3', [347, 466], '7.4'],
+            ['ReflectionReference', '7.3', [344, 455], '7.4'],
+            ['WeakReference', '7.3', [345, 455], '7.4'],
             ['PhpToken', '7.4', [415], '8.0'],
             ['WeakMap', '7.4', [412], '8.0'],
             ['ReflectionUnionType', '7.4', [422], '8.0'],
-            ['OCICollection', '7.4', [424], '8.0'],
-            ['OCILob', '7.4', [425], '8.0'],
-            ['Attribute', '7.4', [431], '8.0'],
+            ['OCICollection', '7.4', [424, 456], '8.0'],
+            ['OCILob', '7.4', [425, 456], '8.0'],
+            ['Attribute', '7.4', [431, 444], '8.0'],
             ['IntlDatePatternGenerator', '8.0', [433], '8.1'],
-            ['Fiber', '8.0', [435], '8.1'],
+            ['Fiber', '8.0', [435, 449], '8.1'],
             ['ReflectionFiber', '8.0', [436], '8.1'],
             ['CURLStringFile', '8.0', [438], '8.1'],
 
@@ -308,6 +305,9 @@ class NewClassesUnitTest extends BaseSniffTest
             [325],
             [326],
             [327],
+            [441],
+            [453],
+            [462],
         ];
     }
 

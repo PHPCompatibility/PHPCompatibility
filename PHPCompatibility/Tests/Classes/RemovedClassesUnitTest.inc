@@ -8,8 +8,8 @@ $okay = new \myNamespace\SWFAction();
 $okay = \myNamespace\SWFAction::static_method();
 $okay = SomeNamespace\SWFAction::static_method();
 
-new class extends \My\SWFFill {}
-new class extends My\SWFFont {}
+$snon = new class extends \My\SWFFill {};
+new class extends My\SWFFont {};
 
 class MyClass {
     function SWFSoundTypeHint( myNameSpace\SWFSound $a ) {}
@@ -69,3 +69,35 @@ function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
 try {} catch (SQLiteException $e) {}
 
 function XmlRpcServerTypeHint(XmlRpcServer $server) {}
+function XmlRpcServerTypeHint(
+    $server
+): XmlRpcServer {}
+
+// Test support for PHP 7.4 property types.
+public SWFButton $var; // Ignore, not a property, parse error.
+
+$anon = class() {
+    public SQLiteDatabase $property;
+};
+
+// Test support for PHP 7.4 arrow functions.
+$fn = fn(SWFDisplayItem $param) => $param;
+$fn = fn($param): SWFTextField => $param;
+
+// Test support for PHP 8.0 union types.
+class UnionTypes {
+    public NotATarget|AlsoNotATarget $okay;
+
+    public HW_API_Content|HW_API_Reason $property;
+    public function paramType(SWFFill|SWFFont $param) {}
+    public function returnType($param) : SQLiteResult|SQLiteUnbuffered {}
+}
+
+// Test support for PHP 8.1 intersection types.
+class IntersectionTypes {
+    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+
+    public SWFMorph&SWFMovie $property;
+    public function paramType(SWFSprite&\SWFText $param) {}
+    public function returnType($param) : HW_API_Object&HW_API_Attribute {}
+}
