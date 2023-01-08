@@ -32,6 +32,7 @@ use PHPCSUtils\Utils\Scopes;
  * - Since PHP 7.2, the generic `object` type is available.
  * - Since PHP 8.0, the `mixed` pseudo-type is available.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
+ * - Since PHP 8.1, intersection types are supported for class/interface names.
  *
  * Additionally, this sniff does a cursory check for typical invalid type declarations,
  * such as:
@@ -48,6 +49,7 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/object-typehint
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
+ * @link https://wiki.php.net/rfc/pure-intersection-types
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -193,9 +195,10 @@ class NewParamTypeDeclarationsSniff extends Sniff
             return;
         }
 
-        $supportsPHP4 = $this->supportsBelow('4.4');
-        $supportsPHP7 = $this->supportsBelow('7.4');
-        $tokens       = $phpcsFile->getTokens();
+        $supportsPHP4  = $this->supportsBelow('4.4');
+        $supportsPHP7  = $this->supportsBelow('7.4');
+        $supportsPHP80 = $this->supportsBelow('8.0');
+        $tokens        = $phpcsFile->getTokens();
 
         foreach ($paramNames as $param) {
             if ($param['type_hint'] === '') {
@@ -217,16 +220,26 @@ class NewParamTypeDeclarationsSniff extends Sniff
             }
 
             // Strip off potential nullable indication.
-            $typeHint    = \ltrim($param['type_hint'], '?');
-            $typeHint    = \strtolower($typeHint);
-            $types       = \explode('|', $typeHint);
-            $isUnionType = (\strpos($typeHint, '|') !== false);
+            $typeHint           = \ltrim($param['type_hint'], '?');
+            $typeHint           = \strtolower($typeHint);
+            $types              = \preg_split('`[|&]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
+            $isUnionType        = (\strpos($typeHint, '|') !== false);
+            $isIntersectionType = (\strpos($typeHint, '&') !== false);
 
             if ($supportsPHP7 === true && $isUnionType === true) {
                 $phpcsFile->addError(
                     'Union types are not present in PHP version 7.4 or earlier. Found: %s',
                     $param['token'],
                     'UnionTypeFound',
+                    [$param['type_hint']]
+                );
+            }
+
+            if ($supportsPHP80 === true && $isIntersectionType === true) {
+                $phpcsFile->addError(
+                    'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
+                    $param['token'],
+                    'IntersectionTypeFound',
                     [$param['type_hint']]
                 );
             }

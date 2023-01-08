@@ -24,6 +24,7 @@ use PHPCSUtils\Utils\Variables;
  * Typed class property declarations are available since PHP 7.4.
  * - Since PHP 8.0, `mixed` is allowed to be used as a property type.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
+ * - Since PHP 8.1, intersection types are supported for class/interface names.
  *
  * PHP version 7.4+
  *
@@ -31,6 +32,7 @@ use PHPCSUtils\Utils\Variables;
  * @link https://wiki.php.net/rfc/typed_properties_v2
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
+ * @link https://wiki.php.net/rfc/pure-intersection-types
  *
  * @since 9.2.0
  */
@@ -224,14 +226,24 @@ class NewTypedPropertiesSniff extends Sniff
                 [$origType]
             );
         } else {
-            $types       = \explode('|', $type);
-            $isUnionType = (\strpos($type, '|') !== false);
+            $types              = \preg_split('`[|&]`', $type, -1, \PREG_SPLIT_NO_EMPTY);
+            $isUnionType        = (\strpos($type, '|') !== false);
+            $isIntersectionType = (\strpos($type, '&') !== false);
 
             if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
                 $phpcsFile->addError(
                     'Union types are not present in PHP version 7.4 or earlier. Found: %s' . $errorSuffix,
                     $typeToken,
                     'UnionTypeFound',
+                    [$origType]
+                );
+            }
+
+            if ($this->supportsBelow('8.0') === true && $isIntersectionType === true) {
+                $phpcsFile->addError(
+                    'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
+                    $typeToken,
+                    'IntersectionTypeFound',
                     [$origType]
                 );
             }

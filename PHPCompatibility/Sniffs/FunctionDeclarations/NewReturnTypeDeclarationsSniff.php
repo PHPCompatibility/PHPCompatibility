@@ -26,6 +26,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 8.0, `mixed` is allowed to be used as a return type.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  * - Since PHP 8.1, the stand-alone `never` type is available.
+ * - Since PHP 8.1, intersection types are supported for class/interface names.
  *
  * PHP version 7.0+
  *
@@ -39,6 +40,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
  * @link https://wiki.php.net/rfc/noreturn_type
+ * @link https://wiki.php.net/rfc/pure-intersection-types
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -196,17 +198,27 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             return;
         }
 
-        $returnType      = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
-        $returnType      = \strtolower($returnType);
-        $returnTypeToken = $properties['return_type_token'];
-        $types           = \explode('|', $returnType);
-        $isUnionType     = (\strpos($returnType, '|') !== false);
+        $returnType         = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
+        $returnType         = \strtolower($returnType);
+        $returnTypeToken    = $properties['return_type_token'];
+        $types              = \preg_split('`[|&]`', $returnType, -1, \PREG_SPLIT_NO_EMPTY);
+        $isUnionType        = (\strpos($returnType, '|') !== false);
+        $isIntersectionType = (\strpos($returnType, '&') !== false);
 
         if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
             $phpcsFile->addError(
                 'Union types are not present in PHP version 7.4 or earlier. Found: %s',
                 $returnTypeToken,
                 'UnionTypeFound',
+                [$properties['return_type']]
+            );
+        }
+
+        if ($this->supportsBelow('8.0') === true && $isIntersectionType === true) {
+            $phpcsFile->addError(
+                'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
+                $returnTypeToken,
+                'IntersectionTypeFound',
                 [$properties['return_type']]
             );
         }

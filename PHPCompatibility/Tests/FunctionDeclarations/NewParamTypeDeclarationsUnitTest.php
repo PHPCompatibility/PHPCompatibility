@@ -123,6 +123,12 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['float', '5.6', 131, '8.0'],
             ['int', '5.6', 131, '8.0'],
             ['mixed', '7.4', 132, '8.0', false],
+
+            // Intersection types - OK version is 8.1.
+            ['int', '5.6', 145, '8.1'],
+            ['string', '5.6', 145, '8.1'],
+            ['self', '5.1', 149, '8.1'],
+            ['parent', '5.1', 150, '8.1'],
         ];
     }
 
@@ -392,6 +398,81 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [96],
             [99],
             [113],
+        ];
+    }
+
+
+    /**
+     * Verify that an error is thrown for intersection types.
+     *
+     * @dataProvider dataNewIntersectionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewIntersectionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "Intersection types are not present in PHP version 8.0 or earlier. Found: $type");
+
+        if ($testNoViolation === true) {
+            $file = $this->sniffFile(__FILE__, '8.1');
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewIntersectionTypes()
+     *
+     * @return array
+     */
+    public function dataNewIntersectionTypes()
+    {
+        return [
+            ['MyClassA&\Package\MyClassB', 139],
+            ['Traversable&\Countable', 141],
+            ['int&string', 145],
+            ['self&\Fully\Qualified\SomeInterface', 149],
+            ['Qualified\SomeInterface&parent', 150],
+            ['A&B&A', 154],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when the type is not a union type.
+     *
+     * @dataProvider dataNewIntersectionTypesNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testNewIntersectionTypesNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewIntersectionTypesNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNewIntersectionTypesNoFalsePositives()
+    {
+        return [
+            [17],
+            [79],
+            [137],
         ];
     }
 

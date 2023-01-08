@@ -125,3 +125,19 @@ class ConstructorPropertyPromotionWithTypes {
 
 // Ignore. Not a constructor, so no property promotion.
 function __construct(float|int $x, callable $callMe) {}
+
+// PHP 8.1 intersection types.
+class IntersectionTypes() {
+    public MyClassA&\Package\MyClassB $intersection;
+    public Traversable&\Countable $countableIterator;
+
+    // Intentional fatal error - non-class/interface types are not allowed, but that's not the concern of the sniff.
+    public int&string $illegalIntersection;
+
+    // Intentional fatal error - hierarchical types are not allowed, but that's not the concern of the sniff.
+    public self&\Fully\Qualified\SomeInterface $selfNotAllowed;
+    public Qualified\SomeInterface&parent $parentNotAllowed;
+
+    // Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
+    public A&B&A $duplicateIntersection;
+}

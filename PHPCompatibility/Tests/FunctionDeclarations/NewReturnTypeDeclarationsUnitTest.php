@@ -123,6 +123,13 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['int', '5.6', 87, '8.0'],
             ['never', '8.0', 90, '8.1'],
             ['never', '8.0', 94, '8.1'],
+
+            // Intersection types - OK version is 8.1.
+            ['int', '5.6', 118, '8.1'],
+            ['string', '5.6', 118, '8.1'],
+            ['self', '5.6', 122, '8.1'],
+            ['parent', '5.6', 123, '8.1'],
+            ['static', '7.4', 124, '8.1'],
         ];
     }
 
@@ -314,6 +321,48 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             [61],
             [64],
             [76],
+        ];
+    }
+
+
+    /**
+     * Verify that an error is thrown for intersection types.
+     *
+     * @dataProvider dataNewIntersectionTypes
+     *
+     * @param string $type            The declared type.
+     * @param array  $line            The line number where the error is expected.
+     * @param bool   $testNoViolation Whether or not to test noViolation.
+     *                                Defaults to true.
+     *
+     * @return void
+     */
+    public function testNewIntersectionTypes($type, $line, $testNoViolation = true)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "Intersection types are not present in PHP version 8.0 or earlier. Found: $type");
+
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewIntersectionTypes()
+     *
+     * @return array
+     */
+    public function dataNewIntersectionTypes()
+    {
+        return [
+            ['MyClassA&\Package\MyClassB', 112],
+            ['Traversable&\Countable', 114],
+            ['int&string', 118],
+            ['self&\Fully\Qualified\SomeInterface', 122],
+            ['Qualified\SomeInterface&parent', 123],
+            ['static&SomeInterface', 124],
+            ['A&B&A', 128],
         ];
     }
 

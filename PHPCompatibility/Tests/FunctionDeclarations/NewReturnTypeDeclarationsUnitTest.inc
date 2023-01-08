@@ -29,12 +29,12 @@ function ($a) {}
 function fooObject($a): ObJect {}
 
 function fooInterspersedWithComments($a) :
-	// Comment.
-	?
-	// phpcs:ignore Standard.Category.Sniff -- ignore something about a return type declaration.
-	\myNamespace\
-	// Comment.
-	Baz
+    // Comment.
+    ?
+    // phpcs:ignore Standard.Category.Sniff -- ignore something about a return type declaration.
+    \myNamespace\
+    // Comment.
+    Baz
 {
 }
 
@@ -88,12 +88,12 @@ function duplicateTypeInUnion(): int|string|INT {}
 
 // PHP 8.1 noreturn type
 function subTypeForAlwaysExitOrThrow(): never {
-	throw new Exception();
+    throw new Exception();
 }
 
 $closure = function() : Never {
-	redirect();
-	exit;
+    redirect();
+    exit;
 };
 
 // Invalid: nullable or union with void.
@@ -106,3 +106,23 @@ function mixedIsStandAloneB($a): int|MIXED {}
 // Invalid: nullable or union with never.
 function neverIsStandAloneA($a): ?never {}
 function neverIsStandAloneB($a): int|never {}
+
+
+// PHP 8.1 intersection types.
+function intersectionTypes($var):MyClassA&\Package\MyClassB {}
+class IntersectionTypes {
+    public function setIterator($countableIterator): Traversable&\Countable {}
+}
+
+// Intentional fatal error - non-class/interface types are not allowed, but that's not the concern of the sniff.
+function intersectionTypesIllegalTypes($var):int&string {}
+
+// Intentional fatal error - hierarchical types are not allowed, but that's not the concern of the sniff.
+class HierachicalIntersection {
+    function intersectionTypesIllegalTypes($var) : self&\Fully\Qualified\SomeInterface {}
+    function intersectionTypesIllegalTypes($var): Qualified\SomeInterface&parent {}
+    function intersectionTypesIllegalTypes($var): static&SomeInterface {}
+}
+
+// Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
+function intersectionTypesIllegalTypes(): A&B&A {}
