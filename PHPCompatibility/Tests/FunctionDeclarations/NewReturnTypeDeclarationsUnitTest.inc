@@ -66,10 +66,10 @@ function unionTypesAllPseudoTypes($var) : false|self|parent|static|iterable|Reso
 // Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
 $closure = function () use($a) :?int|float {};
 
-// Intentional fatal error - null pseudotype is only allowed in union types.
+// Intentional fatal error in PHP 8.0/8.1 - null pseudotype is only allowed in union types.
 function pseudoTypeNull(): null {}
 
-// Intentional fatal error - false pseudotype is only allowed in union types.
+// Intentional fatal error in PHP 8.0/8.1 - false pseudotype is only allowed in union types.
 function pseudoTypeFalse(): false {}
 
 // Intentional fatal error - false pseudotype is not allowed in combination with bool, but that's not the concern of the sniff.
@@ -126,3 +126,6 @@ class HierachicalIntersection {
 
 // Intentional fatal error - duplicate types are not allowed, but that's not the concern of the sniff.
 function intersectionTypesIllegalTypes(): A&B&A {}
+
+// PHP 8.2 true type.
+function pseudoTypeTrue(): true {}

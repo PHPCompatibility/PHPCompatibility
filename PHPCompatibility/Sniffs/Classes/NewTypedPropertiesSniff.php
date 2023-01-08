@@ -25,6 +25,8 @@ use PHPCSUtils\Utils\Variables;
  * - Since PHP 8.0, `mixed` is allowed to be used as a property type.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  * - Since PHP 8.1, intersection types are supported for class/interface names.
+ * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
+ * - Since PHP 8.2, the `true` sub-type is available.
  *
  * PHP version 7.4+
  *
@@ -33,6 +35,8 @@ use PHPCSUtils\Utils\Variables;
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
  * @link https://wiki.php.net/rfc/pure-intersection-types
+ * @link https://wiki.php.net/rfc/null-false-standalone-types
+ * @link https://wiki.php.net/rfc/true-type
  *
  * @since 9.2.0
  */
@@ -64,15 +68,19 @@ class NewTypedPropertiesSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
-        // Union type only.
+        // Union type only in PHP 8.0 and 8.1.
         'false' => [
             '7.4' => false,
             '8.0' => true,
         ],
-        // Union type only.
+        // Union type only in PHP 8.0 and 8.1.
         'null' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+        'true' => [
+            '8.1' => false,
+            '8.2' => true,
         ],
     ];
 
@@ -94,7 +102,7 @@ class NewTypedPropertiesSniff extends Sniff
     ];
 
     /**
-     * Types which are only allowed to occur in union types.
+     * Types which are only allowed to occur in union types in PHP 8.0 and 8.1.
      *
      * @since 10.0.0
      *
@@ -270,9 +278,12 @@ class NewTypedPropertiesSniff extends Sniff
                         );
                     }
 
-                    if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                    if (isset($this->unionOnlyTypes[$type]) === true
+                        && $isUnionType === false
+                        && $this->supportsBelow('8.1') === true
+                    ) {
                         $phpcsFile->addError(
-                            "The '%s' type can only be used as part of a union type",
+                            "The '%s' type can only be used as part of a union type in PHP 8.1 or earlier",
                             $typeToken,
                             'NonUnion' . \ucfirst($type),
                             [$type]

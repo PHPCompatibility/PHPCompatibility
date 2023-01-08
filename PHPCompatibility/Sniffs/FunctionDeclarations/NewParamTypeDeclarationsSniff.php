@@ -33,6 +33,8 @@ use PHPCSUtils\Utils\Scopes;
  * - Since PHP 8.0, the `mixed` pseudo-type is available.
  * - Since PHP 8.0, union types are supported and the union-only `false` and `null` types are available.
  * - Since PHP 8.1, intersection types are supported for class/interface names.
+ * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
+ * - Since PHP 8.2, the `true` sub-type is available.
  *
  * Additionally, this sniff does a cursory check for typical invalid type declarations,
  * such as:
@@ -50,6 +52,8 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2
  * @link https://wiki.php.net/rfc/pure-intersection-types
+ * @link https://wiki.php.net/rfc/null-false-standalone-types
+ * @link https://wiki.php.net/rfc/true-type
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -116,15 +120,19 @@ class NewParamTypeDeclarationsSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
-        // Union type only.
+        // Union type only in PHP 8.0 and 8.1.
         'false' => [
             '7.4' => false,
             '8.0' => true,
         ],
-        // Union type only.
+        // Union type only in PHP 8.0 and 8.1.
         'null' => [
             '7.4' => false,
             '8.0' => true,
+        ],
+        'true' => [
+            '8.1' => false,
+            '8.2' => true,
         ],
     ];
 
@@ -144,7 +152,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
     ];
 
     /**
-     * Types which are only allowed to occur in union types.
+     * Types which are only allowed to occur in union types in PHP 8.0 and 8.1.
      *
      * @since 10.0.0
      *
@@ -198,6 +206,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
         $supportsPHP4  = $this->supportsBelow('4.4');
         $supportsPHP7  = $this->supportsBelow('7.4');
         $supportsPHP80 = $this->supportsBelow('8.0');
+        $supportsPHP81 = $this->supportsBelow('8.1');
         $tokens        = $phpcsFile->getTokens();
 
         foreach ($paramNames as $param) {
@@ -283,9 +292,12 @@ class NewParamTypeDeclarationsSniff extends Sniff
                         );
                     }
 
-                    if (isset($this->unionOnlyTypes[$type]) === true && $isUnionType === false) {
+                    if (isset($this->unionOnlyTypes[$type]) === true
+                        && $isUnionType === false
+                        && $supportsPHP81 === true
+                    ) {
                         $phpcsFile->addError(
-                            "The '%s' type can only be used as part of a union type",
+                            "The '%s' type can only be used as part of a union type in PHP 8.1 or earlier",
                             $param['token'],
                             'NonUnion' . \ucfirst($type),
                             [$type]

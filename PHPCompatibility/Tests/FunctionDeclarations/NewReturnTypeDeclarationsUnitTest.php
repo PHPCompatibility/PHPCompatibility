@@ -130,6 +130,8 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['self', '5.6', 122, '8.1'],
             ['parent', '5.6', 123, '8.1'],
             ['static', '7.4', 124, '8.1'],
+
+            ['true', '8.1', 131, '8.2'],
         ];
     }
 
@@ -274,7 +276,10 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
     public function testInvalidNonUnionNullFalseType($line, $type)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, $line, "'$type' type can only be used as part of a union type");
+        $this->assertError($file, $line, "'$type' type can only be used as part of a union type in PHP 8.1 or earlier");
+
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
