@@ -17,11 +17,12 @@ use PHPCSUtils\Utils\PassedParameters;
 /**
  * As of PHP 8.1, the default value for the $flags parameters for `htmlspecialchars()`, `htmlentities()`
  * `htmlspecialchars_decode()`, `html_entity_decode()` and `get_html_translation_table()` is
- * now `ENT_QUOTES | ENT_SUBSTITUTE`, instead of `ENT_COMPAT`.
+ * now `ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401`, instead of `ENT_COMPAT`. The value of `ENT_HTML401` is 0,
+ * therefore it's always present regardless of whether it's specified or not.
  *
  * PHP version 8.1
  *
- * @link https://github.com/php/php-src/blob/28a1a6be0873a109cb02ba32784bf046b87a02e4/UPGRADING#L149-L154
+ * @link https://www.php.net/manual/en/function.html-entity-decode#refsect1-function.html-entity-decode-changelog
  * @link https://github.com/php/php-src/commit/50eca61f68815005f3b0f808578cc1ce3b4297f0
  *
  * @since 10.0.0
