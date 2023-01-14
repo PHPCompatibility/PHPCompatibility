@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+               title="New Group Use Declarations"
+>
+    <standard>
+    <![CDATA[
+    Detect group use declarations as introduced in PHP 7.0.
+
+    Checks for:
+    - Group use statements as introduced in PHP 7.0.
+    - Trailing commas in group use statements as allowed since PHP 7.2.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <![CDATA[
+use some\namespace\ClassA;
+use some\namespace\ClassB;
+use some\namespace\ClassC as C;
+
+use function some\namespace\fn_a;
+use function some\namespace\fn_b;
+use function some\namespace\fn_c;
+
+use const some\namespace\ConstA;
+use const some\namespace\ConstB;
+use const some\namespace\ConstC;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.0: Group Use Declarations.">
+        <![CDATA[
+use some\namespace\{ClassA, ClassB, ClassC as C};
+use function some\namespace\{fn_a, fn_b, fn_c};
+use const some\namespace\{ConstA, ConstB, ConstC};
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <![CDATA[
+use some\namespace\ClassA;
+use some\namespace\ClassB;
+use some\namespace\ClassC as C;
+
+use function some\namespace\fn_a;
+use function some\namespace\fn_b;
+use function some\namespace\fn_c;
+
+use const some\namespace\ConstA;
+use const some\namespace\ConstB;
+use const some\namespace\ConstC;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.2: Use Declarations with Trailing comma.">
+        <![CDATA[
+use some\namespace\{ClassA, ClassB, ClassC as C,};
+use function some\namespace\{fn_a, fn_b, fn_c,};
+use const some\namespace\{ConstA, ConstB, ConstC,};
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
