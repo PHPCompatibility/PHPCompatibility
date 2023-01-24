@@ -690,20 +690,20 @@ abstract class Sniff implements PHPCS_Sniff
      */
     public function isVariable(File $phpcsFile, $start, $end, $targetNestingLevel)
     {
-        static $tokenBlackList, $bracketTokens;
+        static $tokenBlockList, $bracketTokens;
 
         // Create the token arrays only once.
-        if (isset($tokenBlackList, $bracketTokens) === false) {
-            $tokenBlackList  = [
+        if (isset($tokenBlockList, $bracketTokens) === false) {
+            $tokenBlockList  = [
                 \T_OPEN_PARENTHESIS => \T_OPEN_PARENTHESIS,
                 \T_STRING_CONCAT    => \T_STRING_CONCAT,
             ];
-            $tokenBlackList += Tokens::$assignmentTokens;
-            $tokenBlackList += Tokens::$equalityTokens;
-            $tokenBlackList += Tokens::$comparisonTokens;
-            $tokenBlackList += Tokens::$operators;
-            $tokenBlackList += Tokens::$booleanOperators;
-            $tokenBlackList += Tokens::$castTokens;
+            $tokenBlockList += Tokens::$assignmentTokens;
+            $tokenBlockList += Tokens::$equalityTokens;
+            $tokenBlockList += Tokens::$comparisonTokens;
+            $tokenBlockList += Tokens::$operators;
+            $tokenBlockList += Tokens::$booleanOperators;
+            $tokenBlockList += Tokens::$castTokens;
 
             /*
              * List of brackets which can be part of a variable variable.
@@ -732,20 +732,20 @@ abstract class Sniff implements PHPCS_Sniff
         }
 
         // Ok, so the first variable is at the right level, now are there any
-        // blacklisted tokens within the empty() ?
-        $hasBadToken = $phpcsFile->findNext($tokenBlackList, $start, $end);
+        // blocklisted tokens within the empty() ?
+        $hasBadToken = $phpcsFile->findNext($tokenBlockList, $start, $end);
         if ($hasBadToken === false) {
             return true;
         }
 
-        // If there are also bracket tokens, the blacklisted token might be part of a variable
+        // If there are also bracket tokens, the blocklisted token might be part of a variable
         // variable, but if there are no bracket tokens, we know we have an error.
         $hasBrackets = $phpcsFile->findNext($bracketTokens, $start, $end);
         if ($hasBrackets === false) {
             return false;
         }
 
-        // Ok, we have both a blacklisted token as well as brackets, so we need to walk
+        // Ok, we have both a blocklisted token as well as brackets, so we need to walk
         // the tokens of the variable variable.
         for ($i = $start; $i < $end; $i++) {
             // If this is a bracket token, skip to the end of the bracketed expression.
@@ -754,8 +754,8 @@ abstract class Sniff implements PHPCS_Sniff
                 continue;
             }
 
-            // If it's a blacklisted token, not within brackets, we have an error.
-            if (isset($tokenBlackList[$tokens[$i]['code']])) {
+            // If it's a blocklisted token, not within brackets, we have an error.
+            if (isset($tokenBlockList[$tokens[$i]['code']])) {
                 return false;
             }
         }
