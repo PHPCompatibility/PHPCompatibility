@@ -64,16 +64,16 @@ mssql_bind();
 
 ereg();
 
-// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist mysql_to_rfc3339
+// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionAllowlist mysql_to_rfc3339
 mysql_to_rfc3339();
 
 // PHP 7.1 removed extensions:
 mcrypt_encrypt();
 
-// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist ereg_convert,ereg_translate_to_preg
+// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionAllowlist ereg_convert,ereg_translate_to_preg
 ereg_convert();
 ereg_translate_to_preg();
-ereg_replace(); // Non-whitelisted.
+ereg_replace(); // Non-allowlisted.
 
 ibase_trans();
 wddx_deserialize();

@@ -208,12 +208,12 @@ At this moment, there are two sniffs which have a property which can be set via 
 The `PHPCompatibility.Extensions.RemovedExtensions` sniff checks for removed extensions based on the function prefix used for these extensions.
 This might clash with userland functions using the same function prefix.
 
-To whitelist userland functions, you can pass a comma-delimited list of function names to the sniff.
+To allowlist userland functions, you can pass a comma-delimited list of function names to the sniff.
 ```xml
-    <!-- Whitelist the mysql_to_rfc3339() and mysql_another_function() functions. -->
+    <!-- Allowlist the mysql_to_rfc3339() and mysql_another_function() functions. -->
     <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
         <properties>
-            <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
+            <property name="functionAllowlist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
         </properties>
     </rule>
 ```

@@ -226,9 +226,9 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
             [58], // Function declaration.
             [59], // Class instantiation.
             [60], // Method call.
-            [68], // Whitelisted function.
-            [74], // Whitelisted function array.
-            [75], // Whitelisted function array.
+            [68], // Allowlisted function.
+            [74], // Allowlisted function array.
+            [75], // Allowlisted function array.
             [82], // Live coding.
         ];
     }
