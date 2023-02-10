@@ -290,6 +290,7 @@ class ForbiddenNamesSniff extends Sniff
                     if ($tokens[$prevNonEmpty]['code'] === \T_DOUBLE_COLON
                         || $tokens[$prevNonEmpty]['code'] === \T_EXTENDS
                         || $tokens[$prevNonEmpty]['code'] === \T_IMPLEMENTS
+                        || $tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
                     ) {
                         // Use of a construct named `enum`, not an enum declaration.
                         return;

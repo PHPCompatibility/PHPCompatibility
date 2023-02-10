@@ -377,3 +377,6 @@ class EnumSpecialCasingTest
         self::ENUM xor \false;
     }
 }
+
+// Issue #1474: more protection against `enum` false positives.
+use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
