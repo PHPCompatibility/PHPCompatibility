@@ -267,6 +267,14 @@ jobs:
           php-version: 7.4
           coverage: none
 
+      # The dependencies of PHPUnit, once installed and locked for the test run, will often
+      # be locked at a version not compatible with PHP 7.4, which would block the install of the
+      # Coveralls package, so just remove PHPUnit and be done with it as we no longer need it
+      # for this workflow anyway.
+      - name: Remove PHPUnit
+        if: ${{ success() }}
+        run: composer remove --dev yoast/phpunit-polyfills phpunit/phpunit --no-interaction
+
       - name: Install Coveralls
         if: ${{ success() }}
         run: composer require php-coveralls/php-coveralls:"^2.4.2" --no-interaction
