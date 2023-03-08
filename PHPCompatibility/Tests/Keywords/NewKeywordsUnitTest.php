@@ -169,7 +169,6 @@ class NewKeywordsUnitTest extends BaseSniffTest
     {
         return [
             [33],
-            [78],
         ];
     }
 
@@ -214,6 +213,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
         return [
             [75],
             [76],
+            [78],
         ];
     }
 

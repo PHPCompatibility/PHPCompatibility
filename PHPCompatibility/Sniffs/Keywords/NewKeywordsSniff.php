@@ -225,6 +225,24 @@ class NewKeywordsSniff extends Sniff
             $tokenType = $this->translateContentToToken[$content];
         }
 
+        /*
+         * Special case: distinguish between `yield` and `yield from`.
+         *
+         * Prior to PHP 8.3, `yield from` with a comment between the keywords would be tokenized
+         * as `T_YIELD`, `T_COMMENT`, T_STRING`.
+         * As of PHP 8.3, this is correctly tokenized as `T_YIELD_FROM`.
+         */
+        if ($tokenType === 'T_YIELD') {
+            $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true);
+            if ($tokens[$nextToken]['code'] === \T_STRING
+                && strtolower($tokens[$nextToken]['content']) === 'from'
+            ) {
+                $tokenType = 'T_YIELD_FROM';
+                $end       = $nextToken;
+            }
+            unset($nextToken);
+        }
+
         if ($tokenType === 'T_YIELD_FROM' && $tokens[($stackPtr - 1)]['type'] === 'T_YIELD_FROM') {
             // Multi-line "yield from", no need to report it twice.
             return;
