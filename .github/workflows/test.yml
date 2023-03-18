@@ -237,7 +237,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
-        run: echo ::set-output name=VERSION::$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')
+        run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
 
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
@@ -267,17 +267,10 @@ jobs:
           php-version: 7.4
           coverage: none
 
-      # The dependencies of PHPUnit, once installed and locked for the test run, will often
-      # be locked at a version not compatible with PHP 7.4, which would block the install of the
-      # Coveralls package, so just remove PHPUnit and be done with it as we no longer need it
-      # for this workflow anyway.
-      - name: Remove PHPUnit
-        if: ${{ success() }}
-        run: composer remove --dev yoast/phpunit-polyfills phpunit/phpunit --no-interaction
-
+      # Global install is used to prevent a conflict with the local composer.lock in PHP 8.0+.
       - name: Install Coveralls
         if: ${{ success() }}
-        run: composer require php-coveralls/php-coveralls:"^2.4.2" --no-interaction
+        run: composer global require php-coveralls/php-coveralls:"^2.5.3" --no-interaction
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
@@ -285,7 +278,7 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
-        run: vendor/bin/php-coveralls -v -x build/logs/clover.xml
+        run: php-coveralls -v -x build/logs/clover.xml
 
   coveralls-finish:
     needs: coverage
@@ -296,7 +289,7 @@ jobs:
 
     steps:
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
