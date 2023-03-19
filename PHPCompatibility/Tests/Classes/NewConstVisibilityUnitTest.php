@@ -69,6 +69,10 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
             [70],
             [71],
             [72],
+
+            [84],
+            [85],
+            [86],
         ];
     }
 
@@ -105,6 +109,8 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
             [44],
             [48],
             [67],
+            [80],
+            [81],
         ];
     }
 

@@ -71,3 +71,17 @@ enum ConstInEnum
     protected const PROTECTED_CONST = 3;
     private const PRIVATE_CONST = 4;
 }
+
+/*
+ * Make sure the sniff handles PHP 8.2 constants in traits correctly.
+ */
+trait ConstInTrait
+{
+    const PUBLIC_CONST_A = 1;
+    final const FINAL_CONST = 2;
+
+    // PHP 7.1+
+    public const PUBLIC_CONST = 3;
+    protected const PROTECTED_CONST = 4;
+    private const PRIVATE_CONST = 5;
+}
