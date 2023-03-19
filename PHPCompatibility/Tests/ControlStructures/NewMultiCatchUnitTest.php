@@ -52,6 +52,7 @@ class NewMultiCatchUnitTest extends BaseSniffTest
     {
         return [
             [21],
+            [30],
         ];
     }
 
@@ -85,7 +86,8 @@ class NewMultiCatchUnitTest extends BaseSniffTest
             [10],
             [12],
             [23],
-            [30], // Live coding.
+            [32],
+            [39], // Live coding.
         ];
     }
 

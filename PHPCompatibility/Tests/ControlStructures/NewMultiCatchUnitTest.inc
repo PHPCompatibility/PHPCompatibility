@@ -24,6 +24,15 @@ try {
    // ...
 }
 
+// Safeguard correct handling of PHP 8.0 non-capturing catch.
+try {
+   // Some code...
+} catch (ExceptionType1 | ExceptionType2) {
+   // Code to handle the exception.
+} catch (\Exception) {
+   // ...
+}
+
 // Don't throw errors during live code review.
 try {
    // Some code...
