@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\BCTokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
@@ -34,7 +34,7 @@ use PHPCSUtils\Utils\Scopes;
  * @since 9.2.0
  * @since 10.0.0 The sniff has been renamed from `PHPCompatibility.Classes.ForbiddenAbstractPrivateMethods`
  *               to `PHPCompatibility.FunctionDeclarations.AbstractPrivateMethods` and now
- *               includes detection of the PHP 8 change.
+ *               includes detection of the PHP 8.0 change.
  */
 class AbstractPrivateMethodsSniff extends Sniff
 {
@@ -70,7 +70,7 @@ class AbstractPrivateMethodsSniff extends Sniff
         }
 
         $tokens   = $phpcsFile->getTokens();
-        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
         if ($scopePtr === false) {
             // Function, not method.
             return;
