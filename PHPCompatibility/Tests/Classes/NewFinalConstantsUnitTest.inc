@@ -66,3 +66,22 @@ class NotAClassConstant {
         final const GLOBAL_CONSTANT = 'not valid';
     }
 }
+
+/*
+ * Make sure the sniff handles constants in PHP 8.1 enums correctly.
+ */
+enum ConstInEnum
+{
+    public const PUBLIC_CONST_A = 1;
+
+    // PHP 8.1+.
+    final const FINAL_A = 2;
+    final public const FINAL_PUBLIC_CONST_A = 3;
+    public final const FINAL_PUBLIC_CONST_B = 4;
+    final protected const FINAL_PROTECTED_CONST_A = 5;
+    protected final const FINAL_PROTECTED_CONST_B = 6;
+
+    // Fatal error as final with private is an oxymoron.
+    final private const FINAL_PRIVATE_CONST_A = 7;
+    private final const FINAL_PRIVATE_CONST_B = 8;
+}

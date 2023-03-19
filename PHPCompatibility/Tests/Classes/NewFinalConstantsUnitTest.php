@@ -73,6 +73,14 @@ class NewFinalConstantsUnitTest extends BaseSniffTest
             [49],
             [52],
             [53],
+
+            [78],
+            [79],
+            [80],
+            [81],
+            [82],
+            [85],
+            [86],
         ];
     }
 
@@ -108,6 +116,7 @@ class NewFinalConstantsUnitTest extends BaseSniffTest
             [42],
             [62],
             [66],
+            [75],
         ];
     }
 
