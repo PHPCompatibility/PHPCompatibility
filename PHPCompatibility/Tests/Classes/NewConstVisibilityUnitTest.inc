@@ -58,3 +58,16 @@ class FinalConstDemo
     protected final const FINAL_PROTECTED_CONST_B = 6;
     private final const FINAL_PRIVATE_CONST_B = 8;
 }
+
+/*
+ * Make sure the sniff handles constants in PHP 8.1 enums correctly.
+ */
+enum ConstInEnum
+{
+    const PUBLIC_CONST_A = 1;
+
+    // PHP 7.1+
+    public const PUBLIC_CONST_B = 2;
+    protected const PROTECTED_CONST = 3;
+    private const PRIVATE_CONST = 4;
+}

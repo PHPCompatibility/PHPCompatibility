@@ -26,7 +26,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
 {
 
     /**
-     * Test that an error is thrown for class constants declared with visibility.
+     * Test that an error is thrown for OO constants declared with visibility.
      *
      * @dataProvider dataConstVisibility
      *
@@ -37,7 +37,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
     public function testConstVisibility($line)
     {
         $file = $this->sniffFile(__FILE__, '7.0');
-        $this->assertError($file, $line, 'Visibility indicators for class constants are not supported in PHP 7.0 or earlier.');
+        $this->assertError($file, $line, 'Visibility indicators for OO constants are not supported in PHP 7.0 or earlier.');
     }
 
     /**
@@ -65,6 +65,10 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
             [57],
             [58],
             [59],
+
+            [70],
+            [71],
+            [72],
         ];
     }
 
@@ -100,6 +104,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
             [30],
             [44],
             [48],
+            [67],
         ];
     }
 
