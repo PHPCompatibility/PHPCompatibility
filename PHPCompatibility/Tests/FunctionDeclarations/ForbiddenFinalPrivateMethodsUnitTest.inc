@@ -53,3 +53,9 @@ static function globalFunction() {}
 interface IllegalPrivate {
     final private function privateToImplement();
 }
+
+// Safeguard handling of PHP 8.1+ enums.
+enum MyEnum {
+    final public static function publicFinal();
+    final private function privateFinal() {}
+}
