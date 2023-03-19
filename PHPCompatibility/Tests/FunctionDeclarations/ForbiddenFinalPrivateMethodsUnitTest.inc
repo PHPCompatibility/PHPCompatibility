@@ -45,3 +45,11 @@ trait CrossVersionInValidTrait
     final private function privateFinal();
     static private final function privateStaticFinal();
 }
+
+// Global function cannot have final nor private keyword.
+static function globalFunction() {}
+
+// Interface cannot have private methods, nor final methods, but that's not the concern of this sniff.
+interface IllegalPrivate {
+    final private function privateToImplement();
+}
