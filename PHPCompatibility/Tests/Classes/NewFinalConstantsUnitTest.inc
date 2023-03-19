@@ -85,3 +85,23 @@ enum ConstInEnum
     final private const FINAL_PRIVATE_CONST_A = 7;
     private final const FINAL_PRIVATE_CONST_B = 8;
 }
+
+/*
+ * Make sure the sniff handles PHP 8.2 constants in traits correctly.
+ */
+trait ConstInTrait
+{
+    const PUBLIC_CONST = 1;
+    private const PRIVATE_CONST = 2;
+
+    // PHP 8.1+.
+    final const FINAL_A = 3;
+    final public /*comment*/ const FINAL_PUBLIC_CONST_A = 4;
+    public final const FINAL_PUBLIC_CONST_B = 5;
+    final protected const FINAL_PROTECTED_CONST_A = 6;
+    protected final const FINAL_PROTECTED_CONST_B = 7;
+
+    // Fatal error as final with private is an oxymoron.
+    final private const FINAL_PRIVATE_CONST_A = 8;
+    private final const FINAL_PRIVATE_CONST_B = 9;
+}
