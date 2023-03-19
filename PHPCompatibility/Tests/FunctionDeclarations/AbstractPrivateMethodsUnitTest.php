@@ -55,6 +55,7 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
             [29],
             [33],
             [34],
+            [51],
         ];
     }
 
@@ -126,6 +127,8 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 24; $line++) {
             $cases[] = [$line];
         }
+
+        $cases[] = [47];
 
         return $cases;
     }
