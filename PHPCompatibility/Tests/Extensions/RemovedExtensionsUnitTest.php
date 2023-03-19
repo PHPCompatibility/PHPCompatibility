@@ -61,7 +61,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedExtension()
+    public static function dataRemovedExtension()
     {
         return [
             ['dbase', '5.3', [10], '5.2'],
@@ -118,7 +118,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedExtensionWithAlternative()
+    public static function dataRemovedExtensionWithAlternative()
     {
         return [
             ['activescript', '5.1', 'pecl/activescript', [3, 4], '5.0'],
@@ -187,7 +187,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedExtensionWithAlternative()
+    public static function dataDeprecatedRemovedExtensionWithAlternative()
     {
         return [
             ['ereg', '5.3', '7.0', 'pcre', [65, 76], '5.2'],
@@ -219,7 +219,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [57], // Not a function call.

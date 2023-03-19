@@ -47,7 +47,7 @@ class NewDirectCallsToCloneUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDirectCallToClone()
+    public static function dataDirectCallToClone()
     {
         return [
             [33],
@@ -79,7 +79,7 @@ class NewDirectCallsToCloneUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 29 lines.

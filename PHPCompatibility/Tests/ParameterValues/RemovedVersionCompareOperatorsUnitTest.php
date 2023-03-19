@@ -47,7 +47,7 @@ class RemovedVersionCompareOperatorsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedVersionCompareOperators()
+    public static function dataRemovedVersionCompareOperators()
     {
         return [
             [44],
@@ -83,7 +83,7 @@ class RemovedVersionCompareOperatorsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

@@ -49,7 +49,7 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNonCryptoHash()
+    public static function dataNonCryptoHash()
     {
         return [
             [12, 'hash_hmac'],
@@ -90,7 +90,7 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

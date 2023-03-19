@@ -52,7 +52,7 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIconvMbstringCharsetDefault()
+    public static function dataNewIconvMbstringCharsetDefault()
     {
         return [
             [44, 'iconv_mime_decode_headers'],
@@ -137,7 +137,7 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIconvMimeEncode()
+    public static function dataIconvMimeEncode()
     {
         return [
             [91, '$options[\'input/output-charset\']'],
@@ -187,7 +187,7 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoViolationsInFileOnValidVersion()
+    public static function dataNoViolationsInFileOnValidVersion()
     {
         return [
             ['-5.5'],

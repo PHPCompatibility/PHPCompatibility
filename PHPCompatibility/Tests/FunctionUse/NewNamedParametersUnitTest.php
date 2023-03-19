@@ -48,7 +48,7 @@ class NewNamedParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNamedParameters()
+    public static function dataNewNamedParameters()
     {
         return [
             [17, 'start_index'],
@@ -139,7 +139,7 @@ class NewNamedParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

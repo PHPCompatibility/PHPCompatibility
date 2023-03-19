@@ -52,7 +52,7 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedObStartEraseFlagsBoolean()
+    public static function dataChangedObStartEraseFlagsBoolean()
     {
         return [
             [13],
@@ -89,7 +89,7 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedObStartEraseFlagsInt()
+    public static function dataChangedObStartEraseFlagsInt()
     {
         return [
             [17],
@@ -126,7 +126,7 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

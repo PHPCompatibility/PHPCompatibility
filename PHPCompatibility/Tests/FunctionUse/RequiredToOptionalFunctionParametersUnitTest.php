@@ -61,7 +61,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRequiredOptionalParameter()
+    public static function dataRequiredOptionalParameter()
     {
         return [
             ['preg_match_all', 'matches', '5.3', [8], '5.4'],
@@ -128,7 +128,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

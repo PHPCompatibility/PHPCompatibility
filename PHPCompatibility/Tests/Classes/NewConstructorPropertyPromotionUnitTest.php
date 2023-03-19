@@ -47,7 +47,7 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewConstructorPropertyPromotion()
+    public static function dataNewConstructorPropertyPromotion()
     {
         return [
             [32],
@@ -88,7 +88,7 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 26 lines.

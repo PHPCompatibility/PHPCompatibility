@@ -62,7 +62,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataBreakAndContinueVariableArgument()
+    public static function dataBreakAndContinueVariableArgument()
     {
         $data = [
             [53, self::ERROR_TYPE_VARIABLE],
@@ -115,7 +115,7 @@ class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [8],

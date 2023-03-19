@@ -50,7 +50,7 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIDNVariantDefault()
+    public static function dataNewIDNVariantDefault()
     {
         return [
             [10, 'idn_to_ascii'],
@@ -101,7 +101,7 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoViolationsInFileOnValidVersion()
+    public static function dataNoViolationsInFileOnValidVersion()
     {
         return [
             ['7.1-7.3'],

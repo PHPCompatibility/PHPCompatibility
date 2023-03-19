@@ -61,7 +61,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidParameter()
+    public static function dataInvalidParameter()
     {
         return [
             ['array_filter', 'mode', '5.5', [11], '5.6'],
@@ -236,7 +236,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

@@ -55,7 +55,7 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArrayStringDereferencing()
+    public static function dataArrayStringDereferencing()
     {
         return [
             [4, 'arrays'],
@@ -92,7 +92,7 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArrayStringDereferencingUsingCurlies()
+    public static function dataArrayStringDereferencingUsingCurlies()
     {
         return [
             [20, 'arrays'],
@@ -128,7 +128,7 @@ class NewArrayStringDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [11],

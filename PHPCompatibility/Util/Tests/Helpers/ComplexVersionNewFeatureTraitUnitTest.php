@@ -72,7 +72,7 @@ final class ComplexVersionNewFeatureTraitUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetVersionInfo()
+    public static function dataGetVersionInfo()
     {
         return [
             'empty-array' => [

@@ -50,7 +50,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewMagicClassConstant()
+    public static function dataNewMagicClassConstant()
     {
         return [
             [6],
@@ -88,7 +88,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [
             [4],
@@ -127,7 +127,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewMagicClassConstantOnObject()
+    public static function dataNewMagicClassConstantOnObject()
     {
         return [
             [35],

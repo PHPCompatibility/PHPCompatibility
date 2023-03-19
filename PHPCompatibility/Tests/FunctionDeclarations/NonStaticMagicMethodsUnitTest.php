@@ -51,7 +51,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataWrongMethodVisibility()
+    public static function dataWrongMethodVisibility()
     {
         return [
             // Class.
@@ -151,7 +151,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataWrongStaticMethod()
+    public static function dataWrongStaticMethod()
     {
         return [
             // Class.
@@ -241,7 +241,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataWrongNonStaticMethod()
+    public static function dataWrongNonStaticMethod()
     {
         return [
             // Class.
@@ -289,7 +289,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

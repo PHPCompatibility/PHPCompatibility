@@ -47,7 +47,7 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUseConstFunction()
+    public static function dataNewUseConstFunction()
     {
         return [
             [29],
@@ -80,7 +80,7 @@ class NewUseConstFunctionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [7],

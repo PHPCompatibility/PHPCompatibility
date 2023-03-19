@@ -48,7 +48,7 @@ class NewNullableTypesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNullableReturnTypes()
+    public static function dataNewNullableReturnTypes()
     {
         return [
             [21],
@@ -90,7 +90,7 @@ class NewNullableTypesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNullableTypeHints()
+    public static function dataNewNullableTypeHints()
     {
         return [
             [48],
@@ -135,7 +135,7 @@ class NewNullableTypesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [8],

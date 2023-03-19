@@ -47,7 +47,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTrailingComma()
+    public static function dataTrailingComma()
     {
         return [
             [39],
@@ -83,7 +83,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTrailingCommaClosureUse()
+    public static function dataTrailingCommaClosureUse()
     {
         return [
             [68],
@@ -115,7 +115,7 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         // No errors expected on the first 33 lines.
         $data = [];

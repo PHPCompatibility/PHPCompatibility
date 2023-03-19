@@ -54,7 +54,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewClassMemberAccess()
+    public static function dataNewClassMemberAccess()
     {
         return [
             [41],
@@ -107,7 +107,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewClassMemberAccessUsingCurlies()
+    public static function dataNewClassMemberAccessUsingCurlies()
     {
         return [
             [111],
@@ -139,7 +139,7 @@ class NewClassMemberAccessUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataCloneClassMemberAccess()
+    public static function dataCloneClassMemberAccess()
     {
         return [
             [101],

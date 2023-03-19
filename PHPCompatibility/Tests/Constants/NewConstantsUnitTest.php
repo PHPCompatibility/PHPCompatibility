@@ -61,7 +61,7 @@ class NewConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewConstant()
+    public static function dataNewConstant()
     {
         return [
             ['E_STRICT', '4.4', [8], '5.0'],
@@ -1541,7 +1541,7 @@ class NewConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

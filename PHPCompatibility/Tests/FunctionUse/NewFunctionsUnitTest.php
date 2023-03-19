@@ -61,7 +61,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewFunction()
+    public static function dataNewFunction()
     {
         return [
             ['class_implements', '4.4', [700], '5.0'],
@@ -1116,7 +1116,7 @@ class NewFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [3],

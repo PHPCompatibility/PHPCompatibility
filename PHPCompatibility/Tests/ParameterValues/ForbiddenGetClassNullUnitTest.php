@@ -47,7 +47,7 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataGetClassNull()
+    public static function dataGetClassNull()
     {
         return [
             [11],

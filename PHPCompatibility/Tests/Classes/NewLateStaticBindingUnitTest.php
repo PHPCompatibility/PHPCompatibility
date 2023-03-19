@@ -50,7 +50,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataLateStaticBinding()
+    public static function dataLateStaticBinding()
     {
         return [
             [8],
@@ -87,7 +87,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataLateStaticBindingOutsideClassScope()
+    public static function dataLateStaticBindingOutsideClassScope()
     {
         return [
             [27],
@@ -117,7 +117,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

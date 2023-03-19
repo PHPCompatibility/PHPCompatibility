@@ -47,7 +47,7 @@ class NewArrowFunctionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewArrowFunction()
+    public static function dataNewArrowFunction()
     {
         return [
             [24],
@@ -82,7 +82,7 @@ class NewArrowFunctionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

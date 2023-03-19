@@ -47,7 +47,7 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewExceptionsFromToString()
+    public static function dataNewExceptionsFromToString()
     {
         return [
             [39],
@@ -85,7 +85,7 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 34 lines.

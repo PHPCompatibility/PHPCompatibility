@@ -47,7 +47,7 @@ class NewShortListUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataShortList()
+    public static function dataShortList()
     {
         return [
             [17],
@@ -85,7 +85,7 @@ class NewShortListUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

@@ -47,7 +47,7 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewListReferenceAssignment()
+    public static function dataNewListReferenceAssignment()
     {
         return [
             [16],
@@ -87,7 +87,7 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

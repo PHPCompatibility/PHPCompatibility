@@ -47,7 +47,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataConstantArraysUsingDefine()
+    public static function dataConstantArraysUsingDefine()
     {
         return [
             [3],
@@ -80,7 +80,7 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [15],

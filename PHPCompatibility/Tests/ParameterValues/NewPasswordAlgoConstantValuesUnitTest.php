@@ -49,7 +49,7 @@ class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewPasswordAlgoConstantValues()
+    public static function dataNewPasswordAlgoConstantValues()
     {
         return [
             [22],
@@ -85,7 +85,7 @@ class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

@@ -49,7 +49,7 @@ class NewHeredocUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataHeredocInitialize()
+    public static function dataHeredocInitialize()
     {
         $data = [
             [5, 'static variables'],
@@ -106,7 +106,7 @@ class NewHeredocUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [70],

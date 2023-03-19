@@ -54,7 +54,7 @@ class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataHexNumericString()
+    public static function dataHexNumericString()
     {
         // phpcs:disable PHPCompatibility.Numbers.RemovedHexadecimalNumericStrings
         return [
@@ -102,7 +102,7 @@ class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [3],

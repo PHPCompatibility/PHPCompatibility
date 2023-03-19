@@ -61,7 +61,7 @@ class NewClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewClass()
+    public static function dataNewClass()
     {
         return [
             ['ArrayObject', '4.4', [305], '5.0'],
@@ -289,7 +289,7 @@ class NewClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

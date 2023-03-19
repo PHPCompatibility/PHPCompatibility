@@ -49,7 +49,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenVariableNamesInClosureUse()
+    public static function dataForbiddenVariableNamesInClosureUse()
     {
         return [
             [4, '$_SERVER'],
@@ -87,7 +87,7 @@ class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [18],

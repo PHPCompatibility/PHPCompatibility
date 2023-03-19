@@ -68,7 +68,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedGlobalVariables()
+    public static function dataRemovedGlobalVariables()
     {
         return [
             ['HTTP_POST_VARS', '5.3', '5.4', [9, 31, 71, 91], '$_POST', '5.2'],
@@ -114,7 +114,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedPHPErrorMsg()
+    public static function dataDeprecatedRemovedPHPErrorMsg()
     {
         return [
             [101],
@@ -151,7 +151,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             // Variable names are case-sensitive.

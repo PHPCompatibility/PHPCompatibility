@@ -50,7 +50,7 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedOrphanedParentInClass()
+    public static function dataRemovedOrphanedParentInClass()
     {
         return [
             [35],
@@ -107,7 +107,7 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedOrphanedParentInInterface()
+    public static function dataRemovedOrphanedParentInInterface()
     {
         return [
             [80],
@@ -140,7 +140,7 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 31 lines.

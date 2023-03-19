@@ -47,7 +47,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedOptionalBeforeRequiredParam()
+    public static function dataRemovedOptionalBeforeRequiredParam()
     {
         return [
             [13], // Warning x 2.
@@ -83,7 +83,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 9 lines.

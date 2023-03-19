@@ -72,7 +72,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedTypeCastWithAlternative()
+    public static function dataDeprecatedRemovedTypeCastWithAlternative()
     {
         return [
             ['The unset cast', '7.2', '8.0', 'unset()', [8, 11, 12], '7.1'],
@@ -103,7 +103,7 @@ class RemovedTypeCastsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

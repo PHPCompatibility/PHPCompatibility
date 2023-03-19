@@ -63,7 +63,7 @@ class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedDollarBraceStringEmbedsType3()
+    public static function dataRemovedDollarBraceStringEmbedsType3()
     {
         return [
             [57, '${foo}'],
@@ -100,7 +100,7 @@ class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedDollarBraceStringEmbedsType4()
+    public static function dataRemovedDollarBraceStringEmbedsType4()
     {
         return [
             [68, '${$bar}'],
@@ -150,7 +150,7 @@ class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedDollarBraceStringEmbedsType3InIndentedHeredoc()
+    public static function dataRemovedDollarBraceStringEmbedsType3InIndentedHeredoc()
     {
         return [
             [33, '${foo[\'bar\']}'],
@@ -186,7 +186,7 @@ class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedDollarBraceStringEmbedsType4InIndentedHeredoc()
+    public static function dataRemovedDollarBraceStringEmbedsType4InIndentedHeredoc()
     {
         return [
             [39, '${$object->getMethod()}'],
@@ -246,7 +246,7 @@ class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTestFiles()
+    public static function dataTestFiles()
     {
         return [
             [self::TEST_FILE, 51],

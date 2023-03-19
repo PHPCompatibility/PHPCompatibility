@@ -47,7 +47,7 @@ class RemovedIconvEncodingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIconvEncoding()
+    public static function dataIconvEncoding()
     {
         return [
             [14],

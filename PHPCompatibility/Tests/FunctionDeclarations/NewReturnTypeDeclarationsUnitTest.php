@@ -58,7 +58,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReturnType()
+    public static function dataReturnType()
     {
         return [
             ['bool', '5.6', 4, '7.0'],
@@ -162,7 +162,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [25],
@@ -196,7 +196,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidStandAloneType()
+    public static function dataInvalidStandAloneType()
     {
         return [
             ['mixed', 56, '8.0'],
@@ -251,7 +251,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnionTypes()
+    public static function dataNewUnionTypes()
     {
         return [
             ['int|float', 59],
@@ -294,7 +294,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseType()
+    public static function dataInvalidNonUnionNullFalseType()
     {
         return [
             [70, 'null'],
@@ -325,7 +325,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    public static function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
     {
         return [
             [61],
@@ -363,7 +363,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIntersectionTypes()
+    public static function dataNewIntersectionTypes()
     {
         return [
             ['MyClassA&\Package\MyClassB', 112],

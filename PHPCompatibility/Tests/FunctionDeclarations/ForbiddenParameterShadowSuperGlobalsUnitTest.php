@@ -49,7 +49,7 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataParameterShadowSuperGlobals()
+    public static function dataParameterShadowSuperGlobals()
     {
         return [
             ['$GLOBALS', 4],
@@ -91,7 +91,7 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [15],

@@ -50,7 +50,7 @@ final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTest
      *
      * @return array
      */
-    public function dataGetFQClassNameFromDoubleColonToken()
+    public static function dataGetFQClassNameFromDoubleColonToken()
     {
         return [
             ['/* test 1 */', '\DateTime'],

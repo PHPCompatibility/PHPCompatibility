@@ -47,7 +47,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDiscouragedSwitchContinue()
+    public static function dataDiscouragedSwitchContinue()
     {
         $data = [
             [16],
@@ -105,7 +105,7 @@ class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

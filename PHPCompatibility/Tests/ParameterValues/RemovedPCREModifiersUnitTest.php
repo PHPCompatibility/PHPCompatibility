@@ -53,7 +53,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedEModifier()
+    public static function dataDeprecatedEModifier()
     {
         return [
             // Function preg_replace().
@@ -144,7 +144,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             // No or only valid modifiers.

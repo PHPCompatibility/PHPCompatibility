@@ -48,7 +48,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTrailingComma()
+    public static function dataTrailingComma()
     {
         return [
             [15, 'calls to unset()'],
@@ -99,7 +99,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

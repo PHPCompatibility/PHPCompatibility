@@ -76,7 +76,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedMagicAutoload()
+    public static function dataRemovedMagicAutoload()
     {
         return [
             [3],
@@ -107,7 +107,7 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIsNotAffected()
+    public static function dataIsNotAffected()
     {
         return [
             [self::TEST_FILE, 8],

@@ -47,7 +47,7 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReturnByReferenceFromVoid()
+    public static function dataReturnByReferenceFromVoid()
     {
         return [
             [54],
@@ -85,7 +85,7 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

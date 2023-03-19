@@ -48,7 +48,7 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenAbstractPrivateMethods()
+    public static function dataForbiddenAbstractPrivateMethods()
     {
         return [
             [28],
@@ -86,7 +86,7 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewTraitAbstractPrivateMethods()
+    public static function dataNewTraitAbstractPrivateMethods()
     {
         return [
             [42],
@@ -120,7 +120,7 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 24 lines.

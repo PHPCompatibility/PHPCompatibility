@@ -47,7 +47,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewListInForeach()
+    public static function dataNewListInForeach()
     {
         return [
             [14],
@@ -82,7 +82,7 @@ class NewListInForeachUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

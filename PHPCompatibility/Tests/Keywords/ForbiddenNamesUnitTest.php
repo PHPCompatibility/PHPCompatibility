@@ -118,7 +118,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function usecaseProvider()
+    public static function usecaseProvider()
     {
         $testCaseTypes = [
             // Declarations.
@@ -203,7 +203,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function usecaseProviderPHP5vs7()
+    public static function usecaseProviderPHP5vs7()
     {
         return [
             'method-declare' => ['method-declare'],
@@ -272,7 +272,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function usecaseProviderNamespaceNamePHP57vs8()
+    public static function usecaseProviderNamespaceNamePHP57vs8()
     {
         return [
             'namespace'        => ['namespace'],
@@ -302,7 +302,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataSpecificCodeSamples()
+    public static function dataSpecificCodeSamples()
     {
         return [
             [8, 'for'], // If the testVersion does not include PHP < 8, this will not trigger an error.
@@ -388,7 +388,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataCorrectUsageOfKeywords()
+    public static function dataCorrectUsageOfKeywords()
     {
         return [
             'correct-use'                   => [__DIR__ . '/ForbiddenNamesUnitTest.1.inc'],

@@ -47,7 +47,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIsDeprecated()
+    public static function dataIsDeprecated()
     {
         return [
             [89],
@@ -84,7 +84,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesDeprecated()
+    public static function dataNoFalsePositivesDeprecated()
     {
         $data = [];
 
@@ -127,7 +127,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIsDeprecatedOnEnum()
+    public static function dataIsDeprecatedOnEnum()
     {
         return [
             [191],
@@ -158,7 +158,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesDeprecatedOnEnum()
+    public static function dataNoFalsePositivesDeprecatedOnEnum()
     {
         return [
             [188],
@@ -189,7 +189,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRedundantImplementation()
+    public static function dataRedundantImplementation()
     {
         return [
             [39],
@@ -222,7 +222,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRedundantExtension()
+    public static function dataRedundantExtension()
     {
         return [
             [78],
@@ -252,7 +252,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesRedundant()
+    public static function dataNoFalsePositivesRedundant()
     {
         $data = [];
 
@@ -287,7 +287,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataMissingInterface()
+    public static function dataMissingInterface()
     {
         return [
             [78],
@@ -321,7 +321,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesMissingInterface()
+    public static function dataNoFalsePositivesMissingInterface()
     {
         return [
             [12],

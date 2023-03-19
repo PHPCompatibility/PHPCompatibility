@@ -53,7 +53,7 @@ class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenExtendingFinalPHPClass()
+    public static function dataForbiddenExtendingFinalPHPClass()
     {
         return [
             ['__PHP_Incomplete_Class', '8.0', 12, '7.4'],
@@ -85,7 +85,7 @@ class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [5],

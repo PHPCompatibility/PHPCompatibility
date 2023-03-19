@@ -53,7 +53,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewTypedProperties()
+    public static function dataNewTypedProperties()
     {
         return [
             [23, true],
@@ -128,7 +128,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 19 lines.
@@ -170,7 +170,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidPropertyType()
+    public static function dataInvalidPropertyType()
     {
         return [
             [62, 'void'],
@@ -217,7 +217,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewTypedPropertyTypes()
+    public static function dataNewTypedPropertyTypes()
     {
         return [
             ['mixed', '7.4', 71, '8.0'],
@@ -288,7 +288,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnionTypes()
+    public static function dataNewUnionTypes()
     {
         return [
             ['int|float', 79],
@@ -332,7 +332,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseType()
+    public static function dataInvalidNonUnionNullFalseType()
     {
         return [
             [93, 'null'],
@@ -363,7 +363,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    public static function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
     {
         return [
             [81],
@@ -401,7 +401,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIntersectionTypes()
+    public static function dataNewIntersectionTypes()
     {
         return [
             ['MyClassA&\Package\MyClassB', 131],

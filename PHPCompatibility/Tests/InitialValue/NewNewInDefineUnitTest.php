@@ -47,7 +47,7 @@ final class NewNewInDefineUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewInDefine()
+    public static function dataNewInDefine()
     {
         return [
             [38],
@@ -84,7 +84,7 @@ final class NewNewInDefineUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
         for ($line = 1; $line <= 34; $line++) {

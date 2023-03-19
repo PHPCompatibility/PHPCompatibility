@@ -61,7 +61,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedFunction()
+    public static function dataDeprecatedFunction()
     {
         return [
             ['dl', '5.3', [6], '5.2'],
@@ -115,7 +115,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedFunctionWithAlternative()
+    public static function dataDeprecatedFunctionWithAlternative()
     {
         return [
             ['ocibindbyname', '5.4', 'oci_bind_by_name()', [41], '5.3'],
@@ -258,7 +258,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedFunction()
+    public static function dataRemovedFunction()
     {
         return [
             ['crack_check', '5.0', [592], '4.4'],
@@ -1214,7 +1214,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedFunctionWithAlternative()
+    public static function dataRemovedFunctionWithAlternative()
     {
         return [
             ['zend_logo_guid', '5.5', 'text string "PHPE9568F35-D428-11d2-A769-00AA001ACF42"', [35], '5.4'],
@@ -1274,7 +1274,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedFunction()
+    public static function dataDeprecatedRemovedFunction()
     {
         return [
             ['define_syslog_variables', '5.3', '5.4', [5], '5.2'],
@@ -1401,7 +1401,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedFunctionWithAlternative()
+    public static function dataDeprecatedRemovedFunctionWithAlternative()
     {
         return [
             ['call_user_method', '4.1', '7.0', 'call_user_func()', [3], '4.0'],
@@ -1520,7 +1520,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [134],

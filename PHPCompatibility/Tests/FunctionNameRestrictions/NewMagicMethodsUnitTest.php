@@ -59,7 +59,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewMagicMethod()
+    public static function dataNewMagicMethod()
     {
         return [
             ['__construct', '4.4', [20], '5.0'],
@@ -131,7 +131,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedToStringMethod()
+    public static function dataChangedToStringMethod()
     {
         return [
             [26],
@@ -165,7 +165,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataMagicMethodsThatShouldntBeFlagged()
+    public static function dataMagicMethodsThatShouldntBeFlagged()
     {
         return [
             [8],
@@ -199,7 +199,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             // Functions of same name outside class context.

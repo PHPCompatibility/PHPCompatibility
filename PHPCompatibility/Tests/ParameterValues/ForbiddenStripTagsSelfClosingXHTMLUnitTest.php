@@ -64,7 +64,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenStripTagsSelfClosingXHTML()
+    public static function dataForbiddenStripTagsSelfClosingXHTML()
     {
         return [
             [14, "'<br/>'"],
@@ -96,7 +96,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
 
@@ -147,7 +147,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenStripTagsSelfClosingXHTMLInIndentedHeredoc()
+    public static function dataForbiddenStripTagsSelfClosingXHTMLInIndentedHeredoc()
     {
         return [
             [18, "<<<'EOD'\n    <meta/><input/>\n    EOD"],
@@ -181,7 +181,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesInIndentedHeredoc()
+    public static function dataNoFalsePositivesInIndentedHeredoc()
     {
         $cases = [];
 
@@ -218,7 +218,7 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTestFiles()
+    public static function dataTestFiles()
     {
         return [
             [self::TEST_FILE],

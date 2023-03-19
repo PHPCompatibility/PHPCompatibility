@@ -51,7 +51,7 @@ class NewHTMLEntitiesFlagsDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewHTMLEntitiesFlagsDefault()
+    public static function dataNewHTMLEntitiesFlagsDefault()
     {
         return [
             [11, 'htmlentities'],
@@ -101,7 +101,7 @@ class NewHTMLEntitiesFlagsDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoViolationsInFileOnValidVersion()
+    public static function dataNoViolationsInFileOnValidVersion()
     {
         return [
             ['5.6-8.0'],

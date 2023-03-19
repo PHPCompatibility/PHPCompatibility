@@ -47,7 +47,7 @@ class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenSwitchWithMultipleDefaultBlocks()
+    public static function dataForbiddenSwitchWithMultipleDefaultBlocks()
     {
         return [
             [3],
@@ -83,7 +83,7 @@ class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [14],

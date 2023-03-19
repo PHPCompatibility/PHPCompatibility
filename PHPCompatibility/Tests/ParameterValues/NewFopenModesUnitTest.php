@@ -60,7 +60,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataFopenMode()
+    public static function dataFopenMode()
     {
         return [
             [9, 'e', '7.0', '7.1', '7.0.15'],
@@ -94,7 +94,7 @@ class NewFopenModesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

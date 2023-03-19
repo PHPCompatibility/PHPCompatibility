@@ -52,7 +52,7 @@ class RemovedAssertStringAssertionUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedAssertStringAssertion()
+    public static function dataRemovedAssertStringAssertion()
     {
         return [
             [18],

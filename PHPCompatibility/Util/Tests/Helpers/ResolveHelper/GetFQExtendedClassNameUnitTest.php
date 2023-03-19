@@ -50,7 +50,7 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataGetFQExtendedClassName()
+    public static function dataGetFQExtendedClassName()
     {
         return [
             ['/* test 1 */', ''],
@@ -99,7 +99,7 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataGetFQExtendedClassNameInvalidToken()
+    public static function dataGetFQExtendedClassNameInvalidToken()
     {
         return [
             ['/* test 2 */', \T_EXTENDS],

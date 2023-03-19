@@ -48,7 +48,7 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReservedFunctionNames()
+    public static function dataReservedFunctionNames()
     {
         return [
             [20, 'method'],
@@ -120,7 +120,7 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [5],

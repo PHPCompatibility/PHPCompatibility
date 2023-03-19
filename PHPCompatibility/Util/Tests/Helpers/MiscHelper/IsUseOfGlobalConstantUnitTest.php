@@ -50,7 +50,7 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataIsUseOfGlobalConstant()
+    public static function dataIsUseOfGlobalConstant()
     {
         return [
             ['/* test 1 */', false],

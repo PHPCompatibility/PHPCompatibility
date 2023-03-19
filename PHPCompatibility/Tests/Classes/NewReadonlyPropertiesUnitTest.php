@@ -47,7 +47,7 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataFirstClassCallables()
+    public static function dataFirstClassCallables()
     {
         return [
             [63],
@@ -89,7 +89,7 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

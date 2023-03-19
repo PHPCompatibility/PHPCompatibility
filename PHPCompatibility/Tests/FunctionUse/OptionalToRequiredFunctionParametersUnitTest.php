@@ -66,7 +66,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataOptionalRequiredParameterDeprecatedRemoved()
+    public static function dataOptionalRequiredParameterDeprecatedRemoved()
     {
         return [
             ['mktime', 'hour', '5.1', '8.0', [19], '5.0'],
@@ -110,7 +110,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataOptionalRequiredParameterRemoved()
+    public static function dataOptionalRequiredParameterRemoved()
     {
         return [
             ['gmmktime', 'hour', '8.0', [18, 31], '7.4'],
@@ -143,7 +143,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

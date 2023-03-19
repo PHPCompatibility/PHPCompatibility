@@ -67,7 +67,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIsDeprecated()
+    public static function dataIsDeprecated()
     {
         return [
             [self::TEST_FILE, 22],
@@ -100,7 +100,7 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [self::TEST_FILE, 3],

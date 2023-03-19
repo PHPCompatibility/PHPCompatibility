@@ -47,7 +47,7 @@ final class NewArrayMergeRecursiveWithGlobalsVarUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRecursiveMerge()
+    public static function dataRecursiveMerge()
     {
         return [
             [28],
@@ -78,7 +78,7 @@ final class NewArrayMergeRecursiveWithGlobalsVarUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
 

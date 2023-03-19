@@ -47,7 +47,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataGroupUseDeclaration()
+    public static function dataGroupUseDeclaration()
     {
         return [
             [23],
@@ -84,7 +84,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataGroupUseTrailingComma()
+    public static function dataGroupUseTrailingComma()
     {
         return [
             [33],
@@ -117,7 +117,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesTrailingComma()
+    public static function dataNoFalsePositivesTrailingComma()
     {
         return [
             [23],
@@ -150,7 +150,7 @@ class NewGroupUseDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

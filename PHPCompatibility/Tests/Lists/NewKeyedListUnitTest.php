@@ -47,7 +47,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewKeyedList()
+    public static function dataNewKeyedList()
     {
         return [
             [15], // x3.
@@ -98,7 +98,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

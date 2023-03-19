@@ -52,7 +52,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNumericLiteralSeparator()
+    public static function dataNewNumericLiteralSeparator()
     {
         $data = [
             [14],
@@ -100,7 +100,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

@@ -70,7 +70,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedDirectives()
+    public static function dataDeprecatedRemovedDirectives()
     {
         return [
             ['define_syslog_variables', '5.3', '5.4', [3, 4], '5.2'],
@@ -142,7 +142,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedDirectives()
+    public static function dataDeprecatedDirectives()
     {
         return [
             ['iconv.input_encoding', '5.6', [62, 63], '5.5'],
@@ -201,7 +201,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedWithAlternative()
+    public static function dataRemovedWithAlternative()
     {
         return [
             ['fbsql.batchSize', '5.1', 'fbsql.batchsize', [89, 90], '5.0'],
@@ -246,7 +246,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedDirectives()
+    public static function dataRemovedDirectives()
     {
         return [
             ['crack.default_dictionary', '5.0', [256, 257], '4.4'],
@@ -390,7 +390,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [57],
