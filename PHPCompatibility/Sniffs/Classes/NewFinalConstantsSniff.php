@@ -73,7 +73,7 @@ class NewFinalConstantsSniff extends Sniff
 
         $phpcsFile->addError(
             'The final modifier for OO constants is not supported in PHP 8.0 or earlier.',
-            $stackPtr,
+            $prevToken,
             'Found'
         );
     }
