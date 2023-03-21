@@ -10,10 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\IniDirectives;
 
-use PHPCompatibility\Sniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
@@ -30,9 +29,10 @@ use PHPCSUtils\Utils\TextStrings;
  * @since 7.0.7  When a new directive is used with `ini_set()`, the sniff will now throw an error
  *               instead of a warning.
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
+ *               and uses the `ComplexVersionNewFeatureTrait`.
  */
-class NewIniDirectivesSniff extends Sniff
+class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
 
@@ -43,11 +43,12 @@ class NewIniDirectivesSniff extends Sniff
      * and the official name of the parameter.
      *
      * @since 7.1.0
-     * @since 10.0.0 Moved from the base `Sniff` class to this sniff.
+     * @since 10.0.0 Moved from the base `Sniff` class to this sniff and renamed from
+     *               `$iniFunctions` to `$targetFunctions`.
      *
      * @var array
      */
-    protected $iniFunctions = [
+    protected $targetFunctions = [
         'ini_get' => [
             'position' => 1,
             'name'     => 'option',
@@ -913,51 +914,35 @@ class NewIniDirectivesSniff extends Sniff
     ];
 
     /**
-     * Returns an array of tokens this test wants to listen for.
+     * Should the sniff bow out early for specific PHP versions ?
      *
-     * @since 5.5
+     * @since 10.0.0
      *
-     * @return array
+     * @return bool
      */
-    public function register()
+    protected function bowOutEarly()
     {
-        return [\T_STRING];
+        return false;
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
+     * Process the parameters of a matched function.
      *
-     * @since 5.5
+     * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
      *
      * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $tokens = $phpcsFile->getTokens();
+        $functionLc = \strtolower($functionName);
+        $paramInfo  = $this->targetFunctions[$functionLc];
 
-        $ignore  = [
-            \T_FUNCTION => true,
-            \T_CONST    => true,
-        ];
-        $ignore += Collections::objectOperators();
-
-        $prevToken = $phpcsFile->findPrevious(\T_WHITESPACE, ($stackPtr - 1), null, true);
-        if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
-            // Not a call to a PHP function.
-            return;
-        }
-
-        $functionLc = \strtolower($tokens[$stackPtr]['content']);
-        if (isset($this->iniFunctions[$functionLc]) === false) {
-            return;
-        }
-
-        $paramInfo = $this->iniFunctions[$functionLc];
-        $iniToken  = PassedParameters::getParameter($phpcsFile, $stackPtr, $paramInfo['position'], $paramInfo['name']);
+        $iniToken = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
         if ($iniToken === false) {
             return;
         }
@@ -973,7 +958,6 @@ class NewIniDirectivesSniff extends Sniff
         ];
         $this->handleFeature($phpcsFile, $iniToken['end'], $itemInfo);
     }
-
 
     /**
      * Handle the retrieval of relevant information and - if necessary - throwing of an
