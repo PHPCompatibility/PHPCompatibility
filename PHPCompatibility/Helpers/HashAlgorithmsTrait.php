@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility\Helpers;
 
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -70,34 +69,21 @@ trait HashAlgorithmsTrait
      * Get the hash algorithm name from the parameter in a hash function call.
      *
      * @since 7.0.7  Logic moved from the `RemovedHashAlgorithms` sniff to the generic `Sniff` class.
-     * @since 10.0.0 Moved from the base `Sniff` class to the `HashAlgorithmsTrait`.
+     * @since 10.0.0 Moved from the base `Sniff` class to the `HashAlgorithmsTrait`
+     *               and changed significantly.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of T_STRING function token.
+     * @param string $functionName The token content (function name) which was matched.
+     * @param array  $parameters   Array with information about the parameters.
      *
      * @return string|false The algorithm name without quotes if this was a relevant hash
      *                      function call or false if it was not.
      */
-    public function getHashAlgorithmParameter(File $phpcsFile, $stackPtr)
+    public function getHashAlgorithmParameter($functionName, array $parameters)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        // Check for the existence of the token and that it is the right token.
-        if (isset($tokens[$stackPtr]) === false || $tokens[$stackPtr]['code'] !== \T_STRING) {
-            return false;
-        }
-
-        $functionName   = $tokens[$stackPtr]['content'];
+        // Get the parameter which should contain the algorithm name from the parameter stack.
         $functionNameLc = \strtolower($functionName);
-
-        // Bow out if not one of the functions we're targetting.
-        if (isset($this->hashAlgoFunctions[$functionNameLc]) === false) {
-            return false;
-        }
-
-        // Get the parameter from the function call which should contain the algorithm name.
-        $paramInfo = $this->hashAlgoFunctions[$functionNameLc];
-        $algoParam = PassedParameters::getParameter($phpcsFile, $stackPtr, $paramInfo['position'], $paramInfo['name']);
+        $paramInfo      = $this->hashAlgoFunctions[$functionNameLc];
+        $algoParam      = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
         if ($algoParam === false) {
             return false;
         }
