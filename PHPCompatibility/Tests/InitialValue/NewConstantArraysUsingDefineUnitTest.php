@@ -95,6 +95,8 @@ class NewConstantArraysUsingDefineUnitTest extends BaseSniffTest
             [36],
             [40],
             [43],
+            [46],
+            [49],
         ];
     }
 

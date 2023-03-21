@@ -20,7 +20,7 @@ $object->define('ANIMALS', 'dog');
 
 class myClass {
     const define = true;
-    function define($name, $value = array()) {}
+    function &define($name, $value = array()) {}
 }
 
 notDefine('ANIMALS', 'dog');
@@ -41,3 +41,9 @@ define(value: 'not an array', constant_name: 'NOTANARRAY' ); // OK.
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->define('ANIMALS', []);
+
+// No false positive on namespace define.
+MyOwn\define('name', array());
+
+// No false positive on class called "define".
+$obj = new Define('name', array());
