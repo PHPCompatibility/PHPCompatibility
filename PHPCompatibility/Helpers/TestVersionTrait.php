@@ -17,6 +17,11 @@ use PHPCSUtils\BackCompat\Helper;
  *
  * Used by nearly all sniffs.
  *
+ * ---------------------------------------------------------------------------------------------
+ * This trait is only intended for internal use by PHPCompatibility and is not part of the public API.
+ * This also means that it has no promise of backward compatibility. Use at your own risk.
+ * ---------------------------------------------------------------------------------------------
+ *
  * @since 5.6    Base methods introduced in the generic `Sniff` class.
  * @since 10.0.0 Methods moved from the generic `Sniff` class to a dedicated trait to
  *               allow for sniffs which don't extends the PHPCompatibility `Sniff` class.

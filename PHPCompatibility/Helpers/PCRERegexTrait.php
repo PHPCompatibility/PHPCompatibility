@@ -25,6 +25,11 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * Used by the NewPCREModifiersSniff/RemovedPCREModifiersSniff sniffs.
  *
+ * ---------------------------------------------------------------------------------------------
+ * This trait is only intended for internal use by PHPCompatibility and is not part of the public API.
+ * This also means that it has no promise of backward compatibility. Use at your own risk.
+ * ---------------------------------------------------------------------------------------------
+ *
  * @since 10.0.0 Logic split off from the `RemovedPCREModifiersSniff` sniff to this trait.
  */
 trait PCRERegexTrait

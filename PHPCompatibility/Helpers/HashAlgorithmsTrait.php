@@ -19,6 +19,11 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * Used by the new/removed hash algorithm sniffs.
  *
+ * ---------------------------------------------------------------------------------------------
+ * This trait is only intended for internal use by PHPCompatibility and is not part of the public API.
+ * This also means that it has no promise of backward compatibility. Use at your own risk.
+ * ---------------------------------------------------------------------------------------------
+ *
  * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
  *
  * @since 5.5
