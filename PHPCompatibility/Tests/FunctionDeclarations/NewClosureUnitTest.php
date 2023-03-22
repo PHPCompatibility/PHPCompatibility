@@ -233,6 +233,8 @@ final class NewClosureUnitTest extends BaseSniffTestCase
         return [
             [48],
             [60],
+            [104],
+            [112],
         ];
     }
 
@@ -301,6 +303,10 @@ final class NewClosureUnitTest extends BaseSniffTestCase
         return [
             [88],
             [90],
+            [101],
+            [102],
+            [110],
+            [111],
         ];
     }
 

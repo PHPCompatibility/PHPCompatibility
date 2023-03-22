@@ -102,7 +102,7 @@ final class NewClosureSniff extends Sniff
             return;
         }
 
-        $scopeStart = ($tokens[$stackPtr]['scope_opener'] + 1);
+        $scopeStart = $tokens[$stackPtr]['scope_opener'];
         $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
         $usesThis   = $this->findThisUsageInClosure($phpcsFile, $scopeStart, $scopeEnd);
 
@@ -119,7 +119,7 @@ final class NewClosureSniff extends Sniff
                         'ThisFound'
                     );
 
-                    $thisFound = $this->findThisUsageInClosure($phpcsFile, ($thisFound + 1), $scopeEnd);
+                    $thisFound = $this->findThisUsageInClosure($phpcsFile, $thisFound, $scopeEnd);
 
                 } while ($thisFound !== false);
             }
@@ -138,7 +138,7 @@ final class NewClosureSniff extends Sniff
                         [\strtolower($tokens[$usesClassRef]['content'])]
                     );
 
-                    $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, ($usesClassRef + 1), $scopeEnd);
+                    $usesClassRef = $this->findClassRefUsageInClosure($phpcsFile, $usesClassRef, $scopeEnd);
 
                 } while ($usesClassRef !== false);
             }
@@ -174,13 +174,10 @@ final class NewClosureSniff extends Sniff
                     );
                 }
 
-                $thisFound = $this->findThisUsageInClosure($phpcsFile, ($thisFound + 1), $scopeEnd);
+                $thisFound = $this->findThisUsageInClosure($phpcsFile, $thisFound, $scopeEnd);
 
             } while ($thisFound !== false);
         }
-
-        // Prevent double reporting for nested closures.
-        return $scopeEnd;
     }
 
 
@@ -210,7 +207,7 @@ final class NewClosureSniff extends Sniff
      * @since 7.1.4
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile  The file being scanned.
-     * @param int                         $startToken The position within the closure to continue searching from.
+     * @param int                         $startToken The current position within the closure to continue searching from.
      * @param int                         $endToken   The closure scope closer to stop searching at.
      *
      * @return int|false The stackPtr to the first $this usage if found or false if
@@ -219,17 +216,43 @@ final class NewClosureSniff extends Sniff
     protected function findThisUsageInClosure(File $phpcsFile, $startToken, $endToken)
     {
         // Make sure the $startToken is valid.
-        if ($startToken >= $endToken) {
+        if (($startToken + 1) >= $endToken) {
             return false;
         }
 
-        return $phpcsFile->findNext(
-            \T_VARIABLE,
-            $startToken,
-            $endToken,
-            false,
-            '$this'
-        );
+        $tokens = $phpcsFile->getTokens();
+        $found  = $startToken;
+
+        $find  = [\T_VARIABLE => \T_VARIABLE];
+        $find += Collections::closedScopes();
+
+        do {
+            $found = $phpcsFile->findNext($find, ($found + 1), $endToken);
+            if ($found === false) {
+                return false;
+            }
+
+            if (isset(Collections::closedScopes()[$tokens[$found]['code']])) {
+                if (isset($tokens[$found]['scope_closer'])) {
+                    // Nested closed structure. Skip over.
+                    $found = $tokens[$found]['scope_closer'];
+                    continue;
+                } else {
+                    // Shouldn't be possible.
+                    return false;
+                }
+            }
+
+            // This must be a variable token.
+            if ($tokens[$found]['content'] !== '$this') {
+                // Not our target, try and find another one.
+                continue;
+            }
+
+            // Found $this.
+            return $found;
+
+        } while (true);
     }
 
     /**
@@ -238,7 +261,7 @@ final class NewClosureSniff extends Sniff
      * @since 8.2.0
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile  The file being scanned.
-     * @param int                         $startToken The position within the closure to continue searching from.
+     * @param int                         $startToken The current position within the closure to continue searching from.
      * @param int                         $endToken   The closure scope closer to stop searching at.
      *
      * @return int|false The stackPtr to the first classRef usage if found or false if
@@ -247,23 +270,46 @@ final class NewClosureSniff extends Sniff
     protected function findClassRefUsageInClosure(File $phpcsFile, $startToken, $endToken)
     {
         // Make sure the $startToken is valid.
-        if ($startToken >= $endToken) {
+        if (($startToken + 1) >= $endToken) {
             return false;
         }
 
-        $tokens   = $phpcsFile->getTokens();
-        $classRef = $phpcsFile->findNext(Collections::ooHierarchyKeywords(), $startToken, $endToken);
+        $tokens = $phpcsFile->getTokens();
+        $found  = $startToken;
 
-        if ($classRef === false || $tokens[$classRef]['code'] !== \T_STATIC) {
-            return $classRef;
-        }
+        $find  = Collections::ooHierarchyKeywords();
+        $find += Collections::closedScopes();
 
-        // T_STATIC, make sure it is used as a class reference.
-        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($classRef + 1), $endToken, true);
-        if ($next === false || $tokens[$next]['code'] !== \T_DOUBLE_COLON) {
-            return false;
-        }
+        do {
+            $found = $phpcsFile->findNext($find, ($found + 1), $endToken);
+            if ($found === false) {
+                return false;
+            }
 
-        return $classRef;
+            if (isset(Collections::closedScopes()[$tokens[$found]['code']])) {
+                if (isset($tokens[$found]['scope_closer'])) {
+                    // Nested closed structure. Skip over.
+                    $found = $tokens[$found]['scope_closer'];
+                    continue;
+                } else {
+                    // Shouldn't be possible.
+                    return false;
+                }
+            }
+
+            // This must be an OO hierarchy keyword token.
+            if ($tokens[$found]['code'] !== \T_STATIC) {
+                return $found;
+            }
+
+            // T_STATIC, make sure it is used as a class reference.
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($found + 1), $endToken, true);
+            if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
+                return false;
+            }
+
+            return $found;
+
+        } while (true);
     }
 }

@@ -84,9 +84,34 @@ class SelfTest
             var_dump(self::ABC); // Let's make sure we get an error for each line using self.
             var_dump(parent::ABC);
             var_dump(static::ABC);
-            
+
             static $a = 'abc';
             static function() {};
         };
     }
 }
+
+// Issue #1481 $this in anonymous class in closure.
+$closure = function() {
+    $obj = new class() {
+        public function doSomething(): int {
+            var_dump(self::ABC);
+            var_dump(static::ABC);
+
+            return $this->x;
+        }
+    };
+    return $obj;
+};
+
+// Variation on #1481, any closed structure can be declared within a closure... see https://3v4l.org/Zb22K#veol
+$closure = function() {
+    class named {
+        public function doSomething(static $x): static {
+            var_dump(self::ABC);
+            return $this->x;
+        }
+    }
+    $a = new named();
+    return $a;
+};
