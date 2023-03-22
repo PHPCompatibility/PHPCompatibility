@@ -114,11 +114,13 @@ class RemovedMagicAutoloadUnitTest extends BaseSniffTest
             [self::TEST_FILE, 14],
             [self::TEST_FILE, 18],
             [self::TEST_FILE, 24],
+            [self::TEST_FILE, 39],
             [self::TEST_FILE_NAMESPACED, 5],
             [self::TEST_FILE_NAMESPACED, 10],
             [self::TEST_FILE_NAMESPACED, 16],
             [self::TEST_FILE_NAMESPACED, 20],
             [self::TEST_FILE_NAMESPACED, 26],
+            [self::TEST_FILE_NAMESPACED, 32],
         ];
     }
 }

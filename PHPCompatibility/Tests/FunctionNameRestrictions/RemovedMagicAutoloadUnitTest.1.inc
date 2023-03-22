@@ -34,3 +34,9 @@ class Nested {
         }
     }
 }
+
+enum fooenum {
+    public function __autoload($someclass) {
+        echo 'I am NOT an autoloader as I\'m not in the global namespace';
+    }
+}
