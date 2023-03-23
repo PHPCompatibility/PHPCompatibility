@@ -947,7 +947,7 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $filteredToken = TextStrings::stripQuotes($iniToken['raw']);
+        $filteredToken = TextStrings::stripQuotes($iniToken['clean']);
         if (isset($this->newIniDirectives[$filteredToken]) === false) {
             return;
         }
