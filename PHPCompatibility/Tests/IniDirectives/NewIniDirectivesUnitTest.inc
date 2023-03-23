@@ -544,3 +544,6 @@ $test = ini_get('mysqli.local_infile_directory');
 
 ini_set('pm.max_spawn_rate', 10);
 $test = ini_get('pm.max_spawn_rate');
+
+// Safeguard no false positives on PHP 8.1+ first class callables.
+register_callback(ini_get(...));
