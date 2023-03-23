@@ -676,7 +676,7 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $filteredToken = TextStrings::stripQuotes($iniToken['raw']);
+        $filteredToken = TextStrings::stripQuotes($iniToken['clean']);
         if (isset($this->deprecatedIniDirectives[$filteredToken]) === false) {
             return;
         }

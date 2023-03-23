@@ -51,7 +51,7 @@ $a = ini_get('safe_mode_exec_dir');
 ini_set('safe_mode_allowed_env_vars', 1);
 $a = ini_get('safe_mode_allowed_env_vars');
 
-ini_set('safe_mode_protected_env_vars', 1);
+ini_set( /*comment*/ 'safe_mode_protected_env_vars', 1);
 $a = ini_get('safe_mode_protected_env_vars');
 
 ini_set('session.save_handler', 1); // Ok.
@@ -62,7 +62,7 @@ ini_set('always_populate_raw_post_data', 1);
 ini_set('iconv.input_encoding', 'a');
 $a = ini_get('iconv.input_encoding');
 
-ini_set('iconv.output_encoding', 'a');
+ini_set('iconv.output_encoding' /*comment*/, 'a');
 $a = ini_get('iconv.output_encoding');
 
 ini_set('iconv.internal_encoding', 'a');
