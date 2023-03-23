@@ -453,3 +453,6 @@ $test = ini_get('oci8.old_oci_close_semantics');
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->ini_set('y2k_compliance', 1);
+
+// Safeguard no false positives on PHP 8.1+ first class callables.
+register_callback(ini_set(...));
