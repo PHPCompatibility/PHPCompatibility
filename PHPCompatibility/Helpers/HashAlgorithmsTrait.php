@@ -89,6 +89,6 @@ trait HashAlgorithmsTrait
         }
 
         // Algorithm is a text string, so we need to remove the quotes.
-        return TextStrings::stripQuotes(\strtolower($algoParam['raw']));
+        return TextStrings::stripQuotes(\strtolower($algoParam['clean']));
     }
 }

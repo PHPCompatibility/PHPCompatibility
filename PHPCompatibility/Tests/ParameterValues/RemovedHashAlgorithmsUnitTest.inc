@@ -16,10 +16,10 @@ hash_file('salsa10');
 hash_file('salsa20');
 
 hash_hmac_file(algo: "salsa10");
-hash_hmac( "salsa20" );
+hash_hmac( "salsa20" /*comment*/ );
 hash_init(   'salsa10'  );
 
-hash("salsa10");
+hash(/*comment*/ "salsa10");
 hash("salsa10", "2nd param", 3, false);
 
 hash_pbkdf2('salsa20');

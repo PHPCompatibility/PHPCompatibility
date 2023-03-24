@@ -16,10 +16,10 @@ hash_file("ripemd320");
 hash_file( "salsa10" );
 
 hash_hmac(     "salsa20"      );
-hash_hmac_file("snefru256");
+hash_hmac_file("snefru256" /*comment*/);
 hash_init(   'sha224'  );
 
-hash("joaat");
+hash(/*comment*/ "joaat");
 hash("fnv132", "2nd param", 3, false);
 hash("fnv164");
 
