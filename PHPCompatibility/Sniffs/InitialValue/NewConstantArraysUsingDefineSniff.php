@@ -81,20 +81,30 @@ class NewConstantArraysUsingDefineSniff extends AbstractFunctionCallParameterSni
             $targetNestingLevel = \count($tokens[$valueParam['start']]['nested_parenthesis']);
         }
 
-        $array = $phpcsFile->findNext(Collections::arrayOpenTokensBC(), $valueParam['start'], ($valueParam['end'] + 1));
-        if ($array !== false
-            && ($tokens[$array]['code'] === \T_ARRAY
-                || Arrays::isShortArray($phpcsFile, $array) === true)
-        ) {
-            if ((isset($tokens[$array]['nested_parenthesis']) === false && $targetNestingLevel === 0)
-                || \count($tokens[$array]['nested_parenthesis']) === $targetNestingLevel
+        $current = ($valueParam['start'] - 1);
+        do {
+            $current = $phpcsFile->findNext(Collections::arrayOpenTokensBC(), ($current + 1), ($valueParam['end'] + 1));
+            if ($current === false) {
+                break;
+            }
+
+            if (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$current]['code']])
+                && Arrays::isShortArray($phpcsFile, $current) === false
+            ) {
+                // Not an array.
+                continue;
+            }
+
+            if ((isset($tokens[$current]['nested_parenthesis']) === false && $targetNestingLevel === 0)
+                || \count($tokens[$current]['nested_parenthesis']) === $targetNestingLevel
             ) {
                 $phpcsFile->addError(
                     'Constant arrays using define are not allowed in PHP 5.6 or earlier',
-                    $array,
+                    $current,
                     'Found'
                 );
+                break;
             }
-        }
+        } while ($current <= $valueParam['end']);
     }
 }

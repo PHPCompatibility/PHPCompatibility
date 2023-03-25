@@ -47,3 +47,7 @@ MyOwn\define('name', array());
 
 // No false positive on class called "define".
 $obj = new Define('name', array());
+
+// Prevent false negative with compound value.
+define('NAME', functionReturningArray(array()) + array('sn', 'givenname', 'mail')); // Error.
+define('NAME', functionReturningArray(array()) + functionReturningArray(array())); // OK (undetermined).
