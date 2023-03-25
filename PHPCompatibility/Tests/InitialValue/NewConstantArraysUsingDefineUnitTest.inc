@@ -6,7 +6,7 @@ define('ANIMALS', [
     'bird'
 ]);
 
-define('ANIMALS', array(
+DEFINE('ANIMALS', array(
     'dog',
     'cat',
     'bird'
@@ -19,8 +19,8 @@ myClass::define('ANIMALS', 'dog');
 $object->define('ANIMALS', 'dog');
 
 class myClass {
-	const define = true;
-	function define() {}
+    const define = true;
+    function define($name, $value = array()) {}
 }
 
 notDefine('ANIMALS', 'dog');
