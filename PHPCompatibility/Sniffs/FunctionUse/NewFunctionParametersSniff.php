@@ -1059,19 +1059,18 @@ class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
     {
         $functionLc = \strtolower($functionName);
 
-        // If the parameter count is > 0, we know there will be valid open parenthesis.
-        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
-
         foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
             $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
 
-            if ($targetParam !== false) {
+            if ($targetParam !== false && $targetParam['clean'] !== '') {
+                $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+
                 $itemInfo = [
                     'name'   => $functionName,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
                 ];
-                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
+                $this->handleFeature($phpcsFile, $firstNonEmpty, $itemInfo);
             }
         }
     }

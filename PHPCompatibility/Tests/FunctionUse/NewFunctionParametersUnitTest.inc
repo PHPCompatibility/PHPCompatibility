@@ -137,3 +137,12 @@ mb_strrpos( $haystack, encoding: 'UTF-8', needle: $needle, offset: 2 ); // Error
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->getenv($varname, true ); // OK.
+
+// Prevent false positive on param which isn't actually a param.
+bcmod( '100', '10', /* to do: add scale */, ); // OK, well, not really, parse error due to trailing comma, but that's not the concern of this sniff.
+
+// Safeguard error is thrown on the line containing the parameter.
+parse_url(
+    $url,
+    PHP_URL_PATH // Error.
+);
