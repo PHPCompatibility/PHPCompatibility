@@ -81,11 +81,21 @@ class NewConstantArraysUsingDefineSniff extends AbstractFunctionCallParameterSni
             $targetNestingLevel = \count($tokens[$valueParam['start']]['nested_parenthesis']);
         }
 
+        $find             = Collections::arrayOpenTokensBC();
+        $find[\T_CLOSURE] = \T_CLOSURE;
+        $find[\T_FN]      = \T_FN;
+
         $current = ($valueParam['start'] - 1);
         do {
-            $current = $phpcsFile->findNext(Collections::arrayOpenTokensBC(), ($current + 1), ($valueParam['end'] + 1));
+            $current = $phpcsFile->findNext($find, ($current + 1), ($valueParam['end'] + 1));
             if ($current === false) {
                 break;
+            }
+
+            if (isset(Collections::functionDeclarationTokens()[$tokens[$current]['code']], $tokens[$current]['scope_closer'])) {
+                // Skip over closure and arrow function definitions. Not the concern of this sniff.
+                $current = $tokens[$current]['scope_closer'];
+                continue;
             }
 
             if (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$current]['code']])

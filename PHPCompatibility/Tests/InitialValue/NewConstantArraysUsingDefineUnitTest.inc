@@ -51,3 +51,7 @@ $obj = new Define('name', array());
 // Prevent false negative with compound value.
 define('NAME', functionReturningArray(array()) + array('sn', 'givenname', 'mail')); // Error.
 define('NAME', functionReturningArray(array()) + functionReturningArray(array())); // OK (undetermined).
+
+// Prevent false positive on closure/PHP 7.4 arrow function with PHP 8.1 "new in initializer".
+define('CLOSURE_OBJECT_FROM_CLOSURE', function() { return array(1, 2, 3); });
+define('CLOSURE_OBJECT_FROM_ARROW', fn() => array(1, 2, 3));
