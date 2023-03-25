@@ -200,7 +200,7 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 
             if ($targetParam !== false) {
                 if (isset($parameterDetails['callback']) && \method_exists($this, $parameterDetails['callback'])) {
-                    if ($this->{$parameterDetails['callback']}($phpcsFile, $parameters[($offset + 1)]) === false) {
+                    if ($this->{$parameterDetails['callback']}($phpcsFile, $targetParam) === false) {
                         continue;
                     }
                 }
