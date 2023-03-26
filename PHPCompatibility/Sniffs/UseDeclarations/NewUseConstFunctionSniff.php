@@ -95,8 +95,7 @@ class NewUseConstFunctionSniff extends Sniff
         // `use const` and `use function` have to be followed by the function/constant name.
         $functionOrConstName = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
         if ($functionOrConstName === false
-            // Identifies as T_AS or T_STRING, this covers both.
-            || ($tokens[$functionOrConstName]['content'] === 'as'
+            || ($tokens[$functionOrConstName]['code'] === \T_AS
             || $tokens[$functionOrConstName]['code'] === \T_COMMA)
         ) {
             // Live coding or incorrect use of reserved keyword, but that is

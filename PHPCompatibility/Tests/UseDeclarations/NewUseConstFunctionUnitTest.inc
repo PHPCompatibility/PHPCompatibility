@@ -29,13 +29,13 @@ $closure = function($a) use ($b) {};
 use const Baz;
 use Const FOOBAR as Baz;
 use function Baz;
-use FUNCTION FooBar as Baz;
+use FUNCTION FooBar AS Baz;
 
 /*
  * Incorrect use, but covered by ForbiddenNames sniff, should not be reported here.
  */
 use const as Baz;
-use function as Baz;
+use function AS Baz;
 use const, function, somethingElse;
 
 /*
