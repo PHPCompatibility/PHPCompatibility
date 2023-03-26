@@ -403,6 +403,76 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * Test arrow functions.
+     *
+     * @dataProvider dataArrowFunction
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testArrowFunction($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.3');
+        $this->assertError($file, $line, 'The "fn" keyword for arrow functions is not present in PHP version 7.3 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testArrowFunction()
+     *
+     * @return array
+     */
+    public static function dataArrowFunction()
+    {
+        return [
+            [150],
+            [152],
+            [154],
+            [157],
+            [158],
+            [161],
+        ];
+    }
+
+    /**
+     * Test against false positives for the fn keyword for arrow functions.
+     *
+     * @dataProvider dataArrowFunctionNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testArrowFunctionNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testArrowFunctionNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataArrowFunctionNoFalsePositives()
+    {
+        $data = [];
+
+        for ($i = 130; $i <= 148; $i++) {
+            $data[] = [$i];
+        }
+
+        return $data;
+    }
+
+    /**
      * testHaltCompiler
      *
      * @return void
@@ -416,7 +486,7 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
          * not be reported.
          */
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 130);
+        $this->assertNoViolation($file, 170);
     }
 
 
