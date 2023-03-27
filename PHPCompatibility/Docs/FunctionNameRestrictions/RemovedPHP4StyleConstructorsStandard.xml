@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed PHP 4 Style Constructors"
+    >
+    <standard link="https://www.zend.com/php-migration/function-name-restrictions/removed-php4-style-constructor">
+    <![CDATA[
+    Declaration of a PHP 4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0.
+
+    A PHP 4 style class constructor is a method with the same name as the class.
+    To mitigate, add a `__construct()` method to the class (and potentially remove the PHP 4 style constructor method).
+
+    In PHP 8.0+, a PHP 4 style class constructor method will be regarded as an ordinary method.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: PHP 4 style constructor accompanied by a PHP 5+ style constructor.">
+        <![CDATA[
+class <em>Foo</em>
+{
+    function <em>__construct</em>()
+    {
+        // Do something.
+    }
+
+    function <em>Foo</em>()
+    {
+        self::__construct();
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 7.0: PHP 4 style constructor without a PHP 5+ style constructor.">
+        <![CDATA[
+class <em>Bar</em>
+{
+    function <em>Bar</em>()
+    {
+        // Do something.
+    }
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
