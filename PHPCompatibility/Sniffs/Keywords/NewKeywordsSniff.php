@@ -153,6 +153,11 @@ class NewKeywordsSniff extends Sniff
             '7.4'         => true,
             'description' => 'The "fn" keyword for arrow functions',
         ],
+        'T_MATCH' => [
+            '7.4'         => false,
+            '8.0'         => true,
+            'description' => 'The "match" keyword',
+        ],
     ];
 
     /**
@@ -276,6 +281,7 @@ class NewKeywordsSniff extends Sniff
         // them.
         if (($nextToken === false
                 || $tokenType === 'T_FN' // Open parenthesis is expected after "fn" keyword.
+                || $tokenType === 'T_MATCH' // ... and after the "match" keyword.
                 || $tokens[$nextToken]['type'] !== 'T_OPEN_PARENTHESIS')
             && ($prevToken === false
                 || $tokens[$prevToken]['type'] !== 'T_CLASS'
