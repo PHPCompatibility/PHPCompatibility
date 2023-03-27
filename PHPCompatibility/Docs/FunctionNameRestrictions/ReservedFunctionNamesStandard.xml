@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Reserved Function Name"
+    >
+    <standard link="https://www.zend.com/php-migration/function-name-restrictions/reserved-double-underscore">
+    <![CDATA[
+    PHP has reserved all function and method names with a double underscore prefix for future use.
+
+    Such uses by PHP itself include the use of these names for magic methods, which can be declared in userland code.
+
+    When renaming functions, make sure to also update all references to those functions.
+    This might include indirect references, such as the name of a callback function when using `call_user_func()` et al.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: function name without double underscore prefix and declaration of magic methods">
+        <![CDATA[
+function <em>existsUserName</em>($userName) {}
+
+class ItsAKindOfMagic {
+    public function <em>__construct</em>() {}
+    public function <em>__toString</em>() {}
+}
+        ]]>
+        </code>
+        <code title="Invalid: function name with double underscore prefix while not a magic function/method">
+        <![CDATA[
+function <em>__existsUserName</em>($userName) {}
+
+class NoMagic {
+    public function <em>__doSomething<em>() {}
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
