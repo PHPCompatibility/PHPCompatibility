@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Functions Inspecting Arguments Report Current Value"
+    >
+    <standard link="https://www.zend.com/php-migration/function-use/inspecting-arguments">
+    <![CDATA[
+    Since PHP 7.0, functions inspecting arguments no longer report the original value as passed to a parameter, but will instead provide the current value of the arguments at the point in the code flow the inspection function is being called.
+
+    The functions affected are `func_get_arg()`, `func_get_args()`, `debug_backtrace()` and `debug_print_backtrace()` and the change only affects the use of these functions within functions with declared parameters.
+
+    Inconsistency in the values being returned by these function calls can be prevented by calling the function inspecting the function arguments prior to any modification of the received arguments and, of course, by not modifying the original values of the arguments.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: code NOT affected by the change">
+        <![CDATA[
+// func_get_args() called BEFORE change of $a.
+function foo($a, $b = null) {
+    <em>$args = func_get_args()</em>;
+    if (isset($b)) {
+        $a *= $b;
+    }
+    return <em>$args</em>;
+}
+
+/* func_get_arg() retrieving the
+   unchanged argument $b. */
+function bar($a, $b) {
+    if (isset($b)) {
+        $a *= $b;
+    }
+    return func_get_arg(<em>1</em>);
+}
+
+/* Calling debug_backtrace
+   with DEBUG_BACKTRACE_IGNORE_ARGS. */
+function foo($a) {
+    $a = 'foo';
+    debug_backtrace(
+        <em>DEBUG_BACKTRACE_IGNORE_ARGS</em>
+    );
+}
+
+// Function declared without arguments.
+$closure = <em>function()</em> {
+    $abc = 'abc';
+    var_dump(<em>func_get_args()</em>);
+};
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: code affected by the change">
+        <![CDATA[
+// func_get_args() called AFTER change of $a.
+function foo($a, $b = null) {
+
+    if (isset($b)) {
+        $a *= $b;
+    }
+    return <em>func_get_args()</em>;
+}
+
+/* func_get_arg() retrieving the
+   changed argument $a. */
+function bar($a, $b) {
+    if (isset($b)) {
+        $a *= $b;
+    }
+    return func_get_arg(<em>0</em>);
+}
+
+/* Calling debug_backtrace
+   without DEBUG_BACKTRACE_IGNORE_ARGS. */
+function foo($a) {
+    $a = 'foo';
+    <em>debug_backtrace()</em>;
+}
+
+
+
+// Value of defined parameter is changed.
+$closure = function(<em>$abc</em>) {
+    <em>$abc += 'abc';</em>
+    var_dump(<em>func_get_args()</em>);
+};
+        ]]>
+        </code>
+    </code_comparison>
+
+    <standard>
+    <![CDATA[
+    In some cases the sniff cannot reliably determine whether the argument which is used in the code, is actually being changed (potentially by reference).
+    In those situations, the sniff will throw a warning to manually inspect the code.
+
+    If, after close scrutiny, it is determined that the code is not affected by this change, an ignore annotation can be used to prevent the warning from showing in future code inspections.
+
+    It is recommended to use the most specific ignore annotation possible, like so:
+    // phpcs:ignore PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.NeedsInspection
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: original value of $array is not changed prior to call to func_get_args()">
+        <![CDATA[
+function foo($array) {
+    $args = <em>func_get_args()</em>;
+    \array_sort(<em>$array</em>);
+    return $args;
+}
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: original value of $array is changed by reference prior to call to func_get_args()">
+        <![CDATA[
+function foo($array) {
+    // Changes $array by reference.
+    \array_sort(<em>$array</em>);
+    return \<em>func_get_args()</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+
+    <code_comparison>
+        <code title="Cross-version compatible: original value of $email is not changed prior to call to func_get_arg()">
+        <![CDATA[
+function myFunction($email) {
+    $newEmail = $email;
+    saveEmail($newEmail);
+    return func_get_arg(<em>0</em>);
+}
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: original value of $email is potentially be changed (by reference) prior to call to func_get_arg()">
+        <![CDATA[
+function myFunction($email) {
+    // Unclear: Is $email changed by reference?
+    saveEmail($email);
+    return func_get_arg(<em>0</em>);
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
