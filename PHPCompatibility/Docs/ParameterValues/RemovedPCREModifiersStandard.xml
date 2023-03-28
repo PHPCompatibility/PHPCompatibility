@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed PCRE Modifiers"
+    >
+    <standard>
+    <![CDATA[
+    The /e modifier, as could be used in regexes passed to the PCRE `preg_replace()` and `preg_filter()` functions, is deprecated since PHP 5.5 and removed since PHP 7.0.
+    Use `preg_replace_callback()` or `preg_replace_array_callback()` instead.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using preg_replace_callback()">
+        <![CDATA[
+<em>preg_replace_callback</em>(
+    '/^(.?)/',
+    <em>function ($matches) {
+        return strtoupper($matches[1]);
+    }</em>,
+    $input
+);
+        ]]>
+        </code>
+        <code title="PHP &lt; 7.0: using the /e modifier">
+        <![CDATA[
+preg_replace(
+    <em>'/^(.?)/e'</em>,
+    <em>"strtoupper('\\1')"</em>,
+    $input
+);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
