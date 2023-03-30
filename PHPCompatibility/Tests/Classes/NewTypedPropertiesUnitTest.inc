@@ -146,3 +146,11 @@ class IntersectionTypes() {
 class TrueType() {
     public true $true = true;
 }
+
+// PHP 8.0 constructor property promotion.
+class ConstructorPropertyPromotionNoTypes {
+    public function __Construct(
+        protected $x,
+        public &$y = 'test',
+    ) {}
+}

@@ -191,6 +191,11 @@ class NewTypedPropertiesSniff extends Sniff
                 continue;
             }
 
+            if ($param['type_hint'] === '') {
+                // Not a typed property.
+                return;
+            }
+
             // Juggle some of the array entries to what it expected for properties.
             $paramInfo = [
                 'type'          => $param['type_hint'],
