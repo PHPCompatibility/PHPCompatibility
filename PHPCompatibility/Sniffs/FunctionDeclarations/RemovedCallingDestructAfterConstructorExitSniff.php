@@ -70,6 +70,14 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
+        $tokens = $phpcsFile->getTokens();
+        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false
+            || isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false
+        ) {
+            // Parse error, tokenizer error or live coding.
+            return;
+        }
+
         $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
         if (empty($name) === true) {
             // Parse error or live coding.
@@ -78,12 +86,6 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
 
         if (\strtolower($name) !== '__construct') {
             // The rule only applies to constructors. Bow out.
-            return;
-        }
-
-        $tokens = $phpcsFile->getTokens();
-        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false) {
-            // Parse error or live coding.
             return;
         }
 
@@ -128,11 +130,6 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
 
         if (empty($exits) === true) {
             // No calls to exit or die found.
-            return;
-        }
-
-        if (isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false) {
-            // Parse error, tokenizer error or live coding.
             return;
         }
 
