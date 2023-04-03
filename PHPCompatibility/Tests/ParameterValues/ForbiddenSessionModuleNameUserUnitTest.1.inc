@@ -24,3 +24,6 @@ EOD
 ClassName::session_module_name('user');
 $obj->session_module_name('user');
 $obj?->session_module_name('user'); // PHP 8.0+.
+
+// Safeguard no false positives on PHP 8.1+ first class callables.
+register_callback(session_module_name(...));
