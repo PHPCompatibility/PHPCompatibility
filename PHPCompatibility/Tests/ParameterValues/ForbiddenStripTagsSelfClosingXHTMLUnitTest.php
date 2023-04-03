@@ -110,6 +110,10 @@ class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
             $cases[] = [$line];
         }
 
+        $cases[] = [32];
+        $cases[] = [33];
+        $cases[] = [34];
+
         return $cases;
     }
 

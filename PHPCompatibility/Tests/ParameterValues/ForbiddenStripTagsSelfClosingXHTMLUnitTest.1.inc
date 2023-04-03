@@ -27,3 +27,8 @@ strip_tags($input,
 <img/><br/>$extraTags
 EOD
 );
+
+// Safeguard against false positives on method calls.
+ClassName::strip_tags($input, '<br/>');
+$obj->strip_tags($input, '<br/>');
+$obj?->strip_tags($input, '<br/>'); // PHP 8.0+.
