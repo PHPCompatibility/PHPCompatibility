@@ -19,3 +19,8 @@ session_module_name(<<<'EOD'
 user
 EOD
 );
+
+// Safeguard against false positives on method calls.
+ClassName::session_module_name('user');
+$obj->session_module_name('user');
+$obj?->session_module_name('user'); // PHP 8.0+.
