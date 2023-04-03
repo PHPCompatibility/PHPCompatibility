@@ -13,7 +13,7 @@ EOD
 );
 
 // Not OK.
-session_module_name('user');
+session_module_name('user',);
 session_module_name(module: "USER");
 session_module_name(<<<'EOD'
 user
