@@ -106,11 +106,10 @@ class NewOperatorsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $tokenType = $tokens[$stackPtr]['type'];
+        $tokens = $phpcsFile->getTokens();
 
         $itemInfo = [
-            'name' => $tokenType,
+            'name' => $tokens[$stackPtr]['type'],
         ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
