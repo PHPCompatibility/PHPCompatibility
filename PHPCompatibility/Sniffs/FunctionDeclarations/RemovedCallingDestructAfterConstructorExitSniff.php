@@ -63,6 +63,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
+        // Note: interface constructors cannot contain code, enums cannot contain constructors or destructors.
         $classPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, [\T_CLASS, \T_ANON_CLASS, \T_TRAIT]);
         if ($classPtr === false) {
             // Function, not method.
