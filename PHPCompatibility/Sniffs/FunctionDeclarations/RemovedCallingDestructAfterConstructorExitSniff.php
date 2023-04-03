@@ -140,10 +140,18 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
         $classClose  = $tokens[$classPtr]['scope_closer'];
         $nextFunc    = $classOpen;
 
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
             // Skip over docblocks.
             if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
                 $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
+            // Skip over attributes.
+            if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
+                && isset($tokens[$nextFunc]['attribute_closer'])
+            ) {
+                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
                 continue;
             }
 
