@@ -23,3 +23,6 @@ function($_GET) {}
 
 // Arrow functions: these should be flagged.
 $arrow = fn( $_ENV ) => $_ENV['key'];
+
+// Safeguard the sniff stays silent when there are no parameters.
+function testingM() {}
