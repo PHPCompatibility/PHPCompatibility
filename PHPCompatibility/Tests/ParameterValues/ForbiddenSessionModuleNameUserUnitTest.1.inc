@@ -27,3 +27,6 @@ $obj?->session_module_name('user'); // PHP 8.0+.
 
 // Safeguard no false positives on PHP 8.1+ first class callables.
 register_callback(session_module_name(...));
+
+// Safeguard against false positives when target param not found.
+session_module_name(name: 'user'); // Wrong param name.
