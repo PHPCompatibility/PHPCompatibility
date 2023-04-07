@@ -122,3 +122,9 @@ class ExitNotInFunctionScope {
 
     public function __destruct() {}
 }
+
+function __construct() {}
+
+interface DoesntHaveCodeInFunctions {
+    public function __construct();
+}
