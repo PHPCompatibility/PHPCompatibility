@@ -18,6 +18,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group newArrayMergeRecursiveWithGlobalsVar
  * @group parameterValues
  *
+ * @covers \PHPCompatibility\AbstractFunctionCallParameterSniff
  * @covers \PHPCompatibility\Sniffs\ParameterValues\NewArrayMergeRecursiveWithGlobalsVarSniff
  *
  * @since 10.0.0

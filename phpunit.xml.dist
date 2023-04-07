@@ -28,6 +28,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="false">
             <file>./PHPCompatibility/Sniff.php</file>
             <file>./PHPCompatibility/AbstractInitialValueSniff.php</file>
+            <file>./PHPCompatibility/AbstractFunctionCallParameterSniff.php</file>
             <directory>./PHPCompatibility/Sniffs/</directory>
             <directory>./PHPCompatibility/Exceptions/</directory>
             <directory>./PHPCompatibility/Helpers/</directory>
