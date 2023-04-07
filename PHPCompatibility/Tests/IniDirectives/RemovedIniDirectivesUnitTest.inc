@@ -456,3 +456,7 @@ $obj?->ini_set('y2k_compliance', 1);
 
 // Safeguard no false positives on PHP 8.1+ first class callables.
 register_callback(ini_set(...));
+
+// Safeguard against false positives when target param not found.
+ini_set(value: 1); // Missing param.
+$test = ini_get(ini: 'filter.default_options'); // Wrong param name.

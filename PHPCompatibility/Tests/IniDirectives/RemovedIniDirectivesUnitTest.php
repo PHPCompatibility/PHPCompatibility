@@ -404,6 +404,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             [164],
             [455],
             [458],
+            [461],
+            [462],
         ];
     }
 
