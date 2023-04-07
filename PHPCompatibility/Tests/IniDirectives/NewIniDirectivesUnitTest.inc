@@ -547,3 +547,7 @@ $test = ini_get('pm.max_spawn_rate');
 
 // Safeguard no false positives on PHP 8.1+ first class callables.
 register_callback(ini_get(...));
+
+// Safeguard against false positives when target param not found.
+ini_set(value: 1); // Missing param.
+$test = ini_get(ini: 'oci8.statement_cache_size'); // Wrong param name.
