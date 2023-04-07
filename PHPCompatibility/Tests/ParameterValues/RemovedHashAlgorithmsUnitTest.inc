@@ -23,3 +23,8 @@ hash(/*comment*/ "salsa10");
 hash("salsa10", "2nd param", 3, false);
 
 hash_pbkdf2('salsa20');
+
+// Safeguard handling of function call missing required param / live coding.
+hash_init();
+hash_hmac( data: 'salsa20', key: $key ); // Missing $algo param.
+hash_pbkdf2(algorithm: 'salsa20'); // Incorrect param name.

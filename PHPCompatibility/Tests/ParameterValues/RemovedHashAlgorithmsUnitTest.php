@@ -100,6 +100,9 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
             [6],
             [7],
             [8],
+            [28],
+            [29],
+            [30],
         ];
     }
 
