@@ -81,12 +81,8 @@ class NewUseConstFunctionSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
+        // Note: $nextNonEmpty will never be `false` as otherwise `isImportUse()` would have returned `false`.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false) {
-            // Live coding.
-            return;
-        }
-
         if (isset($this->validUseNames[\strtolower($tokens[$nextNonEmpty]['content'])]) === false) {
             // Not a `use const` or `use function` statement.
             return;
