@@ -160,3 +160,8 @@ class NeverType {
     public never $neverA;
     public Never $neverB;
 }
+
+class EdgeCase {
+    public int $property ?>
+    <?php
+}
