@@ -154,3 +154,9 @@ class ConstructorPropertyPromotionNoTypes {
         public &$y = 'test',
     ) {}
 }
+
+// PHP 8.1 never type is not supported for typed properties (not does it make sense).
+class NeverType {
+    public never $neverA;
+    public Never $neverB;
+}

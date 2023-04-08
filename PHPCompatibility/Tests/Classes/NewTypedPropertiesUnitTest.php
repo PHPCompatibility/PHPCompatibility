@@ -99,6 +99,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [139],
             [142],
             [147],
+            [160],
+            [161],
         ];
     }
 
@@ -176,6 +178,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [65, 'boolean'],
             [66, 'integer'],
             [117, 'callable'],
+            [160, 'never'],
+            [161, 'never'],
         ];
     }
 

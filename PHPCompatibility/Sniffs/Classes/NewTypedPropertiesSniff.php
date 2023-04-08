@@ -99,6 +99,7 @@ class NewTypedPropertiesSniff extends Sniff
         'integer'  => 'int',
         'callable' => false,
         'void'     => false,
+        'never'    => false,
     ];
 
     /**
