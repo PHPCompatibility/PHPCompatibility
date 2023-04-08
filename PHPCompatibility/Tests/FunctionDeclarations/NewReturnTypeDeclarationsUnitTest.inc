@@ -129,3 +129,11 @@ function intersectionTypesIllegalTypes(): A&B&A {}
 
 // PHP 8.2 true type.
 function pseudoTypeTrue(): true {}
+
+// PHP 8.1 types in enum methods.
+enum Suit implements Colorful
+{
+    public function color(): ?string {}
+    public function shape(): mixed {}
+    public function union(): A|B {}
+}
