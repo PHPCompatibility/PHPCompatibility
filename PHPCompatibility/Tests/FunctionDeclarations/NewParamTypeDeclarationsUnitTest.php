@@ -133,6 +133,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['parent', '5.1', 150, '8.1'],
 
             ['true', '8.1', 157, '8.2'],
+
+            ['int', '5.6', 165, '7.0'],
+            ['string', '5.6', 165, '7.0'],
         ];
     }
 
@@ -306,6 +309,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['iterable|array|Traversable', 119],
             ['int|string|INT', 122],
             ['float|int', 131],
+            ['A|B', 167],
         ];
     }
 
@@ -448,6 +452,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['self&\Fully\Qualified\SomeInterface', 149],
             ['Qualified\SomeInterface&parent', 150],
             ['A&B&A', 154],
+            ['A&B', 168],
         ];
     }
 
@@ -573,6 +578,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [150],
             [154],
             [157],
+            [165],
+            [167],
+            [168],
         ];
     }
 
