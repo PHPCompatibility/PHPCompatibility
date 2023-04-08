@@ -77,7 +77,7 @@ class Bar {
 // PHP 7.4 arrow functions.
 $arrow = fn(int $a) => $a * 10;
 $arrow = fn(\FQN\ClassName $b) => $b::method();
-$arrow = fn(callable $a) => $a();
+$arrow = fn(callable $a, string $b, mixed $c) => $a();
 $arrow = fn(integer $a) => $a . 'test';
 $arrow = fn($a) => $a * 10; // OK.
 

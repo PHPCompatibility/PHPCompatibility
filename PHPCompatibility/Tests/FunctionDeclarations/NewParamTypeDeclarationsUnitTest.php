@@ -85,7 +85,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['self', '5.1', 72, '5.2', false],
             ['parent', '5.1', 73, '5.2', false],
             ['int', '5.6', 78, '7.0'],
-            ['callable', '5.3', 80, '5.4'],
+            ['callable', '5.3', 80, '8.0'],
+            ['string', '5.6', 80, '8.0'],
+            ['mixed', '7.4', 80, '8.0'],
             ['mixed', '7.4', 85, '8.0'],
             ['mixed', '7.4', 88, '8.0', false],
 
