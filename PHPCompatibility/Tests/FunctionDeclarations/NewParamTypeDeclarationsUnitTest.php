@@ -564,6 +564,13 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [130],
             [131],
             [132],
+            [139],
+            [141],
+            [145],
+            [149],
+            [150],
+            [154],
+            [157],
         ];
     }
 
