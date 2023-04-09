@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Uniform Variable Syntax"
+    >
+    <standard>
+    <![CDATA[
+    As of PHP 7.0, indirect access to variables, properties and methods will now be evaluated strictly in left-to-right order.
+
+    Prior to PHP 7.0, certain expressions would be interpreted using a right-to-left evaluation order, which means that the result of these expressions will be different in PHP 5.x versus PHP 7.x.
+
+    The evaluation order can be made explicit and enforced to be the same PHP cross-version by using curly braces to clarify how the expression should be evaluated.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Using curly braces to explicitly enforce a specific evaluation order.">
+        <![CDATA[
+echo $<em>{</em>$var['key1']['key2']<em>}</em>;
+echo $obj-><em>{</em>$var['key']<em>}</em>;
+echo $obj-><em>{</em>$var['key']<em>}</em>();
+echo MyClass::<em>{</em>$var['key']<em>}</em>();
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: Without curly braces the interpretation of these indirect accesses to variables, properties and methods will behave different in PHP &lt;= 5.6 versus PHP 7.0+.">
+        <![CDATA[
+echo <em>$$var['key1']['key2']</em>;
+echo <em>$obj->$var['key']</em>;
+echo <em>$obj->$var['key']()</em>;
+echo <em>MyClass::$var['key']()</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
