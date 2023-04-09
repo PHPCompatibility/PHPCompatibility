@@ -44,6 +44,8 @@ echo myClass  :: { /* comment */ $var['key']}(); // OK.
 // Make sure PHP 8.0+ nullsafe object operator is handled correctly.
 echo $obj?->$var['key'];
 echo $obj?->$var['key']();
+echo $obj?->{$var['key']};
+echo $obj?->{$var['key']}();
 
 // Live coding.
 echo $$var['key'
