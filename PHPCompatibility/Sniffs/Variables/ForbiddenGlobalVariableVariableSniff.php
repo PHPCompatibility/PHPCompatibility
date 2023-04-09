@@ -75,11 +75,9 @@ class ForbiddenGlobalVariableVariableSniff extends Sniff
             if ($variable !== false) {
 
                 $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($variable - 1), $ptr, true);
-
-                if ($prev !== false && $tokens[$prev]['type'] === 'T_DOLLAR') {
+                if ($tokens[$prev]['code'] === \T_DOLLAR) {
 
                     $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
-
                     if ($next !== false
                         && (isset(Collections::objectOperators()[$tokens[$next]['code']]) === true
                             || $tokens[$next]['code'] === \T_OPEN_SQUARE_BRACKET)
