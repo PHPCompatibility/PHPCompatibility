@@ -103,3 +103,7 @@ $arrow = fn ($a, $b,) => $a * $b;
 
 // Safeguard that trailing comma's in method calls using PHP 8.0+ nullsafe object operator are flagged correctly.
 $foo?->bar( 'method', 'bar', );
+
+// Safeguard that trailing comma's in class instantiations in PHP 8.0+ attributes are flagged correctly.
+#[Foo( 'constructor', 'bar', )]
+function bar() {}
