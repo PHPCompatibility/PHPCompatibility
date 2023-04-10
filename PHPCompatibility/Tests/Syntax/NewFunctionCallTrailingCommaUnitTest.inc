@@ -107,3 +107,6 @@ $foo?->bar( 'method', 'bar', );
 // Safeguard that trailing comma's in class instantiations in PHP 8.0+ attributes are flagged correctly.
 #[Foo( 'constructor', 'bar', )]
 function bar() {}
+
+// Document how trailing comma's in PHP 8.1+ first class callables are handled.
+register_callback(strtolower(...,)); // Parse error, but throw an error anyway as the calllable is by rights a function call.
