@@ -97,3 +97,6 @@ $obj = new self($param, );
 $obj = new parent($param , );
 $obj = new static($param,);
 $anon = new class($param,) {};
+
+// Safeguard against false positives on arrow function declarations.
+$arrow = fn ($a, $b,) => $a * $b;
