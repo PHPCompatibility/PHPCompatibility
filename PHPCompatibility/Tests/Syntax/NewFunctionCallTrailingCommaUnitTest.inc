@@ -54,9 +54,9 @@ $bar('arg1', 'arg2',);
 /*
  * Still not allowed.
  */
-// Trailing comma in function declaration.
-function bar($a, $b,) {} // Parse error, but not our concern.
-$closure = function ($a, $b,) {} // Parse error, but not our concern.
+// Trailing comma in function declaration. Update: Allowed since PHP 8.0, but not the concern of this sniff.
+function bar($a, $b,) {}
+$closure = function ($a, $b,) {}
 
 // Free-standing comma.
 foo(,); // Parse error, but throw an error anyway.
@@ -68,4 +68,4 @@ foo('function', 'bar',,); // Parse error, but throw an error anyway.
 foo(, 'function', 'bar'); // Parse error, but not our concern.
 
 // List with trailing comma.
-list($drink, $color, $power, ) = $info; // Parse error, but not our concern.
+list($drink, $color, $power, ) = $info; // Was already allowed.
