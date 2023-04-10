@@ -93,17 +93,22 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return [
-            [6],
-            [7],
-            [8],
-            [9],
-            [51],
-            [58],
-            [59],
-            [68],
-            [71],
-        ];
+        $data = [];
+
+        // No errors expected on the first 10 lines.
+        for ($line = 1; $line <= 10; $line++) {
+            $data[] = [$line];
+        }
+
+        $data[] = [51];
+        $data[] = [58];
+        $data[] = [59];
+
+        for ($line = 66; $line <= 76; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 

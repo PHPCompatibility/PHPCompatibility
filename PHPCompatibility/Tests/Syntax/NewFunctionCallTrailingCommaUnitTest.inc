@@ -69,3 +69,7 @@ foo(, 'function', 'bar'); // Parse error, but not our concern.
 
 // List with trailing comma.
 list($drink, $color, $power, ) = $info; // Was already allowed.
+
+// Safeguard that closure use statements with trailing commas are ignored.
+// This is allowed since PHP 8.0, but not the concern of this sniff.
+$closure = function () use( $a, $b, ) {};
