@@ -104,7 +104,7 @@ class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
         $data[] = [58];
         $data[] = [59];
 
-        for ($line = 66; $line <= 76; $line++) {
+        for ($line = 66; $line <= 79; $line++) {
             $data[] = [$line];
         }
 

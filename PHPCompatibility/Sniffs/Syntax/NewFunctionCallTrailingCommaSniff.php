@@ -45,7 +45,6 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
         ];
     }
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -72,18 +71,11 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] === \T_STRING) {
-            $ignore = [
-                \T_FUNCTION => true,
-                \T_CONST    => true,
-                \T_USE      => true,
-            ];
-
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-            if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
-                // Not a function call.
-                return;
-            }
+        if ($tokens[$stackPtr]['code'] === \T_STRING
+            && isset($tokens[$nextNonEmpty]['parenthesis_owner']) === true
+        ) {
+            // Function declaration, not a function call.
+            return;
         }
 
         $closer            = $tokens[$nextNonEmpty]['parenthesis_closer'];

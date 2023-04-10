@@ -73,3 +73,6 @@ list($drink, $color, $power, ) = $info; // Was already allowed.
 // Safeguard that closure use statements with trailing commas are ignored.
 // This is allowed since PHP 8.0, but not the concern of this sniff.
 $closure = function () use( $a, $b, ) {};
+
+// Prevent false positives on function declarations with return by reference.
+function &bar($a, $b,) {}
