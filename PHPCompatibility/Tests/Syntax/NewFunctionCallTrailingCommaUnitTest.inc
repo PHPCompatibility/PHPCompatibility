@@ -100,3 +100,6 @@ $anon = new class($param,) {};
 
 // Safeguard against false positives on arrow function declarations.
 $arrow = fn ($a, $b,) => $a * $b;
+
+// Safeguard that trailing comma's in method calls using PHP 8.0+ nullsafe object operator are flagged correctly.
+$foo?->bar( 'method', 'bar', );
