@@ -58,6 +58,7 @@ class NewShortListUnitTest extends BaseSniffTest
             [25], // x2.
             [28],
             [35],
+            [38],
         ];
     }
 
