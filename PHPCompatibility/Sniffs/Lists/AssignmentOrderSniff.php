@@ -12,7 +12,6 @@ namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Lists;
@@ -66,17 +65,17 @@ class AssignmentOrderSniff extends Sniff
             return;
         }
 
-        try {
-            $listVars = $this->getAssignedVars($phpcsFile, $stackPtr);
-            $closer   = Lists::getOpenClose($phpcsFile, $stackPtr)['closer'];
-
-            if (empty($listVars)) {
-                // Empty list, not our concern.
-                return ($closer + 1);
-            }
-        } catch (RuntimeException $e) {
+        $openClose = Lists::getOpenClose($phpcsFile, $stackPtr);
+        if ($openClose === false) {
             // Parse error, live coding, real square brackets or short array, not short list.
             return;
+        }
+
+        $closer   = $openClose['closer'];
+        $listVars = $this->getAssignedVars($phpcsFile, $stackPtr);
+        if (empty($listVars)) {
+            // Empty list, not our concern.
+            return ($closer + 1);
         }
 
         // Verify that all variables used in the list() construct are unique.
@@ -110,12 +109,7 @@ class AssignmentOrderSniff extends Sniff
      */
     protected function getAssignedVars($phpcsFile, $stackPtr)
     {
-        try {
-            $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Parse error, live coding, real square brackets or short array, not short list.
-            throw $e;
-        }
+        $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
 
         $listVars = [];
         foreach ($assignments as $assign) {

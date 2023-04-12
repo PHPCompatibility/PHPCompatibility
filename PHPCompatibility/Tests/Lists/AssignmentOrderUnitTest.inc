@@ -50,3 +50,7 @@ if (true) {}
 
 // Test handling of list vars with differing whitespace.
 list( $a [ 'key' ], $b [ 'key' ], list($a['key'], $b['key'])) = $array;
+
+// Don't trigger on unfinished code during live code review.
+// This has to be the last test in the file!
+list(
