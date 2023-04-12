@@ -69,6 +69,8 @@ class AssignmentOrderUnitTest extends BaseSniffTest
             [52],
             [60],
             [61],
+            [64],
+            [65],
         ];
     }
 
@@ -106,7 +108,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
             [42],
             [56],
             [57],
-            [65],
+            [69],
         ];
     }
 
