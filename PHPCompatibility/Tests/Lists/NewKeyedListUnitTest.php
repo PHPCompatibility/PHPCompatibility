@@ -109,6 +109,8 @@ class NewKeyedListUnitTest extends BaseSniffTest
             [45],
             [47],
             [49],
+            [69],
+            [73],
         ];
     }
 

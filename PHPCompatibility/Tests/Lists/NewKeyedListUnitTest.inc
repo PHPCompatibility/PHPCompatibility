@@ -64,3 +64,10 @@ list($unkeyed, "key" => $keyed) = $array;
 // Empty elements are not allowed where keys are specified.
 // Parse error, but not our concern, throw an error anyway for the key found.
 list(,,,, "key" => $keyed) = $array;
+
+// Safeguard that the sniff doesn't trigger on short arrays.
+$a = ["x" => $x1, "y" => $y1];
+
+// Don't trigger on unfinished code during live code review.
+// This has to be the last test in the file!
+list(
