@@ -43,6 +43,10 @@ if (true) {}
 // Safeguard that the sniff doesn't trigger on short arrays.
 $a = [&$x1, $y1];
 
+// Safeguard handling of PHP 7.1+ keyed lists.
+list("id" => &$id1, "name" => $name1) = $data[0];
+["id" => $id1, "name" => & /*comment*/ $name1] = $data[0];
+
 // Don't trigger on unfinished code during live code review.
 // This has to be the last test in the file!
 list(
