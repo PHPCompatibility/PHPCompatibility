@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Lists;
 
 /**
@@ -40,11 +41,7 @@ class NewListReferenceAssignmentSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_LIST                => \T_LIST,
-            \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
-            \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
-        ];
+        return Collections::listOpenTokensBC();
     }
 
     /**
