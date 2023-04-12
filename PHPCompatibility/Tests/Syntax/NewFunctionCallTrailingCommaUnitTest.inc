@@ -76,3 +76,24 @@ $closure = function () use( $a, $b, ) {};
 
 // Prevent false positives on function declarations with return by reference.
 function &bar($a, $b,) {}
+
+// Examine some more constructs.
+$obj = new MyClass($param);
+$obj = new self($param);
+$obj = new parent($param);
+$obj = new static($param);
+$anon = new class($param) {};
+
+// ... but prevent false positives on function declarations with return by reference when the function name is a reserved keyword.
+// The underlying tokenizer issue should be fixed in PHPCS itself.
+class Foo {
+    function &parent($a, $b,) {}
+    function &self($a, $b,) {}
+}
+
+// These should be flagged.
+$obj = new MyClass($param,);
+$obj = new self($param, );
+$obj = new parent($param , );
+$obj = new static($param,);
+$anon = new class($param,) {};

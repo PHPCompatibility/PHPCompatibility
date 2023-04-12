@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect trailing commas in function calls, `isset()` and `unset()` as allowed since PHP 7.3.
@@ -37,12 +38,11 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_STRING,
-            \T_VARIABLE,
-            \T_ISSET,
-            \T_UNSET,
-        ];
+        $targets           = Collections::functionCallTokens();
+        $targets[\T_ISSET] = \T_ISSET;
+        $targets[\T_UNSET] = \T_UNSET;
+
+        return $targets;
     }
 
     /**
@@ -71,8 +71,9 @@ class NewFunctionCallTrailingCommaSniff extends Sniff
             return;
         }
 
-        if ($tokens[$stackPtr]['code'] === \T_STRING
-            && isset($tokens[$nextNonEmpty]['parenthesis_owner']) === true
+        if (($tokens[$stackPtr]['code'] === \T_STRING
+            || isset(Collections::ooHierarchyKeywords()[$tokens[$stackPtr]['code']]))
+                && isset($tokens[$nextNonEmpty]['parenthesis_owner']) === true
         ) {
             // Function declaration, not a function call.
             return;
