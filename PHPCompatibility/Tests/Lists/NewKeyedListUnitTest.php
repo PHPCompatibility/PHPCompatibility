@@ -71,6 +71,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
             [54],
             [62],
             [66],
+            [72],
         ];
     }
 
@@ -111,6 +112,7 @@ class NewKeyedListUnitTest extends BaseSniffTest
             [49],
             [69],
             [73],
+            [77],
         ];
     }
 
