@@ -61,10 +61,18 @@ class NewListReferenceAssignmentSniff extends Sniff
             return;
         }
 
+        $tokens = $phpcsFile->getTokens();
+        if (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$stackPtr]['code']]) === true
+            && Lists::isShortList($phpcsFile, $stackPtr) === false
+        ) {
+            // Real square brackets or short array, not short list.
+            return;
+        }
+
         try {
             $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
         } catch (RuntimeException $e) {
-            // Parse error, live coding or short array, not short list.
+            // Parse error/live coding.
             return;
         }
 

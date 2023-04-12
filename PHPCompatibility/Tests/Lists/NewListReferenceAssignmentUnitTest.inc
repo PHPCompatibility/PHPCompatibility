@@ -39,3 +39,10 @@ foreach ($array as [&$a, $b]) {}
 // Test handling of tokenizer issue in older PHPCS versions.
 if (true) {}
 [$id1, &$name1] = $data;
+
+// Safeguard that the sniff doesn't trigger on short arrays.
+$a = [&$x1, $y1];
+
+// Don't trigger on unfinished code during live code review.
+// This has to be the last test in the file!
+list(
