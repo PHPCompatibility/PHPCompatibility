@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -89,6 +90,20 @@ class RemovedOrphanedParentSniff extends Sniff
         $extends = $phpcsFile->findNext(\T_EXTENDS, ($classPtr + 1), $tokens[$classPtr]['scope_opener']);
         if ($extends !== false) {
             // Class has a parent.
+            return;
+        }
+
+        /*
+         * Work round a tokenizer issue in PHPCS < 3.8.0 (?) where a call to a global
+         * `parent()` function would tokenize the `parent` function call label as `T_PARENT`.
+         * @link https://github.com/squizlabs/PHP_CodeSniffer/pull/3797
+         */
+        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($tokens[$prev]['code'] !== \T_NEW
+            && $next !== false
+            && $tokens[$next]['code'] === \T_OPEN_PARENTHESIS
+        ) {
             return;
         }
 

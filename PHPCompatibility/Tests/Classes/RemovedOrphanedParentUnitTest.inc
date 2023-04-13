@@ -61,6 +61,19 @@ class NestingStuff extends Nested {
     }
 }
 
+// Test handling of incorrectly tokenized parent keywords. See PHPCS #3797.
+class PHP4DOMTree {
+    function &parent() {
+        $parent =& PHP4DOMTree::from_DOMDocument($this->_element->parent());
+        $global_parent = parent($var);
+    }
+
+    function flagMe() {
+        $obj = new parent;
+        return new parent();
+    }
+}
+
 // Intentional parse error. This has to be the last test in the file.
 class SomeClass extends Something
     public function test() {
