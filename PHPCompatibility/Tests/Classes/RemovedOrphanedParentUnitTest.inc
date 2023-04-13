@@ -97,6 +97,20 @@ trait MightHaveParent
     }
 }
 
+// Safeguard handling of parent when used with PHP 7.4+ typed properties, PHP 8.0+ constructor property promotion,
+// PHP 8.0+ attributes, PHP 8.0+ union types, PHP 8.1+ intersection types.
+class ModernPHP {
+    public parent $propA;
+    public SomeInterface|parent $propB;
+
+    #[SomeAttribute(parent::CONSTANT_NAME)]
+    public function __construct(
+        protected ?parent $parent,
+        private object&parent $object,
+        parent|string $param,
+    ) {}
+}
+
 // Intentional parse error. This has to be the last test in the file.
 class SomeClass extends Something
     public function test() {
