@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -31,20 +32,6 @@ use PHPCSUtils\Utils\MessageHelper;
  */
 class RemovedOrphanedParentSniff extends Sniff
 {
-
-    /**
-     * Class scopes to check the class declaration.
-     *
-     * @since 9.2.0
-     * @since 10.0.0 - Changed to `private`, should never have been public in the first place.
-     *               - Now uses token constants instead of token type strings.
-     *
-     * @var array
-     */
-    private $classScopeTokens = [
-        \T_CLASS      => \T_CLASS,
-        \T_ANON_CLASS => \T_ANON_CLASS,
-    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -75,7 +62,7 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, $this->classScopeTokens);
+        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Collections::ooCanExtend());
         if ($classPtr === false) {
             // Use outside of a class scope. Not our concern.
             return;
@@ -87,10 +74,12 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $extends = $phpcsFile->findNext(\T_EXTENDS, ($classPtr + 1), $tokens[$classPtr]['scope_opener']);
-        if ($extends !== false) {
-            // Class has a parent.
-            return;
+        if ($tokens[$classPtr]['code'] !== \T_INTERFACE) {
+            $extends = $phpcsFile->findNext(\T_EXTENDS, ($classPtr + 1), $tokens[$classPtr]['scope_opener']);
+            if ($extends !== false) {
+                // Class has a parent.
+                return;
+            }
         }
 
         /*
@@ -107,7 +96,9 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $error   = 'Using "parent" inside a class without parent is deprecated since PHP 7.4';
+        $error = 'Using "parent" inside %s is deprecated since PHP 7.4';
+        $data  = ['a class without parent'];
+
         $code    = 'Deprecated';
         $isError = false;
 
@@ -117,6 +108,11 @@ class RemovedOrphanedParentSniff extends Sniff
             $isError = true;
         }
 
-        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
+        if ($tokens[$classPtr]['code'] === \T_INTERFACE) {
+            $code .= 'InInterface';
+            $data  = ['an interface'];
+        }
+
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code, $data);
     }
 }

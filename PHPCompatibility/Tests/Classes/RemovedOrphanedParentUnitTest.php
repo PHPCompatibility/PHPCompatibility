@@ -26,15 +26,15 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
 {
 
     /**
-     * testRemovedOrphanedParent.
+     * Verify that use of the `parent` keyword in classes without a parent gets flagged.
      *
-     * @dataProvider dataRemovedOrphanedParent
+     * @dataProvider dataRemovedOrphanedParentInClass
      *
      * @param int $line The line number where a warning is expected.
      *
      * @return void
      */
-    public function testRemovedOrphanedParent($line)
+    public function testRemovedOrphanedParentInClass($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertWarning($file, $line, 'Using "parent" inside a class without parent is deprecated since PHP 7.4');
@@ -46,11 +46,11 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testRemovedOrphanedParent()
+     * @see testRemovedOrphanedParentInClass()
      *
      * @return array
      */
-    public function dataRemovedOrphanedParent()
+    public function dataRemovedOrphanedParentInClass()
     {
         return [
             [35],
@@ -67,6 +67,42 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
             [58],
             [72],
             [73],
+        ];
+    }
+
+
+    /**
+     * Verify that use of the `parent` keyword in interfaces gets flagged.
+     *
+     * @dataProvider dataRemovedOrphanedParentInInterface
+     *
+     * @param int $line The line number where a warning is expected.
+     *
+     * @return void
+     */
+    public function testRemovedOrphanedParentInInterface($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertWarning($file, $line, 'Using "parent" inside an interface is deprecated since PHP 7.4');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Using "parent" inside an interface is deprecated since PHP 7.4 and removed since PHP 8.0');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedOrphanedParentInInterface()
+     *
+     * @return array
+     */
+    public function dataRemovedOrphanedParentInInterface()
+    {
+        return [
+            [80],
+            [81],
+            [86],
+            [87],
         ];
     }
 
@@ -104,9 +140,10 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
         $cases[] = [66];
         $cases[] = [67];
         $cases[] = [68];
+        $cases[] = [82];
 
         // Add parse error test case.
-        $cases[] = [80];
+        $cases[] = [93];
 
         return $cases;
     }

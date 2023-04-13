@@ -74,6 +74,19 @@ class PHP4DOMTree {
     }
 }
 
+// PHP 7.4 Deprecated parent in class without parent also applies to interfaces, with and without parent.
+// See: https://3v4l.org/7OT7b
+interface NoParent {
+    public function testA(parent $obj);
+    public function testB(): parent;
+    public function parent();
+}
+
+interface HasParent extends NoParent {
+    public function testA(parent $obj);
+    public function testB(): parent;
+}
+
 // Intentional parse error. This has to be the last test in the file.
 class SomeClass extends Something
     public function test() {
