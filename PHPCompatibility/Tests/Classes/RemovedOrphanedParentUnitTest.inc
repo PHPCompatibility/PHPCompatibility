@@ -10,7 +10,7 @@ function test() {
 // Valid use of the parent keyword.
 class ExtendedClass extends ParentClass
 {
-    public function test() {
+    public function test(parent $param): parent {
         echo parent::class;
         $this->foo = parent::$foo;
         return parent::test();
@@ -20,7 +20,7 @@ class ExtendedClass extends ParentClass
 class PlainClass {
     public function create_anon_class() {
         $anon = new class() extends ParentClass {
-            public function test() {
+            public function test(parent $param): parent {
                 echo parent::class;
                 $this->foo = parent::$foo;
                 return parent::test();
@@ -32,7 +32,7 @@ class PlainClass {
 // PHP 7.4: Deprecated parent in class without parent.
 class ParentClass
 {
-    public function test() {
+    public function test(parent $param) {
         echo parent::class;
         $this->foo = parent::$foo;
         return parent::test();
@@ -41,7 +41,7 @@ class ParentClass
 
 class ImplementedClass implements SomeInterface
 {
-    public function test() {
+    public function test(): parent {
         echo parent::class;
         $this->foo = parent::$foo;
         return parent::test();
@@ -52,7 +52,7 @@ class ImplementedClass implements SomeInterface
 class NestingStuff extends Nested {
     public function create_anon_class() {
         return new class() {
-            public function test() {
+            public function test(parent|SomeInterface $param) {
                 echo parent::class;
                 $this->foo = parent::$foo;
                 return parent::test();

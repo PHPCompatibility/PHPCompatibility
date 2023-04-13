@@ -53,12 +53,15 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
     public function dataRemovedOrphanedParent()
     {
         return [
+            [35],
             [36],
             [37],
             [38],
+            [44],
             [45],
             [46],
             [47],
+            [55],
             [56],
             [57],
             [58],
