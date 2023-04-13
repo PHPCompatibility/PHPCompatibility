@@ -87,6 +87,16 @@ interface HasParent extends NoParent {
     public function testB(): parent;
 }
 
+// Using parent in traits is fine.
+trait MightHaveParent
+{
+    public function test(parent $obj): parent {
+        echo parent::class;
+        $this->foo = parent::$foo;
+        return parent::test();
+    }
+}
+
 // Intentional parse error. This has to be the last test in the file.
 class SomeClass extends Something
     public function test() {
