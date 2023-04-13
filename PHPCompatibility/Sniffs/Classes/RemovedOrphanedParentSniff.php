@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -62,13 +61,13 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Collections::ooCanExtend());
-        if ($classPtr === false) {
+        $tokens   = $phpcsFile->getTokens();
+        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        if ($classPtr === false || $tokens[$classPtr]['code'] === \T_TRAIT) {
             // Use outside of a class scope. Not our concern.
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
         if (isset($tokens[$classPtr]['scope_opener']) === false) {
             // No scope opener known. Probably a parse error.
             return;

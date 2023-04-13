@@ -111,6 +111,19 @@ class ModernPHP {
     ) {}
 }
 
+// Safeguard detection of parent when used in PHP 8.1+ enums, which cannot have a parent.
+// See: https://3v4l.org/vDIQg
+enum PlainEnum
+{
+    public function test(
+        parent $param
+    ): parent {
+        echo parent::class;
+        $this->foo = parent::$foo;
+        return parent::test();
+    }
+}
+
 // Intentional parse error. This has to be the last test in the file.
 class SomeClass extends Something
     public function test() {

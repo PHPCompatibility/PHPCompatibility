@@ -73,6 +73,11 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
             [108],
             [109],
             [110],
+            [119],
+            [120],
+            [121],
+            [122],
+            [123],
         ];
     }
 
@@ -153,7 +158,7 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
         }
 
         // Add parse error test case.
-        $cases[] = [117];
+        $cases[] = [128];
 
         return $cases;
     }
