@@ -24,6 +24,32 @@ class IsNumberUnitTest extends CoreMethodTestFrame
 {
 
     /**
+     * Verify that the `isNumber()` function returns false when an invalid start pointer is passed.
+     *
+     * @covers \PHPCompatibility\Sniff::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberInvalidTokenStart()
+    {
+        $result = self::$helperClass->isNumber(self::$phpcsFile, -1, 10);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Verify that the `isNumber()` function returns false when an invalid end pointer is passed.
+     *
+     * @covers \PHPCompatibility\Sniff::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberInvalidTokenEnd()
+    {
+        $result = self::$helperClass->isNumber(self::$phpcsFile, 3, 100000);
+        $this->assertFalse($result);
+    }
+
+    /**
      * Verify the functionality of the `isNumber()` function.
      *
      * @dataProvider dataIsNumber
@@ -207,5 +233,37 @@ class IsNumberUnitTest extends CoreMethodTestFrame
             'Evals to float, incl floats: heredoc containing float'            => ['/* test F10 */', true, 10.123, true, false],
             'Evals to float, incl floats: + sign with text string'             => ['/* test F11 */', true, 0.123, true, false],
         ];
+    }
+
+    /**
+     * Edge case: test that the `isNumber()` method bows out when the "end" token is a heredoc/nowdoc opener.
+     *
+     * @covers \PHPCompatibility\Sniff::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberWithIncorrectEndStartHeredoc()
+    {
+        $start = ($this->getTargetToken('/* testHeredocNoEnd */', \T_EQUAL) + 1);
+        $end   = $this->getTargetToken('/* testHeredocNoEnd */', \T_START_HEREDOC);
+
+        $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Edge case: test that the `isNumber()` method bows out when the "end" token is before the heredoc/nowdoc closer.
+     *
+     * @covers \PHPCompatibility\Sniff::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberWithIncorrectEndWithinHeredoc()
+    {
+        $start = ($this->getTargetToken('/* testHeredocNoEnd */', \T_EQUAL) + 1);
+        $end   = $this->getTargetToken('/* testHeredocNoEnd */', \T_HEREDOC);
+
+        $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end);
+        $this->assertFalse($result);
     }
 }

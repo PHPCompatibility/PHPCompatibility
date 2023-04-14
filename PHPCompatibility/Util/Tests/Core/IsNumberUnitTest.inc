@@ -179,3 +179,8 @@ EOT;
 
 /* test F11 */
 $a = +'0.123';
+
+/* testHeredocNoEnd */
+$a = <<<EOD
+10
+EOD;
