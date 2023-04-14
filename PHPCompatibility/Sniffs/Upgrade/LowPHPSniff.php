@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Upgrade;
 
-use PHPCompatibility\Helpers\DisableSniffMsgTrait;
+use PHPCompatibility\Helpers\DisableSniffMsg;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
@@ -32,7 +32,6 @@ use PHPCSUtils\Utils\MessageHelper;
  */
 class LowPHPSniff extends Sniff
 {
-    use DisableSniffMsgTrait;
 
     /**
      * The minimum supported PHP version.
@@ -129,7 +128,7 @@ class LowPHPSniff extends Sniff
             ];
         }
 
-        $message .= $this->createDisableSniffNotice($phpcsFile, 'PHPCompatibility.Upgrade.LowPHP', $errorCode);
+        $message .= DisableSniffMsg::create($phpcsFile, 'PHPCompatibility.Upgrade.LowPHP', $errorCode);
 
         MessageHelper::addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
 

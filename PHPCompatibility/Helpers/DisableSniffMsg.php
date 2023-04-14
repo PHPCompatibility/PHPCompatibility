@@ -19,13 +19,13 @@ use PHPCSUtils\BackCompat\Helper;
  * Used by the Upgrade LowPHP/LowPHPCS sniffs.
  *
  * ---------------------------------------------------------------------------------------------
- * This trait is only intended for internal use by PHPCompatibility and is not part of the public API.
+ * This class is only intended for internal use by PHPCompatibility and is not part of the public API.
  * This also means that it has no promise of backward compatibility. Use at your own risk.
  * ---------------------------------------------------------------------------------------------
  *
- * @since 10.0.0 Extracted duplicate code from the above mentioned sniffs into this trait.
+ * @since 10.0.0 Extracted duplicate code from the above mentioned sniffs into this class.
  */
-trait DisableSniffMsgTrait
+final class DisableSniffMsg
 {
 
     /**
@@ -40,7 +40,7 @@ trait DisableSniffMsgTrait
      *
      * @return string
      */
-    protected function createDisableSniffNotice(File $phpcsFile, $sniffName, $errorCode)
+    public static function create(File $phpcsFile, $sniffName, $errorCode)
     {
         /*
          * Figure out the report width to determine how long the delimiter lines should be.

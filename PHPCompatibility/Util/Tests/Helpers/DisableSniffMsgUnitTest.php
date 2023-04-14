@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Util\Tests\Helpers;
 
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
-use PHPCompatibility\Helpers\DisableSniffMsgTrait;
+use PHPCompatibility\Helpers\DisableSniffMsg;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
@@ -19,21 +19,20 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
  *
  * @group helpers
  *
- * @covers \PHPCompatibility\Helpers\DisableSniffMsgTrait
+ * @covers \PHPCompatibility\Helpers\DisableSniffMsg
  *
  * @since 10.0.0
  */
-class DisableSniffMsgTraitUnitTest extends CoreMethodTestFrame
+final class DisableSniffMsgUnitTest extends CoreMethodTestFrame
 {
     use AssertionRenames;
-    use DisableSniffMsgTrait;
 
     /**
      * Test adding "disable sniff notice" to a message.
      *
      * @return void
      */
-    public function testCreateDisableSniffNotice()
+    public function testCreate()
     {
         $expectedPattern = '`-{40,}'
             . ' To disable this notice, add --exclude=Stnd\.Cat\.Sniff to your command or'
@@ -41,7 +40,7 @@ class DisableSniffMsgTraitUnitTest extends CoreMethodTestFrame
             . ' -{40,}'
             . ' Thank you for using PHPCompatibility!`';
 
-        $result = $this->createDisableSniffNotice(self::$phpcsFile, 'Stnd.Cat.Sniff', 'Code');
+        $result = DisableSniffMsg::create(self::$phpcsFile, 'Stnd.Cat.Sniff', 'Code');
 
         $this->assertMatchesRegularExpression($expectedPattern, $result);
     }
