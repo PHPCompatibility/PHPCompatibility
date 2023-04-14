@@ -128,7 +128,7 @@ class LowPHPSniff extends Sniff
             ];
         }
 
-        $message .= DisableSniffMsg::create($phpcsFile, 'PHPCompatibility.Upgrade.LowPHP', $errorCode);
+        $message .= DisableSniffMsg::create('PHPCompatibility.Upgrade.LowPHP', $errorCode);
 
         MessageHelper::addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
 
