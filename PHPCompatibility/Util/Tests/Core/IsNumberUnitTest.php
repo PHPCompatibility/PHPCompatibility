@@ -24,39 +24,76 @@ class IsNumberUnitTest extends CoreMethodTestFrame
 {
 
     /**
-     * testIsNumber
+     * Verify the functionality of the `isNumber()` function.
      *
      * @dataProvider dataIsNumber
      *
      * @covers \PHPCompatibility\Sniff::isNumber
-     * @covers \PHPCompatibility\Sniff::isPositiveNumber
-     * @covers \PHPCompatibility\Sniff::isNegativeNumber
      *
-     * @param string     $commentString    The comment which prefaces the target snippet in the test file.
-     * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
-     * @param float|bool $isNumber         The expected return value for isNumber().
-     * @param bool       $isPositiveNumber The expected return value for isPositiveNumber().
-     * @param bool       $isNegativeNumber The expected return value for isNegativeNumber().
+     * @param string     $commentString The comment which prefaces the target snippet in the test file.
+     * @param bool       $allowFloats   Testing the snippets for integers only or floats as well ?
+     * @param float|bool $isNumber      The expected return value for isNumber().
      *
      * @return void
      */
-    public function testIsNumber($commentString, $allowFloats, $isNumber, $isPositiveNumber, $isNegativeNumber)
+    public function testIsNumber($commentString, $allowFloats, $isNumber)
     {
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
         $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end, $allowFloats);
         $this->assertSame($isNumber, $result);
+    }
+
+    /**
+     * Verify the functionality of the `isPositiveNumber()` function.
+     *
+     * @dataProvider dataIsNumber
+     *
+     * @covers \PHPCompatibility\Sniff::isPositiveNumber
+     *
+     * @param string     $commentString    The comment which prefaces the target snippet in the test file.
+     * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
+     * @param float|bool $isNumber         Not used by this test.
+     * @param bool       $isPositiveNumber The expected return value for isPositiveNumber().
+     *
+     * @return void
+     */
+    public function testIsPositiveNumber($commentString, $allowFloats, $isNumber, $isPositiveNumber)
+    {
+        $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
         $result = self::$helperClass->isPositiveNumber(self::$phpcsFile, $start, $end, $allowFloats);
         $this->assertSame($isPositiveNumber, $result);
+    }
+
+    /**
+     * Verify the functionality of the `isNegativeNumber()` function.
+     *
+     * @dataProvider dataIsNumber
+     *
+     * @covers \PHPCompatibility\Sniff::isNegativeNumber
+     *
+     * @param string     $commentString    The comment which prefaces the target snippet in the test file.
+     * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
+     * @param float|bool $isNumber         Not used by this test.
+     * @param bool       $isPositiveNumber Not used by this test.
+     * @param bool       $isNegativeNumber The expected return value for isNegativeNumber().
+     *
+     * @return void
+     */
+    public function testIsNegativeNumber($commentString, $allowFloats, $isNumber, $isPositiveNumber, $isNegativeNumber)
+    {
+        $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
         $result = self::$helperClass->isNegativeNumber(self::$phpcsFile, $start, $end, $allowFloats);
         $this->assertSame($isNegativeNumber, $result);
     }
 
     /**
-     * dataIsNumber
+     * Data provider.
      *
      * @see testIsNumber()
      *
