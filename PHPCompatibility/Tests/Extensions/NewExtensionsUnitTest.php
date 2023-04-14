@@ -263,22 +263,16 @@ class NewExtensionsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        $data = [
+        return [
             [57], // Not a function call.
             [58], // Function declaration.
             [59], // Class instantiation.
             [60], // Method call.
+            [68], // Whitelisted function.
+            [74], // Whitelisted function array.
+            [75], // Whitelisted function array.
             [78], // Live coding.
         ];
-
-        // Inline setting changes in combination with namespaced sniffs is only supported since PHPCS 2.6.0.
-        if (\version_compare(PHPCSHelper::getVersion(), '2.6.0', '>=')) {
-            $data[] = [68]; // Whitelisted function.
-            $data[] = [74]; // Whitelisted function array.
-            $data[] = [75]; // Whitelisted function array.
-        }
-
-        return $data;
     }
 
 
