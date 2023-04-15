@@ -63,5 +63,58 @@ switch ($something) {
         break;
 }
 
+// Safeguard handling of switch statements using alternative syntax.
+switch ($something):
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+    default:
+        break;
+endswitch;
+
+// Safeguard handling of case/default statements with semi-colon instead of colon.
+switch ($something) {
+    default;
+        break;
+    case 1;
+        break;
+    case 2;
+        break;
+    default;
+        break;
+}
+
+// Safeguard handling of case/default statements with curly braces after colon.
+switch ($something) {
+    case 1: {
+        break;
+    }
+    default: {
+        break;
+    }
+    case 2: {
+        break;
+    }
+    default: {
+        break;
+    }
+}
+
+// Safeguard handling of case/default statements with mixed syntaxes.
+switch ($something) {
+    case 1: {
+        echo 'something';
+    }
+    default:
+        break;
+    case 2;
+        continue;
+    default: {
+        break;
+    }
+}
+
 // Don't throw errors on live code review.
 switch ($something) {
