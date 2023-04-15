@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -89,7 +90,7 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
         }
 
         if ((\preg_match('`PHP_OUTPUT_HANDLER_(CLEANABLE|FLUSHABLE|REMOVABLE|STDFLAGS)`', $targetParam['clean']) === 1
-            || $this->isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], true) !== false)
+            || TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], $this->supportsBelow('5.6'), true) !== false)
             && $this->supportsBelow('5.3') === true
         ) {
             $phpcsFile->addError($error, $targetParam['start'], 'IntegerFound', $data);

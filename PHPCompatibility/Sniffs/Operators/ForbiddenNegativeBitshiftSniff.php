@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
+use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -96,7 +97,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             --$end;
         }
 
-        if ($this->isNegativeNumber($phpcsFile, $start, $end, true) !== true) {
+        if (TokenGroup::isNegativeNumber($phpcsFile, $start, $end, $this->supportsBelow('5.6'), true) !== true) {
             // Not a negative number or undetermined.
             return;
         }

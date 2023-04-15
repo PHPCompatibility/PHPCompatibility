@@ -8,8 +8,9 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\TokenGroup;
 
+use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
 
 /**
@@ -20,32 +21,32 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 8.2.0
  */
-class IsNumberUnitTest extends CoreMethodTestFrame
+final class IsNumberUnitTest extends CoreMethodTestFrame
 {
 
     /**
      * Verify that the `isNumber()` function returns false when an invalid start pointer is passed.
      *
-     * @covers \PHPCompatibility\Sniff::isNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
      *
      * @return void
      */
     public function testIsNumberInvalidTokenStart()
     {
-        $result = self::$helperClass->isNumber(self::$phpcsFile, -1, 10);
+        $result = TokenGroup::isNumber(self::$phpcsFile, -1, 10, true);
         $this->assertFalse($result);
     }
 
     /**
      * Verify that the `isNumber()` function returns false when an invalid end pointer is passed.
      *
-     * @covers \PHPCompatibility\Sniff::isNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
      *
      * @return void
      */
     public function testIsNumberInvalidTokenEnd()
     {
-        $result = self::$helperClass->isNumber(self::$phpcsFile, 3, 100000);
+        $result = TokenGroup::isNumber(self::$phpcsFile, 3, 100000, true);
         $this->assertFalse($result);
     }
 
@@ -54,7 +55,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
      *
      * @dataProvider dataIsNumber
      *
-     * @covers \PHPCompatibility\Sniff::isNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
      *
      * @param string     $commentString The comment which prefaces the target snippet in the test file.
      * @param bool       $allowFloats   Testing the snippets for integers only or floats as well ?
@@ -67,7 +68,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
-        $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end, $allowFloats);
+        $result = TokenGroup::isNumber(self::$phpcsFile, $start, $end, true, $allowFloats);
         $this->assertSame($isNumber, $result);
     }
 
@@ -76,7 +77,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
      *
      * @dataProvider dataIsNumber
      *
-     * @covers \PHPCompatibility\Sniff::isPositiveNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isPositiveNumber
      *
      * @param string     $commentString    The comment which prefaces the target snippet in the test file.
      * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
@@ -90,7 +91,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
-        $result = self::$helperClass->isPositiveNumber(self::$phpcsFile, $start, $end, $allowFloats);
+        $result = TokenGroup::isPositiveNumber(self::$phpcsFile, $start, $end, true, $allowFloats);
         $this->assertSame($isPositiveNumber, $result);
     }
 
@@ -99,7 +100,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
      *
      * @dataProvider dataIsNumber
      *
-     * @covers \PHPCompatibility\Sniff::isNegativeNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNegativeNumber
      *
      * @param string     $commentString    The comment which prefaces the target snippet in the test file.
      * @param bool       $allowFloats      Testing the snippets for integers only or floats as well ?
@@ -114,7 +115,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
-        $result = self::$helperClass->isNegativeNumber(self::$phpcsFile, $start, $end, $allowFloats);
+        $result = TokenGroup::isNegativeNumber(self::$phpcsFile, $start, $end, true, $allowFloats);
         $this->assertSame($isNegativeNumber, $result);
     }
 
@@ -238,7 +239,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
     /**
      * Edge case: test that the `isNumber()` method bows out when the "end" token is a heredoc/nowdoc opener.
      *
-     * @covers \PHPCompatibility\Sniff::isNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
      *
      * @return void
      */
@@ -247,14 +248,14 @@ class IsNumberUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken('/* testHeredocNoEnd */', \T_EQUAL) + 1);
         $end   = $this->getTargetToken('/* testHeredocNoEnd */', \T_START_HEREDOC);
 
-        $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end);
+        $result = TokenGroup::isNumber(self::$phpcsFile, $start, $end, true);
         $this->assertFalse($result);
     }
 
     /**
      * Edge case: test that the `isNumber()` method bows out when the "end" token is before the heredoc/nowdoc closer.
      *
-     * @covers \PHPCompatibility\Sniff::isNumber
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
      *
      * @return void
      */
@@ -263,7 +264,7 @@ class IsNumberUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken('/* testHeredocNoEnd */', \T_EQUAL) + 1);
         $end   = $this->getTargetToken('/* testHeredocNoEnd */', \T_HEREDOC);
 
-        $result = self::$helperClass->isNumber(self::$phpcsFile, $start, $end);
+        $result = TokenGroup::isNumber(self::$phpcsFile, $start, $end, true);
         $this->assertFalse($result);
     }
 }

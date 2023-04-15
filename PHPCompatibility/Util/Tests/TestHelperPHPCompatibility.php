@@ -48,27 +48,6 @@ class TestHelperPHPCompatibility extends Sniff
     }
 
     /**
-     * Wrapper to make the protected parent::isNumber() method testable.
-     *
-     * @since 8.2.0
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
-     * @param int                         $start       Start of the snippet (inclusive), i.e. this
-     *                                                 token will be examined as part of the
-     *                                                 snippet.
-     * @param int                         $end         End of the snippet (inclusive), i.e. this
-     *                                                 token will be examined as part of the
-     *                                                 snippet.
-     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
-     *
-     * @return int|float|bool
-     */
-    public function isNumber(File $phpcsFile, $start, $end, $allowFloats = false)
-    {
-        return parent::isNumber($phpcsFile, $start, $end, $allowFloats);
-    }
-
-    /**
      * Wrapper to make the protected parent::isNumericCalculation() method testable.
      *
      * @since 9.0.0

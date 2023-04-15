@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -89,7 +90,7 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ($this->isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], true) !== false) {
+        if (TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], $this->supportsBelow('5.6'), true) !== false) {
             return;
         }
 

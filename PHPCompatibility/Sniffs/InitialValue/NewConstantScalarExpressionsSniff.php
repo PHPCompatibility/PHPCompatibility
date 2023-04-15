@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractInitialValueSniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Arrays;
@@ -174,7 +175,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         switch ($tokens[$nextNonSimple]['code']) {
             case \T_MINUS:
             case \T_PLUS:
-                if ($this->isNumber($phpcsFile, $start, $end, true) !== false) {
+                if (TokenGroup::isNumber($phpcsFile, $start, $end, $this->supportsBelow('5.6'), true) !== false) {
                     // Int or float with sign.
                     return true;
                 }
