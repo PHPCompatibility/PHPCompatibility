@@ -26,3 +26,10 @@ $hash = password_hash( algo: 3, password: $password, options: $options );
 $hash = \password_hash( $password, '2y', $options );
 $hash = password_HASH( $password, "argon{$type}" /*comment*/, $options );
 $hash = password_needs_rehash( $password, 'argon2id', $options );
+
+// Prevent false positives on parameters passed to a function call used to retrieve the algo name
+// or for array access.
+$hash = password_hash( $password, get_algo( 'argon' ), $options );
+$hash = password_hash( $password, $obj?->get_algo( 10 ), $options );
+$hash = password_hash( $password, $algos['argon'], $options );
+$hash = password_hash( $password, $algos{'argon'}, $options );

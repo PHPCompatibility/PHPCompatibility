@@ -114,6 +114,18 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
                 continue;
             }
 
+            // Ignore anything within square brackets.
+            if (isset($tokens[$i]['bracket_closer'])) {
+                $i = $tokens[$i]['bracket_closer'];
+                continue;
+            }
+
+            // Skip past nested arrays, function calls and arbitrary groupings.
+            if (isset($tokens[$i]['parenthesis_closer'])) {
+                $i = $tokens[$i]['parenthesis_closer'];
+                continue;
+            }
+
             if (isset($this->invalidTokenTypes[$tokens[$i]['code']]) === true) {
                 $phpcsFile->addWarning(
                     'The value of the password hash algorithm constants has changed in PHP 7.4. Pass a PHP native constant to the %s() function instead of using the value of the constant. Found: %s',
