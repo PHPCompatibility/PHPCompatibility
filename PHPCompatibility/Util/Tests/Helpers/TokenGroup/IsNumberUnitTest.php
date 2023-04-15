@@ -124,10 +124,7 @@ final class IsNumberUnitTest extends CoreMethodTestFrame
      *
      * @see testIsNumber()
      *
-     * {@internal Case I13 is not tested here on purpose as the result depends on the
-     * `testVersion` which we don't use in the utility tests.
-     * For a `testVersion` with a minimum of PHP 7.0, the result will be false.
-     * For a `testVersion` which includes any PHP 5 version, the result will be true.}
+     * {@internal Case I13 is tested in separately for its different behaviour on PHP 5 vs 7.}
      *
      * @return array
      */
@@ -234,6 +231,40 @@ final class IsNumberUnitTest extends CoreMethodTestFrame
             'Evals to float, incl floats: heredoc containing float'            => ['/* test F10 */', true, 10.123, true, false],
             'Evals to float, incl floats: + sign with text string'             => ['/* test F11 */', true, 0.123, true, false],
         ];
+    }
+
+    /**
+     * Verify the functionality of the `isNumber()` function when confronted with a hexidecimal numeric string
+     * in a code base where PHP 5.6 or lower still needs to be supported.
+     *
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberWithHexStringPHP5()
+    {
+        $start = ($this->getTargetToken('/* test I13 */', \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken('/* test I13 */', \T_SEMICOLON) - 1);
+
+        $result = TokenGroup::isNumber(self::$phpcsFile, $start, $end, true);
+        $this->assertSame(-13369593, $result);
+    }
+
+    /**
+     * Verify the functionality of the `isNumber()` function when confronted with a hexidecimal numeric string
+     * in a code base where PHP 5.6 or lower does NOT need to be supported.
+     *
+     * @covers \PHPCompatibility\Helpers\TokenGroup::isNumber
+     *
+     * @return void
+     */
+    public function testIsNumberWithHexStringPHP7()
+    {
+        $start = ($this->getTargetToken('/* test I13 */', \T_EQUAL) + 1);
+        $end   = ($this->getTargetToken('/* test I13 */', \T_SEMICOLON) - 1);
+
+        $result = TokenGroup::isNumber(self::$phpcsFile, $start, $end, false);
+        $this->assertSame(0, $result);
     }
 
     /**
