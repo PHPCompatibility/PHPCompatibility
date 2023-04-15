@@ -95,7 +95,7 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ($this->isNumericCalculation($phpcsFile, $targetParam['start'], $targetParam['end']) === true) {
+        if (TokenGroup::isNumericCalculation($phpcsFile, $targetParam['start'], $targetParam['end']) === true) {
             return;
         }
 

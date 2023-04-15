@@ -8,9 +8,10 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\TokenGroup;
 
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCompatibility\Helpers\TokenGroup;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `isNumericCalculation()` utility function.
@@ -18,17 +19,17 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  * @group utilityIsNumericCalculation
  * @group utilityFunctions
  *
+ * @covers \PHPCompatibility\Helpers\TokenGroup::isNumericCalculation
+ *
  * @since 9.0.0
  */
-class IsNumericCalculationUnitTest extends CoreMethodTestFrame
+final class IsNumericCalculationUnitTest extends UtilityMethodTestCase
 {
 
     /**
-     * testIsNumericCalculation
+     * Verify the functionality of the `isNumericCalculation()` function.
      *
      * @dataProvider dataIsNumericCalculation
-     *
-     * @covers \PHPCompatibility\Sniff::isNumericCalculation
      *
      * @param string $commentString The comment which prefaces the target snippet in the test file.
      * @param bool   $isCalc        The expected return value for isNumericCalculation().
@@ -40,12 +41,12 @@ class IsNumericCalculationUnitTest extends CoreMethodTestFrame
         $start = ($this->getTargetToken($commentString, \T_EQUAL) + 1);
         $end   = ($this->getTargetToken($commentString, \T_SEMICOLON) - 1);
 
-        $result = self::$helperClass->isNumericCalculation(self::$phpcsFile, $start, $end);
+        $result = TokenGroup::isNumericCalculation(self::$phpcsFile, $start, $end);
         $this->assertSame($isCalc, $result);
     }
 
     /**
-     * dataIsNumericCalculation
+     * Data provider.
      *
      * @see testIsNumericCalculation()
      *
