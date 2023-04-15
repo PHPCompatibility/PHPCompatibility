@@ -140,6 +140,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
             [50],
             [51],
             [52],
+            [64],
         ];
     }
 

@@ -59,3 +59,6 @@ class NotTheMagicConstant {
         My\Class\ClassName::class();
     }
 }
+
+// Safeguard handling of class resolution with PHP 8.0 nullsafe object operator.
+class_exists($obj?->otherObjectSavedAsProperty::class));
