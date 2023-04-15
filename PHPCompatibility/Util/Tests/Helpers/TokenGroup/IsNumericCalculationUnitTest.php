@@ -60,6 +60,7 @@ final class IsNumericCalculationUnitTest extends UtilityMethodTestCase
             ['/* test A3 */', false],
             ['/* test A4 */', false],
             ['/* test A5 */', false],
+            ['/* test A6 */', false],
 
             ['/* test B1 */', true],
             ['/* test B2 */', true],
