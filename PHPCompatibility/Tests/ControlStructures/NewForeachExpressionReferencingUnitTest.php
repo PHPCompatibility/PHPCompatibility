@@ -19,7 +19,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group controlStructures
  *
  * @covers \PHPCompatibility\Sniffs\ControlStructures\NewForeachExpressionReferencingSniff
- * @covers \PHPCompatibility\Sniff::isVariable
+ * @covers \PHPCompatibility\Helpers\TokenGroup::isVariable
  *
  * @since 9.0.0
  */

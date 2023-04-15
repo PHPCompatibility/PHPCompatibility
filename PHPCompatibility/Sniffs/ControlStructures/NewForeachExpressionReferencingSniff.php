@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ControlStructures;
 
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -86,7 +87,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
             $nestingLevel = \count($tokens[$opener + 1]['nested_parenthesis']);
         }
 
-        if ($this->isVariable($phpcsFile, ($opener + 1), $asToken, $nestingLevel) === true) {
+        if (TokenGroup::isVariable($phpcsFile, ($opener + 1), $asToken, $nestingLevel) === true) {
             return;
         }
 
