@@ -116,5 +116,19 @@ switch ($something) {
     }
 }
 
+// Safeguard handling when there is a nested PHP 8.0 match structure with default.
+switch ($something) {
+    case 1:
+        break;
+    case 2:
+        $foo = match($a) {
+            'a'     => $a * 10,
+            default => $a * 1,
+        };
+        break;
+    default:
+        break;
+}
+
 // Don't throw errors on live code review.
 switch ($something) {
