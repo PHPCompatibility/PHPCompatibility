@@ -62,3 +62,7 @@ class NotTheMagicConstant {
 
 // Safeguard handling of class resolution with PHP 8.0 nullsafe object operator.
 class_exists($obj?->otherObjectSavedAsProperty::class));
+
+// Safeguard handling of class resolution found within PHP 8.0+ attribute.
+#[MyAttribute(\Fully\Qualified\Other::class)]
+function hasAttribute() {}
