@@ -21,3 +21,6 @@ hash_pbkdf2(
     'adler32' // Comment.
 );
 hash_init( 'crc32b', HASH_HMAC /*comment*/);
+
+// Safeguard against false positives when target param not found.
+hash_init( algorithm: 'gost-crypto', flags: 1); // OK, well not really, but incorrect algo param name used.
