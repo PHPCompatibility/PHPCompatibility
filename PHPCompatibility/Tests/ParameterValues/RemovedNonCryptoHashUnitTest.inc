@@ -24,3 +24,11 @@ hash_init( 'crc32b', HASH_HMAC /*comment*/);
 
 // Safeguard against false positives when target param not found.
 hash_init( algorithm: 'gost-crypto', flags: 1); // OK, well not really, but incorrect algo param name used.
+
+// Safeguard against false negatives for hash_init with FQN HASH_HMAC flag.
+hash_init( 'joaat', \HASH_HMAC, $key);
+hash_init( 'joaat', \  HASH_HMAC, $key); // No longer valid since PHP 8.0, but that's not the concern of this sniff.
+
+// Safeguard against false positives when $flag for hash_init is not HASH_HMAC.
+hash_init( 'joaat', 0, $key);
+hash_init( 'joaat', $unknownValue, $key);

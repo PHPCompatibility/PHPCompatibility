@@ -62,6 +62,8 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
             [19, 'hash_init'],
             [20, 'hash_pbkdf2'],
             [23, 'hash_init'],
+            [29, 'hash_init'],
+            [30, 'hash_init'],
         ];
     }
 
@@ -98,6 +100,8 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
         }
 
         $data[] = [26];
+        $data[] = [33];
+        $data[] = [34];
 
         return $data;
     }
