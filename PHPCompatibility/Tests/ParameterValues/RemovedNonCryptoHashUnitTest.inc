@@ -14,7 +14,7 @@ hash_hmac_file("crc32");
 hash_pbkdf2('crc32b');
 hash_init( flags: HASH_HMAC, algo: 'fnv132', key: $key );
 hash_hmac('fnv1a32');
-hash_hmac_file("fnv164");
+hash_hmac_file("fnv164",);
 hash_pbkdf2('fnv1a64');
 hash_init( 'joaat', 1);
 hash_pbkdf2(
