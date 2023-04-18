@@ -54,12 +54,18 @@ Example: `PHPCompatibility.Interfaces.RemovedSerializable.Deprecated`
 
 
 ## Environment
-<!-- Please include as many details as relevant about the environment you experienced the bug in. -->
+<!-- Please include as many details as relevant about the environment you experienced the bug in.
+
+To find out the versions used:
+* PHP: run `php -v`.
+* Packages: run `composer info` or run `composer [global] info` for a global Composer install.
+-->
 
 | Environment              | Answer
 | ------------------------ | -------
 | PHP version              | x.y.z
 | PHP_CodeSniffer version  | x.y.z
+| PHPCSUtils version       | x.y.z
 | PHPCompatibility version | x.y.z
 | Install type             | e.g. Composer global, Composer project local, git clone, other (please expand)
 
