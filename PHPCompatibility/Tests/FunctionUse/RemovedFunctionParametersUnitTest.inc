@@ -48,3 +48,13 @@ imagepolygon($image, color: $color, points: $points, num_points: $num_points); /
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->define( 'CONSTANT', 'foo', true, ); // OK.
+
+// Prevent false positive on param which isn't actually a param.
+define( 'CONSTANT', 'foo', /*not passed for cross-version compat*/, ); // OK, well, not really, parse error due to trailing comma, but that's not the concern of this sniff
+
+// Safeguard error is thrown on the line containing the parameter.
+ldap_first_attribute(
+    $link_identifier,
+    $result_entry_identifier,
+    $ber_identifier // Error.
+);

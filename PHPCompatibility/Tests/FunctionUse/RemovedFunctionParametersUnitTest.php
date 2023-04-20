@@ -64,7 +64,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
     public function dataRemovedParameter()
     {
         return [
-            ['ldap_first_attribute', 'ber_identifier', '5.2.4', [11], '5.2', '5.3'],
+            ['ldap_first_attribute', 'ber_identifier', '5.2.4', [11, 59], '5.2', '5.3'],
             ['ldap_next_attribute', 'ber_identifier', '5.2.4', [12], '5.2', '5.3'],
             ['mb_decode_numericentity', 'is_hex', '8.0', [24], '7.4'],
             ['pg_connect', 'options', '8.0', [27], '7.4'],
@@ -214,6 +214,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
             [29],
             [32],
             [50],
+            [53],
         ];
     }
 
