@@ -26,15 +26,15 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
 {
 
     /**
-     * testRemovedOrphanedParent.
+     * Verify that use of the `parent` keyword in classes without a parent gets flagged.
      *
-     * @dataProvider dataRemovedOrphanedParent
+     * @dataProvider dataRemovedOrphanedParentInClass
      *
      * @param int $line The line number where a warning is expected.
      *
      * @return void
      */
-    public function testRemovedOrphanedParent($line)
+    public function testRemovedOrphanedParentInClass($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertWarning($file, $line, 'Using "parent" inside a class without parent is deprecated since PHP 7.4');
@@ -46,22 +46,74 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
     /**
      * Data provider.
      *
-     * @see testRemovedOrphanedParent()
+     * @see testRemovedOrphanedParentInClass()
      *
      * @return array
      */
-    public function dataRemovedOrphanedParent()
+    public function dataRemovedOrphanedParentInClass()
     {
         return [
+            [35],
             [36],
             [37],
             [38],
+            [44],
             [45],
             [46],
             [47],
+            [55],
             [56],
             [57],
             [58],
+            [72],
+            [73],
+            [103],
+            [104],
+            [106],
+            [108],
+            [109],
+            [110],
+            [119],
+            [120],
+            [121],
+            [122],
+            [123],
+        ];
+    }
+
+
+    /**
+     * Verify that use of the `parent` keyword in interfaces gets flagged.
+     *
+     * @dataProvider dataRemovedOrphanedParentInInterface
+     *
+     * @param int $line The line number where a warning is expected.
+     *
+     * @return void
+     */
+    public function testRemovedOrphanedParentInInterface($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertWarning($file, $line, 'Using "parent" inside an interface is deprecated since PHP 7.4');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Using "parent" inside an interface is deprecated since PHP 7.4 and removed since PHP 8.0');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedOrphanedParentInInterface()
+     *
+     * @return array
+     */
+    public function dataRemovedOrphanedParentInInterface()
+    {
+        return [
+            [80],
+            [81],
+            [86],
+            [87],
         ];
     }
 
@@ -96,8 +148,17 @@ class RemovedOrphanedParentUnitTest extends BaseSniffTest
             $cases[] = [$line];
         }
 
-        // Add parse error test case.
+        $cases[] = [66];
         $cases[] = [67];
+        $cases[] = [68];
+        $cases[] = [82];
+
+        for ($line = 89; $line <= 99; $line++) {
+            $cases[] = [$line];
+        }
+
+        // Add parse error test case.
+        $cases[] = [128];
 
         return $cases;
     }

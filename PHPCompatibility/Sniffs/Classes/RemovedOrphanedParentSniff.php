@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -30,20 +31,6 @@ use PHPCSUtils\Utils\MessageHelper;
  */
 class RemovedOrphanedParentSniff extends Sniff
 {
-
-    /**
-     * Class scopes to check the class declaration.
-     *
-     * @since 9.2.0
-     * @since 10.0.0 - Changed to `private`, should never have been public in the first place.
-     *               - Now uses token constants instead of token type strings.
-     *
-     * @var array
-     */
-    private $classScopeTokens = [
-        \T_CLASS      => \T_CLASS,
-        \T_ANON_CLASS => \T_ANON_CLASS,
-    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -74,25 +61,43 @@ class RemovedOrphanedParentSniff extends Sniff
             return;
         }
 
-        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, $this->classScopeTokens);
-        if ($classPtr === false) {
+        $tokens   = $phpcsFile->getTokens();
+        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        if ($classPtr === false || $tokens[$classPtr]['code'] === \T_TRAIT) {
             // Use outside of a class scope. Not our concern.
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
         if (isset($tokens[$classPtr]['scope_opener']) === false) {
             // No scope opener known. Probably a parse error.
             return;
         }
 
-        $extends = $phpcsFile->findNext(\T_EXTENDS, ($classPtr + 1), $tokens[$classPtr]['scope_opener']);
-        if ($extends !== false) {
-            // Class has a parent.
+        if ($tokens[$classPtr]['code'] !== \T_INTERFACE) {
+            $extends = $phpcsFile->findNext(\T_EXTENDS, ($classPtr + 1), $tokens[$classPtr]['scope_opener']);
+            if ($extends !== false) {
+                // Class has a parent.
+                return;
+            }
+        }
+
+        /*
+         * Work round a tokenizer issue in PHPCS < 3.8.0 (?) where a call to a global
+         * `parent()` function would tokenize the `parent` function call label as `T_PARENT`.
+         * @link https://github.com/squizlabs/PHP_CodeSniffer/pull/3797
+         */
+        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($tokens[$prev]['code'] !== \T_NEW
+            && $next !== false
+            && $tokens[$next]['code'] === \T_OPEN_PARENTHESIS
+        ) {
             return;
         }
 
-        $error   = 'Using "parent" inside a class without parent is deprecated since PHP 7.4';
+        $error = 'Using "parent" inside %s is deprecated since PHP 7.4';
+        $data  = ['a class without parent'];
+
         $code    = 'Deprecated';
         $isError = false;
 
@@ -102,6 +107,11 @@ class RemovedOrphanedParentSniff extends Sniff
             $isError = true;
         }
 
-        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code);
+        if ($tokens[$classPtr]['code'] === \T_INTERFACE) {
+            $code .= 'InInterface';
+            $data  = ['an interface'];
+        }
+
+        MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $code, $data);
     }
 }
