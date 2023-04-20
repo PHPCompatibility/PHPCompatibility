@@ -24,3 +24,8 @@ foreach ($data as $key => [$id, [$name, $address]]) {}
 
 // Make sure there's no false positives on incorrectly tokenized short array tokens in older PHPCS versions.
 foreach ( $data as $this->prop['key'] ) {}
+
+// Safeguards against parse errors/live coding.
+// These tests have to be the last in the file.
+foreach ( $data $this->prop['key'] ) {}
+foreach ( $data
