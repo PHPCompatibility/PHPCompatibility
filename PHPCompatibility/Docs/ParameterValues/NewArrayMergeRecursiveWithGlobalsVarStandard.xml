@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Array Merge Recursive With $GLOBALS"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.1, passing the `$GLOBALS` variable, without accessing a specific key, twice to `array_merge_recursive()` would lead to a fatal recursion error.
+
+    Since PHP 8.1, the `$GLOBALS` array no longer contains the `$GLOBALS['GLOBALS']` array entry, which removes the recursion problem.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not passing the $GLOBALS variable, without accessing a specific key, twice.">
+        <![CDATA[
+array_merge_recursive($GLOBALS);
+array_merge_recursive($GLOBALS, $other);
+array_merge_recursive(
+    $GLOBALS['_GET'],
+    $GLOBALS['_POST']
+);
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.1: passing the $GLOBALS variable twice.">
+        <![CDATA[
+array_merge_recursive($GLOBALS, $GLOBALS);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
