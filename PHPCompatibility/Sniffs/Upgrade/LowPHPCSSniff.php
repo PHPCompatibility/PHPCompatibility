@@ -143,5 +143,8 @@ class LowPHPCSSniff extends Sniff
         MessageHelper::addMessage($phpcsFile, $message, 0, $isError, $errorCode, $replacements);
 
         $this->examine = false;
+
+        // No need to look at this file again.
+        return ($phpcsFile->numTokens + 1);
     }
 }
