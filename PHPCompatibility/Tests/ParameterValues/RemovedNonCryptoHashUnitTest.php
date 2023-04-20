@@ -27,7 +27,7 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNonCryptoHash
+     * Verify detection of function calls using non cryptographic hashes.
      *
      * @dataProvider dataNonCryptoHash
      *
@@ -43,7 +43,7 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
     }
 
     /**
-     * dataNonCryptoHash
+     * Data provider.
      *
      * @see testNonCryptoHash()
      *
@@ -62,23 +62,48 @@ class RemovedNonCryptoHashUnitTest extends BaseSniffTest
             [19, 'hash_init'],
             [20, 'hash_pbkdf2'],
             [23, 'hash_init'],
+            [29, 'hash_init'],
+            [30, 'hash_init'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 10 lines.
         for ($line = 1; $line <= 10; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        $data[] = [26];
+        $data[] = [33];
+        $data[] = [34];
+
+        return $data;
     }
 
 

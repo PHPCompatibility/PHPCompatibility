@@ -101,14 +101,20 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
+        // For hash_init(), these hashes are only disabled with HASH_HMAC set.
         $functionLC = \strtolower($functionName);
         if ($functionLC === 'hash_init') {
             $secondParam = PassedParameters::getParameterFromStack($parameters, 2, 'flags');
-            if ($secondParam === false
-                || ($secondParam['clean'] !== 'HASH_HMAC'
-                    && $secondParam['clean'] !== (string) \HASH_HMAC)
+            if ($secondParam === false) {
+                // $flags parameter not found.
+                return;
+            }
+
+            $secondParamContent = ltrim($secondParam['clean'], ' \\'); // Trim off potential leading namespace separator for FQN.
+            if ($secondParamContent !== 'HASH_HMAC'
+                && $secondParamContent !== (string) \HASH_HMAC
             ) {
-                // For hash_init(), these hashes are only disabled with HASH_HMAC set.
+                // $flags parameter not set to HASH_HMAC.
                 return;
             }
         }
