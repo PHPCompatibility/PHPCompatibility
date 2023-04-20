@@ -32,7 +32,7 @@ $test = ini_get('exit_on_timeout');
 ini_set('mbstring.http_output_conv_mimetype', 1);
 $test = ini_get('mbstring.http_output_conv_mimetype');
 
-ini_set('request_order', 1);
+ini_set('request_order' /*comment*/, 1);
 $test = ini_get('request_order');
 
 ini_set('cli.pager', 1);
@@ -77,7 +77,7 @@ $test = ini_get('windows_show_crt_warning');
 ini_set('intl.use_exceptions', 1);
 $test = ini_get('intl.use_exceptions');
 
-ini_set('mysqlnd.sha256_server_public_key', 1);
+ini_set( /*comment*/ 'mysqlnd.sha256_server_public_key', 1);
 $test = ini_get('mysqlnd.sha256_server_public_key');
 
 ini_set('auto_globals_jit', 1);
@@ -544,3 +544,10 @@ $test = ini_get('mysqli.local_infile_directory');
 
 ini_set('pm.max_spawn_rate', 10);
 $test = ini_get('pm.max_spawn_rate');
+
+// Safeguard no false positives on PHP 8.1+ first class callables.
+register_callback(ini_get(...));
+
+// Safeguard against false positives when target param not found.
+ini_set(value: 1); // Missing param.
+$test = ini_get(ini: 'oci8.statement_cache_size'); // Wrong param name.
