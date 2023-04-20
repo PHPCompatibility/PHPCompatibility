@@ -114,7 +114,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
         $content   = TextStrings::getCompleteTextString($phpcsFile, $firstNonEmpty);
         $contentLC = \strtolower($content);
 
-        if ($contentLC !== 'user') {
+        if (\trim($contentLC) !== 'user') {
             return;
         }
 
