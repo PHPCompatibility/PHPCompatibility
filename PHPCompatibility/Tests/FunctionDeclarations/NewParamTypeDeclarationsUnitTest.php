@@ -85,7 +85,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['self', '5.1', 72, '5.2', false],
             ['parent', '5.1', 73, '5.2', false],
             ['int', '5.6', 78, '7.0'],
-            ['callable', '5.3', 80, '5.4'],
+            ['callable', '5.3', 80, '8.0'],
+            ['string', '5.6', 80, '8.0'],
+            ['mixed', '7.4', 80, '8.0'],
             ['mixed', '7.4', 85, '8.0'],
             ['mixed', '7.4', 88, '8.0', false],
 
@@ -131,6 +133,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['parent', '5.1', 150, '8.1'],
 
             ['true', '8.1', 157, '8.2'],
+
+            ['int', '5.6', 165, '7.0'],
+            ['string', '5.6', 165, '7.0'],
         ];
     }
 
@@ -304,6 +309,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['iterable|array|Traversable', 119],
             ['int|string|INT', 122],
             ['float|int', 131],
+            ['A|B', 167],
         ];
     }
 
@@ -446,6 +452,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             ['self&\Fully\Qualified\SomeInterface', 149],
             ['Qualified\SomeInterface&parent', 150],
             ['A&B&A', 154],
+            ['A&B', 168],
         ];
     }
 
@@ -564,6 +571,16 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
             [130],
             [131],
             [132],
+            [139],
+            [141],
+            [145],
+            [149],
+            [150],
+            [154],
+            [157],
+            [165],
+            [167],
+            [168],
         ];
     }
 

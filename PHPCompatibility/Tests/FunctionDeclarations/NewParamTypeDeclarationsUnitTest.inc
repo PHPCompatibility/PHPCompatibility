@@ -77,7 +77,7 @@ class Bar {
 // PHP 7.4 arrow functions.
 $arrow = fn(int $a) => $a * 10;
 $arrow = fn(\FQN\ClassName $b) => $b::method();
-$arrow = fn(callable $a) => $a();
+$arrow = fn(callable $a, string $b, mixed $c) => $a();
 $arrow = fn(integer $a) => $a . 'test';
 $arrow = fn($a) => $a * 10; // OK.
 
@@ -155,3 +155,16 @@ function intersectionTypesIllegalTypes(A&B&A $var) {}
 
 // PHP 8.2 true type.
 function pseudoTypeTrue(true $var = true) {}
+
+// PHP 8.1 types in enum methods.
+enum Suit implements Colorful
+{
+    case Hearts;
+    case Diamonds;
+
+    public function color(string $scheme, ?int $foo = null): string {}
+    public function shape(
+        A|B $union,
+        A&B $intersection,
+    ): mixed {}
+}
