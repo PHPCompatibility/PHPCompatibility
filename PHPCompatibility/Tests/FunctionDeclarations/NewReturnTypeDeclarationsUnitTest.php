@@ -132,6 +132,10 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['static', '7.4', 124, '8.1'],
 
             ['true', '8.1', 131, '8.2'],
+
+            ['string', '5.6', 136, '7.0'],
+            ['mixed', '7.4', 137, '8.0'],
+            ['Class name', '5.6', 138, '8.0'],
         ];
     }
 
@@ -259,6 +263,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTest
             ['object|ClassName', 79],
             ['iterable|array|Traversable', 83],
             ['int|string|INT', 87],
+            ['A|B', 138],
         ];
     }
 
