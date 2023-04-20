@@ -60,6 +60,7 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
             [13],
             [15],
             [17],
+            [33],
         ];
     }
 
@@ -125,6 +126,14 @@ class NewLateStaticBindingUnitTest extends BaseSniffTest
             [20],
             [23],
             [24],
+            [29],
+            [30],
+            [35],
+            [36],
+            [37],
+            [38],
+            [39],
+            [44],
         ];
     }
 

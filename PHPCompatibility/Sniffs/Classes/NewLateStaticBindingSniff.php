@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\Conditions;
 
 /**
@@ -101,7 +100,7 @@ class NewLateStaticBindingSniff extends Sniff
                 break;
         }
 
-        $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
 
         if ($inClass === true && $this->supportsBelow('5.2') === true) {
             $phpcsFile->addError(
