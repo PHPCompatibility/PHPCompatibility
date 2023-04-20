@@ -45,3 +45,17 @@ trait CrossVersionInValidTrait
     final private function privateFinal();
     static private final function privateStaticFinal();
 }
+
+// Global function cannot have final nor private keyword.
+static function globalFunction() {}
+
+// Interface cannot have private methods, nor final methods, but that's not the concern of this sniff.
+interface IllegalPrivate {
+    final private function privateToImplement();
+}
+
+// Safeguard handling of PHP 8.1+ enums.
+enum MyEnum {
+    final public static function publicFinal();
+    final private function privateFinal() {}
+}

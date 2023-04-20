@@ -56,6 +56,8 @@ class ForbiddenFinalPrivateMethodsUnitTest extends BaseSniffTest
             [40],
             [45],
             [46],
+            [54],
+            [60],
         ];
     }
 
@@ -89,6 +91,9 @@ class ForbiddenFinalPrivateMethodsUnitTest extends BaseSniffTest
         for ($line = 1; $line <= 28; $line++) {
             $cases[] = [$line];
         }
+
+        $cases[] = [50];
+        $cases[] = [59];
 
         return $cases;
     }
