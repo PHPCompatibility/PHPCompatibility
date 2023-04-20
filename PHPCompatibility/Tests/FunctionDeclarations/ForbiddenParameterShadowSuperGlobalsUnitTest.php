@@ -97,6 +97,7 @@ class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
             [15],
             [16],
             [17],
+            [28],
         ];
     }
 
