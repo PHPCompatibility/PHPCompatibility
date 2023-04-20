@@ -85,7 +85,7 @@ class BaseSniffTest extends TestCase
      * @after
      *
      * @since 5.5
-     * @since 10.0.0 Renamed the method from `tearDwon()` to `resetTestVersion()` and now using
+     * @since 10.0.0 Renamed the method from `tearDown()` to `resetTestVersion()` and now using
      *               the `@after` annotation to allow for PHPUnit cross-version compatibility.
      *
      * @return void

@@ -67,7 +67,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param int $line Line number where the error should occur.
+     * @param int $line Line number where no error should occur.
      *
      * @return void
      */

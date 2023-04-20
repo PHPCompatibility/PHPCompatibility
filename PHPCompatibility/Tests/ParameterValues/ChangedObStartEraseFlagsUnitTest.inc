@@ -9,11 +9,11 @@ ob_start($output_callback, $chunk_size, $flags);
 ob_start($output_callback, $chunk_size, CUSTOM_CONSTANT);
 ob_start($output_callback, $chunk_size, My::do_erase());
 
-// Not OK - error PHP < 5.4.
+// Not OK - error PHP >= 5.4.
 ob_start($output_callback, $chunk_size, true);
 ob_start($output_callback, $chunk_size, false);
 
-// Not OK - error PHP >= 5.4.
+// Not OK - error PHP < 5.4.
 ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_CLEANABLE);
 ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_FLUSHABLE);
 ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_REMOVABLE);

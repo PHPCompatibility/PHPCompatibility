@@ -15,7 +15,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
 /**
  * Test the RemovedOrphanedParent sniff.
  *
- * @group newRemovedOrphanedParent
+ * @group removedOrphanedParent
  * @group classes
  *
  * @covers \PHPCompatibility\Sniffs\Classes\RemovedOrphanedParentSniff

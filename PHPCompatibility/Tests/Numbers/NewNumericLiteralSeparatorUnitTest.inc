@@ -27,7 +27,7 @@ $a = 1_2.3_4e1_23;
 
 // Invalid use of underscores in numeric sequences.
 // Each underscore in a numeric literal must be directly between two digits.
-// These below all produce "Parse error: syntax error" in PHP 7.4.
+// The below snippets all produce "Parse error: syntax error" in PHP 7.4. Ignore these as not the concern of this sniff.
 $a = 100_;   // trailing
 $a = 1__1;   // next to underscore
 $a = 1_.0;   // next to decimal point

@@ -149,7 +149,7 @@ On top of that, PHPCSDevCS has a higher minimum PHPCS requirement than PHPCompat
 If you have a local test environment setup which is based on git clones, clone the [PHPCSDevCS](https://github.com/PHPCSStandards/PHPCSDevCS) repo and register it with your PHPCS clone using the `--installed_paths` argument.
 You can then run `phpcs` from the command-line from the root directory of this repo to check the code style of your branch/patch.
 
-> :light_bulb: Pro-tips:
+> :bulb: Pro-tips:
 > * Make sure your PHPCS clone is checked out at a recent PHPCS version (PHPCS 3.5.0 or higher) before running the CS check.
 > * Keep the PHPCSDevCS repo up to date.
 >     You may want to start _watching releases_ on GitHub for the repo to know when there are updates available.
@@ -164,7 +164,7 @@ These helper scripts will temporarily install PHPCSDevCS, run the code style che
 
 If the PHPCS run exits with errors, fix those and run either one of the scripts again to make sure the temporary dependency is removed before committing your changes or run `composer remove-devcs` to make sure the `composer.json` file is cleaned up.
 
-> :light_bulb: Pro-tips:
+> :bulb: Pro-tips:
 > * If you run into time-outs when running the `checkcs` or `fixcs` scripts, you can run the underlying scripts directly to get round that:
 >     - `composer install-devcs`
 >     - `vendor/bin/phpcs` or `vendor/bin/phpcbf`
