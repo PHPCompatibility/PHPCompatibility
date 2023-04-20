@@ -76,8 +76,8 @@ class NewConstVisibilitySniff extends Sniff
         }
 
         $phpcsFile->addError(
-            'Visibility indicators for class constants are not supported in PHP 7.0 or earlier. Found "%s const"',
-            $stackPtr,
+            'Visibility indicators for OO constants are not supported in PHP 7.0 or earlier. Found "%s const"',
+            $prevToken,
             'Found',
             [$tokens[$prevToken]['content']]
         );
