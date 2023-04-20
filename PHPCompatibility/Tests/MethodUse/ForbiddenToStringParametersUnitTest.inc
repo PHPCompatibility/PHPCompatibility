@@ -50,3 +50,6 @@ class MyClass {
 }
 
 $obj?->__toString($param);
+
+// Ignore PHP 8.1 first class callable syntax as undetermined as it is unknown whether params will be passed.
+register_callback($obj->__toString(...));
