@@ -116,6 +116,10 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
             [6],
             [7],
             [8],
+
+            [45],
+            [46],
+            [47],
         ];
     }
 

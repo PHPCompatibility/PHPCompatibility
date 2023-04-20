@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
-use PHPCompatibility\Sniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\HashAlgorithmsTrait;
 use PHP_CodeSniffer\Files\File;
@@ -25,10 +25,10 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * @since 5.5
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
- * @since 10.0.0 Now uses the new `HashAlgorithmsTrait`.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
+ *               and uses the `ComplexVersionNewFeatureTrait` and the `HashAlgorithmsTrait`.
  */
-class RemovedHashAlgorithmsSniff extends Sniff
+class RemovedHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
     use HashAlgorithmsTrait;
@@ -53,32 +53,44 @@ class RemovedHashAlgorithmsSniff extends Sniff
     ];
 
     /**
-     * Returns an array of tokens this test wants to listen for.
+     * Constructor.
      *
-     * @since 5.5
-     *
-     * @return array
-     */
-    public function register()
-    {
-        return [\T_STRING];
-    }
-
-
-    /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @since 5.5
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
+     * @since 10.0.0
      *
      * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function __construct()
     {
-        $algo = $this->getHashAlgorithmParameter($phpcsFile, $stackPtr);
+        $this->targetFunctions = $this->hashAlgoFunctions;
+    }
+
+    /**
+     * Should the sniff bow out early for specific PHP versions ?
+     *
+     * @since 10.0.0
+     *
+     * @return bool
+     */
+    protected function bowOutEarly()
+    {
+        return false;
+    }
+
+    /**
+     * Process the parameters of a matched function.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
+     *
+     * @return void
+     */
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
+    {
+        $algo = $this->getHashAlgorithmParameter($functionName, $parameters);
         if (empty($algo) || \is_string($algo) === false) {
             return;
         }
