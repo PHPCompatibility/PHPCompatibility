@@ -61,17 +61,18 @@ class NewUniformVariableSyntaxSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Verify that the next token is a square open bracket. If not, bow out.
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-
-        if ($nextToken === false || $tokens[$nextToken]['code'] !== \T_OPEN_SQUARE_BRACKET || isset($tokens[$nextToken]['bracket_closer']) === false) {
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextToken === false
+            || $tokens[$nextToken]['code'] !== \T_OPEN_SQUARE_BRACKET
+            || isset($tokens[$nextToken]['bracket_closer']) === false
+        ) {
             return;
         }
 
         // The previous non-empty token has to be a $, -> or ::.
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($prevToken === false
-            || (isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
-                && $tokens[$prevToken]['code'] !== \T_DOLLAR)
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if (isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
+            && $tokens[$prevToken]['code'] !== \T_DOLLAR
         ) {
             return;
         }
@@ -79,7 +80,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
         // For static object calls, it only applies when this is a function call.
         if ($tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
             $hasBrackets = $tokens[$nextToken]['bracket_closer'];
-            while (($hasBrackets = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasBrackets + 1), null, true, null, true)) !== false) {
+            while (($hasBrackets = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasBrackets + 1), null, true)) !== false) {
                 if ($tokens[$hasBrackets]['code'] === \T_OPEN_SQUARE_BRACKET) {
                     if (isset($tokens[$hasBrackets]['bracket_closer'])) {
                         $hasBrackets = $tokens[$hasBrackets]['bracket_closer'];
