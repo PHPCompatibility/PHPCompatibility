@@ -73,7 +73,7 @@ abstract class HasDestructAndExtends extends ClassWhichMayOrMayNotContainADestru
      * This should be easily skipped over.
      */
     abstract function something();
-
+    #[AttributeWhichCouldBeLong, ShouldBeSkippedOver( 10, self::CONST_VALUE)]
     public function __DeStruct() {
         // Destructor will not be called on exit() in constructor.
     }
@@ -121,4 +121,10 @@ class ExitNotInFunctionScope {
     }
 
     public function __destruct() {}
+}
+
+function __construct() {}
+
+interface DoesntHaveCodeInFunctions {
+    public function __construct();
 }

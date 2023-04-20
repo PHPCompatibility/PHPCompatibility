@@ -63,9 +63,18 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
+        // Note: interface constructors cannot contain code, enums cannot contain constructors or destructors.
         $classPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, [\T_CLASS, \T_ANON_CLASS, \T_TRAIT]);
         if ($classPtr === false) {
             // Function, not method.
+            return;
+        }
+
+        $tokens = $phpcsFile->getTokens();
+        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false
+            || isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false
+        ) {
+            // Parse error, tokenizer error or live coding.
             return;
         }
 
@@ -77,12 +86,6 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
 
         if (\strtolower($name) !== '__construct') {
             // The rule only applies to constructors. Bow out.
-            return;
-        }
-
-        $tokens = $phpcsFile->getTokens();
-        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false) {
-            // Parse error or live coding.
             return;
         }
 
@@ -99,7 +102,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
                 continue;
             }
 
-            // Skip over nested closed scopes as possible for efficiency.
+            // Skip over nested closed scopes as much as possible for efficiency.
             // Ignore arrow functions as they aren't closed scopes.
             if (isset(Collections::closedScopes()[$tokens[$current]['code']]) === true
                 && isset($tokens[$current]['scope_closer']) === true
@@ -130,11 +133,6 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        if (isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false) {
-            // Parse error, tokenizer error or live coding.
-            return;
-        }
-
         $hasDestruct = false;
         $usesTraits  = false;
         $isError     = false;
@@ -142,10 +140,18 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
         $classClose  = $tokens[$classPtr]['scope_closer'];
         $nextFunc    = $classOpen;
 
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
             // Skip over docblocks.
             if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
                 $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
+            // Skip over attributes.
+            if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
+                && isset($tokens[$nextFunc]['attribute_closer'])
+            ) {
+                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
                 continue;
             }
 
