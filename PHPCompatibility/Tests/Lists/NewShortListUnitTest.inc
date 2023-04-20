@@ -33,3 +33,6 @@ foreach ($data as [$id, $name]) {}
 // Test specific buggy tokenizer issue.
 if (true) {}
 [$id1, $name1] = $data[0];
+
+// Safeguard handling of short list with reference assignment.
+[$a, &$b] = $array;

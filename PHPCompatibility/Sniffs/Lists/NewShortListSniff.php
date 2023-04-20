@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Lists;
 
 /**
@@ -40,10 +41,7 @@ class NewShortListSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_OPEN_SHORT_ARRAY,
-            \T_OPEN_SQUARE_BRACKET,
-        ];
+        return Collections::shortArrayListOpenTokensBC();
     }
 
     /**
