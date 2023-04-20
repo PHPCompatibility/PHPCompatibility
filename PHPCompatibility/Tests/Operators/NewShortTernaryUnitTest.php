@@ -53,6 +53,7 @@ class NewShortTernaryUnitTest extends BaseSniffTest
         return [
             [8],
             [10],
+            [12],
         ];
     }
 

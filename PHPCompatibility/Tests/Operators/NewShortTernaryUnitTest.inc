@@ -8,3 +8,5 @@ $a ? $b : $c;
 $a ?: $c;
 
 $isError = ($function != 'ini_get') ?: false;
+
+$hasComment = $a ? /* deliberately empty */ : $b;
