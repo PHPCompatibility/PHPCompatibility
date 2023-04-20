@@ -59,6 +59,8 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
             [36], // x2.
             [37],
             [41],
+            [47],
+            [48],
         ];
     }
 
@@ -100,6 +102,8 @@ class NewListReferenceAssignmentUnitTest extends BaseSniffTest
             [29],
             [31],
             [32],
+            [44],
+            [52],
         ];
     }
 
