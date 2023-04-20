@@ -72,18 +72,24 @@ class NewMagicClassConstantSniff extends Sniff
             return;
         }
 
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-        if ($prevToken === false || $tokens[$prevToken]['code'] !== \T_DOUBLE_COLON) {
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextToken !== false && $tokens[$nextToken]['code'] === \T_OPEN_PARENTHESIS) {
+            // Function call or declaration for a function called "class".
             return;
         }
 
-        $subjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($tokens[$prevToken]['code'] !== \T_DOUBLE_COLON) {
+            return;
+        }
+
+        $subjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
         if ($subjectPtr === false) {
             // Shouldn't be possible.
             return; // @codeCoverageIgnore
         }
 
-        $preSubjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($subjectPtr - 1), null, true, null, true);
+        $preSubjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($subjectPtr - 1), null, true);
         if (isset(Collections::ooHierarchyKeywords()[$tokens[$subjectPtr]['code']]) === true
             || ($tokens[$subjectPtr]['code'] === \T_STRING
                 && isset(Collections::objectOperators()[$tokens[$preSubjectPtr]['code']]) === false)

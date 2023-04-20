@@ -61,6 +61,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
             [30],
             [31],
             [32],
+            [67],
         ];
     }
 
@@ -89,12 +90,18 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return [
+        $data = [
             [4],
             [10],
             [18],
             [19],
         ];
+
+        for ($line = 54; $line <= 61; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
@@ -134,6 +141,7 @@ class NewMagicClassConstantUnitTest extends BaseSniffTest
             [50],
             [51],
             [52],
+            [64],
         ];
     }
 

@@ -50,3 +50,19 @@ $name = ($string = 'text')::class; // Using ::class on a string literal.
 $name = (1+1)::class; // Using ::class on a literal.
 const A = [0]::class; // Using ::class on a literal.
 $name = ClassName::CONSTANT_NAME::class; // Objects can not be set as the value for a constant.
+
+// Safeguard against false positives for functions called "class".
+class NotTheMagicConstant {
+    public function &class() {
+        self::class();
+        NotTheMagicConstant::class();
+        My\Class\ClassName::class();
+    }
+}
+
+// Safeguard handling of class resolution with PHP 8.0 nullsafe object operator.
+class_exists($obj?->otherObjectSavedAsProperty::class));
+
+// Safeguard handling of class resolution found within PHP 8.0+ attribute.
+#[MyAttribute(\Fully\Qualified\Other::class)]
+function hasAttribute() {}
