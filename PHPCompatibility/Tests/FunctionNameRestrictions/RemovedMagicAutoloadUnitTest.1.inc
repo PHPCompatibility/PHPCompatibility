@@ -6,7 +6,7 @@ function __autoload($someclass) {
 
 class fooclass {
     function __autoload($someclass) {
-        echo 'I am the autoloader in a class (which makes no sense) - I am deprecated from PHP 7.2 onwards';
+        echo 'I am NOT an autoloader as I\'m not in the global namespace';
     }
 }
 
@@ -16,13 +16,13 @@ interface foointerface {
 
 trait footrait {
     function __autoload($someclass) {
-        echo 'I am the autoloader in a trait (which makes no sense) - I am deprecated from PHP 7.2 onwards';
+        echo 'I am NOT an autoloader as I\'m not in the global namespace';
     }
 }
 
 fooanonclass(new class {
     function __autoload($someclass) {
-        echo 'I am the autoloader in an anonymous class (which makes no sense) - I am deprecated from PHP 7.2 onwards';
+        echo 'I am NOT an autoloader as I\'m not in the global namespace';
     }
 });
 
@@ -32,5 +32,11 @@ class Nested {
         function __autoload($someclass) {
             echo 'I am the autoloader - I am deprecated from PHP 7.2 onwards';
         }
+    }
+}
+
+enum fooenum {
+    public function __autoload($someclass) {
+        echo 'I am NOT an autoloader as I\'m not in the global namespace';
     }
 }

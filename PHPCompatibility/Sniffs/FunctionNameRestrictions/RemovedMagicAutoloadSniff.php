@@ -12,7 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\BCTokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
@@ -58,7 +58,7 @@ class RemovedMagicAutoloadSniff extends Sniff
      */
     public function register()
     {
-        $this->checkForScopes += BCTokens::ooScopeTokens();
+        $this->checkForScopes += Tokens::$ooScopeTokens;
 
         return [\T_FUNCTION];
     }
