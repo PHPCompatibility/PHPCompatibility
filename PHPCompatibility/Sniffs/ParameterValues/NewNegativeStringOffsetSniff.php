@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -110,7 +111,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
                 continue;
             }
 
-            if ($this->isNegativeNumber($phpcsFile, $targetParam['start'], $targetParam['end']) === false) {
+            if (TokenGroup::isNegativeNumber($phpcsFile, $targetParam['start'], $targetParam['end'], $this->supportsBelow('5.6')) === false) {
                 continue;
             }
 

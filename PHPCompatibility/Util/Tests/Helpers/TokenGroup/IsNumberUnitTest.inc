@@ -75,9 +75,9 @@ $a = - 0.0000000000;
 
 
 /*
- * Make sure that negative numbers are correctly identified.
+ * Make sure that numbers are correctly identified.
  *
- * The below should be recognized as negative numbers (integers).
+ * The below should be recognized as numbers (integers).
  */
 
 /* test I1 */
@@ -179,3 +179,8 @@ EOT;
 
 /* test F11 */
 $a = +'0.123';
+
+/* testHeredocNoEnd */
+$a = <<<EOD
+10
+EOD;
