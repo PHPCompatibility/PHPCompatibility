@@ -99,6 +99,7 @@ class NewTypedPropertiesSniff extends Sniff
         'integer'  => 'int',
         'callable' => false,
         'void'     => false,
+        'never'    => false,
     ];
 
     /**
@@ -189,6 +190,11 @@ class NewTypedPropertiesSniff extends Sniff
             if (empty($param['property_visibility']) === true) {
                 // Not property promotion.
                 continue;
+            }
+
+            if ($param['type_hint'] === '') {
+                // Not a typed property.
+                return;
             }
 
             // Juggle some of the array entries to what it expected for properties.

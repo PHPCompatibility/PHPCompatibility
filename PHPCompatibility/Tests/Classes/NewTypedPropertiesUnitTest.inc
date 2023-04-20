@@ -146,3 +146,22 @@ class IntersectionTypes() {
 class TrueType() {
     public true $true = true;
 }
+
+// PHP 8.0 constructor property promotion.
+class ConstructorPropertyPromotionNoTypes {
+    public function __Construct(
+        protected $x,
+        public &$y = 'test',
+    ) {}
+}
+
+// PHP 8.1 never type is not supported for typed properties (not does it make sense).
+class NeverType {
+    public never $neverA;
+    public Never $neverB;
+}
+
+class EdgeCase {
+    public int $property ?>
+    <?php
+}

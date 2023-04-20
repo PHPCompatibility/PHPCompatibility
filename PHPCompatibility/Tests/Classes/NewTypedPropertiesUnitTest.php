@@ -99,6 +99,9 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [139],
             [142],
             [147],
+            [160],
+            [161],
+            [165],
         ];
     }
 
@@ -133,11 +136,13 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             $cases[] = [$line];
         }
 
-        // Don't throw errors for normal constructor/function parameters.
+        // Don't throw errors for normal constructor/function parameters/untyped properties.
         $cases[] = [118];
         $cases[] = [119];
         $cases[] = [123];
         $cases[] = [127];
+        $cases[] = [153];
+        $cases[] = [154];
 
         return $cases;
     }
@@ -174,6 +179,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTest
             [65, 'boolean'],
             [66, 'integer'],
             [117, 'callable'],
+            [160, 'never'],
+            [161, 'never'],
         ];
     }
 
