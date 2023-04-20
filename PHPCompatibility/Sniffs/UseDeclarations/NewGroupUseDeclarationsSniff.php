@@ -45,7 +45,10 @@ class NewGroupUseDeclarationsSniff extends Sniff
      */
     public function register()
     {
-        return [\T_OPEN_USE_GROUP];
+        return [
+            \T_OPEN_USE_GROUP,
+            \T_CLOSE_USE_GROUP,
+        ];
     }
 
 
@@ -68,7 +71,9 @@ class NewGroupUseDeclarationsSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if ($this->supportsBelow('5.6') === true) {
+        if ($tokens[$stackPtr]['code'] === \T_OPEN_USE_GROUP
+            && $this->supportsBelow('5.6') === true
+        ) {
             $phpcsFile->addError(
                 'Group use declarations are not allowed in PHP 5.6 or earlier',
                 $stackPtr,
@@ -76,18 +81,15 @@ class NewGroupUseDeclarationsSniff extends Sniff
             );
         }
 
-        $closeCurly = $phpcsFile->findNext(\T_CLOSE_USE_GROUP, ($stackPtr + 1), null, false, null, true);
-        if ($closeCurly === false) {
-            return;
-        }
-
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closeCurly - 1), null, true);
-        if ($tokens[$prevToken]['code'] === \T_COMMA) {
-            $phpcsFile->addError(
-                'Trailing commas are not allowed in group use statements in PHP 7.1 or earlier',
-                $prevToken,
-                'TrailingCommaFound'
-            );
+        if ($tokens[$stackPtr]['code'] === \T_CLOSE_USE_GROUP) {
+            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            if ($tokens[$prevToken]['code'] === \T_COMMA) {
+                $phpcsFile->addError(
+                    'Trailing commas are not allowed in group use statements in PHP 7.1 or earlier',
+                    $prevToken,
+                    'TrailingCommaFound'
+                );
+            }
         }
     }
 }
