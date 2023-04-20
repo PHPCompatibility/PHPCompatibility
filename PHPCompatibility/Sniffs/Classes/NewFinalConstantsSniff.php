@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Scopes;
  *
  * @since 10.0.0
  */
-class NewFinalClassConstantsSniff extends Sniff
+class NewFinalConstantsSniff extends Sniff
 {
 
     /**
@@ -72,8 +72,8 @@ class NewFinalClassConstantsSniff extends Sniff
         }
 
         $phpcsFile->addError(
-            'The final modifier for class constants is not supported in PHP 8.0 or earlier.',
-            $stackPtr,
+            'The final modifier for OO constants is not supported in PHP 8.0 or earlier.',
+            $prevToken,
             'Found'
         );
     }

@@ -13,41 +13,41 @@ namespace PHPCompatibility\Tests\Classes;
 use PHPCompatibility\Tests\BaseSniffTest;
 
 /**
- * Test the NewFinalClassConstants sniff.
+ * Test the NewFinalConstants sniff.
  *
- * @group newFinalClassConstants
+ * @group newFinalConstants
  * @group classes
  *
- * @covers \PHPCompatibility\Sniffs\Classes\NewFinalClassConstantsSniff
+ * @covers \PHPCompatibility\Sniffs\Classes\NewFinalConstantsSniff
  *
  * @since 10.0.0
  */
-class NewFinalClassConstantsUnitTest extends BaseSniffTest
+class NewFinalConstantsUnitTest extends BaseSniffTest
 {
 
     /**
-     * Test that an error is thrown for class constants declared as final.
+     * Test that an error is thrown for OO constants declared as final.
      *
-     * @dataProvider dataFinalClassConstants
+     * @dataProvider dataFinalConstants
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testFinalClassConstants($line)
+    public function testFinalConstants($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertError($file, $line, 'The final modifier for class constants is not supported in PHP 8.0 or earlier.');
+        $this->assertError($file, $line, 'The final modifier for OO constants is not supported in PHP 8.0 or earlier.');
     }
 
     /**
      * Data provider.
      *
-     * @see testFinalClassConstants()
+     * @see testFinalConstants()
      *
      * @return array
      */
-    public function dataFinalClassConstants()
+    public function dataFinalConstants()
     {
         return [
             [10],
@@ -73,6 +73,22 @@ class NewFinalClassConstantsUnitTest extends BaseSniffTest
             [49],
             [52],
             [53],
+
+            [78],
+            [79],
+            [80],
+            [81],
+            [82],
+            [85],
+            [86],
+
+            [98],
+            [99],
+            [100],
+            [101],
+            [102],
+            [105],
+            [106],
         ];
     }
 
@@ -108,6 +124,9 @@ class NewFinalClassConstantsUnitTest extends BaseSniffTest
             [42],
             [62],
             [66],
+            [75],
+            [94],
+            [95],
         ];
     }
 
