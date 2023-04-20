@@ -42,3 +42,11 @@ trait CrossVersionInValidTrait
     abstract private function privateOverload();
     static private abstract function privateStaticOverload();
 }
+
+// Global function cannot have abstract nor private keyword.
+static function globalFunction() {}
+
+// Interface cannot have private methods, nor abstract methods, but that's not the concern of this sniff.
+interface IllegalPrivate {
+    abstract private function privateToImplement();
+}
