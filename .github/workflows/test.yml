@@ -88,7 +88,7 @@ jobs:
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
-        phpcs_version: ['3.7.1', 'dev-master']
+        phpcs_version: ['lowest', 'dev-master']
         experimental: [false]
 
         include:
@@ -141,8 +141,9 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      - name: 'Composer: set PHPCS version for tests'
-        run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
+      - name: "Composer: set PHPCS version for tests (master)"
+        if: ${{ matrix.phpcs_version != 'lowest' }}
+        run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
@@ -160,6 +161,10 @@ jobs:
         with:
           composer-options: --ignore-platform-req=php
           custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: "Composer: set PHPCS version for tests (lowest)"
+        if: ${{ matrix.phpcs_version == 'lowest' }}
+        run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
 
       - name: Run the unit tests
         run: vendor/bin/phpunit --no-coverage
@@ -185,12 +190,12 @@ jobs:
             phpcs_version: 'dev-master'
             custom_ini: true
           - php: '8.2'
-            phpcs_version: '3.7.1'
+            phpcs_version: 'lowest'
 
           - php: '5.4'
             phpcs_version: 'dev-master'
           - php: '5.4'
-            phpcs_version: '3.7.1'
+            phpcs_version: 'lowest'
             custom_ini: true
 
     name: "Coverage: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
@@ -226,14 +231,19 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: xdebug
 
-      - name: 'Composer: set PHPCS version for tests'
-        run: composer require --no-update squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-interaction
+      - name: "Composer: set PHPCS version for tests (master)"
+        if: ${{ matrix.phpcs_version != 'lowest' }}
+        run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v2"
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: "Composer: set PHPCS version for tests (lowest)"
+        if: ${{ matrix.phpcs_version == 'lowest' }}
+        run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
 
       - name: Grab PHPUnit version
         id: phpunit_version
