@@ -13,3 +13,6 @@ get_class(
     null // Comment.
 );
 get_class(object:null);
+
+// Safeguard against false positives when target param not found.
+get_class(instance: null); // Wrong param name.
