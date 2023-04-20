@@ -5,8 +5,8 @@ $f = function () use ($_SERVER) {};
 $f = function () use ($_REQUEST) {};
 $f = function () use ($GLOBALS) {};
 $f = function () use ($this) {};
-$f = function ($param) use ($param) {};
-$f = function ($param) use (&$param) {};
+$f = function ($param,) use ($param) {};
+$f = function ($param) use (&$param,) {};
 $f = function ($a, $b, $c, $d, $e) use ($c) {};
 $f = function ($a, $b, $c, $d, $e) use ($b, $d) {};
 
@@ -24,7 +24,7 @@ $f = function () use ($THIS) {};
 $f = function ($param) use ($Param) {};
 
 // Not the same variable name.
-$f = function ($par, $parameter) use ($param) {};
+$f = function ($par, $parameter,) use ($param,) {};
 
 // Use statements not used with a closure.
 namespace Something;
