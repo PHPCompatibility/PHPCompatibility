@@ -12,7 +12,6 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\GetTokensAsString;
-use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;

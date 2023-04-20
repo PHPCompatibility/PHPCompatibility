@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\Numbers;
 

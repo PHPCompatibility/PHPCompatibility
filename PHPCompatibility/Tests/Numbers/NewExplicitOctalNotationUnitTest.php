@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\Numbers;
 
 use PHPCompatibility\Tests\BaseSniffTest;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * Tests for the NewExplicitOctalNotationSniff sniff.

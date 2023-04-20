@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Util\Tests\Helpers;
 
 use PHPUnit\Framework\TestCase;
+use PHP_CodeSniffer\Config;
 use PHPCompatibility\Helpers\TestVersionTrait;
 use PHPCSUtils\BackCompat\Helper;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
@@ -45,9 +46,7 @@ class TestVersionTraitUnitTest extends TestCase
      */
     public static function initializeConfig()
     {
-        if (\class_exists('\PHP_CodeSniffer\Config') === true) {
-            self::$config = new \PHP_CodeSniffer\Config();
-        }
+        self::$config = new Config();
     }
 
     /**

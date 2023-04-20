@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\Syntax;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Utils\Operators;
 
 /**
  * Detect class member access on object instantiation/cloning.

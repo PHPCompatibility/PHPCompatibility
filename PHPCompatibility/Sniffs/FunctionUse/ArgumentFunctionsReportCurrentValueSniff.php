@@ -464,8 +464,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
                 if (empty($tokens[$j]['nested_parenthesis']) === false) {
                     $parentheses = $tokens[$j]['nested_parenthesis'];
-                    end($parentheses);
-                    $openParens   = key($parentheses);
+                    \end($parentheses);
+                    $openParens   = \key($parentheses);
                     $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($openParens - 1), null, true);
                     if ($prevNonEmpty !== false
                         && $tokens[$prevNonEmpty]['code'] === \T_UNSET

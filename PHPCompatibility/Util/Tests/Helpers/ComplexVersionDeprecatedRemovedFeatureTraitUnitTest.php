@@ -35,7 +35,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
     {
         if (\method_exists($this, 'expectException')) {
             // PHPUnit 5+.
-            if (PHP_VERSION_ID >= 70000) {
+            if (\PHP_VERSION_ID >= 70000) {
                 $this->expectException('TypeError');
             } else {
                 $this->expectException('PHPUnit_Framework_Error');
@@ -240,7 +240,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
     {
         if (\method_exists($this, 'expectException')) {
             // PHPUnit 5+.
-            if (PHP_VERSION_ID >= 70000) {
+            if (\PHP_VERSION_ID >= 70000) {
                 $this->expectException('TypeError');
             } else {
                 $this->expectException('PHPUnit_Framework_Error');
