@@ -16,3 +16,6 @@ setlocale($array['LC_ALL'], 'nl_NL');
 // Safeguard support for PHP 8 named parameters.
 setlocale(locales: 'nl_NL', category: $category); // Can't be determined.
 setlocale(category: 'LC_ALL', locales: 'nl_NL'); // Error.
+
+// Safeguard against false positives when target param not found.
+setlocale(locales: 'nl_NL', cat: LC_ALL,); // OK, well not really, but using incorrect parameter name.
