@@ -37,4 +37,8 @@ $anon = new class() {
     public function __toString($param) {
         return $this->foo;
     }
+
+    public function notToString($param) {
+        return $this->foo;
+    }
 };
