@@ -53,6 +53,10 @@ class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
             [3],
             [47],
             [56],
+            [67],
+            [78],
+            [90],
+            [106],
         ];
     }
 
@@ -85,7 +89,8 @@ class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
             [14],
             [23],
             [43],
-            [67], // Live coding.
+            [120],
+            [134], // Live coding.
         ];
     }
 
