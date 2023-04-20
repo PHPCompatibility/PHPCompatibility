@@ -10,11 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
-use PHPCompatibility\Sniff;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -26,9 +25,10 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
+ *               and uses the `ComplexVersionNewFeatureTrait`.
  */
-class NewFunctionParametersSniff extends Sniff
+class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
 
@@ -41,11 +41,12 @@ class NewFunctionParametersSniff extends Sniff
      *
      * @since 7.0.0
      * @since 7.0.2 Visibility changed from `public` to `protected`.
-     * @since 10.0.0 The parameter offsets were changed from 0-based to 1-based.
+     * @since 10.0.0 - The parameter offsets were changed from 0-based to 1-based.
+     *               - The property was renamed from `$newFunctionParameters` to `$targetFunctions`.
      *
      * @var array
      */
-    protected $newFunctionParameters = [
+    protected $targetFunctions = [
         'array_filter' => [
             3 => [
                 'name' => 'mode',
@@ -1030,88 +1031,46 @@ class NewFunctionParametersSniff extends Sniff
         ],
     ];
 
-
     /**
-     * Returns an array of tokens this test wants to listen for.
+     * Should the sniff bow out early for specific PHP versions ?
      *
-     * @since 7.0.0
+     * @since 10.0.0
      *
-     * @return array
+     * @return bool
      */
-    public function register()
+    protected function bowOutEarly()
     {
-        // Handle case-insensitivity of function names.
-        $this->newFunctionParameters = \array_change_key_case($this->newFunctionParameters, \CASE_LOWER);
-
-        return [\T_STRING];
+        return false;
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
+     * Process the parameters of a matched function.
      *
-     * @since 7.0.0
+     * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in
-     *                                               the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     * @param array                       $parameters   Array with information about the parameters.
      *
      * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $tokens = $phpcsFile->getTokens();
+        $functionLc = \strtolower($functionName);
 
-        $function   = $tokens[$stackPtr]['content'];
-        $functionLc = \strtolower($function);
-
-        if (isset($this->newFunctionParameters[$functionLc]) === false) {
-            return;
-        }
-
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextToken === false
-            || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
-            || isset($tokens[$nextToken]['parenthesis_owner']) === true
-        ) {
-            return;
-        }
-
-        $ignore  = [\T_NEW => true];
-        $ignore += Collections::objectOperators();
-
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
-            // Not a call to a PHP function.
-            return;
-
-        } elseif ($tokens[$prevToken]['code'] === \T_NS_SEPARATOR) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function.
-                return;
-            }
-        }
-
-        $parameters = PassedParameters::getParameters($phpcsFile, $stackPtr);
-        if (empty($parameters)) {
-            return;
-        }
-
-        // If the parameter count returned > 0, we know there will be valid open parenthesis.
-        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-
-        foreach ($this->newFunctionParameters[$functionLc] as $offset => $parameterDetails) {
+        foreach ($this->targetFunctions[$functionLc] as $offset => $parameterDetails) {
             $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
 
-            if ($targetParam !== false) {
+            if ($targetParam !== false && $targetParam['clean'] !== '') {
+                $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+
                 $itemInfo = [
-                    'name'   => $function,
+                    'name'   => $functionName,
                     'nameLc' => $functionLc,
                     'offset' => $offset,
                 ];
-                $this->handleFeature($phpcsFile, $openParenthesis, $itemInfo);
+                $this->handleFeature($phpcsFile, $firstNonEmpty, $itemInfo);
             }
         }
     }
@@ -1132,7 +1091,7 @@ class NewFunctionParametersSniff extends Sniff
      */
     protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        $itemArray   = $this->newFunctionParameters[$itemInfo['nameLc']][$itemInfo['offset']];
+        $itemArray   = $this->targetFunctions[$itemInfo['nameLc']][$itemInfo['offset']];
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
