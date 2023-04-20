@@ -6,7 +6,7 @@ define('ANIMALS', [
     'bird'
 ]);
 
-define('ANIMALS', array(
+DEFINE('ANIMALS', array(
     'dog',
     'cat',
     'bird'
@@ -19,8 +19,8 @@ myClass::define('ANIMALS', 'dog');
 $object->define('ANIMALS', 'dog');
 
 class myClass {
-	const define = true;
-	function define() {}
+    const define = true;
+    function &define($name, $value = array()) {}
 }
 
 notDefine('ANIMALS', 'dog');
@@ -41,3 +41,17 @@ define(value: 'not an array', constant_name: 'NOTANARRAY' ); // OK.
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->define('ANIMALS', []);
+
+// No false positive on namespace define.
+MyOwn\define('name', array());
+
+// No false positive on class called "define".
+$obj = new Define('name', array());
+
+// Prevent false negative with compound value.
+define('NAME', functionReturningArray(array()) + array('sn', 'givenname', 'mail')); // Error.
+define('NAME', functionReturningArray(array()) + functionReturningArray(array())); // OK (undetermined).
+
+// Prevent false positive on closure/PHP 7.4 arrow function with PHP 8.1 "new in initializer".
+define('CLOSURE_OBJECT_FROM_CLOSURE', function() { return array(1, 2, 3); });
+define('CLOSURE_OBJECT_FROM_ARROW', fn() => array(1, 2, 3));
