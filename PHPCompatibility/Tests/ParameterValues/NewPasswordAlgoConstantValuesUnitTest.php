@@ -52,13 +52,13 @@ class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTest
     public function dataNewPasswordAlgoConstantValues()
     {
         return [
-            [20],
-            [21],
             [22],
             [23],
             [24],
             [25],
             [26],
+            [27],
+            [28],
         ];
     }
 
@@ -66,16 +66,39 @@ class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTest
     /**
      * Test that there are no false positives.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
 
-        // No errors expected on the first 18 lines.
-        for ($line = 1; $line <= 18; $line++) {
-            $this->assertNoViolation($file, $line);
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = [];
+
+        // No errors expected on the first 20 lines.
+        for ($line = 1; $line <= 20; $line++) {
+            $data[] = [$line];
         }
+
+        for ($line = 30; $line <= 36; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
