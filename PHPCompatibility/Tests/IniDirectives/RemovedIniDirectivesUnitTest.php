@@ -145,8 +145,6 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
     public function dataDeprecatedDirectives()
     {
         return [
-            ['safe_mode_protected_env_vars', '5.3', [54, 55], '5.2'],
-
             ['iconv.input_encoding', '5.6', [62, 63], '5.5'],
             ['iconv.output_encoding', '5.6', [65, 66], '5.5'],
             ['iconv.internal_encoding', '5.6', [68, 69], '5.5'],
@@ -405,6 +403,9 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTest
             [163],
             [164],
             [455],
+            [458],
+            [461],
+            [462],
         ];
     }
 
