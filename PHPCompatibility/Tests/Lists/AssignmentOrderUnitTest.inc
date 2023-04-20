@@ -50,3 +50,20 @@ if (true) {}
 
 // Test handling of list vars with differing whitespace.
 list( $a [ 'key' ], $b [ 'key' ], list($a['key'], $b['key'])) = $array;
+
+// Safeguard handling of PHP 7.1+ keyed lists.
+// Okay: duplicate variable is used as a key not as the variable assignment.
+list("id" => $id, "name" => $name, $name => $value) = $data[0];
+["id" => $id, "name" => $name, $id => $value] = $data[0];
+
+// Error: duplicate variable is used for the variable assignment.
+list("id" => $id, "name" => $name, $label => $id) = $data[0];
+["id" => $id, "name" => $name, $label => $name] = $data[0];
+
+// Safeguard handling of PHP 7.3+ lists with reference assignment.
+list($a, &$b, &$a) = $array;
+[$a, &$b, &$a] = $array;
+
+// Don't trigger on unfinished code during live code review.
+// This has to be the last test in the file!
+list(
