@@ -339,6 +339,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             [194],
             [195],
             [196],
+            [201],
 
             // Plain trait.
             [219],
