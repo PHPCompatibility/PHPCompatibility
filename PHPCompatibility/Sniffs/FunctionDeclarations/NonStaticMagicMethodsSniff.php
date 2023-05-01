@@ -52,7 +52,6 @@ class NonStaticMagicMethodsSniff extends Sniff
             'static' => false,
         ],
         '__destruct' => [
-            'visibility' => 'public',
             'static'     => false,
         ],
         '__clone' => [
