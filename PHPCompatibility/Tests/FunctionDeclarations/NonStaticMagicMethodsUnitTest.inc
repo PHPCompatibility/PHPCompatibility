@@ -198,7 +198,7 @@ class MoreNormal
 
 class MoreWrongVisibility
 {
-    private function __destruct() {}
+    private function __destruct() {} // Not actually wrong, private is allowed for destructors.
     protected function __debugInfo() {}
     private function __invoke() {}
     protected static function __set_state() {}

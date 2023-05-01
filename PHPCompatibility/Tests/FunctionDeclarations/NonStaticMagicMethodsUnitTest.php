@@ -94,7 +94,6 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             ['__unserialize', 'public', 'private', 180],
 
             // More magic methods.
-            ['__destruct', 'public', 'private', 201],
             ['__debugInfo', 'public', 'protected', 202],
             ['__invoke', 'public', 'private', 203],
             ['__set_state', 'public', 'protected', 204],
@@ -340,6 +339,7 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             [194],
             [195],
             [196],
+            [201],
 
             // Plain trait.
             [219],
