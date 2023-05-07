@@ -141,26 +141,39 @@ class BaseSniffTest extends TestCase
             return self::$sniffFiles[$pathToFile][$targetPhpVersion];
         }
 
-        try {
-            // PHPCS 3.x, 4.x.
-            $config            = new \PHP_CodeSniffer\Config();
-            $config->cache     = false;
-            $config->standards = [self::STANDARD_NAME];
-            $config->sniffs    = [$this->getSniffCode()];
-            $config->ignored   = [];
+        // Set up the Config and tokenize the test case file only once.
+        if (isset(self::$sniffFiles[$pathToFile]['only_parsed']) === false) {
+            try {
+                // PHPCS 3.x, 4.x.
+                $config            = new \PHP_CodeSniffer\Config();
+                $config->cache     = false;
+                $config->standards = [self::STANDARD_NAME];
+                $config->sniffs    = [$this->getSniffCode()];
+                $config->ignored   = [];
 
-            if ($targetPhpVersion !== 'none') {
-                Helper::setConfigData('testVersion', $targetPhpVersion, true, $config);
+                self::$lastConfig = $config;
+
+                $ruleset = new \PHP_CodeSniffer\Ruleset($config);
+
+                self::$sniffFiles[$pathToFile]['only_parsed'] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
+                self::$sniffFiles[$pathToFile]['only_parsed']->parse();
+            } catch (\Exception $e) {
+                $this->fail('An unexpected exception has been caught when parsing file "' . $pathToFile . '" : ' . $e->getMessage());
+                return false;
             }
+        }
 
-            self::$lastConfig = $config;
+        // Now process the file against the target testVersion setting and cache the results.
+        self::$sniffFiles[$pathToFile][$targetPhpVersion] = clone self::$sniffFiles[$pathToFile]['only_parsed'];
 
-            $ruleset = new \PHP_CodeSniffer\Ruleset($config);
+        if ($targetPhpVersion !== 'none') {
+            Helper::setConfigData('testVersion', $targetPhpVersion, true, self::$sniffFiles[$pathToFile][$targetPhpVersion]->config);
+        }
 
-            self::$sniffFiles[$pathToFile][$targetPhpVersion] = new \PHP_CodeSniffer\Files\LocalFile($pathToFile, $ruleset, $config);
+        try {
             self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
         } catch (\Exception $e) {
-            $this->fail('An unexpected exception has been caught when loading file "' . $pathToFile . '" : ' . $e->getMessage());
+            $this->fail('An unexpected exception has been caught when processing file "' . $pathToFile . '" : ' . $e->getMessage());
             return false;
         }
 
