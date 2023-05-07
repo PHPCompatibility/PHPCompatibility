@@ -285,7 +285,7 @@ jobs:
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
         env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
           COVERALLS_PARALLEL: true
           COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
         run: php-coveralls -v -x build/logs/clover.xml
@@ -301,5 +301,5 @@ jobs:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.COVERALLS_TOKEN }}
           parallel-finished: true
