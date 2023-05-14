@@ -569,14 +569,14 @@ class NewInterfacesSniff extends Sniff
         $splitUseStatement = UseStatements::splitImportUseStatement($phpcsFile, $stackPtr);
 
         foreach ($splitUseStatement['name'] as $name => $fullyQualifiedName) {
-            $lowerFullyQualifiedName = strtolower($fullyQualifiedName);
+            $lowerFullyQualifiedName = \strtolower($fullyQualifiedName);
 
             // If the imported declaration is imported from the internal namespace it will not be excluded.
             if (isset($this->newInterfaces[$lowerFullyQualifiedName])) {
                 continue;
             }
 
-            $this->importedDeclaration[strtolower($name)] = true;
+            $this->importedDeclaration[\strtolower($name)] = true;
         }
     }
 

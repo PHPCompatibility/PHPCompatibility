@@ -240,7 +240,7 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
         $sharedConfig  = $file->config;
 
         $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
-            realpath(__DIR__ . '/NewInterfacesUnitTest.inc'),
+            \realpath(__DIR__ . '/NewInterfacesUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
         );

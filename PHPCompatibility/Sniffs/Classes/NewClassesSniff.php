@@ -1431,13 +1431,13 @@ class NewClassesSniff extends Sniff
         $splitUseStatement = UseStatements::splitImportUseStatement($phpcsFile, $stackPtr);
 
         foreach ($splitUseStatement['name'] as $name => $fullyQualifiedName) {
-            $lowerFullyQualifiedName = strtolower($fullyQualifiedName);
+            $lowerFullyQualifiedName = \strtolower($fullyQualifiedName);
 
             if (isset($this->newClasses[$lowerFullyQualifiedName])) {
                 continue;
             }
 
-            $this->importedClasses[strtolower($name)] = true;
+            $this->importedClasses[\strtolower($name)] = true;
         }
     }
 

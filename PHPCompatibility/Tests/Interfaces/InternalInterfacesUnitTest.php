@@ -176,7 +176,7 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
         $sharedConfig  = $file->config;
 
         $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
-            realpath(__DIR__ . '/InternalInterfacesUnitTest.inc'),
+            \realpath(__DIR__ . '/InternalInterfacesUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
         );

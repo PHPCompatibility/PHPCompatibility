@@ -347,7 +347,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
         $sharedConfig  = $file->config;
 
         $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
-            realpath(__DIR__ . '/NewClassesUsesNoLeakUnitTest.inc'),
+            \realpath(__DIR__ . '/NewClassesUsesNoLeakUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
         );
