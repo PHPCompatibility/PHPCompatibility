@@ -152,10 +152,10 @@ class TestVersionTraitUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidRange($testVersion)
     {
-        $message = \sprintf('Invalid range in testVersion setting: \'%s\'', $testVersion);
+        $message = \sprintf('Invalid range in provided PHPCompatibility testVersion: \'%s\'', $testVersion);
 
-        $this->expectWarning();
-        $this->expectWarningMessage($message);
+        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersionRange');
+        $this->expectExceptionMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
     }
@@ -190,10 +190,10 @@ class TestVersionTraitUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        $message = \sprintf('Invalid testVersion setting: \'%s\'', \trim($testVersion));
+        $message = \sprintf('Invalid PHPCompatibility testVersion provided: \'%s\'', \trim($testVersion));
 
-        $this->expectWarning();
-        $this->expectWarningMessage($message);
+        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersion');
+        $this->expectExceptionMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
     }
