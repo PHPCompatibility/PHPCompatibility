@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
@@ -66,7 +67,7 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.2') === false);
+        return (ScannedCode::shouldRunOnOrBelow('5.2') === false);
     }
 
 
@@ -90,7 +91,7 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if (TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], $this->supportsBelow('5.6'), true) !== false) {
+        if (TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false) {
             return;
         }
 

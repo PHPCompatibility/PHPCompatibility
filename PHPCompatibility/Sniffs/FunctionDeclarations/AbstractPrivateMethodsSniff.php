@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -65,7 +66,7 @@ class AbstractPrivateMethodsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.1') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.1') === false) {
             return;
         }
 
@@ -83,7 +84,7 @@ class AbstractPrivateMethodsSniff extends Sniff
         }
 
         if ($tokens[$scopePtr]['code'] === \T_TRAIT) {
-            if ($this->supportsBelow('7.4') === true) {
+            if (ScannedCode::shouldRunOnOrBelow('7.4') === true) {
                 $phpcsFile->addError(
                     'Traits cannot declare "abstract private" methods in PHP 7.4 or below',
                     $stackPtr,

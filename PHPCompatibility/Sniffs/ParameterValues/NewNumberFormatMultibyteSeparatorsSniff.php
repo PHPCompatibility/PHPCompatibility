@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -80,7 +81,7 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.3') === false);
+        return (ScannedCode::shouldRunOnOrBelow('5.3') === false);
     }
 
 

@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -50,7 +51,7 @@ class RemovedSplAutoloadRegisterThrowFalseSniff extends AbstractFunctionCallPara
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('8.0') === false);
+        return (ScannedCode::shouldRunOnOrAbove('8.0') === false);
     }
 
     /**

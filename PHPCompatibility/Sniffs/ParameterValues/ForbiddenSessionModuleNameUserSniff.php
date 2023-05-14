@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -80,7 +81,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('7.2') === false);
+        return (ScannedCode::shouldRunOnOrAbove('7.2') === false);
     }
 
 

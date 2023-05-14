@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
 use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
@@ -148,7 +149,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.4') === false) {
             return;
         }
 
@@ -183,7 +184,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
             return;
         }
 
-        $isError = ($this->supportsAbove('8.0') === true);
+        $isError = (ScannedCode::shouldRunOnOrAbove('8.0') === true);
 
         $errorMsg  = 'Curly brace syntax for accessing array elements and string offsets has been deprecated in PHP 7.4';
         $errorCode = 'Deprecated';

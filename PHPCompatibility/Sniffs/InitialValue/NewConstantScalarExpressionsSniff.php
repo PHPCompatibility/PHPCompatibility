@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractInitialValueSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -113,7 +114,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.5') !== true);
+        return (ScannedCode::shouldRunOnOrBelow('5.5') === false);
     }
 
     /**
@@ -175,7 +176,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         switch ($tokens[$nextNonSimple]['code']) {
             case \T_MINUS:
             case \T_PLUS:
-                if (TokenGroup::isNumber($phpcsFile, $start, $end, $this->supportsBelow('5.6'), true) !== false) {
+                if (TokenGroup::isNumber($phpcsFile, $start, $end, ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false) {
                     // Int or float with sign.
                     return true;
                 }

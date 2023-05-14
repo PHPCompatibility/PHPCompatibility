@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Variables;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -84,7 +85,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('8.1') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
             return;
         }
 
@@ -126,7 +127,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
 
             $hasNonNumeric = $phpcsFile->findNext($allowedNumeric, $searchStart, $searchEnd, true);
             if ($hasNonNumeric === false) {
-                if ($this->supportsBelow('8.0') === true) {
+                if (ScannedCode::shouldRunOnOrBelow('8.0') === true) {
                     // This warning will only be thrown when both PHP < 8.1 and PHP 8.1+ need to be supported.
                     $phpcsFile->addWarning(
                         'The way variables with an integer or floating point variable name are stored in the $GLOBALS variable has changed in PHP 8.1. Please review your code to evaluate the impact.',
@@ -221,7 +222,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
 
         if (($tokens[$prevNonEmpty]['code'] === \T_EQUAL
             || $tokens[$prevNonEmpty]['code'] === \T_COALESCE_EQUAL)
-                && $this->supportsBelow('8.0') === true
+                && ScannedCode::shouldRunOnOrBelow('8.0') === true
         ) {
             // This warning will only be thrown when both PHP < 8.1 and PHP 8.1+ need to be supported.
             $phpcsFile->addWarning(

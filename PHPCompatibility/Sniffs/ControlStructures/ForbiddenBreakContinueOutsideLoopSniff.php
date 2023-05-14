@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Conditions;
@@ -85,7 +86,7 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
         $errorCode = 'Found';
         $data      = [$tokens[$stackPtr]['content']];
 
-        if ($this->supportsAbove('7.0')) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === true) {
             $error    .= ' and will throw a fatal error since PHP 7.0';
             $isError   = true;
             $errorCode = 'FatalError';

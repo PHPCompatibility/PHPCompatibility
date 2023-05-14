@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 
@@ -77,7 +78,7 @@ class ForbiddenExtendingFinalPHPClassSniff extends Sniff
             return;
         }
 
-        if ($this->supportsAbove($this->finalClasses[$classNameLc]) === false) {
+        if (ScannedCode::shouldRunOnOrAbove($this->finalClasses[$classNameLc]) === false) {
             return;
         }
 

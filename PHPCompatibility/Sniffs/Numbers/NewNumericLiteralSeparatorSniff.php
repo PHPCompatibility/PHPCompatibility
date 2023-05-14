@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\Numbers;
 
@@ -58,7 +59,7 @@ class NewNumericLiteralSeparatorSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.3') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
             return;
         }
 

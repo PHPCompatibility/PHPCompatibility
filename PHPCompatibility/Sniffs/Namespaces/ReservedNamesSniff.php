@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Namespaces;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Namespaces;
@@ -56,7 +57,7 @@ class ReservedNamesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.3') === false) {
             // Namespaces were introduced in PHP 5.3.
             return;
         }

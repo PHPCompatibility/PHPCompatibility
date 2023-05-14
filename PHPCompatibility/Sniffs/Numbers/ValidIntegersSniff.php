@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Numbers;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -70,7 +71,7 @@ class ValidIntegersSniff extends Sniff
         $numberInfo = Numbers::getCompleteNumber($phpcsFile, $stackPtr);
 
         if (Numbers::isBinaryInt($numberInfo['content']) === true) {
-            if ($this->supportsBelow('5.3')) {
+            if (ScannedCode::shouldRunOnOrBelow('5.3') === true) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
                 $data  = [$numberInfo['orig_content']];
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
@@ -86,7 +87,7 @@ class ValidIntegersSniff extends Sniff
             return $numberInfo['last_token'];
         }
 
-        $isError = $this->supportsAbove('7.0');
+        $isError = ScannedCode::shouldRunOnOrAbove('7.0');
 
         $isInvalidOctal = $this->isInvalidOctalInteger($tokens, $stackPtr, $numberInfo);
         if ($isInvalidOctal !== false) {

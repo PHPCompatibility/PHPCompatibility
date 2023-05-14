@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\MessageHelper;
@@ -54,7 +55,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('4.2') === false);
+        return (ScannedCode::shouldRunOnOrAbove('4.2') === false);
     }
 
 
@@ -96,7 +97,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
             $errorCode = 'Deprecated';
             $data      = [$targetParam['clean']];
 
-            if ($this->supportsAbove('7.0') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('7.0') === true) {
                 $message  .= ' and is removed since PHP 7.0';
                 $isError   = true;
                 $errorCode = 'Removed';

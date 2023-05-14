@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 
@@ -68,12 +69,12 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.2') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.2') === true) {
             $this->detectIndentedNonStandAloneClosingMarker($phpcsFile, $stackPtr);
         }
 
         $tokens = $phpcsFile->getTokens();
-        if ($this->supportsAbove('7.3') === true && $tokens[$stackPtr]['code'] !== \T_STRING) {
+        if (ScannedCode::shouldRunOnOrAbove('7.3') === true && $tokens[$stackPtr]['code'] !== \T_STRING) {
             $this->detectClosingMarkerInBody($phpcsFile, $stackPtr);
         }
     }

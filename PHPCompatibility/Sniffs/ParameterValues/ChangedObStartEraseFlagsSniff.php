@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
@@ -82,7 +83,7 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
         $data  = [$targetParam['clean']];
 
         if ($cleanValueLc === 'true' || $cleanValueLc === 'false') {
-            if ($this->supportsAbove('5.4') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('5.4') === true) {
                 $phpcsFile->addError($error, $targetParam['start'], 'BooleanFound', $data);
             }
 
@@ -90,8 +91,8 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
         }
 
         if ((\preg_match('`PHP_OUTPUT_HANDLER_(CLEANABLE|FLUSHABLE|REMOVABLE|STDFLAGS)`', $targetParam['clean']) === 1
-            || TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], $this->supportsBelow('5.6'), true) !== false)
-            && $this->supportsBelow('5.3') === true
+            || TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false)
+            && ScannedCode::shouldRunOnOrBelow('5.3') === true
         ) {
             $phpcsFile->addError($error, $targetParam['start'], 'IntegerFound', $data);
         }

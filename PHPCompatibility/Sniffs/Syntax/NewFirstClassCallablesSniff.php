@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 
 /**
@@ -52,7 +53,7 @@ final class NewFirstClassCallablesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('8.0') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('8.0') === false) {
             return;
         }
 

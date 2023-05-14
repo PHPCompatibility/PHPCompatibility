@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -106,7 +107,7 @@ class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
     {
         // Version used here should be the highest version from the `$newModifiers` array,
         // i.e. the last PHP version in which a new modifier was introduced.
-        return ($this->supportsBelow('7.2') === false);
+        return (ScannedCode::shouldRunOnOrBelow('7.2') === false);
     }
 
     /**
@@ -170,7 +171,7 @@ class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             $notInVersion = '';
             foreach ($versionArray as $version => $present) {
                 if ($notInVersion === '' && $present === false
-                    && $this->supportsBelow($version) === true
+                    && ScannedCode::shouldRunOnOrBelow($version) === true
                 ) {
                     $notInVersion = $version;
                 }

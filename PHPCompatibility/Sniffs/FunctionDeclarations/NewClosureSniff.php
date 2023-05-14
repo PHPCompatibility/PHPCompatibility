@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -74,7 +75,7 @@ class NewClosureSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.2')) {
+        if (ScannedCode::shouldRunOnOrBelow('5.2') === true) {
             $phpcsFile->addError(
                 'Closures / anonymous functions are not available in PHP 5.2 or earlier',
                 $stackPtr,
@@ -86,7 +87,7 @@ class NewClosureSniff extends Sniff
          * Closures can only be declared as static since PHP 5.4.
          */
         $isStatic = $this->isClosureStatic($phpcsFile, $stackPtr);
-        if ($this->supportsBelow('5.3') && $isStatic === true) {
+        if (ScannedCode::shouldRunOnOrBelow('5.3') === true && $isStatic === true) {
             $phpcsFile->addError(
                 'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier',
                 $stackPtr,
@@ -105,7 +106,7 @@ class NewClosureSniff extends Sniff
         $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
         $usesThis   = $this->findThisUsageInClosure($phpcsFile, $scopeStart, $scopeEnd);
 
-        if ($this->supportsBelow('5.3')) {
+        if (ScannedCode::shouldRunOnOrBelow('5.3') === true) {
             /*
              * Closures declared within classes only have access to $this since PHP 5.4.
              */
@@ -146,7 +147,7 @@ class NewClosureSniff extends Sniff
         /*
          * Check for correct usage.
          */
-        if ($this->supportsAbove('5.4') && $usesThis !== false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.4') === true && $usesThis !== false) {
 
             $thisFound = $usesThis;
 

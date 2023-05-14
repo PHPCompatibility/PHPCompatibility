@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Constants;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Scopes;
@@ -53,7 +54,7 @@ final class NewConstantsInTraitsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('8.1') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('8.1') === false) {
             return;
         }
 

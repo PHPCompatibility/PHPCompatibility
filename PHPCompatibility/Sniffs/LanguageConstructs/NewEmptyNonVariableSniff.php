@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\LanguageConstructs;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -57,7 +58,7 @@ class NewEmptyNonVariableSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.4') === false) {
             return;
         }
 

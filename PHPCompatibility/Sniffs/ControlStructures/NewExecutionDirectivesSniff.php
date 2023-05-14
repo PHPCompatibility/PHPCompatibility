@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\MessageHelper;
@@ -242,11 +243,11 @@ class NewExecutionDirectivesSniff extends Sniff
         $shouldError = false;
 
         if (empty($versionInfo['not_in_version']) === false
-            && $this->supportsBelow($versionInfo['not_in_version']) === true
+            && ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === true
         ) {
             $shouldError = true;
         } elseif (empty($versionInfo['conditional_version']) === false
-            && $this->supportsBelow($versionInfo['conditional_version']) === true
+            && ScannedCode::shouldRunOnOrBelow($versionInfo['conditional_version']) === true
         ) {
             $shouldError = true;
 

@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -82,7 +83,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('7.4') === false);
+        return (ScannedCode::shouldRunOnOrAbove('7.4') === false);
     }
 
 

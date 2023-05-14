@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\PassedParameters;
@@ -48,7 +49,7 @@ final class NewNewInDefineSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('8.0') === false);
+        return (ScannedCode::shouldRunOnOrBelow('8.0') === false);
     }
 
     /**

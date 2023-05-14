@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Miscellaneous;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 
@@ -87,7 +88,7 @@ class NewPHPOpenTagEOFSniff extends Sniff
             return;
         }
 
-        if ($this->supportsBelow('7.3') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
             return;
         }
 

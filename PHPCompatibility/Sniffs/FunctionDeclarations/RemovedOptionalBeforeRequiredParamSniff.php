@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -73,7 +74,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('8.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === false) {
             return;
         }
 

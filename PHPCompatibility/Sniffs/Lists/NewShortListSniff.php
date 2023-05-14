@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Lists;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
@@ -58,7 +59,7 @@ class NewShortListSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.0') === false) {
             return;
         }
 

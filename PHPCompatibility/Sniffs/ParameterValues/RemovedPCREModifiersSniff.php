@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -74,7 +75,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('5.5') === false);
+        return (ScannedCode::shouldRunOnOrAbove('5.5') === false);
     }
 
     /**
@@ -138,7 +139,7 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
             $errorCode = 'Deprecated';
             $data      = [$functionName];
 
-            if ($this->supportsAbove('7.0')) {
+            if (ScannedCode::shouldRunOnOrAbove('7.0') === true) {
                 $error    .= ' and removed since PHP 7.0';
                 $isError   = true;
                 $errorCode = 'Removed';

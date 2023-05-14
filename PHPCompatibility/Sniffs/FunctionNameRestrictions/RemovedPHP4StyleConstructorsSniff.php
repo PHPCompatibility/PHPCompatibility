@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -74,7 +75,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === false) {
             return;
         }
 
@@ -148,7 +149,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
             $code    = 'Deprecated';
             $isError = false;
 
-            if ($this->supportsAbove('8.0') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
                 $error  .= ' and removed since PHP 8.0';
                 $code    = 'Removed';
                 $isError = true;

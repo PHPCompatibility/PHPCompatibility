@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\HashAlgorithmsTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -127,11 +128,11 @@ class RemovedHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
         $isError     = null;
 
         if (empty($versionInfo['removed']) === false
-            && $this->supportsAbove($versionInfo['removed']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true
         ) {
             $isError = true;
         } elseif (empty($versionInfo['deprecated']) === false
-            && $this->supportsAbove($versionInfo['deprecated']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['deprecated']) === true
         ) {
             $isError = false;
 

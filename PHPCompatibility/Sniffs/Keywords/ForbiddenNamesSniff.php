@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Keywords;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -433,7 +434,7 @@ class ForbiddenNamesSniff extends Sniff
          *  The only restriction is that the namespace name cannot start with a `namespace` segment"
          */
         $nextContentLC = \strtolower($tokens[$next]['content']);
-        if ($this->supportsBelow('7.4') === false
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false
             && $nextContentLC !== 'namespace'
             && \strpos($nextContentLC, 'namespace\\') !== 0 // PHPCS 4.x.
         ) {
@@ -523,7 +524,7 @@ class ForbiddenNamesSniff extends Sniff
          * of classes, interfaces and traits."
          */
         if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
-            && $this->supportsBelow('5.6') === false
+            && ScannedCode::shouldRunOnOrBelow('5.6') === false
         ) {
             return;
         }
@@ -577,7 +578,7 @@ class ForbiddenNamesSniff extends Sniff
          */
         if ($nameLc !== 'class'
             && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
-            && $this->supportsBelow('5.6') === false
+            && ScannedCode::shouldRunOnOrBelow('5.6') === false
         ) {
             return;
         }
@@ -795,7 +796,7 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         if ($this->invalidNames[$name] === 'all'
-            || $this->supportsAbove($this->invalidNames[$name])
+            || ScannedCode::shouldRunOnOrAbove($this->invalidNames[$name]) === true
         ) {
             $this->addError($phpcsFile, $stackPtr, $name);
         }
@@ -853,7 +854,7 @@ class ForbiddenNamesSniff extends Sniff
             return;
         }
 
-        if ($this->supportsAbove('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === false) {
             return;
         }
 
@@ -885,7 +886,7 @@ class ForbiddenNamesSniff extends Sniff
         ];
 
         if (isset($this->softReservedNames[$name]) === true
-            && $this->supportsAbove($this->softReservedNames[$name]) === true
+            && ScannedCode::shouldRunOnOrAbove($this->softReservedNames[$name]) === true
         ) {
             $error  .= ' soft reserved keyword as of PHP version %s';
             $isError = false;
@@ -893,7 +894,7 @@ class ForbiddenNamesSniff extends Sniff
         }
 
         if (isset($this->otherForbiddenNames[$name]) === true
-            && $this->supportsAbove($this->otherForbiddenNames[$name]) === true
+            && ScannedCode::shouldRunOnOrAbove($this->otherForbiddenNames[$name]) === true
         ) {
             if (isset($isError) === true) {
                 $error .= ' and a';

@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Classes;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -59,7 +60,7 @@ final class NewReadonlyPropertiesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('8.0') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('8.0') === false) {
             return;
         }
 

@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -57,7 +58,7 @@ class RemovedOrphanedParentSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.4') === false) {
             return;
         }
 
@@ -101,7 +102,7 @@ class RemovedOrphanedParentSniff extends Sniff
         $code    = 'Deprecated';
         $isError = false;
 
-        if ($this->supportsAbove('8.0') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $error  .= ' and removed since PHP 8.0';
             $code    = 'Removed';
             $isError = true;

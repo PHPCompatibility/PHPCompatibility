@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCFile;
@@ -74,7 +75,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.4') === false) {
             return;
         }
 
@@ -147,7 +148,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
             $message = 'The left-associativity of the ternary operator has been deprecated in PHP 7.4';
             $code    = 'Deprecated';
             $isError = false;
-            if ($this->supportsAbove('8.0') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
                 $message .= ' and removed in PHP 8.0';
                 $code     = 'Removed';
                 $isError  = true;

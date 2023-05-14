@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -708,11 +709,11 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         $isError     = null;
 
         if (empty($versionInfo['removed']) === false
-            && $this->supportsAbove($versionInfo['removed']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true
         ) {
             $isError = true;
         } elseif (empty($versionInfo['deprecated']) === false
-            && $this->supportsAbove($versionInfo['deprecated']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['deprecated']) === true
         ) {
             $isError = false;
 

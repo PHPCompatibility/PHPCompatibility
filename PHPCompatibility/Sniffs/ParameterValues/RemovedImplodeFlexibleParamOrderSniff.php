@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
@@ -105,7 +106,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('7.4') === false);
+        return (ScannedCode::shouldRunOnOrAbove('7.4') === false);
     }
 
 
@@ -304,7 +305,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
         $errorCode = 'Deprecated';
         $data      = [$functionName];
 
-        if ($this->supportsAbove('8.0') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $message  .= ' and is removed since PHP 8.0';
             $isError   = true;
             $errorCode = 'Removed';

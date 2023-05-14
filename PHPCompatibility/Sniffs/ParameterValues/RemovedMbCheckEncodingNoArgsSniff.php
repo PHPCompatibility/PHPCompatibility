@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -49,7 +50,7 @@ class RemovedMbCheckEncodingNoArgsSniff extends AbstractFunctionCallParameterSni
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('8.1') === false);
+        return (ScannedCode::shouldRunOnOrAbove('8.1') === false);
     }
 
     /**

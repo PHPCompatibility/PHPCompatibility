@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 
@@ -47,7 +48,7 @@ final class NewArrayMergeRecursiveWithGlobalsVarSniff extends AbstractFunctionCa
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('8.0') === false);
+        return (ScannedCode::shouldRunOnOrBelow('8.0') === false);
     }
 
     /**

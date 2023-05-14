@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractInitialValueSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
@@ -70,7 +71,7 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('8.0') === false);
+        return (ScannedCode::shouldRunOnOrBelow('8.0') === false);
     }
 
     /**

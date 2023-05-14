@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -71,7 +72,7 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('7.1') === false);
+        return (ScannedCode::shouldRunOnOrBelow('7.1') === false);
     }
 
 
@@ -120,7 +121,7 @@ class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
                 }
 
                 foreach ($versionArray as $version => $present) {
-                    if ($present === false && $this->supportsBelow($version) === true) {
+                    if ($present === false && ScannedCode::shouldRunOnOrBelow($version) === true) {
                         $phpcsFile->addError(
                             'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower. Found: %s',
                             $targetParam['start'],

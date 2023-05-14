@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -102,7 +103,7 @@ class NewLateStaticBindingSniff extends Sniff
 
         $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
 
-        if ($inClass === true && $this->supportsBelow('5.2') === true) {
+        if ($inClass === true && ScannedCode::shouldRunOnOrBelow('5.2') === true) {
             $phpcsFile->addError(
                 'Late static binding is not supported in PHP 5.2 or earlier.',
                 $stackPtr,

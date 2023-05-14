@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
@@ -52,7 +53,7 @@ class NewConstantArraysUsingDefineSniff extends AbstractFunctionCallParameterSni
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.6') !== true);
+        return (ScannedCode::shouldRunOnOrBelow('5.6') === false);
     }
 
     /**

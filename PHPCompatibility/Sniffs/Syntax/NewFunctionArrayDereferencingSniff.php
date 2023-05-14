@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -65,7 +66,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
             return;
         }
 
@@ -75,7 +76,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
         }
 
         $tokens     = $phpcsFile->getTokens();
-        $supports53 = $this->supportsBelow('5.3');
+        $supports53 = ScannedCode::shouldRunOnOrBelow('5.3');
 
         foreach ($dereferencing as $openBrace => $closeBrace) {
             if ($supports53 === true

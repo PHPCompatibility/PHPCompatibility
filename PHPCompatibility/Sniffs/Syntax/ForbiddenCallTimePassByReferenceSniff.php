@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -76,7 +77,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.3') === false) {
             return;
         }
 
@@ -129,7 +130,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
                 $isError   = false;
                 $errorCode = 'Deprecated';
 
-                if ($this->supportsAbove('5.4')) {
+                if (ScannedCode::shouldRunOnOrAbove('5.4') === true) {
                     $error    .= ' and prohibited since PHP 5.4';
                     $isError   = true;
                     $errorCode = 'NotAllowed';
