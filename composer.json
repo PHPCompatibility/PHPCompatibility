@@ -1,39 +1,36 @@
 {
-  "name" : "phpcompatibility/php-compatibility",
-  "description" : "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
-  "type" : "phpcodesniffer-standard",
-  "keywords" : [ "compatibility", "phpcs", "standards", "static analysis" ],
-  "homepage" : "http://techblog.wimgodden.be/tag/codesniffer/",
-  "license" : "LGPL-3.0-or-later",
-  "authors" : [ {
-    "name" : "Wim Godden",
-    "role" : "lead",
-    "homepage" : "https://github.com/wimg"
-  },
-  {
-    "name" : "Juliette Reinders Folmer",
-    "role" : "lead",
-    "homepage" : "https://github.com/jrfnl"
-  },
-  {
-    "name" : "Contributors",
-    "homepage" : "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
-  } ],
-  "support" : {
-    "issues" : "https://github.com/PHPCompatibility/PHPCompatibility/issues",
-    "source" : "https://github.com/PHPCompatibility/PHPCompatibility"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+  "name": "phpcompatibility/php-compatibility",
+  "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
+  "license": "LGPL-3.0-or-later",
+  "type": "phpcodesniffer-standard",
+  "keywords": [ "compatibility", "phpcs", "standards", "static analysis" ],
+  "authors": [
+    {
+      "name": "Wim Godden",
+      "role": "lead",
+      "homepage": "https://github.com/wimg"
+    },
+    {
+      "name": "Juliette Reinders Folmer",
+      "role": "lead",
+      "homepage": "https://github.com/jrfnl"
+    },
+    {
+      "name": "Contributors",
+      "homepage": "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
     }
+  ],
+  "homepage": "http://techblog.wimgodden.be/tag/codesniffer/",
+  "support": {
+    "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
+    "source": "https://github.com/PHPCompatibility/PHPCompatibility"
   },
-  "require" : {
-    "php" : ">=5.4",
-    "squizlabs/php_codesniffer" : "^3.7.1",
-    "phpcsstandards/phpcsutils" : "^1.0.5"
+  "require": {
+    "php": ">=5.4",
+    "squizlabs/php_codesniffer": "^3.7.1",
+    "phpcsstandards/phpcsutils": "^1.0.5"
   },
-  "require-dev" : {
+  "require-dev": {
     "php-parallel-lint/php-parallel-lint": "^1.3.2",
     "php-parallel-lint/php-console-highlighter": "^1.0.0",
     "phpunit/phpunit": "^4.8 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4",
@@ -44,8 +41,13 @@
   "replace": {
     "wimg/php-compatibility": "*"
   },
-  "suggest" : {
+  "suggest": {
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "extra": {
     "branch-alias": {
@@ -53,7 +55,7 @@
       "dev-develop": "10.x-dev"
     }
   },
-  "scripts" : {
+  "scripts": {
     "test": [
       "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
     ],
