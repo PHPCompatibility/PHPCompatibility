@@ -10,12 +10,10 @@
 
 namespace PHPCompatibility\Util\Tests\Helpers;
 
-use PHPUnit\Framework\TestCase;
 use PHP_CodeSniffer\Config;
 use PHPCompatibility\Helpers\TestVersionTrait;
 use PHPCSUtils\BackCompat\Helper;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Tests for the TestVersionTrait sniff helper.
@@ -26,8 +24,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 class TestVersionTraitUnitTest extends TestCase
 {
-    use ExpectException;
-    use ExpectPHPException;
     use TestVersionTrait;
 
     /**
