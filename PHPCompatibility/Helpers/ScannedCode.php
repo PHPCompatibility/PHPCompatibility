@@ -168,7 +168,7 @@ final class ScannedCode
         $testVersion = self::getTestVersion()[1];
 
         if (\is_null($testVersion) === true
-            || \version_compare($testVersion, $phpVersion) >= 0
+            || \version_compare($testVersion, $phpVersion, '>=') === true
         ) {
             return true;
         }
@@ -197,7 +197,7 @@ final class ScannedCode
         $testVersion = self::getTestVersion()[0];
 
         if (\is_null($testVersion) === false
-            && \version_compare($testVersion, $phpVersion) <= 0
+            && \version_compare($testVersion, $phpVersion, '<=') === true
         ) {
             return true;
         }
