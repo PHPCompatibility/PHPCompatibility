@@ -13,8 +13,8 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
@@ -77,7 +77,7 @@ abstract class Sniff implements PHPCS_Sniff
         $className = $phpcsFile->getTokensAsString($start, ($end - $start));
         $className = \trim($className);
 
-        return $this->getFQName($phpcsFile, $stackPtr, $className);
+        return ResolveHelper::getFQName($phpcsFile, $stackPtr, $className);
     }
 
 
@@ -115,7 +115,7 @@ abstract class Sniff implements PHPCS_Sniff
             return '';
         }
 
-        return $this->getFQName($phpcsFile, $stackPtr, $extends);
+        return ResolveHelper::getFQName($phpcsFile, $stackPtr, $extends);
     }
 
 
@@ -162,7 +162,7 @@ abstract class Sniff implements PHPCS_Sniff
                 return '';
             }
             $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
-            return $this->getFQName($phpcsFile, $classDeclarationPtr, $className);
+            return ResolveHelper::getFQName($phpcsFile, $classDeclarationPtr, $className);
         }
 
         $find = [
@@ -181,43 +181,7 @@ abstract class Sniff implements PHPCS_Sniff
         $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
         $className = \trim($className);
 
-        return $this->getFQName($phpcsFile, $stackPtr, $className);
-    }
-
-
-    /**
-     * Get the Fully Qualified name for a class/function/constant etc.
-     *
-     * Checks if a class/function/constant name is already fully qualified and
-     * if not, enrich it with the relevant namespace information.
-     *
-     * @since 7.0.3
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the token.
-     * @param string                      $name      The class / function / constant name.
-     *
-     * @return string
-     */
-    public function getFQName(File $phpcsFile, $stackPtr, $name)
-    {
-        if (\strpos($name, '\\') === 0) {
-            // Already fully qualified.
-            return $name;
-        }
-
-        // Remove the namespace keyword if used.
-        if (\strpos($name, 'namespace\\') === 0) {
-            $name = \substr($name, 10);
-        }
-
-        $namespace = Namespaces::determineNamespace($phpcsFile, $stackPtr);
-
-        if ($namespace === '') {
-            return '\\' . $name;
-        } else {
-            return '\\' . $namespace . '\\' . $name;
-        }
+        return ResolveHelper::getFQName($phpcsFile, $stackPtr, $className);
     }
 
 
