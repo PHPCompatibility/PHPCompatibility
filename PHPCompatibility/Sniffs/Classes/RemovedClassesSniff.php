@@ -297,7 +297,7 @@ class RemovedClassesSniff extends Sniff
             $FQClassName = ResolveHelper::getFQClassNameFromNewToken($phpcsFile, $stackPtr);
 
         } elseif ($tokens[$stackPtr]['code'] === \T_CLASS || $tokens[$stackPtr]['code'] === \T_ANON_CLASS) {
-            $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
+            $FQClassName = ResolveHelper::getFQExtendedClassName($phpcsFile, $stackPtr);
 
         } elseif ($tokens[$stackPtr]['code'] === \T_DOUBLE_COLON) {
             $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);

@@ -15,7 +15,6 @@ use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -25,44 +24,6 @@ use PHPCSUtils\Utils\Scopes;
  */
 abstract class Sniff implements PHPCS_Sniff
 {
-
-    /**
-     * Returns the fully qualified name of the class that the specified class extends.
-     *
-     * Returns an empty string if the class does not extend another class or if
-     * the class name could not be reliably inferred.
-     *
-     * @since 7.0.3
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of a T_CLASS token.
-     *
-     * @return string
-     */
-    public function getFQExtendedClassName(File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
-            return '';
-        }
-
-        if ($tokens[$stackPtr]['code'] !== \T_CLASS
-            && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS
-            && $tokens[$stackPtr]['code'] !== \T_INTERFACE
-        ) {
-            return '';
-        }
-
-        $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $stackPtr);
-        if (empty($extends) || \is_string($extends) === false) {
-            return '';
-        }
-
-        return ResolveHelper::getFQName($phpcsFile, $stackPtr, $extends);
-    }
-
 
     /**
      * Returns the class name for the static usage of a class.

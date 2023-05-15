@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
@@ -67,7 +68,7 @@ class ForbiddenExtendingFinalPHPClassSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
+        $FQClassName = ResolveHelper::getFQExtendedClassName($phpcsFile, $stackPtr);
         if ($FQClassName === '') {
             return;
         }
