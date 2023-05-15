@@ -316,7 +316,7 @@ enum EnumWithConstant {
 }
 
 /*
- * Test detecting heredoc initial values in PHP 8.2+ constants in traits.
+ * Test detecting constant scalar expressions in PHP 8.2+ constants in traits.
  */
 trait ConstantsInTraits {
     public const MY_TRAIT_CONST = (BAR)?10:100);

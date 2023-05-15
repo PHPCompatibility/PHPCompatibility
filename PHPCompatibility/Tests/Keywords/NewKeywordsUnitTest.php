@@ -26,7 +26,7 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Test allow_url_include
+     * Test __DIR__.
      *
      * @return void
      */

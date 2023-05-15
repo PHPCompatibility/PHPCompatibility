@@ -38,6 +38,7 @@ final class TokenGroup
      * Note: Zero is *not* regarded as a positive number.
      *
      * @since 8.2.0
+     * @since 10.0.0 This method is now static.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
      * @param int                         $start       Start of the snippet (inclusive), i.e. this
@@ -73,6 +74,7 @@ final class TokenGroup
      * Note: Zero is *not* regarded as a negative number.
      *
      * @since 8.2.0
+     * @since 10.0.0 This method is now static.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
      * @param int                         $start       Start of the snippet (inclusive), i.e. this
@@ -111,6 +113,7 @@ final class TokenGroup
      * where the start and end of the snippet to examine is very clear.
      *
      * @since 8.2.0
+     * @since 10.0.0 This method is now static.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
      * @param int                         $start       Start of the snippet (inclusive), i.e. this
