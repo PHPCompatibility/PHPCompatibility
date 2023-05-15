@@ -8,9 +8,10 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\ResolveHelper;
 
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCompatibility\Helpers\ResolveHelper;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `getFQClassNameFromDoubleColonToken()` utility function.
@@ -20,15 +21,15 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 7.0.5
  */
-class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
+final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTestCase
 {
 
     /**
-     * testGetFQClassNameFromDoubleColonToken
+     * Test retrieving a fully qualified class name based on a T_DOUBLE_COLON token.
      *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
      *
-     * @covers \PHPCompatibility\Sniff::getFQClassNameFromDoubleColonToken
+     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromDoubleColonToken
      *
      * @param string $commentString The comment which prefaces the T_DOUBLE_COLON token in the test file.
      * @param string $expected      The expected fully qualified class name.
@@ -38,12 +39,12 @@ class GetFQClassNameFromDoubleColonTokenUnitTest extends CoreMethodTestFrame
     public function testGetFQClassNameFromDoubleColonToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, \T_DOUBLE_COLON);
-        $result   = self::$helperClass->getFQClassNameFromDoubleColonToken(self::$phpcsFile, $stackPtr);
+        $result   = ResolveHelper::getFQClassNameFromDoubleColonToken(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
     /**
-     * dataGetFQClassNameFromDoubleColonToken
+     * Data provider.
      *
      * @see testGetFQClassNameFromDoubleColonToken()
      *

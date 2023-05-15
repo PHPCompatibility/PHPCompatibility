@@ -1119,7 +1119,7 @@ class NewClassesSniff extends Sniff
             $FQClassName = ResolveHelper::getFQExtendedClassName($phpcsFile, $stackPtr);
 
         } elseif ($tokens[$stackPtr]['code'] === \T_DOUBLE_COLON) {
-            $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
+            $FQClassName = ResolveHelper::getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
         if ($FQClassName === '') {

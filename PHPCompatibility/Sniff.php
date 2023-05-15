@@ -13,7 +13,6 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Scopes;
 
@@ -24,72 +23,6 @@ use PHPCSUtils\Utils\Scopes;
  */
 abstract class Sniff implements PHPCS_Sniff
 {
-
-    /**
-     * Returns the class name for the static usage of a class.
-     * This can be a call to a method, the use of a property or constant.
-     *
-     * Returns an empty string if the class name could not be reliably inferred.
-     *
-     * @since 7.0.3
-     *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of a T_NEW token.
-     *
-     * @return string
-     */
-    public function getFQClassNameFromDoubleColonToken(File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
-            return '';
-        }
-
-        if ($tokens[$stackPtr]['code'] !== \T_DOUBLE_COLON) {
-            return '';
-        }
-
-        // Nothing to do if previous token is a variable as we don't know where it was defined.
-        if ($tokens[$stackPtr - 1]['code'] === \T_VARIABLE) {
-            return '';
-        }
-
-        // Nothing to do if 'parent' or 'static' as we don't know how far the class tree extends.
-        if (\in_array($tokens[$stackPtr - 1]['code'], [\T_PARENT, \T_STATIC], true)) {
-            return '';
-        }
-
-        // Get the classname from the class declaration if self is used.
-        if ($tokens[$stackPtr - 1]['code'] === \T_SELF) {
-            $classDeclarationPtr = $phpcsFile->findPrevious(\T_CLASS, $stackPtr - 1);
-            if ($classDeclarationPtr === false) {
-                return '';
-            }
-            $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
-            return ResolveHelper::getFQName($phpcsFile, $classDeclarationPtr, $className);
-        }
-
-        $find = [
-            \T_NS_SEPARATOR,
-            \T_STRING,
-            \T_NAMESPACE,
-            \T_WHITESPACE,
-        ];
-
-        $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
-        if ($start === false || isset($tokens[($start + 1)]) === false) {
-            return '';
-        }
-
-        $start     = ($start + 1);
-        $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
-        $className = \trim($className);
-
-        return ResolveHelper::getFQName($phpcsFile, $stackPtr, $className);
-    }
-
 
     /**
      * Determine whether an arbitrary T_STRING token is the use of a global constant.

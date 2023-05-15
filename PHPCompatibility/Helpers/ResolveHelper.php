@@ -125,6 +125,72 @@ final class ResolveHelper
     }
 
     /**
+     * Returns the class name for the static usage of a class.
+     * This can be a call to a method, the use of a property or constant.
+     *
+     * Returns an empty string if the class name could not be reliably inferred.
+     *
+     * @since 7.0.3
+     * @since 10.0.0 This method is now static.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of a T_NEW token.
+     *
+     * @return string
+     */
+    public static function getFQClassNameFromDoubleColonToken(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for the existence of the token.
+        if (isset($tokens[$stackPtr]) === false) {
+            return '';
+        }
+
+        if ($tokens[$stackPtr]['code'] !== \T_DOUBLE_COLON) {
+            return '';
+        }
+
+        // Nothing to do if previous token is a variable as we don't know where it was defined.
+        if ($tokens[$stackPtr - 1]['code'] === \T_VARIABLE) {
+            return '';
+        }
+
+        // Nothing to do if 'parent' or 'static' as we don't know how far the class tree extends.
+        if (\in_array($tokens[$stackPtr - 1]['code'], [\T_PARENT, \T_STATIC], true)) {
+            return '';
+        }
+
+        // Get the classname from the class declaration if self is used.
+        if ($tokens[$stackPtr - 1]['code'] === \T_SELF) {
+            $classDeclarationPtr = $phpcsFile->findPrevious(\T_CLASS, $stackPtr - 1);
+            if ($classDeclarationPtr === false) {
+                return '';
+            }
+            $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
+            return self::getFQName($phpcsFile, $classDeclarationPtr, $className);
+        }
+
+        $find = [
+            \T_NS_SEPARATOR,
+            \T_STRING,
+            \T_NAMESPACE,
+            \T_WHITESPACE,
+        ];
+
+        $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
+        if ($start === false || isset($tokens[($start + 1)]) === false) {
+            return '';
+        }
+
+        $start     = ($start + 1);
+        $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
+        $className = \trim($className);
+
+        return self::getFQName($phpcsFile, $stackPtr, $className);
+    }
+
+    /**
      * Get the Fully Qualified name for a class/function/constant etc.
      *
      * Checks if a class/function/constant name is already fully qualified and
