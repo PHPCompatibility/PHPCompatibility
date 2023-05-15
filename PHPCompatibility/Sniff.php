@@ -13,7 +13,6 @@ namespace PHPCompatibility;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Namespaces;
@@ -368,7 +367,7 @@ abstract class Sniff implements PHPCS_Sniff
         $subsetStart = $start;
         $subsetEnd   = ($arithmeticOperator - 1);
 
-        while (TokenGroup::isNumber($phpcsFile, $subsetStart, $subsetEnd, ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false
+        while (TokenGroup::isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
             && isset($tokens[($arithmeticOperator + 1)]) === true
         ) {
             $subsetStart  = ($arithmeticOperator + 1);
@@ -380,7 +379,7 @@ abstract class Sniff implements PHPCS_Sniff
 
             if ($arithmeticOperator === false) {
                 // Last calculation operator already reached.
-                if (TokenGroup::isNumber($phpcsFile, $subsetStart, $end, ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false) {
+                if (TokenGroup::isNumber($phpcsFile, $subsetStart, $end, true) !== false) {
                     return true;
                 }
 

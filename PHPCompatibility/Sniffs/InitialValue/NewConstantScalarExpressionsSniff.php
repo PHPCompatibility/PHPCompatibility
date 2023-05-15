@@ -176,7 +176,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         switch ($tokens[$nextNonSimple]['code']) {
             case \T_MINUS:
             case \T_PLUS:
-                if (TokenGroup::isNumber($phpcsFile, $start, $end, ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false) {
+                if (TokenGroup::isNumber($phpcsFile, $start, $end, true) !== false) {
                     // Int or float with sign.
                     return true;
                 }

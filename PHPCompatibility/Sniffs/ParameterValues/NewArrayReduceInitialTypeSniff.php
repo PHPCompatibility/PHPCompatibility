@@ -91,7 +91,7 @@ class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if (TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], ScannedCode::shouldRunOnOrBelow('5.6'), true) !== false) {
+        if (TokenGroup::isNumber($phpcsFile, $targetParam['start'], $targetParam['end'], true) !== false) {
             return;
         }
 
