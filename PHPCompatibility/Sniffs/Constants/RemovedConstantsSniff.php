@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\Constants;
 
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
+use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
@@ -2626,7 +2627,7 @@ class RemovedConstantsSniff extends Sniff
             return;
         }
 
-        if ($this->isUseOfGlobalConstant($phpcsFile, $stackPtr) === false) {
+        if (MiscHelper::isUseOfGlobalConstant($phpcsFile, $stackPtr) === false) {
             return;
         }
 
