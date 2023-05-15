@@ -31,3 +31,7 @@ class nested {
 $cl = function() {
     function assert($something) {}
 };
+
+enum fooenum {
+    public function ASSERT($something) {}
+}
