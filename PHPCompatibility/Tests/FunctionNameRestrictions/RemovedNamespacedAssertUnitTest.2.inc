@@ -27,5 +27,5 @@ class nested {
 }
 
 $cl = function() {
-    function assert($something) {}
+    function Assert($something) {}
 };

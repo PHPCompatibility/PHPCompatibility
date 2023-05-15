@@ -3,7 +3,7 @@
 function assert($something) {}
 
 class fooclass {
-    public function assert($something) {}
+    public function Assert($something) {}
 }
 
 interface foointerface {
@@ -19,7 +19,7 @@ fooanonclass(new class {
 });
 
 namespace ScopedNS {
-	function assert($something) {}
+	function AsSeRt($something) {}
 }
 
 class nested {
