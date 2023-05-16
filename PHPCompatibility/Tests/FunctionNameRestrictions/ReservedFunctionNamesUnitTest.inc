@@ -159,3 +159,14 @@ class Magic_Test_PHP74 {
 
 function __serialize() {} // Error.
 function __unserialize() {} // Error.
+
+/**
+ * Function with docblock, but no deprecated tag.
+ *
+ * @return bool
+ */
+function __notADeprecatedFunction() {} // Error.
+
+// Live coding/parse error.
+// This has to be the last test in the file.
+function
