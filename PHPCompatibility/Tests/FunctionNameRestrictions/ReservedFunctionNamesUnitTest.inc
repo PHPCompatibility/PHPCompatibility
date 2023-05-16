@@ -167,6 +167,18 @@ function __unserialize() {} // Error.
  */
 function __notADeprecatedFunction() {} // Error.
 
+// Improve comment tolerance in deprecated function detection.
+class DeprecatedWithComments {
+    /**
+     * Function description.
+     *
+     * @deprecated 2.3.4
+     */
+    public /*comment*/
+    static // phpcs:ignore Stnd.Cat.Sniff -- for reasons.
+    function __deprecatedMethod() {}
+}
+
 // Live coding/parse error.
 // This has to be the last test in the file.
 function

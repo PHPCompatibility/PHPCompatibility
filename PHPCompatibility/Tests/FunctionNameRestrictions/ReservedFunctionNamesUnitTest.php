@@ -175,8 +175,10 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
             [156],
             [157],
 
+            [179],
+
             // Live coding/parse error test.
-            [172],
+            [184],
         ];
     }
 

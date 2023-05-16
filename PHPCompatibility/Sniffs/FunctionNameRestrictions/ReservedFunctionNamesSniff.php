@@ -138,10 +138,13 @@ class ReservedFunctionNamesSniff implements Sniff
     private function isFunctionDeprecated(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $find   = Tokens::$methodPrefixes;
-        $find[] = \T_WHITESPACE;
 
-        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+        $ignore                = Tokens::$methodPrefixes;
+        $ignore               += Tokens::$phpcsCommentTokens;
+        $ignore[\T_WHITESPACE] = \T_WHITESPACE;
+        $ignore[\T_COMMENT]    = \T_COMMENT;
+
+        $commentEnd = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);
         if ($tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
             // Function doesn't have a doc comment or is using the wrong type of comment.
             return false;
