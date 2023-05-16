@@ -159,6 +159,33 @@ FOOBAR;
 }
 
 /*
+ * Test detection in multi-declarations where not all parts have an initial value.
+ */
+static $a, $b, $c = <<<"EOT"
+Multi-declaration in static variable.
+EOT
+    $d;
+
+// Class properties.
+class foo
+{
+    private $baz, $foy = <<<FOOBAR
+Multi-declaration Property example
+FOOBAR
+        , $booboo;
+}
+
+/*
+ * Test to safeguard against a potentially infinite loop in the abstract.
+ * This code is a parse error, but we should still guard against infinite loops.
+ */
+class c {
+    public f() {
+        strpos($haystack, 'needle', 0);
+    }
+}
+
+/*
  * Safeguard that PHP 7.3+ flexible heredoc initial values are also detected correctly.
  * IMPORTANT: this must be the last test in the file!
  */

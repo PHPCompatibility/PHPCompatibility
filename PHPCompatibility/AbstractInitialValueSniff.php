@@ -189,7 +189,8 @@ abstract class AbstractInitialValueSniff extends Sniff
                 || ($tokens[$stackPtr]['code'] === \T_CONST && $tokens[$start]['code'] !== \T_STRING)
                 || ($tokens[$stackPtr]['code'] !== \T_CONST && $tokens[$start]['code'] !== \T_VARIABLE)
             ) {
-                // Shouldn't be possible.
+                // Shouldn't be possible, skip over the problematic part of the statement.
+                $start = ($end + 1);
                 continue;
             }
 
