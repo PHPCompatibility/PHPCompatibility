@@ -75,7 +75,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrAbove('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === false || ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 

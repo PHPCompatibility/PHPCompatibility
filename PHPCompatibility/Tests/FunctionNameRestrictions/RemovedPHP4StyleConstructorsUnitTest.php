@@ -39,7 +39,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertWarning($file, $line, 'Declaration of a PHP4 style class constructor is deprecated since PHP 7.0');
 
-        $file = $this->sniffFile(__FILE__, '8.0');
+        $file = $this->sniffFile(__FILE__, '7.2-');
         $this->assertError($file, $line, 'Declaration of a PHP4 style class constructor is deprecated since PHP 7.0 and removed since PHP 8.0');
     }
 
@@ -107,9 +107,20 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      *
      * @return void
      */
-    public function testNoViolationsInFileOnValidVersion()
+    public function testNoViolationsInFileOnValidVersionPHP5()
     {
         $file = $this->sniffFile(__FILE__, '5.6');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Verify no notices are thrown at all.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileOnValidVersionPHP8()
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file);
     }
 }
