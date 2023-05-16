@@ -197,6 +197,17 @@ function __deprecatedFunctionWithMultipleAttributes() {} // Ignore.
 #[SomeAttribute]
 function __functionWithAttributeButNoDocblock() {} // Error.
 
+// Verify handling of methods in PHP 8.1+ enums.
+// Enums only support the __call(), __callStatic() and __invoke() magic methods.
+enum LimitedMagic {
+    function __call() {} // OK.
+    function __callStatic() {} // OK.
+    function __invoke() {} // OK.
+
+    function __autoload() {} // Error.
+    function __myFunction() {} // Error.
+}
+
 // Live coding/parse error.
 // This has to be the last test in the file.
 function
