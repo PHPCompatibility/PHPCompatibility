@@ -179,6 +179,24 @@ class DeprecatedWithComments {
     function __deprecatedMethod() {}
 }
 
+// Handle PHP 8.0+ attributes correctly when trying to find a docblock.
+
+/**
+ * @deprecated 1.2.3
+ */
+#[SomeAttribute]
+function __deprecatedFunctionWithSingleAttribute() {} // Ignore.
+
+/**
+ * @deprecated 1.2.3
+ */
+#[SomeAttribute]
+#[AnotherAttribute]
+function __deprecatedFunctionWithMultipleAttributes() {} // Ignore.
+
+#[SomeAttribute]
+function __functionWithAttributeButNoDocblock() {} // Error.
+
 // Live coding/parse error.
 // This has to be the last test in the file.
 function

@@ -144,7 +144,21 @@ class ReservedFunctionNamesSniff implements Sniff
         $ignore[\T_WHITESPACE] = \T_WHITESPACE;
         $ignore[\T_COMMENT]    = \T_COMMENT;
 
-        $commentEnd = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);
+        for ($commentEnd = ($stackPtr - 1); $commentEnd >= 0; $commentEnd--) {
+            if (isset($ignore[$tokens[$commentEnd]['code']]) === true) {
+                continue;
+            }
+
+            if ($tokens[$commentEnd]['code'] === \T_ATTRIBUTE_END
+                && isset($tokens[$commentEnd]['attribute_opener']) === true
+            ) {
+                $commentEnd = $tokens[$commentEnd]['attribute_opener'];
+                continue;
+            }
+
+            break;
+        }
+
         if ($tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
             // Function doesn't have a doc comment or is using the wrong type of comment.
             return false;
