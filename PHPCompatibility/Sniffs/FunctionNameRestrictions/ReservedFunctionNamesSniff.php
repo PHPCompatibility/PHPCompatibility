@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -79,10 +78,10 @@ class ReservedFunctionNamesSniff implements Sniff
             return;
         }
 
-        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
 
         /*
-         * Check functions declared in the global namespace.
+         * Check functions declared in the global namespace or in a namespace.
          */
         if ($ooPtr === false) {
             if (FunctionDeclarations::isMagicFunctionName($functionName) === true) {
