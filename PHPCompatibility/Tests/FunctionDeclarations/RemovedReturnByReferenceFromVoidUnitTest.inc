@@ -18,7 +18,7 @@ $anon = new class() {
 };
 
 abstract class AbstractFoo {
-    abstract function test(): void;
+    abstract function test(): Void;
 }
 
 interface FooInterface {
@@ -53,7 +53,7 @@ class FooDifferentReturn {
  */
 function &referenceWithVoidReturnType() : void {}
 
-$closure = function &(): void {};
+$closure = function &(): VOID {};
 
 class Bar {
     function &test(): void {}
@@ -68,7 +68,7 @@ abstract class AbstractBar {
 }
 
 interface BarInterface {
-    function &test(): void;
+    function &test(): Void;
 }
 
 trait BarTrait {
