@@ -89,6 +89,19 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
 
             ['__serialize', '7.3', [126], '7.4'],
             ['__unserialize', '7.3', [127], '7.4'],
+
+            // Enums.
+            ['__get', '4.4', [136], '5.0'],
+            ['__isset', '5.0', [137], '5.1'],
+            ['__unset', '5.0', [138], '5.1'],
+            ['__set_state', '5.0', [139], '5.1'],
+            ['__callStatic', '5.2', [141], '5.3'],
+            ['__invoke', '5.2', [142], '5.3'],
+            ['__debugInfo', '5.5', [143], '5.6'],
+            ['__serialize', '7.3', [144], '7.4'],
+            ['__unserialize', '7.3', [145], '7.4'],
+            ['__construct', '4.4', [146], '5.0'],
+            ['__destruct', '4.4', [147], '5.0'],
         ];
     }
 
@@ -125,6 +138,7 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             [38],
             [65],
             [91],
+            [140],
         ];
     }
 
@@ -200,11 +214,13 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             [74],
             [75],
 
-            // Magic serialization methods in a class implementing Serializable.
+            // Magic serialization methods in a class/enum implementing Serializable.
             [112],
             [115],
             [121],
             [122],
+            [152],
+            [153],
         ];
     }
 

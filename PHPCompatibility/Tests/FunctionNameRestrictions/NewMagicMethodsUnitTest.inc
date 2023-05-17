@@ -126,3 +126,29 @@ interface DoesNotExtendSerializableInterface extends Iterator, ArrayAccess {
     public function __serialize(); // Error.
     public function __unserialize($data); // Error.
 }
+
+/*
+ * Safeguard handling of magic methods in PHP 8.1+ enums.
+ * Only `__call()`, `__callStatic()`, and `__invoke()` are allowed in enums, but that's not the concern of this sniff.
+ */
+enum MyEnum
+{
+    public function __get($name) {}
+    public function __isset($name) {}
+    public function __unset($name) {}
+    public static function __set_state($properties) {}
+    public function __toString() {}
+    public static function __callStatic($name, $arguments) {}
+    public function __invoke($x) {}
+    public function __debugInfo() {}
+    public function __serialize() {}
+    public function __unserialize($data) {}
+    public function __construct() {}
+    public function __destruct() {}
+}
+
+enum MyEnum implements Serializable
+{
+    public function __serialize() {} // OK.
+    public function __unserialize($data) {} // OK.
+}
