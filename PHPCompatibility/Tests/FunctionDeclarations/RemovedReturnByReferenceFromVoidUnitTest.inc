@@ -74,3 +74,11 @@ interface BarInterface {
 trait BarTrait {
     function &test(): void {}
 }
+
+/*
+ * Safeguard handling of PHP 7.4+ arrow functions.
+ */
+$arrow = fn(): void => $a; // OK.
+$arrow = fn &() => $a; // OK.
+$arrow = fn&() : int|bool => $a; // OK.
+$arrow = fn &(): void => $a; // Error.
