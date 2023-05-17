@@ -82,3 +82,13 @@ $arrow = fn(): void => $a; // OK.
 $arrow = fn &() => $a; // OK.
 $arrow = fn&() : int|bool => $a; // OK.
 $arrow = fn &(): void => $a; // Error.
+
+/*
+ * Safeguard handling of PHP 8.1+ methods in enums.
+ */
+enum FooEnum {
+    public function notReturnByRef(): void {} // OK.
+    public function &noReturnType() {} // OK.
+    public function &notVoidReturnType(): Foo&Bar {} // OK.
+    public function &voidReturnType(): void {} // Error.
+}

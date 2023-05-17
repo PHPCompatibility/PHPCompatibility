@@ -58,6 +58,7 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
             [71],
             [75],
             [84],
+            [93],
         ];
     }
 
@@ -96,6 +97,10 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
         $data[] = [81];
         $data[] = [82];
         $data[] = [83];
+
+        $data[] = [90];
+        $data[] = [91];
+        $data[] = [92];
 
         return $data;
     }
