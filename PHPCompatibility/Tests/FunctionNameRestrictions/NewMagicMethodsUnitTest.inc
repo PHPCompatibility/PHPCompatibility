@@ -66,7 +66,7 @@ $a = new class
     public static function __callStatic($name, $arguments) {}
     public function __invoke($x) {}
     public function __debugInfo() {}
-}
+};
 
 /*
  * PHP 7.4: new (un)serialize magic methods.
