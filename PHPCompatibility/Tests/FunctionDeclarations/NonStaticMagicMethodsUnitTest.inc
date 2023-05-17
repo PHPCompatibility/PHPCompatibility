@@ -128,7 +128,7 @@ $plain = new class
     function __sleep() {}
     function __toString() {}
     static function __set_state($properties) {}
-}
+};
 
 $normal = new class
 {
@@ -142,7 +142,7 @@ $normal = new class
     public function __sleep() {}
     public function __toString() {}
     public static function __set_state($properties) {}
-}
+};
 
 $wrongVisibility = new class
 {
@@ -154,7 +154,7 @@ $wrongVisibility = new class
     protected static function __callStatic($name, $arguments) {}
     private function __sleep() {}
     protected function __toString() {}
-}
+};
 
 $wrongStatic = new class
 {
@@ -165,14 +165,14 @@ $wrongStatic = new class
     static function __call($name, $arguments) {}
     function __callStatic($name, $arguments) {}
     function __set_state($properties) {}
-}
+};
 
 // PHP 7.4: new __serialize(), unserialize().
 $normal = new class
 {
     public function __serialize() {}
     public function __unserialize($data) {}
-}
+};
 
 class PHP74WrongVisibility
 {
