@@ -259,118 +259,45 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return [
-            // Plain class.
-            [5],
-            [6],
-            [7],
-            [8],
-            [9],
-            [10],
-            [11],
-            [12],
-            [13],
-            // Normal class.
-            [18],
-            [19],
-            [20],
-            [21],
-            [22],
-            [23],
-            [24],
-            [25],
-            [26],
-            [27],
+        $data = [];
 
-            // Alternative property order & stacked.
-            [58],
+        // Plain/normal class.
+        for ($line = 3; $line <= 28; $line++) {
+            $data[] = [$line];
+        }
 
-            // Plain interface.
-            [71],
-            [72],
-            [73],
-            [74],
-            [75],
-            [76],
-            [77],
-            [78],
-            [79],
-            // Normal interface.
-            [84],
-            [85],
-            [86],
-            [87],
-            [88],
-            [89],
-            [90],
-            [91],
-            [92],
-            [93],
+        // Alternative property order & stacked.
+        $data[] = [58];
 
-            // Plain anonymous class.
-            [122],
-            [123],
-            [124],
-            [125],
-            [126],
-            [127],
-            [128],
-            [129],
-            [130],
-            // Normal anonymous class.
-            [135],
-            [136],
-            [137],
-            [138],
-            [139],
-            [140],
-            [141],
-            [142],
-            [143],
-            [144],
+        // Plain/normal interface.
+        for ($line = 69; $line <= 94; $line++) {
+            $data[] = [$line];
+        }
 
-            // PHP 7.4: __(un)serialize()
-            [173],
-            [174],
+        // Plain/normal anonymous class.
+        for ($line = 120; $line <= 145; $line++) {
+            $data[] = [$line];
+        }
 
-            // More magic methods.
-            [192],
-            [193],
-            [194],
-            [195],
-            [196],
-            [201],
+        // PHP 7.4: __(un)serialize()
+        $data[] = [173];
+        $data[] = [174];
 
-            // Plain trait.
-            [219],
-            [220],
-            [221],
-            [222],
-            [223],
-            [224],
-            [225],
-            [226],
-            [227],
-            [228],
-            [229],
+        // More magic methods.
+        for ($line = 190; $line <= 197; $line++) {
+            $data[] = [$line];
+        }
+        $data[] = [201];
 
-            // Normal trait.
-            [234],
-            [235],
-            [236],
-            [237],
-            [238],
-            [239],
-            [240],
-            [241],
-            [242],
-            [243],
-            [244],
-            [245],
+        // Plain/normal trait.
+        for ($line = 217; $line <= 246; $line++) {
+            $data[] = [$line];
+        }
 
-            // Nested function.
-            [277],
-        ];
+        // Nested function.
+        $data[] = [277];
+
+        return $data;
     }
 
 
