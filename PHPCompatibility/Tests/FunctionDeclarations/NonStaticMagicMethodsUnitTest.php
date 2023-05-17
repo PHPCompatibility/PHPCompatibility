@@ -109,6 +109,21 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             ['__toString', 'public', 'protected', 257],
             ['__serialize', 'public', 'private', 258],
             ['__unserialize', 'public', 'protected', 259],
+
+            // Enum.
+            ['__debugInfo', 'public', 'protected', 323],
+            ['__invoke', 'public', 'private', 324],
+            ['__set_state', 'public', 'protected', 325],
+            ['__get', 'public', 'private', 326],
+            ['__set', 'public', 'protected', 327],
+            ['__isset', 'public', 'private', 328],
+            ['__unset', 'public', 'protected', 329],
+            ['__call', 'public', 'private', 330],
+            ['__callStatic', 'public', 'protected', 331],
+            ['__sleep', 'public', 'private', 332],
+            ['__toString', 'public', 'protected', 333],
+            ['__serialize', 'public', 'private', 334],
+            ['__unserialize', 'public', 'protected', 335],
         ];
     }
 
@@ -185,6 +200,20 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             ['__call', 268],
             ['__serialize', 271],
             ['__unserialize', 272],
+
+            // Enum.
+            ['__construct', 340],
+            ['__destruct', 341],
+            ['__clone', 342],
+            ['__debugInfo', 343],
+            ['__invoke', 344],
+            ['__get', 345],
+            ['__set', 346],
+            ['__isset', 347],
+            ['__unset', 348],
+            ['__call', 349],
+            ['__serialize', 352],
+            ['__unserialize', 353],
         ];
     }
 
@@ -231,6 +260,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
             ['__callStatic', 269],
             ['__set_state', 270],
 
+            // Enum.
+            ['__callStatic', 350],
+            ['__set_state', 351],
         ];
     }
 
@@ -296,6 +328,11 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTest
 
         // Nested function.
         $data[] = [277];
+
+        // Plain/normal enum.
+        for ($line = 285; $line <= 319; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
