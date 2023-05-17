@@ -86,6 +86,9 @@ class NewMagicMethodsUnitTest extends BaseSniffTest
             ['__unserialize', '7.3', [96], '7.4'],
             ['__construct', '4.4', [97], '5.0'],
             ['__destruct', '4.4', [98], '5.0'],
+
+            ['__serialize', '7.3', [126], '7.4'],
+            ['__unserialize', '7.3', [127], '7.4'],
         ];
     }
 

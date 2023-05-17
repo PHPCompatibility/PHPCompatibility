@@ -121,3 +121,8 @@ interface SerializableExtendedInterface extends Iterator, Serializable, ArrayAcc
     public function __serialize();
     public function __unserialize($data);
 }
+
+interface DoesNotExtendSerializableInterface extends Iterator, ArrayAccess {
+    public function __serialize(); // Error.
+    public function __unserialize($data); // Error.
+}
