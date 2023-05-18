@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
@@ -40,8 +41,19 @@ class InternalInterfacesSniff extends Sniff
      */
     protected $internalInterfaces = [
         'Traversable'       => 'shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
-        'DateTimeInterface' => 'is intended for type hints only and is not implementable.',
+        'DateTimeInterface' => 'is intended for type hints only and is not implementable or extendable.',
         'Throwable'         => 'cannot be implemented directly, extend the Exception class instead.',
+    ];
+
+    /**
+     * A list of PHP internal interfaces, which cannot be extended by userland interfaces.
+     *
+     * @since 10.0.0
+     *
+     * @var array(string => bool)
+     */
+    private $cannotBeExtended = [
+        'DateTimeInterface' => true,
     ];
 
 
@@ -56,10 +68,12 @@ class InternalInterfacesSniff extends Sniff
     {
         // Handle case-insensitivity of interface names.
         $this->internalInterfaces = \array_change_key_case($this->internalInterfaces, \CASE_LOWER);
+        $this->cannotBeExtended   = \array_change_key_case($this->cannotBeExtended, \CASE_LOWER);
 
         return [
             \T_CLASS,
             \T_ANON_CLASS,
+            \T_INTERFACE,
         ];
     }
 
@@ -77,7 +91,14 @@ class InternalInterfacesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
+        $tokens = $phpcsFile->getTokens();
+        if ($tokens[$stackPtr]['code'] === \T_INTERFACE) {
+            $interfaces = ObjectDeclarations::findExtendedInterfaceNames($phpcsFile, $stackPtr);
+            $targets    = $this->cannotBeExtended;
+        } else {
+            $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
+            $targets    = $this->internalInterfaces;
+        }
 
         if (\is_array($interfaces) === false || $interfaces === []) {
             return;
@@ -86,7 +107,7 @@ class InternalInterfacesSniff extends Sniff
         foreach ($interfaces as $interface) {
             $interface   = \ltrim($interface, '\\');
             $interfaceLc = \strtolower($interface);
-            if (isset($this->internalInterfaces[$interfaceLc]) === true) {
+            if (isset($targets[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
                 $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'Found';
                 $data      = [

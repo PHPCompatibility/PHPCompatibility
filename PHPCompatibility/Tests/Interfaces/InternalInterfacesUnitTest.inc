@@ -1,7 +1,7 @@
 <?php
 
 class MyTraversable implements Traversable {}
-class MyDateTimeInterface implements DateTimeInterface {}
+class MyDateTimeClass implements DateTimeInterface {}
 class MyThrowable implements Throwable {}
 
 class MyMultiple implements SomeInterface, Throwable, AnotherInterface, \Traversable {} // Test multiple interfaces.
@@ -22,3 +22,8 @@ $d = new class implements SomeInterface, Throwable, AnotherInterface, Traversabl
 // Safeguard handling of classes which don't implement.
 class ImplementsNothing {}
 class ImplementsNothingEither extends Foo {}
+
+// DateTimeInterface cannot be extended by userland interfaces. The others can.
+interface IDontExtend {} // OK.
+interface MyDateTimeInterface extends MyNs\DateTimeInterface, Traversable, Throwable, ArrayAccess {} // OK.
+interface MyDateTimeInterface extends ArrayAccess, DateTimeInterface, SomeInterface {} // Error.

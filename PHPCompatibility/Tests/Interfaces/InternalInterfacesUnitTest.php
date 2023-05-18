@@ -39,7 +39,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
      */
     protected $messages = [
         'Traversable'       => 'The interface Traversable shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
-        'DateTimeInterface' => 'The interface DateTimeInterface is intended for type hints only and is not implementable.',
+        'DateTimeInterface' => 'The interface DateTimeInterface is intended for type hints only and is not implementable or extendable.',
         'Throwable'         => 'The interface Throwable cannot be implemented directly, extend the Exception class instead.',
     ];
 
@@ -93,6 +93,9 @@ class InternalInterfacesUnitTest extends BaseSniffTest
             ['Throwable', 19],
             ['Traversable', 20],
             ['Throwable', 20],
+
+            // Interface extends ...
+            ['DateTimeInterface', 29],
         ];
     }
 
@@ -103,8 +106,8 @@ class InternalInterfacesUnitTest extends BaseSniffTest
      */
     public function testCaseInsensitive()
     {
-        $this->assertError($this->sniffResult, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable.');
-        $this->assertError($this->sniffResult, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable.');
+        $this->assertError($this->sniffResult, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable or extendable.');
+        $this->assertError($this->sniffResult, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable or extendable.');
     }
 
     /**
@@ -135,6 +138,8 @@ class InternalInterfacesUnitTest extends BaseSniffTest
             [14],
             [23],
             [24],
+            [27],
+            [28],
         ];
     }
 
