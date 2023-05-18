@@ -18,3 +18,7 @@ $a = new class implements Traversable {}
 $b = new class implements DateTimeInterface {}
 $c = new class implements \Throwable {}
 $d = new class implements SomeInterface, Throwable, AnotherInterface, Traversable {} // Test multiple interfaces.
+
+// Safeguard handling of classes which don't implement.
+class ImplementsNothing {}
+class ImplementsNothingEither extends Foo {}

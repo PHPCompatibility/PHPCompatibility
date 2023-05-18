@@ -57,7 +57,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
     }
 
     /**
-     * Test InternalInterfaces
+     * Test detection of use of internal interfaces.
      *
      * @dataProvider dataInternalInterfaces
      *
@@ -108,7 +108,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
     }
 
     /**
-     * testNoFalsePositives
+     * Test the sniff doesn't throw false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -133,6 +133,8 @@ class InternalInterfacesUnitTest extends BaseSniffTest
         return [
             [13],
             [14],
+            [23],
+            [24],
         ];
     }
 
