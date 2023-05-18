@@ -26,7 +26,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewGeneratorReturn
+     * Test detection of final return in generators.
      *
      * @dataProvider dataNewGeneratorReturn
      *
@@ -41,7 +41,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
     }
 
     /**
-     * Data provider dataNewGeneratorReturn.
+     * Data provider.
      *
      * @see testNewGeneratorReturn()
      *
@@ -61,7 +61,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositives
+     * Test the sniff doesn't throw false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -84,14 +84,24 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      */
     public function dataNoFalsePositives()
     {
-        return [
-            [6],
-            [15],
-            [21],
-            [53],
-            [107],
-            [119],
-        ];
+        $data = [];
+
+        // No errors expected on the first 24 lines.
+        for ($line = 1; $line <= 24; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 44; $line <= 55; $line++) {
+            $data[] = [$line];
+        }
+
+        $data[] = [67];
+
+        for ($line = 105; $line <= 120; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
