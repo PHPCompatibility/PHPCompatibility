@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 
 /**
@@ -98,8 +99,9 @@ class NewGeneratorReturnSniff extends Sniff
             return;
         }
 
-        $targets = [\T_RETURN, \T_CLOSURE, \T_FUNCTION, \T_CLASS, \T_ANON_CLASS];
-        $current = $tokens[$function]['scope_opener'];
+        $targets            = Collections::closedScopes();
+        $targets[\T_RETURN] = \T_RETURN;
+        $current            = $tokens[$function]['scope_opener'];
 
         while (($current = $phpcsFile->findNext($targets, ($current + 1), $tokens[$function]['scope_closer'])) !== false) {
             if ($tokens[$current]['code'] === \T_RETURN) {

@@ -128,3 +128,24 @@ function skipArrowGeneratorB($a) {
     $arrow = fn($array) => yield $array['key'] ?? yield from $array;
     return $arrow; // OK.
 }
+
+// More guarding against false positives for nested closed scopes.
+function nestedClassMethodReturn() {
+    $a = new class() {
+        public function doSomething() {
+            return 10; // OK.
+        }
+    };
+
+    yield 20;
+}
+
+function nestedEnumReturn() {
+    enum MyNestedEnum {
+        public function doSomething() {
+            return 10; // OK.
+        }
+    }
+
+    yield 20;
+}
