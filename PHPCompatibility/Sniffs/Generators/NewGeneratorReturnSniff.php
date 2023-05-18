@@ -55,6 +55,7 @@ class NewGeneratorReturnSniff extends Sniff
         return [
             \T_YIELD,
             \T_YIELD_FROM,
+            \T_FN, // Only to skip over.
         ];
     }
 
@@ -77,12 +78,13 @@ class NewGeneratorReturnSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_FN_ARROW) {
-            /*
-             * Yield in an arrow function, which can only contain one expression.
-             */
-            return;
+        /**
+         * Arrow functions cannot contain a return statement, but as they are not in the "conditions"
+         * array, a `yield` in an arrow function could confuse the sniff, so better to skip over
+         * them completely.
+         */
+        if ($tokens[$stackPtr]['code'] === \T_FN && isset($tokens[$stackPtr]['scope_closer'])) {
+            return $tokens[$stackPtr]['scope_closer'];
         }
 
         $function = Conditions::getLastCondition($phpcsFile, $stackPtr, $this->validConditions);

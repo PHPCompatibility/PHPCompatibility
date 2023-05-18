@@ -97,7 +97,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
 
         $data[] = [67];
 
-        for ($line = 105; $line <= 120; $line++) {
+        for ($line = 105; $line <= 130; $line++) {
             $data[] = [$line];
         }
 

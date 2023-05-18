@@ -118,3 +118,13 @@ function notAGeneratorNestedArrowGenerator($a) {
 
     return $arrow1($a); // OK.
 }
+
+// Test for improved code to ignore arrow functions.
+function skipArrowGeneratorA($a) {
+    $arrow = fn($i) => $i && yield $i++;
+    return $arrow; // OK.
+}
+function skipArrowGeneratorB($a) {
+    $arrow = fn($array) => yield $array['key'] ?? yield from $array;
+    return $arrow; // OK.
+}
