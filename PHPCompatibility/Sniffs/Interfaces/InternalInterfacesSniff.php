@@ -70,13 +70,8 @@ class InternalInterfacesSniff extends Sniff
         $this->internalInterfaces = \array_change_key_case($this->internalInterfaces, \CASE_LOWER);
         $this->cannotBeExtended   = \array_change_key_case($this->cannotBeExtended, \CASE_LOWER);
 
-        return [
-            \T_CLASS,
-            \T_ANON_CLASS,
-            \T_INTERFACE,
-        ];
+        return Collections::ooCanImplement() + [\T_INTERFACE => \T_INTERFACE];
     }
-
 
     /**
      * Processes this test, when one of its tokens is encountered.

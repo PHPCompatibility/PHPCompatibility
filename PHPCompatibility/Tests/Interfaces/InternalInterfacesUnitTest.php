@@ -96,6 +96,13 @@ class InternalInterfacesUnitTest extends BaseSniffTest
 
             // Interface extends ...
             ['DateTimeInterface', 29],
+
+            // Enums.
+            ['Traversable', 34],
+            ['DateTimeInterface', 35],
+            ['Throwable', 36],
+            ['Traversable', 37],
+            ['Throwable', 37],
         ];
     }
 
@@ -140,6 +147,8 @@ class InternalInterfacesUnitTest extends BaseSniffTest
             [24],
             [27],
             [28],
+            [32],
+            [33],
         ];
     }
 

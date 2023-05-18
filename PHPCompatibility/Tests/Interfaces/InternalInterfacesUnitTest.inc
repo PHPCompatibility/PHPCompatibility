@@ -27,3 +27,11 @@ class ImplementsNothingEither extends Foo {}
 interface IDontExtend {} // OK.
 interface MyDateTimeInterface extends MyNs\DateTimeInterface, Traversable, Throwable, ArrayAccess {} // OK.
 interface MyDateTimeInterface extends ArrayAccess, DateTimeInterface, SomeInterface {} // Error.
+
+// Safeguard handling of PHP 8.1+ enums implementing internal interfaces.
+enum ImplementsNothing {} // OK.
+enum MyOkayEnum implements SomeInterface, AnotherInterface {} // OK.
+enum MyTraversableEnum implements Traversable {} // Error.
+enum MyDateTimeEnum implements DateTimeInterface {} // Error.
+enum MyThrowableEnum implements \Throwable {} // Error.
+enum MyMultipleEnum implements SomeInterface, Throwable, AnotherInterface, Traversable {} // Test multiple interfaces.
