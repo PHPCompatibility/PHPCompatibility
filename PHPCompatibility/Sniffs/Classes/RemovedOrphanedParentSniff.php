@@ -29,8 +29,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.parent
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedOrphanedParentSniff extends Sniff
+final class RemovedOrphanedParentSniff extends Sniff
 {
 
     /**

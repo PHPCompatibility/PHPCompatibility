@@ -30,8 +30,9 @@ use PHPCSUtils\Utils\TextStrings;
  * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewUnicodeEscapeSequenceSniff extends Sniff
+final class NewUnicodeEscapeSequenceSniff extends Sniff
 {
 
     /**

@@ -39,9 +39,10 @@ use PHPCSUtils\Utils\PassedParameters;
  *               on the `testVersion` set. Previously it would always throw an error.
  * @since 8.2.0  Now extends the `AbstractFunctionCallParameterSniff` instead of the base `Sniff` class.
  * @since 9.0.0  Renamed from `PregReplaceEModifierSniff` to `RemovedPCREModifiersSniff`.
- * @since 10.0.0 Now uses the new `PCRERegexTrait`.
+ * @since 10.0.0 - Now uses the new `PCRERegexTrait`.
+ *               - This class is now `final`.
  */
-class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
+final class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
     use PCRERegexTrait;
 

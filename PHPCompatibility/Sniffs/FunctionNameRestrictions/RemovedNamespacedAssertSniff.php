@@ -36,8 +36,9 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://www.php.net/manual/en/function.assert.php
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedNamespacedAssertSniff extends Sniff
+final class RemovedNamespacedAssertSniff extends Sniff
 {
 
     /**

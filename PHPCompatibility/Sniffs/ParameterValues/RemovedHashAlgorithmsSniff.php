@@ -26,10 +26,11 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * @since 5.5
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
- *               and uses the `ComplexVersionNewFeatureTrait` and the `HashAlgorithmsTrait`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class
+ *                 and uses the `ComplexVersionNewFeatureTrait` and the `HashAlgorithmsTrait`.
+ *               - This class is now `final`.
  */
-class RemovedHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
+final class RemovedHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
     use HashAlgorithmsTrait;

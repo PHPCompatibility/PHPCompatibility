@@ -42,9 +42,10 @@ use PHPCSUtils\Utils\Variables;
  * @since 5.5
  * @since 5.6    Now extends the base `Sniff` class.
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` class.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewClassesSniff extends Sniff
+final class NewClassesSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

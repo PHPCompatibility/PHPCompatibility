@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\UseStatements;
  * @link https://www.php.net/manual/en/class.datetimeinterface.php
  *
  * @since 7.0.3
+ * @since 10.0.0 This class is now `final`.
  */
-class InternalInterfacesSniff extends Sniff
+final class InternalInterfacesSniff extends Sniff
 {
 
     /**

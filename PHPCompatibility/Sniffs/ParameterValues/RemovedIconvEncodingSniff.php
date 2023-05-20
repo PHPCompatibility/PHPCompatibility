@@ -30,8 +30,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://wiki.php.net/rfc/default_encoding
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
+final class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

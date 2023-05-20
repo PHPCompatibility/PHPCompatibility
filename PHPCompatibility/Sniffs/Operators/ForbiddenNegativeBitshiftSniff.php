@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\GetTokensAsString;
  * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.integers.negative-bitshift
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenNegativeBitshiftSniff extends Sniff
+final class ForbiddenNegativeBitshiftSniff extends Sniff
 {
 
     /**

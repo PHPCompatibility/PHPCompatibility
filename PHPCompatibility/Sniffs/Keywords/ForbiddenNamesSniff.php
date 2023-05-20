@@ -34,9 +34,10 @@ use PHPCSUtils\Utils\UseStatements;
  * @link https://www.php.net/manual/en/reserved.keywords.php
  *
  * @since 5.5
- * @since 10.0.0 Strictly checks declarations and aliases only.
+ * @since 10.0.0 - Strictly checks declarations and aliases only.
+ *               - This class is now `final`.
  */
-class ForbiddenNamesSniff extends Sniff
+final class ForbiddenNamesSniff extends Sniff
 {
 
     /**

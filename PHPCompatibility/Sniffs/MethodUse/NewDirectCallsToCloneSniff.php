@@ -29,8 +29,9 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://www.php.net/manual/en/language.oop5.cloning.php
  *
  * @since 9.1.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewDirectCallsToCloneSniff extends Sniff
+final class NewDirectCallsToCloneSniff extends Sniff
 {
 
     /**

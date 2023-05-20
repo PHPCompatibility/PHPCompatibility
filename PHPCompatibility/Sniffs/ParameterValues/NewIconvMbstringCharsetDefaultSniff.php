@@ -36,8 +36,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://wiki.php.net/rfc/default_encoding
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterSniff
+final class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

@@ -25,9 +25,10 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *
  * @since 7.1.2
- * @since 9.0.0 Renamed from `VariableVariablesSniff` to `NewUniformVariableSyntaxSniff`.
+ * @since 9.0.0  Renamed from `VariableVariablesSniff` to `NewUniformVariableSyntaxSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewUniformVariableSyntaxSniff extends Sniff
+final class NewUniformVariableSyntaxSniff extends Sniff
 {
 
     /**

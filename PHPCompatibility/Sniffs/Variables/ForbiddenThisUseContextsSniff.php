@@ -50,8 +50,9 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/this_var
  *
  * @since 9.1.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenThisUseContextsSniff extends Sniff
+final class ForbiddenThisUseContextsSniff extends Sniff
 {
 
     /**

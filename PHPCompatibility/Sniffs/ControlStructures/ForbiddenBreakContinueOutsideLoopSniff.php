@@ -26,8 +26,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://www.php.net/manual/en/control-structures.continue.php
  *
  * @since 7.0.7
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
+final class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
 {
 
     /**

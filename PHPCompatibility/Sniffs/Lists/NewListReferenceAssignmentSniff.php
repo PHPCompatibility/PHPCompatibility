@@ -27,10 +27,11 @@ use PHPCSUtils\Utils\Lists;
  * @link https://www.php.net/manual/en/function.list.php
  *
  * @since 9.0.0
- * @since 10.0.0 Complete rewrite. No longer extends the `NewKeyedListSniff`.
- *               Now extends the base `Sniff` class.
+ * @since 10.0.0 - Complete rewrite. No longer extends the `NewKeyedListSniff`.
+ *                 Now extends the base `Sniff` class.
+ *               - This class is now `final`.
  */
-class NewListReferenceAssignmentSniff extends Sniff
+final class NewListReferenceAssignmentSniff extends Sniff
 {
 
     /**

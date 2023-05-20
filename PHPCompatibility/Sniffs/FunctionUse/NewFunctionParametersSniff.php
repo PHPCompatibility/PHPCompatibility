@@ -26,10 +26,11 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
- *               and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class
+ *                 and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
+final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
 

@@ -30,8 +30,9 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://wiki.php.net/rfc/deprecate_curly_braces_array_access
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedCurlyBraceArrayAccessSniff extends Sniff
+final class RemovedCurlyBraceArrayAccessSniff extends Sniff
 {
 
     /**

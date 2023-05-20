@@ -29,8 +29,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://php.net/manual/en/function.implode.php
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParameterSniff
+final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

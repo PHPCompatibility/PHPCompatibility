@@ -26,8 +26,9 @@ use PHPCSUtils\Utils\Variables;
  * @link https://php-legacy-docs.zend.com/manual/php5/en/migration54.incompatible
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
+final class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
 {
 
     /**

@@ -29,9 +29,10 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 8.2.0
  * @since 9.0.0  Renamed from `PCRENewModifiersSniff` to `NewPCREModifiersSniff`.
- * @since 10.0.0 Now uses the new `PCRERegexTrait` and extends the `AbstractFunctionCallParameterSniff`.
+ * @since 10.0.0 - Now uses the new `PCRERegexTrait` and extends the `AbstractFunctionCallParameterSniff`.
+ *               - This class is now `final`.
  */
-class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
+final class NewPCREModifiersSniff extends AbstractFunctionCallParameterSniff
 {
     use PCRERegexTrait;
 

@@ -32,9 +32,10 @@ use PHPCSUtils\Utils\Scopes;
  *
  * @since 7.0.4
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewMagicMethodsSniff extends Sniff
+final class NewMagicMethodsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

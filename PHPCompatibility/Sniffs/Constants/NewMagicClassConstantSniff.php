@@ -34,9 +34,10 @@ use PHPCSUtils\Utils\Context;
  *
  * @since 7.1.4
  * @since 7.1.5  Removed the incorrect checks against invalid usage of the constant.
- * @since 10.0.0 Now differentiates between Name::class (PHP 5.5+) and $obj::class (PHP 8.0+).
+ * @since 10.0.0 - Now differentiates between Name::class (PHP 5.5+) and $obj::class (PHP 8.0+).
+ *               - This class is now `final`.
  */
-class NewMagicClassConstantSniff extends Sniff
+final class NewMagicClassConstantSniff extends Sniff
 {
 
     /**

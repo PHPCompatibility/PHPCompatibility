@@ -34,8 +34,9 @@ use PHPCSUtils\Utils\Numbers;
  * @since 7.0.8  This sniff now throws a warning instead of an error for invalid binary integers.
  * @since 10.0.0 - The sniff has been moved from the `Miscellaneous` category to `Numbers`.
  *               - The check for hexadecimal numeric strings has been split off to its own sniff.
+ *               - This class is now `final`.
  */
-class ValidIntegersSniff extends Sniff
+final class ValidIntegersSniff extends Sniff
 {
 
     /**

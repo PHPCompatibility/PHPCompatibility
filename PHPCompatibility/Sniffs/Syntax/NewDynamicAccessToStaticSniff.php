@@ -26,9 +26,10 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://www.php.net/manual/en/migration53.new-features.php
  *
  * @since 8.1.0
- * @since 9.0.0 Renamed from `DynamicAccessToStaticSniff` to `NewDynamicAccessToStaticSniff`.
+ * @since 9.0.0  Renamed from `DynamicAccessToStaticSniff` to `NewDynamicAccessToStaticSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewDynamicAccessToStaticSniff extends Sniff
+final class NewDynamicAccessToStaticSniff extends Sniff
 {
 
     /**

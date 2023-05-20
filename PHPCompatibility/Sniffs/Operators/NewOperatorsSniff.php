@@ -28,9 +28,10 @@ use PHP_CodeSniffer\Files\File;
  *
  * @since 9.0.0  Detection of new operators was originally included in the
  *               `NewLanguageConstruct` sniff (since 5.6).
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewOperatorsSniff extends Sniff
+final class NewOperatorsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

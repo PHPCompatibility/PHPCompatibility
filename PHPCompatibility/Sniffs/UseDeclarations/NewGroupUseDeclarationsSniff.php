@@ -32,9 +32,10 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://www.php.net/manual/en/language.namespaces.importing.php#language.namespaces.importing.group
  *
  * @since 7.0.0
- * @since 8.0.1 Now also checks for trailing commas in group `use` declarations.
+ * @since 8.0.1  Now also checks for trailing commas in group `use` declarations.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewGroupUseDeclarationsSniff extends Sniff
+final class NewGroupUseDeclarationsSniff extends Sniff
 {
 
     /**

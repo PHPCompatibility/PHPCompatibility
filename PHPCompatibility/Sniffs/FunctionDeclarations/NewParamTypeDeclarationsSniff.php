@@ -62,9 +62,10 @@ use PHPCSUtils\Utils\TypeString;
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
  * @since 9.0.0  Renamed from `NewScalarTypeDeclarationsSniff` to `NewParamTypeDeclarationsSniff`.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewParamTypeDeclarationsSniff extends Sniff
+final class NewParamTypeDeclarationsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

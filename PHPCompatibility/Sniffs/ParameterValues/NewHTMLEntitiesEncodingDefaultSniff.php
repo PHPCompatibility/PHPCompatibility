@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/function.htmlspecialchars.php#refsect1-function.htmlspecialchars-changelog
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterSniff
+final class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

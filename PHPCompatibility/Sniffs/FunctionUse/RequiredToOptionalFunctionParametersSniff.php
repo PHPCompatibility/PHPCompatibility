@@ -28,11 +28,12 @@ use PHPCSUtils\Utils\PassedParameters;
  * @since 7.0.3
  * @since 7.1.0  Now extends the `AbstractComplexVersionSniff` instead of the base `Sniff` class.
  * @since 9.0.0  Renamed from `RequiredOptionalFunctionParametersSniff` to `RequiredToOptionalFunctionParametersSniff`.
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class.
- *               Methods which were previously required due to the extending of the `AbstractComplexVersionSniff`
- *               have been removed.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class.
+ *                 Methods which were previously required due to the extending of the `AbstractComplexVersionSniff`
+ *                 have been removed.
+ *               - This class is now `final`.
  */
-class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallParameterSniff
+final class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

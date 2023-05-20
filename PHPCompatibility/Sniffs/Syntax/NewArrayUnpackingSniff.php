@@ -28,8 +28,9 @@ use PHPCSUtils\Utils\GetTokensAsString;
  * @link https://wiki.php.net/rfc/spread_operator_for_array
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewArrayUnpackingSniff extends Sniff
+final class NewArrayUnpackingSniff extends Sniff
 {
 
     /**

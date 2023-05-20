@@ -26,10 +26,11 @@ use PHPCSUtils\Utils\Scopes;
  *
  * @since 8.2.0  This was previously, since 7.0.3, checked by the upstream sniff.
  * @since 9.3.2  The sniff will now ignore functions marked as `@deprecated` by design.
- * @since 10.0.0 The sniff no longer extends the upstream `Generic.NamingConventions.CamelCapsFunctionName`
- *               sniff and has been completely rewritten using PHPCSUtils.
+ * @since 10.0.0 - The sniff no longer extends the upstream `Generic.NamingConventions.CamelCapsFunctionName`
+ *                 sniff and has been completely rewritten using PHPCSUtils.
+ *               - This class is now `final`.
  */
-class ReservedFunctionNamesSniff implements Sniff
+final class ReservedFunctionNamesSniff implements Sniff
 {
 
     /**

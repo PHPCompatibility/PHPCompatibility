@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\Lists;
  * @link https://www.php.net/manual/en/function.list.php
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenEmptyListAssignmentSniff extends Sniff
+final class ForbiddenEmptyListAssignmentSniff extends Sniff
 {
 
     /**

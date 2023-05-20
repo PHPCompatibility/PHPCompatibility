@@ -33,8 +33,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://www.php.net/manual/en/migration53.incompatible.php
  *
  * @since 8.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ArgumentFunctionsUsageSniff extends Sniff
+final class ArgumentFunctionsUsageSniff extends Sniff
 {
 
     /**

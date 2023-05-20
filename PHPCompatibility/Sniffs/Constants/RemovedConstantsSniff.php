@@ -23,9 +23,10 @@ use PHPCSUtils\Utils\MessageHelper;
  * PHP version All
  *
  * @since 8.1.0
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ *               - This class is now `final`.
  */
-class RemovedConstantsSniff extends Sniff
+final class RemovedConstantsSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
 

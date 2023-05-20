@@ -32,9 +32,10 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://www.php.net/manual/en/function.autoload.php
  *
  * @since 8.1.0
- * @since 9.0.0 Renamed from `DeprecatedMagicAutoloadSniff` to `RemovedMagicAutoloadSniff`.
+ * @since 9.0.0  Renamed from `DeprecatedMagicAutoloadSniff` to `RemovedMagicAutoloadSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedMagicAutoloadSniff extends Sniff
+final class RemovedMagicAutoloadSniff extends Sniff
 {
 
     /**

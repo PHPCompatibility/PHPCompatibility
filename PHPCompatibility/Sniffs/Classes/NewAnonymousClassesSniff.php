@@ -23,8 +23,9 @@ use PHP_CodeSniffer\Files\File;
  * @link https://wiki.php.net/rfc/anonymous_classes
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewAnonymousClassesSniff extends Sniff
+final class NewAnonymousClassesSniff extends Sniff
 {
 
     /**

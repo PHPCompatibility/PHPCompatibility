@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/function.array-reduce.php#refsect1-function.array-reduce-changelog
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
+final class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

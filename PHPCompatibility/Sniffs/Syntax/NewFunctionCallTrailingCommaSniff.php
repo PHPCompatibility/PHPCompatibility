@@ -25,9 +25,10 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://wiki.php.net/rfc/trailing-comma-function-calls
  *
  * @since 8.2.0
- * @since 9.0.0 Renamed from `NewTrailingCommaSniff` to `NewFunctionCallTrailingCommaSniff`.
+ * @since 9.0.0  Renamed from `NewTrailingCommaSniff` to `NewFunctionCallTrailingCommaSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewFunctionCallTrailingCommaSniff extends Sniff
+final class NewFunctionCallTrailingCommaSniff extends Sniff
 {
 
     /**

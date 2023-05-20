@@ -29,8 +29,9 @@ use PHP_CodeSniffer\Files\File;
  * @link https://wiki.php.net/rfc/flexible_heredoc_nowdoc_syntaxes
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewFlexibleHeredocNowdocSniff extends Sniff
+final class NewFlexibleHeredocNowdocSniff extends Sniff
 {
 
     /**

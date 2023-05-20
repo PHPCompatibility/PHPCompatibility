@@ -27,10 +27,11 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/language.constants.syntax.php
  *
  * @since 7.0.0
- * @since 9.0.0 Renamed from `ConstantArraysUsingDefineSniff` to `NewConstantArraysUsingDefineSniff`.
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class instead of `Sniff`.
+ * @since 9.0.0  Renamed from `ConstantArraysUsingDefineSniff` to `NewConstantArraysUsingDefineSniff`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class instead of `Sniff`.
+ *               - This class is now `final`.
  */
-class NewConstantArraysUsingDefineSniff extends AbstractFunctionCallParameterSniff
+final class NewConstantArraysUsingDefineSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

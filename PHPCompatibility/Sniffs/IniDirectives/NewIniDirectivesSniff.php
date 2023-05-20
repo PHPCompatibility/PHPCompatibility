@@ -30,10 +30,11 @@ use PHPCSUtils\Utils\TextStrings;
  * @since 7.0.7  When a new directive is used with `ini_set()`, the sniff will now throw an error
  *               instead of a warning.
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
- *               and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class
+ *                 and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
+final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
 

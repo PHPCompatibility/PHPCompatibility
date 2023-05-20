@@ -36,9 +36,10 @@ use PHPCSUtils\Utils\Scopes;
  *               instead of the base `Sniff` class.
  * @since 7.1.3  Merged the `LongArrays` sniff into the `RemovedGlobalVariables` sniff.
  * @since 9.0.0  Renamed from `RemovedGlobalVariablesSniff` to `RemovedPredefinedGlobalVariablesSniff`.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ *               - This class is now `final`.
  */
-class RemovedPredefinedGlobalVariablesSniff extends Sniff
+final class RemovedPredefinedGlobalVariablesSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
 

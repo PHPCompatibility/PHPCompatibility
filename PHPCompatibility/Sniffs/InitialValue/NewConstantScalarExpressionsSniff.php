@@ -34,10 +34,11 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://wiki.php.net/rfc/const_scalar_exprs
  *
  * @since 8.2.0
- * @since 10.0.0 This sniff now extends the `AbstractInitialValueSniff` class instead of the
- *               base `Sniff` class.
+ * @since 10.0.0 - This sniff now extends the `AbstractInitialValueSniff` class instead of the
+ *                 base `Sniff` class.
+ *               - This class is now `final`.
  */
-class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
+final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
 {
 
     /**
@@ -297,7 +298,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      */
     protected function throwError(File $phpcsFile, $stackPtr, $end, $type)
     {
-        $error     = static::ERROR_PHRASE;
+        $error     = self::ERROR_PHRASE;
         $errorCode = 'Found';
         $phrase    = '';
 

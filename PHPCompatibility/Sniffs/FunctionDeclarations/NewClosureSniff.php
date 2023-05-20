@@ -39,8 +39,9 @@ use PHPCSUtils\Utils\Conditions;
  * @link https://wiki.php.net/rfc/closures/object-extension
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewClosureSniff extends Sniff
+final class NewClosureSniff extends Sniff
 {
 
     /**

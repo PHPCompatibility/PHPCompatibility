@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\TextStrings;
  * @link https://www.php.net/manual/en/function.pack.php#refsect1-function.pack-changelog
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
+final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

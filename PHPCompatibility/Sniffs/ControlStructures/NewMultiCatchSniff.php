@@ -24,8 +24,9 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/language.exceptions.php#language.exceptions.catch
  *
  * @since 7.0.7
+ * @since 10.0.0 This class is now `final`.
  */
-class NewMultiCatchSniff extends Sniff
+final class NewMultiCatchSniff extends Sniff
 {
 
     /**

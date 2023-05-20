@@ -30,8 +30,9 @@ use PHPCSUtils\Utils\Operators;
  * @link https://github.com/php/php-src/pull/4017
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedTernaryAssociativitySniff extends Sniff
+final class RemovedTernaryAssociativitySniff extends Sniff
 {
 
     /**

@@ -30,8 +30,9 @@ use PHPCSUtils\Utils\Lists;
  * @link https://www.php.net/manual/en/function.list.php
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class AssignmentOrderSniff extends Sniff
+final class AssignmentOrderSniff extends Sniff
 {
 
     /**
