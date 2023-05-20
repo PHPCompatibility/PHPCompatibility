@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 
 /**
  * Assert() supports custom exceptions as $description since PHP 7.0.
@@ -50,7 +51,7 @@ class NewAssertCustomExceptionSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.6') === false);
+        return (ScannedCode::shouldRunOnOrBelow('5.6') === false);
     }
 
     /**

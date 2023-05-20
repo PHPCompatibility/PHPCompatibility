@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -115,7 +116,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
             $isError = false;
             $message = 'Use of %s() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.';
 
-            if ($this->supportsAbove('5.3') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('5.3') === true) {
                 $isError  = true;
                 $message .= ' As of PHP 5.3, it is no longer supported at all.';
             }
@@ -126,7 +127,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         /*
          * Check for use of the functions as a parameter in a function call.
          */
-        if ($this->supportsBelow('5.2') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.2') === false) {
             return;
         }
 

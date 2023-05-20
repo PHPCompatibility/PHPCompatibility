@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -70,7 +71,7 @@ class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallParameterS
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('8.1') === false);
+        return (ScannedCode::shouldRunOnOrAbove('8.1') === false);
     }
 
     /**

@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TextStrings;
@@ -58,7 +59,7 @@ class NewInterpolatedStringDereferencingSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // PHP 8.0 supports dereferencing interpolated strings
-        if ($this->supportsBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 

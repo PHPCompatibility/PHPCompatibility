@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\TextStrings;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -65,7 +66,7 @@ class RemovedDollarBraceStringEmbedsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('8.2') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('8.2') === false) {
             return;
         }
 

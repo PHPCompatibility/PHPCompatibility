@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\MessageHelper;
@@ -185,7 +186,7 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
                 continue;
             }
 
-            if ($this->supportsAbove($version) === true) {
+            if (ScannedCode::shouldRunOnOrAbove($version) === true) {
                 if ($required === true && $versionInfo['optionalRemoved'] === '') {
                     $versionInfo['optionalRemoved'] = $version;
                     $versionInfo['error']           = true;

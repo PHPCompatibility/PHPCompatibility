@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -232,7 +233,7 @@ class NewTypedPropertiesSniff extends Sniff
             $errorSuffix = ' (promoted property ' . $typeInfo['param_name'] . ')';
         }
 
-        if ($this->supportsBelow('7.3') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === true) {
             $phpcsFile->addError(
                 'Typed properties are not supported in PHP 7.3 or earlier. Found: %s' . $errorSuffix,
                 $typeToken,
@@ -244,7 +245,7 @@ class NewTypedPropertiesSniff extends Sniff
             $isUnionType        = (\strpos($type, '|') !== false);
             $isIntersectionType = (\strpos($type, '&') !== false);
 
-            if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
+            if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
                 $phpcsFile->addError(
                     'Union types are not present in PHP version 7.4 or earlier. Found: %s' . $errorSuffix,
                     $typeToken,
@@ -253,7 +254,7 @@ class NewTypedPropertiesSniff extends Sniff
                 );
             }
 
-            if ($this->supportsBelow('8.0') === true && $isIntersectionType === true) {
+            if (ScannedCode::shouldRunOnOrBelow('8.0') === true && $isIntersectionType === true) {
                 $phpcsFile->addError(
                     'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                     $typeToken,
@@ -275,7 +276,7 @@ class NewTypedPropertiesSniff extends Sniff
                      * Only throw an error if PHP 8+ needs to be supported.
                      */
                     if (($type === 'mixed' && $typeInfo['nullable_type'] === true)
-                        && $this->supportsAbove('8.0') === true
+                        && ScannedCode::shouldRunOnOrAbove('8.0') === true
                     ) {
                         $phpcsFile->addError(
                             'Mixed types cannot be nullable, null is already part of the mixed type' . $errorSuffix,
@@ -286,7 +287,7 @@ class NewTypedPropertiesSniff extends Sniff
 
                     if (isset($this->unionOnlyTypes[$type]) === true
                         && $isUnionType === false
-                        && $this->supportsBelow('8.1') === true
+                        && ScannedCode::shouldRunOnOrBelow('8.1') === true
                     ) {
                         $phpcsFile->addError(
                             "The '%s' type can only be used as part of a union type in PHP 8.1 or earlier",
@@ -330,7 +331,7 @@ class NewTypedPropertiesSniff extends Sniff
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
-            || $this->supportsBelow($versionInfo['not_in_version']) === false
+            || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
             return;
         }

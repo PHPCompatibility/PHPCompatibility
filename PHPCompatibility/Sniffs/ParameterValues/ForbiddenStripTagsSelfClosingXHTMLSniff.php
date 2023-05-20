@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -48,7 +49,7 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('5.4') === false);
+        return (ScannedCode::shouldRunOnOrAbove('5.4') === false);
     }
 
 

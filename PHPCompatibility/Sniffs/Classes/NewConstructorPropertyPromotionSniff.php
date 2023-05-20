@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHP_CodeSniffer\Files\File;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -53,7 +54,7 @@ final class NewConstructorPropertyPromotionSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 

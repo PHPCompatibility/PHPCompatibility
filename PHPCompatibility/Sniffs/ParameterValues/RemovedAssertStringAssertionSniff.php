@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**
@@ -86,7 +87,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('7.2') === false);
+        return (ScannedCode::shouldRunOnOrAbove('7.2') === false);
     }
 
     /**
@@ -123,7 +124,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
             $targetParam['clean'],
         ];
 
-        if ($this->supportsAbove('8.0') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $data[0] = ' and removed since PHP 8.0';
             $isError = true;
             $code    = 'Removed';

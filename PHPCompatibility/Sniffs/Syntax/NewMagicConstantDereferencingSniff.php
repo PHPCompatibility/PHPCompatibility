@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\BackCompat\BCTokens;
 
@@ -52,7 +53,7 @@ class NewMagicConstantDereferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 

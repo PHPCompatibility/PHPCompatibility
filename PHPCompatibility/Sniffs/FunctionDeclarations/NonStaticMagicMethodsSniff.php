@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -142,7 +143,7 @@ class NonStaticMagicMethodsSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // Should be removed, the requirement was previously also there, 5.3 just started throwing a warning about it.
-        if ($this->supportsAbove('5.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.3') === false) {
             return;
         }
 

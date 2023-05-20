@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -64,7 +65,7 @@ class RemovedNamespacedAssertSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.3') === false) {
             return;
         }
 
@@ -86,7 +87,7 @@ class RemovedNamespacedAssertSniff extends Sniff
         $error   = 'Declaring a namespaced function called assert() is deprecated since PHP 7.3';
         $code    = 'Deprecated';
         $isError = false;
-        if ($this->supportsAbove('8.0') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $error  .= ' and will throw a fatal error since PHP 8.0';
             $code    = 'Removed';
             $isError = true;

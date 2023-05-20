@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Interfaces;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -134,7 +135,7 @@ class RemovedSerializableSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('8.1') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
             return;
         }
 
@@ -160,7 +161,7 @@ class RemovedSerializableSniff extends Sniff
             /*
              * Okay, so we have an interface which extends Serializable in one way or another.
              */
-            if ($this->supportsBelow('7.3') === false) {
+            if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
                 /*
                  * Check if the interface requires implementation of the magic methods.
                  */
@@ -246,7 +247,7 @@ class RemovedSerializableSniff extends Sniff
              * If PHP < 7.4 does not need to be supported, recommend removing the Serializable implementation,
              * but only for direct implementations of Serializable as other interfaces may provide additional functionality.
              */
-            if ($this->supportsBelow('7.3') === false
+            if (ScannedCode::shouldRunOnOrBelow('7.3') === false
                 && \array_intersect($matchedInterfaces, $this->phpSerializableInterfaces) !== []
             ) {
                 $message = 'When the magic __serialize() and __unserialize() methods are available and the code base does not need to support PHP < 7.4, the implementation of the Serializable interface can be removed.';

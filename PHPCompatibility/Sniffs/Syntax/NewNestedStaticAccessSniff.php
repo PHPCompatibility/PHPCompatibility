@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -58,7 +59,7 @@ class NewNestedStaticAccessSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         // PHP 8.0 supports both nested static access and class constant dereferencing
-        if ($this->supportsBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 
@@ -120,7 +121,7 @@ class NewNestedStaticAccessSniff extends Sniff
         if ($seenBrackets === false
             && $tokens[$prev]['code'] === \T_STRING
             && $tokens[$prevOperator]['code'] === \T_DOUBLE_COLON
-            && $this->supportsBelow('7.4') === true
+            && ScannedCode::shouldRunOnOrBelow('7.4') === true
         ) {
             $phpcsFile->addError(
                 'Dereferencing class constants was not supported in PHP 7.4 or earlier.',
@@ -131,7 +132,7 @@ class NewNestedStaticAccessSniff extends Sniff
         }
 
         // This is nested static access.
-        if ($this->supportsBelow('5.6') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === true) {
             $phpcsFile->addError(
                 'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.',
                 $stackPtr,

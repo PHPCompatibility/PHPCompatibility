@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
@@ -5000,11 +5001,11 @@ class RemovedFunctionsSniff extends Sniff
         $isError     = null;
 
         if (empty($versionInfo['removed']) === false
-            && $this->supportsAbove($versionInfo['removed']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true
         ) {
             $isError = true;
         } elseif (empty($versionInfo['deprecated']) === false
-            && $this->supportsAbove($versionInfo['deprecated']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['deprecated']) === true
         ) {
             $isError = false;
 

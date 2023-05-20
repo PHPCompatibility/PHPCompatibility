@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\HashAlgorithmsTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 
 /**
@@ -223,7 +224,7 @@ class NewHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
-            || $this->supportsBelow($versionInfo['not_in_version']) === false
+            || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
             return;
         }

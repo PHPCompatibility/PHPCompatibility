@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -49,7 +50,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
     {
         // Version used here should be (above) the highest version from the `newModes` control,
         // structure below, i.e. the last PHP version in which a new mode was introduced.
-        return ($this->supportsBelow('7.1') === false);
+        return (ScannedCode::shouldRunOnOrBelow('7.1') === false);
     }
 
 
@@ -88,13 +89,13 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 continue;
             }
 
-            if (\strpos($tokens[$i]['content'], 'c+') !== false && $this->supportsBelow('5.2.5')) {
+            if (\strpos($tokens[$i]['content'], 'c+') !== false && ScannedCode::shouldRunOnOrBelow('5.2.5') === true) {
                 $errors['cplusFound'] = [
                     'c+',
                     '5.2.5',
                     $targetParam['clean'],
                 ];
-            } elseif (\strpos($tokens[$i]['content'], 'c') !== false && $this->supportsBelow('5.2.5')) {
+            } elseif (\strpos($tokens[$i]['content'], 'c') !== false && ScannedCode::shouldRunOnOrBelow('5.2.5') === true) {
                 $errors['cFound'] = [
                     'c',
                     '5.2.5',
@@ -102,7 +103,7 @@ class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
                 ];
             }
 
-            if (\strpos($tokens[$i]['content'], 'e') !== false && $this->supportsBelow('7.0.15')) {
+            if (\strpos($tokens[$i]['content'], 'e') !== false && ScannedCode::shouldRunOnOrBelow('7.0.15') === true) {
                 $errors['eFound'] = [
                     'e',
                     '7.0.15',

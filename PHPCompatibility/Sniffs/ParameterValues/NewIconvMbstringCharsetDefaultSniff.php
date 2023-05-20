@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -190,7 +191,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.5') === false || $this->supportsAbove('5.6') === false);
+        return (ScannedCode::shouldRunOnOrBelow('5.5') === false || ScannedCode::shouldRunOnOrAbove('5.6') === false);
     }
 
 

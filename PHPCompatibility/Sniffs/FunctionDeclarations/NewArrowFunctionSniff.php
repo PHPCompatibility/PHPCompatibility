@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHP_CodeSniffer\Files\File;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 
 /**
@@ -51,7 +52,7 @@ class NewArrowFunctionSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.3') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
             return;
         }
 

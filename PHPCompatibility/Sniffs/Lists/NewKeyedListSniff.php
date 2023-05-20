@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Lists;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
@@ -55,7 +56,7 @@ class NewKeyedListSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.0') === false) {
             return;
         }
 

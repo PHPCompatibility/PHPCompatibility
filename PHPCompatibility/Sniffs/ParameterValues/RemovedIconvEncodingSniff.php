@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -54,7 +55,7 @@ class RemovedIconvEncodingSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('5.6') === false);
+        return (ScannedCode::shouldRunOnOrAbove('5.6') === false);
     }
 
 

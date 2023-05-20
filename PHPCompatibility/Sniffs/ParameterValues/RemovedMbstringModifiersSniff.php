@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\MessageHelper;
@@ -65,7 +66,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
     {
         // Version used here should be the lowest version, i.e the version in which the
         // first modifier being detected by this sniff was removed.
-        return ($this->supportsAbove('7.1') === false);
+        return (ScannedCode::shouldRunOnOrAbove('7.1') === false);
     }
 
 
@@ -128,7 +129,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
             $code    = 'Deprecated';
             $isError = false;
 
-            if ($this->supportsAbove('8.0') === true) {
+            if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
                 $error  .= ' and removed since PHP 8.0';
                 $code    = 'Removed';
                 $isError = true;
@@ -137,7 +138,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
             $error .= '.';
 
             // The alternative mb_ereg_replace_callback() function is only available since 5.4.1.
-            if ($this->supportsBelow('5.4.1') === false) {
+            if (ScannedCode::shouldRunOnOrBelow('5.4.1') === false) {
                 $error .= ' Use mb_ereg_replace_callback() instead (PHP 5.4.1+).';
             }
 

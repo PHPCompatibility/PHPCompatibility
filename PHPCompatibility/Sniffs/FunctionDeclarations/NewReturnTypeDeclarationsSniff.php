@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -213,7 +214,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $isUnionType        = (\strpos($returnType, '|') !== false);
         $isIntersectionType = (\strpos($returnType, '&') !== false);
 
-        if ($this->supportsBelow('7.4') === true && $isUnionType === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
             $phpcsFile->addError(
                 'Union types are not present in PHP version 7.4 or earlier. Found: %s',
                 $returnTypeToken,
@@ -222,7 +223,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             );
         }
 
-        if ($this->supportsBelow('8.0') === true && $isIntersectionType === true) {
+        if (ScannedCode::shouldRunOnOrBelow('8.0') === true && $isIntersectionType === true) {
             $phpcsFile->addError(
                 'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                 $returnTypeToken,
@@ -247,7 +248,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
                 if (isset($this->standAloneTypes[$type]) === true
                     && ($isUnionType === true
                     || $properties['nullable_return_type'] === true)
-                    && $this->supportsAbove($this->standAloneTypes[$type]) === true
+                    && ScannedCode::shouldRunOnOrAbove($this->standAloneTypes[$type]) === true
                 ) {
                     $phpcsFile->addError(
                         "The '%s' type can only be used as a standalone type",
@@ -259,7 +260,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
 
                 if (isset($this->unionOnlyTypes[$type]) === true
                     && $isUnionType === false
-                    && $this->supportsBelow('8.1') === true
+                    && ScannedCode::shouldRunOnOrBelow('8.1') === true
                 ) {
                     $phpcsFile->addError(
                         "The '%s' type can only be used as part of a union type in PHP 8.1 or earlier",
@@ -300,7 +301,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
-            || $this->supportsBelow($versionInfo['not_in_version']) === false
+            || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
             return;
         }

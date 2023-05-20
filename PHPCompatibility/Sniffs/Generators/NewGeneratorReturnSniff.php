@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Generators;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -70,7 +71,7 @@ class NewGeneratorReturnSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6') !== true) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
             return;
         }
 

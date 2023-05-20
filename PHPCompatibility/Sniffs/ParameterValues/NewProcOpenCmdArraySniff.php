@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
@@ -91,7 +92,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ($this->supportsBelow('7.3') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === true) {
             $phpcsFile->addError(
                 'The proc_open() function did not accept $command to be passed in array format in PHP 7.3 and earlier.',
                 $nextNonEmpty,
@@ -99,7 +100,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
             );
         }
 
-        if ($this->supportsAbove('7.4') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('7.4') === true) {
             if (\strpos($targetParam['clean'], 'escapeshellarg(') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;

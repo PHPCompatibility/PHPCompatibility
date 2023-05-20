@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\MethodUse;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -56,7 +57,7 @@ class ForbiddenToStringParametersSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.3') === false) {
             return;
         }
 

@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Variables;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Conditions;
@@ -131,7 +132,7 @@ class RemovedPredefinedGlobalVariablesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.3') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.3') === false) {
             return;
         }
 
@@ -318,11 +319,11 @@ class RemovedPredefinedGlobalVariablesSniff extends Sniff
         $isError     = null;
 
         if (empty($versionInfo['removed']) === false
-            && $this->supportsAbove($versionInfo['removed']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true
         ) {
             $isError = true;
         } elseif (empty($versionInfo['deprecated']) === false
-            && $this->supportsAbove($versionInfo['deprecated']) === true
+            && ScannedCode::shouldRunOnOrAbove($versionInfo['deprecated']) === true
         ) {
             $isError = false;
 

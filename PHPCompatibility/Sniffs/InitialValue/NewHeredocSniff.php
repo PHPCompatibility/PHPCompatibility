@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\InitialValue;
 
 use PHPCompatibility\AbstractInitialValueSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
@@ -73,7 +74,7 @@ class NewHeredocSniff extends AbstractInitialValueSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.2') !== true);
+        return (ScannedCode::shouldRunOnOrBelow('5.2') === false);
     }
 
     /**

@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -59,7 +60,7 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('8.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('8.0') === false) {
             return;
         }
 

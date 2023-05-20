@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Numbers;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -166,7 +167,7 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
             }
         }
 
-        $isError = $this->supportsAbove('7.0');
+        $isError = ScannedCode::shouldRunOnOrAbove('7.0');
 
         MessageHelper::addMessage(
             $phpcsFile,

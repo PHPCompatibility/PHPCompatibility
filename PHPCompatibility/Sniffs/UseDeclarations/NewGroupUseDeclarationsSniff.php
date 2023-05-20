@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\UseDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -65,14 +66,14 @@ class NewGroupUseDeclarationsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.1') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.1') === false) {
             return;
         }
 
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === \T_OPEN_USE_GROUP
-            && $this->supportsBelow('5.6') === true
+            && ScannedCode::shouldRunOnOrBelow('5.6') === true
         ) {
             $phpcsFile->addError(
                 'Group use declarations are not allowed in PHP 5.6 or earlier',

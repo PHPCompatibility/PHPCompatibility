@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -87,7 +88,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.4') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.4') === false) {
             return;
         }
 

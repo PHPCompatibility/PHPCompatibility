@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
-use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
@@ -203,10 +204,10 @@ class NewParamTypeDeclarationsSniff extends Sniff
             return;
         }
 
-        $supportsPHP4  = $this->supportsBelow('4.4');
-        $supportsPHP7  = $this->supportsBelow('7.4');
-        $supportsPHP80 = $this->supportsBelow('8.0');
-        $supportsPHP81 = $this->supportsBelow('8.1');
+        $supportsPHP4  = ScannedCode::shouldRunOnOrBelow('4.4');
+        $supportsPHP7  = ScannedCode::shouldRunOnOrBelow('7.4');
+        $supportsPHP80 = ScannedCode::shouldRunOnOrBelow('8.0');
+        $supportsPHP81 = ScannedCode::shouldRunOnOrBelow('8.1');
         $tokens        = $phpcsFile->getTokens();
 
         foreach ($paramNames as $param) {
@@ -267,7 +268,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                         && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
                             || ($tokens[$stackPtr]['code'] === \T_FUNCTION
                             && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
-                        && $this->supportsBelow('5.1') === false
+                        && ScannedCode::shouldRunOnOrBelow('5.1') === false
                     ) {
                         $phpcsFile->addError(
                             "'%s' type cannot be used outside of class scope",
@@ -283,7 +284,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                      * Only throw an error if PHP 8+ needs to be supported.
                      */
                     if (($type === 'mixed' && $param['nullable_type'] === true)
-                        && $this->supportsAbove('8.0') === true
+                        && ScannedCode::shouldRunOnOrAbove('8.0') === true
                     ) {
                         $phpcsFile->addError(
                             'Mixed types cannot be nullable, null is already part of the mixed type',
@@ -340,7 +341,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
-            || $this->supportsBelow($versionInfo['not_in_version']) === false
+            || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
             return;
         }

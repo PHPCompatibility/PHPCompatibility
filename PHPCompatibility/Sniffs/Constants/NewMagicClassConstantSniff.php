@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Constants;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -62,7 +63,7 @@ class NewMagicClassConstantSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 
@@ -95,7 +96,7 @@ class NewMagicClassConstantSniff extends Sniff
                 && isset(Collections::objectOperators()[$tokens[$preSubjectPtr]['code']]) === false)
         ) {
             // This is a syntax which is supported on PHP 5.5 and higher.
-            if ($this->supportsBelow('5.4') === true) {
+            if (ScannedCode::shouldRunOnOrBelow('5.4') === true) {
                 $phpcsFile->addError(
                     'The magic class constant ClassName::class was not available in PHP 5.4 or earlier',
                     $stackPtr,

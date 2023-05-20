@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -62,7 +63,7 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsAbove('8.0') === false);
+        return (ScannedCode::shouldRunOnOrAbove('8.0') === false);
     }
 
     /**
@@ -94,7 +95,7 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
         $functionLC   = \strtolower($functionName);
         $functionInfo = $this->targetFunctions[$functionLC];
         foreach ($functionInfo as $offset => $paramInfo) {
-            if ($this->supportsAbove($paramInfo['since']) === false) {
+            if (ScannedCode::shouldRunOnOrAbove($paramInfo['since']) === false) {
                 continue;
             }
 

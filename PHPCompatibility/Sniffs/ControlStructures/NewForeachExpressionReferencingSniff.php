@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 
@@ -53,7 +54,7 @@ class NewForeachExpressionReferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.4') === false) {
             return;
         }
 

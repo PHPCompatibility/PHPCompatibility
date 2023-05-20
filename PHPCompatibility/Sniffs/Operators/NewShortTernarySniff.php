@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\Operators;
@@ -57,7 +58,7 @@ class NewShortTernarySniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.2') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.2') === false) {
             return;
         }
 

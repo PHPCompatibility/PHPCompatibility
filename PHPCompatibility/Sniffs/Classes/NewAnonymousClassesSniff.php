@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 
@@ -52,7 +53,7 @@ class NewAnonymousClassesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
             return;
         }
 

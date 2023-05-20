@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\IniDirectives;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -978,7 +979,7 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         $versionInfo = $this->getVersionInfo($itemArray);
 
         if (empty($versionInfo['not_in_version'])
-            || $this->supportsBelow($versionInfo['not_in_version']) === false
+            || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
             return;
         }

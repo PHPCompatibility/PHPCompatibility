@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\TextStrings;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -100,7 +101,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
                     $valid = $this->isValidUnicodeEscapeSequence($match[1]);
                 }
 
-                if ($this->supportsBelow('5.6') === true && $valid === true) {
+                if (ScannedCode::shouldRunOnOrBelow('5.6') === true && $valid === true) {
                     $phpcsFile->addError(
                         'Unicode codepoint escape sequences are not supported in PHP 5.6 or earlier. Found: %s',
                         $i,
@@ -109,7 +110,7 @@ class NewUnicodeEscapeSequenceSniff extends Sniff
                     );
                 }
 
-                if ($this->supportsAbove('7.0') === true && $valid === false) {
+                if (ScannedCode::shouldRunOnOrAbove('7.0') === true && $valid === false) {
                     $phpcsFile->addError(
                         'Strings containing a literal \u{ followed by an invalid unicode codepoint escape sequence will cause a fatal error in PHP 7.0 and above. Escape the leading backslash to prevent this. Found: %s',
                         $i,

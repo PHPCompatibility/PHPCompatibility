@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Lists;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
@@ -55,7 +56,7 @@ class ForbiddenEmptyListAssignmentSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === false) {
             return;
         }
 

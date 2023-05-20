@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
@@ -55,7 +56,7 @@ class ForbiddenParameterShadowSuperGlobalsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsAbove('5.4') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('5.4') === false) {
             return;
         }
 

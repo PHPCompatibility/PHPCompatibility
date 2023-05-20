@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
@@ -89,7 +90,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
             return;
         }
 
-        if ($this->supportsBelow('7.3') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === true) {
             $phpcsFile->addError(
                 'The strip_tags() function did not accept $allowed_tags to be passed in array format in PHP 7.3 and earlier.',
                 $nextNonEmpty,
@@ -97,7 +98,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
             );
         }
 
-        if ($this->supportsAbove('7.4') === true) {
+        if (ScannedCode::shouldRunOnOrAbove('7.4') === true) {
             if (\strpos($targetParam['clean'], '>') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;

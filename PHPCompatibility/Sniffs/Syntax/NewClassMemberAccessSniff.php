@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -69,7 +70,7 @@ class NewClassMemberAccessSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if ($this->supportsBelow('5.6') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
             return;
         }
 
@@ -79,7 +80,7 @@ class NewClassMemberAccessSniff extends Sniff
         }
 
         $tokens     = $phpcsFile->getTokens();
-        $supports53 = $this->supportsBelow('5.3');
+        $supports53 = ScannedCode::shouldRunOnOrBelow('5.3');
 
         $error     = 'Class member access on object %s was not supported in PHP %s or earlier';
         $data      = ['instantiation', '5.3'];

@@ -15,20 +15,23 @@ use PHPCompatibility\Exceptions\InvalidTestVersionRange;
 use PHPCSUtils\BackCompat\Helper;
 
 /**
- * Helper for working with the PHPCompatibility testVersion configuration variable.
+ * Helper for working with the PHPCompatibility `testVersion` configuration variable.
+ *
+ * The `testVersion` is used to determine whether the code being scanned needs to support
+ * a certain PHP version or not.
  *
  * Used by nearly all sniffs.
  *
  * ---------------------------------------------------------------------------------------------
- * This trait is only intended for internal use by PHPCompatibility and is not part of the public API.
+ * This class is only intended for internal use by PHPCompatibility and is not part of the public API.
  * This also means that it has no promise of backward compatibility. Use at your own risk.
  * ---------------------------------------------------------------------------------------------
  *
  * @since 5.6    Base methods introduced in the generic `Sniff` class.
- * @since 10.0.0 Methods moved from the generic `Sniff` class to a dedicated trait to
+ * @since 10.0.0 Methods moved from the generic `Sniff` class to this dedicated class to
  *               allow for sniffs which don't extends the PHPCompatibility `Sniff` class.
  */
-trait TestVersionTrait
+final class ScannedCode
 {
 
     /**
@@ -53,6 +56,7 @@ trait TestVersionTrait
      * @since 7.1.3  Now allows for partial ranges such as `5.2-`.
      * @since 10.0.0 - Will allow for "testVersion" config in lowercase.
      *               - Will throw a PHP Exception instead of a warning for an invalid testVersion.
+     *               - The method is now static.
      *
      * @return array $arrTestVersions will hold an array containing min/max version
      *               of PHP that we are checking against (see above).  If only a
@@ -62,7 +66,7 @@ trait TestVersionTrait
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersionRange When the range in the testVersion is invalid.
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersion      When the testVersion itself is invalid.
      */
-    private function getTestVersion()
+    private static function getTestVersion()
     {
         static $arrTestVersions = [];
 
@@ -124,6 +128,7 @@ trait TestVersionTrait
      * Should be used when sniffing for *old* PHP features (deprecated/removed).
      *
      * @since 5.6
+     * @since 10.0.0 The method is now static.
      *
      * @param string $phpVersion A PHP version number in 'major.minor' format.
      *
@@ -131,9 +136,9 @@ trait TestVersionTrait
      *              is equal to or higher than the highest supported PHP version
      *              in testVersion. False otherwise.
      */
-    public function supportsAbove($phpVersion)
+    public static function shouldRunOnOrAbove($phpVersion)
     {
-        $testVersion = $this->getTestVersion();
+        $testVersion = self::getTestVersion();
         $testVersion = $testVersion[1];
 
         if (\is_null($testVersion) === true
@@ -153,6 +158,7 @@ trait TestVersionTrait
      * Should be used when sniffing for *new* PHP features.
      *
      * @since 5.6
+     * @since 10.0.0 The method is now static.
      *
      * @param string $phpVersion A PHP version number in 'major.minor' format.
      *
@@ -160,9 +166,9 @@ trait TestVersionTrait
      *              supported PHP version in testVersion.
      *              False otherwise or if no testVersion is provided.
      */
-    public function supportsBelow($phpVersion)
+    public static function shouldRunOnOrBelow($phpVersion)
     {
-        $testVersion = $this->getTestVersion();
+        $testVersion = self::getTestVersion();
         $testVersion = $testVersion[0];
 
         if (\is_null($testVersion) === false

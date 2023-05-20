@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -72,7 +73,7 @@ class NewHTMLEntitiesEncodingDefaultSniff extends AbstractFunctionCallParameterS
      */
     protected function bowOutEarly()
     {
-        return ($this->supportsBelow('5.3') === false || $this->supportsAbove('5.4') === false);
+        return (ScannedCode::shouldRunOnOrBelow('5.3') === false || ScannedCode::shouldRunOnOrAbove('5.4') === false);
     }
 
 
