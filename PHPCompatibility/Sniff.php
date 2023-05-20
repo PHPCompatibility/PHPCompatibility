@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility;
 
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff as PHPCS_Sniff;
 use PHP_CodeSniffer\Util\Tokens;
@@ -222,29 +221,6 @@ abstract class Sniff implements PHPCS_Sniff
         } else {
             return '\\' . $namespace . '\\' . $name;
         }
-    }
-
-
-    /**
-     * Is the class/function/constant name namespaced or global ?
-     *
-     * @since 7.0.3
-     *
-     * @param string $FQName Fully Qualified name of a class, function etc.
-     *                       I.e. should always start with a `\`.
-     *
-     * @return bool True if namespaced, false if global.
-     *
-     * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the name in the passed parameter
-     *                                                      is not fully qualified.
-     */
-    public function isNamespaced($FQName)
-    {
-        if (\strpos($FQName, '\\') !== 0) {
-            throw new RuntimeException('$FQName must be a fully qualified name');
-        }
-
-        return (\strpos(\substr($FQName, 1), '\\') !== false);
     }
 
 
