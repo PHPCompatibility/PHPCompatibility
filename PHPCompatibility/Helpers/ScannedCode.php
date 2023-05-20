@@ -35,6 +35,30 @@ final class ScannedCode
 {
 
     /**
+     * Default testVersion if no valid testVersion was provided or
+     * could be determined based on the provided information.
+     *
+     * @var array
+     */
+    private static $testVersionsDefault = [null, null];
+
+    /**
+     * Test versions applicable for the current PHPCS run.
+     *
+     * @var array Array with two values.
+     *            Index 0 contains the low end supported PHP version.
+     *            Index 1 contains the high end supported PHP version.
+     */
+    private static $testVersions;
+
+    /**
+     * Test version as received from the PHPCS configuration.
+     *
+     * @var string
+     */
+    private static $testVersion;
+
+    /**
      * Get the testVersion configuration variable.
      *
      * The testVersion configuration variable may be in any of the following formats:
@@ -58,66 +82,69 @@ final class ScannedCode
      *               - Will throw a PHP Exception instead of a warning for an invalid testVersion.
      *               - The method is now static.
      *
-     * @return array $arrTestVersions will hold an array containing min/max version
-     *               of PHP that we are checking against (see above).  If only a
-     *               single version number is specified, then this is used as
-     *               both the min and max.
+     * @return array An array containing min/max version of PHP that we are checking
+     *               against (see above). If only a single version number is specified,
+     *               then this is used as both the min and max.
      *
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersionRange When the range in the testVersion is invalid.
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersion      When the testVersion itself is invalid.
      */
     private static function getTestVersion()
     {
-        static $arrTestVersions = [];
+        // Only retrieve the testVersion once from the PHPCS Config as it won't change during a run.
+        if (isset(self::$testVersion) === false || \defined('PHP_CODESNIFFER_IN_TESTS')) {
+            $testVersion = Helper::getConfigData('testVersion');
 
-        $default     = [null, null];
-        $testVersion = Helper::getConfigData('testVersion');
-
-        // Case-sensitivity tolerance.
-        if (empty($testVersion) === true) {
-            $testVersion = Helper::getConfigData('testversion');
-        }
-
-        $testVersion = \trim((string) $testVersion);
-
-        if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
-
-            $arrTestVersions[$testVersion] = $default;
-
-            if (\preg_match('`^\d+\.\d+$`', $testVersion)) {
-                $arrTestVersions[$testVersion] = [$testVersion, $testVersion];
-                return $arrTestVersions[$testVersion];
+            // Case-sensitivity tolerance.
+            if (empty($testVersion) === true) {
+                $testVersion = Helper::getConfigData('testversion');
             }
 
-            if (\preg_match('`^(\d+\.\d+)?\s*-\s*(\d+\.\d+)?$`', $testVersion, $matches)) {
-                if (empty($matches[1]) === false || empty($matches[2]) === false) {
-                    // If no lower-limit is set, we set the min version to 4.0.
-                    // Whilst development focuses on PHP 5 and above, we also accept
-                    // sniffs for PHP 4, so we include that as the minimum.
-                    // (It makes no sense to support PHP 3 as this was effectively a
-                    // different language).
-                    $min = empty($matches[1]) ? '4.0' : $matches[1];
+            self::$testVersion = \trim((string) $testVersion);
+        }
 
-                    // If no upper-limit is set, we set the max version to 99.9.
-                    $max = empty($matches[2]) ? '99.9' : $matches[2];
+        if (empty(self::$testVersion)) {
+            return self::$testVersionsDefault;
+        }
 
-                    if (\version_compare($min, $max, '>')) {
-                        throw InvalidTestVersionRange::create($testVersion);
-                    } else {
-                        $arrTestVersions[$testVersion] = [$min, $max];
-                        return $arrTestVersions[$testVersion];
-                    }
+        if (isset(self::$testVersions) === true && \defined('PHP_CODESNIFFER_IN_TESTS') === false) {
+            return self::$testVersions; // @codeCoverageIgnore
+        }
+
+        /*
+         * Determine the applicable test versions.
+         */
+        self::$testVersions = self::$testVersionsDefault;
+
+        if (\preg_match('`^\d+\.\d+$`', self::$testVersion)) {
+            self::$testVersions = [self::$testVersion, self::$testVersion];
+            return self::$testVersions;
+        }
+
+        if (\preg_match('`^(\d+\.\d+)?\s*-\s*(\d+\.\d+)?$`', self::$testVersion, $matches)) {
+            if (empty($matches[1]) === false || empty($matches[2]) === false) {
+                /*
+                 * If no lower-limit is set, we set the min version to 4.0.
+                 * Whilst development focuses on PHP 5 and above, we also accept
+                 * sniffs for PHP 4, so we include that as the minimum.
+                 * (It makes no sense to support PHP 3 as that was effectively a
+                 * different language).
+                 */
+                $min = empty($matches[1]) ? '4.0' : $matches[1];
+
+                // If no upper-limit is set, we set the max version to 99.9.
+                $max = empty($matches[2]) ? '99.9' : $matches[2];
+
+                if (\version_compare($min, $max, '>')) {
+                    throw InvalidTestVersionRange::create(self::$testVersion);
                 }
+
+                self::$testVersions = [$min, $max];
+                return self::$testVersions;
             }
-
-            throw InvalidTestVersion::create($testVersion);
         }
 
-        if (isset($arrTestVersions[$testVersion])) {
-            return $arrTestVersions[$testVersion];
-        }
-
-        return $default;
+        throw InvalidTestVersion::create(self::$testVersion);
     }
 
 
@@ -138,11 +165,10 @@ final class ScannedCode
      */
     public static function shouldRunOnOrAbove($phpVersion)
     {
-        $testVersion = self::getTestVersion();
-        $testVersion = $testVersion[1];
+        $testVersion = self::getTestVersion()[1];
 
         if (\is_null($testVersion) === true
-            || \version_compare($testVersion, $phpVersion) >= 0
+            || \version_compare($testVersion, $phpVersion, '>=') === true
         ) {
             return true;
         }
@@ -168,11 +194,10 @@ final class ScannedCode
      */
     public static function shouldRunOnOrBelow($phpVersion)
     {
-        $testVersion = self::getTestVersion();
-        $testVersion = $testVersion[0];
+        $testVersion = self::getTestVersion()[0];
 
         if (\is_null($testVersion) === false
-            && \version_compare($testVersion, $phpVersion) <= 0
+            && \version_compare($testVersion, $phpVersion, '<=') === true
         ) {
             return true;
         }
