@@ -110,10 +110,12 @@ class RemovedNamespacedAssertUnitTest extends BaseSniffTest
             [self::TEST_FILE, 18],
             [self::TEST_FILE, 27],
             [self::TEST_FILE, 32],
+            [self::TEST_FILE, 36],
             [self::TEST_FILE_NAMESPACED, 8],
             [self::TEST_FILE_NAMESPACED, 12],
             [self::TEST_FILE_NAMESPACED, 16],
             [self::TEST_FILE_NAMESPACED, 20],
+            [self::TEST_FILE_NAMESPACED, 34],
         ];
     }
 
