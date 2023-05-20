@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Tests\Interfaces;
 
+use PHP_CodeSniffer\Files\LocalFile;
 use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
@@ -175,7 +176,7 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
         $sharedRuleSet = $file->ruleset;
         $sharedConfig  = $file->config;
 
-        $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
+        $forgedLocalFile = new LocalFile(
             \realpath(__DIR__ . '/InternalInterfacesUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
