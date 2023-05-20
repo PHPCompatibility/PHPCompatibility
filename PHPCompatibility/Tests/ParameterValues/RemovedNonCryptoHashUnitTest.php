@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.0.0
  */
-class RemovedNonCryptoHashUnitTest extends BaseSniffTestCase
+final class RemovedNonCryptoHashUnitTest extends BaseSniffTestCase
 {
 
     /**

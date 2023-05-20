@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.3.0
  */
-class NewIDNVariantDefaultUnitTest extends BaseSniffTestCase
+final class NewIDNVariantDefaultUnitTest extends BaseSniffTestCase
 {
 
     /**

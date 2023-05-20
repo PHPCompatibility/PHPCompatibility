@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.5
  */
-class RemovedMbstringModifiersUnitTest extends BaseSniffTestCase
+final class RemovedMbstringModifiersUnitTest extends BaseSniffTestCase
 {
 
     /**

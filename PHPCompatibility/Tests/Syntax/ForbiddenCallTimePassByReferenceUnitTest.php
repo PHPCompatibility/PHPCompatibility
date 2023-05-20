@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 5.5
  */
-class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
+final class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
 {
 
     /**

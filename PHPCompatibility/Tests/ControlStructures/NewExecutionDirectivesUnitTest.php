@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.3
  */
-class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
+final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
 {
 
     /**

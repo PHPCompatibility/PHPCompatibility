@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.0
  */
-class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
+final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
 {
 
     /**

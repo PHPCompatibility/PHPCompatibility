@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.1.4
  */
-class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTestCase
+final class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTestCase
 {
 
     /**

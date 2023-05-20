@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.0
  */
-class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTestCase
+final class ForbiddenEmptyListAssignmentUnitTest extends BaseSniffTestCase
 {
 
     /**

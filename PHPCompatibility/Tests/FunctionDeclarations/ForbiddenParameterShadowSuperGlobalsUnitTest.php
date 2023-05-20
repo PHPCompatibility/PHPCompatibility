@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.3
  */
-class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTestCase
+final class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTestCase
 {
 
     /**

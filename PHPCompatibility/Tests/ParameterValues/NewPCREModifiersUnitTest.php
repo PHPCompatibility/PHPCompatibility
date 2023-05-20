@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 8.2.0
  */
-class NewPCREModifiersUnitTest extends BaseSniffTestCase
+final class NewPCREModifiersUnitTest extends BaseSniffTestCase
 {
 
     /**

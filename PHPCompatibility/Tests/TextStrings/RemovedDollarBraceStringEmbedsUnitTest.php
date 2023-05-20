@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 10.0.0
  */
-class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
+final class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
 {
 
     /**

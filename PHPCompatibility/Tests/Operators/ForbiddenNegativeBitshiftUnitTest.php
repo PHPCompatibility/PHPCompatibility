@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.0
  */
-class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTestCase
+final class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTestCase
 {
 
     /**

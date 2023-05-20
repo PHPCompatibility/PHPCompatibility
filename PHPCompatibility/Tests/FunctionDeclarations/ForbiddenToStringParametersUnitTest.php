@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.2.0
  */
-class ForbiddenToStringParametersUnitTest extends BaseSniffTestCase
+final class ForbiddenToStringParametersUnitTest extends BaseSniffTestCase
 {
 
     /**
