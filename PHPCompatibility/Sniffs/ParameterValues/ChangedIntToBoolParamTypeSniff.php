@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
+final class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

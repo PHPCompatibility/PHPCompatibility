@@ -28,7 +28,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class RemovedSplAutoloadRegisterThrowFalseSniff extends AbstractFunctionCallParameterSniff
+final class RemovedSplAutoloadRegisterThrowFalseSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

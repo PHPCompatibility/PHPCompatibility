@@ -30,7 +30,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * @since 10.0.0
  */
-class NewNestedStaticAccessSniff extends Sniff
+final class NewNestedStaticAccessSniff extends Sniff
 {
 
     /**

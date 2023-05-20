@@ -28,7 +28,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class NewHTMLEntitiesFlagsDefaultSniff extends AbstractFunctionCallParameterSniff
+final class NewHTMLEntitiesFlagsDefaultSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

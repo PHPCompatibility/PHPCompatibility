@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Numbers;
  *
  * @since 10.0.0
  */
-class NewExplicitOctalNotationSniff extends Sniff
+final class NewExplicitOctalNotationSniff extends Sniff
 {
 
     /**

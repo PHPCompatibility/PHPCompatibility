@@ -41,7 +41,7 @@ use PHPCSUtils\Utils\Variables;
  *
  * @since 10.0.0
  */
-class RemovedClassesSniff extends Sniff
+final class RemovedClassesSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
 

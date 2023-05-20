@@ -36,7 +36,7 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * @since 10.0.0
  */
-class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSniff
+final class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

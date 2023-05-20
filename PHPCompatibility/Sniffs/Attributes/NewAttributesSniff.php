@@ -45,7 +45,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * @since 10.0.0
  */
-class NewAttributesSniff extends Sniff
+final class NewAttributesSniff extends Sniff
 {
 
     /**

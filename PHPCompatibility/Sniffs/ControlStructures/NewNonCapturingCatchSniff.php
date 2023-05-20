@@ -25,7 +25,7 @@ use PHPCompatibility\Sniff;
  *
  * @since 10.0.0
  */
-class NewNonCapturingCatchSniff extends Sniff
+final class NewNonCapturingCatchSniff extends Sniff
 {
 
     /**

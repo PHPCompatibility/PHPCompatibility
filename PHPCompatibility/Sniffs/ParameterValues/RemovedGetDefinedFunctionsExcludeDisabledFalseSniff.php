@@ -27,7 +27,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class RemovedGetDefinedFunctionsExcludeDisabledFalseSniff extends AbstractFunctionCallParameterSniff
+final class RemovedGetDefinedFunctionsExcludeDisabledFalseSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

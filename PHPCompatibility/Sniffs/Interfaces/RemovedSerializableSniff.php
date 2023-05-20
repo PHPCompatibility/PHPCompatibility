@@ -42,7 +42,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  *
  * @since 10.0.0
  */
-class RemovedSerializableSniff extends Sniff
+final class RemovedSerializableSniff extends Sniff
 {
 
     /**

@@ -24,7 +24,7 @@ use PHP_CodeSniffer\Util\Tokens;
  *
  * @since 10.0.0
  */
-class NewYieldFromCommentSniff extends Sniff
+final class NewYieldFromCommentSniff extends Sniff
 {
 
     /**

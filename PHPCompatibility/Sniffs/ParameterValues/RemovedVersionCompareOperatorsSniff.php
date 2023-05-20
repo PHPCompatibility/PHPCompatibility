@@ -29,7 +29,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * @since 10.0.0
  */
-class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallParameterSniff
+final class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

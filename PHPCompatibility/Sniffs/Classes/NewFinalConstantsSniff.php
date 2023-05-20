@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\Constants;
  *
  * @since 10.0.0
  */
-class NewFinalConstantsSniff extends Sniff
+final class NewFinalConstantsSniff extends Sniff
 {
 
     /**

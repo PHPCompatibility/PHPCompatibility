@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  *
  * @since 10.0.0
  */
-class NewMagicConstantDereferencingSniff extends Sniff
+final class NewMagicConstantDereferencingSniff extends Sniff
 {
 
     /**

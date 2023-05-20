@@ -46,7 +46,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  *
  * @since 10.0.0
  */
-class RemovedOptionalBeforeRequiredParamSniff extends Sniff
+final class RemovedOptionalBeforeRequiredParamSniff extends Sniff
 {
 
     /**
