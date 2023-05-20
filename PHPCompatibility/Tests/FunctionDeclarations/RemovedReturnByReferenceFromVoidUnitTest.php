@@ -57,6 +57,8 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
             [67],
             [71],
             [75],
+            [84],
+            [93],
         ];
     }
 
@@ -64,16 +66,43 @@ class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
     /**
      * Verify that there are no false positives for valid code.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 50 lines.
         for ($line = 1; $line <= 50; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        $data[] = [81];
+        $data[] = [82];
+        $data[] = [83];
+
+        $data[] = [90];
+        $data[] = [91];
+        $data[] = [92];
+
+        return $data;
     }
 
 

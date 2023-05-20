@@ -69,7 +69,7 @@ class RemovedReturnByReferenceFromVoidSniff extends Sniff
 
         $functionProps = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
 
-        if ($functionProps['return_type'] !== 'void') {
+        if (\strtolower($functionProps['return_type']) !== 'void') {
             // Not a void function.
             return;
         }
