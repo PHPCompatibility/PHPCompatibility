@@ -11,7 +11,7 @@
 namespace PHPCompatibility\Util\Tests\Helpers\TokenGroup;
 
 use PHPCompatibility\Helpers\TokenGroup;
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `isNumber()`, `isPositiveNumber()` and `isNegativeNumber()` utility functions.
@@ -21,7 +21,7 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 8.2.0
  */
-final class IsNumberUnitTest extends CoreMethodTestFrame
+final class IsNumberUnitTest extends UtilityMethodTestCase
 {
 
     /**
