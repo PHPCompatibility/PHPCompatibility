@@ -10,6 +10,8 @@
 
 namespace PHPCompatibility\Helpers;
 
+use PHPCompatibility\Exceptions\InvalidTestVersion;
+use PHPCompatibility\Exceptions\InvalidTestVersionRange;
 use PHPCSUtils\BackCompat\Helper;
 
 /**
@@ -49,14 +51,16 @@ trait TestVersionTrait
      *
      * @since 7.0.0
      * @since 7.1.3  Now allows for partial ranges such as `5.2-`.
-     * @since 10.0.0 Will allow for "testVersion" config in lowercase.
+     * @since 10.0.0 - Will allow for "testVersion" config in lowercase.
+     *               - Will throw a PHP Exception instead of a warning for an invalid testVersion.
      *
      * @return array $arrTestVersions will hold an array containing min/max version
      *               of PHP that we are checking against (see above).  If only a
      *               single version number is specified, then this is used as
      *               both the min and max.
      *
-     * @throws PHP warning If testVersion is invalid.
+     * @throws \PHPCompatibility\Exceptions\InvalidTestVersionRange When the range in the testVersion is invalid.
+     * @throws \PHPCompatibility\Exceptions\InvalidTestVersion      When the testVersion itself is invalid.
      */
     private function getTestVersion()
     {
@@ -94,11 +98,7 @@ trait TestVersionTrait
                     $max = empty($matches[2]) ? '99.9' : $matches[2];
 
                     if (\version_compare($min, $max, '>')) {
-                        \trigger_error(
-                            "Invalid range in testVersion setting: '" . $testVersion . "'",
-                            \E_USER_WARNING
-                        );
-                        return $default;
+                        throw InvalidTestVersionRange::create($testVersion);
                     } else {
                         $arrTestVersions[$testVersion] = [$min, $max];
                         return $arrTestVersions[$testVersion];
@@ -106,11 +106,7 @@ trait TestVersionTrait
                 }
             }
 
-            \trigger_error(
-                "Invalid testVersion setting: '" . $testVersion . "'",
-                \E_USER_WARNING
-            );
-            return $default;
+            throw InvalidTestVersion::create($testVersion);
         }
 
         if (isset($arrTestVersions[$testVersion])) {
