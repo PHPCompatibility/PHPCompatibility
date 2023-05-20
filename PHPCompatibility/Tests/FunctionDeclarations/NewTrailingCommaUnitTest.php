@@ -124,7 +124,8 @@ class NewTrailingCommaUnitTest extends BaseSniffTest
         }
 
         $data[] = [97];
-        $data[] = [101];
+        $data[] = [99];
+        $data[] = [103];
 
         return $data;
     }

@@ -96,6 +96,8 @@ $a = fn($foo, $bar,,) => $bar; // Parse error, but throw an error anyway.
 // Leading comma.
 function Leading(, $foo, $bar) {} // Parse error, but not our concern.
 
+$clo = function ($foo) use {}; // Parse error.
+
 // Live coding.
 // Intentional parse error. This has to be the last test in the file.
 function Unfinished( $foo, $bar,
