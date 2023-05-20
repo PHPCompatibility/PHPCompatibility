@@ -71,11 +71,11 @@ class bar {
     /**
      * This
      * docblock
-     * should
-     * be
+     * should be
      * skipped
      * over.
      */
+    #[SomeAttribute('param', CONSTANT), OtherAttribute]
     function __construct() {
         echo 'I am the real constructor';
     }

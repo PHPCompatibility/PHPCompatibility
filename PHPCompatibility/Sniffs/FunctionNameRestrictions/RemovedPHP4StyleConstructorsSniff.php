@@ -75,7 +75,7 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrAbove('7.0') === false) {
+        if (ScannedCode::shouldRunOnOrAbove('7.0') === false || ScannedCode::shouldRunOnOrBelow('7.4') === false) {
             return;
         }
 
@@ -108,10 +108,16 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
         $newConstructorFound = false;
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG], ($nextFunc + 1), $scopeCloser)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE], ($nextFunc + 1), $scopeCloser)) !== false) {
             // Skip over docblocks.
             if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
                 $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
+            // Skip over attributes.
+            if (isset($tokens[$nextFunc]['attribute_closer'])) {
+                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
                 continue;
             }
 
