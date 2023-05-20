@@ -54,7 +54,7 @@ class LowPHPSniff extends Sniff
      *
      * @var string
      */
-    const MIN_RECOMMENDED_VERSION = '5.4';
+    const MIN_RECOMMENDED_VERSION = '7.2';
 
     /**
      * Keep track of whether this sniff needs to actually run.
