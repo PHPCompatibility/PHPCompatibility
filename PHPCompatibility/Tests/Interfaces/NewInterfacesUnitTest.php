@@ -26,7 +26,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
 {
 
     /**
-     * testNewInterface
+     * Test detection of use of new interfaces.
      *
      * @dataProvider dataNewInterface
      *
@@ -64,21 +64,21 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function dataNewInterface()
     {
         return [
-            ['Reflector', '4.4', [75, 115, 162], '5.0'],
-            ['Traversable', '4.4', [35, 50, 60, 71, 79, 162], '5.0'],
-            ['Countable', '5.0', [3, 17, 41, 151], '5.1'],
-            ['OuterIterator', '5.0', [4, 42, 65, 152], '5.1'],
-            ['RecursiveIterator', '5.0', [5, 43, 65, 152], '5.1'],
-            ['SeekableIterator', '5.0', [6, 17, 28, 44, 161], '5.1'],
-            ['Serializable', '5.0', [7, 29, 45, 55, 70, 118, 124], '5.1'],
-            ['SplObserver', '5.0', [11, 46, 65, 151], '5.1'],
-            ['SplSubject', '5.0', [12, 17, 47, 69, 161], '5.1'],
-            ['JsonSerializable', '5.3', [13, 48, 133, 134, 153], '5.4'],
-            ['SessionHandlerInterface', '5.3', [14, 49, 145, 153], '5.4'],
+            ['Reflector', '4.4', [75, 116, 164], '5.0'],
+            ['Traversable', '4.4', [35, 50, 60, 71, 79, 164], '5.0'],
+            ['Countable', '5.0', [3, 17, 41, 153], '5.1'],
+            ['OuterIterator', '5.0', [4, 42, 65, 154], '5.1'],
+            ['RecursiveIterator', '5.0', [5, 43, 65, 154], '5.1'],
+            ['SeekableIterator', '5.0', [6, 17, 28, 44, 163], '5.1'],
+            ['Serializable', '5.0', [7, 29, 45, 55, 70, 119, 125], '5.1'],
+            ['SplObserver', '5.0', [11, 46, 65, 153], '5.1'],
+            ['SplSubject', '5.0', [12, 17, 47, 69, 163], '5.1'],
+            ['JsonSerializable', '5.3', [13, 48, 134, 135, 155], '5.4'],
+            ['SessionHandlerInterface', '5.3', [14, 49, 147, 155], '5.4'],
             ['DateTimeInterface', '5.4', [36, 51, 61, 80], '5.5'],
-            ['SessionIdInterface', '5.5.0', [89, 116, 144], '5.6', '5.5'],
-            ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 160], '7.0'],
-            ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 140, 160], '7.0'],
+            ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
+            ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162], '7.0'],
+            ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 142, 162], '7.0'],
             ['Stringable', '7.4', [112], '8.0'],
         ];
     }
@@ -113,8 +113,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [9, '__wakeup'],
             [30, '__sleep'],
             [31, '__wakeup'],
-            [119, '__sleep'],
-            [120, '__wakeup'],
+            [120, '__sleep'],
+            [121, '__wakeup'],
         ];
     }
 
@@ -144,8 +144,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function dataNoFalsePositivesUnsupportedMethods()
     {
         return [
-            [126],
             [127],
+            [128],
         ];
     }
 
@@ -166,7 +166,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
 
 
     /**
-     * testNoFalsePositives
+     * Test the sniff doesn't throw false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -199,9 +199,14 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [85],
             [86],
             [108],
-            [137],
-            [149],
-            [158],
+            [115],
+            [138],
+            [141],
+            [151],
+            [160],
+            [168],
+            [172],
+            [177],
         ];
     }
 

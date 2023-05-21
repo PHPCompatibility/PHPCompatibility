@@ -112,6 +112,7 @@ try {
 function StringableTypeHint( Stringable $a ) {}
 
 // Test interfaces extending interfaces.
+interface DoesNotExtend {}
 interface MyReflection extends Reflector {}
 interface MySession extends SessionABC, SessionIdInterface {}
 
@@ -137,6 +138,7 @@ function errorLinePrecisionCheck(
 public Throwable $var; // Ignore, not a property, parse error.
 
 $anon = class() {
+    public $untypedProperty;
     public SessionUpdateTimestampHandlerInterface $property;
 };
 
@@ -161,3 +163,15 @@ class IntersectionTypes {
     public function paramType(SeekableIterator&SplSubject $param) {}
     public function returnType($param) : Reflector&Traversable {}
 }
+
+// Test very invalid type.
+function InvalidType($param): ?\&\SomeType {}
+
+// Test invalid catch.
+try {
+} catch ($e) {}
+
+// Test parse error/live coding.
+// This MUST be the last test in the file!
+try {
+} catch (
