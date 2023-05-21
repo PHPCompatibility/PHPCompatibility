@@ -118,3 +118,34 @@ function notAGeneratorNestedArrowGenerator($a) {
 
     return $arrow1($a); // OK.
 }
+
+// Test for improved code to ignore arrow functions.
+function skipArrowGeneratorA($a) {
+    $arrow = fn($i) => $i && yield $i++;
+    return $arrow; // OK.
+}
+function skipArrowGeneratorB($a) {
+    $arrow = fn($array) => yield $array['key'] ?? yield from $array;
+    return $arrow; // OK.
+}
+
+// More guarding against false positives for nested closed scopes.
+function nestedClassMethodReturn() {
+    $a = new class() {
+        public function doSomething() {
+            return 10; // OK.
+        }
+    };
+
+    yield 20;
+}
+
+function nestedEnumReturn() {
+    enum MyNestedEnum {
+        public function doSomething() {
+            return 10; // OK.
+        }
+    }
+
+    yield 20;
+}
