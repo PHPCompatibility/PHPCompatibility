@@ -182,5 +182,22 @@ interface ThisInterfaceIsNOTInTheList extends ArrayAcces, \Serializable, ThisInt
 // Reset property.
 // @codingStandardsChangeSetting PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces
 
+/*
+ * Safeguard handling of enums implementing Serializable
+ */
+enum DoesNotImplementAnyInterface {}
+enum DoesNotImplementSerializable implements SomeInterface, SomeOtherInterface {}
+
+enum HasSerializable implements Serializable { // Deprecation warning.
+    // These magic methods are not allowed on enums, so ignore them when determining the error.
+    public function __serialize() {
+        return $this->data;
+    }
+    public function __unserialize($data) {
+        $this->data = $data;
+    }
+}
+enum HasSerializableToo: string implements Serializable, ArrayAccess {} // Deprecation warning.
+
 // Must be last test: testing class without scope closer.
 class Something implements Serializable {

@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Interfaces;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
@@ -115,11 +116,7 @@ class RemovedSerializableSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_CLASS,
-            \T_ANON_CLASS,
-            \T_INTERFACE,
-        ];
+        return Collections::ooCanImplement() + [\T_INTERFACE => \T_INTERFACE];
     }
 
     /**
@@ -209,7 +206,7 @@ class RemovedSerializableSniff extends Sniff
         }
 
         if ($class['code'] === \T_CLASS) {
-            // Anon classes cannot be abstract.
+            // Anon classes/enums cannot be abstract.
             $classProps = ObjectDeclarations::getClassProperties($phpcsFile, $stackPtr);
             if ($classProps['is_abstract'] === true) {
                 // We cannot determine compliance for abstract classes.
@@ -217,14 +214,9 @@ class RemovedSerializableSniff extends Sniff
             }
         }
 
-        if (isset($class['scope_opener'], $class['scope_closer']) === false) {
-            // If the scope cannot be determines, there is no way to find method declarations.
-            return;
-        }
-
         $implementedInterfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
         if (empty($implementedInterfaces)) {
-            // Class doesn't implement any interface.
+            // Class/enum doesn't implement any interface.
             return;
         }
 
@@ -232,7 +224,16 @@ class RemovedSerializableSniff extends Sniff
 
         $matchedInterfaces = \array_intersect($implementedInterfaces, $this->interfaceList);
         if (empty($matchedInterfaces) === true) {
-            // Class doesn't implement any of the known Serializable interfaces.
+            // Class/enum doesn't implement any of the known Serializable interfaces.
+            return;
+        }
+
+        if ($class['code'] === \T_ENUM) {
+            // Enums cannot declare the magic __serialize() and __unserialize() methods.
+            $message = 'The Serializable interface is deprecated since PHP 8.1.';
+            $code    = 'DeprecatedOnEnum';
+
+            $phpcsFile->addWarning($message, $stackPtr, $code);
             return;
         }
 
