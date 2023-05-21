@@ -171,6 +171,15 @@ function InvalidType($param): ?\&\SomeType {}
 try {
 } catch ($e) {}
 
+// Test support with PHP 8.0 constructor property promotion.
+class ConstructorProp {
+    public function __construct(
+        protected $property,
+        public Reflector | \ | ParseErrorMissingTypeBetweenUnion $reflProp,
+        private Stringable $stringProp,
+    ) {}
+}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {

@@ -64,7 +64,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
     public function dataNewInterface()
     {
         return [
-            ['Reflector', '4.4', [75, 116, 164], '5.0'],
+            ['Reflector', '4.4', [75, 116, 164, 178], '5.0'],
             ['Traversable', '4.4', [35, 50, 60, 71, 79, 164], '5.0'],
             ['Countable', '5.0', [3, 17, 41, 153], '5.1'],
             ['OuterIterator', '5.0', [4, 42, 65, 154], '5.1'],
@@ -79,7 +79,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
             ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162], '7.0'],
             ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 142, 162], '7.0'],
-            ['Stringable', '7.4', [112], '8.0'],
+            ['Stringable', '7.4', [112, 179], '8.0'],
         ];
     }
 
@@ -206,7 +206,9 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [160],
             [168],
             [172],
+            [175],
             [177],
+            [186],
         ];
     }
 
