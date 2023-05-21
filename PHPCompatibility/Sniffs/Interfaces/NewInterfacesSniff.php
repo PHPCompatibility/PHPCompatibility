@@ -351,7 +351,7 @@ class NewInterfacesSniff extends Sniff
             return;
         }
 
-        $this->checkTypeHint($phpcsFile, $properties['type_token'], $properties['type']);
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 
@@ -381,7 +381,7 @@ class NewInterfacesSniff extends Sniff
                     continue;
                 }
 
-                $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+                $this->checkTypeDeclaration($phpcsFile, $param['type_hint_token'], $param['type_hint']);
             }
         }
 
@@ -393,7 +393,7 @@ class NewInterfacesSniff extends Sniff
             return;
         }
 
-        $this->checkTypeHint($phpcsFile, $properties['return_type_token'], $properties['return_type']);
+        $this->checkTypeDeclaration($phpcsFile, $properties['return_type_token'], $properties['return_type']);
     }
 
 
@@ -409,7 +409,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @return void
      */
-    private function checkTypeHint($phpcsFile, $stackPtr, $typeHint)
+    private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeHint)
     {
         // Strip off potential nullable indication.
         $typeHint = \ltrim($typeHint, '?');
