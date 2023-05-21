@@ -69,6 +69,21 @@ final class GetFQClassNameFromNewTokenUnitTest extends UtilityMethodTestCase
             ['/* test 14 */', '\AnotherTesting\DateTime'],
             ['/* test 15 */', ''],
             ['/* test 16 */', ''],
+            ['/* test 17 */', ''],
         ];
+    }
+
+    /**
+     * Test an empty string is returned when an invalid token is passed.
+     *
+     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromNewToken
+     *
+     * @return void
+     */
+    public function testGetFQClassNameFromNewTokenInvalidToken()
+    {
+        $stackPtr = $this->getTargetToken('/* test 1 */', \T_STRING);
+        $result   = ResolveHelper::GetFQClassNameFromNewToken(self::$phpcsFile, $stackPtr);
+        $this->assertSame('', $result);
     }
 }
