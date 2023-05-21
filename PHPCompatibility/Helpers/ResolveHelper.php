@@ -158,7 +158,7 @@ final class ResolveHelper
             ) {
                 return '';
             }
-            $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
+            $className = ObjectDeclarations::getName($phpcsFile, $classDeclarationPtr);
             return self::getFQName($phpcsFile, $classDeclarationPtr, $className);
         }
 
