@@ -12,6 +12,8 @@ namespace PHPCompatibility\Helpers;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
@@ -72,15 +74,11 @@ final class ResolveHelper
             return '';
         }
 
-        $find = [
-            \T_NS_SEPARATOR,
-            \T_STRING,
-            \T_NAMESPACE,
-            \T_WHITESPACE,
-        ];
+        $find                = Collections::namespacedNameTokens();
+        $find[\T_WHITESPACE] = \T_WHITESPACE;
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
-        $className = $phpcsFile->getTokensAsString($start, ($end - $start));
+        $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($end - 1));
         $className = \trim($className);
 
         return self::getFQName($phpcsFile, $stackPtr, $className);
