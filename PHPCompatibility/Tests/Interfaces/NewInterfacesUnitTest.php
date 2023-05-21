@@ -77,7 +77,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
             ['SessionHandlerInterface', '5.3', [14, 49, 147, 155], '5.4'],
             ['DateTimeInterface', '5.4', [36, 51, 61, 80], '5.5'],
             ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
-            ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162], '7.0'],
+            ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162, 186], '7.0'],
             ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 142, 162], '7.0'],
             ['Stringable', '7.4', [112, 179], '8.0'],
         ];
@@ -208,7 +208,8 @@ class NewInterfacesUnitTest extends BaseSniffTest
             [172],
             [175],
             [177],
-            [186],
+            [185],
+            [191],
         ];
     }
 

@@ -180,6 +180,11 @@ class ConstructorProp {
     ) {}
 }
 
+// Test support with PHP 8.0 non-capturing catch.
+try {
+} catch (SomeException) {}
+} catch (MyException | Throwable | AnotherException) {}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
