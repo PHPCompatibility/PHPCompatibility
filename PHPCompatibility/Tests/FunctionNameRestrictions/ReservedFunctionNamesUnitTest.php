@@ -87,6 +87,13 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
 
             [160, 'function'],
             [161, 'function'],
+
+            [168, 'function'],
+
+            [198, 'function'],
+
+            [207, 'method'],
+            [208, 'method'],
         ];
     }
 
@@ -172,6 +179,18 @@ class ReservedFunctionNamesUnitTest extends BaseSniffTest
 
             [156],
             [157],
+
+            [179],
+
+            [188],
+            [195],
+
+            [203],
+            [204],
+            [205],
+
+            // Live coding/parse error test.
+            [214],
         ];
     }
 

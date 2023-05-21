@@ -159,3 +159,55 @@ class Magic_Test_PHP74 {
 
 function __serialize() {} // Error.
 function __unserialize() {} // Error.
+
+/**
+ * Function with docblock, but no deprecated tag.
+ *
+ * @return bool
+ */
+function __notADeprecatedFunction() {} // Error.
+
+// Improve comment tolerance in deprecated function detection.
+class DeprecatedWithComments {
+    /**
+     * Function description.
+     *
+     * @deprecated 2.3.4
+     */
+    public /*comment*/
+    static // phpcs:ignore Stnd.Cat.Sniff -- for reasons.
+    function __deprecatedMethod() {}
+}
+
+// Handle PHP 8.0+ attributes correctly when trying to find a docblock.
+
+/**
+ * @deprecated 1.2.3
+ */
+#[SomeAttribute]
+function __deprecatedFunctionWithSingleAttribute() {} // Ignore.
+
+/**
+ * @deprecated 1.2.3
+ */
+#[SomeAttribute]
+#[AnotherAttribute]
+function __deprecatedFunctionWithMultipleAttributes() {} // Ignore.
+
+#[SomeAttribute]
+function __functionWithAttributeButNoDocblock() {} // Error.
+
+// Verify handling of methods in PHP 8.1+ enums.
+// Enums only support the __call(), __callStatic() and __invoke() magic methods.
+enum LimitedMagic {
+    function __call() {} // OK.
+    function __callStatic() {} // OK.
+    function __invoke() {} // OK.
+
+    function __autoload() {} // Error.
+    function __myFunction() {} // Error.
+}
+
+// Live coding/parse error.
+// This has to be the last test in the file.
+function

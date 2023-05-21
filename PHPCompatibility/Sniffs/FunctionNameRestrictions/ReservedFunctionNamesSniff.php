@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -79,10 +78,10 @@ class ReservedFunctionNamesSniff implements Sniff
             return;
         }
 
-        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens());
+        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
 
         /*
-         * Check functions declared in the global namespace.
+         * Check functions declared in the global namespace or in a namespace.
          */
         if ($ooPtr === false) {
             if (FunctionDeclarations::isMagicFunctionName($functionName) === true) {
@@ -138,10 +137,27 @@ class ReservedFunctionNamesSniff implements Sniff
     private function isFunctionDeprecated(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $find   = Tokens::$methodPrefixes;
-        $find[] = \T_WHITESPACE;
 
-        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+        $ignore                = Tokens::$methodPrefixes;
+        $ignore               += Tokens::$phpcsCommentTokens;
+        $ignore[\T_WHITESPACE] = \T_WHITESPACE;
+        $ignore[\T_COMMENT]    = \T_COMMENT;
+
+        for ($commentEnd = ($stackPtr - 1); $commentEnd >= 0; $commentEnd--) {
+            if (isset($ignore[$tokens[$commentEnd]['code']]) === true) {
+                continue;
+            }
+
+            if ($tokens[$commentEnd]['code'] === \T_ATTRIBUTE_END
+                && isset($tokens[$commentEnd]['attribute_opener']) === true
+            ) {
+                $commentEnd = $tokens[$commentEnd]['attribute_opener'];
+                continue;
+            }
+
+            break;
+        }
+
         if ($tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
             // Function doesn't have a doc comment or is using the wrong type of comment.
             return false;
