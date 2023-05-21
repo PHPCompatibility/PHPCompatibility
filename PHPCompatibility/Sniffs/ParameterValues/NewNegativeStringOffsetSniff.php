@@ -112,7 +112,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
                 continue;
             }
 
-            if (TokenGroup::isNegativeNumber($phpcsFile, $targetParam['start'], $targetParam['end'], ScannedCode::shouldRunOnOrBelow('5.6')) === false) {
+            if (TokenGroup::isNegativeNumber($phpcsFile, $targetParam['start'], $targetParam['end']) === false) {
                 continue;
             }
 

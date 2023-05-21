@@ -98,7 +98,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
             --$end;
         }
 
-        if (TokenGroup::isNegativeNumber($phpcsFile, $start, $end, ScannedCode::shouldRunOnOrBelow('5.6'), true) !== true) {
+        if (TokenGroup::isNegativeNumber($phpcsFile, $start, $end, true) !== true) {
             // Not a negative number or undetermined.
             return;
         }

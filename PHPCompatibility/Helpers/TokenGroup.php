@@ -12,6 +12,7 @@ namespace PHPCompatibility\Helpers;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -38,27 +39,22 @@ final class TokenGroup
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $start        Start of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param int                         $end          End of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param bool                        $supportsPHP5 Whether the `testVersion` set indicated that PHP < 7.0
-     *                                                  needs to be supported.
-     *                                                  This is used to determine how to handle hexidecimal
-     *                                                  numeric strings, which were supported in PHP 5.x,
-     *                                                  but no longer supported in PHP 7.0+.
-     * @param bool                        $allowFloats  Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return bool True if PHP would evaluate the snippet as a positive number.
      *              False if not or if it could not be reliably determined
      *              (variable or calculations and such).
      */
-    public static function isPositiveNumber(File $phpcsFile, $start, $end, $supportsPHP5, $allowFloats = false)
+    public static function isPositiveNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $number = self::isNumber($phpcsFile, $start, $end, $supportsPHP5, $allowFloats);
+        $number = self::isNumber($phpcsFile, $start, $end, $allowFloats);
 
         if ($number === false) {
             return false;
@@ -78,27 +74,22 @@ final class TokenGroup
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $start        Start of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param int                         $end          End of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param bool                        $supportsPHP5 Whether the `testVersion` set indicated that PHP < 7.0
-     *                                                  needs to be supported.
-     *                                                  This is used to determine how to handle hexidecimal
-     *                                                  numeric strings, which were supported in PHP 5.x,
-     *                                                  but no longer supported in PHP 7.0+.
-     * @param bool                        $allowFloats  Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return bool True if PHP would evaluate the snippet as a negative number.
      *              False if not or if it could not be reliably determined
      *              (variable or calculations and such).
      */
-    public static function isNegativeNumber(File $phpcsFile, $start, $end, $supportsPHP5, $allowFloats = false)
+    public static function isNegativeNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $number = self::isNumber($phpcsFile, $start, $end, $supportsPHP5, $allowFloats);
+        $number = self::isNumber($phpcsFile, $start, $end, $allowFloats);
 
         if ($number === false) {
             return false;
@@ -121,19 +112,14 @@ final class TokenGroup
      *
      * @since 8.2.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-     * @param int                         $start        Start of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param int                         $end          End of the snippet (inclusive), i.e. this
-     *                                                  token will be examined as part of the
-     *                                                  snippet.
-     * @param bool                        $supportsPHP5 Whether the `testVersion` set indicated that PHP < 7.0
-     *                                                  needs to be supported.
-     *                                                  This is used to determine how to handle hexidecimal
-     *                                                  numeric strings, which were supported in PHP 5.x,
-     *                                                  but no longer supported in PHP 7.0+.
-     * @param bool                        $allowFloats  Whether to only consider integers, or also floats.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file being scanned.
+     * @param int                         $start       Start of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param int                         $end         End of the snippet (inclusive), i.e. this
+     *                                                 token will be examined as part of the
+     *                                                 snippet.
+     * @param bool                        $allowFloats Whether to only consider integers, or also floats.
      *
      * @return int|float|bool The number found if PHP would evaluate the snippet as a number.
      *                        The return type will be int if $allowFloats is false, if
@@ -142,7 +128,7 @@ final class TokenGroup
      *                        number or if it could not be reliably determined
      *                        (variable or calculations and such).
      */
-    public static function isNumber(File $phpcsFile, $start, $end, $supportsPHP5, $allowFloats = false)
+    public static function isNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
         $stringTokens = Tokens::$heredocTokens + Tokens::$stringTokens;
 
@@ -260,7 +246,7 @@ final class TokenGroup
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.
             if ($intString === 1 && \trim($intMatch[0]) === '0'
                 && \preg_match('`^\s*(0x[A-Fa-f0-9]+)`', $stringContent, $hexNumberString) === 1
-                && $supportsPHP5 === true
+                && ScannedCode::shouldRunOnOrBelow('5.6') === true
             ) {
                 // The filter extension still allows for hex numeric strings in PHP 7, so
                 // use that to get the numeric value if possible.
