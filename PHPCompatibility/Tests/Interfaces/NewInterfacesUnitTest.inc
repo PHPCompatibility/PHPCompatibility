@@ -112,6 +112,7 @@ try {
 function StringableTypeHint( Stringable $a ) {}
 
 // Test interfaces extending interfaces.
+interface DoesNotExtend {}
 interface MyReflection extends Reflector {}
 interface MySession extends SessionABC, SessionIdInterface {}
 
@@ -137,6 +138,7 @@ function errorLinePrecisionCheck(
 public Throwable $var; // Ignore, not a property, parse error.
 
 $anon = class() {
+    public $untypedProperty;
     public SessionUpdateTimestampHandlerInterface $property;
 };
 
@@ -161,3 +163,37 @@ class IntersectionTypes {
     public function paramType(SeekableIterator&SplSubject $param) {}
     public function returnType($param) : Reflector&Traversable {}
 }
+
+// Test very invalid type.
+function InvalidType($param): ?\&\SomeType {}
+
+// Test invalid catch.
+try {
+} catch ($e) {}
+
+// Test support with PHP 8.0 constructor property promotion.
+class ConstructorProp {
+    public function __construct(
+        protected $property,
+        public Reflector | \ | ParseErrorMissingTypeBetweenUnion $reflProp,
+        private Stringable $stringProp,
+    ) {}
+}
+
+// Test support with PHP 8.0 non-capturing catch.
+try {
+} catch (SomeException) {}
+} catch (MyException | Throwable | AnotherException) {}
+
+// Test support for PHP 8.1 enums implementing interfaces.
+enum NoImplements {}
+enum MyPlainEnum implements JsonSerializable {}
+enum MyBackedEnum: string implements NotATarget, Serializable, ArrayAccess {
+    public function __sleep();
+    public function __wakeup();
+}
+
+// Test parse error/live coding.
+// This MUST be the last test in the file!
+try {
+} catch (

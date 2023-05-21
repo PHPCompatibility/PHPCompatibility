@@ -20,6 +20,7 @@ use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -156,13 +157,12 @@ class NewInterfacesSniff extends Sniff
         $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
         $targets = [
-            \T_CLASS,
-            \T_ANON_CLASS,
             \T_INTERFACE,
             \T_VARIABLE,
             \T_CATCH,
         ];
 
+        $targets += Collections::ooCanImplement();
         $targets += Collections::functionDeclarationTokens();
 
         return $targets;
@@ -185,11 +185,6 @@ class NewInterfacesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
-            case \T_CLASS:
-            case \T_ANON_CLASS:
-                $this->processClassToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_INTERFACE:
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
                 break;
@@ -203,6 +198,10 @@ class NewInterfacesSniff extends Sniff
                 break;
         }
 
+        if (isset(Collections::ooCanImplement()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processOOToken($phpcsFile, $stackPtr);
+        }
+
         if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
             $this->processFunctionToken($phpcsFile, $stackPtr);
         }
@@ -212,10 +211,11 @@ class NewInterfacesSniff extends Sniff
     /**
      * Processes this test for when a class token is encountered.
      *
-     * - Detect classes implementing the new interfaces.
-     * - Detect classes implementing the new interfaces with unsupported functions.
+     * - Detect classes and enums implementing the new interfaces.
+     * - Detect classes and enums implementing the new interfaces with unsupported functions.
      *
-     * @since 7.1.4 Split off from the `process()` method.
+     * @since 7.1.4  Split off from the `process()` method.
+     * @since 10.0.0 Renamed from `processClassToken()` to `processOOToken()`.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of the current token in
@@ -223,7 +223,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @return void
      */
-    private function processClassToken(File $phpcsFile, $stackPtr)
+    private function processOOToken(File $phpcsFile, $stackPtr)
     {
         $interfaces = ObjectDeclarations::findImplementedInterfaceNames($phpcsFile, $stackPtr);
 
@@ -340,18 +340,16 @@ class NewInterfacesSniff extends Sniff
      */
     private function processVariableToken(File $phpcsFile, $stackPtr)
     {
-        try {
-            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Not a class property.
+        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
             return;
         }
 
+        $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
         if ($properties['type'] === '') {
             return;
         }
 
-        $this->checkTypeHint($phpcsFile, $properties['type_token'], $properties['type']);
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 
@@ -381,7 +379,7 @@ class NewInterfacesSniff extends Sniff
                     continue;
                 }
 
-                $this->checkTypeHint($phpcsFile, $param['type_hint_token'], $param['type_hint']);
+                $this->checkTypeDeclaration($phpcsFile, $param['type_hint_token'], $param['type_hint']);
             }
         }
 
@@ -393,7 +391,7 @@ class NewInterfacesSniff extends Sniff
             return;
         }
 
-        $this->checkTypeHint($phpcsFile, $properties['return_type_token'], $properties['return_type']);
+        $this->checkTypeDeclaration($phpcsFile, $properties['return_type_token'], $properties['return_type']);
     }
 
 
@@ -409,7 +407,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @return void
      */
-    private function checkTypeHint($phpcsFile, $stackPtr, $typeHint)
+    private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeHint)
     {
         // Strip off potential nullable indication.
         $typeHint = \ltrim($typeHint, '?');
