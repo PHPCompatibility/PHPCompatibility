@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\LanguageConstructs;
 
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 
@@ -79,7 +80,7 @@ class NewEmptyNonVariableSniff extends Sniff
             $nestingLevel = \count($tokens[$open + 1]['nested_parenthesis']);
         }
 
-        if ($this->isVariable($phpcsFile, ($open + 1), $close, $nestingLevel) === true) {
+        if (TokenGroup::isVariable($phpcsFile, ($open + 1), $close, $nestingLevel) === true) {
             return;
         }
 

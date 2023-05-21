@@ -346,4 +346,96 @@ final class TokenGroup
 
         return false;
     }
+
+    /**
+     * Determine whether the tokens between $start and $end could together represent a variable.
+     *
+     * @since 9.0.0
+     * @since 10.0.0 This method is now static.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile          The file being scanned.
+     * @param int                         $start              Starting point stack pointer. Inclusive.
+     *                                                        I.e. this token should be taken into
+     *                                                        account.
+     * @param int                         $end                End point stack pointer. Exclusive.
+     *                                                        I.e. this token should not be taken
+     *                                                        into account.
+     * @param int                         $targetNestingLevel The nesting level the variable should be at.
+     *
+     * @return bool
+     */
+    public static function isVariable(File $phpcsFile, $start, $end, $targetNestingLevel)
+    {
+        static $disallowedTokens, $bracketTokens;
+
+        // Create the token arrays only once.
+        if (isset($disallowedTokens, $bracketTokens) === false) {
+            $disallowedTokens  = [
+                \T_OPEN_PARENTHESIS => \T_OPEN_PARENTHESIS,
+                \T_STRING_CONCAT    => \T_STRING_CONCAT,
+            ];
+            $disallowedTokens += Tokens::$assignmentTokens;
+            $disallowedTokens += Tokens::$equalityTokens;
+            $disallowedTokens += Tokens::$comparisonTokens;
+            $disallowedTokens += Tokens::$operators;
+            $disallowedTokens += Tokens::$booleanOperators;
+            $disallowedTokens += Tokens::$castTokens;
+
+            /*
+             * List of brackets which can be part of a variable variable.
+             *
+             * Key is the open bracket token, value the close bracket token.
+             */
+            $bracketTokens = [
+                \T_OPEN_CURLY_BRACKET  => \T_CLOSE_CURLY_BRACKET,
+                \T_OPEN_SQUARE_BRACKET => \T_CLOSE_SQUARE_BRACKET,
+            ];
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        // If no variable at all was found, then it's definitely a no-no.
+        $hasVariable = $phpcsFile->findNext(\T_VARIABLE, $start, $end);
+        if ($hasVariable === false) {
+            return false;
+        }
+
+        // Check if the variable found is at the right level. Deeper levels are always an error.
+        if (isset($tokens[$hasVariable]['nested_parenthesis'])
+            && \count($tokens[$hasVariable]['nested_parenthesis']) !== $targetNestingLevel
+        ) {
+                return false;
+        }
+
+        // Ok, so the first variable is at the right level, now are there any
+        // disallowed tokens within the empty() ?
+        $hasBadToken = $phpcsFile->findNext($disallowedTokens, $start, $end);
+        if ($hasBadToken === false) {
+            return true;
+        }
+
+        // If there are also bracket tokens, the disallowed token might be part of a variable
+        // variable, but if there are no bracket tokens, we know we have an error.
+        $hasBrackets = $phpcsFile->findNext($bracketTokens, $start, $end);
+        if ($hasBrackets === false) {
+            return false;
+        }
+
+        // Ok, we have both a disallowed token as well as brackets, so we need to walk
+        // the tokens of the variable variable.
+        for ($i = $start; $i < $end; $i++) {
+            // If this is a bracket token, skip to the end of the bracketed expression.
+            if (isset($bracketTokens[$tokens[$i]['code']], $tokens[$i]['bracket_closer'])) {
+                $i = $tokens[$i]['bracket_closer'];
+                continue;
+            }
+
+            // If it's a disallowed token, not within brackets, we have an error.
+            if (isset($disallowedTokens[$tokens[$i]['code']])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

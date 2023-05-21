@@ -19,7 +19,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @group languageConstructs
  *
  * @covers \PHPCompatibility\Sniffs\LanguageConstructs\NewEmptyNonVariableSniff
- * @covers \PHPCompatibility\Sniff::isVariable
+ * @covers \PHPCompatibility\Helpers\TokenGroup::isVariable
  *
  * @since 7.0.4
  */
