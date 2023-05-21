@@ -105,19 +105,16 @@ final class ResolveHelper
     {
         $tokens = $phpcsFile->getTokens();
 
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
-            return '';
-        }
-
-        if ($tokens[$stackPtr]['code'] !== \T_CLASS
-            && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS
+        // Check for the existence of the token and that it's one of the accepted tokens.
+        if (isset($tokens[$stackPtr]) === false
+            || ($tokens[$stackPtr]['code'] !== \T_CLASS
+            && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS)
         ) {
             return '';
         }
 
         $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $stackPtr);
-        if (empty($extends) || \is_string($extends) === false) {
+        if (empty($extends)) {
             return '';
         }
 
