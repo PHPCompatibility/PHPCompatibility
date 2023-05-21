@@ -276,4 +276,74 @@ final class TokenGroup
 
         return $content;
     }
+
+    /**
+     * Determine whether the tokens between $start and $end together form a numberic calculation
+     * as recognized by PHP.
+     *
+     * The outcome of this function is reliable for `true`, `false` should be regarded as "undetermined".
+     *
+     * Mainly intended for examining variable assignments, function call parameters, array values
+     * where the start and end of the snippet to examine is very clear.
+     *
+     * @since 9.0.0
+     * @since 10.0.0 This method is now static.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $start     Start of the snippet (inclusive), i.e. this
+     *                                               token will be examined as part of the
+     *                                               snippet.
+     * @param int                         $end       End of the snippet (inclusive), i.e. this
+     *                                               token will be examined as part of the
+     *                                               snippet.
+     *
+     * @return bool
+     */
+    public static function isNumericCalculation(File $phpcsFile, $start, $end)
+    {
+        $arithmeticTokens = Tokens::$arithmeticTokens;
+
+        $skipTokens   = Tokens::$emptyTokens;
+        $skipTokens[] = \T_MINUS;
+        $skipTokens[] = \T_PLUS;
+
+        // Find the first arithmetic operator, but skip past +/- signs before numbers.
+        $nextNonEmpty = ($start - 1);
+        do {
+            $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
+            $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+        } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
+
+        if ($arithmeticOperator === false) {
+            return false;
+        }
+
+        $tokens      = $phpcsFile->getTokens();
+        $subsetStart = $start;
+        $subsetEnd   = ($arithmeticOperator - 1);
+
+        while (self::isNumber($phpcsFile, $subsetStart, $subsetEnd, true) !== false
+            && isset($tokens[($arithmeticOperator + 1)]) === true
+        ) {
+            $subsetStart  = ($arithmeticOperator + 1);
+            $nextNonEmpty = $arithmeticOperator;
+            do {
+                $nextNonEmpty       = $phpcsFile->findNext($skipTokens, ($nextNonEmpty + 1), ($end + 1), true);
+                $arithmeticOperator = $phpcsFile->findNext($arithmeticTokens, ($nextNonEmpty + 1), ($end + 1));
+            } while ($nextNonEmpty !== false && $arithmeticOperator !== false && $nextNonEmpty === $arithmeticOperator);
+
+            if ($arithmeticOperator === false) {
+                // Last calculation operator already reached.
+                if (self::isNumber($phpcsFile, $subsetStart, $end, true) !== false) {
+                    return true;
+                }
+
+                return false;
+            }
+
+            $subsetEnd = ($arithmeticOperator - 1);
+        }
+
+        return false;
+    }
 }

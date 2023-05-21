@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCTokens;
@@ -115,7 +116,7 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
             return;
         }
 
-        if ($this->isNumericCalculation($phpcsFile, $targetParam['start'], $targetParam['end']) === true) {
+        if (TokenGroup::isNumericCalculation($phpcsFile, $targetParam['start'], $targetParam['end']) === true) {
             return;
         }
 

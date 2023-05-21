@@ -21,6 +21,9 @@ $a = 'not a numeric string' . 'nor this';
 /* test A5 */
 $a = 10 << 2;
 
+/* test A6 */
+$a = 10 * $a;
+
 
 /*
  * The below should be recognized as numeric calculations.
