@@ -129,9 +129,9 @@ class SkipOverDocblocks implements Serializable, ArrayAccess{ // Deprecation war
      * docblock
      * should
      * be
-     * skipped
-     * over.
+     * skipped over.
      */
+    #[AttributeWhichCouldBeLong, ShouldBeSkippedOver( 10, self::CONST_VALUE)]
     public function unserialize( $data) {}
 }
 

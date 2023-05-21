@@ -354,12 +354,20 @@ class RemovedSerializableSniff extends Sniff
         $foundMagicSerialize   = false;
         $foundMagicUnserialize = false;
 
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG], ($nextFunc + 1), $scopeCloser)) !== false) {
+        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE], ($nextFunc + 1), $scopeCloser)) !== false) {
             // Skip over docblocks.
             if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG
                 && isset($tokens[$nextFunc]['comment_closer'])
             ) {
                 $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                continue;
+            }
+
+            // Skip over attributes.
+            if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
+                && isset($tokens[$nextFunc]['attribute_closer'])
+            ) {
+                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
                 continue;
             }
 
