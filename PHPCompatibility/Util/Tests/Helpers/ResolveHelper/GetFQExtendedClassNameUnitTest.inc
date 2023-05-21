@@ -49,3 +49,6 @@ class MyTestP extends \FQNS\DateTime {}
 $anon = new class extends \SomeClass {};
 /* test 17 */
 $anon = new class extends SomeClass {};
+
+/* test 18 */
+interface Foo extends ArrayAccess, Iterable {}
