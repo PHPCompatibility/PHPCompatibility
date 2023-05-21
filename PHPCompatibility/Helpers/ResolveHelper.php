@@ -93,7 +93,8 @@ final class ResolveHelper
      * the class name could not be reliably inferred.
      *
      * @since 7.0.3
-     * @since 10.0.0 This method is now static.
+     * @since 10.0.0 - This method is now static.
+     *               - The method no longer accepts interface tokens.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of a T_CLASS token.
@@ -111,7 +112,6 @@ final class ResolveHelper
 
         if ($tokens[$stackPtr]['code'] !== \T_CLASS
             && $tokens[$stackPtr]['code'] !== \T_ANON_CLASS
-            && $tokens[$stackPtr]['code'] !== \T_INTERFACE
         ) {
             return '';
         }
