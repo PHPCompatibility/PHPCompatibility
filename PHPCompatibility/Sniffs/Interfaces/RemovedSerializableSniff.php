@@ -379,7 +379,8 @@ class RemovedSerializableSniff extends Sniff
 
             $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
             if (empty($funcName) || \is_string($funcName) === false) {
-                $nextFunc = $functionScopeCloser;
+                // Shouldn't be possible, but just in case.
+                $nextFunc = $functionScopeCloser; // @codeCoverageIgnore
                 continue;
             }
 

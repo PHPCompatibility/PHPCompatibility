@@ -176,6 +176,9 @@ $anon = new class() implements \ThisInterfaceIsInTheList {
     public function __unserialize($data) {}
 };
 
+interface DoesNotExtend {}
+interface ThisInterfaceIsNOTInTheList extends ArrayAcces, \Serializable, ThisInterfaceisinTheList {} // Missing interface warning (plural found).
+
 // Reset property.
 // @codingStandardsChangeSetting PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces
 

@@ -94,7 +94,8 @@ class RemovedSerializableUnitTest extends BaseSniffTest
         }
 
         $data[] = [172];
-        $data[] = [183];
+        $data[] = [179];
+        $data[] = [186];
 
         return $data;
     }
@@ -227,6 +228,7 @@ class RemovedSerializableUnitTest extends BaseSniffTest
             [143],
             [145],
             [150],
+            [180],
         ];
     }
 
