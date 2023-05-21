@@ -8,9 +8,10 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\ResolveHelper;
 
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCompatibility\Helpers\ResolveHelper;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `getFQClassNameFromNewToken()` utility function.
@@ -20,15 +21,15 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 7.0.3
  */
-class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
+final class GetFQClassNameFromNewTokenUnitTest extends UtilityMethodTestCase
 {
 
     /**
-     * testGetFQClassNameFromNewToken
+     * Test retrieving a fully qualified class name based on a T_NEW token.
      *
      * @dataProvider dataGetFQClassNameFromNewToken
      *
-     * @covers \PHPCompatibility\Sniff::getFQClassNameFromNewToken
+     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromNewToken
      *
      * @param string $commentString The comment which prefaces the T_NEW token in the test file.
      * @param string $expected      The expected fully qualified class name.
@@ -38,12 +39,12 @@ class GetFQClassNameFromNewTokenUnitTest extends CoreMethodTestFrame
     public function testGetFQClassNameFromNewToken($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, \T_NEW);
-        $result   = self::$helperClass->getFQClassNameFromNewToken(self::$phpcsFile, $stackPtr);
+        $result   = ResolveHelper::getFQClassNameFromNewToken(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
     /**
-     * dataGetFQClassNameFromNewToken
+     * Data provider.
      *
      * @see testGetFQClassNameFromNewToken()
      *

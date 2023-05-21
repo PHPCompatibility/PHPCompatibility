@@ -8,9 +8,10 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\ResolveHelper;
 
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCompatibility\Helpers\ResolveHelper;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `getFQExtendedClassName()` utility function.
@@ -20,15 +21,15 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 7.0.3
  */
-class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
+final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
 {
 
     /**
-     * testGetFQExtendedClassName
+     * Test retrieving a fully qualified class name for the class being extended.
      *
      * @dataProvider dataGetFQExtendedClassName
      *
-     * @covers \PHPCompatibility\Sniff::getFQExtendedClassName
+     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQExtendedClassName
      *
      * @param string $commentString The comment which prefaces the T_CLASS token in the test file.
      * @param string $expected      The expected fully qualified class name.
@@ -38,12 +39,12 @@ class GetFQExtendedClassNameUnitTest extends CoreMethodTestFrame
     public function testGetFQExtendedClassName($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, [\T_CLASS, \T_INTERFACE]);
-        $result   = self::$helperClass->getFQExtendedClassName(self::$phpcsFile, $stackPtr);
+        $result   = ResolveHelper::getFQExtendedClassName(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
     /**
-     * dataGetFQExtendedClassName
+     * Data provider.
      *
      * @see testGetFQExtendedClassName()
      *

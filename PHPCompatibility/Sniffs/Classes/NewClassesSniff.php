@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
@@ -1112,13 +1113,13 @@ class NewClassesSniff extends Sniff
         $FQClassName = '';
 
         if ($tokens[$stackPtr]['code'] === \T_NEW) {
-            $FQClassName = $this->getFQClassNameFromNewToken($phpcsFile, $stackPtr);
+            $FQClassName = ResolveHelper::getFQClassNameFromNewToken($phpcsFile, $stackPtr);
 
         } elseif ($tokens[$stackPtr]['code'] === \T_CLASS || $tokens[$stackPtr]['code'] === \T_ANON_CLASS) {
-            $FQClassName = $this->getFQExtendedClassName($phpcsFile, $stackPtr);
+            $FQClassName = ResolveHelper::getFQExtendedClassName($phpcsFile, $stackPtr);
 
         } elseif ($tokens[$stackPtr]['code'] === \T_DOUBLE_COLON) {
-            $FQClassName = $this->getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
+            $FQClassName = ResolveHelper::getFQClassNameFromDoubleColonToken($phpcsFile, $stackPtr);
         }
 
         if ($FQClassName === '') {
