@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
@@ -318,7 +319,7 @@ class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $tokens       = $phpcsFile->getTokens();
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
-        if ($this->isUseOfGlobalConstant($phpcsFile, $stackPtr) === false
+        if (MiscHelper::isUseOfGlobalConstant($phpcsFile, $stackPtr) === false
             && $tokens[$prevNonEmpty]['code'] !== \T_DOUBLE_COLON // Class constant access.
         ) {
             return [];

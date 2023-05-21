@@ -8,9 +8,10 @@
  * @link      https://github.com/PHPCompatibility/PHPCompatibility
  */
 
-namespace PHPCompatibility\Util\Tests\Core;
+namespace PHPCompatibility\Util\Tests\Helpers\MiscHelper;
 
-use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
+use PHPCompatibility\Helpers\MiscHelper;
+use PHPCSUtils\TestUtils\UtilityMethodTestCase;
 
 /**
  * Tests for the `isUseOfGlobalConstant()` utility function.
@@ -20,15 +21,15 @@ use PHPCompatibility\Util\Tests\CoreMethodTestFrame;
  *
  * @since 8.1.0
  */
-class IsUseOfGlobalConstantUnitTest extends CoreMethodTestFrame
+final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
 {
 
     /**
-     * testIsUseOfGlobalConstant
+     * Test whether detection of whether a T_STRING is a global constant works correctly.
      *
      * @dataProvider dataIsUseOfGlobalConstant
      *
-     * @covers \PHPCompatibility\Sniff::isUseOfGlobalConstant
+     * @covers \PHPCompatibility\Helpers\MiscHelper::isUseOfGlobalConstant
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
@@ -38,12 +39,12 @@ class IsUseOfGlobalConstantUnitTest extends CoreMethodTestFrame
     public function testIsUseOfGlobalConstant($commentString, $expected)
     {
         $stackPtr = $this->getTargetToken($commentString, \T_STRING, 'PHP_VERSION_ID');
-        $result   = self::$helperClass->isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
+        $result   = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
     /**
-     * dataIsUseOfGlobalConstant
+     * Data provider.
      *
      * @see testIsUseOfGlobalConstant()
      *
