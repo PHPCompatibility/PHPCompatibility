@@ -149,13 +149,12 @@ class NewTypedPropertiesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-            try {
-                $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-            } catch (RuntimeException $e) {
+            if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
                 // Not a class property.
                 return;
             }
 
+            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
             if ($properties['type'] === '') {
                 // Not a typed property.
                 return;
