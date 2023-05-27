@@ -46,6 +46,9 @@ class MyTestO extends anotherNS\DateTime {}
 class MyTestP extends \FQNS\DateTime {}
 
 /* test 16 */
-interface MyInterface extends \SomeInterface {}
+$anon = new class extends \SomeClass {};
 /* test 17 */
-interface MyInterface extends SomeInterface {}
+$anon = new class extends SomeClass {};
+
+/* test 18 */
+interface Foo extends ArrayAccess, Iterable {}

@@ -38,7 +38,7 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
      */
     public function testGetFQExtendedClassName($commentString, $expected)
     {
-        $stackPtr = $this->getTargetToken($commentString, [\T_CLASS, \T_INTERFACE]);
+        $stackPtr = $this->getTargetToken($commentString, [\T_CLASS, \T_ANON_CLASS]);
         $result   = ResolveHelper::getFQExtendedClassName(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
@@ -68,8 +68,42 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
             ['/* test 13 */', '\Yet\More\Testing\DateTime'],
             ['/* test 14 */', '\Yet\More\Testing\anotherNS\DateTime'],
             ['/* test 15 */', '\FQNS\DateTime'],
-            ['/* test 16 */', '\SomeInterface'],
-            ['/* test 17 */', '\Yet\More\Testing\SomeInterface'],
+            ['/* test 16 */', '\SomeClass'],
+            ['/* test 17 */', '\Yet\More\Testing\SomeClass'],
+        ];
+    }
+
+    /**
+     * Test an empty string is returned when an invalid token is passed.
+     *
+     * @dataProvider dataGetFQExtendedClassNameInvalidToken
+     *
+     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQExtendedClassName
+     *
+     * @param string     $commentString The comment which prefaces the T_CLASS token in the test file.
+     * @param int|string $targetType    The token to pass to the method.
+     *
+     * @return void
+     */
+    public function testGetFQExtendedClassNameInvalidToken($commentString, $targetType)
+    {
+        $stackPtr = $this->getTargetToken($commentString, $targetType);
+        $result   = ResolveHelper::getFQExtendedClassName(self::$phpcsFile, $stackPtr);
+        $this->assertSame('', $result);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testGetFQExtendedClassNameInvalidToken()
+     *
+     * @return array
+     */
+    public function dataGetFQExtendedClassNameInvalidToken()
+    {
+        return [
+            ['/* test 2 */', \T_EXTENDS],
+            ['/* test 18 */', \T_INTERFACE],
         ];
     }
 }
