@@ -122,5 +122,4 @@ if (class_exists('PHPUnit_Framework_TestCase') === true
 }
 
 require_once __DIR__ . '/PHPCompatibility/Tests/BaseSniffTest.php';
-require_once __DIR__ . '/PHPCompatibility/Util/Tests/CoreMethodTestFrame.php';
 unset($phpcsUtilsDir, $phpcsDir, $vendorDir);
