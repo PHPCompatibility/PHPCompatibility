@@ -20,6 +20,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -379,13 +380,12 @@ class RemovedClassesSniff extends Sniff
      */
     private function processVariableToken(File $phpcsFile, $stackPtr)
     {
-        try {
-            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
+        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
             // Not a class property.
             return;
         }
 
+        $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
         if ($properties['type'] === '') {
             return;
         }
