@@ -12,6 +12,8 @@ namespace PHPCompatibility\Helpers;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
@@ -48,39 +50,25 @@ final class ResolveHelper
     {
         $tokens = $phpcsFile->getTokens();
 
-        // Check for the existence of the token.
-        if (isset($tokens[$stackPtr]) === false) {
+        // Check for the existence of the token and that an accepted token.
+        if (isset($tokens[$stackPtr]) === false || $tokens[$stackPtr]['code'] !== \T_NEW) {
             return '';
         }
 
-        if ($tokens[$stackPtr]['code'] !== \T_NEW) {
+        $start = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        if ($start === false
+            || $tokens[$start]['code'] === \T_VARIABLE
+            || $tokens[$start]['code'] === \T_ANON_CLASS
+        ) {
+            // Parse error, name cannot be determined or not a named class.
             return '';
         }
 
-        $start = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true);
-        if ($start === false) {
-            return '';
-        }
+        $find                = Collections::namespacedNameTokens();
+        $find[\T_WHITESPACE] = \T_WHITESPACE;
 
-        // Bow out if the next token is a variable as we don't know where it was defined.
-        if ($tokens[$start]['code'] === \T_VARIABLE) {
-            return '';
-        }
-
-        // Bow out if the next token is the class keyword.
-        if ($tokens[$start]['code'] === \T_ANON_CLASS || $tokens[$start]['code'] === \T_CLASS) {
-            return '';
-        }
-
-        $find = [
-            \T_NS_SEPARATOR,
-            \T_STRING,
-            \T_NAMESPACE,
-            \T_WHITESPACE,
-        ];
-
-        $end       = $phpcsFile->findNext($find, ($start + 1), null, true, null, true);
-        $className = $phpcsFile->getTokensAsString($start, ($end - $start));
+        $end       = $phpcsFile->findNext($find, ($start + 1), null, true);
+        $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($end - 1));
         $className = \trim($className);
 
         return self::getFQName($phpcsFile, $stackPtr, $className);

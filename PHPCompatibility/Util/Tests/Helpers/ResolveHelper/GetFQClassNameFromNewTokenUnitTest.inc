@@ -44,6 +44,8 @@ $className = 'DateTime';
 /* test 15 */
 new $className;
 
+/* test 17 */
+$anon = new class() {};
 
 // Issue #338 - no infinite loop on unfinished code.
 /* test 16 */
