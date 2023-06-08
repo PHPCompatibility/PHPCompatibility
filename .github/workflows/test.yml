@@ -166,8 +166,18 @@ jobs:
         if: ${{ matrix.phpcs_version == 'lowest' }}
         run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
 
-      - name: Run the unit tests
+      - name: Grab PHPUnit version
+        id: phpunit_version
+        run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
+
+      - name: Run the unit tests (PHPUnit < 10)
+        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: vendor/bin/phpunit --no-coverage
+
+      - name: Run the unit tests (PHPUnit 10+)
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: vendor/bin/phpunit -c phpunit10.xml.dist --no-coverage
+
 
   #### CODE COVERAGE STAGE ####
   # N.B.: Coverage is only checked on the lowest and highest stable PHP versions
@@ -256,17 +266,18 @@ jobs:
       # As of PHPUnit 9.3.4, a cache warming option is available.
       # Using that option prevents issues with PHP-Parser backfilling PHP tokens when PHPCS does not (yet),
       # which would otherwise cause tests to fail on tokens being available when they shouldn't be.
+      # As coverage is only run on high/low PHP, the high PHP version will use PHPUnit 10, so just check for that.
       - name: "Warm the PHPUnit cache (PHPUnit 9.3+)"
-        if: ${{ steps.phpunit_version.outputs.VERSION >= '9.3' }}
-        run: vendor/bin/phpunit --coverage-cache ./build/phpunit-cache --warm-coverage-cache
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache --warm-coverage-cache
 
-      - name: "Run the unit tests with code coverage (PHPUnit < 9.3)"
-        if: ${{ steps.phpunit_version.outputs.VERSION < '9.3' }}
+      - name: "Run the unit tests with code coverage (PHPUnit < 10)"
+        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: vendor/bin/phpunit
 
-      - name: "Run the unit tests with code coverage (PHPUnit 9.3+)"
-        if: ${{ steps.phpunit_version.outputs.VERSION >= '9.3' }}
-        run: vendor/bin/phpunit --coverage-cache ./build/phpunit-cache
+      - name: "Run the unit tests with code coverage (PHPUnit 10+)"
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache
 
       # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
       # Also PHP Coveralls itself (still) isn't fully compatible with PHP 8.0+.

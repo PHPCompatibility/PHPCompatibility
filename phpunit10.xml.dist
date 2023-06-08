@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/10.1/phpunit.xsd"
+        bootstrap="./phpunit-bootstrap.php"
+        backupGlobals="true"
+        colors="true"
+        beStrictAboutChangesToGlobalState="true"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutTestsThatDoNotTestAnything="true"
+        displayDetailsOnTestsThatTriggerErrors="true"
+        displayDetailsOnTestsThatTriggerWarnings="true"
+        displayDetailsOnTestsThatTriggerNotices="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
+        failOnWarning="true"
+        failOnNotice="true"
+        failOnDeprecation="true"
+        requireCoverageMetadata="true"
+    >
+    <testsuites>
+        <testsuite name="PHPCompatibility Utilities Tests">
+            <directory suffix="UnitTest.php">./PHPCompatibility/Util/Tests/</directory>
+        </testsuite>
+        <testsuite name="PHPCompatibility Sniffs Tests">
+            <directory suffix="UnitTest.php">./PHPCompatibility/Tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <file>./PHPCompatibility/Sniff.php</file>
+            <file>./PHPCompatibility/AbstractInitialValueSniff.php</file>
+            <file>./PHPCompatibility/AbstractFunctionCallParameterSniff.php</file>
+            <directory suffix=".php">./PHPCompatibility/Sniffs/</directory>
+            <directory suffix=".php">./PHPCompatibility/Exceptions/</directory>
+            <directory suffix=".php">./PHPCompatibility/Helpers/</directory>
+        </include>
+    </source>
+
+    <coverage includeUncoveredFiles="true" ignoreDeprecatedCodeUnits="true">
+        <report>
+            <clover outputFile="build/logs/clover.xml"/>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
+        </report>
+    </coverage>
+
+</phpunit>

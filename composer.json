@@ -59,11 +59,20 @@
     "test": [
       "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
     ],
+    "test10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --no-coverage"
+    ],
     "coverage": [
       "@php ./vendor/phpunit/phpunit/phpunit"
     ],
+    "coverage10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist"
+    ],
     "coverage-local": [
       "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/logs"
+    ],
+    "coverage-local10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --coverage-html ./build/logs"
     ],
     "lint": [
       "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
