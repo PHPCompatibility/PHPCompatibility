@@ -53,7 +53,7 @@ class NewAttributesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewAttributes()
+    public static function dataNewAttributes()
     {
         $data = [
             [17],
@@ -121,7 +121,7 @@ class NewAttributesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

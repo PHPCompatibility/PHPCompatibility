@@ -48,7 +48,7 @@ class NewNonCapturingCatchUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNonCapturingCatch()
+    public static function dataNewNonCapturingCatch()
     {
         return [
             [21],
@@ -81,7 +81,7 @@ class NewNonCapturingCatchUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [8],

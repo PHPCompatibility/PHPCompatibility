@@ -47,7 +47,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataAppendToGlobals()
+    public static function dataAppendToGlobals()
     {
         return [
             [82],
@@ -94,7 +94,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIntFloatKeyInGlobals()
+    public static function dataIntFloatKeyInGlobals()
     {
         return [
             [91],
@@ -127,7 +127,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedGlobalsSubkey()
+    public static function dataRemovedGlobalsSubkey()
     {
         return [
             [108],
@@ -158,7 +158,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataUnsettingGlobals()
+    public static function dataUnsettingGlobals()
     {
         return [
             [115],
@@ -199,7 +199,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataAssignmentToGlobals()
+    public static function dataAssignmentToGlobals()
     {
         $data = [
             [122, 'assignment to $GLOBALS'],
@@ -270,7 +270,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReferenceToGlobals()
+    public static function dataReferenceToGlobals()
     {
         return [
             [145],
@@ -316,7 +316,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataAssignmentOfGlobals()
+    public static function dataAssignmentOfGlobals()
     {
         return [
             [154],
@@ -347,7 +347,7 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
 

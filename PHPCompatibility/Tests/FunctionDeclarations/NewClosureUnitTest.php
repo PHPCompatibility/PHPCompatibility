@@ -50,7 +50,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataClosure()
+    public static function dataClosure()
     {
         return [
             [3],
@@ -99,7 +99,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataStaticClosure()
+    public static function dataStaticClosure()
     {
         return [
             [14],
@@ -138,7 +138,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataThisInClosure()
+    public static function dataThisInClosure()
     {
         return [
             [23],
@@ -173,7 +173,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataThisInStaticClosure()
+    public static function dataThisInStaticClosure()
     {
         return [
             [32],
@@ -228,7 +228,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesThisInClosureOutsideClass()
+    public static function dataNoFalsePositivesThisInClosureOutsideClass()
     {
         return [
             [48],
@@ -263,7 +263,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataClassRefInClosure()
+    public static function dataClassRefInClosure()
     {
         return [
             [83, 'self'],
@@ -296,7 +296,7 @@ class NewClosureUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesClassRefInClosure()
+    public static function dataNoFalsePositivesClassRefInClosure()
     {
         return [
             [88],

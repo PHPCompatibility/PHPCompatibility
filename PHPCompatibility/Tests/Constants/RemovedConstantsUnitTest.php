@@ -61,7 +61,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedConstant()
+    public static function dataDeprecatedConstant()
     {
         return [
             ['FILTER_FLAG_SCHEME_REQUIRED', '7.3', [73], '7.2'],
@@ -121,7 +121,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedConstantWithAlternative()
+    public static function dataDeprecatedConstantWithAlternative()
     {
         return [
             ['PG_VERSION_STR', '8.0', 'PG_VERSION', [624], '7.4'],
@@ -166,7 +166,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedConstant()
+    public static function dataRemovedConstant()
     {
         return [
             ['M_PENDING', '5.1', [248], '5.0'],
@@ -771,7 +771,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedConstant()
+    public static function dataDeprecatedRemovedConstant()
     {
         return [
             ['MYSQL_CLIENT_COMPRESS', '5.5', '7.0', [600], '5.4'],
@@ -887,7 +887,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedConstantWithAlternative()
+    public static function dataDeprecatedRemovedConstantWithAlternative()
     {
         return [
             ['FILTER_SANITIZE_MAGIC_QUOTES', '7.4', '8.0', 'FILTER_SANITIZE_ADD_SLASHES', [137], '7.3'],
@@ -919,7 +919,7 @@ class RemovedConstantsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [3],

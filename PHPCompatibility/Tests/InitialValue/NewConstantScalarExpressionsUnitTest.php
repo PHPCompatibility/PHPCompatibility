@@ -74,7 +74,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewConstantScalarExpressions()
+    public static function dataNewConstantScalarExpressions()
     {
         return [
             [122, 'const'],
@@ -208,7 +208,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

@@ -56,7 +56,7 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedMbStrrposEncodingThirdParam()
+    public static function dataRemovedMbStrrposEncodingThirdParam()
     {
         return [
             [22],
@@ -89,7 +89,7 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

@@ -50,7 +50,7 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewHTMLEntitiesEncodingDefault()
+    public static function dataNewHTMLEntitiesEncodingDefault()
     {
         return [
             [10, 'htmlentities'],
@@ -99,7 +99,7 @@ class NewHTMLEntitiesEncodingDefaultUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoViolationsInFileOnValidVersion()
+    public static function dataNoViolationsInFileOnValidVersion()
     {
         return [
             ['5.0-5.3'],

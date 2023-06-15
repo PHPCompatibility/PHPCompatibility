@@ -124,7 +124,7 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetTestVersion()
+    public static function dataGetTestVersion()
     {
         return [
             'no_testVersion'                            => [null, [null, null]],
@@ -177,7 +177,7 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetTestVersionInvalidRange()
+    public static function dataGetTestVersionInvalidRange()
     {
         return [
             'mininum_more_than_max'              => ['5.6-5.4'],
@@ -215,7 +215,7 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetTestVersionInvalidVersion()
+    public static function dataGetTestVersionInvalidVersion()
     {
         return [
             'not_major_minor_only_major_1'          => ['5'],
@@ -266,7 +266,7 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataShouldRunOnOrAbove()
+    public static function dataShouldRunOnOrAbove()
     {
         return [
             'valid_no_testversion_low'           => ['5.0', null, true],
@@ -311,7 +311,7 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataShouldRunOnOrBelow()
+    public static function dataShouldRunOnOrBelow()
     {
         return [
             'invalid_no_testversion_low'         => ['5.0', null, false],

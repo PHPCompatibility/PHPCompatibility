@@ -54,7 +54,7 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataMbstringEModifier()
+    public static function dataMbstringEModifier()
     {
         return [
             [14],
@@ -91,7 +91,7 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

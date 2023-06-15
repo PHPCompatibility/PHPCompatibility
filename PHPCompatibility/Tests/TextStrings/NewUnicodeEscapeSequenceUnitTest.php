@@ -49,7 +49,7 @@ class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnicodeEscapeSequence()
+    public static function dataNewUnicodeEscapeSequence()
     {
         return [
             [41, '\u{aa}'],
@@ -110,7 +110,7 @@ class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnicodeEscapeSequenceFatals()
+    public static function dataNewUnicodeEscapeSequenceFatals()
     {
         return [
             [27, '\u{foobar'],

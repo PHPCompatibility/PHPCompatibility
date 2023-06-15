@@ -47,7 +47,7 @@ class NewInterpolatedStringDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInterpolatedStringDereferencing()
+    public static function dataInterpolatedStringDereferencing()
     {
         return [
             [24],
@@ -80,7 +80,7 @@ class NewInterpolatedStringDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             // No interpolation, no dereferencing.

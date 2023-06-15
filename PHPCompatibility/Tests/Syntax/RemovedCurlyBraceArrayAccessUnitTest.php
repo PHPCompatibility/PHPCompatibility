@@ -50,7 +50,7 @@ class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedCurlyBraceArrayAccess()
+    public static function dataRemovedCurlyBraceArrayAccess()
     {
         return [
             [53],

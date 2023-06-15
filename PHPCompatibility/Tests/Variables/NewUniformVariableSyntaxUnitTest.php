@@ -47,7 +47,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataVariableVariables()
+    public static function dataVariableVariables()
     {
         return [
             [4],
@@ -88,7 +88,7 @@ class NewUniformVariableSyntaxUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [11],

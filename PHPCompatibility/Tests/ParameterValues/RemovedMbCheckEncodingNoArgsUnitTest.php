@@ -47,7 +47,7 @@ class RemovedMbCheckEncodingNoArgsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedMbCheckEncodingNoArgs()
+    public static function dataRemovedMbCheckEncodingNoArgs()
     {
         return [
             [12],

@@ -61,7 +61,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenSessionModuleNameUser()
+    public static function dataForbiddenSessionModuleNameUser()
     {
         return [
             [16],
@@ -93,7 +93,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
 
@@ -138,7 +138,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenSessionModuleNameUserInIndentedHeredoc()
+    public static function dataForbiddenSessionModuleNameUserInIndentedHeredoc()
     {
         return [
             [16],
@@ -172,7 +172,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesInIndentedHeredoc()
+    public static function dataNoFalsePositivesInIndentedHeredoc()
     {
         $cases = [];
 
@@ -210,7 +210,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTestFiles()
+    public static function dataTestFiles()
     {
         return [
             [self::TEST_FILE],

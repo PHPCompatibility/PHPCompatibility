@@ -60,7 +60,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIniDirectives()
+    public static function dataNewIniDirectives()
     {
         return [
             ['auto_globals_jit', '5.0', [83, 84], '4.4'],
@@ -309,7 +309,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIniDirectivesWithAlternative()
+    public static function dataNewIniDirectivesWithAlternative()
     {
         return [
             ['fbsql.batchsize', '5.1', 'fbsql.batchSize', [167, 168], '5.0'],
@@ -340,7 +340,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [2],

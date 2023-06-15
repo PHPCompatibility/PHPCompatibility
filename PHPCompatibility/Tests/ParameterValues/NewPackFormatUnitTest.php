@@ -60,7 +60,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewPackFormat()
+    public static function dataNewPackFormat()
     {
         return [
             [8, 'Z', '5.4', '5.5'],
@@ -102,7 +102,7 @@ class NewPackFormatUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

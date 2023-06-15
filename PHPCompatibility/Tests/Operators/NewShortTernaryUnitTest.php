@@ -48,7 +48,7 @@ class NewShortTernaryUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataElvisOperator()
+    public static function dataElvisOperator()
     {
         return [
             [8],

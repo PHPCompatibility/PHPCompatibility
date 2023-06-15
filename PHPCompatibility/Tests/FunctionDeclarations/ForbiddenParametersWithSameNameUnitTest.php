@@ -47,7 +47,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataFunctionParametersWithSameName()
+    public static function dataFunctionParametersWithSameName()
     {
         return [
             [3],
@@ -81,7 +81,7 @@ class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [5],

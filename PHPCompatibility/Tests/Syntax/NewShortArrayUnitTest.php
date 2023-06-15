@@ -49,7 +49,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataViolation()
+    public static function dataViolation()
     {
         return [
             [12, 12],
@@ -83,7 +83,7 @@ class NewShortArrayUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [5],

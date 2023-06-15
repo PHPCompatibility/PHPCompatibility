@@ -50,7 +50,7 @@ class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedConcatOperatorPrecedence()
+    public static function dataChangedConcatOperatorPrecedence()
     {
         return [
             [59],

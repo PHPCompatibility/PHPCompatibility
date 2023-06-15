@@ -165,7 +165,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataYield()
+    public static function dataYield()
     {
         return [
             [33],
@@ -208,7 +208,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataYieldFrom()
+    public static function dataYieldFrom()
     {
         return [
             [75],
@@ -255,7 +255,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataFinallyNoFalsePositives()
+    public static function dataFinallyNoFalsePositives()
     {
         return [
             [125],
@@ -287,7 +287,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataConst()
+    public static function dataConst()
     {
         return [
             [37],
@@ -320,7 +320,7 @@ class NewKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataConstNoFalsePositives()
+    public static function dataConstNoFalsePositives()
     {
         return [
             [40],

@@ -47,7 +47,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewGeneratorReturn()
+    public static function dataNewGeneratorReturn()
     {
         return [
             [30],
@@ -82,7 +82,7 @@ class NewGeneratorReturnUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

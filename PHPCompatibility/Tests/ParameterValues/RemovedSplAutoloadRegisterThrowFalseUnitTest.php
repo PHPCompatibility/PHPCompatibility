@@ -47,7 +47,7 @@ class RemovedSplAutoloadRegisterThrowFalseUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedSplAutoloadRegisterThrowFalse()
+    public static function dataRemovedSplAutoloadRegisterThrowFalse()
     {
         return [
             [14],

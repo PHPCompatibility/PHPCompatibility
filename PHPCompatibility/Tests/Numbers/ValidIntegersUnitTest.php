@@ -56,7 +56,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataBinaryInteger()
+    public static function dataBinaryInteger()
     {
         return [
             [3, '0b001001101', true],
@@ -91,7 +91,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidBinaryInteger()
+    public static function dataInvalidBinaryInteger()
     {
         return [
             [4, '0b0123456'],
@@ -130,7 +130,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidOctalInteger()
+    public static function dataInvalidOctalInteger()
     {
         return [
             [7, '08'],
@@ -167,7 +167,7 @@ class ValidIntegersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataValidOctalInteger()
+    public static function dataValidOctalInteger()
     {
         return [
             [6],

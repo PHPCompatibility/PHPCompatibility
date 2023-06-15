@@ -47,7 +47,7 @@ class NewExplicitOctalNotationUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataExplicitOctalNotation()
+    public static function dataExplicitOctalNotation()
     {
         return [
             [20],
@@ -79,7 +79,7 @@ class NewExplicitOctalNotationUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

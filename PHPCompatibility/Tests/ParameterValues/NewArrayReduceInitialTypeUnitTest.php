@@ -55,7 +55,7 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArrayReduceInitialType()
+    public static function dataArrayReduceInitialType()
     {
         return [
             [16],

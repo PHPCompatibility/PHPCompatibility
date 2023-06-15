@@ -61,7 +61,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewInterface()
+    public static function dataNewInterface()
     {
         return [
             ['Reflector', '4.4', [75, 116, 164, 178], '5.0'],
@@ -106,7 +106,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataUnsupportedMethods()
+    public static function dataUnsupportedMethods()
     {
         return [
             [8, '__sleep'],
@@ -143,7 +143,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesUnsupportedMethods()
+    public static function dataNoFalsePositivesUnsupportedMethods()
     {
         return [
             [127],
@@ -189,7 +189,7 @@ class NewInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [24],

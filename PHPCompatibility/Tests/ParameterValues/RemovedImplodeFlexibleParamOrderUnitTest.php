@@ -51,7 +51,7 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedImplodeFlexibleParamOrder()
+    public static function dataRemovedImplodeFlexibleParamOrder()
     {
         return [
             [29, 'implode'],
@@ -96,7 +96,7 @@ class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

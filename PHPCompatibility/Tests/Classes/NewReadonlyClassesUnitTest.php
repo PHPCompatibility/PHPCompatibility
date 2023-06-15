@@ -47,7 +47,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReadonlyClass()
+    public static function dataReadonlyClass()
     {
         return [
             [21],
@@ -85,7 +85,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
         for ($line = 1; $line <= 17; $line++) {

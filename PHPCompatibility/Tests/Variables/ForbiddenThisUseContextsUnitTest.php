@@ -47,7 +47,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageParam()
+    public static function dataIncompatibleThisUsageParam()
     {
         return [
             [16],
@@ -77,7 +77,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageClosureParam()
+    public static function dataIncompatibleThisUsageClosureParam()
     {
         return [
             [17], // x2.
@@ -108,7 +108,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesParam()
+    public static function dataNoFalsePositivesParam()
     {
         return [
             [6],
@@ -140,7 +140,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageGlobal()
+    public static function dataIncompatibleThisUsageGlobal()
     {
         return [
             [30],
@@ -172,7 +172,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesGlobal()
+    public static function dataNoFalsePositivesGlobal()
     {
         return [
             [38],
@@ -204,7 +204,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageCatch()
+    public static function dataIncompatibleThisUsageCatch()
     {
         return [
             [54],
@@ -235,7 +235,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesCatch()
+    public static function dataNoFalsePositivesCatch()
     {
         return [
             [52],
@@ -265,7 +265,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageForeach()
+    public static function dataIncompatibleThisUsageForeach()
     {
         return [
             [75],
@@ -296,7 +296,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesForeach()
+    public static function dataNoFalsePositivesForeach()
     {
         return [
             [63],
@@ -329,7 +329,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageUnset()
+    public static function dataIncompatibleThisUsageUnset()
     {
         return [
             [97],
@@ -361,7 +361,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesUnset()
+    public static function dataNoFalsePositivesUnset()
     {
         return [
             [83],
@@ -395,7 +395,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIncompatibleThisUsageOutsideObjectContext()
+    public static function dataIncompatibleThisUsageOutsideObjectContext()
     {
         return [
             [146],
@@ -426,7 +426,7 @@ class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesOutsideObjectContext()
+    public static function dataNoFalsePositivesOutsideObjectContext()
     {
         return [
             [109],

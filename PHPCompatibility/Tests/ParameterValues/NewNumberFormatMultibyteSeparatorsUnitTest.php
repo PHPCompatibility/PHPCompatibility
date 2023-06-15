@@ -48,7 +48,7 @@ class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewNumberFormatMultibyteSeparators()
+    public static function dataNewNumberFormatMultibyteSeparators()
     {
         return [
             [20, 'thousands_separator'],

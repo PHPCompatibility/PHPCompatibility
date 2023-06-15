@@ -50,7 +50,7 @@ class RemovedNewReferenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedNewReference()
+    public static function dataDeprecatedNewReference()
     {
         return [
             [9],

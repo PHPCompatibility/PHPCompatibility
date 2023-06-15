@@ -55,7 +55,7 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedCallingDestructAfterConstructorExit()
+    public static function dataRemovedCallingDestructAfterConstructorExit()
     {
         return [
             [33, 'exit'],
@@ -90,7 +90,7 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $cases = [];
         // No errors expected on the first 26 lines.

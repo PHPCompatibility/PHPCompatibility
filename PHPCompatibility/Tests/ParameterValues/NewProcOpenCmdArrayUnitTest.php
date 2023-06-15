@@ -49,7 +49,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewProcOpenCmdArray()
+    public static function dataNewProcOpenCmdArray()
     {
         return [
             [18],
@@ -86,7 +86,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidProcOpenCmdArray()
+    public static function dataInvalidProcOpenCmdArray()
     {
         return [
             [30, 'escapeshellarg($echo)'],
@@ -128,7 +128,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             ['7.3'],

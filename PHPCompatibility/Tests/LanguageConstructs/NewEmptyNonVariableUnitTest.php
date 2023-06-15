@@ -48,7 +48,7 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataEmptyNonVariable()
+    public static function dataEmptyNonVariable()
     {
         return [
             [17],
@@ -103,7 +103,7 @@ class NewEmptyNonVariableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

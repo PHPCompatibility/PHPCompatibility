@@ -61,7 +61,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedParameter()
+    public static function dataRemovedParameter()
     {
         return [
             ['ldap_first_attribute', 'ber_identifier', '5.2.4', [11, 59], '5.2', '5.3'],
@@ -118,7 +118,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedRemovedParameter()
+    public static function dataDeprecatedRemovedParameter()
     {
         return [
             ['mktime', 'isDST', '5.1', '7.0', [8], '5.0'],
@@ -169,7 +169,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDeprecatedParameter()
+    public static function dataDeprecatedParameter()
     {
         return [
             ['imagepolygon', 'num_points', '8.1', [36, 47], '8.0'],
@@ -202,7 +202,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

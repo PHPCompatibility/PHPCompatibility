@@ -47,7 +47,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataDynamicAccessToStatic()
+    public static function dataDynamicAccessToStatic()
     {
         return [
             [20],
@@ -91,7 +91,7 @@ class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [14],

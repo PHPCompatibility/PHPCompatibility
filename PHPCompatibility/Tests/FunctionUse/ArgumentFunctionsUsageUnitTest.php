@@ -50,7 +50,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArgumentFunctionsUseAsParameter()
+    public static function dataArgumentFunctionsUseAsParameter()
     {
         return [
             [7],
@@ -85,7 +85,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesUseAsParameter()
+    public static function dataNoFalsePositivesUseAsParameter()
     {
         return [
             [25],
@@ -126,7 +126,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataArgumentFunctionsUseOutsideFunctionScope()
+    public static function dataArgumentFunctionsUseOutsideFunctionScope()
     {
         return [
             [43],
@@ -158,7 +158,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositivesUseOutsideFunctionScope()
+    public static function dataNoFalsePositivesUseOutsideFunctionScope()
     {
         return [
             [48],

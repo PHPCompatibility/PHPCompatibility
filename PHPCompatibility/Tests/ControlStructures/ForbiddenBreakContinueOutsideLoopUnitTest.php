@@ -51,7 +51,7 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataBreakContinueOutsideLoop()
+    public static function dataBreakContinueOutsideLoop()
     {
         return [
             [116, 'continue'],
@@ -86,7 +86,7 @@ class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [8],

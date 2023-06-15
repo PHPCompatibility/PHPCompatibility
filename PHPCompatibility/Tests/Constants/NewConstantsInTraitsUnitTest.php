@@ -47,7 +47,7 @@ final class NewConstantsInTraitsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataConstantInTrait()
+    public static function dataConstantInTrait()
     {
         return [
             [41],
@@ -79,7 +79,7 @@ final class NewConstantsInTraitsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
         for ($line = 1; $line <= 35; $line++) {

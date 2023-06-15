@@ -47,7 +47,7 @@ class NewMagicConstantDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewMagicConstantDereferencing()
+    public static function dataNewMagicConstantDereferencing()
     {
         return [
             [15],
@@ -84,7 +84,7 @@ class NewMagicConstantDereferencingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

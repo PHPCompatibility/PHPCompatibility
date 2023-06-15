@@ -47,7 +47,7 @@ class ReservedNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataReservedNames()
+    public static function dataReservedNames()
     {
         return [
             [11],
@@ -79,7 +79,7 @@ class ReservedNamesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4],

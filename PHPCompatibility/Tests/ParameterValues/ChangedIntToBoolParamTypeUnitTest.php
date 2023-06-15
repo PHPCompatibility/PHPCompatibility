@@ -52,7 +52,7 @@ class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataChangedIntToBoolParamType()
+    public static function dataChangedIntToBoolParamType()
     {
         return [
             [21, '8.0', '$auto_release', 'sem_get'],
@@ -89,7 +89,7 @@ class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

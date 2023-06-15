@@ -33,10 +33,10 @@
   "require-dev": {
     "php-parallel-lint/php-parallel-lint": "^1.3.2",
     "php-parallel-lint/php-console-highlighter": "^1.0.0",
-    "phpunit/phpunit": "^4.8 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4",
+    "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4 || ^10.1.0",
     "phpcsstandards/phpcsdevcs": "^1.1.3",
     "phpcsstandards/phpcsdevtools": "^1.2.0",
-    "yoast/phpunit-polyfills": "^1.0"
+    "yoast/phpunit-polyfills": "^1.0.5 || ^2.0.0"
   },
   "replace": {
     "wimg/php-compatibility": "*"
@@ -59,11 +59,20 @@
     "test": [
       "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
     ],
+    "test10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --no-coverage"
+    ],
     "coverage": [
       "@php ./vendor/phpunit/phpunit/phpunit"
     ],
+    "coverage10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist"
+    ],
     "coverage-local": [
       "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/logs"
+    ],
+    "coverage-local10": [
+      "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --coverage-html ./build/logs"
     ],
     "lint": [
       "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"

@@ -50,7 +50,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataSetlocaleString()
+    public static function dataSetlocaleString()
     {
         return [
             [9],
@@ -82,7 +82,7 @@ class RemovedSetlocaleStringUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

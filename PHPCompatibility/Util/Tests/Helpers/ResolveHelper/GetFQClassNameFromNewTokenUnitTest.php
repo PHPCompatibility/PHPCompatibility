@@ -50,7 +50,7 @@ final class GetFQClassNameFromNewTokenUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataGetFQClassNameFromNewToken()
+    public static function dataGetFQClassNameFromNewToken()
     {
         return [
             ['/* test 1 */', '\DateTime'],

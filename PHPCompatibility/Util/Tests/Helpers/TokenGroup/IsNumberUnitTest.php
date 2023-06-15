@@ -129,7 +129,7 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataIsNumber()
+    public static function dataIsNumber()
     {
         return [
             'Not a number - array'                                             => ['/* test 1 */', true, false, false, false],

@@ -48,7 +48,7 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataCaseSensitiveKeywords()
+    public static function dataCaseSensitiveKeywords()
     {
         return [
             [18, 'self'],
@@ -83,7 +83,7 @@ class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [10],

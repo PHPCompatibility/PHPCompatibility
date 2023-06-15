@@ -73,7 +73,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetVersionInfo()
+    public static function dataGetVersionInfo()
     {
         return [
             'empty-array' => [
@@ -323,7 +323,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
      *
      * @return array
      */
-    public function dataGetMessageInfo()
+    public static function dataGetMessageInfo()
     {
         return [
             // This should never happen as the sniff should have bowed out before.

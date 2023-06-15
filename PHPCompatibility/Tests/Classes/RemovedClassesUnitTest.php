@@ -61,7 +61,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedClass()
+    public static function dataRemovedClass()
     {
         return [
             ['HW_API', '5.2', [59], '5.1'],
@@ -122,7 +122,7 @@ class RemovedClassesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         // No errors expected on the first 26 lines.
         $data = [];

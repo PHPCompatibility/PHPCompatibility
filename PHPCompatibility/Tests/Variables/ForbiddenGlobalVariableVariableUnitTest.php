@@ -47,7 +47,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataGlobalVariableVariable()
+    public static function dataGlobalVariableVariable()
     {
         return [
             [21],
@@ -84,7 +84,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataGlobalNonBareVariable()
+    public static function dataGlobalNonBareVariable()
     {
         return [
             [11], // x2
@@ -129,7 +129,7 @@ class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [8],

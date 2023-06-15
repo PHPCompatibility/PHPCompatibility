@@ -55,7 +55,7 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataRemovedHashAlgorithms()
+    public static function dataRemovedHashAlgorithms()
     {
         return [
             ['salsa10', '5.4', 13, '5.3'],
@@ -94,7 +94,7 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

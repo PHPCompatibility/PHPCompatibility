@@ -52,7 +52,7 @@ final class IsNumericCalculationUnitTest extends UtilityMethodTestCase
      *
      * @return array
      */
-    public function dataIsNumericCalculation()
+    public static function dataIsNumericCalculation()
     {
         return [
             ['/* test A1 */', false],

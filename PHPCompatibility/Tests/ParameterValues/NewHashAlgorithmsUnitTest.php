@@ -55,7 +55,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewHashAlgorithms()
+    public static function dataNewHashAlgorithms()
     {
         return [
             ['md2', '5.2', 13, '5.3'],
@@ -110,7 +110,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

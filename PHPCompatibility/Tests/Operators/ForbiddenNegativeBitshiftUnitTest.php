@@ -47,7 +47,7 @@ class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenNegativeBitshift()
+    public static function dataForbiddenNegativeBitshift()
     {
         return [
             [3],
@@ -81,7 +81,7 @@ class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [10],

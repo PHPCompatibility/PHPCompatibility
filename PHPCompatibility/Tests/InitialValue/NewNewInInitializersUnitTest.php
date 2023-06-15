@@ -63,7 +63,7 @@ final class NewNewInInitializersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewInInitializer()
+    public static function dataNewInInitializer()
     {
         return [
             [38, 'const'],
@@ -121,7 +121,7 @@ final class NewNewInInitializersUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
         for ($line = 1; $line <= 32; $line++) {

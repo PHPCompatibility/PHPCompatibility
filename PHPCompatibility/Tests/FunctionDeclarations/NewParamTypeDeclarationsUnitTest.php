@@ -58,7 +58,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewTypeDeclaration()
+    public static function dataNewTypeDeclaration()
     {
         return [
             ['array', '5.0', 4, '5.1'],
@@ -164,7 +164,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidTypeDeclaration()
+    public static function dataInvalidTypeDeclaration()
     {
         return [
             ['boolean', 'bool', 20],
@@ -198,7 +198,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidSelfTypeDeclaration()
+    public static function dataInvalidSelfTypeDeclaration()
     {
         return [
             [37, 'self'],
@@ -232,7 +232,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidSelfTypeDeclarationNoFalsePositives()
+    public static function dataInvalidSelfTypeDeclarationNoFalsePositives()
     {
         return [
             [71],
@@ -295,7 +295,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnionTypes()
+    public static function dataNewUnionTypes()
     {
         return [
             ['int|float', 93],
@@ -336,7 +336,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewUnionTypesNoFalsePositives()
+    public static function dataNewUnionTypesNoFalsePositives()
     {
         return [
             [17],
@@ -372,7 +372,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseType()
+    public static function dataInvalidNonUnionNullFalseType()
     {
         return [
             [107, 'null'],
@@ -403,7 +403,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
+    public static function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
     {
         return [
             [96],
@@ -443,7 +443,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIntersectionTypes()
+    public static function dataNewIntersectionTypes()
     {
         return [
             ['MyClassA&\Package\MyClassB', 139],
@@ -479,7 +479,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewIntersectionTypesNoFalsePositives()
+    public static function dataNewIntersectionTypesNoFalsePositives()
     {
         return [
             [17],
@@ -519,7 +519,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataTypeDeclaration()
+    public static function dataTypeDeclaration()
     {
         return [
             [4],
@@ -607,7 +607,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [48],

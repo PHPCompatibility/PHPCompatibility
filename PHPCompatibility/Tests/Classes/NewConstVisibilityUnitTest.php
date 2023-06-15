@@ -47,7 +47,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataConstVisibility()
+    public static function dataConstVisibility()
     {
         return [
             [10],
@@ -99,7 +99,7 @@ class NewConstVisibilityUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [3],

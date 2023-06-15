@@ -78,7 +78,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInternalInterfaces()
+    public static function dataInternalInterfaces()
     {
         return [
             ['Traversable', 3],
@@ -138,7 +138,7 @@ class InternalInterfacesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [13],

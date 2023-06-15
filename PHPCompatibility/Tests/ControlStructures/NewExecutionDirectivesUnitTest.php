@@ -100,7 +100,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewExecutionDirective()
+    public static function dataNewExecutionDirective()
     {
         return [
             ['ticks', '3.1', [6, 7, 39], '4.0'],
@@ -137,7 +137,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidDirectiveValue()
+    public static function dataInvalidDirectiveValue()
     {
         return [
             ['ticks', 'TICK_VALUE', 16],
@@ -176,7 +176,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidEncodingDirectiveValue()
+    public static function dataInvalidEncodingDirectiveValue()
     {
         return [
             ['encoding', 'invalid', 17],
@@ -208,7 +208,7 @@ class NewExecutionDirectivesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataInvalidDirective()
+    public static function dataInvalidDirective()
     {
         return [
             ['invalid', 22],

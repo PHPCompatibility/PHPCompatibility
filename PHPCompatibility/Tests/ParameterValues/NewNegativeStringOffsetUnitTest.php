@@ -54,7 +54,7 @@ class NewNegativeStringOffsetUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNegativeStringOffset()
+    public static function dataNegativeStringOffset()
     {
         return [
             [28, 'offset', 'mb_ereg_search_setpos'],

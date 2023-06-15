@@ -94,7 +94,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIndentedHeredocNowdoc()
+    public static function dataIndentedHeredocNowdoc()
     {
         $data = [
             [3, 13],
@@ -145,7 +145,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataCodeAfterHeredocNowdoc()
+    public static function dataCodeAfterHeredocNowdoc()
     {
         $data = [
             [8, 15],
@@ -192,7 +192,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenClosingMarkerInBody()
+    public static function dataForbiddenClosingMarkerInBody()
     {
         $lines = [
             [12],

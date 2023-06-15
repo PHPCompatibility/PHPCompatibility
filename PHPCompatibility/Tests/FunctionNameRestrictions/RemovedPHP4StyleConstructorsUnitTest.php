@@ -50,7 +50,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataIsDeprecated()
+    public static function dataIsDeprecated()
     {
         return [
             [3],
@@ -84,7 +84,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [9],

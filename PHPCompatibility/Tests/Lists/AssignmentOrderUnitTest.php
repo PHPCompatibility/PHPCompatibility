@@ -47,7 +47,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataAssignmentOrder()
+    public static function dataAssignmentOrder()
     {
         return [
             [17],
@@ -97,7 +97,7 @@ class AssignmentOrderUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [6],

@@ -47,7 +47,7 @@ final class NewFirstClassCallablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataFirstClassCallables()
+    public static function dataFirstClassCallables()
     {
         return [
             [26],
@@ -88,7 +88,7 @@ final class NewFirstClassCallablesUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
 

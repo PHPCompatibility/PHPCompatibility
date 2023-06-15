@@ -50,7 +50,7 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataForbiddenCallTimePassByReference()
+    public static function dataForbiddenCallTimePassByReference()
     {
         return [
             [10], // Bad: call time pass by reference.
@@ -88,7 +88,7 @@ class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         return [
             [4], // OK: Declaring a parameter by reference.

@@ -47,7 +47,7 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNewArrayUnpacking()
+    public static function dataNewArrayUnpacking()
     {
         return [
             [11],
@@ -89,7 +89,7 @@ class NewArrayUnpackingUnitTest extends BaseSniffTest
      *
      * @return array
      */
-    public function dataNoFalsePositives()
+    public static function dataNoFalsePositives()
     {
         $data = [];
         for ($line = 1; $line < 7; $line++) {
