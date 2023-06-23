@@ -4269,6 +4269,7 @@ class RemovedFunctionsSniff extends Sniff
         ],
         'is_real' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'is_float()',
         ],
         'money_format' => [

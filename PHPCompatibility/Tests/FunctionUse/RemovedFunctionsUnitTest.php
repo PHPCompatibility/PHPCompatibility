@@ -159,7 +159,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['ociwritetemporarylob', '5.4', 'OCI-Lob::writeTemporary() / OCILob::writeTemporary() (PHP 8+)', 89, '5.3'],
 
             ['__autoload', '7.2', 'SPL autoload', 589, '7.1'],
-            ['is_real', '7.4', 'is_float()', 239, '7.3'],
 
             ['enchant_broker_free', '8.0', 'unset the object', 1174, '7.4'],
             ['enchant_broker_free_dict', '8.0', 'unset the object', 1175, '7.4'],
@@ -1466,6 +1465,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['ociinternaldebug', '5.4', '8.0', 'oci_internal_debug() (PHP < 8.0)', 69, '5.3'],
             ['ldap_control_paged_result_response', '7.4', '8.0', 'ldap_search()', 234, '7.3'],
             ['ldap_control_paged_result', '7.4', '8.0', 'ldap_search()', 235, '7.3'],
+            ['is_real', '7.4', '8.0', 'is_float()', 239, '7.3'],
         ];
     }
 
