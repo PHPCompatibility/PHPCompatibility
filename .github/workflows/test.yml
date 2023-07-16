@@ -279,19 +279,18 @@ jobs:
         if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache
 
-      # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
-      # Also PHP Coveralls itself (still) isn't fully compatible with PHP 8.0+.
-      - name: Switch to PHP 7.4
-        if: ${{ success() && matrix.php != '7.4' }}
+      # PHP Coveralls v2 (which supports GH Actions) has a PHP 5.5 minimum, so switch the PHP version.
+      - name: Switch to PHP latest
+        if: ${{ success() && matrix.php == '5.4' }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 'latest'
           coverage: none
 
-      # Global install is used to prevent a conflict with the local composer.lock in PHP 8.0+.
+      # Global install is used to prevent a conflict with the local composer.lock.
       - name: Install Coveralls
         if: ${{ success() }}
-        run: composer global require php-coveralls/php-coveralls:"^2.5.3" --no-interaction
+        run: composer global require php-coveralls/php-coveralls:"^2.6.0" --no-interaction
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
