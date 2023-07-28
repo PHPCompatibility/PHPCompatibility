@@ -145,6 +145,8 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
             [96, '$options[\'output-charset\']'],
             [106, '$options[\'input-charset\']'],
             [115, '$options[\'input-charset\']'],
+            [122, '$options[\'input/output-charset\']'],
+            [123, '$options[\'input/output-charset\']'],
         ];
     }
 

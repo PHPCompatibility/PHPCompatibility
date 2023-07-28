@@ -118,3 +118,6 @@ $a = iconv_mime_encode(
         'line-length'      => 80,
     ]
 ); // Error: 'input-charset' not set (because case-sensitive).
+
+$a = iconv_mime_encode( $field_name, $field_value, /*comment*/ ); // Error: $options not set.
+$a = iconv_mime_encode( options: , field_name: $field_name, field_value: $field_value, ); // Parse error, but that's not our concern. Error: $options not set.

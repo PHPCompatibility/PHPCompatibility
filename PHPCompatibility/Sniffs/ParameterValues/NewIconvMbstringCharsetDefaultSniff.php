@@ -247,28 +247,24 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
     public function processIconvMimeEncode(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
+        $data  = [
+            '$options[\'input/output-charset\']',
+            '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
+        ];
 
         $functionLC  = \strtolower($functionName);
         $paramInfo   = $this->targetFunctions[$functionLC];
         $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
         if ($targetParam === false) {
-            $phpcsFile->addError(
-                $error,
-                $stackPtr,
-                'PreferencesNotSet',
-                [
-                    '$options[\'input/output-charset\']',
-                    '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
-                ]
-            );
-
+            $phpcsFile->addError($error, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
         $tokens        = $phpcsFile->getTokens();
         $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($firstNonEmpty === false) {
-            // Parse error or live coding.
+            // Parse error or live coding, but preferences is definitely not set, so throw the error.
+            $phpcsFile->addError($error, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
