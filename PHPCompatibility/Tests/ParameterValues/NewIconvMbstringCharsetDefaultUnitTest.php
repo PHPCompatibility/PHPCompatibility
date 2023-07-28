@@ -156,16 +156,35 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
     /**
      * Test that there are no false positives.
      *
+     * @dataProvider dataNoFalsePositivesIconvMimeEncode
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositivesIconvMimeEncode()
+    public function testNoFalsePositivesIconvMimeEncode($line)
     {
         $file = $this->sniffFile(__FILE__, '5.4-7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesIconvMimeEncode()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositivesIconvMimeEncode()
+    {
+        $data = [];
 
         // No errors expected on line 79 - 89.
         for ($line = 79; $line <= 89; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        return $data;
     }
 
 
