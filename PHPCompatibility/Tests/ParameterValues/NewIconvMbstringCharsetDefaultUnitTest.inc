@@ -133,3 +133,6 @@ $a = iconv_mime_encode(
     $field_value,
     [ 'scheme' => $scheme, 'line-length' => $lineLength, 'input-charset' => $inputChar, 'output-charset' => $outputChar ] = $sourceInfo,
 ); // Bad. Parameter is not an array, user error, but does mean target keys are missing.
+
+// Safeguard handling of function as PHP 8.1+ first class callable.
+$var = array_map( iconv_mime_encode(...), ...$arrays );

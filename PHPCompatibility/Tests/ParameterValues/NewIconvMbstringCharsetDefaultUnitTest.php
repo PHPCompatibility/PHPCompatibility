@@ -184,6 +184,8 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
             $data[] = [$line];
         }
 
+        $data[] = [138];
+
         return $data;
     }
 
