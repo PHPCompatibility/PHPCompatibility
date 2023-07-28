@@ -14,6 +14,8 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -269,7 +271,8 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         }
 
         if ($tokens[$firstNonEmpty]['code'] === \T_ARRAY
-            || $tokens[$firstNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY
+            || (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$firstNonEmpty]['code']]) === true
+                && Arrays::isShortArray($phpcsFile, $firstNonEmpty) === true)
         ) {
             // Note: the item names are treated case-sensitively in PHP, so match on exact case.
             $hasInputCharset  = \preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);

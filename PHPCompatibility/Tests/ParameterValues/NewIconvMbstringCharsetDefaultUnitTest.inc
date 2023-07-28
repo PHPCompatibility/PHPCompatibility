@@ -121,3 +121,15 @@ $a = iconv_mime_encode(
 
 $a = iconv_mime_encode( $field_name, $field_value, /*comment*/ ); // Error: $options not set.
 $a = iconv_mime_encode( options: , field_name: $field_name, field_value: $field_value, ); // Parse error, but that's not our concern. Error: $options not set.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [ $scheme, $lineLength, , $lineBreakChars ] = $sourceInfo,
+); // Bad. Parameter is not an array, user error, but does mean target keys are missing.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [ 'scheme' => $scheme, 'line-length' => $lineLength, 'input-charset' => $inputChar, 'output-charset' => $outputChar ] = $sourceInfo,
+); // Bad. Parameter is not an array, user error, but does mean target keys are missing.
