@@ -274,15 +274,22 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             || (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$firstNonEmpty]['code']]) === true
                 && Arrays::isShortArray($phpcsFile, $firstNonEmpty) === true)
         ) {
-            // Note: the item names are treated case-sensitively in PHP, so match on exact case.
-            $hasInputCharset  = \preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);
-            $hasOutputCharset = \preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['clean']);
-            if ($hasInputCharset === 1 && $hasOutputCharset === 1) {
+            $arrayItems       = PassedParameters::getParameters($phpcsFile, $firstNonEmpty);
+            $hasInputCharset  = 0;
+            $hasOutputCharset = 0;
+
+            foreach ($arrayItems as $item) {
+                // Note: the item names are treated case-sensitively in PHP, so match on exact case.
+                $hasInputCharset  += \preg_match('`^\s*([\'"])input-charset\1\s*=>`', $item['clean']);
+                $hasOutputCharset += \preg_match('`^\s*([\'"])output-charset\1\s*=>`', $item['clean']);
+            }
+
+            if ($hasInputCharset > 0 && $hasOutputCharset > 0) {
                 // Both input as well as output charset are set.
                 return;
             }
 
-            if ($hasInputCharset !== 1) {
+            if ($hasInputCharset === 0) {
                 $phpcsFile->addError(
                     $errorMsg,
                     $firstNonEmpty,
@@ -294,7 +301,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                 );
             }
 
-            if ($hasOutputCharset !== 1) {
+            if ($hasOutputCharset === 0) {
                 $phpcsFile->addError(
                     $errorMsg,
                     $firstNonEmpty,

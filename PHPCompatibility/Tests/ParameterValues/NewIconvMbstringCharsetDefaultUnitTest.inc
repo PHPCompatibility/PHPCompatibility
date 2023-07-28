@@ -136,3 +136,34 @@ $a = iconv_mime_encode(
 
 // Safeguard handling of function as PHP 8.1+ first class callable.
 $var = array_map( iconv_mime_encode(...), ...$arrays );
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'sub-options' => [
+            'input-charset'  => 'ISO-8859-1',
+            'output-charset' => 'UTF-8',
+        ],
+        'line-length' => 80,
+    ]
+); // Error: 'input-charset/output-charset' not set (as they are not set as keys on the top-level array.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    array(
+        'input-charset'    => 'ISO-8859-1',
+        'input-charset'    => 'ISO-8859-1',
+        'output-charset'   => 'UTF-8',
+    )
+); // OK. Parameter set and the expected array keys set as well. The fact that there are duplicate array keys is irrelevant.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    array(
+        'output-charset'   => 'UTF-8',
+        'output-charset'   => 'UTF-8',
+    )
+); // Error: 'input-charset' not set.

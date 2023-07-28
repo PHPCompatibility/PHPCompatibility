@@ -149,6 +149,9 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
             [123, '$options[\'input/output-charset\']'],
             [128, '$options[\'input/output-charset\']', 'warning'],
             [134, '$options[\'input/output-charset\']', 'warning'],
+            [143, '$options[\'input-charset\']'],
+            [143, '$options[\'output-charset\']'],
+            [165, '$options[\'input-charset\']'],
         ];
     }
 
@@ -185,6 +188,10 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTest
         }
 
         $data[] = [138];
+
+        for ($line = 152; $line <= 161; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
