@@ -246,8 +246,8 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      */
     public function processIconvMimeEncode(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
-        $data  = [
+        $errorMsg = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
+        $data     = [
             '$options[\'input/output-charset\']',
             '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
         ];
@@ -256,7 +256,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         $paramInfo   = $this->targetFunctions[$functionLC];
         $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
         if ($targetParam === false) {
-            $phpcsFile->addError($error, $stackPtr, 'PreferencesNotSet', $data);
+            $phpcsFile->addError($errorMsg, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
@@ -264,7 +264,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($firstNonEmpty === false) {
             // Parse error or live coding, but preferences is definitely not set, so throw the error.
-            $phpcsFile->addError($error, $stackPtr, 'PreferencesNotSet', $data);
+            $phpcsFile->addError($errorMsg, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
@@ -281,7 +281,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
 
             if ($hasInputCharset !== 1) {
                 $phpcsFile->addError(
-                    $error,
+                    $errorMsg,
                     $firstNonEmpty,
                     'InputPreferenceNotSet',
                     [
@@ -293,7 +293,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
 
             if ($hasOutputCharset !== 1) {
                 $phpcsFile->addError(
-                    $error,
+                    $errorMsg,
                     $firstNonEmpty,
                     'OutputPreferenceNotSet',
                     [
@@ -308,7 +308,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
 
         // The $options parameter was passed, but it was a variable/constant/output of a function call.
         $phpcsFile->addWarning(
-            $error,
+            $errorMsg,
             $firstNonEmpty,
             'Undetermined',
             [
