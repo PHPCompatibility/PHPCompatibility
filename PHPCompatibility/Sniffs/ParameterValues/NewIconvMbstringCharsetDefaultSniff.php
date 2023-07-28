@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -277,11 +278,17 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             $arrayItems       = PassedParameters::getParameters($phpcsFile, $firstNonEmpty);
             $hasInputCharset  = 0;
             $hasOutputCharset = 0;
+            $hasSpreadInArray = 0;
 
             foreach ($arrayItems as $item) {
                 // Note: the item names are treated case-sensitively in PHP, so match on exact case.
                 $hasInputCharset  += \preg_match('`^\s*([\'"])input-charset\1\s*=>`', $item['clean']);
                 $hasOutputCharset += \preg_match('`^\s*([\'"])output-charset\1\s*=>`', $item['clean']);
+
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $item['start'], ($item['end'] + 1), true);
+                if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_ELLIPSIS) {
+                    ++$hasSpreadInArray;
+                }
             }
 
             if ($hasInputCharset > 0 && $hasOutputCharset > 0) {
@@ -289,11 +296,22 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                 return;
             }
 
+            $isError         = true;
+            $errorMsgSuffix  = '';
+            $errorCodeSuffix = 'NotSet';
+            if ($hasSpreadInArray === 1) {
+                $isError         = false;
+                $errorMsgSuffix  = ' Please check that it is set via the array unpack.';
+                $errorCodeSuffix = 'MaybeNotSet';
+            }
+
             if ($hasInputCharset === 0) {
-                $phpcsFile->addError(
-                    $errorMsg,
+                MessageHelper::addMessage(
+                    $phpcsFile,
+                    $errorMsg . $errorMsgSuffix,
                     $firstNonEmpty,
-                    'InputPreferenceNotSet',
+                    $isError,
+                    'InputPreference' . $errorCodeSuffix,
                     [
                         '$options[\'input-charset\']',
                         '$options[\'input-charset\'] index',
@@ -302,10 +320,12 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             }
 
             if ($hasOutputCharset === 0) {
-                $phpcsFile->addError(
-                    $errorMsg,
+                MessageHelper::addMessage(
+                    $phpcsFile,
+                    $errorMsg . $errorMsgSuffix,
                     $firstNonEmpty,
-                    'OutputPreferenceNotSet',
+                    $isError,
+                    'OutputPreference' . $errorCodeSuffix,
                     [
                         '$options[\'output-charset\']',
                         '$options[\'output-charset\'] index',

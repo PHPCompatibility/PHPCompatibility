@@ -167,3 +167,40 @@ $a = iconv_mime_encode(
         'output-charset'   => 'UTF-8',
     )
 ); // Error: 'input-charset' not set.
+
+// Test handling of PHP 7.4+ spread in array.
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        ...$options
+    ]
+); // Warning: Undetermined.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'input-charset'  => 'ISO-8859-1',
+        ...$options,
+        'output-charset' => 'UTF-8',
+    ]
+); // OK.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'input-charset'  => 'ISO-8859-1',
+        ... /*comment*/ $options,
+    ]
+); // Warning: 'output-charset' potentially not set.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        ...$options,
+        'output-charset' => 'UTF-8',
+    ]
+); // Warning: 'input-charset' potentially not set.
