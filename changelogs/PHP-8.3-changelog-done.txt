@@ -1,0 +1,228 @@
+Source: https://raw.githubusercontent.com/php/php-src/PHP-8.3/UPGRADING
+
+PHP 8.3 UPGRADE NOTES
+
+1. Backward Incompatible Changes
+2. New Features
+3. Changes in SAPI modules
+4. Deprecated Functionality
+5. Changed Functions
+6. New Functions
+7. New Classes and Interfaces
+8. Removed Extensions and SAPIs
+9. Other Changes to Extensions
+10. New Global Constants
+11. Changes to INI File Handling
+12. Windows Support
+13. Other Changes
+14. Performance Improvements
+
+========================================
+1. Backward Incompatible Changes
+========================================
+
+- Core:
+
+- DOM:
+
+- FFI:
+
+- Opcache:
+
+- Phar:
+
+- Standard:
+
+- SNMP:
+
+
+========================================
+2. New Features
+========================================
+
+- Core
+
+- CLI
+
+- DOM
+
+- FFI
+
+- Opcache
+
+- Posix
+
+- Streams
+
+
+========================================
+3. Changes in SAPI modules
+========================================
+
+
+========================================
+4. Deprecated Functionality
+========================================
+
+- Core
+
+- DBA
+
+- FFI
+
+- Intl
+
+- LDAP
+
+- MBString
+
+- Phar
+
+- Random
+
+- Standard:
+
+- SQLite3
+
+- Zip:
+
+
+========================================
+5. Changed Functions
+========================================
+
+- Core:
+
+- Calendar
+
+- Curl:
+
+- Dom:
+
+- Gd:
+
+- Intl:
+
+- MBString:
+
+- mysqli:
+
+- ODBC
+
+- PGSQL:
+
+- Random:
+
+- Reflection:
+
+- Standard:
+
+
+========================================
+6. New Functions
+========================================
+
+- Date:
+
+- DOM:
+
+- Intl:
+
+- JSON:
+
+- LDAP:
+
+- MBString:
+
+- Posix:
+
+- PGSQL:
+
+- Random:
+
+- Reflection:
+
+- Sockets:
+
+- Standard:
+
+- Zip:
+
+
+========================================
+7. New Classes and Interfaces
+========================================
+
+========================================
+8. Removed Extensions and SAPIs
+========================================
+
+========================================
+9. Other Changes to Extensions
+========================================
+
+- Core:
+
+- DOM:
+
+- SQLite3
+
+
+========================================
+10. New Global Constants
+========================================
+
+- Curl:
+
+- Intl:
+
+- OpenSSL:
+
+- PCNTL:
+
+- PDO_ODBC
+
+- PGSQL:
+
+- Posix:
+
+- Sockets:
+
+- Zip:
+
+
+========================================
+11. Changes to INI File Handling
+========================================
+
+
+========================================
+12. Windows Support
+========================================
+
+
+========================================
+13. Other Changes
+========================================
+
+- Core:
+
+- FFI:
+
+- FPM:
+
+- Opcache:
+
+- Streams:
+
+
+========================================
+14. Performance Improvements
+========================================
+
+- DOM:
+
+- Standard:
+
+- SPL:
+
