@@ -704,6 +704,8 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['IBASE_SVC_GET_USERS', '7.4', 136, '7.3'],
 
             ['ASSERT_QUIET_EVAL', '8.0', 623, '7.4'],
+            ['INPUT_REQUEST', '8.0', 641, '7.4'],
+            ['INPUT_SESSION', '8.0', 642, '7.4'],
             ['MB_OVERLOAD_MAIL', '8.0', 620, '7.4'],
             ['MB_OVERLOAD_STRING', '8.0', 621, '7.4'],
             ['MB_OVERLOAD_REGEX', '8.0', 622, '7.4'],

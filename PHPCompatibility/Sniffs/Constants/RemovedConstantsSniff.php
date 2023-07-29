@@ -2545,6 +2545,14 @@ class RemovedConstantsSniff extends Sniff
             '8.0'       => false,
             'extension' => 'enchant',
         ],
+        'INPUT_REQUEST' => [
+            '8.0'       => true,
+            'extension' => 'filter',
+        ],
+        'INPUT_SESSION' => [
+            '8.0'       => true,
+            'extension' => 'filter',
+        ],
         'MB_OVERLOAD_MAIL' => [
             '8.0'       => true,
             'extension' => 'mbstring',
