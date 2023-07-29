@@ -889,6 +889,11 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.4'       => true,
             'extension' => 'ffi',
         ],
+        'mbstring.regex_retry_limit' => [
+            '7.3'       => false,
+            '7.4'       => true,
+            'extension' => 'mbstring',
+        ],
         'opcache.cache_id' => [
             '7.3'       => false,
             '7.4'       => true,
