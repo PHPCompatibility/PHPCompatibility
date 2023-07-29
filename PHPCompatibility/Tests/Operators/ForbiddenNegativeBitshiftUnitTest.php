@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Operators;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenNegativeBitshift sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTest
+class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTestCase
 {
 
     /**

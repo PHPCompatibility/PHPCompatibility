@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Extensions;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedExtensions sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class RemovedExtensionsUnitTest extends BaseSniffTest
+class RemovedExtensionsUnitTest extends BaseSniffTestCase
 {
 
     /**

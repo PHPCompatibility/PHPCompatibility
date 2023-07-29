@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ReservedFunctionNames sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.2.0
  */
-class ReservedFunctionNamesUnitTest extends BaseSniffTest
+class ReservedFunctionNamesUnitTest extends BaseSniffTestCase
 {
 
     /**

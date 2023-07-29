@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Constants;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewConstantsInTraits sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class NewConstantsInTraitsUnitTest extends BaseSniffTest
+final class NewConstantsInTraitsUnitTest extends BaseSniffTestCase
 {
 
     /**

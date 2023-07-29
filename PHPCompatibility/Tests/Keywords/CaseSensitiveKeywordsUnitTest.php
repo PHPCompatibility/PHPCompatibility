@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Keywords;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the CaseSensitiveKeywords sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.1.4
  */
-class CaseSensitiveKeywordsUnitTest extends BaseSniffTest
+class CaseSensitiveKeywordsUnitTest extends BaseSniffTestCase
 {
 
     /**

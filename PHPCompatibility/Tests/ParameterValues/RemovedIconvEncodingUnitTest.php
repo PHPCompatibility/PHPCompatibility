@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedIconvEncoding sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.0.0
  */
-class RemovedIconvEncodingUnitTest extends BaseSniffTest
+class RemovedIconvEncodingUnitTest extends BaseSniffTestCase
 {
 
     /**

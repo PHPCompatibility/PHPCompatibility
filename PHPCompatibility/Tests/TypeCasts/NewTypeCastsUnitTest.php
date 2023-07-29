@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\TypeCasts;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewTypeCasts sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.0.1
  */
-class NewTypeCastsUnitTest extends BaseSniffTest
+class NewTypeCastsUnitTest extends BaseSniffTestCase
 {
 
     /**

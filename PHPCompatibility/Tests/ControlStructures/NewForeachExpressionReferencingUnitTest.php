@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewForeachExpressionReferencing sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.0.0
  */
-class NewForeachExpressionReferencingUnitTest extends BaseSniffTest
+class NewForeachExpressionReferencingUnitTest extends BaseSniffTestCase
 {
 
     /**

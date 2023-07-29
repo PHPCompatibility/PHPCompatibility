@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedPHP4StyleConstructors sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTest
+class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTestCase
 {
 
     /**

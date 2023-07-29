@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewAnonymousClasses sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class NewAnonymousClassesUnitTest extends BaseSniffTest
+class NewAnonymousClassesUnitTest extends BaseSniffTestCase
 {
 
     /**

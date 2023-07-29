@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Miscellaneous;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewPHPOpenTagEOF sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.3.0
  */
-class NewPHPOpenTagEOFUnitTest extends BaseSniffTest
+class NewPHPOpenTagEOFUnitTest extends BaseSniffTestCase
 {
 
     /**

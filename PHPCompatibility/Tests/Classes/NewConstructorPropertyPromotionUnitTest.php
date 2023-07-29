@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewConstructorPropertyPromotion sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTest
+final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTestCase
 {
 
     /**

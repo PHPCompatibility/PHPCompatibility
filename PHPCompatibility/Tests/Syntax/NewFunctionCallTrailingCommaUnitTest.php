@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewFunctionCallTrailingComma sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.2.0
  */
-class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTest
+class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
 {
 
     /**

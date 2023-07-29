@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\InitialValue;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewHeredoc sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.1.4
  */
-class NewHeredocUnitTest extends BaseSniffTest
+class NewHeredocUnitTest extends BaseSniffTestCase
 {
 
     /**

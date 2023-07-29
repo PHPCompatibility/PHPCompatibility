@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Interfaces;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedSerializable sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class RemovedSerializableUnitTest extends BaseSniffTest
+class RemovedSerializableUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewTypedProperties sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.2.0
  */
-class NewTypedPropertiesUnitTest extends BaseSniffTest
+class NewTypedPropertiesUnitTest extends BaseSniffTestCase
 {
 
     /**

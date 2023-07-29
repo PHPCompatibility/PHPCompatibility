@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenCallTimePassByReference sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTest
+class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
 {
 
     /**

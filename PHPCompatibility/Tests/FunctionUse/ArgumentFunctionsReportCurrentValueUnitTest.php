@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionUse;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ArgumentFunctionsReportCurrentValue sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.1.0
  */
-class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTest
+class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
 {
 
     /**

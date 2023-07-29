@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewLateStaticBinding sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.3
  */
-class NewLateStaticBindingUnitTest extends BaseSniffTest
+class NewLateStaticBindingUnitTest extends BaseSniffTestCase
 {
 
     /**

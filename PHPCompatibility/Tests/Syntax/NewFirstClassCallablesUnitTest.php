@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewFirstClassCallables sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class NewFirstClassCallablesUnitTest extends BaseSniffTest
+final class NewFirstClassCallablesUnitTest extends BaseSniffTestCase
 {
 
     /**

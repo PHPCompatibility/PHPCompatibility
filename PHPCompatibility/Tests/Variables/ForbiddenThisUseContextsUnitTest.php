@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Variables;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenThisUseContexts sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.1.0
  */
-class ForbiddenThisUseContextsUnitTest extends BaseSniffTest
+class ForbiddenThisUseContextsUnitTest extends BaseSniffTestCase
 {
 
     /**

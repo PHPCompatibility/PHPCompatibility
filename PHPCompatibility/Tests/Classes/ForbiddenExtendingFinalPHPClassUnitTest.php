@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenExtendingFinalPHPClass sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTest
+class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTestCase
 {
 
     /**

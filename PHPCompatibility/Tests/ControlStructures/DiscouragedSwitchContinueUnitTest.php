@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the DiscouragedSwitchContinue sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.2.0
  */
-class DiscouragedSwitchContinueUnitTest extends BaseSniffTest
+class DiscouragedSwitchContinueUnitTest extends BaseSniffTestCase
 {
 
     /**

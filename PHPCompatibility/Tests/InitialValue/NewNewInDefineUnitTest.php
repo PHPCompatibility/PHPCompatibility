@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\InitialValue;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewNewInDefine sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class NewNewInDefineUnitTest extends BaseSniffTest
+final class NewNewInDefineUnitTest extends BaseSniffTestCase
 {
 
     /**

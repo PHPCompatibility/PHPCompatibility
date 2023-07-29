@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Variables;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedIndirectModificationOfGlobals sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTest
+final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTestCase
 {
 
     /**

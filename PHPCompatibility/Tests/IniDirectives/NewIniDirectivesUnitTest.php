@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\IniDirectives;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewIniDirectives sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class NewIniDirectivesUnitTest extends BaseSniffTest
+class NewIniDirectivesUnitTest extends BaseSniffTestCase
 {
 
     /**

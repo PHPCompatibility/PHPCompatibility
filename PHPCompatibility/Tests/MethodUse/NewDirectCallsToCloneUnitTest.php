@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\MethodUse;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewDirectCallsToClone sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.1.0
  */
-class NewDirectCallsToCloneUnitTest extends BaseSniffTest
+class NewDirectCallsToCloneUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Upgrade;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 use PHPCompatibility\Sniffs\Upgrade\LowPHPSniff;
 
 /**
@@ -23,7 +23,7 @@ use PHPCompatibility\Sniffs\Upgrade\LowPHPSniff;
  *
  * @since 9.3.0
  */
-class LowPHPUnitTest extends BaseSniffTest
+class LowPHPUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\TextStrings;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedDollarBraceStringEmbeds sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTest
+class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
 {
 
     /**

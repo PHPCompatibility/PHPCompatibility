@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewNullableTypes sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.7
  */
-class NewNullableTypesUnitTest extends BaseSniffTest
+class NewNullableTypesUnitTest extends BaseSniffTestCase
 {
 
     /**

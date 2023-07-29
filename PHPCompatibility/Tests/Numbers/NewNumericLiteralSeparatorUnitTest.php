@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Numbers;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 use PHPCSUtils\BackCompat\Helper;
 
 /**
@@ -23,7 +23,7 @@ use PHPCSUtils\BackCompat\Helper;
  *
  * @since 10.0.0
  */
-class NewNumericLiteralSeparatorUnitTest extends BaseSniffTest
+class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionNameRestrictions;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewMagicMethods sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.4
  */
-class NewMagicMethodsUnitTest extends BaseSniffTest
+class NewMagicMethodsUnitTest extends BaseSniffTestCase
 {
 
     /**

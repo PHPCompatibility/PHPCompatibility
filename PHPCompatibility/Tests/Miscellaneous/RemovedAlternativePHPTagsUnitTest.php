@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Miscellaneous;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedAlternativePHPTags sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.4
  */
-class RemovedAlternativePHPTagsUnitTest extends BaseSniffTest
+class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
 {
 
     /**
