@@ -904,6 +904,10 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.4'       => true,
             'extension' => 'opcache',
         ],
+        'unserialize_max_depth' => [
+            '7.3' => false,
+            '7.4' => true,
+        ],
         'zend.exception_ignore_args' => [
             '7.3' => false,
             '7.4' => true,
