@@ -158,8 +158,6 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['ociwritelobtofile', '5.4', 'OCI-Lob::export() / OCILob::export() (PHP 8+)', 88, '5.3'],
             ['ociwritetemporarylob', '5.4', 'OCI-Lob::writeTemporary() / OCILob::writeTemporary() (PHP 8+)', 89, '5.3'],
 
-            ['__autoload', '7.2', 'SPL autoload', 589, '7.1'],
-
             ['enchant_broker_free', '8.0', 'unset the object', 1174, '7.4'],
             ['enchant_broker_free_dict', '8.0', 'unset the object', 1175, '7.4'],
             ['enchant_dict_add_to_personal', '8.0', 'enchant_dict_add()', 1176, '7.4'],
@@ -1436,6 +1434,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mcrypt_module_self_test', '7.1', '7.2', 'OpenSSL', 130, '7.0'],
             ['mdecrypt_generic', '7.1', '7.2', 'OpenSSL', 131, '7.0'],
 
+            ['__autoload', '7.2', '8.0', 'spl_autoload_register()', 589, '7.1'],
             ['create_function', '7.2', '8.0', 'an anonymous function', 146, '7.1'],
             ['each', '7.2', '8.0', 'a foreach loop or ArrayIterator', 147, '7.1'],
             ['read_exif_data', '7.2', '8.0', 'exif_read_data()', 149, '7.1'],

@@ -4122,7 +4122,8 @@ class RemovedFunctionsSniff extends Sniff
         ],
         '__autoload' => [
             '7.2'         => false,
-            'alternative' => 'SPL autoload',
+            '8.0'         => true,
+            'alternative' => 'spl_autoload_register()',
         ],
         'create_function' => [
             '7.2'         => false,
