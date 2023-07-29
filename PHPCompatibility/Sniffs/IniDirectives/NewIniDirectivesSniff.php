@@ -97,12 +97,14 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.0' => true,
         ],
         'ibase.default_charset' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'ibase',
         ],
         'ibase.default_db' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'ibase',
         ],
         'mail.force_extra_parameters' => [
             '4.4' => false,
@@ -175,8 +177,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'soap',
         ],
         'sqlite.assoc_case' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
         ],
         'tidy.clean_output' => [
             '4.4'       => false,
@@ -227,50 +230,61 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
 
         'mbstring.strict_detection' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'mbstring',
         ],
         'mssql.charset' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'mssql',
         ],
         'oci8.default_prefetch' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.max_persistent' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.old_oci_close_semantics' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.persistent_timeout' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.ping_interval' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.privileged_connect' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
         'oci8.statement_cache_size' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'oci8',
         ],
 
         'gd.jpeg_ignore_warning' => [
-            '5.1.2' => false,
-            '5.1.3' => true,
+            '5.1.2'     => false,
+            '5.1.3'     => true,
+            'extension' => 'gd',
         ],
 
         'fbsql.show_timestamp_decimals' => [
-            '5.1.4' => false,
-            '5.1.5' => true,
+            '5.1.4'     => false,
+            '5.1.5'     => true,
+            'extension' => 'fbsql',
         ],
         'soap.wsdl_cache' => [
             '5.1.4'     => false,
@@ -358,8 +372,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.3' => true,
         ],
         'mbstring.http_output_conv_mimetype' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'mbstring',
         ],
         'mysqli.allow_persistent' => [
             '5.2'       => false,
@@ -407,8 +422,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'mysqlnd',
         ],
         'odbc.default_cursortype' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'odbc',
         ],
         'phar.readonly' => [
             '5.2'       => false,
@@ -442,12 +458,14 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.3' => true,
         ],
         'oci8.connection_class' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'oci8',
         ],
         'oci8.events' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'oci8',
         ],
 
         'mysqlnd.mempool_default_size' => [
@@ -457,8 +475,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
 
         'curl.cainfo' => [
-            '5.3.6' => false,
-            '5.3.7' => true,
+            '5.3.6'     => false,
+            '5.3.7'     => true,
+            'extension' => 'curl',
         ],
 
         'max_input_vars' => [
@@ -559,8 +578,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.5' => true,
         ],
         'xsl.security_prefs' => [
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'xsl',
         ],
         'opcache.enable' => [
             '5.4'       => false,
@@ -730,12 +750,14 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'mysqli',
         ],
         'openssl.cafile' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'openssl',
         ],
         'openssl.capath' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'openssl',
         ],
         'mysqlnd.fetch_data_copy' => [
             '5.5'       => false,
@@ -828,8 +850,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
 
         // Introduced in PHP 7.1.25, 7.2.13, 7.3.0.
         'imap.enable_insecure_rsh' => [
-            '7.1.24' => false,
-            '7.1.25' => true,
+            '7.1.24'    => false,
+            '7.1.25'    => true,
+            'extension' => 'imap',
         ],
 
         // Introduced in PHP 7.2.17, 7.3.4.
@@ -900,8 +923,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
 
         'fiber.stack_size' => [
-            '8.0' => false,
-            '8.1' => true,
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'fibers',
         ],
         'mysqli.local_infile_directory' => [
             '8.0'       => false,
@@ -909,8 +933,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'mysqli',
         ],
         'pm.max_spawn_rate' => [
-            '8.0' => false,
-            '8.1' => true,
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'fpm',
         ],
     ];
 
