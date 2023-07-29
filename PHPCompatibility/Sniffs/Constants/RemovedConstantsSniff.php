@@ -2265,10 +2265,14 @@ class RemovedConstantsSniff extends Sniff
             '7.3' => true,
         ],
         'FILTER_FLAG_SCHEME_REQUIRED' => [
-            '7.3' => false,
+            '7.3'       => false,
+            '8.0'       => true,
+            'extension' => 'filter',
         ],
         'FILTER_FLAG_HOST_REQUIRED' => [
-            '7.3' => false,
+            '7.3'       => false,
+            '8.0'       => true,
+            'extension' => 'filter',
         ],
 
         'CURLPIPE_HTTP1' => [

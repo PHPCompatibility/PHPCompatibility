@@ -60,8 +60,6 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
     public static function dataDeprecatedConstant()
     {
         return [
-            ['FILTER_FLAG_SCHEME_REQUIRED', '7.3', 73, '7.2'],
-            ['FILTER_FLAG_HOST_REQUIRED', '7.3', 74, '7.2'],
             ['CURLPIPE_HTTP1', '7.4', 138, '7.3'],
             ['ENCHANT_MYSPELL', '8.0', 625, '7.4'],
             ['ENCHANT_ISPELL', '8.0', 626, '7.4'],
@@ -818,6 +816,9 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MCRYPT_XTEA', '7.1', '7.2', 68, '7.0'],
 
             ['INTL_IDNA_VARIANT_2003', '7.2', '8.0', 16, '7.1'],
+
+            ['FILTER_FLAG_SCHEME_REQUIRED', '7.3', '8.0', 73, '7.2'],
+            ['FILTER_FLAG_HOST_REQUIRED', '7.3', '8.0', 74, '7.2'],
         ];
     }
 
