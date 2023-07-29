@@ -1162,13 +1162,16 @@ class RemovedFunctionsSniff extends Sniff
             'extension' => 'oracle',
         ],
         'mysqli_embedded_connect' => [
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_server_end' => [
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_server_init' => [
-            '5.1' => true,
+            '5.1'       => true,
+            'extension' => 'mysqli',
         ],
 
         'msession_connect' => [
@@ -1257,7 +1260,8 @@ class RemovedFunctionsSniff extends Sniff
         ],
 
         'mysqli_resource' => [
-            '5.1.4' => true,
+            '5.1.4'     => true,
+            'extension' => 'mysqli',
         ],
 
         'mysql_createdb' => [
@@ -2724,28 +2728,36 @@ class RemovedFunctionsSniff extends Sniff
             'extension' => 'msql',
         ],
         'mysqli_disable_reads_from_master' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_disable_rpl_parse' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_enable_reads_from_master' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_enable_rpl_parse' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_master_query' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_rpl_parse_enabled' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_rpl_probe' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_slave_query' => [
-            '5.3' => true,
+            '5.3'       => true,
+            'extension' => 'mysqli',
         ],
 
         'call_user_method' => [
@@ -2790,33 +2802,41 @@ class RemovedFunctionsSniff extends Sniff
             'extension'   => 'ereg',
         ],
         'imagepsbbox' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepsencodefont' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepsextendfont' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepsfreefont' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepsloadfont' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepsslantfont' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'imagepstext' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'gd',
         ],
         'import_request_variables' => [
             '5.3' => false,
             '5.4' => true,
         ],
         'ldap_sort' => [
-            '7.0' => false,
-            '8.0' => true,
+            '7.0'       => false,
+            '8.0'       => true,
+            'extension' => 'ldap',
         ],
         'mcrypt_generic_end' => [
             '5.3'         => false,
@@ -2850,36 +2870,43 @@ class RemovedFunctionsSniff extends Sniff
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt::bind_param()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_bind_result' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt::bind_result()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_client_encoding' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli::character_set_name()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_fetch' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt::fetch()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_param_count' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt_param_count()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_get_metadata' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt::result_metadata()',
+            'extension'   => 'mysqli',
         ],
         'mysqli_send_long_data' => [
             '5.3'         => false,
             '5.4'         => true,
             'alternative' => 'mysqli_stmt::send_long_data()',
+            'extension'   => 'mysqli',
         ],
         'magic_quotes_runtime' => [
             '5.3' => false,
@@ -2971,201 +2998,251 @@ class RemovedFunctionsSniff extends Sniff
         'ocibindbyname' => [
             '5.4'         => false,
             'alternative' => 'oci_bind_by_name()',
+            'extension'   => 'oci8',
         ],
         'ocicancel' => [
             '5.4'         => false,
             'alternative' => 'oci_cancel()',
+            'extension'   => 'oci8',
         ],
         'ocicloselob' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::close() / OCILob::close() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollappend' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::append() / OCICollection::append() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollassign' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::assign() / OCICollection::assign() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollassignelem' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::assignElem() / OCICollection::assignElem() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollgetelem' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::getElem() / OCICollection::getElem() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollmax' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::max() / OCICollection::max() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicollsize' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::size() / OCICollection::size() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicolltrim' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::trim() / OCICollection::trim() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocicolumnisnull' => [
             '5.4'         => false,
             'alternative' => 'oci_field_is_null()',
+            'extension'   => 'oci8',
         ],
         'ocicolumnname' => [
             '5.4'         => false,
             'alternative' => 'oci_field_name()',
+            'extension'   => 'oci8',
         ],
         'ocicolumnprecision' => [
             '5.4'         => false,
             'alternative' => 'oci_field_precision()',
+            'extension'   => 'oci8',
         ],
         'ocicolumnscale' => [
             '5.4'         => false,
             'alternative' => 'oci_field_scale()',
+            'extension'   => 'oci8',
         ],
         'ocicolumnsize' => [
             '5.4'         => false,
             'alternative' => 'oci_field_size()',
+            'extension'   => 'oci8',
         ],
         'ocicolumntype' => [
             '5.4'         => false,
             'alternative' => 'oci_field_type()',
+            'extension'   => 'oci8',
         ],
         'ocicolumntyperaw' => [
             '5.4'         => false,
             'alternative' => 'oci_field_type_raw()',
+            'extension'   => 'oci8',
         ],
         'ocicommit' => [
             '5.4'         => false,
             'alternative' => 'oci_commit()',
+            'extension'   => 'oci8',
         ],
         'ocidefinebyname' => [
             '5.4'         => false,
             'alternative' => 'oci_define_by_name()',
+            'extension'   => 'oci8',
         ],
         'ocierror' => [
             '5.4'         => false,
             'alternative' => 'oci_error()',
+            'extension'   => 'oci8',
         ],
         'ociexecute' => [
             '5.4'         => false,
             'alternative' => 'oci_execute()',
+            'extension'   => 'oci8',
         ],
         'ocifetch' => [
             '5.4'         => false,
             'alternative' => 'oci_fetch()',
+            'extension'   => 'oci8',
         ],
         'ocifetchinto' => [
-            '5.4' => false,
+            '5.4'       => false,
+            'extension' => 'oci8',
         ],
         'ocifetchstatement' => [
             '5.4'         => false,
             'alternative' => 'oci_fetch_all()',
+            'extension'   => 'oci8',
         ],
         'ocifreecollection' => [
             '5.4'         => false,
             'alternative' => 'OCI-Collection::free() / OCICollection::free() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocifreecursor' => [
             '5.4'         => false,
             'alternative' => 'oci_free_statement()',
+            'extension'   => 'oci8',
         ],
         'ocifreedesc' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::free() / OCILob::free() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocifreestatement' => [
             '5.4'         => false,
             'alternative' => 'oci_free_statement()',
+            'extension'   => 'oci8',
         ],
         'ociinternaldebug' => [
             '5.4'         => false,
             '8.0'         => true,
             'alternative' => 'oci_internal_debug() (PHP < 8.0)',
+            'extension'   => 'oci8',
         ],
         'ociloadlob' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::load() / OCILob::load() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocilogoff' => [
             '5.4'         => false,
             'alternative' => 'oci_close()',
+            'extension'   => 'oci8',
         ],
         'ocilogon' => [
             '5.4'         => false,
             'alternative' => 'oci_connect()',
+            'extension'   => 'oci8',
         ],
         'ocinewcollection' => [
             '5.4'         => false,
             'alternative' => 'oci_new_collection()',
+            'extension'   => 'oci8',
         ],
         'ocinewcursor' => [
             '5.4'         => false,
             'alternative' => 'oci_new_cursor()',
+            'extension'   => 'oci8',
         ],
         'ocinewdescriptor' => [
             '5.4'         => false,
             'alternative' => 'oci_new_descriptor()',
+            'extension'   => 'oci8',
         ],
         'ocinlogon' => [
             '5.4'         => false,
             'alternative' => 'oci_new_connect()',
+            'extension'   => 'oci8',
         ],
         'ocinumcols' => [
             '5.4'         => false,
             'alternative' => 'oci_num_fields()',
+            'extension'   => 'oci8',
         ],
         'ociparse' => [
             '5.4'         => false,
             'alternative' => 'oci_parse()',
+            'extension'   => 'oci8',
         ],
         'ociplogon' => [
             '5.4'         => false,
             'alternative' => 'oci_pconnect()',
+            'extension'   => 'oci8',
         ],
         'ociresult' => [
             '5.4'         => false,
             'alternative' => 'oci_result()',
+            'extension'   => 'oci8',
         ],
         'ocirollback' => [
             '5.4'         => false,
             'alternative' => 'oci_rollback()',
+            'extension'   => 'oci8',
         ],
         'ocirowcount' => [
             '5.4'         => false,
             'alternative' => 'oci_num_rows()',
+            'extension'   => 'oci8',
         ],
         'ocisavelob' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::save() / OCILob::save() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ocisavelobfile' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::import() / OCILob::import() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ociserverversion' => [
             '5.4'         => false,
             'alternative' => 'oci_server_version()',
+            'extension'   => 'oci8',
         ],
         'ocisetprefetch' => [
             '5.4'         => false,
             'alternative' => 'oci_set_prefetch()',
+            'extension'   => 'oci8',
         ],
         'ocistatementtype' => [
             '5.4'         => false,
             'alternative' => 'oci_statement_type()',
+            'extension'   => 'oci8',
         ],
         'ociwritelobtofile' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::export() / OCILob::export() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'ociwritetemporarylob' => [
             '5.4'         => false,
             'alternative' => 'OCI-Lob::writeTemporary() / OCILob::writeTemporary() (PHP 8+)',
+            'extension'   => 'oci8',
         ],
         'mysqli_get_cache_stats' => [
-            '5.4' => true,
+            '5.4'       => true,
+            'extension' => 'mysqli',
         ],
         'sqlite_array_query' => [
             '5.4'       => true,
@@ -4035,11 +4112,13 @@ class RemovedFunctionsSniff extends Sniff
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'imagecreatefromjpeg() and imagewbmp()',
+            'extension'   => 'gd',
         ],
         'png2wbmp' => [
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'imagecreatefrompng() or imagewbmp()',
+            'extension'   => 'gd',
         ],
         '__autoload' => [
             '7.2'         => false,
@@ -4059,87 +4138,104 @@ class RemovedFunctionsSniff extends Sniff
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'gmp_random_bits() or gmp_random_range()',
+            'extension'   => 'gmp',
         ],
         'read_exif_data' => [
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'exif_read_data()',
+            'extension'   => 'exif',
         ],
 
         'image2wbmp' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'imagewbmp()',
+            'extension'   => 'gd',
         ],
         'mbregex_encoding' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_regex_encoding()',
+            'extension'   => 'mbstring',
         ],
         'mbereg' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg()',
+            'extension'   => 'mbstring',
         ],
         'mberegi' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_eregi()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_replace' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_replace()',
+            'extension'   => 'mbstring',
         ],
         'mberegi_replace' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_eregi_replace()',
+            'extension'   => 'mbstring',
         ],
         'mbsplit' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_split()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_match' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_match()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_pos' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_pos()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_regs' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_regs()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_init' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_init()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_getregs' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_getregs()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_getpos' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_getpos()',
+            'extension'   => 'mbstring',
         ],
         'mbereg_search_setpos' => [
             '7.3'         => false,
             '8.0'         => true,
             'alternative' => 'mb_ereg_search_setpos()',
+            'extension'   => 'mbstring',
         ],
         'fgetss' => [
             '7.3' => false,
@@ -4574,11 +4670,13 @@ class RemovedFunctionsSniff extends Sniff
             '7.4'         => false,
             '8.0'         => true,
             'alternative' => 'ldap_search()',
+            'extension'   => 'ldap',
         ],
         'ldap_control_paged_result' => [
             '7.4'         => false,
             '8.0'         => true,
             'alternative' => 'ldap_search()',
+            'extension'   => 'ldap',
         ],
         'recode_file' => [
             '7.4'         => true,
@@ -4620,151 +4718,190 @@ class RemovedFunctionsSniff extends Sniff
             'extension' => 'wddx',
         ],
         'mysqli_embedded_server_end' => [
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'mysqli',
         ],
         'mysqli_embedded_server_start' => [
-            '7.4' => true,
+            '7.4'       => true,
+            'extension' => 'mysqli',
         ],
 
         'enchant_broker_get_dict_path' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'enchant',
         ],
         'enchant_broker_set_dict_path' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'enchant',
         ],
         'enchant_broker_free' => [
             '8.0'         => false,
             'alternative' => 'unset the object',
+            'extension'   => 'enchant',
         ],
         'enchant_broker_free_dict' => [
             '8.0'         => false,
             'alternative' => 'unset the object',
+            'extension'   => 'enchant',
         ],
         'enchant_dict_add_to_personal' => [
             '8.0'         => false,
             'alternative' => 'enchant_dict_add()',
+            'extension'   => 'enchant',
         ],
         'enchant_dict_is_in_session' => [
             '8.0'         => false,
             'alternative' => 'enchant_dict_is_added()',
+            'extension'   => 'enchant',
         ],
         'imap_header' => [
             '8.0'         => true,
             'alternative' => 'imap_headerinfo()',
+            'extension'   => 'imap',
         ],
         'libxml_disable_entity_loader' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'libxml',
         ],
         'oci_internal_debug' => [
-            '8.0' => true,
+            '8.0'       => true,
+            'extension' => 'oci8',
         ],
         'openssl_x509_free' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'openssl',
         ],
         'openssl_pkey_free' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'openssl',
         ],
         'openssl_free_key' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'openssl',
         ],
         'pg_clientencoding' => [
             '8.0'         => false,
             'alternative' => 'pg_client_encoding()',
+            'extension'   => 'pgsql',
         ],
         'pg_cmdtuples' => [
             '8.0'         => false,
             'alternative' => 'pg_affected_rows()',
+            'extension'   => 'pgsql',
         ],
         'pg_errormessage' => [
             '8.0'         => false,
             'alternative' => 'pg_last_error()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldname' => [
             '8.0'         => false,
             'alternative' => 'pg_field_name()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldnum' => [
             '8.0'         => false,
             'alternative' => 'pg_field_num()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldisnull' => [
             '8.0'         => false,
             'alternative' => 'pg_field_is_null()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldprtlen' => [
             '8.0'         => false,
             'alternative' => 'pg_field_prtlen()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldsize' => [
             '8.0'         => false,
             'alternative' => 'pg_field_size()',
+            'extension'   => 'pgsql',
         ],
         'pg_fieldtype' => [
             '8.0'         => false,
             'alternative' => 'pg_field_type()',
+            'extension'   => 'pgsql',
         ],
         'pg_freeresult' => [
             '8.0'         => false,
             'alternative' => 'pg_free_result()',
+            'extension'   => 'pgsql',
         ],
         'pg_getlastoid' => [
             '8.0'         => false,
             'alternative' => 'pg_last_oid()',
+            'extension'   => 'pgsql',
         ],
         'pg_loclose' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_close()',
+            'extension'   => 'pgsql',
         ],
         'pg_locreate' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_create()',
+            'extension'   => 'pgsql',
         ],
         'pg_loexport' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_export()',
+            'extension'   => 'pgsql',
         ],
         'pg_loimport' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_import()',
+            'extension'   => 'pgsql',
         ],
         'pg_loopen' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_open()',
+            'extension'   => 'pgsql',
         ],
         'pg_loread' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_read()',
+            'extension'   => 'pgsql',
         ],
         'pg_loreadall' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_read_all()',
+            'extension'   => 'pgsql',
         ],
         'pg_lounlink' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_unlink()',
+            'extension'   => 'pgsql',
         ],
         'pg_lowrite' => [
             '8.0'         => false,
             'alternative' => 'pg_lo_write()',
+            'extension'   => 'pgsql',
         ],
         'pg_numfields' => [
             '8.0'         => false,
             'alternative' => 'pg_num_fields()',
+            'extension'   => 'pgsql',
         ],
         'pg_numrows' => [
             '8.0'         => false,
             'alternative' => 'pg_num_rows()',
+            'extension'   => 'pgsql',
         ],
         'pg_result' => [
             '8.0'         => false,
             'alternative' => 'pg_fetch_result()',
+            'extension'   => 'pgsql',
         ],
         'pg_setclientencoding' => [
             '8.0'         => false,
             'alternative' => 'pg_set_client_encoding()',
+            'extension'   => 'pgsql',
         ],
         'shmop_close' => [
-            '8.0' => false,
+            '8.0'       => false,
+            'extension' => 'shmop',
         ],
         'xmlrpc_decode_request' => [
             '8.0'       => true,
@@ -4825,42 +4962,52 @@ class RemovedFunctionsSniff extends Sniff
         'zip_close' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive::close()',
+            'extension'   => 'zip',
         ],
         'zip_entry_close' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_compressedsize' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_compressionmethod' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_filesize' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_name' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_open' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_entry_read' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
         'zip_open' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive::open()',
+            'extension'   => 'zip',
         ],
         'zip_read' => [
             '8.0'         => false,
             'alternative' => 'ZipArchive',
+            'extension'   => 'zip',
         ],
 
         'date_sunrise' => [
@@ -4886,25 +5033,31 @@ class RemovedFunctionsSniff extends Sniff
         'mhash_count' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
+            'extension'   => 'hash',
         ],
         'mhash_get_block_size' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
+            'extension'   => 'hash',
         ],
         'mhash_get_hash_name' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
+            'extension'   => 'hash',
         ],
         'mhash_keygen_s2k' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
+            'extension'   => 'hash',
         ],
         'mhash' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
+            'extension'   => 'hash',
         ],
         'odbc_result_all' => [
-            '8.1' => false,
+            '8.1'       => false,
+            'extension' => 'odbc',
         ],
     ];
 
