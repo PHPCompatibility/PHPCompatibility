@@ -45,7 +45,7 @@ interface MySecondInterface {
 $a = new class
 {
     public function someThing($name) {}
-}
+};
 
 class Nested {
     public function getAnonymousClass() {

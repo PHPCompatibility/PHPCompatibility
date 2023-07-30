@@ -28,8 +28,8 @@ namespace Testing {
 	/* test 12 */
 	DateTime::static_function();
 
-	class MyClass {
-		function test {
+	class MyClass extends Foo {
+		function test() {
 			/* test 13 */
 			echo self::CONSTANT;
 			/* test 14 */
@@ -41,8 +41,8 @@ namespace Testing {
 }
 
 
-class MyClass {
-	function test {
+class MyClass extends Bar {
+	function test() {
 		/* test 16 */
 		echo self::CONSTANT;
 		/* test 17 */

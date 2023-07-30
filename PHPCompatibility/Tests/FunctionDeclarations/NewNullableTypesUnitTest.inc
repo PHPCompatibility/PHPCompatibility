@@ -60,8 +60,8 @@ class NullableTypes {
 }
 
 // Test closures with nullable types.
-function (): ?string {}
-function(?callable $nullable) {}
+function (): ?string {};
+function(?callable $nullable) {};
 
 function testTypeDeclarationsInterspersedWithComments(
 	// This is a parameter declaration.

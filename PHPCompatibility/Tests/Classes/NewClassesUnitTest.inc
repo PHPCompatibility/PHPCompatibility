@@ -175,10 +175,10 @@ class MyClass {
 }
 
 // New classes as type hints in anonymous functions.
-function ( MultipleIterator $a ) {}
-function(\RecursiveCallbackFilterIterator $a) {}
-function ( ?SNMP $a ) {}
-function(myNameSpace\IntlTimeZone $a) {} // Ok.
+function ( MultipleIterator $a ) {};
+function(\RecursiveCallbackFilterIterator $a) {};
+function ( ?SNMP $a ) {};
+function(myNameSpace\IntlTimeZone $a) {}; // Ok.
 
 /*
  * Exception classes should be caught too.
@@ -202,16 +202,16 @@ $snon = new class extends BadFunctionCallException {};
 $snon = new class extends mysqli_sql_exception {};
 $snon = new class extends DivisionByZeroError {};
 
-class MyExceptionHandler {
+class MyOtherExceptionHandler {
     // New Exceptions as typehints.
-    function ExceptionTypeHint( BadMethodCallException $e ) {}
-    function ExceptionTypeHint( RangeException $e ) {}
-    function ExceptionTypeHint( ArithmeticError $e ) {}
+    function ExceptionTypeHintA( BadMethodCallException $e ) {}
+    function ExceptionTypeHintB( RangeException $e ) {}
+    function ExceptionTypeHintC( ArithmeticError $e ) {}
 
 }
 
 // New exceptions as type hints in anonymous functions.
-function ( Error $e ) {}
+function ( Error $e ) {};
 
 try {
 } catch (Exception $e) {
@@ -327,7 +327,7 @@ function NsNullDateTimeReturnTypeHint( $a ) : ?SomeNamespace\DateTime {}
 function NoDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime\RealClass {}
 
 // Test abstract method declaration recognition.
-class TestThis {
+abstract class TestThis {
 	abstract protected function AbstractFunctionParamAndReturnTypeHint( \DateTimeZone $a ) : DateTime;
 }
 
@@ -342,9 +342,9 @@ class MyClosedGeneratorException extends ClosedGeneratorException {}
 function SodiumExceptionTypeHint( SodiumException $a ) {}
 $test = new com_exception();
 $test = new ReflectionReference;
-function DateTimeReturnTypeHint( $a ) : WeakReference {}
+function DateTimeReturnTypeHintToo( $a ) : WeakReference {}
 FFI::load(__DIR__ . "/dummy.h");
-function FFITypeHints( FFI\CData $a, FFI\CType $b );
+function FFITypeHints( FFI\CData $a, FFI\CType $b ) {}
 try {
 } catch ( FFI\Exception | FFI\ParserException $e ) {}
 $hash = new class extends HashContext {};
@@ -362,7 +362,7 @@ $param = new ReflectionParameter;
 echo ReflectionProperty::$prop;
 
 $soap = new SoapClient();
-class MySoapServer extends SoapServer() {}
+class MySoapServer extends SoapServer {}
 function processA(
     SoapHeader $header) {}
 function processB(SoapParam $param) {}
@@ -398,7 +398,7 @@ function SqlLiteTypeHint(SQLiteUnbuffered $param) {}
 $mysqli = new mysqli();
 class MyMysqliStmt extends mysqli_stmt {}
 function MySqliResultTypeHint( mysqli_result $result){}
-$anon = class MyMysqliDriver extends mysqli_driver {};
+$anon = new class extends mysqli_driver {};
 if (is_a($var, mysqli_warning::class)) {}
 
 //$oci8 = new OCI-Collection();
@@ -406,10 +406,10 @@ if (is_a($var, mysqli_warning::class)) {}
 
 $conn = new sqlite3();
 Class mySqlite3Stmt extends Sqlite3Stmt {}
-function MySqlite3ResultTypeHint(SQLite3Result $result) {]
+function MySqlite3ResultTypeHint(SQLite3Result $result) {}
 
 class FooBar {
-    public function foo(): WeakMap {};
+    public function foo(): WeakMap {}
 }
 
 function processToken(PhpToken $stackPtr) {}
@@ -440,7 +440,7 @@ $file = new CURLStringFile($data, 'filename.txt', 'text/plain');
 // Test support for PHP 7.4 property types.
 public WeakMap $var; // Ignore, not a property, parse error.
 
-$anon = class() {
+$anon = new class() {
     public Attribute $property;
 };
 
@@ -459,10 +459,10 @@ class UnionTypes {
 
 // Test support for PHP 8.1 intersection types.
 class IntersectionTypes {
-    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+    public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
 
     public IntlPartsIterator&IntlIterator $property;
-    public function paramType(\ReflectionClassConstant&\ReflectionNamedType $param) {}
+    public function paramTypeB(\ReflectionClassConstant&\ReflectionNamedType $param) {}
     public function returnType($param) : \FFI\CData&\FFI\CType {}
 }
 
