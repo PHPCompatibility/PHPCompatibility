@@ -1041,6 +1041,11 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.1' => false,
             '8.2' => true,
         ],
+        'oci8.prefetch_lob_size' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'oci8',
+        ],
     ];
 
     /**

@@ -292,6 +292,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTestCase
             ['pm.max_spawn_rate', '8.1', [545, 546], '8.0'],
 
             ['error_log_mode', '8.2', [615, 616], '8.1'],
+            ['oci8.prefetch_lob_size', '8.2', [618, 619], '8.1'],
         ];
     }
 
