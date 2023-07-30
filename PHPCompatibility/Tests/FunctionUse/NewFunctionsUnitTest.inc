@@ -1026,3 +1026,4 @@ sodium_crypto_scalarmult_ristretto255_base();
 enum_exists();
 
 curl_upkeep();
+mysqli_execute_query();

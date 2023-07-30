@@ -4859,6 +4859,11 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'curl',
         ],
+        'mysqli_execute_query' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
 

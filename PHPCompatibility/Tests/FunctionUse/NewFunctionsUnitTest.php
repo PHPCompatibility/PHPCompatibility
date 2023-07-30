@@ -1087,6 +1087,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['enum_exists', '8.0', 1026, '8.1'],
 
             ['curl_upkeep', '8.1', 1028, '8.2'],
+            ['mysqli_execute_query', '8.1', 1029, '8.2'],
         ];
     }
 
