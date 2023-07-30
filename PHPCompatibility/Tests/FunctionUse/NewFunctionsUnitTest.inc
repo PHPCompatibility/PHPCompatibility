@@ -1027,3 +1027,4 @@ enum_exists();
 
 curl_upkeep();
 mysqli_execute_query();
+openssl_cipher_key_length();

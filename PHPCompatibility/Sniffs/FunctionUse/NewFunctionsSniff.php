@@ -4864,6 +4864,11 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'mysqli',
         ],
+        'openssl_cipher_key_length' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'openssal',
+        ],
     ];
 
 
