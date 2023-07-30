@@ -1089,6 +1089,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['curl_upkeep', '8.1', 1028, '8.2'],
             ['mysqli_execute_query', '8.1', 1029, '8.2'],
             ['openssl_cipher_key_length', '8.1', 1030, '8.2'],
+            ['sodium_crypto_stream_xchacha20_xor_ic', '8.1', 1031, '8.2'],
         ];
     }
 

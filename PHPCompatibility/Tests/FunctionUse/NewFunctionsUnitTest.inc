@@ -1028,3 +1028,4 @@ enum_exists();
 curl_upkeep();
 mysqli_execute_query();
 openssl_cipher_key_length();
+sodium_crypto_stream_xchacha20_xor_ic();

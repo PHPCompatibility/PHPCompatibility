@@ -4869,6 +4869,11 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'openssal',
         ],
+        'sodium_crypto_stream_xchacha20_xor_ic' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
