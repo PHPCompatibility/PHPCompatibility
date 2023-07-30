@@ -7262,6 +7262,11 @@ class NewConstantsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'curl',
         ],
+        'CURLINFO_EFFECTIVE_METHOD' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
         'CURLINFO_PROXY_ERROR' => [
             '8.1'       => false,
             '8.2'       => true,

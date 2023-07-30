@@ -1528,6 +1528,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLFTPMETHOD_DEFAULT', '8.1', 1455, '8.2'],
             ['CURLHSTS_ENABLE', '8.1', 1456, '8.2'],
             ['CURLHSTS_READONLYFILE', '8.1', 1457, '8.2'],
+            ['CURLINFO_EFFECTIVE_METHOD', '8.1', 1545, '8.2'],
             ['CURLINFO_PROXY_ERROR', '8.1', 1458, '8.2'],
             ['CURLINFO_REFERER', '8.1', 1459, '8.2'],
             ['CURLINFO_RETRY_AFTER', '8.1', 1460, '8.2'],
