@@ -4854,6 +4854,10 @@ class NewFunctionsSniff extends Sniff
             'extension' => 'sodium',
         ],
 
+        'memory_reset_peak_usage' => [
+            '8.1' => false,
+            '8.2' => true,
+        ],
         'curl_upkeep' => [
             '8.1'       => false,
             '8.2'       => true,
