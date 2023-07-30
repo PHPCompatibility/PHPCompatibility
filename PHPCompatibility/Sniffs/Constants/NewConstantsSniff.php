@@ -7613,6 +7613,12 @@ class NewConstantsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'dba',
         ],
+        // Filter:
+        'FILTER_FLAG_GLOBAL_RANGE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'filter',
+        ],
     ];
 
 

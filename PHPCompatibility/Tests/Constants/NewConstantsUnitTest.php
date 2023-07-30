@@ -1598,6 +1598,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURL_VERSION_ZSTD', '8.1', 1525, '8.2'],
             ['DBA_LMDB_USE_SUB_DIR', '8.1', 1526, '8.2'],
             ['DBA_LMDB_NO_SUB_DIR', '8.1', 1527, '8.2'],
+            ['FILTER_FLAG_GLOBAL_RANGE', '8.1', 1528, '8.2'],
         ];
     }
 
