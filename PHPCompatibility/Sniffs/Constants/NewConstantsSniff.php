@@ -7602,6 +7602,17 @@ class NewConstantsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'curl',
         ],
+        // DBA:
+        'DBA_LMDB_USE_SUB_DIR' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'dba',
+        ],
+        'DBA_LMDB_NO_SUB_DIR' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'dba',
+        ],
     ];
 
 
