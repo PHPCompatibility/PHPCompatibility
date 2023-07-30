@@ -1031,3 +1031,4 @@ openssl_cipher_key_length();
 sodium_crypto_stream_xchacha20_xor_ic();
 memory_reset_peak_usage();
 ini_parse_quantity();
+libxml_get_external_entity_loader();

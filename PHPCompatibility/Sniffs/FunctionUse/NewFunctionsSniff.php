@@ -4882,6 +4882,11 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'sodium',
         ],
+        'libxml_get_external_entity_loader' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'libxml',
+        ],
     ];
 
 
