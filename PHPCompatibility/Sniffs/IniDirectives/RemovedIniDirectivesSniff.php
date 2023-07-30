@@ -658,6 +658,11 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.1'       => false,
             'extension' => 'oci8',
         ],
+
+        'mysqli.reconnect' => [
+            '8.2'       => true,
+            'extension' => 'mysqli',
+        ],
     ];
 
     /**

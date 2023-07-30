@@ -463,3 +463,6 @@ $test = ini_get(ini: 'filter.default_options'); // Wrong param name.
 
 ini_set('mysqlnd.fetch_data_copy', 0);
 $test = ini_get('mysqlnd.fetch_data_copy');
+
+ini_set('mysqli.reconnect', 0);
+$test = ini_get('mysqli.reconnect');
