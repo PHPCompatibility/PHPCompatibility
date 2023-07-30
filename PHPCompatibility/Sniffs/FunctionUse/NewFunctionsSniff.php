@@ -4853,6 +4853,12 @@ class NewFunctionsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'sodium',
         ],
+
+        'curl_upkeep' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
     ];
 
 
