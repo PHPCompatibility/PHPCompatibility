@@ -7216,6 +7216,392 @@ class NewConstantsSniff extends Sniff
             '8.1' => false,
             '8.2' => true,
         ],
+        // Curl:
+        'CURLALTSVC_H1' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLALTSVC_H2' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLALTSVC_H3' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLALTSVC_READONLYFILE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLAUTH_AWS_SIGV4' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLE_PROXY' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLFTPMETHOD_DEFAULT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLHSTS_ENABLE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLHSTS_READONLYFILE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_PROXY_ERROR' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_REFERER' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_RETRY_AFTER' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLMOPT_MAX_CONCURRENT_STREAMS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_ALTSVC_CTRL' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_ALTSVC' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_AWS_SIGV4' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_CAINFO_BLOB' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_DOH_SSL_VERIFYHOST' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_DOH_SSL_VERIFYPEER' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_DOH_SSL_VERIFYSTATUS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_HSTS_CTRL' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_HSTS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_MAIL_RCPT_ALLLOWFAILS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_MAXAGE_CONN' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_MAXFILESIZE_LARGE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_MAXLIFETIME_CONN' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROXY_CAINFO_BLOB' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SASL_AUTHZID' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSH_HOST_PUBLIC_KEY_SHA256' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSL_EC_CURVES' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_UPKEEP_INTERVAL_MS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_UPLOAD_BUFFERSIZE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_XFERINFOFUNCTION' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPROTO_MQTT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_BAD_ADDRESS_TYPE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_BAD_VERSION' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_CLOSED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_GSSAPI' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_GSSAPI_PERMSG' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_GSSAPI_PROTECTION' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_IDENTD_DIFFER' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_IDENTD' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_LONG_HOSTNAME' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_LONG_PASSWD' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_LONG_USER' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_NO_AUTH' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_OK' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_RECV_ADDRESS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_RECV_AUTH' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_RECV_CONNECT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_RECV_REQACK' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_ADDRESS_TYPE_NOT_SUPPORTED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_COMMAND_NOT_SUPPORTED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_CONNECTION_REFUSED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_GENERAL_SERVER_FAILURE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_HOST_UNREACHABLE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_NETWORK_UNREACHABLE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_NOT_ALLOWED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_TTL_EXPIRED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REPLY_UNASSIGNED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_REQUEST_FAILED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_RESOLVE_HOST' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_SEND_AUTH' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_SEND_CONNECT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_SEND_REQUEST' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_UNKNOWN_FAIL' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_UNKNOWN_MODE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLPX_USER_REJECTED' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLSSLOPT_AUTO_CLIENT_CERT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLSSLOPT_NATIVE_CA' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLSSLOPT_NO_PARTIALCHAIN' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLSSLOPT_REVOKE_BEST_EFFORT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_VERSION_GSASL' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_VERSION_HSTS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_VERSION_HTTP3' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_VERSION_UNICODE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_VERSION_ZSTD' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
     ];
 
 
