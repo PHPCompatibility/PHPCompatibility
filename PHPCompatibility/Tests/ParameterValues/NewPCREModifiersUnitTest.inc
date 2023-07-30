@@ -48,3 +48,8 @@ EOD
 // Safeguard support for PHP 8 named parameters.
 preg_grep(array: $input, pattern: '#some text#i'); // OK.
 preg_grep(array: $input, pattern: '#some text#Ji', flags: $flags); // Error.
+
+// Recognize use of the PHP 8.2 "n" modifier.
+preg_match('/.(.)./n', 'abc', $m);
+preg_match('`.(?P<test>.).`n', 'abc', $m);
+preg_match('{.(?P<test>.).}n', 'abc', $m);
