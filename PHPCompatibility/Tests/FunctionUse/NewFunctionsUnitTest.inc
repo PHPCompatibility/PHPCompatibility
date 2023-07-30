@@ -1033,3 +1033,6 @@ memory_reset_peak_usage();
 ini_parse_quantity();
 libxml_get_external_entity_loader();
 oci_set_prefetch_lob();
+odbc_connection_string_is_quoted();
+odbc_connection_string_should_quote();
+odbc_connection_string_quote();

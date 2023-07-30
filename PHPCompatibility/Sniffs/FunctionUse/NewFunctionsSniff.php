@@ -4877,6 +4877,21 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'oci8',
         ],
+        'odbc_connection_string_is_quoted' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
+        'odbc_connection_string_should_quote' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
+        'odbc_connection_string_quote' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
         'openssl_cipher_key_length' => [
             '8.1'       => false,
             '8.2'       => true,
