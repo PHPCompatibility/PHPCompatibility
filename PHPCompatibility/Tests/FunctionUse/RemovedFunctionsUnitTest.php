@@ -207,6 +207,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mhash_get_hash_name', '8.1', 'the hash_*() functions', 1226, '8.0'],
             ['mhash_keygen_s2k', '8.1', 'the hash_*() functions', 1227, '8.0'],
             ['mhash', '8.1', 'the hash_*() functions', 1228, '8.0'],
+            ['utf8_encode', '8.2', 'mb_convert_encoding(), UConverter::transcode() or iconv', 1234, '8.1'],
+            ['utf8_decode', '8.2', 'mb_convert_encoding(), UConverter::transcode() or iconv', 1235, '8.1'],
         ];
     }
 

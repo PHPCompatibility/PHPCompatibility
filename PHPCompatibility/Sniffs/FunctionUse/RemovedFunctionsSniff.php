@@ -5061,6 +5061,15 @@ class RemovedFunctionsSniff extends Sniff
             '8.1'       => false,
             'extension' => 'odbc',
         ],
+
+        'utf8_encode' => [
+            '8.2'         => false,
+            'alternative' => 'mb_convert_encoding(), UConverter::transcode() or iconv',
+        ],
+        'utf8_decode' => [
+            '8.2'         => false,
+            'alternative' => 'mb_convert_encoding(), UConverter::transcode() or iconv',
+        ],
     ];
 
 
