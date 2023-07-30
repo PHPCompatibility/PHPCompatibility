@@ -1599,6 +1599,22 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['DBA_LMDB_USE_SUB_DIR', '8.1', 1526, '8.2'],
             ['DBA_LMDB_NO_SUB_DIR', '8.1', 1527, '8.2'],
             ['FILTER_FLAG_GLOBAL_RANGE', '8.1', 1528, '8.2'],
+            ['SO_INCOMING_CPU', '8.1', 1529, '8.2'],
+            ['SO_MEMINFO', '8.1', 1530, '8.2'],
+            ['SO_RTABLE', '8.1', 1531, '8.2'],
+            ['TCP_KEEPALIVE', '8.1', 1532, '8.2'],
+            ['TCP_KEEPCNT', '8.1', 1533, '8.2'],
+            ['TCP_KEEPIDLE', '8.1', 1534, '8.2'],
+            ['TCP_KEEPINTVL', '8.1', 1535, '8.2'],
+            ['TCP_NOTSENT_LOWAT', '8.1', 1536, '8.2'],
+            ['LOCAL_CREDS_PERSISTENT', '8.1', 1537, '8.2'],
+            ['SCM_CREDS2', '8.1', 1538, '8.2'],
+            ['LOCAL_CREDS', '8.1', 1539, '8.2'],
+            ['SO_BPF_EXTENSIONS', '8.1', 1540, '8.2'],
+            ['SO_SETFIB', '8.1', 1541, '8.2'],
+            ['TCP_CONGESTION', '8.1', 1542, '8.2'],
+            ['SO_ZEROCOPY', '8.1', 1543, '8.2'],
+            ['MSG_ZEROCOPY', '8.1', 1544, '8.2'],
         ];
     }
 

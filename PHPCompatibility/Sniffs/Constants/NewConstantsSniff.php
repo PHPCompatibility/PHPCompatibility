@@ -7619,6 +7619,87 @@ class NewConstantsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'filter',
         ],
+        // Sockets:
+        'SO_INCOMING_CPU' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_MEMINFO' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_RTABLE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_KEEPALIVE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_KEEPCNT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_KEEPIDLE' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_KEEPINTVL' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_NOTSENT_LOWAT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'LOCAL_CREDS_PERSISTENT' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SCM_CREDS2' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'LOCAL_CREDS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_BPF_EXTENSIONS' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_SETFIB' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_CONGESTION' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_ZEROCOPY' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
+        'MSG_ZEROCOPY' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
