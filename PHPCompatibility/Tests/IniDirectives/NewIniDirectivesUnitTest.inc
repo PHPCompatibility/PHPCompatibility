@@ -611,3 +611,6 @@ $test = ini_get('opcache.jit_max_recursive_returns');
 
 ini_set('opcache.jit_max_polymorphic_calls', 10);
 $test = ini_get('opcache.jit_max_polymorphic_calls');
+
+ini_set('error_log_mode', 10);
+$test = ini_get('error_log_mode');
