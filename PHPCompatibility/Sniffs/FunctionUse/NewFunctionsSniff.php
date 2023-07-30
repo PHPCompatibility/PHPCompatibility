@@ -4872,6 +4872,11 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'mysqli',
         ],
+        'oci_set_prefetch_lob' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'oci8',
+        ],
         'openssl_cipher_key_length' => [
             '8.1'       => false,
             '8.2'       => true,
