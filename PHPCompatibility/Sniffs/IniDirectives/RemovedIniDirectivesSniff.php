@@ -650,6 +650,10 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.1'       => false,
             'extension' => 'filter',
         ],
+        'mysqlnd.fetch_data_copy' => [
+            '8.1'       => true,
+            'extension' => 'mysqlnd',
+        ],
         'oci8.old_oci_close_semantics' => [
             '8.1'       => false,
             'extension' => 'oci8',
