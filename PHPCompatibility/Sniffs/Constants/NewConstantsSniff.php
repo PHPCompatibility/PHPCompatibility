@@ -7206,6 +7206,16 @@ class NewConstantsSniff extends Sniff
             '8.1.2'     => true,
             'extension' => 'mysqli',
         ],
+
+        // COM_DOTNET:
+        'DISP_E_PARAMNOTFOUND' => [
+            '8.1' => false,
+            '8.2' => true,
+        ],
+        'LOCALE_NEUTRAL' => [
+            '8.1' => false,
+            '8.2' => true,
+        ],
     ];
 
 

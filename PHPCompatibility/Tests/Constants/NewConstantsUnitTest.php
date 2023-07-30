@@ -1516,6 +1516,9 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['T_ENUM', '8.0', 1443, '8.1'],
 
             ['MYSQLI_IS_MARIADB', '8.1.1', 1445, '8.2', '8.1'],
+
+            ['DISP_E_PARAMNOTFOUND', '8.1', 1447, '8.2'],
+            ['LOCALE_NEUTRAL', '8.1', 1448, '8.2'],
         ];
     }
 
