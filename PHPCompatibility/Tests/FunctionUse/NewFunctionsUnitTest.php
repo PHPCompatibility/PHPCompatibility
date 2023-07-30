@@ -1086,6 +1086,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['sodium_crypto_scalarmult_ristretto255_base', '8.0', 1025, '8.1'],
             ['enum_exists', '8.0', 1026, '8.1'],
 
+            ['ini_parse_quantity', '8.1', 1033, '8.2'],
             ['memory_reset_peak_usage', '8.1', 1032, '8.2'],
             ['curl_upkeep', '8.1', 1028, '8.2'],
             ['mysqli_execute_query', '8.1', 1029, '8.2'],
