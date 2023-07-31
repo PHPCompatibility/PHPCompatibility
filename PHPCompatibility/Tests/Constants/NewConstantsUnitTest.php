@@ -1657,6 +1657,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['HIDDEN_OVERLAY', '8.2', 1584, '8.3'],
             ['OPENSSL_CMS_OLDMIMETYPE', '8.2', 1585, '8.3'],
             ['PKCS7_NOOLDMIMETYPE', '8.2', 1586, '8.3'],
+            ['SIGINFO', '8.2', 1587, '8.3'],
         ];
     }
 

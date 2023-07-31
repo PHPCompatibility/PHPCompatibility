@@ -7801,6 +7801,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'openssl',
         ],
+        'SIGINFO' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pcntl',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
