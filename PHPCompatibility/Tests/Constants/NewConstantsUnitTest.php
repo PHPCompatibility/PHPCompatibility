@@ -1661,6 +1661,9 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['PGSQL_TRACE_SUPPRESS_TIMESTAMPS', '8.2', 1588, '8.3'],
             ['PGSQL_TRACE_REGRESS_MODE', '8.2', 1589, '8.3'],
             ['PGSQL_ERRORS_SQLSTATE', '8.2', 1590, '8.3'],
+            ['SO_ATTACH_REUSEPORT_CBPF', '8.2', 1591, '8.3'],
+            ['SO_DETACH_FILTER', '8.2', 1592, '8.3'],
+            ['SO_DETACH_BPF', '8.2', 1593, '8.3'],
         ];
     }
 

@@ -7926,6 +7926,21 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'posix',
         ],
+        'SO_ATTACH_REUSEPORT_CBPF' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_DETACH_FILTER' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_DETACH_BPF' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
