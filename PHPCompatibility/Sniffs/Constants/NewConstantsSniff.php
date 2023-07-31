@@ -7706,6 +7706,26 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'PGSQL_PIPELINE_SYNC' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_PIPELINE_ON' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_PIPELINE_OFF' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_PIPELINE_ABORTED' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'PGSQL_SHOW_CONTEXT_NEVER' => [
             '8.2'       => false,
             '8.3'       => true,
