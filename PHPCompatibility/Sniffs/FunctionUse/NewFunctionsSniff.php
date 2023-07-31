@@ -4948,6 +4948,11 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'posix',
         ],
+        'posix_fpathconf' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 
