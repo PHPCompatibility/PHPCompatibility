@@ -1110,6 +1110,10 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['posix_fpathconf', '8.2', 1049, '8.3'],
             ['posix_eaccess', '8.2', 1050, '8.3'],
             ['pg_set_error_context_visibility', '8.2', 1051, '8.3'],
+            ['pg_enter_pipeline_mode', '8.2', 1052, '8.3'],
+            ['pg_exit_pipeline_mode', '8.2', 1053, '8.3'],
+            ['pg_pipeline_sync', '8.2', 1054, '8.3'],
+            ['pg_pipeline_status', '8.2', 1055, '8.3'],
         ];
     }
 

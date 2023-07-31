@@ -1049,3 +1049,7 @@ posix_pathconf();
 posix_fpathconf();
 posix_eaccess();
 pg_set_error_context_visibility();
+pg_enter_pipeline_mode();
+pg_exit_pipeline_mode();
+pg_pipeline_sync();
+pg_pipeline_status();
