@@ -1616,6 +1616,11 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['TCP_CONGESTION', '8.1', 1542, '8.2'],
             ['SO_ZEROCOPY', '8.1', 1543, '8.2'],
             ['MSG_ZEROCOPY', '8.1', 1544, '8.2'],
+
+            ['POSIX_SC_ARG_MAX', '8.2', 1547, '8.3'],
+            ['POSIX_SC_PAGESIZE', '8.2', 1548, '8.3'],
+            ['POSIX_SC_NPROCESSORS_CONF', '8.2', 1549, '8.3'],
+            ['POSIX_SC_NPROCESSORS_ONLN', '8.2', 1550, '8.3'],
         ];
     }
 

@@ -7705,6 +7705,27 @@ class NewConstantsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'sockets',
         ],
+
+        'POSIX_SC_ARG_MAX' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_SC_PAGESIZE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_SC_NPROCESSORS_CONF' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_SC_NPROCESSORS_ONLN' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 
