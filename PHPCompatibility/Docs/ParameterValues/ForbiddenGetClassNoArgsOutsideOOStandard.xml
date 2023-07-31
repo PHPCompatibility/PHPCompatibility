@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Forbidden get_class() Without Arguments outside OO scope"
+    >
+    <standard>
+    <![CDATA[
+    Calling the get_class() function without arguments from outside an OO scope throws an Error since PHP 8.0.
+    Along the same lines, calling the get_called_class() function from outside an OO scope will also throw an Error since PHP 8.0.
+
+    Previously, an `E_WARNING` was raised and the functions returned `false`.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: calling get_class() with an argument; or calling get_class() without argument from within class scope.">
+        <![CDATA[
+echo <em>get_class($object)</em>;
+
+class Example {
+    public function do_something() {
+        return <em>get_class()</em>;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.0: calling get_class() without an argument from outside an OO scope.">
+        <![CDATA[
+echo <em>get_class()</em>;
+
+function do_something() {
+    return <em>get_class()</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: calling get_called_class() from within class scope.">
+        <![CDATA[
+class Example {
+    public function do_something() {
+        return <em>get_called_class()</em>;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.0: calling get_called_class() from outside an OO scope.">
+        <![CDATA[
+echo <em>get_called_class()</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
