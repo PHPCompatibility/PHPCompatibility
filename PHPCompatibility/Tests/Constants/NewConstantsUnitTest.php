@@ -1653,6 +1653,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLKHMATCH_MISMATCH', '8.2', 1580, '8.3'],
             ['CURLKHMATCH_MISSING', '8.2', 1581, '8.3'],
             ['CURLKHMATCH_LAST', '8.2', 1582, '8.3'],
+            ['MIXED_NUMBERS', '8.2', 1583, '8.3'],
+            ['HIDDEN_OVERLAY', '8.2', 1584, '8.3'],
         ];
     }
 

@@ -7781,6 +7781,16 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'curl',
         ],
+        'MIXED_NUMBERS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'intl',
+        ],
+        'HIDDEN_OVERLAY' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'intl',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
