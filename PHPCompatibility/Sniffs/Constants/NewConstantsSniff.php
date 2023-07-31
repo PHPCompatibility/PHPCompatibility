@@ -7816,6 +7816,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'pgsql',
         ],
+        'PGSQL_ERRORS_SQLSTATE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,

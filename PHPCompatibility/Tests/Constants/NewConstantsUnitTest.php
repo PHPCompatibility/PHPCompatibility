@@ -1660,6 +1660,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SIGINFO', '8.2', 1587, '8.3'],
             ['PGSQL_TRACE_SUPPRESS_TIMESTAMPS', '8.2', 1588, '8.3'],
             ['PGSQL_TRACE_REGRESS_MODE', '8.2', 1589, '8.3'],
+            ['PGSQL_ERRORS_SQLSTATE', '8.2', 1590, '8.3'],
         ];
     }
 
