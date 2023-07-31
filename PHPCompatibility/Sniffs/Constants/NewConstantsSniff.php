@@ -7806,6 +7806,16 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'pcntl',
         ],
+        'PGSQL_TRACE_SUPPRESS_TIMESTAMPS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_TRACE_REGRESS_MODE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
