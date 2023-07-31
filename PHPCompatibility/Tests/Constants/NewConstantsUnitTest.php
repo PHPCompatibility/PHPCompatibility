@@ -1673,6 +1673,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['IP_PMTUDISC_PROBE', '8.2', 1600, '8.3'],
             ['IP_PMTUDISC_INTERFACE', '8.2', 1601, '8.3'],
             ['IP_PMTUDISC_OMIT', '8.2', 1602, '8.3'],
+            ['AF_DIVERT', '8.2', 1603, '8.3'],
         ];
     }
 

@@ -7986,6 +7986,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'sockets',
         ],
+        'AF_DIVERT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
