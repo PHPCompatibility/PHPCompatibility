@@ -1101,6 +1101,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['imap_is_open', '8.2.0', 1040, '8.3', '8.2'],
 
             ['json_validate', '8.2', 1042, '8.3'],
+            ['mb_str_pad', '8.2', 1043, '8.3'],
         ];
     }
 

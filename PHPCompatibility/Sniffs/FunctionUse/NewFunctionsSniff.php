@@ -4919,6 +4919,11 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'json',
         ],
+        'mb_str_pad' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'mbstring',
+        ],
     ];
 
 
