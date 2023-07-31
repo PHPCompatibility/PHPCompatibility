@@ -1664,6 +1664,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SO_ATTACH_REUSEPORT_CBPF', '8.2', 1591, '8.3'],
             ['SO_DETACH_FILTER', '8.2', 1592, '8.3'],
             ['SO_DETACH_BPF', '8.2', 1593, '8.3'],
+            ['TCP_QUICKACK', '8.2', 1594, '8.3'],
         ];
     }
 
