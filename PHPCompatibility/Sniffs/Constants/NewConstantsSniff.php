@@ -7706,6 +7706,21 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'PGSQL_SHOW_CONTEXT_NEVER' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_SHOW_CONTEXT_ERRORS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_SHOW_CONTEXT_ALWAYS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'POSIX_SC_ARG_MAX' => [
             '8.2'       => false,
             '8.3'       => true,
