@@ -1665,6 +1665,14 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SO_DETACH_FILTER', '8.2', 1592, '8.3'],
             ['SO_DETACH_BPF', '8.2', 1593, '8.3'],
             ['TCP_QUICKACK', '8.2', 1594, '8.3'],
+            ['IP_DONTFRAG', '8.2', 1595, '8.3'],
+            ['IP_MTU_DISCOVER', '8.2', 1596, '8.3'],
+            ['IP_PMTUDISC_DO', '8.2', 1597, '8.3'],
+            ['IP_PMTUDISC_DONT', '8.2', 1598, '8.3'],
+            ['IP_PMTUDISC_WANT', '8.2', 1599, '8.3'],
+            ['IP_PMTUDISC_PROBE', '8.2', 1600, '8.3'],
+            ['IP_PMTUDISC_INTERFACE', '8.2', 1601, '8.3'],
+            ['IP_PMTUDISC_OMIT', '8.2', 1602, '8.3'],
         ];
     }
 

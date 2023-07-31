@@ -7946,6 +7946,46 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'sockets',
         ],
+        'IP_DONTFRAG' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_MTU_DISCOVER' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_DO' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_DONT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_WANT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_PROBE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_INTERFACE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PMTUDISC_OMIT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
