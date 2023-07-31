@@ -1655,6 +1655,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLKHMATCH_LAST', '8.2', 1582, '8.3'],
             ['MIXED_NUMBERS', '8.2', 1583, '8.3'],
             ['HIDDEN_OVERLAY', '8.2', 1584, '8.3'],
+            ['OPENSSL_CMS_OLDMIMETYPE', '8.2', 1585, '8.3'],
+            ['PKCS7_NOOLDMIMETYPE', '8.2', 1586, '8.3'],
         ];
     }
 

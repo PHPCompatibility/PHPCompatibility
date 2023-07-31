@@ -7791,6 +7791,16 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'intl',
         ],
+        'OPENSSL_CMS_OLDMIMETYPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOOLDMIMETYPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'openssl',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
