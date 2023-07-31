@@ -7726,6 +7726,56 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'posix',
         ],
+        'POSIX_PC_LINK_MAX' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_MAX_CANON' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_MAX_INPUT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_NAME_MAX' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_PATH_MAX' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_PIPE_BUF' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_CHOWN_RESTRICTED' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_NO_TRUNC' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_ALLOC_SIZE_MIN' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_PC_SYMLINK_MAX' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 

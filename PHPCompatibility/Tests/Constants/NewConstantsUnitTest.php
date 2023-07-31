@@ -1621,6 +1621,16 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['POSIX_SC_PAGESIZE', '8.2', 1548, '8.3'],
             ['POSIX_SC_NPROCESSORS_CONF', '8.2', 1549, '8.3'],
             ['POSIX_SC_NPROCESSORS_ONLN', '8.2', 1550, '8.3'],
+            ['POSIX_PC_LINK_MAX', '8.2', 1551, '8.3'],
+            ['POSIX_PC_MAX_CANON', '8.2', 1552, '8.3'],
+            ['POSIX_PC_MAX_INPUT', '8.2', 1553, '8.3'],
+            ['POSIX_PC_NAME_MAX', '8.2', 1554, '8.3'],
+            ['POSIX_PC_PATH_MAX', '8.2', 1555, '8.3'],
+            ['POSIX_PC_PIPE_BUF', '8.2', 1556, '8.3'],
+            ['POSIX_PC_CHOWN_RESTRICTED', '8.2', 1557, '8.3'],
+            ['POSIX_PC_NO_TRUNC', '8.2', 1558, '8.3'],
+            ['POSIX_PC_ALLOC_SIZE_MIN', '8.2', 1559, '8.3'],
+            ['POSIX_PC_SYMLINK_MAX', '8.2', 1560, '8.3'],
         ];
     }
 
