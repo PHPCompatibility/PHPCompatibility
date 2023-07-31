@@ -1108,6 +1108,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['posix_sysconf', '8.2', 1047, '8.3'],
             ['posix_pathconf', '8.2', 1048, '8.3'],
             ['posix_fpathconf', '8.2', 1049, '8.3'],
+            ['posix_eaccess', '8.2', 1050, '8.3'],
         ];
     }
 

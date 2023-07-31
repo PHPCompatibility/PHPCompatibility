@@ -1047,3 +1047,4 @@ stream_context_set_options();
 posix_sysconf();
 posix_pathconf();
 posix_fpathconf();
+posix_eaccess();
