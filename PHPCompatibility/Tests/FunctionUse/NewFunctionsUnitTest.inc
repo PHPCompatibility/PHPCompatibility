@@ -1048,3 +1048,4 @@ posix_sysconf();
 posix_pathconf();
 posix_fpathconf();
 posix_eaccess();
+pg_set_error_context_visibility();

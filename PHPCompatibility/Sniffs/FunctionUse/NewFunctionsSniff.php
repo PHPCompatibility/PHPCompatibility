@@ -4938,6 +4938,11 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'mbstring',
         ],
+        'pg_set_error_context_visibility' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'posix_sysconf' => [
             '8.2'       => false,
             '8.3'       => true,
