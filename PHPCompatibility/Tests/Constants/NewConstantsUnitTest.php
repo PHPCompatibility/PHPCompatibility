@@ -1677,6 +1677,9 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SOL_UDPLITE', '8.2', 1604, '8.3'],
             ['UDPLITE_RECV_CSCOV', '8.2', 1605, '8.3'],
             ['UDPLITE_SEND_CSCOV', '8.2', 1606, '8.3'],
+            ['SO_RERROR', '8.2', 1607, '8.3'],
+            ['SO_ZEROIZE', '8.2', 1608, '8.3'],
+            ['SO_SPLICE', '8.2', 1609, '8.3'],
         ];
     }
 
