@@ -4913,6 +4913,12 @@ class NewFunctionsSniff extends Sniff
             '8.2.1'     => true,
             'extension' => 'imap',
         ],
+
+        'json_validate' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'json',
+        ],
     ];
 
 
