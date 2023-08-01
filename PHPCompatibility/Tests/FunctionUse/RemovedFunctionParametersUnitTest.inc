@@ -58,3 +58,6 @@ ldap_first_attribute(
     $result_entry_identifier,
     $ber_identifier // Error.
 );
+
+imagerotate($image, $angle, $bg_color); // OK.
+imagerotate($image, $angle, $bg_color, $ignore_transparent); // Error.

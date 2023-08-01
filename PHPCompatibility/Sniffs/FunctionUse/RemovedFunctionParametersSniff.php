@@ -99,6 +99,12 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '8.1'  => false,
             ],
         ],
+        'imagerotate' => [
+            4 => [
+                'name' => 'ignore_transparent',
+                '8.3'  => true,
+            ],
+        ],
         'imap_headerinfo' => [
             5 => [
                 'name' => 'defaulthost',
