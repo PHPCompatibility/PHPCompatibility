@@ -208,7 +208,7 @@ datefmt_format_object();
 datefmt_get_calendar_object();
 datefmt_get_timezone();
 datefmt_set_timezone();
-datefmt_get_calendar_object();
+
 intlcal_create_instance();
 intlcal_get_keyword_values_for_locale();
 intlcal_get_now();

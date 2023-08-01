@@ -727,7 +727,6 @@ class NewFunctionsUnitTest extends BaseSniffTest
             ['cli_set_process_title', '5.4', 206, '5.5'],
             ['datefmt_format_object', '5.4', 207, '5.5'],
             ['datefmt_get_calendar_object', '5.4', 208, '5.5'],
-            ['datefmt_get_calendar_object', '5.4', 211, '5.5'],
             ['datefmt_get_timezone', '5.4', 209, '5.5'],
             ['datefmt_set_timezone', '5.4', 210, '5.5'],
             ['intlcal_create_instance', '5.4', 212, '5.5'],
