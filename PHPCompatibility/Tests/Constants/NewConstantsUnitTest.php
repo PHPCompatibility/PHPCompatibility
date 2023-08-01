@@ -1680,6 +1680,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SO_RERROR', '8.2', 1607, '8.3'],
             ['SO_ZEROIZE', '8.2', 1608, '8.3'],
             ['SO_SPLICE', '8.2', 1609, '8.3'],
+            ['TCP_REPAIR', '8.2', 1610, '8.3'],
         ];
     }
 
