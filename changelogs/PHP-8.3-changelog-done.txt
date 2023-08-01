@@ -22,12 +22,29 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
+  [NewIniDirectives]
+  . Programs that were very close to overflowing the call stack may now throw an
+    Error when using more than
+    `zend.max_allowed_stack_size-zend.reserved_stack_size` bytes of stack
+    (`fiber.stack_size-zend.reserved_stack_size` for fibers).
+  [Generators/NewYieldFromComment]
+  . In addition to whitespace characters, now comments are allowed between
+    `yield` and `from`. The whole "construct" (e.g. `yield /* comment */ from`)
+    is reported as a single `T_YIELD_FROM` token by the tokenizer.
 
 - DOM:
 
 - FFI:
 
 - Opcache:
+  [RemovedIniDirectives]
+  . The opcache.consistency_checks INI directive was removed. This feature was
+    broken with the tracing JIT, as well as with inheritance cache, and has
+    been disabled without a way to enable it since PHP 8.1.18 and PHP 8.2.5.
+    Both the tracing JIT and inheritance cache may modify shm after the script
+    has been persisted by invalidating its checksum. The attempted fix skipped
+    over the modifiable pointers but was rejected due to complexity. For this
+    reason, it was decided to remove the feature instead.
 
 - Phar:
 
@@ -41,6 +58,9 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core
+  . Anonymous classes may now be marked as readonly.
+  . Class, interface, trait, and enum constants now support type
+    declarations. RFC: https://wiki.php.net/rfc/typed_class_constants
 
 - CLI
 
@@ -51,6 +71,9 @@ PHP 8.3 UPGRADE NOTES
 - Opcache
 
 - Posix
+  [NewFunctionParameters]
+  . posix_getrlimit() now takes an optional $res parameter to allow fetching a
+    single resource limit.
 
 - Streams
 
@@ -65,22 +88,42 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core
+  [ParameterValues/RemovedGetClassNoArgs]
+  . Calling get_class() and get_parent_class() without arguments is now
+    deprecated.
 
 - DBA
 
 - FFI
 
 - Intl
+  [RemovedConstants]
+  . The U_MULTIPLE_DECIMAL_SEP*E*RATORS constant had been deprecated, using
+    the U_MULTIPLE_DECIMAL_SEP*A*RATORS instead is recommended.
 
 - LDAP
+  [ParameterValues/RemovedLdapConnectSignatures]
+  . Calling ldap_connect() with separate hostname and port is deprecated.
+    RFC: https://wiki.php.net/rfc/deprecations_php_8_3#deprecate_calling_ldap_connect_with_2_parameters
 
 - MBString
+  [ParameterValues/RemovedMbStrimWidthNegativeWidth]
+  . Passing a negative $width to mb_strimwidth() is now deprecated.
 
 - Phar
 
 - Random
+  [RemovedConstants]
+  . The MT_RAND_PHP Mt19937 variant is deprecated.
+    RFC: https://wiki.php.net/rfc/deprecations_php_8_3#mt_rand_php
 
 - Standard:
+  [RemovedFunctions]
+  . The assert_options() function is now deprecated.
+  [RemovedConstants]
+  . The ASSERT_ACTIVE, ASSERT_BAIL, ASSERT_CALLBACK, ASSERT_EXCEPTION, and
+    ASSERT_WARNING constants have been deprecated.
+    RFC: https://wiki.php.net/rfc/assert-string-eval-cleanup
 
 - SQLite3
 
@@ -92,6 +135,8 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
+  [ParameterValues/NewClassAliasInternalClass]
+  . class_alias() now supports creating an alias of an internal class.
 
 - Calendar
 
@@ -100,6 +145,9 @@ PHP 8.3 UPGRADE NOTES
 - Dom:
 
 - Gd:
+  [RemovedFunctionParameters]
+  . Changed imagerotate signature, removed the `ignore_transparent` argument
+    as it was not used internally anyway from PHP 7.x.
 
 - Intl:
 
@@ -116,6 +164,9 @@ PHP 8.3 UPGRADE NOTES
 - Reflection:
 
 - Standard:
+  [NewFunctionParameters]
+  . The $before_needle argument added to strrchr() which works in the same way
+    like its counterpart in strstr() or stristr().
 
 
 ========================================
@@ -129,22 +180,51 @@ PHP 8.3 UPGRADE NOTES
 - Intl:
 
 - JSON:
+  [NewFunctions]
+  . Added json_validate(), which returns whether the json is valid for
+    the given $depth and $options.
+    RFC: https://wiki.php.net/rfc/json_validate
 
 - LDAP:
+  [NewFunctions]
+  . Added ldap_connect_wallet().
+  [NewFunctions]
+  . Added ldap_exop_sync().
 
 - MBString:
+  [NewFunctions]
+  . Added mb_str_pad(), which is the mbstring equivalent of str_pad().
+    RFC: https://wiki.php.net/rfc/mb_str_pad
 
 - Posix:
+  [NewFunctions]
+  . Added posix_sysconf call to get runtime informations.
+  [NewFunctions]
+  . Added posix_pathconf call to get configuration value from a directory/file.
+  [NewFunctions]
+  . Added posix_fpathconf call to get configuration value from a file
+    descriptor.
+  [NewFunctions]
+  . Added posix_eaccess call to check the effective user id's permission for
+    a path.
 
 - PGSQL:
+  [NewFunctions]
+  . Added pg_set_error_context_visibility to set the visibility of the context
+    in error messages (with libpq >= 9.6).
 
 - Random:
 
 - Reflection:
 
 - Sockets:
+  [NewFunctions]
+  . Added socket_atmark to checks if the socket is OOB marked.
 
 - Standard:
+  [NewFunctions]
+  . Added stream_context_set_options() as a replacement for
+    stream_context_set_option() when passed an array of options.
 
 - Zip:
 
@@ -166,6 +246,9 @@ PHP 8.3 UPGRADE NOTES
 - DOM:
 
 - SQLite3
+  [NewClasses]
+  . The SQLite3 class now throws \SQLite3Exception (extends \Exception) instead
+    of \Exception.
 
 
 ========================================
@@ -173,20 +256,104 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Curl:
+  [NewConstants]
+  . CURLINFO_CAPATH
+  . CURLINFO_CAINFO
+  . CURLOPT_MIME_OPTIONS
+  . CURLMIMEOPT_FORMESCAPE
+  . CURLOPT_WS_OPTIONS
+  . CURLWS_RAW_MODE
+  . CURLOPT_SSH_HOSTKEYFUNCTION
+  . CURLOPT_PROTOCOLS_STR
+  . CURLOPT_REDIR_PROTOCOLS_STR
+  . CURLOPT_CA_CACHE_TIMEOUT
+  . CURLOPT_QUICK_EXIT
+  . CURLKHMATCH_OK
+  . CURLKHMATCH_MISMATCH
+  . CURLKHMATCH_MISSING
+  . CURLKHMATCH_LAST
 
 - Intl:
+  [NewConstants]
+  . MIXED_NUMBERS (Spoofchecker).
+  . HIDDEN_OVERLAY (Spoofchecker).
 
 - OpenSSL:
+  [NewConstants]
+  . OPENSSL_CMS_OLDMIMETYPE
+  . PKCS7_NOOLDMIMETYPE
 
 - PCNTL:
+  [NewConstants]
+  . SIGINFO
+
+- PDO_ODBC
+  [NewConstants]
+  . PDO_ODBC_TYPE
 
 - PDO_ODBC
 
 - PGSQL:
+  [NewConstants]
+  . PGSQL_TRACE_SUPPRESS_TIMESTAMPS
+  . PGSQL_TRACE_REGRESS_MODE
+  [NewConstants]
+  . PGSQL_ERRORS_SQLSTATE
+  [NewConstants]
+  . PGSQL_SHOW_CONTEXT_NEVER
+  . PGSQL_SHOW_CONTEXT_ERRORS
+  . PGSQL_SHOW_CONTEXT_ALWAYS
 
 - Posix:
+  [NewConstants]
+  . POSIX_SC_ARG_MAX
+  . POSIX_SC_PAGESIZE
+  . POSIX_SC_NPROCESSORS_CONF
+  . POSIX_SC_NPROCESSORS_ONLN
+  [NewConstants]
+  . POSIX_PC_LINK_MAX
+  . POSIX_PC_MAX_CANON
+  . POSIX_PC_MAX_INPUT
+  . POSIX_PC_NAME_MAX
+  . POSIX_PC_PATH_MAX
+  . POSIX_PC_PIPE_BUF
+  . POSIX_PC_CHOWN_RESTRICTED
+  . POSIX_PC_NO_TRUNC
+  . POSIX_PC_ALLOC_SIZE_MIN
+  . POSIX_PC_SYMLINK_MAX
 
 - Sockets:
+  [NewConstants]
+  . SO_ATTACH_REUSEPORT_CBPF (Linux only).
+  . SO_DETACH_BPF (Linux only).
+  . SO_DETACH_FILTER (Linux only).
+  [NewConstants]
+  . TCP_QUICKACK (Linux only).
+  [NewConstants]
+  . IP_DONTFRAG (FreeBSD only).
+  . IP_MTU_DISCOVER (Linux only).
+  . IP_PMTUDISC_DO (Linux only).
+  . IP_PMTUDISC_DONT (Linux only).
+  . IP_PMTUDISC_WANT (Linux only).
+  . IP_PMTUDISC_PROBE (Linux only).
+  . IP_PMTUDISC_INTERFACE (Linux only).
+  . IP_PMTUDISC_OMIT (Linux only).
+  [NewConstants]
+  . AF_DIVERT (FreeBSD only).
+  [NewConstants]
+  . SOL_UDPLITE.
+  . UDPLITE_RECV_CSCOV.
+  . UDPLITE_SEND_CSCOV.
+  [NewConstants]
+  . SO_RERROR (NetBSD only).
+  . SO_ZEROIZE (OpenBSD only).
+  . SO_SPLICE (OpenBSD only).
+  [NewConstants]
+  . TCP_REPAIR (Linux only).
+  [NewConstants]
+  . SO_REUSEPORT_LB (FreeBSD only).
+  [NewConstants]
+  . IP_BIND_ADDRESS_NO_PORT (Linux only).
 
 - Zip:
 
@@ -195,6 +362,40 @@ PHP 8.3 UPGRADE NOTES
 11. Changes to INI File Handling
 ========================================
 
+[RemovedIniDirectives]
+- assert.*
+  . The assert.* INI settings have been deprecated.
+    This comprises the following INI settings:
+     - assert.active
+     - assert.bail
+     - assert.callback
+     - assert.exception
+     - assert.warning
+    If the value of the setting is equal to the default value, no deprecation
+    notice is emitted.
+    The zend.assertions INI setting should be used instead.
+
+[NewIniDirectives]
+- zend.max_allowed_stack_size
+  . New INI directive to set the maximum allowed stack size. Possible
+    values are `0` (detect the process or thread maximum stack size), `-1`
+    (no limit), or a positive number of bytes. The default is `0`. When it
+    is not possible to detect the the process or thread maximum stack size,
+    a known system default is used. Setting this value too high has the same
+    effect as disabling the stack size limit. Fibers use fiber.stack_size
+    as maximum allowed stack size. An Error is thrown when the process call
+    stack exceeds `zend.max_allowed_stack_size-zend.reserved_stack_size`
+    bytes, to prevent stack-overflow-induced segmentation faults, with
+    the goal of making debugging easier. The stack size increases during
+    uncontrolled recursions involving internal functions or the magic methods
+    __toString, __clone, __sleep, __destruct.  This is not related to stack
+    buffer overflows, and is not a security feature.
+
+[NewIniDirectives]
+- zend.reserved_stack_size
+  . New INI directive to set the reserved stack size, in bytes. This is
+    subtracted from the max allowed stack size, as a buffer, when checking the
+    stack size.
 
 ========================================
 12. Windows Support
@@ -206,6 +407,12 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
+  [NewIniDirectives]
+  . An Error is now thrown when the process call stack exceeds a certain size,
+    to prevent stack-overflow-induced segmentation faults, with the goal of
+    making debugging easier. The maximum allowed stack size is controlled
+    by the INI directives zend.max_allowed_stack_size,
+    zend.reserved_stack_size and fiber.stack_size.
 
 - FFI:
 

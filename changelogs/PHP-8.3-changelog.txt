@@ -22,10 +22,7 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
-  . Programs that were very close to overflowing the call stack may now throw an
-    Error when using more than
-    `zend.max_allowed_stack_size-zend.reserved_stack_size` bytes of stack
-    (`fiber.stack_size-zend.reserved_stack_size` for fibers).
+  [TODO]
   . Executing proc_get_status() multiple times will now always return the right
     value on posix systems. Previously, only the first call of the function
     returned the right value. Executing proc_close() after proc_get_status()
@@ -35,21 +32,21 @@ PHP 8.3 UPGRADE NOTES
     proc_get_status() to check whether the result was cached.
   . Zend Max Execution Timers is now enabled by default for ZTS builds on
     Linux.
+  [TO INVESTIGATE]
   . Uses of traits with static properties will now redeclare static properties
     inherited from the parent class. This will create a separate static
     property storage for the current class. This is analogous to adding the
     static property to the class directly without traits.
+  [TO INVESTIGATE - may also need change to duplicate array key sniff ?]
   . Assigning a negative index n to an empty array will now make sure that the
     next index is n+1 instead of 0.
+  [TODO]
   . Class constant visibility variance is now correctly checked when inherited
     from interfaces.
   . WeakMaps entries whose key maps to itself (possibly transitively) may now
     be removed during cycle collection if the key is not reachable except by
     iterating over the WeakMap (reachability via iteration is considered weak).
     Previously, such entries would never be automatically removed.
-  . In addition to whitespace characters, now comments are allowed between
-    `yield` and `from`. The whole "construct" (e.g. `yield /* comment */ from`)
-    is reported as a single `T_YIELD_FROM` token by the tokenizer.
 
 - DOM:
   . DOMChildNode::after(), DOMChildNode::before(), DOMChildNode::replaceWith()
@@ -75,18 +72,12 @@ PHP 8.3 UPGRADE NOTES
     returning the following object object(FFI\CData:void) { }
 
 - Opcache:
-  . The opcache.consistency_checks INI directive was removed. This feature was
-    broken with the tracing JIT, as well as with inheritance cache, and has
-    been disabled without a way to enable it since PHP 8.1.18 and PHP 8.2.5.
-    Both the tracing JIT and inheritance cache may modify shm after the script
-    has been persisted by invalidating its checksum. The attempted fix skipped
-    over the modifiable pointers but was rejected due to complexity. For this
-    reason, it was decided to remove the feature instead.
 
 - Phar:
   . The type of Phar class constants are now declared.
 
 - Standard:
+  [TODO]
   . The range() function has had various changes:
     * A TypeError is now thrown when passing objects, resources, or arrays
       as the boundary inputs
@@ -106,6 +97,7 @@ PHP 8.3 UPGRADE NOTES
     * range() now produce a list of characters if one of the boundary inputs is
       a string digit instead of casting the other input to int
       (e.g. range('5', 'z');)
+  [TODO]
   . The file() flags error check now catches all invalid flags. Notably
     FILE_APPEND was previously silently accepted.
 
@@ -117,19 +109,21 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core
-  . Anonymous classes may now be marked as readonly.
+  [TODO]
   . Readonly properties can now be reinitialized during cloning.
     RFC: https://wiki.php.net/rfc/readonly_amendments
-  . Class, interface, trait, and enum constants now support type
-    declarations. RFC: https://wiki.php.net/rfc/typed_class_constants
   . Closures created from magic methods can now accept named arguments.
+  [TODO]
   . The final modifier may now be used when using a method from a trait.
+  [TODO]
   . Added the #[\Override] attribute to check that a method exists
     in a parent class or implemented interface.
     RFC: https://wiki.php.net/rfc/marking_overriden_methods
+  [TODO]
   . Class constants can now be accessed dynamically using the C::{$name}
     syntax.
     RFC: https://wiki.php.net/rfc/dynamic_class_constant_fetch
+  [TODO]
   . Static variable initializers can now contain arbitrary expressions.
     RFC: https://wiki.php.net/rfc/arbitrary_static_variable_initializers
 
@@ -153,8 +147,6 @@ PHP 8.3 UPGRADE NOTES
     dictated by the opcache.revalidate_freq INI directive.
 
 - Posix
-  . posix_getrlimit() now takes an optional $res parameter to allow fetching a
-    single resource limit.
   . posix_isatty() now raises type warnings for integers following the usual
     ZPP semantics.
   . posix_ttyname() now raises type warnings for integers following the usual
@@ -168,6 +160,7 @@ PHP 8.3 UPGRADE NOTES
 3. Changes in SAPI modules
 ========================================
 
+  [MAYBE ?]
 - $_SERVER['SERVER_SOFTWARE'] value from the built-in CLI server changed to
   make it compliant with RFC3875.
 
@@ -182,44 +175,35 @@ PHP 8.3 UPGRADE NOTES
     RFC: https://wiki.php.net/rfc/saner-inc-dec-operators
   . Using the -- operator on empty or non-numeric strings is now deprecated.
     RFC: https://wiki.php.net/rfc/saner-inc-dec-operators
-  . Calling get_class() and get_parent_class() without arguments is now
-    deprecated.
 
 - DBA
+  [TODO - part of overloaded sig RFC]
   . Calling dba_fetch() with $dba as the 3rd argument is now deprecated.
 
 - FFI
+  [TODO - part of overloaded sig RFC]
   . Calling FFI::cast(), FFI::new(), and FFI::type() statically is now
     deprecated.
 
 - Intl
-  . The U_MULTIPLE_DECIMAL_SEP*E*RATORS constant had been deprecated, using
-    the U_MULTIPLE_DECIMAL_SEP*A*RATORS instead is recommended.
   . The NumberFormatter::TYPE_CURRENCY has been deprecated.
 
 - LDAP
-  . Calling ldap_connect() with separate hostname and port is deprecated.
-    RFC: https://wiki.php.net/rfc/deprecations_php_8_3#deprecate_calling_ldap_connect_with_2_parameters
 
 - MBString
-  . Passing a negative $width to mb_strimwidth() is now deprecated.
 
 - Phar
+  [part of overloaded sig RFC]
   . Calling Phar::setStub() with a resource and a length is now deprecated.
     Such calls should be replaced by:
     $phar->setStub(stream_get_contents($resource));
 
 - Random
-  . The MT_RAND_PHP Mt19937 variant is deprecated.
-    RFC: https://wiki.php.net/rfc/deprecations_php_8_3#mt_rand_php
 
 - Standard:
-  . The assert_options() function is now deprecated.
-  . The ASSERT_ACTIVE, ASSERT_BAIL, ASSERT_CALLBACK, ASSERT_EXCEPTION, and
-    ASSERT_WARNING constants have been deprecated.
-    RFC: https://wiki.php.net/rfc/assert-string-eval-cleanup
 
 - SQLite3
+  [TODO]
   . Using exceptions is now preferred, warnings will be removed in the future.
     Calling SQLite3::enableExceptions(false) will trigger a depreciation
     warning in this version.
@@ -233,6 +217,7 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
+  [TODO]
   . gc_status() has added the following 8 fields:
     "running" => bool
     "protected" => bool
@@ -247,12 +232,13 @@ PHP 8.3 UPGRADE NOTES
     "free_time" => float: Time spent freeing values during cycle collection, in
     seconds
     See GH-9336, GH-11523
-  . class_alias() now supports creating an alias of an internal class.
+  [TODO]
   . Setting `open_basedir` at runtime using `ini_set('open_basedir', ...);` no
     longer accepts paths containing the parent directory (`..`). Previously,
     only paths starting with `..` were disallowed. This could easily be
     circumvented by prepending `./` to the path.
   . User exception handlers now catch exceptions during shutdown.
+  [MAYBE ?]
   . The resultant HTML of highlight_string and highlight_file has changed.
     Whitespace between outer HTML tags is removed. Newlines and spaces
     are no longer converted to HTML entities. The whole HTML is now wrapped in
@@ -276,8 +262,6 @@ PHP 8.3 UPGRADE NOTES
     as it is no longer statically callable.
 
 - Gd:
-  . Changed imagerotate signature, removed the `ignore_transparent` argument
-    as it was not used internally anyway from PHP 7.x.
 
 - Intl:
   . datefmt_set_timezone (and its alias IntlDateformatter::setTimeZone)
@@ -290,6 +274,7 @@ PHP 8.3 UPGRADE NOTES
   . IntlDateFormatter::construct throws an U_ILLEGAL_ARGUMENT_ERROR
     exception when an invalid locale had been set.
 
+  [TODO]
 - MBString:
   . mb_strtolower, mb_strtotitle, and mb_convert_case implement conditional
     casing rules for the Greek letter sigma. For mb_convert_case, conditional
@@ -327,6 +312,7 @@ PHP 8.3 UPGRADE NOTES
     as true instead of bool.
 
 - ODBC
+  [TODO - new sniff ?]
   . odbc_autocommit() now accepts null for the $enable parameter.
     Passing null has the same behaviour as passing only 1 parameter,
     namely indicating if the autocommit feature is enabled or not.
@@ -340,10 +326,12 @@ PHP 8.3 UPGRADE NOTES
   . pg_insert and pg_convert raises a ValueError or a TypeError instead of a
     WARNING when the value/type of a field does not match properly with a
     PostGreSQL's type.
+  [TODO]
   . The $row param of pg_fetch_result(), pg_field_prtlen() and
     pg_field_is_null() is now nullable.
 
 - Random:
+  [TODO]
   . Changed mt_srand() and srand() to not check the number of arguments to
     determine whether a random seed should be used. Passing null will generate
     a random seed, 0 will use zero as the seed. The functions are now
@@ -351,6 +339,7 @@ PHP 8.3 UPGRADE NOTES
 
 - Reflection:
   . Return type of ReflectionClass::getStaticProperties() is no longer nullable.
+  [TODO - part of overloaded sig RFC]
   . Calling ReflectionProperty::setValue() with only one parameter is deprecated.
     To set static properties, pass null as the first parameter.
 
@@ -360,30 +349,33 @@ PHP 8.3 UPGRADE NOTES
   . unserialize() now emits a new E_WARNING if the input contains unconsumed
     bytes.
     RFC: https://wiki.php.net/rfc/unserialize_warn_on_trailing_data
+  [TODO]
   . array_pad() is now only limited by the maximum number of elements an array
     can have. Before, it was only possible to add at most 1048576 elements at a
     time.
+  [TODO]
   . strtok() raises a warning in the case token is not provided when starting
     tokenization.
   . password_hash() will now chain the underlying Random\RandomException
     as the ValueError’s $previous Exception when salt generation fails.
+  [TODO]
   . proc_open() $command array must now have at least one non empty element.
   . proc_open() returns false if $command array is invalid command instead of
     resource object that produces warning later. This was already the case for
     Windows but it is now also the case if posix_spawn implementation is in use
     (most Linux, BSD and MacOS platforms). There are still some old platforms
     where this behavior is not changed as posix_spawn is not supported there.
+  [TODO]
   . array_sum() and array_product() now warn when values in the array cannot
     be converted to int/float. Previously arrays and objects where ignored
     whilst every other value was cast to int. Moreover, objects that define
     a numeric cast (e.g. GMP) are now casted instead of ignored.
     RFC: https://wiki.php.net/rfc/saner-array-sum-product
+  [TODO]
   . number_format() $decimal parameter handles rounding to negative places. It
     means that when $decimals is negative, $num is rounded to $decimals
     significant digits before the decimal point. Previously negative $decimals
     got silently ignored and the number got rounded to zero decimal places.
-  . The $before_needle argument added to strrchr() which works in the same way
-    like its counterpart in strstr() or stristr().
   . str_getcsv() and fgetcsv() return empty string instead of a string with
     a single zero byte for the last field which contains only unterminated
     enclosure.
@@ -417,29 +409,14 @@ PHP 8.3 UPGRADE NOTES
     constructor.
 
 - JSON:
-  . Added json_validate(), which returns whether the json is valid for
-    the given $depth and $options.
-    RFC: https://wiki.php.net/rfc/json_validate
 
 - LDAP:
-  . Added ldap_connect_wallet().
-  . Added ldap_exop_sync().
 
 - MBString:
-  . Added mb_str_pad(), which is the mbstring equivalent of str_pad().
-    RFC: https://wiki.php.net/rfc/mb_str_pad
 
 - Posix:
-  . Added posix_sysconf call to get runtime informations.
-  . Added posix_pathconf call to get configuration value from a directory/file.
-  . Added posix_fpathconf call to get configuration value from a file
-    descriptor.
-  . Added posix_eaccess call to check the effective user id's permission for
-    a path.
 
 - PGSQL:
-  . Added pg_set_error_context_visibility to set the visibility of the context
-    in error messages (with libpq >= 9.6).
 
 - Random:
   . Added Randomizer::getBytesFromString().
@@ -451,13 +428,12 @@ PHP 8.3 UPGRADE NOTES
   . Added ReflectionMethod::createFromMethodName().
 
 - Sockets:
-  . Added socket_atmark to checks if the socket is OOB marked.
 
 - Standard:
+  [TODO - whole RFC needs to be reviewed and pulled as one]
+  [** NOTE: add new functions straight off now!!!]
   . Added the str_increment() and str_decrement() functions.
     RFC: https://wiki.php.net/rfc/saner-inc-dec-operators
-  . Added stream_context_set_options() as a replacement for
-    stream_context_set_option() when passed an array of options.
 
 - Zip:
   . Added ZipArchive::setArchiveFlag and ZipArchive::getArchiveFlag methods.
@@ -493,8 +469,6 @@ PHP 8.3 UPGRADE NOTES
     nodes can still be fetched. Previously this resulted in an exception.
 
 - SQLite3
-  . The SQLite3 class now throws \SQLite3Exception (extends \Exception) instead
-    of \Exception.
   . The SQLite error code is now passed in the exception error code instead of
     being included in the error message.
 
@@ -503,83 +477,20 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Curl:
-  . CURLINFO_CAPATH
-  . CURLINFO_CAINFO
-  . CURLOPT_MIME_OPTIONS
-  . CURLMIMEOPT_FORMESCAPE
-  . CURLOPT_WS_OPTIONS
-  . CURLWS_RAW_MODE
-  . CURLOPT_SSH_HOSTKEYFUNCTION
-  . CURLOPT_PROTOCOLS_STR
-  . CURLOPT_REDIR_PROTOCOLS_STR
-  . CURLOPT_CA_CACHE_TIMEOUT
-  . CURLOPT_QUICK_EXIT
-  . CURLKHMATCH_OK
-  . CURLKHMATCH_MISMATCH
-  . CURLKHMATCH_MISSING
-  . CURLKHMATCH_LAST
 
 - Intl:
-  . MIXED_NUMBERS (Spoofchecker).
-  . HIDDEN_OVERLAY (Spoofchecker).
 
 - OpenSSL:
-  . OPENSSL_CMS_OLDMIMETYPE
-  . PKCS7_NOOLDMIMETYPE
 
 - PCNTL:
-  . SIGINFO
 
 - PDO_ODBC
-  . PDO_ODBC_TYPE
 
 - PGSQL:
-  . PGSQL_TRACE_SUPPRESS_TIMESTAMPS
-  . PGSQL_TRACE_REGRESS_MODE
-  . PGSQL_ERRORS_SQLSTATE
-  . PGSQL_SHOW_CONTEXT_NEVER
-  . PGSQL_SHOW_CONTEXT_ERRORS
-  . PGSQL_SHOW_CONTEXT_ALWAYS
 
 - Posix:
-  . POSIX_SC_ARG_MAX
-  . POSIX_SC_PAGESIZE
-  . POSIX_SC_NPROCESSORS_CONF
-  . POSIX_SC_NPROCESSORS_ONLN
-  . POSIX_PC_LINK_MAX
-  . POSIX_PC_MAX_CANON
-  . POSIX_PC_MAX_INPUT
-  . POSIX_PC_NAME_MAX
-  . POSIX_PC_PATH_MAX
-  . POSIX_PC_PIPE_BUF
-  . POSIX_PC_CHOWN_RESTRICTED
-  . POSIX_PC_NO_TRUNC
-  . POSIX_PC_ALLOC_SIZE_MIN
-  . POSIX_PC_SYMLINK_MAX
 
 - Sockets:
-  . SO_ATTACH_REUSEPORT_CBPF (Linux only).
-  . SO_DETACH_BPF (Linux only).
-  . SO_DETACH_FILTER (Linux only).
-  . TCP_QUICKACK (Linux only).
-  . IP_DONTFRAG (FreeBSD only).
-  . IP_MTU_DISCOVER (Linux only).
-  . IP_PMTUDISC_DO (Linux only).
-  . IP_PMTUDISC_DONT (Linux only).
-  . IP_PMTUDISC_WANT (Linux only).
-  . IP_PMTUDISC_PROBE (Linux only).
-  . IP_PMTUDISC_INTERFACE (Linux only).
-  . IP_PMTUDISC_OMIT (Linux only).
-  . AF_DIVERT (FreeBSD only).
-  . SOL_UDPLITE.
-  . UDPLITE_RECV_CSCOV.
-  . UDPLITE_SEND_CSCOV.
-  . SO_RERROR (NetBSD only).
-  . SO_ZEROIZE (OpenBSD only).
-  . SO_SPLICE (OpenBSD only).
-  . TCP_REPAIR (Linux only).
-  . SO_REUSEPORT_LB (FreeBSD only).
-  . IP_BIND_ADDRESS_NO_PORT (Linux only).
 
 - Zip:
   . ZipArchive::ER_DATA_LENGTH (libzip >= 1.10)
@@ -596,37 +507,6 @@ PHP 8.3 UPGRADE NOTES
 11. Changes to INI File Handling
 ========================================
 
-- assert.*
-  . The assert.* INI settings have been deprecated.
-    This comprises the following INI settings:
-     - assert.active
-     - assert.bail
-     - assert.callback
-     - assert.exception
-     - assert.warning
-    If the value of the setting is equal to the default value, no deprecation
-    notice is emitted.
-    The zend.assertions INI setting should be used instead.
-
-- zend.max_allowed_stack_size
-  . New INI directive to set the maximum allowed stack size. Possible
-    values are `0` (detect the process or thread maximum stack size), `-1`
-    (no limit), or a positive number of bytes. The default is `0`. When it
-    is not possible to detect the the process or thread maximum stack size,
-    a known system default is used. Setting this value too high has the same
-    effect as disabling the stack size limit. Fibers use fiber.stack_size
-    as maximum allowed stack size. An Error is thrown when the process call
-    stack exceeds `zend.max_allowed_stack_size-zend.reserved_stack_size`
-    bytes, to prevent stack-overflow-induced segmentation faults, with
-    the goal of making debugging easier. The stack size increases during
-    uncontrolled recursions involving internal functions or the magic methods
-    __toString, __clone, __sleep, __destruct.  This is not related to stack
-    buffer overflows, and is not a security feature.
-
-- zend.reserved_stack_size
-  . New INI directive to set the reserved stack size, in bytes. This is
-    subtracted from the max allowed stack size, as a buffer, when checking the
-    stack size.
 
 ========================================
 12. Windows Support
@@ -640,11 +520,6 @@ PHP 8.3 UPGRADE NOTES
 ========================================
 
 - Core:
-  . An Error is now thrown when the process call stack exceeds a certain size,
-    to prevent stack-overflow-induced segmentation faults, with the goal of
-    making debugging easier. The maximum allowed stack size is controlled
-    by the INI directives zend.max_allowed_stack_size,
-    zend.reserved_stack_size and fiber.stack_size.
 
 - FFI:
   . FFI::load() is now allowed during preloading when opcache.preload_user is
