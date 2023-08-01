@@ -2627,6 +2627,22 @@ class RemovedConstantsSniff extends Sniff
             '8.2'       => false,
             'extension' => 'mysqli',
         ],
+
+        'ASSERT_ACTIVE' => [
+            '8.3' => false,
+        ],
+        'ASSERT_BAIL' => [
+            '8.3' => false,
+        ],
+        'ASSERT_CALLBACK' => [
+            '8.3' => false,
+        ],
+        'ASSERT_EXCEPTION' => [
+            '8.3' => false,
+        ],
+        'ASSERT_WARNING' => [
+            '8.3' => false,
+        ],
     ];
 
 
