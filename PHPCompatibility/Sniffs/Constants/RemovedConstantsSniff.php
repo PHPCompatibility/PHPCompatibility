@@ -2643,6 +2643,11 @@ class RemovedConstantsSniff extends Sniff
         'ASSERT_WARNING' => [
             '8.3' => false,
         ],
+        'U_MULTIPLE_DECIMAL_SEPERATORS' => [
+            '8.3'         => false,
+            'alternative' => 'U_MULTIPLE_DECIMAL_SEPARATORS',
+            'extension'   => 'intl',
+        ],
         'MT_RAND_PHP' => [
             '8.3'       => false,
             'extension' => 'random',
