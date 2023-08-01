@@ -146,3 +146,5 @@ parse_url(
     $url,
     PHP_URL_PATH // Error.
 );
+
+posix_getrlimit($res);
