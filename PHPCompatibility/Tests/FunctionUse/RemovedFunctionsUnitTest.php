@@ -1183,12 +1183,12 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function testRemovedFunctionWithAlternative($functionName, $removedIn, $alternative, $line, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(__FILE__, $okVersion);
-            $this->assertNoViolation($file, $line);
+        $this->assertNoViolation($file, $line);
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "Function {$functionName}() is removed since PHP {$removedIn}; Use {$alternative} instead";
-            $this->assertError($file, $line, $error);
+        $this->assertError($file, $line, $error);
     }
 
     /**
@@ -1232,7 +1232,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function testDeprecatedRemovedFunction($functionName, $deprecatedIn, $removedIn, $line, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(__FILE__, $okVersion);
-            $this->assertNoViolation($file, $line);
+        $this->assertNoViolation($file, $line);
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
@@ -1242,7 +1242,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "Function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}";
-            $this->assertError($file, $line, $error);
+        $this->assertError($file, $line, $error);
     }
 
     /**
@@ -1353,17 +1353,17 @@ class RemovedFunctionsUnitTest extends BaseSniffTest
     public function testDeprecatedRemovedFunctionWithAlternative($functionName, $deprecatedIn, $removedIn, $alternative, $line, $okVersion, $deprecatedVersion = null, $removedVersion = null)
     {
         $file = $this->sniffFile(__FILE__, $okVersion);
-            $this->assertNoViolation($file, $line);
+        $this->assertNoViolation($file, $line);
 
         $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "Function {$functionName}() is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
-            $this->assertWarning($file, $line, $error);
+        $this->assertWarning($file, $line, $error);
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "Function {$functionName}() is deprecated since PHP {$deprecatedIn} and removed since PHP {$removedIn}; Use {$alternative} instead";
-            $this->assertError($file, $line, $error);
+        $this->assertError($file, $line, $error);
     }
 
     /**
