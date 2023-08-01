@@ -2643,6 +2643,10 @@ class RemovedConstantsSniff extends Sniff
         'ASSERT_WARNING' => [
             '8.3' => false,
         ],
+        'MT_RAND_PHP' => [
+            '8.3'       => false,
+            'extension' => 'random',
+        ],
     ];
 
 
