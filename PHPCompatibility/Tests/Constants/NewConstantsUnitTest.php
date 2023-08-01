@@ -1682,6 +1682,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SO_SPLICE', '8.2', 1609, '8.3'],
             ['TCP_REPAIR', '8.2', 1610, '8.3'],
             ['SO_REUSEPORT_LB', '8.2', 1611, '8.3'],
+            ['IP_BIND_ADDRESS_NO_PORT', '8.2', 1612, '8.3'],
         ];
     }
 
