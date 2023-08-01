@@ -1046,6 +1046,15 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.2'       => true,
             'extension' => 'oci8',
         ],
+
+        'zend.max_allowed_stack_size' => [
+            '8.2' => false,
+            '8.3' => true,
+        ],
+        'zend.reserved_stack_size' => [
+            '8.2' => false,
+            '8.3' => true,
+        ],
     ];
 
     /**
