@@ -1608,3 +1608,4 @@ echo SO_RERROR;
 echo SO_ZEROIZE;
 echo SO_SPLICE;
 echo TCP_REPAIR;
+echo SO_REUSEPORT_LB;

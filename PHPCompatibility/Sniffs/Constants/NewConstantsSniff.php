@@ -8026,6 +8026,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'sockets',
         ],
+        'SO_REUSEPORT_LB' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
