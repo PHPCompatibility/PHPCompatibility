@@ -12,16 +12,20 @@ namespace PHPCompatibility\Sniffs\Namespaces;
 
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * The namespace name PHP is reserved by PHP.
+ * Detect declarations of namespace names reserved or in use by PHP.
  *
  * > The Namespace name PHP, and compound names starting with this name (like PHP\Classes) are reserved
  * > for internal language use and should not be used in the userspace code.
  *
- * PHP version 5.3
+ * Also includes names actually in use by PHP.
+ *
+ * PHP version 5.3+
  *
  * @link https://www.php.net/manual/en/language.namespaces.rationale.php
  *
@@ -29,6 +33,23 @@ use PHPCSUtils\Utils\Namespaces;
  */
 class ReservedNamesSniff extends Sniff
 {
+
+    /**
+     * A list of new reserved namespace names, which prohibits the ability of userland
+     * code to use these names.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, string>
+     */
+    protected $reservedNames = [
+        /*
+         * The top-level namespace name "PHP" is reserved by PHP since the introduction
+         * of namespaces in PHP 5.3, but not yet in use.
+         */
+        'PHP' => '5.3',
+        'FFI' => '7.4',
+    ];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -39,6 +60,9 @@ class ReservedNamesSniff extends Sniff
      */
     public function register()
     {
+        // Handle case-insensitivity of namespace names.
+        $this->reservedNames = \array_change_key_case($this->reservedNames, \CASE_LOWER);
+
         return [
             \T_NAMESPACE,
         ];
@@ -70,15 +94,38 @@ class ReservedNamesSniff extends Sniff
 
         $nameParts = \explode('\\', $name);
         $firstPart = \strtolower($nameParts[0]);
-        if ($firstPart !== 'php') {
+        if (isset($this->reservedNames[$firstPart]) === false) {
             return;
         }
 
-        $phpcsFile->addWarning(
-            'Namespace name "%s" is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.',
-            $stackPtr,
-            'Found',
-            [$name]
+        if (ScannedCode::shouldRunOnOrAbove($this->reservedNames[$firstPart]) === false) {
+            return;
+        }
+
+        // Throw the message on the first part of the namespace name.
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+
+        // Special case "PHP" to a warning with a custom message.
+        if ($firstPart === 'php') {
+            $phpcsFile->addWarning(
+                'Namespace name "%s" is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.',
+                $firstNonEmpty,
+                'phpFound',
+                [$name]
+            );
+            return;
+        }
+
+        // Throw an error for other reserved names.
+        $phpcsFile->addError(
+            'The top-level namespace name "%s" is reserved by and in use by PHP since PHP version %s. Found: %s',
+            $firstNonEmpty,
+            MessageHelper::stringToErrorCode($firstPart, true) . 'Found',
+            [
+                $nameParts[0],
+                $this->reservedNames[$firstPart],
+                $name,
+            ]
         );
     }
 }
