@@ -18,5 +18,9 @@ namespace PHP\Classes {
 namespace FFI;
 namespace FFI\MyClass;
 
+// Error PHP 8.2+.
+namespace Random;
+namespace Random\Generator;
+
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli
