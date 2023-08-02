@@ -80,6 +80,8 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162, 186], '7.0'],
             ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 142, 162], '7.0'],
             ['Stringable', '7.4', [112, 179], '8.0'],
+            ['DOMChildNode', '7.4', [196], '8.0'],
+            ['DOMParentNode', '7.4', [196], '8.0'],
         ];
     }
 
@@ -212,7 +214,7 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             [177],
             [185],
             [189],
-            [199],
+            [201],
         ];
     }
 

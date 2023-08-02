@@ -127,6 +127,16 @@ class NewInterfacesSniff extends Sniff
             '7.4' => false,
             '8.0' => true,
         ],
+        'DOMChildNode' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'dom',
+        ],
+        'DOMParentNode' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'dom',
+        ],
     ];
 
     /**
