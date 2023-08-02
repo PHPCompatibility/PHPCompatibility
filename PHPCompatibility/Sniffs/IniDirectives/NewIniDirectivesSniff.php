@@ -930,6 +930,96 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.4' => false,
             '8.0' => true,
         ],
+        'opcache.jit' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_buffer_size' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_debug' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_bisect_limit' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_prof_threshold' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_hot_loop' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_hot_func' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_hot_return' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_hot_side_exit' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_blacklist_root_trace' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_blacklist_side_trace' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_loop_unrolls' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_exit_counters' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_root_traces' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_side_traces' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_recursive_calls' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_recursive_returns' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
+        'opcache.jit_max_polymorphic_calls' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'opcache',
+        ],
 
         'fiber.stack_size' => [
             '8.0'       => false,
