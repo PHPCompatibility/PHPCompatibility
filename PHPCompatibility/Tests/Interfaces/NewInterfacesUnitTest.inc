@@ -197,6 +197,8 @@ class MyDom implements DOMChildNode, DOMParentNode {}
 
 function ExpectsEnumParams(UnitEnum $enum1, BackedEnum $enum2) {}
 
+function useRandomExtension( Random\Engine $paramA, Random\CryptoSafeEngine $paramB ) {}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
