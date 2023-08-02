@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed passing negative $width to mb_strimwidth()"
+    >
+    <standard>
+    <![CDATA[
+    Passing a negative $width to mb_strimwidth() is deprecated since PHP 8.3 and support will be removed in PHP 9.0.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: calling mb_strimwidth() with a positive $width.">
+        <![CDATA[
+mb_strimwidth('Hello World', 0, <em>10</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.3: calling mb_strimwidth() with a negative $width.">
+        <![CDATA[
+mb_strimwidth('Hello World', 0, <em>-5</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
