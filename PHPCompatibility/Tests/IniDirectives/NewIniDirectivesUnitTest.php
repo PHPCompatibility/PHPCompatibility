@@ -296,6 +296,7 @@ class NewIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['zend.max_allowed_stack_size', '8.3', [621, 622], '8.2'],
             ['zend.reserved_stack_size', '8.3', [624, 625], '8.2'],
+            ['opcache.jit_max_trace_length', '8.3', [627, 628], '8.2'],
         ];
     }
 

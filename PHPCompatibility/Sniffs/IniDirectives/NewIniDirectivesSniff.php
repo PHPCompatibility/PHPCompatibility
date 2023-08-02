@@ -1055,6 +1055,11 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.2' => false,
             '8.3' => true,
         ],
+        'opcache.jit_max_trace_length' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'opcache',
+        ],
     ];
 
     /**

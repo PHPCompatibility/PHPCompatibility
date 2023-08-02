@@ -623,3 +623,6 @@ $test = ini_get('zend.max_allowed_stack_size');
 
 ini_set('zend.reserved_stack_size', 10);
 $test = ini_get('zend.reserved_stack_size');
+
+ini_set('opcache.jit_max_trace_length', 10);
+$test = ini_get('opcache.jit_max_trace_length');
