@@ -223,6 +223,37 @@ $x = match ($y) {
     },
 };
 
+// OK: enum, but not an enum declaration.
+$a = Foo::enum($param);
+$a = MyClass::enum;
+$a = MyClass::enum[$a];
+$a = $obj->enum($param);
+$a = $obj->enum->chain($param);
+$a = $obj?->enum;
+$a = MyNS\Sub\enum($param);
+$a = namespace\enum($param);
+
+class Enum {
+    const enum = 'a';
+
+    public static function enum($param) {}
+
+    public function bar() {
+        $this->enum = 'a';
+    }
+}
+
+// PHP 8.1 enum declarations.
+enum SuitA {
+  case Hearts;
+  case Diamonds;
+}
+
+enum SuitB: string implements Colorful {
+  case Clubs = 'C';
+  case Spades = 'S';
+}
+
 __halt_compiler();
 
 bla();
