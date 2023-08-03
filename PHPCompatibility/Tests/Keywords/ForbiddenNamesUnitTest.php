@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Keywords;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenNames sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class ForbiddenNamesUnitTest extends BaseSniffTest
+class ForbiddenNamesUnitTest extends BaseSniffTestCase
 {
 
     /**

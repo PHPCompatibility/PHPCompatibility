@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewDynamicAccessToStatic sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.1.0
  */
-class NewDynamicAccessToStaticUnitTest extends BaseSniffTest
+class NewDynamicAccessToStaticUnitTest extends BaseSniffTestCase
 {
 
     /**

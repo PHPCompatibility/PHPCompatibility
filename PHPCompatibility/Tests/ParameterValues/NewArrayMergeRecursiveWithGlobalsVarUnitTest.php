@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewArrayMergeRecursiveWithGlobalsVar sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-final class NewArrayMergeRecursiveWithGlobalsVarUnitTest extends BaseSniffTest
+final class NewArrayMergeRecursiveWithGlobalsVarUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -121,5 +121,5 @@ if (class_exists('PHPUnit_Framework_TestCase') === true
     class_alias('PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
 }
 
-require_once __DIR__ . '/PHPCompatibility/Tests/BaseSniffTest.php';
+require_once __DIR__ . '/PHPCompatibility/Tests/BaseSniffTestCase.php';
 unset($phpcsUtilsDir, $phpcsDir, $vendorDir);

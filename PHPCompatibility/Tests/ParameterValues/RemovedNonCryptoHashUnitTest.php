@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedNonCryptoHash sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.0.0
  */
-class RemovedNonCryptoHashUnitTest extends BaseSniffTest
+class RemovedNonCryptoHashUnitTest extends BaseSniffTestCase
 {
 
     /**

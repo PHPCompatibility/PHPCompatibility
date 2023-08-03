@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewMultiCatch sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.7
  */
-class NewMultiCatchUnitTest extends BaseSniffTest
+class NewMultiCatchUnitTest extends BaseSniffTestCase
 {
 
     /**

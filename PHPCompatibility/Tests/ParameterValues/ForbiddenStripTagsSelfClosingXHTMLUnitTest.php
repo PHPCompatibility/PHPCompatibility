@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenStripTagsSelfClosingXHTML sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.3.0
  */
-class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTest
+class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTestCase
 {
 
     /**

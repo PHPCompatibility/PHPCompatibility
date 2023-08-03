@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Constants;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewMagicClassConstant sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.1.4
  */
-class NewMagicClassConstantUnitTest extends BaseSniffTest
+class NewMagicClassConstantUnitTest extends BaseSniffTestCase
 {
 
     /**

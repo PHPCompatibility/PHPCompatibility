@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\LanguageConstructs;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewEmptyNonVariable sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.4
  */
-class NewEmptyNonVariableUnitTest extends BaseSniffTest
+class NewEmptyNonVariableUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Variables;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedPredefinedGlobalVariables sniff.
@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @since 7.0   RemovedVariablesSniffTest.
  * @since 7.1.3 Merged to one sniff & test.
  */
-class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTest
+class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTestCase
 {
 
     /**

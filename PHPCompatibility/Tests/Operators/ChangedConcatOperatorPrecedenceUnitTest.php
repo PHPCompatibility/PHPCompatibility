@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Operators;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ChangedConcatOperatorPrecedence sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.2.0
  */
-class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTest
+class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTestCase
 {
 
     /**

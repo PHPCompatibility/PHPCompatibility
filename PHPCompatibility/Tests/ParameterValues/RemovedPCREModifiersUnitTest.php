@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedPCREModifiers sniff.
@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.6
  */
-class RemovedPCREModifiersUnitTest extends BaseSniffTest
+class RemovedPCREModifiersUnitTest extends BaseSniffTestCase
 {
 
     /**

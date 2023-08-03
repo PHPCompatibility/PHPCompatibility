@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewExceptionsFromToString sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.2.0
  */
-class NewExceptionsFromToStringUnitTest extends BaseSniffTest
+class NewExceptionsFromToStringUnitTest extends BaseSniffTestCase
 {
 
     /**

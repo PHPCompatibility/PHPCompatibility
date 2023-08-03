@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedHashAlgorithms sniff.
@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class RemovedHashAlgorithmsUnitTest extends BaseSniffTest
+class RemovedHashAlgorithmsUnitTest extends BaseSniffTestCase
 {
 
     /**

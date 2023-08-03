@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedReturnByReferenceFromVoid sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTest
+class RemovedReturnByReferenceFromVoidUnitTest extends BaseSniffTestCase
 {
 
     /**

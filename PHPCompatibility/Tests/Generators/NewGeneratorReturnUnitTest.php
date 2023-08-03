@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Generators;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewGeneratorReturn sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.2.0
  */
-class NewGeneratorReturnUnitTest extends BaseSniffTest
+class NewGeneratorReturnUnitTest extends BaseSniffTestCase
 {
 
     /**

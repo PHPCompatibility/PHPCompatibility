@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenParameterShadowSuperGlobals sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.3
  */
-class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTest
+class ForbiddenParameterShadowSuperGlobalsUnitTest extends BaseSniffTestCase
 {
 
     /**

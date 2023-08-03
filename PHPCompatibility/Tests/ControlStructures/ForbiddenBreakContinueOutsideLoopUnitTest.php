@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenBreakContinueOutsideLoop sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.7
  */
-class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTest
+class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTestCase
 {
 
     /**

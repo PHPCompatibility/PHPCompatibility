@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenBreakContinueVariableArguments sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTest
+class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTestCase
 {
 
     /**

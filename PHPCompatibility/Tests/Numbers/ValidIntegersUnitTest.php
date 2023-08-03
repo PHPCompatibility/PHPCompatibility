@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Numbers;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ValidIntegers sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.3
  */
-class ValidIntegersUnitTest extends BaseSniffTest
+class ValidIntegersUnitTest extends BaseSniffTestCase
 {
 
     /**

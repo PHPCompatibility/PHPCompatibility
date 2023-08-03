@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\TextStrings;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewUnicodeEscapeSequence sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.3.0
  */
-class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTest
+class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTestCase
 {
 
     /**

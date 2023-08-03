@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewArrayStringDereferencing sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.1.4
  */
-class NewArrayStringDereferencingUnitTest extends BaseSniffTest
+class NewArrayStringDereferencingUnitTest extends BaseSniffTestCase
 {
 
     /**

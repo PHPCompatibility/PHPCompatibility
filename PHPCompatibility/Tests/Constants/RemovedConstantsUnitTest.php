@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Constants;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedConstants sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.1.0
  */
-class RemovedConstantsUnitTest extends BaseSniffTest
+class RemovedConstantsUnitTest extends BaseSniffTestCase
 {
 
     /**

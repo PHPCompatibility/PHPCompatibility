@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the AbstractPrivateMethods sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  * @since 9.2.0
  * @since 10.0.0 Moved from `Classes` to `FunctionDeclarations`.
  */
-class AbstractPrivateMethodsUnitTest extends BaseSniffTest
+class AbstractPrivateMethodsUnitTest extends BaseSniffTestCase
 {
 
     /**

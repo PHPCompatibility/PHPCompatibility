@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionUse;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewFunctions sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class NewFunctionsUnitTest extends BaseSniffTest
+class NewFunctionsUnitTest extends BaseSniffTestCase
 {
 
     /**

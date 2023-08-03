@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * New Arrow Function Sniff tests
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class NewArrowFunctionUnitTest extends BaseSniffTest
+class NewArrowFunctionUnitTest extends BaseSniffTestCase
 {
 
     /**

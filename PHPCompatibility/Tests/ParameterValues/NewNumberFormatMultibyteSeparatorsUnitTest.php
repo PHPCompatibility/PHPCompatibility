@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewNumberFormatMultibyteSeparators sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTest
+class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTestCase
 {
 
     /**

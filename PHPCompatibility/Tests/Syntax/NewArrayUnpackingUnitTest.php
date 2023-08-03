@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewArrayUnpacking sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.2.0
  */
-class NewArrayUnpackingUnitTest extends BaseSniffTest
+class NewArrayUnpackingUnitTest extends BaseSniffTestCase
 {
 
     /**

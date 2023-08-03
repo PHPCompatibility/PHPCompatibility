@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedCallingDestructAfterConstructorExit sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTest
+class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTestCase
 {
 
     /**

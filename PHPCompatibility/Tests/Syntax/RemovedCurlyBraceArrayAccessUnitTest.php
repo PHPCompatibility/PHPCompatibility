@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Syntax;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the RemovedCurlyBraceArrayAccess sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.3.0
  */
-class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTest
+class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTestCase
 {
 
     /**

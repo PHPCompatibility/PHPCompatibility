@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Numbers;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Tests for the NewExplicitOctalNotationSniff sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 10.0.0
  */
-class NewExplicitOctalNotationUnitTest extends BaseSniffTest
+class NewExplicitOctalNotationUnitTest extends BaseSniffTestCase
 {
 
     /**

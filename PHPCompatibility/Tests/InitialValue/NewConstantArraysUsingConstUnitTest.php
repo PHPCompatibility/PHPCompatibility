@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\InitialValue;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewConstantArraysUsingConst sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.1.4
  */
-class NewConstantArraysUsingConstUnitTest extends BaseSniffTest
+class NewConstantArraysUsingConstUnitTest extends BaseSniffTestCase
 {
 
     /**

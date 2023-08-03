@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewParamTypeDeclarations sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class NewParamTypeDeclarationsUnitTest extends BaseSniffTest
+class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
 {
 
     /**

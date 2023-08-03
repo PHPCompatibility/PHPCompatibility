@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionUse;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the OptionalToRequiredFunctionParameters sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 8.1.0
  */
-class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTest
+class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\LanguageConstructs;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewLanguageConstructs sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.6
  */
-class NewLanguageConstructsUnitTest extends BaseSniffTest
+class NewLanguageConstructsUnitTest extends BaseSniffTestCase
 {
 
     /**

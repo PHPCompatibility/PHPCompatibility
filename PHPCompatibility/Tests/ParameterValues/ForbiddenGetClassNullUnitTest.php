@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ParameterValues;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenGetClassNull sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.0.0
  */
-class ForbiddenGetClassNullUnitTest extends BaseSniffTest
+class ForbiddenGetClassNullUnitTest extends BaseSniffTestCase
 {
 
     /**

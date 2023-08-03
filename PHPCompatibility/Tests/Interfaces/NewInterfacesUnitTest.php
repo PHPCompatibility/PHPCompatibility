@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Interfaces;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewInterfaces sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.3
  */
-class NewInterfacesUnitTest extends BaseSniffTest
+class NewInterfacesUnitTest extends BaseSniffTestCase
 {
 
     /**

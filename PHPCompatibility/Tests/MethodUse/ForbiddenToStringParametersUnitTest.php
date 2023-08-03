@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\MethodUse;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenToStringParameters sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 9.2.0
  */
-class ForbiddenToStringParametersUnitTest extends BaseSniffTest
+class ForbiddenToStringParametersUnitTest extends BaseSniffTestCase
 {
 
     /**

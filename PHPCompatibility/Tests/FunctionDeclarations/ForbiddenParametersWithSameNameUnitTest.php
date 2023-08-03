@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenParametersWithSameName sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTest
+class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTestCase
 {
 
     /**

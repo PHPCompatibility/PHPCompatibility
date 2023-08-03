@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\FunctionDeclarations;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NonStaticMagicMethods sniff.
@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 5.5
  */
-class NonStaticMagicMethodsUnitTest extends BaseSniffTest
+class NonStaticMagicMethodsUnitTest extends BaseSniffTestCase
 {
 
     /**

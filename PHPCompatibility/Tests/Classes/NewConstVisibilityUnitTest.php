@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the NewConstVisibility sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.7
  */
-class NewConstVisibilityUnitTest extends BaseSniffTest
+class NewConstVisibilityUnitTest extends BaseSniffTestCase
 {
 
     /**

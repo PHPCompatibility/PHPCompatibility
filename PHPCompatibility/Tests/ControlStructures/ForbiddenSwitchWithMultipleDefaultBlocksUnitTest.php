@@ -10,7 +10,7 @@
 
 namespace PHPCompatibility\Tests\ControlStructures;
 
-use PHPCompatibility\Tests\BaseSniffTest;
+use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
  * Test the ForbiddenSwitchWithMultipleDefaultBlocks sniff.
@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTest;
  *
  * @since 7.0.0
  */
-class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTest
+class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTestCase
 {
 
     /**
