@@ -14,6 +14,9 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -246,48 +249,69 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
      */
     public function processIconvMimeEncode(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
-        $error = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
+        $errorMsg = 'The default value of the %s parameter index for iconv_mime_encode() was changed from ISO-8859-1 to UTF-8 in PHP 5.6. For cross-version compatibility, the %s should be explicitly set.';
+        $data     = [
+            '$options[\'input/output-charset\']',
+            '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
+        ];
 
         $functionLC  = \strtolower($functionName);
         $paramInfo   = $this->targetFunctions[$functionLC];
         $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
         if ($targetParam === false) {
-            $phpcsFile->addError(
-                $error,
-                $stackPtr,
-                'PreferencesNotSet',
-                [
-                    '$options[\'input/output-charset\']',
-                    '$options[\'input-charset\'] and $options[\'output-charset\'] indexes',
-                ]
-            );
-
+            $phpcsFile->addError($errorMsg, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
         $tokens        = $phpcsFile->getTokens();
         $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($firstNonEmpty === false) {
-            // Parse error or live coding.
+            // Parse error or live coding, but preferences is definitely not set, so throw the error.
+            $phpcsFile->addError($errorMsg, $stackPtr, 'PreferencesNotSet', $data);
             return;
         }
 
         if ($tokens[$firstNonEmpty]['code'] === \T_ARRAY
-            || $tokens[$firstNonEmpty]['code'] === \T_OPEN_SHORT_ARRAY
+            || (isset(Collections::shortArrayListOpenTokensBC()[$tokens[$firstNonEmpty]['code']]) === true
+                && Arrays::isShortArray($phpcsFile, $firstNonEmpty) === true)
         ) {
-            // Note: the item names are treated case-sensitively in PHP, so match on exact case.
-            $hasInputCharset  = \preg_match('`([\'"])input-charset\1\s*=>`', $targetParam['clean']);
-            $hasOutputCharset = \preg_match('`([\'"])output-charset\1\s*=>`', $targetParam['clean']);
-            if ($hasInputCharset === 1 && $hasOutputCharset === 1) {
+            $arrayItems       = PassedParameters::getParameters($phpcsFile, $firstNonEmpty);
+            $hasInputCharset  = 0;
+            $hasOutputCharset = 0;
+            $hasSpreadInArray = 0;
+
+            foreach ($arrayItems as $item) {
+                // Note: the item names are treated case-sensitively in PHP, so match on exact case.
+                $hasInputCharset  += \preg_match('`^\s*([\'"])input-charset\1\s*=>`', $item['clean']);
+                $hasOutputCharset += \preg_match('`^\s*([\'"])output-charset\1\s*=>`', $item['clean']);
+
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $item['start'], ($item['end'] + 1), true);
+                if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_ELLIPSIS) {
+                    ++$hasSpreadInArray;
+                }
+            }
+
+            if ($hasInputCharset > 0 && $hasOutputCharset > 0) {
                 // Both input as well as output charset are set.
                 return;
             }
 
-            if ($hasInputCharset !== 1) {
-                $phpcsFile->addError(
-                    $error,
+            $isError         = true;
+            $errorMsgSuffix  = '';
+            $errorCodeSuffix = 'NotSet';
+            if ($hasSpreadInArray === 1) {
+                $isError         = false;
+                $errorMsgSuffix  = ' Please check that it is set via the array unpack.';
+                $errorCodeSuffix = 'MaybeNotSet';
+            }
+
+            if ($hasInputCharset === 0) {
+                MessageHelper::addMessage(
+                    $phpcsFile,
+                    $errorMsg . $errorMsgSuffix,
                     $firstNonEmpty,
-                    'InputPreferenceNotSet',
+                    $isError,
+                    'InputPreference' . $errorCodeSuffix,
                     [
                         '$options[\'input-charset\']',
                         '$options[\'input-charset\'] index',
@@ -295,11 +319,13 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
                 );
             }
 
-            if ($hasOutputCharset !== 1) {
-                $phpcsFile->addError(
-                    $error,
+            if ($hasOutputCharset === 0) {
+                MessageHelper::addMessage(
+                    $phpcsFile,
+                    $errorMsg . $errorMsgSuffix,
                     $firstNonEmpty,
-                    'OutputPreferenceNotSet',
+                    $isError,
+                    'OutputPreference' . $errorCodeSuffix,
                     [
                         '$options[\'output-charset\']',
                         '$options[\'output-charset\'] index',
@@ -312,7 +338,7 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
 
         // The $options parameter was passed, but it was a variable/constant/output of a function call.
         $phpcsFile->addWarning(
-            $error,
+            $errorMsg,
             $firstNonEmpty,
             'Undetermined',
             [

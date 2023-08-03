@@ -118,3 +118,89 @@ $a = iconv_mime_encode(
         'line-length'      => 80,
     ]
 ); // Error: 'input-charset' not set (because case-sensitive).
+
+$a = iconv_mime_encode( $field_name, $field_value, /*comment*/ ); // Error: $options not set.
+$a = iconv_mime_encode( options: , field_name: $field_name, field_value: $field_value, ); // Parse error, but that's not our concern. Error: $options not set.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [ $scheme, $lineLength, , $lineBreakChars ] = $sourceInfo,
+); // Bad. Parameter is not an array, user error, but does mean target keys are missing.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [ 'scheme' => $scheme, 'line-length' => $lineLength, 'input-charset' => $inputChar, 'output-charset' => $outputChar ] = $sourceInfo,
+); // Bad. Parameter is not an array, user error, but does mean target keys are missing.
+
+// Safeguard handling of function as PHP 8.1+ first class callable.
+$var = array_map( iconv_mime_encode(...), ...$arrays );
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'sub-options' => [
+            'input-charset'  => 'ISO-8859-1',
+            'output-charset' => 'UTF-8',
+        ],
+        'line-length' => 80,
+    ]
+); // Error: 'input-charset/output-charset' not set (as they are not set as keys on the top-level array.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    array(
+        'input-charset'    => 'ISO-8859-1',
+        'input-charset'    => 'ISO-8859-1',
+        'output-charset'   => 'UTF-8',
+    )
+); // OK. Parameter set and the expected array keys set as well. The fact that there are duplicate array keys is irrelevant.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    array(
+        'output-charset'   => 'UTF-8',
+        'output-charset'   => 'UTF-8',
+    )
+); // Error: 'input-charset' not set.
+
+// Test handling of PHP 7.4+ spread in array.
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        ...$options
+    ]
+); // Warning: Undetermined.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'input-charset'  => 'ISO-8859-1',
+        ...$options,
+        'output-charset' => 'UTF-8',
+    ]
+); // OK.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        'input-charset'  => 'ISO-8859-1',
+        ... /*comment*/ $options,
+    ]
+); // Warning: 'output-charset' potentially not set.
+
+$a = iconv_mime_encode(
+    $field_name,
+    $field_value,
+    [
+        ...$options,
+        'output-charset' => 'UTF-8',
+    ]
+); // Warning: 'input-charset' potentially not set.

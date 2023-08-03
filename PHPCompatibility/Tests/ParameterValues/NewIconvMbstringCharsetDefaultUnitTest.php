@@ -145,6 +145,17 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
             [96, '$options[\'output-charset\']'],
             [106, '$options[\'input-charset\']'],
             [115, '$options[\'input-charset\']'],
+            [122, '$options[\'input/output-charset\']'],
+            [123, '$options[\'input/output-charset\']'],
+            [128, '$options[\'input/output-charset\']', 'warning'],
+            [134, '$options[\'input/output-charset\']', 'warning'],
+            [143, '$options[\'input-charset\']'],
+            [143, '$options[\'output-charset\']'],
+            [165, '$options[\'input-charset\']'],
+            [175, '$options[\'input-charset\']', 'warning'],
+            [175, '$options[\'output-charset\']', 'warning'],
+            [193, '$options[\'output-charset\']', 'warning'],
+            [202, '$options[\'input-charset\']', 'warning'],
         ];
     }
 
@@ -152,16 +163,45 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     /**
      * Test that there are no false positives.
      *
+     * @dataProvider dataNoFalsePositivesIconvMimeEncode
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositivesIconvMimeEncode()
+    public function testNoFalsePositivesIconvMimeEncode($line)
     {
         $file = $this->sniffFile(__FILE__, '5.4-7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesIconvMimeEncode()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositivesIconvMimeEncode()
+    {
+        $data = [];
 
         // No errors expected on line 79 - 89.
         for ($line = 79; $line <= 89; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        $data[] = [138];
+
+        for ($line = 152; $line <= 161; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 180; $line <= 188; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
