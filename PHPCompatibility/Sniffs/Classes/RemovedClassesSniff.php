@@ -177,10 +177,12 @@ class RemovedClassesSniff extends Sniff
         'OCI-Collection' => [
             '8.0'         => true,
             'alternative' => 'OCICollection',
+            'extension'   => 'oci8',
         ],
         'OCI-Lob' => [
             '8.0'         => true,
             'alternative' => 'OCILob',
+            'extension'   => 'oci8',
         ],
         */
     ];

@@ -294,9 +294,11 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         'mbstring.script_encoding' => [
             '5.4'         => true,
             'alternative' => 'zend.script_encoding',
+            'extension'   => 'mbstring',
         ],
         'phar.extract_list' => [
-            '5.4' => true,
+            '5.4'       => true,
+            'extension' => 'phar',
         ],
         'register_globals' => [
             '5.3' => false,
@@ -353,22 +355,28 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.0' => true,
         ],
         'iconv.input_encoding' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'iconv',
         ],
         'iconv.output_encoding' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'iconv',
         ],
         'iconv.internal_encoding' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'iconv',
         ],
         'mbstring.http_input' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'mbstring',
         ],
         'mbstring.http_output' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'mbstring',
         ],
         'mbstring.internal_encoding' => [
-            '5.6' => false,
+            '5.6'       => false,
+            'extension' => 'mbstring',
         ],
 
         'asp_tags' => [
@@ -378,7 +386,8 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.0' => true,
         ],
         'opcache.load_comments' => [
-            '7.0' => true,
+            '7.0'       => true,
+            'extension' => 'opcache',
         ],
         'mssql.allow_persistent' => [
             '7.0'       => true,
@@ -537,8 +546,9 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
 
         'mbstring.func_overload' => [
-            '7.2' => false,
-            '8.0' => true,
+            '7.2'       => false,
+            '8.0'       => true,
+            'extension' => 'mbstring',
         ],
         'sql.safe_mode' => [
             '7.2' => true,
@@ -548,19 +558,22 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.0' => true,
         ],
         'opcache.fast_shutdown' => [
-            '7.2' => true,
+            '7.2'       => true,
+            'extension' => 'opcache',
         ],
 
         'birdstep.max_links' => [
             '7.3' => true,
         ],
         'opcache.inherited_hack' => [
-            '5.3' => false, // Soft deprecated, i.e. ignored.
-            '7.3' => true,
+            '5.3'       => false, // Soft deprecated, i.e. ignored.
+            '7.3'       => true,
+            'extension' => 'opcache',
         ],
         'pdo_odbc.db2_instance_name' => [
-            '7.3' => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
-            '8.0' => true,
+            '7.3'       => false, // Has been marked as deprecated in the manual from before this time. Now hard-deprecated.
+            '8.0'       => true,
+            'extension' => 'pdo_odbc',
         ],
 
         'allow_url_include' => [

@@ -452,8 +452,9 @@ class NewClassesSniff extends Sniff
             'extension' => 'reflection',
         ],
         'ZipArchive' => [
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'zip',
         ],
 
         'Closure' => [
@@ -620,8 +621,9 @@ class NewClassesSniff extends Sniff
             '5.4' => true,
         ],
         'SNMP' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'snmp',
         ],
         'Transliterator' => [
             '5.3'       => false,
@@ -639,8 +641,9 @@ class NewClassesSniff extends Sniff
             '5.5' => true,
         ],
         'CURLFile' => [
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'curl',
         ],
         'DateTimeImmutable' => [
             '5.4' => false,
@@ -693,8 +696,9 @@ class NewClassesSniff extends Sniff
         ],
 
         'GMP' => [
-            '5.5' => false,
-            '5.6' => true,
+            '5.5'       => false,
+            '5.6'       => true,
+            'extension' => 'gmp',
         ],
 
         'IntlChar' => [
@@ -760,33 +764,39 @@ class NewClassesSniff extends Sniff
             '8.0' => true,
         ],
         'PhpToken' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'tokenizer',
         ],
         'ReflectionUnionType' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'reflection',
         ],
         'WeakMap' => [
             '7.4' => false,
             '8.0' => true,
         ],
         'OCICollection' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'oci8',
         ],
         'OCILob' => [
-            '7.4' => false,
-            '8.0' => true,
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'oci8',
         ],
 
         'IntlDatePatternGenerator' => [
-            '8.0' => false,
-            '8.1' => true,
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'intl',
         ],
         'Fiber' => [
-            '8.0' => false,
-            '8.1' => true,
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'fibers',
         ],
         'ReflectionFiber' => [
             '8.0'       => false,
@@ -844,8 +854,9 @@ class NewClassesSniff extends Sniff
             'extension' => 'soap',
         ],
         'SQLiteException' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'sqlite',
         ],
         'mysqli_sql_exception' => [
             '4.4'       => false,
@@ -935,8 +946,9 @@ class NewClassesSniff extends Sniff
         ],
 
         'SNMPException' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'snmp',
         ],
 
         'IntlException' => [
@@ -1015,8 +1027,9 @@ class NewClassesSniff extends Sniff
         ],
 
         'FiberError' => [
-            '8.0' => false,
-            '8.1' => true,
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'fibers',
         ],
     ];
 
