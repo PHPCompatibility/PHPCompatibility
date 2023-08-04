@@ -7145,6 +7145,16 @@ class NewConstantsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'tokenizer',
         ],
+        'T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'tokenizer',
+        ],
+        'T_AMPERSAND_NOT_FOLLOWED_BY_VAR_OR_VARARG' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'tokenizer',
+        ],
         'SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES' => [
             '8.0'       => false,
             '8.1'       => true,
