@@ -2265,10 +2265,14 @@ class RemovedConstantsSniff extends Sniff
             '7.3' => true,
         ],
         'FILTER_FLAG_SCHEME_REQUIRED' => [
-            '7.3' => false,
+            '7.3'       => false,
+            '8.0'       => true,
+            'extension' => 'filter',
         ],
         'FILTER_FLAG_HOST_REQUIRED' => [
-            '7.3' => false,
+            '7.3'       => false,
+            '8.0'       => true,
+            'extension' => 'filter',
         ],
 
         'CURLPIPE_HTTP1' => [
@@ -2540,6 +2544,14 @@ class RemovedConstantsSniff extends Sniff
         'ENCHANT_ISPELL' => [
             '8.0'       => false,
             'extension' => 'enchant',
+        ],
+        'INPUT_REQUEST' => [
+            '8.0'       => true,
+            'extension' => 'filter',
+        ],
+        'INPUT_SESSION' => [
+            '8.0'       => true,
+            'extension' => 'filter',
         ],
         'MB_OVERLOAD_MAIL' => [
             '8.0'       => true,
