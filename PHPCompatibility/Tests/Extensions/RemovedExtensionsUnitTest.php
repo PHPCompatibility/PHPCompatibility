@@ -32,22 +32,26 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
      *
      * @param string $extensionName  Name of the PHP extension.
      * @param string $removedIn      The PHP version in which the extension was removed.
-     * @param int    $line           The line number in the test file which applies to this extension.
+     * @param array  $lines          The line numbers in the test file which apply to this extension.
      * @param string $okVersion      A PHP version in which the extension was still present.
      * @param string $removedVersion Optional PHP version to test removal message with -
      *                               if different from the $removedIn version.
      *
      * @return void
      */
-    public function testRemovedExtension($extensionName, $removedIn, $line, $okVersion, $removedVersion = null)
+    public function testRemovedExtension($extensionName, $removedIn, $lines, $okVersion, $removedVersion = null)
     {
         $file = $this->sniffFile(__FILE__, $okVersion);
-        $this->assertNoViolation($file, $line);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
 
         $errorVersion = (isset($removedVersion)) ? $removedVersion : $removedIn;
         $file         = $this->sniffFile(__FILE__, $errorVersion);
         $error        = "Extension '{$extensionName}' is removed since PHP {$removedIn}";
-        $this->assertError($file, $line, $error);
+        foreach ($lines as $line) {
+            $this->assertError($file, $line, $error);
+        }
     }
 
     /**
@@ -60,20 +64,20 @@ class RemovedExtensionsUnitTest extends BaseSniffTest
     public static function dataRemovedExtension()
     {
         return [
-            ['dbase', '5.3', 10, '5.2'],
-            ['fam', '5.1', 16, '5.0'],
-            ['fbsql', '5.3', 18, '5.2'],
-            ['filepro', '5.2', 22, '5.1'],
-            ['hw_api', '5.2', 24, '5.1'],
-            ['ircg', '5.1', 28, '5.0'],
-            ['mnogosearch', '5.1', 34, '5.0'],
-            ['msql', '5.3', 36, '5.2'],
-            ['mssql', '7.0', 63, '5.6'],
-            ['ovrimos', '5.1', 44, '5.0'],
-            ['pfpro_', '5.1', 46, '5.0'],
-            ['sqlite', '5.4', 48, '5.3'],
-            // ['sybase', '7.0', xx, '5.6'], sybase_ct ???
-            ['yp', '5.1', 54, '5.0'],
+            ['dbase', '5.3', [10], '5.2'],
+            ['fam', '5.1', [16], '5.0'],
+            ['fbsql', '5.3', [18], '5.2'],
+            ['filepro', '5.2', [22], '5.1'],
+            ['hw_api', '5.2', [24], '5.1'],
+            ['ircg', '5.1', [28], '5.0'],
+            ['mnogosearch', '5.1', [34], '5.0'],
+            ['msql', '5.3', [36], '5.2'],
+            ['mssql', '7.0', [63], '5.6'],
+            ['ovrimos', '5.1', [44], '5.0'],
+            ['pfpro_', '5.1', [46], '5.0'],
+            ['sqlite', '5.4', [48], '5.3'],
+            // array('sybase', '7.0', array(xx), '5.6'), sybase_ct ???
+            ['yp', '5.1', [54], '5.0'],
         ];
     }
 
