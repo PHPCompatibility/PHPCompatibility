@@ -551,3 +551,9 @@ register_callback(ini_get(...));
 // Safeguard against false positives when target param not found.
 ini_set(value: 1); // Missing param.
 $test = ini_get(ini: 'oci8.statement_cache_size'); // Wrong param name.
+
+ini_set('unserialize_max_depth', 10);
+$test = ini_get('unserialize_max_depth');
+
+ini_set('mbstring.regex_retry_limit', 10);
+$test = ini_get('mbstring.regex_retry_limit');
