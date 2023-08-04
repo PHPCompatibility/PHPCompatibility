@@ -4122,7 +4122,8 @@ class RemovedFunctionsSniff extends Sniff
         ],
         '__autoload' => [
             '7.2'         => false,
-            'alternative' => 'SPL autoload',
+            '8.0'         => true,
+            'alternative' => 'spl_autoload_register()',
         ],
         'create_function' => [
             '7.2'         => false,
@@ -4269,6 +4270,7 @@ class RemovedFunctionsSniff extends Sniff
         ],
         'is_real' => [
             '7.4'         => false,
+            '8.0'         => true,
             'alternative' => 'is_float()',
         ],
         'money_format' => [
