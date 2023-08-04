@@ -96,6 +96,16 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
                 '8.0'  => true,
             ],
         ],
+        'stream_context_set_option' => [
+            3 => [
+                'name' => 'option_name',
+                '8.4'  => false,
+            ],
+            4 => [
+                'name' => 'value',
+                '8.4'  => false,
+            ],
+        ],
     ];
 
 
