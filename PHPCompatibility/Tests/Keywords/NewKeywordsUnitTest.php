@@ -473,6 +473,77 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * Test match expressions.
+     *
+     * @dataProvider dataMatchExpressions
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testMatchExpressions($line)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertError($file, $line, 'The "match" keyword is not present in PHP version 7.4 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testMatchExpressions()
+     *
+     * @return array
+     */
+    public static function dataMatchExpressions()
+    {
+        return [
+            [189],
+            [196],
+            [202],
+            [207],
+            [212],
+            [219],
+            [222],
+        ];
+    }
+
+    /**
+     * Test against false positives for match expressions.
+     *
+     * @dataProvider dataMatchExpressionsNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testMatchExpressionsNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testMatchExpressionsNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataMatchExpressionsNoFalsePositives()
+    {
+        $data = [];
+
+        for ($i = 168; $i <= 187; $i++) {
+            $data[] = [$i];
+        }
+
+        return $data;
+    }
+
+    /**
      * testHaltCompiler
      *
      * @return void
@@ -486,7 +557,7 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
          * not be reported.
          */
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 170);
+        $this->assertNoViolation($file, 229);
     }
 
 

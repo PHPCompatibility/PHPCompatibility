@@ -162,6 +162,66 @@ $result = array_map(
     $numbers
 );
 
+/*
+ * PHP 8.0: match expressions.
+ */
+// OK: match, but not an match expression.
+$a = Foo::match($param);
+$a = MyClass::match;
+$a = MyClass::match[$a];
+$a = $obj->match($param);
+$a = $obj->match->chain($param);
+$a = $obj?->match;
+$a = MyNS\Sub\match($param);
+$a = namespace\match($param);
+
+class Match {
+    const match = 'a';
+
+    public static function match($param) {}
+
+    public function bar() {
+        $this->match = 'a';
+    }
+}
+
+// PHP 8.0 match expressions.
+$statement = match ($this->lexer->lookahead['type']) {
+    Lexer::T_SELECT => $this->SelectStatement(),
+    Lexer::T_UPDATE => $this->UpdateStatement(),
+    Lexer::T_DELETE => $this->DeleteStatement(),
+    default => $this->syntaxError('SELECT, UPDATE or DELETE'),
+};
+
+echo match (1) {
+    0 => 'Foo',
+    1 => 'Bar',
+    2 => 'Baz',
+};
+
+MATCH ($pressedKey) {
+    Key::RETURN_ => save(),
+    Key::DELETE => delete(),
+};
+
+echo Match ($x) {
+    1, 2 => 'Same for 1 and 2',
+    3, 4 => 'Same for 3 and 4',
+};
+
+$result = match ($x) {
+    foo() => ...,
+    $this->bar() => ..., // bar() isn't called if foo() matched with $x
+    $this->baz => ...,
+    // etc.
+};
+
+$x = match ($y) {
+    default => {
+        // This should work fine
+        (match ($z) { ... })
+    },
+};
 
 __halt_compiler();
 
