@@ -557,3 +557,57 @@ $test = ini_get('unserialize_max_depth');
 
 ini_set('mbstring.regex_retry_limit', 10);
 $test = ini_get('mbstring.regex_retry_limit');
+
+ini_set('opcache.jit', 10);
+$test = ini_get('opcache.jit');
+
+ini_set('opcache.jit_buffer_size', 10);
+$test = ini_get('opcache.jit_buffer_size');
+
+ini_set('opcache.jit_debug', 10);
+$test = ini_get('opcache.jit_debug');
+
+ini_set('opcache.jit_bisect_limit', 10);
+$test = ini_get('opcache.jit_bisect_limit');
+
+ini_set('opcache.jit_prof_threshold', 10);
+$test = ini_get('opcache.jit_prof_threshold');
+
+ini_set('opcache.jit_hot_loop', 10);
+$test = ini_get('opcache.jit_hot_loop');
+
+ini_set('opcache.jit_hot_func', 10);
+$test = ini_get('opcache.jit_hot_func');
+
+ini_set('opcache.jit_hot_return', 10);
+$test = ini_get('opcache.jit_hot_return');
+
+ini_set('opcache.jit_hot_side_exit', 10);
+$test = ini_get('opcache.jit_hot_side_exit');
+
+ini_set('opcache.jit_blacklist_root_trace', 10);
+$test = ini_get('opcache.jit_blacklist_root_trace');
+
+ini_set('opcache.jit_blacklist_side_trace', 10);
+$test = ini_get('opcache.jit_blacklist_side_trace');
+
+ini_set('opcache.jit_max_loop_unrolls', 10);
+$test = ini_get('opcache.jit_max_loop_unrolls');
+
+ini_set('opcache.jit_max_exit_counters', 10);
+$test = ini_get('opcache.jit_max_exit_counters');
+
+ini_set('opcache.jit_max_root_traces', 10);
+$test = ini_get('opcache.jit_max_root_traces');
+
+ini_set('opcache.jit_max_side_traces', 10);
+$test = ini_get('opcache.jit_max_side_traces');
+
+ini_set('opcache.jit_max_recursive_calls', 10);
+$test = ini_get('opcache.jit_max_recursive_calls');
+
+ini_set('opcache.jit_max_recursive_returns', 10);
+$test = ini_get('opcache.jit_max_recursive_returns');
+
+ini_set('opcache.jit_max_polymorphic_calls', 10);
+$test = ini_get('opcache.jit_max_polymorphic_calls');
