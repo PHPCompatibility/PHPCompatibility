@@ -4914,6 +4914,10 @@ class NewFunctionsSniff extends Sniff
             'extension' => 'imap',
         ],
 
+        'stream_context_set_options' => [
+            '8.2' => false,
+            '8.3' => true,
+        ],
         'json_validate' => [
             '8.2'       => false,
             '8.3'       => true,
