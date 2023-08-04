@@ -1237,3 +1237,4 @@ utf8_decode();
 assert_options();
 
 intlcal_set();
+intlgregcal_create_instance();
