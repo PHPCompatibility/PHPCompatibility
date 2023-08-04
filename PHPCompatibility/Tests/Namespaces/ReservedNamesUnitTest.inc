@@ -14,5 +14,9 @@ namespace PHP\Classes {
     // Do something.
 }
 
+// Error PHP 7.4+.
+namespace FFI;
+namespace FFI\MyClass;
+
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli

@@ -30,14 +30,21 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataReservedNames
      *
-     * @param int $line The line number.
+     * @param int    $line      The line number in the test file.
+     * @param string $name      The reserved name which should be detected.
+     * @param string $version   The PHP version in which the name became reserved.
+     * @param string $okVersion A PHP version in which the name was not reserved.
      *
      * @return void
      */
-    public function testReservedNames($line)
+    public function testReservedNames($line, $name, $version, $okVersion)
     {
-        $file = $this->sniffFile(__FILE__, '5.3');
-        $this->assertWarning($file, $line, ' is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.');
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        $this->assertNoViolation($file, $line);
+
+        $file  = $this->sniffFile(__FILE__, $version);
+        $error = "The top-level namespace name \"{$name}\" is reserved by and in use by PHP since PHP version {$version}.";
+        $this->assertError($file, $line, $error);
     }
 
     /**
@@ -50,6 +57,36 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
     public static function dataReservedNames()
     {
         return [
+            [18, 'FFI', '7.4', '7.3'],
+            [19, 'FFI', '7.4', '7.3'],
+        ];
+    }
+
+    /**
+     * Verify correctly detecting reserved namespace name PHP (which is special cased).
+     *
+     * @dataProvider dataReservedNamePHP
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testReservedNamePHP($line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.3');
+        $this->assertWarning($file, $line, ' is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testReservedNamePHP()
+     *
+     * @return array
+     */
+    public static function dataReservedNamePHP()
+    {
+        return [
             [11],
             [12],
             [13],
@@ -58,7 +95,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
 
 
     /**
-     * Verify the sniff does not throw false positives.
+     * Verify the sniff does not throw false positives on valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -85,6 +122,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [4],
             [5],
             [6],
+            [22],
         ];
     }
 
