@@ -30,3 +30,7 @@ register_callback(session_module_name(...));
 
 // Safeguard against false positives when target param not found.
 session_module_name(name: 'user'); // Wrong param name.
+
+// Safeguard against false positives when this name is used as an attribute class.
+#[Session_Module_Name('user')]
+function do_something() {}

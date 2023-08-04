@@ -107,6 +107,7 @@ class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTestCase
         $cases[] = [26];
         $cases[] = [29];
         $cases[] = [32];
+        $cases[] = [35];
 
         return $cases;
     }

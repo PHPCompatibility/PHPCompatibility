@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -115,6 +116,11 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             || isset($tokens[$nextToken]['parenthesis_owner']) === true
         ) {
             return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Class instantiation or constant in attribute, not function call.
+            return false;
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
