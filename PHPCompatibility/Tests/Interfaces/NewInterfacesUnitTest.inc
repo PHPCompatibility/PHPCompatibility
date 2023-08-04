@@ -193,6 +193,8 @@ enum MyBackedEnum: string implements NotATarget, Serializable, ArrayAccess {
     public function __wakeup();
 }
 
+class MyDom implements DOMChildNode, DOMParentNode {}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
