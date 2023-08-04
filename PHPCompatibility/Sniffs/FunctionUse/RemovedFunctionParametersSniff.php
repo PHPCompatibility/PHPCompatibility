@@ -181,6 +181,43 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '8.0'  => true,
             ],
         ],
+        'session_set_save_handler' => [
+            3 => [
+                'name'        => 'read',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            4 => [
+                'name'        => 'write',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            5 => [
+                'name'        => 'destroy',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            6 => [
+                'name'        => 'gc',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            7 => [
+                'name'        => 'create_sid',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            8 => [
+                'name'        => 'validate_sid',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+            9 => [
+                'name'        => 'update_timestamp',
+                '8.4'         => false,
+                'alternative' => 'a SessionHandlerInterface implementation for the callbacks instead',
+            ],
+        ],
     ];
 
     /**
