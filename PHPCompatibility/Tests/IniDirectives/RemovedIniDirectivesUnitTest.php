@@ -416,6 +416,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['mysqlnd.fetch_data_copy', '8.1', [464, 465], '8.0'],
 
             ['mysqli.reconnect', '8.2', [467, 468], '8.1'],
+            ['opcache.consistency_checks', '8.3', [485, 486], '8.2'],
         ];
     }
 
