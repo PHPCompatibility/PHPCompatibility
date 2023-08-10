@@ -828,6 +828,32 @@ class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'curl',
         ],
+
+        'Random\Randomizer' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\Engine\Secure' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\Engine\Mt19937' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\Engine\PcgOneseq128XslRr64' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\Engine\Xoshiro256StarStar' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
     ];
 
     /**
@@ -1050,6 +1076,22 @@ class NewClassesSniff extends Sniff
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'fibers',
+        ],
+
+        'Random\RandomError' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\BrokenRandomEngineError' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
+        ],
+        'Random\RandomException' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'random',
         ],
     ];
 

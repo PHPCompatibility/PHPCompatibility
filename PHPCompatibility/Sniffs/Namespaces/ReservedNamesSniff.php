@@ -47,8 +47,9 @@ class ReservedNamesSniff extends Sniff
          * The top-level namespace name "PHP" is reserved by PHP since the introduction
          * of namespaces in PHP 5.3, but not yet in use.
          */
-        'PHP' => '5.3',
-        'FFI' => '7.4',
+        'PHP'    => '5.3',
+        'FFI'    => '7.4',
+        'Random' => '8.2',
     ];
 
     /**

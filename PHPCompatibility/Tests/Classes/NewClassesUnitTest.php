@@ -220,6 +220,11 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['ReflectionFiber', '8.0', [436], '8.1'],
             ['ReflectionIntersectionType', '8.0', [469], '8.1'],
             ['CURLStringFile', '8.0', [438], '8.1'],
+            ['Random\Randomizer', '8.1', [474], '8.2'],
+            ['Random\Engine\Mt19937', '8.1', [475], '8.2'],
+            ['Random\Engine\PcgOneseq128XslRr64', '8.1', [476], '8.2'],
+            ['Random\Engine\Xoshiro256StarStar', '8.1', [477], '8.2'],
+            ['Random\Engine\Secure', '8.1', [479], '8.2'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
@@ -267,6 +272,9 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['UnhandledMatchError', '7.4', [428], '8.0'],
             ['ValueError', '7.4', [418, 419], '8.0'],
             ['FiberError', '8.0', [437], '8.1'],
+            ['Random\RandomError', '8.1', [481], '8.2'],
+            ['Random\BrokenRandomEngineError', '8.1', [481], '8.2'],
+            ['Random\RandomException', '8.1', [482], '8.2'],
         ];
     }
 
