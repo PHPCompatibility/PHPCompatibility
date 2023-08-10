@@ -75,19 +75,13 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '7.0'  => true,
             ],
         ],
-        'imap_headerinfo' => [
-            5 => [
-                'name' => 'defaulthost',
-                '8.0'  => true,
-            ],
-        ],
         /*
          * For the below three functions, it's actually the 3rd parameter which has been deprecated.
          * However with positional arguments, this can only be detected by checking for the "old last" argument.
          * Note: this function explicitly does NOT support named parameters for the function
          * signature without this parameter, but that's not the concern of this sniff.
          */
-        'imagepolygon' => [
+        'imagefilledpolygon' => [
             4 => [
                 'name' => 'num_points',
                 '8.1'  => false,
@@ -99,10 +93,22 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '8.1'  => false,
             ],
         ],
-        'imagefilledpolygon' => [
+        'imagepolygon' => [
             4 => [
                 'name' => 'num_points',
                 '8.1'  => false,
+            ],
+        ],
+        'imagerotate' => [
+            4 => [
+                'name' => 'ignore_transparent',
+                '8.3'  => true,
+            ],
+        ],
+        'imap_headerinfo' => [
+            5 => [
+                'name' => 'defaulthost',
+                '8.0'  => true,
             ],
         ],
         'ldap_first_attribute' => [

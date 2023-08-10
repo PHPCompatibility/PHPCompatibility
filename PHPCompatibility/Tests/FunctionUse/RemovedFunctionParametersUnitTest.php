@@ -73,6 +73,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['imap_headerinfo', 'defaulthost', '8.0', [30], '7.4'],
             ['odbc_exec', 'flags', '8.0', [33], '7.4'],
             ['odbc_do', 'flags', '8.0', [34], '7.4'],
+            ['imagerotate', 'ignore_transparent', '8.3', [63], '8.2'],
         ];
     }
 
@@ -215,6 +216,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             [32],
             [50],
             [53],
+            [62],
         ];
     }
 
