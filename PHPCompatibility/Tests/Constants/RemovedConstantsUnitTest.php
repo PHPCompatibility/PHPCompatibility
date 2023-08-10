@@ -75,6 +75,8 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MYSQLI_SERVER_PS_OUT_PARAMS', '8.1', 637, '8.0'],
             ['MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH', '8.1', 638, '8.0'],
             ['MYSQLI_STORE_RESULT_COPY_DATA', '8.1', 639, '8.0'],
+
+            ['MYSQLI_IS_MARIADB', '8.2', 644, '8.1'],
         ];
     }
 

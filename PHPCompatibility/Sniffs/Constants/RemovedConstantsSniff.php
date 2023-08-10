@@ -2622,6 +2622,11 @@ class RemovedConstantsSniff extends Sniff
             '8.1'       => false,
             'extension' => 'mysqli',
         ],
+
+        'MYSQLI_IS_MARIADB' => [
+            '8.2'       => false,
+            'extension' => 'mysqli',
+        ],
     ];
 
 
