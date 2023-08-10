@@ -4907,6 +4907,12 @@ class NewFunctionsSniff extends Sniff
             '8.2'       => true,
             'extension' => 'libxml',
         ],
+
+        'imap_is_open' => [
+            '8.2.0'     => false,
+            '8.2.1'     => true,
+            'extension' => 'imap',
+        ],
     ];
 
 
