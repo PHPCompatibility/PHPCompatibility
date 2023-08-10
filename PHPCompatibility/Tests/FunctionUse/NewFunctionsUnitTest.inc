@@ -1038,3 +1038,5 @@ odbc_connection_string_should_quote();
 odbc_connection_string_quote();
 
 imap_is_open();
+
+json_validate();
