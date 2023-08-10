@@ -41,6 +41,8 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
         'Traversable'       => 'The interface Traversable shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
         'DateTimeInterface' => 'The interface DateTimeInterface is intended for type hints only and is not implementable or extendable.',
         'Throwable'         => 'The interface Throwable cannot be implemented directly, extend the Exception class instead.',
+        'UnitEnum'          => 'is intended for type hints only and is not implementable or extendable.',
+        'BackedEnum'        => 'is intended for type hints only and is not implementable or extendable.',
     ];
 
     /**
@@ -103,6 +105,11 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
             ['Throwable', 36],
             ['Traversable', 37],
             ['Throwable', 37],
+
+            ['UnitEnum', 40],
+            ['UnitEnum', 41],
+            ['BackedEnum', 42],
+            ['BackedEnum', 43],
         ];
     }
 

@@ -195,6 +195,8 @@ enum MyBackedEnum: string implements NotATarget, Serializable, ArrayAccess {
 
 class MyDom implements DOMChildNode, DOMParentNode {}
 
+function ExpectsEnumParams(UnitEnum $enum1, BackedEnum $enum2) {}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {

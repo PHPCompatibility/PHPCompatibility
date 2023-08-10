@@ -1084,6 +1084,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['sodium_crypto_core_ristretto255_sub', '8.0', 1023, '8.1'],
             ['sodium_crypto_scalarmult_ristretto255', '8.0', 1024, '8.1'],
             ['sodium_crypto_scalarmult_ristretto255_base', '8.0', 1025, '8.1'],
+            ['enum_exists', '8.0', 1026, '8.1'],
         ];
     }
 

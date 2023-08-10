@@ -43,6 +43,8 @@ class InternalInterfacesSniff extends Sniff
         'Traversable'       => 'shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
         'DateTimeInterface' => 'is intended for type hints only and is not implementable or extendable.',
         'Throwable'         => 'cannot be implemented directly, extend the Exception class instead.',
+        'UnitEnum'          => 'is intended for type hints only and is not implementable or extendable.',
+        'BackedEnum'        => 'is intended for type hints only and is not implementable or extendable.',
     ];
 
     /**
@@ -54,6 +56,8 @@ class InternalInterfacesSniff extends Sniff
      */
     private $cannotBeExtended = [
         'DateTimeInterface' => true,
+        'UnitEnum'          => true,
+        'BackedEnum'        => true,
     ];
 
 

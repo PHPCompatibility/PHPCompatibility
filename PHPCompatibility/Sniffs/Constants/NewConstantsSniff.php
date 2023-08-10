@@ -7140,6 +7140,11 @@ class NewConstantsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'sockets',
         ],
+        'T_ENUM' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'tokenizer',
+        ],
         'T_READONLY' => [
             '8.0'       => false,
             '8.1'       => true,

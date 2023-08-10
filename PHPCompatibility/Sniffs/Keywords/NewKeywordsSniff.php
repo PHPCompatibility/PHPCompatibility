@@ -158,6 +158,11 @@ class NewKeywordsSniff extends Sniff
             '8.0'         => true,
             'description' => 'The "match" keyword',
         ],
+        'T_ENUM' => [
+            '8.0'         => false,
+            '8.1'         => true,
+            'description' => 'The "enum" keyword',
+        ],
     ];
 
     /**

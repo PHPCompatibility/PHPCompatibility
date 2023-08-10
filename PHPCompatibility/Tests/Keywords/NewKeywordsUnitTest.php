@@ -544,6 +544,72 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * Test enums.
+     *
+     * @dataProvider dataEnum
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testEnum($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'The "enum" keyword is not present in PHP version 8.0 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testEnum()
+     *
+     * @return array
+     */
+    public static function dataEnum()
+    {
+        return [
+            [247],
+            [252],
+        ];
+    }
+
+    /**
+     * Test against false positives for enums.
+     *
+     * @dataProvider dataEnumNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testEnumNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testEnumNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataEnumNoFalsePositives()
+    {
+        $data = [];
+
+        for ($i = 225; $i <= 244; $i++) {
+            $data[] = [$i];
+        }
+
+        return $data;
+    }
+
+    /**
      * testHaltCompiler
      *
      * @return void
@@ -557,7 +623,7 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
          * not be reported.
          */
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 229);
+        $this->assertNoViolation($file, 260);
     }
 
 
