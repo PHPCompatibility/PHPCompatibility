@@ -460,3 +460,6 @@ register_callback(ini_set(...));
 // Safeguard against false positives when target param not found.
 ini_set(value: 1); // Missing param.
 $test = ini_get(ini: 'filter.default_options'); // Wrong param name.
+
+ini_set('mysqlnd.fetch_data_copy', 0);
+$test = ini_get('mysqlnd.fetch_data_copy');

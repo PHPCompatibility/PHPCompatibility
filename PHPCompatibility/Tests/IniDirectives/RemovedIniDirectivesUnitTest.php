@@ -364,6 +364,7 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['assert.quiet_eval', '8.0', [427, 428], '7.4'],
 
             ['log_errors_max_len', '8.1', [433, 434], '8.0'],
+            ['mysqlnd.fetch_data_copy', '8.1', [464, 465], '8.0'],
         ];
     }
 
