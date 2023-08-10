@@ -365,6 +365,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['log_errors_max_len', '8.1', [433, 434], '8.0'],
             ['mysqlnd.fetch_data_copy', '8.1', [464, 465], '8.0'],
+
+            ['mysqli.reconnect', '8.2', [467, 468], '8.1'],
         ];
     }
 
