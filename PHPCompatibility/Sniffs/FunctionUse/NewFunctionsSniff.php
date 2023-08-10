@@ -4853,6 +4853,60 @@ class NewFunctionsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'sodium',
         ],
+
+        'ini_parse_quantity' => [
+            '8.1' => false,
+            '8.2' => true,
+        ],
+        'memory_reset_peak_usage' => [
+            '8.1' => false,
+            '8.2' => true,
+        ],
+        'curl_upkeep' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'curl',
+        ],
+        'mysqli_execute_query' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'mysqli',
+        ],
+        'oci_set_prefetch_lob' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'oci8',
+        ],
+        'odbc_connection_string_is_quoted' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
+        'odbc_connection_string_should_quote' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
+        'odbc_connection_string_quote' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'odbc',
+        ],
+        'openssl_cipher_key_length' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'openssal',
+        ],
+        'sodium_crypto_stream_xchacha20_xor_ic' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'sodium',
+        ],
+        'libxml_get_external_entity_loader' => [
+            '8.1'       => false,
+            '8.2'       => true,
+            'extension' => 'libxml',
+        ],
     ];
 
 

@@ -1085,6 +1085,18 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['sodium_crypto_scalarmult_ristretto255', '8.0', 1024, '8.1'],
             ['sodium_crypto_scalarmult_ristretto255_base', '8.0', 1025, '8.1'],
             ['enum_exists', '8.0', 1026, '8.1'],
+
+            ['ini_parse_quantity', '8.1', 1033, '8.2'],
+            ['memory_reset_peak_usage', '8.1', 1032, '8.2'],
+            ['curl_upkeep', '8.1', 1028, '8.2'],
+            ['mysqli_execute_query', '8.1', 1029, '8.2'],
+            ['oci_set_prefetch_lob', '8.1', 1035, '8.2'],
+            ['odbc_connection_string_is_quoted', '8.1', 1036, '8.2'],
+            ['odbc_connection_string_should_quote', '8.1', 1037, '8.2'],
+            ['odbc_connection_string_quote', '8.1', 1038, '8.2'],
+            ['openssl_cipher_key_length', '8.1', 1030, '8.2'],
+            ['sodium_crypto_stream_xchacha20_xor_ic', '8.1', 1031, '8.2'],
+            ['libxml_get_external_entity_loader', '8.1', 1034, '8.2'],
         ];
     }
 

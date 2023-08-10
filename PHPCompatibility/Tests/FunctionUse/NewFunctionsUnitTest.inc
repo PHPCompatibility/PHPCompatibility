@@ -1024,3 +1024,15 @@ sodium_crypto_core_ristretto255_sub();
 sodium_crypto_scalarmult_ristretto255();
 sodium_crypto_scalarmult_ristretto255_base();
 enum_exists();
+
+curl_upkeep();
+mysqli_execute_query();
+openssl_cipher_key_length();
+sodium_crypto_stream_xchacha20_xor_ic();
+memory_reset_peak_usage();
+ini_parse_quantity();
+libxml_get_external_entity_loader();
+oci_set_prefetch_lob();
+odbc_connection_string_is_quoted();
+odbc_connection_string_should_quote();
+odbc_connection_string_quote();
