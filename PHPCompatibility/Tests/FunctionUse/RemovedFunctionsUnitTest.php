@@ -70,6 +70,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['shmop_close', '8.0', 1217, '7.4'],
             ['openssl_free_key', '8.0', 1218, '7.4'],
             ['odbc_result_all', '8.1', 1229, '8.0'],
+            ['assert_options', '8.3', 1237, '8.2'],
         ];
     }
 

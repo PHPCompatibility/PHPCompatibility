@@ -466,3 +466,18 @@ $test = ini_get('mysqlnd.fetch_data_copy');
 
 ini_set('mysqli.reconnect', 0);
 $test = ini_get('mysqli.reconnect');
+
+ini_set('assert.active', 0);
+$test = ini_get('assert.active');
+
+ini_set('assert.bail', 0);
+$test = ini_get('assert.bail');
+
+ini_set('assert.callback', 0);
+$test = ini_get('assert.callback');
+
+ini_set('assert.exception', 0);
+$test = ini_get('assert.exception');
+
+ini_set('assert.warning', 0);
+$test = ini_get('assert.warning');

@@ -1233,3 +1233,5 @@ $obj?->php_check_syntax(); // OK.
 
 utf8_encode();
 utf8_decode();
+
+assert_options();

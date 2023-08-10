@@ -77,6 +77,12 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MYSQLI_STORE_RESULT_COPY_DATA', '8.1', 639, '8.0'],
 
             ['MYSQLI_IS_MARIADB', '8.2', 644, '8.1'],
+
+            ['ASSERT_ACTIVE', '8.3', 646, '8.2'],
+            ['ASSERT_BAIL', '8.3', 647, '8.2'],
+            ['ASSERT_CALLBACK', '8.3', 648, '8.2'],
+            ['ASSERT_EXCEPTION', '8.3', 649, '8.2'],
+            ['ASSERT_WARNING', '8.3', 650, '8.2'],
         ];
     }
 

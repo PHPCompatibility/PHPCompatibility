@@ -663,6 +663,27 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.2'       => true,
             'extension' => 'mysqli',
         ],
+
+        'assert.active' => [
+            '8.3'         => false,
+            'alternative' => 'zend.assertions',
+        ],
+        'assert.bail' => [
+            '8.3'         => false,
+            'alternative' => 'zend.assertions',
+        ],
+        'assert.callback' => [
+            '8.3'         => false,
+            'alternative' => 'zend.assertions',
+        ],
+        'assert.exception' => [
+            '8.3'         => false,
+            'alternative' => 'zend.assertions',
+        ],
+        'assert.warning' => [
+            '8.3'         => false,
+            'alternative' => 'zend.assertions',
+        ],
     ];
 
     /**

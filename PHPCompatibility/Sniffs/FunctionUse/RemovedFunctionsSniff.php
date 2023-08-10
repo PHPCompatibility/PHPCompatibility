@@ -5070,6 +5070,10 @@ class RemovedFunctionsSniff extends Sniff
             '8.2'         => false,
             'alternative' => 'mb_convert_encoding(), UConverter::transcode() or iconv',
         ],
+
+        'assert_options' => [
+            '8.3' => false,
+        ],
     ];
 
 

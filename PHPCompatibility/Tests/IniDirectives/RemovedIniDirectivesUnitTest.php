@@ -166,6 +166,55 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
 
 
     /**
+     * testDeprecatedWithAlternative
+     *
+     * @dataProvider dataDeprecatedWithAlternative
+     *
+     * @param string $iniName           Name of the ini directive.
+     * @param string $deprecatedIn      The PHP version in which the ini directive was deprecated.
+     * @param string $alternative       An alternative ini directive for the removed directive.
+     * @param array  $lines             The line numbers in the test file which apply to this ini directive.
+     * @param string $okVersion         A PHP version in which the ini directive was still valid.
+     * @param string $deprecatedVersion Optional PHP version to test deprecation message with -
+     *                                  if different from the $deprecatedIn version.
+     *
+     * @return void
+     */
+    public function testDeprecatedWithAlternative($iniName, $deprecatedIn, $alternative, $lines, $okVersion, $deprecatedVersion = null)
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $errorVersion = (isset($deprecatedVersion)) ? $deprecatedVersion : $deprecatedIn;
+        $file         = $this->sniffFile(__FILE__, $errorVersion);
+        $error        = "INI directive '{$iniName}' is deprecated since PHP {$deprecatedIn}; Use '{$alternative}' instead";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedWithAlternative()
+     *
+     * @return array
+     */
+    public static function dataDeprecatedWithAlternative()
+    {
+        return [
+            ['assert.active', '8.3', 'zend.assertions', [470, 471], '8.2'],
+            ['assert.bail', '8.3', 'zend.assertions', [473, 474], '8.2'],
+            ['assert.callback', '8.3', 'zend.assertions', [476, 477], '8.2'],
+            ['assert.exception', '8.3', 'zend.assertions', [479, 480], '8.2'],
+            ['assert.warning', '8.3', 'zend.assertions', [482, 483], '8.2'],
+        ];
+    }
+
+
+    /**
      * testRemovedWithAlternative
      *
      * @dataProvider dataRemovedWithAlternative
