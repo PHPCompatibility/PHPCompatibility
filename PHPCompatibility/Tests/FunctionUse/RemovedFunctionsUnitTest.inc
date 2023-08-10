@@ -1230,3 +1230,6 @@ odbc_result_all();
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->php_check_syntax(); // OK.
+
+utf8_encode();
+utf8_decode();
