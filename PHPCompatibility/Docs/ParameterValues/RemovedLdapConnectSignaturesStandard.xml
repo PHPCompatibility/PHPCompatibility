@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed ldap_connect() Signatures"
+    >
+    <standard>
+    <![CDATA[
+    Calling ldap_connect() with its two-parameter signature is deprecated since PHP 8.3 and support will be removed in PHP 9.0.
+
+    Call ldap_connect() with an LDAP-URI as the first (and only) parameter instead.
+    Or in case the underlying library is Oracle and one wants to add wallet-details, pass an LDAP-URI as the $uri parameter and pass `null` as the $port parameter.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: calling ldap_connect() with an LDAP-URI in the $uri parameter.">
+        <![CDATA[
+ldap_connect(<em>"ldap://$host:$port??369"</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.3: calling ldap_connect() with separate $host and $port parameters.">
+        <![CDATA[
+ldap_connect(<em>$host</em>, <em>$port</em>);
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: calling ldap_connect() with wallet-details with an LDAP-URI in the $uri parameter and null for the $port value.">
+        <![CDATA[
+ldap_connect(
+    <em>"ldap://$host:$port??369"</em>,
+    <em>null</em>,
+    $wallet,
+    $password,
+    $auth_mode,
+);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.3: calling ldap_connect() with wallet-details with separate $host and $port parameters.">
+        <![CDATA[
+ldap_connect(
+    <em>$host</em>,
+    <em>369</em>,
+    $wallet,
+    $password,
+    $auth_mode,
+);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
