@@ -293,6 +293,10 @@ class NewIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['error_log_mode', '8.2', [615, 616], '8.1'],
             ['oci8.prefetch_lob_size', '8.2', [618, 619], '8.1'],
+
+            ['zend.max_allowed_stack_size', '8.3', [621, 622], '8.2'],
+            ['zend.reserved_stack_size', '8.3', [624, 625], '8.2'],
+            ['opcache.jit_max_trace_length', '8.3', [627, 628], '8.2'],
         ];
     }
 

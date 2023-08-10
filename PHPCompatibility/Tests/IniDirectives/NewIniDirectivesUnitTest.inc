@@ -617,3 +617,12 @@ $test = ini_get('error_log_mode');
 
 ini_set('oci8.prefetch_lob_size', 10);
 $test = ini_get('oci8.prefetch_lob_size');
+
+ini_set('zend.max_allowed_stack_size', 10);
+$test = ini_get('zend.max_allowed_stack_size');
+
+ini_set('zend.reserved_stack_size', 10);
+$test = ini_get('zend.reserved_stack_size');
+
+ini_set('opcache.jit_max_trace_length', 10);
+$test = ini_get('opcache.jit_max_trace_length');
