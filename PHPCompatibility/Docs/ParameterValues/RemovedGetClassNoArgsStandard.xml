@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed get_[parent_]class() Without Argument"
+    >
+    <standard>
+    <![CDATA[
+    Calling the get_class() or get_parent_class() function without passing any arguments is deprecated since PHP 8.3 and support will be removed in PHP 9.0.
+
+    Pass the $object[_or_class] parameter for PHP cross-version compatible code.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: calling get_class() or get_parent_class() with the $object[_or_class] argument.">
+        <![CDATA[
+class Foo extends Bar {
+    public function example() {
+        <em>get_class($object)</em>;
+        <em>get_parent_class($object)</em>;
+        <em>get_parent_class('Foo')</em>;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.3: calling get_class() or get_parent_class() without the $object[_or_class] argument.">
+        <![CDATA[
+class Foo extends Bar {
+    public function example() {
+        <em>get_class()</em>;
+        <em>get_parent_class()</em>;
+    }
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
