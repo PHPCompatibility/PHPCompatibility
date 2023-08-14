@@ -1040,3 +1040,4 @@ odbc_connection_string_quote();
 imap_is_open();
 
 json_validate();
+mb_str_pad();
