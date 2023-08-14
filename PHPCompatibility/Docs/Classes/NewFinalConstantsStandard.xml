@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
-    title="New Final Class Constants"
+    title="New Final Constants"
     >
     <standard>
     <![CDATA[
-    Class constants can be declared as final since PHP 8.1.
+    OO constants can be declared as final since PHP 8.1.
     ]]>
     </standard>
     <code_comparison>
@@ -16,7 +16,7 @@ class Foo {
 }
         ]]>
         </code>
-        <code title="PHP >= 8.1: using the final modifier.">
+        <code title="PHP &gt;= 8.1: using the final modifier.">
         <![CDATA[
 class Foo {
     <em>final</em> const BAR = 10;
