@@ -481,3 +481,6 @@ $test = ini_get('assert.exception');
 
 ini_set('assert.warning', 0);
 $test = ini_get('assert.warning');
+
+ini_set('opcache.consistency_checks', 0);
+$test = ini_get('opcache.consistency_checks');

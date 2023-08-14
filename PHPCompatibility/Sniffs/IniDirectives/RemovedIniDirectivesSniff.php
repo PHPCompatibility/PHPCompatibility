@@ -684,6 +684,10 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.3'         => false,
             'alternative' => 'zend.assertions',
         ],
+        'opcache.consistency_checks' => [
+            '8.3'       => true,
+            'extension' => 'opcache',
+        ],
     ];
 
     /**
