@@ -724,6 +724,13 @@ class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '5.1.2' => true,
             ],
         ],
+        'posix_getrlimit' => [
+            1 => [
+                'name' => 'resource',
+                '8.2'  => false,
+                '8.3'  => true,
+            ],
+        ],
         'pg_escape_bytea' => [
             /*
              * Is in actual fact the first parameter, with a second required param.
