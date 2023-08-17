@@ -4919,6 +4919,16 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'json',
         ],
+        'ldap_connect_wallet' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'ldap',
+        ],
+        'ldap_exop_sync' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'ldap',
+        ],
         'mb_str_pad' => [
             '8.2'       => false,
             '8.3'       => true,
