@@ -33,7 +33,7 @@ class RemovedConstantsSniff extends Sniff
      * A list of removed PHP Constants.
      *
      * The array lists : version number with false (deprecated) or true (removed).
-     * If's sufficient to list the first version where the constant was deprecated/removed.
+     * It's sufficient to list the first version where the constant was deprecated/removed.
      *
      * Optional, the array can contain an `alternative` key listing an alternative constant
      * to be used instead.
@@ -1933,7 +1933,12 @@ class RemovedConstantsSniff extends Sniff
             'extension' => 'tokenizer',
         ],
         'T_BAD_CHARACTER' => [
-            '7.0'       => true,
+            '5.6' => false,
+            '7.0' => true,
+            '7.1' => true,
+            '7.2' => true,
+            '7.3'       => true,
+            '7.4'       => false,
             'extension' => 'tokenizer',
         ],
         'MSSQL_ASSOC' => [
@@ -2717,6 +2722,35 @@ class RemovedConstantsSniff extends Sniff
         $itemArray   = $this->removedConstants[$itemInfo['name']];
         $versionInfo = $this->getVersionInfo($itemArray);
         $isError     = null;
+
+        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
+            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
+            // See also PHPCompatibility.Constants.NewConstants
+            $displayError = false;
+            $message      = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+
+            foreach ($itemArray as $version => $absent) {
+                if ($absent !== true) {
+                    // We only need to show an error if the constant is _missing_ from the version under test
+                    continue;
+                }
+
+                if (ScannedCode::shouldRunOnOrAbove($version) && ScannedCode::shouldRunOnOrBelow($version)) {
+                    $displayError = true;
+                    break;
+                }
+            }
+
+            if ($displayError === true) {
+                // Remove this flag as it's not correct and its presence alters the error code
+                $versionInfo['deprecated'] = '';
+
+                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
+            }
+
+            return;
+        }
 
         if (empty($versionInfo['removed']) === false
             && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true

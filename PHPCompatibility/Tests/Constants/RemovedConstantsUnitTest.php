@@ -631,7 +631,6 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
 
             ['PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT', '7.0', 15, '5.6'],
             ['T_CHARACTER', '7.0', 139, '5.6'],
-            ['T_BAD_CHARACTER', '7.0', 140, '5.6'],
             ['MSSQL_ASSOC', '7.0', 557, '5.6'],
             ['MSSQL_NUM', '7.0', 558, '5.6'],
             ['MSSQL_BOTH', '7.0', 559, '5.6'],
@@ -927,5 +926,64 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.0'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * The T_BAD_CHARACTER constant is a special case
+     *
+     * @param string $phpVersion  PHP version (or range) tot test with.
+     * @param bool   $shouldError If we expect to get an error or not from the sniff
+     *
+     * @return void
+     *
+     * @dataProvider dataTBadCharacter
+     */
+    public function testTBadCharacter($phpVersion, $shouldError)
+    {
+        $line = 140;
+
+        $message = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+
+        $file = $this->sniffFile(__FILE__, $phpVersion);
+        if ($shouldError) {
+            $this->assertError($file, $line, $message);
+        } else {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Data provider
+     *
+     * @see testTBadCharacter
+     *
+     * @return array<array<string, bool>>
+     */
+    public static function dataTBadCharacter()
+    {
+        // This could be more elegantly written with a generator, but this project supports PHP v5.4 which is before generators were introduced (in PHP 5.5).
+        return [
+            ['5.6', false], // Last version before removal
+            ['7.0', true],  // Removed
+            ['7.1', true],  // Removed
+            ['7.2', true],  // Removed
+            ['7.3', true],  // Removed
+            ['7.4', false], // Added again
+
+            ['-5.6', false], // Before
+            ['-7.2', true],  // Inside
+            ['-8.2', true],  // After
+
+            ['5.4-', true],  // Before
+            ['7.2-', true],  // Inside
+            ['7.4-', false], // After
+
+            ['5.0-5.6', false], // Before
+            ['7.4-8.3', false], // After
+            ['5.0-8.3', true],  // Inside and both sides
+            ['5.0-7.2', true],  // Inside and before
+            ['7.0-7.3', true],  // Inside only
+            ['7.2-8.1', true],  // Inside and after
+        ];
     }
 }

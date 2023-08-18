@@ -32,7 +32,7 @@ class NewConstantsSniff extends Sniff
      * A list of new PHP Constants, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
-     * If's sufficient to list the first version where the constant appears.
+     * It's sufficient to list the first version where the constant appears.
      *
      * Note: PHP constants are case-sensitive!
      *
@@ -6803,6 +6803,10 @@ class NewConstantsSniff extends Sniff
             '7.4' => true,
         ],
         'T_BAD_CHARACTER' => [
+            '5.6' => true,
+            '7.0' => false,
+            '7.1' => false,
+            '7.2' => false,
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'tokenizer',
@@ -8084,6 +8088,31 @@ class NewConstantsSniff extends Sniff
     {
         $itemArray   = $this->newConstants[$itemInfo['name']];
         $versionInfo = $this->getVersionInfo($itemArray);
+
+        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
+            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
+            // See also PHPCompatibility.Constants.RemovedConstants
+            $displayError = false;
+            $message      = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+            foreach ($itemArray as $version => $present) {
+                if ($present !== false) {
+                    // We only need to show an error if the constant is _missing_ from the version under test
+                    continue;
+                }
+
+                if (ScannedCode::shouldRunOnOrAbove($version) && ScannedCode::shouldRunOnOrBelow($version)) {
+                    $displayError = true;
+                    break;
+                }
+            }
+
+            if ($displayError === true) {
+                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
+            }
+
+            return;
+        }
 
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
