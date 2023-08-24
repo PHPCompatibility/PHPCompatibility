@@ -1043,3 +1043,4 @@ json_validate();
 mb_str_pad();
 ldap_connect_wallet();
 ldap_exop_sync();
+stream_context_set_options();
