@@ -50,7 +50,7 @@ class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
         // Run the parent `@beforeClass` method.
         parent::resetSniffFiles();
 
-        if (\version_compare(\PHP_VERSION_ID, '70000', '<')) {
+        if (\PHP_VERSION_ID < 70000) {
             // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
             self::$aspTags = (bool) \ini_get('asp_tags');
         }

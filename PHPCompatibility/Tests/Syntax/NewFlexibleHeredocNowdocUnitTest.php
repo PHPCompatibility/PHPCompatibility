@@ -54,7 +54,7 @@ class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTestCase
             self::$php73plus = false;
             // When using PHP 7.3+, the closing marker will be misidentified if the
             // body contains the heredoc/nowdoc identifier.
-            if (\version_compare(\PHP_VERSION_ID, '70299', '>') === true) {
+            if (\PHP_VERSION_ID >= 70300) {
                 self::$php73plus = true;
             }
         }
