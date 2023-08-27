@@ -33,7 +33,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTestCase
      *
      * @param string $returnType        The return type.
      * @param string $lastVersionBefore The PHP version just *before* the type was introduced.
-     * @param array  $line              The line number in the test file where the error should occur.
+     * @param int    $line              The line number in the test file where the error should occur.
      * @param string $okVersion         A PHP version in which the return type was ok to be used.
      * @param bool   $testNoViolation   Whether or not to test noViolation.
      *                                  Defaults to true.
@@ -178,8 +178,8 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTestCase
      * @dataProvider dataInvalidStandAloneType
      *
      * @param string $type        The declared type.
-     * @param array  $line        The line number where the error is expected.
-     * @param bool   $testVersion The PHP version in which the type was first allowed to be used.
+     * @param int    $line        The line number where the error is expected.
+     * @param string $testVersion The PHP version in which the type was first allowed to be used.
      *
      * @return void
      */
@@ -227,7 +227,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTestCase
      * @dataProvider dataNewUnionTypes
      *
      * @param string $type            The declared type.
-     * @param array  $line            The line number where the error is expected.
+     * @param int    $line            The line number where the error is expected.
      * @param bool   $testNoViolation Whether or not to test noViolation.
      *                                Defaults to true.
      *
@@ -341,7 +341,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTestCase
      * @dataProvider dataNewIntersectionTypes
      *
      * @param string $type            The declared type.
-     * @param array  $line            The line number where the error is expected.
+     * @param int    $line            The line number where the error is expected.
      * @param bool   $testNoViolation Whether or not to test noViolation.
      *                                Defaults to true.
      *

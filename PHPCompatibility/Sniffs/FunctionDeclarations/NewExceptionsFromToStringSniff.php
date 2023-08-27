@@ -39,7 +39,7 @@ class NewExceptionsFromToStringSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $docblockIgnoreTokens = [
         \T_WHITESPACE => \T_WHITESPACE,

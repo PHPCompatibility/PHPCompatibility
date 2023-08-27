@@ -40,7 +40,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @var array
+     * @var array<int|string, true>
      */
     private $inclusiveStopPoints = [
         \T_COLON        => true,

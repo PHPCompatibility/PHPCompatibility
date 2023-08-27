@@ -30,7 +30,7 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataValueChanged
      *
-     * @param array  $line         The line number where an error is expected.
+     * @param int    $line         The line number where an error is expected.
      * @param string $functionName The name of the function to which the error applies.
      * @param string $variableName The variable which was detected as having been changed.
      *

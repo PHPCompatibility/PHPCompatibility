@@ -46,7 +46,7 @@ class NonStaticMagicMethodsSniff extends Sniff
      * @since 5.6 The array format has changed to allow the sniff to also verify the
      *            use of the correct visibility for a magic method.
      *
-     * @var array(string)
+     * @var array<string, array<string, string|bool>>
      */
     protected $magicMethods = [
         '__construct' => [

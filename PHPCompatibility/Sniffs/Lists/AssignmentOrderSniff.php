@@ -101,8 +101,8 @@ class AssignmentOrderSniff extends Sniff
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of a list-like token.
      *
-     * @return array Array with the variables being assigned to as values and the corresponding
-     *               stack pointer to the start of each variable as keys.
+     * @return array<int, string> Array with the variables being assigned to as values and the corresponding
+     *                            stack pointer to the start of each variable as keys.
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the specified $stackPtr is not of
      *                                                      type T_LIST, T_OPEN_SHORT_ARRAY or

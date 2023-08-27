@@ -56,7 +56,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      *
      * @since 8.2.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     protected $safeOperands = [
         \T_LNUMBER                  => \T_LNUMBER,

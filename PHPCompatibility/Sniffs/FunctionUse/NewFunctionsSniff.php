@@ -45,7 +45,7 @@ class NewFunctionsSniff extends Sniff
      *              but that sniff is no longer being extended.
      * @since 7.0.8 Renamed from `$forbiddenFunctions` to the more descriptive `$newFunctions`.
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newFunctions = [
         'class_implements' => [

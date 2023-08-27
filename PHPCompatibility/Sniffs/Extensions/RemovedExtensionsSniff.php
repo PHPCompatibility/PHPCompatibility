@@ -58,7 +58,7 @@ class RemovedExtensionsSniff extends Sniff
      *
      * @since 7.0.2
      *
-     * @var array
+     * @var string[]
      */
     public $functionWhitelist;
 
@@ -70,7 +70,7 @@ class RemovedExtensionsSniff extends Sniff
      *
      * @since 5.5
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array<string, array<string, bool|string|null>>
      */
     protected $removedExtensions = [
         'activescript' => [

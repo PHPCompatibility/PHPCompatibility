@@ -34,7 +34,7 @@ class NewHashAlgorithmsUnitTest extends BaseSniffTestCase
      *
      * @param string $algorithm         Name of the algorithm.
      * @param string $lastVersionBefore The PHP version just *before* the algorithm was introduced.
-     * @param array  $line              The line number in the test file on which an error should occur.
+     * @param int    $line              The line number in the test file on which an error should occur.
      * @param string $okVersion         A PHP version in which the algorithm was valid.
      *
      * @return void

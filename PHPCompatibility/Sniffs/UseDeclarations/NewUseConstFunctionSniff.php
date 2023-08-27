@@ -39,7 +39,7 @@ class NewUseConstFunctionSniff extends Sniff
      *
      * @since 7.1.4
      *
-     * @var array(string => string)
+     * @var array<string, bool>
      */
     protected $validUseNames = [
         'const'    => true,

@@ -51,7 +51,7 @@ class RemovedPredefinedGlobalVariablesSniff extends Sniff
      * @since 5.5
      * @since 7.0
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string>>
      */
     protected $removedGlobalVariables = [
         'HTTP_POST_VARS' => [

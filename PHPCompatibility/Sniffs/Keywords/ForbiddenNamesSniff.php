@@ -45,7 +45,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @since 5.5
      *
-     * @var array(string => string)
+     * @var array<string, string>
      */
     protected $invalidNames = [
         'abstract'      => '5.0',
@@ -133,7 +133,7 @@ class ForbiddenNamesSniff extends Sniff
      * @since 7.0.8
      * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $otherForbiddenNames = [
         'null'     => '7.0',
@@ -159,7 +159,7 @@ class ForbiddenNamesSniff extends Sniff
      * @since 7.0.8
      * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $softReservedNames = [
         'resource' => '7.0',
@@ -179,7 +179,7 @@ class ForbiddenNamesSniff extends Sniff
      * @since 7.0.8
      * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
      *
-     * @var array
+     * @var array<string, string>
      */
     private $allOtherForbiddenNames = [];
 
@@ -188,7 +188,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @since 7.0.1
      *
-     * @var array(string => string)
+     * @var array<string, true>
      */
     protected $validUseNames = [
         'const'    => true,
@@ -200,7 +200,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @since 7.1.4
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $allowedModifiers = [];
 
@@ -209,7 +209,7 @@ class ForbiddenNamesSniff extends Sniff
      *
      * @since 5.5
      *
-     * @var array
+     * @var array<int|string>
      */
     protected $targetedTokens = [
         \T_NAMESPACE,

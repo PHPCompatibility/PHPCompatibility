@@ -36,7 +36,7 @@ class NewGeneratorReturnSniff extends Sniff
      *
      * @since 9.0.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $validConditions = [
         \T_FUNCTION => \T_FUNCTION,

@@ -44,7 +44,7 @@ class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterSniff
      * @since 7.0.5
      * @since 8.2.0 Renamed from `$functions` to `$targetFunctions`.
      *
-     * @var array
+     * @var array<string, int>
      */
     protected $targetFunctions = [
         'mb_ereg_replace'      => 4,

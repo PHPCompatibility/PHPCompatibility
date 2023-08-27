@@ -47,7 +47,7 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
      * @since 10.0.0 Moved from the base `Sniff` class to this sniff and renamed from
      *               `$iniFunctions` to `$targetFunctions`.
      *
-     * @var array
+     * @var array<string, array<string, int|string>>
      */
     protected $targetFunctions = [
         'ini_get' => [
@@ -69,7 +69,7 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
      * @since 5.5
      * @since 7.0.3 Support for 'alternative' has been added.
      *
-     * @var array(string)
+     * @var array<string, array<string, bool|string>>
      */
     protected $newIniDirectives = [
         'auto_globals_jit' => [

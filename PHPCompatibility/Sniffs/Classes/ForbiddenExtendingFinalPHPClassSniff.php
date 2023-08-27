@@ -30,8 +30,8 @@ class ForbiddenExtendingFinalPHPClassSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array(string => int) Key is the fully qualified classname.
-     *                           Value the PHP version in which the class became final.
+     * @var array<string, string> Key is the fully qualified classname.
+     *                            Value the PHP version in which the class became final.
      */
     protected $finalClasses = [
         '\__PHP_Incomplete_Class' => '8.0',

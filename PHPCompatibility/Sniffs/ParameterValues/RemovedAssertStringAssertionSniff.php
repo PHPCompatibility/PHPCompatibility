@@ -44,7 +44,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'assert' => true,
@@ -57,7 +57,7 @@ class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParameterSni
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $targetTokens = [];
 

@@ -44,7 +44,7 @@ class RemovedMagicAutoloadSniff extends Sniff
      *
      * @since 8.1.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $checkForScopes = [
         \T_NAMESPACE => \T_NAMESPACE,

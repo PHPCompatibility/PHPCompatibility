@@ -35,7 +35,7 @@ class ForbiddenBreakContinueOutsideLoopSniff extends Sniff
      *
      * @since 7.0.7
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     protected $validLoopStructures = [
         \T_FOR     => \T_FOR,

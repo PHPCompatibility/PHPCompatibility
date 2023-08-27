@@ -29,7 +29,7 @@ class NewConstantScalarExpressionsUnitTest extends BaseSniffTestCase
     /**
      * Error phrases.
      *
-     * @var array
+     * @var array<string, string>
      */
     private $errorPhrases = [
         'const'    => 'when defining constants using the const keyword',

@@ -42,7 +42,7 @@ class NewOperatorsSniff extends Sniff
      *
      * @since 5.6
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newOperators = [
         'T_POW' => [

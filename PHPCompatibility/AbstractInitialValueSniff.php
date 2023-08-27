@@ -40,7 +40,7 @@ abstract class AbstractInitialValueSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array<string, string> Type indicator => suggested partial error phrase
+     * @var array<string, string> Type indicator => suggested partial error phrase.
      */
     protected $initialValueTypes = [
         'const'     => 'when defining constants using the const keyword',

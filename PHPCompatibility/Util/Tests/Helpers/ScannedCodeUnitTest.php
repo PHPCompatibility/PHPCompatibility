@@ -76,8 +76,8 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @covers \PHPCompatibility\Helpers\ScannedCode::getTestVersion
      *
-     * @param string $testVersion The testVersion as normally set via the command line or ruleset.
-     * @param string $expected    The expected testVersion array.
+     * @param string|null $testVersion The testVersion as normally set via the command line or ruleset.
+     * @param array       $expected    The expected testVersion array.
      *
      * @return void
      */
@@ -100,8 +100,8 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @covers \PHPCompatibility\Helpers\ScannedCode::getTestVersion
      *
-     * @param string $testVersion The testVersion as normally set via the command line or ruleset.
-     * @param string $expected    The expected testVersion array.
+     * @param string|null $testVersion The testVersion as normally set via the command line or ruleset.
+     * @param string      $expected    The expected testVersion array.
      *
      * @return void
      */
@@ -244,9 +244,9 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @covers \PHPCompatibility\Helpers\ScannedCode::shouldRunOnOrAbove
      *
-     * @param string $phpVersion  The PHP version we want to test.
-     * @param string $testVersion The testVersion as normally set via the command line or ruleset.
-     * @param bool   $expected    Expected result.
+     * @param string      $phpVersion  The PHP version we want to test.
+     * @param string|null $testVersion The testVersion as normally set via the command line or ruleset.
+     * @param bool        $expected    Expected result.
      *
      * @return void
      */
@@ -289,9 +289,9 @@ final class ScannedCodeUnitTest extends TestCase
      *
      * @covers \PHPCompatibility\Helpers\ScannedCode::shouldRunOnOrBelow
      *
-     * @param string $phpVersion  The PHP version we want to test.
-     * @param string $testVersion The testVersion as normally set via the command line or ruleset.
-     * @param bool   $expected    Expected result.
+     * @param string      $phpVersion  The PHP version we want to test.
+     * @param string|null $testVersion The testVersion as normally set via the command line or ruleset.
+     * @param bool        $expected    Expected result.
      *
      * @return void
      */

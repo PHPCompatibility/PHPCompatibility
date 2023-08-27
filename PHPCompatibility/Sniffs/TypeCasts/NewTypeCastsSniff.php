@@ -37,7 +37,7 @@ class NewTypeCastsSniff extends Sniff
      *
      * @since 8.0.1
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newTypeCasts = [
         'T_UNSET_CAST' => [

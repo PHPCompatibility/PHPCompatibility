@@ -39,7 +39,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'implode' => true,
@@ -51,7 +51,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     private $constantStrings = [
         'DIRECTORY_SEPARATOR' => true,
@@ -65,7 +65,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     private $arrayFunctions = [
         'compact' => true,
@@ -78,7 +78,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     private $arrayFunctionExceptions = [
         'array_key_exists'     => true,

@@ -94,7 +94,7 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataUnsupportedMethods
      *
-     * @param array  $line       The line number.
+     * @param int    $line       The line number.
      * @param string $methodName The name of the unsupported method which should be detected.
      *
      * @return void

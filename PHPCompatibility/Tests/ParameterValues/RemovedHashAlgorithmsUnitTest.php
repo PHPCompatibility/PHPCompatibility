@@ -34,7 +34,7 @@ class RemovedHashAlgorithmsUnitTest extends BaseSniffTestCase
      *
      * @param string $algorithm Name of the algorithm.
      * @param string $removedIn The PHP version in which the algorithm was removed.
-     * @param array  $line      The line number on which the error should occur.
+     * @param int    $line      The line number on which the error should occur.
      * @param string $okVersion A PHP version in which the algorithm was still valid.
      *
      * @return void

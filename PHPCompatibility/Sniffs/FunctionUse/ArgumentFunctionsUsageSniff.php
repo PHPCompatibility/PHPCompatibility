@@ -42,7 +42,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
      *
      * @since 8.2.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'func_get_args' => true,

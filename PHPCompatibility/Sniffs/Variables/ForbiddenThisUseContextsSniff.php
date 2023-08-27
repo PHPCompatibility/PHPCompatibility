@@ -60,7 +60,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<int|string, true>
      */
     private $skipOverScopes = [
         \T_FUNCTION => true,
@@ -72,7 +72,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<int|string, true>
      */
     private $validUseOutsideObject = [
         \T_ISSET => true,

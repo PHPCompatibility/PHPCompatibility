@@ -35,7 +35,7 @@ class RemovedTernaryAssociativityUnitTest extends BaseSniffTestCase
     /**
      * Lines on which to expect errors.
      *
-     * @var array
+     * @var int[]
      */
     protected static $problemLines = [
         3,

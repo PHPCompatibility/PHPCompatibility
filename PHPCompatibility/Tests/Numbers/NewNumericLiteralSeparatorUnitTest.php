@@ -31,7 +31,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewNumericLiteralSeparator
      *
-     * @param array $line The line number on which the error should occur.
+     * @param int $line The line number on which the error should occur.
      *
      * @return void
      */

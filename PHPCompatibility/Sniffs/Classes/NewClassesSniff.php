@@ -53,7 +53,7 @@ class NewClassesSniff extends Sniff
      *
      * @since 5.5
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newClasses = [
         'ArrayObject' => [
@@ -871,7 +871,7 @@ class NewClassesSniff extends Sniff
      *
      * @since 7.1.4
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newExceptions = [
         'com_exception' => [

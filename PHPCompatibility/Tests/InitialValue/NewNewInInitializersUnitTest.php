@@ -30,7 +30,7 @@ final class NewNewInInitializersUnitTest extends BaseSniffTestCase
      *
      * @since 10.0.0.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $initialValueTypes = [
         'const'     => 'global/namespaced constants declared using the const keyword',

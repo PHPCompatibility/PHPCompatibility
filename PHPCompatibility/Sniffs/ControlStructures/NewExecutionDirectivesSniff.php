@@ -52,7 +52,7 @@ class NewExecutionDirectivesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array(string => array(string => bool|string|array))
+     * @var array<string, array<string, bool|string|array>>
      */
     protected $newDirectives = [
         'ticks' => [

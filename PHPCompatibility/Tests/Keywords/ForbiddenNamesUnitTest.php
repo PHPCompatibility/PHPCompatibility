@@ -48,7 +48,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
      *
      * This array should be kept in sync with the same in the "generate-forbidden-names-test-files" script.
      *
-     * @var array
+     * @var array<string, true>
      */
     private $testsForOtherInvalidNames = [
         // Declarations.
@@ -116,7 +116,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Provides use cases to test with each keyword.
      *
-     * @return array
+     * @return array<string, string[]>
      */
     public static function usecaseProvider()
     {
@@ -201,7 +201,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Provides use cases to test with each keyword.
      *
-     * @return array
+     * @return array<string, string[]>
      */
     public static function usecaseProviderPHP5vs7()
     {
@@ -270,7 +270,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Provides use cases to test with each keyword.
      *
-     * @return array
+     * @return array<string, string[]>
      */
     public static function usecaseProviderNamespaceNamePHP57vs8()
     {

@@ -30,7 +30,7 @@ class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataChangedConcatOperatorPrecedence
      *
-     * @param array $line The line number on which the warning/error should occur.
+     * @param int $line The line number on which the warning/error should occur.
      *
      * @return void
      */

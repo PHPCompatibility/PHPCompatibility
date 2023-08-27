@@ -37,7 +37,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'session_module_name' => true,
@@ -50,7 +50,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $targetTokens = [];
 
