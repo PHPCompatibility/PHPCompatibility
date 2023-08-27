@@ -127,7 +127,7 @@ abstract class BaseSniffTestCase extends TestCase
      *                                 to have the same name, but with an `inc` extension.
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
      *
-     * @return \PHP_CodeSniffer\Files\File|false File object.
+     * @return \PHP_CodeSniffer\Files\File File object.
      */
     public function sniffFile($pathToFile, $targetPhpVersion = 'none')
     {
@@ -159,7 +159,6 @@ abstract class BaseSniffTestCase extends TestCase
                 self::$sniffFiles[$pathToFile]['only_parsed']->parse();
             } catch (\Exception $e) {
                 $this->fail('An unexpected exception has been caught when parsing file "' . $pathToFile . '" : ' . $e->getMessage());
-                return false;
             }
         }
 
@@ -174,7 +173,6 @@ abstract class BaseSniffTestCase extends TestCase
             self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
         } catch (\Exception $e) {
             $this->fail('An unexpected exception has been caught when processing file "' . $pathToFile . '" : ' . $e->getMessage());
-            return false;
         }
 
         return self::$sniffFiles[$pathToFile][$targetPhpVersion];
