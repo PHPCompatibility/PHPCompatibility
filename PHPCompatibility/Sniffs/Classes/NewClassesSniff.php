@@ -1111,7 +1111,7 @@ class NewClassesSniff extends Sniff
      *               as return type declarations.
      * @since 10.0.0 `T_RETURN_TYPE` token removed after PHPCS < 3.7.1 version drop.
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

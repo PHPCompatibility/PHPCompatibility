@@ -81,7 +81,7 @@ class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      *
      * @since 8.2.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

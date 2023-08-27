@@ -84,7 +84,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

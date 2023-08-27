@@ -59,7 +59,7 @@ class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallParameterS
      *
      * @since 10.0.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

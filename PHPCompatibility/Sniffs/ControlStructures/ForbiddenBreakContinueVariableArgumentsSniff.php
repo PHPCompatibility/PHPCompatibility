@@ -68,7 +68,7 @@ class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
      *
      * @since 5.5
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

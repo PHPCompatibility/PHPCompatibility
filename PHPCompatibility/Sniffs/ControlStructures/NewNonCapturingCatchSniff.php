@@ -33,7 +33,7 @@ class NewNonCapturingCatchSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

@@ -64,7 +64,7 @@ class RemovedTypeCastsSniff extends Sniff
      *
      * @since 8.0.1
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

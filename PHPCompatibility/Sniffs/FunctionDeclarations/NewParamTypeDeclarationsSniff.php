@@ -172,7 +172,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
      * @since 7.1.3  Now also checks closures.
      * @since 10.0.0 Now also checks PHP 7.4+ arrow functions.
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

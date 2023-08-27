@@ -110,7 +110,7 @@ class RemovedPredefinedGlobalVariablesSniff extends Sniff
      * @since 5.5
      * @since 7.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

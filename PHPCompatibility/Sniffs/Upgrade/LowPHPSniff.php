@@ -74,7 +74,7 @@ class LowPHPSniff extends Sniff
      *
      * @since 9.3.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

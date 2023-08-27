@@ -55,7 +55,7 @@ class RemovedMagicAutoloadSniff extends Sniff
      *
      * @since 8.1.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

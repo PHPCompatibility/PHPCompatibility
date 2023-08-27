@@ -55,7 +55,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
      *
      * @since 9.2.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

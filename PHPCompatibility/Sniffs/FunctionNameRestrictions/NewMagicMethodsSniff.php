@@ -114,7 +114,7 @@ class NewMagicMethodsSniff extends Sniff
      *
      * @since 7.0.4
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

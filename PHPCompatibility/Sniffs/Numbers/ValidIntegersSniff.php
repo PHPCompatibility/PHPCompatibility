@@ -43,7 +43,7 @@ class ValidIntegersSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

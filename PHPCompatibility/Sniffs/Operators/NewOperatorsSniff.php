@@ -82,7 +82,7 @@ class NewOperatorsSniff extends Sniff
      *
      * @since 5.6
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

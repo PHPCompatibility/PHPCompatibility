@@ -35,7 +35,7 @@ class NewUniformVariableSyntaxSniff extends Sniff
      *
      * @since 7.1.2
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

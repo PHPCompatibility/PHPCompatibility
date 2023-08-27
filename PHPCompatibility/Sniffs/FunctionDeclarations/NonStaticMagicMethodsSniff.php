@@ -119,7 +119,7 @@ class NonStaticMagicMethodsSniff extends Sniff
      * @since 7.1.4  Now also checks anonymous classes.
      * @since 10.0.0 Switch to check based on T_FUNCTION token instead of OO construct token.
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

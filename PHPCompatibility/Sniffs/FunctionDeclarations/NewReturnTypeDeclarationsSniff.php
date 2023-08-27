@@ -180,7 +180,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
      * @since 7.1.2  Now also checks based on the function and closure keywords.
      * @since 10.0.0 Now also checks PHP 7.4+ arrow functions.
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

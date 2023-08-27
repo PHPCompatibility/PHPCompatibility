@@ -55,7 +55,7 @@ class ForbiddenNegativeBitshiftSniff extends Sniff
      * @since 7.0.0
      * @since 8.2.0 Now registers all bitshift tokens, not just bitshift right (`T_SR`).
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {
