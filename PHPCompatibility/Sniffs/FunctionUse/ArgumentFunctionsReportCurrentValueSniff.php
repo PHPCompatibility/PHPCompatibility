@@ -311,7 +311,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Ok, so we've found one of the target functions in the right scope.
              * Now, let's check if any of the passed parameters were touched.
              */
-            $scanResult = 'clean';
+            $scanResult    = 'clean';
+            $variableToken = null;
             for ($j = ($scopeOpener + 1); $j < $startOfStatement; $j++) {
                 if (isset(Collections::closedScopes()[$tokens[$j]['code']])
                     && isset($tokens[$j]['scope_closer'])
