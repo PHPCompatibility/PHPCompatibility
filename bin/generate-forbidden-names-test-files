@@ -140,17 +140,41 @@ $tests = [
      * Reserved names being used in a declaration.
      */
     // Only pre-PHP 8!
-    'namespace'                              => function ($name) {
+    'namespace'                              => function ($name) use ($invalidNames, $otherInvalidNames) {
         if ($name === 'namespace') {
             return '';
-        } else {
+        }
+
+        if ($name === 'Baz'
+            || (isset($invalidNames[$name])
+                && ($invalidNames[$name] === 'all'
+                    || $invalidNames[$name][0] === '4'
+                    || $invalidNames[$name][0] === '5'
+                    || $invalidNames[$name][0] === '7'))
+            || (isset($otherInvalidNames[$name])
+                && $otherInvalidNames[$name][0] === '7')
+        ) {
             return "namespace $name;\n";
         }
+
+        return '';
     },
     // Only pre-PHP 8!
-    'nested-namespace'                       => function ($name) {
-        $name = ucfirst($name);
-        return "namespace Foo\\{$name}\\Bar;\n";
+    'nested-namespace'                       => function ($name) use ($invalidNames, $otherInvalidNames) {
+        if ($name === 'Baz'
+            || (isset($invalidNames[$name])
+                && ($invalidNames[$name] === 'all'
+                    || $invalidNames[$name][0] === '4'
+                    || $invalidNames[$name][0] === '5'
+                    || $invalidNames[$name][0] === '7'))
+            || (isset($otherInvalidNames[$name])
+                && $otherInvalidNames[$name][0] === '7')
+        ) {
+            $name = ucfirst($name);
+            return "namespace Foo\\{$name}\\Bar;\n";
+        }
+
+        return '';
     },
     'class'                                  => function ($name) {
         return "class $name {}\n";

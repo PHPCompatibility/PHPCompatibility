@@ -234,6 +234,10 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
         $fullReservedLineEnd  = ($lineCount - self::OTHER_KEYWORD_COUNT);
         $otherReservedLineEnd = ($lineCount - self::SOFT_KEYWORD_COUNT);
 
+        // Correct for reserved keywords which didn't become reserved until PHP 8.0 or later.
+        $fullReservedLineEnd  += 3; // Mixed, never, enum.
+        $otherReservedLineEnd += 1; // Enum.
+
         // Each line of the use case files (starting at line 3) exhibits an error.
         for ($i = 3; $i <= $fullReservedLineEnd; $i++) {
             $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
@@ -332,6 +336,36 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
             [79, 'namespace'],
             [81, 'namespace'],
             [84, 'class'],
+        ];
+    }
+
+
+    /**
+     * Test some specific code samples trigger the correct errors on the correct lines for "other/soft" reserved keywords.
+     *
+     * @dataProvider dataSpecificCodeSamplesOtherKeywords
+     *
+     * @param int    $line    Line number of which to expect an error.
+     * @param string $keyword Keyword which triggered the error.
+     *
+     * @return void
+     */
+    public function testSpecificCodeSamplesOtherKeywords($line, $keyword)
+    {
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '0.0-');
+        $this->assertError($file, $line, 'and should not be used to name a class, interface or trait or as part of a namespace');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public static function dataSpecificCodeSamplesOtherKeywords()
+    {
+        return [
+            [87, 'mixed'],
+            [88, 'mixed'],
         ];
     }
 

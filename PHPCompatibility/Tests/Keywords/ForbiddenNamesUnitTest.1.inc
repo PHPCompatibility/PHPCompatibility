@@ -393,3 +393,13 @@ class ReservedKeywordsAsMethodNames {
     private const MATCH = 'something';
     public const READONLY = 'something';
 }
+
+// Ensure there are no false positives when a keyword which became reserved in PHP >= 8.0 is used as (part of) a namespace name.
+namespace match;
+namespace readonly;
+namespace never;
+namespace enum;
+namespace Foo\Match\Bar;
+namespace Foo\Readonly\Bar;
+namespace Foo\Never\Bar;
+namespace Foo\Enum\Bar;
