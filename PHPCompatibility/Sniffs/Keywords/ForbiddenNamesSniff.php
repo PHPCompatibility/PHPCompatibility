@@ -432,6 +432,9 @@ class ForbiddenNamesSniff extends Sniff
          * Deal with PHP 8 relaxing the rules.
          * "The namespace declaration will accept any name, including isolated reserved keywords.
          *  The only restriction is that the namespace name cannot start with a `namespace` segment"
+         *
+         * Note: keywords which didn't become reserved prior to PHP 8.0 should never be flagged
+         * when used in namespace names, as they are not problematic in PHP < 8.0.
          */
         $nextContentLC = \strtolower($tokens[$next]['content']);
         if (ScannedCode::shouldRunOnOrBelow('7.4') === false
@@ -464,14 +467,57 @@ class ForbiddenNamesSniff extends Sniff
                 }
 
                 foreach ($parts as $part) {
-                    $this->checkName($phpcsFile, $i, $part);
-                    $this->checkOtherName($phpcsFile, $i, $part, 'namespace declaration');
+                    if ($this->isKeywordReservedPriorToPHP8($part) === true) {
+                        $this->checkName($phpcsFile, $i, $part);
+                        $this->checkOtherName($phpcsFile, $i, $part, 'namespace declaration');
+                    }
                 }
             } else {
-                $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
-                $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
+                if ($this->isKeywordReservedPriorToPHP8($tokens[$i]['content']) === true) {
+                    $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
+                    $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
+                }
             }
         }
+    }
+
+    /**
+     * Check if a keyword was marked as reserved prior to PHP 8.0.
+     *
+     * Helper method for the `processNamespaceDeclaration()` method.
+     *
+     * Keywords which didn't become reserved prior to PHP 8.0 should never be flagged
+     * when used in namespace names, as they are not problematic in PHP < 8.0.
+     *
+     * @param string $name The name to check.
+     *
+     * @return bool
+     */
+    private function isKeywordReservedPriorToPHP8($name)
+    {
+        $nameLC = \strtolower($name);
+
+        if (isset($this->invalidNames[$nameLC]) === true
+            && $this->invalidNames[$nameLC] !== 'all'
+            && \version_compare($this->invalidNames[$nameLC], '8.0', '>=')
+        ) {
+            return false;
+        }
+
+        if (isset($this->softReservedNames[$nameLC]) === true
+            && \version_compare($this->softReservedNames[$nameLC], '8.0', '>=')
+        ) {
+            return false;
+        }
+
+        if (isset($this->otherForbiddenNames[$nameLC]) === true
+            && isset($this->softReservedNames[$nameLC]) === false
+            && \version_compare($this->otherForbiddenNames[$nameLC], '8.0', '>=')
+        ) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -546,7 +592,7 @@ class ForbiddenNamesSniff extends Sniff
          * of classes, interfaces and traits."
          *
          * Note: keywords which didn't become reserved prior to PHP 7.0 should never be flagged
-         * when used as method names for this reason as they are not problematic in PHP < 7.0.
+         * when used as method names, as they are not problematic in PHP < 7.0.
          */
         if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
             && (ScannedCode::shouldRunOnOrBelow('5.6') === false
@@ -589,10 +635,15 @@ class ForbiddenNamesSniff extends Sniff
          * Deal with PHP 7 relaxing the rules.
          * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
          * of classes, interfaces and traits, except that class may not be used as constant name."
+         *
+         * Note: keywords which didn't become reserved prior to PHP 7.0 should never be flagged
+         * when used as OO constant names, as they are not problematic in PHP < 7.0.
          */
         if ($nameLc !== 'class'
             && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
-            && ScannedCode::shouldRunOnOrBelow('5.6') === false
+            && (ScannedCode::shouldRunOnOrBelow('5.6') === false
+                || ($this->invalidNames[$nameLc] !== 'all'
+                && \version_compare($this->invalidNames[$nameLc], '7.0', '>=')))
         ) {
             return;
         }

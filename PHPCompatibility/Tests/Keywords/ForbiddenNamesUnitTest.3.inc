@@ -82,3 +82,7 @@ namespace NameSpace\Foo; // Error.
 
 // Test call to define() using named parameters.
 define(value: 'class', constant_name: 'class'); // Error.
+
+// Ensure that "mixed" when used in a namespace name gets flagged when PHP 7 needs to be supported, as it was already soft reserved.
+namespace mixed;
+namespace Foo\Mixed\Baz;
