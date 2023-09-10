@@ -7806,6 +7806,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'pcntl',
         ],
+        'PDO_ODBC_TYPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pdo_odbc',
+        ],
         'PGSQL_TRACE_SUPPRESS_TIMESTAMPS' => [
             '8.2'       => false,
             '8.3'       => true,
