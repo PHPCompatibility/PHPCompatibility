@@ -546,7 +546,7 @@ class ForbiddenNamesSniff extends Sniff
          * of classes, interfaces and traits."
          *
          * Note: keywords which didn't become reserved prior to PHP 7.0 should never be flagged
-         * when used as method names for this reason as they are not problematic in PHP < 7.0.
+         * when used as method names, as they are not problematic in PHP < 7.0.
          */
         if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
             && (ScannedCode::shouldRunOnOrBelow('5.6') === false
@@ -589,10 +589,15 @@ class ForbiddenNamesSniff extends Sniff
          * Deal with PHP 7 relaxing the rules.
          * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
          * of classes, interfaces and traits, except that class may not be used as constant name."
+         *
+         * Note: keywords which didn't become reserved prior to PHP 7.0 should never be flagged
+         * when used as OO constant names, as they are not problematic in PHP < 7.0.
          */
         if ($nameLc !== 'class'
             && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
-            && ScannedCode::shouldRunOnOrBelow('5.6') === false
+            && (ScannedCode::shouldRunOnOrBelow('5.6') === false
+                || ($this->invalidNames[$nameLc] !== 'all'
+                && \version_compare($this->invalidNames[$nameLc], '7.0', '>=')))
         ) {
             return;
         }

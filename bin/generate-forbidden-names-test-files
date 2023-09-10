@@ -190,18 +190,29 @@ $tests = [
             $name = strtolower($name);
             return "class Foobar { function $name() { } }\n";
         }
+
+        return '';
     },
     'const'                                  => function ($name) {
         return "const $name = 1;\n";
     },
     // Only pre-PHP 7!
-    'class-const'                            => function ($name) {
+    'class-const'                            => function ($name) use ($invalidNames) {
         if ($name === 'class') {
             return '';
-        } else {
+        }
+
+        if ($name === 'Baz'
+            || isset($invalidNames[$name]) === false
+            || $invalidNames[$name] === 'all'
+            || $invalidNames[$name][0] === '4'
+            || $invalidNames[$name][0] === '5'
+        ) {
             $name = strtoupper($name);
             return "class Foobar { const $name = 1; }\n";
         }
+
+        return '';
     },
     'define'                                 => function ($name) {
         $name = strtoupper($name);
