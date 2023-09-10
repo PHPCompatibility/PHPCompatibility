@@ -4938,6 +4938,26 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'mbstring',
         ],
+        'posix_sysconf' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'posix_pathconf' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'posix_fpathconf' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
+        'posix_eaccess' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 

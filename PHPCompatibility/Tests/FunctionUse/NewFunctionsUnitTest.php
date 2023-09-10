@@ -1105,6 +1105,10 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['ldap_connect_wallet', '8.2', 1044, '8.3'],
             ['ldap_exop_sync', '8.2', 1045, '8.3'],
             ['stream_context_set_options', '8.2', 1046, '8.3'],
+            ['posix_sysconf', '8.2', 1047, '8.3'],
+            ['posix_pathconf', '8.2', 1048, '8.3'],
+            ['posix_fpathconf', '8.2', 1049, '8.3'],
+            ['posix_eaccess', '8.2', 1050, '8.3'],
         ];
     }
 
