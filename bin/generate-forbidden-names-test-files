@@ -180,11 +180,13 @@ $tests = [
         }
     },
     // Only pre-PHP 7!
-    'method-declare'                         => function ($name) {
-        if ($name === 'readonly') {
-            // Tested separately as there is an exception in place.
-            return '';
-        } else {
+    'method-declare'                         => function ($name) use ($invalidNames) {
+        if ($name === 'Baz'
+            || isset($invalidNames[$name]) === false
+            || $invalidNames[$name] === 'all'
+            || $invalidNames[$name][0] === '4'
+            || $invalidNames[$name][0] === '5'
+        ) {
             $name = strtolower($name);
             return "class Foobar { function $name() { } }\n";
         }

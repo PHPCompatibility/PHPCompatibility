@@ -380,3 +380,9 @@ class EnumSpecialCasingTest
 
 // Issue #1474: more protection against `enum` false positives.
 use Elao\Enum\Bridge\Symfony\Validator\Constraint\Enum as AssertEnum;
+
+// Ensure there are no false positives when a keyword which became reserved in PHP >= 7.0 is used as a method name.
+class ReservedKeywordsAsMethodNames {
+    public function fn() {}
+    public function match() {}
+}
