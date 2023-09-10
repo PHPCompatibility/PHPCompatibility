@@ -148,3 +148,4 @@ parse_url(
 );
 
 posix_getrlimit($res);
+strrchr($haystack, $needle, $before_needle);
