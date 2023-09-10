@@ -49,7 +49,7 @@ class RemovedFunctionsSniff extends Sniff
      *              but that sniff is no longer being extended.
      * @since 7.0.8 Property renamed from `$forbiddenFunctions` to `$removedFunctions`.
      *
-     * @var array(string => array(string => bool|string|null))
+     * @var array<string, array<string, bool|string|null>>
      */
     protected $removedFunctions = [
         'crack_check' => [
@@ -5082,7 +5082,7 @@ class RemovedFunctionsSniff extends Sniff
      *
      * @since 5.6
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

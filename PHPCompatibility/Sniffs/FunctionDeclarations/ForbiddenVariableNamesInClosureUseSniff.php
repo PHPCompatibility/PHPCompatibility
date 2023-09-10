@@ -39,7 +39,7 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
      *
      * @since 7.1.4
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

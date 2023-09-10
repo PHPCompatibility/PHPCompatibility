@@ -32,7 +32,7 @@ class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTestCase
      *
      * @param string $className Class name.
      * @param string $finalIn   The PHP version in which the class was made final.
-     * @param array  $line      The line number in the test file which apply to this class.
+     * @param int    $line      The line number in the test file which apply to this class.
      * @param string $okVersion A PHP version in which the class was ok to be extended.
      *
      * @return void

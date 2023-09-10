@@ -41,7 +41,7 @@ class RemovedTypeCastsSniff extends Sniff
      *
      * @since 8.0.1
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string>>
      */
     protected $deprecatedTypeCasts = [
         'T_UNSET_CAST' => [
@@ -64,7 +64,7 @@ class RemovedTypeCastsSniff extends Sniff
      *
      * @since 8.0.1
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

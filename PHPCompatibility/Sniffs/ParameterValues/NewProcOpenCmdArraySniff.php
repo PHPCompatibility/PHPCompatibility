@@ -37,7 +37,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'proc_open' => true,

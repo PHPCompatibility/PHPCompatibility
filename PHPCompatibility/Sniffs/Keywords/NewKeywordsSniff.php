@@ -58,7 +58,7 @@ class NewKeywordsSniff extends Sniff
      *               parent class. This index has been renamed to `callback` and now expect
      *               one of the PHP accepted callback formats.
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string|callable>>
      */
     protected $newKeywords = [
         'T_HALT_COMPILER' => [
@@ -172,7 +172,7 @@ class NewKeywordsSniff extends Sniff
      *
      * @since 7.0.5
      *
-     * @var array(string => string)
+     * @var array<string, string>
      */
     protected $translateContentToToken = [];
 
@@ -182,7 +182,7 @@ class NewKeywordsSniff extends Sniff
      *
      * @since 5.5
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

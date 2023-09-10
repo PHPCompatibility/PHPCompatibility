@@ -41,7 +41,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, array<string, int|string>>
      */
     protected $targetFunctions = [
         'password_hash' => [
@@ -59,7 +59,7 @@ class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSn
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<int|string, true>
      */
     private $invalidTokenTypes = [
         \T_NULL                     => true,

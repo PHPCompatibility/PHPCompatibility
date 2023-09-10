@@ -46,7 +46,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newInterfaces = [
         'Traversable' => [
@@ -164,7 +164,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array(string => array(string => string))
+     * @var array<string, array<string, string>>
      */
     protected $unsupportedMethods = [
         'Serializable' => [
@@ -178,7 +178,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

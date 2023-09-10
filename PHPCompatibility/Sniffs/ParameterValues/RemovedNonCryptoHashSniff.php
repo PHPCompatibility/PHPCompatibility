@@ -37,7 +37,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'hash_hmac'      => true,
@@ -51,7 +51,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $disabledCryptos = [
         'adler32' => true,

@@ -37,7 +37,7 @@ class InternalInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array(string => string)
+     * @var array<string, string>
      */
     protected $internalInterfaces = [
         'Traversable'       => 'shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
@@ -52,7 +52,7 @@ class InternalInterfacesSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array(string => bool)
+     * @var array<string, true>
      */
     private $cannotBeExtended = [
         'DateTimeInterface' => true,
@@ -66,7 +66,7 @@ class InternalInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

@@ -37,7 +37,7 @@ class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallParameterS
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'version_compare' => true,
@@ -50,7 +50,7 @@ class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallParameterS
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     private $unsupportedOperators = [
         ''  => true,

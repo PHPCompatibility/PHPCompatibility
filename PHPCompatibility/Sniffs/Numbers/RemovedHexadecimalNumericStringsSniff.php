@@ -46,10 +46,10 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array<string, array|true> True if all arguments in the function call accept hex numeric
-     *                                strings. An array with 1-based parameter position (key) and
-     *                                names (value) for those functions which only accept
-     *                                hex numeric strings for select parameters.
+     * @var array<string, array<int, string>|true> True if all arguments in the function call accept hex numeric
+     *                                             strings. An array with 1-based parameter position (key) and
+     *                                             names (value) for those functions which only accept
+     *                                             hex numeric strings for select parameters.
      */
     private $excludedFunctions = [
         'gmp_abs'            => true,
@@ -107,7 +107,7 @@ class RemovedHexadecimalNumericStringsSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

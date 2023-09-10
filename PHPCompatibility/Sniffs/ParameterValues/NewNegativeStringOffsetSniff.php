@@ -34,7 +34,7 @@ class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.0.0
      *
-     * @var array Function name => 1-based parameter offset of the affected parameters => parameter name.
+     * @var array<string, array<int, string>> Function name => 1-based parameter offset of the affected parameters => parameter name.
      */
     protected $targetFunctions = [
         'file_get_contents'     => [

@@ -52,8 +52,8 @@ class RemovedPCREModifiersSniff extends AbstractFunctionCallParameterSniff
      * @since 8.2.0  Renamed from `$functions` to `$targetFunctions`.
      * @since 10.0.0 Value changed from an irrelevant value to an array.
      *
-     * @var array Key is the function name, value an array containing the 1-based parameter position
-     *            and the official name of the parameter.
+     * @var array<string, array<string, int|string>> Key is the function name, value an array containing
+     *                                               the 1-based parameter position and the official name of the parameter.
      */
     protected $targetFunctions = [
         'preg_replace' => [

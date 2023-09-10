@@ -89,7 +89,7 @@ class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataDeprecatedRemovedPHPErrorMsg
      *
-     * @param array $line The line number in the test file where a warning is expected.
+     * @param int $line The line number in the test file where a warning is expected.
      *
      * @return void
      */

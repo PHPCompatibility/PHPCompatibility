@@ -41,7 +41,7 @@ class NewLanguageConstructsSniff extends Sniff
      *
      * @since 5.6
      *
-     * @var array(string => array(string => bool|string))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newConstructs = [
         'T_NS_SEPARATOR' => [
@@ -62,7 +62,7 @@ class NewLanguageConstructsSniff extends Sniff
      *
      * @since 5.6
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

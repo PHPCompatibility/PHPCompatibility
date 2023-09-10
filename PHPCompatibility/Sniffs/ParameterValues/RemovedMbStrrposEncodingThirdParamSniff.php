@@ -49,7 +49,7 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'mb_strrpos' => true,
@@ -60,7 +60,7 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
      *
      * @since 9.3.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $numberTokens = [
         \T_LNUMBER => \T_LNUMBER,

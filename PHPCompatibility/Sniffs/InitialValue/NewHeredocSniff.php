@@ -56,7 +56,7 @@ class NewHeredocSniff extends AbstractInitialValueSniff
      * @since 8.2.0
      * @since 10.0.0 Renamed from `$errorPhrases` to `$initialValueTypes`.
      *
-     * @var array
+     * @var array<string, string> Type indicator => suggested partial error phrase.
      */
     protected $initialValueTypes = [
         'const'     => 'constants',

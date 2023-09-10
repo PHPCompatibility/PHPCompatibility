@@ -62,7 +62,7 @@ class NewTypedPropertiesSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool>>
      */
     protected $newTypes = [
         'mixed' => [
@@ -93,7 +93,7 @@ class NewTypedPropertiesSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array(string => string|false)
+     * @var array<string, string|false>
      */
     protected $invalidTypes = [
         'boolean'  => 'bool',
@@ -108,7 +108,7 @@ class NewTypedPropertiesSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $unionOnlyTypes = [
         'false' => true,
@@ -121,7 +121,7 @@ class NewTypedPropertiesSniff extends Sniff
      *
      * @since 9.2.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

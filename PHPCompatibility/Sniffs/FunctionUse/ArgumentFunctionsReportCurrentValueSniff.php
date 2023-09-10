@@ -44,7 +44,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $changedFunctions = [
         'func_get_arg'          => true,
@@ -58,7 +58,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<string, true>
      */
     private $skipPastNested = [
         'T_CLASS'      => true,
@@ -74,7 +74,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<int|string, true>
      */
     private $plusPlusMinusMinus = [
         \T_DEC => true,
@@ -86,7 +86,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array
+     * @var array<int|string>
      */
     private $ignoreForStartOfStatement = [
         \T_COMMA,
@@ -100,7 +100,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<int|string>
      */
     private $ignoreForStartOfStatementVarUse = [
         \T_COMMA,
@@ -115,7 +115,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

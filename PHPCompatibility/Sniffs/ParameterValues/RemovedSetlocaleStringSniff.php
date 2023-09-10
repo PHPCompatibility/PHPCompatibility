@@ -39,7 +39,7 @@ class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSniff
      *
      * @since 9.0.0
      *
-     * @var array
+     * @var array<string, true>
      */
     protected $targetFunctions = [
         'setlocale' => true,

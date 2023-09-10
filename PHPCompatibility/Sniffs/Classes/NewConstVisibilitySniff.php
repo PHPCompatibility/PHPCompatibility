@@ -34,7 +34,7 @@ class NewConstVisibilitySniff extends Sniff
      *
      * @since 7.0.7
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

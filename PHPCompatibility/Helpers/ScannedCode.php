@@ -38,16 +38,16 @@ final class ScannedCode
      * Default testVersion if no valid testVersion was provided or
      * could be determined based on the provided information.
      *
-     * @var array
+     * @var array<string|null>
      */
     private static $testVersionsDefault = [null, null];
 
     /**
      * Test versions applicable for the current PHPCS run.
      *
-     * @var array Array with two values.
-     *            Index 0 contains the low end supported PHP version.
-     *            Index 1 contains the high end supported PHP version.
+     * @var array<string|null> Array with two values.
+     *                         Index 0 contains the low end supported PHP version.
+     *                         Index 1 contains the high end supported PHP version.
      */
     private static $testVersions;
 
@@ -82,9 +82,9 @@ final class ScannedCode
      *               - Will throw a PHP Exception instead of a warning for an invalid testVersion.
      *               - The method is now static.
      *
-     * @return array An array containing min/max version of PHP that we are checking
-     *               against (see above). If only a single version number is specified,
-     *               then this is used as both the min and max.
+     * @return array<string> An array containing min/max version of PHP that we are checking
+     *                       against (see above). If only a single version number is specified,
+     *                       then this is used as both the min and max.
      *
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersionRange When the range in the testVersion is invalid.
      * @throws \PHPCompatibility\Exceptions\InvalidTestVersion      When the testVersion itself is invalid.

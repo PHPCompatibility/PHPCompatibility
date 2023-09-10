@@ -38,7 +38,7 @@ class NewConstantsSniff extends Sniff
      *
      * @since 8.1.0
      *
-     * @var array(string => array(string => bool))
+     * @var array<string, array<string, bool|string>>
      */
     protected $newConstants = [
         'E_STRICT' => [
@@ -7784,7 +7784,7 @@ class NewConstantsSniff extends Sniff
      *
      * @since 8.1.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

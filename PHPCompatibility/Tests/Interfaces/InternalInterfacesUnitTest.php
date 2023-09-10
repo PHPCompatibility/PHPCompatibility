@@ -35,7 +35,7 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
     /**
      * Interface error messages.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $messages = [
         'Traversable'       => 'The interface Traversable shouldn\'t be implemented directly, implement the Iterator or IteratorAggregate interface instead.',
@@ -64,7 +64,7 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
      * @dataProvider dataInternalInterfaces
      *
      * @param string $type Interface name.
-     * @param array  $line The line number in the test file.
+     * @param int    $line The line number in the test file.
      *
      * @return void
      */

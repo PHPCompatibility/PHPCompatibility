@@ -51,7 +51,7 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
      * @since 10.0.0 - The parameter offsets were changed from 0-based to 1-based.
      *               - The property was renamed from `$removedFunctionParameters` to `$targetFunctions`.
      *
-     * @var array
+     * @var array<string, array<int, array<string, bool|string>>>
      */
     protected $targetFunctions = [
         'curl_version' => [

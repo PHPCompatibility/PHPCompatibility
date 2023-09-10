@@ -30,8 +30,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewTypedProperties
      *
-     * @param array $line            The line number on which the error should occur.
-     * @param bool  $testNoViolation Whether or not to test noViolation for PHP 7.4.
+     * @param int  $line            The line number on which the error should occur.
+     * @param bool $testNoViolation Whether or not to test noViolation for PHP 7.4.
      *
      * @return void
      */
@@ -152,7 +152,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataInvalidPropertyType
      *
-     * @param array  $line The line number on which the error should occur.
+     * @param int    $line The line number on which the error should occur.
      * @param string $type The invalid type which should be detected.
      *
      * @return void
@@ -192,7 +192,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @param string $type              The declared type.
      * @param string $lastVersionBefore The PHP version just *before* the type hint was introduced.
-     * @param array  $line              The line number where the error is expected.
+     * @param int    $line              The line number where the error is expected.
      * @param string $okVersion         A PHP version in which the type hint was ok to be used.
      * @param bool   $testNoViolation   Whether or not to test noViolation.
      *                                  Defaults to true.
@@ -264,7 +264,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      * @dataProvider dataNewUnionTypes
      *
      * @param string $type            The declared type.
-     * @param array  $line            The line number where the error is expected.
+     * @param int    $line            The line number where the error is expected.
      * @param bool   $testNoViolation Whether or not to test noViolation.
      *                                Defaults to true.
      *
@@ -379,7 +379,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      * @dataProvider dataNewIntersectionTypes
      *
      * @param string $type            The declared type.
-     * @param array  $line            The line number where the error is expected.
+     * @param int    $line            The line number where the error is expected.
      * @param bool   $testNoViolation Whether or not to test noViolation.
      *                                Defaults to true.
      *

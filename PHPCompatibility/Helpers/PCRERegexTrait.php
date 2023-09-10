@@ -40,7 +40,7 @@ trait PCRERegexTrait
      * @since 7.0.5  This array was originally contained within the `process()` method.
      * @since 10.0.0 Moved from the `RemovedPCREModifiersSniff` to this trait.
      *
-     * @var array
+     * @var array<string, string>
      */
     private $doublesSeparators = [
         '{' => '}',

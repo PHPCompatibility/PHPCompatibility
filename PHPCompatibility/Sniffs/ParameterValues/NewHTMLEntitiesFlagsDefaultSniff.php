@@ -39,7 +39,7 @@ class NewHTMLEntitiesFlagsDefaultSniff extends AbstractFunctionCallParameterSnif
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, array<string, int|string>>
      */
     protected $targetFunctions = [
         'get_html_translation_table' => [

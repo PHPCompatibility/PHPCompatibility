@@ -98,7 +98,7 @@ trait ComplexVersionDeprecatedRemovedFeatureTrait
      * @param string   $itemBaseCode The basis for the error code.
      * @param string[] $versionInfo  Array of version info as received from the getVersionInfo() method.
      *
-     * @return array
+     * @return array<string, string|array>
      */
     protected function getMessageInfo($itemName, $itemBaseCode, array $versionInfo)
     {

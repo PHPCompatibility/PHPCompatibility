@@ -41,7 +41,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $allowedInDefault = [
         \T_NULL => \T_NULL,
@@ -52,7 +52,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {
