@@ -198,6 +198,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['stream_get_contents', 'offset', '5.0', [83], '5.1'],
             ['stream_wrapper_register', 'flags', '5.2.3', [84], '5.3', '5.2'],
             ['stristr', 'before_needle', '5.2', [85], '5.3'],
+            ['strrchr', 'before_needle', '8.2', [151], '8.3'],
             ['strstr', 'before_needle', '5.2', [86], '5.3'],
             ['str_word_count', 'characters', '5.0', [87], '5.1'],
             ['substr_count', 'offset', '5.0', [88], '5.1'],

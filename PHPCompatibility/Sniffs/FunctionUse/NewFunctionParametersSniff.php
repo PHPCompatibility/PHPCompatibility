@@ -950,6 +950,13 @@ class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '5.3'  => true,
             ],
         ],
+        'strrchr' => [
+            3 => [
+                'name' => 'before_needle',
+                '8.2'  => false,
+                '8.3'  => true,
+            ],
+        ],
         'strstr' => [
             3 => [
                 'name' => 'before_needle',
