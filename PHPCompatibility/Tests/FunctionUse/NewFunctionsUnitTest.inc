@@ -1053,3 +1053,4 @@ pg_enter_pipeline_mode();
 pg_exit_pipeline_mode();
 pg_pipeline_sync();
 pg_pipeline_status();
+socket_atmark();
