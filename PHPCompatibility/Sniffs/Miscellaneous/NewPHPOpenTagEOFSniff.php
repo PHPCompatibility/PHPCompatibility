@@ -62,7 +62,7 @@ class NewPHPOpenTagEOFSniff extends Sniff
             $targets[] = \T_STRING;
         }
 
-        if (\version_compare(\PHP_VERSION_ID, '70399', '>')) {
+        if (\PHP_VERSION_ID >= 70400) {
             $targets[] = \T_OPEN_TAG;
         }
 

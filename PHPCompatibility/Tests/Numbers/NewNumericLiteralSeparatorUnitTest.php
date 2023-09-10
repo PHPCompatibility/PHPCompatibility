@@ -70,7 +70,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
-        if (\version_compare(\PHP_VERSION_ID, '70399', '>')) {
+        if (\PHP_VERSION_ID >= 70400) {
             $data[] = [41];
         }
 
@@ -121,7 +121,7 @@ class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
-        if (\version_compare(\PHP_VERSION_ID, '70399', '<=')) {
+        if (\PHP_VERSION_ID < 70400) {
             $data[] = [41];
         }
 
