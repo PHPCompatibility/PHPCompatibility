@@ -127,7 +127,7 @@ abstract class BaseSniffTestCase extends TestCase
      *                                 to have the same name, but with an `inc` extension.
      * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
      *
-     * @return \PHP_CodeSniffer\Files\File|false File object.
+     * @return \PHP_CodeSniffer\Files\File File object.
      */
     public function sniffFile($pathToFile, $targetPhpVersion = 'none')
     {
@@ -159,7 +159,6 @@ abstract class BaseSniffTestCase extends TestCase
                 self::$sniffFiles[$pathToFile]['only_parsed']->parse();
             } catch (\Exception $e) {
                 $this->fail('An unexpected exception has been caught when parsing file "' . $pathToFile . '" : ' . $e->getMessage());
-                return false;
             }
         }
 
@@ -174,7 +173,6 @@ abstract class BaseSniffTestCase extends TestCase
             self::$sniffFiles[$pathToFile][$targetPhpVersion]->process();
         } catch (\Exception $e) {
             $this->fail('An unexpected exception has been caught when processing file "' . $pathToFile . '" : ' . $e->getMessage());
-            return false;
         }
 
         return self::$sniffFiles[$pathToFile][$targetPhpVersion];
@@ -189,13 +187,13 @@ abstract class BaseSniffTestCase extends TestCase
      * @param int                         $lineNumber      Line number.
      * @param string                      $expectedMessage Expected error message (assertContains).
      *
-     * @return bool
+     * @return void
      */
     public function assertError(File $file, $lineNumber, $expectedMessage)
     {
         $errors = $this->gatherErrors($file);
 
-        return $this->assertForType($errors, 'error', $lineNumber, $expectedMessage);
+        $this->assertForType($errors, 'error', $lineNumber, $expectedMessage);
     }
 
     /**
@@ -207,13 +205,13 @@ abstract class BaseSniffTestCase extends TestCase
      * @param int                         $lineNumber      Line number.
      * @param string                      $expectedMessage Expected message (assertContains).
      *
-     * @return bool
+     * @return void
      */
     public function assertWarning(File $file, $lineNumber, $expectedMessage)
     {
         $warnings = $this->gatherWarnings($file);
 
-        return $this->assertForType($warnings, 'warning', $lineNumber, $expectedMessage);
+        $this->assertForType($warnings, 'warning', $lineNumber, $expectedMessage);
     }
 
     /**
@@ -226,7 +224,7 @@ abstract class BaseSniffTestCase extends TestCase
      * @param int    $lineNumber      Line number.
      * @param string $expectedMessage Expected message (assertContains).
      *
-     * @return bool
+     * @return void
      *
      * @throws \Exception When no issues of a certain type where found on a line
      *                    for which issues of that type where expected.
@@ -248,7 +246,7 @@ abstract class BaseSniffTestCase extends TestCase
 
         $msg = "Expected $type message '$expectedMessage' on line $lineNumber not found. Instead found: $insteadMessagesString.";
 
-        return $this->assertStringContainsString($expectedMessage, $insteadMessagesString, $msg);
+        $this->assertStringContainsString($expectedMessage, $insteadMessagesString, $msg);
     }
 
     /**
@@ -259,7 +257,7 @@ abstract class BaseSniffTestCase extends TestCase
      * @param \PHP_CodeSniffer\Files\File $file       Codesniffer File object.
      * @param mixed                       $lineNumber Line number.
      *
-     * @return bool
+     * @return void
      */
     public function assertNoViolation(File $file, $lineNumber = 0)
     {
@@ -267,7 +265,8 @@ abstract class BaseSniffTestCase extends TestCase
         $warnings = $this->gatherWarnings($file);
 
         if (empty($errors) && empty($warnings)) {
-            return $this->assertTrue(true);
+            $this->assertTrue(true);
+            return;
         }
 
         if ($lineNumber === 0) {
@@ -275,7 +274,8 @@ abstract class BaseSniffTestCase extends TestCase
             $allMessages = $errors + $warnings;
             // TODO: Update the fail message to give the tester some
             // indication of what the errors or warnings were.
-            return $this->assertEmpty($allMessages, $failMessage);
+            $this->assertEmpty($allMessages, $failMessage);
+            return;
         }
 
         $encounteredMessages = [];
