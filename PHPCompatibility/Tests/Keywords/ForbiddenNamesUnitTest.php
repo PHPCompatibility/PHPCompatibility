@@ -379,7 +379,7 @@ class ForbiddenNamesUnitTest extends BaseSniffTestCase
      */
     public function testCorrectUsageOfKeywords($path)
     {
-        $file = $this->sniffFile($path, '7.4');
+        $file = $this->sniffFile($path, '5.0-');
         $this->assertNoViolation($file);
     }
 

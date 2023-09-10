@@ -31,7 +31,6 @@ class Foobar { function exit() { } }
 class Foobar { function extends() { } }
 class Foobar { function final() { } }
 class Foobar { function finally() { } }
-class Foobar { function fn() { } }
 class Foobar { function for() { } }
 class Foobar { function foreach() { } }
 class Foobar { function function() { } }
@@ -46,7 +45,6 @@ class Foobar { function insteadof() { } }
 class Foobar { function interface() { } }
 class Foobar { function isset() { } }
 class Foobar { function list() { } }
-class Foobar { function match() { } }
 class Foobar { function namespace() { } }
 class Foobar { function new() { } }
 class Foobar { function or() { } }

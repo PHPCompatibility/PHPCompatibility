@@ -518,18 +518,12 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function processFunctionDeclaration(File $phpcsFile, $stackPtr)
     {
-        /*
-         * Deal with PHP 7 relaxing the rules.
-         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
-         * of classes, interfaces and traits."
-         */
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
-            && ScannedCode::shouldRunOnOrBelow('5.6') === false
-        ) {
+        $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
+        if (empty($name)) {
             return;
         }
 
-        $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
+        $nameLC = \strtolower($name);
 
         /*
          * Deal with `readonly` being a reserved keyword, but still being allowed
@@ -538,7 +532,27 @@ class ForbiddenNamesSniff extends Sniff
          * @link https://github.com/php/php-src/pull/7468 (PHP 8.1)
          * @link https://github.com/php/php-src/pull/9512 (PHP 8.2 follow-up)
          */
-        if (\strtolower($name) === 'readonly') {
+        if ($nameLC === 'readonly') {
+            return;
+        }
+
+        if (isset($this->invalidNames[$nameLC]) === false) {
+            return;
+        }
+
+        /*
+         * Deal with PHP 7 relaxing the rules.
+         * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
+         * of classes, interfaces and traits."
+         *
+         * Note: keywords which didn't become reserved prior to PHP 7.0 should never be flagged
+         * when used as method names for this reason as they are not problematic in PHP < 7.0.
+         */
+        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === true
+            && (ScannedCode::shouldRunOnOrBelow('5.6') === false
+                || ($this->invalidNames[$nameLC] !== 'all'
+                && \version_compare($this->invalidNames[$nameLC], '7.0', '>=')))
+        ) {
             return;
         }
 
