@@ -1631,6 +1631,13 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['POSIX_PC_NO_TRUNC', '8.2', 1558, '8.3'],
             ['POSIX_PC_ALLOC_SIZE_MIN', '8.2', 1559, '8.3'],
             ['POSIX_PC_SYMLINK_MAX', '8.2', 1560, '8.3'],
+            ['PGSQL_SHOW_CONTEXT_NEVER', '8.2', 1561, '8.3'],
+            ['PGSQL_SHOW_CONTEXT_ERRORS', '8.2', 1562, '8.3'],
+            ['PGSQL_SHOW_CONTEXT_ALWAYS', '8.2', 1563, '8.3'],
+            ['PGSQL_PIPELINE_SYNC', '8.2', 1564, '8.3'],
+            ['PGSQL_PIPELINE_ON', '8.2', 1565, '8.3'],
+            ['PGSQL_PIPELINE_OFF', '8.2', 1566, '8.3'],
+            ['PGSQL_PIPELINE_ABORTED', '8.2', 1567, '8.3'],
         ];
     }
 
