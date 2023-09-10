@@ -1653,6 +1653,14 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLKHMATCH_MISMATCH', '8.2', 1580, '8.3'],
             ['CURLKHMATCH_MISSING', '8.2', 1581, '8.3'],
             ['CURLKHMATCH_LAST', '8.2', 1582, '8.3'],
+            ['MIXED_NUMBERS', '8.2', 1583, '8.3'],
+            ['HIDDEN_OVERLAY', '8.2', 1584, '8.3'],
+            ['OPENSSL_CMS_OLDMIMETYPE', '8.2', 1585, '8.3'],
+            ['PKCS7_NOOLDMIMETYPE', '8.2', 1586, '8.3'],
+            ['SIGINFO', '8.2', 1587, '8.3'],
+            ['PGSQL_TRACE_SUPPRESS_TIMESTAMPS', '8.2', 1588, '8.3'],
+            ['PGSQL_TRACE_REGRESS_MODE', '8.2', 1589, '8.3'],
+            ['PGSQL_ERRORS_SQLSTATE', '8.2', 1590, '8.3'],
         ];
     }
 

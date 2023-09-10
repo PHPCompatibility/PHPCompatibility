@@ -7781,6 +7781,46 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'curl',
         ],
+        'MIXED_NUMBERS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'intl',
+        ],
+        'HIDDEN_OVERLAY' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'intl',
+        ],
+        'OPENSSL_CMS_OLDMIMETYPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOOLDMIMETYPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'openssl',
+        ],
+        'SIGINFO' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pcntl',
+        ],
+        'PGSQL_TRACE_SUPPRESS_TIMESTAMPS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_TRACE_REGRESS_MODE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PGSQL_ERRORS_SQLSTATE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'pgsql',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
