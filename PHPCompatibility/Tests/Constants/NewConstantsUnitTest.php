@@ -1638,6 +1638,21 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['PGSQL_PIPELINE_ON', '8.2', 1565, '8.3'],
             ['PGSQL_PIPELINE_OFF', '8.2', 1566, '8.3'],
             ['PGSQL_PIPELINE_ABORTED', '8.2', 1567, '8.3'],
+            ['CURLINFO_CAPATH', '8.2', 1568, '8.3'],
+            ['CURLINFO_CAINFO', '8.2', 1569, '8.3'],
+            ['CURLOPT_MIME_OPTIONS', '8.2', 1570, '8.3'],
+            ['CURLMIMEOPT_FORMESCAPE', '8.2', 1571, '8.3'],
+            ['CURLOPT_WS_OPTIONS', '8.2', 1572, '8.3'],
+            ['CURLWS_RAW_MODE', '8.2', 1573, '8.3'],
+            ['CURLOPT_SSH_HOSTKEYFUNCTION', '8.2', 1574, '8.3'],
+            ['CURLOPT_PROTOCOLS_STR', '8.2', 1575, '8.3'],
+            ['CURLOPT_REDIR_PROTOCOLS_STR', '8.2', 1576, '8.3'],
+            ['CURLOPT_CA_CACHE_TIMEOUT', '8.2', 1577, '8.3'],
+            ['CURLOPT_QUICK_EXIT', '8.2', 1578, '8.3'],
+            ['CURLKHMATCH_OK', '8.2', 1579, '8.3'],
+            ['CURLKHMATCH_MISMATCH', '8.2', 1580, '8.3'],
+            ['CURLKHMATCH_MISSING', '8.2', 1581, '8.3'],
+            ['CURLKHMATCH_LAST', '8.2', 1582, '8.3'],
         ];
     }
 

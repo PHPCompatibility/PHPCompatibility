@@ -7706,6 +7706,81 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'CURLINFO_CAPATH' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_CAINFO' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_MIME_OPTIONS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLMIMEOPT_FORMESCAPE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_WS_OPTIONS' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLWS_RAW_MODE' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SSH_HOSTKEYFUNCTION' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_PROTOCOLS_STR' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_REDIR_PROTOCOLS_STR' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_CA_CACHE_TIMEOUT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_QUICK_EXIT' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLKHMATCH_OK' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLKHMATCH_MISMATCH' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLKHMATCH_MISSING' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLKHMATCH_LAST' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'curl',
+        ],
         'PGSQL_PIPELINE_SYNC' => [
             '8.2'       => false,
             '8.3'       => true,
