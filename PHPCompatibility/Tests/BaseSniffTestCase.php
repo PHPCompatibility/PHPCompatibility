@@ -51,7 +51,7 @@ abstract class BaseSniffTestCase extends TestCase
      *
      * @since 7.0.4
      *
-     * @var array<string, array<string, File>>
+     * @var array<string, array<string, \PHP_CodeSniffer\Files\File>>
      */
     public static $sniffFiles = [];
 
