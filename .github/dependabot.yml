@@ -1,0 +1,28 @@
+# Dependabot configuration.
+#
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5 # Set to 0 to (temporarily) disable.
+    versioning-strategy: widen
+    commit-message:
+      prefix: "Composer:"
+      include: "scope"
+    labels:
+      - "chores/QA"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "GH Actions:"
+    labels:
+      - "chores/QA"
