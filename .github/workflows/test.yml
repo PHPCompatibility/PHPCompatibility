@@ -309,7 +309,7 @@ jobs:
 
     steps:
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@v1
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.COVERALLS_TOKEN }}
           parallel-finished: true
