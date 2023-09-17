@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\UseStatements;
 
 /**
  * Detect classes which implement PHP native interfaces intended only for PHP internal use.
@@ -104,7 +105,7 @@ class InternalInterfacesSniff extends Sniff
         }
 
         foreach ($interfaces as $interface) {
-            $interface   = \ltrim($interface, '\\');
+            $interface   = \ltrim($this->getResolvedInterfaceName($phpcsFile, $interface), '\\');
             $interfaceLc = \strtolower($interface);
             if (isset($targets[$interfaceLc]) === true) {
                 $error     = 'The interface %s %s';
@@ -117,5 +118,38 @@ class InternalInterfacesSniff extends Sniff
                 $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
             }
         }
+    }
+
+    /**
+     * Returns the resolved name of the given interface name.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param string                      $interface The interface name.
+     *
+     * @return string
+     */
+    protected function getResolvedInterfaceName(File $phpcsFile, $interface)
+    {
+        // If the interface is already fully qualified, return it.
+        if (strpos($interface, '\\') === 0) {
+            return $interface;
+        }
+
+        $tokens = $phpcsFile->getTokens();
+
+        // Check for a matching use statement, skipping traits.
+        $ptr = 0;
+        while ($ptr = $phpcsFile->findNext(\T_USE, $ptr + 1)) {
+            if (!UseStatements::isImportUse($phpcsFile, $ptr)) {
+                continue;
+            }
+
+            $info = UseStatements::splitImportUseStatement($phpcsFile, $ptr);
+            if (isset($info['name'][$interface])) {
+                return $info['name'][$interface];
+            }
+        }
+
+        return $interface;
     }
 }
