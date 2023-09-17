@@ -26,11 +26,25 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Sniffed file
+     * The name of the main test case file.
      *
-     * @var \PHP_CodeSniffer\Files\File
+     * @var string
      */
-    protected $sniffResult;
+    const TEST_FILE = 'InternalInterfacesUnitTest.inc';
+
+    /**
+     *  The name of a test file containing reused internal interface names.
+     *
+     * @var string
+     */
+    const TEST_FILE_NAMESPACED = 'InternalInterfacesUnitTest2.inc';
+
+    /**
+     * Sniffed files.
+     *
+     * @var \PHP_CodeSniffer\Files\File[]
+     */
+    protected $sniffResults;
 
     /**
      * Interface error messages.
@@ -55,7 +69,9 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
     protected function setUpPHPCS()
     {
         // Sniff file without testVersion as all checks run independently of testVersion being set.
-        $this->sniffResult = $this->sniffFile(__FILE__);
+        foreach ([self::TEST_FILE, self::TEST_FILE_NAMESPACED] as $file) {
+            $this->sniffResults[$file] = $this->sniffFile(__DIR__ . '/' . $file);
+        }
     }
 
     /**
@@ -70,7 +86,7 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
      */
     public function testInternalInterfaces($type, $line)
     {
-        $this->assertError($this->sniffResult, $line, $this->messages[$type]);
+        $this->assertError($this->sniffResults[self::TEST_FILE], $line, $this->messages[$type]);
     }
 
     /**
@@ -120,8 +136,8 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
      */
     public function testCaseInsensitive()
     {
-        $this->assertError($this->sniffResult, 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable or extendable.');
-        $this->assertError($this->sniffResult, 10, 'The interface datetimeinterface is intended for type hints only and is not implementable or extendable.');
+        $this->assertError($this->sniffResults[self::TEST_FILE], 9, 'The interface DATETIMEINTERFACE is intended for type hints only and is not implementable or extendable.');
+        $this->assertError($this->sniffResults[self::TEST_FILE], 10, 'The interface datetimeinterface is intended for type hints only and is not implementable or extendable.');
     }
 
     /**
@@ -129,13 +145,14 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param int $line The line number.
+     * @param string $file The file to test.
+     * @param int    $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives($line)
+    public function testNoFalsePositives($file, $line)
     {
-        $this->assertNoViolation($this->sniffResult, $line);
+        $this->assertNoViolation($this->sniffResults[$file], $line);
     }
 
     /**
@@ -148,14 +165,19 @@ class InternalInterfacesUnitTest extends BaseSniffTestCase
     public static function dataNoFalsePositives()
     {
         return [
-            [13],
-            [14],
-            [23],
-            [24],
-            [27],
-            [28],
-            [32],
-            [33],
+            [self::TEST_FILE, 13],
+            [self::TEST_FILE, 14],
+            [self::TEST_FILE, 23],
+            [self::TEST_FILE, 24],
+            [self::TEST_FILE, 27],
+            [self::TEST_FILE, 28],
+            [self::TEST_FILE, 32],
+            [self::TEST_FILE, 33],
+            [self::TEST_FILE_NAMESPACED, 8],
+            [self::TEST_FILE_NAMESPACED, 9],
+            [self::TEST_FILE_NAMESPACED, 10],
+            [self::TEST_FILE_NAMESPACED, 11],
+            [self::TEST_FILE_NAMESPACED, 12],
         ];
     }
 
