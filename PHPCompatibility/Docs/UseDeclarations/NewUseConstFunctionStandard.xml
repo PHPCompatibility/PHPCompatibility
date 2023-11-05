@@ -10,14 +10,12 @@
     The `use` operator has been extended to support importing functions and
     constants in addition to classes. This is achieved via the `use function`
     and `use const` constructs, respectively.
-
-    PHP version 5.6
     ]]>
     </standard>
     <code_comparison>
         <code title="Cross-version compatible: Using constants and functions without importing them into the namespace.">
             <![CDATA[
-
+// placeholder for line numbers
 
 
 echo <em>My\Project\ConstA</em>;
