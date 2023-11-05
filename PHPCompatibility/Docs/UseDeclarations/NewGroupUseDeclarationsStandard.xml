@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+               title="New Use Const/Function Statements"
+>
+    <standard>
+    <![CDATA[
+    Detect group use declarations as introduced in PHP 7.0.
+
+    Checks for:
+    - Group use statements as introduced in PHP 7.0.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <![CDATA[
+use My\Project\ClassA;
+use My\Project\ClassB;
+use My\Project\ClassC as C;
+
+
+
+use function My\Project\fn_a;
+use function My\Project\fn_b;
+use function My\Project\fn_c;
+
+
+
+use const My\Project\ConstA;
+use const My\Project\ConstB;
+use const My\Project\ConstC;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.0: Group Use Declarations without trailing commas.">
+        <![CDATA[
+use My\Project\<em>{
+        ClassA,
+        ClassB,
+        ClassC as C
+}</em>;
+
+use function My\Project\<em>{
+        fn_a,
+        fn_b,
+        fn_c
+}</em>;
+
+use const My\Project\<em>{
+        ConstA,
+        ConstB,
+        ConstC
+}</em>;
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Detect group use declarations as introduced in PHP 7.0.
+
+    Checks for:
+    - Trailing commas in group use statements as allowed since PHP 7.2.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <![CDATA[
+use My\Project\ClassA;
+use My\Project\ClassC as C;
+
+
+
+use function My\Project\fn_a;
+use function My\Project\fn_c;
+
+
+
+use const My\Project\ConstA;
+use const My\Project\ConstC;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.2: Use Declarations with Trailing comma.">
+        <![CDATA[
+use My\Project\{
+        ClassA,
+        ClassC as C<em>,</em>
+};
+
+use function My\Project\{
+        fn_a,
+        fn_c<em>,</em>
+};
+
+use const My\Project\{
+        ConstA,
+        ConstC<em>,</em>
+};
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
