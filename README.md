@@ -14,7 +14,7 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 [![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ATest)
 
 
-This is a set of sniffs for [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
+This is a set of sniffs for [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
 It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
 
 * [PHP Version Support](#php-version-support)
@@ -63,9 +63,9 @@ Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sni
 --------
 This library has been reorganized. All sniffs have been placed in categories and a significant number of sniffs have been renamed.
 
-If you use the complete `PHPCompatibility` standard without `exclude` directives in a custom ruleset and do not (yet) use the new-style PHP_CodeSniffer annotation as introduced in [PHP_CodeSniffer 3.2.0](https://github.com/squizlabs/PHP_CodeSniffer/releases/tag/3.2.0), this will have no noticeable effect and everything should work as before.
+If you use the complete `PHPCompatibility` standard without `exclude` directives in a custom ruleset and do not (yet) use the new-style PHP_CodeSniffer annotation as introduced in [PHP_CodeSniffer 3.2.0](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/tag/3.2.0), this will have no noticeable effect and everything should work as before.
 
-However, if you do use `exclude` directives for PHPCompatibility sniffs in a custom ruleset or if you use the [new-style PHP_CodeSniffer inline annotations](https://github.com/squizlabs/PHP_CodeSniffer/releases/3.2.0), you will need to update these when upgrading. This should be a one-time only change.
+However, if you do use `exclude` directives for PHPCompatibility sniffs in a custom ruleset or if you use the [new-style PHP_CodeSniffer inline annotations](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/3.2.0), you will need to update these when upgrading. This should be a one-time only change.
 The changelog contains detailed information about all the sniff renames.
 
 Please read the changelog for version [9.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/9.0.0) carefully before upgrading.
@@ -110,7 +110,7 @@ Installation in a Composer project (method 1)
 Installation via a git check-out to an arbitrary directory (method 2)
 -----------------------
 
-* Install [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation).
+* Install [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) via [your preferred method](https://github.com/PHPCSStandards/PHP_CodeSniffer#installation).
 
     PHP CodeSniffer offers a variety of installation methods to suit your work-flow: Composer, [PEAR](http://pear.php.net/PHP_CodeSniffer), a Phar file, zipped/tarred release archives or checking the repository out using Git.
 
@@ -122,7 +122,7 @@ Installation via a git check-out to an arbitrary directory (method 2)
    ```bash
    phpcs --config-set installed_paths /path/to/PHPCompatibility
    ```
-   I.e. if you placed the `PHPCompatibility` repository in the `/my/custom/standards/PHPCompatibility` directory, you will need to add that directory to the PHP CodeSniffer [`installed_paths` configuration variable](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
+   I.e. if you placed the `PHPCompatibility` repository in the `/my/custom/standards/PHPCompatibility` directory, you will need to add that directory to the PHP CodeSniffer [`installed_paths` configuration variable](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
 
    **Warning**: :warning: The `installed_paths` command overwrites any previously set `installed_paths`. If you have previously set `installed_paths` for other external standards, run `phpcs --config-show` first and then run the `installed_paths` command with all the paths you need separated by commas, i.e.:
    ```bash
@@ -148,7 +148,7 @@ Sniffing your code for compatibility with specific PHP version(s)
     - You can also specify a range of PHP versions that your code needs to support. In this situation, compatibility issues that affect any of the PHP versions in that range will be reported: `--runtime-set testVersion 5.3-5.5`.
     - As of PHPCompatibility 7.1.3, you can omit one part of the range if you want to support everything above or below a particular version, i.e. use `--runtime-set testVersion 7.0-` to run all the checks for PHP 7.0 and above.
 * By default the report will be sent to the console, if you want to save the report to a file, add the following to the command line command: `--report-full=path/to/report-file`.
-    For more information and other reporting options, check the [PHP CodeSniffer wiki](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Reporting).
+    For more information and other reporting options, check the [PHP CodeSniffer wiki](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Reporting).
 
 
 ### Using a framework/CMS/polyfill specific ruleset
@@ -191,7 +191,7 @@ You can also set the `testVersion` from within the ruleset:
     <config name="testVersion" value="5.6-"/>
 ```
 
-Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
+Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
 
 ### `testVersion` in the ruleset versus command-line
 

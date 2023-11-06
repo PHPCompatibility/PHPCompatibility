@@ -294,7 +294,7 @@ Also as of this version, [Juliette Reinders Folmer] is now officially a co-maint
 ### Upgrade instructions
 
 * If you have `<exclude name="..."/>` directives in your own project's custom ruleset which relate to sniffs from the PHPCompatibility library, you will need to update your ruleset to use the new sniff names.
-* If you use the new [PHPCS 3.2+ inline annotations](https://github.com/squizlabs/PHP_CodeSniffer/releases/3.2.0), i.e. `// phpcs:ignore Standard.Category.SniffName`, in combination with PHPCompatibility sniff names, you will need to update these annotations.
+* If you use the new [PHPCS 3.2+ inline annotations](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/3.2.0), i.e. `// phpcs:ignore Standard.Category.SniffName`, in combination with PHPCompatibility sniff names, you will need to update these annotations.
 * If you use neither of the above, you should be fine and upgrading should be painless.
 
 ### Overview of all the sniff renames:
