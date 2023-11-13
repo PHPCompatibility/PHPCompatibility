@@ -1114,6 +1114,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['pg_exit_pipeline_mode', '8.2', 1053, '8.3'],
             ['pg_pipeline_sync', '8.2', 1054, '8.3'],
             ['pg_pipeline_status', '8.2', 1055, '8.3'],
+            ['pg_send_flush_request', '8.2', 1057, '8.3'],
             ['socket_atmark', '8.2', 1056, '8.3'],
         ];
     }
