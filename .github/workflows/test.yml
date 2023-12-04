@@ -279,26 +279,14 @@ jobs:
         if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache
 
-      # PHP Coveralls v2 (which supports GH Actions) has a PHP 5.5 minimum, so switch the PHP version.
-      - name: Switch to PHP latest
-        if: ${{ success() && matrix.php == '5.4' }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 'latest'
-          coverage: none
-
-      # Global install is used to prevent a conflict with the local composer.lock.
-      - name: Install Coveralls
-        if: ${{ success() }}
-        run: composer global require php-coveralls/php-coveralls:"^2.6.0" --no-interaction
-
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-          COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
-        run: php-coveralls -v -x build/logs/clover.xml
+        uses: coverallsapp/github-action@v2
+        with:
+          format: clover
+          file: build/logs/clover.xml
+          flag-name: php-${{ matrix.php }}-phpcs-${{ matrix.phpcs_version }}
+          parallel: true
 
   coveralls-finish:
     needs: coverage
@@ -311,5 +299,4 @@ jobs:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@v2
         with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
           parallel-finished: true
