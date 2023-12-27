@@ -106,10 +106,6 @@ class RemovedExtensionsSniff extends Sniff
             '5.3' => true,
             'alternative' => null,
         ],
-        'fdf' => [
-            '5.3' => true,
-            'alternative' => 'pecl/fdf',
-        ],
         'filepro' => [
             '5.2' => true,
             'alternative' => null,
