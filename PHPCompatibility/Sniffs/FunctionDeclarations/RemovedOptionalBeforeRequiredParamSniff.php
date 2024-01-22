@@ -107,8 +107,12 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 }
 
                 if (isset($firstOptional) === false) {
-                    // Check if it's typed and has a null default value, in which case we can ignore it.
-                    if ($param['type_hint'] !== '') {
+                    // Check if it's typed with a non-nullable type and has a null default value, in which case we can ignore it.
+                    if ($param['type_hint'] !== ''
+                        && $param['nullable_type'] === false
+                        // Check for union types which include null.
+                        && $phpcsFile->findNext(\T_NULL, $param['type_hint_token'], ($param['type_hint_end_token'] + 1)) === false
+                    ) {
                         $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
                         $hasNonNull = $phpcsFile->findNext(
                             $this->allowedInDefault,

@@ -57,6 +57,9 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             [20],
             [32],
             [39],
+            [53],
+            [58],
+            [59],
         ];
     }
 

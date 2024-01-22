@@ -5,7 +5,7 @@
  */
 function requiredBeforeOptional($a, $b, $c = null, $d = true) {}
 function requiredBeforeOptionalWithTypes(?int $a, string $b, callable $c = null, bool $d = /*comment*/ true) {}
-function nullableTypedOptionalBeforeRequired(Foo $a = /* comment */ null, ?int $b = null, $c, $d) {}
+function requiredTypedWithNullDefaultBeforeRequired(Foo $a = /* comment */ null, int $b = null, $c, $d) {}
 
 /*
  * Deprecated in PHP 8.
@@ -46,6 +46,17 @@ class MixedWithOptionalParam {
         $normalParam = 10, // OK.
     ) {}
 }
+
+function nonNullableTypedWithNullDefaultValueBeforeRequired(T1 $a, T2 $b = null, T3 $c) {} // This is fine.
+function nullableTypedWithNullDefaultValueBeforeOptional(T1 $a, ?T2 $b = null, T3 $c = null) {} // This is fine.
+// Deprecated as of PHP 8.0, but only emits a deprecation notice in PHP itself as of PHP 8.1.
+function nullableTypedOptionalBeforeRequired(T1 $a, ?T2 $b = /* comment */ null, T3 $c) {}
+
+function nullLastUnionTypedWithNullDefaultValueBeforeOptional(T1 $a, T2|null $b = null, T3 $c = null) {} // This is fine.
+function nullFirstUnionTypedWithNullDefaultValueBeforeOptional(T1 $a, null|T2 $b = null, T3 $c = null) {} // This is fine.
+// Deprecated as of PHP 8.0, but only emits a deprecation notice in PHP itself as of PHP 8.3.
+function nullLastUnionTypedWithNullDefaultValueBeforeRequired(T1 $a, T2|null $b = null, T3 $c) {}
+function nullFirstUnionTypedWithNullDefaultValueBeforeRequired(T1 $a, null|T2 $b = null, T3 $c) {}
 
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
