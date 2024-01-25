@@ -295,7 +295,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['MyClassA|\Package\MyClassB', 80],
             ['array|bool|int|float|NULL|object|string', 81],
             ['false|mixed|self|parent|iterable|Resource', 84],
-            ['callable||void', 87, false],
+            ['callable|void', 87, false],
             ['?int|float', 90],
             ['bool|FALSE', 99],
             ['object|ClassName', 102],
