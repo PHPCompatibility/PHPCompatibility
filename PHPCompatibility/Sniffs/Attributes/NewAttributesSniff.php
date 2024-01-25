@@ -68,7 +68,7 @@ class NewAttributesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if (isset($tokens[$stackPtr]['attribute_closer']) === false) {
-            // Live coding or parse error. Shouldn't be possible as shouldn't have retokenized in that case.
+            // Live coding or parse error. Shouldn't be possible, as shouldn't have retokenized in that case.
             return; // @codeCoverageIgnore
         }
 
