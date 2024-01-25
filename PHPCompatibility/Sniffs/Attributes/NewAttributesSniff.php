@@ -68,7 +68,7 @@ class NewAttributesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if (isset($tokens[$stackPtr]['attribute_closer']) === false) {
-            // Live coding or parse error. Shouldn't be possible, as shouldn't have retokenized in that case.
+            // Live coding or parse error. Shouldn't be possible as shouldn't have retokenized in that case.
             return; // @codeCoverageIgnore
         }
 
@@ -94,9 +94,10 @@ class NewAttributesSniff extends Sniff
     /**
      * Determines if an attribute is likely to be backwards compatible.
      *
-     * @param  \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param  int                         $stackPtr  The position of the current token in the stack.
-     * @param  array                       $tokens    The array of tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the stack.
+     * @param array                       $tokens    The array of tokens.
+     *
      * @return bool
      */
     protected function isBackwardsCompatibleAttribute($phpcsFile, $stackPtr, $tokens)

@@ -101,6 +101,13 @@ class NewAttributesUnitTest extends BaseSniffTestCase
         return $data;
     }
 
+    /**
+     * Data provider.
+     *
+     * @see testBackwardsCompatibleNewAttributes
+     *
+     * @return array
+     */
     public static function dataBackwardsCompatibleAttributes()
     {
         $data = [
