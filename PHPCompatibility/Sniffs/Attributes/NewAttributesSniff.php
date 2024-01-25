@@ -68,15 +68,67 @@ class NewAttributesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if (isset($tokens[$stackPtr]['attribute_closer']) === false) {
-            // Live coding or parse error. Shouldn't be possible as shouldn't have retokenized in that case.
+            // Live coding or parse error.
             return; // @codeCoverageIgnore
         }
 
-        $phpcsFile->addError(
-            'Attributes are not supported in PHP 7.4 or earlier. Found: %s',
-            $stackPtr,
-            'Found',
-            [GetTokensAsString::compact($phpcsFile, $stackPtr, $tokens[$stackPtr]['attribute_closer'], true)]
-        );
+        $content = GetTokensAsString::compact($phpcsFile, $stackPtr, $tokens[$stackPtr]['attribute_closer'], true);
+
+        if ($this->isBackwardsCompatibleAttribute($phpcsFile, $stackPtr, $tokens)) {
+            $phpcsFile->addWarning(
+                'Backwards compatible attribute detected. This may not cause parse errors in PHP < 8.0: Found: %s',
+                $stackPtr,
+                'Found',
+                [$content]
+            );
+        } else {
+            $phpcsFile->addError(
+                'Attributes are not supported in PHP 7.4 or earlier. Found: %s',
+                $stackPtr,
+                'Found',
+                [$content]
+            );
+        }
+    }
+
+    /**
+     * Determines if an attribute is likely to be backwards compatible.
+     *
+     * @param  \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param  int                         $stackPtr  The position of the current token in the stack.
+     * @param  array                       $tokens    The array of tokens.
+     * @return bool
+     */
+    protected function isBackwardsCompatibleAttribute($phpcsFile, $stackPtr, $tokens)
+    {
+        $currentLine = $tokens[$stackPtr]['line'];
+
+        // Check if the attribute starts the line (ignoring whitespace)
+        $startOfLineToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        if ($tokens[$startOfLineToken]['line'] < $currentLine) {
+            // The attribute starts a new line
+            $attributeCloser = $tokens[$stackPtr]['attribute_closer'];
+
+            if ($tokens[$attributeCloser]['line'] == $currentLine) {
+                // Check for any token after the attribute on the same line
+                $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($attributeCloser + 1), null, true);
+                if ($nextToken === false || $tokens[$nextToken]['line'] > $currentLine) {
+                    // No non-whitespace token after the attribute on the same line
+                    for ($i = $stackPtr; $i <= $attributeCloser; $i++) {
+                        // Check for a closing tag within a string
+                        if ($tokens[$i]['type'] === 'T_CONSTANT_ENCAPSED_STRING' && strpos($tokens[$i]['content'], '?>') !== false) {
+                            return false;
+                        }
+                    }
+
+                    // No problematic closing tag found in the attribute
+                    return true;
+                }
+            }
+        }
+
+        // Attribute does not start its own line, is multi-line,
+        // or has problematic tokens.
+        return false;
     }
 }

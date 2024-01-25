@@ -47,6 +47,27 @@ class NewAttributesUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * testNewAttributes
+     *
+     * @dataProvider dataBackwardsCompatibleAttributes
+     *
+     * @param int    $line  The line number.
+     * @param string $found Optional. Found attribute contents.
+     *
+     * @return void
+     */
+    public function testBackwardsCompatibleNewAttributes($line, $found = '')
+    {
+        $file    = $this->sniffFile(__FILE__, '7.4');
+        $warning = 'Backwards compatible attribute detected. This may not cause parse errors in PHP < 8.0:';
+        if ($found !== '') {
+            $warning .= ' Found: ' . $found;
+        }
+
+        $this->assertWarning($file, $line, $warning);
+    }
+
+    /**
      * Data provider.
      *
      * @see testNewAttributes()
@@ -54,6 +75,33 @@ class NewAttributesUnitTest extends BaseSniffTestCase
      * @return array
      */
     public static function dataNewAttributes()
+    {
+        $data = [
+            [38],
+            [46],
+            [48],
+            // There are backwards compatible but the sniffer can't parse multiple arguments in one line.
+            [50, '#[WithoutArgument]'],
+            [50, '#[SingleArgument(0)]'],
+            [50, "#[FewArguments('Hello', 'World')]"],
+            [56, '#[ORM\Id]'],
+            [56, '#[ORM\Column("integer")]'],
+            [56, '#[ORM\GeneratedValue]'],
+            // End multiple Attributes in one line.
+            [67, '#[Attr2("foo"), Attr2("bar")]'],
+            [73, '#[ Attr1("foo"), Attr2("bar"), ]'],
+            [83, '#[MyAttr([1, 2])]'],
+            [86, '#[ ORM\Entity, ORM\Table("user") ]'],
+            [96, '#[Assert\Email(["message" => "text"])]'],
+            [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
+            [104],
+            [109],
+        ];
+
+        return $data;
+    }
+
+    public static function dataBackwardsCompatibleAttributes()
     {
         $data = [
             [17],
@@ -66,33 +114,16 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [31],
             [32],
             [35],
-            [38],
             [40],
             [41],
             [42],
             [43],
-            [46],
-            [48],
-            [50, '#[WithoutArgument]'],
-            [50, '#[SingleArgument(0)]'],
-            [50, "#[FewArguments('Hello', 'World')]"],
             [53],
-            [56, '#[ORM\Id]'],
-            [56, '#[ORM\Column("integer")]'],
-            [56, '#[ORM\GeneratedValue]'],
             [59],
             [60],
             [64],
-            [67, '#[Attr2("foo"), Attr2("bar")]'],
-            [73, '#[ Attr1("foo"), Attr2("bar"), ]'],
-            [83, '#[MyAttr([1, 2])]'],
-            [86, '#[ ORM\Entity, ORM\Table("user") ]'],
             [92],
             [95],
-            [96, '#[Assert\Email(["message" => "text"])]'],
-            [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
-            [104],
-            [109],
         ];
 
         return $data;
