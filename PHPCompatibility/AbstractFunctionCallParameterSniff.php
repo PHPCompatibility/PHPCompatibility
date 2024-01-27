@@ -120,7 +120,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
 
         if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
             // Class instantiation or constant in attribute, not function call.
-            return false;
+            return;
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
