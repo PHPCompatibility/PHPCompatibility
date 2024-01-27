@@ -64,6 +64,38 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Test that an error is thrown for class constants declared with visibility.
+     *
+     * @dataProvider dataReadonlyAnonymousClass
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testReadonlyAnonymousClass($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertError($file, $line, 'Readonly anonymous classes are not supported in PHP 8.2 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testReadonlyAnonymousClass()
+     *
+     * @return array
+     */
+    public static function dataReadonlyAnonymousClass()
+    {
+        return [
+            [57],
+            [58],
+            [61],
+        ];
+    }
+
+
+    /**
      * Verify that there are no false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
@@ -103,7 +135,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '8.2');
+        $file = $this->sniffFile(__FILE__, '8.3');
         $this->assertNoViolation($file);
     }
 }
