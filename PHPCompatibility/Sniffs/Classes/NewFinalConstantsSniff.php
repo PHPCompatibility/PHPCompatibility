@@ -13,8 +13,8 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Exceptions\ValueError;
+use PHPCSUtils\Utils\Constants;
 
 /**
  * Using the "final" modifier for class constants is available since PHP 8.1.
@@ -58,23 +58,21 @@ class NewFinalConstantsSniff extends Sniff
             return;
         }
 
-        // Is this a class constant ?
-        if (Scopes::isOOConstant($phpcsFile, $stackPtr) === false) {
+        try {
+            $properties = Constants::getProperties($phpcsFile, $stackPtr);
+        } catch (ValueError $e) {
+            // Not an OO constant or parse error.
             return;
         }
 
-        $tokens    = $phpcsFile->getTokens();
-        $skip      = Tokens::$emptyTokens + Tokens::$scopeModifiers;
-        $prevToken = $phpcsFile->findPrevious($skip, ($stackPtr - 1), null, true, null, true);
-
-        // Is the previous token the final keyword ?
-        if ($prevToken === false || $tokens[$prevToken]['code'] !== \T_FINAL) {
+        if ($properties['final_token'] === false) {
+            // Not a final constant.
             return;
         }
 
         $phpcsFile->addError(
             'The final modifier for OO constants is not supported in PHP 8.0 or earlier.',
-            $prevToken,
+            $properties['final_token'],
             'Found'
         );
     }
