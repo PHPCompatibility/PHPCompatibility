@@ -93,7 +93,7 @@ jobs:
 
         include:
           - php: '7.2'
-            phpcs_version: '^3.8.0'
+            phpcs_version: '^3.9.0'
             custom_ini: true
             experimental: false
 
