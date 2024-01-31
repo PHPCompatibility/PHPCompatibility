@@ -168,6 +168,12 @@ enum Suit: string implements Colorful
     }
 }
 
+// Issue #1666 - $this in unset, but not being unset.
+class NotUnsettingThis {
+    public function delete() {
+        unset($array[get_array_key($this)]); // OK.
+    }
+}
 
 /*
  * ====================================================================
