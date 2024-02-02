@@ -1050,4 +1050,3 @@ posix_fpathconf();
 posix_eaccess();
 pg_set_error_context_visibility();
 socket_atmark();
-pg_send_flush_request();

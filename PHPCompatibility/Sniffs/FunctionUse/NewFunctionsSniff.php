@@ -4943,11 +4943,6 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'pgsql',
         ],
-        'pg_send_flush_request' => [
-            '8.2'       => false,
-            '8.3'       => true,
-            'extension' => 'pgsql',
-        ],
         'posix_sysconf' => [
             '8.2'       => false,
             '8.3'       => true,
