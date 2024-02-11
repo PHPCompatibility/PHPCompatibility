@@ -25,7 +25,11 @@ use PHP_CodeSniffer\Files\File;
  *
  * The two parameter - $host, $port - signature is deprecated since PHP 8.3 and support will be removed in PHP 9.0.
  *
+ * The three+ parameter - $uri, $port, $wallet, $password, $auth_mode - signature is deprecated since PHP 8.4
+ * and support will be removed in PHP 9.0.
+ *
  * PHP version 8.3
+ * PHP version 8.4
  * PHP version 9.0
  *
  * {@internal Normally this would be handled via the RemovedFunctionParameters sniff, but this
@@ -35,6 +39,7 @@ use PHP_CodeSniffer\Files\File;
  * For that reason, the RemovedFunctionParameters sniff is not suitable to handle this.}
  *
  * @link https://wiki.php.net/rfc/deprecations_php_8_3#deprecate_calling_ldap_connect_with_2_parameters
+ * @link https://wiki.php.net/rfc/deprecate_functions_with_overloaded_signatures#ldap_connect
  * @link https://www.php.net/ldap_connect
  *
  * @since 10.0.0
@@ -80,6 +85,34 @@ final class RemovedLdapConnectSignaturesSniff extends AbstractFunctionCallParame
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
+        if (ScannedCode::shouldRunOnOrAbove('8.4') === true) {
+            /*
+             * On PHP 8.4, the 3+ param signature is deprecated.
+             */
+            $walletParam   = PassedParameters::getParameterFromStack($parameters, 3, 'wallet');
+            $passwordParam = PassedParameters::getParameterFromStack($parameters, 4, 'password');
+            $authmodeParam = PassedParameters::getParameterFromStack($parameters, 5, 'auth_mode');
+
+            if ($walletParam !== false || $passwordParam !== false || $authmodeParam !== false) {
+                // Found a 3+ param signature.
+                $phpcsFile->addWarning(
+                    'Calling ldap_connect() with three or more parameters is deprecated since PHP 8.4. Use ldap_connect_wallet() (PHP 8.3+) instead.',
+                    $stackPtr,
+                    'DeprecatedThreePlusParamSignature'
+                );
+
+                /*
+                 * If this notice has been thrown, we shouldn't throw the PHP 8.3 related notice for 3+ param
+                 * signatures as the "do this instead" advise conflicts.
+                 */
+                return;
+            }
+        }
+
+        /*
+         * On PHP 8.3, the 2-param signature is deprecated, including passing a non-null $port value
+         * when using the 3+ param signature.
+         */
         $uriParam  = PassedParameters::getParameterFromStack($parameters, 1, ['uri', 'host']);
         $portParam = PassedParameters::getParameterFromStack($parameters, 2, 'port');
 

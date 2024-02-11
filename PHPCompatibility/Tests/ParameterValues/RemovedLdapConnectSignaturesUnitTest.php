@@ -50,9 +50,9 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
     public static function dataRemovedLdapConnectSignatureTwoParams()
     {
         return [
-            [47],
-            [51],
-            [52],
+            [36],
+            [40],
+            [41],
         ];
     }
 
@@ -68,8 +68,38 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
      */
     public function testRemovedLdapConnectSignatureMoreParamsSecondNotNull($line)
     {
-        $file = $this->sniffFile(__FILE__, '8.3');
-        $this->assertWarning($file, $line, 'Calling ldap_connect() with a $port which is not `null` is deprecated since PHP 8.3.');
+        $message = 'Calling ldap_connect() with a $port which is not `null` is deprecated since PHP 8.3.';
+        $file    = $this->sniffFile(__FILE__, '8.3');
+        $this->assertWarning($file, $line, $message);
+
+        /*
+         * This notice should not show for PHP 8.4 as the PHP 8.4 deprecation takes precedence.
+         * This needs special handling as the base test class doesn't handle this.
+         */
+        $file     = $this->sniffFile(__FILE__, '8.4');
+        $warnings = $this->gatherWarnings($file);
+
+        if (isset($warnings[$line]) === false) {
+            $this->assertTrue(true);
+        } else {
+            $found = 0;
+            foreach ($warnings[$line] as $issue) {
+                if (\strpos($issue['message'], $message) !== false) {
+                    ++$found;
+                }
+            }
+
+            $this->assertSame(
+                0,
+                $found,
+                \sprintf(
+                    'Found unexpected warning "%s" (%d times) on line %d when testing against PHP 8.4',
+                    $message,
+                    $found,
+                    $line
+                )
+            );
+        }
     }
 
     /**
@@ -82,7 +112,7 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
     public static function dataRemovedLdapConnectSignatureMoreParamsSecondNotNull()
     {
         return [
-            [55],
+            [44],
         ];
     }
 
@@ -113,8 +143,87 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
     {
         $data = [];
 
-        // No errors expected on the first 43 lines.
-        for ($line = 1; $line <= 43; $line++) {
+        // No errors expected on the first 31 lines.
+        for ($line = 1; $line <= 31; $line++) {
+            $data[] = [$line];
+        }
+
+        // Also no errors expected on the lines dealing with the PHP 8.4 deprecation.
+        for ($line = 49; $line <= 66; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
+    }
+
+
+    /**
+     * Verify that the two parameter signature of ldap_connect() is correctly detected.
+     *
+     * @dataProvider dataRemovedLdapConnectSignatureThreePlusParams
+     *
+     * @param int $line Line number where the error should occur.
+     *
+     * @return void
+     */
+    public function testRemovedLdapConnectSignatureThreePlusParams($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertWarning($file, $line, 'Calling ldap_connect() with three or more parameters is deprecated since PHP 8.4.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedLdapConnectSignatureThreePlusParams()
+     *
+     * @return array
+     */
+    public static function dataRemovedLdapConnectSignatureThreePlusParams()
+    {
+        return [
+            [44],
+            [51],
+            [52],
+            [59],
+            [60],
+            [61],
+            [64],
+            [65],
+            [66],
+            [67],
+        ];
+    }
+
+
+    /**
+     * Test that there are no false positives for valid code for the two param signature check.
+     *
+     * @dataProvider dataNoFalsePositivesThreePlusParams
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesThreePlusParams($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesThreePlusParams()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositivesThreePlusParams()
+    {
+        $data = [];
+
+        // No errors expected on the first 31 lines.
+        for ($line = 1; $line <= 31; $line++) {
             $data[] = [$line];
         }
 
