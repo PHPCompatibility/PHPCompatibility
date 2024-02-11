@@ -212,6 +212,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['utf8_decode', '8.2', 'mb_convert_encoding(), UConverter::transcode() or iconv', 1235, '8.1'],
 
             ['intlcal_set', '8.4', 'IntlCalendar::setDate() or IntlCalendar::setDateTime()', 1239, '8.3'],
+            ['intlgregcal_create_instance', '8.4', 'IntlGregorianCalendar::createFromDate() or IntlGregorianCalendar::createFromDateTime()', 1240, '8.3'],
         ];
     }
 

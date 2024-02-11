@@ -5080,6 +5080,11 @@ class RemovedFunctionsSniff extends Sniff
             'alternative' => 'IntlCalendar::setDate() or IntlCalendar::setDateTime()',
             'extension'   => 'intl',
         ],
+        'intlgregcal_create_instance' => [
+            '8.4'         => false,
+            'alternative' => 'IntlGregorianCalendar::createFromDate() or IntlGregorianCalendar::createFromDateTime()',
+            'extension'   => 'intl',
+        ],
     ];
 
 
