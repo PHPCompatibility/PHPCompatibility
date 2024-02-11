@@ -177,6 +177,8 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['imageopenpolygon', 'num_points', '8.1', [37], '8.0'],
             ['imagefilledpolygon', 'num_points', '8.1', [38], '8.0'],
             ['mysqli_get_client_info', 'mysql', '8.1', [40], '8.0'],
+            ['ldap_exop', 'response_data', '8.4', [65], '8.3'],
+            ['ldap_exop', 'response_oid', '8.4', [65], '8.3'],
         ];
     }
 

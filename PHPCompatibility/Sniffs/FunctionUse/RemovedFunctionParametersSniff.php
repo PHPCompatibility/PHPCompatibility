@@ -111,6 +111,18 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '8.0'  => true,
             ],
         ],
+        'ldap_exop' => [
+            5 => [
+                'name'        => 'response_data',
+                '8.4'         => false,
+                'alternative' => 'the PHP 8.3+ ldap_exop_sync() function',
+            ],
+            6 => [
+                'name'        => 'response_oid',
+                '8.4'         => false,
+                'alternative' => 'the PHP 8.3+ ldap_exop_sync() function',
+            ],
+        ],
         'ldap_first_attribute' => [
             3 => [
                 'name'  => 'ber_identifier',

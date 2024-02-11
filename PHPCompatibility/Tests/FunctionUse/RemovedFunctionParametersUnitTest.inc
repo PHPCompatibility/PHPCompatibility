@@ -61,3 +61,5 @@ ldap_first_attribute(
 
 imagerotate($image, $angle, $bg_color); // OK.
 imagerotate($image, $angle, $bg_color, $ignore_transparent); // Error.
+
+ldap_exop($ldap, $request_oid, $request_data, $controls, $response_data, $response_oid); // Error x 2.
