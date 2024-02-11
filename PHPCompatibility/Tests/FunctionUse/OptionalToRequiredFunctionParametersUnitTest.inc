@@ -41,3 +41,6 @@ openssl_seal( $data, $sealed_data, iv: $iv, encrypted_keys: $encrypted_keys, pub
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->mktime();
+
+stream_context_set_option($context, $wrapper, $option_name, $value);
+stream_context_set_option($context, $options); // Error x 2.
