@@ -179,6 +179,13 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['mysqli_get_client_info', 'mysql', '8.1', [40], '8.0'],
             ['ldap_exop', 'response_data', '8.4', [65], '8.3'],
             ['ldap_exop', 'response_oid', '8.4', [65], '8.3'],
+            ['session_set_save_handler', 'read', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'write', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'destroy', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'gc', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'create_sid', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'validate_sid', '8.4', [68], '8.3'],
+            ['session_set_save_handler', 'update_timestamp', '8.4', [68], '8.3'],
         ];
     }
 
@@ -219,6 +226,7 @@ class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             [50],
             [53],
             [62],
+            [67],
         ];
     }
 
