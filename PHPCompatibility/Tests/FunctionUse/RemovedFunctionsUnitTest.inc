@@ -1235,3 +1235,5 @@ utf8_encode();
 utf8_decode();
 
 assert_options();
+
+intlcal_set();

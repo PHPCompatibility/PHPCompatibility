@@ -210,6 +210,8 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mhash', '8.1', 'the hash_*() functions', 1228, '8.0'],
             ['utf8_encode', '8.2', 'mb_convert_encoding(), UConverter::transcode() or iconv', 1234, '8.1'],
             ['utf8_decode', '8.2', 'mb_convert_encoding(), UConverter::transcode() or iconv', 1235, '8.1'],
+
+            ['intlcal_set', '8.4', 'IntlCalendar::setDate() or IntlCalendar::setDateTime()', 1239, '8.3'],
         ];
     }
 
