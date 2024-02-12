@@ -931,12 +931,12 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
     /**
      * The T_BAD_CHARACTER constant is a special case
      *
+     * @dataProvider dataTBadCharacter
+     *
      * @param string $phpVersion  PHP version (or range) tot test with.
      * @param bool   $shouldError If we expect to get an error or not from the sniff
      *
      * @return void
-     *
-     * @dataProvider dataTBadCharacter
      */
     public function testTBadCharacter($phpVersion, $shouldError)
     {
@@ -956,7 +956,7 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testTBadCharacter
      *
-     * @return array<array<string, bool>>
+     * @return array<array<string|bool>>
      */
     public static function dataTBadCharacter()
     {
