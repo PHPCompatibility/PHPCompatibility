@@ -1932,8 +1932,8 @@ class RemovedConstantsSniff extends Sniff
             '7.0'       => true,
             'extension' => 'tokenizer',
         ],
+        // Note: this constant has special casing in the handleFeature() method as it is also present in PHP >= 7.4.
         'T_BAD_CHARACTER' => [
-            // Note that this was re-added in PHP version 7.4
             '7.0'       => true,
             'extension' => 'tokenizer',
         ],

@@ -940,11 +940,10 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
      */
     public function testTBadCharacter($phpVersion, $shouldError)
     {
-        $line = 140;
-
+        $line    = 140;
         $message = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+        $file    = $this->sniffFile(__FILE__, $phpVersion);
 
-        $file = $this->sniffFile(__FILE__, $phpVersion);
         if ($shouldError) {
             $this->assertError($file, $line, $message);
         } else {

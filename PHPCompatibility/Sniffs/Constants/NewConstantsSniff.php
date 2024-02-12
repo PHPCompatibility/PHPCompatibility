@@ -6802,8 +6802,8 @@ class NewConstantsSniff extends Sniff
             '7.3' => false,
             '7.4' => true,
         ],
+        // Note: this constant has special casing in the handleFeature() method as it was also present in PHP < 7.0.
         'T_BAD_CHARACTER' => [
-            // Note that this also existed before PHP version 7.0
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'tokenizer',
