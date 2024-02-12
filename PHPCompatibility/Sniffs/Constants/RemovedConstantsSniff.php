@@ -1933,12 +1933,8 @@ class RemovedConstantsSniff extends Sniff
             'extension' => 'tokenizer',
         ],
         'T_BAD_CHARACTER' => [
-            '5.6' => false,
-            '7.0' => true,
-            '7.1' => true,
-            '7.2' => true,
-            '7.3'       => true,
-            '7.4'       => false,
+            // Note that this was re-added in PHP version 7.4
+            '7.0'       => true,
             'extension' => 'tokenizer',
         ],
         'MSSQL_ASSOC' => [
@@ -2723,35 +2719,6 @@ class RemovedConstantsSniff extends Sniff
         $versionInfo = $this->getVersionInfo($itemArray);
         $isError     = null;
 
-        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
-            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
-            // See also PHPCompatibility.Constants.NewConstants
-            $displayError = false;
-            $message      = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
-
-            foreach ($itemArray as $version => $absent) {
-                if ($absent !== true) {
-                    // We only need to show an error if the constant is _missing_ from the version under test
-                    continue;
-                }
-
-                if (ScannedCode::shouldRunOnOrAbove($version) && ScannedCode::shouldRunOnOrBelow($version)) {
-                    $displayError = true;
-                    break;
-                }
-            }
-
-            if ($displayError === true) {
-                // Remove this flag as it's not correct and its presence alters the error code
-                $versionInfo['deprecated'] = '';
-
-                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
-                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
-            }
-
-            return;
-        }
-
         if (empty($versionInfo['removed']) === false
             && ScannedCode::shouldRunOnOrAbove($versionInfo['removed']) === true
         ) {
@@ -2766,6 +2733,19 @@ class RemovedConstantsSniff extends Sniff
         }
 
         if (isset($isError) === false) {
+            return;
+        }
+
+        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
+            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
+            // See also PHPCompatibility.Constants.NewConstants
+            if (ScannedCode::shouldRunOnOrBelow('7.3')) {
+                $message = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
+            }
+
             return;
         }
 
