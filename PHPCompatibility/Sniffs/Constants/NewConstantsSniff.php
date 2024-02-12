@@ -32,7 +32,7 @@ class NewConstantsSniff extends Sniff
      * A list of new PHP Constants, not present in older versions.
      *
      * The array lists : version number with false (not present) or true (present).
-     * If's sufficient to list the first version where the constant appears.
+     * It's sufficient to list the first version where the constant appears.
      *
      * Note: PHP constants are case-sensitive!
      *
@@ -6802,6 +6802,7 @@ class NewConstantsSniff extends Sniff
             '7.3' => false,
             '7.4' => true,
         ],
+        // Note: this constant has special casing in the handleFeature() method as it was also present in PHP < 7.0.
         'T_BAD_CHARACTER' => [
             '7.3'       => false,
             '7.4'       => true,
@@ -8088,6 +8089,19 @@ class NewConstantsSniff extends Sniff
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
         ) {
+            return;
+        }
+
+        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
+            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
+            // See also PHPCompatibility.Constants.RemovedConstants
+            if (ScannedCode::shouldRunOnOrAbove('7.0')) {
+                $message = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
+            }
+
             return;
         }
 

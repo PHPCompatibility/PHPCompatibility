@@ -33,7 +33,7 @@ class RemovedConstantsSniff extends Sniff
      * A list of removed PHP Constants.
      *
      * The array lists : version number with false (deprecated) or true (removed).
-     * If's sufficient to list the first version where the constant was deprecated/removed.
+     * It's sufficient to list the first version where the constant was deprecated/removed.
      *
      * Optional, the array can contain an `alternative` key listing an alternative constant
      * to be used instead.
@@ -1932,6 +1932,7 @@ class RemovedConstantsSniff extends Sniff
             '7.0'       => true,
             'extension' => 'tokenizer',
         ],
+        // Note: this constant has special casing in the handleFeature() method as it is also present in PHP >= 7.4.
         'T_BAD_CHARACTER' => [
             '7.0'       => true,
             'extension' => 'tokenizer',
@@ -2732,6 +2733,19 @@ class RemovedConstantsSniff extends Sniff
         }
 
         if (isset($isError) === false) {
+            return;
+        }
+
+        if ($itemInfo['name'] === 'T_BAD_CHARACTER') {
+            // T_BAD_CHARACTER is a special case. It was removed in 7.0.0 and re-added in 7.4.0
+            // See also PHPCompatibility.Constants.NewConstants
+            if (ScannedCode::shouldRunOnOrBelow('7.3')) {
+                $message = 'The constant "T_BAD_CHARACTER" is not present in PHP versions 7.0 through 7.3';
+                $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
+
+                $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
+            }
+
             return;
         }
 
