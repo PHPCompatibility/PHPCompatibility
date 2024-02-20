@@ -62,16 +62,38 @@ class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTestCase
     /**
      * Verify there are no false positives on valid code.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives()
+    {
+        $cases = [];
 
         // No errors expected on the first 16 lines.
         for ($line = 1; $line <= 16; $line++) {
-            $this->assertNoViolation($file, $line);
+            $cases[] = [$line];
         }
+
+        $cases[] = [39];
+        $cases[] = [40];
+
+        return $cases;
     }
 
 

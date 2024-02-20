@@ -146,8 +146,8 @@ class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParame
             }
         }
 
-        if ($length === 1) {
-            // Single-byte, we're good.
+        if ($length <= 1) {
+            // Single-byte or empty string, we're good.
             return;
         }
 

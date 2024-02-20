@@ -34,3 +34,7 @@ EOD
 ::
 EOT
 ); // Both multi-byte.
+
+// Bug #1679: empty string was incorrectly being flagged as multi-byte.
+number_format($number, $decimals, '', ''); // OK.
+number_format($number, $decimals, "", ""); // OK.
