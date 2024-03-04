@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
@@ -57,6 +58,11 @@ class NewArrayUnpackingSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // If the syntax is used within an attribute, it will be interpreted as a comment on PHP < 8.0, so not an issue.
             return;
         }
 
