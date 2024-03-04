@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 
@@ -31,19 +32,6 @@ class NewArrayUnpackingSniff extends Sniff
 {
 
     /**
-     * Array target tokens.
-     *
-     * @since 10.0.0
-     *
-     * @var array<int|string, int|string>
-     */
-    private $arrayTokens = [
-        \T_ARRAY               => \T_ARRAY,
-        \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
-        \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
-    ];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 9.2.0
@@ -52,7 +40,7 @@ class NewArrayUnpackingSniff extends Sniff
      */
     public function register()
     {
-        return $this->arrayTokens;
+        return Collections::arrayOpenTokensBC();
     }
 
     /**
@@ -90,7 +78,7 @@ class NewArrayUnpackingSniff extends Sniff
             $nestingLevel = \count($tokens[($opener + 1)]['nested_parenthesis']);
         }
 
-        $find              = $this->arrayTokens;
+        $find              = Collections::arrayOpenTokensBC();
         $find[\T_ELLIPSIS] = \T_ELLIPSIS;
 
         for ($i = $opener; $i < $closer;) {
