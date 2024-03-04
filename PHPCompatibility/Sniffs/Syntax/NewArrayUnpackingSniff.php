@@ -84,8 +84,9 @@ class NewArrayUnpackingSniff extends Sniff
             $nestingLevel = \count($tokens[($opener + 1)]['nested_parenthesis']);
         }
 
-        $find              = Collections::arrayOpenTokensBC();
-        $find[\T_ELLIPSIS] = \T_ELLIPSIS;
+        $find                        = Collections::arrayOpenTokensBC();
+        $find[\T_ELLIPSIS]           = \T_ELLIPSIS;
+        $find[\T_OPEN_CURLY_BRACKET] = \T_OPEN_CURLY_BRACKET;
 
         for ($i = $opener; $i < $closer;) {
             $i = $phpcsFile->findNext($find, ($i + 1), $closer);

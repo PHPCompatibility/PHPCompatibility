@@ -102,9 +102,14 @@ class NewArrayUnpackingUnitTest extends BaseSniffTestCase
         // Attribute
         $data[] = [46];
 
-        // Don't report for live coding.
+        // Parse errors, but not necessarily live coding.
+        $data[] = [51];
         $data[] = [52];
         $data[] = [53];
+
+        // Don't report for live coding.
+        $data[] = [57];
+        $data[] = [58];
 
         return $data;
     }
