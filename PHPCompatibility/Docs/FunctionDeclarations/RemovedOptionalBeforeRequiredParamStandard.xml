@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Optional Before Required Parameter"
+    >
+    <standard>
+    <![CDATA[
+    Declaring an optional function parameter before a required parameter is deprecated since PHP 8.0.
+    
+    Either remove the default parameter value to change the optional parameter to a required one; or make the parameters after the optional parameter also optional by giving them a default value.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: optional parameters are declared after required parameters.">
+        <![CDATA[
+function foo($a, <em>$b = 0</em>) {}
+
+function bar(string $a, <em>int $b = 0</em>) {}
+
+// Exception: non-nullable typed parameters
+// with a default value of `null` are still
+// allowed.
+function nullDefault(<em>Foo $a = null</em>, $b) {}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.0: optional parameter before required parameter.">
+        <![CDATA[
+function foo(<em>$a = 0</em>, $b) {}
+
+function bar(<em>string $a = 'foo'</em>, int $b) {}
+
+// Deprecated in 8.0, shows notice since 8.1.
+function typed(<em>?string $a = null</em>, int $b) {}
+
+// Deprecated in 8.0, shows notice since 8.3.
+function typed(<em>string|null $a = null</em>, int $b) {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
