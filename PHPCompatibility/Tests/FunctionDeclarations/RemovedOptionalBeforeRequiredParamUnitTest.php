@@ -57,6 +57,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             [20],
             [32],
             [39],
+            [51],
         ];
     }
 
@@ -99,8 +100,11 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         // Constructor property promotion - valid example.
         $cases[] = [46];
 
+        // Constant expression containing null in default value for optional param.
+        $cases[] = [52];
+
         // Add parse error test case.
-        $cases[] = [51];
+        $cases[] = [55];
 
         return $cases;
     }

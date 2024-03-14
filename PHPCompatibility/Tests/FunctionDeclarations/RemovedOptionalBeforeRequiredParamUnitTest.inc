@@ -47,5 +47,9 @@ class MixedWithOptionalParam {
     ) {}
 }
 
+// Test handling of constant expression in default value. This should throw a deprecation notice.
+function constantExpressionInDefault( int $a = MY_CONST ? 10 : /*comment*/ NULL, $b) {}
+function constantExpressionInDefaultNoRequireAfter( $a, ?int $b = MY_CONST ? /*comment*/ 10 : NULL, $c = 10) {} // This should be okay.
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
