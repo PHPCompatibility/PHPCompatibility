@@ -89,22 +89,22 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases = [];
         // No errors expected on the first 9 lines.
         for ($line = 1; $line <= 9; $line++) {
-            $cases[] = [$line];
+            $cases['line ' . $line] = [$line];
         }
 
         // Don't error on variadic parameters.
-        $cases[] = [23];
-        $cases[] = [24];
-        $cases[] = [26];
+        $cases['line 23 - variadic params'] = [23];
+        $cases['line 24 - variadic params'] = [24];
+        $cases['line 26 - variadic params'] = [26];
 
         // Constructor property promotion - valid example.
-        $cases[] = [46];
+        $cases['line 46 - constructor property promotion'] = [46];
 
         // Constant expression containing null in default value for optional param.
-        $cases[] = [52];
+        $cases['line 52 - constant expression'] = [52];
 
         // Add parse error test case.
-        $cases[] = [55];
+        $cases['line 55 - parse error'] = [55];
 
         return $cases;
     }
