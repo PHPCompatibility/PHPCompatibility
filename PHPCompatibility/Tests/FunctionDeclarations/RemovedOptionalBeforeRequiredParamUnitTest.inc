@@ -75,12 +75,33 @@ class ConstructorPropertyPromotionWithNullableType {
     public function __construct(public ?NotOkay $prop = null, $b) {}
 }
 
-// Combination: contains both a parameter flagged in PHP 8.0, as well as one flagged in PHP 8.1.
-function optionalBeforeRequiredAndNullableTypedOptionalBeforeRequired(
-    T1 $a,
-    ?T2 $b = null, // PHP 8.1 deprecation.
-    int $c = 10, // PHP 8.0 deprecation.
-    T4 $d,
+/*
+ * Deprecated in PHP 8.0, but only flagged as of PHP 8.3.
+ */
+function nullLastUnionTypedWithNullDefaultValueBeforeOptional(T1 $a, T2|null $b = null, T3 $c = null) {} // This is fine.
+$nullFirstUnionTypedWithNullDefaultValueBeforeOptional = fn(T1 $a, null|T2 $b = null, T3 $c = null) => dosomething(); // This is fine.
+$nonNullableIntersectionTypeWithNullDefaultBeforeRequired = function ( Foo&Bar $c = null, $d) {}; // This is fine.
+
+// Deprecated as of PHP 8.0, but only emits a deprecation notice in PHP itself as of PHP 8.3.
+function nullLastUnionTypedWithNullDefaultValueBeforeRequired(Okay $a, NotOkay|null $b = null, Required $c) {}
+function nullFirstUnionTypedWithNullDefaultValueBeforeRequired(Okay $a, null|NotOkay $b = null, Required $c) {}
+$nullInDNFTypeWithNullDefaultValueBeforeRequired = function ( (Foo&NotOkay)|null $e = null, $f) {};
+function nullStandAloneTypedWithNullDefaultValueBeforeRequired(Okay $a, null $b = null, Required $c) {}
+$nullStandAloneTypedWithNullDefaultValueBeforeRequiredWithComment = fn (/*comment*/ null $b = null, Required $c) => $c;
+function mixedTypedWithNullDefaultValueBeforeRequired(Okay $a, mixed /*comment*/ $b = null, Required $c) {}
+
+// PHP 8.3 deprecation notice also applies to constructor property promotion.
+class ConstructorPropertyPromotionWithUnionTypedWithNull {
+    public function __construct(public null|NotOkay $prop = null, $b) {}
+}
+
+// Combination: contains parameters for all deprecations.
+function combinationOfAllDeprecations(
+    Okay $a,
+    NotOkay|null $b = null, // PHP 8.3 deprecation.
+    ?NotOkay $c = null, // PHP 8.1 deprecation.
+    int $d = 10, // PHP 8.0 deprecation.
+    Required $e,
 ) {}
 
 // Intentional parse error. This has to be the last test in the file.

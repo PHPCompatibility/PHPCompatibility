@@ -28,11 +28,16 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * While deprecated since PHP 8.0, optional parameters with an explicitly nullable type
  * and a null default value, and found before a required parameter, are only flagged since PHP 8.1.
  *
+ * While deprecated since PHP 8.0, optional parameters with an union type which includes null
+ * and a null default value, and found before a required parameter, are only flagged since PHP 8.3.
+ *
  * PHP version 8.0
  * PHP version 8.1
+ * PHP version 8.3
  *
  * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L145-L151
  * @link https://github.com/php/php-src/commit/c939bd2f10b41bced49eb5bf12d48c3cf64f984a
+ * @link https://github.com/php/php-src/commit/68ef3938f42aefa3881c268b12b3c0f1ecc5888d
  *
  * @since 10.0.0
  */
@@ -52,6 +57,13 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      * @var string
      */
     const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
+
+    /**
+     * Base message for the PHP 8.3 deprecation.
+     *
+     * @var string
+     */
+    const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
 
     /**
      * Message template for detailed information about the deprecation.
@@ -139,9 +151,20 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
             $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
             $hasNonNull = $phpcsFile->findNext($this->allowedInDefault, $param['default_token'], $param['comma_token'], true);
 
+            // Check for union types which include null, mixed types and stand-alone null types.
+            $hasNullType = false;
+            if ($param['type_hint_token'] !== false) {
+                if ($param['type_hint'] === 'mixed' || $param['type_hint'] === 'null') {
+                    $hasNullType = $param['type_hint_token'];
+                } else {
+                    $hasNullType = $phpcsFile->findNext(\T_NULL, $param['type_hint_token'], ($param['type_hint_end_token'] + 1));
+                }
+            }
+
             // Check if it's typed with a non-nullable type and has a null default value, in which case we can ignore it.
             if ($param['type_hint'] !== ''
                 && $param['nullable_type'] === false
+                && $hasNullType === false
                 && ($hasNull !== false && $hasNonNull === false)
             ) {
                 continue;
@@ -155,14 +178,25 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 $requiredParam,
             ];
 
-            if ($param['nullable_type'] === true && $hasNull !== false) {
-                // Skip flagging the issue if the codebase doesn't need to run on PHP 8.1+.
-                if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
-                    continue;
-                }
+            if ($hasNull !== false) {
+                if ($param['nullable_type'] === true) {
+                    // Skip flagging the issue if the codebase doesn't need to run on PHP 8.1+.
+                    if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
+                        continue;
+                    }
 
-                $error = self::PHP81_MSG . self::MSG_DETAILS;
-                $code  = 'Deprecated81';
+                    $error = self::PHP81_MSG . self::MSG_DETAILS;
+                    $code  = 'Deprecated81';
+
+                } elseif ($hasNullType !== false) {
+                    // Skip flagging the issue if the codebase doesn't need to run on PHP 8.3+.
+                    if (ScannedCode::shouldRunOnOrAbove('8.3') === false) {
+                        continue;
+                    }
+
+                    $error = self::PHP83_MSG . self::MSG_DETAILS;
+                    $code  = 'Deprecated83';
+                }
             }
 
             $phpcsFile->addWarning($error, $param['token'], $code, $data);
