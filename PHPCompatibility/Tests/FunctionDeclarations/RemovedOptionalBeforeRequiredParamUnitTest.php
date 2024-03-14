@@ -26,28 +26,42 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
 {
 
     /**
+     * Base message for the PHP 8.0 deprecation.
+     *
+     * @var string
+     */
+    const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
+
+    /**
+     * Base message for the PHP 8.1 deprecation.
+     *
+     * @var string
+     */
+    const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
+
+    /**
      * Verify that the sniff throws a warning for optional parameters before required.
      *
-     * @dataProvider dataRemovedOptionalBeforeRequiredParam
+     * @dataProvider dataRemovedOptionalBeforeRequiredParam80
      *
      * @param int $line The line number where a warning is expected.
      *
      * @return void
      */
-    public function testRemovedOptionalBeforeRequiredParam($line)
+    public function testRemovedOptionalBeforeRequiredParam80($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertWarning($file, $line, 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0');
+        $this->assertWarning($file, $line, self::PHP80_MSG);
     }
 
     /**
      * Data provider.
      *
-     * @see testRemovedOptionalBeforeRequiredParam()
+     * @see testRemovedOptionalBeforeRequiredParam80()
      *
      * @return array
      */
-    public static function dataRemovedOptionalBeforeRequiredParam()
+    public static function dataRemovedOptionalBeforeRequiredParam80()
     {
         return [
             [13],
@@ -61,6 +75,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             [57],
             [58],
             [59],
+            [82],
         ];
     }
 
@@ -68,13 +83,13 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
     /**
      * Verify the sniff does not throw false positives for valid code.
      *
-     * @dataProvider dataNoFalsePositives
+     * @dataProvider dataNoFalsePositives80
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives($line)
+    public function testNoFalsePositives80($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file, $line);
@@ -83,11 +98,11 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @see testNoFalsePositives()
+     * @see testNoFalsePositives80()
      *
      * @return array
      */
-    public static function dataNoFalsePositives()
+    public static function dataNoFalsePositives80()
     {
         $cases = [];
         // No errors expected on the first 9 lines.
@@ -110,8 +125,85 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases['line 60 - new in initializers'] = [60];
         $cases['line 61 - new in initializers'] = [61];
 
+        // Not deprecated, false positive checks for PHP 8.1 deprecation.
+        $cases['line 67 - related to PHP 8.1 deprecation'] = [67];
+        $cases['line 68 - related to PHP 8.1 deprecation'] = [68];
+
+        // Deprecated, but only flagged as of PHP 8.1.
+        $cases['line 71 - deprecated in PHP 8.1'] = [71];
+        $cases['line 75 - deprecated in PHP 8.1'] = [75];
+        $cases['line 81 - deprecated in PHP 8.1'] = [81];
+
         // Add parse error test case.
-        $cases['line 65 - parse error'] = [65];
+        $cases['line 87 - parse error'] = [87];
+
+        return $cases;
+    }
+
+
+    /**
+     * Verify that the sniff throws a warning for optional parameters with a nullable type before required.
+     *
+     * @dataProvider dataRemovedOptionalBeforeRequiredParam81
+     *
+     * @param int    $line The line number where a warning is expected.
+     * @param string $msg  The expected warning message.
+     *
+     * @return void
+     */
+    public function testRemovedOptionalBeforeRequiredParam81($line, $msg = self::PHP80_MSG)
+    {
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertWarning($file, $line, $msg);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedOptionalBeforeRequiredParam81()
+     *
+     * @return array
+     */
+    public static function dataRemovedOptionalBeforeRequiredParam81()
+    {
+        $data   = self::dataRemovedOptionalBeforeRequiredParam80();
+        $data[] = [71, self::PHP81_MSG];
+        $data[] = [75, self::PHP81_MSG];
+        $data[] = [81, self::PHP81_MSG];
+        return $data;
+    }
+
+
+    /**
+     * Verify the sniff does not throw false positives for valid code.
+     *
+     * @dataProvider dataNoFalsePositives81
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives81($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives81()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives81()
+    {
+        $cases = self::dataNoFalsePositives80();
+        unset(
+            $cases['line 71 - deprecated in PHP 8.1'],
+            $cases['line 75 - deprecated in PHP 8.1'],
+            $cases['line 81 - deprecated in PHP 8.1']
+        );
 
         return $cases;
     }

@@ -5,10 +5,10 @@
  */
 function requiredBeforeOptional($a, $b, $c = null, $d = true) {}
 function requiredBeforeOptionalWithTypes(?int $a, string $b, callable $c = NULL, bool $d = /*comment*/ true) {}
-function nullableTypedOptionalBeforeRequired(Foo $a = /* comment */ null, ?int $b = null, $c, $d) {}
+function requiredTypedWithNullDefaultBeforeRequired(Foo $a = /* comment */ null, int $b = null, $c, $d) {}
 
 /*
- * Deprecated in PHP 8.
+ * Deprecated in PHP 8.0.
  */
 function optionalBeforeRequired($a = [], $b, $c) {}
 function nonNullTypedOptionalBeforeRequired(int $a = 1, bool $b) {}
@@ -59,6 +59,28 @@ function newInInitializers(
     string $c = 'text' . new ClassWithToStringMethod(null),
     Required $d,
     OkayOptionalIsLast $e = new OkayOptionalIsLast,
+) {}
+
+/*
+ * Deprecated in PHP 8.0, but only flagged as of PHP 8.1.
+ */
+function nonNullableTypedWithNullDefaultValueBeforeRequired(T1 $a, T2 $b = null, T3 $c) {} // This is fine.
+$nullableTypedWithNullDefaultValueBeforeOptional = function (T1 $a, ?T2 $b = null, T3 $c = null) {}; // This is fine.
+
+// Deprecated as of PHP 8.0, but only emits a deprecation notice in PHP itself as of PHP 8.1.
+function nullableTypedOptionalBeforeRequired(Okay $a, ?NotOkay $b = /* comment */ null, Required $c) {}
+
+// PHP 8.1 deprecation notice also applies to constructor property promotion.
+class ConstructorPropertyPromotionWithNullableType {
+    public function __construct(public ?NotOkay $prop = null, $b) {}
+}
+
+// Combination: contains both a parameter flagged in PHP 8.0, as well as one flagged in PHP 8.1.
+function optionalBeforeRequiredAndNullableTypedOptionalBeforeRequired(
+    T1 $a,
+    ?T2 $b = null, // PHP 8.1 deprecation.
+    int $c = 10, // PHP 8.0 deprecation.
+    T4 $d,
 ) {}
 
 // Intentional parse error. This has to be the last test in the file.
