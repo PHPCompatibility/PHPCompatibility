@@ -37,7 +37,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
     public function testRemovedOptionalBeforeRequiredParam($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
-        $this->assertWarning($file, $line, 'Declaring a required parameter after an optional one is deprecated since PHP 8.0');
+        $this->assertWarning($file, $line, 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0');
     }
 
     /**
@@ -50,13 +50,13 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
     public static function dataRemovedOptionalBeforeRequiredParam()
     {
         return [
-            [13], // Warning x 2.
+            [13],
             [14],
             [16],
             [17],
             [20],
-            [32],
-            [39],
+            [31],
+            [38],
             [51],
         ];
     }

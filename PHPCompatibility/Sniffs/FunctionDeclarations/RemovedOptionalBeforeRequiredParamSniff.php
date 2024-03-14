@@ -18,7 +18,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
- * Declaring a required function parameter after an optional parameter is deprecated since PHP 8.0.
+ * Declaring an optional function parameter before a required parameter is deprecated since PHP 8.0.
  *
  * > Declaring a required parameter after an optional one is deprecated. As an
  * > exception, declaring a parameter of the form "Type $param = null" before
@@ -84,12 +84,12 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
             return;
         }
 
-        $error = 'Declaring a required parameter after an optional one is deprecated since PHP 8.0. Parameter %s is optional, while parameter %s is required.';
+        $error = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0. Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
 
-        $paramCount    = \count($parameters);
-        $lastKey       = ($paramCount - 1);
-        $firstOptional = null;
+        $requiredParam = null;
+        $parameters    = \array_reverse($parameters);
 
+        // Walk the parameters in reverse order (from last to first).
         foreach ($parameters as $key => $param) {
             /*
              * Ignore variadic parameters, which are optional by nature.
@@ -99,46 +99,38 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 continue;
             }
 
-            // Handle optional parameters.
-            if (isset($param['default']) === true) {
-                if ($key === $lastKey) {
-                    // This is the last parameter and it's optional, no further checking needed.
-                    break;
-                }
-
-                if (isset($firstOptional) === false) {
-                    // Check if it's typed and has a null default value, in which case we can ignore it.
-                    if ($param['type_hint'] !== '') {
-                        $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
-                        $hasNonNull = $phpcsFile->findNext(
-                            $this->allowedInDefault,
-                            $param['default_token'],
-                            $param['comma_token'],
-                            true
-                        );
-
-                        if ($hasNull !== false && $hasNonNull === false) {
-                            continue;
-                        }
-                    }
-
-                    // Non-null default value. This is an optional param we need to take into account.
-                    $firstOptional = $param['name'];
-                }
-
+            if (isset($param['default']) === false) {
+                $requiredParam = $param['name'];
                 continue;
             }
 
-            // Found a required parameter.
-            if (isset($firstOptional) === false) {
-                // No optional params found yet.
+            // Found an optional parameter.
+            if (isset($requiredParam) === false) {
+                // No required params found yet.
                 continue;
             }
 
-            // Found a required parameter with an optional param before it.
+            // Okay, so we have an optional parameter before a required one.
+            // Check if it's typed and has a null default value, in which case we can ignore it.
+            // Note: as this will never be the _last_ parameter, we can be sure the 'comma_token' will be set to a token and not `false`.
+            if ($param['type_hint'] !== '') {
+                $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
+                $hasNonNull = $phpcsFile->findNext(
+                    $this->allowedInDefault,
+                    $param['default_token'],
+                    $param['comma_token'],
+                    true
+                );
+
+                if ($hasNull !== false && $hasNonNull === false) {
+                    continue;
+                }
+            }
+
+            // Found an optional parameter with a required param after it.
             $data = [
-                $firstOptional,
                 $param['name'],
+                $requiredParam,
             ];
 
             $phpcsFile->addWarning($error, $param['token'], 'Deprecated', $data);
