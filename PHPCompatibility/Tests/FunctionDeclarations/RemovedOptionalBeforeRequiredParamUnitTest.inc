@@ -51,5 +51,15 @@ class MixedWithOptionalParam {
 function constantExpressionInDefault( int $a = MY_CONST ? 10 : /*comment*/ NULL, $b) {}
 function constantExpressionInDefaultNoRequireAfter( $a, ?int $b = MY_CONST ? /*comment*/ 10 : NULL, $c = 10) {} // This should be okay.
 
+// Check handling of PHP 8.1 new in initializers when `null` is passed as a parameter.
+// $a - $d should all be flagged for 8.0, the fact that new in initializers is not supported on PHP 8.0 is irrelevant and handled by another sniff.
+function newInInitializers(
+    OkayNoParens $a = new OkayNoParens,
+    NullAsParamInInitializer $b = new NullAsParamInInitializer(null),
+    string $c = 'text' . new ClassWithToStringMethod(null),
+    Required $d,
+    OkayOptionalIsLast $e = new OkayOptionalIsLast,
+) {}
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b

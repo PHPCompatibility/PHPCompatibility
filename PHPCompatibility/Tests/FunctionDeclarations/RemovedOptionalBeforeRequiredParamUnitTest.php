@@ -58,6 +58,9 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             [31],
             [38],
             [51],
+            [57],
+            [58],
+            [59],
         ];
     }
 
@@ -103,8 +106,12 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         // Constant expression containing null in default value for optional param.
         $cases['line 52 - constant expression'] = [52];
 
+        // New in initializers tests.
+        $cases['line 60 - new in initializers'] = [60];
+        $cases['line 61 - new in initializers'] = [61];
+
         // Add parse error test case.
-        $cases['line 55 - parse error'] = [55];
+        $cases['line 65 - parse error'] = [65];
 
         return $cases;
     }
