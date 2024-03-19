@@ -4,7 +4,7 @@
  * OK on all versions.
  */
 function requiredBeforeOptional($a, $b, $c = null, $d = true) {}
-function requiredBeforeOptionalWithTypes(?int $a, string $b, callable $c = null, bool $d = /*comment*/ true) {}
+function requiredBeforeOptionalWithTypes(?int $a, string $b, callable $c = NULL, bool $d = /*comment*/ true) {}
 function nullableTypedOptionalBeforeRequired(Foo $a = /* comment */ null, ?int $b = null, $c, $d) {}
 
 /*
@@ -21,7 +21,7 @@ $closure = function ($a = /*comment*/, $b) {};
 
 // Prevent false positives on variadic parameters.
 function variadicIsOptionalByNature($a, int ...$b) {}
-function variadicIsOptionalByNatureWithExtraOptional($a, $b = null, ...$c) {}
+function variadicIsOptionalByNatureWithExtraOptional($a, $b = NULL, ...$c) {}
 // Intentional parse error. This has always been an error though, so ignore for this sniff.
 function variadicBeforeRequiredWasAlwaysAnError(...$a, $b) {}
 
