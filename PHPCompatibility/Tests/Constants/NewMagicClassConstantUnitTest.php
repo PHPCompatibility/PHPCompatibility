@@ -61,7 +61,6 @@ class NewMagicClassConstantUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [67],
         ];
     }
 
@@ -100,6 +99,8 @@ class NewMagicClassConstantUnitTest extends BaseSniffTestCase
         for ($line = 54; $line <= 61; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [67];
 
         return $data;
     }
