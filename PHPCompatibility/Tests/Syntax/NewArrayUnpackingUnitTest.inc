@@ -40,6 +40,18 @@ $arr2 = [...&$arr1];
 // Short list, not short array. Parse error. Ignore.
 [$a, ...$b] = $array;
 
+// Attributes were introduced after PHP 7.4, so we can safely ignore them for this sniff,
+// as these will always be treated as comments prior to PHP 8.0.
+class Foo {
+    #[IsValid([0, ...[1, 2, 3]])]
+    public function __construct() {}
+}
+
+// Intentional parse error. These are not valid syntax. We should not identify any errors here.
+$array = [(...$test)];
+$array = array({...$test});
+$array = [{];
+
 // Intentional parse error. This has to be the last test in the file.
 $arr5 = array(
     ...$arr1,

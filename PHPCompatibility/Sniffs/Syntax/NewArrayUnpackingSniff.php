@@ -14,7 +14,9 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
@@ -31,19 +33,6 @@ class NewArrayUnpackingSniff extends Sniff
 {
 
     /**
-     * Array target tokens.
-     *
-     * @since 10.0.0
-     *
-     * @var array<int|string, int|string>
-     */
-    private $arrayTokens = [
-        \T_ARRAY               => \T_ARRAY,
-        \T_OPEN_SHORT_ARRAY    => \T_OPEN_SHORT_ARRAY,
-        \T_OPEN_SQUARE_BRACKET => \T_OPEN_SQUARE_BRACKET,
-    ];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 9.2.0
@@ -52,7 +41,7 @@ class NewArrayUnpackingSniff extends Sniff
      */
     public function register()
     {
-        return $this->arrayTokens;
+        return Collections::arrayOpenTokensBC();
     }
 
     /**
@@ -69,6 +58,11 @@ class NewArrayUnpackingSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // If the syntax is used within an attribute, it will be interpreted as a comment on PHP < 8.0, so not an issue.
             return;
         }
 
@@ -90,8 +84,9 @@ class NewArrayUnpackingSniff extends Sniff
             $nestingLevel = \count($tokens[($opener + 1)]['nested_parenthesis']);
         }
 
-        $find              = $this->arrayTokens;
-        $find[\T_ELLIPSIS] = \T_ELLIPSIS;
+        $find                        = Collections::arrayOpenTokensBC();
+        $find[\T_ELLIPSIS]           = \T_ELLIPSIS;
+        $find[\T_OPEN_CURLY_BRACKET] = \T_OPEN_CURLY_BRACKET;
 
         for ($i = $opener; $i < $closer;) {
             $i = $phpcsFile->findNext($find, ($i + 1), $closer);
