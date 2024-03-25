@@ -20,6 +20,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -1095,6 +1096,17 @@ class NewClassesSniff extends Sniff
         ],
     ];
 
+    /**
+     * This attribute holds information about imported class declarations. They do not point
+     * to the PHP default classes, but to classes that are imported from other namespaces.
+     *
+     * They will be ignored by the `process()` method.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, array<string>>
+     */
+    private $importedClasses = [];
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -1123,6 +1135,7 @@ class NewClassesSniff extends Sniff
         $this->newClasses = \array_merge($this->newClasses, $this->newExceptions);
 
         $targets = [
+            \T_USE,
             \T_NEW,
             \T_CLASS,
             \T_ANON_CLASS,
@@ -1153,6 +1166,10 @@ class NewClassesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
+            case \T_USE:
+                $this->processUseToken($phpcsFile, $stackPtr);
+                break;
+
             case \T_VARIABLE:
                 $this->processVariableToken($phpcsFile, $stackPtr);
                 break;
@@ -1373,6 +1390,38 @@ class NewClassesSniff extends Sniff
         }
     }
 
+    /**
+     * Processes this test for when a use token is encountered.
+     *
+     * - Save imported classes for later use.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processUseToken(File $phpcsFile, $stackPtr)
+    {
+        if (!UseStatements::isImportUse($phpcsFile, $stackPtr)) {
+            return;
+        }
+
+        $splitUseStatement = UseStatements::splitImportUseStatement($phpcsFile, $stackPtr);
+
+        foreach ($splitUseStatement['name'] as $name => $fullyQualifiedName) {
+
+            $lowerFullyQualifiedName = strtolower($fullyQualifiedName);
+            if (isset($this->newClasses[$lowerFullyQualifiedName]) || isset($this->newExceptions[$lowerFullyQualifiedName])) {
+                continue;
+            }
+
+            $this->importedClasses[$phpcsFile->path][] = $name;
+        }
+    }
+
 
     /**
      * Handle the retrieval of relevant information and - if necessary - throwing of an
@@ -1389,6 +1438,12 @@ class NewClassesSniff extends Sniff
      */
     protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
+        if (isset($this->importedClasses[$phpcsFile->path]) &&
+            in_array($itemInfo['name'], $this->importedClasses[$phpcsFile->path], true)
+        ) {
+            return;
+        }
+
         $itemArray   = $this->newClasses[$itemInfo['nameLc']];
         $versionInfo = $this->getVersionInfo($itemArray);
 
