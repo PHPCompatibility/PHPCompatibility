@@ -12,7 +12,7 @@ abstract class AbstractClass {
     function class() {}
 }
 
-// Anon classes do not take keywords (and are not mentioned in the RFC).
+// Prior to PHP 8.3, anon classes do not take keywords (and are not mentioned in the RFC).
 $anon = new class () {};
 
 /**
@@ -50,3 +50,14 @@ ClassName {}
 
 // Duplicate readonly modifier is not allowed, but that's not the concern of this sniff.
 readonly readonly class DoubleReadonly {}
+
+/**
+ * PHP 8.3+: readonly anonymous classes.
+ */
+$anon = new Readonly class {};
+$anon = new readonly class() {};
+$anon = new
+// comment
+ReadOnly
+// phpcs:ignore Stnd.Cat.Sniff
+class {};
