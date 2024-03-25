@@ -132,4 +132,14 @@ class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ensure that the fixer produces expected output
+     *
+     * @return void
+     */
+    public function testFixer()
+    {
+        $this->assertFixerOutputMatches(str_replace('.php', '.inc', __FILE__));
+    }
 }
