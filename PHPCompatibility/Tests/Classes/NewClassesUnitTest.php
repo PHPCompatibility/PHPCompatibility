@@ -334,4 +334,15 @@ class NewClassesUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
+
+    /**
+     * If classes with same name are used in other namespaces, they should not be flagged.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileIfOtherNamespace()
+    {
+        $file = $this->sniffFile(__DIR__ . '/NewClassesUsesUnitTest.inc', '5.1');
+        $this->assertNoViolation($file);
+    }
 }
