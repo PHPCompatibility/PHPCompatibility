@@ -18,21 +18,59 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
- * Declaring a required function parameter after an optional parameter is deprecated since PHP 8.0.
+ * Declaring an optional function parameter before a required parameter is deprecated since PHP 8.0.
  *
  * > Declaring a required parameter after an optional one is deprecated. As an
  * > exception, declaring a parameter of the form "Type $param = null" before
  * > a required one continues to be allowed, because this pattern was sometimes
  * > used to achieve nullable types in older PHP versions.
  *
+ * While deprecated since PHP 8.0, optional parameters with an explicitly nullable type
+ * and a null default value, and found before a required parameter, are only flagged since PHP 8.1.
+ *
+ * While deprecated since PHP 8.0, optional parameters with an union type which includes null
+ * and a null default value, and found before a required parameter, are only flagged since PHP 8.3.
+ *
  * PHP version 8.0
+ * PHP version 8.1
+ * PHP version 8.3
  *
  * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L145-L151
+ * @link https://github.com/php/php-src/commit/c939bd2f10b41bced49eb5bf12d48c3cf64f984a
+ * @link https://github.com/php/php-src/commit/68ef3938f42aefa3881c268b12b3c0f1ecc5888d
  *
  * @since 10.0.0
  */
 class RemovedOptionalBeforeRequiredParamSniff extends Sniff
 {
+
+    /**
+     * Base message for the PHP 8.0 deprecation.
+     *
+     * @var string
+     */
+    const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
+
+    /**
+     * Base message for the PHP 8.1 deprecation.
+     *
+     * @var string
+     */
+    const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
+
+    /**
+     * Base message for the PHP 8.3 deprecation.
+     *
+     * @var string
+     */
+    const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
+
+    /**
+     * Message template for detailed information about the deprecation.
+     *
+     * @var string
+     */
+    const MSG_DETAILS = ' Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
 
     /**
      * Tokens allowed in the default value.
@@ -84,12 +122,10 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
             return;
         }
 
-        $error = 'Declaring a required parameter after an optional one is deprecated since PHP 8.0. Parameter %s is optional, while parameter %s is required.';
+        $requiredParam = null;
+        $parameters    = \array_reverse($parameters);
 
-        $paramCount    = \count($parameters);
-        $lastKey       = ($paramCount - 1);
-        $firstOptional = null;
-
+        // Walk the parameters in reverse order (from last to first).
         foreach ($parameters as $key => $param) {
             /*
              * Ignore variadic parameters, which are optional by nature.
@@ -99,49 +135,71 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 continue;
             }
 
-            // Handle optional parameters.
-            if (isset($param['default']) === true) {
-                if ($key === $lastKey) {
-                    // This is the last parameter and it's optional, no further checking needed.
-                    break;
-                }
-
-                if (isset($firstOptional) === false) {
-                    // Check if it's typed and has a null default value, in which case we can ignore it.
-                    if ($param['type_hint'] !== '') {
-                        $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
-                        $hasNonNull = $phpcsFile->findNext(
-                            $this->allowedInDefault,
-                            $param['default_token'],
-                            $param['comma_token'],
-                            true
-                        );
-
-                        if ($hasNull !== false && $hasNonNull === false) {
-                            continue;
-                        }
-                    }
-
-                    // Non-null default value. This is an optional param we need to take into account.
-                    $firstOptional = $param['name'];
-                }
-
+            if (isset($param['default']) === false) {
+                $requiredParam = $param['name'];
                 continue;
             }
 
-            // Found a required parameter.
-            if (isset($firstOptional) === false) {
-                // No optional params found yet.
+            // Found an optional parameter.
+            if (isset($requiredParam) === false) {
+                // No required params found yet.
                 continue;
             }
 
-            // Found a required parameter with an optional param before it.
-            $data = [
-                $firstOptional,
+            // Okay, so we have an optional parameter before a required one.
+            // Note: as this will never be the _last_ parameter, we can be sure the 'comma_token' will be set to a token and not `false`.
+            $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
+            $hasNonNull = $phpcsFile->findNext($this->allowedInDefault, $param['default_token'], $param['comma_token'], true);
+
+            // Check for union types which include null, mixed types and stand-alone null types.
+            $hasNullType = false;
+            if ($param['type_hint_token'] !== false) {
+                if ($param['type_hint'] === 'mixed' || $param['type_hint'] === 'null') {
+                    $hasNullType = $param['type_hint_token'];
+                } else {
+                    $hasNullType = $phpcsFile->findNext(\T_NULL, $param['type_hint_token'], ($param['type_hint_end_token'] + 1));
+                }
+            }
+
+            // Check if it's typed with a non-nullable type and has a null default value, in which case we can ignore it.
+            if ($param['type_hint'] !== ''
+                && $param['nullable_type'] === false
+                && $hasNullType === false
+                && ($hasNull !== false && $hasNonNull === false)
+            ) {
+                continue;
+            }
+
+            // Found an optional parameter with a required param after it.
+            $error = self::PHP80_MSG . self::MSG_DETAILS;
+            $code  = 'Deprecated80';
+            $data  = [
                 $param['name'],
+                $requiredParam,
             ];
 
-            $phpcsFile->addWarning($error, $param['token'], 'Deprecated', $data);
+            if ($hasNull !== false) {
+                if ($param['nullable_type'] === true) {
+                    // Skip flagging the issue if the codebase doesn't need to run on PHP 8.1+.
+                    if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
+                        continue;
+                    }
+
+                    $error = self::PHP81_MSG . self::MSG_DETAILS;
+                    $code  = 'Deprecated81';
+
+                } elseif ($hasNullType !== false) {
+                    // Skip flagging the issue if the codebase doesn't need to run on PHP 8.3+.
+                    if (ScannedCode::shouldRunOnOrAbove('8.3') === false) {
+                        continue;
+                    }
+
+                    $error = self::PHP83_MSG . self::MSG_DETAILS;
+                    $code  = 'Deprecated83';
+                }
+            }
+
+            $phpcsFile->addWarning($error, $param['token'], $code, $data);
         }
     }
 }
