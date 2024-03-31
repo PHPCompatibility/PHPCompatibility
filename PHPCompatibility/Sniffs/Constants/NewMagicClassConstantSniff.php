@@ -15,6 +15,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect usage of the magic `::class` constant introduced in PHP 5.5.
@@ -70,6 +71,11 @@ class NewMagicClassConstantSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         if (\strtolower($tokens[$stackPtr]['content']) !== 'class') {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // If the syntax is used within an attribute, it will be interpreted as a comment on PHP < 8.0, so not an issue.
             return;
         }
 
