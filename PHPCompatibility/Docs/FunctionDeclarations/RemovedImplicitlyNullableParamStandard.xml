@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Implicitly Nullable Parameter"
+    >
+    <standard>
+    <![CDATA[
+    Implicitly marking a typed parameter as nullable via a "null" default value, without giving it a nullable type, is deprecated since PHP 8.4.
+
+    The parameter type should be made explicitly nullable.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: parameter with a null default value is explicitly nullable.">
+        <![CDATA[
+function noTypeMeansMixed(<em></em>$a = null) {}
+function noDefaultValue(<em>Countable</em> $a) {}
+
+// PHP 7.1+: using a nullable type.
+function foo(<em>?Countable</em> $a = null) {}
+
+// PHP 8.0+: using a union type with null
+// or the explicit mixed type.
+function bar(<em>mixed</em> $a = null) {}
+function baz(<em>Countable|null</em> $a = null) {}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: parameter with a null default value is not declared as nullable.">
+        <![CDATA[
+function foo(<em>Countable</em> $a = <em>null</em>) {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
