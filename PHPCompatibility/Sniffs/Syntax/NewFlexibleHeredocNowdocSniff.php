@@ -183,7 +183,7 @@ class NewFlexibleHeredocNowdocSniff extends Sniff
     {
         $tokens    = $phpcsFile->getTokens();
         $error     = 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.';
-        $errorCode = 'ClosingMarkerNoNewLine';
+        $errorCode = 'CloserFoundInBody';
 
         if (\PHP_VERSION_ID >= 70300) {
             $nextNonWhitespace = $phpcsFile->findNext(\T_WHITESPACE, ($stackPtr + 1), null, true, null, true);
