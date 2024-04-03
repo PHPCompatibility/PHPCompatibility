@@ -1097,14 +1097,17 @@ class NewClassesSniff extends Sniff
     ];
 
     /**
-     * This attribute holds information about imported class declarations. They do not point
-     * to the PHP default classes, but to classes that are imported from other namespaces.
+     * Stores information about imported, namespaced classes with names which are also in use by PHP.
      *
-     * They will be ignored by the `process()` method.
+     * When those classes are used, they do not point to the PHP classes, but to the
+     * namespaced, imported class and those usages should be ignored by the sniff.
+     *
+     * The array is indexed by the file path. The value is an array indexed by unqualified class names in lower case.
+     * The value is always true. It is structured this way to utilize the isset() function for faster lookups.
      *
      * @since 10.0.0
      *
-     * @var array<string, array<string>>
+     * @var array<string, array<string,true>>
      */
     private $importedClasses = [];
 
@@ -1412,13 +1415,13 @@ class NewClassesSniff extends Sniff
         $splitUseStatement = UseStatements::splitImportUseStatement($phpcsFile, $stackPtr);
 
         foreach ($splitUseStatement['name'] as $name => $fullyQualifiedName) {
-
             $lowerFullyQualifiedName = strtolower($fullyQualifiedName);
-            if (isset($this->newClasses[$lowerFullyQualifiedName]) || isset($this->newExceptions[$lowerFullyQualifiedName])) {
+
+            if (isset($this->newClasses[$lowerFullyQualifiedName])) {
                 continue;
             }
 
-            $this->importedClasses[$phpcsFile->path][] = $name;
+            $this->importedClasses[$phpcsFile->getFilename()][strtolower($name)] = true;
         }
     }
 
@@ -1438,9 +1441,7 @@ class NewClassesSniff extends Sniff
      */
     protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        if (isset($this->importedClasses[$phpcsFile->path]) &&
-            in_array($itemInfo['name'], $this->importedClasses[$phpcsFile->path], true)
-        ) {
+        if (isset($this->importedClasses[$phpcsFile->getFilename()][strtolower($itemInfo['name'])])) {
             return;
         }
 

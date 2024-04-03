@@ -1,13 +1,12 @@
 <?php
 
-use SomeThingElse\ArrayObject;
-use SomeThingElse\ArrayIterator;
-use SomeThingElse\CachingIterator;
+use SomeThingElse\arrayobject;
+use SomeThingElse\ARrAyItErAtOr;
+use SomeThingElse\CACHINGITERATOR;
 use SomeThingElse\DirectoryIterator;
 use SomeThingElse\RecursiveDirectoryIterator;
 use SomeThingElse\RecursiveIteratorIterator;
-use SomeThingElse\Reflection;
-use SomeThingElse\ReflectionClass;
+use SomeThingElse\ {Reflection, ReflectionClass};
 use SomeThingElse\ReflectionExtension;
 use SomeThingElse\ReflectionFunction;
 use SomeThingElse\ReflectionMethod;
@@ -191,14 +190,14 @@ use SomeThingElse\Random\RandomException;
 new ArrayObject();
 new ArrayIterator();
 new CachingIterator();
-new DirectoryIterator();
-new RecursiveDirectoryIterator();
-new RecursiveIteratorIterator();
+new directoryiterator();
+new REcUrSiVeDiReCtOrYiTeRaToR();
+new RECURSIVEITERATORITERATOR();
 new Reflection();
 new ReflectionClass();
-new ReflectionExtension();
-new ReflectionFunction();
-new ReflectionMethod();
+ReflectionExtension::test();
+function anotherTest(ReflectionFunction $testparameter): ReflectionMethod{}
+class NothingToSeeHere extends ReflectionObject{}
 new ReflectionObject();
 new ReflectionParameter();
 new ReflectionProperty();

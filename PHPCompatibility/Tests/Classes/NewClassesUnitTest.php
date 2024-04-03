@@ -342,7 +342,13 @@ class NewClassesUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileIfOtherNamespace()
     {
-        $file = $this->sniffFile(__DIR__ . '/NewClassesUsesUnitTest.inc', '5.1');
-        $this->assertNoViolation($file);
+        $file1 = $this->sniffFile(__DIR__ . '/NewClassesUsesUnitTest.inc', '4.4');
+        $file2 = $this->sniffFile(__DIR__ . '/NewClassesUsesNoLeakUnitTest.inc', '4.4');
+        $this->assertNoViolation($file1);
+        $this->assertError(
+            $file2,
+            3,
+            'The built-in class ArrayObject is not present in PHP version 4.4 or earlier'
+        );
     }
 }
