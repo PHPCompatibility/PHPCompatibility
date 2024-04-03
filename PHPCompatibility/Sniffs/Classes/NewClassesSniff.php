@@ -1097,17 +1097,26 @@ class NewClassesSniff extends Sniff
     ];
 
     /**
+     * Current file being scanned.
+     *
+     * @since 10.0.0
+     *
+     * @var string
+     */
+    private $currentFile;
+
+    /**
      * Stores information about imported, namespaced classes with names which are also in use by PHP.
      *
      * When those classes are used, they do not point to the PHP classes, but to the
      * namespaced, imported class and those usages should be ignored by the sniff.
      *
-     * The array is indexed by the file path. The value is an array indexed by unqualified class names in lower case.
-     * The value is always true. It is structured this way to utilize the isset() function for faster lookups.
+     * The array is indexed by unqualified class names in lower case. The value is always true.
+     * It is structured this way to utilize the isset() function for faster lookups.
      *
      * @since 10.0.0
      *
-     * @var array<string, array<string,true>>
+     * @var array<string,true>
      */
     private $importedClasses = [];
 
@@ -1166,6 +1175,13 @@ class NewClassesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        $fileName = $phpcsFile->getFilename();
+        if ($this->currentFile !== $fileName) {
+            // Reset the properties for each new file.
+            $this->currentFile = $fileName;
+            $this->importedClasses = [];
+        }
+
         $tokens = $phpcsFile->getTokens();
 
         switch ($tokens[$stackPtr]['code']) {
@@ -1421,7 +1437,7 @@ class NewClassesSniff extends Sniff
                 continue;
             }
 
-            $this->importedClasses[$phpcsFile->getFilename()][strtolower($name)] = true;
+            $this->importedClasses[strtolower($name)] = true;
         }
     }
 
@@ -1441,7 +1457,7 @@ class NewClassesSniff extends Sniff
      */
     protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        if (isset($this->importedClasses[$phpcsFile->getFilename()][strtolower($itemInfo['name'])])) {
+        if (isset($this->importedClasses[strtolower($itemInfo['name'])])) {
             return;
         }
 

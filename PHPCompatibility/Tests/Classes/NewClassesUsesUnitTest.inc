@@ -198,8 +198,7 @@ new ReflectionClass();
 ReflectionExtension::test();
 function anotherTest(ReflectionFunction $testparameter): ReflectionMethod{}
 class NothingToSeeHere extends ReflectionObject{}
-new ReflectionObject();
-new ReflectionParameter();
+class VeryEmpty implements ReflectionParameter{}
 new ReflectionProperty();
 new SoapClient();
 new SoapServer();
