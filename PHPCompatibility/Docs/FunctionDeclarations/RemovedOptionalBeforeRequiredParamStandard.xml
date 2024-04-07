@@ -19,7 +19,7 @@ function bar(string $a, <em>int $b = 0</em>) {}
 
 // Exception: non-nullable typed parameters
 // with a default value of `null` are still
-// allowed.
+// allowed prior to PHP 8.4.
 function nullDefault(<em>Foo $a = null</em>, $b) {}
         ]]>
         </code>
@@ -34,6 +34,26 @@ function typed(<em>?string $a = null</em>, int $b) {}
 
 // Deprecated in 8.0, shows notice since 8.3.
 function typed(<em>string|null $a = null</em>, int $b) {}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Declaring a function with an implicitly nullable, typed parameter before a required parameter, is deprecated since PHP 8.4.
+
+    Aside from making the parameter type explicitly nullable, the default value of `null` should be removed as well.
+    Alternatively, parameters after the implicitly nullable parameter could be made optional.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: required parameter is declared as nullable and doesn't have a default value.">
+        <![CDATA[
+function foo(<em>?Countable</em> $a, $b) {}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: required parameter is not declared as explicitly nullable and has a null default value.">
+        <![CDATA[
+function foo(<em>Countable</em> $a = <em>null</em>, $b) {}
         ]]>
         </code>
     </code_comparison>

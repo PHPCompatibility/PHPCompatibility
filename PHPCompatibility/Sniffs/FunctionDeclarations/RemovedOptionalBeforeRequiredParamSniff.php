@@ -31,13 +31,18 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * While deprecated since PHP 8.0, optional parameters with an union type which includes null
  * and a null default value, and found before a required parameter, are only flagged since PHP 8.3.
  *
+ * And as of PHP 8.4, parameters of the form "Type $param = null" before a required parameter are
+ * now also deprecated.
+ *
  * PHP version 8.0
  * PHP version 8.1
  * PHP version 8.3
+ * PHP version 8.4
  *
  * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L145-L151
  * @link https://github.com/php/php-src/commit/c939bd2f10b41bced49eb5bf12d48c3cf64f984a
  * @link https://github.com/php/php-src/commit/68ef3938f42aefa3881c268b12b3c0f1ecc5888d
+ * @link https://wiki.php.net/rfc/deprecate-implicitly-nullable-types
  *
  * @since 10.0.0
  */
@@ -66,6 +71,13 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
     const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
 
     /**
+     * Base message for the PHP 8.4 deprecation.
+     *
+     * @var string
+     */
+    const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
+
+    /**
      * Message template for detailed information about the deprecation.
      *
      * @var string
@@ -73,7 +85,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
     const MSG_DETAILS = ' Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
 
     /**
-     * Tokens allowed in the default value.
+     * Tokens allowed in the default value (until PHP 8.4).
      *
      * This property will be enriched in the register() method.
      *
@@ -161,15 +173,6 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 }
             }
 
-            // Check if it's typed with a non-nullable type and has a null default value, in which case we can ignore it.
-            if ($param['type_hint'] !== ''
-                && $param['nullable_type'] === false
-                && $hasNullType === false
-                && ($hasNull !== false && $hasNonNull === false)
-            ) {
-                continue;
-            }
-
             // Found an optional parameter with a required param after it.
             $error = self::PHP80_MSG . self::MSG_DETAILS;
             $code  = 'Deprecated80';
@@ -178,7 +181,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 $requiredParam,
             ];
 
-            if ($hasNull !== false) {
+            if ($hasNull !== false && $hasNonNull === false) {
                 if ($param['nullable_type'] === true) {
                     // Skip flagging the issue if the codebase doesn't need to run on PHP 8.1+.
                     if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {
@@ -196,6 +199,14 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
 
                     $error = self::PHP83_MSG . self::MSG_DETAILS;
                     $code  = 'Deprecated83';
+                } elseif ($param['type_hint'] !== '') {
+                    // Skip flagging the issue if the codebase doesn't need to run on PHP 8.4+.
+                    if (ScannedCode::shouldRunOnOrAbove('8.4') === false) {
+                        continue;
+                    }
+
+                    $error = self::PHP84_MSG . self::MSG_DETAILS;
+                    $code  = 'Deprecated84';
                 }
             }
 

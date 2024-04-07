@@ -47,6 +47,13 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
     const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
 
     /**
+     * Base message for the PHP 8.4 deprecation.
+     *
+     * @var string
+     */
+    const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
+
+    /**
      * Verify that the sniff throws a warning for optional parameters before required.
      *
      * @dataProvider dataRemovedOptionalBeforeRequiredParam80
@@ -82,7 +89,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             [57],
             [58],
             [59],
-            [103],
+            [126],
         ];
     }
 
@@ -139,7 +146,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         // Deprecated, but only flagged as of PHP 8.1.
         $cases['line 71 - deprecated in PHP 8.1']  = [71];
         $cases['line 75 - deprecated in PHP 8.1']  = [75];
-        $cases['line 102 - deprecated in PHP 8.1'] = [102];
+        $cases['line 125 - deprecated in PHP 8.1'] = [125];
 
         // Not deprecated, false positive checks for PHP 8.3 deprecation.
         $cases['line 81 - related to PHP 8.3 deprecation'] = [81];
@@ -154,10 +161,27 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases['line 90 - deprecated in PHP 8.3']  = [90];
         $cases['line 91 - deprecated in PHP 8.3']  = [91];
         $cases['line 95 - deprecated in PHP 8.3']  = [95];
-        $cases['line 101 - deprecated in PHP 8.3'] = [101];
+        $cases['line 124 - deprecated in PHP 8.3'] = [124];
+
+        // Not deprecated, false positive checks for PHP 8.4 deprecation.
+        $cases['line 102 - related to PHP 8.4 deprecation'] = [102];
+        $cases['line 103 - related to PHP 8.4 deprecation'] = [103];
+        $cases['line 104 - related to PHP 8.4 deprecation'] = [104];
+        $cases['line 105 - related to PHP 8.4 deprecation'] = [105];
+        $cases['line 107 - related to PHP 8.4 deprecation'] = [107];
+        $cases['line 113 - related to PHP 8.4 deprecation'] = [113];
+        $cases['line 114 - related to PHP 8.4 deprecation'] = [114];
+
+        // Deprecated as of PHP 8.4.
+        $cases['line 111 - deprecated in PHP 8.4'] = [111];
+        $cases['line 112 - deprecated in PHP 8.4'] = [112];
+        $cases['line 116 - deprecated in PHP 8.4'] = [116];
+        $cases['line 117 - deprecated in PHP 8.4'] = [117];
+        $cases['line 118 - deprecated in PHP 8.4'] = [118];
+        $cases['line 123 - deprecated in PHP 8.4'] = [123];
 
         // Add parse error test case.
-        $cases['line 108 - parse error'] = [108];
+        $cases['line 131 - parse error'] = [131];
 
         return $cases;
     }
@@ -191,7 +215,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $data   = self::dataRemovedOptionalBeforeRequiredParam80();
         $data[] = [71, self::PHP81_MSG];
         $data[] = [75, self::PHP81_MSG];
-        $data[] = [102, self::PHP81_MSG];
+        $data[] = [125, self::PHP81_MSG];
         return $data;
     }
 
@@ -224,7 +248,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         unset(
             $cases['line 71 - deprecated in PHP 8.1'],
             $cases['line 75 - deprecated in PHP 8.1'],
-            $cases['line 102 - deprecated in PHP 8.1']
+            $cases['line 125 - deprecated in PHP 8.1']
         );
 
         return $cases;
@@ -264,7 +288,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $data[] = [90, self::PHP83_MSG];
         $data[] = [91, self::PHP83_MSG];
         $data[] = [95, self::PHP83_MSG];
-        $data[] = [101, self::PHP83_MSG];
+        $data[] = [124, self::PHP83_MSG];
         return $data;
     }
 
@@ -302,7 +326,85 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             $cases['line 90 - deprecated in PHP 8.3'],
             $cases['line 91 - deprecated in PHP 8.3'],
             $cases['line 95 - deprecated in PHP 8.3'],
-            $cases['line 101 - deprecated in PHP 8.3']
+            $cases['line 124 - deprecated in PHP 8.3']
+        );
+
+        return $cases;
+    }
+
+
+    /**
+     * Verify that the sniff throws a warning for optional parameters with a union type which includes null before required.
+     *
+     * @dataProvider dataRemovedOptionalBeforeRequiredParam84
+     *
+     * @param int    $line The line number where a warning is expected.
+     * @param string $msg  The expected warning message.
+     *
+     * @return void
+     */
+    public function testRemovedOptionalBeforeRequiredParam84($line, $msg = self::PHP80_MSG)
+    {
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertWarning($file, $line, $msg);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testRemovedOptionalBeforeRequiredParam84()
+     *
+     * @return array
+     */
+    public static function dataRemovedOptionalBeforeRequiredParam84()
+    {
+        $data   = self::dataRemovedOptionalBeforeRequiredParam83();
+        $data[] = [67, self::PHP84_MSG];
+        $data[] = [83, self::PHP84_MSG];
+        $data[] = [111, self::PHP84_MSG];
+        $data[] = [112, self::PHP84_MSG];
+        $data[] = [116, self::PHP84_MSG];
+        $data[] = [117, self::PHP84_MSG];
+        $data[] = [118, self::PHP84_MSG];
+        $data[] = [123, self::PHP84_MSG];
+        return $data;
+    }
+
+
+    /**
+     * Verify the sniff does not throw false positives for valid code.
+     *
+     * @dataProvider dataNoFalsePositives84
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives84($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives84()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives84()
+    {
+        $cases = self::dataNoFalsePositives83();
+        unset(
+            $cases['line 67 - related to PHP 8.1 deprecation'],
+            $cases['line 83 - related to PHP 8.3 deprecation'],
+            $cases['line 111 - deprecated in PHP 8.4'],
+            $cases['line 112 - deprecated in PHP 8.4'],
+            $cases['line 116 - deprecated in PHP 8.4'],
+            $cases['line 117 - deprecated in PHP 8.4'],
+            $cases['line 118 - deprecated in PHP 8.4'],
+            $cases['line 123 - deprecated in PHP 8.4']
         );
 
         return $cases;
