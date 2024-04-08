@@ -1178,7 +1178,7 @@ class NewClassesSniff extends Sniff
         $fileName = $phpcsFile->getFilename();
         if ($this->currentFile !== $fileName) {
             // Reset the properties for each new file.
-            $this->currentFile = $fileName;
+            $this->currentFile     = $fileName;
             $this->importedClasses = [];
         }
 
