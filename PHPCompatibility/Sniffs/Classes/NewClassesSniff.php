@@ -1457,7 +1457,7 @@ class NewClassesSniff extends Sniff
      */
     protected function handleFeature(File $phpcsFile, $stackPtr, array $itemInfo)
     {
-        if (isset($this->importedClasses[strtolower($itemInfo['name'])])) {
+        if (isset($this->importedClasses[$itemInfo['nameLc']])) {
             return;
         }
 
