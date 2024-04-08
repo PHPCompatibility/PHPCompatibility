@@ -1103,7 +1103,7 @@ class NewClassesSniff extends Sniff
      *
      * @var string
      */
-    private $currentFile;
+    private $currentFile = '';
 
     /**
      * Stores information about imported, namespaced classes with names which are also in use by PHP.
