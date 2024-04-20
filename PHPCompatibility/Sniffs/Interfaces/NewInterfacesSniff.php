@@ -452,12 +452,12 @@ class NewInterfacesSniff extends Sniff
             $type = \ltrim($type, '\\');
 
             if ($type === '') {
-                return;
+                continue;
             }
 
             $typeLc = \strtolower($type);
             if (isset($this->newInterfaces[$typeLc]) === false) {
-                return;
+                continue;
             }
 
             $itemInfo = [
