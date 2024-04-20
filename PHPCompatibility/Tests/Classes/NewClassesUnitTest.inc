@@ -439,9 +439,9 @@ $file = new CURLStringFile($data, 'filename.txt', 'text/plain');
 
 // Test support for PHP 7.4 property types.
 public WeakMap $var; // Ignore, not a property, parse error.
-
 $anon = new class() {
-    public Attribute $property;
+    public $untyped;
+    public Attribute $Typed;
 };
 
 // Test support for PHP 7.4 arrow functions.
@@ -551,7 +551,7 @@ $db = new Pdo\DbLib();
 $anon = new class extends \Pdo\Firebird {
     public Pdo\Mysql $prop;
     public function ParamType(\Pdo\Odbc $param) {}
-    public function ReturnType( $a ) : Pdo\Pgsql {}
+    public function ReturnType( int $a ) : Pdo\Pgsql {}
 };
 \Pdo\Sqlite::CLASS_CONSTANT;
 
