@@ -19,6 +19,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\TypeString;
 
 /**
  * Detect and verify the use of parameter type declarations in function declarations.
@@ -244,12 +245,8 @@ class NewParamTypeDeclarationsSniff extends Sniff
             }
 
             // Strip off potential nullable indication.
-            $typeHint           = \ltrim($param['type_hint'], '?');
-            $typeHint           = \strtolower($typeHint);
-            $types              = \preg_split('`[|&()]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
-            $isUnionType        = (\strpos($typeHint, '|') !== false && \strpos($typeHint, '(') === false);
-            $isIntersectionType = (\strpos($typeHint, '&') !== false && \strpos($typeHint, '(') === false);
-            $isDNFType          = \strpos($typeHint, '(') !== false;
+            $typeHint    = \ltrim($param['type_hint'], '?');
+            $isUnionType = TypeString::isUnion($typeHint);
 
             if ($supportsPHP7 === true && $isUnionType === true) {
                 $phpcsFile->addError(
@@ -260,7 +257,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                 );
             }
 
-            if ($supportsPHP80 === true && $isIntersectionType === true) {
+            if ($supportsPHP80 === true && TypeString::isIntersection($typeHint) === true) {
                 $phpcsFile->addError(
                     'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                     $param['token'],
@@ -269,7 +266,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                 );
             }
 
-            if ($supportsPHP81 === true && $isDNFType === true) {
+            if ($supportsPHP81 === true && TypeString::isDNF($typeHint) === true) {
                 $phpcsFile->addError(
                     'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
                     $param['token'],
@@ -277,6 +274,8 @@ class NewParamTypeDeclarationsSniff extends Sniff
                     [$param['type_hint']]
                 );
             }
+
+            $types = TypeString::toArray($typeHint); // Returns all types and normalizes PHP native types.
 
             foreach ($types as $type) {
                 if (isset($this->newTypes[$type])) {
@@ -343,6 +342,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                     continue;
                 }
 
+                $type = \strtolower($type);
                 if (isset($this->invalidLongTypes[$type])) {
                     $error = "'%s' is not a valid parameter type declaration. Did you mean %s ?";
                     $data  = [

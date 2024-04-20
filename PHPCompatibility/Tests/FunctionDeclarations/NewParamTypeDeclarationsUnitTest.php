@@ -565,7 +565,6 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
             ['(Foo&Bar)|null', 175],
             ['int|(\A&\B)', 175],
             ['(A&B)|(C&D)', 176],
-            ['B&(D|W)|null', 179],
             ['(A&B)|(B&A)', 182],
             ['(A&self)|A', 186, false],
         ];

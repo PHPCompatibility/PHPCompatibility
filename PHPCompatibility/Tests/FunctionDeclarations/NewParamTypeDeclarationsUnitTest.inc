@@ -78,7 +78,7 @@ class Bar {
 $arrow = fn(int $a) => $a * 10;
 $arrow = fn(\FQN\ClassName $b) => $b::method();
 $arrow = fn(callable $a, string $b, mixed $c) => $a();
-$arrow = fn(integer $a) => $a . 'test';
+$arrow = fn(?integer $a) => $a . 'test';
 $arrow = fn($a) => $a * 10; // OK.
 
 // Mixed type declaration - PHP 8.0+.
@@ -175,7 +175,7 @@ function NOTDnfTypeParamDefault($param = (CONST_A & CONST_B) | CONST_C) {}
 function DNFTypes((Foo&Bar)|null $a, int|(\A&\B) $b) {}
 $closure = function($a, (A&B)|(C&D) $b) {};
 
-// Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+// Intentional fatal error - &/| reversed. This is not a valid type. Ignore.
 $arrow = fn(B&(D|W)|null $a) => $a;
 
 // Intentional fatal error - segments are not unique, but that's not the concern of the sniff.
