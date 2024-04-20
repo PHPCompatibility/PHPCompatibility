@@ -21,6 +21,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
 
@@ -476,9 +477,7 @@ class NewInterfacesSniff extends Sniff
      */
     private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeHint)
     {
-        // Strip off potential nullable indication.
-        $typeHint = \ltrim($typeHint, '?');
-        $types    = \preg_split('`[|&()]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
+        $types = TypeString::filterOOTypes(TypeString::toArray($typeHint));
 
         if (empty($types) === true) {
             return;
