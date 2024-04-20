@@ -162,7 +162,7 @@ class NewTypedPropertiesSniff extends Sniff
 
             $this->checkType($phpcsFile, $properties['type_token'], $properties);
 
-            $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));
+            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
             if ($endOfStatement !== false) {
                 // Don't throw the same error multiple times for multi-property declarations.
                 return ($endOfStatement + 1);

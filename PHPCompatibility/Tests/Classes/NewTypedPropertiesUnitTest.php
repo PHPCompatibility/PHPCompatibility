@@ -102,6 +102,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [160],
             [161],
             [165],
+            [170],
         ];
     }
 
