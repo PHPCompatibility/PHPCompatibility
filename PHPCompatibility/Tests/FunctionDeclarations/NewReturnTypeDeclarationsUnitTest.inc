@@ -137,3 +137,17 @@ enum Suit implements Colorful
     public function shape(): mixed {}
     public function union(): A|B {}
 }
+
+// PHP 8.2 DNF types.
+function DNFTypes($var): (Foo&Bar)|null {}
+$closure = function($a) : (A&B)|(C&D) {};
+
+// Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+$arrow = fn($a):B&(D|W)|int => $a;
+
+// Intentional fatal error - segments are not unique, but that's not the concern of the sniff.
+$arrow = fn() : (A&B)|(B&A) => $a;
+
+// Intentional fatal error - segments which are strict subsets of others are disallowed, but that's not the concern of the sniff.
+// Intentional fatal error - using self type outside a class is invalid.
+$arrow = fn($a) : (A&self)|A => $a;

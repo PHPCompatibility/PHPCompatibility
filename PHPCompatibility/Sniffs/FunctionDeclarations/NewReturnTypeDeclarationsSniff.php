@@ -30,6 +30,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * - Since PHP 8.1, intersection types are supported for class/interface names.
  * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
  * - Since PHP 8.2, the `true` sub-type is available.
+ * - Since PHP 8.2, disjunctive normal form types are available.
  *
  * PHP version 7.0+
  *
@@ -46,6 +47,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://wiki.php.net/rfc/pure-intersection-types
  * @link https://wiki.php.net/rfc/null-false-standalone-types
  * @link https://wiki.php.net/rfc/true-type
+ * @link https://wiki.php.net/rfc/dnf_types
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -210,9 +212,10 @@ class NewReturnTypeDeclarationsSniff extends Sniff
         $returnType         = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
         $returnType         = \strtolower($returnType);
         $returnTypeToken    = $properties['return_type_token'];
-        $types              = \preg_split('`[|&]`', $returnType, -1, \PREG_SPLIT_NO_EMPTY);
-        $isUnionType        = (\strpos($returnType, '|') !== false);
-        $isIntersectionType = (\strpos($returnType, '&') !== false);
+        $types              = \preg_split('`[|&()]`', $returnType, -1, \PREG_SPLIT_NO_EMPTY);
+        $isUnionType        = (\strpos($returnType, '|') !== false && \strpos($returnType, '(') === false);
+        $isIntersectionType = (\strpos($returnType, '&') !== false && \strpos($returnType, '(') === false);
+        $isDNFType          = \strpos($returnType, '(') !== false;
 
         if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
             $phpcsFile->addError(
@@ -228,6 +231,15 @@ class NewReturnTypeDeclarationsSniff extends Sniff
                 'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                 $returnTypeToken,
                 'IntersectionTypeFound',
+                [$properties['return_type']]
+            );
+        }
+
+        if (ScannedCode::shouldRunOnOrBelow('8.1') === true && $isDNFType === true) {
+            $phpcsFile->addError(
+                'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
+                $returnTypeToken,
+                'DNFTypeFound',
                 [$properties['return_type']]
             );
         }
