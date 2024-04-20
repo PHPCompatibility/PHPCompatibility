@@ -483,3 +483,7 @@ class MyRandom extends \Random\Randomizer {
         }
     }
 }
+
+function CheckAllTypeParts(
+    NotATarget|XMLReader $a
+) : NotATarget|ReflectionType {}
