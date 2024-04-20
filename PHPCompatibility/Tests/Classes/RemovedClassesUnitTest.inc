@@ -105,3 +105,12 @@ class IntersectionTypes {
 function CheckAllTypeParts(
     NotATarget|SWFButton $a
 ) : NotATarget|SQLiteException {}
+
+// Test support for PHP 8.2 DNF types.
+class DNFTypes {
+    public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
+
+    public int|(SWFMorph&SWFMovie) $property;
+    public function paramTypeB((SWFSprite&\SWFText)|false $param) {}
+    public function returnType($param) : SomethingElse|(HW_API_Object&HW_API_Attribute) {}
+}
