@@ -378,14 +378,12 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewIntersectionTypes
      *
-     * @param string $type            The declared type.
-     * @param int    $line            The line number where the error is expected.
-     * @param bool   $testNoViolation Whether or not to test noViolation.
-     *                                Defaults to true.
+     * @param string $type The declared type.
+     * @param int    $line The line number where the error is expected.
      *
      * @return void
      */
-    public function testNewIntersectionTypes($type, $line, $testNoViolation = true)
+    public function testNewIntersectionTypes($type, $line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertError($file, $line, "Intersection types are not present in PHP version 8.0 or earlier. Found: $type");
