@@ -487,3 +487,12 @@ class MyRandom extends \Random\Randomizer {
 function CheckAllTypeParts(
     NotATarget|XMLReader $a
 ) : NotATarget|ReflectionType {}
+
+// Test support for PHP 8.2 DNF types.
+class DNFTypes {
+    public function paramTypeA((NotATarget&AlsoNotATarget)|string $okay) {}
+
+    public null|(IntlPartsIterator&IntlIterator) $property;
+    public function paramTypeB((\ReflectionClassConstant&\ReflectionNamedType)|int $param) {}
+    public function returnType($param) : (\FFI\CData&\FFI\CType)|SomethingElse {}
+}
