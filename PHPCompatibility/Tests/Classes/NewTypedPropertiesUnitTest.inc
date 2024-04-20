@@ -63,7 +63,7 @@ class InvalidExample {
     protected Callable $callable = 'strlen';
     private ?callable $nullableCallable = null;
     public boolean $booleanType;
-    protected integer $integerType = 123;
+    protected ?integer $integerType = 123;
 }
 
 // Mixed type declaration - PHP 8.0+.
@@ -175,7 +175,7 @@ class DNFTypes {
     public (Foo&Bar)|null $dnf1;
     public readonly (A&B)|(C&D) $dnf2;
 
-    // Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+    // Intentional fatal error - &/| reversed. This is not a valid type. Ignore.
     public B&(D|W) $illegalDnf;
 
     // Intentional fatal error - segments are not unique, but that's not the concern of the sniff.

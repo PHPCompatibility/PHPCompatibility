@@ -16,6 +16,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -238,8 +239,6 @@ class NewTypedPropertiesSniff extends Sniff
     protected function checkType(File $phpcsFile, $typeToken, $typeInfo)
     {
         $origType = $typeInfo['type'];
-        $type     = \ltrim($origType, '?'); // Trim off potential nullability.
-        $type     = \strtolower($type);
 
         $errorSuffix = '';
         if (isset($typeInfo['param_name']) === true) {
@@ -254,10 +253,8 @@ class NewTypedPropertiesSniff extends Sniff
                 [$origType]
             );
         } else {
-            $types              = \preg_split('`[|&()]`', $type, -1, \PREG_SPLIT_NO_EMPTY);
-            $isUnionType        = (\strpos($type, '|') !== false && \strpos($type, '(') === false);
-            $isIntersectionType = (\strpos($type, '&') !== false && \strpos($type, '(') === false);
-            $isDNFType          = \strpos($type, '(') !== false;
+            $type        = \ltrim($origType, '?'); // Trim off potential nullability.
+            $isUnionType = TypeString::isUnion($type);
 
             if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
                 $phpcsFile->addError(
@@ -268,7 +265,7 @@ class NewTypedPropertiesSniff extends Sniff
                 );
             }
 
-            if (ScannedCode::shouldRunOnOrBelow('8.0') === true && $isIntersectionType === true) {
+            if (ScannedCode::shouldRunOnOrBelow('8.0') === true && TypeString::isIntersection($type) === true) {
                 $phpcsFile->addError(
                     'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                     $typeToken,
@@ -277,7 +274,7 @@ class NewTypedPropertiesSniff extends Sniff
                 );
             }
 
-            if (ScannedCode::shouldRunOnOrBelow('8.1') === true && $isDNFType === true) {
+            if (ScannedCode::shouldRunOnOrBelow('8.1') === true && TypeString::isDNF($type) === true) {
                 $phpcsFile->addError(
                     'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
                     $typeToken,
@@ -285,6 +282,8 @@ class NewTypedPropertiesSniff extends Sniff
                     [$origType]
                 );
             }
+
+            $types = TypeString::toArray($type); // Returns all types and normalizes PHP native types.
 
             foreach ($types as $type) {
                 if (isset($this->newTypes[$type])) {
@@ -333,6 +332,7 @@ class NewTypedPropertiesSniff extends Sniff
                         continue;
                     }
 
+                    $type = \strtolower($type);
                     if (isset($this->invalidLongTypes[$type])) {
                         $error = '%s is not supported as a property type declaration' . $errorSuffix;
                         $data  = [$type];

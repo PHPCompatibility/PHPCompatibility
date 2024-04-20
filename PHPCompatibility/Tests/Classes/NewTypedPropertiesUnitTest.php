@@ -481,9 +481,38 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
         return [
             ['(Foo&Bar)|null', 175],
             ['(A&B)|(C&D)', 176],
-            ['B&(D|W)', 179],
             ['(A&B)|(B&A)', 182],
             ['(A&self)|A', 185],
+        ];
+    }
+
+
+    /**
+     * Verify that no error is thrown when the type is not a (valid) DNF type.
+     *
+     * @dataProvider dataNewDNFTypesNoFalsePositives
+     *
+     * @param int $line Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testNewDNFTypesNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewDNFTypesNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataNewDNFTypesNoFalsePositives()
+    {
+        return [
+            [179],
         ];
     }
 
