@@ -103,6 +103,11 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [161],
             [165],
             [170],
+            [175],
+            [176],
+            [179],
+            [182],
+            [185],
         ];
     }
 
@@ -231,6 +236,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['false', '7.4', 99, '8.0'],
             ['mixed', '7.4', 116, '8.0', false],
             ['true', '8.1', 147, '8.2'],
+            ['null', '7.4', 175, '8.2'],
         ];
     }
 
@@ -338,6 +344,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
         return [
             [93, 'null'],
             [96, 'false'],
+            [175, 'null'],
         ];
     }
 
@@ -409,6 +416,44 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['self&\Fully\Qualified\SomeInterface', 138],
             ['Qualified\SomeInterface&parent', 139],
             ['A&B&A', 142],
+        ];
+    }
+
+
+    /**
+     * Verify that an error is thrown for DNF types.
+     *
+     * @dataProvider dataNewDNFTypes
+     *
+     * @param string $type The declared type.
+     * @param int    $line The line number where the error is expected.
+     *
+     * @return void
+     */
+    public function testNewDNFTypes($type, $line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertError($file, $line, "Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: $type");
+
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewDNFTypes()
+     *
+     * @return array
+     */
+    public static function dataNewDNFTypes()
+    {
+        return [
+            ['(Foo&Bar)|null', 175],
+            ['(A&B)|(C&D)', 176],
+            ['B&(D|W)', 179],
+            ['(A&B)|(B&A)', 182],
+            ['(A&self)|A', 185],
         ];
     }
 

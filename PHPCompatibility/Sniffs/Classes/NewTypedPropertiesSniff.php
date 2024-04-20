@@ -28,6 +28,7 @@ use PHPCSUtils\Utils\Variables;
  * - Since PHP 8.1, intersection types are supported for class/interface names.
  * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
  * - Since PHP 8.2, the `true` sub-type is available.
+ * - Since PHP 8.2, disjunctive normal form types are available.
  *
  * PHP version 7.4+
  *
@@ -38,6 +39,7 @@ use PHPCSUtils\Utils\Variables;
  * @link https://wiki.php.net/rfc/pure-intersection-types
  * @link https://wiki.php.net/rfc/null-false-standalone-types
  * @link https://wiki.php.net/rfc/true-type
+ * @link https://wiki.php.net/rfc/dnf_types
  *
  * @since 9.2.0
  */
@@ -240,9 +242,10 @@ class NewTypedPropertiesSniff extends Sniff
                 [$origType]
             );
         } else {
-            $types              = \preg_split('`[|&]`', $type, -1, \PREG_SPLIT_NO_EMPTY);
-            $isUnionType        = (\strpos($type, '|') !== false);
-            $isIntersectionType = (\strpos($type, '&') !== false);
+            $types              = \preg_split('`[|&()]`', $type, -1, \PREG_SPLIT_NO_EMPTY);
+            $isUnionType        = (\strpos($type, '|') !== false && \strpos($type, '(') === false);
+            $isIntersectionType = (\strpos($type, '&') !== false && \strpos($type, '(') === false);
+            $isDNFType          = \strpos($type, '(') !== false;
 
             if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
                 $phpcsFile->addError(
@@ -258,6 +261,15 @@ class NewTypedPropertiesSniff extends Sniff
                     'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                     $typeToken,
                     'IntersectionTypeFound',
+                    [$origType]
+                );
+            }
+
+            if (ScannedCode::shouldRunOnOrBelow('8.1') === true && $isDNFType === true) {
+                $phpcsFile->addError(
+                    'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
+                    $typeToken,
+                    'DNFTypeFound',
                     [$origType]
                 );
             }

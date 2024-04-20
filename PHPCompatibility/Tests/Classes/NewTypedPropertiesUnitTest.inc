@@ -169,3 +169,18 @@ class EdgeCase {
 class ShouldBeDetected {
     public int $property;
 }
+
+// PHP 8.2 DNF types.
+class DNFTypes {
+    public (Foo&Bar)|null $dnf1;
+    public readonly (A&B)|(C&D) $dnf2;
+
+    // Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+    public B&(D|W) $illegalDnf;
+
+    // Intentional fatal error - segments are not unique, but that's not the concern of the sniff.
+    public (A&B)|(B&A) $duplicateNotAllowed;
+
+    // Intentional fatal error - segments which are strict subsets of others are disallowed, but that's not the concern of the sniff.
+    public (A&self)|A $nonSubsetNotAllowedPlusSelf;
+}
