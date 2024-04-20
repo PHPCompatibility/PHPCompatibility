@@ -16,6 +16,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\TypeString;
 
 /**
  * Detect and verify the use of return type declarations in function declarations.
@@ -209,13 +210,9 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             return;
         }
 
-        $returnType         = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
-        $returnType         = \strtolower($returnType);
-        $returnTypeToken    = $properties['return_type_token'];
-        $types              = \preg_split('`[|&()]`', $returnType, -1, \PREG_SPLIT_NO_EMPTY);
-        $isUnionType        = (\strpos($returnType, '|') !== false && \strpos($returnType, '(') === false);
-        $isIntersectionType = (\strpos($returnType, '&') !== false && \strpos($returnType, '(') === false);
-        $isDNFType          = \strpos($returnType, '(') !== false;
+        $returnType      = \ltrim($properties['return_type'], '?'); // Trim off potential nullability.
+        $returnTypeToken = $properties['return_type_token'];
+        $isUnionType     = TypeString::isUnion($returnType);
 
         if (ScannedCode::shouldRunOnOrBelow('7.4') === true && $isUnionType === true) {
             $phpcsFile->addError(
@@ -226,7 +223,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             );
         }
 
-        if (ScannedCode::shouldRunOnOrBelow('8.0') === true && $isIntersectionType === true) {
+        if (ScannedCode::shouldRunOnOrBelow('8.0') === true && TypeString::isIntersection($returnType) === true) {
             $phpcsFile->addError(
                 'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                 $returnTypeToken,
@@ -235,7 +232,7 @@ class NewReturnTypeDeclarationsSniff extends Sniff
             );
         }
 
-        if (ScannedCode::shouldRunOnOrBelow('8.1') === true && $isDNFType === true) {
+        if (ScannedCode::shouldRunOnOrBelow('8.1') === true && TypeString::isDNF($returnType) === true) {
             $phpcsFile->addError(
                 'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
                 $returnTypeToken,
@@ -243,6 +240,8 @@ class NewReturnTypeDeclarationsSniff extends Sniff
                 [$properties['return_type']]
             );
         }
+
+        $types = TypeString::toArray($returnType); // Returns all types and normalizes PHP native types.
 
         foreach ($types as $type) {
             if (isset($this->newTypes[$type]) === true) {
