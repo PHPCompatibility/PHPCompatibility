@@ -478,7 +478,7 @@ class NewInterfacesSniff extends Sniff
     {
         // Strip off potential nullable indication.
         $typeHint = \ltrim($typeHint, '?');
-        $types    = \preg_split('`[|&]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
+        $types    = \preg_split('`[|&()]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
 
         if (empty($types) === true) {
             return;

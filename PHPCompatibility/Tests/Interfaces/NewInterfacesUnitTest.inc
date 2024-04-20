@@ -203,6 +203,15 @@ function CheckAllTypeParts(
     NotATarget|Stringable $a
 ) : NotATarget|DOMParentNode {}
 
+// Test support for PHP 8.2 DNF types.
+class DNFTypes {
+    public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
+
+    public true|(DOMChildNode&DOMParentNode) $property;
+    public function paramTypeB((UnitEnum&BackedEnum)|string $param) {}
+    public function returnType($param) : (Stringable&DOMChildNode)|(A&B) {}
+}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
