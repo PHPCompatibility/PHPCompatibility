@@ -73,7 +73,7 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
 
             ['SWFAction', '5.3', [32, 33, 34, 35], '5.2'],
             ['SWFBitmap', '5.3', [37], '5.2'],
-            ['SWFButton', '5.3', [38], '5.2'],
+            ['SWFButton', '5.3', [38, 106], '5.2'],
             ['SWFDisplayItem', '5.3', [39, 84], '5.2'],
             ['SWFFill', '5.3', [40, 92], '5.2'],
             ['SWFFont', '5.3', [41, 92], '5.2'],
@@ -93,7 +93,7 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['SQLiteDatabase', '5.4', [66, 80], '5.3'],
             ['SQLiteResult', '5.4', [67, 93], '5.3'],
             ['SQLiteUnbuffered', '5.4', [68, 93], '5.3'],
-            ['SQLiteException', '5.4', [69], '5.3'],
+            ['SQLiteException', '5.4', [69, 107], '5.3'],
 
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
         ];

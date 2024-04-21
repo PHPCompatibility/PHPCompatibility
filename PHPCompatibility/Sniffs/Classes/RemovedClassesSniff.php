@@ -423,12 +423,12 @@ class RemovedClassesSniff extends Sniff
             $type = \ltrim($type, '\\');
 
             if ($type === '') {
-                return;
+                continue;
             }
 
             $typeLc = \strtolower($type);
             if (isset($this->removedClasses[$typeLc]) === false) {
-                return;
+                continue;
             }
 
             $itemInfo = [

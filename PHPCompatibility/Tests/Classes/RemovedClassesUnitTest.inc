@@ -101,3 +101,7 @@ class IntersectionTypes {
     public function paramType(SWFSprite&\SWFText $param) {}
     public function returnType($param) : HW_API_Object&HW_API_Attribute {}
 }
+
+function CheckAllTypeParts(
+    NotATarget|SWFButton $a
+) : NotATarget|SQLiteException {}
