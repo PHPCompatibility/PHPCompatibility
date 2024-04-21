@@ -165,3 +165,7 @@ class EdgeCase {
     public int $property ?>
     <?php
 }
+
+class ShouldBeDetected {
+    public int $property;
+}
