@@ -199,6 +199,10 @@ function ExpectsEnumParams(UnitEnum $enum1, BackedEnum $enum2) {}
 
 function useRandomExtension( Random\Engine $paramA, Random\CryptoSafeEngine $paramB ) {}
 
+function CheckAllTypeParts(
+    NotATarget|Stringable $a
+) : NotATarget|DOMParentNode {}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
