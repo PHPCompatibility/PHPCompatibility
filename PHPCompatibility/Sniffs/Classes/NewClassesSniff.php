@@ -1351,12 +1351,12 @@ class NewClassesSniff extends Sniff
             $type = \ltrim($type, '\\');
 
             if ($type === '') {
-                return;
+                continue;
             }
 
             $typeLc = \strtolower($type);
             if (isset($this->newClasses[$typeLc]) === false) {
-                return;
+                continue;
             }
 
             $itemInfo = [
