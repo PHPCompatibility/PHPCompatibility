@@ -1,5 +1,5 @@
 <?php
-
+use Countable;
 class MyCountable implements Countable {}
 class MyOuterIterator implements OuterIterator {}
 class MyRecursiveIterator implements RecursiveIterator {}
