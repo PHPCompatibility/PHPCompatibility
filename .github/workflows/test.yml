@@ -145,6 +145,10 @@ jobs:
         if: ${{ matrix.phpcs_version != 'lowest' }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
+      - name: Enable creation of `composer.lock` file
+        if: ${{ matrix.phpcs_version == 'lowest' }}
+        run: composer config --unset lock
+
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies - normal
@@ -244,6 +248,10 @@ jobs:
       - name: "Composer: set PHPCS version for tests (master)"
         if: ${{ matrix.phpcs_version != 'lowest' }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
+
+      - name: Enable creation of `composer.lock` file
+        if: ${{ matrix.phpcs_version == 'lowest' }}
+        run: composer config --unset lock
 
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v3"
