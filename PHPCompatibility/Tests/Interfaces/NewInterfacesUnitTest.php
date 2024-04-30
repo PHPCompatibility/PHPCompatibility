@@ -227,4 +227,31 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw an error
      * on invalid use of some magic methods for the Serializable Interface.
      */
+
+    /**
+     * If classes with same name are used in other namespaces, they should not be flagged.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileIfOtherNamespace()
+    {
+        $file          = $this->sniffFile(__DIR__ . '/NewInterfacesUsesUnitTest.inc', '4.4');
+        $sharedRuleSet = $file->ruleset;
+        $sharedConfig  = $file->config;
+
+        $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
+            realpath(__DIR__ . '/NewInterfacesUnitTest.inc'),
+            $sharedRuleSet,
+            $sharedConfig
+        );
+        $forgedLocalFile->parse();
+        $forgedLocalFile->process();
+
+        $this->assertNoViolation($file);
+        $this->assertError(
+            $forgedLocalFile,
+            3,
+            'The built-in interface Countable is not present in PHP version 5.0 or earlier'
+        );
+    }
 }

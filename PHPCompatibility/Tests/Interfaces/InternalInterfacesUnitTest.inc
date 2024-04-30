@@ -1,5 +1,5 @@
 <?php
-
+use UnitEnum;
 class MyTraversable implements Traversable {}
 class MyDateTimeClass implements DateTimeInterface {}
 class MyThrowable implements Throwable {}
