@@ -38,3 +38,9 @@ self::{$complex . $expression}(...);
 'strlen'(...);
 [$obj, 'method'](...);
 [Foo::class, 'method'](...);
+
+/*
+ * PHP 8.4: using exit/die as a first class callable is now allowed.
+ */
+$callable = exit(...);
+giveMeCallable(\die(...));

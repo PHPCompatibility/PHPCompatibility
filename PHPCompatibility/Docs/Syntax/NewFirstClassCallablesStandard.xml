@@ -24,4 +24,27 @@ $fn = <em>Foo::method(...)</em>;
         ]]>
         </code>
     </code_comparison>
+    <standard>
+    <![CDATA[
+    Since PHP 8.4, exit/die can also be used as a first class callable.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not using first class callables.">
+        <![CDATA[
+$callback = <em>function() {
+    exit();
+}</em>;
+$callback = <em>function() {
+    die();
+}</em>;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: using exit/die as a first class callable.">
+        <![CDATA[
+$callback = <em>exit(...)</em>;
+$callback = <em>die(...)</em>;
+        ]]>
+        </code>
+    </code_comparison>
 </documentation>

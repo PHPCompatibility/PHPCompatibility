@@ -18,10 +18,14 @@ use PHPCompatibility\Sniff;
 /**
  * Detects the use of the first class callable syntax, as introduced in PHP 8.1.
  *
+ * As of PHP 8.4, exit/die can also be used as a first class callable.
+ *
  * PHP version 8.1
+ * PHP version 8.4
  *
  * @link https://www.php.net/manual/en/migration81.new-features.php#migration81.new-features.core.callable-syntax
  * @link https://wiki.php.net/rfc/first_class_callable_syntax
+ * @link https://wiki.php.net/rfc/exit-as-function
  *
  * @since 10.0.0
  */
@@ -53,7 +57,7 @@ final class NewFirstClassCallablesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrBelow('8.0') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('8.3') === false) {
             return;
         }
 
@@ -66,6 +70,21 @@ final class NewFirstClassCallablesSniff extends Sniff
 
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($next === false || $tokens[$next]['code'] !== \T_CLOSE_PARENTHESIS) {
+            return;
+        }
+
+        $beforeParens = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+        if ($tokens[$beforeParens]['code'] === \T_EXIT) {
+            $phpcsFile->addError(
+                'Using exit/die as a first class callable is not supported in PHP 8.3 or earlier.',
+                $stackPtr,
+                'FoundExitDie'
+            );
+            return;
+        }
+
+        // "Normal" first class callables are supported since PHP 8.1.
+        if (ScannedCode::shouldRunOnOrBelow('8.0') === false) {
             return;
         }
 
