@@ -97,7 +97,7 @@ class LowPHPSniff extends Sniff
     {
         // Don't do anything if the warning has already been thrown or is not necessary.
         if ($this->examine === false) {
-            return ($phpcsFile->numTokens + 1);
+            return $phpcsFile->numTokens;
         }
 
         $phpVersion = \phpversion();
@@ -105,7 +105,7 @@ class LowPHPSniff extends Sniff
         // Don't do anything if the PHPCS version used is above the minimum recommended version.
         if (\version_compare($phpVersion, self::MIN_RECOMMENDED_VERSION, '>=')) {
             $this->examine = false;
-            return ($phpcsFile->numTokens + 1);
+            return $phpcsFile->numTokens;
         }
 
         if (\version_compare($phpVersion, self::MIN_SUPPORTED_VERSION, '<')) {
@@ -135,6 +135,6 @@ class LowPHPSniff extends Sniff
         $this->examine = false;
 
         // No need to look at this file again.
-        return ($phpcsFile->numTokens + 1);
+        return $phpcsFile->numTokens;
     }
 }
