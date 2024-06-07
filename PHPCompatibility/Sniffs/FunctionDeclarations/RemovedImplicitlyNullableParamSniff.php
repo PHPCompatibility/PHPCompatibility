@@ -16,6 +16,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\TypeString;
 
 /**
  * Declaring an implicitly nullable parameter is deprecated since PHP 8.4.
@@ -108,10 +109,9 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
                 continue;
             }
 
-            if ($param['nullable_type'] === true
-                || $param['type_hint'] === 'null'
+            if ($param['type_hint'] === 'null'
                 || $param['type_hint'] === 'mixed'
-                || $phpcsFile->findNext(\T_NULL, $param['type_hint_token'], ($param['type_hint_end_token'] + 1)) !== false
+                || TypeString::isNullable($param['type_hint'])
             ) {
                 // Type is nullable, no issue.
                 continue;
