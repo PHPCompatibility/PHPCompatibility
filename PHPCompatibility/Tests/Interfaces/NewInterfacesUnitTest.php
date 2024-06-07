@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Tests\Interfaces;
 
+use PHP_CodeSniffer\Files\LocalFile;
 use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
@@ -239,8 +240,8 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
         $sharedRuleSet = $file->ruleset;
         $sharedConfig  = $file->config;
 
-        $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
-            realpath(__DIR__ . '/NewInterfacesUnitTest.inc'),
+        $forgedLocalFile = new LocalFile(
+            \realpath(__DIR__ . '/NewInterfacesUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
         );

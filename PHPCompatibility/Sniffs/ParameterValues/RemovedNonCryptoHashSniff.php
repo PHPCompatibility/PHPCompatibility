@@ -111,7 +111,7 @@ class RemovedNonCryptoHashSniff extends AbstractFunctionCallParameterSniff
                 return;
             }
 
-            $secondParamContent = ltrim($secondParam['clean'], ' \\'); // Trim off potential leading namespace separator for FQN.
+            $secondParamContent = \ltrim($secondParam['clean'], ' \\'); // Trim off potential leading namespace separator for FQN.
             if ($secondParamContent !== 'HASH_HMAC'
                 && $secondParamContent !== (string) \HASH_HMAC
             ) {

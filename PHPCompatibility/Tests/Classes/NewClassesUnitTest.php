@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
+use PHP_CodeSniffer\Files\LocalFile;
 use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
@@ -346,8 +347,8 @@ class NewClassesUnitTest extends BaseSniffTestCase
         $sharedRuleSet = $file->ruleset;
         $sharedConfig  = $file->config;
 
-        $forgedLocalFile = new \PHP_CodeSniffer\Files\LocalFile(
-            realpath(__DIR__ . '/NewClassesUsesNoLeakUnitTest.inc'),
+        $forgedLocalFile = new LocalFile(
+            \realpath(__DIR__ . '/NewClassesUsesNoLeakUnitTest.inc'),
             $sharedRuleSet,
             $sharedConfig
         );
