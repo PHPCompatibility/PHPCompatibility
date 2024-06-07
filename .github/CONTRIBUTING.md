@@ -24,7 +24,7 @@ To start contributing, fork the repository, create a new branch in your fork, ma
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
-* All code should be compatible with PHPCS >= 3.9.0.
+* All code should be compatible with PHPCS >= 3.10.0.
 * All code should be compatible with PHP 5.4 to PHP nightly.
 * All code should comply with the PHPCompatibility coding standards.
     The [ruleset used by PHPCompatibility](https://github.com/PHPCSStandards/PHPCSDevCS) is largely based on PSR-12 with minor variations and some additional checks for array layout and documentation and such.

@@ -36,6 +36,7 @@ use PHPCSUtils\Utils\Scopes;
  * - Since PHP 8.1, intersection types are supported for class/interface names.
  * - Since PHP 8.2, `false` and `null` can be used as stand-alone types.
  * - Since PHP 8.2, the `true` sub-type is available.
+ * - Since PHP 8.2, disjunctive normal form types are available.
  *
  * Additionally, this sniff does a cursory check for typical invalid type declarations,
  * such as:
@@ -55,6 +56,7 @@ use PHPCSUtils\Utils\Scopes;
  * @link https://wiki.php.net/rfc/pure-intersection-types
  * @link https://wiki.php.net/rfc/null-false-standalone-types
  * @link https://wiki.php.net/rfc/true-type
+ * @link https://wiki.php.net/rfc/dnf_types
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class.
@@ -232,9 +234,10 @@ class NewParamTypeDeclarationsSniff extends Sniff
             // Strip off potential nullable indication.
             $typeHint           = \ltrim($param['type_hint'], '?');
             $typeHint           = \strtolower($typeHint);
-            $types              = \preg_split('`[|&]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
-            $isUnionType        = (\strpos($typeHint, '|') !== false);
-            $isIntersectionType = (\strpos($typeHint, '&') !== false);
+            $types              = \preg_split('`[|&()]`', $typeHint, -1, \PREG_SPLIT_NO_EMPTY);
+            $isUnionType        = (\strpos($typeHint, '|') !== false && \strpos($typeHint, '(') === false);
+            $isIntersectionType = (\strpos($typeHint, '&') !== false && \strpos($typeHint, '(') === false);
+            $isDNFType          = \strpos($typeHint, '(') !== false;
 
             if ($supportsPHP7 === true && $isUnionType === true) {
                 $phpcsFile->addError(
@@ -250,6 +253,15 @@ class NewParamTypeDeclarationsSniff extends Sniff
                     'Intersection types are not present in PHP version 8.0 or earlier. Found: %s',
                     $param['token'],
                     'IntersectionTypeFound',
+                    [$param['type_hint']]
+                );
+            }
+
+            if ($supportsPHP81 === true && $isDNFType === true) {
+                $phpcsFile->addError(
+                    'Disjunctive Normal Form types are not present in PHP version 8.1 or earlier. Found: %s',
+                    $param['token'],
+                    'DNFTypeFound',
                     [$param['type_hint']]
                 );
             }

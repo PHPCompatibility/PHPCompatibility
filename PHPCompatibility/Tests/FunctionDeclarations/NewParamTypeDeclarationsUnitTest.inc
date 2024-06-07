@@ -168,3 +168,19 @@ enum Suit implements Colorful
         A&B $intersection,
     ): mixed {}
 }
+
+// PHP 8.2 DNF types.
+function NOTDnfTypeParamDefault($param = (CONST_A & CONST_B) | CONST_C) {}
+
+function DNFTypes((Foo&Bar)|null $a, int|(\A&\B) $b) {}
+$closure = function($a, (A&B)|(C&D) $b) {};
+
+// Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+$arrow = fn(B&(D|W)|null $a) => $a;
+
+// Intentional fatal error - segments are not unique, but that's not the concern of the sniff.
+$arrow = fn((A&B)|(B&A) $a) => $a;
+
+// Intentional fatal error - segments which are strict subsets of others are disallowed, but that's not the concern of the sniff.
+// Intentional fatal error - using self type outside a class is invalid.
+$arrow = fn((A&self)|A $a) => $a;
