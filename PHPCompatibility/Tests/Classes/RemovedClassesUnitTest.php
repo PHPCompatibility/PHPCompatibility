@@ -65,8 +65,8 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
     {
         return [
             ['HW_API', '5.2', [59], '5.1'],
-            ['HW_API_Object', '5.2', [60, 102], '5.1'],
-            ['HW_API_Attribute', '5.2', [61, 102], '5.1'],
+            ['HW_API_Object', '5.2', [60, 102, 115], '5.1'],
+            ['HW_API_Attribute', '5.2', [61, 102, 115], '5.1'],
             ['HW_API_Error', '5.2', [62], '5.1'],
             ['HW_API_Content', '5.2', [63, 91], '5.1'],
             ['HW_API_Reason', '5.2', [64, 91], '5.1'],
@@ -79,14 +79,14 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['SWFFont', '5.3', [41, 92], '5.2'],
             ['SWFFontChar', '5.3', [44], '5.2'],
             ['SWFGradient', '5.3', [45], '5.2'],
-            ['SWFMorph', '5.3', [46, 100], '5.2'],
-            ['SWFMovie', '5.3', [47, 100], '5.2'],
+            ['SWFMorph', '5.3', [46, 100, 113], '5.2'],
+            ['SWFMovie', '5.3', [47, 100, 113], '5.2'],
             ['SWFPrebuiltClip', '5.3', [48], '5.2'],
             ['SWFShape', '5.3', [49], '5.2'],
             ['SWFSound', '5.3', [50], '5.2'],
             ['SWFSoundInstance', '5.3', [51], '5.2'],
-            ['SWFSprite', '5.3', [52, 101], '5.2'],
-            ['SWFText', '5.3', [55, 101], '5.2'],
+            ['SWFSprite', '5.3', [52, 101, 114], '5.2'],
+            ['SWFText', '5.3', [55, 101, 114], '5.2'],
             ['SWFTextField', '5.3', [56, 85], '5.2'],
             ['SWFVideoStream', '5.3', [57], '5.2'],
 
@@ -133,6 +133,7 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
         $data[] = [77];
         $data[] = [89];
         $data[] = [98];
+        $data[] = [111];
 
         return $data;
     }
