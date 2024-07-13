@@ -80,11 +80,11 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
             ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162, 186], '7.0'],
             ['SessionUpdateTimestampHandlerInterface', '5.6', [90, 142, 162], '7.0'],
-            ['Stringable', '7.4', [112, 179, 203], '8.0'],
-            ['DOMChildNode', '7.4', [196], '8.0'],
-            ['DOMParentNode', '7.4', [196, 204], '8.0'],
-            ['UnitEnum', '8.0', [198], '8.1'],
-            ['BackedEnum', '8.0', [198], '8.1'],
+            ['Stringable', '7.4', [112, 179, 203, 212], '8.0'],
+            ['DOMChildNode', '7.4', [196, 210, 212], '8.0'],
+            ['DOMParentNode', '7.4', [196, 204, 210], '8.0'],
+            ['UnitEnum', '8.0', [198, 211], '8.1'],
+            ['BackedEnum', '8.0', [198, 211], '8.1'],
             ['Random\Engine', '8.1', [200], '8.2'],
             ['Random\CryptoSafeEngine', '8.1', [200], '8.2'],
         ];
@@ -219,7 +219,8 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             [177],
             [185],
             [189],
-            [209],
+            [208],
+            [219],
         ];
     }
 
