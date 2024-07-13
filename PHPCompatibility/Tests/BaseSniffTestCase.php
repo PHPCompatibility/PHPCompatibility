@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Files\LocalFile;
 use PHP_CodeSniffer\Ruleset;
+use PHP_CodeSniffer\Util\Common;
 use PHPCSUtils\BackCompat\Helper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
@@ -108,12 +109,7 @@ abstract class BaseSniffTestCase extends TestCase
      */
     protected function getSniffCode()
     {
-        $class    = \get_class($this);
-        $parts    = \explode('\\', $class);
-        $sniff    = \array_pop($parts);
-        $sniff    = \str_replace('UnitTest', '', $sniff);
-        $category = \array_pop($parts);
-        return self::STANDARD_NAME . '.' . $category . '.' . $sniff;
+        return Common::getSniffCode(\get_class($this));
     }
 
     /**
