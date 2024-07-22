@@ -13,7 +13,7 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: code NOT affected by the change">
+        <code title="Cross-version compatible: code NOT affected by the change.">
         <![CDATA[
 // func_get_args() called BEFORE change of $a.
 function foo($a, $b = null) {
@@ -49,7 +49,7 @@ $closure = <em>function()</em> {
 };
         ]]>
         </code>
-        <code title="Cross-version INcompatible: code affected by the change">
+        <code title="Cross-version INcompatible: code affected by the change.">
         <![CDATA[
 // func_get_args() called AFTER change of $a.
 function foo($a, $b = null) {
@@ -99,7 +99,7 @@ $closure = function(<em>$abc</em>) {
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: original value of $array is not changed prior to call to func_get_args()">
+        <code title="Cross-version compatible: original value of $array is not changed prior to call to func_get_args().">
         <![CDATA[
 function foo($array) {
     $args = <em>func_get_args()</em>;
@@ -108,7 +108,7 @@ function foo($array) {
 }
         ]]>
         </code>
-        <code title="Cross-version INcompatible: original value of $array is changed by reference prior to call to func_get_args()">
+        <code title="Cross-version INcompatible: original value of $array is changed by reference prior to call to func_get_args().">
         <![CDATA[
 function foo($array) {
     // Changes $array by reference.
@@ -120,7 +120,7 @@ function foo($array) {
     </code_comparison>
 
     <code_comparison>
-        <code title="Cross-version compatible: original value of $email is not changed prior to call to func_get_arg()">
+        <code title="Cross-version compatible: original value of $email is not changed prior to call to func_get_arg().">
         <![CDATA[
 function myFunction($email) {
     $newEmail = $email;
@@ -129,7 +129,7 @@ function myFunction($email) {
 }
         ]]>
         </code>
-        <code title="Cross-version INcompatible: original value of $email is potentially be changed (by reference) prior to call to func_get_arg()">
+        <code title="Cross-version INcompatible: original value of $email is potentially be changed (by reference) prior to call to func_get_arg().">
         <![CDATA[
 function myFunction($email) {
     // Unclear: Is $email changed by reference?

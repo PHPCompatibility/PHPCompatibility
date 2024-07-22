@@ -24,7 +24,7 @@ ldap_connect(<em>$host</em>, <em>$port</em>);
         </code>
     </code_comparison>
     <code_comparison>
-        <code title="Cross-version compatible up to PHP 8.3: calling ldap_connect() with wallet-details with an LDAP-URI in the $uri parameter and null for the $port value..">
+        <code title="Cross-version compatible up to PHP 8.3: calling ldap_connect() with wallet-details with an LDAP-URI in the $uri parameter and null for the $port value.">
         <![CDATA[
 ldap_connect(
     <em>"ldap://$host:$port??369"</em>,
