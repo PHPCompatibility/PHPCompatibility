@@ -163,9 +163,10 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
             return;
         }
 
-        $error   = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
-        $isError = false;
-        $code    = 'Deprecated';
+        $error     = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
+        $isError   = false;
+        $code      = 'Deprecated';
+        $realStart = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $error  .= ', hard deprecated since PHP 7.4 and removed since PHP 8.0';
@@ -177,6 +178,6 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
 
         $error .= '. Use an explicit 0 as the offset in the third parameter.';
 
-        MessageHelper::addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code);
+        MessageHelper::addMessage($phpcsFile, $error, $realStart, $isError, $code);
     }
 }

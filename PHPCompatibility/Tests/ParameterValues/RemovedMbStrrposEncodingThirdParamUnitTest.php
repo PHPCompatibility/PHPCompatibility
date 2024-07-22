@@ -65,7 +65,7 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
             [28],
             [37],
             [38],
-            [41],
+            [42],
         ];
     }
 
