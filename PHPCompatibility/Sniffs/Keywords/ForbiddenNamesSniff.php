@@ -289,6 +289,9 @@ class ForbiddenNamesSniff extends Sniff
                 if (\strtolower($tokens[$stackPtr]['content']) === 'enum') {
                     $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
                     if ($tokens[$prevNonEmpty]['code'] === \T_DOUBLE_COLON
+                        || $tokens[$prevNonEmpty]['code'] === \T_CLASS
+                        || $tokens[$prevNonEmpty]['code'] === \T_INTERFACE
+                        || $tokens[$prevNonEmpty]['code'] === \T_TRAIT
                         || $tokens[$prevNonEmpty]['code'] === \T_EXTENDS
                         || $tokens[$prevNonEmpty]['code'] === \T_IMPLEMENTS
                         || $tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR

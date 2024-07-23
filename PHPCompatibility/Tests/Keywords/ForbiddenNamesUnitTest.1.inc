@@ -403,3 +403,11 @@ namespace Foo\Match\Bar;
 namespace Foo\Readonly\Bar;
 namespace Foo\Never\Bar;
 namespace Foo\Enum\Bar;
+
+// Issue #1724: no false positive when a class named "enum" (allowed) extends or implements.
+// Disabling the warning about the use of the soft reserved enum keyword as a class/interface name as this test
+// is specifically testing against false positives (errors) for implements/extends as declaration name for an enum.
+// phpcs:disable PHPCompatibility.Keywords.ForbiddenNames.enumFound
+class enum implements Foo {}
+interface Enum extends Foo {}
+// phpcs:enable
