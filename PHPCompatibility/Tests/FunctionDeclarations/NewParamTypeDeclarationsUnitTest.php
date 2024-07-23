@@ -160,7 +160,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
     public function testInvalidTypeDeclaration($type, $alternative, $line)
     {
         $file = $this->sniffFile(__FILE__, '5.0'); // Lowest version in which this message will show.
-        $this->assertError($file, $line, "'{$type}' is not a valid type declaration. Did you mean {$alternative} ?");
+        $this->assertError($file, $line, "'{$type}' is not a valid parameter type declaration. Did you mean {$alternative} ?");
     }
 
     /**
@@ -173,9 +173,40 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
     public static function dataInvalidTypeDeclaration()
     {
         return [
+            ['static', 'self', 25],
+        ];
+    }
+
+
+    /**
+     * Verify that invalid "long" type declarations are flagged correctly.
+     *
+     * @dataProvider dataInvalidLongTypeDeclaration
+     *
+     * @param string $type        The declared type.
+     * @param string $alternative Alternative for the invalid type hint.
+     * @param int    $line        Line number on which to expect an error.
+     *
+     * @return void
+     */
+    public function testInvalidLongTypeDeclaration($type, $alternative, $line)
+    {
+        $file = $this->sniffFile(__FILE__, '5.0'); // Lowest version in which this message will show.
+        $this->assertWarning($file, $line, "'{$type}' is not a valid parameter type declaration. Did you mean {$alternative} ?");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidLongTypeDeclaration()
+     *
+     * @return array
+     */
+    public static function dataInvalidLongTypeDeclaration()
+    {
+        return [
             ['boolean', 'bool', 20],
             ['integer', 'int', 21],
-            ['static', 'self', 25],
             ['integer', 'int', 81],
         ];
     }

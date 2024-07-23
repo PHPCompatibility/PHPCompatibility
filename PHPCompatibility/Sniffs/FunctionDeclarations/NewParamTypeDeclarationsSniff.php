@@ -140,7 +140,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
     ];
 
     /**
-     * Invalid types
+     * Invalid types. These will throw an error.
      *
      * The array lists : the invalid type hint => what was probably intended/alternative.
      *
@@ -149,7 +149,19 @@ class NewParamTypeDeclarationsSniff extends Sniff
      * @var array<string, string>
      */
     protected $invalidTypes = [
-        'static'  => 'self',
+        'static' => 'self',
+    ];
+
+    /**
+     * Invalid "long" types which are likely typos. These will throw a warning.
+     *
+     * The array lists : the invalid type hint => what was probably intended/alternative.
+     *
+     * @since 10.0.0 Split off from the `$invalidTypes` property.
+     *
+     * @var array<string, string>
+     */
+    protected $invalidLongTypes = [
         'boolean' => 'bool',
         'integer' => 'int',
     ];
@@ -321,13 +333,24 @@ class NewParamTypeDeclarationsSniff extends Sniff
                 }
 
                 if (isset($this->invalidTypes[$type])) {
-                    $error = "'%s' is not a valid type declaration. Did you mean %s ?";
+                    $error = "'%s' is not a valid parameter type declaration. Did you mean %s ?";
                     $data  = [
                         $type,
                         $this->invalidTypes[$type],
                     ];
 
                     $phpcsFile->addError($error, $param['token'], 'InvalidTypeHintFound', $data);
+                    continue;
+                }
+
+                if (isset($this->invalidLongTypes[$type])) {
+                    $error = "'%s' is not a valid parameter type declaration. Did you mean %s ?";
+                    $data  = [
+                        $type,
+                        $this->invalidLongTypes[$type],
+                    ];
+
+                    $phpcsFile->addWarning($error, $param['token'], 'InvalidLongTypeFound', $data);
                 }
             }
         }
