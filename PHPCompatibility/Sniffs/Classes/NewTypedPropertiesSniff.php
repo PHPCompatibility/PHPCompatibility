@@ -87,7 +87,7 @@ class NewTypedPropertiesSniff extends Sniff
     ];
 
     /**
-     * Invalid types.
+     * Invalid types. These will throw an error.
      *
      * The array lists : the invalid type => what was probably intended/alternative
      * or false if no alternative available.
@@ -97,11 +97,24 @@ class NewTypedPropertiesSniff extends Sniff
      * @var array<string, string|false>
      */
     protected $invalidTypes = [
-        'boolean'  => 'bool',
-        'integer'  => 'int',
         'callable' => false,
         'void'     => false,
         'never'    => false,
+    ];
+
+    /**
+     * Invalid "long" types which are likely typos. These will throw a warning.
+     *
+     * The array lists : the invalid type => what was probably intended/alternative
+     * or false if no alternative available.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, string|false>
+     */
+    protected $invalidLongTypes = [
+        'boolean' => 'bool',
+        'integer' => 'int',
     ];
 
     /**
@@ -306,16 +319,31 @@ class NewTypedPropertiesSniff extends Sniff
                             [$type]
                         );
                     }
-                } elseif (isset($this->invalidTypes[$type])) {
-                    $error = '%s is not supported as a type declaration for properties' . $errorSuffix;
-                    $data  = [$type];
+                } else {
+                    if (isset($this->invalidTypes[$type])) {
+                        $error = '%s is not supported as a property type declaration' . $errorSuffix;
+                        $data  = [$type];
 
-                    if ($this->invalidTypes[$type] !== false) {
-                        $error .= '. Did you mean %s ?';
-                        $data[] = $this->invalidTypes[$type];
+                        if ($this->invalidTypes[$type] !== false) {
+                            $error .= '. Did you mean %s ?';
+                            $data[] = $this->invalidTypes[$type];
+                        }
+
+                        $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
+                        continue;
                     }
 
-                    $phpcsFile->addError($error, $typeToken, 'InvalidType', $data);
+                    if (isset($this->invalidLongTypes[$type])) {
+                        $error = '%s is not supported as a property type declaration' . $errorSuffix;
+                        $data  = [$type];
+
+                        if ($this->invalidLongTypes[$type] !== false) {
+                            $error .= '. Did you mean %s ?';
+                            $data[] = $this->invalidLongTypes[$type];
+                        }
+
+                        $phpcsFile->addWarning($error, $typeToken, 'InvalidLongType', $data);
+                    }
                 }
             }
         }
