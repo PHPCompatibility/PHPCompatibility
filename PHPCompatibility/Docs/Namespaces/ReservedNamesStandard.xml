@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Reserved Namespace Names"
+    >
+    <standard>
+    <![CDATA[
+    Userland PHP code should not use top-level namespace names reserved by PHP as this can cause naming conflicts ("class already declared" and the likes) as well as unexpected behaviour (extension code overruling the user-defined code with different behaviour).
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: namespace declaration using a vendor name for the top-level namespace.">
+        <![CDATA[
+namespace <em>MyCompany\LDAP\Sub</em>;
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: namespace declaration using a top-level namespace reserved by PHP.">
+        <![CDATA[
+// The LDAP namespace is in use since PHP 8.1.
+namespace <em>LDAP\Sub</em>;
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Along the same lines, it is strongly discouraged to use a top-level namespace name reserved by a PECL PHP extension.
+    While, in most cases, this will be less problematic as the chances of the PECL extension being active on the server running the code are much smaller, there is still a risk and this risk will increase exponentially if/when the PECL extension would be promoted to a bundled extension.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: namespace declaration using a vendor name for the top-level namespace.">
+        <![CDATA[
+namespace <em>MyCompany\UI\Elements</em>;
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: namespace declaration using a top-level namespace reserved by a PECL extension.">
+        <![CDATA[
+namespace <em>UI\Elements</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
