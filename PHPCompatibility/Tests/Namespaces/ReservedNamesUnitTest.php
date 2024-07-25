@@ -43,7 +43,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
         $this->assertNoViolation($file, $line);
 
         $file  = $this->sniffFile(__FILE__, $version);
-        $error = "The top-level namespace name \"{$name}\" is reserved by and in use by PHP since PHP version {$version}.";
+        $error = "The top-level namespace name \"{$name}\" is reserved for, and in use by, PHP since PHP version {$version}.";
         $this->assertError($file, $line, $error);
     }
 

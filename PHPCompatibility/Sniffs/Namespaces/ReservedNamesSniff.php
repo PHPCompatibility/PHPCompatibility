@@ -18,12 +18,12 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * Detect declarations of namespace names reserved or in use by PHP.
+ * Detect declarations of namespace names reserved for, or in use by, PHP.
  *
  * > The Namespace name PHP, and compound names starting with this name (like PHP\Classes) are reserved
  * > for internal language use and should not be used in the userspace code.
  *
- * Also includes names actually in use by PHP.
+ * Also includes namespace names actually in use by PHP.
  *
  * PHP version 5.3+
  *
@@ -124,7 +124,7 @@ class ReservedNamesSniff extends Sniff
 
         // Throw an error for other reserved names.
         $phpcsFile->addError(
-            'The top-level namespace name "%s" is reserved by and in use by PHP since PHP version %s. Found: %s',
+            'The top-level namespace name "%s" is reserved for, and in use by, PHP since PHP version %s. Found: %s',
             $firstNonEmpty,
             MessageHelper::stringToErrorCode($firstPart, true) . 'Found',
             [
