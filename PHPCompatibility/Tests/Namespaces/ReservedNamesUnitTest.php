@@ -62,6 +62,12 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [22, 'Random', '8.2', '8.1'],
             [23, 'Random', '8.2', '8.1'],
             [27, 'rANdOm', '8.2', '8.1'],
+            [35, 'FTP', '8.1', '8.0'],
+            [36, 'FTP', '8.1', '8.0'],
+            [37, 'IMAP', '8.1', '8.0'],
+            [38, 'LDAP', '8.1', '8.0'],
+            [39, 'PgSql', '8.1', '8.0'],
+            [40, 'PSpell', '8.1', '8.0'],
         ];
     }
 
@@ -129,7 +135,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [35],
+            [43],
         ];
     }
 

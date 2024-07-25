@@ -31,5 +31,13 @@ namespace My\namespace; // Allowed since PHP 8.0.
 namespace\php\function_call(); // Use of the keyword as an operator.
 echo namespace\random\SomeConstant; // Use of the keyword as an operator.
 
+// Error PHP 8.1+.
+namespace FTP;
+namespace FTP\Connect;
+namespace IMAP\Something;
+namespace LDAP;
+namespace PgSql\Sub;
+namespace PSpell;
+
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli

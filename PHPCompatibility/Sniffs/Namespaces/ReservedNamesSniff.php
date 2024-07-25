@@ -49,6 +49,11 @@ class ReservedNamesSniff extends Sniff
          */
         'PHP'    => '5.3',
         'FFI'    => '7.4',
+        'FTP'    => '8.1',
+        'IMAP'   => '8.1',
+        'LDAP'   => '8.1',
+        'PgSql'  => '8.1',
+        'PSpell' => '8.1',
         'Random' => '8.2',
     ];
 
