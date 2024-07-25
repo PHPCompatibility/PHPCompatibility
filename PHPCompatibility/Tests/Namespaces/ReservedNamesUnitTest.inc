@@ -39,5 +39,38 @@ namespace LDAP;
 namespace PgSql\Sub;
 namespace PSpell;
 
+// Warning on all PHP versions.
+namespace CommonMark\Sub;
+namespace Componere\Sub;
+namespace Gender\Sub;
+namespace HRTime\Sub;
+namespace MongoDB\Sub;
+namespace mysql_xdevapi\Sub;
+namespace parallel\Sub;
+namespace Swoole\Sub;
+namespace UI\Sub;
+namespace wkhtmltox\Sub;
+namespace XMLDiff\Sub;
+namespace Aerospike\Sub;
+namespace Cassandra\Sub;
+namespace Couchbase\Sub;
+namespace Crypto\Sub;
+namespace Decimal\Sub;
+namespace Grpc\Sub;
+namespace HTTP\Sub;
+namespace Mosquitto\Sub;
+namespace pcov\Sub;
+namespace pq\Sub;
+namespace RdKafka\Sub;
+namespace Zstd\Sub;
+
+// Warning on PHP 7.0+.
+namespace Ds\Sub;
+namespace Vtiful\Kernel;
+namespace Vtiful\Kernel\Sub;
+
+// Warning on PHP 7.4+.
+namespace Parle\Sub;
+
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli

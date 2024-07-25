@@ -105,6 +105,69 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Verify correctly detecting reserved namespace name for a PECL extension.
+     *
+     * @dataProvider dataReservedNamePECL
+     *
+     * @param int    $line      The line number in the test file.
+     * @param string $name      The reserved name which should be detected.
+     * @param string $version   The PHP version in which the name became reserved.
+     * @param string $okVersion A PHP version in which the name was not reserved.
+     *
+     * @return void
+     */
+    public function testReservedNamePECL($line, $name, $version = '5.3', $okVersion = '5.2')
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        $this->assertNoViolation($file, $line);
+
+        $file    = $this->sniffFile(__FILE__, $version);
+        $warning = "The top-level namespace name \"{$name}\" is reserved for, and in use by, a PECL extension";
+        $this->assertWarning($file, $line, $warning);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testReservedNamePECL()
+     *
+     * @return array
+     */
+    public static function dataReservedNamePECL()
+    {
+        return [
+            [43, 'CommonMark'],
+            [44, 'Componere'],
+            [45, 'Gender'],
+            [46, 'HRTime'],
+            [47, 'MongoDB'],
+            [48, 'mysql_xdevapi'],
+            [49, 'parallel'],
+            [50, 'Swoole'],
+            [51, 'UI'],
+            [52, 'wkhtmltox'],
+            [53, 'XMLDiff'],
+            [54, 'Aerospike'],
+            [55, 'Cassandra'],
+            [56, 'Couchbase'],
+            [57, 'Crypto'],
+            [58, 'Decimal'],
+            [59, 'Grpc'],
+            [60, 'HTTP'],
+            [61, 'Mosquitto'],
+            [62, 'pcov'],
+            [63, 'pq'],
+            [64, 'RdKafka'],
+            [65, 'Zstd'],
+            [68, 'Ds', '7.0', '5.6'],
+            [69, 'Vtiful', '7.0', '5.6'],
+            [70, 'Vtiful', '7.0', '5.6'],
+            [73, 'Parle', '7.4', '7.3'],
+        ];
+    }
+
+
+    /**
      * Verify the sniff does not throw false positives on valid code.
      *
      * @dataProvider dataNoFalsePositives
@@ -135,7 +198,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [43],
+            [76],
         ];
     }
 
