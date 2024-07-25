@@ -61,6 +61,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [19, 'FFI', '7.4', '7.3'],
             [22, 'Random', '8.2', '8.1'],
             [23, 'Random', '8.2', '8.1'],
+            [27, 'rANdOm', '8.2', '8.1'],
         ];
     }
 
@@ -92,6 +93,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [11],
             [12],
             [13],
+            [26],
         ];
     }
 
@@ -124,7 +126,10 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [4],
             [5],
             [6],
-            [26],
+            [30],
+            [31],
+            [32],
+            [35],
         ];
     }
 
