@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Attributes"
+    >
+    <standard>
+    <![CDATA[
+    PHP 8.0 introduced Attributes as a form of structured, syntactic metadata to declarations of classes, properties, functions, methods, parameters and constants. Attributes allow to define configuration directives directly embedded with the declaration of that code.
+
+    Due to the choice of syntax `#[...]`, in most cases, attributes can be safely used in code which also needs to run on PHP < 8.0, as the attributes will be regarded as comments in PHP < 8.0.
+    Keep in mind, however, that any functionality associated with the attribute will not be executed on PHP < 8.0.
+
+    There are, however, a couple of syntaxes which are not cross-version compatible.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: single line attributes on a line by themselves.">
+        <![CDATA[
+<em>#[SingleLine( true, 'value' ) ]</em>
+class AttributesDemo
+{
+    <em>#[SingleLineNoArgs]</em>
+    public $foo;
+
+    <em>#[FirstAttribute]</em>
+    <em>#[SecondAttribute]</em>
+    protected function foo() {}
+
+    <em>#[First(MyClass::class), Second]</em>
+    public function bar() {}
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.0: multi-line attributes.">
+        <![CDATA[
+<em>#[MultiLine(
+    true,
+    'value'
+)]</em>
+class AttributesDemo
+{
+    <em>#[
+        FirstAttribute(MyClass::class),
+        SecondAttribute
+    ]</em>
+    public function foo() {}
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: single line attributes on a line by themselves.">
+        <![CDATA[
+<em>#[AttachedToClass]</em>
+class AttributesDemo
+{
+    <em>#[AttachedToProp]</em>
+    public $foo;
+
+    public function foo(
+        <em>#[AttachedToParam('email')]</em>
+        $email,
+        <em>#[AttachedToParam('url')]</em>
+        $url,
+    ) {}
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.0: attributes followed by other code on the same line.">
+        <![CDATA[
+<em>#[AttachedToClass]</em> class AttributesDemo
+{
+    <em>#[AttachedToProp]</em> public $foo;
+
+    public function foo(
+        <em>#[AttachedToParam('email')]</em> $email,
+        <em>#[AttachedToParam('url')]</em> $url,
+    ) {}
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: text which looks like a PHP close tag is concatenated.">
+        <![CDATA[
+<em>#[Discouraged('<https://foo.com/reason?'.'>')]</em>
+function foo () {}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.0: text which looks like a PHP close tag is passed as plain text.">
+        <![CDATA[
+<em>#[Discouraged('<https://foo.com/reason?>')]</em>
+function foo () {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
