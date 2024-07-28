@@ -26,17 +26,32 @@ class NewAttributesUnitTest extends BaseSniffTestCase
 {
 
     /**
+     * The name of the primary test case file.
+     *
+     * @var string
+     */
+    const TEST_FILE = 'NewAttributesUnitTest.1.inc';
+
+    /**
+     * The name of a secondary test case file containing tests with a PHP close tag in a text string.
+     *
+     * @var string
+     */
+    const TEST_CLOSE_TAG = 'NewAttributesUnitTest.2.inc';
+
+    /**
      * Verify that multi-line attributes are identified and flagged correctly.
      *
      * @dataProvider dataMultilineAttributes
      *
-     * @param int $line The line number.
+     * @param int    $line     The line number.
+     * @param string $testFile File name for the test case file to use.
      *
      * @return void
      */
-    public function testMultilineAttribute($line)
+    public function testMultilineAttribute($line, $testFile = self::TEST_FILE)
     {
-        $file  = $this->sniffFile(__FILE__, '7.4');
+        $file  = $this->sniffFile(__DIR__ . '/' . $testFile, '7.4');
         $error = 'Multi-line attributes will result in a parse error in PHP 7.4 and earlier.';
 
         $this->assertError($file, $line, $error);
@@ -57,8 +72,9 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [86],
             [96],
             [104],
-            [109],
-            [114],
+
+            [4, self::TEST_CLOSE_TAG],
+            [9, self::TEST_CLOSE_TAG],
         ];
 
         return $data;
@@ -70,13 +86,14 @@ class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataInlineAttributes
      *
-     * @param int $line The line number.
+     * @param int    $line     The line number.
+     * @param string $testFile File name for the test case file to use.
      *
      * @return void
      */
-    public function testInlineAttribute($line)
+    public function testInlineAttribute($line, $testFile = self::TEST_FILE)
     {
-        $file  = $this->sniffFile(__FILE__, '7.4');
+        $file  = $this->sniffFile(__DIR__ . '/' . $testFile, '7.4');
         $error = 'Code after an inline attribute on the same line will be ignored in PHP 7.4 and earlier and is likely to cause a parse error or functional error.';
 
         $this->assertError($file, $line, $error);
@@ -97,7 +114,8 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [48],
             [83],
             [105],
-            [110],
+
+            [5, self::TEST_CLOSE_TAG],
         ];
 
         return $data;
@@ -116,7 +134,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
      */
     public function testAttributeContainingStringCloseTag($line)
     {
-        $file  = $this->sniffFile(__FILE__, '7.4');
+        $file  = $this->sniffFile(__DIR__ . '/' . self::TEST_CLOSE_TAG, '7.4');
         $error = 'Text string containing text which looks like a PHP close tag found on the same line as an attribute opener. This will cause PHP to switch to inline HTML in PHP 7.4 and earlier, which may lead to code exposure and will break functionality.';
 
         $this->assertError($file, $line, $error);
@@ -132,7 +150,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
     public static function dataAttributeContainingStringCloseTag()
     {
         $data = [
-            [109],
+            [4],
         ];
 
         return $data;
@@ -144,14 +162,15 @@ class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewAttributes
      *
-     * @param int    $line  The line number.
-     * @param string $found Optional. Found attribute contents.
+     * @param int    $line     The line number.
+     * @param string $found    Optional. Found attribute contents.
+     * @param string $testFile File name for the test case file to use.
      *
      * @return void
      */
-    public function testNewAttributes($line, $found = '')
+    public function testNewAttributes($line, $found = '', $testFile = self::TEST_FILE)
     {
-        $file  = $this->sniffFile(__FILE__, '7.4');
+        $file  = $this->sniffFile(__DIR__ . '/' . $testFile, '7.4');
         $error = 'Attributes are not supported in PHP 7.4 or earlier.';
         if ($found !== '') {
             $error .= ' Found: ' . $found;
@@ -206,8 +225,9 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [96, '#[Assert\Email(["message" => "text"])]'],
             [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
             [104],
-            [109],
-            [114],
+
+            [4, '#[DeprecationReason(\'reason: <https://some-website/reason?>\') ]', self::TEST_CLOSE_TAG],
+            [9, '#[DeprecationReason( \'reason: <https://some-website/reason?>\' )]', self::TEST_CLOSE_TAG],
         ];
 
         return $data;
@@ -225,7 +245,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(__FILE__, '7.4');
+        $file = $this->sniffFile(__DIR__ . '/' . self::TEST_FILE, '7.4');
         $this->assertNoViolation($file, $line);
     }
 
@@ -252,11 +272,28 @@ class NewAttributesUnitTest extends BaseSniffTestCase
     /**
      * Verify no notices are thrown at all.
      *
+     * @dataProvider dataNoViolationsInFileOnValidVersion
+     *
+     * @param string $testFile File name for the test case file to use.
+     *
      * @return void
      */
-    public function testNoViolationsInFileOnValidVersion()
+    public function testNoViolationsInFileOnValidVersion($testFile)
     {
-        $file = $this->sniffFile(__FILE__, '8.0');
+        $file = $this->sniffFile(__DIR__ . '/' . $testFile, '8.0');
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public static function dataNoViolationsInFileOnValidVersion()
+    {
+        return [
+            [self::TEST_FILE],
+            [self::TEST_CLOSE_TAG],
+        ];
     }
 }
