@@ -72,11 +72,25 @@ class NewAttributesSniff extends Sniff
             return; // @codeCoverageIgnore
         }
 
+        $opener = $stackPtr;
+        $closer = $tokens[$stackPtr]['attribute_closer'];
+
+        /*
+         * Check if the attribute is cross-version compatible with PHP < 8.0.
+         */
+        if ($tokens[$opener]['line'] !== $tokens[$closer]['line']) {
+            $phpcsFile->addError(
+                'Multi-line attributes will result in a parse error in PHP 7.4 and earlier.',
+                $opener,
+                'FoundMultiLine'
+            );
+        }
+
         $phpcsFile->addError(
             'Attributes are not supported in PHP 7.4 or earlier. Found: %s',
-            $stackPtr,
+            $opener,
             'Found',
-            [GetTokensAsString::compact($phpcsFile, $stackPtr, $tokens[$stackPtr]['attribute_closer'], true)]
+            [GetTokensAsString::compact($phpcsFile, $opener, $closer, true)]
         );
     }
 }

@@ -26,6 +26,44 @@ class NewAttributesUnitTest extends BaseSniffTestCase
 {
 
     /**
+     * Verify that multi-line attributes are identified and flagged correctly.
+     *
+     * @dataProvider dataMultilineAttributes
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testMultilineAttribute($line)
+    {
+        $file  = $this->sniffFile(__FILE__, '7.4');
+        $error = 'Multi-line attributes will result in a parse error in PHP 7.4 and earlier.';
+
+        $this->assertError($file, $line, $error);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testMultilineAttributes()
+     *
+     * @return array
+     */
+    public static function dataMultilineAttributes()
+    {
+        $data = [
+            [67],
+            [73],
+            [86],
+            [96],
+            [109],
+        ];
+
+        return $data;
+    }
+
+
+    /**
      * testNewAttributes
      *
      * @dataProvider dataNewAttributes
