@@ -52,6 +52,197 @@ class NewAttributesSniff extends Sniff
     ];
 
     /**
+     * List of other PHP native attributes.
+     *
+     * These attributes will be bundled into one error code to allow for easily selectively ignoring them.
+     *
+     * Source of the attributes list: https://www.php.net/manual/en/reserved.attributes.php
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, string> Key is the attribute name, value is the PHP version in which the attribute was introduced.
+     */
+    private $otherPHPNativeAttributes = [
+        'Attribute'          => '8.0',
+        'Override'           => '8.3',
+        'SensitiveParameter' => '8.2',
+    ];
+
+    /**
+     * List of Doctrine ORM native attributes.
+     *
+     * These attributes will be bundled into one error code to allow for easily selectively ignoring them.
+     *
+     * {@internal Once the PHPCSUtils name resolution with namespace and import statements becomes available,
+     * this list should no longer be necessary and all Doctrine attributes can be ignored based on their
+     * fully qualified name starting with "Doctrine\ORM\Mapping".}
+     *
+     * Source of the attributes list: https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/reference/attributes-reference.html
+     *
+     * This list is ordered as per the documentation for maintainability.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, bool> Key is the attribute name, value is irrelevant.
+     */
+    private $doctrineAttributes = [
+        'AssociationOverride'   => true,
+        'AttributeOverride'     => true,
+        'Column'                => true,
+        'Cache'                 => true,
+        'ChangeTrackingPolicy'  => true,
+        'CustomIdGenerator'     => true,
+        'DiscriminatorColumn'   => true,
+        'DiscriminatorMap'      => true,
+        'Embeddable'            => true,
+        'Embedded'              => true,
+        'Entity'                => true,
+        'GeneratedValue'        => true,
+        'HasLifecycleCallbacks' => true,
+        'Index'                 => true,
+        'Id'                    => true,
+        'InheritanceType'       => true,
+        'InverseJoinColumn'     => true,
+        'JoinColumn'            => true,
+        'JoinTable'             => true,
+        'ManyToOne'             => true,
+        'ManyToMany'            => true,
+        'MappedSuperclass'      => true,
+        'OneToOne'              => true,
+        'OneToMany'             => true,
+        'OrderBy'               => true,
+        'PostLoad'              => true,
+        'PostPersist'           => true,
+        'PostRemove'            => true,
+        'PostUpdate'            => true,
+        'PrePersist'            => true,
+        'PreRemove'             => true,
+        'PreUpdate'             => true,
+        'SequenceGenerator'     => true,
+        'Table'                 => true,
+        'UniqueConstraint'      => true,
+        'Version'               => true,
+    ];
+
+    /**
+     * List of PHPStorm native attributes.
+     *
+     * These attributes will bundled into one error code to allow for easily selectively ignoring them.
+     *
+     * {@internal Once the PHPCSUtils name resolution with namespace and import statements becomes available,
+     * this list should no longer be necessary and all PHPStorm attributes can be ignored based on their
+     * fully qualified name starting with "JetBrains\PhpStorm".}
+     *
+     * Source of the attributes list: https://github.com/JetBrains/phpstorm-attributes
+     *
+     * This list is ordered as per the documentation for maintainability.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, bool> Key is the attribute name, value is irrelevant.
+     */
+    private $phpstormAttributes = [
+        'ArrayShape'     => true,
+        'Deprecated'     => true,
+        'ExpectedValues' => true,
+        'Immutable'      => true,
+        'Language'       => true,
+        'NoReturn'       => true,
+        'ObjectShape'    => true,
+        'Pure'           => true,
+    ];
+
+    /**
+     * List of PHPUnit native attributes.
+     *
+     * These attributes will be bundled into one error code to allow for easily selectively ignoring them.
+     *
+     * {@internal Once the PHPCSUtils name resolution with namespace and import statements becomes available,
+     * this list should no longer be necessary and all PHPUnit attributes can be ignored based on their
+     * fully qualified name starting with "PHPUnit\Framework\Attributes".}
+     *
+     * Source of the attributes list: https://docs.phpunit.de/en/main/attributes.html
+     *
+     * This list is ordered as per the documentation for maintainability.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, bool> Key is the attribute name, value is irrelevant.
+     */
+    private $phpunitAttributes = [
+        // Generic.
+        'Test'                                       => true,
+        'TestDox'                                    => true,
+        'DisableReturnValueGenerationForTestDoubles' => true,
+        'DoesNotPerformAssertions'                   => true,
+        'IgnoreDeprecations'                         => true,
+        'WithoutErrorHandler'                        => true,
+
+        // Code Coverage.
+        'CoversClass'                                => true,
+        'CoversTrait'                                => true,
+        'CoversMethod'                               => true,
+        'CoversFunction'                             => true,
+        'CoversNothing'                              => true,
+        'UsesClass'                                  => true,
+        'UsesTrait'                                  => true,
+        'UsesMethod'                                 => true,
+        'UsesFunction'                               => true,
+
+        // Data Provider.
+        'DataProvider'                               => true,
+        'DataProviderExternal'                       => true,
+        'TestWith'                                   => true,
+        'TestWithJson'                               => true,
+
+        // Test Dependencies.
+        'Depends'                                    => true,
+        'DependsUsingDeepClone'                      => true,
+        'DependsUsingShallowClone'                   => true,
+        'DependsExternal'                            => true,
+        'DependsExternalUsingDeepClone'              => true,
+        'DependsExternalUsingShallowClone'           => true,
+        'DependsOnClass'                             => true,
+        'DependsOnClassUsingDeepClone'               => true,
+        'DependsOnClassUsingShallowClone'            => true,
+
+        // Test Groups.
+        'Group'                                      => true,
+        'Small'                                      => true,
+        'Medium'                                     => true,
+        'Large'                                      => true,
+        'Ticket'                                     => true,
+
+        // Template Methods.
+        'BeforeClass'                                => true,
+        'Before'                                     => true,
+        'PreCondition'                               => true,
+        'PostCondition'                              => true,
+        'After'                                      => true,
+        'AfterClass'                                 => true,
+
+        // Test Isolation.
+        'BackupGlobals'                              => true,
+        'ExcludeGlobalVariableFromBackup'            => true,
+        'BackupStaticProperties'                     => true,
+        'ExcludeStaticPropertyFromBackup'            => true,
+        'RunInSeparateProcess'                       => true,
+        'RunTestsInSeparateProcesses'                => true,
+        'RunClassInSeparateProcess'                  => true,
+        'PreserveGlobalState'                        => true,
+
+        // Skipping Tests.
+        'RequiresPhp'                                => true,
+        'RequiresPhpExtension'                       => true,
+        'RequiresSetting'                            => true,
+        'RequiresPhpunit'                            => true,
+        'RequiresFunction'                           => true,
+        'RequiresMethod'                             => true,
+        'RequiresOperatingSystem'                    => true,
+        'RequiresOperatingSystemFamily'              => true,
+    ];
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 10.0.0
@@ -62,6 +253,10 @@ class NewAttributesSniff extends Sniff
     {
         // Handle case-insensitivity of attribute names.
         $this->phpCrossVersionAttributes = \array_change_key_case($this->phpCrossVersionAttributes, \CASE_LOWER);
+        $this->otherPHPNativeAttributes  = \array_change_key_case($this->otherPHPNativeAttributes, \CASE_LOWER);
+        $this->doctrineAttributes        = \array_change_key_case($this->doctrineAttributes, \CASE_LOWER);
+        $this->phpstormAttributes        = \array_change_key_case($this->phpstormAttributes, \CASE_LOWER);
+        $this->phpunitAttributes         = \array_change_key_case($this->phpunitAttributes, \CASE_LOWER);
 
         return [\T_ATTRIBUTE];
     }
@@ -199,10 +394,33 @@ class NewAttributesSniff extends Sniff
                 continue;
             }
 
+            if (\stripos($attributeName, 'PHPUnit\\Framework\\Attributes\\') === 0
+                || isset($this->phpunitAttributes[$attributeName])
+            ) {
+                // Either a fully qualified PHPUnit attribute or an unqualified PHPUnit attribute.
+                $errorCode = 'PHPUnitAttributeFound';
+            } elseif (\stripos($attributeName, 'Doctrine\\ORM\\Mapping\\') === 0
+                || isset($this->doctrineAttributes[$attributeName])
+            ) {
+                // Either a fully qualified Doctrine attribute or an unqualified Doctrine attribute.
+                $errorCode = 'DoctrineORMAttributeFound';
+            } elseif (\stripos($attributeName, 'JetBrains\\PhpStorm\\') === 0
+                || isset($this->phpstormAttributes[$attributeName])
+            ) {
+                // Either a fully qualified PHPStorm attribute or an unqualified PHPStorm attribute.
+                $errorCode = 'PHPStormAttributeFound';
+            } elseif (isset($this->otherPHPNativeAttributes[$attributeName])) {
+                // A PHP native attribute, not introduced for PHP cross-version compatibility.
+                $errorCode = 'PHPNativeAttributeFound';
+            } else {
+                // All other attributes.
+                $errorCode = 'Found';
+            }
+
             $phpcsFile->addWarning(
                 'Attributes are not supported in PHP 7.4 or earlier. They will be ignored and the application may not work as expected. Found: %s',
                 $startPtr,
-                'Found',
+                $errorCode,
                 ['#[' . $attributeNames[$startPtr] . '...]']
             );
         }

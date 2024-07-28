@@ -122,3 +122,28 @@ function phpNativeCrossVersionCompatibilityAttributesAreTreatedCaseInsensitively
 
 #[\ReturnTypeWillChange, MySecondAttribute]
 function phpNativeCrossVersionCompatibilityAttributesWillNotInhibitFlaggingOfSecondAttribute() {}
+
+/*
+ * Verify that attributes provided by a limited set of applications are flagged with their own error code.
+ * Needs manual check until the test framework would be changed to handle this.
+ */
+#[CoversClass(Something::class)]
+#[RequiresPhp('5.6')]
+class PHPUnitAttributesTest extends TestCase {
+    #[Before]
+    public function setMeUp() {}
+}
+
+#[\Doctrine\ORM\Mapping\Entity]
+class MyEntity {
+    #[\JetBrains\PhpStorm\ArrayShape]
+    private $info;
+
+    #[\Override]
+    #[Embeddable]
+    #[NoReturn]
+    public function fooBar(
+        #[SensitiveParameter]
+        $pswd
+    ) {}
+}
