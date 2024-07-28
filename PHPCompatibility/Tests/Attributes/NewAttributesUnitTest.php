@@ -198,36 +198,47 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [35],
+            [35, '#[MyAttributeA...]'],
+            [35, '#[MyAttributeB...]'],
             [38],
             [40],
             [41],
             [42],
-            [43],
+            [43, '#[\My\Attributes\FewArguments...]'],
             [46],
             [48],
-            [50, '#[WithoutArgument]'],
-            [50, '#[SingleArgument(0)]'],
-            [50, "#[FewArguments('Hello', 'World')]"],
+            [50, '#[WithoutArgument...]'],
+            [50, '#[SingleArgument...]'],
+            [50, '#[FewArguments...]'],
             [53],
-            [56, '#[ORM\Id]'],
-            [56, '#[ORM\Column("integer")]'],
-            [56, '#[ORM\GeneratedValue]'],
+            [56, '#[ORM\Id...]'],
+            [56, '#[ORM\Column...]'],
+            [56, '#[ORM\GeneratedValue...]'],
             [59],
             [60],
-            [64],
-            [67, '#[Attr2("foo"), Attr2("bar")]'],
-            [73, '#[ Attr1("foo"), Attr2("bar"), ]'],
-            [83, '#[MyAttr([1, 2])]'],
-            [86, '#[ ORM\Entity, ORM\Table("user") ]'],
-            [92],
+            [64, '#[Attr1...]'],
+            [64, '#[Attr2...]'],
+            [67, '#[Attr2...]'],
+            [68, '#[Attr2...]'],
+            [74, '#[Attr1...]'],
+            [75, '#[Attr2...]'],
+            [83, '#[MyAttr...]'],
+            [87, '#[ORM\Entity...]'],
+            [88, '#[ORM\Table...]'],
+            [92, '#[ORM\Id...]'],
+            [92, '#[ORM\Column...]'],
+            [92, '#[ORM\GeneratedValue...]'],
             [95],
-            [96, '#[Assert\Email(["message" => "text"])]'],
-            [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
+            [96, '#[Assert\Email...]'],
+            [96, '#[Assert\Text...]'],
+            [97, '#[Assert\Domain...'],
+            [98, '#[Assert\Id...]'],
             [104],
+            [114, '#[\MyAttribute...]'],
+            [123, '#[MySecondAttribute...]'],
 
-            [4, '#[DeprecationReason(\'reason: <https://some-website/reason?>\') ]', self::TEST_CLOSE_TAG],
-            [9, '#[DeprecationReason( \'reason: <https://some-website/reason?>\' )]', self::TEST_CLOSE_TAG],
+            [4, '#[DeprecationReason...]', self::TEST_CLOSE_TAG],
+            [9, '#[DeprecationReason...]', self::TEST_CLOSE_TAG],
         ];
 
         return $data;
@@ -264,6 +275,11 @@ class NewAttributesUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 12; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [108];
+        $data[] = [112];
+        $data[] = [117];
+        $data[] = [120];
 
         return $data;
     }

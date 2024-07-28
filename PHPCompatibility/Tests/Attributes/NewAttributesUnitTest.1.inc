@@ -32,7 +32,7 @@ class MyOtherAttribute {}
 #[MyAttribute(100 + 200)]
 class Thing {}
 
-#[MyAttribute(1234), MyAttribute(5678)]
+#[MyAttributeA(1234), MyAttributeB(5678)]
 class MultipleAttributesGrouped {}
 
 $object = new #[ExampleAttribute] class () { };
@@ -104,3 +104,21 @@ function MultiLineAndInlineErrorForSameAttribute(
     #[MultilineAttribute(
     )] $inlineParam
 ) {}
+
+#[]
+function emptyAttributeShouldBeIgnored() {}
+
+#[MyAttribute('value', NewAttribute]
+function attributeWithUnclosedParenthesesWillBeIgnored() {}
+
+#[/*comment*/ \MyAttribute /*comment*/ ('param')]
+function commentsShouldBeIgnoredWhenRetrievingTheAttributeList() {}
+
+#[\ReturnTypeWillChange, AllowDynamicProperties]
+function phpNativeCrossVersionCompatibilityAttributesWillBeIgnored() {}
+
+#[\returnTYPEwillCHANGE, allowdynamicproperties]
+function phpNativeCrossVersionCompatibilityAttributesAreTreatedCaseInsensitively() {}
+
+#[\ReturnTypeWillChange, MySecondAttribute]
+function phpNativeCrossVersionCompatibilityAttributesWillNotInhibitFlaggingOfSecondAttribute() {}

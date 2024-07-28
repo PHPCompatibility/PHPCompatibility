@@ -14,7 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Attributes as a form of structured, syntactic metadata to declarations of classes, properties,
@@ -38,6 +38,20 @@ class NewAttributesSniff extends Sniff
 {
 
     /**
+     * List of PHP native attributes which were introduced to allow for making code cross-version compatible.
+     *
+     * These attributes can be safely ignored.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, string> Key is the attribute name, value is the PHP version in which the attribute was introduced.
+     */
+    private $phpCrossVersionAttributes = [
+        'AllowDynamicProperties' => '8.2',
+        'ReturnTypeWillChange'   => '8.1',
+    ];
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 10.0.0
@@ -46,6 +60,9 @@ class NewAttributesSniff extends Sniff
      */
     public function register()
     {
+        // Handle case-insensitivity of attribute names.
+        $this->phpCrossVersionAttributes = \array_change_key_case($this->phpCrossVersionAttributes, \CASE_LOWER);
+
         return [\T_ATTRIBUTE];
     }
 
@@ -116,11 +133,78 @@ class NewAttributesSniff extends Sniff
             }
         }
 
-        $phpcsFile->addWarning(
-            'Attributes are not supported in PHP 7.4 or earlier. They will be ignored and the application may not work as expected. Found: %s',
-            $opener,
-            'Found',
-            [GetTokensAsString::compact($phpcsFile, $opener, $closer, true)]
-        );
+        /*
+         * Collect the names of all attribute classes referenced.
+         */
+        $attributeNames = [];
+        $currentName    = '';
+        $startsAt       = null;
+
+        for ($i = ($opener + 1); $i <= $closer; $i++) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                continue;
+            }
+
+            if ($tokens[$i]['code'] === \T_OPEN_PARENTHESIS) {
+                if (isset($tokens[$i]['parenthesis_closer']) === false) {
+                    // Shouldn't be possible as in that case the attribute opener is not linked with the closer, but just in case.
+                    break;
+                }
+
+                // Skip over whatever is passed to the Attribute constructor.
+                $i = $tokens[$i]['parenthesis_closer'];
+                continue;
+            }
+
+            if ($tokens[$i]['code'] === \T_COMMA
+                || $i === $closer
+            ) {
+                // We've reached the end of the name.
+                if ($currentName === '') {
+                    // Parse error. Stop parsing this attribute.
+                    break;
+                }
+
+                $attributeNames[$startsAt] = $currentName;
+                $currentName               = '';
+                $startsAt                  = null;
+                continue;
+            }
+
+            if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']])) {
+                $currentName .= $tokens[$i]['content'];
+
+                if (isset($startsAt) === false) {
+                    $startsAt = $i;
+                }
+            }
+        }
+
+        if (empty($attributeNames)) {
+            // Parse error. Shouldn't be possible.
+            return;
+        }
+
+        // Lowercase all found attributes to allow for case-insensitive name comparisons.
+        $attributeNamesLC = \array_map('strtolower', $attributeNames);
+
+        /*
+         * Throw a warning for each attribute class encountered.
+         */
+        foreach ($attributeNamesLC as $startPtr => $attributeName) {
+            $attributeName = \ltrim($attributeName, '\\');
+
+            if (isset($this->phpCrossVersionAttributes[$attributeName])) {
+                // Attribute referencing a PHP native cross-version compatibility feature. Ignore.
+                continue;
+            }
+
+            $phpcsFile->addWarning(
+                'Attributes are not supported in PHP 7.4 or earlier. They will be ignored and the application may not work as expected. Found: %s',
+                $startPtr,
+                'Found',
+                ['#[' . $attributeNames[$startPtr] . '...]']
+            );
+        }
     }
 }
