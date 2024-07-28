@@ -116,8 +116,8 @@ class NewAttributesSniff extends Sniff
             }
         }
 
-        $phpcsFile->addError(
-            'Attributes are not supported in PHP 7.4 or earlier. Found: %s',
+        $phpcsFile->addWarning(
+            'Attributes are not supported in PHP 7.4 or earlier. They will be ignored and the application may not work as expected. Found: %s',
             $opener,
             'Found',
             [GetTokensAsString::compact($phpcsFile, $opener, $closer, true)]

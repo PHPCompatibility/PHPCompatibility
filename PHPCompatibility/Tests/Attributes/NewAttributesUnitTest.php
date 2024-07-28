@@ -158,7 +158,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNewAttributes
+     * Verify that cross-version compatible attributes are flagged with a warning.
      *
      * @dataProvider dataNewAttributes
      *
@@ -171,12 +171,12 @@ class NewAttributesUnitTest extends BaseSniffTestCase
     public function testNewAttributes($line, $found = '', $testFile = self::TEST_FILE)
     {
         $file  = $this->sniffFile(__DIR__ . '/' . $testFile, '7.4');
-        $error = 'Attributes are not supported in PHP 7.4 or earlier.';
+        $error = 'Attributes are not supported in PHP 7.4 or earlier. They will be ignored and the application may not work as expected.';
         if ($found !== '') {
             $error .= ' Found: ' . $found;
         }
 
-        $this->assertError($file, $line, $error);
+        $this->assertWarning($file, $line, $error);
     }
 
     /**
