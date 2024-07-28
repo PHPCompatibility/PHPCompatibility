@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Attributes;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
@@ -83,6 +84,18 @@ class NewAttributesSniff extends Sniff
                 'Multi-line attributes will result in a parse error in PHP 7.4 and earlier.',
                 $opener,
                 'FoundMultiLine'
+            );
+        }
+
+        $nextAfter = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
+        if ($nextAfter !== false
+            && $tokens[$nextAfter]['code'] !== \T_ATTRIBUTE
+            && $tokens[$closer]['line'] === $tokens[$nextAfter]['line']
+        ) {
+            $phpcsFile->addError(
+                'Code after an inline attribute on the same line will be ignored in PHP 7.4 and earlier and is likely to cause a parse error or functional error.',
+                $closer,
+                'FoundInline'
             );
         }
 

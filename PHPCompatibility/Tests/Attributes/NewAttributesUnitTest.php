@@ -56,7 +56,46 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [73],
             [86],
             [96],
-            [109],
+            [104],
+            [114],
+        ];
+
+        return $data;
+    }
+
+
+    /**
+     * Verify that inline attributes are identified and flagged correctly.
+     *
+     * @dataProvider dataInlineAttributes
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testInlineAttribute($line)
+    {
+        $file  = $this->sniffFile(__FILE__, '7.4');
+        $error = 'Code after an inline attribute on the same line will be ignored in PHP 7.4 and earlier and is likely to cause a parse error or functional error.';
+
+        $this->assertError($file, $line, $error);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInlineAttributes()
+     *
+     * @return array
+     */
+    public static function dataInlineAttributes()
+    {
+        $data = [
+            [38],
+            [46],
+            [48],
+            [83],
+            [105],
         ];
 
         return $data;
@@ -131,6 +170,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [96, '#[Assert\Text(["message" => "text"]), Assert\Domain(["message" => "text"]), Assert\Id(Assert\Id::REGEX[10]), ]'],
             [104],
             [109],
+            [114],
         ];
 
         return $data;
