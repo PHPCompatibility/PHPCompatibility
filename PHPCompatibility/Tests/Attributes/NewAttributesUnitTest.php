@@ -57,6 +57,7 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [86],
             [96],
             [104],
+            [109],
             [114],
         ];
 
@@ -96,6 +97,42 @@ class NewAttributesUnitTest extends BaseSniffTestCase
             [48],
             [83],
             [105],
+            [110],
+        ];
+
+        return $data;
+    }
+
+
+    /**
+     * Verify that a text string containing something which looks like a PHP close tag, within an attribute,
+     * is identified and flagged correctly.
+     *
+     * @dataProvider dataAttributeContainingStringCloseTag
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testAttributeContainingStringCloseTag($line)
+    {
+        $file  = $this->sniffFile(__FILE__, '7.4');
+        $error = 'Text string containing text which looks like a PHP close tag found on the same line as an attribute opener. This will cause PHP to switch to inline HTML in PHP 7.4 and earlier, which may lead to code exposure and will break functionality.';
+
+        $this->assertError($file, $line, $error);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testAttributeContainingStringCloseTag()
+     *
+     * @return array
+     */
+    public static function dataAttributeContainingStringCloseTag()
+    {
+        $data = [
+            [109],
         ];
 
         return $data;

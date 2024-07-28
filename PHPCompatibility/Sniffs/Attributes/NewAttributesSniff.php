@@ -99,6 +99,23 @@ class NewAttributesSniff extends Sniff
             );
         }
 
+        $textPtr = $opener;
+        while (($textPtr = $phpcsFile->findNext(\T_CONSTANT_ENCAPSED_STRING, ($textPtr + 1), $closer)) !== false) {
+            if ($tokens[$textPtr]['line'] !== $tokens[$opener]['line']) {
+                // We only need to examine text strings on the same line as the opener.
+                break;
+            }
+
+            if (\strpos($tokens[$textPtr]['content'], '?>') !== false) {
+                $phpcsFile->addError(
+                    'Text string containing text which looks like a PHP close tag found on the same line as an attribute opener. This will cause PHP to switch to inline HTML in PHP 7.4 and earlier, which may lead to code exposure and will break functionality. Found: %s',
+                    $textPtr,
+                    'FoundCloseTag',
+                    [$tokens[$textPtr]['content']]
+                );
+            }
+        }
+
         $phpcsFile->addError(
             'Attributes are not supported in PHP 7.4 or earlier. Found: %s',
             $opener,
