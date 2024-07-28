@@ -20,6 +20,17 @@ use PHPCSUtils\Tokens\Collections;
  * Attributes as a form of structured, syntactic metadata to declarations of classes, properties,
  * functions, methods, parameters and constants is supported as of PHP 8.0.
  *
+ * Attributes have been implemented in a manner which makes them largely cross-version
+ * compatible (no parse error) with older PHP versions, however, there are a few exceptions.
+ * Most notably, the following usages of attributes are not cross-version compatible:
+ * - Multi-line attributes.
+ * - Inline attributes, i.e. an attribute followed by other code on the same line.
+ * - Attributes containing (something which looks like) a PHP close tag in a string argument
+ *   passed to the attribute on the same line as the attribute opener.
+ *
+ * Aside from that, the functionality attached to the attribute will (obviously) not work
+ * when the code is run on PHP < 8.0.
+ *
  * {@internal This sniff does not check whether attributes are used correctly and in
  * combination with syntaxes for which attributes are valid.
  * If that's not the case, PHP 8.0 would throw a parse error anyway.}
