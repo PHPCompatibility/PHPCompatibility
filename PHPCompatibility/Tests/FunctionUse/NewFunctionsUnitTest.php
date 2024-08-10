@@ -1124,6 +1124,10 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['mb_ltrim', '8.3', 1063, '8.4'],
             ['mb_rtrim', '8.3', 1064, '8.4'],
             ['mb_trim', '8.3', 1065, '8.4'],
+            ['array_all', '8.3', 1066, '8.4'],
+            ['array_any', '8.3', 1067, '8.4'],
+            ['array_find', '8.3', 1068, '8.4'],
+            ['array_find_key', '8.3', 1069, '8.4'],
         ];
     }
 
