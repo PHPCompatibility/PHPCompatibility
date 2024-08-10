@@ -496,3 +496,30 @@ class DNFTypes {
     public function paramTypeB((\ReflectionClassConstant&\ReflectionNamedType)|int $param) {}
     public function returnType($param) : (\FFI\CData&\FFI\CType)|SomethingElse {}
 }
+
+class MyCurl {
+    public CurlHandle $handle1;
+    public readonly CurlMultiHandle $handle2;
+    readonly public CurlShareHandle $handle3;
+}
+
+function enchantMe(EnchantBroker|EnchantDictionary $param) {}
+function updateImage(GdImage $image) {}
+
+class MyOpenSSL {
+    function getCert(): OpenSSLCertificate {}
+    function requestSign(): OpenSSLCertificateSigningRequest {}
+    function getAsymKey(): OpenSSLAsymmetricKey {}
+}
+
+function my_shmop(Shmop $param) {}
+function getAddress(Socket $param): AddressInfo {}
+function semaphoreQueue(SysvMessageQueue $param) {}
+function my_semaphore(SysvSemaphore $param) {}
+function manage_sys_memory(SysvSharedMemory $param) {}
+function parse_xml(): XMLParser {}
+
+class Zipper {
+    private InflateContext $inflate;
+    private DeflateContext $deflate;
+}
