@@ -1026,6 +1026,11 @@ class NewClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'soap',
         ],
+        'StreamBucket' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'streams',
+        ],
     ];
 
     /**

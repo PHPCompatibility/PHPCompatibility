@@ -545,3 +545,4 @@ function my_pspell(
 function dba_get(Dba\Connection $connect) {}
 function odbc_get(Odbc\Connection $connect): Odbc\Result {}
 function soapy_goodness(Soap\Url $url): Soap\Sdl {}
+function accessStreamBucket(StreamBucket $bucket) {}
