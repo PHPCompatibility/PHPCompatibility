@@ -1060,3 +1060,6 @@ mb_ucfirst();
 http_get_last_response_header();
 http_clear_last_response_header();
 request_parse_body();
+mb_ltrim();
+mb_rtrim();
+mb_trim();
