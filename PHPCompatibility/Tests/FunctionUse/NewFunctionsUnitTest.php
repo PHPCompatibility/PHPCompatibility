@@ -1120,6 +1120,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['mb_ucfirst', '8.3', 1059, '8.4'],
             ['http_get_last_response_header', '8.3', 1060, '8.4'],
             ['http_clear_last_response_header', '8.3', 1061, '8.4'],
+            ['request_parse_body', '8.3', 1062, '8.4'],
         ];
     }
 

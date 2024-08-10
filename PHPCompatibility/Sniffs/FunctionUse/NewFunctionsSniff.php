@@ -4977,6 +4977,10 @@ class NewFunctionsSniff extends Sniff
             '8.3' => false,
             '8.4' => true,
         ],
+        'request_parse_body' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
         'bcceil' => [
             '8.3'       => false,
             '8.4'       => true,

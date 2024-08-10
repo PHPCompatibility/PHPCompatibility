@@ -554,3 +554,6 @@ $anon = new class extends \Pdo\Firebird {
     public function ReturnType( $a ) : Pdo\Pgsql {}
 };
 \Pdo\Sqlite::CLASS_CONSTANT;
+
+try {
+} catch(RequestParseBodyException) {}
