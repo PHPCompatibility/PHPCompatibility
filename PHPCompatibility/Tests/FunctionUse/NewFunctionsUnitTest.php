@@ -1115,6 +1115,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['bcceil', '8.3', 1054, '8.4'],
             ['bcfloor', '8.3', 1055, '8.4'],
             ['bcround', '8.3', 1056, '8.4'],
+            ['grapheme_str_split', '8.3', 1057, '8.4'],
         ];
     }
 
