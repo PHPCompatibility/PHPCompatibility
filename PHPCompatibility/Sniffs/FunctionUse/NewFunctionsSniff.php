@@ -4968,6 +4968,22 @@ class NewFunctionsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'sockets',
         ],
+
+        'bcceil' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'bcmath',
+        ],
+        'bcfloor' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'bcmath',
+        ],
+        'bcround' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'bcmath',
+        ],
     ];
 
 
