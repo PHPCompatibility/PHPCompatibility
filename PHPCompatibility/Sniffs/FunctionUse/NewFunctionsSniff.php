@@ -4989,6 +4989,16 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'intl',
         ],
+        'mb_lcfirst' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mbstring',
+        ],
+        'mb_ucfirst' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mbstring',
+        ],
     ];
 
 
