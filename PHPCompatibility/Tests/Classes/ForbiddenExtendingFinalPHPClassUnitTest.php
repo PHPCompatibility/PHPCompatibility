@@ -59,6 +59,7 @@ class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTestCase
             ['__PHP_Incomplete_Class', '8.0', 12, '7.4'],
             ['__PHP_Incomplete_Class', '8.0', 13, '7.4'],
             ['__PHP_Incomplete_Class', '8.0', 24, '7.4'],
+            ['GMP', '8.4', 25, '8.3'],
         ];
     }
 

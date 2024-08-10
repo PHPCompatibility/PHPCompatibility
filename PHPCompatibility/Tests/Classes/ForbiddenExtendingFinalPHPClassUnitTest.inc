@@ -22,4 +22,5 @@ namespace MyNamespace {
 
     // Extending a final class.
     $anonClass = new class extends \__PHP_Incomplete_Class {};
+    class MyGMP extends \GMP {}
 }
