@@ -333,12 +333,14 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.4' => true,
         ],
         'session.bug_compat_42' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.bug_compat_warn' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'y2k_compliance' => [
             '5.3' => false,
@@ -533,16 +535,20 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'mcrypt',
         ],
         'session.entropy_file' => [
-            '7.1' => true,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.entropy_length' => [
-            '7.1' => true,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.hash_function' => [
-            '7.1' => true,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.hash_bits_per_character' => [
-            '7.1' => true,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
 
         'mbstring.func_overload' => [
