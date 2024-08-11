@@ -68,6 +68,9 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [38, 'LDAP', '8.1', '8.0'],
             [39, 'PgSql', '8.1', '8.0'],
             [40, 'PSpell', '8.1', '8.0'],
+            [76, 'DBA', '8.4', '8.3'],
+            [77, 'Odbc', '8.4', '8.3'],
+            [78, 'Soap', '8.4', '8.3'],
         ];
     }
 
@@ -198,7 +201,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [76],
+            [81],
         ];
     }
 

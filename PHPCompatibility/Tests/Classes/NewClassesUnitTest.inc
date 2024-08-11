@@ -541,3 +541,7 @@ function my_pspell(
     PSpell\Config $config,
     PSpell\Dictionary $dictionary,
 ) {}
+
+function dba_get(Dba\Connection $connect) {}
+function odbc_get(Odbc\Connection $connect): Odbc\Result {}
+function soapy_goodness(Soap\Url $url): Soap\Sdl {}
