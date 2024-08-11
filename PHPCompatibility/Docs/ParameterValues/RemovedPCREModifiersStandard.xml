@@ -10,7 +10,7 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: using preg_replace_callback()">
+        <code title="Cross-version compatible: using preg_replace_callback().">
         <![CDATA[
 <em>preg_replace_callback</em>(
     '/^(.?)/',
@@ -21,7 +21,7 @@
 );
         ]]>
         </code>
-        <code title="PHP &lt; 7.0: using the /e modifier">
+        <code title="PHP &lt; 7.0: using the /e modifier.">
         <![CDATA[
 preg_replace(
     <em>'/^(.?)/e'</em>,

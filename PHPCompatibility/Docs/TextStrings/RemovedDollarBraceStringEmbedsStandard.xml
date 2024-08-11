@@ -17,7 +17,7 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: Embedding simple variables and complex expressions in text strings using plain variables or the `{$...}` syntax.">
+        <code title="Cross-version compatible: embedding simple variables and complex expressions in text strings using plain variables or the `{$...}` syntax.">
         <![CDATA[
 echo <em>"hello $world"</em>;
 
@@ -30,7 +30,7 @@ echo <em>"hello {$world["${bar['baz']}"]}"</em>;
 echo <em>"hello {${world->{${'bar'}}}}"</em>;
         ]]>
         </code>
-        <code title="PHP &lt; 8.2: Embedding simple variables and complex expressions in text strings using the `${...}` syntax">
+        <code title="PHP &lt; 8.2: embedding simple variables and complex expressions in text strings using the `${...}` syntax.">
         <![CDATA[
 echo <em>"hello ${world}"</em>;
 

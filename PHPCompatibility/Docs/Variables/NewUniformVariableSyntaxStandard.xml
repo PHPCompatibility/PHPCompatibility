@@ -13,7 +13,7 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: Using curly braces to explicitly enforce a specific evaluation order.">
+        <code title="Cross-version compatible: using curly braces to explicitly enforce a specific evaluation order.">
         <![CDATA[
 echo $<em>{</em>$var['key1']['key2']<em>}</em>;
 echo $obj-><em>{</em>$var['key']<em>}</em>;
@@ -21,7 +21,7 @@ echo $obj-><em>{</em>$var['key']<em>}</em>();
 echo MyClass::<em>{</em>$var['key']<em>}</em>();
         ]]>
         </code>
-        <code title="Cross-version INcompatible: Without curly braces the interpretation of these indirect accesses to variables, properties and methods will behave different in PHP &lt;= 5.6 versus PHP 7.0+.">
+        <code title="Cross-version INcompatible: without curly braces the interpretation of these indirect accesses to variables, properties and methods will behave different in PHP &lt;= 5.6 versus PHP 7.0+.">
         <![CDATA[
 echo <em>$$var['key1']['key2']</em>;
 echo <em>$obj->$var['key']</em>;
