@@ -26,3 +26,20 @@ mb_strrpos('abc abc abc', 'abc', 'utf-' . $utfType);
 // Safeguard support for PHP 8 named parameters.
 mb_strrpos(haystack: 'abc abc abc', needle: 'abc', encoding: 'UTF-8'); // OK.
 mb_strrpos(offset: 'UTF-8', haystack: 'abc abc abc', needle: 'abc',); // Error, not that it would make sense to pass this.
+
+// Issue #1721: ignore as undetermined.
+mb_strrpos('abc abc abc', 'abc', $pos['offset']);
+mb_strrpos('abc abc abc', 'abc', \get_offset_or_encoding('foo'));
+mb_strrpos('abc abc abc', 'abc', fn($a = 'default') => get_offset_or_encoding() ?? $a);
+mb_strrpos('abc abc abc', 'abc', function ($a = 'default') { return get_offset_or_encoding() ?? $a . 'text'; });
+
+// ... but still flag this as we can be sure that the resulting param value is a string.
+mb_strrpos('abc abc abc', 'abc', (string) $encoding);
+mb_strrpos('abc abc abc', 'abc', $utf . $nr);
+mb_strrpos(
+    'abc abc abc',
+    'abc',
+    <<<EOD
+$utf
+EOD
+);

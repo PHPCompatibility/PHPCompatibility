@@ -15,7 +15,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -120,15 +119,54 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
             return;
         }
 
-        $hasString = $phpcsFile->findNext(BCTokens::textStringTokens(), $targetParam['start'], ($targetParam['end'] + 1));
-        if ($hasString === false) {
-            // No text strings found. Undetermined.
+        $tokens         = $phpcsFile->getTokens();
+        $probablyString = false;
+        for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                continue;
+            }
+
+            // Skip past anything nested in brackets.
+            if (isset($tokens[$i]['scope_closer'])) {
+                if ($tokens[$i]['code'] === \T_START_HEREDOC || $tokens[$i]['code'] === \T_START_NOWDOC) {
+                    $probablyString = true;
+                }
+
+                if ($tokens[$i]['code'] === \T_FN) {
+                    $i = ($tokens[$i]['scope_closer'] - 1);
+                } else {
+                    $i = $tokens[$i]['scope_closer'];
+                }
+                continue;
+            }
+
+            if (isset($tokens[$i]['bracket_closer'])) {
+                $i = $tokens[$i]['bracket_closer'];
+                continue;
+            }
+
+            if (isset($tokens[$i]['parenthesis_closer'])) {
+                $i = $tokens[$i]['parenthesis_closer'];
+                continue;
+            }
+
+            if (isset(Tokens::$textStringTokens[$tokens[$i]['code']])
+                || $tokens[$i]['code'] === \T_STRING_CAST
+                || $tokens[$i]['code'] === \T_STRING_CONCAT
+            ) {
+                $probablyString = true;
+            }
+        }
+
+        if ($probablyString === false) {
+            // No relevant text strings found. Undetermined.
             return;
         }
 
-        $error   = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
-        $isError = false;
-        $code    = 'Deprecated';
+        $error     = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
+        $isError   = false;
+        $code      = 'Deprecated';
+        $realStart = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $error  .= ', hard deprecated since PHP 7.4 and removed since PHP 8.0';
@@ -140,6 +178,6 @@ class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCallParame
 
         $error .= '. Use an explicit 0 as the offset in the third parameter.';
 
-        MessageHelper::addMessage($phpcsFile, $error, $targetParam['start'], $isError, $code);
+        MessageHelper::addMessage($phpcsFile, $error, $realStart, $isError, $code);
     }
 }

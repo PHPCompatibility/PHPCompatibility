@@ -63,6 +63,9 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
             [23],
             [24],
             [28],
+            [37],
+            [38],
+            [42],
         ];
     }
 
@@ -99,6 +102,10 @@ class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
         }
 
         $data[] = [27];
+        $data[] = [31];
+        $data[] = [32];
+        $data[] = [33];
+        $data[] = [34];
 
         return $data;
     }
