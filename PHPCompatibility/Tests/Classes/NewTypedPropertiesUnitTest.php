@@ -166,7 +166,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
     public function testInvalidPropertyType($line, $type)
     {
         $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertError($file, $line, "$type is not supported as a type declaration for properties");
+        $this->assertError($file, $line, "$type is not supported as a property type declaration");
     }
 
     /**
@@ -182,11 +182,41 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [62, 'void'],
             [63, 'callable'],
             [64, 'callable'],
-            [65, 'boolean'],
-            [66, 'integer'],
             [117, 'callable'],
             [160, 'never'],
             [161, 'never'],
+        ];
+    }
+
+
+    /**
+     * Verify that invalid "long" type declarations are flagged correctly.
+     *
+     * @dataProvider dataInvalidLongType
+     *
+     * @param int    $line The line number on which the error should occur.
+     * @param string $type The invalid type which should be detected.
+     *
+     * @return void
+     */
+    public function testInvalidLongType($line, $type)
+    {
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertWarning($file, $line, "$type is not supported as a property type declaration");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testInvalidLongType()
+     *
+     * @return array
+     */
+    public static function dataInvalidLongType()
+    {
+        return [
+            [65, 'boolean'],
+            [66, 'integer'],
         ];
     }
 
