@@ -84,6 +84,8 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['ASSERT_EXCEPTION', '8.3', 649, '8.2'],
             ['ASSERT_WARNING', '8.3', 650, '8.2'],
             ['MT_RAND_PHP', '8.3', 651, '8.2'],
+
+            ['DOM_PHP_ERR', '8.4', 801, '8.3'],
         ];
     }
 
