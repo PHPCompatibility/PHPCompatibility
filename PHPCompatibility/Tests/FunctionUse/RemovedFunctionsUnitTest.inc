@@ -1387,3 +1387,5 @@ pspell_new_personal();
 pspell_save_wordlist();
 pspell_store_replacement();
 pspell_suggest();
+
+xml_set_object();
