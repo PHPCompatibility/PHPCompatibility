@@ -8022,6 +8022,12 @@ class NewConstantsSniff extends Sniff
             '8.3'       => true,
             'extension' => 'sockets',
         ],
+
+        'XML_OPTION_PARSE_HUGE' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'xml',
+        ],
     ];
 
 
