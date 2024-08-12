@@ -3215,6 +3215,22 @@ class RemovedConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'oci8',
         ],
+        'PSPELL_FAST' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'PSPELL_NORMAL' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'PSPELL_BAD_SPELLERS' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'PSPELL_RUN_TOGETHER' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
     ];
 
 

@@ -858,6 +858,10 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['OCI_FO_SELECT', '8.4', 792, '8.3'],
             ['OCI_FO_SESSION', '8.4', 793, '8.3'],
             ['OCI_FO_TXNAL', '8.4', 794, '8.3'],
+            ['PSPELL_FAST', '8.4', 796, '8.3'],
+            ['PSPELL_NORMAL', '8.4', 797, '8.3'],
+            ['PSPELL_BAD_SPELLERS', '8.4', 798, '8.3'],
+            ['PSPELL_RUN_TOGETHER', '8.4', 799, '8.3'],
         ];
     }
 

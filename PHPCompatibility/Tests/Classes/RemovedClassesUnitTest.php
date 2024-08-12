@@ -100,6 +100,8 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['IMAP\Connection', '8.4', [118], '8.3'],
             ['OCICollection', '8.4', [120], '8.3'],
             ['OCILob', '8.4', [121], '8.3'],
+            ['PSpell\Config', '8.4', [124], '8.3'],
+            ['PSpell\Dictionary', '8.4', [125], '8.3'],
         ];
     }
 

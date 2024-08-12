@@ -198,6 +198,14 @@ class RemovedClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'oci8',
         ],
+        'PSpell\Config' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'PSpell\Dictionary' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
     ];
 
     /**
