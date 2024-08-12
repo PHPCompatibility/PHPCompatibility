@@ -688,6 +688,11 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.3'       => true,
             'extension' => 'opcache',
         ],
+
+        'imap.enable_insecure_rsh' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
     ];
 
     /**

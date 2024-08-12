@@ -53,7 +53,7 @@ class ReservedNamesSniff extends Sniff
         // Top-level namespace names in use in bundled extensions.
         'FFI'    => '7.4',
         'FTP'    => '8.1',
-        'IMAP'   => '8.1',
+        'IMAP'   => '8.1', // Unbundled from PHP in PHP 8.4.
         'LDAP'   => '8.1',
         'PgSql'  => '8.1',
         'PSpell' => '8.1',

@@ -96,6 +96,8 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['SQLiteException', '5.4', [69, 107], '5.3'],
 
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
+
+            ['IMAP\Connection', '8.4', [118], '8.3'],
         ];
     }
 

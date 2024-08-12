@@ -185,6 +185,11 @@ class RemovedClassesSniff extends Sniff
             'extension'   => 'oci8',
         ],
         */
+
+        'IMAP\Connection' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
     ];
 
     /**
