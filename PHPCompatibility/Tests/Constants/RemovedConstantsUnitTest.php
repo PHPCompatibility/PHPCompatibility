@@ -86,6 +86,9 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MT_RAND_PHP', '8.3', 651, '8.2'],
 
             ['DOM_PHP_ERR', '8.4', 801, '8.3'],
+            ['SUNFUNCS_RET_DOUBLE', '8.4', 802, '8.3'],
+            ['SUNFUNCS_RET_STRING', '8.4', 803, '8.3'],
+            ['SUNFUNCS_RET_TIMESTAMP', '8.4', 804, '8.3'],
         ];
     }
 
