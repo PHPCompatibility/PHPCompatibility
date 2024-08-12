@@ -5684,6 +5684,11 @@ class RemovedFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pspell',
         ],
+        'lcg_value' => [
+            '8.4'         => false,
+            'alternative' => 'Random\Randomizer::getFloat()',
+            'extension'   => 'random',
+        ],
         'xml_set_object' => [
             '8.4'         => false,
             'alternative' => 'a fully formed callback in a xml_set_*_handler() function',
