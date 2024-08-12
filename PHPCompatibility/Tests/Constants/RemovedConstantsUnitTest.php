@@ -90,6 +90,7 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['SUNFUNCS_RET_STRING', '8.4', 803, '8.3'],
             ['SUNFUNCS_RET_TIMESTAMP', '8.4', 804, '8.3'],
             ['E_STRICT', '8.4', 805, '8.3'],
+            ['SOAP_FUNCTIONS_ALL', '8.4', 806, '8.3'],
         ];
     }
 

@@ -3250,6 +3250,10 @@ class RemovedConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pspell',
         ],
+        'SOAP_FUNCTIONS_ALL' => [
+            '8.4'       => false,
+            'extension' => 'soap',
+        ],
     ];
 
 
