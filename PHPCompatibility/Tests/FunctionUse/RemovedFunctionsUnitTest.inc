@@ -1389,3 +1389,4 @@ pspell_store_replacement();
 pspell_suggest();
 
 xml_set_object();
+mysqli_ping();
