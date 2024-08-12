@@ -154,6 +154,12 @@ class RemovedFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '8.1'  => false,
             ],
         ],
+        'mysqli_store_result' => [
+            2 => [
+                'name' => 'mode',
+                '8.4'  => false,
+            ],
+        ],
         'odbc_do' => [
             3 => [
                 'name' => 'flags',

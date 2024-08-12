@@ -66,3 +66,6 @@ ldap_exop($ldap, $request_oid, $request_data, $controls, $response_data, $respon
 
 session_set_save_handler($handler, true); // OK.
 session_set_save_handler($open, $close, $read, $write, $destroy, $gc, $create_sid, $validate_sid, $update_timestamp); // Error x 7.
+
+mysqli_store_result($mysql); // OK.
+mysqli_store_result($mysql, $mode); // Warning.
