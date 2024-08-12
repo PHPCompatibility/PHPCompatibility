@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Forbidden ClassName Underscore"
+    >
+    <standard>
+    <![CDATA[
+    Using a single underscore - "_" - as the name for a class, interface, trait or enum is deprecated since PHP 8.4.
+    In the future, this symbol may be used by PHP for other purposes.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: OO structures not using &quot;_&quot; as their name.">
+        <![CDATA[
+class <em>MyClass</em> {}
+
+namespace Foo\Bar;
+trait <em>___</em> {}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: OO structures with the name &quot;_&quot;.">
+        <![CDATA[
+interface <em>_</em> {}
+
+namespace Foo\Bar;
+enum <em>_</em> {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
