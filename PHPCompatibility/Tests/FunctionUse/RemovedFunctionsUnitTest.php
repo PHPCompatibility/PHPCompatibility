@@ -167,6 +167,7 @@ class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['xml_set_object', '8.4', 'a fully formed callback in a xml_set_*_handler() function', 1391, '8.3'],
             ['mysqli_ping', '8.4', 'exception catching on normal queries or, for long running processes, sending a "DO 1" query', 1392, '8.3'],
             ['mysqli_refresh', '8.4', 'a FLUSH SQL statement', 1393, '8.3'],
+            ['mysqli_kill', '8.4', 'a KILL CONNECTION/QUERY SQL statement', 1394, '8.3'],
         ];
     }
 
