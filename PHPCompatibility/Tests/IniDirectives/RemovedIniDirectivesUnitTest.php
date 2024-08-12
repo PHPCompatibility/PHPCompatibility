@@ -102,6 +102,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['track_errors', '7.2', '8.0', [172, 173], '7.1'],
             ['pdo_odbc.db2_instance_name', '7.3', '8.0', [184, 185], '7.2'],
+
+            ['oci8.old_oci_close_semantics', '8.1', '8.4', [451, 452], '8.0'],
         ];
     }
 
@@ -160,7 +162,6 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
             ['filter.default', '8.1', [445, 446], '8.0'],
             ['filter.default_options', '8.1', [448, 449], '8.0'],
-            ['oci8.old_oci_close_semantics', '8.1', [451, 452], '8.0'],
         ];
     }
 
@@ -419,6 +420,15 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['opcache.consistency_checks', '8.3', [485, 486], '8.2'],
 
             ['imap.enable_insecure_rsh', '8.4', [488, 489], '8.3'],
+            ['oci8.connection_class', '8.4', [491, 492], '8.3'],
+            ['oci8.default_prefetch', '8.4', [494, 495], '8.3'],
+            ['oci8.events', '8.4', [497, 498], '8.3'],
+            ['oci8.max_persistent', '8.4', [500, 501], '8.3'],
+            ['oci8.persistent_timeout', '8.4', [503, 504], '8.3'],
+            ['oci8.ping_interval', '8.4', [506, 507], '8.3'],
+            ['oci8.prefetch_lob_size', '8.4', [509, 510], '8.3'],
+            ['oci8.privileged_connect', '8.4', [512, 513], '8.3'],
+            ['oci8.statement_cache_size', '8.4', [515, 516], '8.3'],
         ];
     }
 

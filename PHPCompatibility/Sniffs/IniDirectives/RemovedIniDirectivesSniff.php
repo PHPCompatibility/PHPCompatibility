@@ -656,6 +656,7 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
         'oci8.old_oci_close_semantics' => [
             '8.1'       => false,
+            '8.4'       => true,
             'extension' => 'oci8',
         ],
 
@@ -692,6 +693,42 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         'imap.enable_insecure_rsh' => [
             '8.4'       => true,
             'extension' => 'imap',
+        ],
+        'oci8.connection_class' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.default_prefetch' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.events' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.max_persistent' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.persistent_timeout' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.ping_interval' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.prefetch_lob_size' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.privileged_connect' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'oci8.statement_cache_size' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
         ],
     ];
 

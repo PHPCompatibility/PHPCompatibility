@@ -2923,6 +2923,298 @@ class RemovedConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'imap',
         ],
+        'OCI_ASSOC' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_BOTH' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_COMMIT_ON_SUCCESS' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_CRED_EXT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_DEFAULT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_DESCRIBE_ONLY' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_EXACT_FETCH' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FETCHSTATEMENT_BY_COLUMN' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FETCHSTATEMENT_BY_ROW' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_LOB_BUFFER_FREE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_NO_AUTO_COMMIT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_NUM' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_RETURN_LOBS' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_RETURN_NULLS' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SEEK_CUR' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SEEK_END' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SEEK_SET' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SYSDATE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SYSDBA' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_SYSOPER' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_TEMP_BLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_TEMP_CLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_BFILE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_BIN' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_BLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_BOL' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_CFILEE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_CLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_CURSOR' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_INT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_NTY' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_NUM' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_B_ROWID' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_AFC' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_AVC' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BDOUBLE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BFILEE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BFLOAT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BIN' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_BOL' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_CFILEE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_CHR' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_CLOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_FLT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_INT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_LBI' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_LNG' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_LVC' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_NTY' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_NUM' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_ODT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_RDD' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_RSET' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_STR' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_UIN' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'SQLT_VCS' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_DTYPE_FILE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_DTYPE_LOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_DTYPE_ROWID' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_D_FILE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_D_LOB' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_D_ROWID' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_ABORT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_BEGIN' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_END' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_ERROR' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_NONE' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_REAUTH' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_RETRY' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_SELECT' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_SESSION' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCI_FO_TXNAL' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
     ];
 
 

@@ -98,6 +98,8 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
 
             ['IMAP\Connection', '8.4', [118], '8.3'],
+            ['OCICollection', '8.4', [120], '8.3'],
+            ['OCILob', '8.4', [121], '8.3'],
         ];
     }
 

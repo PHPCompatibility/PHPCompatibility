@@ -190,6 +190,14 @@ class RemovedClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'imap',
         ],
+        'OCICollection' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
+        'OCILob' => [
+            '8.4'       => true,
+            'extension' => 'oci8',
+        ],
     ];
 
     /**
