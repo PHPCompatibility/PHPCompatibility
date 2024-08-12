@@ -91,6 +91,16 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['SUNFUNCS_RET_TIMESTAMP', '8.4', 804, '8.3'],
             ['E_STRICT', '8.4', 805, '8.3'],
             ['SOAP_FUNCTIONS_ALL', '8.4', 806, '8.3'],
+            ['MYSQLI_REFRESH_GRANT', '8.4', 807, '8.3'],
+            ['MYSQLI_REFRESH_LOG', '8.4', 808, '8.3'],
+            ['MYSQLI_REFRESH_TABLES', '8.4', 809, '8.3'],
+            ['MYSQLI_REFRESH_HOSTS', '8.4', 810, '8.3'],
+            ['MYSQLI_REFRESH_REPLICA', '8.4', 811, '8.3'],
+            ['MYSQLI_REFRESH_STATUS', '8.4', 812, '8.3'],
+            ['MYSQLI_REFRESH_THREADS', '8.4', 813, '8.3'],
+            ['MYSQLI_REFRESH_SLAVE', '8.4', 814, '8.3'],
+            ['MYSQLI_REFRESH_MASTER', '8.4', 815, '8.3'],
+            ['MYSQLI_REFRESH_BACKUP_LOG', '8.4', 816, '8.3'],
         ];
     }
 

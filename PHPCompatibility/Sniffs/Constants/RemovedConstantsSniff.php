@@ -2942,6 +2942,46 @@ class RemovedConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'imap',
         ],
+        'MYSQLI_REFRESH_GRANT' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_LOG' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_TABLES' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_HOSTS' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_REPLICA' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_STATUS' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_THREADS' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_SLAVE' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_MASTER' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_REFRESH_BACKUP_LOG' => [
+            '8.4'       => false,
+            'extension' => 'mysqli',
+        ],
         'OCI_ASSOC' => [
             '8.4'       => true,
             'extension' => 'oci8',
