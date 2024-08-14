@@ -1129,6 +1129,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['array_find', '8.3', 1068, '8.4'],
             ['array_find_key', '8.3', 1069, '8.4'],
             ['fpow', '8.3', 1070, '8.4'],
+            ['pg_result_memory_size', '8.3', 1071, '8.4'],
         ];
     }
 

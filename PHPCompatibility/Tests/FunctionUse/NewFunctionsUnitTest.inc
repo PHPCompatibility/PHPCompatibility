@@ -1068,3 +1068,4 @@ array_any();
 array_find();
 \array_find_key();
 fpow();
+pg_result_memory_size();

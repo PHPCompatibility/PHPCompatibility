@@ -5046,6 +5046,11 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'mbstring',
         ],
+        'pg_result_memory_size' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
     ];
 
 
