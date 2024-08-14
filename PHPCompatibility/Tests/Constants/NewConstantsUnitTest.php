@@ -1694,6 +1694,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SODIUM_CRYPTO_AEAD_AEGIS256_NSECBYTES', '8.3', 1626, '8.4'],
             ['SODIUM_CRYPTO_AEAD_AEGIS256_NPUBBYTES', '8.3', 1627, '8.4'],
             ['SODIUM_CRYPTO_AEAD_AEGIS256_ABYTES', '8.3', 1628, '8.4'],
+            ['PHP_OUTPUT_HANDLER_PROCESSED', '8.3', 1629, '8.4'],
+            ['PHP_SBINDIR', '8.3', 1630, '8.4'],
         ];
     }
 

@@ -8023,6 +8023,14 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'PHP_OUTPUT_HANDLER_PROCESSED' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
+        'PHP_SBINDIR' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
         'CURL_HTTP_VERSION_3' => [
             '8.3'       => false,
             '8.4'       => true,
