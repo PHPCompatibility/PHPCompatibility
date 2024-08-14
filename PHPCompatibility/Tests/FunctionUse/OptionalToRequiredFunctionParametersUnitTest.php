@@ -195,6 +195,7 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCase
             [21],
             [32],
             [43],
+            [45],
         ];
     }
 
