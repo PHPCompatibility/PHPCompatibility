@@ -8071,6 +8071,71 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'openssl',
         ],
+        'SIGCKPT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'SIGCKPTEXIT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'WEXITED' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'WSTOPPED' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'WNOWAIT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_ALL' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_PID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_PGID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_PIDFD' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_UID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_GID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_SID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'P_JAILID' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
         'PGSQL_TUPLES_CHUNK' => [
             '8.3'       => false,
             '8.4'       => true,

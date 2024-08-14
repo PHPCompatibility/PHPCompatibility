@@ -1702,6 +1702,19 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['LIBXML_NO_XXE', '8.3', 1634, '8.4'],
             ['X509_PURPOSE_OCSP_HELPER', '8.3', 1635, '8.4'],
             ['X509_PURPOSE_TIMESTAMP_SIGN', '8.3', 1636, '8.4'],
+            ['SIGCKPT', '8.3', 1637, '8.4'],
+            ['SIGCKPTEXIT', '8.3', 1638, '8.4'],
+            ['WEXITED', '8.3', 1639, '8.4'],
+            ['WSTOPPED', '8.3', 1640, '8.4'],
+            ['WNOWAIT', '8.3', 1641, '8.4'],
+            ['P_ALL', '8.3', 1642, '8.4'],
+            ['P_PID', '8.3', 1643, '8.4'],
+            ['P_PGID', '8.3', 1644, '8.4'],
+            ['P_PIDFD', '8.3', 1645, '8.4'],
+            ['P_UID', '8.3', 1646, '8.4'],
+            ['P_GID', '8.3', 1647, '8.4'],
+            ['P_SID', '8.3', 1648, '8.4'],
+            ['P_JAILID', '8.3', 1649, '8.4'],
         ];
     }
 
