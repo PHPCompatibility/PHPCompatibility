@@ -8048,6 +8048,46 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'posix',
         ],
+        'SODIUM_CRYPTO_AEAD_AEGIS128L_KEYBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS128L_NSECBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS128L_NPUBBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS128L_ABYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS256_KEYBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS256_NSECBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS256_NPUBBYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_AEAD_AEGIS256_ABYTES' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
         'XML_OPTION_PARSE_HUGE' => [
             '8.3'       => false,
             '8.4'       => true,

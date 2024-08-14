@@ -1686,6 +1686,14 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['POSIX_SC_CHILD_MAX', '8.3', 1618, '8.4'],
             ['POSIX_SC_CLK_TCK', '8.3', 1619, '8.4'],
             ['PGSQL_TUPLES_CHUNK', '8.3', 1620, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS128L_KEYBYTES', '8.3', 1621, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS128L_NSECBYTES', '8.3', 1622, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS128L_NPUBBYTES', '8.3', 1623, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS128L_ABYTES', '8.3', 1624, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS256_KEYBYTES', '8.3', 1625, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS256_NSECBYTES', '8.3', 1626, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS256_NPUBBYTES', '8.3', 1627, '8.4'],
+            ['SODIUM_CRYPTO_AEAD_AEGIS256_ABYTES', '8.3', 1628, '8.4'],
         ];
     }
 
