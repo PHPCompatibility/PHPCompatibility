@@ -64,6 +64,10 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCase
         return [
             ['stream_context_set_option', 'option_name', '8.4', [46], '8.3'],
             ['stream_context_set_option', 'value', '8.4', [46], '8.3'],
+            ['pg_fetch_result', 'field', '8.4', [49], '8.3'],
+            ['pg_fetch_result', 'row', '8.4', [50], '8.3'],
+            ['pg_field_prtlen', 'field', '8.4', [52], '8.3'],
+            ['pg_field_is_null', 'field', '8.4', [54], '8.3'],
         ];
     }
 
@@ -196,6 +200,9 @@ class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCase
             [32],
             [43],
             [45],
+            [48],
+            [51],
+            [53],
         ];
     }
 
