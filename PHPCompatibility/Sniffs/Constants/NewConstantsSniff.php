@@ -8023,6 +8023,16 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'CURL_HTTP_VERSION_3' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_HTTP_VERSION_3ONLY' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
         'XML_OPTION_PARSE_HUGE' => [
             '8.3'       => false,
             '8.4'       => true,

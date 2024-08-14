@@ -1681,6 +1681,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['IP_BIND_ADDRESS_NO_PORT', '8.2', 1612, '8.3'],
 
             ['XML_OPTION_PARSE_HUGE', '8.3', 1615, '8.4'],
+            ['CURL_HTTP_VERSION_3', '8.3', 1616, '8.4'],
+            ['CURL_HTTP_VERSION_3ONLY', '8.3', 1617, '8.4'],
         ];
     }
 
