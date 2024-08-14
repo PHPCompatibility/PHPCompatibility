@@ -559,3 +559,4 @@ try {
 } catch(RequestParseBodyException) {}
 
 function mycalc( BcMath\Number $number) {}
+$c = new ReflectionConstant($name);
