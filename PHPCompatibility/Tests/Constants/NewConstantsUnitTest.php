@@ -1685,6 +1685,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURL_HTTP_VERSION_3ONLY', '8.3', 1617, '8.4'],
             ['POSIX_SC_CHILD_MAX', '8.3', 1618, '8.4'],
             ['POSIX_SC_CLK_TCK', '8.3', 1619, '8.4'],
+            ['PGSQL_TUPLES_CHUNK', '8.3', 1620, '8.4'],
         ];
     }
 

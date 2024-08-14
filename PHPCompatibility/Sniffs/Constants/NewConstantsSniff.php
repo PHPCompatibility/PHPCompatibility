@@ -8033,6 +8033,11 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'PGSQL_TUPLES_CHUNK' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
         'POSIX_SC_CHILD_MAX' => [
             '8.3'       => false,
             '8.4'       => true,
