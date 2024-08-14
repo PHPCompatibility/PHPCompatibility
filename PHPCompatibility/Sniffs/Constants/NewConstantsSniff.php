@@ -8033,6 +8033,16 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'POSIX_SC_CHILD_MAX' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'posix',
+        ],
+        'POSIX_SC_CLK_TCK' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'posix',
+        ],
         'XML_OPTION_PARSE_HUGE' => [
             '8.3'       => false,
             '8.4'       => true,

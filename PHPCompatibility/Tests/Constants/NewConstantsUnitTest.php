@@ -1683,6 +1683,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['XML_OPTION_PARSE_HUGE', '8.3', 1615, '8.4'],
             ['CURL_HTTP_VERSION_3', '8.3', 1616, '8.4'],
             ['CURL_HTTP_VERSION_3ONLY', '8.3', 1617, '8.4'],
+            ['POSIX_SC_CHILD_MAX', '8.3', 1618, '8.4'],
+            ['POSIX_SC_CLK_TCK', '8.3', 1619, '8.4'],
         ];
     }
 
