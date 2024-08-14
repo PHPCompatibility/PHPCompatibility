@@ -1137,6 +1137,12 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['pcntl_setns', '8.3', 1076, '8.4'],
             ['pcntl_setqos', '8.3', 1077, '8.4'],
             ['pcntl_waitid', '8.3', 1078, '8.4'],
+            ['pg_change_password', '8.3', 1079, '8.4'],
+            ['pg_jit', '8.3', 1080, '8.4'],
+            ['pg_put_copy_data', '8.3', 1081, '8.4'],
+            ['pg_put_copy_end', '8.3', 1082, '8.4'],
+            ['pg_set_chunked_rows_size', '8.3', 1083, '8.4'],
+            ['pg_socket_poll', '8.3', 1084, '8.4'],
         ];
     }
 

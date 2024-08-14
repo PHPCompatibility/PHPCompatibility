@@ -5081,7 +5081,37 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pcntl',
         ],
+        'pg_change_password' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_jit' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_put_copy_data' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_put_copy_end' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
         'pg_result_memory_size' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_set_chunked_rows_size' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_socket_poll' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pgsql',
