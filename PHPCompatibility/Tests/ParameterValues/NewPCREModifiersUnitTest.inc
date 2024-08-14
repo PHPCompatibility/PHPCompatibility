@@ -53,3 +53,8 @@ preg_grep(array: $input, pattern: '#some text#Ji', flags: $flags); // Error.
 preg_match('/.(.)./n', 'abc', $m);
 preg_match('`.(?P<test>.).`n', 'abc', $m);
 preg_match('{.(?P<test>.).}n', 'abc', $m);
+
+// Recognize use of the PHP 8.4 "r" modifier.
+preg_match('/.(.)./ri', 'abc', $m);
+preg_match('`.(?P<test>.).`r', 'abc', $m);
+preg_match('{A\x{17f}\x{212a}Z}xr', 'abc', $m);
