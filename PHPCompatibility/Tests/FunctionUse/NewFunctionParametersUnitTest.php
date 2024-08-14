@@ -150,6 +150,7 @@ class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['mysqli_rollback', 'flags', '5.4', [57], '5.5'],
             ['mysqli_rollback', 'name', '5.4', [57], '5.5'],
             ['nl2br', 'use_xhtml', '5.2', [58], '5.3'],
+            ['openssl_csr_sign', 'serial_hex', '8.3', [152, 153], '8.4'],
             ['openssl_decrypt', 'iv', '5.3.2', [59], '7.1', '5.3'], // OK version > version in which last parameter was added to the function.
             ['openssl_decrypt', 'tag', '7.0', [59], '7.1'],
             ['openssl_decrypt', 'aad', '7.0', [59], '7.1'],

@@ -628,6 +628,13 @@ class NewFunctionParametersSniff extends AbstractFunctionCallParameterSniff
                 '5.3'  => true,
             ],
         ],
+        'openssl_csr_sign' => [
+            7 => [
+                'name' => 'serial_hex',
+                '8.3'  => false,
+                '8.4'  => true,
+            ],
+        ],
         'openssl_decrypt' => [
             5 => [
                 'name'  => 'iv',
