@@ -8151,6 +8151,71 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'posix',
         ],
+        'IP_PORTRANGE' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PORTRANGE_DEFAULT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PORTRANGE_HIGH' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_PORTRANGE_LOW' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_EXCLBIND' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_EXCLUSIVEADDRUSE' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_LINGER_SEC' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_NOSIGPIPE' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SOCK_CLOEXEC' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SOCK_CONN_DGRAM' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SOCK_DCCP' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SOCK_NONBLOCK' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_SYNCNT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
         'SODIUM_CRYPTO_AEAD_AEGIS128L_KEYBYTES' => [
             '8.3'       => false,
             '8.4'       => true,

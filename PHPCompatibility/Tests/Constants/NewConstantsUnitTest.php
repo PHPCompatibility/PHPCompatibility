@@ -1715,6 +1715,19 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['P_GID', '8.3', 1647, '8.4'],
             ['P_SID', '8.3', 1648, '8.4'],
             ['P_JAILID', '8.3', 1649, '8.4'],
+            ['SO_EXCLUSIVEADDRUSE', '8.3', 1650, '8.4'],
+            ['SOCK_CONN_DGRAM', '8.3', 1651, '8.4'],
+            ['SOCK_DCCP', '8.3', 1652, '8.4'],
+            ['TCP_SYNCNT', '8.3', 1653, '8.4'],
+            ['SO_EXCLBIND', '8.3', 1654, '8.4'],
+            ['SO_NOSIGPIPE', '8.3', 1655, '8.4'],
+            ['SO_LINGER_SEC', '8.3', 1656, '8.4'],
+            ['IP_PORTRANGE', '8.3', 1657, '8.4'],
+            ['IP_PORTRANGE_DEFAULT', '8.3', 1658, '8.4'],
+            ['IP_PORTRANGE_HIGH', '8.3', 1659, '8.4'],
+            ['IP_PORTRANGE_LOW', '8.3', 1660, '8.4'],
+            ['SOCK_NONBLOCK', '8.3', 1661, '8.4'],
+            ['SOCK_CLOEXEC', '8.3', 1662, '8.4'],
         ];
     }
 
