@@ -60,6 +60,7 @@ class ReservedNamesSniff extends Sniff
         'Random' => '8.2',
         'Dba'    => '8.4',
         'Odbc'   => '8.4',
+        'Pdo'    => '8.4',
         'Soap'   => '8.4',
     ];
 

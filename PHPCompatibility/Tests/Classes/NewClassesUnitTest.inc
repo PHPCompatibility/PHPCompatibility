@@ -546,3 +546,11 @@ function dba_get(Dba\Connection $connect) {}
 function odbc_get(Odbc\Connection $connect): Odbc\Result {}
 function soapy_goodness(Soap\Url $url): Soap\Sdl {}
 function accessStreamBucket(StreamBucket $bucket) {}
+
+$db = new Pdo\DbLib();
+$anon = new class extends \Pdo\Firebird {
+    public Pdo\Mysql $prop;
+    public function ParamType(\Pdo\Odbc $param) {}
+    public function ReturnType( $a ) : Pdo\Pgsql {}
+};
+\Pdo\Sqlite::CLASS_CONSTANT;
