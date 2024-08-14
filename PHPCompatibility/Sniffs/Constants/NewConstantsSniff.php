@@ -8061,6 +8061,16 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'libxml',
         ],
+        'X509_PURPOSE_OCSP_HELPER' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'openssl',
+        ],
+        'X509_PURPOSE_TIMESTAMP_SIGN' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'openssl',
+        ],
         'PGSQL_TUPLES_CHUNK' => [
             '8.3'       => false,
             '8.4'       => true,

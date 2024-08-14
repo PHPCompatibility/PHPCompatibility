@@ -1700,6 +1700,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['LDAP_OPT_X_TLS_PROTOCOL_TLS1_3', '8.3', 1632, '8.4'],
             ['LIBXML_RECOVER', '8.3', 1633, '8.4'],
             ['LIBXML_NO_XXE', '8.3', 1634, '8.4'],
+            ['X509_PURPOSE_OCSP_HELPER', '8.3', 1635, '8.4'],
+            ['X509_PURPOSE_TIMESTAMP_SIGN', '8.3', 1636, '8.4'],
         ];
     }
 
