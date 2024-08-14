@@ -1130,6 +1130,13 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['array_find_key', '8.3', 1069, '8.4'],
             ['fpow', '8.3', 1070, '8.4'],
             ['pg_result_memory_size', '8.3', 1071, '8.4'],
+            ['pcntl_getcpu', '8.3', 1072, '8.4'],
+            ['pcntl_getcpuaffinity', '8.3', 1073, '8.4'],
+            ['pcntl_getqos_class', '8.3', 1074, '8.4'],
+            ['pcntl_setcpuaffinity', '8.3', 1075, '8.4'],
+            ['pcntl_setns', '8.3', 1076, '8.4'],
+            ['pcntl_setqos', '8.3', 1077, '8.4'],
+            ['pcntl_waitid', '8.3', 1078, '8.4'],
         ];
     }
 

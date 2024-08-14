@@ -5046,6 +5046,41 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'mbstring',
         ],
+        'pcntl_getcpu' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_getcpuaffinity' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_getqos_class' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_setcpuaffinity' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_setns' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_setqos' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
+        'pcntl_waitid' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pcntl',
+        ],
         'pg_result_memory_size' => [
             '8.3'       => false,
             '8.4'       => true,
