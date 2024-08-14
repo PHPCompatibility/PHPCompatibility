@@ -84,4 +84,4 @@ array_diff_uassoc(rest: ...$arrays, key_compare_func: $callback, array: $array, 
 array_diff_uassoc(key_compare_func: $callback, array: $array, ); // Error.
 
 ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, mode: $mode, offset: $resumepos ); // OK.
-ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, offset: $resumepos ); // PHP 7.3+
+ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, offset: $resumepos ); // PHP 7.3+.
