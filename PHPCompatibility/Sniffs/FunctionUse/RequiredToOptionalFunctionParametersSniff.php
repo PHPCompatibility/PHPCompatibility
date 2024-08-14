@@ -310,6 +310,13 @@ class RequiredToOptionalFunctionParametersSniff extends AbstractFunctionCallPara
                 '8.0'  => false,
             ],
         ],
+        'pg_select' => [
+            3 => [
+                'name' => 'conditions',
+                '8.3'  => true,
+                '8.4'  => false,
+            ],
+        ],
         'preg_match_all' => [
             3 => [
                 'name' => 'matches',
