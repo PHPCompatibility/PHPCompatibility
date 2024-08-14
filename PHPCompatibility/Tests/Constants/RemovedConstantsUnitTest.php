@@ -880,6 +880,11 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['PSPELL_NORMAL', '8.4', 797, '8.3'],
             ['PSPELL_BAD_SPELLERS', '8.4', 798, '8.3'],
             ['PSPELL_RUN_TOGETHER', '8.4', 799, '8.3'],
+            ['MYSQLI_SET_CHARSET_DIR', '8.4', 818, '8.3'],
+            ['MYSQLI_STMT_ATTR_PREFETCH_ROWS', '8.4', 819, '8.3'],
+            ['MYSQLI_CURSOR_TYPE_FOR_UPDATE', '8.4', 820, '8.3'],
+            ['MYSQLI_CURSOR_TYPE_SCROLLABLE', '8.4', 821, '8.3'],
+            ['MYSQLI_TYPE_INTERVAL', '8.4', 822, '8.3'],
         ];
     }
 
