@@ -5116,6 +5116,36 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pgsql',
         ],
+        'sodium_crypto_aead_aegis128l_decrypt' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_aead_aegis128l_encrypt' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_aead_aegis128l_keygen' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_aead_aegis256_decrypt' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_aead_aegis256_encrypt' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_aead_aegis256_keygen' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 

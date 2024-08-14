@@ -1143,6 +1143,12 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['pg_put_copy_end', '8.3', 1082, '8.4'],
             ['pg_set_chunked_rows_size', '8.3', 1083, '8.4'],
             ['pg_socket_poll', '8.3', 1084, '8.4'],
+            ['sodium_crypto_aead_aegis128l_decrypt', '8.3', 1085, '8.4'],
+            ['sodium_crypto_aead_aegis128l_encrypt', '8.3', 1086, '8.4'],
+            ['sodium_crypto_aead_aegis128l_keygen', '8.3', 1087, '8.4'],
+            ['sodium_crypto_aead_aegis256_decrypt', '8.3', 1088, '8.4'],
+            ['sodium_crypto_aead_aegis256_encrypt', '8.3', 1089, '8.4'],
+            ['sodium_crypto_aead_aegis256_keygen', '8.3', 1090, '8.4'],
         ];
     }
 
