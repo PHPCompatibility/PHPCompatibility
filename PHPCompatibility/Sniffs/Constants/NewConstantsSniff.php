@@ -8051,6 +8051,16 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'ldap',
         ],
+        'LIBXML_RECOVER' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'libxml',
+        ],
+        'LIBXML_NO_XXE' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'libxml',
+        ],
         'PGSQL_TUPLES_CHUNK' => [
             '8.3'       => false,
             '8.4'       => true,

@@ -1698,6 +1698,8 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['PHP_SBINDIR', '8.3', 1630, '8.4'],
             ['LDAP_OPT_X_TLS_PROTOCOL_MAX', '8.3', 1631, '8.4'],
             ['LDAP_OPT_X_TLS_PROTOCOL_TLS1_3', '8.3', 1632, '8.4'],
+            ['LIBXML_RECOVER', '8.3', 1633, '8.4'],
+            ['LIBXML_NO_XXE', '8.3', 1634, '8.4'],
         ];
     }
 
