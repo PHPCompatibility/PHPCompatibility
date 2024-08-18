@@ -1728,6 +1728,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['IP_PORTRANGE_LOW', '8.3', 1660, '8.4'],
             ['SOCK_NONBLOCK', '8.3', 1661, '8.4'],
             ['SOCK_CLOEXEC', '8.3', 1662, '8.4'],
+            ['CURLOPT_TCP_KEEPCNT', '8.3', 1663, '8.4'],
         ];
     }
 
