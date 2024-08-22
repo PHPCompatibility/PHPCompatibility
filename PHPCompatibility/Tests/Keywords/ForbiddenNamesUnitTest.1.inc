@@ -375,6 +375,9 @@ class EnumSpecialCasingTest
         self::ENUM or \true;
         self::ENUM and \true;
         self::ENUM xor \false;
+
+        foreach ($obj->enum as $something) {}
+        foreach ($obj?->enum as $something) {}
     }
 }
 
