@@ -159,7 +159,7 @@ class UnionTypes {
 class IntersectionTypes {
     public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
 
-    public Throwable&SessionUpdateTimestampHandlerInterface $property;
+    public Throwable&SessionUpdateTimestampHandlerInterface $propertyA, $propertyB;
     public function paramTypeB(SeekableIterator&SplSubject $param) {}
     public function returnType($param) : Reflector&Traversable {}
 }
