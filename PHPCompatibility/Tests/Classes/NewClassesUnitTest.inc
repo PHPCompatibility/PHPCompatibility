@@ -549,7 +549,7 @@ function accessStreamBucket(StreamBucket $bucket) {}
 
 $db = new Pdo\DbLib();
 $anon = new class extends \Pdo\Firebird {
-    public Pdo\Mysql $prop;
+    public Pdo\Mysql $propA, $propB;
     public function ParamType(\Pdo\Odbc $param) {}
     public function ReturnType( int $a ) : Pdo\Pgsql {}
 };

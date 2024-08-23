@@ -16,10 +16,12 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
@@ -1369,16 +1371,16 @@ class NewClassesSniff extends Sniff
         $this->newClasses = \array_merge($this->newClasses, $this->newExceptions);
 
         $targets = [
-            \T_USE,
-            \T_NEW,
-            \T_CLASS,
-            \T_ANON_CLASS,
-            \T_VARIABLE,
-            \T_DOUBLE_COLON,
-            \T_CATCH,
+            \T_USE          => \T_USE,
+            \T_NEW          => \T_NEW,
+            \T_CLASS        => \T_CLASS,
+            \T_ANON_CLASS   => \T_ANON_CLASS,
+            \T_DOUBLE_COLON => \T_DOUBLE_COLON,
+            \T_CATCH        => \T_CATCH,
         ];
 
         $targets += Collections::functionDeclarationTokens();
+        $targets += Collections::ooPropertyScopes();
 
         return $targets;
     }
@@ -1411,17 +1413,20 @@ class NewClassesSniff extends Sniff
                 $this->processUseToken($phpcsFile, $stackPtr);
                 break;
 
-            case \T_VARIABLE:
-                $this->processVariableToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_CATCH:
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
 
-            default:
+            case \T_NEW:
+            case \T_CLASS:
+            case \T_ANON_CLASS:
+            case \T_DOUBLE_COLON:
                 $this->processSingularToken($phpcsFile, $stackPtr);
                 break;
+        }
+
+        if (isset(Collections::ooPropertyScopes()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processOOProperties($phpcsFile, $stackPtr);
         }
 
         if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
@@ -1518,7 +1523,7 @@ class NewClassesSniff extends Sniff
 
 
     /**
-     * Processes this test for when a variable token is encountered.
+     * Processes an OO token for properties declared in the OO scope.
      *
      * - Detect new classes when used as a property type declaration.
      *
@@ -1530,19 +1535,50 @@ class NewClassesSniff extends Sniff
      *
      * @return void
      */
-    private function processVariableToken(File $phpcsFile, $stackPtr)
+    private function processOOProperties(File $phpcsFile, $stackPtr)
     {
-        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
-            // Not a class property.
+        $ooProperties = ObjectDeclarations::getDeclaredProperties($phpcsFile, $stackPtr);
+        if (empty($ooProperties)) {
             return;
         }
 
-        $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-        if ($properties['type'] === '') {
-            return;
-        }
+        $tokens         = $phpcsFile->getTokens();
+        $endOfStatement = false;
+        foreach ($ooProperties as $variableToken) {
+            if ($endOfStatement !== false && $variableToken < $endOfStatement) {
+                // Don't throw the same error multiple times for multi-property declarations.
+                // Also skip over any other constructor promoted properties.
+                continue;
+            }
 
-        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
+            try {
+                $properties = Variables::getMemberProperties($phpcsFile, $variableToken);
+            } catch (ValueError $e) {
+                /*
+                 * This must be constructor property promotion.
+                 * Ignore for now and skip over any other promoted properties, these will be handled
+                 * via the function token for the constructor.
+                 */
+                $deepestOpen = Parentheses::getLastOpener($phpcsFile, $variableToken);
+                if ($deepestOpen !== false
+                    && $stackPtr < $deepestOpen
+                    && Parentheses::isOwnerIn($phpcsFile, $deepestOpen, \T_FUNCTION)
+                    && isset($tokens[$deepestOpen]['parenthesis_closer'])
+                ) {
+                    $endOfStatement = $tokens[$deepestOpen]['parenthesis_closer'];
+                }
+
+                continue;
+            }
+
+            if ($properties['type'] === '') {
+                continue;
+            }
+
+            $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
+
+            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($variableToken + 1));
+        }
     }
 
 
