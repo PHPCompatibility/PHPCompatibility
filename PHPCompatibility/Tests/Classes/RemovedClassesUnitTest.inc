@@ -97,7 +97,7 @@ class UnionTypes {
 class IntersectionTypes {
     public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
 
-    public SWFMorph&SWFMovie $property;
+    public SWFMorph&SWFMovie $propertyA, $propertyB, $propertyC;
     public function paramTypeB(SWFSprite&\SWFText $param) {}
     public function returnType(int $param) : HW_API_Object&HW_API_Attribute {}
 }
