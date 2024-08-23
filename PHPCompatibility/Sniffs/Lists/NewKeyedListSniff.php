@@ -13,7 +13,7 @@ namespace PHPCompatibility\Sniffs\Lists;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHPCSUtils\Exceptions\UnexpectedTokenType;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Lists;
 
@@ -70,7 +70,7 @@ class NewKeyedListSniff extends Sniff
 
         try {
             $assignments = Lists::getAssignments($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
+        } catch (UnexpectedTokenType $e) {
             // Parse error/live coding.
             return;
         }
