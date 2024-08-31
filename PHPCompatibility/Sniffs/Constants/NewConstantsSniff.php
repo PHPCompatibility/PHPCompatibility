@@ -8071,6 +8071,11 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'libxml',
         ],
+        'MYSQLI_TYPE_VECTOR' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
         'X509_PURPOSE_OCSP_HELPER' => [
             '8.3'       => false,
             '8.4'       => true,

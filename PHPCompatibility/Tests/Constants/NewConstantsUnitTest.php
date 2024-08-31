@@ -1730,6 +1730,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['SOCK_CLOEXEC', '8.3', 1662, '8.4'],
             ['CURLOPT_TCP_KEEPCNT', '8.3', 1663, '8.4'],
             ['CURLOPT_SERVER_RESPONSE_TIMEOUT', '8.3', 1664, '8.4'],
+            ['MYSQLI_TYPE_VECTOR', '8.3', 1665, '8.4'],
         ];
     }
 
