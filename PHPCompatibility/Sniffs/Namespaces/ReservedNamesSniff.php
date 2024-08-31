@@ -18,16 +18,17 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * Detect declarations of namespace names reserved or in use by PHP.
+ * Detect declarations of namespace names reserved for, or in use by, PHP.
  *
  * > The Namespace name PHP, and compound names starting with this name (like PHP\Classes) are reserved
  * > for internal language use and should not be used in the userspace code.
  *
- * Also includes names actually in use by PHP.
+ * Also includes namespace names actually in use by PHP.
  *
  * PHP version 5.3+
  *
  * @link https://www.php.net/manual/en/language.namespaces.rationale.php
+ * @link https://wiki.php.net/rfc/namespaces_in_bundled_extensions
  *
  * @since 10.0.0
  */
@@ -48,8 +49,66 @@ class ReservedNamesSniff extends Sniff
          * of namespaces in PHP 5.3, but not yet in use.
          */
         'PHP'    => '5.3',
+
+        // Top-level namespace names in use in bundled extensions.
         'FFI'    => '7.4',
+        'FTP'    => '8.1',
+        'IMAP'   => '8.1',
+        'LDAP'   => '8.1',
+        'PgSql'  => '8.1',
+        'PSpell' => '8.1',
         'Random' => '8.2',
+    ];
+
+    /**
+     * A list of namespace names which are in use by PHP extensions which are not bundled with PHP.
+     *
+     * Extensions are often initially developed in PECL, but may be moved to PHP src at a later point.
+     *
+     * For most users, conflicts with these top level names will not be problematic, but they can be
+     * if the server the code runs on happens to have that particular extension installed and enabled.
+     *
+     * As these extensions are not bundled with PHP, we cannot relate the incompatibility to a PHP version,
+     * unless the extension is only available for a certain PHP version (and higher).
+     *
+     * When these names are detected as being declared, a warning will be thrown.
+     *
+     * @since 10.0.0
+     *
+     * @var array<string, string>
+     */
+    protected $peclReservedNames = [
+        // Top-level namespace names in use in PECL extensions which are documented in the PHP manual.
+        'CommonMark'    => '*',
+        'Componere'     => '*',
+        'Ds'            => '7.0', // Data Structures extension.
+        'Gender'        => '*',
+        'HRTime'        => '*',
+        'MongoDB'       => '*',
+        'mysql_xdevapi' => '*',
+        'parallel'      => '*',
+        'Parle'         => '7.4',
+        'Swoole'        => '*',
+        'UI'            => '*',
+        // Officially the prefix is Vtiful\Kernel, but the Vtiful namespace is a vendor name, so should not be
+        // used in a declarative way by userland code anyway (aside from userland code writen by the Vtiful vendor).
+        'Vtiful'        => '7.0', // XLSWriter extension.
+        'wkhtmltox'     => '*',
+        'XMLDiff'       => '*',
+
+        // These extensions are not in the manual, but mentioned in the "namespaces in bundled extensions" RFC.
+        'Aerospike'     => '*',
+        'Cassandra'     => '*',
+        'Couchbase'     => '*',
+        'Crypto'        => '*',
+        'Decimal'       => '*',
+        'Grpc'          => '*',
+        'http'          => '*',
+        'Mosquitto'     => '*',
+        'pcov'          => '*',
+        'pq'            => '*',
+        'RdKafka'       => '*',
+        'Zstd'          => '*',
     ];
 
     /**
@@ -62,7 +121,8 @@ class ReservedNamesSniff extends Sniff
     public function register()
     {
         // Handle case-insensitivity of namespace names.
-        $this->reservedNames = \array_change_key_case($this->reservedNames, \CASE_LOWER);
+        $this->reservedNames     = \array_change_key_case($this->reservedNames, \CASE_LOWER);
+        $this->peclReservedNames = \array_change_key_case($this->peclReservedNames, \CASE_LOWER);
 
         return [
             \T_NAMESPACE,
@@ -95,38 +155,65 @@ class ReservedNamesSniff extends Sniff
 
         $nameParts = \explode('\\', $name);
         $firstPart = \strtolower($nameParts[0]);
-        if (isset($this->reservedNames[$firstPart]) === false) {
-            return;
-        }
 
-        if (ScannedCode::shouldRunOnOrAbove($this->reservedNames[$firstPart]) === false) {
-            return;
-        }
+        /*
+         * Handle names reserved by PHP.
+         */
+        if (isset($this->reservedNames[$firstPart])) {
+            if (ScannedCode::shouldRunOnOrAbove($this->reservedNames[$firstPart]) === false) {
+                return;
+            }
 
-        // Throw the message on the first part of the namespace name.
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            // Throw the message on the first part of the namespace name.
+            $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
-        // Special case "PHP" to a warning with a custom message.
-        if ($firstPart === 'php') {
-            $phpcsFile->addWarning(
-                'Namespace name "%s" is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.',
+            // Special case "PHP" to a warning with a custom message.
+            if ($firstPart === 'php') {
+                $phpcsFile->addWarning(
+                    'Namespace name "%s" is discouraged; PHP has reserved the namespace name "PHP" and compound names starting with "PHP" for internal language use.',
+                    $firstNonEmpty,
+                    'phpFound',
+                    [$name]
+                );
+                return;
+            }
+
+            // Throw an error for other reserved names.
+            $phpcsFile->addError(
+                'The top-level namespace name "%s" is reserved for, and in use by, PHP since PHP version %s. Found: %s',
                 $firstNonEmpty,
-                'phpFound',
-                [$name]
+                MessageHelper::stringToErrorCode($firstPart, true) . 'Found',
+                [
+                    $nameParts[0],
+                    $this->reservedNames[$firstPart],
+                    $name,
+                ]
             );
-            return;
         }
 
-        // Throw an error for other reserved names.
-        $phpcsFile->addError(
-            'The top-level namespace name "%s" is reserved by and in use by PHP since PHP version %s. Found: %s',
-            $firstNonEmpty,
-            MessageHelper::stringToErrorCode($firstPart, true) . 'Found',
-            [
+        /*
+         * Handle names reserved by PECL extensions.
+         */
+        if (isset($this->peclReservedNames[$firstPart])) {
+            if ($this->peclReservedNames[$firstPart] !== '*'
+                && ScannedCode::shouldRunOnOrAbove($this->peclReservedNames[$firstPart]) === false
+            ) {
+                return;
+            }
+
+            // Throw the message on the first part of the namespace name.
+            $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+
+            $warning = 'The top-level namespace name "%s" is reserved for, and in use by, a PECL extension%s. Found: %s';
+            $code    = MessageHelper::stringToErrorCode($firstPart, true) . 'PeclReserved';
+            $data    = [
                 $nameParts[0],
-                $this->reservedNames[$firstPart],
+                $this->peclReservedNames[$firstPart] === '*' ? '' : ' since PHP version ' . $this->peclReservedNames[$firstPart],
                 $name,
-            ]
-        );
+            ];
+
+            // Throw a warning for namespace names reserved for PECL extensions.
+            $phpcsFile->addWarning($warning, $firstNonEmpty, $code, $data);
+        }
     }
 }
