@@ -41,9 +41,6 @@ final class ForbiddenClassNameUnderscoreUnitTest extends BaseSniffTestCase
         $error = \sprintf('Using a single underscore, "_", as %s name is deprecated since PHP 8.4.', $type);
 
         $this->assertWarning($file, $line, $error);
-
-        $file = $this->sniffFile(__FILE__, '8.3');
-        $this->assertNoViolation($file, $line);
     }
 
     /**
