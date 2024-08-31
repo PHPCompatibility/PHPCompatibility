@@ -102,6 +102,7 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTestCase
             ['array_uintersect_assoc', 'rest', '7.4', [73], '8.0'],
             ['array_uintersect_uassoc', 'rest', '7.4', [74], '8.0'],
             ['array_uintersect', 'rest', '7.4', [75], '8.0'],
+            ['pg_select', 'conditions', '8.3', [90], '8.4'],
         ];
     }
 
@@ -153,6 +154,10 @@ class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTestCase
             [57],
             [58],
             [79],
+            [82],
+            [83],
+            [86],
+            [89],
         ];
     }
 
