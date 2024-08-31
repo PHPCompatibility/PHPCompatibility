@@ -1111,6 +1111,10 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['posix_eaccess', '8.2', 1050, '8.3'],
             ['pg_set_error_context_visibility', '8.2', 1051, '8.3'],
             ['socket_atmark', '8.2', 1052, '8.3'],
+
+            ['bcceil', '8.3', 1054, '8.4'],
+            ['bcfloor', '8.3', 1055, '8.4'],
+            ['bcround', '8.3', 1056, '8.4'],
         ];
     }
 
