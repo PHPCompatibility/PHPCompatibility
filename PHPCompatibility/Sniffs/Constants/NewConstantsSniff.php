@@ -8186,6 +8186,11 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'sockets',
         ],
+        'SO_BINDTOIFINDEX' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
         'SO_EXCLBIND' => [
             '8.3'       => false,
             '8.4'       => true,

@@ -1731,6 +1731,7 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLOPT_TCP_KEEPCNT', '8.3', 1663, '8.4'],
             ['CURLOPT_SERVER_RESPONSE_TIMEOUT', '8.3', 1664, '8.4'],
             ['MYSQLI_TYPE_VECTOR', '8.3', 1665, '8.4'],
+            ['SO_BINDTOIFINDEX', '8.3', 1666, '8.4'],
         ];
     }
 
