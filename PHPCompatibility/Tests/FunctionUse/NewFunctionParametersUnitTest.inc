@@ -149,3 +149,5 @@ parse_url(
 
 posix_getrlimit($res);
 strrchr($haystack, $needle, $before_needle);
+$cert2 = openssl_csr_sign($csrdata, null, $privkey, 365, $args, serial_hex: 'DEADBEEF');
+$cert3 = openssl_csr_sign($csrdata, null, $privkey, 365, $args, 10, 'DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF');
