@@ -32,7 +32,7 @@ class MyOtherAttribute {}
 #[MyAttribute(100 + 200)]
 class Thing {}
 
-#[MyAttribute(1234), MyAttribute(5678)]
+#[MyAttributeA(1234), MyAttributeB(5678)]
 class MultipleAttributesGrouped {}
 
 $object = new #[ExampleAttribute] class () { };
@@ -100,13 +100,50 @@ class AnotherMultilineAttributeTest
     private $email;
 }
 
-// This code will cause a tokenizer error in PHP < 8.0. This must be the last test in the file!
-#[DeprecationReason('reason: <https://some-website/reason?>')]
-function attribute_containing_text_looking_like_close_tag() {}
-const APP_SECRET = 'app-secret';
-echo "Test\n";
+function MultiLineAndInlineErrorForSameAttribute(
+    #[MultilineAttribute(
+    )] $inlineParam
+) {}
 
-#[DeprecationReason(
-    'reason: <https://some-website/reason?>'
-)]
-function attribute_containing_mulitline_text_looking_like_close_tag() {}
+#[]
+function emptyAttributeShouldBeIgnored() {}
+
+#[MyAttribute('value', NewAttribute]
+function attributeWithUnclosedParenthesesWillBeIgnored() {}
+
+#[/*comment*/ \MyAttribute /*comment*/ ('param')]
+function commentsShouldBeIgnoredWhenRetrievingTheAttributeList() {}
+
+#[\ReturnTypeWillChange, AllowDynamicProperties]
+function phpNativeCrossVersionCompatibilityAttributesWillBeIgnored() {}
+
+#[\returnTYPEwillCHANGE, allowdynamicproperties]
+function phpNativeCrossVersionCompatibilityAttributesAreTreatedCaseInsensitively() {}
+
+#[\ReturnTypeWillChange, MySecondAttribute]
+function phpNativeCrossVersionCompatibilityAttributesWillNotInhibitFlaggingOfSecondAttribute() {}
+
+/*
+ * Verify that attributes provided by a limited set of applications are flagged with their own error code.
+ * Needs manual check until the test framework would be changed to handle this.
+ */
+#[CoversClass(Something::class)]
+#[RequiresPhp('5.6')]
+class PHPUnitAttributesTest extends TestCase {
+    #[Before]
+    public function setMeUp() {}
+}
+
+#[\Doctrine\ORM\Mapping\Entity]
+class MyEntity {
+    #[\JetBrains\PhpStorm\ArrayShape]
+    private $info;
+
+    #[\Override]
+    #[Embeddable]
+    #[NoReturn]
+    public function fooBar(
+        #[SensitiveParameter]
+        $pswd
+    ) {}
+}
