@@ -523,3 +523,21 @@ class Zipper {
     private InflateContext $inflate;
     private DeflateContext $deflate;
 }
+
+function getFile(FTP\Connection $connection) {}
+function changeFont(GdFont $font) {}
+function mailMe(): IMAP\Connection {}
+function somethingSomethingLdap(
+    \LDAP\Connection $connection,
+    \LDAP\Result $result
+) : \LDAP\ResultEntry {}
+
+function myPgSql(
+    PgSql\Connection $connect,
+    PgSql\Lob $result
+) : PgSql\Result {}
+
+function my_pspell(
+    PSpell\Config $config,
+    PSpell\Dictionary $dictionary,
+) {}

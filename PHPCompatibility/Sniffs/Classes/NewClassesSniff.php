@@ -919,6 +919,61 @@ class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'curl',
         ],
+        'FTP\Connection' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'ftp',
+        ],
+        'GdFont' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'gd',
+        ],
+        'IMAP\Connection' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'imap',
+        ],
+        'LDAP\Connection' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'ldap',
+        ],
+        'LDAP\Result' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'ldap',
+        ],
+        'LDAP\ResultEntry' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'ldap',
+        ],
+        'PgSql\Connection' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PgSql\Lob' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PgSql\Result' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'pgsql',
+        ],
+        'PSpell\Config' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'pspell',
+        ],
+        'PSpell\Dictionary' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'pspell',
+        ],
 
         'Random\Randomizer' => [
             '8.1'       => false,
