@@ -44,3 +44,11 @@ $obj?->mktime();
 
 stream_context_set_option($context, $wrapper, $option_name, $value);
 stream_context_set_option($context, $options); // Error x 2.
+
+pg_fetch_result($result, $row, $field);
+pg_fetch_result($result, $field); // Error.
+pg_fetch_result($result, field: $field); // Error.
+pg_field_prtlen($result, $row, $field);
+pg_field_prtlen($result, $field); // Error.
+pg_field_is_null($result, $row, $field);
+pg_field_is_null($result, $field); // Error.

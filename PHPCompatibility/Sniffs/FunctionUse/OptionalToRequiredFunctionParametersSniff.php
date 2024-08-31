@@ -96,6 +96,36 @@ class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallPara
                 '8.0'  => true,
             ],
         ],
+        'pg_fetch_result' => [
+            2 => [
+                'name' => 'row',
+                '8.4'  => false,
+            ],
+            3 => [
+                'name' => 'field',
+                '8.4'  => false,
+            ],
+        ],
+        'pg_field_prtlen' => [
+            2 => [
+                'name' => 'row',
+                '8.4'  => false,
+            ],
+            3 => [
+                'name' => 'field',
+                '8.4'  => false,
+            ],
+        ],
+        'pg_field_is_null' => [
+            2 => [
+                'name' => 'row',
+                '8.4'  => false,
+            ],
+            3 => [
+                'name' => 'field',
+                '8.4'  => false,
+            ],
+        ],
         'stream_context_set_option' => [
             3 => [
                 'name' => 'option_name',
