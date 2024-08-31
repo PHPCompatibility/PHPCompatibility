@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed trigger_error() Level"
+    >
+    <standard>
+    <![CDATA[
+    Calling trigger_error() with the error level E_USER_ERROR is deprecated since PHP 8.4.
+
+    Either throw an exception, call exit() or die() with a status message or pass a lower error level to trigger_error().
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: throwing an exception.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>throw new Exception('message')</em>;
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: calling trigger_error() with E_USER_ERROR.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>trigger_error('message', E_USER_ERROR)</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: exiting out of the script.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>exit('message')</em>;
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: calling trigger_error() with E_USER_ERROR.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>trigger_error('message', E_USER_ERROR)</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible: using a lower error level.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>trigger_error('message', E_USER_WARNING)</em>;
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: calling trigger_error() with E_USER_ERROR.">
+        <![CDATA[
+if ($errorCondition) {
+    <em>trigger_error('message', E_USER_ERROR)</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
