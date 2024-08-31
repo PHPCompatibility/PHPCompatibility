@@ -788,6 +788,96 @@ class NewClassesSniff extends Sniff
             '8.0'       => true,
             'extension' => 'oci8',
         ],
+        'CurlHandle' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'curl',
+        ],
+        'CurlMultiHandle' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'curl',
+        ],
+        'CurlShareHandle' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'curl',
+        ],
+        'EnchantBroker' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'enchant',
+        ],
+        'EnchantDictionary' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'enchant',
+        ],
+        'GdImage' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'gd',
+        ],
+        'OpenSSLCertificate' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'openssl',
+        ],
+        'OpenSSLCertificateSigningRequest' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'openssl',
+        ],
+        'OpenSSLAsymmetricKey' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'openssl',
+        ],
+        'Shmop' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'shmop',
+        ],
+        'AddressInfo' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'sockets',
+        ],
+        'Socket' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'sockets',
+        ],
+        'SysvMessageQueue' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'sem',
+        ],
+        'SysvSemaphore' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'sem',
+        ],
+        'SysvSharedMemory' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'sem',
+        ],
+        'XMLParser' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'xml',
+        ],
+        'DeflateContext' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'zlib',
+        ],
+        'InflateContext' => [
+            '7.4'       => false,
+            '8.0'       => true,
+            'extension' => 'zlib',
+        ],
 
         'IntlDatePatternGenerator' => [
             '8.0'       => false,
