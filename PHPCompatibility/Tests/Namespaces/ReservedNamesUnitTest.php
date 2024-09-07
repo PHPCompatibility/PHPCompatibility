@@ -72,6 +72,7 @@ class ReservedNamesUnitTest extends BaseSniffTestCase
             [77, 'Odbc', '8.4', '8.3'],
             [78, 'Soap', '8.4', '8.3'],
             [79, 'Pdo', '8.4', '8.3'],
+            [80, 'BcMath', '8.4', '8.3'],
         ];
     }
 

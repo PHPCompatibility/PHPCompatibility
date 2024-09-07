@@ -1001,6 +1001,11 @@ class NewClassesSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'BcMath\Number' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'bcmath',
+        ],
         'Dba\Connection' => [
             '8.3'       => false,
             '8.4'       => true,
