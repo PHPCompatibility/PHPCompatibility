@@ -263,6 +263,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['Odbc\Result', '8.3', [546], '8.4'],
             ['Soap\Sdl', '8.3', [547], '8.4'],
             ['Soap\Url', '8.3', [547], '8.4'],
+            ['StreamBucket', '8.3', [548], '8.4'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
