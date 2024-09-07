@@ -8041,12 +8041,27 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'CURLOPT_PREREQFUNCTION' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
         'CURLOPT_SERVER_RESPONSE_TIMEOUT' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'curl',
         ],
         'CURLOPT_TCP_KEEPCNT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_PREREQFUNC_ABORT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_PREREQFUNC_OK' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'curl',
