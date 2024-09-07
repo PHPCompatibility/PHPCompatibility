@@ -487,3 +487,30 @@ $test = ini_get('opcache.consistency_checks');
 
 ini_set('imap.enable_insecure_rsh', 0);
 $test = ini_get('imap.enable_insecure_rsh');
+
+ini_set('oci8.connection_class', 0);
+$test = ini_get('oci8.connection_class');
+
+ini_set('oci8.default_prefetch', 0);
+$test = ini_get('oci8.default_prefetch');
+
+ini_set('oci8.events', 0);
+$test = ini_get('oci8.events');
+
+ini_set('oci8.max_persistent', 0);
+$test = ini_get('oci8.max_persistent');
+
+ini_set('oci8.persistent_timeout', 0);
+$test = ini_get('oci8.persistent_timeout');
+
+ini_set('oci8.ping_interval', 0);
+$test = ini_get('oci8.ping_interval');
+
+ini_set('oci8.prefetch_lob_size', 0);
+$test = ini_get('oci8.prefetch_lob_size');
+
+ini_set('oci8.privileged_connect', 0);
+$test = ini_get('oci8.privileged_connect');
+
+ini_set('oci8.statement_cache_size', 0);
+$test = ini_get('oci8.statement_cache_size');

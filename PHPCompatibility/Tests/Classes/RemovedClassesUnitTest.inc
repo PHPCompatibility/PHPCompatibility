@@ -116,3 +116,6 @@ class DNFTypes {
 }
 
 function mailMe(): IMAP\Connection {}
+
+$oci8 = new OCICollection();
+$closure = function(OCILob $lob) {};
