@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed xml_set_*_handler() callback unset"
+    >
+    <standard>
+    <![CDATA[
+    Passing an empty string to an xml_set_*_handler() callback parameter to unset a previously set handler is deprecated since PHP 8.4. Pass `null` instead.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: resetting the $handler to its default state by passing null.">
+        <![CDATA[
+xml_set_default_handler($parser, <em>null</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: resetting the $handler to its default state by passing an empty string.">
+        <![CDATA[
+xml_set_default_handler($parser, <em>''</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
