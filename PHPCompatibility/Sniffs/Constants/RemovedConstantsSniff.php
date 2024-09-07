@@ -2588,6 +2588,7 @@ class RemovedConstantsSniff extends Sniff
         ],
         'NIL' => [
             '8.1'         => false,
+            '8.4'         => true,
             'alternative' => 'integer 0',
             'extension'   => 'imap',
         ],
@@ -2652,6 +2653,275 @@ class RemovedConstantsSniff extends Sniff
         'MT_RAND_PHP' => [
             '8.3'       => false,
             'extension' => 'random',
+        ],
+
+        'OP_DEBUG' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_READONLY' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_ANONYMOUS' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_SHORTCACHE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_SILENT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_PROTOTYPE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_HALFOPEN' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_EXPUNGE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'OP_SECURE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'CL_EXPUNGE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'FT_UID' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'FT_PEEK' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'FT_NOT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'FT_INTERNAL' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'FT_PREFETCHTEXT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ST_UID' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ST_SILENT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ST_SET' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'CP_UID' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'CP_MOVE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SE_UID' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SE_FREE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SE_NOPREFETCH' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SO_FREE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SO_NOSERVER' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_MESSAGES' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_RECENT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_UNSEEN' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_UIDNEXT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_UIDVALIDITY' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SA_ALL' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_NOINFERIORS' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_NOSELECT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_MARKED' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_UNMARKED' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_REFERRAL' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_HASCHILDREN' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'LATT_HASNOCHILDREN' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTDATE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTARRIVAL' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTFROM' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTSUBJECT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTTO' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTCC' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'SORTSIZE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPETEXT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEMULTIPART' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEMESSAGE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEAPPLICATION' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEAUDIO' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEIMAGE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEVIDEO' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEMODEL' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'TYPEOTHER' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENC7BIT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENC8BIT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENCBINARY' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENCBASE64' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENCQUOTEDPRINTABLE' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'ENCOTHER' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_OPENTIMEOUT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_READTIMEOUT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_WRITETIMEOUT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_CLOSETIMEOUT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_GC_ELT' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_GC_ENV' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'IMAP_GC_TEXTS' => [
+            '8.4'       => true,
+            'extension' => 'imap',
         ],
     ];
 

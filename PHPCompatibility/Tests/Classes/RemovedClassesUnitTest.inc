@@ -114,3 +114,5 @@ class DNFTypes {
     public function paramTypeB((SWFSprite&\SWFText)|false $param) {}
     public function returnType($param) : SomethingElse|(HW_API_Object&HW_API_Attribute) {}
 }
+
+function mailMe(): IMAP\Connection {}

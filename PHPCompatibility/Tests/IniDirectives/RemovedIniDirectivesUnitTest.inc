@@ -484,3 +484,6 @@ $test = ini_get('assert.warning');
 
 ini_set('opcache.consistency_checks', 0);
 $test = ini_get('opcache.consistency_checks');
+
+ini_set('imap.enable_insecure_rsh', 0);
+$test = ini_get('imap.enable_insecure_rsh');

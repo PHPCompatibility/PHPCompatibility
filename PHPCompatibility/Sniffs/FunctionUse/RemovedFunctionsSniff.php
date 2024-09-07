@@ -5075,6 +5075,306 @@ class RemovedFunctionsSniff extends Sniff
             '8.3' => false,
         ],
 
+        'imap_8bit' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_alerts' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_append' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_base64' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_binary' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_body' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_bodystruct' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_check' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_clearflag_full' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_close' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_create' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_createmailbox' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_delete' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_deletemailbox' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_errors' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_expunge' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetch_overview' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetchbody' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetchheader' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetchmime' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetchstructure' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_fetchtext' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_gc' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_get_quota' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_get_quotaroot' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_getacl' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_getmailboxes' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_getsubscribed' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_headerinfo' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_headers' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_is_open' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_last_error' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_list' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_listmailbox' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_listscan' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_listsubscribed' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_lsub' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mail' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mail_compose' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mail_copy' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mail_move' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mailboxmsginfo' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mime_header_decode' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_msgno' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_mutf7_to_utf8' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_num_msg' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_num_recent' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_open' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_ping' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_qprint' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_rename' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_renamemailbox' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_reopen' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_rfc822_parse_adrlist' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_rfc822_parse_headers' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_rfc822_write_address' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_savebody' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_scan' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_scanmailbox' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_search' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_set_quota' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_setacl' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_setflag_full' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_sort' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_status' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_subscribe' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_thread' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_timeout' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_uid' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_undelete' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_unsubscribe' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_utf7_decode' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_utf7_encode' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_utf8' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
+        'imap_utf8_to_mutf7' => [
+            '8.4'       => true,
+            'extension' => 'imap',
+        ],
         'intlcal_set' => [
             '8.4'         => false,
             'alternative' => 'IntlCalendar::setDate() or IntlCalendar::setDateTime()',

@@ -417,6 +417,8 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['mysqli.reconnect', '8.2', [467, 468], '8.1'],
             ['opcache.consistency_checks', '8.3', [485, 486], '8.2'],
+
+            ['imap.enable_insecure_rsh', '8.4', [488, 489], '8.3'],
         ];
     }
 
