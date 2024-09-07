@@ -1000,6 +1000,32 @@ class NewClassesSniff extends Sniff
             '8.2'       => true,
             'extension' => 'random',
         ],
+
+        'Dba\Connection' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'dba',
+        ],
+        'Odbc\Connection' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'odbc',
+        ],
+        'Odbc\Result' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'odbc',
+        ],
+        'Soap\Sdl' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'soap',
+        ],
+        'Soap\Url' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'soap',
+        ],
     ];
 
     /**

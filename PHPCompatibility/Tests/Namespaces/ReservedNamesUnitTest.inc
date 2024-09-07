@@ -72,5 +72,10 @@ namespace Vtiful\Kernel\Sub;
 // Warning on PHP 7.4+.
 namespace Parle\Sub;
 
+// Error PHP 8.4+.
+namespace DBA;
+namespace Odbc\Connect;
+namespace Soap\Something;
+
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli

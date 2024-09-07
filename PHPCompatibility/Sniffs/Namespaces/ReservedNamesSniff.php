@@ -58,6 +58,9 @@ class ReservedNamesSniff extends Sniff
         'PgSql'  => '8.1',
         'PSpell' => '8.1',
         'Random' => '8.2',
+        'Dba'    => '8.4',
+        'Odbc'   => '8.4',
+        'Soap'   => '8.4',
     ];
 
     /**

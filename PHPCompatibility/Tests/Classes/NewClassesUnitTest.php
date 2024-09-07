@@ -258,6 +258,12 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['Random\Engine\Xoshiro256StarStar', '8.1', [477], '8.2'],
             ['Random\Engine\Secure', '8.1', [479], '8.2'],
 
+            ['Dba\Connection', '8.3', [545], '8.4'],
+            ['Odbc\Connection', '8.3', [546], '8.4'],
+            ['Odbc\Result', '8.3', [546], '8.4'],
+            ['Soap\Sdl', '8.3', [547], '8.4'],
+            ['Soap\Url', '8.3', [547], '8.4'],
+
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
             ['dATeTiMe', '5.1', [148], '5.2'],
