@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed dba_key_split() null/false"
+    >
+    <standard>
+    <![CDATA[
+    Passing false or null as the $key to dba_key_split() is deprecated since PHP 8.4.
+
+    Make sure a valid (string) key is available before calling the dba_key_split() function.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: making sure that the key is not false or null before passing it to dba_key_split().">
+        <![CDATA[
+$key = dba_firstkey($dba);
+if (<em>$key !== false</em>) {
+    $split = dba_key_split(<em>$key</em>);
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: passing a potential false value, i.e. the result of a call to dba_firstkey() or dba_nextkey(), straight into a call to dba_key_split().">
+        <![CDATA[
+$split = dba_key_split(<em>dba_firstkey($dba)</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
