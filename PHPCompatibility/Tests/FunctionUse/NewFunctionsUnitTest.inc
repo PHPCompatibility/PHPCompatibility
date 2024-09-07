@@ -1054,3 +1054,4 @@ socket_atmark();
 bcceil();
 bcfloor();
 bcround();
+grapheme_str_split();

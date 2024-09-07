@@ -4984,6 +4984,11 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'bcmath',
         ],
+        'grapheme_str_split' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'intl',
+        ],
     ];
 
 
