@@ -1055,3 +1055,5 @@ bcceil();
 bcfloor();
 bcround();
 grapheme_str_split();
+mb_lcfirst();
+mb_ucfirst();
