@@ -87,10 +87,16 @@ jobs:
         id: phpunit_version
         run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
-      - name: Run the unit tests (PHPUnit < 10)
-        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit --no-coverage
+      - name: Determine PHPUnit config file to use
+        id: phpunit_config
+        run: |
+          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+          else
+            echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Run the unit tests (PHPUnit 10+)
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit -c phpunit10.xml.dist --no-coverage
+      - name: Run the unit tests
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --no-coverage

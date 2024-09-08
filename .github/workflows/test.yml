@@ -174,13 +174,19 @@ jobs:
         id: phpunit_version
         run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
-      - name: Run the unit tests (PHPUnit < 10)
-        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit --no-coverage
+      - name: Determine PHPUnit config file to use
+        id: phpunit_config
+        run: |
+          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+          else
+            echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Run the unit tests (PHPUnit 10+)
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit -c phpunit10.xml.dist --no-coverage
+      - name: Run the unit tests
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --no-coverage
 
 
   #### CODE COVERAGE STAGE ####
@@ -270,22 +276,31 @@ jobs:
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
 
+      - name: Determine PHPUnit config file to use
+        id: phpunit_config
+        run: |
+          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'EXTRA_ARGS="--coverage-cache ./build/phpunit-cache"' >> $GITHUB_OUTPUT
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'EXTRA_ARGS="--coverage-cache ./build/phpunit-cache"' >> $GITHUB_OUTPUT
+          else
+            echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'EXTRA_ARGS=""' >> $GITHUB_OUTPUT
+          fi
+
       # PHPUnit 9.3 started using PHP-Parser for code coverage causing some of our coverage builds to fail.
       # As of PHPUnit 9.3.4, a cache warming option is available.
       # Using that option prevents issues with PHP-Parser backfilling PHP tokens when PHPCS does not (yet),
       # which would otherwise cause tests to fail on tokens being available when they shouldn't be.
-      # As coverage is only run on high/low PHP, the high PHP version will use PHPUnit 10, so just check for that.
+      # As coverage is only run on high/low PHP, the high PHP version will use PHPUnit 11, so just check for that.
       - name: "Warm the PHPUnit cache (PHPUnit 9.3+)"
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache --warm-coverage-cache
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} ${{ steps.phpunit_config.outputs.EXTRA_ARGS }} --warm-coverage-cache
 
-      - name: "Run the unit tests with code coverage (PHPUnit < 10)"
-        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit
-
-      - name: "Run the unit tests with code coverage (PHPUnit 10+)"
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: vendor/bin/phpunit -c phpunit10.xml.dist --coverage-cache ./build/phpunit-cache
+      - name: Run the unit tests with code coverage
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} ${{ steps.phpunit_config.outputs.EXTRA_ARGS }}
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
