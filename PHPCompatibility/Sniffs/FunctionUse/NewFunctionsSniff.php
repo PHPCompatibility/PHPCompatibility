@@ -5046,6 +5046,16 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'mbstring',
         ],
+        'openssl_password_hash' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'openssl',
+        ],
+        'openssl_password_verify' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'openssl',
+        ],
         'pcntl_getcpu' => [
             '8.3'       => false,
             '8.4'       => true,
