@@ -1016,6 +1016,36 @@ class NewClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'odbc',
         ],
+        'Pdo\DbLib' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
+        'Pdo\Firebird' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
+        'Pdo\Mysql' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
+        'Pdo\Odbc' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
+        'Pdo\Pgsql' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
+        'Pdo\Sqlite' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'pdo',
+        ],
         'Soap\Sdl' => [
             '8.3'       => false,
             '8.4'       => true,

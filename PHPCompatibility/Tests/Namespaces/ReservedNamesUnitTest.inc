@@ -76,6 +76,7 @@ namespace Parle\Sub;
 namespace DBA;
 namespace Odbc\Connect;
 namespace Soap\Something;
+NAMESPACE Pdo\Subbie;
 
 // Intentional parse error. This has to be the last test in the file.
 namespace PHP\Cli

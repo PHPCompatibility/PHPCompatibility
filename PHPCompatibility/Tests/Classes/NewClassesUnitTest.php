@@ -264,6 +264,12 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['Soap\Sdl', '8.3', [547], '8.4'],
             ['Soap\Url', '8.3', [547], '8.4'],
             ['StreamBucket', '8.3', [548], '8.4'],
+            ['Pdo\DbLib', '8.3', [550], '8.4'],
+            ['Pdo\Firebird', '8.3', [551], '8.4'],
+            ['Pdo\Mysql', '8.3', [552], '8.4'],
+            ['Pdo\Odbc', '8.3', [553], '8.4'],
+            ['Pdo\Pgsql', '8.3', [554], '8.4'],
+            ['Pdo\Sqlite', '8.3', [556], '8.4'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
