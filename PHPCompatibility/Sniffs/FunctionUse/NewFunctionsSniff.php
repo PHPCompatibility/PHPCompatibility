@@ -4969,6 +4969,14 @@ class NewFunctionsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'http_clear_last_response_header' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
+        'http_get_last_response_header' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
         'bcceil' => [
             '8.3'       => false,
             '8.4'       => true,
