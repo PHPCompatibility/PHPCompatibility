@@ -514,3 +514,9 @@ $test = ini_get('oci8.privileged_connect');
 
 ini_set('oci8.statement_cache_size', 0);
 $test = ini_get('oci8.statement_cache_size');
+
+ini_set('session.sid_length', 1);
+$test = ini_get('session.sid_length');
+
+ini_set('session.sid_bits_per_character', 1);
+$test = ini_get('session.sid_bits_per_character');

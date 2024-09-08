@@ -162,6 +162,9 @@ class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['date.sunset_zenith', '8.1', [442, 443], '8.0'],
             ['filter.default', '8.1', [445, 446], '8.0'],
             ['filter.default_options', '8.1', [448, 449], '8.0'],
+
+            ['session.sid_length', '8.4', [518, 519], '8.3'],
+            ['session.sid_bits_per_character', '8.4', [521, 522], '8.3'],
         ];
     }
 

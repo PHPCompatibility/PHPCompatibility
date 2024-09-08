@@ -730,6 +730,14 @@ class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.4'       => true,
             'extension' => 'oci8',
         ],
+        'session.sid_length' => [
+            '8.4'       => false,
+            'extension' => 'session',
+        ],
+        'session.sid_bits_per_character' => [
+            '8.4'       => false,
+            'extension' => 'session',
+        ],
     ];
 
     /**
