@@ -17,6 +17,9 @@ use PHP_CodeSniffer\Files\LocalFile;
 use PHP_CodeSniffer\Ruleset;
 use PHP_CodeSniffer\Util\Common;
 use PHPCSUtils\BackCompat\Helper;
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\AfterClass;
+use PHPUnit\Framework\Attributes\BeforeClass;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
@@ -78,6 +81,8 @@ abstract class BaseSniffTestCase extends TestCase
      *
      * @return void
      */
+    #[BeforeClass]
+    #[AfterClass]
     public static function resetSniffFiles()
     {
         self::$sniffFiles = [];
@@ -94,6 +99,7 @@ abstract class BaseSniffTestCase extends TestCase
      *
      * @return void
      */
+    #[After]
     public function resetTestVersion()
     {
         // Reset the targetPhpVersion.
