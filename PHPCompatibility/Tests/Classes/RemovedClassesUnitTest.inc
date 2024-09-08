@@ -119,3 +119,8 @@ function mailMe(): IMAP\Connection {}
 
 $oci8 = new OCICollection();
 $closure = function(OCILob $lob) {};
+
+function my_pspell(
+    PSpell\Config $config,
+    PSpell\Dictionary $dictionary,
+) {}

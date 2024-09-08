@@ -5593,6 +5593,82 @@ class RemovedFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'oci8',
         ],
+        'pspell_add_to_personal' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_add_to_session' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_check' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_clear_session' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_create' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_data_dir' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_dict_dir' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_ignore' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_mode' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_personal' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_repl' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_runtogether' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_config_save_repl' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_new' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_new_config' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_new_personal' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_save_wordlist' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_store_replacement' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
+        'pspell_suggest' => [
+            '8.4'       => true,
+            'extension' => 'pspell',
+        ],
     ];
 
 

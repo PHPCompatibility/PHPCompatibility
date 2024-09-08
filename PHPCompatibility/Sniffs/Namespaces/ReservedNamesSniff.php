@@ -56,7 +56,7 @@ class ReservedNamesSniff extends Sniff
         'IMAP'   => '8.1', // Unbundled from PHP in PHP 8.4.
         'LDAP'   => '8.1',
         'PgSql'  => '8.1',
-        'PSpell' => '8.1',
+        'PSpell' => '8.1', // Unbundled from PHP in PHP 8.4.
         'Random' => '8.2',
         'Dba'    => '8.4',
         'Odbc'   => '8.4',
