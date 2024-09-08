@@ -281,13 +281,10 @@ jobs:
         run: |
           if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
-            echo 'EXTRA_ARGS="--coverage-cache ./build/phpunit-cache"' >> $GITHUB_OUTPUT
           elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
             echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
-            echo 'EXTRA_ARGS="--coverage-cache ./build/phpunit-cache"' >> $GITHUB_OUTPUT
           else
             echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
-            echo 'EXTRA_ARGS=""' >> $GITHUB_OUTPUT
           fi
 
       # PHPUnit 9.3 started using PHP-Parser for code coverage causing some of our coverage builds to fail.
@@ -297,10 +294,10 @@ jobs:
       # As coverage is only run on high/low PHP, the high PHP version will use PHPUnit 11, so just check for that.
       - name: "Warm the PHPUnit cache (PHPUnit 9.3+)"
         if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}
-        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} ${{ steps.phpunit_config.outputs.EXTRA_ARGS }} --warm-coverage-cache
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --warm-coverage-cache
 
       - name: Run the unit tests with code coverage
-        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} ${{ steps.phpunit_config.outputs.EXTRA_ARGS }}
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }}
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}

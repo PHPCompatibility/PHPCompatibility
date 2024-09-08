@@ -8,6 +8,7 @@
         beStrictAboutChangesToGlobalState="true"
         beStrictAboutOutputDuringTests="true"
         beStrictAboutTestsThatDoNotTestAnything="true"
+        cacheDirectory="build/.phpunit-cache"
         displayDetailsOnTestsThatTriggerErrors="true"
         displayDetailsOnTestsThatTriggerWarnings="true"
         displayDetailsOnTestsThatTriggerNotices="true"
