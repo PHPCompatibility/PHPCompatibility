@@ -2655,6 +2655,10 @@ class RemovedConstantsSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'DOM_PHP_ERR' => [
+            '8.4'       => false,
+            'extension' => 'dom',
+        ],
         'OP_DEBUG' => [
             '8.4'       => true,
             'extension' => 'imap',
