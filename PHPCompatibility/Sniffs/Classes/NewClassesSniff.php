@@ -1300,6 +1300,11 @@ class NewClassesSniff extends Sniff
             '8.2'       => true,
             'extension' => 'random',
         ],
+
+        'RequestParseBodyException' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
     ];
 
     /**

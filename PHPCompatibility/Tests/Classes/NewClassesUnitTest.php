@@ -320,6 +320,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['Random\RandomError', '8.1', [481], '8.2'],
             ['Random\BrokenRandomEngineError', '8.1', [481], '8.2'],
             ['Random\RandomException', '8.1', [482], '8.2'],
+            ['RequestParseBodyException', '8.3', [559], '8.4'],
         ];
     }
 
