@@ -163,6 +163,22 @@ trait PCRERegexTrait
          * and function calls. We are only concerned with the strings.
          */
         for ($i = $patternInfo['start']; $i <= $patternInfo['end']; $i++) {
+            // Ignore anything within square brackets.
+            if (isset($tokens[$i]['bracket_opener'], $tokens[$i]['bracket_closer'])
+                && $i === $tokens[$i]['bracket_opener']
+            ) {
+                $i = $tokens[$i]['bracket_closer'];
+                continue;
+            }
+
+            // Skip past nested arrays, function calls and arbitrary groupings.
+            if ($tokens[$i]['code'] === \T_OPEN_PARENTHESIS
+                && isset($tokens[$i]['parenthesis_closer'])
+            ) {
+                $i = $tokens[$i]['parenthesis_closer'];
+                continue;
+            }
+
             if (isset(Collections::textStringStartTokens()[$tokens[$i]['code']]) === false) {
                 continue;
             }

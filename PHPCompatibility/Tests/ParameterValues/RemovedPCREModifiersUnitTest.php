@@ -193,6 +193,10 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTestCase
 
             // Named parameters.
             [231],
+
+            // Issue #1764 - text within brackets should be ignored.
+            [238],
+            [239],
         ];
     }
 

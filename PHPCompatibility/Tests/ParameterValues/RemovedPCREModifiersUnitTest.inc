@@ -233,3 +233,7 @@ preg_replace( limit: $limit, count: $count, pattern: '/some text/emS', replaceme
 
 // Test handling of more complex embedded variables and expressions.
 preg_replace("/double-quoted/${e->{$z}}", $Replace, $Source); // Ok.
+
+// Safeguard against false positives for text within brackets.
+preg_replace( $my->get_regex('_regexp'), $replace, $subject );
+preg_replace( $regexes[ $type . '_regexp' ], $replace, $subject );
