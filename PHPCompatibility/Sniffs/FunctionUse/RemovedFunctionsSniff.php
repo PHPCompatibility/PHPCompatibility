@@ -5669,6 +5669,11 @@ class RemovedFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pspell',
         ],
+        'xml_set_object' => [
+            '8.4'         => false,
+            'alternative' => 'a fully formed callback in a xml_set_*_handler() function',
+            'extension'   => 'xml',
+        ],
     ];
 
 
