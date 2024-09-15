@@ -154,12 +154,14 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.0' => true,
         ],
         'session.hash_bits_per_character' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'session',
         ],
         'session.hash_function' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'session',
         ],
         'soap.wsdl_cache_dir' => [
             '4.4'       => false,
@@ -320,8 +322,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.2' => true,
         ],
         'session.cookie_httponly' => [
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'session',
         ],
 
         'cgi.check_shebang_line' => [
@@ -513,28 +516,34 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'phar',
         ],
         'session.upload_progress.enabled' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.upload_progress.cleanup' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.upload_progress.name' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.upload_progress.freq' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.upload_progress.min_freq' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'session.upload_progress.prefix' => [
-            '5.3' => false,
-            '5.4' => true,
+            '5.3'       => false,
+            '5.4'       => true,
+            'extension' => 'session',
         ],
         'windows_show_crt_warning' => [
             '5.3' => false,
@@ -779,8 +788,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'phpdbg',
         ],
         'session.lazy_write' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'session',
         ],
         'zend.assertions' => [
             '5.6' => false,
@@ -828,20 +838,24 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'opcache',
         ],
         'session.sid_length' => [
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.sid_bits_per_character' => [
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.trans_sid_hosts' => [
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'session.trans_sid_tags' => [
-            '7.0' => false,
-            '7.1' => true,
+            '7.0'       => false,
+            '7.1'       => true,
+            'extension' => 'session',
         ],
         'url_rewriter.hosts' => [
             '7.0' => false,
@@ -875,8 +889,9 @@ class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '7.3' => true,
         ],
         'session.cookie_samesite' => [
-            '7.2' => false,
-            '7.3' => true,
+            '7.2'       => false,
+            '7.3'       => true,
+            'extension' => 'session',
         ],
 
         'ffi.enable' => [
