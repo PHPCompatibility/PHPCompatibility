@@ -2655,6 +2655,18 @@ class RemovedConstantsSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'SUNFUNCS_RET_DOUBLE' => [
+            '8.4'       => false,
+            'extension' => 'datetime',
+        ],
+        'SUNFUNCS_RET_STRING' => [
+            '8.4'       => false,
+            'extension' => 'datetime',
+        ],
+        'SUNFUNCS_RET_TIMESTAMP' => [
+            '8.4'       => false,
+            'extension' => 'datetime',
+        ],
         'DOM_PHP_ERR' => [
             '8.4'       => false,
             'extension' => 'dom',
