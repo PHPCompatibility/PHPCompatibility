@@ -5390,6 +5390,11 @@ class RemovedFunctionsSniff extends Sniff
             'alternative' => 'exception catching on normal queries or, for long running processes, sending a "DO 1" query',
             'extension'   => 'mysqli',
         ],
+        'mysqli_refresh' => [
+            '8.4'         => false,
+            'alternative' => 'a FLUSH SQL statement',
+            'extension'   => 'mysqli',
+        ],
         'oci_bind_array_by_name' => [
             '8.4'       => true,
             'extension' => 'oci8',
