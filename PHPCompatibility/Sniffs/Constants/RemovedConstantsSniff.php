@@ -2655,6 +2655,9 @@ class RemovedConstantsSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'E_STRICT' => [
+            '8.4' => false,
+        ],
         'SUNFUNCS_RET_DOUBLE' => [
             '8.4'       => false,
             'extension' => 'datetime',
