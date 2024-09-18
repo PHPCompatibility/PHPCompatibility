@@ -5011,6 +5011,21 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'mbstring',
         ],
+        'mb_ltrim' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mbstring',
+        ],
+        'mb_rtrim' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mbstring',
+        ],
+        'mb_trim' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mbstring',
+        ],
     ];
 
 
