@@ -8041,7 +8041,27 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'CURLOPT_PREREQFUNCTION' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SERVER_RESPONSE_TIMEOUT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
         'CURLOPT_TCP_KEEPCNT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_PREREQFUNC_ABORT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_PREREQFUNC_OK' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'curl',
@@ -8065,6 +8085,11 @@ class NewConstantsSniff extends Sniff
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'libxml',
+        ],
+        'MYSQLI_TYPE_VECTOR' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'mysqli',
         ],
         'X509_PURPOSE_OCSP_HELPER' => [
             '8.3'       => false,
@@ -8172,6 +8197,11 @@ class NewConstantsSniff extends Sniff
             'extension' => 'sockets',
         ],
         'IP_PORTRANGE_LOW' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_BINDTOIFINDEX' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'sockets',
