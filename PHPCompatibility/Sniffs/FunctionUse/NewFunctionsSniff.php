@@ -4969,6 +4969,22 @@ class NewFunctionsSniff extends Sniff
             'extension' => 'sockets',
         ],
 
+        'array_all' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
+        'array_any' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
+        'array_find' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
+        'array_find_key' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
         'http_clear_last_response_header' => [
             '8.3' => false,
             '8.4' => true,

@@ -1063,3 +1063,7 @@ request_parse_body();
 mb_ltrim();
 mb_rtrim();
 mb_trim();
+array_all();
+array_any();
+array_find();
+\array_find_key();
