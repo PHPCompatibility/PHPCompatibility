@@ -557,3 +557,5 @@ $anon = new class extends \Pdo\Firebird {
 
 try {
 } catch(RequestParseBodyException) {}
+
+function mycalc( BcMath\Number $number) {}
