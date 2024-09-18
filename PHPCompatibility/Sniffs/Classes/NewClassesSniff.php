@@ -1051,6 +1051,11 @@ class NewClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'pdo',
         ],
+        'ReflectionConstant' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'reflection',
+        ],
         'Soap\Sdl' => [
             '8.3'       => false,
             '8.4'       => true,

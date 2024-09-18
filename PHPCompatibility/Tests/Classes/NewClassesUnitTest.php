@@ -271,6 +271,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['Pdo\Pgsql', '8.3', [554], '8.4'],
             ['Pdo\Sqlite', '8.3', [556], '8.4'],
             ['BcMath\Number', '8.3', [561], '8.4'],
+            ['ReflectionConstant', '8.3', [562], '8.4'],
 
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
