@@ -100,6 +100,8 @@ class NewPCREModifiersUnitTest extends BaseSniffTestCase
             [18],
             [28],
             [49],
+            [63],
+            [64],
         ];
     }
 
