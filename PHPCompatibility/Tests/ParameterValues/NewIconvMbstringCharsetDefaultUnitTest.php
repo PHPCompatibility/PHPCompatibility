@@ -96,8 +96,8 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.4-7.0');
 
-        // No errors expected on the first 40 lines.
-        for ($line = 1; $line <= 40; $line++) {
+        // No errors expected on the first 37 lines.
+        for ($line = 1; $line <= 37; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -137,22 +137,22 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     public static function dataIconvMimeEncode()
     {
         return [
-            [91, '$options[\'input/output-charset\']'],
-            [92, '$options[\'input/output-charset\']', 'warning'],
-            [96, '$options[\'output-charset\']'],
-            [106, '$options[\'input-charset\']'],
-            [115, '$options[\'input-charset\']'],
-            [122, '$options[\'input/output-charset\']'],
-            [123, '$options[\'input/output-charset\']'],
+            [85, '$options[\'input/output-charset\']'],
+            [86, '$options[\'input/output-charset\']', 'warning'],
+            [90, '$options[\'output-charset\']'],
+            [100, '$options[\'input-charset\']'],
+            [109, '$options[\'input-charset\']'],
+            [116, '$options[\'input/output-charset\']'],
+            [117, '$options[\'input/output-charset\']'],
+            [122, '$options[\'input/output-charset\']', 'warning'],
             [128, '$options[\'input/output-charset\']', 'warning'],
-            [134, '$options[\'input/output-charset\']', 'warning'],
-            [143, '$options[\'input-charset\']'],
-            [143, '$options[\'output-charset\']'],
-            [165, '$options[\'input-charset\']'],
-            [175, '$options[\'input-charset\']', 'warning'],
-            [175, '$options[\'output-charset\']', 'warning'],
-            [193, '$options[\'output-charset\']', 'warning'],
-            [202, '$options[\'input-charset\']', 'warning'],
+            [137, '$options[\'input-charset\']'],
+            [137, '$options[\'output-charset\']'],
+            [159, '$options[\'input-charset\']'],
+            [169, '$options[\'input-charset\']', 'warning'],
+            [169, '$options[\'output-charset\']', 'warning'],
+            [187, '$options[\'output-charset\']', 'warning'],
+            [196, '$options[\'input-charset\']', 'warning'],
         ];
     }
 
@@ -183,18 +183,18 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     {
         $data = [];
 
-        // No errors expected on line 79 - 89.
-        for ($line = 79; $line <= 89; $line++) {
+        // No errors expected on line 73 - 83.
+        for ($line = 73; $line <= 83; $line++) {
             $data[] = [$line];
         }
 
-        $data[] = [138];
+        $data[] = [132];
 
-        for ($line = 152; $line <= 161; $line++) {
+        for ($line = 146; $line <= 155; $line++) {
             $data[] = [$line];
         }
 
-        for ($line = 180; $line <= 188; $line++) {
+        for ($line = 174; $line <= 182; $line++) {
             $data[] = [$line];
         }
 
