@@ -87,10 +87,6 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
             'position' => 2,
             'name'     => 'encoding',
         ],
-        'mb_chr' => [
-            'position' => 2,
-            'name'     => 'encoding',
-        ],
         'mb_convert_case' => [
             'position' => 3,
             'name'     => 'encoding',
@@ -109,14 +105,6 @@ class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallParameterS
         ],
         'mb_encode_numericentity' => [
             'position' => 3,
-            'name'     => 'encoding',
-        ],
-        'mb_ord' => [
-            'position' => 2,
-            'name'     => 'encoding',
-        ],
-        'mb_scrub' => [
-            'position' => 2,
             'name'     => 'encoding',
         ],
         'mb_strcut' => [
