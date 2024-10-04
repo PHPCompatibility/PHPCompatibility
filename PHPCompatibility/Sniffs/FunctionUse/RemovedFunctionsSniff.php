@@ -5385,6 +5385,11 @@ class RemovedFunctionsSniff extends Sniff
             'alternative' => 'IntlGregorianCalendar::createFromDate() or IntlGregorianCalendar::createFromDateTime()',
             'extension'   => 'intl',
         ],
+        'mysqli_kill' => [
+            '8.4'         => false,
+            'alternative' => 'a KILL CONNECTION/QUERY SQL statement',
+            'extension'   => 'mysqli',
+        ],
         'mysqli_ping' => [
             '8.4'         => false,
             'alternative' => 'exception catching on normal queries or, for long running processes, sending a "DO 1" query',
