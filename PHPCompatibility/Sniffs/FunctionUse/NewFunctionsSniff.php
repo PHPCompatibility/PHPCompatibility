@@ -4985,6 +4985,10 @@ class NewFunctionsSniff extends Sniff
             '8.3' => false,
             '8.4' => true,
         ],
+        'fpow' => [
+            '8.3' => false,
+            '8.4' => true,
+        ],
         'http_clear_last_response_header' => [
             '8.3' => false,
             '8.4' => true,

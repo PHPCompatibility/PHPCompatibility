@@ -1067,3 +1067,4 @@ array_all();
 array_any();
 array_find();
 \array_find_key();
+fpow();

@@ -1128,6 +1128,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['array_any', '8.3', 1067, '8.4'],
             ['array_find', '8.3', 1068, '8.4'],
             ['array_find_key', '8.3', 1069, '8.4'],
+            ['fpow', '8.3', 1070, '8.4'],
         ];
     }
 
