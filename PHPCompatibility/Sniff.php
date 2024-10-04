@@ -128,7 +128,7 @@ abstract class Sniff implements PHPCS_Sniff
         static $arrTestVersions = array();
 
         $default     = array(null, null);
-        $testVersion = trim(PHPCSHelper::getConfigData('testVersion'));
+        $testVersion = trim((string) PHPCSHelper::getConfigData('testVersion'));
 
         if (empty($testVersion) === false && isset($arrTestVersions[$testVersion]) === false) {
 
