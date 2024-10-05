@@ -8101,6 +8101,11 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'CURLINFO_POSTTRANSFER_TIME_T' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
         'LDAP_OPT_X_TLS_PROTOCOL_MAX' => [
             '8.3'       => false,
             '8.4'       => true,
