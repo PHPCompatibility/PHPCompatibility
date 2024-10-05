@@ -1735,6 +1735,14 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLOPT_PREREQFUNCTION', '8.3', 1667, '8.4'],
             ['CURL_PREREQFUNC_OK', '8.3', 1668, '8.4'],
             ['CURL_PREREQFUNC_ABORT', '8.3', 1669, '8.4'],
+            ['CURLOPT_DEBUGFUNCTION', '8.3', 1670, '8.4'],
+            ['CURLINFO_TEXT', '8.3', 1671, '8.4'],
+            ['CURLINFO_HEADER_IN', '8.3', 1672, '8.4'],
+            ['CURLINFO_DATA_IN', '8.3', 1673, '8.4'],
+            ['CURLINFO_DATA_OUT', '8.3', 1674, '8.4'],
+            ['CURLINFO_SSL_DATA_OUT', '8.3', 1675, '8.4'],
+            ['CURLINFO_SSL_DATA_IN', '8.3', 1676, '8.4'],
+            ['CURLINFO_POSTTRANSFER_TIME_T', '8.3', 1677, '8.4'],
         ];
     }
 

@@ -8066,6 +8066,46 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'curl',
         ],
+        'CURLOPT_DEBUGFUNCTION' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_TEXT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_HEADER_IN' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_DATA_IN' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_DATA_OUT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_SSL_DATA_OUT' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_SSL_DATA_IN' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_POSTTRANSFER_TIME_T' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'curl',
+        ],
         'LDAP_OPT_X_TLS_PROTOCOL_MAX' => [
             '8.3'       => false,
             '8.4'       => true,
