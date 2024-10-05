@@ -5006,6 +5006,11 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'bcmath',
         ],
+        'bcdivmod' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'bcmath',
+        ],
         'bcfloor' => [
             '8.3'       => false,
             '8.4'       => true,

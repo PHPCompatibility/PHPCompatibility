@@ -1090,3 +1090,4 @@ sodium_crypto_aead_aegis256_encrypt();
 sodium_crypto_aead_aegis256_keygen();
 openssl_password_hash();
 openssl_password_verify();
+bcdivmod();
