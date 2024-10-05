@@ -5051,6 +5051,11 @@ class NewFunctionsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'mbstring',
         ],
+        'opcache_jit_blacklist' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'opcache',
+        ],
         'openssl_password_hash' => [
             '8.3'       => false,
             '8.4'       => true,
