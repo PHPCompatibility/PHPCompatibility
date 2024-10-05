@@ -1392,3 +1392,4 @@ xml_set_object();
 mysqli_ping();
 mysqli_refresh();
 mysqli_kill();
+lcg_value();
