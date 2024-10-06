@@ -41,6 +41,9 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
         $error = \sprintf('Passing an empty string as the $escape parameter to %s() to disable the proprietary CSV escaping mechanism was not supported in PHP 7.3 or earlier.', $fnName);
 
         $this->assertError($file, $line, $error);
+
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -99,13 +102,13 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
     /**
      * Verify there are no false positives on code this sniff should ignore.
      *
-     * @dataProvider dataNoFalsePositives
+     * @dataProvider dataNoFalsePositivesForEmptyStringParamValue
      *
      * @param int $line Line number.
      *
      * @return void
      */
-    public function testNoFalsePositives($line)
+    public function testNoFalsePositivesForEmptyStringParamValue($line)
     {
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file, $line);
@@ -114,11 +117,11 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @see testNoFalsePositives()
+     * @see testNoFalsePositivesForEmptyStringParamValue()
      *
      * @return array<array<int>>
      */
-    public static function dataNoFalsePositives()
+    public static function dataNoFalsePositivesForEmptyStringParamValue()
     {
         $data = [];
 
@@ -131,13 +134,93 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Verify no notices are thrown at all.
+     * Test the sniff correctly detects when the $escape parameter is not passed.
+     *
+     * @dataProvider dataDeprecatedNoEscapeParam
+     *
+     * @param int    $line   Line number where the error should occur.
+     * @param string $fnName Expected function name.
      *
      * @return void
      */
-    public function testNoViolationsInFileOnValidVersion()
+    public function testDeprecatedNoEscapeParam($line, $fnName)
     {
-        $file = $this->sniffFile(__FILE__, '7.4');
-        $this->assertNoViolation($file);
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertNoViolation($file, $line);
+
+        $file    = $this->sniffFile(__FILE__, '8.4');
+        $warning = \sprintf(
+            'The $escape parameter must be passed when calling %s() as its default value will change in a future PHP version.',
+            $fnName
+        );
+
+        $this->assertWarning($file, $line, $warning);
     }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedNoEscapeParam()
+     *
+     * @return array<array<int|string>>
+     */
+    public static function dataDeprecatedNoEscapeParam()
+    {
+        return [
+            [24, 'fputcsv'],
+            [25, 'fgetcsv'],
+            [26, 'str_getcsv'],
+            [27, 'fputcsv'],
+            [28, 'fgetcsv'],
+            [29, 'str_getcsv'],
+            [30, 'fputcsv'],
+            [31, 'fgetcsv'],
+            [32, 'str_getcsv'],
+            [33, 'fgetcsv'],
+        ];
+    }
+
+    /**
+     * Verify there are no false positives on code this sniff should ignore.
+     *
+     * @dataProvider dataNoFalsePositivesWhenEscapeParamProvided
+     *
+     * @param int $line Line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesWhenEscapeParamProvided($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositivesWhenEscapeParamProvided()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositivesWhenEscapeParamProvided()
+    {
+        $data = [];
+
+        // No errors expected on the first 22 lines.
+        for ($line = 1; $line <= 22; $line++) {
+            $data[] = [$line];
+        }
+
+        // No errors expected on the lines containing an empty string value for the parameter.
+        for ($line = 35; $line <= 44; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
+    }
+
+    /*
+     * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
+     * about both for above as well as below a certain version.
+     */
 }

@@ -10,9 +10,8 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: not passing the $escape parameter or passing a non-empty string.">
+        <code title="Cross-version compatible: passing a non-empty string as the $escape parameter.">
         <![CDATA[
-fgetcsv($stream);
 fputcsv($stream, $fields, ',', '"', <em>'\\'</em>);
         ]]>
         </code>
@@ -29,15 +28,37 @@ fgetcsv($stream, null, ',', '"', <em>''</em>);
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: not passing the $escape parameter or passing a non-empty string.">
+        <code title="Cross-version compatible: passing a non-empty string as the $escape parameter.">
         <![CDATA[
-str_getcsv($string_to_parse);
 str_getcsv($string_to_parse, ',', '"', <em>'\\'</em>);
         ]]>
         </code>
         <code title="Not cross-version compatible: passing an empty string will fall through to the default value in PHP &lt;= 7.3 and will disable the proprietary escaping mechanism in PHP &gt;= 7.4.">
         <![CDATA[
 str_getcsv($string_to_parse, ',', '"', <em>''</em>);
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    As of PHP 8.4, a deprecation notice will be thrown when the `$escape` parameter is not passed when calling fputcsv(), fgetcsv() or str_getcsv().
+
+    The default value of the $escape parameter - "\\" - will change in a future version of PHP and passing the parameter should prevent problems such as data exported as escaped, but imported as not escaped.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing the $escape parameter.">
+        <![CDATA[
+fputcsv($stream, $fields, ',', '"', <em>'\\'</em>);
+fgetcsv($stream, null, ',', '"', <em>''</em>);
+str_getcsv($string_to_parse, escape: <em>'~'</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: not passing the $escape parameter, thereby relying on the default value for the parameter.">
+        <![CDATA[
+fputcsv($stream, $fields);
+fgetcsv($stream);
+str_getcsv($string_to_parse);
         ]]>
         </code>
     </code_comparison>

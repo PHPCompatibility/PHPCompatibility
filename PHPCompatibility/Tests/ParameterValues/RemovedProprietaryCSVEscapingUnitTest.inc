@@ -6,7 +6,7 @@ MyClass::fgetcsv($stream, $length, $separator, $enclosure, '');
 My\Ns\str_getcsv($string, $separator, $enclosure, '');
 $class = new fputcsv($stream, $fields, $separator, $enclosure, '');
 
-// Undetermined. Ignore.
+// Undetermined value. Ignore for the PHP 7.4 change as undetermined. OK for PHP 8.4 as param was passed.
 fputcsv($stream, $fields, $separator, $enclosure, $escape);
 fgetcsv($stream, $length, $separator, $enclosure, $escape);
 \str_getcsv($string, $separator, $enclosure, $escape);
@@ -15,12 +15,12 @@ fgetcsv($stream, $length, $separator, $enclosure, MyClass::ESCAPE_CHAR);
 \str_getcsv($string, $separator, $enclosure, $obj->escape_char);
 fgetcsv($stream, $length, $separator, $enclosure, $obj?->get(['escape', '']));
 
-// OK, target param is a non-empty string.
+// OK in all versions, target param is a non-empty string.
 \fputcsv($stream, $fields, $separator, $enclosure, '\\');
 fgetcsv($stream, escape: '$');
 str_getcsv($string, $separator, $enclosure, " ");
 
-// OK, target param not provided, nothing to do.
+// OK for PHP < 8.4. Flag for PHP 8.4+. Target param not provided.
 fputcsv();
 \fgetcsv();
 str_getcsv();

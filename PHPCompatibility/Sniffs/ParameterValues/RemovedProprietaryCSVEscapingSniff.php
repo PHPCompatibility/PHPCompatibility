@@ -23,10 +23,16 @@ use PHPCSUtils\Utils\PassedParameters;
  *          For the fputcsv() and the fgetcsv() functions, passing an empty string was previously not allowed.
  *          For the str_getcsv() function, this constitutes a behavioural change as an empty string would previously fall through
  *          to the default value.
+ * PHP 8.4: Deprecated not passing the `$escape` parameter to prevent future problems when the default parameter value of the
+ *          `$escape` parameter will change from `"\\"` to an empty string.
+ *          In practice, this means the parameter has become a required parameter, even though there are two optional
+ *          parameters before it.
  *
  * PHP version 7.4
+ * PHP version 8.4
  *
  * @link https://wiki.php.net/rfc/kill-csv-escaping
+ * @link https://wiki.php.net/rfc/deprecations_php_8_4#deprecate_proprietary_csv_escaping_mechanism
  *
  * @since 10.0.0
  */
@@ -56,7 +62,7 @@ final class RemovedProprietaryCSVEscapingSniff extends AbstractFunctionCallParam
     ];
 
     /**
-     * Do a version check to determine if this sniff needs to run at all.
+     * Determine if this sniff needs to run at all.
      *
      * @since 10.0.0
      *
@@ -64,7 +70,7 @@ final class RemovedProprietaryCSVEscapingSniff extends AbstractFunctionCallParam
      */
     protected function bowOutEarly()
     {
-        return (ScannedCode::shouldRunOnOrBelow('7.3') === false);
+        return false;
     }
 
     /**
@@ -80,6 +86,48 @@ final class RemovedProprietaryCSVEscapingSniff extends AbstractFunctionCallParam
      * @return void
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
+    {
+        if (ScannedCode::shouldRunOnOrBelow('7.3') === true) {
+            $this->checkParameterValueIsEmptyString($phpcsFile, $stackPtr, $functionName, $parameters);
+        }
+
+        if (ScannedCode::shouldRunOnOrAbove('8.4') === true) {
+            $this->checkIfParameterIsPassed($phpcsFile, $stackPtr, $functionName, $parameters);
+        }
+    }
+
+    /**
+     * Process the function if no parameters were found.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token in the stack.
+     * @param string                      $functionName The token content (function name) which was matched.
+     *
+     * @return void
+     */
+    public function processNoParameters(File $phpcsFile, $stackPtr, $functionName)
+    {
+        if (ScannedCode::shouldRunOnOrAbove('8.4') === true) {
+            $this->checkIfParameterIsPassed($phpcsFile, $stackPtr, $functionName, []);
+        }
+    }
+
+
+    /**
+     * PHP < 7.4: Process a passed `$escape` parameter to check if the value is an empty string.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File                  $phpcsFile    The file being scanned.
+     * @param int                                          $stackPtr     The position of the current token in the stack.
+     * @param string                                       $functionName The token content (function name) which was matched.
+     * @param array<int|string, array<string, int|string>> $parameters   Array with information about the parameters.
+     *
+     * @return void
+     */
+    private function checkParameterValueIsEmptyString(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $functionLC  = \strtolower($functionName);
         $paramInfo   = $this->targetFunctions[$functionLC];
@@ -121,5 +169,36 @@ final class RemovedProprietaryCSVEscapingSniff extends AbstractFunctionCallParam
         ];
 
         $phpcsFile->addError($msg, $firstNonEmpty, $code, $data);
+    }
+
+    /**
+     * PHP 8.4+: Verify the `$escape` parameter is passed.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File                  $phpcsFile    The file being scanned.
+     * @param int                                          $stackPtr     The position of the current token in the stack.
+     * @param string                                       $functionName The token content (function name) which was matched.
+     * @param array<int|string, array<string, int|string>> $parameters   Array with information about the parameters.
+     *
+     * @return void
+     */
+    private function checkIfParameterIsPassed(File $phpcsFile, $stackPtr, $functionName, $parameters)
+    {
+        $functionLC  = \strtolower($functionName);
+        $paramInfo   = $this->targetFunctions[$functionLC];
+        $targetParam = PassedParameters::getParameterFromStack($parameters, $paramInfo['position'], $paramInfo['name']);
+        if ($targetParam !== false && $targetParam['clean'] !== '') {
+            return;
+        }
+
+        $msg  = 'The $%s parameter must be passed when calling %s() as its default value will change in a future PHP version.';
+        $code = 'DeprecatedParamNotPassed';
+        $data = [
+            $paramInfo['name'],
+            $functionLC,
+        ];
+
+        $phpcsFile->addWarning($msg, $stackPtr, $code, $data);
     }
 }
