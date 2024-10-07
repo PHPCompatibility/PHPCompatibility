@@ -1151,6 +1151,7 @@ class NewFunctionsUnitTest extends BaseSniffTestCase
             ['sodium_crypto_aead_aegis256_keygen', '8.3', 1090, '8.4'],
             ['openssl_password_hash', '8.3', 1091, '8.4'],
             ['openssl_password_verify', '8.3', 1092, '8.4'],
+            ['bcdivmod', '8.3', 1093, '8.4'],
         ];
     }
 
