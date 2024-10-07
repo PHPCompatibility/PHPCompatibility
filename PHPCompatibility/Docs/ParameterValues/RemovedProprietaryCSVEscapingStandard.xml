@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Proprietary CSV Escaping"
+    >
+    <standard>
+    <![CDATA[
+    As of PHP 7.4, fputcsv() and fgetcsv() accept an empty string for the `$escape` parameter.
+    This effectively disables the proprietary PHP escaping mechanism for CSV.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing a non-empty string as the $escape parameter.">
+        <![CDATA[
+fputcsv($stream, $fields, ',', '"', <em>'\\'</em>);
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.4: passing an empty string to disable the proprietary escaping mechanism.">
+        <![CDATA[
+fgetcsv($stream, null, ',', '"', <em>''</em>);
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    For str_getcsv(), the behaviour when passing an empty string has changed accordingly in PHP 7.4. Previously, an empty string would fall through to the default parameter value.
+    Now it will disable the proprietary PHP escaping mechanism.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing a non-empty string as the $escape parameter.">
+        <![CDATA[
+str_getcsv($string_to_parse, ',', '"', <em>'\\'</em>);
+        ]]>
+        </code>
+        <code title="Not cross-version compatible: passing an empty string will fall through to the default value in PHP &lt;= 7.3 and will disable the proprietary escaping mechanism in PHP &gt;= 7.4.">
+        <![CDATA[
+str_getcsv($string_to_parse, ',', '"', <em>''</em>);
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    As of PHP 8.4, a deprecation notice will be thrown when the `$escape` parameter is not passed when calling fputcsv(), fgetcsv() or str_getcsv().
+
+    The default value of the $escape parameter - "\\" - will change in a future version of PHP and passing the parameter should prevent problems such as data exported as escaped, but imported as not escaped.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing the $escape parameter.">
+        <![CDATA[
+fputcsv($stream, $fields, ',', '"', <em>'\\'</em>);
+fgetcsv($stream, null, ',', '"', <em>''</em>);
+str_getcsv($string_to_parse, escape: <em>'~'</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: not passing the $escape parameter, thereby relying on the default value for the parameter.">
+        <![CDATA[
+fputcsv($stream, $fields);
+fgetcsv($stream);
+str_getcsv($string_to_parse);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
