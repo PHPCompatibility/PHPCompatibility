@@ -2658,6 +2658,10 @@ class RemovedConstantsSniff extends Sniff
         'E_STRICT' => [
             '8.4' => false,
         ],
+        'CURLOPT_BINARYTRANSFER' => [
+            '8.4'       => false,
+            'extension' => 'curl',
+        ],
         'SUNFUNCS_RET_DOUBLE' => [
             '8.4'       => false,
             'extension' => 'datetime',

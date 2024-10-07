@@ -101,6 +101,7 @@ class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MYSQLI_REFRESH_SLAVE', '8.4', 814, '8.3'],
             ['MYSQLI_REFRESH_MASTER', '8.4', 815, '8.3'],
             ['MYSQLI_REFRESH_BACKUP_LOG', '8.4', 816, '8.3'],
+            ['CURLOPT_BINARYTRANSFER', '8.4', 817, '8.3'],
         ];
     }
 
