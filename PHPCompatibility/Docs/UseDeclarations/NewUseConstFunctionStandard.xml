@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+               title="New Group Use Const Function"
+>
+    <standard>
+    <![CDATA[
+    Importing constants and functions via a `use` statement is supported since PHP 5.6.
+
+    The `use` operator has been extended to support importing functions and
+    constants in addition to classes. This is achieved via the `use function`
+    and `use const` constructs, respectively.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Using constants and functions without importing them into the namespace.">
+            <![CDATA[
+// placeholder for line numbers
+
+
+echo <em>My\Project\ConstA</em>;
+echo <em>My\Project\fn_a()</em>;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 5.6: Importing constants and functions into a namespace using `use function` and `use const` declarations.">
+        <![CDATA[
+<em>use const My\Project\ConstA;</em>
+<em>use function My\Project\fn_a;</em>
+
+echo <em>ConstA</em>;
+echo <em>fn_a()</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
