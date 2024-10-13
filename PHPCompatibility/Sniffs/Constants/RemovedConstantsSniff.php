@@ -2986,6 +2986,26 @@ class RemovedConstantsSniff extends Sniff
             '8.4'       => false,
             'extension' => 'mysqli',
         ],
+        'MYSQLI_CURSOR_TYPE_FOR_UPDATE' => [
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_CURSOR_TYPE_SCROLLABLE' => [
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_SET_CHARSET_DIR' => [
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_STMT_ATTR_PREFETCH_ROWS' => [
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
+        'MYSQLI_TYPE_INTERVAL' => [
+            '8.4'       => true,
+            'extension' => 'mysqli',
+        ],
         'OCI_ASSOC' => [
             '8.4'       => true,
             'extension' => 'oci8',
