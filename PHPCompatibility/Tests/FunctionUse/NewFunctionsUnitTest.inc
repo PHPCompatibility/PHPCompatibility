@@ -1091,3 +1091,4 @@ sodium_crypto_aead_aegis256_keygen();
 openssl_password_hash();
 openssl_password_verify();
 bcdivmod();
+opcache_jit_blacklist();
