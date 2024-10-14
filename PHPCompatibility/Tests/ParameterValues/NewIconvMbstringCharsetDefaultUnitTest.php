@@ -55,37 +55,34 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     public static function dataNewIconvMbstringCharsetDefault()
     {
         return [
-            [44, 'iconv_mime_decode_headers'],
-            [45, 'iconv_mime_decode'],
-            [46, 'Iconv_Strlen'],
-            [47, 'iconv_strpos'],
-            [48, 'iconv_strrpos'],
-            [49, 'iconv_substr'],
+            [41, 'iconv_mime_decode_headers'],
+            [42, 'iconv_mime_decode'],
+            [43, 'Iconv_Strlen'],
+            [44, 'iconv_strpos'],
+            [45, 'iconv_strrpos'],
+            [46, 'iconv_substr'],
 
-            [51, 'mb_check_encoding'],
-            [52, 'MB_chr'],
-            [53, 'mb_convert_case'],
-            [54, 'mb_convert_encoding', '$from_encoding'],
-            [55, 'mb_convert_kana'],
-            [56, 'mb_decode_numericentity'],
-            [57, 'mb_encode_numericentity'],
-            [58, 'mb_ord'],
-            [59, 'mb_scrub'],
-            [60, 'mb_strcut'],
-            [61, 'mb_stripos'],
-            [62, 'mb_stristr'],
-            [63, 'mb_strlen'],
-            [64, 'mb_strpos'],
-            [65, 'mb_strrchr'],
-            [66, 'mb_strrichr'],
-            [67, 'mb_strripos'],
-            [68, 'mb_strrpos'],
-            [69, 'mb_strstr'],
-            [70, 'mb_strtolower'],
-            [71, 'mb_strtoupper'],
-            [72, 'mb_strwidth'],
-            [73, 'mb_substr_count'],
-            [74, 'mb_substr'],
+            [48, 'mb_check_encoding'],
+            [49, 'mb_convert_case'],
+            [50, 'mb_convert_encoding', '$from_encoding'],
+            [51, 'mb_convert_kana'],
+            [52, 'mb_decode_numericentity'],
+            [53, 'mb_encode_numericentity'],
+            [54, 'mb_strcut'],
+            [55, 'mb_stripos'],
+            [56, 'mb_stristr'],
+            [57, 'mb_strlen'],
+            [58, 'mb_strpos'],
+            [59, 'mb_strrchr'],
+            [60, 'mb_strrichr'],
+            [61, 'mb_strripos'],
+            [62, 'mb_strrpos'],
+            [63, 'mb_strstr'],
+            [64, 'mb_strtolower'],
+            [65, 'mb_strtoupper'],
+            [66, 'mb_strwidth'],
+            [67, 'mb_substr_count'],
+            [68, 'mb_substr'],
         ];
     }
 
@@ -99,8 +96,8 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.4-7.0');
 
-        // No errors expected on the first 40 lines.
-        for ($line = 1; $line <= 40; $line++) {
+        // No errors expected on the first 37 lines.
+        for ($line = 1; $line <= 37; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -140,22 +137,22 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     public static function dataIconvMimeEncode()
     {
         return [
-            [91, '$options[\'input/output-charset\']'],
-            [92, '$options[\'input/output-charset\']', 'warning'],
-            [96, '$options[\'output-charset\']'],
-            [106, '$options[\'input-charset\']'],
-            [115, '$options[\'input-charset\']'],
-            [122, '$options[\'input/output-charset\']'],
-            [123, '$options[\'input/output-charset\']'],
+            [85, '$options[\'input/output-charset\']'],
+            [86, '$options[\'input/output-charset\']', 'warning'],
+            [90, '$options[\'output-charset\']'],
+            [100, '$options[\'input-charset\']'],
+            [109, '$options[\'input-charset\']'],
+            [116, '$options[\'input/output-charset\']'],
+            [117, '$options[\'input/output-charset\']'],
+            [122, '$options[\'input/output-charset\']', 'warning'],
             [128, '$options[\'input/output-charset\']', 'warning'],
-            [134, '$options[\'input/output-charset\']', 'warning'],
-            [143, '$options[\'input-charset\']'],
-            [143, '$options[\'output-charset\']'],
-            [165, '$options[\'input-charset\']'],
-            [175, '$options[\'input-charset\']', 'warning'],
-            [175, '$options[\'output-charset\']', 'warning'],
-            [193, '$options[\'output-charset\']', 'warning'],
-            [202, '$options[\'input-charset\']', 'warning'],
+            [137, '$options[\'input-charset\']'],
+            [137, '$options[\'output-charset\']'],
+            [159, '$options[\'input-charset\']'],
+            [169, '$options[\'input-charset\']', 'warning'],
+            [169, '$options[\'output-charset\']', 'warning'],
+            [187, '$options[\'output-charset\']', 'warning'],
+            [196, '$options[\'input-charset\']', 'warning'],
         ];
     }
 
@@ -186,18 +183,18 @@ class NewIconvMbstringCharsetDefaultUnitTest extends BaseSniffTestCase
     {
         $data = [];
 
-        // No errors expected on line 79 - 89.
-        for ($line = 79; $line <= 89; $line++) {
+        // No errors expected on line 73 - 83.
+        for ($line = 73; $line <= 83; $line++) {
             $data[] = [$line];
         }
 
-        $data[] = [138];
+        $data[] = [132];
 
-        for ($line = 152; $line <= 161; $line++) {
+        for ($line = 146; $line <= 155; $line++) {
             $data[] = [$line];
         }
 
-        for ($line = 180; $line <= 188; $line++) {
+        for ($line = 174; $line <= 182; $line++) {
             $data[] = [$line];
         }
 
