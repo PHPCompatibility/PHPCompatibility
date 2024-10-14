@@ -376,4 +376,45 @@ abstract class BaseSniffTestCase extends TestCase
 
         return $allIssues;
     }
+
+    /**
+     * Run assertions that the fixer output matches the ".fixed" file for a particular sniff.
+     *
+     * @since 10.0.0
+     *
+     * @param string $pathToTestFile   Absolute path to the file to sniff.
+     *                                 Allows for passing __FILE__ from the unit test
+     *                                 file. In that case, the test case file is presumed
+     *                                 to have the same name, but with an `inc` extension.
+     * @param string $targetPhpVersion Value of 'testVersion' to set on PHPCS object.
+     *
+     * @return void
+     */
+    protected function assertFixerOutputMatches($pathToTestFile, $targetPhpVersion = 'none')
+    {
+        $pathToFixedFile = $pathToTestFile . '.fixed';
+
+        $this->assertTrue(file_exists($pathToTestFile), 'Test file exists');
+        $this->assertTrue(file_exists($pathToFixedFile), 'Fixed file exists');
+
+        $phpcsFile = $this->sniffFile($pathToTestFile, $targetPhpVersion);
+
+        $this->assertGreaterThan(0, $phpcsFile->getFixableCount(), 'There are fixable errors or warnings');
+
+        // Attempt to fix the errors.
+        $phpcsFile->fixer->fixFile();
+        $fixable = $phpcsFile->getFixableCount();
+
+        $this->assertSame(0, $fixable, 'Sniff can actually fix all "fixable" errors');
+
+        if ($phpcsFile->fixer->getContents() !== file_get_contents($pathToFixedFile)) {
+            // Only generate the (expensive) diff if a difference is expected.
+            $diff = $phpcsFile->fixer->generateDiff($pathToFixedFile);
+            if (trim($diff) !== '') {
+                $fixedFilename = basename($pathToFixedFile);
+                $testFilename  = basename($pathToTestFile);
+                $this->fail("Fixed version of $testFilename does not match expected version in $fixedFilename; the diff is\n$diff");
+            }
+        }
+    }
 }
