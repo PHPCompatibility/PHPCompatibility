@@ -8331,6 +8331,21 @@ class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'sodium',
         ],
+        'T_PUBLIC_SET' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'tokenizer',
+        ],
+        'T_PROTECTED_SET' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'tokenizer',
+        ],
+        'T_PRIVATE_SET' => [
+            '8.3'       => false,
+            '8.4'       => true,
+            'extension' => 'tokenizer',
+        ],
         'XML_OPTION_PARSE_HUGE' => [
             '8.3'       => false,
             '8.4'       => true,
