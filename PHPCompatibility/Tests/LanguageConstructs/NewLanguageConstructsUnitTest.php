@@ -26,28 +26,28 @@ class NewLanguageConstructsUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * testNamespaceSeparator
+     * PHP 5.3: namespace separator.
      *
      * @return void
      */
     public function testNamespaceSeparator()
     {
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertError($file, 3, 'the \ operator (for namespaces) is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, 3, 'The \ operator (for namespaces) is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 3);
     }
 
     /**
-     * Variadic functions using ...
+     * PHP 5.6: variadic functions using ...
      *
      * @return void
      */
     public function testEllipsis()
     {
         $file = $this->sniffFile(__FILE__, '5.5');
-        $this->assertError($file, 5, 'the ... spread operator is not present in PHP version 5.5 or earlier');
+        $this->assertError($file, 5, 'The ... spread operator is not present in PHP version 5.5 or earlier');
 
         $file = $this->sniffFile(__FILE__, '5.6');
         $this->assertNoViolation($file, 5);
