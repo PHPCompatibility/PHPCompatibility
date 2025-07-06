@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Final Properties"
+    >
+    <standard>
+    <![CDATA[
+    OO properties can be declared as final since PHP 8.4.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not using the final modifier.">
+        <![CDATA[
+class Foo {
+    public string $name;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: using the final modifier.">
+        <![CDATA[
+class Foo {
+    <em>final</em> public string $name;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
