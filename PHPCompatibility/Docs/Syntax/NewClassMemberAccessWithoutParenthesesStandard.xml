@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Class Member Access Without Parentheses"
+    >
+    <standard>
+    <![CDATA[
+    New expressions with constructor argument parentheses are directly dereferencable since PHP 8.4.
+
+    This means chaining method calls, property accesses, etc. without enclosing
+    the expression in parentheses, is now allowed.
+
+    Note: it is not necessary to pass arguments to the constructor, it is only required for the constructor argument parentheses to be present.
+
+    Prior to PHP 8.4, the new expression had to be wrapped in parentheses to allow dereferencing.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: wrapping a new expression within parentheses.">
+        <![CDATA[
+$a = <em>(</em>new MyClass()<em>)::</em>CONSTANT;
+$b = <em>(</em>new MyClass()<em>)::</em>staticMethod();
+$c = <em>(</em>new $myClass()<em>)-></em>property;
+$d = <em>(</em>new $myClass()<em>)?-></em>method();
+$e = <em>(</em>new (trim(' MyClass '))()<em>)[</em>'key'];
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: omitting the wrapping parentheses as long as there are constructor argument parentheses.">
+        <![CDATA[
+$a = new MyClass()<em>::</em>CONSTANT;
+$b = new MyClass()<em>::</em>staticMethod();
+$c = new $myClass()<em>-></em>property;
+$d = new $myClass()<em>?-></em>method();
+$e = new (trim(' MyClass '))()<em>[</em>'key'];
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    For new expressions involving anonymous classes, the constructor argument parentheses are not required to dereference the resulting object directly.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: wrapping a new anonymous class expression within parentheses.">
+        <![CDATA[
+$anon = <em>(</em>new class {
+    const CONSTANT = 'constant';
+}<em>)::</em>CONSTANT;
+
+$anon = <em>(</em>new class {
+    public $property = 'property';
+}<em>)-></em>property;
+
+$anon = <em>(</em>new class {
+    public function method() {
+        return 'method';
+    }
+}<em>)-></em>method();
+
+$anon = <em>(</em>new class (['value'])
+    extends ArrayObject {}<em>)[</em>0];
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: dereferencing a new anonymous class expression without wrapping parentheses.">
+        <![CDATA[
+$anon = new class {
+    const CONSTANT = 'constant';
+}<em>::</em>CONSTANT;
+
+$anon = new class {
+    public $property = 'property';
+}<em>-></em>property;
+
+$anon = new class {
+    public function method() {
+        return 'method';
+    }
+}<em>-></em>method();
+
+$anon = new class (['value'])
+    extends ArrayObject {}<em>[</em>0];
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
