@@ -27,6 +27,10 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://wiki.php.net/rfc/generators
  * @link https://wiki.php.net/rfc/finally
  * @link https://wiki.php.net/rfc/generator-delegation
+ * @link https://wiki.php.net/rfc/arrow_functions_v2
+ * @link https://wiki.php.net/rfc/match_expression_v2
+ * @link https://wiki.php.net/rfc/enumerations
+ * @link https://wiki.php.net/rfc/asymmetric-visibility-v2
  *
  * @since 5.5
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
@@ -162,6 +166,21 @@ class NewKeywordsSniff extends Sniff
             '8.0'         => false,
             '8.1'         => true,
             'description' => 'The "enum" keyword',
+        ],
+        'T_PUBLIC_SET' => [
+            '8.3'         => false,
+            '8.4'         => true,
+            'description' => 'Asymmetric visibility',
+        ],
+        'T_PROTECTED_SET' => [
+            '8.3'         => false,
+            '8.4'         => true,
+            'description' => 'Asymmetric visibility',
+        ],
+        'T_PRIVATE_SET' => [
+            '8.3'         => false,
+            '8.4'         => true,
+            'description' => 'Asymmetric visibility',
         ],
     ];
 

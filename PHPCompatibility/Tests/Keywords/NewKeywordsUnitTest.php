@@ -643,6 +643,42 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * PHP 8.4: asymmetric visibility for properties.
+     *
+     * @dataProvider dataAsymmetricVisibility
+     *
+     * @param int $line The line number on which the error should occur.
+     *
+     * @return void
+     */
+    public function testAsymmetricVisibility($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertError($file, $line, 'Asymmetric visibility is not present in PHP version 8.3 or earlier');
+
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public static function dataAsymmetricVisibility()
+    {
+        return [
+            [268],
+            [269],
+            [273],
+            [274],
+            [277],
+            [278],
+            [279],
+        ];
+    }
+
+    /**
      * testHaltCompiler
      *
      * @return void
@@ -656,7 +692,7 @@ class NewKeywordsUnitTest extends BaseSniffTestCase
          * not be reported.
          */
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 269);
+        $this->assertNoViolation($file, 286);
     }
 
 
