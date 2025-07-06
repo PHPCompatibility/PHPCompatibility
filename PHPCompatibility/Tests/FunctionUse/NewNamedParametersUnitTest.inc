@@ -79,13 +79,20 @@ array_fill(start_index: 0, ...[100, 50]);
 test(...$values, param: $value); // Compile-time error
 
 /*
+ * PHP 8.4 named parameters in calls to exit/die.
+ */
+exit('message'); // OK.
+die( 128); // OK.
+
+// Parse error prior to PHP 8.4: exit is a language construct, not a function. Named params not supported until PHP 8.4.
+exit(status: $value);
+die(status: $value);
+
+/*
  * Still not allowed.
  */
 // Parse error: dynamic name. Ignore.
 function_name($variableStoringParamName: $value);
-
-// Parse error: exit is a language construct, not a function. Named params not supported.
-exit(status: $value);
 
 // Parse error: empty is a language construct, not a function. Named params not supported.
 empty(variable: $value);

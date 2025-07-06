@@ -20,9 +20,13 @@ use PHPCSUtils\Utils\PassedParameters;
 /**
  * Detect the use of named function call parameters as supported since PHP 8.0.
  *
+ * As of PHP 8.4, named parameters can also be used for calls to exit/die.
+ *
  * PHP version 8.0
+ * PHP version 8.4
  *
  * @link https://wiki.php.net/rfc/named_params
+ * @link https://wiki.php.net/rfc/exit-as-function
  *
  * @since 10.0.0
  */
@@ -54,11 +58,18 @@ class NewNamedParametersSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrBelow('7.4') === false) {
+        if (ScannedCode::shouldRunOnOrBelow('8.3') === false) {
+            // Named params are supported in both function calls + exit on PHP 8.4 and higher.
             return;
         }
 
         $tokens = $phpcsFile->getTokens();
+        if ($tokens[$stackPtr]['code'] !== \T_EXIT
+            && ScannedCode::shouldRunOnOrBelow('7.4') === false
+        ) {
+            // Not an exit expression and PHP < 8.0 does not need to be supported, so we're good. Bow out.
+            return;
+        }
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
@@ -87,18 +98,23 @@ class NewNamedParametersSniff extends Sniff
             return;
         }
 
+        $error    = 'Using named arguments %s is not supported in PHP 7.4 or earlier. Found: "%s"';
+        $code     = 'Found';
+        $inPhrase = 'in function calls';
+
+        if ($tokens[$stackPtr]['code'] === \T_EXIT) {
+            $error    = 'Using named arguments %s is not supported in PHP 8.3 or earlier. Found: "%s"';
+            $code     = 'FoundInExitDie';
+            $inPhrase = 'for calls to exit() or die()';
+        }
+
         foreach ($params as $param) {
             if (isset($param['name']) === false) {
                 continue;
             }
 
-            $phpcsFile->addError(
-                'Using named arguments in function calls is not supported in PHP 7.4 or earlier. Found: "%s"',
-                $param['name_token'],
-                'Found',
-                [$param['name'] . ': ' . $param['raw']]
-            );
-
+            $data = [$inPhrase, $param['name'] . ': ' . $param['raw']];
+            $phpcsFile->addError($error, $param['name_token'], $code, $data);
         }
     }
 }

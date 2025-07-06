@@ -53,17 +53,12 @@ class NewPHPOpenTagEOFSniff extends Sniff
     {
         $targets = [
             \T_OPEN_TAG_WITH_ECHO,
+            \T_OPEN_TAG,
         ];
 
         $this->shortOpenTags = (bool) \ini_get('short_open_tag');
         if ($this->shortOpenTags === false) {
             $targets[] = \T_INLINE_HTML;
-        } else {
-            $targets[] = \T_STRING;
-        }
-
-        if (\PHP_VERSION_ID >= 70400) {
-            $targets[] = \T_OPEN_TAG;
         }
 
         return $targets;
@@ -104,16 +99,6 @@ class NewPHPOpenTagEOFSniff extends Sniff
                 }
                 break;
 
-            case \T_STRING:
-                // PHP < 7.4 with short open tags on.
-                if ($contents === 'php'
-                    && $tokens[($stackPtr - 1)]['code'] === \T_OPEN_TAG
-                    && $tokens[($stackPtr - 1)]['content'] === '<?'
-                ) {
-                    $error = true;
-                }
-                break;
-
             case \T_OPEN_TAG_WITH_ECHO:
                 // PHP 5.4+.
                 if (\rtrim($contents) === '<?=') {
@@ -122,7 +107,7 @@ class NewPHPOpenTagEOFSniff extends Sniff
                 break;
 
             case \T_OPEN_TAG:
-                // PHP 7.4+.
+                // PHP 5.4+ on PHPCS 3.12.2 or higher.
                 if ($contents === '<?php') {
                     $error = true;
                 }

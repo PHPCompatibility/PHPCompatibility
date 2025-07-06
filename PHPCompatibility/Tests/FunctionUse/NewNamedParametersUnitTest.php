@@ -39,6 +39,9 @@ class NewNamedParametersUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertError($file, $line, "Using named arguments in function calls is not supported in PHP 7.4 or earlier. Found: \"$name");
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -118,6 +121,38 @@ class NewNamedParametersUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Verify that exit/die calls using named parameters are detected correctly.
+     *
+     * @dataProvider dataNewNamedParametersForExitDie
+     *
+     * @param int    $line The line number.
+     * @param string $name The parameter name detected.
+     *
+     * @return void
+     */
+    public function testNewNamedParametersForExitDie($line, $name)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertError($file, $line, "Using named arguments for calls to exit() or die() is not supported in PHP 8.3 or earlier. Found: \"$name");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNewNamedParametersForExitDie()
+     *
+     * @return array
+     */
+    public static function dataNewNamedParametersForExitDie()
+    {
+        return [
+            [88, 'status'],
+            [89, 'status'],
+        ];
+    }
+
+
+    /**
      * Verify no false positives are thrown for valid code.
      *
      * @dataProvider dataNoFalsePositives
@@ -148,11 +183,13 @@ class NewNamedParametersUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [84];
         $data[] = [85];
-        $data[] = [88];
-        $data[] = [91];
-        $data[] = [94];
-        $data[] = [97];
+
+        // No errors expected on the lines after "Still not allowed".
+        for ($line = 91; $line <= 105; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
@@ -165,7 +202,7 @@ class NewNamedParametersUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '8.0');
+        $file = $this->sniffFile(__FILE__, '8.4');
         $this->assertNoViolation($file);
     }
 }

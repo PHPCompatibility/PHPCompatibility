@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
@@ -68,7 +69,13 @@ class ForbiddenVariableNamesInClosureUseSniff extends Sniff
             return;
         }
 
-        $useParams = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        try {
+            $useParams = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        } catch (ValueError $e) {
+            // Live coding. Unfinished closure declaration.
+            return;
+        }
+
         if (empty($useParams)) {
             // No parameters imported. Parse error.
             return;
