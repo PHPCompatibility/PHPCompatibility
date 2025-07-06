@@ -263,6 +263,23 @@ function testYieldFromMultilineWithComment() {
         from [3, 4];
 }
 
+// PHP 8.4: Asymmetric visibility.
+class WithAsym {
+    public PROTECTED(SET) ?bool $asym1 = FALSE;
+    protected(set) readonly FALSE|string|null $asym2 = NULL;
+
+    // Note: asymmetric visibility requires a property type and is not available for static properties,
+    // but neither of those restrictions in PHP should prevent us from detecting this.
+    static private(set) NULL|TRUE $illegalAsymWithStatic = TRUE;
+    public public(Set) $missingType = TRUE;
+
+    public function __construct(
+        public protected(set) string $title,
+        protected private(set) Author $author,
+        public(set) int $pubYear,
+    ) {}
+}
+
 __halt_compiler();
 
 bla();

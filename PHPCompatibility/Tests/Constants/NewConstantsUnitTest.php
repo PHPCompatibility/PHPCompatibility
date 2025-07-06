@@ -1743,6 +1743,9 @@ class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLINFO_SSL_DATA_OUT', '8.3', 1675, '8.4'],
             ['CURLINFO_SSL_DATA_IN', '8.3', 1676, '8.4'],
             ['CURLINFO_POSTTRANSFER_TIME_T', '8.3', 1677, '8.4'],
+            ['T_PUBLIC_SET', '8.3', 1678, '8.4'],
+            ['T_PROTECTED_SET', '8.3', 1679, '8.4'],
+            ['T_PRIVATE_SET', '8.3', 1680, '8.4'],
         ];
     }
 
