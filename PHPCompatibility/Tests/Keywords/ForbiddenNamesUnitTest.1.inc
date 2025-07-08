@@ -414,3 +414,19 @@ namespace Foo\Enum\Bar;
 class enum implements Foo {}
 interface Enum extends Foo {}
 // phpcs:enable
+
+// Ensure that PHP 8.3+ typed constants do not lead to false positives for the types.
+class TypedConstants {
+    const null CONST_A = null;
+    public const true CONST_B = true;
+    protected const false CONST_C = false;
+    private const bool CONST_D = false;
+    final const int CONST_E = 10;
+    final protected const float CONST_F = 10.2;
+    public final const string CONST_G = 'foo';
+    final private const iterable CONST_H = [];
+    const object CONST_I = new stdClass;
+    const mixed CONST_J = 10;
+    const resource CONST_K = null;
+    const \numeric CONST_L = 10;
+}
