@@ -89,6 +89,10 @@ class NewFinalConstantsUnitTest extends BaseSniffTestCase
             [102],
             [105],
             [106],
+
+            [114],
+            [115],
+            [116],
         ];
     }
 

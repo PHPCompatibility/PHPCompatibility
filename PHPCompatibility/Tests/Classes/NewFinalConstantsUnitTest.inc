@@ -105,3 +105,13 @@ trait ConstInTrait
     final private const FINAL_PRIVATE_CONST_A = 8;
     private final const FINAL_PRIVATE_CONST_B = 9;
 }
+
+/*
+ * Make sure the sniff does not get confused by PHP 8.3 typed constants.
+ */
+class TypedConstants
+{
+    final public const string FINAL_PUBLIC_CONST_TYPED = 'string';
+    protected final const ?int PROTECTED_FINAL_CONST_TYPED = 6;
+    final private const (A&B)|false FINAL_PRIVATE_CONST_TYPED = false;
+}
