@@ -241,7 +241,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['ReflectionIntersectionType', '8.0', [469], '8.1'],
             ['CURLStringFile', '8.0', [438], '8.1'],
             ['FTP\Connection', '8.0', [527], '8.1'],
-            ['GdFont', '8.0', [528], '8.1'],
+            ['GdFont', '8.0', [528, 565], '8.1'],
             ['IMAP\Connection', '8.0', [529], '8.1'],
             ['LDAP\Connection', '8.0', [531], '8.1'],
             ['LDAP\Result', '8.0', [532], '8.1'],
