@@ -69,13 +69,13 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             ['Traversable', '4.4', [35, 50, 60, 71, 79, 164], '5.0'],
             ['Countable', '5.0', [3, 17, 41, 153], '5.1'],
             ['OuterIterator', '5.0', [4, 42, 65, 154], '5.1'],
-            ['RecursiveIterator', '5.0', [5, 43, 65, 154], '5.1'],
-            ['SeekableIterator', '5.0', [6, 17, 28, 44, 163], '5.1'],
+            ['RecursiveIterator', '5.0', [5, 43, 65, 154, 229], '5.1'],
+            ['SeekableIterator', '5.0', [6, 17, 28, 44, 163, 229], '5.1'],
             ['Serializable', '5.0', [7, 29, 45, 55, 70, 119, 125, 191], '5.1'],
             ['SplObserver', '5.0', [11, 46, 65, 153], '5.1'],
             ['SplSubject', '5.0', [12, 17, 47, 69, 163], '5.1'],
-            ['JsonSerializable', '5.3', [13, 48, 134, 135, 155, 190], '5.4'],
-            ['SessionHandlerInterface', '5.3', [14, 49, 147, 155], '5.4'],
+            ['JsonSerializable', '5.3', [13, 48, 134, 135, 155, 190, 232], '5.4'],
+            ['SessionHandlerInterface', '5.3', [14, 49, 147, 155, 232], '5.4'],
             ['DateTimeInterface', '5.4', [36, 51, 61, 80], '5.5'],
             ['SessionIdInterface', '5.5.0', [89, 117, 146], '5.6', '5.5'],
             ['Throwable', '5.6', [37, 52, 62, 93, 98, 103, 162, 186], '7.0'],
@@ -83,10 +83,10 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             ['Stringable', '7.4', [112, 179, 203, 212], '8.0'],
             ['DOMChildNode', '7.4', [196, 210, 212], '8.0'],
             ['DOMParentNode', '7.4', [196, 204, 210], '8.0'],
-            ['UnitEnum', '8.0', [198, 211], '8.1'],
-            ['BackedEnum', '8.0', [198, 211], '8.1'],
-            ['Random\Engine', '8.1', [200, 216], '8.2'],
-            ['Random\CryptoSafeEngine', '8.1', [200], '8.2'],
+            ['UnitEnum', '8.0', [198, 211, 224], '8.1'],
+            ['BackedEnum', '8.0', [198, 211, 225], '8.1'],
+            ['Random\Engine', '8.1', [200, 216, 235], '8.2'],
+            ['Random\CryptoSafeEngine', '8.1', [200, 226, 235], '8.2'],
         ];
     }
 
@@ -221,6 +221,8 @@ class NewInterfacesUnitTest extends BaseSniffTestCase
             [189],
             [208],
             [219],
+            [223],
+            [241],
         ];
     }
 
