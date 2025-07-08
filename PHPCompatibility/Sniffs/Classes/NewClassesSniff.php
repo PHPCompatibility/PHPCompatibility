@@ -17,6 +17,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Constants;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -1376,6 +1377,7 @@ class NewClassesSniff extends Sniff
             \T_ANON_CLASS   => \T_ANON_CLASS,
             \T_DOUBLE_COLON => \T_DOUBLE_COLON,
             \T_CATCH        => \T_CATCH,
+            \T_CONST        => \T_CONST,
         ];
 
         $targets += Collections::functionDeclarationTokens();
@@ -1410,6 +1412,10 @@ class NewClassesSniff extends Sniff
         switch ($tokens[$stackPtr]['code']) {
             case \T_USE:
                 $this->processUseToken($phpcsFile, $stackPtr);
+                break;
+
+            case \T_CONST:
+                $this->processConstantToken($phpcsFile, $stackPtr);
                 break;
 
             case \T_CATCH:
@@ -1518,6 +1524,36 @@ class NewClassesSniff extends Sniff
         }
 
         $this->checkTypeDeclaration($phpcsFile, $properties['return_type_token'], $properties['return_type']);
+    }
+
+
+    /**
+     * Processes this test for when a constant token is encountered.
+     *
+     * - Detect new classes when used as a class constant type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processConstantToken(File $phpcsFile, $stackPtr)
+    {
+        try {
+            $properties = Constants::getProperties($phpcsFile, $stackPtr);
+        } catch (ValueError $e) {
+            // Not an OO constant or parse error.
+            return;
+        }
+
+        if ($properties['type'] === '') {
+            return;
+        }
+
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 
