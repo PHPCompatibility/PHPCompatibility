@@ -67,7 +67,7 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['HW_API', '5.2', [59], '5.1'],
             ['HW_API_Object', '5.2', [60, 102, 115], '5.1'],
             ['HW_API_Attribute', '5.2', [61, 102, 115], '5.1'],
-            ['HW_API_Error', '5.2', [62], '5.1'],
+            ['HW_API_Error', '5.2', [62, 151], '5.1'],
             ['HW_API_Content', '5.2', [63, 91], '5.1'],
             ['HW_API_Reason', '5.2', [64, 91], '5.1'],
 
@@ -77,13 +77,13 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['SWFDisplayItem', '5.3', [39, 84], '5.2'],
             ['SWFFill', '5.3', [40, 92], '5.2'],
             ['SWFFont', '5.3', [41, 92], '5.2'],
-            ['SWFFontChar', '5.3', [44], '5.2'],
-            ['SWFGradient', '5.3', [45], '5.2'],
+            ['SWFFontChar', '5.3', [44, 156], '5.2'],
+            ['SWFGradient', '5.3', [45, 156], '5.2'],
             ['SWFMorph', '5.3', [46, 100, 113], '5.2'],
             ['SWFMovie', '5.3', [47, 100, 113], '5.2'],
             ['SWFPrebuiltClip', '5.3', [48], '5.2'],
-            ['SWFShape', '5.3', [49, 138], '5.2'],
-            ['SWFSound', '5.3', [50, 138], '5.2'],
+            ['SWFShape', '5.3', [49, 138, 159], '5.2'],
+            ['SWFSound', '5.3', [50, 138, 159], '5.2'],
             ['SWFSoundInstance', '5.3', [51], '5.2'],
             ['SWFSprite', '5.3', [52, 101, 114], '5.2'],
             ['SWFText', '5.3', [55, 101, 114], '5.2'],
@@ -97,11 +97,11 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
 
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
 
-            ['IMAP\Connection', '8.4', [118, 135], '8.3'],
-            ['OCICollection', '8.4', [120, 136], '8.3'],
+            ['IMAP\Connection', '8.4', [118, 153], '8.3'],
+            ['OCICollection', '8.4', [120, 136, 152], '8.3'],
             ['OCILob', '8.4', [121, 129], '8.3'],
-            ['PSpell\Config', '8.4', [124, 137], '8.3'],
-            ['PSpell\Dictionary', '8.4', [125, 137], '8.3'],
+            ['PSpell\Config', '8.4', [124, 137, 162], '8.3'],
+            ['PSpell\Dictionary', '8.4', [125, 137, 162], '8.3'],
         ];
     }
 
@@ -140,6 +140,8 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
         $data[] = [89];
         $data[] = [98];
         $data[] = [111];
+        $data[] = [146];
+        $data[] = [150];
 
         return $data;
     }
