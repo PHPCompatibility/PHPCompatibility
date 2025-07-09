@@ -19,7 +19,7 @@ class NonReadonly {
     public string $str = "foo";
     public ?STRING $nullableStr = null;
 
-	// Multi-property declarations.
+    // Multi-property declarations.
     public float $a, $b;
     public int $x,
         /**
@@ -37,7 +37,7 @@ class NonReadonly {
     $invalidProperty;
 
 
-	// Constructor property promotion.
+    // Constructor property promotion.
     public function __construct(
         protected float|int $promotedProtected,
         public ?string &$promotedPublic = 'test',
@@ -66,7 +66,7 @@ class PHP81Example {
     // Readonly properties do not need to explicitly declare their visibility.
     readonly bool $noVisibility;
 
-	// Readonly properties cannot have a default value, but that's not the concern of this sniff.
+    // Readonly properties cannot have a default value, but that's not the concern of this sniff.
     public readonly int $scalarType = 0;
 
     // Readonly can only be applied to typed properties, but that's not the concern of this sniff.
@@ -78,7 +78,7 @@ class PHP81Example {
     // Readonly can not be applied to old-style "var" properties, but that's not the concern of this sniff.
     var readonly bool $declaredUsingVar;
 
-	// Multi-property declarations.
+    // Multi-property declarations.
     public readonly float $a, $b;
     readonly public int $x,
         /**
@@ -88,7 +88,7 @@ class PHP81Example {
         // comment.
         $z;
 
-	// Constructor property promotion.
+    // Constructor property promotion.
     public function __construct(
         protected readonly float|int $promotedProtected,
         // Default values are allowed when combined with constructor property promotion.
@@ -99,7 +99,18 @@ class PHP81Example {
     ) {}
 }
 
+// PHP 8.4: safeguard the sniff still functions correctly when asymmetric visibility is used.
+class AsymVisibility {
+    public protected(set) readonly string $ReadOnlyLast;
+    readonly private(set) string $ReadOnlyFirst;
+    protected(set) $notReadonly;
+
+    public function __construct(
+        readonly private(set) string $bar,
+    ) {}
+}
+
 // Parse error. This has to be the last test in the file.
 class ParseError {
-	public readonly $propertyWithoutSemiColon
+    public readonly $propertyWithoutSemiColon
 }
