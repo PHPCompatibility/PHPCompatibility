@@ -66,3 +66,13 @@ class ConstructorPropertyPromotionWithReadonlyProperties {
         private null $thisIsAlsoSilly,
     ) {}
 }
+
+// PHP 8.4: safeguard the sniff still functions correctly when asymmetric visibility is used.
+class AsymVisibility {
+    public function __construct(
+        protected(set) ?int $asymInConstructorImplicit,
+        protected private(set) string $asymInConstructorExplicit,
+        public(set) public (My&\DNF)|false $asymInConstructorImplicitOrderReversed,
+        string|false $normalParam,
+    ) {}
+}

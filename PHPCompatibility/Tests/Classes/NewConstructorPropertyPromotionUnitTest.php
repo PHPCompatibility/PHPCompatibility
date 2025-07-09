@@ -62,6 +62,9 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTestCase
             [64],
             [65],
             [66],
+            [73],
+            [74],
+            [75],
         ];
     }
 
@@ -97,6 +100,7 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTestCase
         }
 
         $cases[] = [45];
+        $cases[] = [76];
 
         return $cases;
     }
