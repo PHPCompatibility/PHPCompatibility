@@ -110,6 +110,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [185],
             [188],
             [189],
+            [195, true],
+            [198],
         ];
     }
 
@@ -269,6 +271,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['mixed', '7.4', 116, '8.0', false],
             ['true', '8.1', 147, '8.2'],
             ['null', '7.4', 175, '8.2'],
+            ['false', '7.4', 198, '8.0', false],
         ];
     }
 
@@ -377,6 +380,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [93, 'null'],
             [96, 'false'],
             [175, 'null'],
+            [198, 'false'],
         ];
     }
 
@@ -487,6 +491,7 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['(A&self)|A', 185],
             ['(Foo&Bar)|int', 188],
             ['(A&B)|(C&D)', 189],
+            ['(My&\DNF)|false', 198],
         ];
     }
 
