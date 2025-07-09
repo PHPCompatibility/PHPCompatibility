@@ -96,3 +96,9 @@ interface InterfaceWithFinalProperties
     // Fatal error: Property in interface cannot be final.
     final public $finalPublic { get; }
 }
+
+// PHP 8.4: safeguard the sniff still functions correctly when asymmetric visibility is used.
+class AsymVisibility {
+    final public private(set) $asymExplicit;
+    protected(set) $asymImplicit;
+}
