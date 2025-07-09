@@ -80,7 +80,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
 
         foreach ($dereferencing as $openBrace => $closeBrace) {
             if ($supports53 === true
-                && $tokens[$openBrace]['type'] === 'T_OPEN_SQUARE_BRACKET'
+                && $tokens[$openBrace]['code'] === \T_OPEN_SQUARE_BRACKET
             ) {
                 $phpcsFile->addError(
                     'Function array dereferencing is not present in PHP version 5.3 or earlier',
@@ -92,7 +92,7 @@ class NewFunctionArrayDereferencingSniff extends Sniff
             }
 
             // PHP 7.0 function array dereferencing using curly braces.
-            if ($tokens[$openBrace]['type'] === 'T_OPEN_CURLY_BRACKET') {
+            if ($tokens[$openBrace]['code'] === \T_OPEN_CURLY_BRACKET) {
                 $phpcsFile->addError(
                     'Function array dereferencing using curly braces is not present in PHP version 5.6 or earlier',
                     $openBrace,
@@ -165,8 +165,8 @@ class NewFunctionArrayDereferencingSniff extends Sniff
                 break;
             }
 
-            if ($tokens[$nextNonEmpty]['type'] === 'T_OPEN_SQUARE_BRACKET'
-                || $tokens[$nextNonEmpty]['type'] === 'T_OPEN_CURLY_BRACKET' // PHP 7.0+.
+            if ($tokens[$nextNonEmpty]['code'] === \T_OPEN_SQUARE_BRACKET
+                || $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET // PHP 7.0+.
             ) {
                 if (isset($tokens[$nextNonEmpty]['bracket_closer']) === false) {
                     // Live coding or parse error.

@@ -176,7 +176,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             }
 
             // Ignore anything within long array definition brackets.
-            if ($tokens[$nextVariable]['type'] === 'T_ARRAY'
+            if ($tokens[$nextVariable]['code'] === \T_ARRAY
                 && isset($tokens[$nextVariable]['parenthesis_closer'])
             ) {
                 // Skip forward to the end of the short array definition.
@@ -185,7 +185,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             }
 
             // Ignore anything within short array definition brackets.
-            if ($tokens[$nextVariable]['type'] === 'T_OPEN_SHORT_ARRAY'
+            if ($tokens[$nextVariable]['code'] === \T_OPEN_SHORT_ARRAY
                 && isset($tokens[$nextVariable]['bracket_closer'])
             ) {
                 // Skip forward to the end of the short array definition.
@@ -194,8 +194,8 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
             }
 
             // Skip past closures and arrow functions passed as function parameters.
-            if (($tokens[$nextVariable]['type'] === 'T_CLOSURE'
-                || $tokens[$nextVariable]['type'] === 'T_FN')
+            if (($tokens[$nextVariable]['code'] === \T_CLOSURE
+                || $tokens[$nextVariable]['code'] === \T_FN)
                 && isset($tokens[$nextVariable]['scope_closer'])
             ) {
                 // Skip forward to the end of the closure/arrow function declaration.

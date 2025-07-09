@@ -249,7 +249,7 @@ class NewKeywordsSniff extends Sniff
         $end = $stackPtr;
 
         // Translate T_STRING token if necessary.
-        if ($tokens[$stackPtr]['type'] === 'T_STRING') {
+        if ($tokens[$stackPtr]['code'] === \T_STRING) {
             $content = \strtolower($tokens[$stackPtr]['content']);
 
             if (isset($this->translateContentToToken[$content]) === false) {
@@ -262,7 +262,7 @@ class NewKeywordsSniff extends Sniff
 
         // Find the end of potentially multi-line/multi-token "yield from" expressions.
         if ($tokenType === 'T_YIELD_FROM'
-            && preg_match('`yield\s+from`i', $tokens[$stackPtr]['content']) !== 1
+            && \preg_match('`yield\s+from`i', $tokens[$stackPtr]['content']) !== 1
         ) {
             for ($i = ($stackPtr + 1); $i < $phpcsFile->numTokens; $i++) {
                 if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(\trim($tokens[$i]['content'])) === 'from') {
@@ -301,10 +301,10 @@ class NewKeywordsSniff extends Sniff
         if (($nextToken === false
                 || $tokenType === 'T_FN' // Open parenthesis is expected after "fn" keyword.
                 || $tokenType === 'T_MATCH' // ... and after the "match" keyword.
-                || $tokens[$nextToken]['type'] !== 'T_OPEN_PARENTHESIS')
+                || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS)
             && ($prevToken === false
-                || $tokens[$prevToken]['type'] !== 'T_CLASS'
-                || $tokens[$prevToken]['type'] !== 'T_INTERFACE')
+                || $tokens[$prevToken]['code'] !== \T_CLASS
+                || $tokens[$prevToken]['code'] !== \T_INTERFACE)
         ) {
             // Skip based on the output of a specific callback.
             if (isset($this->newKeywords[$tokenType]['callback'])

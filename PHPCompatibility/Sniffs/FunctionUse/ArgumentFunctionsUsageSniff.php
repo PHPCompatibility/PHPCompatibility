@@ -139,7 +139,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
 
         $closer = \end($tokens[$stackPtr]['nested_parenthesis']);
         if (isset($tokens[$closer]['parenthesis_owner'])
-            && $tokens[$tokens[$closer]['parenthesis_owner']]['type'] === 'T_CLOSURE'
+            && $tokens[$tokens[$closer]['parenthesis_owner']]['code'] === \T_CLOSURE
         ) {
             $throwError = true;
         } else {
