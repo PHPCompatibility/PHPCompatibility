@@ -166,7 +166,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array<string, array<string, string>>
+     * @var array<string, array<string, string>> Sub-key should be method name in lowercase.
      */
     protected $unsupportedMethods = [
         'Serializable' => [
@@ -349,8 +349,10 @@ class NewInterfacesSniff extends Sniff
 
         if (isset($tokens[$stackPtr]['scope_closer'])) {
             $checkMethods = true;
-            $scopeCloser  = $tokens[$stackPtr]['scope_closer'];
         }
+
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLc = \array_change_key_case($ooMethods, \CASE_LOWER);
 
         foreach ($interfaces as $interface) {
             $interface   = \ltrim($interface, '\\');
@@ -364,28 +366,18 @@ class NewInterfacesSniff extends Sniff
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
 
-            if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
-                $nextFunc = $stackPtr;
-                while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-                    $funcName   = FunctionDeclarations::getName($phpcsFile, $nextFunc);
-                    $funcNameLc = \strtolower($funcName);
-                    if (empty($funcNameLc) === false
-                        && isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true
-                    ) {
+            if (isset($this->unsupportedMethods[$interfaceLc]) === true) {
+                foreach ($this->unsupportedMethods[$interfaceLc] as $methodName => $see) {
+                    if (isset($ooMethodsLc[$methodName])) {
                         $error     = $phrase . ' interface %s do not support the method %s(). See %s';
                         $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'UnsupportedMethod';
                         $data      = [
                             $interface,
-                            $funcName,
-                            $this->unsupportedMethods[$interfaceLc][$funcNameLc],
+                            $methodName,
+                            $see,
                         ];
 
-                        $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
-                    }
-
-                    // Skip over the function body.
-                    if (isset($tokens[$nextFunc]['scope_closer']) === true) {
-                        $nextFunc = $tokens[$nextFunc]['scope_closer'];
+                        $phpcsFile->addError($error, $ooMethodsLc[$methodName], $errorCode, $data);
                     }
                 }
             }
