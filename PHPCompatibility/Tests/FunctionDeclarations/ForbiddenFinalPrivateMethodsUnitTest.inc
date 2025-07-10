@@ -59,3 +59,6 @@ enum MyEnum {
     final public static function publicFinal();
     final private function privateFinal() {}
 }
+
+// No methods, no problem.
+final class NoMethods {}

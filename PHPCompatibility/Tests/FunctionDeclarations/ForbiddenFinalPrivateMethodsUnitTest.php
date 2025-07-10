@@ -94,6 +94,7 @@ class ForbiddenFinalPrivateMethodsUnitTest extends BaseSniffTestCase
 
         $cases[] = [50];
         $cases[] = [59];
+        $cases[] = [64];
 
         return $cases;
     }
