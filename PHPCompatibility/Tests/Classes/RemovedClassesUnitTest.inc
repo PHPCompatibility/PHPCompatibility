@@ -127,3 +127,17 @@ function my_pspell(
 
 // Safeguard correct handling of PHP 8.3 readonly anonymous class.
 $anon = new readonly class extends OCILob {};
+
+// Test that PHP 8.0 constructor promoted properties are handled correctly.
+class ConstructorPropertyPromotionWithTypes {
+    public function __construct(
+        public $noType,
+        protected IMAP\Connection $singleType,
+        public ?\OCICollection &$nullableType,
+        protected \PSpell\Config|PSpell\Dictionary $unionType,
+        private SWFShape&\SWFSound $intersectionType,
+        private SQLiteDatabase|(\SQLiteResult&SQLiteUnbuffered) $dnfType,
+        $normalParamNoType,
+        SWFVideoStream $normalParamClassType,
+    ) {}
+}
