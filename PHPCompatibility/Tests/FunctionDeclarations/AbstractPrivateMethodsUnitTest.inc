@@ -50,3 +50,6 @@ static function globalFunction() {}
 interface IllegalPrivate {
     abstract private function privateToImplement();
 }
+
+// No methods, no problem.
+abstract class NoMethods {}

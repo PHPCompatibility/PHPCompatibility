@@ -15,7 +15,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Abstract private methods are not allowed since PHP 5.1, though they are allowed in traits since PHP 8.0.
@@ -49,7 +49,7 @@ class AbstractPrivateMethodsSniff extends Sniff
      */
     public function register()
     {
-        return [\T_FUNCTION];
+        return Tokens::$ooScopeTokens;
     }
 
     /**
@@ -70,36 +70,40 @@ class AbstractPrivateMethodsSniff extends Sniff
             return;
         }
 
-        $tokens   = $phpcsFile->getTokens();
-        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
-        if ($scopePtr === false) {
-            // Function, not method.
+        $ooMethods = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        if (empty($ooMethods)) {
+            // No methods declared in the OO construct at all. Bow out.
             return;
         }
 
-        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        if ($properties['scope'] !== 'private' || $properties['is_abstract'] !== true) {
-            // Not an abstract private method.
-            return;
-        }
+        $tokens               = $phpcsFile->getTokens();
+        $shouldRunOnOrBelow74 = ScannedCode::shouldRunOnOrBelow('7.4');
 
-        if ($tokens[$scopePtr]['code'] === \T_TRAIT) {
-            if (ScannedCode::shouldRunOnOrBelow('7.4') === true) {
-                $phpcsFile->addError(
-                    'Traits cannot declare "abstract private" methods in PHP 7.4 or below',
-                    $stackPtr,
-                    'InTrait'
-                );
+        foreach ($ooMethods as $name => $functionPtr) {
+            $properties = FunctionDeclarations::getProperties($phpcsFile, $functionPtr);
+            if ($properties['scope'] !== 'private' || $properties['is_abstract'] !== true) {
+                // Not an abstract private method.
+                continue;
             }
 
-            return;
-        }
+            if ($tokens[$stackPtr]['code'] === \T_TRAIT) {
+                if ($shouldRunOnOrBelow74 === true) {
+                    $phpcsFile->addError(
+                        'Traits cannot declare "abstract private" methods in PHP 7.4 or below',
+                        $functionPtr,
+                        'InTrait'
+                    );
+                }
 
-        // Not a trait.
-        $phpcsFile->addError(
-            'Abstract methods cannot be declared as private since PHP 5.1',
-            $stackPtr,
-            'Found'
-        );
+                continue;
+            }
+
+            // Not a trait.
+            $phpcsFile->addError(
+                'Abstract methods cannot be declared as private since PHP 5.1',
+                $functionPtr,
+                'Found'
+            );
+        }
     }
 }
