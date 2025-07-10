@@ -334,6 +334,9 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        // No methods.
+        $data[] = [383];
+
         return $data;
     }
 
