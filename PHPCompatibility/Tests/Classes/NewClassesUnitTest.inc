@@ -563,3 +563,17 @@ $c = new ReflectionConstant($name);
 
 // Safeguard correct handling of PHP 8.3 readonly anonymous class.
 $anon = new readonly class extends GdFont {};
+
+// Test that PHP 8.0 constructor promoted properties are handled correctly.
+class ConstructorPropertyPromotionWithTypes {
+    public function __construct(
+        public $noType,
+        protected Dba\Connection $singleType,
+        public ?\Soap\Url &$nullableType,
+        protected \Odbc\Connection|Odbc\Result $unionType,
+        private Pdo\Firebird&\Pdo\Sqlite $intersectionType,
+        private Pdo\DbLib|(\Pdo\Mysql&Pdo\Pgsql) $dnfType,
+        $normalParamNoType,
+        ReflectionConstant $normalParamClassType,
+    ) {}
+}
