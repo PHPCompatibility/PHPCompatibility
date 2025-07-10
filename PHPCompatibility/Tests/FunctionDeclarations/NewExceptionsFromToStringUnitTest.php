@@ -110,6 +110,7 @@ class NewExceptionsFromToStringUnitTest extends BaseSniffTestCase
         }
 
         $cases[] = [154];
+        $cases[] = [162];
 
         return $cases;
     }
