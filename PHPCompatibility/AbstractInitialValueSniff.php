@@ -133,6 +133,11 @@ abstract class AbstractInitialValueSniff extends Sniff
                 $this->processInitialValue($phpcsFile, $param['token'], $param['default_token'], $defaultEnd, $type);
             }
 
+            if (isset($tokens[$stackPtr]['scope_opener'])) {
+                // Skip over the declaration, no need to trigger the sniff for a "static" return type.
+                return $tokens[$stackPtr]['scope_opener'];
+            }
+
             /*
              * No need for the sniff to be triggered by the T_VARIABLEs in the function
              * definition as we've already examined them above, so let's skip over them.
