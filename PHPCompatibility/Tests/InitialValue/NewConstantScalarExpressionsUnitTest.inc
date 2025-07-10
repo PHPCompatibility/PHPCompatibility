@@ -321,3 +321,12 @@ enum EnumWithConstant {
 trait ConstantsInTraits {
     public const MY_TRAIT_CONST = (BAR)?10:100);
 }
+
+/*
+ * Test handling of PHP 8.0 constructor promoted properties with default value.
+ */
+class ConstructorPromotedProperties {
+    public function __construct(
+        public string $promotedProp = 'hello' . ' world',
+    ) {}
+}
