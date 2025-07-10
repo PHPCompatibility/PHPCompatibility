@@ -352,3 +352,29 @@ enum WrongStaticEnum
     public static function __serialize() {}
     static public function __unserialize($data) {}
 }
+
+// PHP 8.0: __wakeup() modifiers are now checked too.
+class WakeUpPlain
+{
+    function __wakeup() {}
+}
+
+interface WakeUpCorrect
+{
+    public function __wakeup();
+}
+
+trait WakeUpVisibility
+{
+    private function __wakeup() {}
+}
+
+$wakeUp = new class()
+{
+    protected static function __wakeup() {} // Bad: static & protected.
+}
+
+enum WakeUpStatic
+{
+    static function __wakeup() {}
+}
