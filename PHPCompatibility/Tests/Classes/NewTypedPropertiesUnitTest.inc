@@ -198,3 +198,13 @@ class AsymVisibility {
         protected private(set) (My&\DNF)|false $asymInConstructor,
     ) {}
 }
+
+// PHP 8.4: safeguard the sniff functions correctly for properties in interfaces.
+interface PropertiesInInterfaces
+{
+    public $untyped { get; }
+    public int $typed { get; }
+
+    // Any visibility but "public" is invalid, but that's not the concern of this sniff.
+    protected string|false $unionType { get; set; }
+}

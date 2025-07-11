@@ -112,6 +112,8 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [189],
             [195, true],
             [198],
+            [206, true],
+            [209],
         ];
     }
 
@@ -153,6 +155,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
         $cases[] = [127];
         $cases[] = [153];
         $cases[] = [154];
+        $cases[] = [205];
 
         return $cases;
     }
@@ -272,6 +275,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['true', '8.1', 147, '8.2'],
             ['null', '7.4', 175, '8.2'],
             ['false', '7.4', 198, '8.0', false],
+            ['false', '7.4', 209, '8.0'],
         ];
     }
 
@@ -344,6 +348,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['iterable|array|Traversable', 105],
             ['int|string|INT', 108],
             ['float|int', 114],
+            ['string|false', 209],
         ];
     }
 
