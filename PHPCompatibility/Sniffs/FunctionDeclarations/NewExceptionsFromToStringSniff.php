@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
@@ -56,7 +55,7 @@ class NewExceptionsFromToStringSniff extends Sniff
     {
         // Enhance the array of tokens to ignore for finding the docblock.
         $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
-        $this->docblockIgnoreTokens += BCTokens::phpcsCommentTokens();
+        $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
 
         return [\T_FUNCTION];
     }

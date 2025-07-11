@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -88,7 +87,7 @@ class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameterSniff
                 \T_LNUMBER => \T_LNUMBER,
                 \T_DNUMBER => \T_DNUMBER,
             ];
-            $search += BCTokens::arithmeticTokens();
+            $search += Tokens::$arithmeticTokens;
             $search += Tokens::$emptyTokens;
         }
 

@@ -13,8 +13,8 @@ namespace PHPCompatibility\Sniffs\Operators;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Operators;
 
@@ -117,7 +117,7 @@ class RemovedTernaryAssociativitySniff extends Sniff
             }
 
             // Check for operators with lower operator precedence.
-            if (isset(BCTokens::assignmentTokens()[$tokens[$i]['code']])
+            if (isset(Tokens::$assignmentTokens[$tokens[$i]['code']])
                 || isset($this->tokensWithLowerPrecedence[$tokens[$i]['code']])
             ) {
                 break;

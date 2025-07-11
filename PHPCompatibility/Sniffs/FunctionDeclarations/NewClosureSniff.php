@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 
@@ -166,7 +165,7 @@ class NewClosureSniff extends Sniff
                 /*
                  * Closures only have access to $this if used within a class context.
                  */
-                elseif (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false) {
+                elseif (Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) === false) {
                     $phpcsFile->addWarning(
                         'Closures / anonymous functions only have access to $this if used within a class or when bound to an object using bindTo(). Please verify.',
                         $thisFound,

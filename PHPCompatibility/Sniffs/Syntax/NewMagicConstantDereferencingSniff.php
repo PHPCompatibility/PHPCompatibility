@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHPCSUtils\BackCompat\BCTokens;
 
 /**
  * Detect dereferencing of magic constants as allowed per PHP 8.0.
@@ -96,7 +95,7 @@ class NewMagicConstantDereferencingSniff extends Sniff
             }
 
             // If the next token is an assignment, that's all we need to know.
-            if (isset(BCTokens::assignmentTokens()[$tokens[$nextNext]['code']]) === true) {
+            if (isset(Tokens::$assignmentTokens[$tokens[$nextNext]['code']]) === true) {
                 return;
             }
 

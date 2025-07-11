@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -88,7 +87,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     public function register()
     {
-        $this->skipOverScopes += BCTokens::ooScopeTokens();
+        $this->skipOverScopes += Tokens::$ooScopeTokens;
 
         return [
             \T_FUNCTION,
@@ -295,7 +294,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
      */
     protected function isThisUsedAsParameter(File $phpcsFile, $stackPtr)
     {
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) !== false) {
             return;
         }
 
@@ -353,7 +352,7 @@ class ForbiddenThisUseContextsSniff extends Sniff
             return;
         }
 
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) !== false) {
             $methodProps = $phpcsFile->getMethodProperties($stackPtr);
             if ($methodProps['is_static'] === false) {
                 return;

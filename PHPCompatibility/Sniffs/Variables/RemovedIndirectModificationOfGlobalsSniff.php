@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\Operators;
@@ -199,7 +198,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             }
         }
 
-        if (isset(BCTokens::assignmentTokens()[$tokens[$nextNonEmpty]['code']]) === true) {
+        if (isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true) {
             $phpcsFile->addError(
                 \sprintf(self::WRITE_ERROR, 'assignment to $GLOBALS'),
                 $stackPtr,
