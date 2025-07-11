@@ -1,0 +1,28 @@
+name: Check PRs for merge conflicts
+
+on:
+  # Check for new conflicts due to merges.
+  push:
+    branches:
+      - master
+      - develop
+  # Check conflicts in new PRs and for resolved conflicts due to an open PR being updated.
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  check-prs:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'PHPCompatibility'
+
+    name: Check PRs for merge conflicts
+
+    steps:
+      - name: Check PRs for merge conflicts
+        uses: eps1lon/actions-label-merge-conflict@v3
+        with:
+          dirtyLabel: "has merge conflict"
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
