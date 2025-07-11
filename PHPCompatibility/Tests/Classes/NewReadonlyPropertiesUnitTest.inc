@@ -118,6 +118,13 @@ interface PropertiesInInterfaces
     readonly int $readonly { get; }
 }
 
+// PHP 8.4: safeguard the sniff still functions correctly when final properties are used.
+class FinalProp {
+    public readonly final string $ReadonlyFinal;
+    final readonly private string $FinalReadOnly;
+    protected final $notReadonly;
+}
+
 // Parse error. This has to be the last test in the file.
 class ParseError {
     public readonly $propertyWithoutSemiColon

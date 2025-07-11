@@ -66,8 +66,10 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
             [105],
             [109],
             [118],
-
             [123],
+            [124],
+
+            [130],
         ];
     }
 
@@ -104,6 +106,7 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
         }
 
         $data[] = [106];
+        $data[] = [125];
 
         return $data;
     }
