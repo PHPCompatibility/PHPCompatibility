@@ -110,6 +110,14 @@ class AsymVisibility {
     ) {}
 }
 
+// PHP 8.4: safeguard the sniff functions correctly for properties in interfaces.
+interface PropertiesInInterfaces
+{
+    // Illegal, but that's not the concern of this sniff.
+    // Fatal error: Hooked properties cannot be readonly.
+    readonly int $readonly { get; }
+}
+
 // Parse error. This has to be the last test in the file.
 class ParseError {
     public readonly $propertyWithoutSemiColon
