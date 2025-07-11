@@ -128,3 +128,20 @@ function __construct() {}
 interface DoesntHaveCodeInFunctions {
     public function __construct();
 }
+
+class NoMethods {
+    public const __CONSTRUCT = 10;
+    public const __DESTRUCT = 20;
+}
+
+abstract class DoesntExtendAndDoesntHaveDestructMethodButMayUseTrait {
+    /**
+     * This should be easily skipped over.
+     */
+    #[AttributeWhichCouldBeLong, ShouldBeSkippedOver( 10, self::CONST_VALUE)]
+    public function __construct() {
+        die(1); // Warning.
+    }
+
+    abstract function skipOverParenthesis($a, $b);
+}
