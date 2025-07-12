@@ -186,6 +186,22 @@ class c {
 }
 
 /*
+ * Test detecting heredoc initial values in PHP 8.3+ typed constants.
+ */
+class TypedConstants {
+    public const string MY_TYPED_CONST_SINGLE = <<<FOO
+Something
+FOO;
+
+    public const ?string MY_TYPED_CONST_MULTI_A = <<<FOO
+Something
+FOO
+        , MY_TYPED_CONST_MULTI_B = <<<FOO
+Something
+FOO;
+}
+
+/*
  * Safeguard that PHP 7.3+ flexible heredoc initial values are also detected correctly.
  * IMPORTANT: this must be the last test in the file!
  */

@@ -330,3 +330,13 @@ class ConstructorPromotedProperties {
         public string $promotedProp = 'hello' . ' world',
     ) {}
 }
+
+/*
+ * Test detecting constant scalar expressions in PHP 8.3+ typed constants.
+ */
+class TypedConstants {
+    public const int|false MY_TYPED_CONST_SINGLE = self::BAR ? 10 : false);
+
+    public const int MY_TYPED_CONST_MULTI_A = 1 + 1,
+        MY_TYPED_CONST_MULTI_B = (1 + 1);
+}
