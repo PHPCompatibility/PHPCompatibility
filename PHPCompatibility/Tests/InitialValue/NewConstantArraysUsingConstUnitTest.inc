@@ -45,3 +45,17 @@ const MULTI_A = 1,
 // Constant array dereferencing.
 const DEREF = OTHER['key'];
 const DEREF = 'string'[2];
+
+// Safeguard handling of PHP 8.3 typed constants. The sniff should not trigger on the array type keyword.
+class TypedConstants {
+    protected const array ARRAY_TYPE = // OK.
+        [ 10, 20]; // Error.
+
+    private const ?array NULLABLE_ARRAY_TYPE_NULL = null; // OK.
+    private const ?array NULLABLE_ARRAY_TYPE_ARRAY = []; // Error.
+
+    private final const array|false UNION_TYPE = false; // OK.
+
+    public const (MyClass&\SomeInterface)|array DNF_TYPE = new MyClass; // OK.
+    public const (MyClass&\SomeInterface)|array DNF_TYPE = array(1, 2, 3); // Error.
+}
