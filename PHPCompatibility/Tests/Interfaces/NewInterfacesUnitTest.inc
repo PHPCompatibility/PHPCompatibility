@@ -212,6 +212,9 @@ class DNFTypes {
     public function returnType($param) : (Stringable&DOMChildNode)|(A&B) {}
 }
 
+// Safeguard correct handling of PHP 8.3 readonly anonymous class.
+$anon = new readonly class implements \Random\Engine {};
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {

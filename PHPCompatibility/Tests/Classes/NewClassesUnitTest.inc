@@ -560,3 +560,6 @@ try {
 
 function mycalc( BcMath\Number $number) {}
 $c = new ReflectionConstant($name);
+
+// Safeguard correct handling of PHP 8.3 readonly anonymous class.
+$anon = new readonly class extends GdFont {};

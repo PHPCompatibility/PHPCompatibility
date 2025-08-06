@@ -124,3 +124,6 @@ function my_pspell(
     PSpell\Config $config,
     PSpell\Dictionary $dictionary,
 ) {}
+
+// Safeguard correct handling of PHP 8.3 readonly anonymous class.
+$anon = new readonly class extends OCILob {};
