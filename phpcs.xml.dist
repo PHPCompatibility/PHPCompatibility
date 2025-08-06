@@ -84,4 +84,8 @@
         <exclude-pattern>*/PHPCompatibility/Util/Tests/*\.php</exclude-pattern>
     </rule>
 
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPUnitAttributeFound">
+        <exclude-pattern>*/PHPCompatibility/Tests/BaseSniffTestCase\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>
