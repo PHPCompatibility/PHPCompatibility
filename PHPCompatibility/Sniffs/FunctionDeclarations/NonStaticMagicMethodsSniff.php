@@ -23,7 +23,10 @@ use PHPCSUtils\Utils\Scopes;
  * The requirements have always existed, but as of PHP 5.3, a warning will be thrown
  * when magic methods have the wrong modifiers.
  *
+ * For unknown reasons, this check was not executed for the __wakeup() method until PHP 8.0.
+ *
  * PHP version 5.3
+ * PHP version 8.0
  *
  * @link https://www.php.net/manual/en/language.oop5.magic.php
  *
@@ -108,6 +111,11 @@ class NonStaticMagicMethodsSniff extends Sniff
             'visibility' => 'public',
             'static'     => false,
         ],
+        // Enforced since PHP 8.0.
+        '__wakeup' => [
+            'visibility' => 'public',
+            'static'     => false,
+        ],
     ];
 
 
@@ -160,17 +168,28 @@ class NonStaticMagicMethodsSniff extends Sniff
             return;
         }
 
+        // Special case __wakeup() for which the signature modifiers are only enforced since PHP 8.0.
+        $qualifyingPhrase = '';
+        if ($methodNameLc === '__wakeup') {
+            if (ScannedCode::shouldRunOnOrAbove('8.0') === false) {
+                return;
+            }
+
+            $qualifyingPhrase = ' since PHP 8.0';
+        }
+
         $methodProperties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         $errorCodeBase    = MessageHelper::stringToErrorCode($methodNameLc);
 
         if (isset($this->magicMethods[$methodNameLc]['visibility'])
             && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']
         ) {
-            $error     = 'Visibility for magic method %s must be %s. Found: %s';
+            $error     = 'Visibility for magic method %s must be %s%s. Found: %s';
             $errorCode = $errorCodeBase . 'MethodVisibility';
             $data      = [
                 $methodName,
                 $this->magicMethods[$methodNameLc]['visibility'],
+                $qualifyingPhrase,
                 $methodProperties['scope'],
             ];
 
@@ -180,9 +199,12 @@ class NonStaticMagicMethodsSniff extends Sniff
         if (isset($this->magicMethods[$methodNameLc]['static'])
             && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']
         ) {
-            $error     = 'Magic method %s cannot be defined as static.';
+            $error     = 'Magic method %s cannot be defined as static%s.';
             $errorCode = $errorCodeBase . 'MethodStatic';
-            $data      = [$methodName];
+            $data      = [
+                $methodName,
+                $qualifyingPhrase,
+            ];
 
             if ($this->magicMethods[$methodNameLc]['static'] === true) {
                 $error     = 'Magic method %s must be defined as static.';

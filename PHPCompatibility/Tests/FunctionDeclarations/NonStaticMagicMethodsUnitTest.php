@@ -339,6 +339,100 @@ class NonStaticMagicMethodsUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Verify an error is thrown for wrong visibility on the __wakeup() method when the code under scan needs to run on PHP 8.0 or higher.
+     *
+     * @dataProvider dataWrongMethodVisibilityWakeUp
+     *
+     * @param string $testVisibility The visibility the method actually has in the test.
+     * @param int    $line           The line number.
+     *
+     * @return void
+     */
+    public function testWrongMethodVisibilityWakeUp($testVisibility, $line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, "Visibility for magic method __wakeup must be public since PHP 8.0. Found: {$testVisibility}");
+
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array<array<string|int>>
+     */
+    public static function dataWrongMethodVisibilityWakeUp()
+    {
+        return [
+            ['private', 369],
+            ['protected', 374],
+        ];
+    }
+
+
+    /**
+     * Verify an error is thrown for a statically declared __wakeup() method when the code under scan needs to run on PHP 8.0 or higher.
+     *
+     * @dataProvider dataWrongStaticMethodWakeUp
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testWrongStaticMethodWakeUp($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError($file, $line, 'Magic method __wakeup cannot be defined as static since PHP 8.0.');
+
+        $file = $this->sniffFile(__FILE__, '7.4');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array<array<int>>
+     */
+    public static function dataWrongStaticMethodWakeUp()
+    {
+        return [
+            [374],
+            [379],
+        ];
+    }
+
+
+    /**
+     * Verify the sniff does not throw false positives for valid declarations of __wakeup().
+     *
+     * @dataProvider dataNoFalsePositivesWakeUp
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesWakeUp($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositivesWakeUp()
+    {
+        return [
+            [359],
+            [364],
+        ];
+    }
+
+
+    /**
      * Verify no notices are thrown at all.
      *
      * @return void
