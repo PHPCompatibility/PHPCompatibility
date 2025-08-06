@@ -583,7 +583,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
      */
     public function testNewDNFTypesNoFalsePositives($line)
     {
-        $file = $this->sniffFile(__FILE__, '8.2');
+        $file = $this->sniffFile(__FILE__, '8.1');
         $this->assertNoViolation($file, $line);
     }
 
