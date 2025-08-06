@@ -56,7 +56,7 @@ class FinalConstDemo
 {
     public final const FINAL_PUBLIC_CONST_B = 4;
     protected final const FINAL_PROTECTED_CONST_B = 6;
-    private final const FINAL_PRIVATE_CONST_B = 8;
+    private final const FINAL_PRIVATE_CONST_B = 8; // Invalid as private final constants are an oxymoron, but that's not the concern of this sniff.
 }
 
 /*

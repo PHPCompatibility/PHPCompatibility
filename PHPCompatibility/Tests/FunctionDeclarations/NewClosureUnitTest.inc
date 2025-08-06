@@ -51,14 +51,14 @@ static function() {
 // Warning: Using $this outside of a class context.
 $closure = function() {
    var_dump($this);
-}
+};
 $foo = new stdClass();
 $closure = $closure->bindTo($foo);
 
 // Valid: using a variable - not $this - in a closure.
 function() {
    var_dump($something);
-}
+};
 
 // Make sure $this in nested closures does not get reported twice.
 class NestedClosures {

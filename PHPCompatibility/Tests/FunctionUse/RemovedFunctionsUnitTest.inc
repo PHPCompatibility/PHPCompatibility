@@ -239,7 +239,7 @@ recode();
 is_real();
 get_magic_quotes_gpc();
 get_magic_quotes_runtime();
-hebrevc($str));
+hebrevc($str);
 convert_cyr_string($str, 'k', 'i');
 money_format();
 ezmlm_hash();

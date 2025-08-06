@@ -24,7 +24,7 @@ echo "{$foo->bar()}";
 echo "{$foo['bar']->baz()()}";
 echo "{${$bar}}";
 echo "{$foo()}";
-echo "{${$object->getMethod()}}"
+echo "{${$object->getMethod()}}";
 $text = "some text {$var} some text";
 
 $heredoc = <<<"EOD"

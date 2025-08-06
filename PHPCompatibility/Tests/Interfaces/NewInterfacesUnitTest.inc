@@ -42,34 +42,34 @@ class MyClass {
     function OuterIteratorTypeHint( OuterIterator $a ) {}
     function RecursiveIteratorTypeHint( RecursiveIterator $a ) {}
     function SeekableIteratorTypeHint( SeekableIterator $a ) {}
-    function SerializableTypeHint( Serializable $a ) {}
-    function SplObserverTypeHint( SplObserver $a ) {}
-    function SplSubjectTypeHint( SplSubject $a ) {}
+    function SerializableTypeHintA( Serializable $a ) {}
+    function SplObserverTypeHintA( SplObserver $a ) {}
+    function SplSubjectTypeHintA( SplSubject $a ) {}
     function JsonSerializableTypeHint( JsonSerializable $a ) {}
     function SessionHandlerInterfaceTypeHint( SessionHandlerInterface $a ) {}
-    function TraversableTypeHint( Traversable $a ) {}
-    function DateTimeInterfaceTypeHint( DateTimeInterface $a ) {}
-    function ThrowableTypeHint( Throwable $a ) {}
+    function TraversableTypeHintA( Traversable $a ) {}
+    function DateTimeInterfaceTypeHintA( DateTimeInterface $a ) {}
+    function ThrowableTypeHintA( Throwable $a ) {}
 
     // Namespaced interfaces as typehints
-    function SerializableTypeHint( \Serializable $a ) {} // Error: global namespace.
-    function SplObserverTypeHint( myNameSpace\SplObserver $a ) {} // Ok.
-    function SplSubjectTypeHint( \some\other\SplSubject $a ) {} // Ok.
+    function SerializableTypeHintB( \Serializable $a ) {} // Error: global namespace.
+    function SplObserverTypeHintB( myNameSpace\SplObserver $a ) {} // Ok.
+    function SplSubjectTypeHintB( \some\other\SplSubject $a ) {} // Ok.
 
     // Interfaces as nullable typehints (PHP 7.1+).
-    function TraversableTypeHint( ?Traversable $a ) {}
-    function DateTimeInterfaceTypeHint( ?\DateTimeInterface $a ) {}
-    function ThrowableTypeHint( ?Throwable $a ) {}
+    function TraversableTypeHintB( ?Traversable $a ) {}
+    function DateTimeInterfaceTypeHintB( ?\DateTimeInterface $a ) {}
+    function ThrowableTypeHintB( ?Throwable $a ) {}
 
     // Function with multiple typehinted parameters.
     function MultipleTypeHints (OuterIterator $a, ?int $b, SplObserver $c, ?\RecursiveIterator $d) {}
 }
 
 // Interfaces in type hints in anonymous functions.
-function ( SplSubject $a ) {}
-function(\Serializable $a) {}
-function ( ?Traversable $a ) {}
-function(myNameSpace\SplObserver $a) {} // Ok.
+function ( SplSubject $a ) {};
+function(\Serializable $a) {};
+function ( ?Traversable $a ) {};
+function(myNameSpace\SplObserver $a) {}; // Ok.
 
 // Additional new interfaces.
 class MyReflector implements Reflector {}
@@ -78,7 +78,7 @@ class MyReflector implements Reflector {}
 function CountableReturnTypeHint( $a ) : COUNTABLE {}
 function TraversableReturnTypeHint( $a ) : ?Traversable {}
 function DateTimeInterfaceReturnTypeHint( $a ) : \DateTimeInterface {}
-function($a):throwable {}
+function($a):throwable {};
 
 // Test against false positives for return type declarations.
 function SeekableIteratorReturnTypeHint( $a ) : SomeNS\SeekableIterator {}
@@ -137,7 +137,7 @@ function errorLinePrecisionCheck(
 // Test support for PHP 7.4 property types.
 public Throwable $var; // Ignore, not a property, parse error.
 
-$anon = class() {
+$anon = new class() {
     public $untypedProperty;
     public SessionUpdateTimestampHandlerInterface $property;
 };
@@ -157,10 +157,10 @@ class UnionTypes {
 
 // Test support for PHP 8.1 intersection types.
 class IntersectionTypes {
-    public function paramType(NotATarget&AlsoNotATarget $okay) {}
+    public function paramTypeA(NotATarget&AlsoNotATarget $okay) {}
 
     public Throwable&SessionUpdateTimestampHandlerInterface $property;
-    public function paramType(SeekableIterator&SplSubject $param) {}
+    public function paramTypeB(SeekableIterator&SplSubject $param) {}
     public function returnType($param) : Reflector&Traversable {}
 }
 
@@ -182,15 +182,15 @@ class ConstructorProp {
 
 // Test support with PHP 8.0 non-capturing catch.
 try {
-} catch (SomeException) {}
+} catch (SomeException) {
 } catch (MyException | Throwable | AnotherException) {}
 
 // Test support for PHP 8.1 enums implementing interfaces.
 enum NoImplements {}
 enum MyPlainEnum implements JsonSerializable {}
 enum MyBackedEnum: string implements NotATarget, Serializable, ArrayAccess {
-    public function __sleep();
-    public function __wakeup();
+    public function __sleep() {}
+    public function __wakeup() {}
 }
 
 class MyDom implements DOMChildNode, DOMParentNode {}

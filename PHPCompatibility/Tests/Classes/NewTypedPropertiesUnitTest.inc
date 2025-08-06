@@ -75,7 +75,7 @@ class PHP8Mixed {
 }
 
 // PHP 8.0 union types.
-$anon = class() {
+$anon = new class() {
     public int|float $unionTypeSimple;
     private MyClassA|\Package\MyClassB $unionTypesTwoClasses;
     protected array|bool|int|float|NULL|object|string $unionTypesAllBaseTypes;
@@ -127,7 +127,7 @@ class ConstructorPropertyPromotionWithTypes {
 function __construct(float|int $x, callable $callMe) {}
 
 // PHP 8.1 intersection types.
-class IntersectionTypes() {
+class IntersectionTypes {
     public MyClassA&\Package\MyClassB $intersection;
     public Traversable&\Countable $countableIterator;
 
@@ -143,7 +143,7 @@ class IntersectionTypes() {
 }
 
 // PHP 8.2 true type.
-class TrueType() {
+class TrueType {
     public true $true = true;
 }
 

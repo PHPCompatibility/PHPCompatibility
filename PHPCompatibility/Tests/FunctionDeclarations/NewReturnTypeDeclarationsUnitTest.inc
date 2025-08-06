@@ -19,7 +19,7 @@ function fooIterable($a): iterable {}
 function fooVoid($a): void {}
 
 // Anonymous function.
-function($a): Callable {}
+function($a): Callable {};
 
 // OK: no return type hint.
 function fooNone($a) {}

@@ -17,9 +17,9 @@ function testingK( $_post ) {}
 function testingL( $POST ) {}
 
 // Closures: these should be flagged.
-function ( $GLOBALS ) {}
-function( $_SERVER ) {}
-function($_GET) {}
+function ( $GLOBALS ) {};
+function( $_SERVER ) {};
+function($_GET) {};
 
 // Arrow functions: these should be flagged.
 $arrow = fn( $_ENV ) => $_ENV['key'];
