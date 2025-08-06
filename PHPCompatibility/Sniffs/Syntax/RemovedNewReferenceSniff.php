@@ -63,7 +63,7 @@ class RemovedNewReferenceSniff extends Sniff
 
         $tokens       = $phpcsFile->getTokens();
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['type'] !== 'T_BITWISE_AND') {
+        if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['code'] !== \T_BITWISE_AND) {
             return;
         }
 
