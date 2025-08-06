@@ -260,27 +260,10 @@ class NewKeywordsSniff extends Sniff
             $tokenType = $this->translateContentToToken[$content];
         }
 
-        /*
-         * Special case: distinguish between `yield` and `yield from`.
-         *
-         * Prior to PHP 8.3, `yield from` with a comment between the keywords would be tokenized
-         * as `T_YIELD`, `T_COMMENT`, T_STRING`.
-         * As of PHP 8.3, this is tokenized as `T_YIELD_FROM` in PHP.
-         * As of PHPCS 3.11.0, PHPCS polyfills the tokenization to be consistent across PHP versions.
-         */
-        if ($tokenType === 'T_YIELD') {
-            $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true);
-            if ($tokens[$nextToken]['code'] === \T_STRING
-                && \strtolower($tokens[$nextToken]['content']) === 'from'
-            ) {
-                $tokenType = 'T_YIELD_FROM';
-                $end       = $nextToken;
-            }
-            unset($nextToken);
-        } elseif ($tokenType === 'T_YIELD_FROM'
+        // Find the end of potentially multi-line/multi-token "yield from" expressions.
+        if ($tokenType === 'T_YIELD_FROM'
             && preg_match('`yield\s+from`i', $tokens[$stackPtr]['content']) !== 1
         ) {
-            // Find the end of potentially multi-line/multi-token "yield from" expressions.
             for ($i = ($stackPtr + 1); $i < $phpcsFile->numTokens; $i++) {
                 if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(\trim($tokens[$i]['content'])) === 'from') {
                     $end = ($i + 1);
