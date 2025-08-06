@@ -32,7 +32,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
  * @since 8.0.0  Compatible with PHP_CodeSniffer 3+.
  * @since 8.2.0  Allows for sniffs in multiple categories.
  * @since 9.0.0  Dropped support for PHP_CodeSniffer 1.x.
- * @since 10.0.0 Updated for preliminary support of PHP_CodeSniffer 4 and dropped support for PHPCS 2.x.
+ * @since 10.0.0 - Updated for preliminary support of PHP_CodeSniffer 4 and dropped support for PHPCS 2.x.
+ *               - This class is now explicitly `abstract`.
+ *               - Renamed from `BaseSniffTest` to `BaseSniffTestCase` for compatibility with PHPUnit 10.
  */
 abstract class BaseSniffTestCase extends TestCase
 {

@@ -322,7 +322,7 @@ class RemovedSerializableSniff extends Sniff
     private function cleanInterfaceNames($interfaceNames)
     {
         if (\is_string($interfaceNames) === true) {
-            // Probably received in old, pre-PHPCS 3.3.0 syntax.
+            // Probably received in old, pre-PHPCS 3.3.0 ruleset property syntax.
             $interfaceNames = \explode(',', $interfaceNames);
         }
 

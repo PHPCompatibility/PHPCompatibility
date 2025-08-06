@@ -26,7 +26,7 @@ final class NewConstantsInTraitsUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Test that an error is thrown for class constants declared with visibility.
+     * Test that an error is thrown for OO constants declared in traits.
      *
      * @dataProvider dataConstantInTrait
      *

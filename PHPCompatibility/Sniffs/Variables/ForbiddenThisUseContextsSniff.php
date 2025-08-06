@@ -33,7 +33,7 @@ use PHPCSUtils\Utils\Scopes;
  * be sniffed for:
  * - Using $this as static variable. (error _message_ change only).
  *
- * Also, the changes with relation to assigning `$this` dynamically can not be
+ * Also, the changes in relation to assigning `$this` dynamically can not be
  * sniffed for reliably, so are not covered by this sniff.
  * - Disable ability to re-assign `$this` indirectly through `$$`.
  * - Disable ability to re-assign `$this` indirectly through reference.

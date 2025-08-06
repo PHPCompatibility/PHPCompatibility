@@ -44,7 +44,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataIsDeprecated
+     * Data provider.
      *
      * @see testIsDeprecated()
      *
@@ -78,7 +78,7 @@ class RemovedPHP4StyleConstructorsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNoFalsePositives
+     * Data provider.
      *
      * @see testNoFalsePositives()
      *

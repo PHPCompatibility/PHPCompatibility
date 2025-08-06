@@ -92,7 +92,7 @@ final class MiscHelper
             && $tokens[$prev]['code'] === \T_NS_SEPARATOR
             && $tokens[($prev - 1)]['code'] === \T_STRING
         ) {
-            // Namespaced constant of the same name.
+            // Namespaced constant.
             return false;
         }
 
@@ -100,7 +100,7 @@ final class MiscHelper
             && $tokens[$prev]['code'] === \T_CONST
             && Scopes::isOOConstant($phpcsFile, $prev) === true
         ) {
-            // Class constant declaration of the same name.
+            // Class constant declaration.
             return false;
         }
 
