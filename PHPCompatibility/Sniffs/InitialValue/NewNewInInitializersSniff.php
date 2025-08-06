@@ -63,6 +63,22 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
     ];
 
     /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 10.0.0
+     *
+     * @return array<int|string>
+     */
+    public function register()
+    {
+        // As new expressions are not allowed in class properties, let's not sniff these.
+        $targets = parent::register();
+        unset($targets[\T_VARIABLE]);
+
+        return $targets;
+    }
+
+    /**
      * Do a version check to determine if this sniff needs to run at all.
      *
      * @since 10.0.0
@@ -93,11 +109,10 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
      */
     protected function processInitialValue(File $phpcsFile, $stackPtr, $start, $end, $type)
     {
-        if ($type === 'property'
-            || ($type === 'const'
-            && Scopes::validDirectScope($phpcsFile, $stackPtr, Collections::ooConstantScopes()) !== false)
+        if ($type === 'const'
+            && Scopes::validDirectScope($phpcsFile, $stackPtr, Collections::ooConstantScopes()) !== false
         ) {
-            // New is (still) not allowed in OO constants or properties.
+            // New is (still) not allowed in OO constants.
             return;
         }
 
