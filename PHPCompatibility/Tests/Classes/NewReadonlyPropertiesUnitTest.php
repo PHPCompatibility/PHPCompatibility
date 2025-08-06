@@ -26,15 +26,15 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Verify that first class callables are correctly detected.
+     * Verify that readonly properties are correctly detected.
      *
-     * @dataProvider dataFirstClassCallables
+     * @dataProvider dataNewReadonlyProperties
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testFirstClassCallables($line)
+    public function testNewReadonlyProperties($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertError($file, $line, 'Readonly properties are not supported in PHP 8.0 or earlier.');
@@ -43,11 +43,11 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @see testFirstClassCallables()
+     * @see testNewReadonlyProperties()
      *
      * @return array
      */
-    public static function dataFirstClassCallables()
+    public static function dataNewReadonlyProperties()
     {
         return [
             [63],
