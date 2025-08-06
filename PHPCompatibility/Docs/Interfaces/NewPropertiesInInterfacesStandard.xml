@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Properties in Interfaces"
+    >
+    <standard>
+    <![CDATA[
+    Declaring properties in interfaces is allowed since PHP 8.4.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: interface without properties.">
+        <![CDATA[
+interface Foo {
+    public MY_CONST = 10;
+
+    public method($a, $b);
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: interface declaring properties.">
+        <![CDATA[
+interface Foo {
+    <em>public string $readable { get; }</em>
+    <em>public string $writeable { set; }</em>
+    <em>public string $both { get; set; }</em>
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
