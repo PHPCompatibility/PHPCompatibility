@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Typed Constants"
+    >
+    <standard>
+    <![CDATA[
+    Declaring a type for OO constants is allowed since PHP 8.3.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: untyped OO constants.">
+        <![CDATA[
+class Foo {
+    const MULTIPLIER = 10;
+
+    const LOOKUP = ['a' => 1, 'b' => 2];
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.3: typed OO constants.">
+        <![CDATA[
+class Foo {
+    const <em>int</em> MULTIPLIER = 10;
+
+    const <em>array</em> LOOKUP = ['a' => 1, 'b' => 2];
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
