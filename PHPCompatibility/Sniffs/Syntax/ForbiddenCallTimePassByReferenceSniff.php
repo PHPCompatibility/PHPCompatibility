@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -56,7 +55,7 @@ class ForbiddenCallTimePassByReferenceSniff extends Sniff
      */
     public function register()
     {
-        $this->assignOrCompare = BCTokens::assignmentTokens() + BCTokens::equalityTokens();
+        $this->assignOrCompare = Tokens::$assignmentTokens + Tokens::$equalityTokens;
 
         return [
             \T_STRING,

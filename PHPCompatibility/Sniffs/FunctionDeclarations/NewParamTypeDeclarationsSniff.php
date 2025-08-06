@@ -14,7 +14,7 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\BCTokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -289,7 +289,7 @@ class NewParamTypeDeclarationsSniff extends Sniff
                     // Only throw this error for PHP 5.2+ as before that the "type hint not supported" error
                     // will be thrown.
                     if (($type === 'self' || $type === 'parent')
-                        && (Conditions::hasCondition($phpcsFile, $stackPtr, BCTokens::ooScopeTokens()) === false
+                        && (Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) === false
                             || ($tokens[$stackPtr]['code'] === \T_FUNCTION
                             && Scopes::isOOMethod($phpcsFile, $stackPtr) === false))
                         && ScannedCode::shouldRunOnOrBelow('5.1') === false

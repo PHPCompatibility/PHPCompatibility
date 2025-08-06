@@ -13,7 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\BackCompat\BCTokens;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -82,7 +82,7 @@ class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParame
                 return;
             }
 
-            if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
+            if (isset(Tokens::$textStringTokens[$tokens[$i]['code']]) === true
                 && \strpos($tokens[$i]['content'], '/>') !== false
             ) {
                 $phpcsFile->addError(

@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -279,7 +278,7 @@ class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallParamete
                 return;
             }
 
-            if (isset(BCTokens::textStringTokens()[$tokenCode]) === true) {
+            if (isset(Tokens::$textStringTokens[$tokenCode]) === true) {
                 $this->throwNotice($phpcsFile, $stackPtr, $functionName);
                 return;
             }

@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -119,7 +118,7 @@ class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallParameterS
                         break;
                     }
 
-                    if (isset(BCTokens::textStringTokens()[$tokens[$i]['code']]) === true
+                    if (isset(Tokens::$textStringTokens[$tokens[$i]['code']]) === true
                         && \strpos($tokens[$i]['content'], '>') !== false
                     ) {
                         $phpcsFile->addWarning(

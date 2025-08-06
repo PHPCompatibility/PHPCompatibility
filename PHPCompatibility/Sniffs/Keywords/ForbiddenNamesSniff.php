@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\BackCompat\BCTokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\FunctionDeclarations;
@@ -353,7 +352,7 @@ class ForbiddenNamesSniff extends Sniff
                  * and the 'conditions' aren't always correctly set, so we need to do an additional check for
                  * the last condition potentially being a previous trait T_USE.
                  */
-                $traitScopes = BCTokens::ooScopeTokens();
+                $traitScopes = Tokens::$ooScopeTokens;
                 unset($traitScopes[\T_INTERFACE]);
 
                 if (Conditions::hasCondition($phpcsFile, $stackPtr, $traitScopes) === false) {
