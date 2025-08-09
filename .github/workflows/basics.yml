@@ -139,7 +139,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 'latest'
-          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, display_startup_errors=On
           coverage: none
 
       - name: Regenerate the test files for the forbidden names test
