@@ -101,14 +101,14 @@ $anon = new class($param,) {};
 // Safeguard against false positives on arrow function declarations.
 $arrow = fn ($a, $b,) => $a * $b;
 
-// Safeguard that trailing comma's in method calls using PHP 8.0+ nullsafe object operator are flagged correctly.
+// Safeguard that trailing commas in method calls using PHP 8.0+ nullsafe object operator are flagged correctly.
 $foo?->bar( 'method', 'bar', );
 
-// Safeguard that trailing comma's in class instantiations in PHP 8.0+ attributes are flagged correctly.
+// Safeguard that trailing commas in class instantiations in PHP 8.0+ attributes are flagged correctly.
 #[Foo( 'constructor', 'bar', )]
 function bar() {}
 
-// Document how trailing comma's in PHP 8.1+ first class callables are handled.
+// Document how trailing commas in PHP 8.1+ first class callables are handled.
 register_callback(strtolower(...,)); // Parse error, but throw an error anyway as the calllable is by rights a function call.
 
 // Safeguard against false negatives on namespaced function calls.
