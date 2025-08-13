@@ -13,8 +13,9 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Applying the final modifier on a private method will produce a warning since PHP 8.0
@@ -46,7 +47,7 @@ class ForbiddenFinalPrivateMethodsSniff extends Sniff
      */
     public function register()
     {
-        return [\T_FUNCTION];
+        return Tokens::$ooScopeTokens;
     }
 
     /**
@@ -66,32 +67,31 @@ class ForbiddenFinalPrivateMethodsSniff extends Sniff
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Function, not method.
+        $ooMethods = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        if (empty($ooMethods)) {
+            // No methods declared in the OO construct at all. Bow out.
             return;
         }
 
-        $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (empty($name) === true) {
-            // Parse error or live coding.
-            return;
-        }
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
 
-        if (\strtolower($name) === '__construct') {
-            // The rule does not apply to constructors. Bow out.
-            return;
-        }
+        foreach ($ooMethodsLC as $name => $functionPtr) {
+            if ($name === '__construct') {
+                // The rule does not apply to constructors. Bow out.
+                continue;
+            }
 
-        $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        if ($properties['scope'] !== 'private' || $properties['is_final'] === false) {
-            // Not an private final method.
-            return;
-        }
+            $properties = FunctionDeclarations::getProperties($phpcsFile, $functionPtr);
+            if ($properties['scope'] !== 'private' || $properties['is_final'] === false) {
+                // Not an private final method.
+                continue;
+            }
 
-        $phpcsFile->addWarning(
-            'Private methods should not be declared as final since PHP 8.0',
-            $stackPtr,
-            'Found'
-        );
+            $phpcsFile->addWarning(
+                'Private methods should not be declared as final since PHP 8.0',
+                $functionPtr,
+                'Found'
+            );
+        }
     }
 }
