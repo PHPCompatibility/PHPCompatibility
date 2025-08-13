@@ -42,3 +42,6 @@ $anon = new class() {
         return $this->foo;
     }
 };
+
+// No methods, no problem.
+class NoMethods {}

@@ -13,8 +13,9 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * As of PHP 5.3, the __toString() magic method can no longer accept arguments.
@@ -40,7 +41,7 @@ class ForbiddenToStringParametersSniff extends Sniff
      */
     public function register()
     {
-        return [\T_FUNCTION];
+        return Tokens::$ooScopeTokens;
     }
 
     /**
@@ -60,18 +61,15 @@ class ForbiddenToStringParametersSniff extends Sniff
             return;
         }
 
-        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (\strtolower($functionName) !== '__tostring') {
-            // Not the right function.
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
+
+        if (isset($ooMethodsLC['__tostring']) === false) {
+            // OO construct doesn't declare a `__tostring()` method.
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Function, not method.
-            return;
-        }
-
-        $params = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        $params = FunctionDeclarations::getParameters($phpcsFile, $ooMethodsLC['__tostring']);
         if (empty($params)) {
             // Function declared without parameters.
             return;
@@ -79,7 +77,7 @@ class ForbiddenToStringParametersSniff extends Sniff
 
         $phpcsFile->addError(
             'The __toString() magic method can no longer accept arguments since PHP 5.3',
-            $stackPtr,
+            $ooMethodsLC['__tostring'],
             'Declared'
         );
     }

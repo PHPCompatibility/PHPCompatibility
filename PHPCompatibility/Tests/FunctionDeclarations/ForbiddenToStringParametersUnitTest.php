@@ -90,6 +90,7 @@ class ForbiddenToStringParametersUnitTest extends BaseSniffTestCase
         }
 
         $cases[] = [41];
+        $cases[] = [47];
 
         return $cases;
     }
