@@ -102,7 +102,7 @@ class RemovedCallingDestructAfterConstructorExitUnitTest extends BaseSniffTestCa
         $cases[] = [61];
         $cases[] = [66];
 
-        for ($line = 101; $line <= 130; $line++) {
+        for ($line = 101; $line <= 147; $line++) {
             $cases[] = [$line];
         }
 

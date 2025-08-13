@@ -15,10 +15,8 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
-use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\UseStatements;
 
 /**
@@ -44,7 +42,12 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
      */
     public function register()
     {
-        return [\T_FUNCTION];
+        // Note: interface constructors cannot contain code, enums cannot contain constructors or destructors.
+        return [
+            \T_CLASS,
+            \T_ANON_CLASS,
+            \T_TRAIT,
+        ];
     }
 
     /**
@@ -64,34 +67,22 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        // Note: interface constructors cannot contain code, enums cannot contain constructors or destructors.
-        $classPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, [\T_CLASS, \T_ANON_CLASS, \T_TRAIT]);
-        if ($classPtr === false) {
-            // Function, not method.
+        $ooMethods = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        if (empty($ooMethods)) {
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false
-            || isset($tokens[$classPtr]['scope_opener'], $tokens[$classPtr]['scope_closer']) === false
-        ) {
-            // Parse error, tokenizer error or live coding.
-            return;
-        }
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
 
-        $name = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (empty($name) === true) {
-            // Parse error or live coding.
-            return;
-        }
-
-        if (\strtolower($name) !== '__construct') {
+        if (isset($ooMethodsLC['__construct']) === false) {
             // The rule only applies to constructors. Bow out.
             return;
         }
 
-        $functionOpen  = $tokens[$stackPtr]['scope_opener'];
-        $functionClose = $tokens[$stackPtr]['scope_closer'];
+        $tokens        = $phpcsFile->getTokens();
+        $constructPtr  = $ooMethodsLC['__construct'];
+        $functionOpen  = $tokens[$constructPtr]['scope_opener'];
+        $functionClose = $tokens[$constructPtr]['scope_closer'];
         $exits         = [];
         for ($current = ($functionOpen + 1); $current < $functionClose; $current++) {
             if (isset(Tokens::$emptyTokens[$tokens[$current]['code']]) === true) {
@@ -134,67 +125,73 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        $hasDestruct = false;
-        $usesTraits  = false;
-        $isError     = false;
-        $classOpen   = $tokens[$classPtr]['scope_opener'];
-        $classClose  = $tokens[$classPtr]['scope_closer'];
-        $nextFunc    = $classOpen;
+        /*
+         * Now check if we can find a destructor method or if it is possible for a destructor method
+         * to exist within a used trait or parent class.
+         */
+        $hasDestruct = isset($ooMethodsLC['__destruct']);
 
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
-            // Skip over docblocks.
-            if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
-                $nextFunc = $tokens[$nextFunc]['comment_closer'];
-                continue;
-            }
-
-            // Skip over attributes.
-            if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
-                && isset($tokens[$nextFunc]['attribute_closer'])
-            ) {
-                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
-                continue;
-            }
-
-            if ($tokens[$nextFunc]['code'] === \T_USE
-                && UseStatements::isTraitUse($phpcsFile, $nextFunc) === true
-            ) {
-                $usesTraits = true;
-                continue;
-            }
-
-            $functionScopeCloser = $nextFunc;
-            if (isset($tokens[$nextFunc]['scope_closer'])) {
-                // Normal (non-abstract) method.
-                $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
-            }
-
-            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
-            $nextFunc = $functionScopeCloser; // Set up to skip over the method content.
-
-            if (empty($funcName) === true) {
-                continue;
-            }
-
-            if (\strtolower($funcName) !== '__destruct') {
-                continue;
-            }
-
-            $hasDestruct = true;
-            $isError     = true;
-            break;
-        }
-
-        if ($hasDestruct === false && $usesTraits === false) {
+        $extendsClass = false;
+        if ($hasDestruct === false) {
             /*
-             * No destruct method or trait use found, check if this class extends another one
+             * No destruct method found, check if this class extends another one
              * which may contain a destruct method.
              */
-            $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $classPtr);
-            if (empty($extends) === true) {
-                // No destruct method and class doesn't extend nor uses traits, so the calls to exit can be ignored.
-                return;
+            $extends = ObjectDeclarations::findExtendedClassName($phpcsFile, $stackPtr);
+            if (empty($extends) === false) {
+                $extendsClass = true;
             }
+        }
+
+        $usesTraits = false;
+        if ($hasDestruct === false && $extends === false) {
+            /*
+             * No destruct method or extended class found, check if this class uses traits
+             * which may contain a destruct method.
+             */
+            $nextFunc   = $tokens[$stackPtr]['scope_opener'];
+            $classClose = $tokens[$stackPtr]['scope_closer'];
+
+            while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE, \T_USE], ($nextFunc + 1), $classClose)) !== false) {
+                if ($tokens[$nextFunc]['code'] === \T_USE
+                    && UseStatements::isTraitUse($phpcsFile, $nextFunc) === true
+                ) {
+                    $usesTraits = true;
+                    break;
+                }
+
+                // Skip over docblocks.
+                if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
+                    $nextFunc = $tokens[$nextFunc]['comment_closer'];
+                    continue;
+                }
+
+                // Skip over attributes.
+                if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
+                    && isset($tokens[$nextFunc]['attribute_closer'])
+                ) {
+                    $nextFunc = $tokens[$nextFunc]['attribute_closer'];
+                    continue;
+                }
+
+                // Skip over functions.
+                if (isset($tokens[$nextFunc]['scope_closer'])) {
+                    // Normal (non-abstract) method.
+                    $nextFunc = $tokens[$nextFunc]['scope_closer'];
+                    continue;
+                }
+
+                if (isset($tokens[$nextFunc]['parenthesis_closer'])) {
+                    // Abstract method.
+                    $nextFunc = $tokens[$nextFunc]['parenthesis_closer'];
+                    continue;
+                }
+            }
+        }
+
+        if ($hasDestruct === false && $usesTraits === false && $extends === false) {
+            // No destruct method and class doesn't extend nor uses traits, so the calls to exit can be ignored.
+            return;
         }
 
         /*
@@ -203,13 +200,13 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
          */
         $error     = 'When %s() is called within an object constructor, the object destructor will no longer be called since PHP 8.0';
         $errorCode = 'Found';
-        if ($isError === false) {
+        if ($hasDestruct === false) {
             $error    .= ' While no __destruct() method was found in this class, one may be declared in the parent class or in a trait being used.';
             $errorCode = 'NeedsInspection';
         }
 
         foreach ($exits as $ptr) {
-            MessageHelper::addMessage($phpcsFile, $error, $ptr, $isError, $errorCode, [$tokens[$ptr]['content']]);
+            MessageHelper::addMessage($phpcsFile, $error, $ptr, $hasDestruct, $errorCode, [$tokens[$ptr]['content']]);
         }
     }
 }
