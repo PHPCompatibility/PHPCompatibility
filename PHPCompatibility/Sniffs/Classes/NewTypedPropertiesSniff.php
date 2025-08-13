@@ -14,8 +14,11 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Exceptions\ValueError;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\Variables;
 
@@ -140,10 +143,7 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_VARIABLE,
-            \T_FUNCTION,
-        ];
+        return Collections::ooPropertyScopes();
     }
 
     /**
@@ -161,46 +161,56 @@ class NewTypedPropertiesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens         = $phpcsFile->getTokens();
+        $ooProperties   = ObjectDeclarations::getDeclaredProperties($phpcsFile, $stackPtr);
+        $endOfStatement = false;
 
-        if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-            if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
-                // Not a class property.
-                return;
+        foreach ($ooProperties as $varToken) {
+            if ($endOfStatement !== false && $varToken < $endOfStatement) {
+                // Don't throw the same error multiple times for multi-property declarations.
+                // Also skip over any other constructor promoted properties.
+                continue;
             }
 
-            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+            try {
+                $properties = Variables::getMemberProperties($phpcsFile, $varToken);
+            } catch (ValueError $e) {
+                // This must be constructor property promotion.
+                // Ignore for now and skip over any other promoted properties, these will be handled via the constructor.
+                $deepestOpen = Parentheses::getLastOpener($phpcsFile, $varToken);
+                if ($deepestOpen !== false
+                    && $stackPtr < $deepestOpen
+                    && Parentheses::isOwnerIn($phpcsFile, $deepestOpen, \T_FUNCTION)
+                    && isset($tokens[$deepestOpen]['parenthesis_closer'])
+                ) {
+                    $endOfStatement = $tokens[$deepestOpen]['parenthesis_closer'];
+                }
+
+                continue;
+            }
+
             if ($properties['type'] === '') {
                 // Not a typed property.
-                return;
+                continue;
             }
 
             $this->checkType($phpcsFile, $properties['type_token'], $properties);
 
-            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
-            if ($endOfStatement !== false) {
-                // Don't throw the same error multiple times for multi-property declarations.
-                return ($endOfStatement + 1);
-            }
-
-            return;
+            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($varToken + 1));
         }
 
         /*
-         * This must be a function declaration. Let's check for constructor property promotion.
+         * Now, let's check for typed properties in constructor property promotion.
          */
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Global function.
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
+
+        if (isset($ooMethodsLC['__construct']) === false) {
+            // OO construct doesn't declare a `__construct()` method.
             return;
         }
 
-        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (\strtolower($functionName) !== '__construct') {
-            // Not a class constructor.
-            return;
-        }
-
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $ooMethodsLC['__construct']);
         foreach ($parameters as $param) {
             if (empty($param['property_visibility']) === true) {
                 // Not property promotion.
@@ -209,7 +219,7 @@ class NewTypedPropertiesSniff extends Sniff
 
             if ($param['type_hint'] === '') {
                 // Not a typed property.
-                return;
+                continue;
             }
 
             // Juggle some of the array entries to what it expected for properties.
