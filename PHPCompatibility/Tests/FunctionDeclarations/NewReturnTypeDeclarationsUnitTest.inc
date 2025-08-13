@@ -142,7 +142,7 @@ enum Suit implements Colorful
 function DNFTypes($var): (Foo&Bar)|null {}
 $closure = function($a) : (A&B)|(C&D) {};
 
-// Intentional fatal error - &/| reversed, but that's not the concern of the sniff.
+// Intentional fatal error - &/| reversed. This is not a valid type. Ignore.
 $arrow = fn($a):B&(D|W)|int => $a;
 
 // Intentional fatal error - segments are not unique, but that's not the concern of the sniff.

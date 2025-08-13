@@ -20,6 +20,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
 
@@ -1559,9 +1560,7 @@ class NewClassesSniff extends Sniff
      */
     private function checkTypeDeclaration($phpcsFile, $stackPtr, $typeString)
     {
-        // Strip off potential nullable indication.
-        $typeString = \ltrim($typeString, '?');
-        $types      = \preg_split('`[|&()]`', $typeString, -1, \PREG_SPLIT_NO_EMPTY);
+        $types = TypeString::filterOOTypes(TypeString::toArray($typeString));
 
         if (empty($types) === true) {
             return;

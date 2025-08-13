@@ -75,9 +75,9 @@ function XmlRpcServerTypeHintB(
 
 // Test support for PHP 7.4 property types.
 public SWFButton $var; // Ignore, not a property, parse error.
-
 $anon = new class() {
-    public SQLiteDatabase $property;
+    public $untyped;
+    public SQLiteDatabase $Typed;
 };
 
 // Test support for PHP 7.4 arrow functions.
@@ -99,7 +99,7 @@ class IntersectionTypes {
 
     public SWFMorph&SWFMovie $property;
     public function paramTypeB(SWFSprite&\SWFText $param) {}
-    public function returnType($param) : HW_API_Object&HW_API_Attribute {}
+    public function returnType(int $param) : HW_API_Object&HW_API_Attribute {}
 }
 
 function CheckAllTypeParts(
