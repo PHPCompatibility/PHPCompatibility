@@ -11,10 +11,11 @@
 namespace PHPCompatibility\Sniffs\Classes;
 
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Detect constructor property promotion as supported since PHP 8.0.
@@ -38,7 +39,7 @@ final class NewConstructorPropertyPromotionSniff extends Sniff
      */
     public function register()
     {
-        return [\T_FUNCTION];
+        return Tokens::$ooScopeTokens;
     }
 
     /**
@@ -58,18 +59,15 @@ final class NewConstructorPropertyPromotionSniff extends Sniff
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Global or namespaced function.
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
+
+        if (isset($ooMethodsLC['__construct']) === false) {
+            // OO construct doesn't declare a `__construct()` method.
             return;
         }
 
-        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (\strtolower($functionName) !== '__construct') {
-            // Not a class constructor.
-            return;
-        }
-
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $ooMethodsLC['__construct']);
         if (empty($parameters)) {
             // Nothing to do.
             return;
