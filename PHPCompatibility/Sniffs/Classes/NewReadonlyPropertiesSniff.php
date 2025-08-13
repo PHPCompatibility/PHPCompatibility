@@ -13,8 +13,11 @@ namespace PHPCompatibility\Sniffs\Classes;
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Exceptions\ValueError;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\Variables;
 
 /**
@@ -39,10 +42,7 @@ final class NewReadonlyPropertiesSniff extends Sniff
      */
     public function register()
     {
-        return [
-            \T_VARIABLE,
-            \T_FUNCTION,
-        ];
+        return Collections::ooPropertyScopes();
     }
 
     /**
@@ -66,44 +66,54 @@ final class NewReadonlyPropertiesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
         $error  = 'Readonly properties are not supported in PHP 8.0 or earlier. Property %s was declared as readonly.';
 
-        if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-            if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
-                // Not a class property.
-                return;
+        $ooProperties   = ObjectDeclarations::getDeclaredProperties($phpcsFile, $stackPtr);
+        $endOfStatement = false;
+        foreach ($ooProperties as $varToken) {
+            if ($endOfStatement !== false && $varToken < $endOfStatement) {
+                // Don't throw the same error multiple times for multi-property declarations.
+                // Also skip over any other constructor promoted properties.
+                continue;
             }
 
-            $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
+            try {
+                $properties = Variables::getMemberProperties($phpcsFile, $varToken);
+            } catch (ValueError $e) {
+                // This must be constructor property promotion.
+                // Ignore for now and skip over any other promoted properties, these will be handled via the constructor.
+                $deepestOpen = Parentheses::getLastOpener($phpcsFile, $varToken);
+                if ($deepestOpen !== false
+                    && $stackPtr < $deepestOpen
+                    && Parentheses::isOwnerIn($phpcsFile, $deepestOpen, \T_FUNCTION)
+                    && isset($tokens[$deepestOpen]['parenthesis_closer'])
+                ) {
+                    $endOfStatement = $tokens[$deepestOpen]['parenthesis_closer'];
+                }
+
+                continue;
+            }
+
             if ($properties['is_readonly'] === false) {
                 // Not a readonly property.
-                return;
+                continue;
             }
 
-            $phpcsFile->addError($error, $stackPtr, 'Found', [$tokens[$stackPtr]['content']]);
+            $phpcsFile->addError($error, $varToken, 'Found', [$tokens[$varToken]['content']]);
 
-            $endOfStatement = $phpcsFile->findNext(\T_SEMICOLON, ($stackPtr + 1));
-            if ($endOfStatement !== false) {
-                // Don't throw the same error multiple times for multi-property declarations.
-                return ($endOfStatement + 1);
-            }
-
-            return;
+            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($varToken + 1));
         }
 
         /*
-         * This must be a function declaration. Let's check for constructor property promotion.
+         * Now, let's check for readonly properties in constructor property promotion.
          */
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Global function.
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
+
+        if (isset($ooMethodsLC['__construct']) === false) {
+            // OO construct doesn't declare a `__construct()` method.
             return;
         }
 
-        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (\strtolower($functionName) !== '__construct') {
-            // Not a class constructor.
-            return;
-        }
-
-        $parameters = FunctionDeclarations::getParameters($phpcsFile, $stackPtr);
+        $parameters = FunctionDeclarations::getParameters($phpcsFile, $ooMethodsLC['__construct']);
         foreach ($parameters as $param) {
             if (empty($param['readonly_token']) === true) {
                 // Not property promotion with readonly.

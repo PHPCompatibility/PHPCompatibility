@@ -64,19 +64,19 @@ class PHP81Example {
     private readonly ?ClassName $nullableClassType;
 
     // Readonly properties do not need to explicitly declare their visibility.
-    readonly bool $flag;
+    readonly bool $noVisibility;
 
 	// Readonly properties cannot have a default value, but that's not the concern of this sniff.
     public readonly int $scalarType = 0;
 
     // Readonly can only be applied to typed properties, but that's not the concern of this sniff.
-    public readonly $prop;
+    public readonly $unTyped;
 
     // Readonly is not allowed on static properties, but that's not the concern of this sniff.
     public static readonly Iterable $staticProp;
 
     // Readonly can not be applied to old-style "var" properties, but that's not the concern of this sniff.
-    var readonly bool $flag;
+    var readonly bool $declaredUsingVar;
 
 	// Multi-property declarations.
     public readonly float $a, $b;
