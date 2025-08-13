@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
@@ -347,61 +346,12 @@ class RemovedSerializableSniff extends Sniff
      */
     private function findMagicMethods($phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $class  = $tokens[$stackPtr];
-
-        $scopeCloser           = $class['scope_closer'];
-        $nextFunc              = $class['scope_opener'];
-        $foundMagicSerialize   = false;
-        $foundMagicUnserialize = false;
-
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE], ($nextFunc + 1), $scopeCloser)) !== false) {
-            // Skip over docblocks.
-            if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG
-                && isset($tokens[$nextFunc]['comment_closer'])
-            ) {
-                $nextFunc = $tokens[$nextFunc]['comment_closer'];
-                continue;
-            }
-
-            // Skip over attributes.
-            if ($tokens[$nextFunc]['code'] === \T_ATTRIBUTE
-                && isset($tokens[$nextFunc]['attribute_closer'])
-            ) {
-                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
-                continue;
-            }
-
-            $functionScopeCloser = $nextFunc;
-            if (isset($tokens[$nextFunc]['scope_closer'])) {
-                // Normal (non-abstract, non-interface) method.
-                $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
-            }
-
-            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
-            if (empty($funcName) || \is_string($funcName) === false) {
-                // Shouldn't be possible, but just in case.
-                $nextFunc = $functionScopeCloser; // @codeCoverageIgnore
-                continue;
-            }
-
-            if (\strtolower($funcName) === '__serialize') {
-                $foundMagicSerialize = true;
-            } elseif (\strtolower($funcName) === '__unserialize') {
-                $foundMagicUnserialize = true;
-            }
-
-            // If both have been found, no need to continue looping through the functions.
-            if ($foundMagicSerialize === true && $foundMagicUnserialize === true) {
-                break;
-            }
-
-            $nextFunc = $functionScopeCloser;
-        }
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
 
         return [
-            '__serialize'   => $foundMagicSerialize,
-            '__unserialize' => $foundMagicUnserialize,
+            '__serialize'   => isset($ooMethodsLC['__serialize']),
+            '__unserialize' => isset($ooMethodsLC['__unserialize']),
         ];
     }
 }
