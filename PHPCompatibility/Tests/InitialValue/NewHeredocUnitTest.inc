@@ -84,10 +84,10 @@ FOOBAR;
 /*
  * Test handling of multi-declarations.
  */
-static $a = <<<EOD
+static $staticA = <<<EOD
 Multi-declaration in static variable.
 EOD
-    , $b = <<<"EOT"
+    , $staticB = <<<"EOT"
 Multi-declaration in static variable.
 EOT;
 
@@ -161,10 +161,10 @@ FOOBAR;
 /*
  * Test detection in multi-declarations where not all parts have an initial value.
  */
-static $a, $b, $c = <<<"EOT"
+static $multiA, $multib, $multic = <<<"EOT"
 Multi-declaration in static variable.
 EOT
-    $d;
+    , $multid;
 
 // Class properties.
 class foo
