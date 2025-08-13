@@ -129,6 +129,7 @@ class AbstractPrivateMethodsUnitTest extends BaseSniffTestCase
         }
 
         $cases[] = [47];
+        $cases[] = [55];
 
         return $cases;
     }
