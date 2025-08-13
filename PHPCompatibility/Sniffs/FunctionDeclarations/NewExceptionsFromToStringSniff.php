@@ -14,8 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * As of PHP 7.4, throwing exceptions from a `__toString()` method is allowed.
@@ -57,7 +56,7 @@ class NewExceptionsFromToStringSniff extends Sniff
         $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
         $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
 
-        return [\T_FUNCTION];
+        return Tokens::$ooScopeTokens;
     }
 
     /**
@@ -77,20 +76,19 @@ class NewExceptionsFromToStringSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-        if (isset($tokens[$stackPtr]['scope_opener'], $tokens[$stackPtr]['scope_closer']) === false) {
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLC = \array_change_key_case($ooMethods, \CASE_LOWER);
+
+        if (isset($ooMethodsLC['__tostring']) === false) {
+            // OO construct doesn't declare a `__tostring()` method.
+            return;
+        }
+
+        $tokens              = $phpcsFile->getTokens();
+        $toStringFunctionPtr = $ooMethodsLC['__tostring'];
+
+        if (isset($tokens[$toStringFunctionPtr]['scope_opener'], $tokens[$toStringFunctionPtr]['scope_closer']) === false) {
             // Abstract function, interface function, live coding or parse error.
-            return;
-        }
-
-        $functionName = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        if (\strtolower($functionName) !== '__tostring') {
-            // Not the right function.
-            return;
-        }
-
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Function, not method.
             return;
         }
 
@@ -98,11 +96,11 @@ class NewExceptionsFromToStringSniff extends Sniff
          * Examine the content of the function.
          */
         $error       = 'Throwing exceptions from __toString() was not allowed prior to PHP 7.4';
-        $throwPtr    = $tokens[$stackPtr]['scope_opener'];
+        $throwPtr    = $tokens[$toStringFunctionPtr]['scope_opener'];
         $errorThrown = false;
 
         do {
-            $throwPtr = $phpcsFile->findNext([\T_THROW, \T_TRY], ($throwPtr + 1), $tokens[$stackPtr]['scope_closer']);
+            $throwPtr = $phpcsFile->findNext([\T_THROW, \T_TRY], ($throwPtr + 1), $tokens[$toStringFunctionPtr]['scope_closer']);
             if ($throwPtr === false) {
                 break;
             }
@@ -131,7 +129,7 @@ class NewExceptionsFromToStringSniff extends Sniff
          * {@internal This can be partially replaced by the findCommentAboveFunction()
          *            utility function in due time.}
          */
-        $commentEnd = $phpcsFile->findPrevious($this->docblockIgnoreTokens, ($stackPtr - 1), null, true);
+        $commentEnd = $phpcsFile->findPrevious($this->docblockIgnoreTokens, ($toStringFunctionPtr - 1), null, true);
         if ($commentEnd === false || $tokens[$commentEnd]['code'] !== \T_DOC_COMMENT_CLOSE_TAG) {
             return;
         }
@@ -143,7 +141,7 @@ class NewExceptionsFromToStringSniff extends Sniff
             }
 
             // Found a throws tag.
-            $phpcsFile->addError($error, $stackPtr, 'ThrowsTagFoundInDocblock');
+            $phpcsFile->addError($error, $toStringFunctionPtr, 'ThrowsTagFoundInDocblock');
             break;
         }
     }

@@ -157,3 +157,6 @@ class CaughtExceptionButDocblockStillSaysThrows {
         }
     }
 }
+
+// No methods, no problem.
+class NoMethods {}
