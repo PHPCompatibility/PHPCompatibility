@@ -183,4 +183,9 @@ class DNFTypes {
 
     // Intentional fatal error - segments which are strict subsets of others are disallowed, but that's not the concern of the sniff.
     public (A&self)|A $nonSubsetNotAllowedPlusSelf;
+
+    public function __construct(
+        protected (Foo&Bar)|int $x,
+        public (A&B)|(C&D) $y = new Something,
+    ) {}
 }

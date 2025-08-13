@@ -108,6 +108,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             [179],
             [182],
             [185],
+            [188],
+            [189],
         ];
     }
 
@@ -484,6 +486,8 @@ class NewTypedPropertiesUnitTest extends BaseSniffTestCase
             ['B&(D|W)', 179],
             ['(A&B)|(B&A)', 182],
             ['(A&self)|A', 185],
+            ['(Foo&Bar)|int', 188],
+            ['(A&B)|(C&D)', 189],
         ];
     }
 
