@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -60,14 +61,14 @@ abstract class AbstractInitialValueSniff extends Sniff
     {
         $targets = [
             // Constant declarations.
-            \T_CONST    => \T_CONST,
-
-            // Property declarations.
-            \T_VARIABLE => \T_VARIABLE,
+            \T_CONST  => \T_CONST,
 
             // Static variable declarations.
-            \T_STATIC   => \T_STATIC,
+            \T_STATIC => \T_STATIC,
         ];
+
+        // Property declarations.
+        $targets += Collections::ooPropertyScopes();
 
         // Function parameters.
         $targets += Collections::functionDeclarationTokens();
@@ -138,15 +139,33 @@ abstract class AbstractInitialValueSniff extends Sniff
                 return $tokens[$stackPtr]['scope_opener'];
             }
 
-            /*
-             * No need for the sniff to be triggered by the T_VARIABLEs in the function
-             * definition as we've already examined them above, so let's skip over them.
-             */
-            return $parenthesisCloser;
+            return;
         }
 
         /*
-         * Handle default values for constants/properties/static variables.
+         * Handle default values for OO properties.
+         */
+        if (isset(Collections::ooPropertyScopes()[$tokens[$stackPtr]['code']])) {
+            $ooProperties = ObjectDeclarations::getDeclaredProperties($phpcsFile, $stackPtr);
+            if (empty($ooProperties)) {
+                return;
+            }
+
+            foreach ($ooProperties as $variableToken) {
+                if (Scopes::isOOProperty($phpcsFile, $variableToken) === false) {
+                    // Skip constructor promoted properties. Those are handled via the function declaration token.
+                    continue;
+                }
+
+                $end = $this->findEndOfCurrentDeclaration($phpcsFile, $variableToken, $phpcsFile->numTokens);
+                $this->processSubStatement($phpcsFile, $variableToken, $end, 'property');
+            }
+
+            return;
+        }
+
+        /*
+         * Handle default values for constants/static variables.
          */
         $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
         if ($endOfStatement === false) {
@@ -155,18 +174,6 @@ abstract class AbstractInitialValueSniff extends Sniff
         }
 
         $type = 'const';
-
-        // Filter out non-property declarations.
-        if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
-            if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
-                return;
-            }
-
-            $type = 'property';
-
-            // Move back one token to have the same starting point as the others.
-            $stackPtr = ($stackPtr - 1);
-        }
 
         // Filter out late static binding, class properties, static closures and arrow function and static return types.
         if ($tokens[$stackPtr]['code'] === \T_STATIC) {
@@ -177,7 +184,7 @@ abstract class AbstractInitialValueSniff extends Sniff
             }
 
             if (Scopes::isOOProperty($phpcsFile, $next) === true) {
-                // Class properties are examined based on the T_VARIABLE token.
+                // Class properties are examined based on the OO token.
                 return;
             }
             unset($next);
@@ -192,7 +199,7 @@ abstract class AbstractInitialValueSniff extends Sniff
             $start = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
             if ($start === false
                 || ($tokens[$stackPtr]['code'] === \T_CONST && $tokens[$start]['code'] !== \T_STRING)
-                || ($tokens[$stackPtr]['code'] !== \T_CONST && $tokens[$start]['code'] !== \T_VARIABLE)
+                || ($tokens[$stackPtr]['code'] === \T_STATIC && $tokens[$start]['code'] !== \T_VARIABLE)
             ) {
                 // Shouldn't be possible, skip over the problematic part of the statement.
                 $start = ($end + 1);

@@ -73,7 +73,9 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
     {
         // As new expressions are not allowed in class properties, let's not sniff these.
         $targets = parent::register();
-        unset($targets[\T_VARIABLE]);
+        foreach (Collections::ooPropertyScopes() as $token) {
+            unset($targets[$token]);
+        }
 
         return $targets;
     }
