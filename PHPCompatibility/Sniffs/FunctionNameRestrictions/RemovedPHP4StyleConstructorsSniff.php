@@ -13,7 +13,6 @@ namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\NamingConventions;
@@ -90,64 +89,28 @@ class RemovedPHP4StyleConstructorsSniff extends Sniff
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
-        $class  = $tokens[$stackPtr];
-
-        if (isset($class['scope_opener'], $class['scope_closer']) === false) {
-            return;
-        }
-
-        $scopeCloser = $class['scope_closer'];
-        $className   = ObjectDeclarations::getName($phpcsFile, $stackPtr);
-
+        $className = ObjectDeclarations::getName($phpcsFile, $stackPtr);
         if (empty($className) || \is_string($className) === false) {
             return;
         }
 
-        $nextFunc            = $class['scope_opener'];
-        $newConstructorFound = false;
+        $ooMethods = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        if (empty($ooMethods)) {
+            // No methods declared in the OO construct at all. Bow out.
+            return;
+        }
+
+        $ooMethodsLC         = \array_change_key_case($ooMethods, \CASE_LOWER);
+        $newConstructorFound = isset($ooMethodsLC['__construct']);
+
         $oldConstructorFound = false;
         $oldConstructorPos   = -1;
-        while (($nextFunc = $phpcsFile->findNext([\T_FUNCTION, \T_DOC_COMMENT_OPEN_TAG, \T_ATTRIBUTE], ($nextFunc + 1), $scopeCloser)) !== false) {
-            // Skip over docblocks.
-            if ($tokens[$nextFunc]['code'] === \T_DOC_COMMENT_OPEN_TAG) {
-                $nextFunc = $tokens[$nextFunc]['comment_closer'];
-                continue;
-            }
-
-            // Skip over attributes.
-            if (isset($tokens[$nextFunc]['attribute_closer'])) {
-                $nextFunc = $tokens[$nextFunc]['attribute_closer'];
-                continue;
-            }
-
-            $functionScopeCloser = $nextFunc;
-            if (isset($tokens[$nextFunc]['scope_closer'])) {
-                // Normal (non-interface, non-abstract) method.
-                $functionScopeCloser = $tokens[$nextFunc]['scope_closer'];
-            }
-
-            $funcName = FunctionDeclarations::getName($phpcsFile, $nextFunc);
-            if (empty($funcName) || \is_string($funcName) === false) {
-                $nextFunc = $functionScopeCloser;
-                continue;
-            }
-
-            if (\strtolower($funcName) === '__construct') {
-                $newConstructorFound = true;
-            }
-
-            if (NamingConventions::isEqual($funcName, $className) === true) {
+        foreach ($ooMethods as $methodName => $functionPtr) {
+            if (NamingConventions::isEqual($methodName, $className) === true) {
                 $oldConstructorFound = true;
-                $oldConstructorPos   = $nextFunc;
-            }
-
-            // If both have been found, no need to continue looping through the functions.
-            if ($newConstructorFound === true && $oldConstructorFound === true) {
+                $oldConstructorPos   = $functionPtr;
                 break;
             }
-
-            $nextFunc = $functionScopeCloser;
         }
 
         if ($newConstructorFound === false && $oldConstructorFound === true) {
