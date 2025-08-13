@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\Constants;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
@@ -128,6 +129,9 @@ class ForbiddenNamesSniff extends Sniff
 
     /**
      * T_STRING keywords to recognize as forbidden names.
+     *
+     * These keywords cannot be used to name a class, interface or trait.
+     * Prior to PHP 8.0, they were also prohibited from being used in namespaces.
      *
      * @since 7.0.8
      * @since 10.0.0 Moved from the ForbiddenNamesAsDeclared sniff to this sniff.
@@ -622,17 +626,31 @@ class ForbiddenNamesSniff extends Sniff
      */
     protected function processConstDeclaration(File $phpcsFile, $stackPtr)
     {
-        $namePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($namePtr === false) {
-            // Live coding or parse error.
-            return;
-        }
+        $tokens       = $phpcsFile->getTokens();
+        $isOOConstant = Scopes::isOOConstant($phpcsFile, $stackPtr);
 
-        $tokens = $phpcsFile->getTokens();
-        $name   = $tokens[$namePtr]['content'];
-        $nameLc = \strtolower($name);
-        if (isset($this->invalidNames[$nameLc]) === false) {
-            return;
+        if ($isOOConstant === false) {
+            // Non-class constant declared using the "const" keyword.
+            $namePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            if ($namePtr === false) {
+                // Live coding or parse error.
+                return;
+            }
+
+            $name   = $tokens[$namePtr]['content'];
+            $nameLc = \strtolower($name);
+            if (isset($this->invalidNames[$nameLc]) === false) {
+                return;
+            }
+        } else {
+            // Class constants can be typed since PHP 8.3, so handle these separately.
+            $properties = Constants::getProperties($phpcsFile, $stackPtr);
+            $namePtr    = $properties['name_token'];
+            $name       = $tokens[$namePtr]['content'];
+            $nameLc     = \strtolower($name);
+            if (isset($this->invalidNames[$nameLc]) === false) {
+                return;
+            }
         }
 
         /*
@@ -644,7 +662,7 @@ class ForbiddenNamesSniff extends Sniff
          * when used as OO constant names, as they are not problematic in PHP < 7.0.
          */
         if ($nameLc !== 'class'
-            && Scopes::isOOConstant($phpcsFile, $stackPtr) === true
+            && $isOOConstant === true
             && (ScannedCode::shouldRunOnOrBelow('5.6') === false
                 || ($this->invalidNames[$nameLc] !== 'all'
                 && \version_compare($this->invalidNames[$nameLc], '7.0', '>=')))

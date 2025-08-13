@@ -86,3 +86,11 @@ define(value: 'class', constant_name: 'class'); // Error.
 // Ensure that "mixed" when used in a namespace name gets flagged when PHP 7 needs to be supported, as it was already soft reserved.
 namespace mixed;
 namespace Foo\Mixed\Baz;
+
+// Ensure that keyword used as the constant name for a PHP 8.3+ typed constant are picked up correctly.
+class TypedConstants {
+    const \A FINAL = new A;
+    public const A|B FOR = new B;
+    protected const A&B EMPTY = new A;
+    private const (A&B)|C PUBLIC = new C;
+}
