@@ -13,9 +13,10 @@ namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
-use PHPCSUtils\Utils\Scopes;
 
 /**
  * Verifies the use of the correct visibility and static properties of magic methods.
@@ -123,17 +124,14 @@ class NonStaticMagicMethodsSniff extends Sniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 5.5
-     * @since 5.6    Now also checks traits.
-     * @since 7.1.4  Now also checks anonymous classes.
-     * @since 10.0.0 Switch to check based on T_FUNCTION token instead of OO construct token.
+     * @since 5.6   Now also checks traits.
+     * @since 7.1.4 Now also checks anonymous classes.
      *
      * @return array<int|string>
      */
     public function register()
     {
-        return [
-            \T_FUNCTION,
-        ];
+        return Tokens::$ooScopeTokens;
     }
 
 
@@ -155,63 +153,66 @@ class NonStaticMagicMethodsSniff extends Sniff
             return;
         }
 
-        if (Scopes::isOOMethod($phpcsFile, $stackPtr) === false) {
-            // Not a method.
+        $ooMethods = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        if (empty($ooMethods)) {
+            // No methods declared in the OO construct at all. Bow out.
             return;
         }
 
-        $methodName   = FunctionDeclarations::getName($phpcsFile, $stackPtr);
-        $methodNameLc = \strtolower($methodName);
+        $shouldRunOnOrAbove80 = ScannedCode::shouldRunOnOrAbove('8.0');
 
-        if (isset($this->magicMethods[$methodNameLc]) === false) {
-            // Not one of the magic methods we're looking for.
-            return;
-        }
-
-        // Special case __wakeup() for which the signature modifiers are only enforced since PHP 8.0.
-        $qualifyingPhrase = '';
-        if ($methodNameLc === '__wakeup') {
-            if (ScannedCode::shouldRunOnOrAbove('8.0') === false) {
-                return;
+        foreach ($ooMethods as $methodName => $functionPtr) {
+            $methodNameLc = \strtolower($methodName);
+            if (isset($this->magicMethods[$methodNameLc]) === false) {
+                // Not one of the magic methods we're looking for.
+                continue;
             }
 
-            $qualifyingPhrase = ' since PHP 8.0';
-        }
+            // Special case __wakeup() for which the signature modifiers are only enforced since PHP 8.0.
+            $qualifyingPhrase = '';
+            if ($methodNameLc === '__wakeup') {
+                if ($shouldRunOnOrAbove80 === false) {
+                    continue;
+                }
 
-        $methodProperties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
-        $errorCodeBase    = MessageHelper::stringToErrorCode($methodNameLc);
-
-        if (isset($this->magicMethods[$methodNameLc]['visibility'])
-            && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']
-        ) {
-            $error     = 'Visibility for magic method %s must be %s%s. Found: %s';
-            $errorCode = $errorCodeBase . 'MethodVisibility';
-            $data      = [
-                $methodName,
-                $this->magicMethods[$methodNameLc]['visibility'],
-                $qualifyingPhrase,
-                $methodProperties['scope'],
-            ];
-
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
-        }
-
-        if (isset($this->magicMethods[$methodNameLc]['static'])
-            && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']
-        ) {
-            $error     = 'Magic method %s cannot be defined as static%s.';
-            $errorCode = $errorCodeBase . 'MethodStatic';
-            $data      = [
-                $methodName,
-                $qualifyingPhrase,
-            ];
-
-            if ($this->magicMethods[$methodNameLc]['static'] === true) {
-                $error     = 'Magic method %s must be defined as static.';
-                $errorCode = $errorCodeBase . 'MethodNonStatic';
+                $qualifyingPhrase = ' since PHP 8.0';
             }
 
-            $phpcsFile->addError($error, $stackPtr, $errorCode, $data);
+            $methodProperties = FunctionDeclarations::getProperties($phpcsFile, $functionPtr);
+            $errorCodeBase    = MessageHelper::stringToErrorCode($methodNameLc);
+
+            if (isset($this->magicMethods[$methodNameLc]['visibility'])
+                && $this->magicMethods[$methodNameLc]['visibility'] !== $methodProperties['scope']
+            ) {
+                $error     = 'Visibility for magic method %s must be %s%s. Found: %s';
+                $errorCode = $errorCodeBase . 'MethodVisibility';
+                $data      = [
+                    $methodName,
+                    $this->magicMethods[$methodNameLc]['visibility'],
+                    $qualifyingPhrase,
+                    $methodProperties['scope'],
+                ];
+
+                $phpcsFile->addError($error, $functionPtr, $errorCode, $data);
+            }
+
+            if (isset($this->magicMethods[$methodNameLc]['static'])
+                && $this->magicMethods[$methodNameLc]['static'] !== $methodProperties['is_static']
+            ) {
+                $error     = 'Magic method %s cannot be defined as static%s.';
+                $errorCode = $errorCodeBase . 'MethodStatic';
+                $data      = [
+                    $methodName,
+                    $qualifyingPhrase,
+                ];
+
+                if ($this->magicMethods[$methodNameLc]['static'] === true) {
+                    $error     = 'Magic method %s must be defined as static.';
+                    $errorCode = $errorCodeBase . 'MethodNonStatic';
+                }
+
+                $phpcsFile->addError($error, $functionPtr, $errorCode, $data);
+            }
         }
     }
 }

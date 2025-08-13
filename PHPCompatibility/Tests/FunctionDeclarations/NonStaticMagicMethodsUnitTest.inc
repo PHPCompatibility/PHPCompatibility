@@ -378,3 +378,6 @@ enum WakeUpStatic
 {
     static function __wakeup() {}
 }
+
+// No methods, no problem.
+class NoMethods {}
