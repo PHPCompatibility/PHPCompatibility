@@ -52,7 +52,7 @@ final class ScannedCodeUnitTest extends TestCase
         self::$config = new Config();
 
         self::$reflMethod = new ReflectionMethod('PHPCompatibility\Helpers\ScannedCode', 'getTestVersion');
-        self::$reflMethod->setAccessible(true);
+        (\PHP_VERSION_ID < 80100) && self::$reflMethod->setAccessible(true);
     }
 
     /**
