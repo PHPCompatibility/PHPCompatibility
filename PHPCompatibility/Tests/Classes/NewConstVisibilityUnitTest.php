@@ -73,6 +73,10 @@ class NewConstVisibilityUnitTest extends BaseSniffTestCase
             [84],
             [85],
             [86],
+
+            [94],
+            [95],
+            [96],
         ];
     }
 

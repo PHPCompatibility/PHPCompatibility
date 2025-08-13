@@ -59,6 +59,9 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTestCase
             [37],
             [39],
             [41],
+            [52],
+            [55],
+            [60],
         ];
     }
 
@@ -96,6 +99,10 @@ class NewConstantArraysUsingConstUnitTest extends BaseSniffTestCase
             [42],
             [46],
             [47],
+            [51],
+            [54],
+            [57],
+            [59],
         ];
     }
 
