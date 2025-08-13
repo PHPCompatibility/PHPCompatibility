@@ -14,12 +14,13 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\TypeString;
 use PHPCSUtils\Utils\UseStatements;
 use PHPCSUtils\Utils\Variables;
@@ -165,7 +166,7 @@ class NewInterfacesSniff extends Sniff
      *
      * @since 7.0.3
      *
-     * @var array<string, array<string, string>>
+     * @var array<string, array<string, string>> Sub-key should be method name in lowercase.
      */
     protected $unsupportedMethods = [
         'Serializable' => [
@@ -212,14 +213,14 @@ class NewInterfacesSniff extends Sniff
         $this->unsupportedMethods = \array_change_key_case($this->unsupportedMethods, \CASE_LOWER);
 
         $targets = [
-            \T_USE,
-            \T_INTERFACE,
-            \T_VARIABLE,
-            \T_CATCH,
+            \T_USE       => \T_USE,
+            \T_INTERFACE => \T_INTERFACE,
+            \T_CATCH     => \T_CATCH,
         ];
 
         $targets += Collections::ooCanImplement();
         $targets += Collections::functionDeclarationTokens();
+        $targets += Collections::ooPropertyScopes();
 
         return $targets;
     }
@@ -256,10 +257,6 @@ class NewInterfacesSniff extends Sniff
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
                 break;
 
-            case \T_VARIABLE:
-                $this->processVariableToken($phpcsFile, $stackPtr);
-                break;
-
             case \T_CATCH:
                 $this->processCatchToken($phpcsFile, $stackPtr);
                 break;
@@ -267,6 +264,10 @@ class NewInterfacesSniff extends Sniff
 
         if (isset(Collections::ooCanImplement()[$tokens[$stackPtr]['code']]) === true) {
             $this->processOOToken($phpcsFile, $stackPtr);
+        }
+
+        if (isset(Collections::ooPropertyScopes()[$tokens[$stackPtr]['code']]) === true) {
+            $this->processOOProperties($phpcsFile, $stackPtr);
         }
 
         if (isset(Collections::functionDeclarationTokens()[$tokens[$stackPtr]['code']]) === true) {
@@ -348,8 +349,10 @@ class NewInterfacesSniff extends Sniff
 
         if (isset($tokens[$stackPtr]['scope_closer'])) {
             $checkMethods = true;
-            $scopeCloser  = $tokens[$stackPtr]['scope_closer'];
         }
+
+        $ooMethods   = ObjectDeclarations::getDeclaredMethods($phpcsFile, $stackPtr);
+        $ooMethodsLc = \array_change_key_case($ooMethods, \CASE_LOWER);
 
         foreach ($interfaces as $interface) {
             $interface   = \ltrim($interface, '\\');
@@ -363,28 +366,18 @@ class NewInterfacesSniff extends Sniff
                 $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
             }
 
-            if ($checkMethods === true && isset($this->unsupportedMethods[$interfaceLc]) === true) {
-                $nextFunc = $stackPtr;
-                while (($nextFunc = $phpcsFile->findNext(\T_FUNCTION, ($nextFunc + 1), $scopeCloser)) !== false) {
-                    $funcName   = FunctionDeclarations::getName($phpcsFile, $nextFunc);
-                    $funcNameLc = \strtolower($funcName);
-                    if (empty($funcNameLc) === false
-                        && isset($this->unsupportedMethods[$interfaceLc][$funcNameLc]) === true
-                    ) {
+            if (isset($this->unsupportedMethods[$interfaceLc]) === true) {
+                foreach ($this->unsupportedMethods[$interfaceLc] as $methodName => $see) {
+                    if (isset($ooMethodsLc[$methodName])) {
                         $error     = $phrase . ' interface %s do not support the method %s(). See %s';
                         $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'UnsupportedMethod';
                         $data      = [
                             $interface,
-                            $funcName,
-                            $this->unsupportedMethods[$interfaceLc][$funcNameLc],
+                            $methodName,
+                            $see,
                         ];
 
-                        $phpcsFile->addError($error, $nextFunc, $errorCode, $data);
-                    }
-
-                    // Skip over the function body.
-                    if (isset($tokens[$nextFunc]['scope_closer']) === true) {
-                        $nextFunc = $tokens[$nextFunc]['scope_closer'];
+                        $phpcsFile->addError($error, $ooMethodsLc[$methodName], $errorCode, $data);
                     }
                 }
             }
@@ -393,7 +386,7 @@ class NewInterfacesSniff extends Sniff
 
 
     /**
-     * Processes this test for when a variable token is encountered.
+     * Processes an OO token for properties declared in the OO scope.
      *
      * - Detect new interfaces when used as a property type declaration.
      *
@@ -405,18 +398,50 @@ class NewInterfacesSniff extends Sniff
      *
      * @return void
      */
-    private function processVariableToken(File $phpcsFile, $stackPtr)
+    private function processOOProperties(File $phpcsFile, $stackPtr)
     {
-        if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
+        $ooProperties = ObjectDeclarations::getDeclaredProperties($phpcsFile, $stackPtr);
+        if (empty($ooProperties)) {
             return;
         }
 
-        $properties = Variables::getMemberProperties($phpcsFile, $stackPtr);
-        if ($properties['type'] === '') {
-            return;
-        }
+        $tokens         = $phpcsFile->getTokens();
+        $endOfStatement = false;
+        foreach ($ooProperties as $variableToken) {
+            if ($endOfStatement !== false && $variableToken < $endOfStatement) {
+                // Don't throw the same error multiple times for multi-property declarations.
+                // Also skip over any other constructor promoted properties.
+                continue;
+            }
 
-        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
+            try {
+                $properties = Variables::getMemberProperties($phpcsFile, $variableToken);
+            } catch (ValueError $e) {
+                /*
+                 * This must be constructor property promotion.
+                 * Ignore for now and skip over any other promoted properties, these will be handled
+                 * via the function token for the constructor.
+                 */
+                $deepestOpen = Parentheses::getLastOpener($phpcsFile, $variableToken);
+                if ($deepestOpen !== false
+                    && $stackPtr < $deepestOpen
+                    && Parentheses::isOwnerIn($phpcsFile, $deepestOpen, \T_FUNCTION)
+                    && isset($tokens[$deepestOpen]['parenthesis_closer'])
+                ) {
+                    $endOfStatement = $tokens[$deepestOpen]['parenthesis_closer'];
+                }
+
+                continue;
+            }
+
+            if ($properties['type'] === '') {
+                continue;
+            }
+
+            $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
+
+            $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($variableToken + 1));
+        }
     }
 
 
