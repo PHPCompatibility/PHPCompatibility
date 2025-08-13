@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\ControlStructures;
@@ -1603,13 +1602,7 @@ class NewClassesSniff extends Sniff
      */
     private function processCatchToken(File $phpcsFile, $stackPtr)
     {
-        try {
-            $exceptions = ControlStructures::getCaughtExceptions($phpcsFile, $stackPtr);
-        } catch (RuntimeException $e) {
-            // Parse error or live coding.
-            return;
-        }
-
+        $exceptions = ControlStructures::getCaughtExceptions($phpcsFile, $stackPtr);
         if (empty($exceptions) === true) {
             return;
         }
