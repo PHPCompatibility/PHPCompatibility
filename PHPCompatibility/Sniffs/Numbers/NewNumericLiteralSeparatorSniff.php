@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\Numbers;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\Numbers;
@@ -63,25 +62,20 @@ class NewNumericLiteralSeparatorSniff extends Sniff
             return;
         }
 
-        try {
-            $numberInfo = Numbers::getCompleteNumber($phpcsFile, $stackPtr);
-            if ($numberInfo['orig_content'] === $numberInfo['content']) {
-                // Content is the same, i.e. no underscores found, move on.
-                return;
-            }
-
-            $phpcsFile->addError(
-                'The use of underscore separators in numeric literals is not supported in PHP 7.3 or lower. Found: %s',
-                $stackPtr,
-                'Found',
-                [$numberInfo['orig_content']]
-            );
-
-            // Skip past the parts we've already taken into account to prevent double reporting.
-            return ($numberInfo['last_token'] + 1);
-        } catch (RuntimeException $e) {
-            // Running on an unsupported PHPCS version.
+        $numberInfo = Numbers::getCompleteNumber($phpcsFile, $stackPtr);
+        if ($numberInfo['orig_content'] === $numberInfo['content']) {
+            // Content is the same, i.e. no underscores found, move on.
             return;
         }
+
+        $phpcsFile->addError(
+            'The use of underscore separators in numeric literals is not supported in PHP 7.3 or lower. Found: %s',
+            $stackPtr,
+            'Found',
+            [$numberInfo['orig_content']]
+        );
+
+        // Skip past the parts we've already taken into account to prevent double reporting.
+        return ($numberInfo['last_token'] + 1);
     }
 }
