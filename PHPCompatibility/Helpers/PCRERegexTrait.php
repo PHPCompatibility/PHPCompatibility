@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -192,7 +193,7 @@ trait PCRERegexTrait
                 }
 
                 $regex .= \trim($content);
-            } catch (RuntimeException $e) {
+            } catch (ValueError $e) {
                 // Ignore. Subsequent line of a multi-line double quoted text string.
             }
         }
