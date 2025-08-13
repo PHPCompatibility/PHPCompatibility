@@ -82,26 +82,26 @@ class RemovedClassesUnitTest extends BaseSniffTestCase
             ['SWFMorph', '5.3', [46, 100, 113], '5.2'],
             ['SWFMovie', '5.3', [47, 100, 113], '5.2'],
             ['SWFPrebuiltClip', '5.3', [48], '5.2'],
-            ['SWFShape', '5.3', [49], '5.2'],
-            ['SWFSound', '5.3', [50], '5.2'],
+            ['SWFShape', '5.3', [49, 138], '5.2'],
+            ['SWFSound', '5.3', [50, 138], '5.2'],
             ['SWFSoundInstance', '5.3', [51], '5.2'],
             ['SWFSprite', '5.3', [52, 101, 114], '5.2'],
             ['SWFText', '5.3', [55, 101, 114], '5.2'],
             ['SWFTextField', '5.3', [56, 85], '5.2'],
-            ['SWFVideoStream', '5.3', [57], '5.2'],
+            ['SWFVideoStream', '5.3', [57, 141], '5.2'],
 
-            ['SQLiteDatabase', '5.4', [66, 80], '5.3'],
-            ['SQLiteResult', '5.4', [67, 93], '5.3'],
-            ['SQLiteUnbuffered', '5.4', [68, 93], '5.3'],
+            ['SQLiteDatabase', '5.4', [66, 80, 139], '5.3'],
+            ['SQLiteResult', '5.4', [67, 93, 139], '5.3'],
+            ['SQLiteUnbuffered', '5.4', [68, 93, 139], '5.3'],
             ['SQLiteException', '5.4', [69, 107], '5.3'],
 
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
 
-            ['IMAP\Connection', '8.4', [118], '8.3'],
-            ['OCICollection', '8.4', [120], '8.3'],
+            ['IMAP\Connection', '8.4', [118, 135], '8.3'],
+            ['OCICollection', '8.4', [120, 136], '8.3'],
             ['OCILob', '8.4', [121, 129], '8.3'],
-            ['PSpell\Config', '8.4', [124], '8.3'],
-            ['PSpell\Dictionary', '8.4', [125], '8.3'],
+            ['PSpell\Config', '8.4', [124, 137], '8.3'],
+            ['PSpell\Dictionary', '8.4', [125, 137], '8.3'],
         ];
     }
 
