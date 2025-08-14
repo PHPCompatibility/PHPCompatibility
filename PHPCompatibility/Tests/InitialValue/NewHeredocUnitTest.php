@@ -76,10 +76,13 @@ class NewHeredocUnitTest extends BaseSniffTestCase
             [156, 'constants'],
             [164, 'static variables'],
             [172, 'class properties'],
+            [192, 'constants'],
+            [196, 'constants'],
+            [199, 'constants'],
         ];
 
         if (\PHP_VERSION_ID >= 70300) {
-            $data[] = [192, 'static variables'];
+            $data[] = [208, 'static variables'];
         }
 
         return $data;

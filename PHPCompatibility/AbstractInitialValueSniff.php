@@ -14,6 +14,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Constants;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -167,17 +168,26 @@ abstract class AbstractInitialValueSniff extends Sniff
         /*
          * Handle default values for constants/static variables.
          */
-        $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr + 1));
+        $start          = ($stackPtr + 1);
+        $endOfStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], $start);
         if ($endOfStatement === false) {
             // No semi-colon - live coding.
             return;
         }
 
-        $type = 'const';
+        // If this is a potentially typed class constant, we need to skip over the type.
+        if ($tokens[$stackPtr]['code'] === \T_CONST) {
+            $type = 'const';
+
+            if (Scopes::isOOConstant($phpcsFile, $stackPtr) === true) {
+                $constProperties = Constants::getProperties($phpcsFile, $stackPtr);
+                $start           = ($constProperties['name_token'] - 1);
+            }
+        }
 
         // Filter out late static binding, class properties, static closures and arrow function and static return types.
         if ($tokens[$stackPtr]['code'] === \T_STATIC) {
-            $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $next = $phpcsFile->findNext(Tokens::$emptyTokens, $start, null, true);
             if ($next === false || $tokens[$next]['code'] !== \T_VARIABLE) {
                 // Not a static variable declaration. Bow out.
                 return;
@@ -193,7 +203,6 @@ abstract class AbstractInitialValueSniff extends Sniff
         }
 
         // Examine each variable/constant in multi-declarations.
-        $start = ($stackPtr + 1);
         do {
             $end   = $this->findEndOfCurrentDeclaration($phpcsFile, $start, $endOfStatement);
             $start = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
