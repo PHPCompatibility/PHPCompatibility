@@ -102,3 +102,9 @@ class AsymVisibility {
     final public private(set) $asymExplicit;
     protected(set) $asymImplicit;
 }
+
+class ClassWithoutAnyProperties
+{
+    final const MY_CONST = 10;
+    final function bar($notFinal) {}
+}
