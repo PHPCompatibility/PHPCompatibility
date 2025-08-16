@@ -27,6 +27,29 @@ final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTest
 {
 
     /**
+     * Test an empty string is returned when the stackptr to a non-existent token is passed.
+     *
+     * @return void
+     */
+    public function testGetFQClassNameFromDoubleColonTokenNonExistentToken()
+    {
+        $result = ResolveHelper::getFQClassNameFromDoubleColonToken(self::$phpcsFile, 100000);
+        $this->assertSame('', $result);
+    }
+
+    /**
+     * Test an empty string is returned when an invalid token is passed.
+     *
+     * @return void
+     */
+    public function testGetFQClassNameFromDoubleColonTokenInvalidToken()
+    {
+        $stackPtr = $this->getTargetToken('/* test 1 */', \T_STRING);
+        $result   = ResolveHelper::getFQClassNameFromDoubleColonToken(self::$phpcsFile, $stackPtr);
+        $this->assertSame('', $result);
+    }
+
+    /**
      * Test retrieving a fully qualified class name based on a T_DOUBLE_COLON token.
      *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
