@@ -20,6 +20,8 @@ use PHPCSUtils\TestUtils\UtilityMethodTestCase;
  * @group utilityFunctions
  *
  * @since 8.1.0
+ *
+ * @covers \PHPCompatibility\Helpers\MiscHelper::isUseOfGlobalConstant
  */
 final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
 {
@@ -28,8 +30,6 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
      * Test whether detection of whether a T_STRING is a global constant works correctly.
      *
      * @dataProvider dataIsUseOfGlobalConstant
-     *
-     * @covers \PHPCompatibility\Helpers\MiscHelper::isUseOfGlobalConstant
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
