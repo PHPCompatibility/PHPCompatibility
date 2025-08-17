@@ -61,3 +61,28 @@ class Foo {
 $theclass = 'Foo';
 /* test 19 */
 $theclass::bar(42);
+
+/* test 20 */
+// Intentional fatal error / cannot access self when no class scope is active.
+class Unrelated {}
+self::OUTSIDE_CLASS;
+
+$anon = new class {
+    public function foo() {
+        /* test 21 */
+        self::INSIDE_ANON_CLASS;
+    }
+};
+
+trait TraitNameIsNotClassName {
+    public function foo() {
+        /* test 22 */
+        self::INSIDE_TRAIT;
+    }
+}
+
+interface HasConstantScalarDeclaration {
+    public CONST_A = 10;
+    /* test 23 */
+    public CONST_B = self::CONST_A + 10;
+}

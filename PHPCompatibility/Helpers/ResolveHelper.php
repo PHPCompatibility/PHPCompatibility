@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -150,8 +151,11 @@ final class ResolveHelper
 
         // Get the classname from the class declaration if self is used.
         if ($tokens[$stackPtr - 1]['code'] === \T_SELF) {
-            $classDeclarationPtr = $phpcsFile->findPrevious(\T_CLASS, $stackPtr - 1);
-            if ($classDeclarationPtr === false) {
+            $classDeclarationPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+            if ($classDeclarationPtr === false
+                || $tokens[$classDeclarationPtr]['code'] === \T_ANON_CLASS
+                || $tokens[$classDeclarationPtr]['code'] === \T_TRAIT
+            ) {
                 return '';
             }
             $className = $phpcsFile->getDeclarationName($classDeclarationPtr);
