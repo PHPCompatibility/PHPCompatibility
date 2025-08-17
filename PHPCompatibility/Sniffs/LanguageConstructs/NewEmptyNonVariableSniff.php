@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Verify that nothing but variables are passed to empty().
@@ -66,15 +65,12 @@ final class NewEmptyNonVariableSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $open = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($open === false
-            || $tokens[$open]['code'] !== \T_OPEN_PARENTHESIS
-            || isset($tokens[$open]['parenthesis_closer']) === false
-        ) {
+        if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
             return;
         }
 
-        $close = $tokens[$open]['parenthesis_closer'];
+        $open  = $tokens[$stackPtr]['parenthesis_opener'];
+        $close = $tokens[$stackPtr]['parenthesis_closer'];
 
         $nestingLevel = 0;
         if ($close !== ($open + 1) && isset($tokens[$open + 1]['nested_parenthesis'])) {
