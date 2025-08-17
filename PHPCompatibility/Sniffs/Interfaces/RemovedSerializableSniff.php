@@ -284,11 +284,6 @@ class RemovedSerializableSniff extends Sniff
      */
     private function updateInterfaceList()
     {
-        // Allow for resetting the property in test files.
-        if ($this->serializableInterfaces === null || $this->serializableInterfaces === '') {
-            $this->serializableInterfaces = [];
-        }
-
         if (isset($this->lastSeenSerializableInterfaces)
             && $this->lastSeenSerializableInterfaces === $this->serializableInterfaces
         ) {
@@ -320,14 +315,8 @@ class RemovedSerializableSniff extends Sniff
      */
     private function cleanInterfaceNames($interfaceNames)
     {
-        if (\is_string($interfaceNames) === true) {
-            // Probably received in old, pre-PHPCS 3.3.0 ruleset property syntax.
-            $interfaceNames = \explode(',', $interfaceNames);
-        }
-
         // Make double sure that this is an array.
         $interfaceNames = (array) $interfaceNames;
-
         $interfaceNames = \array_map('strtolower', $interfaceNames);
         $interfaceNames = \array_map('ltrim', $interfaceNames, \array_fill(0, \count($interfaceNames), '\\'));
 

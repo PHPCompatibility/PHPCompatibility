@@ -137,7 +137,7 @@ class SkipOverDocblocks implements Serializable, ArrayAccess{ // Deprecation war
 
 
 // Test handling of property to search for additional interfaces.
-// @codingStandardsChangeSetting PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces SerializableInterface,ThisInterfaceIsInTheList
+// phpcs:set PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces[] SerializableInterface,ThisInterfaceIsInTheList
 interface ThisInterfaceisinTheList extends Serializable {}
 
 interface ThisInterfaceIsNOTInTheList extends ArrayAcces, \Serializable {} // Missing interface warning.
@@ -180,7 +180,7 @@ interface DoesNotExtend {}
 interface ThisInterfaceIsNOTInTheList extends ArrayAcces, \Serializable, ThisInterfaceisinTheList {} // Missing interface warning (plural found).
 
 // Reset property.
-// @codingStandardsChangeSetting PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces
+// phpcs:set PHPCompatibility.Interfaces.RemovedSerializable serializableInterfaces[]
 
 /*
  * Safeguard handling of enums implementing Serializable
