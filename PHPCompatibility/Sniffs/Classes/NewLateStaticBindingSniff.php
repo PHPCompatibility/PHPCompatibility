@@ -70,7 +70,7 @@ final class NewLateStaticBindingSniff extends Sniff
 
         switch ($tokens[$stackPtr]['code']) {
             case \T_STRING:
-                // PHPCS changes T_STATIC to T_STRING when used with instanceof.
+                // PHPCS 3.x changes T_STATIC to T_STRING when used with instanceof.
                 if ($tokens[$stackPtr]['content'] !== 'static') {
                     return;
                 }
@@ -92,8 +92,8 @@ final class NewLateStaticBindingSniff extends Sniff
 
                 if ($tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
                     $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-                    if ($prevNonEmpty === false
-                        || $tokens[$prevNonEmpty]['code'] !== \T_NEW
+                    if ($tokens[$prevNonEmpty]['code'] !== \T_NEW
+                        && $tokens[$prevNonEmpty]['code'] !== \T_INSTANCEOF // PHPCS 4.x.
                     ) {
                         return;
                     }
