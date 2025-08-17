@@ -33,9 +33,9 @@ jobs:
     strategy:
       matrix:
         php: ['7.2', 'latest']
-        phpcs_version: ['lowest', '3.x-dev', '4.0.0', '4.x-dev']
+        phpcs_version: ['lowest', '4.x-dev']
 
-    name: "QTest${{ matrix.phpcs_version == '3.x-dev' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
+    name: "QTest${{ matrix.phpcs_version == '4.x-dev' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
 
     steps:
       - name: Checkout code
@@ -63,7 +63,7 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS "lowest".
+      # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 
@@ -88,7 +88,7 @@ jobs:
         run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
 
       - name: Lint against parse errors
-        if: ${{ matrix.phpcs_version == '3.x-dev' }}
+        if: ${{ matrix.phpcs_version == '4.x-dev' }}
         run: composer lint
 
       - name: Grab PHPUnit version

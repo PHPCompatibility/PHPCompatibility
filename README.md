@@ -55,14 +55,14 @@ If you use PHPCompatibility, please fund this work by donating to the [PHP_CodeS
 ## Requirements
 
 * PHP 7.2+
-* PHP_CodeSniffer: 3.13.3+ / 4.0.0+.
+* PHP_CodeSniffer: 4.0.0+.
 * PHPCSUtils: 1.1.2+
 
 The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP_CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP_CodeSniffer 3.x.  
 As of version 9.0.0, support for PHP_CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.  
-As of version 10.0.0, support for PHP < 7.2 and PHP_CodeSniffer < 3.13.3 has been dropped and support for PHP_CodeSniffer 4.x has been added.
+As of version 10.0.0, support for PHP < 7.2 and PHP_CodeSniffer < 4.0.0 has been dropped (and support for PHP_CodeSniffer 4.x was added).
 
 
 ## Installation
