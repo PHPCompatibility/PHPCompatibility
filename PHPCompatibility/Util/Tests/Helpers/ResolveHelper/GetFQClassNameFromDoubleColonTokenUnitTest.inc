@@ -21,35 +21,35 @@ $var = (5+AnotherNS\DateTime::$static_property);
 
 
 namespace Testing {
-	/* test 10 */
-	DateTime::CONSTANT;
-	/* test 11 */
-	DateTime::$static_property;
-	/* test 12 */
-	DateTime::static_function();
+    /* test 10 */
+    DateTime::CONSTANT;
+    /* test 11 */
+    DateTime::$static_property;
+    /* test 12 */
+    DateTime::static_function();
 
-	class MyClass extends Foo {
-		function test() {
-			/* test 13 */
-			echo self::CONSTANT;
-			/* test 14 */
-			echo parent::$static_property;
-			/* test 15 */
-			static::test_function();
-		}
-	}
+    class MyClass extends Foo {
+        function test() {
+            /* test 13 */
+            echo self::CONSTANT;
+            /* test 14 */
+            echo parent::$static_property;
+            /* test 15 */
+            static::test_function();
+        }
+    }
 }
 
 
 class MyClass extends Bar {
-	function test() {
-		/* test 16 */
-		echo self::CONSTANT;
-		/* test 17 */
-		echo parent::$static_property;
-		/* test 18 */
-		static::test_function();
-	}
+    function test() {
+        /* test 16 */
+        echo self::CONSTANT;
+        /* test 17 */
+        echo parent::$static_property;
+        /* test 18 */
+        static::test_function();
+    }
 }
 
 // Issue #205
