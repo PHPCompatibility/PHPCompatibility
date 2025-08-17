@@ -101,6 +101,7 @@ final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTest
             ['/* test 22 */', ''],
             ['/* test 23 */', '\HasConstantScalarDeclaration'],
             ['/* test 24 */', '\DateTime'],
+            ['/* test 25 */', ''],
         ];
     }
 }

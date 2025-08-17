@@ -91,3 +91,10 @@ interface HasConstantScalarDeclaration {
 \DateTime
     /*comment*/
         ::comment_tolerance();
+
+$anon = new readonly class {
+    public function foo() {
+        /* test 25 */
+        self::INSIDE_READONLY_ANON_CLASS;
+    }
+};
