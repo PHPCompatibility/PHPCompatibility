@@ -126,16 +126,16 @@ class RemovedExtensionsUnitTest extends BaseSniffTestCase
             ['dbx', '5.1', 'pecl/dbx', [12], '5.0'],
             ['dio', '5.1', 'pecl/dio', [14], '5.0'],
             ['fdf', '5.3', 'pecl/fdf', [20], '5.2'],
-            ['ibase', '7.4', 'pecl/ibase', [78], '7.3'],
+            ['ibase', '7.4', 'pecl/ibase', [81], '7.3'],
             ['ingres', '5.1', 'pecl/ingres', [26], '5.0'],
             ['mcve', '5.1', 'pecl/mcve', [30], '5.0'],
             ['ming', '5.3', 'pecl/ming', [32], '5.2'],
             ['ncurses', '5.3', 'pecl/ncurses', [40], '5.2'],
             ['oracle', '5.1', 'oci8 or pdo_oci', [42], '5.0'],
-            ['recode', '7.4', 'iconv or mbstring', [80], '7.3'],
+            ['recode', '7.4', 'iconv or mbstring', [83], '7.3'],
             ['sybase', '5.3', 'sybase_ct', [50], '5.2'],
             ['w32api', '5.1', 'pecl/ffi', [52], '5.0'],
-            ['wddx', '7.4', 'pecl/wddx', [79], '7.3'],
+            ['wddx', '7.4', 'pecl/wddx', [82], '7.3'],
         ];
     }
 
@@ -229,7 +229,7 @@ class RemovedExtensionsUnitTest extends BaseSniffTestCase
             [68], // Whitelisted function.
             [74], // Whitelisted function array.
             [75], // Whitelisted function array.
-            [82], // Live coding.
+            [86], // Live coding.
         ];
     }
 

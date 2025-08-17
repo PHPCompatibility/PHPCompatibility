@@ -64,16 +64,19 @@ mssql_bind();
 
 ereg();
 
-// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist mysql_to_rfc3339
+// phpcs:set PHPCompatibility.Extensions.RemovedExtensions functionWhitelist[] mysql_to_rfc3339
 mysql_to_rfc3339();
 
 // PHP 7.1 removed extensions:
 mcrypt_encrypt();
 
-// @codingStandardsChangeSetting PHPCompatibility.Extensions.RemovedExtensions functionWhitelist ereg_convert,ereg_translate_to_preg
+// phpcs:set PHPCompatibility.Extensions.RemovedExtensions functionWhitelist[] ereg_convert,ereg_translate_to_preg
 ereg_convert();
 ereg_translate_to_preg();
 ereg_replace(); // Non-whitelisted.
+
+// Reset property to its default value.
+// phpcs:set PHPCompatibility.Extensions.RemovedExtensions functionWhitelist[]
 
 ibase_trans();
 wddx_deserialize();
