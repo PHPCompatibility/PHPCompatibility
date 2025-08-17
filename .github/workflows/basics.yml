@@ -165,3 +165,21 @@ jobs:
     uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@main
     with:
       strict: true
+
+  find-token-properties:
+    # The properties in the PHPCS Tokens class have been deprecated.
+    # The code in this repository should always use the constants instead.
+    name: 'Find use of Tokens properties'
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Find uses
+        id: findprops
+        shell: cmd
+        run: |
+          findstr /S /N /C:"Tokens::$" *.php
+          IF %ERRORLEVEL% NEQ 1 (Echo Please use the Tokens constants instead of the properties &Exit /b 1)
+          IF %ERRORLEVEL% EQU 1 (Echo All good &Exit /b 0)
