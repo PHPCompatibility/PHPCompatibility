@@ -49,7 +49,7 @@ trait ComplexVersionNewFeatureTrait
      * @return string[] Array with a single key `'not_in_version'` with as the value, a PHP version number
      *                  as a string or an empty string if the version number could not be determined.
      */
-    protected function getVersionInfo(array $itemArray)
+    final protected function getVersionInfo(array $itemArray)
     {
         $versionInfo = [
             'not_in_version' => '',
@@ -79,7 +79,7 @@ trait ComplexVersionNewFeatureTrait
      *
      * @return array<string, string|array>
      */
-    protected function getMessageInfo($itemName, $itemBaseCode, array $versionInfo)
+    final protected function getMessageInfo($itemName, $itemBaseCode, array $versionInfo)
     {
         return [
             'message'   => $this->msgTemplate,

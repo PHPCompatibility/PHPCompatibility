@@ -73,7 +73,7 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS 4.x.
+      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 

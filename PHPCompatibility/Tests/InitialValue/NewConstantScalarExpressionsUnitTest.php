@@ -229,7 +229,7 @@ final class NewConstantScalarExpressionsUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        if (PHP_VERSION_ID < 50500 || PHP_VERSION_ID >= 50600) {
+        if (\PHP_VERSION_ID < 50500 || \PHP_VERSION_ID >= 50600) {
             // Skip one particular test on PHP 5.5 as it just keeps being problematic.
             for ($line = 79; $line <= 87; $line++) {
                 $data[] = [$line];

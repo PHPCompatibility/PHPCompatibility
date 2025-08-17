@@ -83,7 +83,7 @@ trait HashAlgorithmsTrait
      * @return string|false The algorithm name without quotes if this was a relevant hash
      *                      function call or false if it was not.
      */
-    public function getHashAlgorithmParameter($functionName, array $parameters)
+    final public function getHashAlgorithmParameter($functionName, array $parameters)
     {
         // Get the parameter which should contain the algorithm name from the parameter stack.
         $functionNameLc = \strtolower($functionName);

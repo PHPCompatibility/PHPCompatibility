@@ -131,6 +131,7 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
      */
     public static function dataIsNumber()
     {
+        // phpcs:disable Universal.WhiteSpace.PrecisionAlignment.Found -- to allow for a few array entries with really long names.
         return [
             'Not a number - array'                                             => ['/* test 1 */', true, false, false, false],
             'Not a number - variable'                                          => ['/* test 2 */', true, false, false, false],
@@ -268,6 +269,7 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
             'Evals to float, incl floats: + sign with text string'             => ['/* test F11 */', true, 0.123, true, false],
             'Evals to float, incl floats: PHP 7.4+ underscore number'          => ['/* test F12 */', true, 0.123, true, false],
         ];
+        // phpcs:enable
     }
 
     /**

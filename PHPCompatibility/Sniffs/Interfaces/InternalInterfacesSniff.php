@@ -145,7 +145,7 @@ final class InternalInterfacesSniff extends Sniff
         foreach ($interfaces as $interface) {
             $interface   = \ltrim($interface, '\\');
             $interfaceLc = \strtolower($interface);
-            if (isset($targets[$interfaceLc]) && ! isset($this->importedDeclarations[$interfaceLc])) {
+            if (isset($targets[$interfaceLc]) && isset($this->importedDeclarations[$interfaceLc]) === false) {
                 $error     = 'The interface %s %s';
                 $errorCode = MessageHelper::stringToErrorCode($interfaceLc) . 'Found';
                 $data      = [
@@ -174,7 +174,7 @@ final class InternalInterfacesSniff extends Sniff
      */
     private function processUseToken(File $phpcsFile, $stackPtr)
     {
-        if (!UseStatements::isImportUse($phpcsFile, $stackPtr)) {
+        if (UseStatements::isImportUse($phpcsFile, $stackPtr) === false) {
             return;
         }
 
