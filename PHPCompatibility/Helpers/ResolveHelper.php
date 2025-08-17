@@ -162,12 +162,8 @@ final class ResolveHelper
             return self::getFQName($phpcsFile, $classDeclarationPtr, $className);
         }
 
-        $find = [
-            \T_NS_SEPARATOR,
-            \T_STRING,
-            \T_NAMESPACE,
-            \T_WHITESPACE,
-        ];
+        $find  = Collections::namespacedNameTokens();
+        $find += Tokens::$emptyTokens;
 
         $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
         if ($start === false || isset($tokens[($start + 1)]) === false) {
@@ -175,7 +171,7 @@ final class ResolveHelper
         }
 
         $start     = ($start + 1);
-        $className = $phpcsFile->getTokensAsString($start, ($stackPtr - $start));
+        $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($stackPtr - 1));
         $className = \trim($className);
 
         return self::getFQName($phpcsFile, $stackPtr, $className);

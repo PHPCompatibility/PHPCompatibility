@@ -86,3 +86,8 @@ interface HasConstantScalarDeclaration {
     /* test 23 */
     public CONST_B = self::CONST_A + 10;
 }
+
+/* test 24 */
+\DateTime
+    /*comment*/
+        ::comment_tolerance();
