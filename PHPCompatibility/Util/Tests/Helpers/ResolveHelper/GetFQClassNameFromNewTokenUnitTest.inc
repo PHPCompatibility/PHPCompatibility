@@ -47,6 +47,9 @@ new $className;
 /* test 17 */
 $anon = new class() {};
 
+/* test 18 */
+$anon = new #[SomeAttribute] class() {};
+
 // Issue #338 - no infinite loop on unfinished code.
 /* test 16 */
 $var = new
