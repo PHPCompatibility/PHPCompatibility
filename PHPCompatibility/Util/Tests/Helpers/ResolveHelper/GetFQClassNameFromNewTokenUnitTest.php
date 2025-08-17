@@ -71,6 +71,7 @@ final class GetFQClassNameFromNewTokenUnitTest extends UtilityMethodTestCase
             ['/* test 16 */', ''],
             ['/* test 17 */', ''],
             ['/* test 18 */', ''],
+            ['/* test 19 */', ''],
         ];
     }
 

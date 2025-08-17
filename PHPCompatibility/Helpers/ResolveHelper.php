@@ -60,6 +60,7 @@ final class ResolveHelper
             || $tokens[$start]['code'] === \T_VARIABLE
             || $tokens[$start]['code'] === \T_ANON_CLASS
             || $tokens[$start]['code'] === \T_ATTRIBUTE // Only possible for anonymous classes.
+            || $tokens[$start]['code'] === \T_READONLY // Only possible for anonymous classes.
         ) {
             // Parse error, name cannot be determined or not a named class.
             return '';
